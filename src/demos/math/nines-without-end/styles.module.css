@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+@keyframes zoomIn { from { transform: scaleX(0.1); } to { transform: scaleX(1); } }
+.zoom { animation: zoomIn 0.55s ease-out; }
+.axis { stroke: var(--fg); stroke-width: 2; }
+.tick { stroke: var(--fg); stroke-opacity: 0.7; stroke-width: 1.2; }
+.gap { stroke: var(--bad); stroke-width: 6; stroke-linecap: round; opacity: 0.85; }
+.point { fill: var(--domain); stroke: var(--fg); stroke-width: 1.2; }
+.pointLabel { fill: var(--domain); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.end { fill: var(--muted); font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.one { fill: var(--fg); font-size: 13px; font-weight: 800; }
+.gapLabel { fill: var(--bad); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.zero { fill: var(--good); font-size: 14px; font-weight: 800; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }

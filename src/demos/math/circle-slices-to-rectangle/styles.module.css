@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 40dvh; overflow: visible; }
+.box { fill: var(--bg-2); stroke: var(--fg); stroke-opacity: 0.5; stroke-width: 1.2; transform-origin: 0 0; transition: transform 0.7s ease-in-out; }
+.wedge { transform-origin: 0 0; transition: transform 0.8s ease-in-out; stroke: var(--bg-3); stroke-width: 0.6; stroke-linejoin: round; }
+.wA { fill: var(--domain); }
+.wB { fill: color-mix(in srgb, var(--domain) 55%, var(--fg)); }
+.radius { stroke: var(--fg); stroke-width: 2; }
+.measure { stroke: var(--fg); stroke-width: 1.2; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.muted { fill: var(--muted); font-size: 10.5px; font-weight: 600; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.boxLine { fill: none; stroke: var(--fg); stroke-opacity: 0.75; stroke-width: 1.2; stroke-dasharray: 4 3; transform-origin: 0 0; transition: transform 0.7s ease-in-out; pointer-events: none; }

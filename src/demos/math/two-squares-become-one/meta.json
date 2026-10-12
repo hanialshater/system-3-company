@@ -1,0 +1,73 @@
+{
+  "slug": "two-squares-become-one",
+  "title": "Two squares become one",
+  "hook": "Pythagoras is usually a formula to memorise. Slide four triangles and watch it come true.",
+  "domain": "math",
+  "concept": "pythagoras-by-rearrangement",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the area of a square is side times side",
+      "what a right angle is"
+    ],
+    "doesNotKnow": [
+      "that a^2 + b^2 = c^2",
+      "any proof of the Pythagorean theorem"
+    ]
+  },
+  "misconception": "Pythagoras is a formula to memorise, with no visible reason it should be true.",
+  "objective": "The learner can explain that four copies of a right triangle in a square of side a + b leave the same empty area whether arranged as one tilted c-by-c square or as an a-by-a and a b-by-b square, so a^2 + b^2 = c^2.",
+  "claims": [
+    {
+      "id": "math.two-squares-become-one.c1",
+      "text": "A right triangle with short sides 3 and 4 has a long side of 5.",
+      "support": "derivation",
+      "source": "3^2 + 4^2 = 9 + 16 = 25 = 5^2. 7 would need 49 and 3.5 would need 12.25.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-squares-become-one.c2",
+      "text": "Four copies of a right triangle with short sides a and b fit inside a square of side a + b in two ways: leaving one tilted c-by-c square empty, or leaving an a-by-a and a b-by-b square empty.",
+      "support": "derivation",
+      "source": "Corner layout: the triangles sit at the four corners with their right angles on the frame's corners; the four long sides form a quadrilateral with equal sides c and right angles (the two acute angles at each side point add to 90 degrees), so a square. Pairs layout: two triangles fill each a-by-b rectangle. Stage coordinates (a=3, b=4): T1 (0,0)(3,0)(0,4) moves by (0,3); T3 (7,7)(4,7)(7,3) by (-4,0); T4 (0,7)(0,4)(4,7) by (3,-4); T2 stays. Nelsen, Proofs Without Words (MAA, 1993), p. 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-squares-become-one.c3",
+      "text": "Sliding the triangles without turning them does not change the empty area, so c x c = 9 + 16 = 25 and c = 5 for the 3-4 triangle.",
+      "support": "derivation",
+      "source": "Empty area in both layouts = (a+b)^2 - 4 x (ab/2) = 49 - 24 = 25 for a=3, b=4. Translations preserve area.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-squares-become-one.c4",
+      "text": "The same packing works for any right triangle, so a^2 + b^2 = c^2 (the Pythagorean theorem).",
+      "support": "derivation",
+      "source": "c2 and c3 with general a, b: c^2 = (a+b)^2 - 2ab = a^2 + b^2. Nelsen, Proofs Without Words (MAA, 1993), p. 3; the theorem itself is Euclid, Elements I.47.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Four identical right triangles sit inside a big square. Rearranged, the empty space goes from two squares (areas 25 and 144) to one tilted square. What is the tilted square's area?",
+    "options": [
+      "169",
+      "119",
+      "It depends on the arrangement"
+    ],
+    "answer": 0,
+    "why": "Sliding the triangles does not change the empty area: 25 + 144 = 169, so the long side is 13."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

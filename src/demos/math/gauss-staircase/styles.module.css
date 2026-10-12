@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.dot { fill: var(--domain); }
+.dotCopy { fill: color-mix(in srgb, var(--good) 70%, var(--bg-2)); stroke: var(--good); stroke-width: 1; }
+.copy { transition: transform 0.7s ease-in-out, opacity 0.25s; }
+.frame { fill: none; stroke: var(--fg); stroke-opacity: 0.45; stroke-width: 1.5; stroke-dasharray: 4 4; }
+.dim { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 1.4em; font-variant-numeric: tabular-nums; }

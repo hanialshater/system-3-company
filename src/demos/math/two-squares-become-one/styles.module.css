@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 46dvh; }
+.empty { fill: var(--bg-2); }
+.grid { stroke: var(--line); stroke-width: 1; }
+.frame { fill: none; stroke: var(--fg); stroke-width: 2; }
+.tri { transition: transform 0.6s ease-in-out; }
+.triA { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; stroke-linejoin: round; }
+.triB { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; stroke-linejoin: round; }
+.sq { fill: color-mix(in srgb, var(--good) 18%, transparent); stroke: var(--good); stroke-width: 2; }
+.area { fill: var(--muted); font-size: 17px; font-weight: 700; }
+.areaKnown { fill: var(--good); font-size: 22px; font-weight: 800; }
+.side { fill: var(--fg); font-size: 12px; font-weight: 700; }
+.sideC { fill: var(--fg); font-size: 13px; font-weight: 800; font-style: italic; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.6em; }

@@ -1,0 +1,73 @@
+{
+  "slug": "fifty-up-fifty-down",
+  "title": "Fifty up, fifty down",
+  "hook": "A price rises 50%, then falls 50%. Surely you are back where you started?",
+  "domain": "math",
+  "concept": "percent-change-asymmetry",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a percentage of a number is",
+      "the area of a rectangle is width times height"
+    ],
+    "doesNotKnow": [
+      "that successive percent changes multiply rather than add",
+      "the identity (1 + p)(1 - p) = 1 - p^2"
+    ]
+  },
+  "misconception": "A 50% rise followed by a 50% fall gets you back to where you started, because the two changes cancel.",
+  "objective": "The learner can explain that a rise and a fall by the same percentage leave you below the start, because the fall is taken from the larger, risen amount: the result is (1 + p)(1 - p) = 1 - p^2 of the start.",
+  "claims": [
+    {
+      "id": "math.fifty-up-fifty-down.c1",
+      "text": "100 raised by 50% is 150; 150 lowered by 50% is 75.",
+      "support": "derivation",
+      "source": "100 x 1.5 = 150; 150 x 0.5 = 75. Recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-up-fifty-down.c2",
+      "text": "Up p% then down p% leaves (1 + p)(1 - p) = 1 - p^2 of the start, which is below the start for any p above zero.",
+      "support": "derivation",
+      "source": "Expand: (1 + p)(1 - p) = 1 - p + p - p^2 = 1 - p^2; p^2 > 0 for p > 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-up-fifty-down.c3",
+      "text": "Stage values: up 25% gives 125 then 93.75; up 50% gives 150 then 75; up 75% gives 175 then 43.75. The fall takes 31.25, 75 and 131.25; the net loss (the missing corner) is 6.25, 25 and 56.25.",
+      "support": "derivation",
+      "source": "100 x (1 + p) and 100 x (1 - p^2) for p = 0.25, 0.5, 0.75; corner 100 p^2. Recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-up-fifty-down.c4",
+      "text": "10% up then 10% down ends at 99, a 1% net loss.",
+      "support": "derivation",
+      "source": "100 x 1.1 x 0.9 = 99; 1 - 0.1^2 = 0.99.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shop cuts a price by 20%, then raises the new price by 20%. Compared with the original price, it is now...",
+    "options": [
+      "4% lower",
+      "the same",
+      "4% higher"
+    ],
+    "answer": 0,
+    "why": "The changes multiply: 0.8 x 1.2 = 0.96. The rise is 20% of a smaller base, so it does not undo the cut."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

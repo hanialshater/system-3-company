@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 38dvh; }
+@keyframes pop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.grow { animation: pop 0.35s ease-out both; }
+.edge { stroke: var(--muted); stroke-width: 1.5; animation: fade 0.35s ease-out both; }
+.comp { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.p2 { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; background: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.p3 { fill: color-mix(in srgb, var(--good) 65%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; background: color-mix(in srgb, var(--good) 65%, var(--bg-2)); }
+.p5 { fill: color-mix(in srgb, var(--warn, var(--bad)) 65%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; background: color-mix(in srgb, var(--warn, var(--bad)) 65%, var(--bg-2)); }
+.num { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 1.4em; }
+.shelf { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; justify-content: center; font-size: 0.78rem; }
+.shelf li { display: flex; align-items: center; gap: 3px; }
+.from { color: var(--muted); font-weight: 700; margin-right: 2px; }
+.chip { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; font-weight: 800; font-size: 0.7rem; color: var(--fg); }
+.wrap :global(.row) { gap: 6px; justify-content: center; }
+.wrap :global(.control) { padding: 8px 9px; }

@@ -1,0 +1,66 @@
+{
+  "slug": "gauss-staircase",
+  "title": "Adding 1 to 10 without adding",
+  "hook": "1 + 2 + 3 + ... + 10 looks like ten additions. One flip makes it one multiplication.",
+  "domain": "math",
+  "concept": "triangular-numbers",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adding and multiplying whole numbers",
+      "counting dots in a rectangle as rows times columns"
+    ],
+    "doesNotKnow": [
+      "the pairing trick for 1 + 2 + ... + n",
+      "the closed form n(n+1)/2"
+    ]
+  },
+  "misconception": "Adding 1 to n needs n separate additions; there is no shortcut.",
+  "objective": "The learner can explain that two copies of the staircase 1 + 2 + ... + n fit together into an n-by-(n+1) rectangle, so the sum is n(n+1)/2, and use it for n = 100.",
+  "claims": [
+    {
+      "id": "math.gauss-staircase.c1",
+      "text": "1 + 2 + 3 + ... + 10 = 55.",
+      "support": "derivation",
+      "source": "10 x 11 / 2 = 55; direct sum recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.gauss-staircase.c2",
+      "text": "Two staircases of n steps, one turned half a turn, fill an n-by-(n+1) rectangle exactly, so 1 + 2 + ... + n = n(n+1)/2.",
+      "support": "derivation",
+      "source": "Column i (1..n) holds i dots of the first staircase and n + 1 - i of the turned copy: n + 1 per column, n columns. Also provable by induction.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.gauss-staircase.c3",
+      "text": "1 + 2 + ... + 100 = 100 x 101 / 2 = 5050.",
+      "support": "derivation",
+      "source": "From c2 with n = 100; recomputed with node.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Without adding them one by one, what is 1 + 2 + 3 + ... + 20?",
+    "options": [
+      "210",
+      "200",
+      "420"
+    ],
+    "answer": 0,
+    "why": "Two staircases of 20 steps make a 20 x 21 rectangle of 420 dots; one staircase is half: 210."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
