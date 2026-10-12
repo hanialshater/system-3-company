@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.fit { max-height: 42dvh; }
+.bg { fill: var(--bg-2); }
+.hair { fill: color-mix(in srgb, var(--fg) 22%, var(--bg-2)); }
+.atom { fill: var(--domain); stroke: var(--fg); stroke-width: 0.6; }
+.atomLine { stroke: var(--domain); opacity: 0.8; }
+.nextBox { fill: none; stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.frame { fill: none; stroke: var(--line); }
+.label { fill: var(--fg); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.scale { stroke: var(--fg); stroke-width: 1.5; }
+.scaleLabel { fill: var(--muted); font-size: 11px; }

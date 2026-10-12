@@ -1,0 +1,96 @@
+{
+  "slug": "the-tail-that-reacts",
+  "title": "The tail that reacts",
+  "hook": "Warm a reaction by 3%. Why can it run almost twice as fast?",
+  "domain": "chemistry",
+  "concept": "reaction-rates-temperature",
+  "status": "review",
+  "durationSec": 65,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that heating makes reactions faster",
+      "that molecules must collide hard enough to react (an energy barrier)",
+      "kelvin temperatures"
+    ],
+    "doesNotKnow": [
+      "that collision energies are spread out, with a thin high-energy tail",
+      "why a small temperature rise can double a rate",
+      "the Arrhenius equation"
+    ]
+  },
+  "misconception": "Rate rises in proportion to how much hotter it gets: about 3% hotter, about 3% faster.",
+  "objective": "The learner can explain that only the far tail of collision energies clears the barrier, and a small warming barely moves the crowd but nearly doubles that tail: with a 50 kJ/mol barrier, 298 K to 308 K gives about 1.9 times the rate.",
+  "claims": [
+    {
+      "id": "chemistry.the-tail-that-reacts.c1",
+      "text": "In simple collision theory the share of collisions with at least the barrier energy Ea is e^(−Ea/RT), and the rate is proportional to it (the Arrhenius form k = A e^(−Ea/RT)).",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, chapters on reaction rates (Arrhenius equation) and collision theory (fraction of collisions with energy along the line of centres >= Ea is exp(-Ea/RT)).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c2",
+      "text": "R = 8.314 J/(mol K).",
+      "support": "source",
+      "source": "CODATA 2018: R = 8.314462618 J mol^-1 K^-1 (exact since the 2019 SI redefinition, as N_A x k).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c3",
+      "text": "With Ea = 50 kJ/mol, warming from 298 K to 308 K multiplies the rate by about 1.9.",
+      "support": "derivation",
+      "source": "ratio = exp[(Ea/R)(1/298 - 1/308)] = exp[6014 x 1.0895e-4] = exp(0.655) = 1.93 (node script). Assumes A unchanged.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c4",
+      "text": "About 1.7 collisions per billion clear a 50 kJ/mol barrier at 298 K and about 3.3 per billion at 308 K.",
+      "support": "derivation",
+      "source": "exp(-50000 / (8.314 x 298)) = 1.72e-9; exp(-50000 / (8.314 x 308)) = 3.31e-9 (node script).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c5",
+      "text": "Ea/RT is about 20 at 298 K, so a 3% change in T is about a 0.65 change in the exponent, and e^0.65 ≈ 1.9.",
+      "support": "derivation",
+      "source": "50000 / (8.314 x 298) = 20.2; 20.2 x (1 - 298/308) = 0.655; e^0.655 = 1.93.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c6",
+      "text": "The chart's right side is drawn 250 million times taller than the left, and its energy axis is broken between 15 and 48 kJ/mol; the left side shows the crowd at 298 K (dashed) and now.",
+      "support": "derivation",
+      "source": "Representation choice. Heights are f(E) = exp(-E/RT)/RT relative to f(0) at 298 K; right side multiplied by 2.5e8.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-tail-that-reacts.c7",
+      "text": "'About double per 10 K' is a rule of thumb that fits barriers near 50 kJ/mol around room temperature, not a law.",
+      "support": "derivation",
+      "source": "From c3: the factor is exp[(Ea/R)(10/(T(T+10)))], so it depends on Ea and T; at 298 K it is 1.93 for 50 kJ/mol 1.48 for 30 kJ/mol and 2.50 for 70 kJ/mol (node script). Atkins & de Paula discuss the rule's limits.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can a 10 K rise nearly double a reaction's rate when it is only about 3% hotter?",
+    "options": [
+      "Every molecule moves twice as fast",
+      "The few collisions energetic enough to react nearly double",
+      "Heat lowers the barrier"
+    ],
+    "answer": 1,
+    "why": "Only the thin high-energy tail clears the barrier; a small warming barely moves the crowd but nearly doubles that tail."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

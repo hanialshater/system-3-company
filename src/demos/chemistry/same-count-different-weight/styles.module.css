@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.fit { max-height: 36dvh; }
+.pick { flex: 1 1 auto; min-height: 36px; }
+.current:disabled { opacity: 1; }
+.mole { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.moleFull { fill: color-mix(in srgb, var(--good) 14%, transparent); stroke: var(--good); stroke-width: 2; }
+.moleLabel { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.dot { fill: var(--domain); }
+.pan { fill: var(--fg); opacity: 0.8; }
+.display { fill: var(--bg-2); stroke: var(--line); }
+.displayText { fill: var(--fg); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }

@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.fit { max-height: 40dvh; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 9px; }
+.liquid { fill: color-mix(in srgb, var(--domain) 14%, transparent); transition: y 0.3s, height 0.3s; }
+.surface { stroke: var(--domain); stroke-width: 1.5; }
+.band { fill: none; stroke: var(--fg); stroke-width: 1; stroke-dasharray: 4 3; }
+.bandLabel { fill: var(--fg); font-size: 16px; font-weight: 800; }
+.dot { fill: var(--domain); opacity: 0.55; transition: cy 0.3s; }
+.dotIn { fill: var(--domain); transition: cy 0.3s; }
+.glass { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }

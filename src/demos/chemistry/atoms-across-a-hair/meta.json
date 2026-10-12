@@ -1,0 +1,81 @@
+{
+  "slug": "atoms-across-a-hair",
+  "title": "Atoms across a hair",
+  "hook": "Atoms are small. But how many would it take to cross one hair?",
+  "domain": "chemistry",
+  "concept": "atom-scale-size",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that things are made of atoms",
+      "that a micrometre is a thousandth of a millimetre and a nanometre a thousandth of a micrometre (or will accept it)",
+      "multiplying and dividing by 10"
+    ],
+    "doesNotKnow": [
+      "how big an atom is compared with everyday thin things",
+      "scientific notation"
+    ]
+  },
+  "misconception": "Atoms are 'really small' but only thousands of them would span something thin like a hair.",
+  "objective": "The learner can explain that a hair is about 350,000 atoms wide, five and a half factors of ten, by counting tenfold zoom steps from the hair to single atoms.",
+  "claims": [
+    {
+      "id": "chemistry.atoms-across-a-hair.c1",
+      "text": "A human hair is about 70 micrometres wide (hairs range from roughly 17 to 180 micrometres).",
+      "support": "source",
+      "source": "B. Ley, 'Diameter of a Human Hair', The Physics Factbook (ed. G. Elert, 1999), which collects published values of 17-181 µm; 70 µm is a commonly used typical value. The CM's 'Ley & Bartlett, J. Cosmet. Sci. 2008' citation could not be confirmed and was replaced; a fact-checker should confirm a primary measurement.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.atoms-across-a-hair.c2",
+      "text": "An atom is about 0.2 nanometres across (atoms run roughly 0.1 to 0.5 nm).",
+      "support": "source",
+      "source": "Twice the covalent radii in Cordero et al., Dalton Trans. (2008) 2832 (e.g. C 0.76 Å, O 0.66 Å, Si 1.11 Å) and twice the van der Waals radii in Bondi, J. Phys. Chem. 68 (1964) 441 (C 1.70 Å, O 1.52 Å) give about 0.13-0.34 nm for common atoms; heavy alkali atoms reach about 0.5 nm.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.atoms-across-a-hair.c3",
+      "text": "About 350,000 atoms side by side span a 70 µm hair: 70,000 nm ÷ 0.2 nm.",
+      "support": "derivation",
+      "source": "70 x 10^-6 m / 0.2 x 10^-9 m = 3.5 x 10^5; log10(3.5 x 10^5) = 5.54, 'about five and a half powers of ten' (node script).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.atoms-across-a-hair.c4",
+      "text": "Windows 100 µm, 10 µm, 1 µm, 100 nm, 10 nm and 1 nm wide are 500,000, 50,000, 5,000, 500, 50 and 5 atom widths across.",
+      "support": "derivation",
+      "source": "Window width / 0.2 nm: 100,000/0.2 = 500,000, and each zoom divides by 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.atoms-across-a-hair.c5",
+      "text": "The hair fills 70% of the first 100 µm window, so it spans about 0.7 × 500,000 = 350,000 atoms.",
+      "support": "derivation",
+      "source": "70 µm / 100 µm = 0.7; 0.7 x 500,000 = 350,000.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A plastic film is 100 micrometres thick. Roughly how many atoms (about 0.2 nm each) stacked up make that thickness?",
+    "options": [
+      "About 5,000",
+      "About 500,000",
+      "About 500 million"
+    ],
+    "answer": 1,
+    "why": "100 µm is 100,000 nm, and 100,000 / 0.2 = 500,000: five and a bit factors of ten, like the hair."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

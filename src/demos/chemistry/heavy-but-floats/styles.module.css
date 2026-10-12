@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.fit { max-height: 40dvh; }
+.water { fill: color-mix(in srgb, var(--domain) 18%, transparent); }
+.surface { stroke: var(--domain); stroke-width: 2; }
+.waterLabel { fill: var(--muted); font-size: 11px; }
+.tank { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }
+.ball { transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.ballBody { fill: color-mix(in srgb, var(--fg) 55%, var(--bg)); stroke: var(--fg); stroke-width: 1.5; opacity: 0.92; transition: r 0.3s; }
+.ballLabel { fill: var(--bg); font-size: 12px; font-weight: 800; }
+@media (prefers-reduced-motion: reduce) { .ball, .ballBody { transition: none; } }
