@@ -1,0 +1,89 @@
+{
+  "slug": "projectile-angle",
+  "title": "The steep throw and the flat throw",
+  "hook": "Same arm, same speed: one ball at 30 degrees, one at 60. Which lands farther?",
+  "domain": "physics",
+  "concept": "projectile-angle",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "angles in degrees",
+      "that thrown things fall back down",
+      "metres and seconds"
+    ],
+    "doesNotKnow": [
+      "splitting a velocity into horizontal and vertical parts",
+      "the range formula R = v^2 sin(2 theta) / g",
+      "trigonometry"
+    ]
+  },
+  "misconception": "A steeper throw goes higher and therefore farther (or a flatter throw goes farther because it heads toward the target); each angle has its own unique distance.",
+  "objective": "The learner can explain that, ignoring air drag and launching from the ground, angles that add to 90 degrees (30 and 60, 20 and 70) land at the same spot: the steep throw stays up longer but drifts sideways slowly, the flat throw moves sideways fast but lands soon. 45 degrees, the balance point, goes farthest.",
+  "claims": [
+    {
+      "id": "physics.projectile-angle.c1",
+      "text": "Ignoring air resistance, a projectile launched from ground level at speed v and angle theta lands at distance R = v^2 sin(2 theta) / g.",
+      "support": "derivation",
+      "source": "Flight time 2 v sin(theta) / g times horizontal speed v cos(theta), with sin(2 theta) = 2 sin(theta) cos(theta). Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4 (Projectile Motion).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c2",
+      "text": "Angles that add up to 90 degrees give the same range, because sin(2 theta) = sin(180 degrees - 2 theta).",
+      "support": "derivation",
+      "source": "From c1 and the identity sin(x) = sin(180 deg - x). Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c3",
+      "text": "At 20 m/s with g = 9.81 m/s^2, a 30 or 60 degree launch lands about 35.3 m away and a 45 degree launch about 40.8 m away.",
+      "support": "derivation",
+      "source": "400 x sin(60 deg) / 9.81 = 35.31 m; 400 x 1 / 9.81 = 40.77 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c4",
+      "text": "At 20 m/s, a 60 degree throw stays in the air about 3.5 s and peaks about 15.3 m high; a 30 degree throw stays up about 2.0 s and peaks about 5.1 m high.",
+      "support": "derivation",
+      "source": "Flight time 2 v sin(theta) / g: 2 x 20 x 0.866 / 9.81 = 3.53 s, 2 x 20 x 0.5 / 9.81 = 2.04 s. Peak v^2 sin^2(theta) / (2 g): 15.29 m and 5.10 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c5",
+      "text": "Ignoring air resistance and launching from the ground, 45 degrees gives the longest range.",
+      "support": "derivation",
+      "source": "sin(2 theta) is largest (= 1) at 2 theta = 90 deg. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c6",
+      "text": "With real air drag the two complementary throws no longer land together; the steep, long-flight throw loses more distance.",
+      "support": "source",
+      "source": "Drag acts throughout the flight, so the longer flight loses more range, and the optimum angle drops below 45 deg. Taylor, Classical Mechanics (2005), sec. 2.4-2.5 (projectile with linear and quadratic air resistance).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ignoring air resistance, a ball thrown at 25 degrees lands 30 m away. At the same speed, which other angle lands at the same spot?",
+    "options": [
+      "65 degrees",
+      "50 degrees",
+      "No other angle"
+    ],
+    "answer": 0,
+    "why": "Angles that add to 90 degrees share a landing point: the steep throw stays up longer but moves sideways more slowly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

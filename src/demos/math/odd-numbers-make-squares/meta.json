@@ -1,0 +1,68 @@
+{
+  "slug": "odd-numbers-make-squares",
+  "title": "Odd numbers are secretly squares",
+  "hook": "1 + 3 + 5 + 7 looks like a random pile. Add one more and watch what it builds.",
+  "domain": "math",
+  "concept": "odd-numbers-make-squares",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what odd numbers are",
+      "adding whole numbers",
+      "that 4 x 4 = 16 is a square number"
+    ],
+    "doesNotKnow": [
+      "proof by picture",
+      "the formula for the sum of the first n odd numbers",
+      "algebraic notation such as n^2"
+    ]
+  },
+  "misconception": "A running sum of odd numbers is an irregular total you have to grind out term by term; there is no shape or pattern behind it.",
+  "objective": "The learner can explain, with the L-shaped picture, why the first n odd numbers always add up to n x n: each odd number is exactly the L that grows an n-by-n square into the next square.",
+  "claims": [
+    {
+      "id": "math.odd-numbers-make-squares.c1",
+      "text": "The sum of the first n odd numbers, 1 + 3 + ... + (2n - 1), equals n x n.",
+      "support": "derivation",
+      "source": "Induction: n^2 + (2n + 1) = (n + 1)^2. Classical result (Nicomachus, Introduction to Arithmetic, c. 100 CE); see Nelsen, Proofs Without Words (MAA, 1993), p. 71.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.odd-numbers-make-squares.c2",
+      "text": "Wrapping an n-by-n square of dots with one row and one column (sharing a corner) adds 2n + 1 dots, which is the next odd number, and makes an (n + 1)-by-(n + 1) square.",
+      "support": "derivation",
+      "source": "The L-shaped gnomon has n + n + 1 = 2n + 1 dots. Nelsen, Proofs Without Words (MAA, 1993), p. 71.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.odd-numbers-make-squares.c3",
+      "text": "1 + 3 + 5 + ... + 19 (the first ten odd numbers) equals 100, and the first 100 odd numbers add up to 10,000.",
+      "support": "derivation",
+      "source": "Apply c1 with n = 10 and n = 100: 10 x 10 = 100, 100 x 100 = 10,000. Direct addition confirms the n = 10 case.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Without adding them one by one: what is 1 + 3 + 5 + ... + 29 (the first 15 odd numbers)?",
+    "options": [
+      "225",
+      "210",
+      "450"
+    ],
+    "answer": 0,
+    "why": "Each odd number is the L that grows a square by one: 15 odd numbers build a 15 x 15 square, which is 225."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

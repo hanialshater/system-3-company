@@ -11,8 +11,12 @@ import m5 from "./cs/binary-search/meta.json";
 import m6 from "./cs/merge-sort-payoff/meta.json";
 import m7 from "./economics/compound-interest/meta.json";
 import m8 from "./economics/supply-demand/meta.json";
+import m9 from "./math/exponential-growth/meta.json";
+import m10 from "./math/odd-numbers-make-squares/meta.json";
+import m11 from "./physics/pendulum-period/meta.json";
+import m12 from "./physics/projectile-angle/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -24,4 +28,8 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
   "compound-interest": () => import("./economics/compound-interest/Demo"),
   "supply-demand": () => import("./economics/supply-demand/Demo"),
+  "exponential-growth": () => import("./math/exponential-growth/Demo"),
+  "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
+  "pendulum-period": () => import("./physics/pendulum-period/Demo"),
+  "projectile-angle": () => import("./physics/projectile-angle/Demo"),
 };

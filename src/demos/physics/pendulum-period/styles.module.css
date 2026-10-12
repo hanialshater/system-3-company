@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.beam { stroke: var(--fg); stroke-width: 4; stroke-linecap: round; opacity: 0.7; }
+.pivot { fill: var(--fg); }
+.string { stroke: var(--fg); stroke-width: 1.6; }
+.bob { fill: var(--domain); stroke: var(--fg); stroke-opacity: 0.4; stroke-width: 1; }
+.bobLabel { fill: var(--fg); font-size: 13px; font-weight: 700; }
+.ghostString { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 4 4; }
+.ghostBob { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 3 3; }
+.clock { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+/* The kit slider input renders ~16px tall; the QA contract needs 24px tap targets. */
+.wrap input[type="range"] { height: 28px; margin: 0; }
+/* Fit the stage: the SVG shrinks into whatever height is left (the stage shrinks when the reveal opens). */
+.wrap { flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 110px; max-height: 46dvh; }

@@ -1,0 +1,30 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.ground { stroke: var(--fg); stroke-width: 1.5; opacity: 0.6; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 9px; }
+.preview { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 4 4; }
+.aim { stroke: var(--fg); stroke-width: 2.5; stroke-linecap: round; }
+.ball { fill: var(--fg); }
+
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.arc { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 1; animation: draw 0.6s ease-out; }
+.latest .arc { stroke: var(--domain); }
+.older .arc { stroke: color-mix(in srgb, var(--domain) 45%, var(--muted)); stroke-width: 2; }
+.arcLabel { font-size: 10px; font-weight: 700; }
+.latest .arcLabel { fill: var(--domain); }
+.older .arcLabel { fill: var(--muted); }
+
+.land { fill: var(--domain); }
+.landShared { fill: var(--good); stroke: var(--fg); stroke-width: 1; }
+.landLabel { fill: var(--fg); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
+/* The kit slider input renders ~16px tall; the QA contract needs 24px tap targets. */
+.wrap input[type="range"] { height: 28px; margin: 0; }
+/* The kit .slider has flex: 1 1 160px, which in a column layout becomes 160px of height. */
+.wrap > label { flex: 0 0 auto; }
+/* Five items in one row on a phone: tighten the kit readouts for this stage only. */
+.wrap :global(.readout) { min-width: 0; padding: 4px 8px; }
+.wrap :global(.row) { gap: 6px; }
+/* Fit the stage: the SVG shrinks into whatever height is left (the stage shrinks when the reveal opens). */
+.wrap { flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 110px; max-height: 46dvh; }
