@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.fit { max-height: 40dvh; }
+.grid { stroke: var(--line); }
+.axisLabel { fill: var(--muted); font-size: 10px; }
+.zeroC { stroke: var(--line); stroke-dasharray: 2 3; }
+.trace { stroke: var(--domain); stroke-width: 3; stroke-linecap: round; }
+.extra { stroke: var(--domain); stroke-width: 2; stroke-dasharray: 5 4; }
+.zeroDot { fill: var(--bad); }
+.note { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.balloon { transition: transform 0.25s; }
+.skin { fill: color-mix(in srgb, var(--domain) 70%, transparent); stroke: var(--fg); stroke-width: 1.2; }
+.string { stroke: var(--fg); stroke-width: 1; }

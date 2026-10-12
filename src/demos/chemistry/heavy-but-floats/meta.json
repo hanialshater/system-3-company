@@ -1,0 +1,88 @@
+{
+  "slug": "heavy-but-floats",
+  "title": "Heavy, but it floats",
+  "hook": "A 500 g ball. Same mass every time. Why does it sometimes float?",
+  "domain": "chemistry",
+  "concept": "density",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that some things sink and some float",
+      "grams and cubic centimetres",
+      "dividing one number by another"
+    ],
+    "doesNotKnow": [
+      "that density is mass per volume",
+      "that floating depends on density compared with the liquid's, not on mass"
+    ]
+  },
+  "misconception": "Heavy objects sink and light objects float.",
+  "objective": "The learner can explain that an object floats when its mass per volume is less than the liquid's: a 500 g ball of 800 cm³ is 0.625 g/cm³ and floats in water (about 1.0 g/cm³), while the same 500 g squeezed below 500 cm³ sinks.",
+  "claims": [
+    {
+      "id": "chemistry.heavy-but-floats.c1",
+      "text": "Water is about 1.0 g/cm³ (0.99997 g/cm³ at 4 °C, 0.998 g/cm³ at 20 °C).",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Properties of water in the range 0-100 °C' (density table).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heavy-but-floats.c2",
+      "text": "Density is mass divided by volume; a 500 g ball of 800 cm³ is 0.625 g/cm³.",
+      "support": "derivation",
+      "source": "Definition of density (IUPAC Gold Book, 'mass density'); 500 g / 800 cm³ = 0.625 g/cm³.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heavy-but-floats.c3",
+      "text": "A solid object sinks if it is denser than the liquid, floats if it is less dense, and stays put at any depth (hovers) if the densities match.",
+      "support": "source",
+      "source": "Archimedes' principle: buoyant force = weight of displaced liquid. Any introductory physics text, e.g. Halliday, Resnick & Walker, Fundamentals of Physics, ch. 14 (Fluids).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heavy-but-floats.c4",
+      "text": "With mass fixed at 500 g, the crossover is at 500 cm³: smaller sinks, larger floats.",
+      "support": "derivation",
+      "source": "500 g / V = 1.0 g/cm³ gives V = 500 cm³.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heavy-but-floats.c5",
+      "text": "A floating object has the same fraction of its volume under water as its density divided by water's: 0.625, five eighths, for this ball.",
+      "support": "derivation",
+      "source": "Floating: weight = buoyancy, so rho_obj x V = rho_water x V_under, V_under / V = 0.625 / 1.0. The stage solves the spherical-cap depth h for (h/r)^2 (3 - h/r)/4 = 0.625 by bisection.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heavy-but-floats.c6",
+      "text": "Heavy ships float for the same reason: their hull encloses so much volume (mostly air) that their average density is below water's.",
+      "support": "source",
+      "source": "Archimedes' principle applied to a hull; Halliday, Resnick & Walker, Fundamentals of Physics, ch. 14.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 200 g block has a volume of 250 cm³. In water (about 1.0 g/cm³) it…",
+    "options": [
+      "Sinks",
+      "Floats",
+      "Hovers"
+    ],
+    "answer": 1,
+    "why": "Density is 200 / 250 = 0.8 g/cm³, less than water's 1.0, so it floats whatever it weighs."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.fit { max-height: 52dvh; }
+.a { fill: var(--domain); }
+.b { fill: none; stroke: var(--fg); stroke-width: 2; }
+.barA { fill: var(--domain); }
+.barB { fill: var(--fg); opacity: 0.75; }
+.cell { cursor: pointer; }
+.cellLocked { cursor: default; }
+.hit { fill: transparent; }
+.flash { fill: color-mix(in srgb, var(--domain) 22%, transparent); }
+.ring { fill: none; stroke-width: 3; }
+.tag0 { stroke: var(--bad); }
+.tag1 { stroke: var(--good); }
+.tag2 { stroke: var(--muted); stroke-dasharray: 3 2; }
