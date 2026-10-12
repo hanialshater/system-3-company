@@ -207,7 +207,7 @@ Round 2 adds 20 concepts to the map and 13 second angles on existing concepts (e
 - Key state: the learner has dropped at least four keys and sees them all stack in slot 0 while nine slots stay empty.
 - Interaction: tap keys from a tray into the table; a switch changes the rule to "mod 7" and the same keys spread out. One table.
 - Payoff: a hash must break up the patterns in real keys; a bad one turns a table into one long list.
-- Claims to check: (1) result above (run). (2) With mod 7 the 10 keys land in 7 different slots? (compute; check before using the switch). (3) Chaining cost grows with chain length (CLRS 11.2).
+- Claims to check: (1) result above (run). (2) With mod 7 the 10 keys land in 7 different slots (run: remainders 3,6,2,5,1,4,0,3,6,2). (3) Chaining cost grows with chain length (CLRS 11.2).
 
 ### 26. call-stack-depth · concept: recursion · core · demand 2
 - Learner knows: calling a function (differs from hanoi-tower-doubles #6, which is about doubling work: here it is about calls waiting) / does not know: that each unfinished call waits with its own copy of the variables
