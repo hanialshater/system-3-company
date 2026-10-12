@@ -256,6 +256,246 @@
       "prerequisites": [
         "probability:law-of-large-numbers"
       ]
+    },
+    {
+      "id": "learning-rate-overshoot",
+      "name": "Learning rate: too long a step overshoots",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "confusion-matrix",
+      "name": "Confusion matrix: what a flag actually means",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "accuracy-paradox"
+      ]
+    },
+    {
+      "id": "context-window",
+      "name": "Context window: what the model can still see",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "next-token"
+      ]
+    },
+    {
+      "id": "retrieval-top-k",
+      "name": "Retrieval: the model only reads what was fetched",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "embeddings"
+      ]
+    },
+    {
+      "id": "distribution-shift",
+      "name": "Distribution shift: a fit that stops at the edge of its data",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "train-test-split"
+      ]
+    },
+    {
+      "id": "preference-ranking",
+      "name": "Preference ranking: turning \"A beats B\" into a reward",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "reward-hacking"
+      ]
+    },
+    {
+      "id": "model-collapse",
+      "name": "Model collapse: training on your own output loses the rare",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "feedback-loops"
+      ]
+    },
+    {
+      "id": "bias-variance",
+      "name": "Bias and variance: a little bias can lower total error",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "early-stopping",
+      "name": "Early stopping: quit while held-out error is lowest",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "cross-entropy-loss",
+      "name": "Cross-entropy: confident and wrong costs the most",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "calibration",
+      "name": "Calibration: does 70% confidence mean right 70% of the time?",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "accuracy-paradox"
+      ]
+    },
+    {
+      "id": "greedy-decoding",
+      "name": "Greedy decoding: the best next word is not the best sentence",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "next-token"
+      ]
+    },
+    {
+      "id": "top-p-sampling",
+      "name": "Top-p sampling: cut the unlikely tail, then renormalise",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "temperature-sampling"
+      ]
+    },
+    {
+      "id": "cosine-similarity",
+      "name": "Cosine similarity: direction, not distance",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "embeddings"
+      ]
+    },
+    {
+      "id": "cross-validation",
+      "name": "Cross-validation: every point gets a turn in the test set",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "train-test-split"
+      ]
+    },
+    {
+      "id": "decision-tree-splits",
+      "name": "Decision trees: choose the question that purifies",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "naive-bayes-evidence",
+      "name": "Evidence from words: updating a spam prior",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:base-rates"
+      ]
+    },
+    {
+      "id": "label-noise-ceiling",
+      "name": "Label noise: wrong answer keys cap the score",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "train-test-split"
+      ]
+    },
+    {
+      "id": "local-minima",
+      "name": "Local minima: downhill ends in the nearest valley",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "backprop-chain",
+      "name": "Backpropagation: blame passed back by the chain rule",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "gradient-descent",
+        "hidden-layers-xor"
+      ]
+    },
+    {
+      "id": "nonlinearity-collapse",
+      "name": "Why layers need a bend: stacked lines are one line",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hidden-layers-xor"
+      ]
+    },
+    {
+      "id": "memorise-random-labels",
+      "name": "Memorising random labels: capacity without meaning",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "minibatch-noise",
+      "name": "Minibatches: a noisy compass that averages out",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "dropout",
+      "name": "Dropout: training with units switched off",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "symmetry-breaking",
+      "name": "Symmetry breaking: identical units stay identical",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "hidden-layers-xor"
+      ]
+    },
+    {
+      "id": "positional-encoding",
+      "name": "Position: attention alone cannot tell word order",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "attention-weights"
+      ]
+    },
+    {
+      "id": "auc-ranking",
+      "name": "AUC: how often a positive outranks a negative",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "precision-recall-threshold"
+      ]
     }
   ]
 }

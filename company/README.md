@@ -24,6 +24,7 @@ Start here if you are new, human or agent: [onboarding/README.md](onboarding/REA
 | [experiments/](experiments/README.md) | Experiments with predictions committed before results |
 | [reviews/](reviews/README.md) | Evaluation records per lesson and the independence rules |
 | [qa/](qa/computer-use-testing.md) | Computer-use testing |
-| [ops/](ops/operating-loop.md) | The operating loop, the board, the progress log, deploy runbook |
+| [ops/](ops/operating-loop.md) | The operating loop, the board, the progress log, metrics, waves log, deploy runbook |
+| [engineering/](engineering/README.md) | Change tiers, EDDs, ADRs, engineering reviews, best practices |
 
 The CLI is the operating picture: `npm run company -- status`.
