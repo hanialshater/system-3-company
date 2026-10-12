@@ -2,7 +2,7 @@
 # Commit and push whatever agents have written so far (chief-of-staff housekeeping).
 cd "$(dirname "$0")/.." || exit 1
 git checkout -q tsconfig.json 2>/dev/null
-git add -A company content src .claude tools package.json 2>/dev/null
+git add -A company content src .claude tools package.json package-lock.json next.config.mjs tsconfig.json vercel.json playwright.config.ts tests README.md CLAUDE.md .github 2>/dev/null
 git diff --cached --quiet && { echo "nothing to snapshot"; exit 0; }
 git commit -qm "${1:-Snapshot: work in progress from running agents}
 
