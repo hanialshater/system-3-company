@@ -1,0 +1,86 @@
+{
+  "slug": "up-then-down-trap",
+  "title": "Up 50%, down 50%: back to even?",
+  "hook": "A gain and a loss of the same size. Do they cancel out?",
+  "domain": "economics",
+  "concept": "volatility-drag",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "how to take a percentage of a number"
+    ],
+    "doesNotKnow": [
+      "that a gain and an equal-size percentage loss do not cancel, because they apply to different bases",
+      "how big a percentage gain or loss is needed to undo another"
+    ]
+  },
+  "misconception": "Up 50% then down 50% gets me back to even.",
+  "objective": "The learner can explain that percentage changes multiply on the current value, so +50% then −50% leaves 75%, undoing +50% needs −33⅓%, and undoing −50% needs +100%.",
+  "claims": [
+    {
+      "id": "economics.up-then-down-trap.c1",
+      "text": "$100 up 50% is $150; $150 down 50% is $75.",
+      "support": "derivation",
+      "source": "100 × 1.5 = 150; 150 × 0.5 = 75.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.up-then-down-trap.c2",
+      "text": "Undoing a 50% rise needs a fall of 33⅓%: $150 × ⅔ = $100.",
+      "support": "derivation",
+      "source": "1 / 1.5 = 0.6667, a change of −33.3%; 150 × 2/3 = 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.up-then-down-trap.c3",
+      "text": "Undoing a 50% fall needs a rise of 100%.",
+      "support": "derivation",
+      "source": "1 / 0.5 = 2, a change of +100%.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.up-then-down-trap.c4",
+      "text": "The order of percentage changes does not matter: −50% then +50% also gives $75.",
+      "support": "derivation",
+      "source": "Multiplication commutes: 100 × 0.5 × 1.5 = 100 × 1.5 × 0.5 = 75.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.up-then-down-trap.c5",
+      "text": "Recovering from any loss needs a larger percentage gain than the loss.",
+      "support": "derivation",
+      "source": "After a loss of x (0 < x < 1), the needed gain is 1/(1 − x) − 1 = x/(1 − x) > x.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.up-then-down-trap.c6",
+      "text": "The numbers are a made-up example, not a claim about any market.",
+      "support": "convention",
+      "source": "Lesson framing in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A price falls 20%. What rise brings it back to where it started?",
+    "options": [
+      "20%",
+      "25%",
+      "40%"
+    ],
+    "answer": 1,
+    "why": "The rise is taken from the smaller value: 0.8 × 1.25 = 1. Percent changes multiply, so recovery needs a bigger percentage than the loss."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

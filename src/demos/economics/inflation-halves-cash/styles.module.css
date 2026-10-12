@@ -1,0 +1,81 @@
+/* Fill the stage; the picture shrinks to fit instead of overflowing the centred stage. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 120px;
+  height: auto;
+}
+
+/* The kit slider is flex: 1 1 160px, which in a column container means a 160px height. */
+.wrap > :global(.slider) {
+  flex: none;
+}
+
+.axis {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.msg {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.ghost {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+.net {
+  fill: none;
+  stroke: color-mix(in srgb, var(--domain) 80%, var(--fg) 20%);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.gap {
+  fill: color-mix(in srgb, var(--bad) 30%, transparent);
+}
+
+.empty {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.full {
+  fill: color-mix(in srgb, var(--domain) 80%, var(--fg) 20%);
+}
+
+/* The chosen rate is disabled (pressing it would change nothing) but must read as selected, not greyed out. */
+.wrap :global(.control.active):disabled.rateOn {
+  opacity: 1;
+}
+
+.rateLabel {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.bad {
+  color: var(--bad);
+}
