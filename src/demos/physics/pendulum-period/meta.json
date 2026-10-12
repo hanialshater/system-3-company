@@ -1,0 +1,89 @@
+{
+  "slug": "pendulum-period",
+  "title": "Does a heavier pendulum swing slower?",
+  "hook": "Swap a 100 g weight for 2 kg on the same string. Does the beat change?",
+  "domain": "physics",
+  "concept": "pendulum-period",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a pendulum and a swing are",
+      "that gravity pulls things down",
+      "seconds, metres and kilograms"
+    ],
+    "doesNotKnow": [
+      "Newton's second law in equation form",
+      "the formula T = 2 pi sqrt(L / g)",
+      "simple harmonic motion"
+    ]
+  },
+  "misconception": "A heavier bob swings more slowly (or faster) because it has more weight; the mass sets the rhythm.",
+  "objective": "The learner can explain that a pendulum's period depends on its length, not its mass, because extra weight pulls harder but is exactly that much harder to accelerate; and that four times the length doubles the period.",
+  "claims": [
+    {
+      "id": "physics.pendulum-period.c1",
+      "text": "For an ideal pendulum (point mass on a light string, no air drag) the period does not depend on the mass of the bob.",
+      "support": "derivation",
+      "source": "Equation of motion m L theta'' = -m g sin(theta): m cancels. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 15 (The Simple Pendulum).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c2",
+      "text": "For small swings the period is T = 2 pi sqrt(L / g); a 1 m pendulum on Earth (g = 9.81 m/s^2) has a period of about 2.0 s.",
+      "support": "derivation",
+      "source": "Small-angle approximation sin(theta) ~ theta of c1's equation. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 15. 2 pi sqrt(1 / 9.81) = 2.006 s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c3",
+      "text": "Making the string four times longer doubles the period.",
+      "support": "derivation",
+      "source": "T is proportional to sqrt(L), from c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c4",
+      "text": "The simulation integrates the full equation theta'' = -(g / L) sin(theta) from a 20 degree release; at that amplitude the period is about 0.8% longer than the small-angle formula.",
+      "support": "derivation",
+      "source": "Exact period T = T0 * 2K(k)/pi with k = sin(10 deg); series T ~ T0 (1 + theta0^2/16 + 11 theta0^4/3072) = 1.0077 T0. Thornton and Marion, Classical Dynamics of Particles and Systems, sec. 4.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c5",
+      "text": "Mass cancels because a heavier bob is pulled harder by gravity in exact proportion to how much harder it is to speed up.",
+      "support": "derivation",
+      "source": "Gravitational force m g and inertia m appear on both sides of F = m a (equivalence of gravitational and inertial mass). Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5 and 15.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c6",
+      "text": "Galileo reported that pendulums of equal length swing in step whatever their weight.",
+      "support": "source",
+      "source": "Galileo Galilei, Dialogues Concerning Two New Sciences (1638), First Day, the experiment with lead and cork pendulums.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A playground swing takes 3 seconds per back-and-forth with a child on it. An adult twice as heavy sits on it the same way. About how long per swing now?",
+    "options": [
+      "About 3 seconds",
+      "About 6 seconds",
+      "About 1.5 seconds"
+    ],
+    "answer": 0,
+    "why": "The period depends on the length of the chain, not the weight: extra weight pulls harder but is equally harder to move."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

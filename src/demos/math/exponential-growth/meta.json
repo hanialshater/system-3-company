@@ -1,0 +1,81 @@
+{
+  "slug": "exponential-growth",
+  "title": "The pond that fills overnight",
+  "hook": "Algae doubles daily and fills the pond on day 30. How full was it on day 25?",
+  "domain": "math",
+  "concept": "exponential-growth",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what doubling means",
+      "percentages and fractions such as one half and one quarter"
+    ],
+    "doesNotKnow": [
+      "exponents or powers of 2 as notation",
+      "logarithms",
+      "the term exponential growth"
+    ]
+  },
+  "misconception": "Growth is roughly proportional to elapsed time: five sixths of the way to the deadline means about five sixths of the way to full.",
+  "objective": "The learner can explain why, under steady doubling, the pond is half full only one day before it is full and about 3% full five days before, so most of the visible change happens at the very end.",
+  "claims": [
+    {
+      "id": "math.exponential-growth.c1",
+      "text": "If the covered area doubles every day and the pond is full on day 30, the coverage on day d is (1/2)^(30 - d) of the pond.",
+      "support": "derivation",
+      "source": "Run the doubling backwards: each day earlier halves the coverage. Standard exponential model, e.g. Stewart, Calculus, sec. 3.8 (Exponential Growth and Decay).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exponential-growth.c2",
+      "text": "On day 29 the pond is half covered and on day 28 a quarter, so three quarters of the pond fills in the last two days; on day 25 it is 1/32 covered, about 3%.",
+      "support": "derivation",
+      "source": "Apply c1: (1/2)^1 = 0.5, (1/2)^2 = 0.25 and (1/2)^5 = 1/32 = 0.03125.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exponential-growth.c3",
+      "text": "On day 20 the algae covers about one thousandth of the pond (1/1024).",
+      "support": "derivation",
+      "source": "Apply c1: (1/2)^10 = 1/1024, about 0.098%.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exponential-growth.c4",
+      "text": "Doubling 30 times multiplies a quantity by more than a billion.",
+      "support": "derivation",
+      "source": "2^30 = 1,073,741,824.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exponential-growth.c5",
+      "text": "The pond puzzle is a classic illustration of exponential growth; a version appears in the 1972 report The Limits to Growth.",
+      "support": "source",
+      "source": "Meadows, Meadows, Randers and Behrens, The Limits to Growth (Universe Books, 1972), ch. 1, the lily pond riddle.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town's number of cases doubles every 3 days. The hospital will be full in 12 days. How full is it today?",
+    "options": [
+      "About 6% (1/16)",
+      "About 25%",
+      "About 50%"
+    ],
+    "answer": 0,
+    "why": "12 days is 4 doublings, so today is 1/2 x 1/2 x 1/2 x 1/2 = 1/16 of full. Doubling looks small until the last few steps."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

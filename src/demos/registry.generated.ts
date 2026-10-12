@@ -3,9 +3,17 @@
 import type { ComponentType } from "react";
 import type { DemoMeta } from "@/kit/types";
 import m0 from "./cs/merge-sort-payoff/meta.json";
+import m1 from "./math/exponential-growth/meta.json";
+import m2 from "./math/odd-numbers-make-squares/meta.json";
+import m3 from "./physics/pendulum-period/meta.json";
+import m4 from "./physics/projectile-angle/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
+  "exponential-growth": () => import("./math/exponential-growth/Demo"),
+  "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
+  "pendulum-period": () => import("./physics/pendulum-period/Demo"),
+  "projectile-angle": () => import("./physics/projectile-angle/Demo"),
 };
