@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 27dvh; flex-shrink: 0; }
+.pond { fill: color-mix(in srgb, var(--domain) 12%, var(--bg-2)); }
+.fish { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); }
+.new { fill: var(--fg); }
+.room { fill: var(--muted); fill-opacity: 0.55; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.legend i.fish { background: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); }
+.legend i.new { background: var(--fg); }
+.legend i.room { width: 5px; height: 5px; background: var(--muted); }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 600; }

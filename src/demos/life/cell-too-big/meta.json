@@ -1,0 +1,74 @@
+{
+  "slug": "cell-too-big",
+  "title": "Why cells stay small",
+  "hook": "A cell feeds through its skin. Grow it ten times wider: does it get more skin per inside?",
+  "domain": "life",
+  "concept": "surface-area-volume",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "area and volume of a cube",
+      "cells take in food and get rid of waste"
+    ],
+    "doesNotKnow": [
+      "that surface-to-volume ratio falls as size rises",
+      "why this limits cell size"
+    ]
+  },
+  "misconception": "A cell 10 times wider has 10 times more surface per unit of inside (or at least the same).",
+  "objective": "The learner can explain that surface grows with the square of width and volume with the cube, so surface per unit of volume is 6/width for a cube and a 10-times-wider cell has a tenth as much surface per unit of inside.",
+  "claims": [
+    {
+      "id": "life.cell-too-big.c1",
+      "text": "A cube of width w has surface 6w^2 and volume w^3, so surface per unit of volume is 6/w: 6 at width 1 and 0.6 at width 10 (600 squares for 1,000 cubes), ten times smaller.",
+      "support": "derivation",
+      "source": "6w^2 / w^3 = 6/w; w = 1 gives 6, w = 10 gives 600/1000 = 0.6.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cell-too-big.c2",
+      "text": "Food, oxygen and waste cross a cell's surface, so a larger cell has less surface to supply each bit of its inside; this is one reason cells stay small, or fold and flatten their surfaces.",
+      "support": "source",
+      "source": "Alberts et al., Molecular Biology of the Cell (Garland Science), discussion of cell size and surface-to-volume; Campbell Biology (Pearson), 'Why are cells so small?' (surface-to-volume ratio, microvilli).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cell-too-big.c3",
+      "text": "Any shape scaled up evenly loses surface per volume in proportion to its size (surface scales as length^2, volume as length^3).",
+      "support": "derivation",
+      "source": "Scaling every length by k multiplies area by k^2 and volume by k^3, so the ratio is divided by k.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cell-too-big.c4",
+      "text": "The cube cell and its units are made up; the shade on the stage shows surface per unit of inside relative to the width-1 cell.",
+      "support": "convention",
+      "source": "Drawing choice in Demo.tsx (fill opacity = 1/w).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A round cell doubles its diameter. What happens to its surface per unit of volume?",
+    "options": [
+      "It doubles",
+      "It stays the same",
+      "It halves",
+      "It falls to a quarter"
+    ],
+    "answer": 2,
+    "why": "Surface grows 4 times and volume 8 times, so surface per volume halves (for a sphere it is 6 / diameter)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "most-cases-vaccinated",
+  "title": "Half the cases were vaccinated",
+  "hook": "Nearly half the cases were vaccinated. Does that mean the vaccine failed?",
+  "domain": "life",
+  "concept": "vaccinated-share-of-cases",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "vaccines lower the risk of infection",
+      "the difference between a count and a rate",
+      "herd immunity (taught)"
+    ],
+    "doesNotKnow": [
+      "that the share of cases who are vaccinated depends on how many people are vaccinated",
+      "how vaccine effectiveness is estimated"
+    ]
+  },
+  "misconception": "If about half of the cases were vaccinated people, the vaccine does not work.",
+  "objective": "The learner can explain that when most people are vaccinated, vaccinated people can make up a large share of cases even when the vaccine cuts each person's risk by 90%, and that the right comparison is risk per person in each group.",
+  "claims": [
+    {
+      "id": "life.most-cases-vaccinated.c1",
+      "text": "With 1,000 people, 90% vaccinated, everyone exposed, 50% unvaccinated risk and a vaccine that cuts risk by 90%: 50 unvaccinated cases and 45 vaccinated cases, so about 47% of cases (45 of 95) are vaccinated.",
+      "support": "derivation",
+      "source": "100 x 0.5 = 50; 900 x 0.05 = 45; 45 / 95 = 0.474 (checked with node). The stage uses expected counts, not random draws.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.most-cases-vaccinated.c2",
+      "text": "At 100% vaccinated every case is vaccinated, yet there are 50 cases instead of 500 when nobody is vaccinated.",
+      "support": "derivation",
+      "source": "1,000 x 0.05 = 50; 1,000 x 0.5 = 500.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.most-cases-vaccinated.c3",
+      "text": "The share of cases who are vaccinated depends on vaccine coverage: with effectiveness VE and coverage PPV, the vaccinated share of cases PCV satisfies VE = 1 - [PCV/(1 - PCV)] x [(1 - PPV)/PPV]. To judge a vaccine, compare risk per person in each group.",
+      "support": "source",
+      "source": "Orenstein et al. (1985), 'Field evaluation of vaccine efficacy', Bulletin of the World Health Organization 63(6): 1055-1068 (screening method). Check with the stage numbers: PCV = 45/95, PPV = 0.9 gives 1 - 0.9 x 0.111 = 0.90. Halloran, Longini & Struchiner (2010), Design and Analysis of Vaccine Studies, Springer.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.most-cases-vaccinated.c4",
+      "text": "The numbers are made up; the model assumes everyone is equally exposed and the vaccine works the same for everyone.",
+      "support": "convention",
+      "source": "Modelling choice in Demo.tsx (RISK_VAX = 0.05, RISK_UNVAX = 0.5, expected counts).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a town where 95% of people are vaccinated, 60% of cases are vaccinated people. Does that show the vaccine fails?",
+    "options": [
+      "Yes: most cases were vaccinated",
+      "No: compare the risk per person in each group",
+      "Yes, unless there were no cases at all"
+    ],
+    "answer": 1,
+    "why": "With 95% vaccinated, the vaccinated group is 19 times bigger, so it can fill most of the case list even at much lower risk per person. These figures fit a vaccine that cuts risk by about 92%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

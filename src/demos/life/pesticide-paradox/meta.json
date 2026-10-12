@@ -1,0 +1,81 @@
+{
+  "slug": "pesticide-paradox",
+  "title": "The spray that grows pests",
+  "hook": "A spray kills pests and their predators alike. Could it leave more pests?",
+  "domain": "life",
+  "concept": "predator-prey",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "predators eat prey",
+      "populations rise and fall",
+      "reading a line over time"
+    ],
+    "doesNotKnow": [
+      "the Lotka-Volterra model and its cycles",
+      "Volterra's principle"
+    ]
+  },
+  "misconception": "Killing a pest and its predator at the same rate must leave the pest the same or lower.",
+  "objective": "The learner can explain that in the simple predator-prey model the average prey level is the level at which predators break even, so extra deaths for both species raise the average prey and lower the average predators.",
+  "claims": [
+    {
+      "id": "life.pesticide-paradox.c1",
+      "text": "In the Lotka-Volterra model dx/dt = ax - bxy, dy/dt = cxy - dy, populations cycle and the long-run average prey is d/c and the average predator a/b; an extra death rate e on both makes them (d + e)/c and (a - e)/b.",
+      "support": "derivation",
+      "source": "Integrate d(ln y)/dt = cx - d - e over one cycle: the left side is 0, so the time average of x is (d + e)/c; likewise for y. Murray, J. D., Mathematical Biology I (Springer), ch. 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pesticide-paradox.c2",
+      "text": "On the stage (a = b = c = d = 1, thousands, months) spray strength 20% raises the average pests from about 1,000 to 1,200 and lowers average predators from about 1,000 to 800.",
+      "support": "simulation",
+      "source": "Demo.tsx run(): RK4, dt = 0.01, 600 months from (1.5, 1): averages 1.000/1.000 at e = 0, 1.199/0.800 at e = 0.2, 1.398/0.600 at e = 0.4 (checked with node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pesticide-paradox.c3",
+      "text": "In this model pests breed on their own, while predators can only grow by eating pests; the average pest number is what predators need to break even, so faster predator deaths raise it.",
+      "support": "derivation",
+      "source": "Predator break-even: cxy = (d + e)y gives x = (d + e)/c; follows from c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pesticide-paradox.c4",
+      "text": "Volterra built this model in 1926 to explain why predatory fish made up more of the Adriatic catch when fishing paused in World War I.",
+      "support": "source",
+      "source": "Volterra, V. (1926), 'Fluctuations in the abundance of a species considered mathematically', Nature 118: 558-560 (data from U. D'Ancona on Fiume/Trieste fish markets).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pesticide-paradox.c5",
+      "text": "The stage is a toy model: spray strength is an extra per-capita death rate per month added equally to both species; real farms and ecosystems are messier.",
+      "support": "convention",
+      "source": "Modelling choice in Demo.tsx; strength 20% means e = 0.2 per month.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a simple predator-prey model, a disease makes both prey and predators die a little faster. What happens to the long-run average number of prey?",
+    "options": [
+      "It falls",
+      "It stays the same",
+      "It rises"
+    ],
+    "answer": 2,
+    "why": "Average prey sits where predators break even. Predators that die faster need more prey to break even, so the prey average rises (and the predator average falls)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
