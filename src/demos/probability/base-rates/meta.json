@@ -1,0 +1,89 @@
+{
+  "slug": "base-rates",
+  "title": "You tested positive. Now what?",
+  "hook": "The test is 99% accurate. So you're 99% likely to be sick. Right?",
+  "domain": "probability",
+  "concept": "base-rates",
+  "status": "review",
+  "durationSec": 80,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "percentages",
+      "that medical tests can be wrong",
+      "what 'rare' means as '1 in 1,000'"
+    ],
+    "doesNotKnow": [
+      "Bayes' theorem",
+      "the terms sensitivity, specificity and base rate",
+      "conditional probability notation"
+    ]
+  },
+  "misconception": "If a test is 99% accurate and you test positive, you are about 99% likely to have the disease (the base rate is ignored).",
+  "objective": "The learner can explain, by counting a population of 1,000, that when a disease is rare most positive results come from the much larger healthy group, so a positive from an accurate test can still mean a small chance of disease.",
+  "claims": [
+    {
+      "id": "probability.base-rates.c1",
+      "text": "In this lesson '99% accurate' means the test is positive for 99% of people who have the disease and negative for 99% of people who do not.",
+      "support": "convention",
+      "source": "Sensitivity and specificity, as defined in e.g. Altman & Bland (1994), 'Diagnostic tests 1: sensitivity and specificity', BMJ 308: 1552.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.base-rates.c2",
+      "text": "If 1 in 1,000 people has the disease, then among 1,000 people tested we expect about 1 sick person who tests positive and about 10 healthy people who test positive.",
+      "support": "derivation",
+      "source": "Expected counts: 1000 x 0.001 x 0.99 = 0.99 true positives; 1000 x 0.999 x 0.01 = 9.99 false positives. Natural-frequency framing: Gigerenzer & Hoffrage (1995), 'How to improve Bayesian reasoning without instruction', Psychological Review 102(4): 684-704.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.base-rates.c3",
+      "text": "With a 1-in-1,000 disease and this test, a positive result means about a 9% chance of having the disease.",
+      "support": "derivation",
+      "source": "Bayes' theorem: 0.99 x 0.001 / (0.99 x 0.001 + 0.01 x 0.999) = 0.0902.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.base-rates.c4",
+      "text": "With the same test, a positive result means about a 50% chance if 1 in 100 people has the disease, and about a 92% chance if 1 in 10 does.",
+      "support": "derivation",
+      "source": "Bayes' theorem: 0.0099 / (0.0099 + 0.0099) = 0.50; 0.099 / (0.099 + 0.009) = 0.917.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.base-rates.c5",
+      "text": "The stage shows the expected counts rounded to whole people, placed at seeded random positions; a real group of 1,000 would vary around these counts.",
+      "support": "convention",
+      "source": "Demo.tsx: counts are round(1000 x prevalence x 0.99) true positives and round(1000 x (1 - prevalence) x 0.01) false positives.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.base-rates.c6",
+      "text": "In a 1978 study at Harvard Medical School, the most common answer from 60 staff and students to a similar question (1 in 1,000 disease, 5% false-positive rate) was 95%; the correct answer is about 2%.",
+      "support": "source",
+      "source": "Casscells, Schoenberger & Graboys (1978), 'Interpretation by physicians of clinical laboratory results', New England Journal of Medicine 299: 999-1001.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A screening test catches 99% of cases and wrongly flags 1% of healthy people. The condition affects 1 in 10,000. Of the people who test positive, roughly how many have it?",
+    "options": [
+      "Almost all of them",
+      "About half",
+      "About 1 in 100"
+    ],
+    "answer": 2,
+    "why": "Out of 10,000 people, about 1 sick person tests positive, but about 100 healthy people do too. The rarer the condition, the more the healthy group's false alarms swamp the true cases."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

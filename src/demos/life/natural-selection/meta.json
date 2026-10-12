@@ -1,0 +1,96 @@
+{
+  "slug": "natural-selection",
+  "title": "A small edge, many generations",
+  "hook": "No beetle ever changes colour. So how does the whole population change?",
+  "domain": "life",
+  "concept": "natural-selection",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "offspring tend to resemble their parents",
+      "predators eat prey that they can see",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "relative fitness",
+      "allele frequencies or population genetics",
+      "exponential growth of odds"
+    ]
+  },
+  "misconception": "A small survival advantage makes only a small difference, and populations change because individuals change (adapt) during their lives.",
+  "objective": "The learner can explain that a heritable edge is applied again every generation, so a small edge compounds (from 1% to about 99% in 100 generations at a 10% edge in this model), and that the population changes because the mix of who leaves young changes, not because any individual changes.",
+  "claims": [
+    {
+      "id": "life.natural-selection.c1",
+      "text": "In this model (young always share their parent's colour, a very large population so chance plays no part, and dark beetles leave a fixed share more young than pale ones), the ratio of dark to pale beetles is multiplied by (1 + edge) every generation.",
+      "support": "derivation",
+      "source": "Haploid selection recursion p' = p w / (p w + 1 - p), so p'/(1-p') = w p/(1-p). Gillespie (2004), Population Genetics: A Concise Guide, 2nd ed., ch. 3; Hartl & Clark (2007), Principles of Population Genetics, 4th ed., ch. 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c2",
+      "text": "With a 10% edge and 1% dark at the start, dark beetles are about 99% of the population after 100 generations.",
+      "support": "derivation",
+      "source": "odds = (1/99) x 1.1^100 = 139.2, so p = 139.2 / 140.2 = 0.993.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c3",
+      "text": "With the same 10% edge, dark beetles stay under 10% for the first 25 generations and pass half the population at about generation 49.",
+      "support": "derivation",
+      "source": "Same recursion: p(25) = 0.099, p(48) = 0.495, p(49) = 0.519.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c4",
+      "text": "With a 1% edge, the same 100 generations only take dark beetles from 1% to about 3%.",
+      "support": "derivation",
+      "source": "odds = (1/99) x 1.01^100 = 0.0274, so p = 0.027.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c5",
+      "text": "No individual changes colour in natural selection; the population changes because more of each new generation is descended from the parents that survived and bred.",
+      "support": "source",
+      "source": "Futuyma & Kirkpatrick (2017), Evolution, 4th ed., ch. 12; misconception documented in Bishop & Anderson (1990), 'Student conceptions of natural selection and its role in evolution', Journal of Research in Science Teaching 27(5): 415-427.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c6",
+      "text": "Around Manchester, the dark form of the peppered moth was first recorded in 1848 and made up about 98% of the population there by 1895, roughly one generation per year.",
+      "support": "source",
+      "source": "Cook (2003), 'The rise and fall of the carbonaria form of the peppered moth', Quarterly Review of Biology 78(4): 399-417; Majerus (1998), Melanism: Evolution in Action, Oxford University Press.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.natural-selection.c7",
+      "text": "Real populations are finite, so chance can remove a rare helpful variant before selection spreads it; the model on the stage leaves this out.",
+      "support": "source",
+      "source": "Haldane (1927) fixation probability approx. 2s for a new beneficial mutation; Gillespie (2004), ch. 3.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Plant A's seeds survive drought 5% more often than plant B's, and seeds inherit their parent's type. A starts rare. Over many generations of droughts, what happens?",
+    "options": [
+      "A stays rare: 5% is too small to matter",
+      "A becomes common, because the 5% edge repeats every generation",
+      "Each B plant slowly turns into an A plant"
+    ],
+    "answer": 1,
+    "why": "The edge multiplies the A:B ratio again every generation, so even a small edge compounds. No plant changes type; A plants just leave more seeds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

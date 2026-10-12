@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.svg { max-height: 32dvh; }
+.ring { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.month { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.chords line { stroke: var(--fg); stroke-width: 0.7; }
+.dot { fill: var(--domain); stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 0.8; }
+.dotShared { fill: var(--bad); stroke: var(--fg); stroke-width: 1.2; }
+.halo { fill: color-mix(in srgb, var(--bad) 18%, transparent); stroke: var(--bad); stroke-width: 2; }
+.big { fill: var(--fg); font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.label { fill: var(--muted); font-size: 12.5px; }
+.hit { fill: var(--bad); font-size: 13px; font-weight: 700; }
+/* Kit sliders render ~16px tall; QA needs >= 24px tap targets. */
+.wrap input[type="range"] { height: 28px; margin: 0; }
+/* The kit stage centres its content; when content is taller than the stage the top is clipped.
+   Let the lesson body shrink and scroll from its top instead. */
+.wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; }
