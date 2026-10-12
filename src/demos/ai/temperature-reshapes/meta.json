@@ -1,0 +1,94 @@
+{
+  "slug": "temperature-reshapes",
+  "title": "Turn down the temperature",
+  "hook": "Is a “hot” model more creative, or just less picky?",
+  "domain": "ai",
+  "concept": "temperature-sampling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a language model gives each possible next word a chance",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "what the temperature setting does",
+      "softmax"
+    ]
+  },
+  "misconception": "Higher temperature makes a model more creative by adding new ideas; lower temperature makes it smarter.",
+  "objective": "The learner can explain that temperature rescales the same scores, so cooler makes the top word more likely and hotter flattens the odds, and that it never adds a word the model had no score for.",
+  "claims": [
+    {
+      "id": "ai.temperature-reshapes.c1",
+      "text": "The toy has three candidate next words for “The cat sat on the …”: mat, sofa and moon, with invented scores 2, 1 and 0.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (WORDS).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c2",
+      "text": "Each word's chance is proportional to e^(score ÷ temperature), divided by the sum over the candidate words (softmax with temperature).",
+      "support": "source",
+      "source": "Hinton, Vinyals & Dean 2015, “Distilling the Knowledge in a Neural Network”, arXiv:1503.02531, eq. 1 (q_i = exp(z_i/T) / Σ_j exp(z_j/T)); implemented in probs() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c3",
+      "text": "For scores 2, 1, 0 the top word's chance is 98.2% at temperature 0.25, 86.7% at 0.5, 66.5% at 1, 50.6% at 2 and 41.9% at 4.",
+      "support": "derivation",
+      "source": "e.g. T = 0.5: e⁴ : e² : e⁰ = 54.6 : 7.39 : 1, so 54.6 / 63.0 = 0.867. All five reproduced by running probs() from Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c4",
+      "text": "Dividing the scores by 0.5 doubles the gaps between them, and bigger gaps give more lopsided chances; as the temperature grows the chances approach a third each.",
+      "support": "derivation",
+      "source": "Ratios of chances are e^((s_i − s_j)/T), so halving T squares each ratio; as T → ∞ every ratio → 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c5",
+      "text": "Temperature never adds or removes a word: at every temperature the same three words have a chance above zero.",
+      "support": "derivation",
+      "source": "e^(s/T) > 0 for every finite score and T > 0, and the candidate list is fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c6",
+      "text": "“Draw 20” samples 20 words using these chances (seeded random numbers).",
+      "support": "convention",
+      "source": "draw20() in Demo.tsx, seed 31.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.temperature-reshapes.c7",
+      "text": "About real systems: language models sample text with the same temperature setting, dividing the next-token scores by the temperature before the softmax.",
+      "support": "source",
+      "source": "Holtzman, Buys, Du, Forbes & Choi 2020, “The Curious Case of Neural Text Degeneration”, ICLR 2020, arXiv:1904.09751 (describes sampling with temperature, dividing logits by t before the softmax, as a standard decoding method). Section number not checked: fact-checker to confirm.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You raise a chatbot's temperature. What changes?",
+    "options": [
+      "Less likely words get picked more often",
+      "It learns new words and ideas",
+      "It gets more accurate"
+    ],
+    "answer": 0,
+    "why": "Temperature rescales the model's existing scores. Hotter flattens the odds toward unlikely choices; it adds nothing the model did not already score."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

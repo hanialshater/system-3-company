@@ -2,30 +2,50 @@
 // Source of truth: src/demos/<domain>/<slug>/meta.json
 import type { ComponentType } from "react";
 import type { DemoMeta } from "@/kit/types";
-import m0 from "./ai/gradient-descent/meta.json";
-import m1 from "./ai/overfitting/meta.json";
-import m2 from "./chemistry/half-life/meta.json";
-import m3 from "./chemistry/ph-log-scale/meta.json";
-import m4 from "./cs/binary-numbers/meta.json";
-import m5 from "./cs/binary-search/meta.json";
-import m6 from "./cs/merge-sort-payoff/meta.json";
-import m7 from "./economics/compound-interest/meta.json";
-import m8 from "./economics/supply-demand/meta.json";
-import m9 from "./geography/mercator-greenland/meta.json";
-import m10 from "./life/herd-immunity/meta.json";
-import m11 from "./life/natural-selection/meta.json";
-import m12 from "./math/exponential-growth/meta.json";
-import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m0 from "./ai/attention-shares-one/meta.json";
+import m1 from "./ai/background-shortcut/meta.json";
+import m2 from "./ai/clicks-not-value/meta.json";
+import m3 from "./ai/gradient-descent/meta.json";
+import m4 from "./ai/never-flag-99/meta.json";
+import m5 from "./ai/next-word-tally/meta.json";
+import m6 from "./ai/overfitting/meta.json";
+import m7 from "./ai/patrol-feedback-loop/meta.json";
+import m8 from "./ai/spam-threshold-tradeoff/meta.json";
+import m9 from "./ai/temperature-reshapes/meta.json";
+import m10 from "./ai/true-text-false-claims/meta.json";
+import m11 from "./ai/whose-cutoff-wins/meta.json";
+import m12 from "./chemistry/half-life/meta.json";
+import m13 from "./chemistry/ph-log-scale/meta.json";
+import m14 from "./cs/binary-numbers/meta.json";
+import m15 from "./cs/binary-search/meta.json";
+import m16 from "./cs/merge-sort-payoff/meta.json";
+import m17 from "./economics/compound-interest/meta.json";
+import m18 from "./economics/supply-demand/meta.json";
+import m19 from "./geography/mercator-greenland/meta.json";
+import m20 from "./life/herd-immunity/meta.json";
+import m21 from "./life/natural-selection/meta.json";
+import m22 from "./math/exponential-growth/meta.json";
+import m23 from "./math/odd-numbers-make-squares/meta.json";
+import m24 from "./physics/pendulum-period/meta.json";
+import m25 from "./physics/projectile-angle/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
+  "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
+  "background-shortcut": () => import("./ai/background-shortcut/Demo"),
+  "clicks-not-value": () => import("./ai/clicks-not-value/Demo"),
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
+  "never-flag-99": () => import("./ai/never-flag-99/Demo"),
+  "next-word-tally": () => import("./ai/next-word-tally/Demo"),
   "overfitting": () => import("./ai/overfitting/Demo"),
+  "patrol-feedback-loop": () => import("./ai/patrol-feedback-loop/Demo"),
+  "spam-threshold-tradeoff": () => import("./ai/spam-threshold-tradeoff/Demo"),
+  "temperature-reshapes": () => import("./ai/temperature-reshapes/Demo"),
+  "true-text-false-claims": () => import("./ai/true-text-false-claims/Demo"),
+  "whose-cutoff-wins": () => import("./ai/whose-cutoff-wins/Demo"),
   "half-life": () => import("./chemistry/half-life/Demo"),
   "ph-log-scale": () => import("./chemistry/ph-log-scale/Demo"),
   "binary-numbers": () => import("./cs/binary-numbers/Demo"),

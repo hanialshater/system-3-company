@@ -1,0 +1,80 @@
+{
+  "slug": "never-flag-99",
+  "title": "99% accurate, catches nothing",
+  "hook": "A fraud model that never looks at a payment. How accurate can it be?",
+  "domain": "ai",
+  "concept": "accuracy-paradox",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "percentages",
+      "that a model can label things right or wrong"
+    ],
+    "doesNotKnow": [
+      "that accuracy hides what happens to a rare class",
+      "class imbalance"
+    ]
+  },
+  "misconception": "A model with 99% accuracy is a good model.",
+  "objective": "The learner can explain that when one class is rare, a model that ignores it scores high accuracy, that a model catching most of the rare cases can score lower, and that you must ask how many of the cases you care about it catches.",
+  "claims": [
+    {
+      "id": "ai.never-flag-99.c1",
+      "text": "The toy has 1,000 card payments, 10 of them fraud (1%); the 1% rate is invented for the lesson.",
+      "support": "convention",
+      "source": "The lesson's own data in Demo.tsx (TOTAL = 1000, 10 entries in FRAUD_RANKS).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.never-flag-99.c2",
+      "text": "Accuracy is the share of payments the model labels correctly. Approving everything is right on all 990 genuine payments and wrong on all 10 frauds: 990 / 1,000 = 99.0%, with 0 of 10 frauds caught.",
+      "support": "derivation",
+      "source": "Arithmetic; reproduced by running score(0) from Demo.tsx: accuracy 0.99, caught 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.never-flag-99.c3",
+      "text": "The slider flags payments in order of an invented, fixed risk ranking. Flagging the riskiest 20 catches 8 of the 10 frauds and wrongly flags 12 genuine payments, for an accuracy of 98.6%, lower than approving everything.",
+      "support": "simulation",
+      "source": "score(20) from Demo.tsx (FRAUD_RANKS = 0, 1, 3, 5, 8, 11, 15, 19, 28, 44): caught 8, false alarms 12, accuracy (8 + 978) / 1000 = 0.986. Reproduced with a separate script that runs the lesson's model code.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.never-flag-99.c4",
+      "text": "With any ranking, flagging only payments that turn out to be fraud raises accuracy, and every genuine payment flagged lowers it by 0.1 point; so catching fraud and keeping accuracy above 99% pull against each other in this toy.",
+      "support": "derivation",
+      "source": "accuracy = (caught + 990 − false alarms) / 1000, from score() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.never-flag-99.c5",
+      "text": "About real systems: card-fraud data are heavily imbalanced; one widely used public data set has 492 frauds among 284,807 card transactions (about 0.17%).",
+      "support": "source",
+      "source": "Dal Pozzolo, Caelen, Johnson & Bontempi 2015, “Calibrating Probability with Undersampling for Unbalanced Classification”, IEEE Symposium Series on Computational Intelligence (the ULB credit-card fraud data set, September 2013 European cardholders); He & Garcia 2009, “Learning from Imbalanced Data”, IEEE TKDE 21(9), lists fraud detection among imbalanced problems.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A disease screen is 98% accurate in a town where 2% of people have the disease. What should you ask before trusting it?",
+    "options": [
+      "How many of the sick people it actually catches",
+      "Nothing: 98% is excellent",
+      "Whether 98% rounds up to 100%"
+    ],
+    "answer": 0,
+    "why": "Calling everyone healthy would already score 98%. When one class is rare, accuracy can hide that the model misses it; check its hits on the rare class."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

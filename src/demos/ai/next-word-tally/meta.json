@@ -1,0 +1,87 @@
+{
+  "slug": "next-word-tally",
+  "title": "A sentence nobody wrote",
+  "hook": "It only counts which word comes next. Can it say something it never read?",
+  "domain": "ai",
+  "concept": "next-token",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that phones suggest the next word as you type",
+      "counting"
+    ],
+    "doesNotKnow": [
+      "that a language model's core move is choosing the next piece of text from learned frequencies",
+      "that recombining learned pairs produces sentences that were never in the training text"
+    ]
+  },
+  "misconception": "A model that writes text must be looking up stored sentences or understanding the topic.",
+  "objective": "The learner can explain that a model which stores only next-word counts writes by picking one word at a time, and that this can assemble sentences that never appeared in its training text.",
+  "claims": [
+    {
+      "id": "ai.next-word-tally.c1",
+      "text": "The toy model is trained on three sentences (the cat sat on the mat. the cat ate the fish. the dog sat on the rug.) and stores only how many times each word followed each other word: one word of memory.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (CORPUS and countPairs between the MODEL markers).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.next-word-tally.c2",
+      "text": "In the training text, “the” is followed by cat twice and by mat, fish, dog and rug once each (6 times in all).",
+      "support": "derivation",
+      "source": "Count the six occurrences of “the” in the three sentences: the cat, the mat, the cat, the fish, the dog, the rug. Reproduced by running countPairs from Demo.tsx: {cat:2, mat:1, fish:1, dog:1, rug:1}.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.next-word-tally.c3",
+      "text": "“the dog sat on the mat” is not one of the training sentences, but every adjacent pair in it (the→dog, dog→sat, sat→on, on→the, the→mat) occurs in the training text, so the model can write it.",
+      "support": "derivation",
+      "source": "Inspection of the three sentences; checked by script against the counts from Demo.tsx (each pair has count ≥ 1; the sentence is not in CORPUS).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.next-word-tally.c4",
+      "text": "The same counts can also produce the nonsense sentence “the cat sat on the cat ate the fish”.",
+      "support": "derivation",
+      "source": "Its pairs the→cat, cat→sat, sat→on, on→the, the→cat, cat→ate, ate→the, the→fish, fish→. all occur in the training text.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.next-word-tally.c5",
+      "text": "“Let the model pick” draws the next word with probability proportional to its count after the current word (seeded random numbers); a word whose only follower is the full stop ends the sentence.",
+      "support": "convention",
+      "source": "The lesson's own sampler and append rule in Demo.tsx (seed 7).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.next-word-tally.c6",
+      "text": "About real systems: large language models also generate text one token at a time, each drawn from a probability distribution over the next token, and they condition on thousands of previous tokens rather than one word.",
+      "support": "source",
+      "source": "Vaswani et al. 2017, “Attention Is All You Need”, NeurIPS, §3 (the decoder is auto-regressive, consuming previously generated symbols when generating the next); Brown et al. 2020, “Language Models are Few-Shot Learners”, arXiv:2005.14165, §2.1 (GPT-3 context window of 2048 tokens).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A model has only ever learned which word tends to follow which. It writes a sentence that appears nowhere in its training text. How?",
+    "options": [
+      "It chains word pairs it did see, one word at a time",
+      "It must have understood the topic",
+      "It secretly stored that sentence"
+    ],
+    "answer": 0,
+    "why": "Each step only needs the pair (previous word → next word) to have been seen. Chaining seen pairs builds unseen sentences."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

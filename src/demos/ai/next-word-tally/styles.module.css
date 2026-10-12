@@ -1,0 +1,86 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sentence {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg-2);
+  min-height: 2.2em;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: -0.15em;
+  background: var(--domain);
+}
+
+.stop {
+  color: var(--muted);
+}
+
+.after {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 36px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in srgb, var(--domain) 30%, transparent);
+}
+
+.word,
+.count {
+  position: relative;
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.verdict {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fresh {
+  color: var(--good);
+}
+
+.copy {
+  color: var(--muted);
+}
+
+.tally {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
