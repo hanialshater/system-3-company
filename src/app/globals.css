@@ -176,3 +176,6 @@ a { color: inherit; }
 @media (prefers-color-scheme: light) {
   .tag.domain, .concept-lesson { color: color-mix(in srgb, var(--domain) 55%, #000); }
 }
+
+/* An active choice that is disabled because it is already selected (builder request, wave 1). */
+.control.active:disabled { opacity: 1; cursor: default; }
