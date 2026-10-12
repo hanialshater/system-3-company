@@ -62,6 +62,192 @@
       "prerequisites": [
         "law-of-large-numbers"
       ]
+    },
+    {
+      "id": "gamblers-fallacy",
+      "name": "The gambler's fallacy",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "independence",
+      "name": "Independent events have no memory",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "conditional-probability",
+      "name": "Conditional probability: shrinking the sample space",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ]
+    },
+    {
+      "id": "prosecutors-fallacy",
+      "name": "The prosecutor's fallacy",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "base-rates",
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "simpsons-paradox",
+      "name": "Simpson's paradox",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "confounding",
+      "name": "Confounding: the hidden third thing",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "truly-large-numbers",
+      "name": "Rare events in huge populations",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "birthday-paradox"
+      ]
+    },
+    {
+      "id": "streaks-in-randomness",
+      "name": "Random sequences look streaky",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ]
+    },
+    {
+      "id": "sample-size-noise",
+      "name": "Small samples are noisy",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "multiple-comparisons",
+      "name": "Multiple comparisons and false alarms",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "at-least-once",
+      "name": "Chance of at least once over many tries",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ]
+    },
+    {
+      "id": "poll-margin-of-error",
+      "name": "Polls and margin of error",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sample-size-noise"
+      ]
+    },
+    {
+      "id": "bayesian-updating",
+      "name": "Updating beliefs with evidence",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "base-rates"
+      ]
+    },
+    {
+      "id": "variance-risk",
+      "name": "Same average, different risk",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "random-walk",
+      "name": "Random walks drift farther than you think",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "dice-sum-distribution",
+      "name": "Why sums of dice are not uniform",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "two-children-problem",
+      "name": "The two-children problem",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "friendship-paradox",
+      "name": "The friendship paradox",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "heavy-tails",
+      "name": "Heavy tails: averages that never settle",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "central-limit"
+      ]
+    },
+    {
+      "id": "coupon-collector",
+      "name": "The coupon collector",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "expected-value"
+      ]
+    },
+    {
+      "id": "odds-vs-probability",
+      "name": "Odds versus probability",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "multiplicative-bets",
+      "name": "Bets that multiply: average vs typical",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "expected-value",
+        "math:exponential-growth"
+      ]
     }
   ]
 }

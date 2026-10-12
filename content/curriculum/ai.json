@@ -62,6 +62,200 @@
       "prerequisites": [
         "overfitting"
       ]
+    },
+    {
+      "id": "temperature-sampling",
+      "name": "Temperature: how a model picks among likely words",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "next-token"
+      ]
+    },
+    {
+      "id": "accuracy-paradox",
+      "name": "Accuracy paradox: 99% right and useless",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:base-rates"
+      ]
+    },
+    {
+      "id": "training-data-bias",
+      "name": "Training data bias: the model learns who is in the room",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:sampling-bias"
+      ]
+    },
+    {
+      "id": "k-means-clustering",
+      "name": "k-means: grouping without labels",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "linear-regression-fit",
+      "name": "Fitting a line by minimising squared error",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "math:slope-as-rate"
+      ]
+    },
+    {
+      "id": "perceptron-learning",
+      "name": "Perceptron: learning from mistakes, one nudge at a time",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "tokenization",
+      "name": "Tokenization: models read pieces, not words",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "next-token"
+      ]
+    },
+    {
+      "id": "reward-hacking",
+      "name": "Reward hacking: the optimiser finds the loophole",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "goodharts-law"
+      ]
+    },
+    {
+      "id": "data-leakage",
+      "name": "Data leakage: when the test answers sneak into training",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "train-test-split"
+      ]
+    },
+    {
+      "id": "precision-recall-threshold",
+      "name": "Precision vs recall: moving the threshold",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "accuracy-paradox"
+      ]
+    },
+    {
+      "id": "feedback-loops",
+      "name": "Feedback loops: predictions that shape their own data",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "training-data-bias"
+      ]
+    },
+    {
+      "id": "regularisation",
+      "name": "Regularisation: paying a penalty for complexity",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "feature-scaling",
+      "name": "Feature scaling: units decide who counts as near",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "nearest-neighbours"
+      ]
+    },
+    {
+      "id": "hidden-layers-xor",
+      "name": "Hidden layers: what one line cannot do",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "perceptron-learning"
+      ]
+    },
+    {
+      "id": "attention-weights",
+      "name": "Attention: weights that compete for a total of one",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "embeddings"
+      ]
+    },
+    {
+      "id": "shortcut-learning",
+      "name": "Shortcut learning: the easy clue that fails off-distribution",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "train-test-split"
+      ]
+    },
+    {
+      "id": "fluent-not-factual",
+      "name": "Fluent is not factual: sampling plausible words",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "next-token"
+      ]
+    },
+    {
+      "id": "exploration-exploitation",
+      "name": "Explore or exploit: learning while acting",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:expected-value"
+      ]
+    },
+    {
+      "id": "adversarial-examples",
+      "name": "Adversarial examples: tiny nudges, flipped labels",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "decision-boundary"
+      ]
+    },
+    {
+      "id": "curse-of-dimensionality",
+      "name": "Curse of dimensionality: everything is far from everything",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "nearest-neighbours"
+      ]
+    },
+    {
+      "id": "momentum",
+      "name": "Momentum: a rolling ball remembers",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "ensemble-wisdom",
+      "name": "Ensembles: many weak models, one steadier vote",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:law-of-large-numbers"
+      ]
     }
   ]
 }
