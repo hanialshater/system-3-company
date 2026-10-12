@@ -62,6 +62,193 @@
       "prerequisites": [
         "projectile-angle"
       ]
+    },
+    {
+      "id": "independent-components",
+      "name": "Sideways motion does not slow the fall",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "falling-objects"
+      ]
+    },
+    {
+      "id": "inertia",
+      "name": "Moving things need no push to keep moving",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "current-not-used-up",
+      "name": "Current is not used up around a loop",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "net-force-acceleration",
+      "name": "Net force sets acceleration (F = ma)",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "inertia",
+        "math:slope-as-rate"
+      ]
+    },
+    {
+      "id": "kinetic-energy-speed-squared",
+      "name": "Kinetic energy grows with speed squared",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "energy-conservation",
+        "math:area-scaling"
+      ]
+    },
+    {
+      "id": "mass-vs-weight",
+      "name": "Mass is not weight",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "action-reaction",
+      "name": "Forces come in equal opposite pairs",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "inertia"
+      ]
+    },
+    {
+      "id": "terminal-velocity",
+      "name": "Air drag caps a fall at terminal speed",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "falling-objects"
+      ]
+    },
+    {
+      "id": "circular-motion-centripetal",
+      "name": "Circular motion needs an inward pull, not an outward one",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "inertia"
+      ]
+    },
+    {
+      "id": "impulse-crumple-zones",
+      "name": "Longer stopping time means smaller force",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "net-force-acceleration"
+      ]
+    },
+    {
+      "id": "sound-vs-light-delay",
+      "name": "Sound is slow, light is instant: thunder timing",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "doppler-effect",
+      "name": "Moving sources shift the pitch (Doppler)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "sound-vs-light-delay"
+      ]
+    },
+    {
+      "id": "resonance",
+      "name": "Pushing in time with the natural period builds a big swing",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "pendulum-period"
+      ]
+    },
+    {
+      "id": "refraction",
+      "name": "Light bends where its speed changes",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "center-of-mass",
+      "name": "Things balance at the center of mass",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "pinhole-images",
+      "name": "A pinhole makes an upside-down image",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "momentum-collisions",
+      "name": "Momentum is conserved in collisions",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "net-force-acceleration",
+        "action-reaction"
+      ]
+    },
+    {
+      "id": "friction-area",
+      "name": "Sliding friction ignores contact area",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "inertia"
+      ]
+    },
+    {
+      "id": "series-parallel",
+      "name": "Series and parallel circuits share current and voltage differently",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "current-not-used-up"
+      ]
+    },
+    {
+      "id": "power-vs-energy",
+      "name": "Power is a rate; energy is the total (watts vs kWh)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "energy-conservation"
+      ]
+    },
+    {
+      "id": "inclined-plane-work",
+      "name": "A ramp trades force for distance, not work",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "energy-conservation"
+      ]
+    },
+    {
+      "id": "weightlessness",
+      "name": "Astronauts float because they are falling",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "orbits"
+      ]
     }
   ]
 }
