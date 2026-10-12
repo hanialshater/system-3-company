@@ -30,41 +30,74 @@
       "text": "Gradient descent moves each step downhill by the step size times the slope: x ← x − η·f′(x).",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville, Deep Learning (MIT Press, 2016), §4.3 (gradient-based optimization).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.gradient-descent.c2",
       "text": "On the valley f(x) = x², the slope is 2x, so one step multiplies the position by (1 − 2η).",
       "support": "derivation",
       "source": "f′(x) = 2x, so x − η·2x = (1 − 2η)x.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.gradient-descent.c3",
       "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball is within 0.04 of the bottom after two steps.",
       "support": "derivation",
       "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.395 for η = 0.05 and η = 0.95; 0.1^2 · 4 = 0.04 for η = 0.45.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.gradient-descent.c4",
       "text": "On f(x) = x², any step size above 1 makes each step land farther from the bottom: at 1.05, ten steps from x = 4 end about 10.4 away.",
       "support": "derivation",
       "source": "|1 − 2η| > 1 when η > 1; 1.1^10 · 4 = 10.37.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.gradient-descent.c5",
       "text": "Training real neural networks faces the same trade-off: too small a learning rate makes training slow, too large makes it oscillate or diverge, so the learning rate is often the most important setting to tune.",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §8.3.1 and §11.4.1 (\"If you have time to tune only one hyperparameter, tune the learning rate\").",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.gradient-descent.c6",
       "text": "Neural networks are trained with variants of gradient descent that update all of their parameters at once, and those can number in the millions.",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §6.5 and §8.3 (stochastic gradient descent); network sizes in §1.2.3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "ai.gradient-descent.c7",
+      "text": "At step size exactly 1, the ball bounces between the same two spots forever (4 and −4, starting from 4).",
+      "support": "derivation",
+      "source": "1 − 2η = −1 at η = 1, so x → −x each hop; seen on stage as 'Bouncing between the same two spots forever.' Added by fact-checker from the stage messages; needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c8",
+      "text": "On this valley the ball gets to the bottom fastest when 1 − 2 × step size is near zero (step size near 0.5, which lands on the bottom in one hop).",
+      "support": "derivation",
+      "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. Added by fact-checker from the reveal sentence 'fast is where that number is near zero'; needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c9",
+      "text": "With step size 0.2 the stage says 'Close to the bottom in a few hops' after the first hop, when the ball is still 2.40 from the bottom.",
+      "support": "simulation",
+      "source": "Demo.tsx message(): factor 0.6 falls through to the 'Close to the bottom in a few hops.' branch; 4 × 0.6^n gives 2.40, 1.44, 0.86, 0.52, 0.31 after 1–5 hops. Recorded by fact-checker as a learner-visible statement whose truth depends on how many hops 'a few' is; needs independent check.",
       "status": "unverified"
     }
   ],
@@ -83,7 +116,9 @@
     "qa": [
       "company/reviews/gradient-descent/2026-10-12-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/gradient-descent/2026-10-12-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

@@ -30,34 +30,72 @@
       "text": "The dots are simulated: temperatures from a smooth daytime hump plus random measurement noise (standard deviation 1.8 °C), from a fixed seed. 8 dots are used for fitting; 5 different dots are held out.",
       "support": "convention",
       "source": "The lesson's own generator in Demo.tsx: true curve 8 + 20·(0.15 + 2.8t(1 − t)) °C, noise 20 × 0.09 °C, seed 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.overfitting.c2",
       "text": "Each curve is the least-squares polynomial of degree (bends + 1) fitted to the 8 training dots only; a polynomial of degree d has at most d − 1 bends (turning points).",
       "support": "derivation",
       "source": "Least squares via normal equations (Bishop, Pattern Recognition and Machine Learning, 2006, §1.1); a degree-d polynomial's derivative has degree d − 1, so at most d − 1 real roots.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.overfitting.c3",
       "text": "With 6 bends (degree 7) the curve passes exactly through all 8 training dots, so its training miss is 0.",
       "support": "derivation",
       "source": "A degree n − 1 polynomial interpolates n points with distinct x exactly (Lagrange interpolation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.overfitting.c4",
       "text": "On the 5 held-out dots, the average miss is about 4.1 °C for a straight line, 1.5–1.6 °C with 1 to 3 bends, and 5.1 °C with 6 bends.",
       "support": "simulation",
       "source": "Computed in Demo.tsx from the seeded data (mean absolute vertical distance); reproduced independently with a separate script.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "ai.overfitting.c5",
       "text": "Fitting the noise in training data so closely that predictions on new data get worse is called overfitting; it is detected by measuring error on data held out from training.",
       "support": "source",
       "source": "Bishop, Pattern Recognition and Machine Learning (2006), §1.1, figs. 1.4–1.5; Hastie, Tibshirani & Friedman, The Elements of Statistical Learning (2nd ed., 2009), §2.9 and §7.2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "ai.overfitting.c6",
+      "text": "Each reading is the day's smooth warming plus random jitter.",
+      "support": "derivation",
+      "source": "Demo.tsx truth(t): 8 + 20·(0.15 + 2.8·t(1−t)) °C is 11 °C at 6am, 25 °C at noon, 11 °C at 6pm, so it warms then cools; a hump, not only warming. Added by fact-checker from the reveal; needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c7",
+      "text": "More bends push the training miss toward zero.",
+      "support": "simulation",
+      "source": "Seed-5 fit: sum of squared training errors falls 201.9, 28.3, 28.2, 28.2, 4.3, 2.0, 0.0 for 0–6 bends (least squares can never rise with degree), but the displayed mean absolute miss is 4.22, 1.56, 1.57, 1.57, 0.60, 0.38, 0.00, which rises slightly from 1 to 2 bends. Added by fact-checker from the reveal; needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c8",
+      "text": "The jitter in the new readings is different from the jitter in the fitted readings, so a curve that learned the old jitter misses the new dots.",
+      "support": "convention",
+      "source": "Demo.tsx makeData(5) draws independent Gaussian noise for each of the 13 readings from one seeded stream. Added by fact-checker from the reveal; needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c9",
+      "text": "The stage labels the readings, the 8 solid dots and the 5 new dots as 'Temperature readings' with no on-stage mention that they are simulated.",
+      "support": "convention",
+      "source": "Demo.tsx aria-label 'Temperature readings and a fitted curve'; the 'simulated' statement exists only in claim ai.overfitting.c1 on the trust sheet. Recorded by fact-checker; needs independent check.",
       "status": "unverified"
     }
   ],
@@ -76,7 +114,9 @@
     "qa": [
       "company/reviews/overfitting/2026-10-12-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/overfitting/2026-10-12-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

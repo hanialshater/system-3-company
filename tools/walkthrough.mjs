@@ -111,8 +111,10 @@ try {
       const type = await c.evaluate((el) => (el.tagName === "INPUT" ? el.type : el.tagName));
       if (type === "range") {
         await c.focus();
-        for (let k = 0; k < 3; k++) await page.keyboard.press("ArrowRight");
-        log.push(`### Step ${s + 1}: moved slider "${label}" right`);
+        const atMax = await c.evaluate((el) => Number(el.value) >= Number(el.max));
+        const key = atMax ? "ArrowLeft" : "ArrowRight";
+        for (let k = 0; k < 3; k++) await page.keyboard.press(key);
+        log.push(`### Step ${s + 1}: moved slider "${label}" ${atMax ? "left" : "right"} (now ${await c.evaluate((el) => el.value)})`);
       } else {
         await c.click();
         log.push(`### Step ${s + 1}: tapped "${label}"`);

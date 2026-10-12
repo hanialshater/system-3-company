@@ -25,6 +25,7 @@ only the container.
 - `*` **Remove the easy path.** If every version is "bars moving around", ban bars and see what appears.
 - `*` **Numbers the learner can feel.** 8 cards, 23 people, 10 folds. Big numbers go in the reveal.
 - `*` **Prefer manipulation to animation.** Sliders and taps over play buttons; if there is a play button there is also a step button.
+- `*` **Earn the reveal** (pattern `earn-the-reveal`). Name the key state and gate the reveal on reaching it, by calling `interact()` only for steps toward it. Write the reveal from what the learner actually saw. Make the question's numbers match the stage exactly.
 - **Text budget.** Stage text ≤ 25 words at any moment. The reveal ≤ 120 words.
 - **No bluffing.** Every factual sentence in the hook, stage or reveal is a claim in `meta.json → claims` with its support and source.
 

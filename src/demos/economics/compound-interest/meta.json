@@ -29,56 +29,72 @@
       "text": "With interest compounded once a year, a balance after t years is deposit × (1 + rate)^t.",
       "support": "derivation",
       "source": "Each year multiplies the balance by (1 + r). Standard result, e.g. Brealey, Myers & Allen, Principles of Corporate Finance, ch. 2 (future values).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c2",
       "text": "$1,000 at 7% a year grows to about $1,967 after 10 years (a gain of $967) and about $14,974 after 40 years.",
       "support": "derivation",
       "source": "1000 × 1.07^10 = 1,967.15; 1000 × 1.07^40 = 14,974.46.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c3",
       "text": "Simple interest (7% of the original $1,000 each year, never on past interest) would give $3,800 after 40 years.",
       "support": "derivation",
       "source": "1000 + 40 × 70 = 3,800.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c8",
       "text": "Extending the first decade's $967 gain in a straight line would give about $4,900 after 40 years.",
       "support": "derivation",
       "source": "1000 + 4 × 967.15 = 4,868.6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c4",
       "text": "In year 31 to 40 the balance grows by about $7,362, roughly 7.6 times the $967 earned in years 1 to 10.",
       "support": "derivation",
       "source": "1000 × (1.07^40 − 1.07^30) = 14,974.46 − 7,612.26 = 7,362.20; 7,362.20 / 967.15 = 7.61.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c5",
       "text": "After 40 years at 7%, interest earned on past interest is about $11,174, roughly three quarters of the $14,974 balance.",
       "support": "derivation",
       "source": "14,974.46 − 3,800 (deposit + simple interest) = 11,174.46; 11,174.46 / 14,974.46 = 0.746.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c6",
       "text": "At 7% a year, money roughly doubles every 10 years.",
       "support": "derivation",
       "source": "ln 2 / ln 1.07 = 10.24 years.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "economics.compound-interest.c7",
       "text": "The lesson is a model: a fixed rate every year, yearly compounding, no withdrawals, fees, taxes or inflation. Real returns vary year to year.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     }
   ],
   "confidence": "",
@@ -96,7 +112,7 @@
     "qa": [
       "company/reviews/compound-interest/2026-10-12-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": ["company/reviews/compound-interest/2026-10-12-learner-adult-beginner.md"],
     "pairwise": [],
     "humanLearners": []
   },
