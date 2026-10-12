@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.final { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; transition: all 0.35s ease; }
+.cut { fill: color-mix(in srgb, var(--bad) 14%, transparent); stroke: var(--bad); stroke-width: 1; stroke-dasharray: 3 3; }
+.corner { fill: color-mix(in srgb, var(--bad) 45%, transparent); stroke: var(--bad); stroke-width: 1.5; }
+.start { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.big { fill: var(--fg); font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.cornerLabel { fill: var(--bad); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.startLabel { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.gainLabel { fill: var(--good); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.cutLabel { fill: var(--bad); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }

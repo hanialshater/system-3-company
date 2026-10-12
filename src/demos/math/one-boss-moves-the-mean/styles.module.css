@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 42dvh; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axis { fill: var(--muted); font-size: 9.5px; font-variant-numeric: tabular-nums; }
+.bar { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); transition: y 0.25s, height 0.25s; }
+.middle { fill: color-mix(in srgb, var(--good) 55%, var(--bg-2)); }
+.boss { fill: var(--domain); transition: y 0.25s, height 0.25s; }
+.val { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mean { stroke: var(--bad); stroke-width: 2.2; transition: all 0.25s; }
+.median { stroke: var(--good); stroke-width: 2.2; stroke-dasharray: 6 3; }
+.meanLabel { fill: var(--bad); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.medianLabel { fill: var(--good); font-size: 12px; font-weight: 800; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.wrap :global(.readout) { flex: 1 1 0; }
+.valBoss { fill: var(--domain); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }

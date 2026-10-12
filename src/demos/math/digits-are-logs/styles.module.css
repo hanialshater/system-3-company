@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.title { fill: var(--fg); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.sup { font-size: 10px; }
+.track { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+.cell { fill: color-mix(in srgb, var(--domain) 32%, var(--bg-2)); stroke: var(--domain); stroke-width: 0.6; }
+.digit { fill: var(--fg); font-size: 10px; font-weight: 700; font-family: ui-monospace, monospace; }
+.tick { stroke: var(--fg); stroke-width: 1.4; }
+.tickLabel { fill: var(--fg); font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.axis { fill: var(--muted); font-size: 9.5px; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }

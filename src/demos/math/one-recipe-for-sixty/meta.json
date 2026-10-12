@@ -1,0 +1,66 @@
+{
+  "slug": "one-recipe-for-sixty",
+  "title": "One recipe for sixty",
+  "hook": "Split 60 into factors any way you like, down to primes. Does where you start matter?",
+  "domain": "math",
+  "concept": "prime-factorization",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "multiplication and division of whole numbers",
+      "what a prime number is (only 1 and itself divide it)"
+    ],
+    "doesNotKnow": [
+      "that every whole number above 1 factors into primes in only one way",
+      "the name fundamental theorem of arithmetic"
+    ]
+  },
+  "misconception": "A number can be broken into primes in different ways, depending on which factors you split off first.",
+  "objective": "The learner can explain that different factor trees for 60 (6 x 10, 4 x 15, 2 x 30, ...) always end in the same primes 2, 2, 3, 5, and that every whole number above 1 has exactly one prime recipe apart from order.",
+  "claims": [
+    {
+      "id": "math.one-recipe-for-sixty.c1",
+      "text": "60 = 2 x 2 x 3 x 5, and every first split of 60 (2 x 30, 3 x 20, 4 x 15, 5 x 12, 6 x 10) ends in the primes 2, 2, 3, 5.",
+      "support": "derivation",
+      "source": "2x30 = 2x(5x(2x3)); 3x20 = 3x((2x2)x5); 4x15 = (2x2)x(3x5); 5x12 = 5x(3x(2x2)); 6x10 = (2x3)x(2x5). The stage computes the trees by trial division; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.one-recipe-for-sixty.c2",
+      "text": "The 6 x 10 tree splits into 2 x 3 and 2 x 5; the 4 x 15 tree splits into 2 x 2 and 3 x 5.",
+      "support": "derivation",
+      "source": "6 = 2 x 3, 10 = 2 x 5, 4 = 2 x 2, 15 = 3 x 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.one-recipe-for-sixty.c3",
+      "text": "Every whole number above 1 can be written as a product of primes in exactly one way, apart from the order of the factors (the fundamental theorem of arithmetic).",
+      "support": "source",
+      "source": "Euclid, Elements VII.30-32 and IX.14; Hardy and Wright, An Introduction to the Theory of Numbers, ch. 2, Theorem 2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ana factors 84 as 4 x 21 and Ben as 6 x 14. Both keep splitting down to primes. What do they find?",
+    "options": [
+      "The same primes: 2, 2, 3, 7",
+      "Different primes, because they started differently",
+      "The same primes but a different number of 2s"
+    ],
+    "answer": 0,
+    "why": "Every whole number above 1 has exactly one prime recipe: 84 = 2 x 2 x 3 x 7, whichever split you start with."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

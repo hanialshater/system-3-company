@@ -1,0 +1,73 @@
+{
+  "slug": "one-boss-moves-the-mean",
+  "title": "One boss moves the mean",
+  "hook": "Four people earn 30k to 45k. The boss gets a huge raise. Who is \"average\" now?",
+  "domain": "math",
+  "concept": "mean-vs-median",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "how to work out an average: add up and divide by how many",
+      "reading a simple bar chart"
+    ],
+    "doesNotKnow": [
+      "the median as the middle value",
+      "why the median resists extreme values and the mean does not"
+    ]
+  },
+  "misconception": "The average (mean) describes the typical person, whatever the data look like.",
+  "objective": "The learner can explain that the mean adds up sizes, so one extreme value drags it far from most people, while the median only depends on order and stays put: with salaries 30, 35, 40, 45 and 500, the mean is 130 but the median is 40.",
+  "claims": [
+    {
+      "id": "math.one-boss-moves-the-mean.c1",
+      "text": "Salaries 30, 35, 40, 45, 50 (thousands) have mean 40 and median 40.",
+      "support": "derivation",
+      "source": "(30 + 35 + 40 + 45 + 50) / 5 = 200 / 5 = 40; middle of five sorted values is the third, 40.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.one-boss-moves-the-mean.c2",
+      "text": "With the top salary at 500, the mean is (30 + 35 + 40 + 45 + 500) / 5 = 130 and the median is still 40.",
+      "support": "derivation",
+      "source": "650 / 5 = 130; sorted values 30, 35, 40, 45, 500, middle is 40. Recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.one-boss-moves-the-mean.c3",
+      "text": "The median stays at 40 for every boss salary on the stage (50 to 500), and the mean is above four of the five salaries once the boss earns 100 or more.",
+      "support": "derivation",
+      "source": "Boss >= 45 keeps 40 in the middle. Mean = (150 + boss) / 5 > 45 iff boss > 75; stage steps are 50, 100, ..., so from 100 (mean 50).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.one-boss-moves-the-mean.c4",
+      "text": "The median depends only on the order of the values, so one extreme value cannot drag it far; the mean depends on every value's size.",
+      "support": "derivation",
+      "source": "Definition of median (middle order statistic) and mean (sum / n). Breakdown point of the median is 50%, of the mean 0: Huber and Ronchetti, Robust Statistics (2nd ed., 2009), sec. 1.4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a village, one billionaire moves in. Which number describes a typical villager's wealth better now?",
+    "options": [
+      "The median",
+      "The mean",
+      "Both describe it equally well"
+    ],
+    "answer": 0,
+    "why": "One huge value drags the mean up for everyone; the median only cares who is in the middle of the line, which barely changes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

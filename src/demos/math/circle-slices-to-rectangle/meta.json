@@ -1,0 +1,73 @@
+{
+  "slug": "circle-slices-to-rectangle",
+  "title": "Unroll a circle",
+  "hook": "Why does a circle's area have a radius squared in it? Slice it and lay it flat.",
+  "domain": "math",
+  "concept": "circle-area-unrolled",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the rim (circumference) of a circle is pi times its diameter",
+      "the area of a rectangle is width times height"
+    ],
+    "doesNotKnow": [
+      "the area formula pi r^2",
+      "why the circle area formula has a radius squared"
+    ]
+  },
+  "misconception": "A circle fills about as much as the square around it, or its area formula is arbitrary.",
+  "objective": "The learner can explain that a circle cut into many thin slices rearranges into a near-rectangle r tall and half the circumference (pi r) long, so its area is pi r^2, which is about 78.5% of the surrounding square.",
+  "claims": [
+    {
+      "id": "math.circle-slices-to-rectangle.c1",
+      "text": "A circle of radius 10 has area about 314, which is about 78% (78.5%) of its 20 x 20 square of area 400.",
+      "support": "derivation",
+      "source": "pi x 10^2 = 314.16; 314.16 / 400 = 0.785. Recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.circle-slices-to-rectangle.c2",
+      "text": "Half the rim of a circle of radius 10 is pi x 10, about 31.4.",
+      "support": "derivation",
+      "source": "Circumference = 2 pi r (definition of pi as circumference over diameter); half is pi r = 31.42.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.circle-slices-to-rectangle.c3",
+      "text": "Equal slices laid alternately point-up and point-down form a strip about r tall and pi r long; more slices straighten its edges without changing its area, so the circle's area is pi r x r = pi r^2.",
+      "support": "derivation",
+      "source": "N wedges of half-angle pi/N: strip centre-line length N r sin(pi/N) -> pi r and height r cos(pi/N) -> r as N grows; rearrangement preserves area. Standard limit argument; e.g. Strogatz, Infinite Powers (2019), ch. 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.circle-slices-to-rectangle.c4",
+      "text": "Any circle fills pi / 4, about 78.5%, of the square drawn around it.",
+      "support": "derivation",
+      "source": "pi r^2 / (2r)^2 = pi / 4 = 0.7854.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A round table of radius 1 m just fits inside a 2 m x 2 m square rug, touching all four edges. Roughly how much of the rug does the table cover?",
+    "options": [
+      "About 3.1 square metres of the 4",
+      "About 2 square metres of the 4",
+      "Nearly all 4 square metres"
+    ],
+    "answer": 0,
+    "why": "Unrolled, the table is a strip 1 m tall and half its rim (pi x 1, about 3.14 m) long: about 3.14 of the 4 square metres."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

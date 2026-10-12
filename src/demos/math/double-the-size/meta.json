@@ -1,0 +1,73 @@
+{
+  "slug": "double-the-size",
+  "title": "The 12-inch pizza deal",
+  "hook": "A 12-inch pizza is twice as wide as a 6-inch one. Is it twice as much pizza?",
+  "domain": "math",
+  "concept": "area-scaling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "area as the number of tiles that cover a shape",
+      "a pizza's size in inches is its width (diameter)"
+    ],
+    "doesNotKnow": [
+      "that area scales with the square of length",
+      "the area formula for a circle (not needed)"
+    ]
+  },
+  "misconception": "Doubling every length of a shape doubles its area.",
+  "objective": "The learner can explain that scaling every length by k multiplies area by k x k, because the shape grows in two directions at once: a 12-inch pizza has 4 times the area of a 6-inch one.",
+  "claims": [
+    {
+      "id": "math.double-the-size.c1",
+      "text": "A 12-inch round pizza has the same area as four 6-inch round pizzas.",
+      "support": "derivation",
+      "source": "pi x 6^2 / (pi x 3^2) = 36 / 9 = 4. Recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.double-the-size.c2",
+      "text": "A box twice as wide and twice as tall holds 2 x 2 = 4 of the smaller boxes; k times as wide and tall holds k x k.",
+      "support": "derivation",
+      "source": "A k-by-k square is tiled by k^2 unit squares (k rows of k).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.double-the-size.c3",
+      "text": "A circle fills the same share of the square around it at any size.",
+      "support": "derivation",
+      "source": "Circle area pi r^2 over square area (2r)^2 is pi / 4 for every r.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.double-the-size.c4",
+      "text": "Scaling every length of any flat shape by k multiplies its area by k^2: 3 times as wide is 9 times the area, 4 times is 16.",
+      "support": "derivation",
+      "source": "Area of similar plane figures scales with the square of the linear ratio (dilation by k multiplies every small square's area by k^2). Euclid, Elements VI.19-20 for similar triangles and polygons; XII.2 for circles.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A photo is enlarged to 3 times its width and 3 times its height. How much more paper does it cover?",
+    "options": [
+      "9 times as much",
+      "3 times as much",
+      "6 times as much"
+    ],
+    "answer": 0,
+    "why": "Area grows in both directions at once: 3 x 3 = 9 copies of the original fit inside the enlargement."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

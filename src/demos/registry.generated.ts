@@ -14,14 +14,24 @@ import m8 from "./economics/supply-demand/meta.json";
 import m9 from "./geography/mercator-greenland/meta.json";
 import m10 from "./life/herd-immunity/meta.json";
 import m11 from "./life/natural-selection/meta.json";
-import m12 from "./math/exponential-growth/meta.json";
-import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m12 from "./math/circle-slices-to-rectangle/meta.json";
+import m13 from "./math/digits-are-logs/meta.json";
+import m14 from "./math/double-the-size/meta.json";
+import m15 from "./math/exponential-growth/meta.json";
+import m16 from "./math/fifty-up-fifty-down/meta.json";
+import m17 from "./math/gauss-staircase/meta.json";
+import m18 from "./math/nines-without-end/meta.json";
+import m19 from "./math/odd-numbers-make-squares/meta.json";
+import m20 from "./math/one-boss-moves-the-mean/meta.json";
+import m21 from "./math/one-recipe-for-sixty/meta.json";
+import m22 from "./math/seventy-two-doubling/meta.json";
+import m23 from "./math/two-squares-become-one/meta.json";
+import m24 from "./physics/pendulum-period/meta.json";
+import m25 from "./physics/projectile-angle/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -36,8 +46,18 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "mercator-greenland": () => import("./geography/mercator-greenland/Demo"),
   "herd-immunity": () => import("./life/herd-immunity/Demo"),
   "natural-selection": () => import("./life/natural-selection/Demo"),
+  "circle-slices-to-rectangle": () => import("./math/circle-slices-to-rectangle/Demo"),
+  "digits-are-logs": () => import("./math/digits-are-logs/Demo"),
+  "double-the-size": () => import("./math/double-the-size/Demo"),
   "exponential-growth": () => import("./math/exponential-growth/Demo"),
+  "fifty-up-fifty-down": () => import("./math/fifty-up-fifty-down/Demo"),
+  "gauss-staircase": () => import("./math/gauss-staircase/Demo"),
+  "nines-without-end": () => import("./math/nines-without-end/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
+  "one-boss-moves-the-mean": () => import("./math/one-boss-moves-the-mean/Demo"),
+  "one-recipe-for-sixty": () => import("./math/one-recipe-for-sixty/Demo"),
+  "seventy-two-doubling": () => import("./math/seventy-two-doubling/Demo"),
+  "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),
   "base-rates": () => import("./probability/base-rates/Demo"),
