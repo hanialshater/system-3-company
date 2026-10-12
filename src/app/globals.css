@@ -84,7 +84,7 @@ a { color: inherit; }
 .lesson { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; width: 100%; }
 .stage {
   flex: 1; min-height: 0; overflow: auto; border-radius: 12px; background: var(--bg-3);
-  padding: 10px; display: flex; flex-direction: column; justify-content: center; transition: opacity 0.2s;
+  padding: 10px; display: flex; flex-direction: column; justify-content: safe center; transition: opacity 0.2s;
 }
 .lesson[data-phase="predict"] .stage { opacity: 0.55; }
 .stage-svg { width: 100%; height: auto; max-height: 46dvh; display: block; }
@@ -118,10 +118,11 @@ a { color: inherit; }
 }
 .control:disabled { opacity: 0.5; cursor: default; }
 .control.active { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 25%, var(--bg-2)); }
-.slider { display: flex; flex-direction: column; gap: 2px; flex: 1 1 160px; font-size: 0.82rem; }
+.slider { display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; }
+.row .slider { flex: 1 1 160px; }
 .slider-label { display: flex; justify-content: space-between; color: var(--muted); }
 .slider output { color: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
-.slider input { width: 100%; accent-color: var(--domain); }
+.slider input { width: 100%; height: 28px; accent-color: var(--domain); }
 .readout { display: flex; flex-direction: column; padding: 4px 10px; border-radius: 10px; background: var(--bg-2); min-width: 72px; }
 .readout-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .readout-value { font-weight: 800; font-variant-numeric: tabular-nums; }
