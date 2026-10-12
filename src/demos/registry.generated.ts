@@ -2,10 +2,18 @@
 // Source of truth: src/demos/<domain>/<slug>/meta.json
 import type { ComponentType } from "react";
 import type { DemoMeta } from "@/kit/types";
-import m0 from "./cs/merge-sort-payoff/meta.json";
+import m0 from "./chemistry/half-life/meta.json";
+import m1 from "./chemistry/ph-log-scale/meta.json";
+import m2 from "./cs/binary-numbers/meta.json";
+import m3 from "./cs/binary-search/meta.json";
+import m4 from "./cs/merge-sort-payoff/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
+  "half-life": () => import("./chemistry/half-life/Demo"),
+  "ph-log-scale": () => import("./chemistry/ph-log-scale/Demo"),
+  "binary-numbers": () => import("./cs/binary-numbers/Demo"),
+  "binary-search": () => import("./cs/binary-search/Demo"),
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
 };

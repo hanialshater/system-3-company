@@ -1,0 +1,83 @@
+{
+  "slug": "binary-numbers",
+  "title": "Eight switches",
+  "hook": "Each switch is only on or off. How far can eight of them count?",
+  "domain": "cs",
+  "concept": "binary-numbers",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adding whole numbers",
+      "doubling",
+      "that computers store things as 1s and 0s"
+    ],
+    "doesNotKnow": [
+      "place value in base 2",
+      "what a bit or byte holds",
+      "powers of two as exponents"
+    ]
+  },
+  "misconception": "Eight on/off switches can only stand for about eight (or sixteen) numbers, because each switch carries one small piece; binary is a code rather than a way of counting.",
+  "objective": "The learner can explain that each switch is worth twice the one to its right, so eight switches reach 255 (256 numbers counting 0), and one more switch doubles the count.",
+  "claims": [
+    {
+      "id": "cs.binary-numbers.c1",
+      "text": "With switches worth 1, 2, 4, 8, 16, 32, 64 and 128, all eight on make 255.",
+      "support": "derivation",
+      "source": "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 = 255 (arithmetic).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-numbers.c2",
+      "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255.",
+      "support": "derivation",
+      "source": "2^8 = 256 patterns; uniqueness of base-2 positional representation. Knuth, TAOCP Vol. 2, 4.1 (Positional number systems).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-numbers.c3",
+      "text": "Switches worth 1, 2, 4, ... always add up to one less than the next switch would be worth.",
+      "support": "derivation",
+      "source": "Geometric series: 2^0 + 2^1 + ... + 2^(k-1) = 2^k - 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-numbers.c4",
+      "text": "Adding one more switch doubles how many numbers you can name.",
+      "support": "derivation",
+      "source": "2^(k+1) = 2 * 2^k: each old pattern appears once with the new switch off and once with it on.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-numbers.c5",
+      "text": "A byte is 8 bits, so it holds 256 values (0 to 255); 32 bits give 4,294,967,296 values, over four billion.",
+      "support": "convention",
+      "source": "Byte = 8 bits (octet) per IEC 80000-13:2008; 2^32 = 4,294,967,296 (arithmetic).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ten on/off switches are worth 1, 2, 4, ... up to 512. What is the biggest number they can make?",
+    "options": [
+      "20",
+      "100",
+      "512",
+      "1,023"
+    ],
+    "answer": 3,
+    "why": "All on is one less than the next switch would be worth: 1,024 - 1 = 1,023."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

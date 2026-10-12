@@ -1,0 +1,76 @@
+{
+  "slug": "binary-search",
+  "title": "Higher or lower?",
+  "hook": "A number from 1 to 1,000. You only hear \"higher\" or \"lower\". How few guesses do you need?",
+  "domain": "cs",
+  "concept": "binary-search",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting and ordering whole numbers",
+      "what 'half' means",
+      "the higher-or-lower guessing game"
+    ],
+    "doesNotKnow": [
+      "binary search",
+      "logarithms",
+      "big-O notation",
+      "powers of two beyond small ones"
+    ]
+  },
+  "misconception": "Searching a bigger range takes proportionally more guesses: 1,000 numbers needs something like 50 or 100 guesses, and twice the range needs twice the guesses.",
+  "objective": "The learner can explain that guessing the middle throws away half of what is left each time, so 1,000 numbers need at most 10 guesses and doubling the range adds only one guess.",
+  "claims": [
+    {
+      "id": "cs.binary-search.c1",
+      "text": "Always guessing the middle of what is still possible finds any number from 1 to 1,000 in at most 10 guesses.",
+      "support": "derivation",
+      "source": "Binary search on n sorted items needs at most floor(log2 n) + 1 comparisons; n = 1000 gives floor(9.97) + 1 = 10. Knuth, TAOCP Vol. 3, 6.2.1 (Algorithm B and its analysis).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-search.c2",
+      "text": "In the worst case the numbers still possible after each wrong middle guess go 500, 250, 125, 62, 31, 15, 7, 3, 1.",
+      "support": "derivation",
+      "source": "Guessing the middle of m candidates and being wrong leaves at most floor(m/2): 1000 -> 500 -> 250 -> 125 -> 62 -> 31 -> 15 -> 7 -> 3 -> 1; nine wrong guesses, so the tenth is right.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-search.c3",
+      "text": "A million numbers need at most 20 middle guesses, and a billion need at most 30.",
+      "support": "derivation",
+      "source": "floor(log2 10^6) + 1 = floor(19.93) + 1 = 20; floor(log2 10^9) + 1 = floor(29.90) + 1 = 30. Knuth, TAOCP Vol. 3, 6.2.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-search.c4",
+      "text": "Doubling the range adds exactly one guess to the worst case.",
+      "support": "derivation",
+      "source": "floor(log2 2n) + 1 = (floor(log2 n) + 1) + 1, since log2 2n = log2 n + 1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sorted list holds 2,000 names. Checking the middle each time, what is the most checks you could need to find one name?",
+    "options": [
+      "11",
+      "20",
+      "1,000"
+    ],
+    "answer": 0,
+    "why": "Each check halves what is left. 1,000 needs 10; doubling to 2,000 adds just one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
