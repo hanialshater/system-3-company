@@ -2,10 +2,18 @@
 // Source of truth: src/demos/<domain>/<slug>/meta.json
 import type { ComponentType } from "react";
 import type { DemoMeta } from "@/kit/types";
-import m0 from "./cs/merge-sort-payoff/meta.json";
+import m0 from "./ai/gradient-descent/meta.json";
+import m1 from "./ai/overfitting/meta.json";
+import m2 from "./cs/merge-sort-payoff/meta.json";
+import m3 from "./economics/compound-interest/meta.json";
+import m4 from "./economics/supply-demand/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
+  "gradient-descent": () => import("./ai/gradient-descent/Demo"),
+  "overfitting": () => import("./ai/overfitting/Demo"),
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
+  "compound-interest": () => import("./economics/compound-interest/Demo"),
+  "supply-demand": () => import("./economics/supply-demand/Demo"),
 };

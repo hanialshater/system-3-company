@@ -1,0 +1,52 @@
+.gd {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.warn {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.msg {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* The kit slider renders a ~16px-tall range input; QA requires 24px tap targets. */
+.gd :global(input[type="range"]) {
+  height: 28px;
+  margin: 0;
+}
+
+/* Fill the stage; the picture shrinks to fit instead of overflowing the centred stage. */
+.gd {
+  flex: 1;
+  min-height: 0;
+}
+
+.gd :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 120px;
+  height: auto;
+}
+
+/* The kit slider is flex: 1 1 160px, which in a column container means a 160px height. */
+.gd > :global(.slider) {
+  flex: none;
+}
+
+.stats {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}

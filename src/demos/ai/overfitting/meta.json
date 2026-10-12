@@ -1,0 +1,82 @@
+{
+  "slug": "overfitting",
+  "title": "The curve that hits every dot",
+  "hook": "A perfect score on the data you have. What about the data you don't?",
+  "domain": "ai",
+  "concept": "overfitting",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading dots and a curve on a graph",
+      "that measurements are a little noisy",
+      "averages"
+    ],
+    "doesNotKnow": [
+      "polynomials or regression",
+      "training and test sets",
+      "the bias-variance trade-off"
+    ]
+  },
+  "misconception": "The model that fits the training data best (zero error) is the best model.",
+  "objective": "The learner can explain that a flexible enough curve can pass through every noisy training point, and that doing so makes it miss new points from the same source by more than a simpler curve does; only held-out points reveal this.",
+  "claims": [
+    {
+      "id": "ai.overfitting.c1",
+      "text": "The dots are simulated: temperatures from a smooth daytime hump plus random measurement noise (standard deviation 1.8 °C), from a fixed seed. 8 dots are used for fitting; 5 different dots are held out.",
+      "support": "convention",
+      "source": "The lesson's own generator in Demo.tsx: true curve 8 + 20·(0.15 + 2.8t(1 − t)) °C, noise 20 × 0.09 °C, seed 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c2",
+      "text": "Each curve is the least-squares polynomial of degree (bends + 1) fitted to the 8 training dots only; a polynomial of degree d has at most d − 1 bends (turning points).",
+      "support": "derivation",
+      "source": "Least squares via normal equations (Bishop, Pattern Recognition and Machine Learning, 2006, §1.1); a degree-d polynomial's derivative has degree d − 1, so at most d − 1 real roots.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c3",
+      "text": "With 6 bends (degree 7) the curve passes exactly through all 8 training dots, so its training miss is 0.",
+      "support": "derivation",
+      "source": "A degree n − 1 polynomial interpolates n points with distinct x exactly (Lagrange interpolation).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c4",
+      "text": "On the 5 held-out dots, the average miss is about 4.1 °C for a straight line, 1.5–1.6 °C with 1 to 3 bends, and 5.1 °C with 6 bends.",
+      "support": "simulation",
+      "source": "Computed in Demo.tsx from the seeded data (mean absolute vertical distance); reproduced independently with a separate script.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c5",
+      "text": "Fitting the noise in training data so closely that predictions on new data get worse is called overfitting; it is detected by measuring error on data held out from training.",
+      "support": "source",
+      "source": "Bishop, Pattern Recognition and Machine Learning (2006), §1.1, figs. 1.4–1.5; Hastie, Tibshirani & Friedman, The Elements of Statistical Learning (2nd ed., 2009), §2.9 and §7.2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Model A has 0 errors on its training data. Model B has a few. How do you find out which will do better on new data?",
+    "options": [
+      "Test both on data neither was trained on",
+      "Pick A: zero errors is best",
+      "Pick B: errors mean it is not cheating"
+    ],
+    "answer": 0,
+    "why": "Zero training error can mean the model memorised the noise. Only data held out from training shows how a model handles new cases."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

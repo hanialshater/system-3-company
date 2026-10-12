@@ -1,0 +1,89 @@
+{
+  "slug": "gradient-descent",
+  "title": "Bigger steps, faster descent?",
+  "hook": "Bigger steps should reach the bottom of the valley sooner. Try it.",
+  "domain": "ai",
+  "concept": "gradient-descent",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading a curve on a graph",
+      "that a steeper slope means a bigger change",
+      "multiplying decimals"
+    ],
+    "doesNotKnow": [
+      "derivatives or gradients",
+      "what a learning rate is",
+      "how neural networks are trained"
+    ]
+  },
+  "misconception": "A bigger step size always gets gradient descent to the minimum faster.",
+  "objective": "The learner can explain that each step moves (step size × slope), so a step size that is too small crawls, one that is too big overshoots and zigzags, and one past a limit flies away; the fastest is in the middle.",
+  "claims": [
+    {
+      "id": "ai.gradient-descent.c1",
+      "text": "Gradient descent moves each step downhill by the step size times the slope: x ← x − η·f′(x).",
+      "support": "source",
+      "source": "Goodfellow, Bengio & Courville, Deep Learning (MIT Press, 2016), §4.3 (gradient-based optimization).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c2",
+      "text": "On the valley f(x) = x², the slope is 2x, so one step multiplies the position by (1 − 2η).",
+      "support": "derivation",
+      "source": "f′(x) = 2x, so x − η·2x = (1 − 2η)x.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c3",
+      "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball is within 0.04 of the bottom after two steps.",
+      "support": "derivation",
+      "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.395 for η = 0.05 and η = 0.95; 0.1^2 · 4 = 0.04 for η = 0.45.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c4",
+      "text": "On f(x) = x², any step size above 1 makes each step land farther from the bottom: at 1.05, ten steps from x = 4 end about 10.4 away.",
+      "support": "derivation",
+      "source": "|1 − 2η| > 1 when η > 1; 1.1^10 · 4 = 10.37.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c5",
+      "text": "Training real neural networks faces the same trade-off: too small a learning rate makes training slow, too large makes it oscillate or diverge, so the learning rate is often the most important setting to tune.",
+      "support": "source",
+      "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §8.3.1 and §11.4.1 (\"If you have time to tune only one hyperparameter, tune the learning rate\").",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c6",
+      "text": "Neural networks are trained with variants of gradient descent that update all of their parameters at once, and those can number in the millions.",
+      "support": "source",
+      "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §6.5 and §8.3 (stochastic gradient descent); network sizes in §1.2.3.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Gradient descent is zigzagging back and forth across a valley and getting no closer. What should you change?",
+    "options": [
+      "Make the step size smaller",
+      "Make the step size bigger",
+      "Take more steps with the same size"
+    ],
+    "answer": 0,
+    "why": "Zigzagging means each step overshoots the bottom. A smaller step size stops the overshoot; a bigger one makes it worse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
