@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 100px; max-height: 40dvh; }
+.road { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); }
+.start { stroke: var(--fg); stroke-width: 2; }
+.blockA { fill: var(--domain); }
+.blockB { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.car { fill: var(--fg); }
+.wheel { fill: var(--bg-3); stroke: var(--fg); stroke-width: 1.2; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 9px; }
+.count { fill: var(--fg); font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.readout) { flex: 1 1 0; }

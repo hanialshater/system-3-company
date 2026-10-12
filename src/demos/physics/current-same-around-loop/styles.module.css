@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 46dvh; }
+.wire { fill: none; stroke: var(--fg); stroke-width: 2; opacity: 0.75; stroke-linejoin: round; }
+.gap { fill: var(--bg-3); }
+.plateLong { stroke: var(--fg); stroke-width: 3; }
+.plateShort { stroke: var(--fg); stroke-width: 5; }
+.label { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.drop { fill: var(--domain); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.charge { fill: var(--domain); }
+.glow { fill: color-mix(in srgb, var(--warn, #f5c542) 70%, var(--domain)); }
+.bulb { fill: var(--bg-3); stroke: var(--fg); stroke-width: 1.6; }
+.filament { stroke: var(--fg); stroke-width: 1.2; }
+.meterBody { fill: var(--bg-2); stroke: var(--good); stroke-width: 2.2; }
+.meterA { fill: var(--good); font-size: 11px; font-weight: 800; }
+.readBox { fill: var(--bg-2); stroke: var(--good); stroke-width: 1.2; }
+.reading { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }

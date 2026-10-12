@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 44dvh; }
+.beam { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; opacity: 0.8; }
+.spring { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linejoin: round; transition: d 0.4s ease-out; }
+.scale { stroke: var(--muted); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 8.5px; font-variant-numeric: tabular-nums; }
+.pointer { stroke: var(--bad); stroke-width: 2.5; stroke-linecap: round; }
+.bag { fill: color-mix(in srgb, var(--fg) 12%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.bagText { fill: var(--fg); font-size: 9px; font-weight: 700; }
+.hanger { stroke: var(--muted); stroke-width: 1; }
+.pan { stroke: var(--fg); stroke-width: 2.5; stroke-linecap: round; }
+.weight { fill: var(--fg); }
+.weightText { fill: var(--bg-3); font-size: 8px; font-weight: 800; }
+.stand { fill: color-mix(in srgb, var(--fg) 35%, var(--bg-2)); }
+.level { fill: var(--good); font-size: 10px; font-weight: 700; }
+.world { fill: var(--fg); font-size: 12px; font-weight: 800; }
+@keyframes wobble { 0% { transform: rotate(0deg); } 20% { transform: rotate(5deg); } 45% { transform: rotate(-3deg); } 70% { transform: rotate(1.5deg); } 100% { transform: rotate(0deg); } }
+.wobble { animation: wobble 0.9s ease-out; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap :global(.control.active:disabled) { opacity: 1; }
+.wrap :global(.readout) { flex: 1 1 0; }

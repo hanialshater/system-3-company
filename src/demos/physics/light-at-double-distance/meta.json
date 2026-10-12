@@ -1,0 +1,82 @@
+{
+  "slug": "light-at-double-distance",
+  "title": "Twice as far from the lamp",
+  "hook": "Move your book twice as far from a lamp. How much of its light does it lose?",
+  "domain": "physics",
+  "concept": "inverse-square",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "lamps look dimmer from farther away",
+      "light travels in straight lines",
+      "area of a square is side times side"
+    ],
+    "doesNotKnow": [
+      "that light spreads over an area",
+      "the inverse-square law",
+      "the lux as a unit of illuminance"
+    ]
+  },
+  "misconception": "Double the distance, half the brightness.",
+  "objective": "The learner can explain that light from a small source spreads over an area that grows with the square of distance, so at twice the distance a surface gets a quarter of the light.",
+  "claims": [
+    {
+      "id": "physics.light-at-double-distance.c1",
+      "text": "Light from a small source spreads over an area that grows with the square of the distance, so brightness on a page facing it falls as 1 / distance^2.",
+      "support": "derivation",
+      "source": "Inverse-square law for a point source: illuminance E = I / d^2 (for a surface facing the source), because the same flux crosses a sphere of area 4 pi d^2. Hecht, Optics, ch. 3; Halliday, Resnick and Walker, ch. 33 (intensity of a point source).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.light-at-double-distance.c2",
+      "text": "100 lux at 1 m becomes 25 lux at 2 m and about 11 lux at 3 m (44.4 lux at 1.5 m, 16 lux at 2.5 m).",
+      "support": "derivation",
+      "source": "100 / 2^2 = 25; 100 / 3^2 = 11.1; 100 / 1.5^2 = 44.4; 100 / 2.5^2 = 16.0.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.light-at-double-distance.c3",
+      "text": "A beam that is 1 m wide at 1 m is 2 m wide and 2 m tall at 2 m, so it covers 4 page-sized squares; at 3 m, 9.",
+      "support": "derivation",
+      "source": "Similar triangles: straight rays from a point, so width is proportional to distance and area to distance squared.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.light-at-double-distance.c4",
+      "text": "The lux is a unit of illuminance: one lumen of light falling on each square metre.",
+      "support": "source",
+      "source": "SI derived unit lux = lm/m^2 (BIPM SI Brochure, 9th ed., Table 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.light-at-double-distance.c5",
+      "text": "The law holds for a small source with nothing reflecting light back; a large lamp, or a room's walls, make light fall off more slowly up close.",
+      "support": "convention",
+      "source": "Stated idealisation: point source in empty space. The inverse-square law is accurate for distances greater than about five times the source size (a common photometry rule of thumb: treat a source as a point beyond about five times its size).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A plant 1 m from a grow lamp gets plenty of light. You move it to 3 m. Roughly what share of the light does it get now?",
+    "options": [
+      "A third",
+      "A sixth",
+      "A ninth"
+    ],
+    "answer": 2,
+    "why": "Light spreads over an area that grows with distance squared: three times the distance, nine times the area, a ninth of the light."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

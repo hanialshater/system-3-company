@@ -16,12 +16,22 @@ import m10 from "./life/herd-immunity/meta.json";
 import m11 from "./life/natural-selection/meta.json";
 import m12 from "./math/exponential-growth/meta.json";
 import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m14 from "./physics/coaster-track-shape/meta.json";
+import m15 from "./physics/current-same-around-loop/meta.json";
+import m16 from "./physics/doubling-speed-braking/meta.json";
+import m17 from "./physics/dropped-vs-fired-ball/meta.json";
+import m18 from "./physics/flour-on-the-moon/meta.json";
+import m19 from "./physics/light-at-double-distance/meta.json";
+import m20 from "./physics/moon-hammer-feather/meta.json";
+import m21 from "./physics/pendulum-period/meta.json";
+import m22 from "./physics/projectile-angle/meta.json";
+import m23 from "./physics/puck-on-ice-no-push/meta.json";
+import m24 from "./physics/same-push-twice-the-mass/meta.json";
+import m25 from "./physics/truck-hits-car-force/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -38,8 +48,18 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "natural-selection": () => import("./life/natural-selection/Demo"),
   "exponential-growth": () => import("./math/exponential-growth/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
+  "coaster-track-shape": () => import("./physics/coaster-track-shape/Demo"),
+  "current-same-around-loop": () => import("./physics/current-same-around-loop/Demo"),
+  "doubling-speed-braking": () => import("./physics/doubling-speed-braking/Demo"),
+  "dropped-vs-fired-ball": () => import("./physics/dropped-vs-fired-ball/Demo"),
+  "flour-on-the-moon": () => import("./physics/flour-on-the-moon/Demo"),
+  "light-at-double-distance": () => import("./physics/light-at-double-distance/Demo"),
+  "moon-hammer-feather": () => import("./physics/moon-hammer-feather/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),
+  "puck-on-ice-no-push": () => import("./physics/puck-on-ice-no-push/Demo"),
+  "same-push-twice-the-mass": () => import("./physics/same-push-twice-the-mass/Demo"),
+  "truck-hits-car-force": () => import("./physics/truck-hits-car-force/Demo"),
   "base-rates": () => import("./probability/base-rates/Demo"),
   "birthday-paradox": () => import("./probability/birthday-paradox/Demo"),
 };

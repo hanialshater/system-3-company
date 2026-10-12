@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.head { margin: 0; display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.lane { display: flex; align-items: flex-start; gap: 8px; }
+.go { flex: 0 0 84px; min-height: 34px; padding: 6px 8px; }
+.track { flex: 1 1 0; min-width: 0; }
+.ice { fill: color-mix(in srgb, var(--muted) 22%, var(--bg-2)); }
+.iceNone { fill: color-mix(in srgb, var(--domain) 14%, var(--bg-2)); }
+.grid { stroke: var(--line); stroke-width: 1; }
+.dot { fill: none; stroke: var(--domain); stroke-width: 1.4; }
+.puck { fill: var(--fg); }
+.dist { fill: var(--fg); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.tickLabel { fill: var(--muted); font-size: 8.5px; }
+.caption { margin: 4px 0 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }

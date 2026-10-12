@@ -1,0 +1,89 @@
+{
+  "slug": "flour-on-the-moon",
+  "title": "Is 1 kg of flour still 1 kg on the Moon?",
+  "hook": "Gravity on the Moon is a sixth of Earth's. Does your bag of flour lose anything?",
+  "domain": "physics",
+  "concept": "mass-vs-weight",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a bag of flour is sold as 1 kg",
+      "the Moon has weaker gravity than Earth",
+      "what a kitchen balance and a spring scale look like"
+    ],
+    "doesNotKnow": [
+      "the difference between mass and weight",
+      "the newton as a unit of force",
+      "W = m g"
+    ]
+  },
+  "misconception": "Mass and weight are the same thing, so the flour's mass (its kilograms) drops on the Moon.",
+  "objective": "The learner can explain that mass (how much stuff) stays the same everywhere, while weight (how hard a world pulls on it) is mass times the local gravity, and that a spring scale measures weight while a balance compares masses.",
+  "claims": [
+    {
+      "id": "physics.flour-on-the-moon.c1",
+      "text": "Weight is mass times the local gravity, W = m g; a 1 kg bag weighs 9.81 N on Earth and 1.62 N on the Moon.",
+      "support": "derivation",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5 (weight). 1 x 9.81 = 9.81 N; 1 x 1.62 = 1.62 N.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c2",
+      "text": "Surface gravity: Earth 9.81, Moon 1.62, Mars 3.71 and Jupiter 24.79 m/s^2 (Jupiter has no solid surface; its value is at the 1 bar pressure level).",
+      "support": "source",
+      "source": "NASA Goddard Planetary Fact Sheet (nssdc.gsfc.nasa.gov/planetary/factsheet/): gravity Earth 9.8, Moon 1.62, Mars 3.71, Jupiter 24.79 m/s^2. Earth's standard value 9.81 m/s^2 (9.80665 standard gravity, BIPM).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c3",
+      "text": "A spring scale measures the pull of gravity (a force), so its reading changes from world to world; a balance compares two masses in the same gravity, so it stays level anywhere.",
+      "support": "derivation",
+      "source": "Spring: Hooke's law F = k x, stretch proportional to weight m g. Balance: torques m1 g d = m2 g d, g cancels, so equal masses balance for any g.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c4",
+      "text": "Mass, how much stuff there is, stays 1 kg anywhere.",
+      "support": "convention",
+      "source": "Mass is an intrinsic property of the object, independent of location (SI definition of the kilogram, BIPM SI Brochure, 9th ed.).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c5",
+      "text": "A bathroom scale is a spring scale: on the Moon it would read about a sixth of its Earth reading.",
+      "support": "derivation",
+      "source": "Bathroom scales measure force through a spring or strain gauge and display it as kg assuming Earth gravity; 1.62 / 9.81 = 0.165, about one sixth.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c6",
+      "text": "Gravity at the Moon's surface is about a sixth of Earth's.",
+      "support": "derivation",
+      "source": "1.62 / 9.81 = 0.165, about 1/6 (values from c2, NASA Planetary Fact Sheet).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An astronaut's mass is 70 kg on Earth. On Mars, where gravity is weaker, what is her mass?",
+    "options": [
+      "70 kg",
+      "About 26 kg",
+      "0 kg"
+    ],
+    "answer": 0,
+    "why": "Mass is how much stuff there is and does not change with location; only weight, the pull of gravity, is smaller on Mars."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
