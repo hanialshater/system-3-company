@@ -1,0 +1,87 @@
+{
+  "slug": "ten-percent-up",
+  "title": "How much reaches the hawk?",
+  "hook": "A field of plants feeds a chain of animals. What is left by the top?",
+  "domain": "life",
+  "concept": "energy-pyramid",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "animals eat plants or other animals",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "that only a small share of energy passes up each link",
+      "why food chains are short"
+    ]
+  },
+  "misconception": "Energy passes up a food chain largely intact, so a top predator could be as plentiful as the animals it ultimately depends on.",
+  "objective": "The learner can explain that each link passes on only about a tenth of the energy, so energy at the top of a chain of n links is about 10^-n of the plants' and top predators are scarce.",
+  "claims": [
+    {
+      "id": "life.ten-percent-up.c1",
+      "text": "With 10,000 units in plants and 10% passed on per link, four links give 1,000, 100, 10 and about 1 unit for the hawks.",
+      "support": "derivation",
+      "source": "10,000 x 0.1^4 = 1 (checked with node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ten-percent-up.c2",
+      "text": "Most of the energy at each level is not passed on: it is used for living and given off as heat, or it is never eaten or digested.",
+      "support": "source",
+      "source": "Lindeman, R. L. (1942), 'The trophic-dynamic aspect of ecology', Ecology 23(4): 399-418; Begon, Townsend & Harper, Ecology: From Individuals to Ecosystems (Blackwell), chapter on the flux of energy through ecosystems.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ten-percent-up.c3",
+      "text": "Because so little energy passes up each link, food chains are short and top predators are scarce.",
+      "support": "source",
+      "source": "Elton, C. (1927), Animal Ecology (pyramid of numbers); Begon, Townsend & Harper, Ecology, chapter on the flux of energy (why food chains are short).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ten-percent-up.c4",
+      "text": "10% is a rule of thumb; measured transfer efficiencies range roughly from 5 to 20%.",
+      "support": "source",
+      "source": "Pauly, D. & Christensen, V. (1995), 'Primary production required to sustain global fisheries', Nature 374: 255-257 (mean about 10% in aquatic food webs, wide spread); Lindeman (1942).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ten-percent-up.c5",
+      "text": "At 20% per link the hawks would get 16 units; at 5%, 0.06.",
+      "support": "derivation",
+      "source": "10,000 x 0.2^4 = 16; 10,000 x 0.05^4 = 0.0625.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ten-percent-up.c6",
+      "text": "On the stage each square's area is proportional to its energy; the chain and the numbers are made up.",
+      "support": "convention",
+      "source": "Drawing choice in Demo.tsx (side = 140 x sqrt(E / 10,000)).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Plants in a lake hold 1,000,000 units of energy, and about 10% passes up each link. How much reaches an animal three links above the plants?",
+    "options": [
+      "About 100,000 units",
+      "About 1,000 units",
+      "About 10 units"
+    ],
+    "answer": 1,
+    "why": "Three links keep 0.1 x 0.1 x 0.1 = 1/1,000 of the energy: 1,000,000 / 1,000 = 1,000 units."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

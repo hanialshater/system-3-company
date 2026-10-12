@@ -1,0 +1,88 @@
+{
+  "slug": "dish-runs-out",
+  "title": "One cell, ten hours",
+  "hook": "A bacterium splits every 20 minutes. How crowded is the dish by evening?",
+  "domain": "life",
+  "concept": "exponential-bacteria",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "doubling a number",
+      "bacteria multiply by splitting in two"
+    ],
+    "doesNotKnow": [
+      "how fast repeated doubling gets",
+      "that a closed dish stops growth by running out of food",
+      "exponential or logistic equations"
+    ]
+  },
+  "misconception": "Growth feels steady, so 10 hours is about 10 times one hour of growth, and it can go on forever.",
+  "objective": "The learner can explain that 10 hours of 20-minute doublings is 30 doublings, about a billion cells, that most of that growth happens at the very end, and that a finite food supply bends the curve and stops it.",
+  "claims": [
+    {
+      "id": "life.dish-runs-out.c1",
+      "text": "Ten hours of doubling every 20 minutes is 30 doublings; 2^30 = 1,073,741,824, about 1.07 billion.",
+      "support": "derivation",
+      "source": "600 min / 20 min = 30; 2^30 = 1,073,741,824 (checked with node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.dish-runs-out.c2",
+      "text": "After 7 hours the colony was under 1% of its 10-hour size; most of the dish filled in the last hour and half of it in the last 20 minutes.",
+      "support": "derivation",
+      "source": "At 7 h the count is 2^21 = 2^-9 of 2^30, about 0.2%. At 9 h it is 2^27 = 1/8 of 2^30, so 7/8 arrives in the last hour; at 9 h 40 min it is 1/2.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.dish-runs-out.c3",
+      "text": "With one batch of food, growth looks the same at first, then bends and stops below 100 million cells as the food runs out.",
+      "support": "simulation",
+      "source": "Stage model (convention): logistic growth N(k) = K / (1 + (K - 1) e^(-k ln 2)) per 20-minute step with K = 100 million. Gives 512 cells at 3 h (same as unlimited), 57 million at 9 h and 91 million at 10 h, approaching but never exceeding 100 million.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.dish-runs-out.c4",
+      "text": "In a closed culture, growth slows and stops when nutrients run out (or waste builds up); unlimited doubling cannot continue.",
+      "support": "source",
+      "source": "Monod, J. (1949), 'The growth of bacterial cultures', Annual Review of Microbiology 3: 371-394; Madigan et al., Brock Biology of Microorganisms, chapter on microbial growth (batch culture growth curve).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.dish-runs-out.c5",
+      "text": "E. coli can double about every 20 minutes in rich lab broth; many bacteria, and E. coli in poorer conditions, divide far more slowly.",
+      "support": "source",
+      "source": "Madigan et al., Brock Biology of Microorganisms (generation times); Sezonov, Joseleau-Petit & D'Ari (2007), 'Escherichia coli physiology in Luria-Bertani broth', Journal of Bacteriology 189(23): 8746-8749.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.dish-runs-out.c6",
+      "text": "The drawing is scaled: colony area is proportional to the number of cells, and 2^30 cells fill the dish. The 100-million food batch is made up.",
+      "support": "convention",
+      "source": "Modelling and drawing choice in Demo.tsx (FULL = 2^30, K = 1e8).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Yeast with plenty of food doubles every 2 hours. Starting from 1,000 cells, about how many are there after one day?",
+    "options": [
+      "About 24,000",
+      "About 4 million",
+      "About 1 billion"
+    ],
+    "answer": 1,
+    "why": "24 hours is 12 doublings, and 2^12 = 4,096, so 1,000 cells become about 4.1 million, as long as the food lasts."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

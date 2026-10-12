@@ -1,0 +1,80 @@
+{
+  "slug": "fastest-at-the-bend",
+  "title": "When does a pond fill fastest?",
+  "hook": "More fish make more babies. So is a nearly full pond growing fastest?",
+  "domain": "life",
+  "concept": "logistic-growth",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "exponential growth of bacteria (taught)",
+      "a habitat can only hold so many animals"
+    ],
+    "doesNotKnow": [
+      "the logistic equation",
+      "that growth in numbers is fastest at half the carrying capacity"
+    ]
+  },
+  "misconception": "A population grows fastest when it is nearly full, because that is when it has the most members having young.",
+  "objective": "The learner can explain that logistic growth needs both individuals and room, so new individuals per unit time (rN(1 - N/K)) peak at half the carrying capacity, where the S-curve bends.",
+  "claims": [
+    {
+      "id": "life.fastest-at-the-bend.c1",
+      "text": "In the logistic model, growth per unit time is r x N x (1 - N/K): it needs both individuals (N) and room left (1 - N/K).",
+      "support": "source",
+      "source": "Verhulst (1838); Gotelli, N. J., A Primer of Ecology (Sinauer), ch. 2, logistic population growth.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fastest-at-the-bend.c2",
+      "text": "With r = 0.5 per month and K = 1,000: 45 new fish per month at 100 fish, 45 at 900 and 125 at 500.",
+      "support": "derivation",
+      "source": "0.5 x 100 x 0.9 = 45; 0.5 x 900 x 0.1 = 45; 0.5 x 500 x 0.5 = 125 (checked with node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fastest-at-the-bend.c3",
+      "text": "Logistic growth in numbers is fastest at half the carrying capacity (500 here), which is where the S-curve bends from speeding up to slowing down.",
+      "support": "derivation",
+      "source": "d/dN [rN(1 - N/K)] = r(1 - 2N/K) = 0 at N = K/2; the maximum of dN/dt is the inflection point of N(t).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fastest-at-the-bend.c4",
+      "text": "Real populations can lag behind, overshoot their limit or crash, unlike this model.",
+      "support": "source",
+      "source": "Gotelli, A Primer of Ecology, ch. 2 (time lags in logistic growth); May, R. M. (1976), 'Simple mathematical models with very complicated dynamics', Nature 261: 459-467.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fastest-at-the-bend.c5",
+      "text": "The pond, its growth rate (0.5 per month) and its fixed 1,000-fish limit are made up.",
+      "support": "convention",
+      "source": "Modelling choice in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A range can support at most 2,000 deer, and the herd grows logistically. At what herd size does it add deer fastest?",
+    "options": [
+      "About 200",
+      "About 1,000",
+      "About 1,900"
+    ],
+    "answer": 1,
+    "why": "Growth needs deer and room; deer x room-left peaks at half the limit, 1,000."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

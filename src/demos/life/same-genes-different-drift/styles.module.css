@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 27dvh; flex-shrink: 0; }
+.lane { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+/* Beetle colours are the beetles, not the UI. Red is round, green is square, so shape carries it too. */
+.red { fill: #d8432f; }
+.green { fill: #2f9e5b; }
+.tag { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.chip:disabled { opacity: 1; cursor: default; }

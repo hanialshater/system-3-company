@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 27dvh; flex-shrink: 0; }
+/* Flower colours are the plants, not the UI: they stay the same in both themes. */
+.tile { fill: color-mix(in srgb, #7a5a3a 22%, var(--bg-2)); }
+.tileHit { fill: color-mix(in srgb, #7a5a3a 22%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.6; }
+.purple { fill: #7b3fb0; stroke: #3d1f58; stroke-width: 0.8; }
+.white { fill: #ffffff; stroke: #4a4a4a; stroke-width: 1; }
+.centre { fill: #e7b416; }
+.soil { fill: var(--muted); }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }

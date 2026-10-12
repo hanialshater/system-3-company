@@ -12,16 +12,26 @@ import m6 from "./cs/merge-sort-payoff/meta.json";
 import m7 from "./economics/compound-interest/meta.json";
 import m8 from "./economics/supply-demand/meta.json";
 import m9 from "./geography/mercator-greenland/meta.json";
-import m10 from "./life/herd-immunity/meta.json";
-import m11 from "./life/natural-selection/meta.json";
-import m12 from "./math/exponential-growth/meta.json";
-import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m10 from "./life/cell-too-big/meta.json";
+import m11 from "./life/dish-runs-out/meta.json";
+import m12 from "./life/fastest-at-the-bend/meta.json";
+import m13 from "./life/herd-immunity/meta.json";
+import m14 from "./life/most-cases-vaccinated/meta.json";
+import m15 from "./life/natural-selection/meta.json";
+import m16 from "./life/one-in-four-sprouts/meta.json";
+import m17 from "./life/pesticide-paradox/meta.json";
+import m18 from "./life/same-genes-different-drift/meta.json";
+import m19 from "./life/slow-across-a-room/meta.json";
+import m20 from "./life/ten-percent-up/meta.json";
+import m21 from "./life/three-day-doubling/meta.json";
+import m22 from "./math/exponential-growth/meta.json";
+import m23 from "./math/odd-numbers-make-squares/meta.json";
+import m24 from "./physics/pendulum-period/meta.json";
+import m25 from "./physics/projectile-angle/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -34,8 +44,18 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "compound-interest": () => import("./economics/compound-interest/Demo"),
   "supply-demand": () => import("./economics/supply-demand/Demo"),
   "mercator-greenland": () => import("./geography/mercator-greenland/Demo"),
+  "cell-too-big": () => import("./life/cell-too-big/Demo"),
+  "dish-runs-out": () => import("./life/dish-runs-out/Demo"),
+  "fastest-at-the-bend": () => import("./life/fastest-at-the-bend/Demo"),
   "herd-immunity": () => import("./life/herd-immunity/Demo"),
+  "most-cases-vaccinated": () => import("./life/most-cases-vaccinated/Demo"),
   "natural-selection": () => import("./life/natural-selection/Demo"),
+  "one-in-four-sprouts": () => import("./life/one-in-four-sprouts/Demo"),
+  "pesticide-paradox": () => import("./life/pesticide-paradox/Demo"),
+  "same-genes-different-drift": () => import("./life/same-genes-different-drift/Demo"),
+  "slow-across-a-room": () => import("./life/slow-across-a-room/Demo"),
+  "ten-percent-up": () => import("./life/ten-percent-up/Demo"),
+  "three-day-doubling": () => import("./life/three-day-doubling/Demo"),
   "exponential-growth": () => import("./math/exponential-growth/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),

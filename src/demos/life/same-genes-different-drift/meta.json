@@ -1,0 +1,82 @@
+{
+  "slug": "same-genes-different-drift",
+  "title": "Nobody wins, one colour takes over",
+  "hook": "Neither beetle colour is better. Does the half-and-half mix stay put?",
+  "domain": "life",
+  "concept": "genetic-drift",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "natural selection (taught)",
+      "young inherit their parents' traits",
+      "chance outcomes vary"
+    ],
+    "doesNotKnow": [
+      "that variant frequencies wander by chance alone",
+      "that a variant can be lost or take over with no advantage",
+      "that population size sets how fast this happens"
+    ]
+  },
+  "misconception": "If neither variant is better, the mix stays at about 50:50.",
+  "objective": "The learner can explain that in a finite population each generation is a random sample of the last, so variant shares wander until one is lost and the other takes over, and that this happens much faster in small populations.",
+  "claims": [
+    {
+      "id": "life.same-genes-different-drift.c1",
+      "text": "When each new generation is a random draw of parents from the last, variant shares change by chance alone (genetic drift), even when neither variant is better.",
+      "support": "source",
+      "source": "Wright-Fisher model; Gillespie, J. H. (2004), Population Genetics: A Concise Guide, 2nd ed., Johns Hopkins University Press, ch. 2; Hartl & Clark, Principles of Population Genetics, ch. on random genetic drift.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-genes-different-drift.c2",
+      "text": "Once a colour is lost it never comes back (without mutation or beetles arriving from elsewhere), so populations end up all one colour.",
+      "support": "derivation",
+      "source": "With share 0 or 1, every draw copies the same colour: both are absorbing states. The model in Demo.tsx has no mutation and no migration.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-genes-different-drift.c3",
+      "text": "With 20 beetles, most populations are all one colour within a few dozen generations; with 200, after 100 generations most are still mixed.",
+      "support": "simulation",
+      "source": "4,000 seeded runs of the stage model (haploid Wright-Fisher, start 50%): N = 20 fixed by generation 30 in 71%, by 60 in 94%, by 100 in 99%; N = 200 fixed by generation 100 in 14%. Stage seed 1: all five N = 20 lanes fixed by generation 41; one of five N = 200 lanes fixed at generation 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-genes-different-drift.c4",
+      "text": "For a variant with no advantage, the chance it eventually takes over equals its starting share, here 1 in 2.",
+      "support": "source",
+      "source": "Kimura, M. (1962), 'On the probability of fixation of mutant genes in a population', Genetics 47: 713-719 (neutral case u(p) = p). Simulation check: red took over in 50.5% (N = 20) and 52.0% (N = 200) of 4,000 runs.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-genes-different-drift.c5",
+      "text": "The model has no mutation, no selection and no migration; beetles and colours are made up.",
+      "support": "convention",
+      "source": "Modelling choice stated in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two islands start with the same 50:50 mix of two harmless flower colours. One has 30 plants, the other 30,000. After 200 generations, which is more likely to have lost a colour?",
+    "options": [
+      "The island with 30 plants",
+      "The island with 30,000 plants",
+      "Equally likely: neither colour is better"
+    ],
+    "answer": 0,
+    "why": "Each generation is a random sample of the last. Small samples swing more, so the small island drifts to one colour far sooner."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
