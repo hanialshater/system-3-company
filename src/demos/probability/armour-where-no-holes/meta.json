@@ -1,0 +1,66 @@
+{
+  "slug": "armour-where-no-holes",
+  "title": "Armour the bullet holes?",
+  "hook": "Returning bombers are riddled on the wings. So armour the wings. Or is that backwards?",
+  "domain": "probability",
+  "concept": "sampling-bias",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that data can be incomplete",
+      "counting things in a picture"
+    ],
+    "doesNotKnow": [
+      "survivorship bias",
+      "how the way data is collected can hide the cases that matter"
+    ]
+  },
+  "misconception": "The places where returning planes show the most damage are the places that most need armour.",
+  "objective": "The learner can explain that only survivors are inspected, so the spots with few holes on survivors are where a hit was fatal, and that missing cases can be the signal.",
+  "claims": [
+    {
+      "id": "probability.armour-where-no-holes.c1",
+      "text": "In the lesson's model, bullets land evenly over the plane and only an engine hit brings a plane down, so planes that come back never have engine holes.",
+      "support": "convention",
+      "source": "Toy model, by construction: src/demos/probability/armour-where-no-holes/model.ts (3 hits per plane, uniform over the silhouette; lost = any hit inside an engine ellipse). The lesson says it is a toy model.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.armour-where-no-holes.c2",
+      "text": "With the stage's silhouette about 15% of the plane's area is engine, so a plane taking 3 hits is lost about 38% of the time; of the first 100 seeded planes, 35 were lost and the 65 that came back had 0 engine holes.",
+      "support": "simulation",
+      "source": "model.ts engineShare() = 0.147 on a 0.25-unit grid; 1 - (1 - 0.147)^3 = 0.379. fleet(1943): first 10 planes 5 lost; first 60, 23 lost; first 100, 35 lost; first 400, 141 lost; engine holes on returned planes 0 in every case.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.armour-where-no-holes.c3",
+      "text": "During the Second World War the statistician Abraham Wald analysed damage on returning aircraft and reasoned that the areas with few hits on survivors were the vulnerable ones.",
+      "support": "source",
+      "source": "M. Mangel and F. J. Samaniego (1984), 'Abraham Wald's work on aircraft survivability', Journal of the American Statistical Association 79(386): 259-267. (The brief spelled the second author 'Samaniuk'; the author is Francisco J. Samaniego.)",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A study of successful start-ups finds most founders dropped out of college. Why is that weak evidence that dropping out helps?",
+    "options": [
+      "It only looks at the start-ups that survived",
+      "College is expensive",
+      "The sample is too large"
+    ],
+    "answer": 0,
+    "why": "Dropouts whose companies failed are not in the data. Like planes that never came back, the missing cases could tell the opposite story."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

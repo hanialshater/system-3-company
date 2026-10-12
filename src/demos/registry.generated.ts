@@ -68,10 +68,20 @@ import m62 from "./math/seventy-two-doubling/meta.json";
 import m63 from "./math/two-squares-become-one/meta.json";
 import m64 from "./physics/pendulum-period/meta.json";
 import m65 from "./physics/projectile-angle/meta.json";
-import m66 from "./probability/base-rates/meta.json";
-import m67 from "./probability/birthday-paradox/meta.json";
+import m66 from "./probability/armour-where-no-holes/meta.json";
+import m67 from "./probability/base-rates/meta.json";
+import m68 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m69 from "./probability/birthday-paradox/meta.json";
+import m70 from "./probability/coin-gap-keeps-growing/meta.json";
+import m71 from "./probability/five-heads-then-what/meta.json";
+import m72 from "./probability/hidden-third-cause/meta.json";
+import m73 from "./probability/monty-hall-100-doors/meta.json";
+import m74 from "./probability/one-in-a-million-match/meta.json";
+import m75 from "./probability/praise-then-slump/meta.json";
+import m76 from "./probability/small-hospital-big-swings/meta.json";
+import m77 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -140,6 +150,16 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),
+  "armour-where-no-holes": () => import("./probability/armour-where-no-holes/Demo"),
   "base-rates": () => import("./probability/base-rates/Demo"),
+  "better-in-every-group-worse-overall": () => import("./probability/better-in-every-group-worse-overall/Demo"),
   "birthday-paradox": () => import("./probability/birthday-paradox/Demo"),
+  "coin-gap-keeps-growing": () => import("./probability/coin-gap-keeps-growing/Demo"),
+  "five-heads-then-what": () => import("./probability/five-heads-then-what/Demo"),
+  "hidden-third-cause": () => import("./probability/hidden-third-cause/Demo"),
+  "monty-hall-100-doors": () => import("./probability/monty-hall-100-doors/Demo"),
+  "one-in-a-million-match": () => import("./probability/one-in-a-million-match/Demo"),
+  "praise-then-slump": () => import("./probability/praise-then-slump/Demo"),
+  "small-hospital-big-swings": () => import("./probability/small-hospital-big-swings/Demo"),
+  "twenty-harmless-tests": () => import("./probability/twenty-harmless-tests/Demo"),
 };

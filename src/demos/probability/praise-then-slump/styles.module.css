@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; max-height: 32dvh; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.grid { stroke: var(--line); stroke-width: 0.6; stroke-dasharray: 2 3; }
+.axisLabel { fill: var(--fg); font-size: 12px; font-weight: 700; }
+.tick { fill: var(--muted); font-size: 10px; }
+.crowd { fill: var(--muted); opacity: 0.25; }
+.pick { fill: var(--domain); stroke: color-mix(in srgb, var(--fg) 50%, transparent); stroke-width: 0.4; }
+.path { stroke: var(--domain); stroke-width: 0.6; opacity: 0.45; }
+.mean { fill: var(--fg); }
+.meanPath { stroke: var(--fg); stroke-width: 2.5; }
+.wait { fill: var(--muted); font-size: 12px; font-style: italic; }

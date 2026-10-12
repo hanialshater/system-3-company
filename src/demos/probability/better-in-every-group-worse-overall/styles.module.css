@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; max-height: 32dvh; }
+.name { fill: var(--fg); font-size: 20px; font-weight: 800; }
+.seg { fill: var(--fg); font-size: 12px; font-weight: 700; }
+.fail { fill: color-mix(in srgb, var(--bad) 22%, var(--bg-2)); stroke: var(--line); stroke-width: 1; }
+.cured { fill: var(--domain); }
+.curedSmall { fill: color-mix(in srgb, var(--domain) 75%, var(--bg-2)); }
+.curedLarge { fill: color-mix(in srgb, var(--domain) 75%, var(--fg)); }
+.divider { stroke: var(--fg); stroke-width: 2; }
+.key { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
+.faded { opacity: 0.55; }
+.level { stroke: var(--fg); stroke-width: 3; stroke-dasharray: none; }

@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.body { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); stroke: var(--muted); stroke-width: 1; }
+.engine { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); stroke: var(--muted); stroke-width: 1; }
+.hole { fill: var(--fg); }
+.lostHole { fill: var(--bad); opacity: 0.75; }
+.lostEngine { fill: var(--bad); stroke: var(--fg); stroke-width: 0.8; }
+.caption { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.engineLabel { fill: var(--muted); font-size: 10px; }
