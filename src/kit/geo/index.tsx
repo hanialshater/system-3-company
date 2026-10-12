@@ -37,6 +37,9 @@ export {
   geoContains,
   geoCircle,
   geoRotation,
+  geoProjection,
+  geoConicEqualArea,
+  geoStereographic,
 } from "d3-geo";
 
 export type CountryFeature = Feature<Geometry, { name: string }> & { id?: string };
