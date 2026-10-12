@@ -10,18 +10,28 @@ import m4 from "./cs/binary-numbers/meta.json";
 import m5 from "./cs/binary-search/meta.json";
 import m6 from "./cs/merge-sort-payoff/meta.json";
 import m7 from "./economics/compound-interest/meta.json";
-import m8 from "./economics/supply-demand/meta.json";
-import m9 from "./geography/mercator-greenland/meta.json";
-import m10 from "./life/herd-immunity/meta.json";
-import m11 from "./life/natural-selection/meta.json";
-import m12 from "./math/exponential-growth/meta.json";
-import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m8 from "./economics/fee-drag-gap/meta.json";
+import m9 from "./economics/inflation-halves-cash/meta.json";
+import m10 from "./economics/longer-loan-cost/meta.json";
+import m11 from "./economics/minimum-payment-trap/meta.json";
+import m12 from "./economics/real-rate-illusion/meta.json";
+import m13 from "./economics/rule-of-72-shortcut/meta.json";
+import m14 from "./economics/shared-pasture/meta.json";
+import m15 from "./economics/start-early-race/meta.json";
+import m16 from "./economics/sunk-cost-exit/meta.json";
+import m17 from "./economics/supply-demand/meta.json";
+import m18 from "./economics/up-then-down-trap/meta.json";
+import m19 from "./geography/mercator-greenland/meta.json";
+import m20 from "./life/herd-immunity/meta.json";
+import m21 from "./life/natural-selection/meta.json";
+import m22 from "./math/exponential-growth/meta.json";
+import m23 from "./math/odd-numbers-make-squares/meta.json";
+import m24 from "./physics/pendulum-period/meta.json";
+import m25 from "./physics/projectile-angle/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -32,7 +42,17 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "binary-search": () => import("./cs/binary-search/Demo"),
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
   "compound-interest": () => import("./economics/compound-interest/Demo"),
+  "fee-drag-gap": () => import("./economics/fee-drag-gap/Demo"),
+  "inflation-halves-cash": () => import("./economics/inflation-halves-cash/Demo"),
+  "longer-loan-cost": () => import("./economics/longer-loan-cost/Demo"),
+  "minimum-payment-trap": () => import("./economics/minimum-payment-trap/Demo"),
+  "real-rate-illusion": () => import("./economics/real-rate-illusion/Demo"),
+  "rule-of-72-shortcut": () => import("./economics/rule-of-72-shortcut/Demo"),
+  "shared-pasture": () => import("./economics/shared-pasture/Demo"),
+  "start-early-race": () => import("./economics/start-early-race/Demo"),
+  "sunk-cost-exit": () => import("./economics/sunk-cost-exit/Demo"),
   "supply-demand": () => import("./economics/supply-demand/Demo"),
+  "up-then-down-trap": () => import("./economics/up-then-down-trap/Demo"),
   "mercator-greenland": () => import("./geography/mercator-greenland/Demo"),
   "herd-immunity": () => import("./life/herd-immunity/Demo"),
   "natural-selection": () => import("./life/natural-selection/Demo"),

@@ -1,0 +1,94 @@
+{
+  "slug": "longer-loan-cost",
+  "title": "A lower payment: a cheaper loan?",
+  "hook": "Stretch a loan and the monthly payment drops. What happens to the total?",
+  "domain": "economics",
+  "concept": "loan-term-cost",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that loans charge interest",
+      "what a monthly payment is"
+    ],
+    "doesNotKnow": [
+      "that a lower monthly payment over a longer term can cost much more in total",
+      "that interest is charged for every month money stays owed"
+    ]
+  },
+  "misconception": "A lower payment means a cheaper loan.",
+  "objective": "The learner can explain that a longer term lowers each payment but keeps the balance owed for longer, so the total interest rises: on $20,000 at 6%, going from 5 to 7 years costs about $1,343 more.",
+  "claims": [
+    {
+      "id": "economics.longer-loan-cost.c1",
+      "text": "A level monthly payment on a loan P at monthly rate r over n months is P·r / (1 − (1 + r)^−n).",
+      "support": "derivation",
+      "source": "Present value of an annuity solved for the payment. Standard, e.g. Brealey, Myers & Allen, Principles of Corporate Finance, ch. 2 (annuities).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c2",
+      "text": "$20,000 at 6% a year (0.5% a month) over 5 years: $386.66 a month, $3,199 total interest.",
+      "support": "derivation",
+      "source": "20,000 × 0.005 / (1 − 1.005^−60) = 386.66; 386.66 × 60 = 23,199.36; − 20,000 = 3,199.36.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c3",
+      "text": "Over 7 years: $292.17 a month, $4,542 total interest.",
+      "support": "derivation",
+      "source": "20,000 × 0.005 / (1 − 1.005^−84) = 292.17; × 84 = 24,542.37; − 20,000 = 4,542.37.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c4",
+      "text": "Stretching from 5 to 7 years cuts the payment by about $95 a month and adds about $1,343 of interest.",
+      "support": "derivation",
+      "source": "386.66 − 292.17 = 94.49; 4,542.37 − 3,199.36 = 1,343.01.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c5",
+      "text": "The stage's payments and interest for other terms (2 to 8 years) use the same formula, e.g. 2 years: $886.41 a month, $1,274 interest; 8 years: $262.83 a month, $5,232 interest.",
+      "support": "derivation",
+      "source": "n = 24: 886.41 × 24 − 20,000 = 1,273.89; n = 96: 262.83 × 96 − 20,000 = 5,231.55.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c6",
+      "text": "A longer loan repays the balance more slowly, so more money stays owed each month and is charged interest.",
+      "support": "derivation",
+      "source": "Monthly interest = 0.5% × balance still owed; with a smaller payment the balance falls more slowly, so the sum of monthly interest over more months is larger.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.longer-loan-cost.c7",
+      "text": "The lesson is a model: a fixed, illustrative 6% rate, level monthly payments, no fees. It is not a current market rate.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Same car loan, same rate. Option A: 4 years. Option B: 6 years, with a lower monthly payment. Which costs more in total?",
+    "options": [
+      "A, the payment is higher",
+      "B, you pay interest for more months",
+      "They cost the same"
+    ],
+    "answer": 1,
+    "why": "Interest is charged on what is still owed each month. A longer loan keeps more owed for longer, so total interest rises even as the payment falls."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

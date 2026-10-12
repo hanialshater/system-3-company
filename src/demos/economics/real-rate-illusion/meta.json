@@ -1,0 +1,87 @@
+{
+  "slug": "real-rate-illusion",
+  "title": "Is 3% interest a 3% gain?",
+  "hook": "Your savings pay 3% a year. Prices rise too. What does your balance really buy?",
+  "domain": "economics",
+  "concept": "real-interest-rate",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that inflation erodes what cash buys (inflation lesson)",
+      "that savings accounts pay interest"
+    ],
+    "doesNotKnow": [
+      "how to net interest against inflation",
+      "the idea of a real interest rate"
+    ]
+  },
+  "misconception": "If my account pays 3% I am gaining 3%.",
+  "objective": "The learner can explain that what money can buy depends on interest relative to price rises (the real rate, roughly interest minus inflation), so 3% interest with 5% inflation leaves you able to buy about 2% less.",
+  "claims": [
+    {
+      "id": "economics.real-rate-illusion.c1",
+      "text": "$100 at 3% interest becomes $103 after a year; a basket costing $100 today costs $105 after a year of 5% inflation.",
+      "support": "derivation",
+      "source": "100 × 1.03 = 103; 100 × 1.05 = 105.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.real-rate-illusion.c2",
+      "text": "With 3% interest and 5% inflation, your $103 buys what about $98.10 buys today, about 1.9% less.",
+      "support": "derivation",
+      "source": "103 / 1.05 = 98.095; 1.03 / 1.05 − 1 = −0.0190.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.real-rate-illusion.c3",
+      "text": "The real interest rate is (1 + interest) / (1 + inflation) − 1.",
+      "support": "source",
+      "source": "Fisher relation; e.g. Mankiw, Principles of Economics, chapter 'Measuring the Cost of Living' (nominal vs real interest rates); chapter numbers vary by edition.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.real-rate-illusion.c4",
+      "text": "For small rates the real rate is roughly interest minus inflation (here 3% − 5% = −2%).",
+      "support": "derivation",
+      "source": "(1 + i)/(1 + π) − 1 = (i − π)/(1 + π) ≈ i − π when π is small: (0.03 − 0.05)/1.05 = −0.0190 vs −0.02.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.real-rate-illusion.c5",
+      "text": "When inflation equals the 3% interest rate, the money buys exactly as much as today; above it, less; below it, more.",
+      "support": "derivation",
+      "source": "1.03/(1 + π) is 1 at π = 0.03, below 1 for π > 0.03 and above 1 for π < 0.03.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.real-rate-illusion.c6",
+      "text": "The lesson is a model with illustrative rates: one year, one basket, no tax.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A loan charges 4% a year while prices rise 6%. Roughly what is the real interest rate?",
+    "options": [
+      "+10%",
+      "+4%",
+      "About −2%"
+    ],
+    "answer": 2,
+    "why": "The real rate is roughly interest minus inflation: 4% − 6% ≈ −2% (exactly 1.04/1.06 − 1 = −1.9%)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
