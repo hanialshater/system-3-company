@@ -1,0 +1,74 @@
+{
+  "slug": "back-button-stack",
+  "title": "Where does Back take you?",
+  "hook": "Back, back, then a new page. Then Back again. You might not land where you expect.",
+  "domain": "cs",
+  "concept": "stack-and-queue",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "visiting web pages and pressing Back",
+      "putting things on a pile and taking the top one off"
+    ],
+    "doesNotKnow": [
+      "stacks and queues by name",
+      "last in, first out",
+      "that visiting a page after going back discards the forward pages"
+    ]
+  },
+  "misconception": "Back always returns to the page you looked at just before, retracing the order you visited them.",
+  "objective": "The learner can explain that browser history behaves like a stack: Back steps down the pile, and visiting a new page after going back throws away the pages above, so after A, B, C, D, Back twice and E, Back lands on B.",
+  "claims": [
+    {
+      "id": "cs.back-button-stack.c1",
+      "text": "After visiting A, B, C, D, pressing Back twice, visiting E and pressing Back once, you are on B.",
+      "support": "simulation",
+      "source": "Pile A, B, C, D (on D) -> Back -> C -> Back -> B -> visit E discards C and D, pile A, B, E -> Back -> B. Builder ran the stack trace in Node.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.back-button-stack.c2",
+      "text": "After going back, the later pages are kept for Forward until you visit a new page, which throws them away.",
+      "support": "source",
+      "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.back-button-stack.c3",
+      "text": "A stack gives back the last thing added first (last in, first out); a queue gives back the first thing added first (first in, first out), like a line at a till.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.back-button-stack.c4",
+      "text": "The stage models history as one pile and has no Forward button; it shows forward pages as dashed entries above the current page.",
+      "support": "convention",
+      "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You read pages P, Q, R. You press Back once (to Q) and open a new page S. Which pages can Back and Forward now reach?",
+    "options": [
+      "Back to Q and P; R is gone",
+      "Back to R, Q and P",
+      "Forward to R, back to Q and P"
+    ],
+    "answer": 0,
+    "why": "History is a stack. Opening S from Q throws away R, which was above Q, and puts S on top: the pile is P, Q, S."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

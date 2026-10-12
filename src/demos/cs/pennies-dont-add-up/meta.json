@@ -1,0 +1,103 @@
+{
+  "slug": "pennies-dont-add-up",
+  "title": "Why 0.1 + 0.2 isn't 0.3",
+  "hook": "Ask a computer if 0.1 + 0.2 equals 0.3. It says no. Who is wrong?",
+  "domain": "cs",
+  "concept": "floating-point",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "binary place value: switches worth 1, 2, 4, 8 (binary-numbers)",
+      "decimals like 0.1 and fractions like 1/2, 1/4",
+      "that 1/3 is 0.333... in decimal"
+    ],
+    "doesNotKnow": [
+      "that many decimals have no finite binary form",
+      "that computers round decimals to the nearest binary fraction",
+      "IEEE 754 floating point"
+    ]
+  },
+  "misconception": "A computer does decimal arithmetic exactly, so 0.1 + 0.2 is exactly 0.3.",
+  "objective": "The learner can explain that 0.1 has no exact binary form, so a computer stores the nearest binary fraction, and these small rounding errors make 0.1 + 0.2 come out a tiny bit above 0.3.",
+  "claims": [
+    {
+      "id": "cs.pennies-dont-add-up.c1",
+      "text": "In binary, 0.1 is 0.000110011001100… with the block 0011 repeating forever.",
+      "support": "derivation",
+      "source": "Repeated doubling of the fractional part: 0.1 -> 0.2 (0) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 ...; the remainder 0.4 recurs, so the digits 0011 repeat. Builder ran it for 20 digits: 00011001100110011001.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c2",
+      "text": "No set of the 12 switches worth 1/2 to 1/4096 adds to exactly 0.1; the closest is 0.10009765625 (over), then 0.099853515625 (under).",
+      "support": "derivation",
+      "source": "Any sum of these switches is k/4096 for a whole number k. 0.1 x 4096 = 409.6 is not whole, so no k works. The nearest are k = 410 (0.10009765625, gap 0.00009765625) and k = 409 (0.099853515625, gap 0.000146484375). In general k/2^n can never equal 1/10, because 10 has the factor 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c3",
+      "text": "1/3 is 0.333… in decimal and has no finite decimal form.",
+      "support": "derivation",
+      "source": "Long division of 1 by 3 leaves remainder 1 at every step, so the digit 3 repeats forever; a finite decimal is k/10^n, and 3 does not divide any power of 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c4",
+      "text": "A standard computer number (a double) keeps 53 significant binary digits and rounds to the nearest value it can store.",
+      "support": "source",
+      "source": "IEEE 754-2019, binary64 format: precision p = 53 bits (52 stored plus an implicit leading 1); default rounding is round-to-nearest, ties-to-even. JavaScript numbers are binary64 (ECMA-262, 6.1.6.1 The Number Type).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c5",
+      "text": "As a double, 0.1 is stored as 0.1000000000000000055… and 0.2 as 0.2000000000000000111…, both a hair above the decimal value.",
+      "support": "simulation",
+      "source": "node -e 'console.log((0.1).toPrecision(40), (0.2).toPrecision(40))' prints 0.1000000000000000055511151231257827021182 and 0.2000000000000000111022302462515654042363 (builder ran it). Python: from decimal import Decimal; Decimal(0.1).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c6",
+      "text": "0.1 + 0.2 prints as 0.30000000000000004 in JavaScript and Python, so testing it for equality with 0.3 gives false.",
+      "support": "simulation",
+      "source": "node -e 'console.log(0.1+0.2, 0.1+0.2===0.3)' prints 0.30000000000000004 false (builder ran it); python3 -c 'print(0.1+0.2, 0.1+0.2==0.3)'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c7",
+      "text": "Money is often counted in whole cents rather than as decimal fractions of a dollar to avoid these rounding errors.",
+      "support": "source",
+      "source": "Fowler, Patterns of Enterprise Application Architecture (2002), 'Money' pattern: store amounts as integers of the smallest currency unit because floating point cannot represent decimal fractions exactly.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c8",
+      "text": "0.1 + 0.7 prints as 0.7999999999999999 in JavaScript.",
+      "support": "simulation",
+      "source": "node -e 'console.log(0.1+0.7)' prints 0.7999999999999999 (builder ran it).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A program prints 0.1 + 0.7 as 0.7999999999999999. What is the best explanation?",
+    "options": [
+      "A bug in the computer's adder",
+      "0.1 and 0.7 have no exact binary form, so they are stored rounded",
+      "The program deliberately cuts answers to 16 digits"
+    ],
+    "answer": 1,
+    "why": "Like 1/3 in decimal, 0.1 and 0.7 repeat forever in binary. The computer stores the nearest binary fraction, and the small errors show up in the sum."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

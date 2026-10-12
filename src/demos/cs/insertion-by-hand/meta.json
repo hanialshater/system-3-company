@@ -1,0 +1,90 @@
+{
+  "slug": "insertion-by-hand",
+  "title": "Same cards, different work",
+  "hook": "Five cards, one method. Why does one hand take 10 slides and another none?",
+  "domain": "cs",
+  "concept": "insertion-sort",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ordering numbers from smallest to largest",
+      "what 'sorted' means",
+      "sorting a hand of playing cards informally"
+    ],
+    "doesNotKnow": [
+      "insertion sort by name",
+      "inversions (out-of-order pairs)",
+      "that sorting effort depends on how scrambled the input is",
+      "big-O notation"
+    ]
+  },
+  "misconception": "Sorting always costs the same effort for the same number of items.",
+  "objective": "The learner can explain that each slide in insertion sort fixes one out-of-order pair, so a reversed hand of 5 needs 10 slides, a sorted hand needs none, and the work depends on how scrambled the input is.",
+  "claims": [
+    {
+      "id": "cs.insertion-by-hand.c1",
+      "text": "Sorting the reversed hand 5, 4, 3, 2, 1 by insertion takes 1 + 2 + 3 + 4 = 10 one-place slides.",
+      "support": "simulation",
+      "source": "Card k (k = 2..5) must pass all k - 1 cards before it, since they are all larger. Builder ran insertion sort with a swap counter in Node: 54321 -> 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insertion-by-hand.c2",
+      "text": "A hand already in order needs 0 slides.",
+      "support": "simulation",
+      "source": "Every new card is already larger than the card to its left, so no swap happens. Builder ran it: 12345 -> 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insertion-by-hand.c3",
+      "text": "Each slide fixes exactly one out-of-order pair, so the number of slides equals the number of out-of-order pairs (inversions).",
+      "support": "source",
+      "source": "Swapping two adjacent out-of-order items removes exactly one inversion and creates none (Knuth, TAOCP Vol. 3, 5.2.1; CLRS 3rd ed., Problem 2-4). Builder brute-force checked the four stage hands: 54321: 10 = 10, 31452: 4 = 4, 12354: 1 = 1, 12345: 0 = 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insertion-by-hand.c4",
+      "text": "A reversed hand of 5 has all 10 of its pairs out of order; the nearly sorted hand 1, 2, 3, 5, 4 has 1.",
+      "support": "derivation",
+      "source": "5 cards form 5 x 4 / 2 = 10 pairs; reversed, every pair is out of order. In 12354 only the pair (5, 4) is out of order.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insertion-by-hand.c5",
+      "text": "For 100 cards, insertion sort needs 4,950 slides on a reversed hand and none on a sorted one.",
+      "support": "derivation",
+      "source": "Reversed n items have n(n - 1)/2 inversions: 100 x 99 / 2 = 4,950. Sorted input has 0. CLRS 3rd ed., 2.2 (worst and best case of insertion sort).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insertion-by-hand.c6",
+      "text": "1,000 names in reverse order have 499,500 out-of-order pairs; swapping two neighbours in a sorted list makes just 1.",
+      "support": "derivation",
+      "source": "n(n - 1)/2 with n = 1,000 gives 499,500. Swapping two adjacent items of a sorted list inverts only that one pair.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Insertion sort gets 1,000 names in order except two neighbours swapped. Compared with 1,000 names in reverse order, its work is:",
+    "options": [
+      "About the same: same number of names",
+      "Far less: only one pair is out of order",
+      "Far more: it must check every name"
+    ],
+    "answer": 1,
+    "why": "Insertion sort's slides equal the out-of-order pairs. Two swapped neighbours make one such pair, so one slide; reversed makes every pair out of order, 499,500 of them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

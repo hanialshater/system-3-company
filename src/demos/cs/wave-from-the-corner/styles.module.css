@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.grid { display: grid; gap: 4px; width: 100%; max-width: 300px; margin: 0 auto; }
+.cell {
+  aspect-ratio: 1; min-height: 40px; padding: 0; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; font-weight: 800; font-variant-numeric: tabular-nums;
+  background: var(--bg-2); border: 1.5px solid var(--line); color: var(--fg);
+  transition: background 0.2s, border-color 0.2s;
+}
+.cell:disabled { opacity: 1; }
+.lit { border-color: color-mix(in srgb, var(--domain) 60%, var(--line)); }
+.edge { border-color: var(--fg); border-width: 2px; }
+.wall { background: var(--fg); border-color: var(--fg); }
+.start { border-color: var(--good); color: var(--good); }
+.goal { border-color: var(--warn); color: var(--warn); font-size: 0.9rem; }
+.brick {
+  width: 70%; height: 70%; border-radius: 4px;
+  background: repeating-linear-gradient(0deg, var(--bg-3) 0 2px, transparent 2px 9px), var(--fg);
+}

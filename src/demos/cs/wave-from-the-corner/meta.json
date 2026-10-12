@@ -1,0 +1,75 @@
+{
+  "slug": "wave-from-the-corner",
+  "title": "Shortest route, no route-trying",
+  "hook": "The shortest route seems to need trying every route. A wave finds it without trying one.",
+  "domain": "cs",
+  "concept": "graph-shortest-path",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "grids of squares",
+      "moving up, down, left or right one square at a time",
+      "counting steps"
+    ],
+    "doesNotKnow": [
+      "breadth-first search",
+      "that labelling cells by distance, nearest first, finds shortest routes",
+      "graphs as a formal idea"
+    ]
+  },
+  "misconception": "To find the shortest route you must try every route and compare them.",
+  "objective": "The learner can explain that growing a wave ring by ring from the start labels each cell with its distance, so the goal's label is the shortest route length, found without listing routes; walls only bend the wave.",
+  "claims": [
+    {
+      "id": "cs.wave-from-the-corner.c1",
+      "text": "On an open 5 x 5 grid, opposite corners are 8 steps apart: 4 across and 4 down, in any order.",
+      "support": "derivation",
+      "source": "With only up/down/left/right moves, each step changes the row or the column by 1, so the distance is |dx| + |dy| = 4 + 4 = 8, and any order of 4 rights and 4 downs achieves it.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.wave-from-the-corner.c2",
+      "text": "Labelling cells ring by ring outward from the start (breadth-first search) gives each reachable cell its shortest distance from the start, with or without walls.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 22.2, Theorem 22.5: BFS computes shortest-path distances in an unweighted graph. Walls remove vertices; the theorem still applies to the remaining grid.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.wave-from-the-corner.c3",
+      "text": "The wave labels each cell once, without trying any route.",
+      "support": "source",
+      "source": "BFS enqueues each vertex at most once (it is coloured on discovery), so the work is proportional to cells plus links: O(V + E). CLRS 3rd ed., 22.2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.wave-from-the-corner.c4",
+      "text": "On the open 5 x 5 grid there are 70 different shortest corner-to-corner routes.",
+      "support": "derivation",
+      "source": "A shortest route is an order of 4 rights and 4 downs: C(8, 4) = 8! / (4! 4!) = 70 (builder computed it in Node).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A robot on a city grid wants the fewest blocks to the station. Which plan finds it without listing routes?",
+    "options": [
+      "Mark corners 1 block away, then 2, then 3, until the station is marked",
+      "Walk toward the station, turning whenever blocked",
+      "Guess a route, then keep improving it"
+    ],
+    "answer": 0,
+    "why": "Growing outward ring by ring labels each corner with its true distance, so the station's label is the fewest blocks: breadth-first search."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

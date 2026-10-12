@@ -1,0 +1,27 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.rows { display: flex; flex-direction: column; gap: 6px; }
+.line {
+  display: grid; grid-template-columns: 56px 1fr 28px; align-items: center; gap: 6px;
+  min-height: 48px; padding: 4px 8px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line);
+}
+.hidden { opacity: 0.6; }
+.who { font-size: 0.78rem; font-weight: 700; color: var(--muted); }
+.count { font-size: 1.3rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+.bad { color: var(--bad); }
+.good { color: var(--good); }
+
+.coins { display: flex; flex-wrap: wrap; gap: 4px; }
+.coin {
+  width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; border: 2px solid currentColor; background: color-mix(in srgb, currentColor 15%, var(--bg-2));
+}
+.c1 { color: var(--muted); }
+.c3 { color: var(--domain); }
+.c4 { color: var(--warn); }
+.coinBtn {
+  width: 48px; height: 48px; border-radius: 50%; padding: 0; font-size: 1.15rem; font-weight: 800;
+  border: 2.5px solid currentColor; background: color-mix(in srgb, currentColor 15%, var(--bg-2));
+}
