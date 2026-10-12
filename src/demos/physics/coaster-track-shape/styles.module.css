@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 110px; max-height: 42dvh; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 8.5px; }
+.floor { stroke: var(--fg); stroke-width: 1.5; opacity: 0.6; }
+.topLine { stroke: var(--muted); stroke-width: 0.8; stroke-dasharray: 2 4; }
+.track { fill: none; stroke: var(--domain); stroke-width: 3; stroke-linejoin: round; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1.8; stroke-dasharray: 5 4; }
+.cart { fill: var(--fg); }
+.ghostCart { fill: none; stroke: var(--muted); stroke-width: 1.6; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.ghostLabel { fill: var(--muted); font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; padding: 4px 8px; }
+.wrap :global(.row) { gap: 6px; }

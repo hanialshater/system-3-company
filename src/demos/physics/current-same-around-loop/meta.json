@@ -1,0 +1,89 @@
+{
+  "slug": "current-same-around-loop",
+  "title": "Does the first bulb use up the current?",
+  "hook": "Two bulbs share one battery. Does the second one get the leftovers?",
+  "domain": "physics",
+  "concept": "current-not-used-up",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "batteries light bulbs",
+      "wires connect them in a loop",
+      "that amps and volts are electrical units"
+    ],
+    "doesNotKnow": [
+      "conservation of charge",
+      "the difference between current and energy",
+      "Ohm's law and Kirchhoff's laws"
+    ]
+  },
+  "misconception": "Current is used up by the first bulb, so less of it reaches the second bulb and less still returns to the battery.",
+  "objective": "The learner can explain that in a single loop the same current passes every point, and that what bulbs use up is energy (voltage drop), not current.",
+  "claims": [
+    {
+      "id": "physics.current-same-around-loop.c1",
+      "text": "In a single series loop the same current passes every point: charge cannot pile up or leak away.",
+      "support": "source",
+      "source": "Kirchhoff's current law (conservation of charge). Halliday, Resnick and Walker, Fundamentals of Physics, ch. 27 (Circuits), resistances in series.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.current-same-around-loop.c2",
+      "text": "With a 6 V battery and two 6 ohm bulbs the current is 0.50 A; the battery slider gives I = V / 12 ohm (0.125 A at 1.5 V up to 1.00 A at 12 V).",
+      "support": "derivation",
+      "source": "Ohm's law for series resistors: I = V / (R1 + R2) = 6 / 12 = 0.50 A; 1.5 / 12 = 0.125 A; 12 / 12 = 1.00 A.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.current-same-around-loop.c3",
+      "text": "Each identical bulb takes half the battery voltage: 3 V each from 6 V. The voltage drop is the energy each coulomb of charge hands over.",
+      "support": "derivation",
+      "source": "V = I R = 0.50 x 6 = 3.0 V per bulb; Kirchhoff's voltage law, 3 + 3 = 6 V. Voltage as energy per unit charge: Halliday, Resnick and Walker, ch. 24 and 27.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.current-same-around-loop.c4",
+      "text": "The battery and wires are ideal (no internal resistance) and the bulbs are treated as fixed 6 ohm resistors; real bulb filaments change resistance as they heat.",
+      "support": "convention",
+      "source": "Stated idealisation. Filament resistance rises with temperature (Halliday, Resnick and Walker, ch. 26, resistivity and temperature).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.current-same-around-loop.c5",
+      "text": "The moving dots show the direction of conventional current (out of the battery's + end); their speed is a picture of the current's size, not the real drift speed of electrons, which move the other way.",
+      "support": "convention",
+      "source": "Conventional current direction is defined from + to -; electrons drift opposite, at speeds of order 0.1 mm/s in typical wires (Halliday, Resnick and Walker, ch. 26, drift speed).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.current-same-around-loop.c6",
+      "text": "A bigger battery voltage raises the current everywhere in the loop at once.",
+      "support": "derivation",
+      "source": "From c1 and c2: I = V / 12 ohm is a single value for the whole loop.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three identical bulbs are in series on one battery. The current into the first bulb is 0.30 A. What is the current coming out of the third bulb?",
+    "options": [
+      "0.10 A",
+      "0.30 A",
+      "0 A"
+    ],
+    "answer": 1,
+    "why": "In a single loop the same current passes every point; the bulbs use up energy, not current."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

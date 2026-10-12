@@ -1,0 +1,82 @@
+{
+  "slug": "coaster-track-shape",
+  "title": "Steep ramp or gentle: which is faster?",
+  "hook": "Same 5 m drop, different tracks. Does a steeper or curvier ride end any faster?",
+  "domain": "physics",
+  "concept": "energy-conservation",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "things speed up going downhill",
+      "steeper slopes feel faster",
+      "metres, seconds and m/s"
+    ],
+    "doesNotKnow": [
+      "energy conservation as a bookkeeping tool",
+      "v = sqrt(2 g h)",
+      "that the normal force does no work"
+    ]
+  },
+  "misconception": "A steeper or more curved path changes the speed you end up with at the bottom.",
+  "objective": "The learner can explain that, without friction, the speed at the bottom depends only on the height dropped, not on the shape of the track, while the time taken does depend on the shape.",
+  "claims": [
+    {
+      "id": "physics.coaster-track-shape.c1",
+      "text": "Without friction, a cart that starts from rest and drops 5 m reaches 9.90 m/s at the bottom, whatever the track's shape.",
+      "support": "derivation",
+      "source": "Energy conservation m g h = 1/2 m v^2 gives v = sqrt(2 g h) = sqrt(2 x 9.81 x 5) = 9.905 m/s. The lesson does not use this formula: it computes each of 240 straight pieces with v1^2 = v0^2 + 2 g (drop / length) length, and gets 9.905 m/s for all 30 tracks; an independent RK4 integration of s'' = -g dy/ds agrees (builder's check script).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coaster-track-shape.c2",
+      "text": "The time to the bottom does depend on the track: from about 1.2 s for the steepest track to about 11 s for the longest, highest-bulging one.",
+      "support": "simulation",
+      "source": "Piecewise-constant-acceleration computation, t = 2 l / (v0 + v1) per piece: straight 3 m ramp 1.18 s (analytic 2 sqrt(3^2 + 5^2) / 9.905 = 1.18 s); straight 20 m ramp 4.16 s (analytic 4.16 s); 3 m dipping 1.16 s; 20 m bulging (c = 0.3) 10.82 s, matched by RK4 at 1e-5 s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coaster-track-shape.c3",
+      "text": "Steep pieces of track speed the cart up hard but briefly; gentle pieces speed it up gently for longer.",
+      "support": "derivation",
+      "source": "Along a piece at angle theta, acceleration is g sin(theta) over a length h / sin(theta), so the speed gained, sqrt(v0^2 + 2 g h) - v0, depends only on the drop h.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coaster-track-shape.c4",
+      "text": "The mass of the cart does not matter.",
+      "support": "derivation",
+      "source": "m cancels in m g h = 1/2 m v^2 and in m a = m g sin(theta).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coaster-track-shape.c5",
+      "text": "The cart is idealised: no friction, no air drag and no energy in spinning wheels (a sliding block); the track only pushes at right angles to itself.",
+      "support": "convention",
+      "source": "Stated idealisation. With rolling wheels some energy goes into rotation and the final speed is a little lower (Halliday, Resnick and Walker, ch. 11, rolling).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two frictionless water slides start 8 m above the pool. One drops straight down steeply; the other winds gently around a tower. Which rider hits the water faster?",
+    "options": [
+      "The steep slide",
+      "The winding slide",
+      "Both at the same speed"
+    ],
+    "answer": 2,
+    "why": "Without friction only the height dropped sets the final speed; the shape changes how long the ride takes, not how fast it ends."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

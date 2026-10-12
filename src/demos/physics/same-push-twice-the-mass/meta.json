@@ -1,0 +1,82 @@
+{
+  "slug": "same-push-twice-the-mass",
+  "title": "Same push, twice the mass",
+  "hook": "The same steady push, on a cart twice as heavy. What happens to its speed?",
+  "domain": "physics",
+  "concept": "net-force-acceleration",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "heavier things are harder to push",
+      "speed in m/s",
+      "that a newton (N) is a unit of force"
+    ],
+    "doesNotKnow": [
+      "F = m a quantitatively",
+      "that a constant force gives a steadily rising speed",
+      "speed-time graphs in any depth"
+    ]
+  },
+  "misconception": "A steady force gives a steady speed, and mass has little to do with how fast the speed changes.",
+  "objective": "The learner can explain that a steady net force makes speed climb steadily, at a rate equal to force divided by mass, so twice the mass gains speed half as fast.",
+  "claims": [
+    {
+      "id": "physics.same-push-twice-the-mass.c1",
+      "text": "Acceleration is force divided by mass (Newton's second law, a = F / m).",
+      "support": "source",
+      "source": "Newton, Principia (1687), Law II; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.same-push-twice-the-mass.c2",
+      "text": "A steady 10 N push on a 2 kg cart from rest gives 10 m/s after 2 s; on a 4 kg cart it gives 5 m/s, gaining 2.5 m/s every second.",
+      "support": "derivation",
+      "source": "a = 10 / 2 = 5 m/s^2, v = a t = 10 m/s; a = 10 / 4 = 2.5 m/s^2, v = 2.5 x 2 = 5 m/s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.same-push-twice-the-mass.c3",
+      "text": "A steady push does not give a steady speed: from rest, speed climbs in proportion to time, v = a t, for as long as the push lasts.",
+      "support": "derivation",
+      "source": "Constant F gives constant a; integrating dv/dt = a from v = 0 gives v = a t. Halliday, Resnick and Walker, ch. 2 (constant acceleration).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.same-push-twice-the-mass.c4",
+      "text": "Doubling the push doubles the rate at which speed climbs.",
+      "support": "derivation",
+      "source": "a = F / m is proportional to F at fixed m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.same-push-twice-the-mass.c5",
+      "text": "The track is frictionless and the push is constant; with friction, the net force would be the push minus friction.",
+      "support": "convention",
+      "source": "Stated idealisation; F in a = F / m is the net force (Halliday, Resnick and Walker, ch. 5).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The same engine force pushes an empty van and the same van fully loaded to three times its mass. Ignoring friction, how does the loaded van's acceleration compare?",
+    "options": [
+      "The same",
+      "One third as much",
+      "Three times as much"
+    ],
+    "answer": 1,
+    "why": "Acceleration is force divided by mass: the same force on three times the mass gives one third the acceleration."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "doubling-speed-braking",
+  "title": "Twice the speed, how much more road?",
+  "hook": "A car stops in 7 m from 30 km/h. Go twice as fast with the same brakes. How far now?",
+  "domain": "physics",
+  "concept": "kinetic-energy-speed-squared",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "faster cars take longer to stop",
+      "speeds in km/h and distances in metres"
+    ],
+    "doesNotKnow": [
+      "that braking distance grows with the square of speed",
+      "kinetic energy 1/2 m v^2",
+      "the work-energy idea"
+    ]
+  },
+  "misconception": "Double the speed, double the stopping distance.",
+  "objective": "The learner can explain that with the same brakes, twice the speed needs four times the braking distance, because movement energy grows with the square of speed.",
+  "claims": [
+    {
+      "id": "physics.doubling-speed-braking.c1",
+      "text": "With a steady braking deceleration a, the braking distance is v^2 / (2 a), so it grows with the square of speed.",
+      "support": "derivation",
+      "source": "Constant-acceleration kinematics v^2 = v0^2 - 2 a d with final v = 0. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.doubling-speed-braking.c2",
+      "text": "At 5 m/s^2, braking from 30 km/h takes 6.9 m and from 60 km/h takes 27.8 m (four times as far); 90 km/h takes 62.5 m (nine times) and 120 km/h takes 111.1 m (sixteen times).",
+      "support": "derivation",
+      "source": "30 km/h = 8.33 m/s: 8.33^2 / 10 = 6.94 m. 60 km/h = 16.67 m/s: 27.78 m. 90 km/h = 25 m/s: 62.5 m. 120 km/h = 33.33 m/s: 111.1 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.doubling-speed-braking.c3",
+      "text": "Movement (kinetic) energy is 1/2 m v^2, so twice the speed carries four times the energy.",
+      "support": "derivation",
+      "source": "Definition of kinetic energy. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 7.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.doubling-speed-braking.c4",
+      "text": "The same brakes remove the same energy per metre: the braking force times distance equals the kinetic energy removed.",
+      "support": "derivation",
+      "source": "Work-energy theorem: F d = 1/2 m v^2 with constant braking force F = m a. Halliday, Resnick and Walker, ch. 7.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.doubling-speed-braking.c5",
+      "text": "A deceleration of 5 m/s^2 is a typical hard-braking value on a dry road (about a friction coefficient of 0.5), not a universal one.",
+      "support": "source",
+      "source": "a = mu g with mu about 0.5; typical dry-road braking decelerations are quoted around 5 to 8 m/s^2 (e.g. the UK Highway Code typical braking distances, 14 m from 30 mph and 75 m from 70 mph, imply about 6.4 m/s^2). Tagged as typical.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.doubling-speed-braking.c6",
+      "text": "The lesson shows braking distance only; reaction distance (speed times reaction time) adds more road on top and also grows with speed.",
+      "support": "convention",
+      "source": "Stated scope. Total stopping distance = v t_reaction + v^2 / (2 a) (UK Highway Code, rule 126, typical stopping distances).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A cyclist brakes from 10 km/h in 1 m. With the same brakes, about how far does she need from 30 km/h?",
+    "options": [
+      "About 3 m",
+      "About 6 m",
+      "About 9 m"
+    ],
+    "answer": 2,
+    "why": "Braking distance grows with the square of speed: three times the speed needs nine times the distance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
