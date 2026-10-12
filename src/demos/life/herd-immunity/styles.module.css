@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.svg { max-height: 30dvh; }
+.immune { fill: color-mix(in srgb, var(--good) 45%, transparent); }
+.open { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.3; }
+.sick { fill: var(--bad); stroke: var(--fg); stroke-width: 1.2; }
+.had { fill: color-mix(in srgb, var(--bad) 45%, var(--bg-2)); stroke: var(--bad); stroke-width: 1; }
+.link { stroke: var(--bad); stroke-width: 1.1; stroke-opacity: 0.75; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; box-sizing: border-box; }
+.legend i.immune { background: color-mix(in srgb, var(--good) 45%, transparent); }
+.legend i.open { background: var(--bg-2); border: 1.5px solid var(--fg); }
+.legend i.sick { background: var(--bad); }
+.legend i.had { background: color-mix(in srgb, var(--bad) 45%, var(--bg-2)); border: 1px solid var(--bad); }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.92rem; font-weight: 600; }
+/* Kit sliders render ~16px tall; QA needs >= 24px tap targets. */
+.wrap input[type="range"] { height: 28px; margin: 0; }
+/* The kit stage centres its content; when content is taller than the stage the top is clipped.
+   Let the lesson body shrink and scroll from its top instead. */
+.wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; }

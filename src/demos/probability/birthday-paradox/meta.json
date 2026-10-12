@@ -1,0 +1,103 @@
+{
+  "slug": "birthday-paradox",
+  "title": "23 people, one shared birthday?",
+  "hook": "Surely you need a packed hall for two people to share a birthday. Do you?",
+  "domain": "probability",
+  "concept": "birthday-paradox",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a year has 365 days",
+      "a percentage as a chance out of 100",
+      "that random events can repeat"
+    ],
+    "doesNotKnow": [
+      "counting pairs (n choose 2)",
+      "the complement rule for probabilities",
+      "the birthday problem"
+    ]
+  },
+  "misconception": "A shared birthday in a group of 23 is unlikely, because 23 is small next to 365. (The learner silently answers a different question: does someone share MY birthday?)",
+  "objective": "The learner can explain that a match can happen in any pair, that the number of pairs grows much faster than the number of people (23 people make 253 pairs), and so a match among 23 is about a coin flip.",
+  "claims": [
+    {
+      "id": "probability.birthday-paradox.c1",
+      "text": "Assuming 365 equally likely birthdays (ignoring 29 February), a group of 23 has about a 50.7% chance that at least two people share a birthday.",
+      "support": "derivation",
+      "source": "1 - (365*364*...*343)/365^23 = 0.5073. Feller, An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd ed. (1968), ch. II.3.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c2",
+      "text": "Under the same assumption, 23 is the smallest group size for which the chance of a shared birthday exceeds 50% (22 people give about 47.6%).",
+      "support": "derivation",
+      "source": "Same product formula evaluated at n = 22 (0.4757) and n = 23 (0.5073). Feller (1968), ch. II.3.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c3",
+      "text": "23 people form 253 different pairs.",
+      "support": "derivation",
+      "source": "n(n-1)/2 with n = 23.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c4",
+      "text": "The chance that at least one of the other 22 people in a group of 23 shares your own birthday is only about 6%.",
+      "support": "derivation",
+      "source": "1 - (364/365)^22 = 0.0586, assuming 365 equally likely birthdays.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c5",
+      "text": "With 50 people the chance of a shared birthday is about 97%, and with 70 it is about 99.9%.",
+      "support": "derivation",
+      "source": "Product formula at n = 50 (0.9704) and n = 70 (0.9992). Feller (1968), ch. II.3.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c6",
+      "text": "Real birthdays are not spread perfectly evenly over the year; unevenness can only raise the chance of a shared birthday above the equal-days figure.",
+      "support": "source",
+      "source": "D. M. Bloom (1973), 'A birthday problem', American Mathematical Monthly 80(10): 1141-1142; A. G. Munford (1977), 'A note on the uniformity assumption in the birthday problem', The American Statistician 31(3): 119.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c7",
+      "text": "The rooms on the stage are drawn by a seeded random generator with every day equally likely, so the share of rooms with a match settles toward the exact chance as more rooms are drawn.",
+      "support": "simulation",
+      "source": "Demo.tsx: seeded generator, uniform over 365 days; law of large numbers.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.birthday-paradox.c8",
+      "text": "In a class of 30, the chance that some two share a birthday is about 71% (435 pairs).",
+      "support": "derivation",
+      "source": "Product formula at n = 30 gives 0.7063; 30*29/2 = 435.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A class has 30 students. Which is more likely: some two of them share a birthday, or no two do?",
+    "options": [
+      "Some two share a birthday",
+      "No two share a birthday",
+      "About equally likely"
+    ],
+    "answer": 0,
+    "why": "30 students make 435 pairs, and any one of them can match. The chance of a match is about 71%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

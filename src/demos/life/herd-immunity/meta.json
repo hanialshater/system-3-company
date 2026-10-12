@@ -1,0 +1,104 @@
+{
+  "slug": "herd-immunity",
+  "title": "Who protects the unprotected?",
+  "hook": "Some people can't be vaccinated. Can everyone else's immunity shield them?",
+  "domain": "life",
+  "concept": "herd-immunity",
+  "status": "review",
+  "durationSec": 85,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "infections pass from person to person",
+      "vaccines or past infection can make a person immune",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "the basic reproduction number R0",
+      "branching processes or SIR models",
+      "the herd immunity threshold formula"
+    ]
+  },
+  "misconception": "Immunity only protects the person who has it, so an outbreak will still reach most unprotected people; protection grows gradually with each extra immune person rather than tipping at a threshold.",
+  "objective": "The learner can explain that each case's onward infections are R0 times the unprotected share, that once this falls below 1 chains of infection shrink and die out, and that in a simple well-mixed model this happens when more than 1 - 1/R0 are immune (75% when R0 = 4), which also shields people who are not immune.",
+  "claims": [
+    {
+      "id": "life.herd-immunity.c1",
+      "text": "R0 is the average number of people one case infects in a population where nobody is immune.",
+      "support": "source",
+      "source": "Anderson & May (1991), Infectious Diseases of Humans: Dynamics and Control, Oxford University Press, ch. 2; Fine, Eames & Heymann (2011), 'Herd immunity: a rough guide', Clinical Infectious Diseases 52(7): 911-916.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c2",
+      "text": "In a simple model where everyone mixes with everyone at random and immunity fully blocks catching and passing on the disease, a case infects on average R0 x (1 - p) people when a share p is immune.",
+      "support": "source",
+      "source": "Anderson & May (1991), ch. 5; Fine, Eames & Heymann (2011), Clin Infect Dis 52(7): 911-916.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c3",
+      "text": "In that model, once more than 1 - 1/R0 of people are immune, each case causes fewer than one new case on average, so chains of infection tend to shrink and die out; for R0 = 4 the threshold is 75%.",
+      "support": "derivation",
+      "source": "R0(1 - p) < 1 iff p > 1 - 1/R0; with R0 = 4, 1 - 1/4 = 0.75. Anderson & May (1991); Fine, Eames & Heymann (2011).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c4",
+      "text": "In the stage model (400 people, each case contacts 4 random townspeople), one case among a town that is 80% immune infects on average about 4 of the 80 unprotected people, counting the first case; at 50% immune it is about 146 of 200.",
+      "support": "simulation",
+      "source": "Demo.tsx: 200 seeded runs per setting (mean 4.2 of 80 at 80%; 145.9 of 200 at 50%). The stage shows its own 200-run average for whatever share the learner picks.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c5",
+      "text": "Below the threshold an outbreak can still die out early by chance, but when it takes off it reaches a large share of the unprotected.",
+      "support": "source",
+      "source": "Branching-process extinction probability; Diekmann, Heesterbeek & Britton (2013), Mathematical Tools for Understanding Infectious Disease Dynamics, Princeton University Press, ch. 1 and 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c6",
+      "text": "Real populations are not well mixed: when unprotected people cluster together, outbreaks can spread among them even when the overall immune share is above the simple threshold.",
+      "support": "source",
+      "source": "Fine, Eames & Heymann (2011), Clin Infect Dis 52(7): 911-916; Salathe & Bonhoeffer (2008), 'The effect of opinion clustering on disease outbreaks', Journal of the Royal Society Interface 5(29): 1505-1508.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c7",
+      "text": "Some people cannot be vaccinated against a given disease, for example babies too young for that vaccine or some people with weakened immune systems.",
+      "support": "source",
+      "source": "CDC, General Best Practice Guidelines for Immunization: Contraindications and Precautions; Fine, Eames & Heymann (2011).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c8",
+      "text": "The disease on the stage is made up, with R0 = 4; real vaccines are not perfect, which this model ignores.",
+      "support": "convention",
+      "source": "Modelling choice stated on the stage and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A disease has R0 = 5 in a simple well-mixed model. Roughly what share must be immune for outbreaks to die out?",
+    "options": [
+      "20%",
+      "50%",
+      "80%",
+      "100%"
+    ],
+    "answer": 2,
+    "why": "Each case infects 5 x (unprotected share). That drops below 1 when fewer than 1 in 5 are unprotected, so more than 1 - 1/5 = 80% must be immune."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.svg { max-height: 30dvh; }
+/* The scene keeps its own colours in both themes: "dark" and "pale" are the beetles, not the UI. */
+.bark { fill: #5b4f45; stroke: var(--line); stroke-width: 1; }
+.legs { fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.dark .legs { stroke: #1d1916; }
+.pale .legs { stroke: #cfc3a6; }
+.dark .body, .dark .head { fill: #2a2420; stroke: #85766a; stroke-width: 0.8; }
+.pale .body, .pale .head { fill: #efe6cd; stroke: #3a312b; stroke-width: 0.8; }
+.seam { stroke-width: 0.8; }
+.dark .seam { stroke: #85766a; }
+.pale .seam { stroke: #a89a7d; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+/* Kit sliders render ~16px tall; QA needs >= 24px tap targets. */
+.wrap input[type="range"] { height: 28px; margin: 0; }
+/* The kit stage centres its content; when content is taller than the stage the top is clipped.
+   Let the lesson body shrink and scroll from its top instead. */
+.wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; }

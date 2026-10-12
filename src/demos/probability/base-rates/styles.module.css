@@ -1,0 +1,23 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.rates { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.svg { max-height: 30dvh; }
+.empty { fill: none; stroke: var(--line); stroke-width: 0.8; }
+.healthy { fill: color-mix(in srgb, var(--muted) 55%, transparent); }
+.sick { fill: var(--bad); }
+.negative { fill: color-mix(in srgb, var(--muted) 18%, transparent); }
+.truePos { fill: var(--bad); stroke: var(--fg); stroke-width: 1.2; }
+.falsePos { fill: var(--domain); stroke: var(--fg); stroke-width: 1.2; }
+.missed { fill: color-mix(in srgb, var(--bad) 35%, transparent); }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; background: currentColor; }
+.legend i.healthy { background: color-mix(in srgb, var(--muted) 55%, transparent); }
+.legend i.sick, .legend i.truePos { background: var(--bad); }
+.legend i.falsePos { background: var(--domain); }
+.legend i.negative { background: color-mix(in srgb, var(--muted) 18%, transparent); outline: 1px solid var(--line); }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.92rem; font-weight: 600; }
+/* The kit stage centres its content; when content is taller than the stage the top is clipped.
+   Let the lesson body shrink and scroll from its top instead. */
+.wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.legend i.missed { background: color-mix(in srgb, var(--bad) 35%, transparent); }
+.svg { flex-shrink: 0; }
