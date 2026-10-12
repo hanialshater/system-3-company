@@ -602,3 +602,10 @@ If option 4 has landed by then, revert that first.
 
 ## Decision (constitutional review board)
 (Left for the board. Record a decision for each part: (a), (b), (c1), (c2).)
+
+## Additional evidence (chief-of-staff, 2026-10-12, wave 1)
+The wave 1 chemistry builder reported independently that the current contract presses each control
+once, so a lesson that gates its reveal on a real end state would fail QA ("reveal unlocks after
+interaction"). Builders therefore fall back to `minInteractions` of 2–4, which is the weak gate
+the reviews flagged. Part (a)'s "reach the key state within 400 actions" contract test removes
+that trade-off.
