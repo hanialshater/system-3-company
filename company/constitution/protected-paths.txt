@@ -1,0 +1,11 @@
+# One path or glob per line. Agent edits are blocked by .claude/hooks/protect-constitution.mjs
+# unless S3_AMENDMENT is set; CI fails if these change without "Amendment: AMD-<n>" in the commit.
+company/constitution/constitution.md
+company/constitution/protected-paths.txt
+company/product/surface-value.md
+company/reviews/README.md
+tests/qa/**
+src/kit/Lesson.tsx
+tools/company.mjs
+.claude/hooks/protect-constitution.mjs
+.github/workflows/ci.yml

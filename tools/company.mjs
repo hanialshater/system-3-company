@@ -14,6 +14,7 @@
 //   rituals                    cadence table: last run, next due, overdue
 //   board [add|move] ...       the work board (company/ops/board.json)
 //   roles                      the org: every role, its scope line and its agent file
+//   qa-record                  file the last Playwright run as QA records in company/reviews/
 //
 // Exit code is non-zero when `check` or `publish` finds a violation, so CI can gate on it.
 
@@ -72,7 +73,6 @@ function loadBoard() {
 }
 
 const RITUALS = {
-  "progress-log": { cadenceDays: 1, title: "Session handoff (progress log)" },
   wbr: { cadenceDays: 7, title: "Weekly Business Review" },
   "demo-crit": { cadenceDays: 7, title: "Demo Crit (independent, pairwise)" },
   "cycle-planning": { cadenceDays: 14, title: "Cycle Planning" },
@@ -466,7 +466,7 @@ function cmdStatus() {
   const progress = rel("company/ops/progress.md");
   if (exists(progress)) {
     const t = fs.readFileSync(progress, "utf8");
-    const first = t.split("\n## ").slice(1, 2)[0];
+    const first = t.split(/\n## (?=\d{4}-\d{2}-\d{2})/).slice(1, 2)[0];
     if (first) console.log(color.bold("\nLast handoff") + "\n  " + first.split("\n").slice(0, 6).join("\n  "));
   }
   console.log(color.dim("\nNext: `company check` before you push. Full detail: `company coverage`, `company claims --open`, `company rituals`."));
@@ -577,6 +577,67 @@ function cmdRoles() {
   }
 }
 
+// ---------------------------------------------------------------- qa-record
+
+function cmdQaRecord() {
+  const out = process.env.QA_OUT || "test-results";
+  const reportPath = rel(out, "qa-report.json");
+  if (!exists(reportPath)) {
+    console.log(`no report at ${out}/qa-report.json: run \`npm run qa\` first`);
+    process.exitCode = 1;
+    return;
+  }
+  const report = readJSON(reportPath);
+  const bySlug = {};
+  const walk = (suite, trail) => {
+    for (const s of suite.suites ?? []) walk(s, [...trail, s.title]);
+    for (const spec of suite.specs ?? []) {
+      if (!trail.some((t) => t.endsWith("contract.spec.ts"))) continue;
+      const slug = trail.at(-1);
+      for (const t of spec.tests ?? []) {
+        const last = t.results?.at(-1);
+        (bySlug[slug] ??= []).push({
+          project: t.projectName,
+          status: last?.status ?? "unknown",
+          retries: Math.max(0, (t.results?.length ?? 1) - 1),
+          error: last?.error?.message?.split("\n").slice(0, 3).join(" ").replace(/\x1b\[[0-9;]*m/g, "") ?? "",
+        });
+      }
+    }
+  };
+  walk(report, []);
+  const demos = loadDemos();
+  for (const [slug, runs] of Object.entries(bySlug)) {
+    const d = demos.find((x) => x.meta?.slug === slug);
+    if (!d) continue;
+    const passed = runs.length > 0 && runs.every((r) => r.status === "passed" && r.retries === 0);
+    const dir = rel("company/reviews", slug);
+    fs.mkdirSync(dir, { recursive: true });
+    const file = path.join(dir, `${today()}-qa.md`);
+    const body = [
+      `# Computer-use QA: ${slug}`,
+      "",
+      `date: ${today()} · harness: tests/qa/contract.spec.ts · recorded by: qa-tester (company qa-record) · result: **${passed ? "pass" : "fail"}**`,
+      "",
+      "| Viewport | Result | Retries | First error |",
+      "|---|---|---|---|",
+      ...runs.map((r) => `| ${r.project} | ${r.status} | ${r.retries} | ${r.error.replace(/\|/g, "/").slice(0, 160) || "—"} |`),
+      "",
+      `Screenshots: \`artifacts/qa/${slug}/\` (not committed; regenerate with \`QA_ONLY=${slug} npm run qa\`).`,
+      "",
+      "A pass means the contract held in a browser. It is not evidence that anyone learned.",
+      "",
+    ].join("\n");
+    fs.writeFileSync(file, body);
+    const relFile = path.relative(ROOT, file);
+    if (passed && !d.meta.evidence.qa.includes(relFile)) {
+      d.meta.evidence.qa.push(relFile);
+      writeJSON(d.metaPath, d.meta);
+    }
+    console.log(`${passed ? color.green("pass") : color.red("fail")} ${slug} → ${relFile}`);
+  }
+}
+
 // ---------------------------------------------------------------- main
 
 const [cmd, ...args] = process.argv.slice(2);
@@ -592,8 +653,9 @@ const commands = {
   rituals: () => cmdRituals(),
   board: () => cmdBoard(args),
   roles: () => cmdRoles(),
+  "qa-record": () => cmdQaRecord(),
 };
 if (!cmd || !commands[cmd]) {
-  console.log(fs.readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 18).map((l) => l.replace(/^\/\/ ?/, "")).join("\n"));
+  console.log(fs.readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 19).map((l) => l.replace(/^\/\/ ?/, "")).join("\n"));
   process.exitCode = cmd ? 1 : 0;
 } else commands[cmd]();

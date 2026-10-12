@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect-constitution.mjs\"" }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run company:*)",
+      "Bash(npm run check)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run build)",
+      "Bash(npm run qa:*)",
+      "Bash(npm run verify)",
+      "Bash(npm run walkthrough:*)",
+      "Bash(node tools/company.mjs:*)",
+      "Bash(node tools/org/generate.mjs)",
+      "Bash(npx playwright test:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

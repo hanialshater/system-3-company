@@ -1,0 +1,59 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  constitution:
+    # Protected paths change only with a ratified amendment referenced in a commit message.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Check protected paths
+        run: |
+          BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE" 2>/dev/null || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            echo "No base to compare (new branch); skipping."; exit 0
+          fi
+          PATTERNS=$(grep -v '^#' company/constitution/protected-paths.txt | sed '/^$/d')
+          CHANGED=$(git diff --name-only "$BASE" HEAD)
+          HIT=""
+          for f in $CHANGED; do
+            for g in $PATTERNS; do
+              case "$f" in $g) HIT="$HIT $f";; esac
+            done
+          done
+          if [ -n "$HIT" ]; then
+            if git log --format=%B "$BASE..HEAD" | grep -qE '^Amendment: AMD-[0-9]+'; then
+              AMD=$(git log --format=%B "$BASE..HEAD" | grep -oE 'AMD-[0-9]+' | head -1)
+              ls company/constitution/amendments/$AMD-*.md >/dev/null 2>&1 || { echo "Referenced $AMD has no file"; exit 1; }
+              grep -q '^status: ratified' company/constitution/amendments/$AMD-*.md || { echo "$AMD is not ratified"; exit 1; }
+              echo "Protected changes covered by $AMD:$HIT"
+            else
+              echo "Protected paths changed without an amendment:$HIT"; exit 1
+            fi
+          fi
+
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run check
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run qa
+        env: { CI: "1" }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qa
+          path: |
+            test-results/
+            artifacts/qa/
+          retention-days: 7
