@@ -6,6 +6,7 @@ Last pattern review: 2026-10-12 ([record](../../rituals/records/2026-10-12-patte
 |---|---|---|---|
 | * | [predict-before-reveal](predict-before-reveal.md) | Commit to a guess before anything moves; the guess must be able to be wrong | ** → * |
 | * | [artifact-before-account](artifact-before-account.md) | Evaluators use the lesson before reading why it was built that way | ** → * |
+|   | [disclose-chosen-seeds](disclose-chosen-seeds.md) | Say when a seed was picked to show the expected result |
 | * | [earn-the-reveal](earn-the-reveal.md) | The reveal unlocks only after the learner has seen the key state | * → * (cases 8 → 17) |
 | * | [objection-travels](objection-travels.md) | Unresolved objections go with the decision | * → * (2 cases, 2 gaps) |
 |   | [numbers-from-the-stage](numbers-from-the-stage.md) | Question, reveal and recall numbers come from the same code as the stage | new, unstarred |

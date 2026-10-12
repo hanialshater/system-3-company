@@ -59,7 +59,8 @@ first (learner boundary, misconception, objective, claims, recall). Build second
 - To earn the reveal, use `useMilestones(interact, ["key-state", …])` from `@/kit/milestones` and set `minInteractions` to the number of milestones. An active-but-disabled choice: `className="active"`.
 - Pass `disabled={locked}` to every control. Call `interact()` on every meaningful action.
 - Draw with inline SVG (`viewBox`, `className="stage-svg"`) using CSS variables (`var(--domain)`, `var(--fg)`, `var(--muted)`, `var(--good)`, `var(--bad)`, `var(--line)`, `var(--bg-2)`). It must read in light and dark themes.
-- Randomness must be seeded (deterministic) so QA screenshots are reproducible.
+- Randomness must be seeded (deterministic) so QA screenshots are reproducible. Use `mulberry32` from `@/kit/random`. A seed picked to show the expected result must be disclosed in the claim (pattern `disclose-chosen-seeds`).
+- QA presses up to the first 16 stage controls in DOM order: put the controls that reach the key state first.
 - No network, no storage, no new npm dependencies.
 
 ### The QA contract (constitutional)
