@@ -30,34 +30,51 @@
       "text": "With switches worth 1, 2, 4, 8, 16, 32, 64 and 128, all eight on make 255.",
       "support": "derivation",
       "source": "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 = 255 (arithmetic).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-numbers.c2",
       "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255.",
       "support": "derivation",
       "source": "2^8 = 256 patterns; uniqueness of base-2 positional representation. Knuth, TAOCP Vol. 2, 4.1 (Positional number systems).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-numbers.c3",
       "text": "Switches worth 1, 2, 4, ... always add up to one less than the next switch would be worth.",
       "support": "derivation",
       "source": "Geometric series: 2^0 + 2^1 + ... + 2^(k-1) = 2^k - 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-numbers.c4",
       "text": "Adding one more switch doubles how many numbers you can name.",
       "support": "derivation",
       "source": "2^(k+1) = 2 * 2^k: each old pattern appears once with the new switch off and once with it on.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-numbers.c5",
       "text": "A byte is 8 bits, so it holds 256 values (0 to 255); 32 bits give 4,294,967,296 values, over four billion.",
       "support": "convention",
       "source": "Byte = 8 bits (octet) per IEC 80000-13:2008; 2^32 = 4,294,967,296 (arithmetic).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "cs.binary-numbers.c6",
+      "text": "Adding 1 to 127 flips all eight switches (01111111 becomes 10000000); adding 1 to 255 has no ninth switch, so all eight return to off, 0.",
+      "support": "derivation",
+      "source": "127 = 01111111, 128 = 10000000 differ in all 8 bits; the carry runs through every 1. 255 + 1 = 256 = 2^8 needs a ninth switch, so an 8-switch counter wraps to 0. Checked for every n in 0..255 that the number of flipped switches is (trailing ones + 1) in artifacts/scratch/fc2-binary-numbers.mjs. Seen in the explore hint (\"try +1 from 127\") and live messages \"+1 flipped 8 switches.\" and \"Out of switches: back to 0.\" Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -31,27 +31,49 @@
       "text": "Always guessing the middle of what is still possible finds any number from 1 to 1,000 in at most 10 guesses.",
       "support": "derivation",
       "source": "Binary search on n sorted items needs at most floor(log2 n) + 1 comparisons; n = 1000 gives floor(9.97) + 1 = 10. Knuth, TAOCP Vol. 3, 6.2.1 (Algorithm B and its analysis).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-search.c2",
       "text": "In the worst case the numbers still possible after each wrong middle guess go 500, 250, 125, 62, 31, 15, 7, 3, 1.",
       "support": "derivation",
       "source": "Guessing the middle of m candidates and being wrong leaves at most floor(m/2): 1000 -> 500 -> 250 -> 125 -> 62 -> 31 -> 15 -> 7 -> 3 -> 1; nine wrong guesses, so the tenth is right.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-search.c3",
       "text": "A million numbers need at most 20 middle guesses, and a billion need at most 30.",
       "support": "derivation",
       "source": "floor(log2 10^6) + 1 = floor(19.93) + 1 = 20; floor(log2 10^9) + 1 = floor(29.90) + 1 = 30. Knuth, TAOCP Vol. 3, 6.2.1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.binary-search.c4",
       "text": "Doubling the range adds exactly one guess to the worst case.",
       "support": "derivation",
       "source": "floor(log2 2n) + 1 = (floor(log2 n) + 1) + 1, since log2 2n = log2 n + 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "cs.binary-search.c5",
+      "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes.",
+      "support": "derivation",
+      "source": "With m candidates and the middle one guessed, a wrong answer leaves at most floor(m/2): the lesson's mid = floor((lo+hi)/2) leaves lo..mid-1 or mid+1..hi, sizes mid-lo and hi-mid, both <= floor(m/2) (checked for every m up to 2000 in artifacts/scratch/fc2-binary-search.mjs). Seen in the reveal (\"rules out half of it, whichever way the answer goes\"). The guess itself counts as ruled out. Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.binary-search.c6",
+      "text": "A sorted list of 2,000 names needs at most 11 middle checks to find one name.",
+      "support": "derivation",
+      "source": "floor(log2 2000) + 1 = floor(10.97) + 1 = 11; exhaustive run of the lesson's middle rule over all 2,000 positions gives max 11. Recall question and its why (\"1,000 needs 10; doubling to 2,000 adds just one\"). Assumes one three-way check (less / equal / greater) per step, as in the guessing game. Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "unverified"
     }
   ],

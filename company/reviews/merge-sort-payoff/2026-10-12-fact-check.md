@@ -120,3 +120,34 @@ None of these is a false claim, and none blocks launch on accuracy.
   confirm the section. Both claims are verified on re-derivation, so the citation is not
   load-bearing. Either confirm the section with a page or equation number, or describe it as
   further reading.
+
+## Second check of c4–c8
+
+fact-checker (second instance, did not write c4–c8) · 2026-10-12 · inputs: `src/demos/cs/merge-sort-payoff/meta.json`, `Demo.tsx`, `artifacts/walkthroughs/merge-sort-payoff/transcript.md`, and the section above for what was claimed. I wrote my own script (`artifacts/scratch/fc2-merge-sort-second.mjs`, node) instead of re-running the first checker's, and ran it on the stage's own logic (copied the lesson's `deal()` generator).
+
+**Result: c4, c5, c6, c7, c8 all VERIFIED. 0 disputed. meta.json updated (`status: verified`, `checkedBy: fact-checker`, `checkedOn: 2026-10-12`); no claim text changed.**
+
+```
+c4  4+4 of 8: 70 splits, max 7, min 4 ; interleaved witness (A = 1st,3rd,5th,7th smallest): 7
+    lesson deals (200 seeds): min 4, max 7 ; seed 7 piles [10,20,21,23] / [4,5,18,36] -> 7 (as in the transcript)
+    information bound: C(8,4) = 70 outcomes, ceil(log2 70) = 7  (any comparison method needs at least 7 in the worst case)
+c5  all 256 splits of 8: after a pile empties the rest is sorted and larger than everything placed, comparisons + rest = 8
+c6  10 cards, pile sizes 1+9, 2+8, 3+7, 4+6, 5+5: max 9 in every case ; C(10,2) = 45 (the distractor)
+c7  instrumented top-down merge sort on 1,000 values: 8,415 value comparisons, all inside the merge loop; the split uses index slicing and calls no comparison
+    W(1000) = 8,977 < 10,000
+c8  a one-element list has no adjacent pair out of order (vacuously sorted): true
+```
+
+- **c4: VERIFIED.** Upper bound n - 1 = 7, reached by interleaved piles. The stronger reading, "7 is the most you could ever need", also holds for any merging method (information bound 7), so the predict answer is exact, not just for the stage's procedure.
+- **c5: VERIFIED.** When a pile empties, every remaining card exceeds the last card of the emptied pile (that card was placed because it was smaller than the other pile's top) and the pile is sorted, so appending is correct with no further comparisons. Stage check: the code's `take()` and `slideRest()` add 0 to the counter once one side is empty, and the message "One pile is empty. The rest needs no comparisons." appears exactly when one side is empty and the merge is not done.
+- **c6: VERIFIED.** Bound 9 for n = 10 and reached for every split, so "some piles need all 9" is true. The recall `why` ("Every comparison places one card for good, and the last card needs none") is a correct short form of the c1 argument.
+- **c7: VERIFIED as worded** (comparisons). Splitting by position looks at no values. Wording problem: the hook "Splitting ... looks like extra work. It isn't." speaks of work, not comparisons; splitting does cost index arithmetic or copying in a real implementation, so "isn't extra work" is true in comparisons only. Routed as F4 below.
+- **c8: VERIFIED** (convention). Length-0 and length-1 lists are sorted by definition. Consistent with the reveal.
+
+Additional observations from the second check:
+- The first checker's F1 (c2's derivation covers top-down halving, the reveal shows bottom-up) still stands; not re-opened here.
+- The reveal sentence "Each comparison looks at only the two top cards, and the smaller one goes into the row for good" is the c1 mechanism; I found it correct against the code (a wrong tap is rejected without counting) but it is not a separately recorded claim. I did not add it (it is covered by c1 and c6, and I was asked only to check c4–c8).
+
+### Fixes routed to demo-builder
+
+- **F4 (hook wording, c7).** The hook says splitting "isn't" extra work, while the claim recorded and verified is that splitting costs no comparisons. A learner may read the hook as "splitting costs nothing". Reword the hook, or widen the claim, so they say the same thing.

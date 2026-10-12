@@ -30,55 +30,92 @@
       "text": "R0 is the average number of people one case infects in a population where nobody is immune.",
       "support": "source",
       "source": "Anderson & May (1991), Infectious Diseases of Humans: Dynamics and Control, Oxford University Press, ch. 2; Fine, Eames & Heymann (2011), 'Herd immunity: a rough guide', Clinical Infectious Diseases 52(7): 911-916.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c2",
       "text": "In a simple model where everyone mixes with everyone at random and immunity fully blocks catching and passing on the disease, a case infects on average R0 x (1 - p) people when a share p is immune.",
       "support": "source",
       "source": "Anderson & May (1991), ch. 5; Fine, Eames & Heymann (2011), Clin Infect Dis 52(7): 911-916.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c3",
       "text": "In that model, once more than 1 - 1/R0 of people are immune, each case causes fewer than one new case on average, so chains of infection tend to shrink and die out; for R0 = 4 the threshold is 75%.",
       "support": "derivation",
       "source": "R0(1 - p) < 1 iff p > 1 - 1/R0; with R0 = 4, 1 - 1/4 = 0.75. Anderson & May (1991); Fine, Eames & Heymann (2011).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c4",
       "text": "In the stage model (400 people, each case contacts 4 random townspeople), one case among a town that is 80% immune infects on average about 4 of the 80 unprotected people, counting the first case; at 50% immune it is about 146 of 200.",
       "support": "simulation",
       "source": "Demo.tsx: 200 seeded runs per setting (mean 4.2 of 80 at 80%; 145.9 of 200 at 50%). The stage shows its own 200-run average for whatever share the learner picks.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c5",
       "text": "Below the threshold an outbreak can still die out early by chance, but when it takes off it reaches a large share of the unprotected.",
       "support": "source",
       "source": "Branching-process extinction probability; Diekmann, Heesterbeek & Britton (2013), Mathematical Tools for Understanding Infectious Disease Dynamics, Princeton University Press, ch. 1 and 3.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c6",
       "text": "Real populations are not well mixed: when unprotected people cluster together, outbreaks can spread among them even when the overall immune share is above the simple threshold.",
       "support": "source",
       "source": "Fine, Eames & Heymann (2011), Clin Infect Dis 52(7): 911-916; Salathe & Bonhoeffer (2008), 'The effect of opinion clustering on disease outbreaks', Journal of the Royal Society Interface 5(29): 1505-1508.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c7",
       "text": "Some people cannot be vaccinated against a given disease, for example babies too young for that vaccine or some people with weakened immune systems.",
       "support": "source",
       "source": "CDC, General Best Practice Guidelines for Immunization: Contraindications and Precautions; Fine, Eames & Heymann (2011).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "life.herd-immunity.c8",
       "text": "The disease on the stage is made up, with R0 = 4; real vaccines are not perfect, which this model ignores.",
       "support": "convention",
       "source": "Modelling choice stated on the stage and in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "life.herd-immunity.c9",
+      "text": "In the stage model, above the threshold the immune people also protect the people who have no immunity: at 80% immune, on average only about 4 of the 80 unprotected (about 5%) catch it, against about 73% of the unprotected at 50% immune.",
+      "support": "simulation",
+      "source": "Reveal: \"Above it, the immune shield people who have no immunity at all.\" Recomputed by the fact-checker with the lesson's own seeds (mean 4.2 of 80 at 80%; 145.9 of 200 at 50%) and 20,000 independent runs (3.9 and 145.4). Protection is partial, not total: 3.3% of runs at 80% still took off. Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c10",
+      "text": "At 80% immune, each step of the outbreak tends to be smaller than the one before, so the chain dies out.",
+      "support": "derivation",
+      "source": "Reveal: \"Every step tends to be smaller than the last, so the chain dies\". Expected new cases per step shrink by the factor R0(1 - p) = 0.8 each step (simulated model: 4 x 79/399 = 0.79). Only true on average: a given step can be larger by chance. Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c11",
+      "text": "For R0 = 5 in a simple well-mixed model, outbreaks die out when more than 80% are immune: each case infects 5 x (unprotected share), which falls below 1 when fewer than 1 in 5 are unprotected.",
+      "support": "derivation",
+      "source": "Recall card in meta.json. 1 - 1/5 = 0.8 (c3 with R0 = 5). Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -25,6 +25,10 @@ knows what you don't. Fifteen minutes, in this order:
 - **Writing "noted".** Say what happened to the objection.
 - **Treating a simulated learner as a learner.**
 
+## Leaving
+
+When a role, a human or an agent lineage leaves for good, run `rituals/templates/offboarding.md`. Ownership must not leave with the worker.
+
 ## Running as a Claude Code subagent
 
 Each role is a subagent: `.claude/agents/<role>.md`. The chief of staff dispatches with the Agent

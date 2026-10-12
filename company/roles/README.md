@@ -42,6 +42,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
+| [Principal Engineer](principal-engineer.md) | founder | Keep the system simple enough to change and strong enough to grow: decide which changes need a design and a review, and make sure those get one.. |
 | [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
 | [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
 

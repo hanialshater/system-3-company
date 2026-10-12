@@ -30,41 +30,60 @@
       "text": "pH is minus the base-10 logarithm of the hydrogen-ion concentration (strictly, its activity), so one pH unit is a factor of 10.",
       "support": "source",
       "source": "IUPAC Compendium of Chemical Terminology (Gold Book), entry 'pH'; Atkins & de Paula, Physical Chemistry. In dilute solutions activity is close to concentration.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.ph-log-scale.c2",
       "text": "Going 3 pH units lower means 1,000 times more hydrogen ions in the same volume; going 2 units higher means 1/100 as many.",
       "support": "derivation",
       "source": "[H+] = 10^(-pH): 10^(-2)/10^(-5) = 10^3; 10^(-7)/10^(-5) = 10^(-2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.ph-log-scale.c3",
       "text": "Lemon juice is roughly pH 2 (measured values run about 2.0 to 2.6).",
       "support": "source",
       "source": "USGS Water Science School, 'pH and Water' (pH scale of common substances lists lemon juice near 2); FDA/CFSAN 'Approximate pH of Foods and Food Products' lists lemon juice 2.00-2.60.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.ph-log-scale.c4",
       "text": "Black coffee is roughly pH 5 (typical brewed coffee is about 4.8 to 5.1).",
       "support": "source",
       "source": "USGS Water Science School, 'pH and Water' (black coffee near 5); Rao & Fuller, Scientific Reports 8 (2018) 16030, measured hot and cold brew coffee at about pH 4.85-5.13.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.ph-log-scale.c5",
       "text": "Pure water is pH 7 at 25 C.",
       "support": "source",
       "source": "Kw = 1.0 x 10^-14 at 25 C, so [H+] = [OH-] = 10^-7 mol/L. Atkins & de Paula, Physical Chemistry; CRC Handbook of Chemistry and Physics (ion product of water).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.ph-log-scale.c6",
       "text": "From pH 0 to pH 14 the hydrogen-ion concentration changes by a factor of 10^14, one hundred trillion.",
       "support": "derivation",
       "source": "10^(14) = 100,000,000,000,000 (arithmetic from the definition of pH).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c7",
+      "text": "Same-sized cups of black coffee (about pH 5) and lemon juice (about pH 2): the lemon juice has about 1,000 times as many hydrogen ions.",
+      "support": "derivation",
+      "source": "From c2 with the stated round values: 10^(5-2) = 1,000. With the measured ranges in c3 and c4 the ratio runs from 10^(4.85-2.6) = 178 to 10^(5.13-2.0) = 1,349 (about 500 at the midpoints 2.3 and 5.0; artifacts/scratch/fc2-ph-log-scale.mjs), so 1,000 is the answer for pH exactly 5 and 2, not a measured ratio for real products. Seen in the predict question and reveal. Added by fact-checker 2026-10-12; needs an independent check (see the fact-check record, fix F1).",
       "status": "unverified"
     }
   ],

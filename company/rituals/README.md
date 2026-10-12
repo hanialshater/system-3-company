@@ -22,6 +22,9 @@ Rituals also scar: a review added after one failure can outlive its reason by ye
 | [Constitutional Review Board](templates/constitutional-review.md) | quarterly + emergencies | founder chairs; evaluation steward presents | Decide amendments to the judge, slowly | — |
 | [Launch Review](templates/launch-review.md) | per launch | head of product chairs; release manager executes | Go/no-go against gates; committed predictions for the lesson | — |
 | [Correction of Error (COE)](templates/coe.md) | per incident | the role nearest the failure | Ask why until the answers stop being about people; change a mechanism | — |
+| [Retro](templates/retro.md) | after every wave | chief of staff | What helped, what hurt; every change alters a mechanism and has an owner | — |
+| [Engineering Review](templates/eng-review.md) | per tier-2 change | principal engineer | Design and risk review of critical changes only (see `engineering/README.md`) | it reviews tier-0 work |
+| [Offboarding](templates/offboarding.md) | when a role or worker leaves for good | the leaving role's manager | Ownership does not leave with the worker | — |
 | [Domain Launch Review](templates/domain-launch.md) | per proposal | domain scout | Decide whether a new domain enters, incubates or waits | — |
 | [Retirement Review](templates/retirement.md) | per candidate / quarterly sweep | category manager | Remove lessons that no longer relieve the problem they were made for | — |
 

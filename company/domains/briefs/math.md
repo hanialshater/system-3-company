@@ -183,3 +183,306 @@ Nothing here is learning evidence; all confidence is untested until human learne
 - Interaction: the learner builds numbers as dot columns (tap to add dots), trying to make the total even with seven odd numbers; leftover dots pair up visibly. No text, no slider.
 - Payoff: pairing shows parity: a leftover dot per odd number, and the leftovers decide.
 - Claims to check: (1) Sum of n odd numbers has the parity of n (derivation: each is 2k+1). (2) 1+3+...+13 = 49 (recompute; also 7^2 by odd-numbers-make-squares).
+
+## Round 2 (briefs 23-55) · written 2026-10-12 · curriculum now 56 concepts
+
+Every prediction answer below was recomputed in `artifacts/scratch/cm-math-r2/check.mjs` (all pass). Each "Key state" is the
+moment the reveal should unlock on (earn-the-reveal): the builder calls `interact()` only for steps toward it, and the stage numbers
+must match the question. Nothing here is learning evidence. Briefs 23-55 on concepts that already have a round-1 brief take a different angle (noted).
+
+### 23. powers-of-two-plus-one · concept: sum-of-powers-of-two · core · demand 2
+- Learner knows: doubling (exponential-growth) / does not know: that 1+2+4+...+2^(n-1) is one less than 2^n.
+- Misconception: the total of the doubling blocks is some unpredictable big number, not tied to the next block.
+- Prediction: "Add 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128. What is the total?" options: 255 / 256 / 254 (answer: A). Check: 2^8 - 1 = 255.
+- Key state: the learner has added one extra unit block and watched it merge 1+1, 2+2, ... into a single 256 block; the gap between the pile and 256 is exactly 1.
+- Interaction: a row of blocks sized 1 to 128; one control adds a single extra unit and cascades the merges one step per tap.
+- Payoff: the pile is always one short of the next doubling.
+- Claims to check: (1) 1+2+...+128 = 255 (recompute). (2) Sum of 2^k, k=0..n-1, is 2^n - 1 (geometric series, or the merge argument).
+
+### 24. square-a-plus-b · concept: binomial-square · core · demand 2
+- Learner knows: area of a square and rectangle / does not know: that (a+b)^2 has two equal cross rectangles.
+- Misconception: (a+b)^2 = a^2 + b^2.
+- Prediction: "What is 13 x 13, thought of as (10+3) squared?" options: 169 / 109 / 130 (answer: A). Check: 100 + 2x30 + 9 = 169; 109 is the missing-cross-term answer.
+- Key state: the split is at 10 and 3 and all four regions (100, 30, 30, 9) are visible and shaded.
+- Interaction: a square of side 13 with a draggable split on the side; the four regions relabel with their areas.
+- Payoff: the two strips in the middle are the term the wrong formula forgets.
+- Claims to check: (1) (a+b)^2 = a^2 + 2ab + b^2 (expand). (2) 13^2 = 169 and 10^2+3^2 = 109 (recompute).
+
+### 25. fifty-one-times-forty-nine · concept: difference-of-squares · core · demand 2
+- Learner knows: rectangle area / does not know: a^2 - b^2 = (a-b)(a+b).
+- Misconception: nearby products like 51 x 49 need long multiplication and have no relation to 50 x 50.
+- Prediction: "51 x 49 is how far from 50 x 50 = 2500?" options: exactly 1 less (2499) / exactly equal / 100 less (answer: A). Check: 51 x 49 = 2499 = 50^2 - 1.
+- Key state: the learner has moved the 1-wide strip from the right edge of the 50-square to the bottom, producing a 51 x 49 rectangle with a one-cell notch missing.
+- Interaction: a 50 x 50 grid (drawn as a block); a drag moves a strip of width d from one side to the other; the notch d x d appears.
+- Payoff: sliding a strip makes a rectangle that is always short by the small square.
+- Claims to check: (1) (a+d)(a-d) = a^2 - d^2 (expand). (2) 51 x 49 = 2499 (recompute).
+
+### 26. euclid-square-cutting · concept: euclid-gcd · core · demand 2 [exploration]
+- Learner knows: rectangles tile with squares / does not know: Euclid's repeated-cutting method for the greatest common divisor.
+- Misconception: finding the biggest shared tile size needs guessing or listing all factors.
+- Prediction: "A 48 by 18 floor is covered with identical square tiles, no cutting. Biggest tile side?" options: 6 / 9 / 12 (answer: A). Check: gcd(48,18) = 6; 48/9 and 18/12 are not whole numbers.
+- Key state: after repeated cuts (two 18-squares leave 12 x 18; one 12-square leaves 12 x 6; two 6-squares) the leftover is itself a 6 x 6 square.
+- Interaction: the learner taps to cut the biggest square off the remaining rectangle; the remainder shrinks until it is a square. Exploration format: no slider, no equation.
+- Payoff: the last square that fits exactly is the biggest shared tile.
+- Claims to check: (1) gcd(48,18) = 6 (recompute). (2) Euclid, Elements VII.2: gcd(a,b) = gcd(b, a mod b).
+
+### 27. scramble-the-digits · concept: divisibility-by-nine · core · demand 2
+- Learner knows: place value / does not know: that a number's remainder on division by 9 equals its digit sum's.
+- Misconception: divisibility is a property you must test by dividing; rearranging digits would randomly change it.
+- Prediction: "7254 is divisible by 9. Scramble its four digits any way you like. Is the new number still divisible by 9?" options: always / never / sometimes (answer: A). Check: digit sum 7+2+5+4 = 18 for every arrangement; 4725, 2547, 5472 are all multiples of 9.
+- Key state: the learner has swapped digits at least twice and the leftover count (each place worth 1 plus a multiple of 9) stayed at 18 each time.
+- Interaction: digit tiles drag between place-value slots; under each place, its 9s are peeled off and the leftover ones are tallied.
+- Payoff: every 10, 100, 1000 is a multiple of 9 plus 1, so only the digit sum matters.
+- Claims to check: (1) 10^k - 1 is divisible by 9 (999...9). (2) 7254, 4725, 2547, 5472 divisible by 9 (recompute). (3) Do not claim the converse for other digits.
+
+### 28. binary-fingers · concept: binary-counting · intro · demand 2 [exploration]
+- Learner knows: place value / does not know: that two states per place count up to 2^n.
+- Misconception: ten fingers can show only ten, or at best a hundred, numbers.
+- Prediction: "Each of 10 fingers is either up or down. How many different numbers (0 included) can you show?" options: 10 / 100 / 1024 (answer: C). Check: 2^10 = 1024; the largest is 1023.
+- Key state: all ten fingers are up and the readout shows 1023 (so 0 to 1023 is 1024 numbers).
+- Interaction: ten tappable fingers with place values 1, 2, 4, ..., 512; the learner taps to make a target number. Exploration: no slider.
+- Payoff: each finger doubles the count, so ten two-state fingers give 1024 numbers.
+- Claims to check: (1) 2^10 = 1024 and 1+2+...+512 = 1023 (recompute). (2) Binary representation is unique (standard; prove by induction).
+
+### 29. sieve-crossing-out · concept: sieve-primes · intro · demand 2
+- Learner knows: multiples and primes (prime-factorization) / does not know why crossing out 4 primes is enough up to 100.
+- Misconception: finding all primes to 100 means testing divisibility by every smaller number.
+- Prediction: "To find every prime up to 100 by crossing out multiples, which primes must you cross out multiples of?" options: 2, 3, 5, 7 / all primes up to 50 / 2, 3, 5, 7, 11, 13 (answer: A). Check: a composite n <= 100 has a prime factor <= sqrt(n) <= 10, so 2, 3, 5, 7 suffice; 25 numbers survive (all prime).
+- Key state: multiples of 2, 3, 5 and 7 are struck on a 10 x 10 grid and exactly 25 numbers remain; striking 11's multiples would change nothing.
+- Interaction: the learner taps 2, 3, 5, 7 in any order to strike their multiples; a counter shows survivors.
+- Payoff: a composite has a small factor, so four sweeps clear a hundred numbers.
+- Claims to check: (1) There are 25 primes <= 100 and the survivors are exactly them (recompute). (2) Every composite n has a prime factor <= sqrt n (derivation: n = ab, one of a, b <= sqrt n). (3) Sieve credited to Eratosthenes (do not date in lesson).
+
+### 30. rabbit-ratio · concept: fibonacci-ratio · core · demand 1 [exploration]
+- Learner knows: division as a ratio / does not know: that consecutive-term ratios converge to a fixed number.
+- Misconception: the ratios of a growing sequence keep growing, or depend on the start.
+- Prediction: "In 1, 1, 2, 3, 5, 8, 13, ..., each term is the sum of the last two. Divide each term by the one before it. Where do the ratios head?" options: 1.5 / 1.618 / 2 (answer: B). Check: 89/55 = 1.6182, 144/89 = 1.6180; limit (1+sqrt 5)/2.
+- Key state: the learner has started the sequence from two different pairs (e.g. 1,1 and 1,3) and the ratio dots land in the same place.
+- Interaction: choose the first two numbers; step the sequence; ratio dots on a number line zigzag inward.
+- Payoff: the rule, not the start, sets the ratio.
+- Claims to check: (1) 89/55 = 1.61818 (recompute). (2) Limit = (1+sqrt 5)/2 for any positive start (derive from x = 1 + 1/x). (3) Do not claim the golden ratio appears in nature or art.
+
+### 31. shadow-height · concept: similar-triangles · core · demand 2
+- Learner knows: ratios and area scaling / does not know: that same-shape triangles have proportional sides.
+- Misconception: a longer shadow means "add the extra" (additive), not multiply.
+- Prediction: "A 2 m stick casts a 3 m shadow. At that moment a tree casts a 21 m shadow. How tall is the tree?" options: 14 m / 20 m / 31.5 m (answer: A). Check: 2/3 x 21 = 14; 20 is the add-the-difference error, 31.5 is the inverted ratio.
+- Key state: the tree's shadow is dragged to 21 m and the two triangles, drawn nested at the same corner, share the sun-ray line.
+- Interaction: one overlay, both triangles from a common corner; drag the shadow length and watch the stick triangle scale along the ray.
+- Payoff: same angle, so the same height-to-shadow ratio.
+- Claims to check: (1) Similar triangles have equal ratios (AA similarity). (2) 2/3 x 21 = 14 (recompute). (3) Parallel sun rays: say "approximately" for real sun.
+
+### 32. cube-the-size · concept: volume-scaling · core · demand 2
+- Learner knows: area scaling (brief 7) / does not know: that volume scales with the cube of length.
+- Misconception: a cube three times as wide has three times the volume, or weight.
+- Prediction: "A 2-inch solid cube weighs 1 kg. A 6-inch cube of the same material weighs..." options: 3 kg / 9 kg / 27 kg (answer: C). Check: (6/2)^3 = 27.
+- Key state: the scaled cube is filled by exactly 3 x 3 x 3 small cubes and the counter reads 27.
+- Interaction: scale slider 1x to 4x; unit cubes layer into the big cube one layer at a time.
+- Payoff: each of the three directions triples, so volume goes 3 x 3 x 3.
+- Claims to check: (1) Volume ratio = k^3 for similar solids. (2) (6/2)^3 = 27 (recompute).
+
+### 33. thales-corner · concept: thales-right-angle · core · demand 2 [exploration]
+- Learner knows: triangle angles sum to 180 (brief 11) / does not know: that every triangle on a diameter is right-angled.
+- Misconception: the angle changes as the point moves, so it is sometimes sharper.
+- Prediction: "Join a point P on a circle to both ends of a diameter. The angle at P is..." options: 60 degrees / 90 degrees / depends on where P is (answer: B). Check: with centre O, triangles OPA and OPB are isosceles; angles x, x and y, y give 2x + 2y = 180, so x + y = 90.
+- Key state: the learner has dragged P to at least three places and the right-angle marker never changes.
+- Interaction: drag P around a circle; a right-angle square mark and no number. Exploration: no equation.
+- Payoff: the angle never moves, whatever the position.
+- Claims to check: (1) Thales' theorem (Euclid III.31). (2) The isosceles derivation above. (3) Holds for P not equal to A or B.
+
+### 34. exterior-turns · concept: polygon-angle-sum · core · demand 2
+- Learner knows: angle sum 180 for triangles / does not know: that exterior angles of any convex polygon sum to 360.
+- Misconception: more sides means more total turning.
+- Prediction: "Walk around a polygon, turning at each corner until you face the way you started. Total turning?" options: 180 degrees / 360 degrees / depends on the number of sides (answer: B). Check: a regular n-gon turns 360/n per corner: 3 x 120, 5 x 72, 8 x 45, all 360.
+- Key state: the learner has set the sides to at least three different values and the turn-per-corner times corners reads 360 each time.
+- Interaction: sides slider 3 to 12; a walker dot traces the polygon with the heading arrow; readout of turn per corner.
+- Payoff: the same one full spin, cut into more, smaller turns.
+- Claims to check: (1) Exterior angle sum of a convex polygon is 360 (full turn). (2) 3 x 120 = 5 x 72 = 8 x 45 = 360 (recompute). (3) Interior sum = (n-2) x 180 follows.
+
+### 35. up-hill-down-hill · concept: harmonic-average-speed · core · demand 2
+- Learner knows: speed = distance / time / does not know: that time, not distance, is what averages.
+- Misconception: 30 km/h up and 60 km/h down average 45 km/h.
+- Prediction: "You drive 60 km uphill at 30 km/h and 60 km back down at 60 km/h. Average speed for the round trip?" options: 45 km/h / 40 km/h / 50 km/h (answer: B). Check: 120 km over (2 h + 1 h) = 40 km/h.
+- Key state: the downhill speed is set to 60 and two time bars (2 h and 1 h) sit side by side, the long one visibly dominating.
+- Interaction: one slider for downhill speed (30 to 120); two bars show hours spent each way and the readout shows the round-trip speed.
+- Payoff: you spend more time going slowly, so slow speed counts more.
+- Claims to check: (1) 60/30 = 2 h and 60/60 = 1 h (recompute). (2) 120/3 = 40 (recompute). (3) Average speed over equal distances is the harmonic mean 2ab/(a+b) = 2 x 1800 / 90 = 40.
+
+### 36. handshakes-halve · concept: handshake-counting · core · demand 2
+- Learner knows: triangular numbers (brief 3) / does not know: why n(n-1)/2 counts pairs.
+- Misconception: n people shake n x n times, or n x (n-1) times.
+- Prediction: "10 people each shake hands once with everyone else. How many handshakes?" options: 100 / 90 / 45 (answer: C). Check: 10 x 9 / 2 = 45; 90 counts each handshake twice.
+- Key state: ten people on a circle and all 45 chords drawn, with a tally showing 9 + 8 + ... + 1.
+- Interaction: add people one at a time; each new person draws a line to everyone already present.
+- Payoff: each handshake is shared by two people, so divide by two.
+- Claims to check: (1) Pairs from n = n(n-1)/2. (2) 9+8+...+1 = 45 = 10 x 9 / 2 (recompute).
+
+### 37. bridge-parity · concept: euler-path-parity · core · demand 1 [exploration]
+- Learner knows: odd and even / does not know: that a one-pass walk needs at most two odd junctions.
+- Misconception: if I try hard enough I can find a route crossing every bridge once.
+- Prediction: "Konigsberg has 4 land areas and 7 bridges. Can you cross every bridge exactly once?" options: yes / no / only starting from an island (answer: B). Check: bridge counts 5, 3, 3, 3; all four are odd, and a walk allows at most two odd places (start and end). Sum 14 = 2 x 7.
+- Key state: the learner has attempted routes, got stuck, and the junctions with odd bridge counts are highlighted (four of them).
+- Interaction: tap bridges to trace a route; used bridges grey out; a second map with one bridge removed (two odd areas) lets the learner succeed. Exploration: build and test, no slider.
+- Payoff: each pass through a place uses two bridges, so odd places can only be start or end.
+- Claims to check: (1) Degrees of the Konigsberg graph are 5, 3, 3, 3 (Euler 1736). (2) Path exists iff 0 or 2 odd vertices (connected graph; Euler / Hierholzer). (3) The city is now Kaliningrad and the layout changed (do not claim).
+
+### 38. infinite-hotel · concept: countable-infinity · stretch · demand 1 [exploration]
+- Learner knows: pigeonhole: finite boxes force a repeat (brief 15) / does not know: that infinite rooms behave differently.
+- Misconception: a full hotel is full, even with infinitely many rooms.
+- Prediction: "A hotel has infinitely many rooms, all full. One more guest arrives. Can everyone have a room, with no one thrown out?" options: yes / no / only if someone leaves (answer: A). Check: move guest in room n to room n+1 for every n; room 1 is free.
+- Key state: the learner has pressed "everyone moves up one" and room 1 is empty while no guest lacks a room.
+- Interaction: a row of rooms that continues off-screen; tap to shift every guest one room right; a new guest steps into room 1. Exploration: no slider.
+- Payoff: with infinitely many rooms, adding one does not use any up.
+- Claims to check: (1) The map n -> n+1 is one-to-one from the rooms into the rooms and misses room 1. (2) With 12 rooms the same move fails (pigeonhole). (3) Hilbert's hotel is a thought experiment; say so.
+
+### 39. diagonal-escapes-the-list · concept: cantor-diagonal · stretch · demand 1 [exploration]
+- Learner knows: the hotel idea (brief 38) / does not know: that some infinite collections cannot be listed.
+- Misconception: all infinite sets are the same size, so any infinite collection can be listed.
+- Prediction: "Someone claims their list contains every infinite string of 0s and 1s. Can you write one string that is not in the list?" options: no, the list is complete / yes, always / only if the list is short (answer: B). Check: flip the k-th digit of the k-th string; the new string differs from string k at place k, for every k.
+- Key state: the learner has flipped the diagonal digit in each of the visible rows (8 x 8) and the new string differs from every row.
+- Interaction: tap each diagonal cell to flip it; the new string builds beneath the grid; no slider.
+- Payoff: the new string disagrees with every listed string somewhere, so the list was never complete.
+- Claims to check: (1) The diagonal construction (Cantor 1891). (2) The grid shows only 8 rows; the argument is for the infinite list. (3) Do not claim "some infinities are bigger" beyond the argument.
+
+### 40. halving-powers · concept: zero-exponent · core · demand 2
+- Learner knows: repeated doubling / does not know: why 2^0 = 1.
+- Misconception: anything to the power zero is zero, or nothing.
+- Prediction: "2^3 = 8, 2^2 = 4, 2^1 = 2. Following the pattern, what is 2^0?" options: 0 / 1 / 2 (answer: B). Check: each step down divides by 2; 2/2 = 1; the next, 1/2, is 2^-1.
+- Key state: the learner has stepped the exponent down to 0 and the block stack has halved from 2 to a single unit block.
+- Interaction: a stack of blocks; one step-down control halves it per tap and continues past 0 to 1/2, 1/4.
+- Payoff: the pattern of halving forces 2^0 = 1.
+- Claims to check: (1) 2^n / 2 = 2^(n-1) (rule). (2) 2/2 = 1. (3) Consistent with a^m x a^n = a^(m+n) (derivation: a^0 x a^n = a^n).
+
+### 41. fence-for-biggest-pen · concept: isoperimetric-rectangle · core · demand 2
+- Learner knows: perimeter and area / does not know: that perimeter fixes neither shape nor area.
+- Misconception: same fence, same pen area; or longer thin shapes hold more.
+- Prediction: "20 m of fence makes a rectangular pen. Which shape holds the most area?" options: 1 by 9 / 5 by 5 / 4 by 6 (answer: B). Check: areas 9, 25, 24; with width w the area is w(10-w), maximal at w = 5.
+- Key state: the learner has dragged the width through 5 and the area readout peaked at 25 while perimeter stayed 20.
+- Interaction: drag a corner to change width w; height becomes 10 - w; shaded area and a fixed-length fence outline.
+- Payoff: for a fixed perimeter, the square wins.
+- Claims to check: (1) w(10-w) = 25 - (w-5)^2 <= 25 (expand). (2) 1x9 = 9, 5x5 = 25, 4x6 = 24 (recompute).
+
+### 42. clock-after-a-hundred · concept: clock-arithmetic · core · demand 2
+- Learner knows: addition and odd/even / does not know: that remainders make wrap-around arithmetic.
+- Misconception: 100 hours later on a 12-hour clock means counting 100 steps one by one; no shortcut.
+- Prediction: "It is 9 o'clock. What time will it be 100 hours later?" options: 1 o'clock / 4 o'clock / 9 o'clock (answer: A). Check: 100 = 8 x 12 + 4; 9 + 4 = 13, which is 1 o'clock. (4 o'clock is the error of reading the remainder as the time.)
+- Key state: the learner has taken 8 full laps (96 hours) and 4 more hours; the hand ends at 1.
+- Interaction: a clock with a +12 lap control and a +1 hour control; a lap counter and the hand position.
+- Payoff: full laps change nothing; only the remainder moves the hand.
+- Claims to check: (1) 100 = 8 x 12 + 4 (recompute). (2) (9 + 100) mod 12 = 1 (recompute).
+
+### 43. domino-chain · concept: induction-dominoes · stretch · demand 1 [exploration]
+- Learner knows: sums 1 to n (brief 3) / does not know: what proof by induction is.
+- Misconception: proving a statement for every n needs checking each n.
+- Prediction: "The first domino falls, and any falling domino knocks over the next. Which dominoes fall?" options: only the first few / all of them / only the even ones (answer: B). Check: domino 1 falls; if k falls, then k+1 falls; so 2, 3, 4, ... each follows.
+- Key state: the learner has run the chain once to the last visible domino and also removed one link, so the chain stops at that gap.
+- Interaction: tap to push the first domino; tap a gap between two to remove the link and push again. Exploration: build and break the chain.
+- Payoff: a start plus a rule that carries it forward covers all numbers.
+- Claims to check: (1) Induction principle (Peano axioms; standard). (2) The domino picture is an analogy, not a proof. (3) Apply to 1+...+n = n(n+1)/2 only in the reveal if sourced; otherwise omit.
+
+### 44. triangle-is-half · concept: triangle-area-half · intro · demand 2
+- Learner knows: rectangle area / does not know: that every triangle is half a rectangle, however slanted.
+- Misconception: a lopsided triangle has a different area from a straight one on the same base.
+- Prediction: "A triangle has base 6 and height 4, with the top corner far off to one side. Its area?" options: 24 / 12 / 10 (answer: B). Check: 6 x 4 / 2 = 12.
+- Key state: the apex has been dragged along the height line past the ends of the base and the shaded area still reads 12.
+- Interaction: drag the apex left and right on a line parallel to the base; the triangle area stays fixed against a surrounding 6 x 4 rectangle.
+- Payoff: sliding the top along a parallel line does not change the area.
+- Claims to check: (1) Area = base x height / 2 for any triangle. (2) 6 x 4 / 2 = 12 (recompute).
+
+### 45. add-the-slices · concept: fraction-addition · intro · demand 2
+- Learner knows: unit fractions / does not know: why unlike fractions need equal-sized pieces to be added.
+- Misconception: 1/2 + 1/3 = 2/5 (add tops and bottoms).
+- Prediction: "What is 1/2 + 1/3?" options: 2/5 / 5/6 / 1/5 (answer: B). Check: 3/6 + 2/6 = 5/6; 2/5 = 0.4, less than 1/2 alone.
+- Key state: both pieces have been re-cut into sixths (3 sixths and 2 sixths) on one bar and the total reads 5 pieces of 6.
+- Interaction: one bar; drag a cutting control that re-slices both fractions into the same size pieces; pieces then count.
+- Payoff: you can only add pieces of the same size.
+- Claims to check: (1) 1/2 + 1/3 = 5/6 (recompute). (2) 2/5 < 1/2, so the wrong rule cannot be right.
+
+### 46. side-of-the-square · concept: sqrt-as-side · intro · demand 2
+- Learner knows: square area / does not know: square root as the side that gives an area.
+- Misconception: the square root of 50 is 25 (halving), or must be a whole number.
+- Prediction: "A square floor has area 50 square metres. Its side is..." options: 25 m / just over 7 m / 10 m (answer: B). Check: 7^2 = 49 and 8^2 = 64, so between 7 and 8; sqrt 50 = 7.07.
+- Key state: the learner has dragged the side until the area readout shows about 50 (side 7.07).
+- Interaction: one slider for the side of a square (1 to 10); area readout updates; a target outline of area 50.
+- Payoff: root means the side, which need not be whole.
+- Claims to check: (1) sqrt 50 = 7.0711 (recompute). (2) 7^2 = 49 < 50 < 64 = 8^2.
+
+### 47. stack-of-cubes · concept: sum-of-cubes · stretch · demand 1 [exploration]
+- Learner knows: triangular numbers (brief 3) / does not know: that 1^3 + ... + n^3 is a perfect square.
+- Misconception: sums of cubes have no pattern.
+- Prediction: "What is 1^3 + 2^3 + 3^3 + 4^3?" options: 100 / 64 / 30 (answer: A). Check: 1 + 8 + 27 + 64 = 100 = 10^2 = (1+2+3+4)^2.
+- Key state: the learner has placed 1, 2, 3 and 4 copies of the 1x1, 2x2, 3x3 and 4x4 squares into one square of side 10 (area 100) with nothing left over.
+- Interaction: tile the big square from the available piles; the learner builds the model by placing. No slider.
+- Payoff: the sum of the first n cubes is the square of the sum of 1 to n.
+- Claims to check: (1) Sum of cubes 1..n = (n(n+1)/2)^2 (induction). (2) 1+8+27+64 = 100 (recompute). (3) The tiling is for n = 4 only; do not claim it proves the general case.
+
+### 48. two-colours-enough · concept: two-color-map · core · demand 1 [exploration]
+- Learner knows: odd and even / does not know: that straight cuts give maps with two colours.
+- Misconception: maps need many colours, or four.
+- Prediction: "Draw straight lines across a page. How many colours do you need so touching regions differ?" options: 2 / 3 / 4 (answer: A). Check: flip the colour on one side of each new line; two regions touching across one line differ by exactly that flip.
+- Key state: the learner has drawn three lines, flipped one side of the last line, and every touching pair now differs.
+- Interaction: tap to add a line; one control flips the colours on one side of it. Exploration: the learner builds the colouring.
+- Payoff: each region's colour is the odd-or-even count of lines that have it on their far side.
+- Claims to check: (1) Regions cut by lines are 2-colourable (induction on lines). (2) Do not conflate with the four-colour theorem.
+
+### 49. pi-is-three-and-a-bit · concept: pi-from-rolling · intro · demand 2
+- Learner knows: circle, diameter / does not know: that the rim is always a bit over three diameters.
+- Misconception: circumference is two or four diameters, or depends on the circle.
+- Prediction: "A wheel 1 metre across rolls one full turn. How far does it go?" options: 2 m / about 3.14 m / 4 m (answer: B). Check: pi x 1 = 3.14.
+- Key state: the wheel has rolled exactly one turn and three diameter-bars lay along the ground with a little extra (0.14) left over.
+- Interaction: a turns slider drives the wheel along a ruler marked in wheel-widths; a second wheel (half size) shows the same ratio.
+- Payoff: the ratio is the same for every circle; it is three and a bit.
+- Claims to check: (1) C = pi x d (definition of pi). (2) pi is about 3.14159 (reference). (3) Rolling without slipping: distance equals circumference.
+
+### 50. add-a-zero · concept: place-value · intro · demand 2
+- Learner knows: place value for whole numbers (brief 5 assumes this) / does not know: that times ten shifts digits, not appends a zero. Angle: breaks the "add a zero" rule with decimals.
+- Misconception: multiplying by 10 means adding a zero to the end.
+- Prediction: "What is 3.5 x 10?" options: 3.50 / 35 / 30.5 (answer: B). Check: 3.5 x 10 = 35; 3.50 equals 3.5 and 30.5 is a concatenation error.
+- Key state: the learner has slid the digits one column left of the decimal point and the readout shows 35.
+- Interaction: digit tiles in a place-value table; one control shifts all digits left or right a column.
+- Payoff: times ten moves each digit up one place.
+- Claims to check: (1) 3.5 x 10 = 35 (recompute). (2) 3.50 = 3.5 (value unchanged by trailing zero).
+
+### 51. three-pizzas-four-people · concept: fractions-as-division · intro · demand 2
+- Learner knows: sharing equally / does not know: that 3/4 is also 3 divided by 4.
+- Misconception: 3/4 and 3 / 4 are different kinds of things.
+- Prediction: "3 pizzas shared equally among 4 people. Each person gets..." options: 3/4 of a pizza / 4/3 of a pizza / 1/4 of a pizza (answer: A). Check: 3 / 4 = 0.75; 4 x 3/4 = 3.
+- Key state: all three pizzas are cut into quarters and each person holds three quarters.
+- Interaction: tap each pizza to cut it in 4, tap a slice to hand it to a person; counts per person show.
+- Payoff: sharing 3 among 4 is the fraction 3/4.
+- Claims to check: (1) a / b = a/b (definition). (2) 3 / 4 = 0.75 and 4 x 0.75 = 3 (recompute).
+
+### 52. split-the-sum · concept: multiplication-as-area · intro · demand 2
+- Learner knows: single-digit products / does not know: that a hard product splits into easy ones.
+- Misconception: 13 x 7 must be done as a single step; bigger factors need a different method.
+- Prediction: "What is 13 x 7?" options: 91 / 81 / 101 (answer: A). Check: 10 x 7 + 3 x 7 = 70 + 21 = 91.
+- Key state: the 13-wide rectangle has been cut at 10, showing 70 and 21 side by side.
+- Interaction: a draggable cut on a 13 x 7 rectangle; the learner places it at 10; the two areas add up.
+- Payoff: a rectangle can be cut anywhere, so pick the cut that makes easy products.
+- Claims to check: (1) a(b+c) = ab + ac. (2) 13 x 7 = 91 (recompute).
+
+### 53. seesaw-mean · concept: mean-vs-median · intro · demand 1 [exploration]
+- Learner knows: mean and median (brief 9) / does not know: that the mean is the balance point. Angle: weights on a seesaw rather than outliers.
+- Misconception: the balancing point is the middle number (median).
+- Prediction: "Equal weights sit at 1, 2, 3 and 10 on a plank. Where does the pivot go to balance it?" options: 2.5 / 4 / 6.5 (answer: B). Check: mean = 16 / 4 = 4; the median is 2.5; 6.5 is the midrange.
+- Key state: the learner has moved the pivot until the plank is level, at 4.
+- Interaction: drag the pivot under a plank with four equal weights; the plank tilts toward the heavier side. Exploration: no numbers on stage until level.
+- Payoff: the mean is where the plank balances.
+- Claims to check: (1) Sum of deviations from the mean is zero (derive). (2) (1+2+3+10)/4 = 4 and median 2.5 (recompute). (3) Equal weights assumed.
+
+### 54. straight-across-saves · concept: pythagoras-by-rearrangement · intro · demand 3
+- Learner knows: that a^2 + b^2 = c^2 (brief 1) / does not know: how much walking a diagonal saves. Angle: the formula used, not proved.
+- Misconception: a diagonal is only a little shorter than the two sides added.
+- Prediction: "You walk 300 m east then 400 m north. Walking straight across instead, how much shorter?" options: 100 m / 200 m / 350 m (answer: B). Check: sqrt(300^2 + 400^2) = 500; 700 - 500 = 200.
+- Key state: the learner has moved the destination to (300, 400) and both the path bar (700) and the straight bar (500) are on screen.
+- Interaction: drag the destination on a grid; two bars compare the L-route and the straight route.
+- Payoff: the diagonal is shorter by a large share, by a rule you can compute.
+- Claims to check: (1) sqrt(300^2 + 400^2) = 500 (recompute). (2) 700 - 500 = 200. (3) Straight path assumes flat ground.
+
+### 55. zeno-half-steps · concept: infinite-series-halves · core · demand 2
+- Learner knows: halves / does not know: that infinitely many halves can add to a finite total.
+- Misconception: adding infinitely many things must give infinity.
+- Prediction: "Add 1/2 + 1/4 + 1/8 + 1/16 + ... forever. The total is..." options: grows without limit / exactly 1 / exactly 2 (answer: B). Check: after n terms the sum is 1 - 2^-n; after 6 terms 63/64.
+- Key state: the learner has shaded six halves of a unit square and the remaining white sliver is 1/64.
+- Interaction: tap to shade half of what remains of a unit square; the shaded total shows as a fraction.
+- Payoff: the pieces always fit inside the square, so the total is at most 1.
+- Claims to check: (1) Sum of 2^-k, k=1..n, = 1 - 2^-n (recompute for n = 6: 63/64). (2) The infinite sum is 1 (limit of the above). (3) Brief 8 uses the same series; the angle here is the picture, not 0.999...

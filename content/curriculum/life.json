@@ -255,6 +255,226 @@
       "prerequisites": [
         "herd-immunity"
       ]
+    },
+    {
+      "id": "reproduction-number-growth",
+      "name": "Reproduction number and growth per generation",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "outbreak-doubling-time"
+      ]
+    },
+    {
+      "id": "effective-reproduction",
+      "name": "Effective reproduction number falls as immunity builds",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "herd-immunity"
+      ]
+    },
+    {
+      "id": "reading-case-curves",
+      "name": "Reading case-count curves (reporting lag, falling vs total)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "outbreak-doubling-time"
+      ]
+    },
+    {
+      "id": "isolation-timing",
+      "name": "Isolating cases early enough to push R below 1",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "effective-reproduction"
+      ]
+    },
+    {
+      "id": "vaccine-coverage-limits",
+      "name": "Coverage pockets and imperfect vaccines",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "herd-immunity"
+      ]
+    },
+    {
+      "id": "waning-immunity",
+      "name": "Waning immunity and recurring waves",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sir-epidemic-curve"
+      ]
+    },
+    {
+      "id": "virulence-tradeoff",
+      "name": "Virulence trade-off (toy model)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection",
+        "sir-epidemic-curve"
+      ]
+    },
+    {
+      "id": "purging-recessives",
+      "name": "Why rare recessive alleles are removed slowly",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "hardy-weinberg"
+      ]
+    },
+    {
+      "id": "selfing-heterozygosity",
+      "name": "Self-fertilisation and lost heterozygosity",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "genetic-inheritance"
+      ]
+    },
+    {
+      "id": "de-novo-mutations",
+      "name": "New mutations in every generation",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "mutation-randomness"
+      ]
+    },
+    {
+      "id": "molecular-clock",
+      "name": "Molecular clock: differences accumulate on both branches",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "de-novo-mutations"
+      ]
+    },
+    {
+      "id": "gene-flow",
+      "name": "Gene flow holds populations together",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "genetic-drift"
+      ]
+    },
+    {
+      "id": "heritability-response",
+      "name": "Heritability and response to selection",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "phylogeny-tree-count",
+      "name": "Why the family tree is hard to find (tree counting)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "genetic-code-redundancy",
+      "name": "Redundancy in the genetic code",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "mutation-randomness"
+      ]
+    },
+    {
+      "id": "competitive-exclusion",
+      "name": "One resource, one winner (competitive exclusion)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "logistic-growth"
+      ]
+    },
+    {
+      "id": "allee-effect",
+      "name": "Allee effect: too few to recover",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "logistic-growth"
+      ]
+    },
+    {
+      "id": "invasion-lag",
+      "name": "Quiet decades, then everywhere (invasion lag)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "exponential-bacteria"
+      ]
+    },
+    {
+      "id": "mark-recapture",
+      "name": "Counting animals by mark and recapture",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "osmosis",
+      "name": "Osmosis and cell volume",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "diffusion-distance"
+      ]
+    },
+    {
+      "id": "membrane-potential",
+      "name": "Ion gradients make a voltage (Nernst)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "diffusion-distance"
+      ]
+    },
+    {
+      "id": "oxygen-binding",
+      "name": "Cooperative oxygen binding (S-shaped curve)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "enzyme-saturation"
+      ]
+    },
+    {
+      "id": "pcr-amplification",
+      "name": "PCR: doubling with imperfect efficiency",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "negative-feedback",
+      "name": "Negative feedback and steady-state error",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "protein-search-space",
+      "name": "Protein folding search space (Levinthal)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": []
     }
   ]
 }

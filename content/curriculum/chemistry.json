@@ -258,6 +258,235 @@
         "ph-log-scale",
         "buffers"
       ]
+    },
+    {
+      "id": "states-of-matter",
+      "name": "Solid, liquid, gas: same molecules, different room",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "heating-curve-plateau",
+      "name": "Heat that does not raise temperature",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "states-of-matter",
+        "heat-capacity-water"
+      ]
+    },
+    {
+      "id": "atomic-number-identity",
+      "name": "Protons name the element",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "isotopes",
+      "name": "Isotopes: same element, different mass",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "atomic-number-identity"
+      ]
+    },
+    {
+      "id": "hydrogen-bonding",
+      "name": "Hydrogen bonds lift water's boiling point",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "bond-polarity"
+      ]
+    },
+    {
+      "id": "ice-floats",
+      "name": "Why ice floats, and how much",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hydrogen-bonding",
+        "density"
+      ]
+    },
+    {
+      "id": "like-dissolves-like",
+      "name": "Like dissolves like",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "bond-polarity"
+      ]
+    },
+    {
+      "id": "ideal-gas-law",
+      "name": "The ideal gas law with real units",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "gas-laws",
+        "moles-counting"
+      ]
+    },
+    {
+      "id": "partial-pressure",
+      "name": "Each gas has its own share of pressure",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "gas-laws"
+      ]
+    },
+    {
+      "id": "vapor-pressure-humidity",
+      "name": "Humidity and the dew point",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "evaporation-cooling"
+      ]
+    },
+    {
+      "id": "freezing-point-depression",
+      "name": "Dissolved particles lower the freezing point",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "dilution",
+        "states-of-matter"
+      ]
+    },
+    {
+      "id": "strong-vs-weak-acid",
+      "name": "Strong and weak acids at equal concentration",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "ph-log-scale",
+        "equilibrium"
+      ]
+    },
+    {
+      "id": "redox-electron-transfer",
+      "name": "Redox: electrons change hands",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "conservation-of-mass"
+      ]
+    },
+    {
+      "id": "exothermic-endothermic",
+      "name": "Reactions that release or absorb heat",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "temperature-particle-motion"
+      ]
+    },
+    {
+      "id": "bond-energy-enthalpy",
+      "name": "Break bonds, make bonds, count the difference",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "exothermic-endothermic",
+        "bond-polarity"
+      ]
+    },
+    {
+      "id": "surface-area-rate",
+      "name": "Surface area speeds reactions",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "collision-theory"
+      ]
+    },
+    {
+      "id": "rate-law-concentration",
+      "name": "Rate laws: how concentration sets speed",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "collision-theory"
+      ]
+    },
+    {
+      "id": "percent-yield",
+      "name": "Percent yield",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "limiting-reagent"
+      ]
+    },
+    {
+      "id": "radiation-penetration",
+      "name": "Alpha, beta, gamma: what stops them",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "half-life"
+      ]
+    },
+    {
+      "id": "chromatography",
+      "name": "Chromatography: a race on paper",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "like-dissolves-like"
+      ]
+    },
+    {
+      "id": "solubility-product",
+      "name": "Solubility product and the common-ion effect",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "equilibrium-constant",
+        "solubility-saturation"
+      ]
+    },
+    {
+      "id": "galvanic-cell-voltage",
+      "name": "Voltage from two metals",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "redox-electron-transfer"
+      ]
+    },
+    {
+      "id": "electrolysis-faraday",
+      "name": "Electric charge counts atoms",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "redox-electron-transfer",
+        "moles-counting"
+      ]
+    },
+    {
+      "id": "allotropes",
+      "name": "Allotropes: one element, different arrangements",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "atom-scale-size"
+      ]
+    },
+    {
+      "id": "effusion-graham",
+      "name": "Light gases escape faster",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "temperature-particle-motion"
+      ]
     }
   ]
 }

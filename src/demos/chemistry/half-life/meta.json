@@ -30,34 +30,58 @@
       "text": "Radioactive decay is random for each nucleus: you can say how likely an atom is to decay, not when or which atom goes next.",
       "support": "source",
       "source": "K. S. Krane, Introductory Nuclear Physics (Wiley, 1988), ch. 6.1: decay is a statistical process with a constant probability per unit time for each nucleus.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.half-life.c2",
       "text": "In one half-life, each undecayed atom has a 50% chance of decaying, no matter how long it has already survived.",
       "support": "source",
       "source": "Exponential decay N(t) = N0 * 2^(-t/T) implies a constant per-atom decay probability (memoryless). Krane, Introductory Nuclear Physics, ch. 6.1; Rutherford & Soddy, Phil. Mag. 5 (1903) 576.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.half-life.c3",
       "text": "After 2 half-lives about a quarter of the atoms remain, and after 3 about an eighth: survivors keep halving instead of running out.",
       "support": "derivation",
       "source": "N(t) = N0 * (1/2)^(t/T): (1/2)^2 = 1/4, (1/2)^3 = 1/8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.half-life.c4",
       "text": "With only a few hundred atoms, the share that decays in a half-life wanders around 50% by chance; with the trillions in a real sample it is extremely close to 50%.",
       "support": "derivation",
       "source": "Each atom decays independently with p = 0.5 per half-life, so the count is binomial with standard deviation sqrt(n p (1-p)); relative spread shrinks as 1/sqrt(n). Simulated in the lesson with a seeded generator.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "chemistry.half-life.c5",
       "text": "Carbon-14 has a half-life of about 5,700 years.",
       "support": "source",
       "source": "NNDC/ENSDF evaluated value 5,700 +/- 30 years (Kondev et al., Chinese Physics C 45 (2021) 030001, NUBASE2020); the Cambridge value 5,730 +/- 40 years (Godwin, Nature 195 (1962) 984).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "chemistry.half-life.c6",
+      "text": "A new run of fresh atoms keeps different survivors from the previous run.",
+      "support": "simulation",
+      "source": "Each run draws every atom's decay half-life from a different seeded generator (seed 1009 + 7919 * run). Survivors after 3 half-lives of runs r and r+1 were identical in 0 of 200 pairs; mean overlap (Jaccard) 0.065 against 0.067 expected for independent draws (artifacts/scratch/fc2-half-life.mjs). Seen in the stage message \"Fresh atoms. Different ones will survive this time.\" and the reveal (\"a new run keeps different ones\"). Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c7",
+      "text": "Each half-life, roughly half of whatever was left decays, even the long survivors.",
+      "support": "simulation",
+      "source": "Holds on average: across 2,000 seeded runs the mean share decaying is 49.6-50.5% at every one of the 8 steps, and the pooled chance of decay given alive at the start is 0.499-0.502 for half-lives 1-5. A single run is noisier: the share's standard deviation is 3.5 points at step 1, 10 at step 4, 15 at step 5, and 33-41 at steps 7-8 (when about 3 or 2 atoms are left, the share is often 0% or 100%; 51% and 67% of runs fall outside 33-67% at steps 7 and 8). The lesson allows 8 waits. Reveal sentence. Added by fact-checker 2026-10-12; needs an independent check (see the fact-check record, fix F1).",
       "status": "unverified"
     }
   ],
