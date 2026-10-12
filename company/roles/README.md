@@ -63,4 +63,5 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Category Manager — AI & Machine Learning](cm-ai.md) | head-of-product | Decide what AI & Machine Learning should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Economics & Money](cm-economics.md) | head-of-product | Decide what Economics & Money should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Life Sciences](cm-life.md) | head-of-product | Decide what Life Sciences should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Manager — Geography & Maps](cm-geography.md) | head-of-product | Decide what Geography & Maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Chemistry](cm-chemistry.md) | head-of-product | Decide what Chemistry should teach next and why, and keep the category's map honest about what it does not yet teach.. |

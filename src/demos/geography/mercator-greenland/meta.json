@@ -1,0 +1,95 @@
+{
+  "slug": "mercator-greenland",
+  "title": "Greenland is not that big",
+  "hook": "On most wall maps Greenland rivals Africa. Slide it south and watch.",
+  "domain": "geography",
+  "concept": "map-projections-area",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a world map looks like",
+      "the equator and the poles"
+    ],
+    "doesNotKnow": [
+      "map projections",
+      "why maps distort",
+      "Mercator's purpose"
+    ]
+  },
+  "misconception": "The sizes of countries on a world map are their real sizes.",
+  "objective": "The learner can explain that a flat map must distort, that Mercator inflates area away from the equator, and that Greenland is about the size of DR Congo.",
+  "claims": [
+    {
+      "id": "geography.mercator-greenland.c1",
+      "text": "Greenland's area is about 2.17 million km\u00b2.",
+      "support": "source",
+      "source": "CIA World Factbook, Greenland: total area 2,166,086 km\u00b2. The lesson's own 1:110m data gives about 2.19M km\u00b2 on a sphere of radius 6,371 km.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c2",
+      "text": "DR Congo's area is about 2.34 million km\u00b2.",
+      "support": "source",
+      "source": "CIA World Factbook, Congo, Democratic Republic of the: total area 2,344,858 km\u00b2. Lesson data gives about 2.33M km\u00b2.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c3",
+      "text": "On the Mercator map in this lesson, Greenland is drawn about 15 times the area of DR Congo.",
+      "support": "simulation",
+      "source": "Projected path areas computed with d3-geo geoMercator on the lesson's data: ratio 15.4 at Greenland's real position.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c4",
+      "text": "Mercator scales areas by about 1/cos\u00b2(latitude); at Greenland's latitude that is more than ten times.",
+      "support": "derivation",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Mercator scale factor k = sec \u03c6, so area factor sec\u00b2 \u03c6. At 73\u00b0, sec\u00b2 \u2248 11.7.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c5",
+      "text": "Mercator preserves angles, so a line of constant compass bearing is straight on the map.",
+      "support": "source",
+      "source": "Snyder (1987), ch. 7: Mercator is conformal; rhumb lines are straight lines.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c6",
+      "text": "Equal Earth is an equal-area projection.",
+      "support": "source",
+      "source": "\u0160avri\u010d, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.mercator-greenland.c7",
+      "text": "No flat map can preserve both angles and areas everywhere.",
+      "support": "source",
+      "source": "Gauss's Theorema Egregium (1827): a sphere cannot be mapped to a plane isometrically; a map that is both conformal and equal-area would be an isometry. Snyder (1987), ch. 1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a Mercator map, which looks most inflated compared with its real size?",
+    "options": [
+      "A country near the equator",
+      "A country near the poles",
+      "They are all inflated equally"
+    ],
+    "answer": 1,
+    "why": "Mercator stretches area by about 1/cos\u00b2(latitude), so the farther from the equator, the bigger it looks."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -494,6 +494,7 @@ roles.push(
   cm("cm-ai", "ai", "AI & Machine Learning", "how learning systems behave, including how they fail and get gamed", "Model behaviour claims must be reproducible in the lesson's own toy model."),
   cm("cm-economics", "economics", "Economics & Money", "personal finance arithmetic and simple models labelled as models", "Label every economic model as a simplification; no investment advice."),
   cm("cm-life", "life", "Life Sciences", "populations, evolution and epidemiology through simulation", "State model assumptions (e.g. homogeneous mixing) next to every threshold."),
+  cm("cm-geography", "geography", "Geography & Maps", "maps, projections, distances, climate and the shape of the Earth, drawn with real world data", "Map claims need the projection and the data resolution stated; distances are great-circle on a sphere unless said otherwise."),
   cm("cm-chemistry", "chemistry", "Chemistry", "scales and rates the learner cannot see: logs, half-lives, equilibria", "Quantities need units and approximate values need 'about'."),
 );
 

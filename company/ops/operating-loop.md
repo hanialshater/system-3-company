@@ -48,6 +48,16 @@ that must see each other's output.
 Merge results, then run `npm run check` (and `npm run verify` if code changed). Update the board,
 and write the handoff at the top of `ops/progress.md`.
 
+## Scaling: waves (see decisions/2026-10-12-scale-operations.md)
+
+1. Category managers refresh `company/domains/briefs/<domain>.md` (ranked briefs).
+2. Platform proves any new kit feature with one lesson first.
+3. Wave: one builder per domain in a worktree, about 10 briefs each. Builders write only their lesson folders.
+4. Integrate: merge each branch, run `npm run registry`, then `npm run verify` once.
+5. Check: `npm run walkthrough -- --domain <d>`, then a fact-checker and a learner evaluator per domain, in parallel (sonnet).
+6. Wave launch review: publish every lesson whose gates pass; send findings back as briefs.
+7. The chief of staff alone writes the board, the progress log and the WBR.
+
 ## Attention tiers: what reaches the founder
 
 | Tier | Examples | Founder involvement |

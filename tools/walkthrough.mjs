@@ -2,7 +2,8 @@
 // Walkthrough: use a lesson like a learner and record only what a learner would see.
 // This is the artifact evaluators read BEFORE any builder explanation (company/reviews/README.md).
 //
-//   npm run walkthrough -- <slug> [--choose N] [--steps K] [--viewport phone|desktop]
+//   npm run walkthrough -- <slug> [<slug> ...] [--choose N] [--steps K] [--viewport phone|desktop]
+//   npm run walkthrough -- --domain <domain>      every non-retired lesson in a domain, one server
 //
 // Writes artifacts/walkthroughs/<slug>/transcript.md and step screenshots.
 // Uses a running server at WALKTHROUGH_URL if set; otherwise starts `next start` on port 3300
@@ -14,20 +15,26 @@ import fs from "node:fs";
 import path from "node:path";
 
 const args = process.argv.slice(2);
-const slug = args.find((a) => !a.startsWith("--"));
 const opt = (k, d) => {
   const i = args.indexOf(`--${k}`);
   return i >= 0 ? args[i + 1] : d;
 };
-if (!slug) {
+const optVals = new Set(["choose", "steps", "viewport", "domain"].map((k) => opt(k, null)).filter(Boolean));
+let slugs = args.filter((a) => !a.startsWith("--") && !optVals.has(a));
+const domainOpt = opt("domain", null);
+if (domainOpt) {
+  const dir = path.join("src/demos", domainOpt);
+  slugs = fs.readdirSync(dir).filter((s) => {
+    try { return JSON.parse(fs.readFileSync(path.join(dir, s, "meta.json"), "utf8")).status !== "retired"; } catch { return false; }
+  });
+}
+if (!slugs.length) {
   console.log("usage: npm run walkthrough -- <slug> [--choose N] [--steps K] [--viewport phone|desktop]");
   process.exit(1);
 }
 const choose = Number(opt("choose", "0"));
 const steps = Number(opt("steps", "6"));
 const viewport = opt("viewport", "phone");
-const outDir = path.join("artifacts", "walkthroughs", slug);
-fs.mkdirSync(outDir, { recursive: true });
 
 async function waitFor(url, ms = 30_000) {
   const t0 = Date.now();
@@ -50,8 +57,11 @@ if (!base) {
   await waitFor(base);
 }
 
-const launch = process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {};
-const browser = await chromium.launch(launch);
+const launchOpts = process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {};
+const browser = await chromium.launch(launchOpts);
+for (const slug of slugs) {
+const outDir = path.join("artifacts", "walkthroughs", slug);
+fs.mkdirSync(outDir, { recursive: true });
 const context = await browser.newContext(viewport === "phone" ? devices["Pixel 7"] : { viewport: { width: 1280, height: 800 } });
 const page = await context.newPage();
 const log = [];
@@ -127,9 +137,13 @@ try {
   const trust = await page.locator('[data-testid="trust-sheet"]').innerText();
   log.push("## Appendix: trust sheet (a learner sees this only if they tap “Why trust this?”)", "", "```", trust, "```", "");
   if (errors.length) log.push("## Page errors", "", ...errors.map((e) => `- ${e}`), "");
+} catch (e) {
+  log.push("", `**Walkthrough aborted:** ${e.message.split("\n")[0]}`);
 } finally {
   fs.writeFileSync(path.join(outDir, "transcript.md"), log.join("\n") + "\n");
-  await browser.close();
-  if (server) try { process.kill(-server.pid); } catch {}
+  await context.close();
 }
 console.log(`wrote ${path.join(outDir, "transcript.md")} and ${n} screenshots`);
+}
+await browser.close();
+if (server) try { process.kill(-server.pid); } catch {}
