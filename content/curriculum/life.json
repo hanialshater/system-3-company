@@ -33,7 +33,7 @@
     },
     {
       "id": "predator-prey",
-      "name": "Predator\u2013prey cycles",
+      "name": "Predator–prey cycles",
       "level": "core",
       "demand": 2,
       "prerequisites": []
@@ -59,6 +59,201 @@
       "demand": 2,
       "prerequisites": [
         "natural-selection"
+      ]
+    },
+    {
+      "id": "outbreak-doubling-time",
+      "name": "Doubling time of an outbreak",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "vaccinated-share-of-cases",
+      "name": "Why many cases can be vaccinated when vaccines work",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "herd-immunity",
+        "probability:base-rates"
+      ]
+    },
+    {
+      "id": "sir-epidemic-curve",
+      "name": "Epidemic curve: why infections peak before susceptibles run out",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "herd-immunity"
+      ]
+    },
+    {
+      "id": "final-size-overshoot",
+      "name": "Epidemic final size and overshoot",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "sir-epidemic-curve"
+      ]
+    },
+    {
+      "id": "superspreading-dispersion",
+      "name": "Superspreading and uneven spread",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "herd-immunity"
+      ]
+    },
+    {
+      "id": "energy-pyramid",
+      "name": "Energy lost up a food chain",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "genetic-drift",
+      "name": "Genetic drift in small populations",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "natural-selection",
+        "probability:law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "bottleneck-founder",
+      "name": "Bottlenecks and lost variants",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "genetic-drift"
+      ]
+    },
+    {
+      "id": "logistic-growth",
+      "name": "S-curves and carrying capacity",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "exponential-bacteria"
+      ]
+    },
+    {
+      "id": "maximum-sustainable-yield",
+      "name": "Harvest and the fastest-growing size",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "logistic-growth"
+      ]
+    },
+    {
+      "id": "diffusion-distance",
+      "name": "Diffusion time grows with distance squared",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "math:area-scaling"
+      ]
+    },
+    {
+      "id": "metabolic-scaling",
+      "name": "Metabolic rate and body size",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "surface-area-volume"
+      ]
+    },
+    {
+      "id": "hardy-weinberg",
+      "name": "Hidden carriers (Hardy-Weinberg)",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "genetic-inheritance"
+      ]
+    },
+    {
+      "id": "heterozygote-advantage",
+      "name": "Why a harmful allele can persist",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "genetic-inheritance",
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "species-area",
+      "name": "Species-area relationship",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "evolution-of-cooperation",
+      "name": "Cooperation can invade a selfish population",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "sex-ratio-fisher",
+      "name": "Why sex ratios settle near 1:1",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "luria-delbruck",
+      "name": "Mutations before selection (fluctuation test)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "antibiotic-resistance"
+      ]
+    },
+    {
+      "id": "kin-selection",
+      "name": "Helping relatives (Hamilton's rule)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "mutation-randomness",
+      "name": "Mutations are not aimed at need",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "convergent-evolution",
+      "name": "Similar solutions from different ancestors",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "natural-selection"
+      ]
+    },
+    {
+      "id": "network-clustering-spread",
+      "name": "Clustering and outbreak spread",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "herd-immunity"
       ]
     }
   ]

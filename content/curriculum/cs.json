@@ -71,6 +71,215 @@
       "level": "stretch",
       "demand": 1,
       "prerequisites": []
+    },
+    {
+      "id": "insertion-sort",
+      "name": "Insertion sort: sorting a hand of cards",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "stack-and-queue",
+      "name": "Stacks and queues: last-in vs first-in",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "linked-list-vs-array",
+      "name": "Arrays vs linked lists: the cost of inserting",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "logic-gates",
+      "name": "Logic gates: AND, OR, XOR",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "text-encoding",
+      "name": "Text as numbers (ASCII and Unicode)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "run-length-encoding",
+      "name": "Run-length encoding: compression by counting runs",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "parity-check",
+      "name": "Parity bits: detecting errors",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "pixels-rgb",
+      "name": "Pixels and colour as three numbers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "finite-state-machine",
+      "name": "Finite state machines (a turnstile)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "twos-complement",
+      "name": "Negative numbers: two's complement",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "floating-point",
+      "name": "Floating point: why 0.1 + 0.2 is not 0.3",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "binary-search-tree",
+      "name": "Binary search trees and lopsided trees",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-search"
+      ]
+    },
+    {
+      "id": "heap-priority-queue",
+      "name": "Heaps and priority queues",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "binary-search-tree"
+      ]
+    },
+    {
+      "id": "depth-first-search",
+      "name": "Depth-first search and backtracking",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "recursion"
+      ]
+    },
+    {
+      "id": "huffman-coding",
+      "name": "Huffman coding: shorter codes for common symbols",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-numbers"
+      ]
+    },
+    {
+      "id": "quicksort-partition",
+      "name": "Quicksort: partitioning around a pivot",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "divide-and-conquer"
+      ]
+    },
+    {
+      "id": "memoization",
+      "name": "Memoization: not recomputing",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "recursion"
+      ]
+    },
+    {
+      "id": "greedy-failure",
+      "name": "Greedy algorithms and when they fail",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "graph-shortest-path"
+      ]
+    },
+    {
+      "id": "cryptographic-hash",
+      "name": "Cryptographic hashes and the avalanche effect",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hashing-collisions"
+      ]
+    },
+    {
+      "id": "lru-cache",
+      "name": "Caches and least-recently-used eviction",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hashing-collisions"
+      ]
+    },
+    {
+      "id": "dynamic-array-doubling",
+      "name": "Growing arrays by doubling (amortized cost)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "big-o-growth",
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "combinatorial-explosion",
+      "name": "Combinatorial explosion (travelling salesperson)",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "big-o-growth",
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "halting-problem",
+      "name": "The halting problem: what no program can decide",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "recursion"
+      ]
+    },
+    {
+      "id": "bloom-filter",
+      "name": "Bloom filters: maybe-yes, definitely-no",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "hashing-collisions",
+        "probability:birthday-paradox"
+      ]
     }
   ]
 }

@@ -53,6 +53,211 @@
       "prerequisites": [
         "reaction-rates-temperature"
       ]
+    },
+    {
+      "id": "atom-scale-size",
+      "name": "How small is an atom?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "density",
+      "name": "Density is mass per volume",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "dilution",
+      "name": "Dilution: same particles, more room",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "temperature-particle-motion",
+      "name": "Temperature is particle motion",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "conservation-of-mass",
+      "name": "Atoms are rearranged, not lost",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "evaporation-cooling",
+      "name": "Why evaporation cools",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "temperature-particle-motion"
+      ]
+    },
+    {
+      "id": "solubility-saturation",
+      "name": "Solubility has a ceiling",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "diffusion-random-walk",
+      "name": "Diffusion is a random walk",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "temperature-particle-motion",
+        "probability:law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "limiting-reagent",
+      "name": "The limiting reagent",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "moles-counting"
+      ]
+    },
+    {
+      "id": "le-chatelier",
+      "name": "Equilibrium shifts under stress",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "equilibrium",
+        "gas-laws"
+      ]
+    },
+    {
+      "id": "buffers",
+      "name": "Buffers resist pH change",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "ph-log-scale",
+        "equilibrium"
+      ]
+    },
+    {
+      "id": "carbon-dating",
+      "name": "Reading a radiocarbon clock",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "half-life",
+        "math:exponential-growth"
+      ]
+    },
+    {
+      "id": "osmosis",
+      "name": "Osmosis: water follows the crowd",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "diffusion-random-walk",
+        "dilution"
+      ]
+    },
+    {
+      "id": "heat-capacity-water",
+      "name": "Water holds heat",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "physics:energy-conservation"
+      ]
+    },
+    {
+      "id": "bond-polarity",
+      "name": "Unequal sharing in bonds",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "atom-scale-size"
+      ]
+    },
+    {
+      "id": "boiling-point-pressure",
+      "name": "Boiling point depends on pressure",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "gas-laws",
+        "evaporation-cooling"
+      ]
+    },
+    {
+      "id": "reaction-order",
+      "name": "Reaction order and half-life",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "half-life",
+        "reaction-rates-temperature"
+      ]
+    },
+    {
+      "id": "collision-theory",
+      "name": "Reactions need the right collisions",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "temperature-particle-motion"
+      ]
+    },
+    {
+      "id": "entropy-mixing",
+      "name": "Mixing as counting arrangements",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "probability:law-of-large-numbers",
+        "temperature-particle-motion"
+      ]
+    },
+    {
+      "id": "titration-curve",
+      "name": "The titration cliff",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "ph-log-scale",
+        "dilution"
+      ]
+    },
+    {
+      "id": "equilibrium-constant",
+      "name": "Reading an equilibrium constant",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "equilibrium"
+      ]
+    },
+    {
+      "id": "henderson-hasselbalch",
+      "name": "pH of a buffer from a ratio",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "buffers"
+      ]
+    },
+    {
+      "id": "ocean-acidification",
+      "name": "Why seawater pH is falling",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "ph-log-scale",
+        "buffers"
+      ]
     }
   ]
 }

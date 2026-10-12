@@ -1,6 +1,6 @@
 # Chemistry: category charter
 
-owner: cm-chemistry · status: incubating · curriculum: `content/curriculum/chemistry.json` · coverage: `npm run company -- coverage chemistry`
+owner: cm-chemistry · status: active · curriculum: `content/curriculum/chemistry.json` · coverage: `npm run company -- coverage chemistry`
 
 ## Audience
 People who remember the periodic table poster and nothing else.

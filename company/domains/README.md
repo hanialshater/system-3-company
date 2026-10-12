@@ -15,7 +15,7 @@ teach yet. **Unmet demand** is the roadmap's raw material: `npm run company -- c
 | AI & Machine Learning | [ai.md](ai.md) | active |
 | Economics & Money | [economics.md](economics.md) | active |
 | Life Sciences | [life.md](life.md) | active |
-| Chemistry | [chemistry.md](chemistry.md) | incubating |
+| Chemistry | [chemistry.md](chemistry.md) | active |
 | Geography & Maps | [geography.md](geography.md) | active |
 
 ## Expanding into a new domain
