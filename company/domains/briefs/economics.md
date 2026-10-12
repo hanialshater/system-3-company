@@ -183,3 +183,306 @@ Not briefed yet (concepts on the map with no lesson planned this cycle, kept so 
 - Interaction: the learner builds a basket by tapping items into a cart bar of $20; the picture is a grid of 10 apple slots that fill; no text apart from numbers. Each loaf takes two apple slots.
 - Payoff: Within a fixed budget every extra loaf costs two apples: the trade-off is the price ratio.
 - Claims to check: (1) arithmetic; (2) the ratio 4/2 = 2 apples per loaf; (3) prices are illustrative.
+
+---
+
+## Round 2 (briefs #23–#55)
+
+written 2026-10-12 · curriculum now 57 concepts. #23–#28 brief the six concepts that round 1 left unbriefed (break-even, unit-pricing, percentage-points, public-goods-free-rider, prisoners-dilemma, production-possibilities); the "Not briefed yet" list above is superseded by this section. #29–#55 cover 27 new concepts. All answers were recomputed in `artifacts/scratch/cm-economics-r2/check.mjs`. Every lesson is a labelled simplified model with stated assumptions; none says what to buy, borrow or do. Earn-the-reveal: each brief names the key state; the reveal unlocks only once the stage has reached it (`interact()` called only for steps toward it). Question numbers equal the stage's starting numbers. [exploration] marked on 10 of these 33 (16 of 55 overall).
+
+### 23. break-even-cups · concept: break-even · intro · demand 2
+- Learner knows: revenue and cost / does not know: that fixed costs are repaid one unit at a time by what each sale leaves over.
+- Misconception: "I break even when I have sold as much as I spent."
+- Prediction: "A lemonade stand costs $300 a day to run. Each cup costs $1 to make and sells for $3. How many cups to break even?" options: A 100 / B 150 / C 300 (answer: B). Check: each cup leaves 3 − 1 = $2; 300 / 2 = 150 cups.
+- Key state: the stack of per-cup $2 blocks has covered the $300 bar exactly (cup 150); before that the bar still has a gap.
+- Interaction: tap "sell a cup" (and a +10 step); a single bar of $300 fills block by block, the counter beside it. A price tile (2, 3, 4) changes the block size.
+- Payoff: Break-even is the fixed cost divided by what each unit leaves after its own cost.
+- Claims to check: (1) 300 / (3 − 1) = 150; (2) at $4 it is 100 cups; (3) model: constant price and per-cup cost, no waste.
+
+### 24. unit-price-aisle · concept: unit-pricing · intro · demand 2
+- Learner knows: shelf prices / does not know: that the biggest pack is not always the cheapest per gram.
+- Misconception: "Bigger packs are always better value."
+- Prediction: "Three packs of the same rice: 500 g for $3.50, 750 g for $5.10, 1.2 kg for $8.40. Which is cheapest per 100 g?" options: A 500 g / B 750 g / C 1.2 kg (answer: B). Check: 0.70, 0.68, 0.70 dollars per 100 g.
+- Key state: the three price-per-100g bars are all drawn and the 750 g bar is visibly the shortest.
+- Interaction: the learner taps each pack to "pour" it into 100 g cups; a single row of three bars grows to show the cost per cup. A last tap re-prices the 1.2 kg pack with a slider.
+- Payoff: Divide to compare; the sticker price and pack size hide the rate.
+- Claims to check: (1) the three divisions; (2) numbers are invented, not real shop prices; (3) unit price ignores waste and storage.
+
+### 25. rate-up-one-point · concept: percentage-points · intro · demand 1
+- Learner knows: percentages / does not know: that "up 1 point" and "up 1 percent" are different statements.
+- Misconception: "A rate that goes from 4% to 5% rose by 1%."
+- Prediction: "A loan rate rises from 4% to 5%. By what percent did the rate itself rise?" options: A 1% / B 25% / C 5% (answer: B). Check: (5 − 4) / 4 = 0.25.
+- Key state: two bars (4 and 5) with the one-point gap marked as a quarter of the first bar.
+- Interaction: drag the top of the second bar between 4 and 8; two readouts, "points" and "percent", move together. Learner finds rises where the two numbers are far apart (1 to 2: +1 point, +100%).
+- Payoff: A point is a distance on the scale; a percent change is that distance relative to where you started.
+- Claims to check: (1) 25% by division; (2) 1 to 2 gives +100%; (3) wording convention (percentage points) matches style guides, cite one.
+
+### 26. free-rider-pot · concept: public-goods-free-rider · core · demand 1 [exploration]
+- Learner knows: shared resources (shared-pasture, once built) / does not know: why people hold back when a shared good benefits everyone.
+- Misconception: "If a shared project is worth it for the group, people will pay for it."
+- Prediction: "10 neighbours each hold $10. Every dollar put into the common pot becomes $3 of benefit, shared equally by all 10. You put in all $10; the others put in nothing. How much do you end up with?" options: A $30 / B $3 / C $13 (answer: B). Check: you keep $0 and receive 10 × 3 / 10 = $3; each other neighbour has 10 + 3 = $13.
+- Key state: your pile shows $0 kept and $3 back while nine neighbours show $13; the group total reads $130 against $100 at the start.
+- Interaction: unusual format, a game: drag one slider for your own contribution ($0 to $10) while the nine others follow a seeded rule; a single row of ten piles. Learner discovers that holding back always leaves them $2.70 ahead per dollar not given while everyone giving all makes everyone $30.
+- Payoff: Each dollar returns only 30 cents to the giver, so withholding pays individually while contributing helps the group.
+- Claims to check: (1) payoff arithmetic: give g, receive 0.3 × total; (2) all give: each ends with $30; (3) model: one-shot, no talk, no punishment; real groups often contribute, say so in the reveal with a source (public goods experiments, Ledyard 1995).
+
+### 27. two-suspects-payoff · concept: prisoners-dilemma · core · demand 2 [exploration]
+- Learner knows: choices have payoffs / does not know: that a choice can be best for each player and worst for both together.
+- Misconception: "If both players can see the best result, they will pick it."
+- Prediction: "Payoffs (you, other): both Cooperate 3, 3. You Defect, they Cooperate 5, 0. You Cooperate, they Defect 0, 5. Both Defect 1, 1. Whatever the other does, what is better for you?" options: A Cooperate / B Defect / C it depends on what they do (answer: B). Check: if they cooperate, 5 > 3; if they defect, 1 > 0.
+- Key state: the learner has revealed both columns of the other player's choice and seen defect ahead in each.
+- Interaction: a 2 by 2 grid, no text; learner taps a row for themselves while the other player's column flips between cooperate and defect on tap; the highlighted payoff pair moves. Then a ten-round replay against a seeded tit-for-tat opponent.
+- Payoff: When defecting beats cooperating whatever the other does, both defect and each gets 1 instead of 3.
+- Claims to check: (1) the dominance check above; (2) tit-for-tat as a repeated-game rule is described, not claimed optimal in general; (3) model labelled: payoffs invented, no communication.
+
+### 28. bending-frontier · concept: production-possibilities · stretch · demand 1 [exploration]
+- Learner knows: opportunity cost / does not know: that trading one good for another often gets steeper as you push one side.
+- Misconception: "Moving from corn to wheat always costs the same corn per ton."
+- Prediction: "A farm can make corn = 100 − wheat² (wheat 0 to 10 tons). Moving from 0 to 1 ton of wheat costs 1 ton of corn. What does moving from 9 to 10 tons cost?" options: A 1 / B 10 / C 19 (answer: C). Check: corn at 9 = 100 − 81 = 19; at 10 = 0; cost 19.
+- Key state: the learner has dragged the point from low to high wheat and the marker's steps visibly lengthen, ending at the corn axis at 0.
+- Interaction: one draggable point along a single curve; the two tiles beside it show the corn lost for the last 1-ton step. No other text.
+- Payoff: Land best for corn goes first to wheat last, so each extra ton of wheat costs more corn than the last.
+- Claims to check: (1) arithmetic above; (2) model: the curve is invented to show the shape, not data; (3) the term "increasing opportunity cost" matches a standard text.
+
+### 29. net-hourly-after-costs · concept: net-hourly-earnings · intro · demand 2
+- Learner knows: hourly pay / does not know: that costs of earning shrink pay per hour.
+- Misconception: "$22 an hour is what a driving job pays me."
+- Prediction: "A delivery job pays $22 an hour. You drive 15 miles an hour, and driving costs $0.50 a mile. What is left per hour?" options: A $22 / B $14.50 / C $7.50 (answer: B). Check: 15 × 0.50 = $7.50; 22 − 7.50 = $14.50.
+- Key state: the pay bar has the cost block cut out of it and the remaining bar reads 14.5.
+- Interaction: slider for miles per hour (0 to 30); one bar splits into kept pay and cost; a second tap swaps the per-mile cost between $0.25, $0.50, $0.70.
+- Payoff: What matters is pay left after the costs of earning it.
+- Claims to check: (1) arithmetic; (2) model ignores tax and tips; (3) per-mile figure is illustrative, not an official rate.
+
+### 30. raise-into-new-bracket · concept: marginal-tax-rate · core · demand 2
+- Learner knows: tax is a percentage / does not know: that a higher bracket applies only to the income above its threshold.
+- Misconception: "A raise that pushes me into a higher bracket can leave me with less take-home."
+- Prediction: "Made-up tax: 10% on the first $20,000 earned, 30% on every dollar above. Your pay rises from $19,000 to $21,000. How does take-home pay change?" options: A it falls / B it rises by about $1,600 / C it stays the same (answer: B). Check: before 19,000 − 1,900 = 17,100; after 21,000 − (2,000 + 300) = 18,700; change +1,600.
+- Key state: the pay bar crossing $20,000 shows only the part above $20,000 tinted as the higher rate, and take-home higher than before.
+- Interaction: slider for pay ($10,000 to $40,000); one bar split into kept, tax at 10%, tax at 30%; take-home and average-rate readouts.
+- Payoff: The higher rate bites only the dollars above the line, so more pay still means more take-home.
+- Claims to check: (1) arithmetic; (2) the brackets are fictional and not any country's; (3) model ignores credits and other taxes.
+
+### 31. first-payment-mostly-interest · concept: amortization · core · demand 2
+- Learner knows: loans charge interest / does not know: that level payments are mostly interest at first.
+- Misconception: "A loan is paid down in a straight line."
+- Prediction: "A $200,000 loan at 6% over 30 years has a payment of $1,199.10. After 5 years of payments, how much of the $200,000 have you paid off?" options: A about $33,000 / B about $14,000 / C about $72,000 (answer: B). Check: balance after 60 payments is $186,109, so $13,891 repaid; 5/30 of the loan would be $33,333; the payments total $71,946.
+- Key state: the stack of payments shows interest dominating month 1 ($1,000 of $1,199.10) and the principal slice slowly thickening.
+- Interaction: slider for the month number (1 to 360); one stacked bar for that month's payment split into interest and principal, and a running balance readout.
+- Payoff: Interest is charged on a large balance first, so early payments barely reduce it.
+- Claims to check: (1) payment formula (loan-term-cost claim); (2) 186,109 and 13,891 by stepping 60 months; (3) model: fixed rate, no fees, rate illustrative.
+
+### 32. extra-hundred-a-month · concept: extra-loan-payment · core · demand 2
+- Learner knows: amortization (once built) / does not know: that a small extra payment shortens the loan by years.
+- Misconception: "$100 more on a $1,199 payment saves a few months."
+- Prediction: "The same $200,000 loan at 6% would take 30 years. You add $100 to every payment. About how long does it take now?" options: A about 28 years / B about 24.6 years / C about 20 years (answer: B). Check: stepping the balance gives 295 months = 24 years 7 months; interest falls from $231,676 to $182,538, saving $49,138.
+- Key state: the balance line with the extra payment hits zero at month 295 well before the 360-month mark.
+- Interaction: slider for the extra amount ($0 to $500); a single balance-over-time line with the original ghosted; months and interest saved readouts.
+- Payoff: Extra money goes entirely to principal, so every later month's interest shrinks.
+- Claims to check: (1) 295 months and both interest totals by simulation; (2) model: fixed rate, no prepayment penalty; (3) no advice on whether to prepay.
+
+### 33. which-debt-first · concept: debt-payoff-order · core · demand 2
+- Learner knows: interest charges (minimum-payment-trap) / does not know: that order of repayment changes total interest.
+- Misconception: "The order I pay debts in makes no difference to the cost."
+- Prediction: "Two card debts: $1,000 at 6% a year and $4,000 at 24% a year. You pay $300 a month in total, all on one debt until it is gone, then the other (ignore minimums). How much less interest do you pay by paying the 24% debt first?" options: A about $30 / B about $300 / C nothing (answer: B). Check: step by month: 24%-first total interest $793; $1,000-first $1,095; difference $302.
+- Key state: both runs shown finished, the interest totals sitting beside each other, the 24% run lower.
+- Interaction: a toggle for which debt gets the $300; one line chart of total owed for the chosen order with the other ghosted; interest paid so far.
+- Payoff: Money that kills the higher-rate balance first stops the most interest from being added.
+- Claims to check: (1) the two totals by simulation (monthly rate = APR/12, payment after interest); (2) model: fixed rates, no minimums, no new spending; (3) this is arithmetic about one model, not advice to any person.
+
+### 34. salt-and-concert-tickets · concept: price-elasticity · core · demand 2
+- Learner knows: revenue peaks at some price (revenue-sweet-spot) / does not know: that whether a price rise adds revenue depends on how much buyers cut back.
+- Misconception: "A price rise always cuts sales enough to hurt, or never does."
+- Prediction: "Both sellers raise prices 10%. Salt buyers cut purchases by 1%; concert-ticket buyers cut by 20%. Whose revenue rises?" options: A both / B only salt / C only tickets (answer: B). Check: salt 1.10 × 0.99 = 1.089 (+8.9%); tickets 1.10 × 0.80 = 0.88 (−12%).
+- Key state: both revenue rectangles redrawn at +10% price, the salt one taller than before and the ticket one shorter.
+- Interaction: slider for the price rise (0 to 30%) for each of two goods in turn (two taps pick the good); one rectangle (price × quantity) with the old outline ghosted.
+- Payoff: A price rise helps when buyers barely react and hurts when they walk away.
+- Claims to check: (1) multiplications above; (2) cutbacks are invented example sensitivities, not measured; (3) model: revenue not profit, one price step.
+
+### 35. price-floor-glut · concept: price-floor · core · demand 1
+- Learner knows: the bread model and a cap (supply-demand) / does not know: that a price held above the balance leaves goods unsold.
+- Misconception: "A higher guaranteed price helps sellers without costs."
+- Prediction: "Bread model: buyers want 100 − 10p, bakers bake 10p − 20 (balance at $6, 40 loaves). A rule says bread cannot sell below $8. How many loaves go unsold?" options: A 0 / B 20 / C 40 (answer: C). Check: at $8 buyers want 20, bakers make 60; unsold 40.
+- Key state: the price marker pushed up past $6 with the gap between the supply and demand bars at the marker visibly widening to 40.
+- Interaction: slider for the floor ($4 to $10); one graph with two lines and a price level; the gap between bars labelled as a number. Below $6 nothing changes (the rule does not bind), which the learner finds.
+- Payoff: A floor above the balance price raises the price but leaves a surplus, because it does not change what buyers want.
+- Claims to check: (1) the three quantities; (2) model: straight lines, one market, sellers bake what they expect to sell; (3) no claim about any real minimum price.
+
+### 36. heat-wave-demand · concept: demand-shift · core · demand 2
+- Learner knows: supply shift (flour-shock) / does not know: that a demand rise moves price and quantity together.
+- Misconception: "A demand rise only changes the price."
+- Prediction: "Ice cream model: buyers want 100 − 10p, sellers supply 10p − 20, balance $6 at 40. A heat wave makes buyers want 30 more at every price. What is the new price?" options: A $6 / B $7.50 / C $9 (answer: B). Check: 130 − 10p = 10p − 20 gives p = 7.5, quantity 55.
+- Key state: the demand line has shifted up and the crossing dot has moved along the supply line to (7.5, 55).
+- Interaction: slider for the extra demand (0 to 50); one graph; readouts of price and quantity; the old crossing ghosted.
+- Payoff: When buyers want more at every price, sellers supply more only by charging more, so price and quantity both rise.
+- Claims to check: (1) algebra; (2) model: straight lines; (3) real shifts are messier.
+
+### 37. buyers-who-would-pay-more · concept: consumer-surplus · core · demand 1
+- Learner knows: price and demand / does not know: that most buyers get more value than they pay.
+- Misconception: "At the market price, everyone is paying exactly what it is worth to them."
+- Prediction: "Five buyers would pay up to $10, $8, $6, $4, $2 for a cup. The price is $5. What is the total of their gains (value minus price) among those who buy?" options: A $15 / B $9 / C $24 (answer: B). Check: three buy; gains 5 + 3 + 1 = 9; they pay 15; they value it at 24.
+- Key state: the price line drawn through the five buyer bars with the gap above $5 shaded and summed to 9.
+- Interaction: slider for the price ($1 to $10); five bars (buyers' values), a line at the price; shaded gaps and a single total readout.
+- Payoff: Buyers who value a good above its price keep the difference.
+- Claims to check: (1) arithmetic; (2) at $3 four buy with surplus 7 + 5 + 3 + 1 = 16; (3) model: invented values, one cup each.
+
+### 38. monopolist-holds-back · concept: monopoly-pricing · stretch · demand 1 [exploration]
+- Learner knows: marginal cost and revenue (earlier lessons) / does not know: that a seller with no rivals picks a higher price and a smaller amount.
+- Misconception: "A seller with no rival charges whatever it likes, so price is unlimited."
+- Prediction: "Buyers pay 100 − q for the q-th unit; each unit costs $20 to make. One seller with no rival picks one price for everything. Which price earns the most profit?" options: A $20 / B $60 / C $100 (answer: B). Check: profit (p − 20)(100 − p): $60 gives 1,600; $50 gives 1,500; $70 gives 1,500; $20 gives 0; $100 sells nothing.
+- Key state: a price marker with the profit rectangle at its largest at $60 (area 40 × 40) after the learner has moved the marker on both sides.
+- Interaction: unusual format: the learner is the sole seller and drags a price marker; one rectangle (margin × units) is the whole picture; a "competition" tap shows the price falling to $20 and 80 units.
+- Payoff: Raising price loses sales, so the profit-maximising price sits between cost and the top of demand.
+- Claims to check: (1) the profits above by multiplication; (2) with competition price equals cost, $20 and 80 units; (3) model: straight-line demand, one price, no regulation; no view on real firms.
+
+### 39. bank-lends-it-again · concept: money-multiplier · stretch · demand 1 [exploration]
+- Learner knows: a deposit sits in a bank / does not know: that lending and redepositing make total deposits a multiple of the first deposit.
+- Misconception: "A $1,000 deposit is $1,000 of money in the system."
+- Prediction: "A bank keeps 10% of each deposit and lends the rest; the borrower spends it and the seller deposits it. Starting from one $1,000 deposit and repeating without end, what do total deposits reach?" options: A $1,100 / B $2,000 / C $10,000 (answer: C). Check: 1,000 × (1 + 0.9 + 0.9² + …) = 1,000 / 0.1 = $10,000.
+- Key state: the learner has stepped through several rounds with a running total, and the shrinking new-deposit bars approach the line at $10,000.
+- Interaction: tap "next round" and watch one growing stack of deposit slabs, each 90% of the previous; a reserve-ratio tile (10%, 20%, 50%).
+- Payoff: Each deposit funds the next loan, so the pile grows to the first deposit divided by the reserve share.
+- Claims to check: (1) geometric sum, 100 rounds by script; (2) model: all loans redeposited, no cash held, fixed reserve ratio; real banks differ and many central banks use no reserve requirement (source in reveal); (3) it is a textbook simplification, labelled.
+
+### 40. growth-gap-seventy-years · concept: growth-rate-gap · core · demand 1 [exploration]
+- Learner knows: compounding / does not know: that one point of growth rate changes a country's income a lot over generations.
+- Misconception: "3% growth and 2% growth are nearly the same."
+- Prediction: "Two countries start equally rich. One grows 3% a year, the other 2%. After 70 years, how much richer is the first?" options: A about 1.4 times / B about 2 times / C about 3 times (answer: B). Check: 1.03^70 = 7.92; 1.02^70 = 4.00; ratio 1.98.
+- Key state: both lines drawn to year 70 with the end values 7.9 and 4.0 and the ratio visible.
+- Interaction: unusual format: a slider for the year (0 to 70) scrubs two living bars (not lines); a tile picks the growth gap of 0.5, 1 or 2 points.
+- Payoff: A small difference in the rate becomes a gap of a factor of two within a lifetime.
+- Claims to check: (1) the two powers and the ratio; (2) rates are invented, not any country's record; (3) model: constant growth, no shocks, no forecast.
+
+### 41. personal-inflation-basket · concept: price-index · core · demand 2
+- Learner knows: inflation (inflation-halves-cash) / does not know: that a headline rate is a weighted average, and yours can differ.
+- Misconception: "Inflation is the average of how much each price rose."
+- Prediction: "A household spends 50% on rent (up 6%), 30% on food (up 2%), 20% on fun (up 0%). By how much did its total cost of living rise?" options: A 2.7% / B 3.6% / C 6% (answer: B). Check: 0.5 × 6 + 0.3 × 2 + 0.2 × 0 = 3.6; the plain average of 6, 2, 0 is 2.67.
+- Key state: three item blocks sized by spending share, each coloured by its rise; the overall bar lands at 3.6.
+- Interaction: drag the budget divider between rent and fun; the three price rises are fixed; the overall rise readout and one stacked bar update.
+- Payoff: An index weights each price by how much of the budget it takes, so a household's own inflation is its own mix.
+- Claims to check: (1) weighted average arithmetic; (2) shares and rises are invented; (3) model: the rise of the fixed basket, no switching of goods.
+
+### 42. exchange-round-trip · concept: currency-spread · intro · demand 2
+- Learner knows: that currencies have rates / does not know: that buying and selling rates differ, so a round trip loses money.
+- Misconception: "Exchange the money there and back and I end with the same."
+- Prediction: "A booth gives 0.90 euro per dollar and sells dollars at 1.05 dollars per euro. You change $1,000 into euros, then straight back, with no market move. How much do you hold?" options: A $1,000 / B $945 / C $900 (answer: B). Check: 1,000 × 0.90 = 900 euro; 900 × 1.05 = $945.
+- Key state: the money bar shrinks at the first tap and again at the second, ending at 945.
+- Interaction: tap "to euros" and "to dollars"; one bar shows the amount in the chosen currency; a slider for the spread (0% to 10%).
+- Payoff: The gap between buy and sell rates is a cost paid on every crossing.
+- Claims to check: (1) arithmetic; (2) rates are invented; (3) model: single booth, no fees; no tips on where to change money.
+
+### 43. fee-on-two-week-loan · concept: short-loan-annualized · intro · demand 3
+- Learner knows: APR (apr-vs-apy-gap) / does not know: that a small fee for a short loan is a very large yearly rate.
+- Misconception: "A $15 fee on $100 is a 15% rate."
+- Prediction: "A lender charges $15 to lend $100 for two weeks. Counting 26 two-week periods in a year, what is the simple yearly rate?" options: A 15% / B 390% / C 100% (answer: B). Check: 15 / 100 = 15% per period; 15 × 26 = 390%. (Compounding the 26 periods would give about 3,690%.)
+- Key state: a timeline bar of 26 two-week blocks, with the $15 fee stamped in each block and the total of $390 per $100 shown.
+- Interaction: slider for the loan length in days (7 to 90); fee fixed at $15 per $100; one bar of the year filled with fee blocks, the yearly-rate readout.
+- Payoff: The same fee costs far more per year when the loan is short, so compare rates over the same time.
+- Claims to check: (1) 15 × 26 = 390; (2) 1.15^26 = 37.86; (3) model: simple annualisation, fee-only, no rollover; no view on a particular lender.
+
+### 44. square-root-wealth · concept: risk-aversion · stretch · demand 1 [exploration]
+- Learner knows: expected value / does not know: that when each extra dollar matters less, a sure amount below the average can feel as good as a gamble.
+- Misconception: "Someone indifferent to a 50-50 gamble over $0 or $100 must value it at $50."
+- Prediction: "In a model, the 'felt value' of wealth W is its square root. A 50-50 coin gives $0 or $100. What sure amount feels exactly as good as the coin?" options: A $50 / B $25 / C $75 (answer: B). Check: 0.5 × √0 + 0.5 × √100 = 5; √25 = 5.
+- Key state: the curve with a chord between (0, 0) and (100, 10), its midpoint at height 5 and the sure amount where the curve reaches 5 (x = 25).
+- Interaction: unusual format: a single curve; the learner drags a vertical marker for a sure amount and a horizontal line shows the gamble's felt value; they stop when the marker's height equals the line.
+- Payoff: When extra dollars matter less and less, a sure amount well below the average can equal a gamble.
+- Claims to check: (1) arithmetic; (2) square-root utility is one textbook choice, not a measure of any person; (3) no advice about choices.
+
+### 45. cheap-printer-dear-ink · concept: total-cost-of-ownership · intro · demand 2
+- Learner knows: price tags / does not know: that a cheaper purchase price can cost more over its use.
+- Misconception: "The cheaper one costs less."
+- Prediction: "Printer A costs $60 and $0.10 a page. Printer B costs $150 and $0.03 a page. You will print 2,000 pages. Which costs less in total?" options: A printer A / B printer B / C the same (answer: B). Check: A 60 + 200 = $260; B 150 + 60 = $210.
+- Key state: two stacked bars (price plus usage) at 2,000 pages with B shorter, after the learner has moved through the crossing.
+- Interaction: slider for pages printed (0 to 4,000); two stacked bars of purchase plus running cost; the crossing at 1,286 pages marked.
+- Payoff: Cost is the price plus the cost of using it, and which wins depends on how much you use it.
+- Claims to check: (1) totals; (2) crossing at 90 / 0.07 = 1,286 pages; (3) prices invented.
+
+### 46. same-dollars-more-shares · concept: average-purchase-cost · core · demand 2
+- Learner knows: averages / does not know: that buying equal dollars gets more units when price is low.
+- Misconception: "My average cost per share is the average of the prices."
+- Prediction: "You put $100 into a fund at $10 a share, then at $5, then at $10. What is your average cost per share?" options: A $8.33 / B $7.50 / C $5 (answer: B). Check: 10 + 20 + 10 = 40 shares for $300 = $7.50; the simple average price is $8.33.
+- Key state: the share stacks for each month, with the low-price month visibly the tallest, and the cost line sitting below the average price.
+- Interaction: the learner sets the middle month's price with a slider ($2 to $20); equal-dollar blocks fill the three share columns; two readouts, average price and average cost.
+- Payoff: Equal dollars buy more at low prices, so the average cost sits below the average price.
+- Claims to check: (1) arithmetic; (2) the cost is a harmonic mean of the prices; (3) arithmetic only, no claim about returns or what to buy.
+
+### 47. loaf-with-smoke · concept: externality · core · demand 2
+- Learner knows: market balance / does not know: that when a cost falls on others, the market makes too much.
+- Misconception: "The market quantity is the best quantity."
+- Prediction: "Bread model: buyers' price for the q-th loaf is (100 − q) / 10, the bakers' cost is (q + 20) / 10, giving 40 loaves. Each loaf also puts $1 of smoke on neighbours. How many loaves match the true total cost?" options: A 40 / B 35 / C 0 (answer: B). Check: (100 − q) / 10 = (q + 20) / 10 + 1 gives q = 35.
+- Key state: a third line (cost plus $1) added above the bakers' cost and the crossing with the buyers' line sitting at 35, left of 40.
+- Interaction: slider for the size of the harm per loaf ($0 to $3); one graph with three lines; readouts of the market and the true-cost quantity. A tap adds a $1 per-loaf tax to the bakers.
+- Payoff: A cost that falls on others is left out of the price, so more is made than the true cost justifies.
+- Claims to check: (1) algebra; (2) a $1 tax on bakers moves the market to 35 in this model; (3) model: straight lines, harm valued at $1 for illustration; no claim about any policy.
+
+### 48. lemon-market-unravels · concept: adverse-selection · stretch · demand 1 [exploration]
+- Learner knows: insurance pooling (insurance-fair-price) / does not know: that when buyers cannot tell quality, the good ones leave.
+- Misconception: "If buyers pay the average value, a fair price brings all cars to market."
+- Prediction: "Half of used cars are good (worth $3,000 to buyers; owners sell only for $2,500 or more), half are bad (worth $1,000; owners sell for $500 or more). Buyers cannot tell, so they offer the average, $2,000. Which cars are for sale?" options: A all of them / B only the good ones / C only the bad ones (answer: C). Check: the good owners want at least 2,500 > 2,000 and refuse; bad owners take 2,000.
+- Key state: car icons in a lot; at the offer line of $2,000 the good cars turn grey and leave, the remaining pool's average value falls to $1,000.
+- Interaction: unusual format: the learner drags the buyers' offer from $500 up to $3,000 and watches cars leave or enter the lot; a second readout shows the average value of the cars still for sale.
+- Payoff: A price that ignores quality drives out the cars worth more, so the average quality offered falls.
+- Claims to check: (1) the threshold arithmetic; (2) at an offer above $2,500 all sell but buyers then pay more than the average of 2,000 (they lose); (3) Akerlof (1970) as the source, model labelled with invented numbers.
+
+### 49. three-points-more-payment · concept: loan-rate-sensitivity · core · demand 2
+- Learner knows: loan payments / does not know: that a few points of rate change the payment by far more than a few percent.
+- Misconception: "Rates up from 4% to 7% add about 3% to the payment."
+- Prediction: "A $300,000 loan over 30 years. The payment is $1,432 at 4%. At 7%, by how much does the payment rise?" options: A about 3% / B about 39% / C about 75% (answer: B). Check: 7% payment is $1,995.91; 1,995.91 / 1,432.25 = 1.394.
+- Key state: two payment bars side by side with the 7% bar visibly taller by about two fifths.
+- Interaction: slider for the rate (1% to 10%); one bar of the monthly payment with the 4% level as a line; a tile for the loan term.
+- Payoff: Rate points change the interest paid on every dollar for decades, so payments move more than the points.
+- Claims to check: (1) both payments by formula; (2) the 75% option is 7 / 4 − 1, the ratio of rates (not the payment); (3) model: fixed rate and term, illustrative rates, not a forecast.
+
+### 50. twenty-then-ten-off · concept: percent-stacking · intro · demand 2
+- Learner knows: percentages / does not know: that sequential discounts apply to different bases.
+- Misconception: "20% off then 10% off is 30% off."
+- Prediction: "A $100 coat is 20% off, then a coupon takes another 10% off the sale price. What is the total discount?" options: A 30% / B 28% / C 25% (answer: B). Check: 100 × 0.8 × 0.9 = $72, so 28% off.
+- Key state: price bar after the first cut ($80) and the second cut shaving 10% of $80 = $8, ending at 72.
+- Interaction: tap the two discounts as tiles in either order; one price bar with the cut blocks; swap order and see the end price stay $72.
+- Payoff: Percent changes multiply, so stacked discounts are less than their sum, and the order does not matter.
+- Claims to check: (1) multiplication; (2) order commutes (0.8 × 0.9 = 0.9 × 0.8); (3) numbers illustrative.
+
+### 51. markup-fifty-margin-third · concept: markup-vs-margin · intro · demand 2
+- Learner knows: percentages / does not know: that markup is on cost and margin is on price.
+- Misconception: "A 50% markup is a 50% margin."
+- Prediction: "A shop pays $60 for a jacket and adds a 50% markup. What share of the selling price is profit?" options: A 50% / B 33% / C 25% (answer: B). Check: price 60 × 1.5 = $90; profit $30; 30 / 90 = 33.3%.
+- Key state: a bar for the price $90 split into $60 cost and $30 profit, with the profit visibly a third of the bar and half of the cost block.
+- Interaction: slider for the markup (0% to 200%); one bar split into cost and profit; two readouts, markup and margin; learner notes margin can never reach 100%.
+- Payoff: The same $30 is half of cost but a third of price, so name the base.
+- Claims to check: (1) arithmetic; (2) margin = markup / (1 + markup); (3) numbers illustrative.
+
+### 52. count-the-bread-once · concept: gdp-value-added · core · demand 2
+- Learner knows: sales / does not know: that adding every sale in a chain counts the same wheat several times.
+- Misconception: "Output is the total of everything sold."
+- Prediction: "A farmer sells wheat for $1 to a miller, who sells flour for $3 to a baker, who sells bread for $6 to a family. Sales total $10. What does the economy produce (GDP) in this chain?" options: A $10 / B $6 / C $3 (answer: B). Check: value added 1 + (3 − 1) + (6 − 3) = $6, equal to the final sale.
+- Key state: three stacked slices (1, 2, 3) added up to the final $6 bread bar.
+- Interaction: tap each stage to colour its own contribution; one bar of the final bread price fills with the three slices; a toggle "count all sales" shows the double-counted $10.
+- Payoff: Count only what each stage adds, or you count the wheat three times.
+- Claims to check: (1) arithmetic; (2) final-sales and value-added methods agree; (3) model: a three-step chain, no imports or stocks.
+
+### 53. bond-seesaw · concept: bond-price-yield · stretch · demand 1 [exploration]
+- Learner knows: present value (wait-or-take-now) / does not know: why rising rates cut the price of an existing fixed payment.
+- Misconception: "A bond that promises $1,000 is always worth $1,000."
+- Prediction: "A bond pays $50 a year for 10 years, then $1,000. New bonds now pay 6% a year. What is this bond worth today?" options: A $1,000 / B about $926 / C about $1,060 (answer: B). Check: sum of 50 / 1.06^t for t = 1..10 plus 1,000 / 1.06^10 = $926.40.
+- Key state: payment slabs shrunk toward today at 6%, adding to a bar under the $1,000 line.
+- Interaction: unusual format: a seesaw: the learner drags the market rate (2% to 10%) and a single bar for the bond's price moves opposite; the $1,000 line marks the rate 5%.
+- Payoff: A fixed payment is worth what it would cost today to get the same stream at the new rate, so prices and rates move opposite ways.
+- Claims to check: (1) the discount sum by script; (2) at 4% the price is $1,081.11 (compute in the check); (3) model: annual payments, no default, constant rate; not advice on bonds.
+
+### 54. bathtub-deficit-debt · concept: stock-vs-flow · intro · demand 1 [exploration]
+- Learner knows: spending and income / does not know: that a deficit is a flow and debt is the accumulated stock.
+- Misconception: "A deficit and a debt are the same thing."
+- Prediction: "You owe $1,000. For six months you spend $200 more than you earn each month. What do you owe after six months (ignore interest)?" options: A $200 / B $1,000 / C $2,200 (answer: C). Check: 1,000 + 6 × 200 = $2,200.
+- Key state: a bathtub of debt with a tap of $200 running each month; the water level has risen over six months to 2,200.
+- Interaction: unusual format: a tap (flow) and a bathtub (stock); slider for the monthly gap (-$300 to +$300); a "next month" button steps the level; a negative gap drains it.
+- Payoff: A flow adds to a stock each period, so debt only falls when the gap turns negative.
+- Claims to check: (1) arithmetic; (2) model: no interest; interest would make the tub's inflow grow; (3) the analogy is a teaching model.
+
+### 55. deduction-or-credit · concept: deduction-vs-credit · core · demand 2
+- Learner knows: a flat tax rate (marginal-tax-rate) / does not know: that a deduction cuts taxable income while a credit cuts the tax bill.
+- Misconception: "A $1,000 deduction and a $1,000 credit are worth the same."
+- Prediction: "In a made-up system with a 20% tax rate, a $1,000 deduction cuts your tax by how much?" options: A $1,000 / B $200 / C $0 (answer: B). Check: taxable income falls by 1,000, so tax falls by 0.20 × 1,000 = $200; a $1,000 credit would cut it by $1,000.
+- Key state: the income bar reduced by the deduction, with the tax slice shrinking by a fifth of the cut, beside the credit run in which the tax slice drops by the full 1,000.
+- Interaction: one switch for deduction or credit, a slider for the tax rate (10% to 40%); a single tax bill bar that shortens.
+- Payoff: A credit subtracts from the bill; a deduction subtracts from the income the bill is taken from.
+- Claims to check: (1) arithmetic; (2) the system is fictional, not any country's; (3) no tax advice.
