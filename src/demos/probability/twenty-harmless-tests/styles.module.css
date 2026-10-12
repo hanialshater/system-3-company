@@ -1,0 +1,7 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.msg { margin: 6px 0 2px; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; flex-shrink: 0; }
+.grid .card { padding: 0; height: 44px; font-size: 1rem; font-weight: 800; border-radius: 10px; }
+.grid .card:disabled { opacity: 1; }
+.grid .quiet { background: color-mix(in srgb, var(--muted) 12%, var(--bg-2)); color: var(--muted); border-style: dashed; }
+.grid .alarm { background: var(--bad); color: #fff; border-color: var(--bad); font-size: 1.3rem; }

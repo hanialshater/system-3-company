@@ -1,0 +1,80 @@
+{
+  "slug": "coin-gap-keeps-growing",
+  "title": "10,000 flips: do heads and tails meet?",
+  "hook": "Flip long enough and heads and tails even out. So the gap between them shrinks. Right?",
+  "domain": "probability",
+  "concept": "law-of-large-numbers",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a fair coin lands heads half the time",
+      "reading a line chart"
+    ],
+    "doesNotKnow": [
+      "that the law of large numbers concerns proportions, not counts",
+      "square-root growth of random fluctuations"
+    ]
+  },
+  "misconception": "The law of large numbers means the heads and tails counts get closer together as you keep flipping.",
+  "objective": "The learner can explain that the heads share converges to 50% while the heads-minus-tails gap typically grows (like the square root of the number of flips), because the total grows faster than the gap.",
+  "claims": [
+    {
+      "id": "probability.coin-gap-keeps-growing.c1",
+      "text": "After n fair flips, the heads-minus-tails gap has a standard deviation of the square root of n: 100 for 10,000 flips.",
+      "support": "derivation",
+      "source": "H - T is a sum of n independent +1/-1 steps, each with variance 1, so var = n and SD = sqrt(n); sqrt(10,000) = 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.coin-gap-keeps-growing.c2",
+      "text": "The average size of the gap is about 2.5 after 10 flips, 8 after 100, 25 after 1,000 and 80 after 10,000.",
+      "support": "derivation",
+      "source": "E|H - T| is approximately sqrt(2n/pi): 2.52, 7.98, 25.2, 79.8. Exact binomial sums: n = 10 gives 2.46; n = 10,000 gives 79.79 (computed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.coin-gap-keeps-growing.c3",
+      "text": "The heads share after 10,000 fair flips is within about 1 percentage point of 50% in 95% of runs.",
+      "support": "derivation",
+      "source": "SD of the share = 0.5/sqrt(10,000) = 0.005; 1.96 x 0.005 = 0.0098, about 1 point.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.coin-gap-keeps-growing.c4",
+      "text": "The 20 runs on the stage are seeded fair flips; after 10,000 flips their gaps averaged 86 (largest 204) and every heads share was between 49.0% and 50.9%.",
+      "support": "simulation",
+      "source": "src/demos/probability/coin-gap-keeps-growing/model.ts, seed 1713. Re-run: mean |gap| 2.5 / 8.3 / 16.3 / 86.1 at 10 / 100 / 1,000 / 10,000 flips; share range at 10,000: 0.4898-0.5089.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.coin-gap-keeps-growing.c5",
+      "text": "The law of large numbers says the share of heads settles toward 50%; it says nothing that requires the counts to come together.",
+      "support": "source",
+      "source": "W. Feller, An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd ed. (1968), ch. III (fluctuations in coin tossing) and ch. X (law of large numbers).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After a million fair coin flips, which is most likely?",
+    "options": [
+      "Heads and tails within a few of each other, and the share very near 50%",
+      "Heads and tails hundreds apart, but the share very near 50%",
+      "The share far from 50%"
+    ],
+    "answer": 1,
+    "why": "The gap typically grows like the square root of the flips (about 800 for a million), but 800 out of a million is less than 0.1%, so the share is very close to 50%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

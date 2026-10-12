@@ -1,0 +1,4 @@
+# Build note: monty-hall-100-doors (demo-builder, 2026-10-12)
+- Intent: 100 tappable doors. Pick one, the knowing host opens 98, then tap yours (stay) or the door marked "other" (switch). "Play 100 rounds" plays seeded rounds both ways so 99/100 shows up as a tally. The 10- and 3-door options let the learner compare the gap. The seeded logic lives in model.ts so claim c5 can be re-run.
+- The reveal unlocks after 2 meaningful events: a finished round or a 100-round batch. Changing the door count does not count. Known gap: a learner can meet the gate entirely at 3 doors. When that happens, the reveal names the door count behind their tally.
+- After screenshots: the 100-door grid was clipped at the bottom on a phone. I merged the control rows, dropped "Next round" (tapping any door starts the next round) and shrank the doors to 24px. I also fixed "1 empty doors" and labelled the offered door "other".

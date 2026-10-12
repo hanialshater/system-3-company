@@ -18,10 +18,20 @@ import m12 from "./math/exponential-growth/meta.json";
 import m13 from "./math/odd-numbers-make-squares/meta.json";
 import m14 from "./physics/pendulum-period/meta.json";
 import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m16 from "./probability/armour-where-no-holes/meta.json";
+import m17 from "./probability/base-rates/meta.json";
+import m18 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m19 from "./probability/birthday-paradox/meta.json";
+import m20 from "./probability/coin-gap-keeps-growing/meta.json";
+import m21 from "./probability/five-heads-then-what/meta.json";
+import m22 from "./probability/hidden-third-cause/meta.json";
+import m23 from "./probability/monty-hall-100-doors/meta.json";
+import m24 from "./probability/one-in-a-million-match/meta.json";
+import m25 from "./probability/praise-then-slump/meta.json";
+import m26 from "./probability/small-hospital-big-swings/meta.json";
+import m27 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -40,6 +50,16 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),
+  "armour-where-no-holes": () => import("./probability/armour-where-no-holes/Demo"),
   "base-rates": () => import("./probability/base-rates/Demo"),
+  "better-in-every-group-worse-overall": () => import("./probability/better-in-every-group-worse-overall/Demo"),
   "birthday-paradox": () => import("./probability/birthday-paradox/Demo"),
+  "coin-gap-keeps-growing": () => import("./probability/coin-gap-keeps-growing/Demo"),
+  "five-heads-then-what": () => import("./probability/five-heads-then-what/Demo"),
+  "hidden-third-cause": () => import("./probability/hidden-third-cause/Demo"),
+  "monty-hall-100-doors": () => import("./probability/monty-hall-100-doors/Demo"),
+  "one-in-a-million-match": () => import("./probability/one-in-a-million-match/Demo"),
+  "praise-then-slump": () => import("./probability/praise-then-slump/Demo"),
+  "small-hospital-big-swings": () => import("./probability/small-hospital-big-swings/Demo"),
+  "twenty-harmless-tests": () => import("./probability/twenty-harmless-tests/Demo"),
 };

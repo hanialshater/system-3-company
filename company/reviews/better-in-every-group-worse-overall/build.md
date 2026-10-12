@@ -1,0 +1,4 @@
+# Build note: better-in-every-group-worse-overall (demo-builder, 2026-10-12)
+- Intent: a mosaic. Each treatment is a bar 350 patients wide, split into small and large stones, and the fill height is the share cured. The widths make the weighting visible. "Combine groups" draws the overall level across the segments, which is their width-weighted average height. The slider moves large-stone cases between A and B while keeping subgroup rates fixed; away from the real split the counts are expected values.
+- Gate: 2 interactions, and slider moves count only in the combined view. Overall percentages are hidden while the stage is locked.
+- After screenshots: in v1 the combined view replaced the segments with one flat fill, and 78% and 83% looked the same. The segments now stay (faded) under a bold overall line. I also raised the contrast and made the uncured part red.
