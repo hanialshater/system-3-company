@@ -29,20 +29,61 @@
       "text": "Merging two sorted lists with n elements in total takes at most n-1 comparisons.",
       "support": "derivation",
       "source": "Each comparison outputs one element; the last element needs no comparison. Knuth, TAOCP Vol. 3, 5.2.4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.merge-sort-payoff.c2",
       "text": "Merge Sort sorts 1,000 items in fewer than 10,000 comparisons in the worst case.",
       "support": "derivation",
       "source": "Worst case n*ceil(log2 n) - 2^ceil(log2 n) + 1 = 1000*10 - 1024 + 1 = 8,977 (Knuth, TAOCP Vol. 3, 5.2.4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
     },
     {
       "id": "cs.merge-sort-payoff.c3",
       "text": "Comparing every one of 1,000 cards with every other takes 499,500 comparisons.",
       "support": "derivation",
       "source": "n(n-1)/2 with n = 1000.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c4",
+      "text": "Merging two sorted piles of 4 cards can need as many as 7 comparisons, so 7 is the most you could ever need.",
+      "support": "derivation",
+      "source": "Upper bound from c1 (n-1 = 7). Tightness: interleaved piles (A holds the 1st, 3rd, 5th, 7th smallest; B the rest) force a comparison for each of the first 7 cards. Brute force over all 70 splits of 8 distinct values gives max 7. Added by fact-checker 2026-10-12 from the predict answer and reveal; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c5",
+      "text": "Once one pile is empty, the remaining cards go into the row with no further comparisons.",
+      "support": "derivation",
+      "source": "The remaining pile is already sorted and every card in it is larger than everything placed so far, so it is appended as is. Seen in the reveal (\"the rest just slides over for free\") and the stage message \"One pile is empty. The rest needs no comparisons.\" Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c6",
+      "text": "Two sorted piles holding 10 cards in total need at most 9 comparisons to merge, and some piles need all 9.",
+      "support": "derivation",
+      "source": "c1 with n = 10 gives at most 9; brute force over every split (1+9 up to 5+5) reaches 9. Recall question answer and its why (\"Every comparison places one card for good, and the last card needs none\"). Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c7",
+      "text": "Splitting the cards into piles costs no comparisons; all of Merge Sort's comparisons happen while merging.",
+      "support": "derivation",
+      "source": "Top-down Merge Sort splits by position (first half / second half) without looking at values, so the split step makes zero comparisons; the comparison count W(n) = W(ceil(n/2)) + W(floor(n/2)) + (merge cost) has no split term. Hook (\"looks like extra work. It isn't.\") and reveal (\"The splitting is setup.\"). Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c8",
+      "text": "A single card is already a sorted pile.",
+      "support": "convention",
+      "source": "A list of length 0 or 1 is sorted by definition (no adjacent pair is out of order). Reveal: \"Single cards are already sorted piles.\" Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "unverified"
     }
   ],

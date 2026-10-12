@@ -171,3 +171,8 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Light theme: pastel domain colours are too pale as text on white; darken them for ink. */
+@media (prefers-color-scheme: light) {
+  .tag.domain, .concept-lesson { color: color-mix(in srgb, var(--domain) 55%, #000); }
+}
