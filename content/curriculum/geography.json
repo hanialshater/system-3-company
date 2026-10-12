@@ -39,6 +39,249 @@
       "level": "intro",
       "demand": 3,
       "prerequisites": []
+    },
+    {
+      "id": "map-centre-choice",
+      "name": "Where the map is centred is a choice",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "map-scale-varies",
+      "name": "A scale bar is only true in one place",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "map-projections-area"
+      ]
+    },
+    {
+      "id": "equal-area-vs-conformal",
+      "name": "Equal-area or angle-true: you cannot have both",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "map-projections-area"
+      ]
+    },
+    {
+      "id": "projection-families",
+      "name": "Cylinder, cone, plane: how projections are made",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "map-projections-area"
+      ]
+    },
+    {
+      "id": "gnomonic-great-circles",
+      "name": "The map where every great circle is straight",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "great-circle-routes",
+        "projection-families"
+      ]
+    },
+    {
+      "id": "map-orientation-north-up",
+      "name": "North-up is a convention",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": []
+    },
+    {
+      "id": "degree-length-by-latitude",
+      "name": "A degree of longitude shrinks toward the poles",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "distance-from-a-point",
+      "name": "Distance rings: what is within reach",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "great-circle-routes"
+      ]
+    },
+    {
+      "id": "spherical-triangles",
+      "name": "Triangles on a sphere: angles that sum past 180",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "great-circle-routes",
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "antipodes",
+      "name": "Antipodes: straight through the Earth",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "date-line",
+      "name": "The date line and the 50-hour day",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "time-zones"
+      ]
+    },
+    {
+      "id": "tropics-polar-circles",
+      "name": "Tropics and polar circles: where the Sun can be overhead",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "seasons-axial-tilt"
+      ]
+    },
+    {
+      "id": "daylight-by-latitude",
+      "name": "Day length depends on latitude and date",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "seasons-axial-tilt"
+      ]
+    },
+    {
+      "id": "midnight-sun",
+      "name": "Midnight sun and polar night",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "daylight-by-latitude"
+      ]
+    },
+    {
+      "id": "sun-path-sky",
+      "name": "The Sun's path across the sky",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "seasons-axial-tilt",
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "climate-zones",
+      "name": "Climate zones follow latitude, with exceptions",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "earth-shape-oblate",
+      "name": "The Earth is slightly flattened",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "earth-circumference-eratosthenes",
+      "name": "Measuring the Earth with a shadow",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "horizon-distance",
+      "name": "How far is the horizon?",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "earth-shape-oblate"
+      ]
+    },
+    {
+      "id": "plate-tectonics-fit",
+      "name": "Continents that fit: plate tectonics",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "plate-motion-rates",
+      "name": "Plates move at fingernail speed",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "plate-tectonics-fit"
+      ]
+    },
+    {
+      "id": "population-distribution",
+      "name": "Where people live is very uneven",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "land-water-hemispheres",
+      "name": "Land and water hemispheres",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "coastline-paradox",
+      "name": "The coastline paradox",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "map-scale-varies"
+      ]
+    },
+    {
+      "id": "tides-moon",
+      "name": "Tides: two bulges, not one",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "physics:inverse-square"
+      ]
+    },
+    {
+      "id": "coriolis-effect",
+      "name": "Coriolis effect: turning on a turning Earth",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "ocean-gyres",
+      "name": "Ocean gyres and surface currents",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "coriolis-effect"
+      ]
+    },
+    {
+      "id": "river-watersheds",
+      "name": "Rivers and watersheds",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
     }
   ]
 }
