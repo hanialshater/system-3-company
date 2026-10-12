@@ -1,0 +1,73 @@
+{
+  "slug": "patrol-feedback-loop",
+  "title": "The data that writes itself",
+  "hook": "Two identical districts. One record apart. Where does the model send patrols?",
+  "domain": "ai",
+  "concept": "feedback-loops",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that models learn from past data",
+      "shares and percentages"
+    ],
+    "doesNotKnow": [
+      "that a deployed model's decisions can change the data that later retrains it",
+      "runaway feedback loops"
+    ]
+  },
+  "misconception": "If a model's data are real records, its predictions are neutral evidence about reality.",
+  "objective": "The learner can explain that when a model decides where we look, the records it later learns from reflect its own choices, so a small head start can grow into an apparent fact even when the underlying rates are identical.",
+  "claims": [
+    {
+      "id": "ai.patrol-feedback-loop.c1",
+      "text": "The toy's rule: two districts with the same true incident rate; records start at A = 6 and B = 5. Each round one patrol goes to the district with more records, and only the patrolled district logs one new incident. This is a simplification invented for the lesson (one log per round, incidents logged only where patrolled).",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (run(), rule \"most\").",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.patrol-feedback-loop.c2",
+      "text": "Under that rule A is always ahead, so it gets every patrol: after 20 rounds A has 26 of 31 records (83.9%) and B still has 5.",
+      "support": "derivation",
+      "source": "6 + 20 = 26 versus 5; 26 / 31 = 0.839. Reproduced by running run(\"most\", 20) from Demo.tsx: a 26, b 5, all 20 patrols to A.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.patrol-feedback-loop.c3",
+      "text": "If patrols take turns (A first), after 20 rounds A has 16 of 31 records (51.6%).",
+      "support": "derivation",
+      "source": "A gets 10 patrols and B 10: 16 versus 15, 16 / 31 = 0.516. Reproduced by running run(\"turns\", 20) from Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.patrol-feedback-loop.c4",
+      "text": "About real systems: analyses of predictive policing describe the same runaway feedback loop, where patrols sent by past records generate the records that justify more patrols.",
+      "support": "source",
+      "source": "Lum & Isaac 2016, “To predict and serve?”, Significance 13(5), 14–19; Ensign, Friedler, Neville, Scheidegger & Venkatasubramanian 2018, “Runaway Feedback Loops in Predictive Policing”, Proceedings of Machine Learning Research 81 (FAT* 2018).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shop's app shows popular items first, and “popular” is measured by clicks in the app. Why might a new item never become popular?",
+    "options": [
+      "It is rarely shown, so it rarely gets the clicks that would get it shown",
+      "New items are worse",
+      "Click counts are always random"
+    ],
+    "answer": 0,
+    "why": "The model's own choices decide what data it collects. Items it does not show cannot earn the clicks that would change its mind."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

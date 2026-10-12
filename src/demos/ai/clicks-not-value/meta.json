@@ -1,0 +1,73 @@
+{
+  "slug": "clicks-not-value",
+  "title": "Optimise the clicks",
+  "hook": "Clicks reward good articles. So more clicks means better articles. Right?",
+  "domain": "ai",
+  "concept": "goodharts-law",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a metric is (a number used to judge something)",
+      "simple formulas like 2h + s"
+    ],
+    "doesNotKnow": [
+      "that optimising a proxy can drive the real goal to zero",
+      "Goodhart's law"
+    ]
+  },
+  "misconception": "If a metric tracks quality, pushing the metric up pushes quality up.",
+  "objective": "The learner can explain that a proxy which partly rewards the real goal can still be maximised by abandoning the goal, because an optimiser takes the cheapest route to the number.",
+  "claims": [
+    {
+      "id": "ai.clicks-not-value.c1",
+      "text": "The toy's formula is invented: an article has 10 units of effort split between hype h and substance s; clicks = 2h + s and reader value = s. The article starts at 2 hype, 8 substance (12 clicks, value 8).",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (EFFORT, START_HYPE, clicks(), value()).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.clicks-not-value.c2",
+      "text": "With h + s = 10, clicks = h + 10, so each unit moved from substance to hype gains one click and loses one unit of value; clicks are highest at h = 10: 20 clicks, reader value 0.",
+      "support": "derivation",
+      "source": "Substitute s = 10 − h. Reproduced by running runToEnd(2, \"clicks\") from Demo.tsx: h = 10, clicks 20, value 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.clicks-not-value.c3",
+      "text": "The optimiser moves one unit of effort per step in whichever direction raises its target; aimed at value it ends at 10 value and 10 clicks.",
+      "support": "derivation",
+      "source": "step() and runToEnd() in Demo.tsx; runToEnd(2, \"value\") = 0, clicks(0) = 10, value(0) = 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.clicks-not-value.c4",
+      "text": "The pattern is known as Goodhart's law, often stated as “when a measure becomes a target, it ceases to be a good measure”.",
+      "support": "source",
+      "source": "The wording is Strathern 1997, “‘Improving ratings’: audit in the British University system”, European Review 5(3), 305–321, paraphrasing Goodhart 1975, “Problems of Monetary Management: the U.K. Experience”; variants classified in Manheim & Garrabrant 2018, “Categorizing Variants of Goodhart's Law”, arXiv:1803.04585.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A support team is rewarded for closing tickets fast. Ticket closing time drops sharply. What should you check?",
+    "options": [
+      "Whether customers' problems are actually being solved",
+      "Nothing: faster closing means better support",
+      "Whether the timer is accurate"
+    ],
+    "answer": 0,
+    "why": "Closing time was a proxy for good support. Once it is the target, the cheapest way to improve it, like closing unsolved tickets, can push the real goal down."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

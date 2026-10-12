@@ -1,0 +1,80 @@
+{
+  "slug": "attention-shares-one",
+  "title": "Attention is a fixed pie",
+  "hook": "Point the query straight at one word. Does that word get all the attention?",
+  "domain": "ai",
+  "concept": "attention-weights",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that words can be represented as arrows (vectors)",
+      "that arrows pointing the same way are similar"
+    ],
+    "doesNotKnow": [
+      "what an attention weight is",
+      "that softmax makes the weights compete for one total"
+    ]
+  },
+  "misconception": "Attention gives each word its own independent relevance score.",
+  "objective": "The learner can explain that attention weights are softmax shares of one total, computed from query–word similarity, so raising one word's weight lowers the others, and the output is the weighted average of the words.",
+  "claims": [
+    {
+      "id": "ai.attention-shares-one.c1",
+      "text": "In the toy, words A, B and C are unit arrows at 0°, 90° and 180°. Each word's score is the dot product of its arrow with the unit query arrow (the cosine of the angle between them), and the weights are the softmax of the scores.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (KEYS, attend()).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.attention-shares-one.c2",
+      "text": "With the query at 45° the scores are 0.71, 0.71 and −0.71, and the weights are A 44.6%, B 44.6%, C 10.8%.",
+      "support": "derivation",
+      "source": "cos 45° = 0.707, cos 135° = −0.707; e^0.707 = 2.03, e^−0.707 = 0.49; 2.03 / 4.55 = 0.446. Reproduced by running attend(45) from Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.attention-shares-one.c3",
+      "text": "With the query pointing straight at A (0°), A gets 66.5%, B 24.5% and C 9.0%: about two thirds, not all.",
+      "support": "derivation",
+      "source": "Scores 1, 0, −1 → e : 1 : e⁻¹ = 2.718 : 1 : 0.368, A = 0.665 (attend(0) in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.attention-shares-one.c4",
+      "text": "The weights always add to 100%, so raising one word's weight lowers the others; the blend arrow is the weighted average of the word arrows.",
+      "support": "derivation",
+      "source": "Softmax divides each term by the sum of all terms, so the weights sum to 1 by construction; blend = Σ weightᵢ · arrowᵢ in attend().",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.attention-shares-one.c5",
+      "text": "About real systems: transformers compute attention as softmax(QKᵀ/√d)·V; this toy uses unit arrows in two dimensions and omits the √d scaling.",
+      "support": "source",
+      "source": "Vaswani et al. 2017, “Attention Is All You Need”, NeurIPS, §3.2.1, eq. 1 (scaled dot-product attention).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In an attention layer, one word's attention weight goes up. What must happen to the other words' weights?",
+    "options": [
+      "Taken together, they lose exactly that much",
+      "Nothing: each weight is independent",
+      "They go up too"
+    ],
+    "answer": 0,
+    "why": "Softmax weights are shares of one total that always adds to 100%. More for one word means less for the rest."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "whose-cutoff-wins",
+  "title": "Whose cutoff wins?",
+  "hook": "The model never sees anyone's group. So it treats everyone the same. Right?",
+  "domain": "ai",
+  "concept": "training-data-bias",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model learns from examples",
+      "pass/fail cutoffs on a test score"
+    ],
+    "doesNotKnow": [
+      "that training minimises the average mistake over whoever is in the data",
+      "that an under-represented group can carry most of the errors"
+    ]
+  },
+  "misconception": "If you do not give a model the group label, it treats everyone equally.",
+  "objective": "The learner can explain that a model trained to make the fewest total mistakes fits the majority of its data, so a group that is rare in training can bear the errors even though the model never sees group labels.",
+  "claims": [
+    {
+      "id": "ai.whose-cutoff-wins.c1",
+      "text": "The toy has 100 invented people: 90 in group A, qualified from a score of 50, and 10 in group B, qualified from 30. Scores are spread evenly from 0 to 100 (9 group A people and 1 group B person in each band of 10 points).",
+      "support": "convention",
+      "source": "The lesson's own data in Demo.tsx (A_SCORES, B_SCORES, A_LINE, B_LINE).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.whose-cutoff-wins.c2",
+      "text": "A mistake is passing someone who is not qualified or failing someone who is. One cutoff applies to everyone; the model learns the cutoff (in steps of 10) with the fewest total mistakes.",
+      "support": "convention",
+      "source": "mistakes() and BEST in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.whose-cutoff-wins.c3",
+      "text": "The fewest total mistakes come at a cutoff of 50, group A's line: 2 mistakes in 100 (98% right), both group B people scoring 30–50 who are wrongly failed. That is 20% of group B and 0% of group A.",
+      "support": "derivation",
+      "source": "Running mistakes() from Demo.tsx for cutoffs 0–100: totals 48, 38, 28, 18, 10, 2, 12, 22, 32, 42, 52; minimum at 50 with A 0, B 2. Continuous version: expected mistakes ∝ 0.9·|c − 50| + 0.1·|c − 30|, whose slope between 30 and 50 is −0.9 + 0.1 < 0, so it falls until c = 50.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.whose-cutoff-wins.c4",
+      "text": "Moving the cutoff from 50 to 40 fixes one group B person and breaks nine group A people.",
+      "support": "derivation",
+      "source": "The 40–50 band holds 9 group A people (not qualified, below 50) who a cutoff of 40 wrongly passes, and 1 group B person (score 45, qualified) whom it now correctly passes. mistakes(40) in Demo.tsx = A 9, B 1 (the remaining B mistake is the person at 35, still failed).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.whose-cutoff-wins.c5",
+      "text": "About real systems: commercial face-analysis tools misclassified the gender of darker-skinned women far more often than that of lighter-skinned men (error rates up to 34.7% versus at most 0.8%).",
+      "support": "source",
+      "source": "Buolamwini & Gebru 2018, “Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification”, Proceedings of Machine Learning Research 81 (FAT* 2018), abstract (34.7% and 0.8% maximum error rates).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A hiring model is trained on past applicants, 95% from one city. Nobody's city is in the data it sees. Where are its mistakes likely to fall?",
+    "options": [
+      "Mostly on applicants from other places",
+      "Evenly on everyone, since it never sees the city",
+      "Mostly on the 95% majority"
+    ],
+    "answer": 0,
+    "why": "Training minimises total mistakes, and the majority dominates the total. If the rare group differs, the rule fits the majority and the rare group carries the errors."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

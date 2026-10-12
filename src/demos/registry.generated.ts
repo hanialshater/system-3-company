@@ -2,50 +2,70 @@
 // Source of truth: src/demos/<domain>/<slug>/meta.json
 import type { ComponentType } from "react";
 import type { DemoMeta } from "@/kit/types";
-import m0 from "./ai/gradient-descent/meta.json";
-import m1 from "./ai/overfitting/meta.json";
-import m2 from "./chemistry/atoms-across-a-hair/meta.json";
-import m3 from "./chemistry/freezer-balloon/meta.json";
-import m4 from "./chemistry/half-life/meta.json";
-import m5 from "./chemistry/heavy-but-floats/meta.json";
-import m6 from "./chemistry/one-dose-of-acid/meta.json";
-import m7 from "./chemistry/ph-log-scale/meta.json";
-import m8 from "./chemistry/read-the-bone-clock/meta.json";
-import m9 from "./chemistry/same-count-different-weight/meta.json";
-import m10 from "./chemistry/same-sugar-more-water/meta.json";
-import m11 from "./chemistry/the-tagged-molecule/meta.json";
-import m12 from "./chemistry/the-tail-that-reacts/meta.json";
-import m13 from "./chemistry/twice-as-hot-not-twice-as-fast/meta.json";
-import m14 from "./cs/binary-numbers/meta.json";
-import m15 from "./cs/binary-search/meta.json";
-import m16 from "./cs/merge-sort-payoff/meta.json";
-import m17 from "./economics/compound-interest/meta.json";
-import m18 from "./economics/fee-drag-gap/meta.json";
-import m19 from "./economics/inflation-halves-cash/meta.json";
-import m20 from "./economics/longer-loan-cost/meta.json";
-import m21 from "./economics/minimum-payment-trap/meta.json";
-import m22 from "./economics/real-rate-illusion/meta.json";
-import m23 from "./economics/rule-of-72-shortcut/meta.json";
-import m24 from "./economics/shared-pasture/meta.json";
-import m25 from "./economics/start-early-race/meta.json";
-import m26 from "./economics/sunk-cost-exit/meta.json";
-import m27 from "./economics/supply-demand/meta.json";
-import m28 from "./economics/up-then-down-trap/meta.json";
-import m29 from "./geography/mercator-greenland/meta.json";
-import m30 from "./life/herd-immunity/meta.json";
-import m31 from "./life/natural-selection/meta.json";
-import m32 from "./math/exponential-growth/meta.json";
-import m33 from "./math/odd-numbers-make-squares/meta.json";
-import m34 from "./physics/pendulum-period/meta.json";
-import m35 from "./physics/projectile-angle/meta.json";
-import m36 from "./probability/base-rates/meta.json";
-import m37 from "./probability/birthday-paradox/meta.json";
+import m0 from "./ai/attention-shares-one/meta.json";
+import m1 from "./ai/background-shortcut/meta.json";
+import m2 from "./ai/clicks-not-value/meta.json";
+import m3 from "./ai/gradient-descent/meta.json";
+import m4 from "./ai/never-flag-99/meta.json";
+import m5 from "./ai/next-word-tally/meta.json";
+import m6 from "./ai/overfitting/meta.json";
+import m7 from "./ai/patrol-feedback-loop/meta.json";
+import m8 from "./ai/spam-threshold-tradeoff/meta.json";
+import m9 from "./ai/temperature-reshapes/meta.json";
+import m10 from "./ai/true-text-false-claims/meta.json";
+import m11 from "./ai/whose-cutoff-wins/meta.json";
+import m12 from "./chemistry/atoms-across-a-hair/meta.json";
+import m13 from "./chemistry/freezer-balloon/meta.json";
+import m14 from "./chemistry/half-life/meta.json";
+import m15 from "./chemistry/heavy-but-floats/meta.json";
+import m16 from "./chemistry/one-dose-of-acid/meta.json";
+import m17 from "./chemistry/ph-log-scale/meta.json";
+import m18 from "./chemistry/read-the-bone-clock/meta.json";
+import m19 from "./chemistry/same-count-different-weight/meta.json";
+import m20 from "./chemistry/same-sugar-more-water/meta.json";
+import m21 from "./chemistry/the-tagged-molecule/meta.json";
+import m22 from "./chemistry/the-tail-that-reacts/meta.json";
+import m23 from "./chemistry/twice-as-hot-not-twice-as-fast/meta.json";
+import m24 from "./cs/binary-numbers/meta.json";
+import m25 from "./cs/binary-search/meta.json";
+import m26 from "./cs/merge-sort-payoff/meta.json";
+import m27 from "./economics/compound-interest/meta.json";
+import m28 from "./economics/fee-drag-gap/meta.json";
+import m29 from "./economics/inflation-halves-cash/meta.json";
+import m30 from "./economics/longer-loan-cost/meta.json";
+import m31 from "./economics/minimum-payment-trap/meta.json";
+import m32 from "./economics/real-rate-illusion/meta.json";
+import m33 from "./economics/rule-of-72-shortcut/meta.json";
+import m34 from "./economics/shared-pasture/meta.json";
+import m35 from "./economics/start-early-race/meta.json";
+import m36 from "./economics/sunk-cost-exit/meta.json";
+import m37 from "./economics/supply-demand/meta.json";
+import m38 from "./economics/up-then-down-trap/meta.json";
+import m39 from "./geography/mercator-greenland/meta.json";
+import m40 from "./life/herd-immunity/meta.json";
+import m41 from "./life/natural-selection/meta.json";
+import m42 from "./math/exponential-growth/meta.json";
+import m43 from "./math/odd-numbers-make-squares/meta.json";
+import m44 from "./physics/pendulum-period/meta.json";
+import m45 from "./physics/projectile-angle/meta.json";
+import m46 from "./probability/base-rates/meta.json";
+import m47 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
+  "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
+  "background-shortcut": () => import("./ai/background-shortcut/Demo"),
+  "clicks-not-value": () => import("./ai/clicks-not-value/Demo"),
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
+  "never-flag-99": () => import("./ai/never-flag-99/Demo"),
+  "next-word-tally": () => import("./ai/next-word-tally/Demo"),
   "overfitting": () => import("./ai/overfitting/Demo"),
+  "patrol-feedback-loop": () => import("./ai/patrol-feedback-loop/Demo"),
+  "spam-threshold-tradeoff": () => import("./ai/spam-threshold-tradeoff/Demo"),
+  "temperature-reshapes": () => import("./ai/temperature-reshapes/Demo"),
+  "true-text-false-claims": () => import("./ai/true-text-false-claims/Demo"),
+  "whose-cutoff-wins": () => import("./ai/whose-cutoff-wins/Demo"),
   "atoms-across-a-hair": () => import("./chemistry/atoms-across-a-hair/Demo"),
   "freezer-balloon": () => import("./chemistry/freezer-balloon/Demo"),
   "half-life": () => import("./chemistry/half-life/Demo"),

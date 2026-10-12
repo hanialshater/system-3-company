@@ -1,0 +1,80 @@
+{
+  "slug": "true-text-false-claims",
+  "title": "True sentences in, false ones out",
+  "hook": "It only ever read true sentences. Can it still say something false?",
+  "domain": "ai",
+  "concept": "fluent-not-factual",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a language model writes by picking the next word from what followed in its training text",
+      "fractions like 1 in 3"
+    ],
+    "doesNotKnow": [
+      "why a model trained on true sentences can produce false ones",
+      "that context length decides what the next-word choice can depend on"
+    ]
+  },
+  "misconception": "A model trained only on true statements will only produce true statements.",
+  "objective": "The learner can explain that a next-word model picks words that plausibly followed the recent context, so when the context does not pin down the fact it produces fluent false sentences, even from true training text.",
+  "claims": [
+    {
+      "id": "ai.true-text-false-claims.c1",
+      "text": "The toy is trained on three true sentences (Paris is the capital of France. Rome is the capital of Italy. Madrid is the capital of Spain.) and picks the next word from the words that followed its last 1, 2 or 5 words in training, in proportion to their counts.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (CORPUS, nextWords(), ask30()).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.true-text-false-claims.c2",
+      "text": "With 1 word of memory the model sees only “of”, which was followed by France, Italy and Spain once each, so 2 completions in 3 are false. With 2 words (“capital of”) the options are the same.",
+      "support": "derivation",
+      "source": "Count in the three sentences. Reproduced by running nextWords(1) and nextWords(2) from Demo.tsx: France 1, Italy 1, Spain 1 (also for 3 and 4 words).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.true-text-false-claims.c3",
+      "text": "With all 5 words of the prompt in memory, the only continuation is Italy, so every answer is true, and the model is repeating a training sentence word for word.",
+      "support": "derivation",
+      "source": "“Rome is the capital of” occurs once in the training text, followed by Italy. nextWords(5) in Demo.tsx returns only Italy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.true-text-false-claims.c4",
+      "text": "“Ask 30 times” draws 30 completions with seeded random numbers; the first press with 1 word of memory gives 22 false of 30, close to the expected 20.",
+      "support": "simulation",
+      "source": "ask30() in Demo.tsx with seed 2024; successive presses give 22, 20, 17, 20, 25 false (script run of the lesson's code).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.true-text-false-claims.c5",
+      "text": "About real systems: real language models also generate fluent but false statements, called hallucinations.",
+      "support": "source",
+      "source": "Ji et al. 2023, “Survey of Hallucination in Natural Language Generation”, ACM Computing Surveys 55(12), article 248.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A chatbot trained on accurate encyclopedias states a wrong date, fluently and confidently. What is the best explanation?",
+    "options": [
+      "It picks plausible next words, and plausible is not the same as true",
+      "Someone put the wrong date in its training data",
+      "It is lying on purpose"
+    ],
+    "answer": 0,
+    "why": "Next-word models produce what plausibly follows the context. Unless the context pins the fact down, a plausible wrong word reads just as fluently as the right one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
