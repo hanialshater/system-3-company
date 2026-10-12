@@ -1,0 +1,78 @@
+.sd {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.axis {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.lineLabel {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sold {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.demand {
+  stroke: color-mix(in srgb, var(--domain) 70%, var(--fg) 30%);
+  stroke-width: 2.5;
+}
+
+.supply {
+  stroke: var(--fg);
+  stroke-width: 2.5;
+  opacity: 0.75;
+}
+
+.demandDot {
+  fill: color-mix(in srgb, var(--domain) 70%, var(--fg) 30%);
+  stroke: var(--bg-2);
+  stroke-width: 1.5;
+}
+
+.supplyDot {
+  fill: var(--fg);
+  stroke: var(--bg-2);
+  stroke-width: 1.5;
+}
+
+.good {
+  color: var(--good);
+}
+
+.msg {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* The kit slider renders a ~16px-tall range input; QA requires 24px tap targets. */
+.sd :global(input[type="range"]) {
+  height: 28px;
+  margin: 0;
+}
+
+/* Fill the stage; the picture shrinks to fit instead of overflowing the centred stage. */
+.sd {
+  flex: 1;
+  min-height: 0;
+}
+
+.sd :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 120px;
+  height: auto;
+}
+
+/* The kit slider is flex: 1 1 160px, which in a column container means a 160px height. */
+.sd > :global(.slider) {
+  flex: none;
+}
