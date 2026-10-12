@@ -11,17 +11,27 @@ import m5 from "./cs/binary-search/meta.json";
 import m6 from "./cs/merge-sort-payoff/meta.json";
 import m7 from "./economics/compound-interest/meta.json";
 import m8 from "./economics/supply-demand/meta.json";
-import m9 from "./geography/mercator-greenland/meta.json";
-import m10 from "./life/herd-immunity/meta.json";
-import m11 from "./life/natural-selection/meta.json";
-import m12 from "./math/exponential-growth/meta.json";
-import m13 from "./math/odd-numbers-make-squares/meta.json";
-import m14 from "./physics/pendulum-period/meta.json";
-import m15 from "./physics/projectile-angle/meta.json";
-import m16 from "./probability/base-rates/meta.json";
-import m17 from "./probability/birthday-paradox/meta.json";
+import m9 from "./geography/china-one-clock/meta.json";
+import m10 from "./geography/closer-in-winter/meta.json";
+import m11 from "./geography/coastline-ruler/meta.json";
+import m12 from "./geography/continental-jigsaw/meta.json";
+import m13 from "./geography/half-of-humanity/meta.json";
+import m14 from "./geography/mercator-greenland/meta.json";
+import m15 from "./geography/null-island-lat-lon/meta.json";
+import m16 from "./geography/ruler-on-mercator/meta.json";
+import m17 from "./geography/shortest-way-to-tokyo/meta.json";
+import m18 from "./geography/shrinking-degree/meta.json";
+import m19 from "./geography/tissot-circles/meta.json";
+import m20 from "./life/herd-immunity/meta.json";
+import m21 from "./life/natural-selection/meta.json";
+import m22 from "./math/exponential-growth/meta.json";
+import m23 from "./math/odd-numbers-make-squares/meta.json";
+import m24 from "./physics/pendulum-period/meta.json";
+import m25 from "./physics/projectile-angle/meta.json";
+import m26 from "./probability/base-rates/meta.json";
+import m27 from "./probability/birthday-paradox/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "gradient-descent": () => import("./ai/gradient-descent/Demo"),
@@ -33,7 +43,17 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
   "compound-interest": () => import("./economics/compound-interest/Demo"),
   "supply-demand": () => import("./economics/supply-demand/Demo"),
+  "china-one-clock": () => import("./geography/china-one-clock/Demo"),
+  "closer-in-winter": () => import("./geography/closer-in-winter/Demo"),
+  "coastline-ruler": () => import("./geography/coastline-ruler/Demo"),
+  "continental-jigsaw": () => import("./geography/continental-jigsaw/Demo"),
+  "half-of-humanity": () => import("./geography/half-of-humanity/Demo"),
   "mercator-greenland": () => import("./geography/mercator-greenland/Demo"),
+  "null-island-lat-lon": () => import("./geography/null-island-lat-lon/Demo"),
+  "ruler-on-mercator": () => import("./geography/ruler-on-mercator/Demo"),
+  "shortest-way-to-tokyo": () => import("./geography/shortest-way-to-tokyo/Demo"),
+  "shrinking-degree": () => import("./geography/shrinking-degree/Demo"),
+  "tissot-circles": () => import("./geography/tissot-circles/Demo"),
   "herd-immunity": () => import("./life/herd-immunity/Demo"),
   "natural-selection": () => import("./life/natural-selection/Demo"),
   "exponential-growth": () => import("./math/exponential-growth/Demo"),

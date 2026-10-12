@@ -1,0 +1,86 @@
+{
+  "slug": "tissot-circles",
+  "title": "Round or right-sized?",
+  "hook": "Put two identical circles on a world map. Can the map keep both honest?",
+  "domain": "geography",
+  "concept": "equal-area-vs-conformal",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that Mercator makes high latitudes look big"
+    ],
+    "doesNotKnow": [
+      "what an equal-area map costs in return",
+      "that no flat map can keep both shape and area"
+    ]
+  },
+  "misconception": "An accurate map would simply show everything at the right size and shape.",
+  "objective": "The learner can explain that Mercator keeps small circles round but swells them about four times at 60°N, that Equal Earth keeps their areas but squashes them, and that no flat map can do both.",
+  "claims": [
+    {
+      "id": "geography.tissot-circles.c1",
+      "text": "On this Mercator map a 1,000 km circle at 60°N is drawn about 4.2 times the area of the same circle on the equator.",
+      "support": "simulation",
+      "source": "Ratio of d3 geoPath areas of geoCircle (radius 8.99 degrees = 1,000 km on R = 6,371.0088 km, precision 0.5 degrees) at (70 E, 60 N) and (8 E, 0) on the lesson's own Mercator projection: 4.158 (artifacts/scratch/w1-tissot.mjs). The readout and reveal compute the same quantity live, so they cannot disagree.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.tissot-circles.c2",
+      "text": "Mercator stretches 2 times east-west and 2 times north-south at 60°, so areas there are 4 times larger; a 1,000 km circle comes out a bit more because its top reaches 69°N.",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: h = k = sec(latitude), area factor sec^2; sec^2 60 = 4. Circle top latitude 60 + 8.99 = 68.99 N.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.tissot-circles.c3",
+      "text": "Mercator keeps small circles round (it is conformal).",
+      "support": "source",
+      "source": "Snyder (1987) ch. 7. At 1,000 km radius the drawn circle is very slightly egg-shaped (wider at the top); the lesson says 'still round'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.tissot-circles.c4",
+      "text": "On Equal Earth the two circles' areas match, but the northern one is squashed.",
+      "support": "simulation",
+      "source": "Equal Earth is equal-area (Savric, Patterson and Jenny 2018, IJGIS 33(3): 454-465); the lesson's own path-area ratio is 1.000 at 0, 30, 45 and 60 N (w1-tissot.mjs). Squashing: the 60 N circle's drawn bounding box is 74 x 43 px against 48 x 65 px for the equator circle. No number for the shape change is shown.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.tissot-circles.c5",
+      "text": "No flat map can keep shapes and areas both true everywhere; this is a theorem about spheres.",
+      "support": "source",
+      "source": "Conformal (h = k) plus equal-area (h k = 1) would force h = k = 1, an isometry, which Gauss's Theorema Egregium (1827) rules out for a sphere (Gaussian curvature 1/R^2, not 0). Snyder (1987) ch. 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.tissot-circles.c6",
+      "text": "Both circles have a 1,000 km radius on the globe.",
+      "support": "simulation",
+      "source": "geoCircle radius 1,000 / 6,371.0088 rad = 8.993 degrees; spherical cap area 3.14 million km2 for both (geoArea).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A map keeps every country's area exactly right. What must it give up?",
+    "options": [
+      "Nothing: it can keep shapes right too",
+      "Shapes: some countries will look squashed or stretched",
+      "Colour accuracy"
+    ],
+    "answer": 1,
+    "why": "A sphere cannot be flattened without distortion; an equal-area map must distort shapes, and a shape-keeping (conformal) map must distort areas."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

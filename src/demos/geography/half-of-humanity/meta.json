@@ -1,0 +1,80 @@
+{
+  "slug": "half-of-humanity",
+  "title": "Half of humanity",
+  "hook": "There are about two hundred countries. How few hold half of all people?",
+  "domain": "geography",
+  "concept": "population-distribution",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that China and India are very populous",
+      "roughly where the large countries are on a world map"
+    ],
+    "doesNotKnow": [
+      "how few countries make up half the world's people",
+      "that land area and population are very different maps"
+    ]
+  },
+  "misconception": "People are spread roughly evenly across the countries, so \"half the world\" means dozens of countries.",
+  "objective": "The learner can say that the seven most populous countries hold about half of humanity, and that a map of land area does not show where people are.",
+  "claims": [
+    {
+      "id": "geography.half-of-humanity.c1",
+      "text": "Populations in mid-2024 (millions): India 1,451, China 1,419, USA 345, Indonesia 283, Pakistan 251, Nigeria 233, Brazil 212, Bangladesh 174, Russia 145, Ethiopia 132, Mexico 131, Japan 124, Egypt 117, Philippines 116, DR Congo 109; world 8,162.",
+      "support": "source",
+      "source": "UN DESA, World Population Prospects 2024, medium variant, total population as of 1 July 2024 (population.un.org/wpp). The figures in Demo.tsx agree with the brief to the million but were entered from the builder's recall: the builder could not open the UN portal (network blocked, 403). A fact-checker must compare every value with the WPP 2024 table.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-of-humanity.c2",
+      "text": "The seven most populous countries hold about 51.4% of humanity; the first six hold 48.8%.",
+      "support": "derivation",
+      "source": "Cumulative sums of c1 over 8,161.97 million: 6 countries 3,983.13 (48.80%), 7 countries 4,195.12 (51.40%) (artifacts/scratch/w1-pop.mjs). The margin is small, so the order of Indonesia, Pakistan and Nigeria is not claimed beyond c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-of-humanity.c3",
+      "text": "There are about two hundred countries.",
+      "support": "source",
+      "source": "193 UN member states plus 2 observer states (UN). WPP itself reports 237 countries and areas. 'About two hundred' is a rounding of 195.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-of-humanity.c4",
+      "text": "Equal Earth is an equal-area projection, so drawn size is real size.",
+      "support": "source",
+      "source": "Savric, Patterson and Jenny (2018), The Equal Earth map projection, IJGIS 33(3): 454-465.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-of-humanity.c5",
+      "text": "Those seven countries cover about 25% of the land outside Antarctica.",
+      "support": "simulation",
+      "source": "geoArea of the seven 1:110m country shapes over the sum for all countries except Antarctica: 34.2M / 135.0M km2 = 25.3% (w1-pop.mjs). 1:110m shapes are generalised; the share moves by well under a point at finer resolution (not checked).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Roughly how many countries together hold half of the world's people?",
+    "options": [
+      "About 3",
+      "About 7",
+      "About 50"
+    ],
+    "answer": 1,
+    "why": "India and China alone hold about 35%; adding the USA, Indonesia, Pakistan, Nigeria and Brazil passes half."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
