@@ -1,0 +1,82 @@
+{
+  "slug": "half-life",
+  "title": "Are the survivors next in line?",
+  "hook": "Half the atoms have decayed. Are the ones still here overdue?",
+  "domain": "chemistry",
+  "concept": "half-life",
+  "status": "review",
+  "durationSec": 80,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that matter is made of atoms",
+      "that some atoms are radioactive",
+      "halving a number"
+    ],
+    "doesNotKnow": [
+      "exponential decay",
+      "decay constants",
+      "that decay is a random process for each nucleus"
+    ]
+  },
+  "misconception": "Atoms age like a timer: the ones that survive are 'overdue' (or 'tougher'), and the half that remains after one half-life is a predictable, special set. A common corollary is that two half-lives leave nothing.",
+  "objective": "The learner can explain that every undecayed atom of an isotope has the same 50% chance of decaying in the next half-life, however long it has already lasted, so which atoms survive is random and survivors keep halving instead of running out.",
+  "claims": [
+    {
+      "id": "chemistry.half-life.c1",
+      "text": "Radioactive decay is random for each nucleus: you can say how likely an atom is to decay, not when or which atom goes next.",
+      "support": "source",
+      "source": "K. S. Krane, Introductory Nuclear Physics (Wiley, 1988), ch. 6.1: decay is a statistical process with a constant probability per unit time for each nucleus.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c2",
+      "text": "In one half-life, each undecayed atom has a 50% chance of decaying, no matter how long it has already survived.",
+      "support": "source",
+      "source": "Exponential decay N(t) = N0 * 2^(-t/T) implies a constant per-atom decay probability (memoryless). Krane, Introductory Nuclear Physics, ch. 6.1; Rutherford & Soddy, Phil. Mag. 5 (1903) 576.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c3",
+      "text": "After 2 half-lives about a quarter of the atoms remain, and after 3 about an eighth: survivors keep halving instead of running out.",
+      "support": "derivation",
+      "source": "N(t) = N0 * (1/2)^(t/T): (1/2)^2 = 1/4, (1/2)^3 = 1/8.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c4",
+      "text": "With only a few hundred atoms, the share that decays in a half-life wanders around 50% by chance; with the trillions in a real sample it is extremely close to 50%.",
+      "support": "derivation",
+      "source": "Each atom decays independently with p = 0.5 per half-life, so the count is binomial with standard deviation sqrt(n p (1-p)); relative spread shrinks as 1/sqrt(n). Simulated in the lesson with a seeded generator.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c5",
+      "text": "Carbon-14 has a half-life of about 5,700 years.",
+      "support": "source",
+      "source": "NNDC/ENSDF evaluated value 5,700 +/- 30 years (Kondev et al., Chinese Physics C 45 (2021) 030001, NUBASE2020); the Cambridge value 5,730 +/- 40 years (Godwin, Nature 195 (1962) 984).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One atom in a sample has already lasted 5 half-lives. Its chance of decaying during the next half-life is...",
+    "options": [
+      "50%, the same as any atom of that isotope",
+      "More than 50%: it is overdue",
+      "Less than 50%: it has proven stable"
+    ],
+    "answer": 0,
+    "why": "Atoms do not age. Every undecayed atom has the same 50% chance per half-life, however long it has lasted."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

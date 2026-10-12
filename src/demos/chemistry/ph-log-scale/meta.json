@@ -1,0 +1,89 @@
+{
+  "slug": "ph-log-scale",
+  "title": "Three pH steps apart",
+  "hook": "Black coffee is about pH 5, lemon juice about pH 2. How much more acid is that?",
+  "domain": "chemistry",
+  "concept": "ph-log-scale",
+  "status": "review",
+  "durationSec": 65,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that acids are sour and pH measures acidity",
+      "that lower pH means more acidic",
+      "multiplying by 10"
+    ],
+    "doesNotKnow": [
+      "logarithms",
+      "that pH is defined from hydrogen-ion concentration",
+      "scientific notation"
+    ]
+  },
+  "misconception": "pH is an ordinary linear scale, so pH 2 is a little more than twice as acidic as pH 5 (or 'three units more').",
+  "objective": "The learner can explain that each step down in pH means 10 times more hydrogen ions, so three steps is 10 x 10 x 10 = 1,000 times, and a step up means one tenth.",
+  "claims": [
+    {
+      "id": "chemistry.ph-log-scale.c1",
+      "text": "pH is minus the base-10 logarithm of the hydrogen-ion concentration (strictly, its activity), so one pH unit is a factor of 10.",
+      "support": "source",
+      "source": "IUPAC Compendium of Chemical Terminology (Gold Book), entry 'pH'; Atkins & de Paula, Physical Chemistry. In dilute solutions activity is close to concentration.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c2",
+      "text": "Going 3 pH units lower means 1,000 times more hydrogen ions in the same volume; going 2 units higher means 1/100 as many.",
+      "support": "derivation",
+      "source": "[H+] = 10^(-pH): 10^(-2)/10^(-5) = 10^3; 10^(-7)/10^(-5) = 10^(-2).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c3",
+      "text": "Lemon juice is roughly pH 2 (measured values run about 2.0 to 2.6).",
+      "support": "source",
+      "source": "USGS Water Science School, 'pH and Water' (pH scale of common substances lists lemon juice near 2); FDA/CFSAN 'Approximate pH of Foods and Food Products' lists lemon juice 2.00-2.60.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c4",
+      "text": "Black coffee is roughly pH 5 (typical brewed coffee is about 4.8 to 5.1).",
+      "support": "source",
+      "source": "USGS Water Science School, 'pH and Water' (black coffee near 5); Rao & Fuller, Scientific Reports 8 (2018) 16030, measured hot and cold brew coffee at about pH 4.85-5.13.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c5",
+      "text": "Pure water is pH 7 at 25 C.",
+      "support": "source",
+      "source": "Kw = 1.0 x 10^-14 at 25 C, so [H+] = [OH-] = 10^-7 mol/L. Atkins & de Paula, Physical Chemistry; CRC Handbook of Chemistry and Physics (ion product of water).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c6",
+      "text": "From pH 0 to pH 14 the hydrogen-ion concentration changes by a factor of 10^14, one hundred trillion.",
+      "support": "derivation",
+      "source": "10^(14) = 100,000,000,000,000 (arithmetic from the definition of pH).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A liquid at pH 4 versus pure water at pH 7: how many times more hydrogen ions does the pH 4 liquid have?",
+    "options": [
+      "3 times",
+      "30 times",
+      "1,000 times"
+    ],
+    "answer": 2,
+    "why": "Each pH step is a factor of 10, and 7 - 4 = 3 steps: 10 x 10 x 10 = 1,000."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,24 @@
+.wrap { display: flex; flex-direction: column; gap: 14px; }
+.total { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 5.2rem; justify-content: center; }
+.totalNum { font-size: 3rem; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.sum { font-variant-numeric: tabular-nums; text-align: center; min-height: 1.3em; }
+
+.switches { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+
+.sw {
+  position: relative; width: 100%; max-width: 46px; height: 76px; padding: 0;
+  border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  padding: 6px 0; background: var(--bg-2); border: 1.5px solid var(--line);
+  transition: background 0.15s, border-color 0.15s;
+}
+.knob {
+  width: 60%; aspect-ratio: 1; border-radius: 50%; background: var(--line);
+  transform: translateY(36px); transition: transform 0.15s, background 0.15s;
+}
+.bit { font-size: 0.78rem; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
+.on { background: color-mix(in srgb, var(--domain) 22%, var(--bg-2)); border-color: var(--domain); }
+.on .knob { background: var(--domain); transform: translateY(0); box-shadow: 0 0 12px color-mix(in srgb, var(--domain) 60%, transparent); }
+.on .bit { color: var(--fg); }
+.flip { outline: 2px solid var(--warn); outline-offset: 2px; }
+.val { font-size: 0.85rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--fg); }
