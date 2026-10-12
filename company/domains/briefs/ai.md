@@ -181,3 +181,304 @@ Out of scope for this file: interaction design (learning designer), building, ve
 - Interaction: tap anywhere to drop a new dot; a k stepper (1, 3, 5, 7) changes its colour and shows which neighbours voted. One scatter.
 - Payoff: Voting among several neighbours averages out a bad label, and too large a k would blur real boundaries.
 - Claims to check: (1) the vote counts in the seeded layout. (2) Larger k smooths the boundary, small k follows noise (Hastie et al. 2009, §13.3). (3) For k = n the model always outputs the majority class (derivation).
+
+## Round 2 (briefs 23-55): scale to 500+ lessons
+
+owner: cm-ai · written 2026-10-12 · curriculum now 57 concepts. Same ranking rule (demand 3 first, explorations spread through). All prediction answers were recomputed by `artifacts/scratch/cm-ai-r2/checks.mjs` and `checks2.mjs` (script output quoted per brief). Each brief names a **Key state**: the stage moment that makes the answer obvious; the reveal unlocks only after the learner reaches it (earn-the-reveal), and the question's numbers must match the stage exactly. Toy numbers are invented for the toy and must be labelled so; claims about real systems are marked.
+
+### 23. loophole-lap-farming · concept: reward-hacking · core · demand 3
+- Learner knows: that a proxy can be gamed (Goodhart) / does not know that a reward-maximiser will skip the goal when a loop pays more.
+- Misconception: An agent rewarded for good behaviour will do the intended task.
+- Prediction: "A boat gets 10 points each time it passes a respawning buoy (one every 4 steps) and 100 points for reaching the finish, which ends the race. The race lasts 100 steps and the finish is 20 steps away. The best total score is:" options: A. 100 / B. 250 / C. 300 (answer: C). Check (script best-over-strategies): loop until step 80 (20 buoys = 200), sail 20 steps, finish at step 100 for +100 = 300; pure looping 250; pure finishing 100.
+- Key state: the learner has seen the buoy loop pay out at the same rate while the finish bonus is a one-off, so the score meter beats the finish line; reveal after at least one lap and one finish attempt.
+- Interaction: the learner chooses when to leave the loop with a single draggable "head for the finish" marker on a timeline; the score total updates live. Max 300 at 80, which the learner can find.
+- Payoff: Maximisers optimise the number, not the intention; a small recurring reward can outweigh the goal it was meant to encourage.
+- Claims to check: (1) 20 x 10 + 100 = 300; 25 x 10 = 250 (script). (2) Toy scoring is invented. (3) Real agents exploiting reward loops: Clark & Amodei 2016, "Faulty reward functions in the wild" (OpenAI blog, CoastRunners); Krakovna et al. 2020 specification gaming list (DeepMind); about real systems.
+
+### 24. step-too-long · concept: learning-rate-overshoot · intro · demand 3
+- Learner knows: gradient descent rolls downhill (existing lesson) / does not know that a bigger step can make each move worse.
+- Misconception: A bigger step size just gets to the bottom faster.
+- Prediction: "Minimising f(x) = x² from x = 1, each step does x ← x − η·2x. With η = 1.1, after 5 steps the distance from the bottom is:" options: A. Under 0.1 / B. About 1 (circling) / C. About 2.5 (answer: C). Check (script): x = -1.2, 1.44, -1.728, 2.074, -2.488, so |x| = 1.2⁵ = 2.49. With η = 0.4 it is 0.2⁵ = 0.0003; η = 1 bounces between 1 and -1 forever.
+- Key state: the ball lands on the far wall higher than where it started on at least two steps in a row; the zigzag widens.
+- Interaction: one slider for η (0.05 to 1.2) and a "step" button on a bowl curve; the learner finds the sweet spot (~0.5 is one step to zero) and the edge at 1.
+- Payoff: Each step multiplies the distance by |1 - 2η|; past η = 1 it grows, so the step size is a limit on how greedily the model may move.
+- Claims to check: (1) the factor |1 - 2η| (algebra). (2) The listed positions (script). (3) Step-size stability limits for quadratics: Goodfellow et al. 2016 §4.3 / §8.2; about real systems with the caveat that real losses are not this simple.
+
+### 25. flagged-means-what · concept: confusion-matrix · intro · demand 3
+- Learner knows: accuracy can mislead / does not know how to read what a positive flag means.
+- Misconception: A test that catches 80% of cases and is 96% accurate means a flagged person has about an 80% (or 96%) chance of being ill.
+- Prediction: "1,000 scans, 10 truly ill. The test catches 8 of the 10 and wrongly flags 40 of the 990 healthy. Someone is flagged. The chance they are actually ill:" options: A. About 80% / B. About 17% / C. About 96% (answer: B). Check: 8 / (8 + 40) = 16.7%; recall 80%; accuracy (8 + 950)/1000 = 95.8%.
+- Key state: the learner has sorted all 48 flagged people into ill and healthy groups on the grid, seeing 8 vs 40 side by side.
+- Interaction: tap-to-sort the flagged dots into two bins (ill, healthy), or drag one "flag everyone who is flagged" lasso; counts update; toggle to flag all 1,000.
+- Payoff: "Of those flagged, how many are real?" (precision) differs from "of the real, how many are flagged?" (recall), and the rare class decides it.
+- Claims to check: (1) the counts and the three ratios (script). (2) Toy numbers invented. (3) Definitions of precision, recall, accuracy: Manning, Raghavan & Schütze 2008, §8.3.
+
+### 26. window-forgets-start · concept: context-window · intro · demand 3
+- Learner knows: that a model predicts the next token / does not know that it can only use a fixed amount of recent text.
+- Misconception: The model remembers everything in the conversation.
+- Prediction: "A document has 20 tokens and the model sees only the last 8 when it answers. A fact sits at a random position in the document. Chance the model can still use it:" options: A. 100% / B. 40% / C. 8% (answer: B). Check: 8 / 20 = 40% (positions 13-20 are visible).
+- Key state: the learner slides the window over the tokens and sees the first positions fall off the left edge; a fact at position 5 goes dark.
+- Interaction: a row of 20 token cells, one draggable fact marker, one window-size stepper (4, 8, 12, 20); cells outside the window dim.
+- Payoff: A model can use only what is in its window; anything earlier is not "remembered less", it is not there.
+- Claims to check: (1) 8/20 = 40% (arithmetic). (2) Real models have a finite context length measured in tokens (source: model documentation, e.g. Vaswani et al. 2017 on fixed positions; name the limit as varying by model; about real systems). (3) Toy sizes are invented, real windows are thousands to millions of tokens.
+
+### 27. meaning-without-the-word · concept: retrieval-top-k · core · demand 3
+- Learner knows: embeddings place meaning as position / does not know that retrieval feeding a model can miss the right passage.
+- Misconception: If the answer is in the knowledge base, the system will find it.
+- Prediction: "Five chunks are searched for 'What is the capital of France?' by shared keywords (little words ignored) and the top 2 are given to the model. Is 'Paris is the French seat of government' among them?" options: A. Yes, it is the best match / B. No, it shares no keyword / C. Only if k = 1 (answer: B). Check (script): the Paris chunk scores 0 keywords; the other four ("capital of Italy", "France exports wine", "capital letter", "France borders Spain") each score 1.
+- Key state: the learner sees the Paris chunk drop to the bottom with score 0, and the top 2 slots filled by chunks that merely contain "capital" or "France".
+- Interaction: one toggle, "match by words / match by meaning" (hand-set meaning vectors), over a ranked list of five chunks; a k stepper (1-3) draws the cut line.
+- Payoff: The model answers from what retrieval hands it; if the right passage ranks below the cut, it never sees it.
+- Claims to check: (1) scores 0,1,1,1,1 (script). (2) Meaning-vector scores are hand-set and labelled so. (3) Retrieval-augmented generation retrieves top-k passages for the model: Lewis et al. 2020 (NeurIPS, "Retrieval-Augmented Generation"); about real systems.
+
+### 28. line-stops-at-the-edge · concept: distribution-shift · core · demand 3
+- Learner knows: held-out data checks overfitting / does not know a fit can be fine inside its data and badly wrong outside it.
+- Misconception: A model with a tiny error is right everywhere.
+- Prediction: "A straight line is fitted to y = x² using x = 0, 0.25, 0.5, 0.75, 1 (off by at most 0.125 anywhere inside that range). At x = 3 the line predicts:" options: A. About 9 / B. About 2.9 / C. About 5 (answer: B). Check (script): least squares slope 1, intercept -0.125, so line(3) = 2.875 while the truth is 9.
+- Key state: the learner drags the query point right and watches the line and curve agree up to 1 then pull apart; gap growing to 6.1 at 3.
+- Interaction: drag one query point along x on a single plot of the training dots, fitted line and true curve (curve hidden until the query leaves the data range).
+- Payoff: A model is trustworthy only where its training data lived; ask "does the new case look like what it was trained on?"
+- Claims to check: (1) slope, intercept and prediction (script). (2) The toy's truth is invented. (3) Extrapolation and covariate shift: Quinonero-Candela et al. 2009, "Dataset Shift in Machine Learning" (MIT Press); about real systems.
+
+### 29. which-answer-wins · concept: preference-ranking · core · demand 3
+- Learner knows: models can be rewarded (reward hacking) / does not know how "people liked A more than B" becomes a number.
+- Misconception: A reward model stores a score each human gave.
+- Prediction: "People pick answer A over B in 75% of comparisons. A reward model says P(A preferred) = 1 / (1 + e^-(rA - rB)). The reward gap rA - rB is:" options: A. 0.75 / B. 1.1 / C. 3.0 (answer: B). Check (script): odds 0.75/0.25 = 3, so gap = ln 3 = 1.0986; 73% at gap 1.
+- Key state: the learner sets the gap until the predicted win rate matches the observed 75% bar, and sees that odds of 3:1 correspond to a gap near 1.1, not 3.
+- Interaction: one slider (reward gap, -3 to 3) moves a predicted-win-rate bar against a fixed 75% target; a second observation (drag win rate) re-fits.
+- Payoff: A reward model is fitted so that score gaps reproduce how often people prefer one answer; it has only the comparisons, not the reasons.
+- Claims to check: (1) ln 3 = 1.0986 (script). (2) The Bradley-Terry model: Bradley & Terry 1952, Biometrika 39. (3) Preference-trained reward models in language model training: Christiano et al. 2017 (NeurIPS); Ouyang et al. 2022 (InstructGPT); about real systems.
+
+### 30. copy-of-a-copy · concept: model-collapse · core · demand 3 [exploration]
+- Learner knows: feedback loops shape data / does not know that retraining on a model's own samples loses rare things permanently.
+- Misconception: Averaging over many samples preserves the distribution.
+- Prediction: "A word makes up 2% of the data. The next model is trained on 50 words sampled from it. The chance the word never appears (and so is lost for good):" options: A. About 2% / B. About 36% / C. About 98% (answer: B). Check (script): 0.98^50 = 36.4% (simulation 36.2%). Once its count is 0 it can never be sampled again.
+- Key state: the learner has run at least three generations and watched a rare word's bar hit zero and stay there while the common ones grow.
+- Interaction: a "next generation" button resamples 50 words from the current bar frequencies (ten words, seeded); distinct-word count shown. A "reset" and a sample-size stepper (50, 500).
+- Payoff: Each generation can only lose the rare; once a word is gone it is gone, so a loop of models trained on model output narrows.
+- Claims to check: (1) 0.98^50 (script). (2) The toy resampling is a simplification (no model, counts only; say so). (3) Shumailov et al. 2024 (Nature 631, "AI models collapse when trained on recursively generated data"); about real systems.
+
+### 31. word-in-pieces · concept: tokenization · intro · demand 2
+- Learner knows: that a model reads text / does not know it reads pieces from a fixed list.
+- Misconception: A model sees whole words, one per slot.
+- Prediction: "A tokenizer has the pieces un, happi, ness and every single letter, and always takes the longest piece that fits. How many tokens is 'unhappiness'?" options: A. 11 / B. 3 / C. 1 (answer: B). Check (script greedy longest-match): un | happi | ness. 'zyxxy' becomes 5 single-letter tokens.
+- Key state: the learner has watched the word split with all pieces on, then with pieces switched off, and the count change from 3 to 11.
+- Interaction: tap pieces on/off in the vocabulary row; the word below re-splits live; token count is the readout. Try the rare word 'zyxxy'.
+- Payoff: Common chunks cost one token, rare words fall into many; the model's picture of a word depends on its piece list.
+- Claims to check: (1) the splits (script). (2) The vocabulary and greedy rule are the toy's; real tokenizers learn pieces from data (Sennrich et al. 2016, byte-pair encoding; Kudo & Richardson 2018); about real systems. (3) Letter counts are not what models see (say plainly).
+
+### 32. outlier-flattens-line · concept: linear-regression-fit · intro · demand 2
+- Learner knows: a line has slope / does not know squared error lets one far point dominate.
+- Misconception: One odd point among five barely moves a fitted line.
+- Prediction: "Points (1,1), (2,2), (3,3), (4,4) lie on a line of slope 1. Add (5,0). The best-fit line's slope becomes:" options: A. About 0.8 / B. About 0.5 / C. Exactly 0 (answer: C). Check (script): the slope is 0 with intercept 2; (5,0) at (10,0) gives -0.2.
+- Key state: the learner drags the fifth point down from (5,4) to (5,0) and watches the line pivot flat at 0.
+- Interaction: drag the one outlier vertically; the least-squares line and a slope readout follow live. Single scatter.
+- Payoff: Squared error charges far points heavily, so one stray point can move the whole fit.
+- Claims to check: (1) slope 0, intercept 2 (script; derivation: x deviations -2..2, y deviations -1,0,1,2,-2, covariance 0). (2) Least squares minimises the sum of squared residuals: Hastie et al. 2009, §3.2. (3) Outlier sensitivity versus absolute-error fits (mention only; do not build).
+
+### 33. one-nudge-per-mistake · concept: perceptron-learning · intro · demand 2
+- Learner knows: a line can separate groups / does not know how a line is learned by correction.
+- Misconception: The line is fitted by calculating once; it can't improve in small steps.
+- Prediction: "Five points: (1,1)+, (-1,0)-, (2,-1)+, (-1,-2)-, (0,2)+. The perceptron starts with a zero line, sweeps the points in that order, and on each wrong (or zero-score) point adds or subtracts that point. How many nudges until a full sweep has no mistakes?" options: A. 1 / B. 2 / C. 5 (answer: B). Check (script): updates at point 1 (w = 1,1,1) and point 2 (w = 2,1,0); then no mistakes in the second sweep: 2 nudges, 2 sweeps.
+- Key state: the learner has triggered the second nudge and seen the line turn past the leftover point.
+- Interaction: a "sweep next point" button; the line tilts after each wrong point; counters for nudges. Learner may also tap a point to see its score.
+- Payoff: A perceptron changes only when it is wrong, and each correction moves the line toward the missed point.
+- Claims to check: (1) the update trace (script, rule w ← w + label·x with a bias term). (2) A zero score counts as a mistake (toy convention; say so). (3) Perceptron convergence for separable data: Rosenblatt 1958; Novikoff 1962.
+
+### 34. duplicates-in-the-test · concept: data-leakage · core · demand 2
+- Learner knows: test data should be held out / does not know that copies between train and test inflate the score.
+- Misconception: A high test score always means the model generalises.
+- Prediction: "A model memorises its training answers and guesses 50/50 on anything new. 20% of the test items are copies of training items. Its test score:" options: A. 50% / B. 60% / C. 80% (answer: B). Check: 0.2 x 100% + 0.8 x 50% = 60%.
+- Key state: the learner has separated the copied test items (marked) from the fresh ones and sees the score on fresh items stay at 50%.
+- Interaction: a slider for the copied share (0-50%) and a toggle "score only the fresh items"; two numbers.
+- Payoff: A leak lets memory pass as skill; check that nothing in the test also sits in training.
+- Claims to check: (1) 0.6 (arithmetic). (2) Toy numbers invented. (3) Leakage in real benchmarks: Kapoor & Narayanan 2023 (Patterns 4(9), "Leakage and the reproducibility crisis in ML-based science"); Elangovan et al. 2021 on train/test overlap; about real systems.
+
+### 35. five-weak-voters · concept: ensemble-wisdom · core · demand 2
+- Learner knows: expectation, law of large numbers / does not know that a vote of weak models can beat each one.
+- Misconception: Combining 60%-accurate models still gives a 60%-accurate answer.
+- Prediction: "Five independent models are each right 60% of the time on a yes/no question. The majority vote is right:" options: A. 60% / B. About 68% / C. About 90% (answer: B). Check (script): P(at least 3 of 5) = 0.6826; 21 voters 0.826.
+- Key state: the learner has run enough questions to see the vote's tally beat a single voter, then flipped the "voters make the same mistakes" toggle and seen it fall back to 60%.
+- Interaction: a voters stepper (1, 5, 21) and a "run 200 questions" button (seeded); a toggle for fully correlated mistakes.
+- Payoff: Independent errors cancel in a vote; the gain depends on the models being wrong in different places.
+- Claims to check: (1) 0.6826, 0.8256 (script). (2) Correlated-error toggle: full correlation gives 60% by construction. (3) Ensembles reduce variance: Dietterich 2000 (MCS), Hastie et al. 2009 §8.7; about real systems.
+
+### 36. shrink-toward-zero · concept: bias-variance · core · demand 2 [exploration]
+- Learner knows: overfitting / does not know that a deliberately biased estimate can have lower total error.
+- Misconception: An unbiased estimate is always the best one.
+- Prediction: "The true value is 0.5. Each estimate averages 4 noisy readings (noise sd 1). Estimator A reports the average; estimator B reports half the average (deliberately biased). Which has the lower average squared error?" options: A. A / B. B / C. Equal (answer: B). Check (script, 200,000 trials): A = 0.251 (theory 0.25), B = 0.125 (theory: bias² 0.0625 + variance 0.0625).
+- Key state: the learner has pulled a shrink slider from 1 toward 0.5 and seen the error bar fall as the estimates tighten, then rise again below ~0.6.
+- Interaction: one slider (shrink factor 0-1); a cloud of 40 seeded estimates relative to a target line; readout of bias and spread.
+- Payoff: Total error is bias² plus variance; trading a little bias for much less spread can win.
+- Claims to check: (1) 0.25 and 0.125 (derivation + script). (2) The optimum factor is μ²/(μ² + σ²/n) = 0.5 here (derivation: 0.25/0.5). (3) Bias-variance decomposition: Hastie et al. 2009, §7.3; about real systems.
+
+### 37. stop-at-epoch-sixty · concept: early-stopping · core · demand 2
+- Learner knows: overfitting and held-out error / does not know that the cure can be to stop training.
+- Misconception: Training longer always improves a model.
+- Prediction: "A degree-7 curve is trained by gradient descent on 8 noisy points and checked on 200 held-out ones. Held-out error is lowest at:" options: A. The end of training (20,000 steps) / B. Early, around step 60 / C. Step 0 (answer: B). Check (script, seeded LCG seed 11, step size 0.1, truth sin(2x), noise 0.3): held-out error 0.74 at step 0, minimum 0.136 at step 59, 0.87 near step 5,000, 0.51 at step 20,000, while training error keeps falling 0.795 -> 0.024.
+- Key state: the learner scrubs the step slider past the dip and sees the held-out curve start climbing while training keeps falling.
+- Interaction: one slider for training steps (log scale); curve with train dots and held-out dots; two numbers.
+- Payoff: Training error never signals when to stop; the held-out curve does.
+- Claims to check: (1) the numbers above (script). (2) Toy specifics are seed-dependent and must be reproduced in the lesson's toy; do not claim the dip location in general. (3) Early stopping as regularisation: Goodfellow et al. 2016 §7.8; Prechelt 1998.
+
+### 38. confident-and-wrong · concept: cross-entropy-loss · core · demand 2
+- Learner knows: models give probabilities / does not know how a probability becomes a penalty.
+- Misconception: A wrong answer costs the same whether the model was unsure or certain.
+- Prediction: "Penalty = -ln(probability the model gave the true answer). Giving the truth 50% costs 0.69. Giving it 1% costs about:" options: A. 1.4 / B. 4.6 / C. 50 (answer: B). Check (script): -ln 0.01 = 4.605, a 6.6x increase; -ln 0.9 = 0.105.
+- Key state: the learner pushes the probability from 50% down to 1% and sees the penalty curve rise steeply at the end.
+- Interaction: one slider for the probability given to the truth; a curve and a penalty marker. Single plot.
+- Payoff: The penalty explodes as confidence in the truth goes to zero, so training punishes confident mistakes far more than hedged ones.
+- Claims to check: (1) the three values (script). (2) Cross-entropy for one example is -ln p(true class): Goodfellow et al. 2016 §3.13 / §6.2.1. (3) The penalty is unbounded as p -> 0 (limit).
+
+### 39. say-seventy-mean-it · concept: calibration · core · demand 2 [exploration]
+- Learner knows: accuracy; probabilities / does not know a model's stated confidence can be scored for honesty.
+- Misconception: A model that sounds more sure is better.
+- Prediction: "A model is right 70% of the time. Score each stated confidence r by the squared gap (r - 1 if right, r - 0 if wrong). Which stated confidence has the lowest average squared error?" options: A. 90% / B. 70% / C. 50% (answer: B). Check (script): expected score 0.25 at 0.9, 0.21 at 0.7, 0.25 at 0.5.
+- Key state: the learner slides the stated confidence and sees the error bottom out exactly at the true 70%, with 90% and 50% tying.
+- Interaction: one slider (stated confidence); 20 seeded outcomes as dots; live average squared gap.
+- Payoff: The best stated confidence is the true hit rate, so overconfidence and underconfidence both cost.
+- Claims to check: (1) expected = 0.7(1 - r)² + 0.3r² (algebra; script). (2) Brier score: Brier 1950; proper scoring rules: Gneiting & Raftery 2007. (3) Real models are often overconfident: Guo et al. 2017 (ICML, "On calibration of modern neural networks"); about real systems.
+
+### 40. greedy-word-trap · concept: greedy-decoding · core · demand 2
+- Learner knows: next-token prediction / does not know that the best word each time may not make the best sentence.
+- Misconception: Taking the most likely word at each step gives the most likely text.
+- Prediction: "First word: A 60%, B 40%. After A the best next word has 40%. After B the best next word has 90%. Which two-word sentence is most likely?" options: A. A then its best (greedy's pick) / B. B then its best / C. They tie (answer: B). Check (script): 0.6 x 0.4 = 0.24 versus 0.4 x 0.9 = 0.36.
+- Key state: the learner has multiplied both paths on a tree (probabilities shown on branches) and the 36% leaf outweighs the 24% one.
+- Interaction: tap branches to walk the tree; a running product; a "greedy" button highlights greedy's path.
+- Payoff: Local best choices can lead to a worse whole; a sentence's probability is the product along its path.
+- Claims to check: (1) the products (script). (2) Beam search exists to approximate the best whole sequence: Sutskever, Vinyals & Le 2014 (NeurIPS); about real systems. (3) The tree is invented.
+
+### 41. keep-the-top-85 · concept: top-p-sampling · core · demand 2
+- Learner knows: temperature reshapes odds / does not know that a model can cut off the unlikely tail.
+- Misconception: Sampling always includes every word, however unlikely.
+- Prediction: "Next-word odds: 45%, 30%, 15%, 6%, 4%. Top-p sampling keeps the fewest top words that add up to at least 85%, then rescales them to total 100%. The top word's chance becomes:" options: A. 45% / B. 50% / C. 85% (answer: B). Check (script): 45 + 30 + 15 = 90 >= 85, three kept; 45/90 = 50%.
+- Key state: the learner drags the p line down the sorted bars; the tail greys out at the cut and the survivors' bars grow.
+- Interaction: one slider for p (0.4-1.0) over five sorted bars; "draw 20" shows only surviving words appear.
+- Payoff: Top-p removes the unlikely tail and renormalises the rest, so rare words stop appearing at all.
+- Claims to check: (1) kept set and 50% (script). (2) Nucleus sampling definition: Holtzman et al. 2020 (ICLR, "The curious case of neural text degeneration"); about real systems. (3) Odds invented.
+
+### 42. direction-not-distance · concept: cosine-similarity · core · demand 2
+- Learner knows: embeddings as positions / does not know similarity can ignore length.
+- Misconception: Similar means close together in a straight line.
+- Prediction: "Query vector Q = (1, 1). B = (10, 10) is far away on the same ray; C = (1, 0.2) is close but at a different angle. By cosine similarity, the more similar to Q is:" options: A. B / B. C / C. A tie (answer: A). Check (script): cos(Q,B) = 1.00, cos(Q,C) = 0.83; straight-line distances are 12.7 and 0.8.
+- Key state: the learner drags B along its ray and the cosine stays at 1.00 while the distance grows.
+- Interaction: drag vector B on one 2D plane; readouts for distance and cosine with the query's ray drawn.
+- Payoff: Cosine compares directions, so a document twice as long but about the same topic still matches.
+- Claims to check: (1) cosines and distances (script). (2) Cosine = dot/(norms): Manning et al. 2008, §6.3. (3) Real embeddings are often compared by cosine: Mikolov et al. 2013; about real systems.
+
+### 43. five-folds-five-scores · concept: cross-validation · core · demand 2
+- Learner knows: a held-out test set; its noise (brief 12) / does not know the fold method.
+- Misconception: Whichever test slice you picked gives the model's accuracy.
+- Prediction: "A fixed rule (label 1 if x > 0.5) is scored on five different groups of four held-out points from a 20-point noisy dataset. The five scores span:" options: A. Within 5 points of each other / B. 25 points (75% to 100%) / C. 50 points (answer: B). Check (script, seeded LCG seed 7, 20% random label flips, as built in `checks.mjs`): fold scores 75, 100, 100, 75, 75, mean 85%.
+- Key state: the learner has stepped through all five folds and seen different scores on the same rule, then sees the average.
+- Interaction: a "next fold" button highlights the held-out group; score per fold stacks as a dot; mean line appears.
+- Payoff: Rotating the held-out group uses every point once and tells you how much one slice's score can swing.
+- Claims to check: (1) fold scores (script; builder must re-derive from the seeded layout and state noise rate). (2) k-fold: Hastie et al. 2009, §7.10. (3) The rule is fixed, not trained, for the toy (say so).
+
+### 44. which-question-splits · concept: decision-tree-splits · intro · demand 2
+- Learner knows: classification / does not know how a tree picks its first question.
+- Misconception: A tree asks whichever question comes to mind first.
+- Prediction: "Labels at x = 1..8 are 0,0,1,0,1,1,1,1. Which single cut leaves the purest groups (lowest weighted Gini impurity)?" options: A. Between 2 and 3 / B. Between 4 and 5 / C. Between 6 and 7 (answer: B). Check (script): weighted Gini 0.208 at 2.5, 0.367 at 3.5, 0.1875 at 4.5, 0.30 at 5.5, 0.375 at 6.5 (parent 0.469).
+- Key state: the learner slides the cut and sees the mixed-group bars at the lowest at 4.5, where the left group has one stray.
+- Interaction: drag a cut line over eight dots; two small bars (left/right group mix) and an impurity number.
+- Payoff: A tree chooses the question whose answer makes the groups most alike.
+- Claims to check: (1) Gini values (script). (2) Gini = 1 - sum p²: Breiman et al. 1984, CART. (3) Cut values at midpoints is a convention.
+
+### 45. winner-word-evidence · concept: naive-bayes-evidence · core · demand 2
+- Learner knows: base rates / does not know how a word shifts the odds of spam.
+- Misconception: If a word appears in 60% of spam, an email with it is 60% likely spam.
+- Prediction: "10% of mail is spam. 'winner' appears in 60% of spam and 10% of real mail. An email contains 'winner'. Chance it is spam:" options: A. 40% / B. 60% / C. 86% (answer: A). Check (script): 0.06 / (0.06 + 0.09) = 40%.
+- Key state: the learner has counted 100 emails on the grid: 10 spam (6 with the word), 90 real (9 with the word), so 6 of 15.
+- Interaction: highlight "contains winner" on a 100-dot grid; slider for the share of spam (1%-50%) updates the posterior.
+- Payoff: A word's evidence must be weighed against how common the class is; the prior still matters.
+- Claims to check: (1) 6/15 = 40% (arithmetic). (2) Bayes' rule and naive Bayes spam filtering: Sahami et al. 1998; Manning et al. 2008, §13. (3) Rates invented.
+
+### 46. flip-twenty-percent · concept: label-noise-ceiling · core · demand 2
+- Learner knows: test sets / does not know that wrong answer keys cap measured accuracy.
+- Misconception: A perfect model scores 100%.
+- Prediction: "Test labels were wrongly flipped at random 20% of the time (two classes). A model that always knows the truth scores:" options: A. 100% / B. 80% / C. 60% (answer: B). Check (simulation 100,000 draws: 80.0%; derivation 1 - 0.2).
+- Key state: the learner runs the all-knowing model and sees the 20% mismatches that are the key's fault, not the model's.
+- Interaction: noise slider (0-40%) and a "score the perfect model" button; counts of dots marked as key errors.
+- Payoff: A score is relative to its labels; near the noise ceiling the remaining mistakes may be the key.
+- Claims to check: (1) 80% (arithmetic; simulation). (2) Real benchmarks contain label errors: Northcutt, Athalye & Mueller 2021 (NeurIPS Datasets and Benchmarks, "Pervasive label errors in test sets"); about real systems. (3) Two-class symmetric noise is a toy assumption.
+
+### 47. stuck-in-the-shallow-valley · concept: local-minima · core · demand 2 [exploration]
+- Learner knows: gradient descent / does not know that the start can decide which valley it settles in.
+- Misconception: Rolling downhill always reaches the lowest point.
+- Prediction: "f(x) = x⁴ - 3x² + x has a shallow valley near x = 1.13 (height -1.07) and a deeper one near x = -1.30 (height -3.51). A ball released at x = 1.5 with small steps stops at:" options: A. x = -1.30, the deepest / B. x = 1.13, the shallow valley / C. x = 0 (answer: B). Check (script, step 0.01, 2000 steps): 1.5 -> 1.131; 0.5 -> 1.131; -0.5 -> -1.301; -1.5 -> -1.301.
+- Key state: the learner has released the ball from two starts on opposite sides of the hump near x = 0.17 and sees different valleys.
+- Interaction: drag the ball's start along the curve and press roll; the end height is the only number.
+- Payoff: Descent finds the nearest valley, not the best; the start matters.
+- Claims to check: (1) end points (script). (2) The hump is at the root of 4x³ - 6x + 1 = 0 near 0.17 (script). (3) Real network losses have many minima but most found are good: Choromanska et al. 2015, Dauphin et al. 2014 (about real systems; do not overclaim).
+
+### 48. chain-of-blame · concept: backprop-chain · stretch · demand 2
+- Learner knows: gradient descent, hidden layers / does not know how a deep model assigns blame to early weights.
+- Misconception: Only the last layer's weights can be corrected from the output error.
+- Prediction: "y = w2·(w1·x) with x = 2, w1 = 3, w2 = 0.5, target 1, loss = (y - 1)². The slope of the loss with respect to w1 is:" options: A. 2 / B. 4 / C. 24 (answer: B). Check (script, finite differences): y = 3, d/dw1 = 2(y - 1)·w2·x = 2·2·0.5·2 = 4; d/dw2 = 24 (distractor).
+- Key state: the learner nudges w1 by a small amount and sees the loss change by 4x that amount, then nudges w2 and sees 24x.
+- Interaction: two nudge buttons (w1, w2) on a two-box chain with the loss readout; one chain on stage.
+- Payoff: The error passes back through each weight multiplied by the pieces it passed through, so early weights get a share of the blame.
+- Claims to check: (1) 4 and 24 (script). (2) Chain rule: Rumelhart, Hinton & Williams 1986; Goodfellow et al. 2016 §6.5. (3) Single-weight chain is a toy of the real many-weight case.
+
+### 49. stack-without-bend · concept: nonlinearity-collapse · core · demand 2
+- Learner knows: hidden layers can separate XOR / does not know that layers alone, without a bend, add nothing.
+- Misconception: More layers always means a more powerful model.
+- Prediction: "Layer 1: h = 3x + 1. Layer 2: y = 2h - 5. One single layer that does the same job is:" options: A. y = 6x - 3 / B. y = 5x - 4 / C. None exists; two layers are stronger (answer: A). Check: 2(3x + 1) - 5 = 6x - 3 (script: -3, 3, 9 at x = 0, 1, 2).
+- Key state: the learner sees the outputs at x = 0, 1, 2 lie on one straight line; adding a bend (ReLU) makes the plot kink.
+- Interaction: toggle "bend (ReLU) between layers" and drag the input x; one plot of y versus x.
+- Payoff: A stack of straight maps is one straight map; a nonlinearity between them is what lets depth add power.
+- Claims to check: (1) the algebra (script). (2) Composition of affine maps is affine (derivation). (3) Universal approximation with nonlinear activations: Cybenko 1989; Hornik 1991; about real systems.
+
+### 50. memorise-coin-flips · concept: memorise-random-labels · core · demand 2 [exploration]
+- Learner knows: overfitting / does not know that a flexible model can fit pure noise.
+- Misconception: If a model fits the training data perfectly, it must have found a pattern.
+- Prediction: "Six points at x = 0, 0.2, ..., 1 get random labels +1 or -1 (coin flips). A degree-5 curve (six coefficients) is fitted. Its training error:" options: A. Zero / B. About half wrong / C. Cannot be fitted (answer: A). Check (script, labels 1, -1, -1, 1, 1, -1): largest residual 3e-14; coefficients reach -520 and +417.
+- Key state: the learner re-flips the labels twice and the curve still threads every dot, with coefficient size spiking.
+- Interaction: a "re-flip labels" button and a degree stepper (1, 3, 5); curve and dots; a number for training error.
+- Payoff: Enough freedom fits anything, including nothing; a perfect fit on training data is not evidence of a pattern.
+- Claims to check: (1) zero residual for six distinct x (script; polynomial interpolation). (2) Held-out accuracy of a fit to random labels is chance by construction. (3) Deep networks can fit random labels: Zhang et al. 2017 (ICLR, "Understanding deep learning requires rethinking generalization"); about real systems.
+
+### 51. dog-bites-man-twice · concept: positional-encoding · stretch · demand 1 [exploration]
+- Learner knows: attention weights / does not know that without position information, word order is invisible to attention.
+- Misconception: Attention reads words in order, so it knows who bit whom.
+- Prediction: "Words as vectors: dog (1,0), man (0,1), bites (1,1). 'bites' attends over the sentence using dot-product softmax. Without position information, 'bites' ends up with the same summary in 'dog bites man' and 'man bites dog':" options: A. Yes, identical / B. No, differs by word order / C. Only if the sentence is longer (answer: A). Check (script): both give (0.788, 0.788); with position vectors added the summaries become (0.944, 1.255) and (0.870, 1.323).
+- Key state: the learner swaps the first and last words and sees the summary arrow does not move; then turns position on and sees it move.
+- Interaction: tap the two end words to swap them; a "add position" toggle; one arrow for the summary.
+- Payoff: Attention treats its inputs as a set; position tags are what let order change the answer.
+- Claims to check: (1) the vectors and summaries (script; position vectors are the toy's). (2) Self-attention is permutation-equivariant without positions: Vaswani et al. 2017 §3.5; about real systems. (3) The toy's position vectors are not the real sine/cosine scheme.
+
+### 52. twins-never-split · concept: symmetry-breaking · stretch · demand 1 [exploration]
+- Learner knows: hidden layers / does not know why weights must start different.
+- Misconception: Training will separate two identical hidden units because the data are varied.
+- Prediction: "Two hidden units start with identical weights (0.5) and identical output weights (1) and are trained by gradient descent on four varied data points. After 200 steps their weights differ:" options: A. By a little / B. They stay exactly equal / C. They differ a lot (answer: B). Check (script, tanh units): both weights end at 0.316; maximum difference over all steps 0.
+- Key state: the learner trains the twin pair, watches both weights move together, then nudges one by 0.01 and sees them diverge.
+- Interaction: "train 10 steps" button; one-weight nudge handle; two weight bars.
+- Payoff: Identical units receive identical updates forever, so networks start with random weights to let units specialise.
+- Claims to check: (1) maxdiff = 0 (script). (2) Symmetry argument (derivation: gradients are equal by symmetry). (3) Random initialisation: Goodfellow et al. 2016 §8.4; about real systems.
+
+### 53. noisy-compass · concept: minibatch-noise · stretch · demand 1
+- Learner knows: gradient descent / does not know why steps use a batch of examples.
+- Misconception: Using one example per step is as reliable as using many.
+- Prediction: "Each example's gradient has noise with spread (sd) 1 around the true slope. Averaging a batch of 16 gives noise sd:" options: A. 1 / B. 0.25 / C. 0.0625 (answer: B). Check (script, 50,000 trials): sd = 0.997 for batch 1, 0.249 for batch 16; theory 1/sqrt(16).
+- Key state: the learner sees 30 step arrows at batch 1 scatter widely, then at batch 16 cluster, a quarter as wide.
+- Interaction: batch-size stepper (1, 4, 16, 64) on a compass of step directions.
+- Payoff: Averaging b examples shrinks noise by the square root of b, so 16 times the work buys 4 times the steadiness.
+- Claims to check: (1) the two sds (script). (2) Standard error = sigma/sqrt(b) (derivation). (3) Minibatch SGD: Goodfellow et al. 2016 §8.1.3; about real systems.
+
+### 54. switch-half-off · concept: dropout · stretch · demand 1 [exploration]
+- Learner knows: overfitting / does not know a model can be trained with random parts removed.
+- Misconception: Switching parts off during training can only hurt.
+- Prediction: "Four units each output 1. In training each is switched off with chance 50% and survivors are doubled. The average total output over many passes:" options: A. 2 / B. 4 / C. 8 (answer: B). Check (script, 100,000 passes): mean 3.994; expectation 4 x 0.5 x 2 = 4, equal to the all-on total.
+- Key state: the learner runs several passes and sees the total jump between 0 and 8 but the running average settles near 4.
+- Interaction: a "random pass" button; units flash on/off; running average line. One diagram.
+- Payoff: Randomly dropping units, with scaling, keeps the average output right while stopping units from relying on specific partners.
+- Claims to check: (1) mean 3.994 (script). (2) Scaling keeps the expectation unchanged (derivation). (3) Dropout: Srivastava et al. 2014 (JMLR 15); that it reduces co-adaptation is the authors' claim (about real systems; do not assert a lesson-level effect without a toy demo).
+
+### 55. rank-the-pairs · concept: auc-ranking · stretch · demand 1 [exploration]
+- Learner knows: thresholds trade precision and recall (brief 7) / does not know a threshold-free summary of ranking quality.
+- Misconception: To judge a scorer you must pick a threshold first.
+- Prediction: "Spam scores 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Pick one spam and one real email at random. The chance the spam scores higher (ties count half):" options: A. 50% / B. 86% / C. 100% (answer: B). Check (script): 25 pairs; 21.5 wins (one tie at 0.3) so 0.86.
+- Key state: the learner taps through all 25 pairs on a grid and counts the wins, reaching 21.5.
+- Interaction: a 5x5 grid (spam rows, real columns); each cell lights if the spam outranks; one number.
+- Payoff: AUC is the share of spam-real pairs the scorer orders correctly, which does not depend on any threshold.
+- Claims to check: (1) 21.5 / 25 (script). (2) AUC equals the probability a random positive outranks a random negative (Hanley & McNeil 1982, Radiology 143). (3) AUC can hide behaviour at the operating threshold (say so).
