@@ -1,0 +1,67 @@
+{
+  "domain": "physics",
+  "owner": "cm-physics",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "pendulum-period",
+      "name": "A pendulum's period ignores its mass",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "projectile-angle",
+      "name": "Projectile range and launch angle",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "falling-objects",
+      "name": "Heavy and light objects fall together",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "energy-conservation",
+      "name": "Energy changes form but is conserved",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "falling-objects"
+      ]
+    },
+    {
+      "id": "inverse-square",
+      "name": "Inverse-square law (light, gravity)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "waves-interference",
+      "name": "Waves add up (interference)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "buoyancy",
+      "name": "Why things float",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "orbits",
+      "name": "Orbits are falling sideways",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "projectile-angle"
+      ]
+    }
+  ]
+}

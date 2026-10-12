@@ -1,0 +1,67 @@
+{
+  "domain": "probability",
+  "owner": "cm-probability",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "birthday-paradox",
+      "name": "The birthday paradox",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "monty-hall",
+      "name": "Monty Hall: switching doors",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "base-rates",
+      "name": "Base rates and medical tests",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "law-of-large-numbers",
+      "name": "The law of large numbers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "regression-to-mean",
+      "name": "Regression to the mean",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    },
+    {
+      "id": "sampling-bias",
+      "name": "Survivorship and sampling bias",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "expected-value",
+      "name": "Expected value",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "central-limit",
+      "name": "Why bell curves appear",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "law-of-large-numbers"
+      ]
+    }
+  ]
+}

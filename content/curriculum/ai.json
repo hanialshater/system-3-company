@@ -1,0 +1,67 @@
+{
+  "domain": "ai",
+  "owner": "cm-ai",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "gradient-descent",
+      "name": "Gradient descent: rolling downhill",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "overfitting",
+      "name": "Overfitting: memorising the noise",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "nearest-neighbours",
+      "name": "Classifying by nearest neighbours",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "decision-boundary",
+      "name": "Decision boundaries",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "nearest-neighbours"
+      ]
+    },
+    {
+      "id": "embeddings",
+      "name": "Embeddings: meaning as position",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "next-token",
+      "name": "Language models predict the next token",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "goodharts-law",
+      "name": "Goodhart's law: when the metric becomes the target",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "train-test-split",
+      "name": "Why we hold out test data",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "overfitting"
+      ]
+    }
+  ]
+}

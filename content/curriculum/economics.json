@@ -1,0 +1,71 @@
+{
+  "domain": "economics",
+  "owner": "cm-economics",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "compound-interest",
+      "name": "Compound interest",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "rule-of-72",
+      "name": "The rule of 72",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "compound-interest"
+      ]
+    },
+    {
+      "id": "opportunity-cost",
+      "name": "Opportunity cost",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "supply-demand",
+      "name": "Supply, demand and price",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "inflation",
+      "name": "Inflation and purchasing power",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "compound-interest"
+      ]
+    },
+    {
+      "id": "diversification",
+      "name": "Diversification reduces risk",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:expected-value"
+      ]
+    },
+    {
+      "id": "tragedy-of-commons",
+      "name": "Tragedy of the commons",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "comparative-advantage",
+      "name": "Comparative advantage",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "opportunity-cost"
+      ]
+    }
+  ]
+}

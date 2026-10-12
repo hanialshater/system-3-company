@@ -1,0 +1,76 @@
+{
+  "domain": "cs",
+  "owner": "cm-cs",
+  "note": "Owned by the category manager. demand: 1 low, 3 high. level: intro | core | stretch. Prerequisites in other domains use domain:concept.",
+  "concepts": [
+    {
+      "id": "binary-search",
+      "name": "Binary search: halving the haystack",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "divide-and-conquer",
+      "name": "Divide and conquer (merge)",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "binary-search"
+      ]
+    },
+    {
+      "id": "hashing-collisions",
+      "name": "Hash tables and collisions",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "count-min-sketch",
+      "name": "Approximate counting (Count-Min Sketch)",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "hashing-collisions"
+      ]
+    },
+    {
+      "id": "binary-numbers",
+      "name": "Binary numbers",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "graph-shortest-path",
+      "name": "Shortest paths (BFS / Dijkstra)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "big-o-growth",
+      "name": "How running time grows",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-search"
+      ]
+    },
+    {
+      "id": "recursion",
+      "name": "Recursion: a function that calls itself",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "public-key-crypto",
+      "name": "Public-key cryptography (paint mixing)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": []
+    }
+  ]
+}

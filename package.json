@@ -1,0 +1,33 @@
+{
+  "name": "system-3-company",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A company of narrow AI agents that makes 60-second interactive lessons, run on the System 3 architecture.",
+  "scripts": {
+    "dev": "npm run registry && next dev",
+    "build": "npm run registry && next build",
+    "start": "next start",
+    "typecheck": "npm run registry && tsc --noEmit",
+    "registry": "node tools/company.mjs registry",
+    "company": "node tools/company.mjs",
+    "check": "node tools/company.mjs check",
+    "qa": "playwright test",
+    "walkthrough": "node tools/walkthrough.mjs",
+    "verify": "npm run check && npm run typecheck && npm run build && npm run qa"
+  },
+  "dependencies": {
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "22.18.6",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "typescript": "5.9.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
