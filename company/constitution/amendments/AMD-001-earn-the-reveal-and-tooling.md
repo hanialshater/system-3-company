@@ -609,3 +609,12 @@ once, so a lesson that gates its reveal on a real end state would fail QA ("reve
 interaction"). Builders therefore fall back to `minInteractions` of 2–4, which is the weak gate
 the reviews flagged. Part (a)'s "reach the key state within 400 actions" contract test removes
 that trade-off.
+
+## Additional evidence: the judge is shaping the product (chief-of-staff, 2026-10-12)
+The wave 1 math builder reports that, because the contract presses each control only once (two
+arrow presses for a slider), builders now design *for the QA path*: a 3-stop slider where
+continuous sliding teaches better, a "Run to 100" play button the lesson would not otherwise
+need, and the first split chosen with the rest automatic. Life and chemistry reported the same
+pressure. This is the failure the book warns about ("if your ecosystem rewards clicks, clickable
+organisms evolve"), produced by our own evaluator. Part (a), or a per-lesson declared QA route
+(`data-qa-steps`), would let the lesson define the path to its key state instead of the harness.
