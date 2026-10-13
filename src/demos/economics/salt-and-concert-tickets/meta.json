@@ -1,0 +1,79 @@
+{
+  "slug": "salt-and-concert-tickets",
+  "title": "Raise the price 10%: more money or less?",
+  "hook": "Two sellers raise prices by the same 10%. Do they both take in more?",
+  "domain": "economics",
+  "concept": "price-elasticity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that buyers buy less when the price rises",
+      "that revenue is price times the amount sold"
+    ],
+    "doesNotKnow": [
+      "that whether a price rise adds revenue depends on how much buyers cut back"
+    ]
+  },
+  "misconception": "A price rise always cuts sales enough to hurt, or never does.",
+  "objective": "The learner can explain that revenue is price times sales, so a price rise adds revenue when buyers barely cut back (salt: +8.9%) and loses it when they cut back a lot (tickets: −12%).",
+  "claims": [
+    {
+      "id": "economics.salt-and-concert-tickets.c1",
+      "text": "A 10% price rise with a 1% cut in purchases (salt) leaves revenue at 1.1 × 0.99 = 1.089 of before: +8.9%.",
+      "support": "derivation",
+      "source": "1.10 × 0.99 = 1.089. Demo.tsx revenue('salt', 10).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.salt-and-concert-tickets.c2",
+      "text": "A 10% price rise with a 20% cut (concert tickets) leaves revenue at 1.1 × 0.8 = 0.88 of before: −12%.",
+      "support": "derivation",
+      "source": "1.10 × 0.80 = 0.88. Demo.tsx revenue('tickets', 10).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.salt-and-concert-tickets.c3",
+      "text": "The buyers' reactions are invented example sensitivities (salt buyers cut 0.1% and ticket buyers 2% per 1% price rise, in a straight line), not measured data.",
+      "support": "convention",
+      "source": "Demo.tsx GOODS. At the slider's other settings: salt +30% → revenue 1.3 × 0.97 = 1.261; tickets +30% → 1.3 × 0.4 = 0.52.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.salt-and-concert-tickets.c4",
+      "text": "How strongly buyers' purchases react to a price change is called the price elasticity of demand.",
+      "support": "source",
+      "source": "Standard definition, e.g. Mankiw, Principles of Economics, ch. 5 (elasticity and its application).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.salt-and-concert-tickets.c5",
+      "text": "The lesson is a model: invented reactions, one price step, revenue (money taken in), not profit.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: invented buyers, revenue not profit'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A seller raises its price 20% and sales fall 5%. What happens to revenue?",
+    "options": [
+      "It falls, because sales fell",
+      "It rises, to about 1.14 times",
+      "It stays the same"
+    ],
+    "answer": 1,
+    "why": "Revenue is price × sales: 1.2 × 0.95 = 1.14. Buyers barely reacted, so the higher price wins."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

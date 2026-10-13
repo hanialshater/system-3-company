@@ -1,0 +1,87 @@
+{
+  "slug": "extra-hundred-a-month",
+  "title": "$100 extra a month: how much sooner?",
+  "hook": "Add $100 to a $1,199 loan payment. A few months saved, or something bigger?",
+  "domain": "economics",
+  "concept": "extra-loan-payment",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that loans charge interest on what is still owed",
+      "what a monthly payment is"
+    ],
+    "doesNotKnow": [
+      "that a small extra payment can shorten a long loan by years",
+      "that extra money goes straight to what is owed, shrinking every later month's interest"
+    ]
+  },
+  "misconception": "$100 more on a $1,199 payment saves a few months.",
+  "objective": "The learner can explain that an extra payment goes straight to the balance, so every later month's interest is smaller: $100 more a month on a $200,000, 6%, 30-year loan pays it off in 24 years 7 months and saves about $49,000 of interest.",
+  "claims": [
+    {
+      "id": "economics.extra-hundred-a-month.c1",
+      "text": "A $200,000 loan at 6% a year (0.5% a month) takes 30 years (360 payments) at $1,199.10 a month.",
+      "support": "derivation",
+      "source": "Annuity payment 200,000 × 0.005 / (1 − 1.005^−360) = 1,199.10. Demo.tsx PAYMENT.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c2",
+      "text": "Adding $100 to every payment pays the loan off at month 295: 24 years 7 months (about 24.6 years).",
+      "support": "simulation",
+      "source": "Step balance × 1.005 − 1,299.10 monthly from 200,000 until it reaches 0 (last payment only what is owed): 295 months. Deterministic, no randomness. Demo.tsx run(100).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c3",
+      "text": "Total interest falls from $231,676 to $182,538, a saving of $49,138.",
+      "support": "simulation",
+      "source": "Sum of monthly interest in the same stepping: run(0) 231,676.38; run(100) 182,537.97; difference 49,138.41.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c4",
+      "text": "Other extras on the slider ($50 steps to $500) use the same stepping, e.g. +$50: 27 yr 0 mo; +$200: 21 yr 0 mo; +$500: 14 yr 11 mo.",
+      "support": "simulation",
+      "source": "run(50) 324 months; run(200) 252 months; run(500) 179 months. Shown in the reveal only for values the learner visited.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c5",
+      "text": "An extra payment goes straight to what is still owed, so the next month's interest (0.5% of that) is smaller and more of the regular payment repays the loan.",
+      "support": "derivation",
+      "source": "Model rule: interest_m = 0.005 × balance; balance_m = balance + interest − (1,199.10 + extra). A lower balance lowers every later interest charge.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c6",
+      "text": "The lesson is a model: a fixed, illustrative 6% rate and no prepayment fee; it is arithmetic, not advice on whether to prepay.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: fixed 6%, no prepayment fee'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a long fixed-rate loan, why does a small extra payment each month cut years off, not just a few months?",
+    "options": [
+      "The bank lowers the rate for early payers",
+      "The extra cuts what is owed, so every later month's interest is smaller",
+      "It doesn't: it only saves the extra amount itself"
+    ],
+    "answer": 1,
+    "why": "Interest is charged on what is still owed. The extra goes straight to that balance, so each later month charges less interest and more of every regular payment repays the loan."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

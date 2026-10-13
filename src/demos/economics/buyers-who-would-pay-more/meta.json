@@ -1,0 +1,79 @@
+{
+  "slug": "buyers-who-would-pay-more",
+  "title": "Everyone pays $5. Is it worth $5 to all?",
+  "hook": "Five buyers, one price. Who gets more than they paid for?",
+  "domain": "economics",
+  "concept": "consumer-surplus",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a market has one price for everyone",
+      "that buyers differ in how much they would pay"
+    ],
+    "doesNotKnow": [
+      "that most buyers get more value than they pay, and the gap can be added up"
+    ]
+  },
+  "misconception": "At the market price, everyone is paying exactly what it is worth to them.",
+  "objective": "The learner can explain that each buyer who values a good above its price keeps the difference, and add those gaps: at $5, buyers worth $10, $8, $6 keep $5 + $3 + $1 = $9.",
+  "claims": [
+    {
+      "id": "economics.buyers-who-would-pay-more.c1",
+      "text": "At a $5 price, three of the five buyers ($10, $8, $6) buy; the $4 and $2 buyers stay out.",
+      "support": "derivation",
+      "source": "A buyer buys when the cup is worth at least the price: 10, 8, 6 ≥ 5; 4, 2 < 5. Demo.tsx buys().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.buyers-who-would-pay-more.c2",
+      "text": "Together they pay $15, value the cups at $24, and keep $5 + $3 + $1 = $9.",
+      "support": "derivation",
+      "source": "3 × 5 = 15; 10 + 8 + 6 = 24; 24 − 15 = 9. Demo.tsx PAID_Q, WORTH_Q, GAIN_Q.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.buyers-who-would-pay-more.c3",
+      "text": "At other prices on the slider the same rule applies, e.g. at $3 four buy and keep 7 + 5 + 3 + 1 = $16.",
+      "support": "derivation",
+      "source": "gain(v, p) = v − p for v ≥ p. The stage total counts only buyers the learner has tapped.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.buyers-who-would-pay-more.c4",
+      "text": "The total of what buyers keep (worth minus price) is called consumer surplus.",
+      "support": "source",
+      "source": "Standard definition, e.g. Mankiw, Principles of Economics, ch. 7 (consumers, producers and the efficiency of markets), which uses the same buyers-with-values construction.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.buyers-who-would-pay-more.c5",
+      "text": "The lesson is a model: five invented buyers, one cup each, one price for everyone.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: five invented buyers, one cup each'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A concert sells every ticket at $40. One fan would have paid $100, another exactly $40. What is true?",
+    "options": [
+      "Both got exactly what they paid for",
+      "The first fan kept $60 of value; the second kept nothing",
+      "The first fan overpaid"
+    ],
+    "answer": 1,
+    "why": "Each buyer keeps the gap between what the ticket is worth to them and the price: $100 − $40 = $60 for the first, $0 for the second."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
