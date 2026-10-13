@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 30dvh; flex-shrink: 0; }
+.grid { stroke: var(--line); stroke-width: 0.6; }
+.tick { fill: var(--muted); font-size: 9px; }
+.rep { fill: none; stroke: var(--domain); stroke-width: 2.5; }
+.inf { fill: none; stroke: var(--bad); stroke-width: 2.5; }
+.repDot { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.infDot { fill: var(--bad); }
+.lagLine { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.gap { stroke: var(--bad); stroke-width: 1.5; stroke-dasharray: 2 2; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 14px; height: 0; border-top: 3px solid; }
+.legend i.repKey { border-color: var(--domain); }
+.legend i.infKey { border-color: var(--bad); }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }

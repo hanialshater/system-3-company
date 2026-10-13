@@ -1,0 +1,72 @@
+{
+  "slug": "falling-yet-adding",
+  "title": "Falling, but still adding up",
+  "hook": "New cases drop 10% every day. How many more are still to come?",
+  "domain": "life",
+  "concept": "reading-case-curves",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the difference between daily new cases and the running total"
+    ],
+    "doesNotKnow": [
+      "that a falling daily count still adds to the total",
+      "that a slow fall makes a long, heavy tail"
+    ]
+  },
+  "misconception": "Once daily cases are falling, the outbreak is basically over.",
+  "objective": "The learner can explain that a shrinking daily count is still a sum: 1,000 today falling 10% a day adds about 9,000 more, and a slower fall adds more.",
+  "claims": [
+    {
+      "id": "life.falling-yet-adding.c1",
+      "text": "If 1,000 new cases today fall by 10% every day, the cases from tomorrow on are 900 + 810 + 729 + ..., which sums to 900 / 0.1 = 9,000.",
+      "support": "derivation",
+      "source": "Geometric series a r / (1 - r) with a = 1,000, r = 0.9. Summed in node over 2,000 days: 9,000 (artifacts/scratch/w3life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.falling-yet-adding.c2",
+      "text": "On the stage at 10% a day, the total from tomorrow on is about 5,862 by day 10 and 8,999 by day 90.",
+      "support": "derivation",
+      "source": "Partial sums 9,000 x (1 - 0.9^n): n = 10 gives 5,862, n = 90 gives 8,999. Same function (totalTo) draws the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.falling-yet-adding.c3",
+      "text": "At a 5% daily fall the tail sums to 19,000; at 30% it sums to about 2,333.",
+      "support": "derivation",
+      "source": "950 / 0.05 = 19,000; 700 / 0.3 = 2,333.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.falling-yet-adding.c4",
+      "text": "The model is a made-up outbreak whose daily fall never changes; real case curves do not fall this steadily.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... steady daily fall') and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy outbreak has 500 new cases today, and each day has 20% fewer than the day before. Roughly how many more cases come from tomorrow on?",
+    "options": [
+      "About 100",
+      "About 500",
+      "About 2,000"
+    ],
+    "answer": 2,
+    "why": "The tail is 400 + 320 + 256 + ..., which sums to 400 / 0.2 = 2,000: a shrinking daily count still adds up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
