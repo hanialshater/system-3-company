@@ -16,7 +16,7 @@ Decide what AI & Machine Learning should teach next and why, and keep the catego
 
 - content/curriculum/ai.json: concepts, levels, prerequisites, demand (1–3)
 - company/domains/ai.md: the category charter, audience and quality bar
-- Lesson briefs: concept, audience, the misconception worth breaking, why this one next
+- Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)
 - Category OP narrative and its slice of the cycle budget
 - Retiring lessons that no longer help (retirement review)
 - Focus: how learning systems behave, including how they fail and get gamed

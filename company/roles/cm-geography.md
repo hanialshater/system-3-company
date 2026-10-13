@@ -16,7 +16,7 @@ Decide what Geography & Maps should teach next and why, and keep the category's 
 
 - content/curriculum/geography.json: concepts, levels, prerequisites, demand (1–3)
 - company/domains/geography.md: the category charter, audience and quality bar
-- Lesson briefs: concept, audience, the misconception worth breaking, why this one next
+- Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)
 - Category OP narrative and its slice of the cycle budget
 - Retiring lessons that no longer help (retirement review)
 - Focus: maps, projections, distances, climate and the shape of the Earth, drawn with real world data

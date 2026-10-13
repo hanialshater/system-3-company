@@ -51,7 +51,7 @@ export const ROOMS: Room[] = [
   // Floor 1 top row: Product, and the stairs to the Categories floor.
   { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 470, h: 84, kind: "office" },
   { id: "to-floor-3", name: "↑ Floor 3 · Categories", x: 500, y: 16, w: 230, h: 84, kind: "lobby" },
-  { id: "to-floor-2", name: "↑ Floor 2 · Personalization, International", x: 740, y: 16, w: 240, h: 84, kind: "lobby" },
+  { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 740, y: 16, w: 240, h: 84, kind: "lobby" },
   // Floor 3: every category, its lead and its sub-area managers; strategy; Life Hacks safety.
   ...[...DOMAINS, ["lifehacks", "Life Hacks", "#ffb74d"] as [string, string, string]].map(([id, name, color], i) => ({
     id: `cm-${id}`, name, x: 20 + (i % 5) * 194, y: 16 + Math.floor(i / 5) * 246, w: 186, h: 236, kind: "office" as const, color, floor: 3 as const,
@@ -83,7 +83,7 @@ export const ROOMS: Room[] = [
   { id: "international", name: "International", x: 540, y: 16, w: 440, h: 150, kind: "office", color: "#4fd1a5", floor: 2 },
   { id: "locale-desks", name: "Locale desks", x: 540, y: 186, w: 440, h: 200, kind: "floor", floor: 2 },
   { id: "culture-review", name: "Culture review", x: 540, y: 406, w: 440, h: 130, kind: "meeting", floor: 2 },
-  { id: "lounge-2", name: "Floor 2 lounge", x: 20, y: 406, w: 500, h: 130, kind: "lobby", floor: 2 },
+  { id: "design-studio", name: "Design studio", x: 20, y: 406, w: 500, h: 130, kind: "office", color: "#f48fb1", floor: 2 },
 ];
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");

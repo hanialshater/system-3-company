@@ -1,8 +1,8 @@
 # Mockup Artist
 
 name: Tomás
-team: studio
-reports_to: learning-designer
+team: design
+reports_to: design-lead
 agent: .claude/agents/mockup-artist.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

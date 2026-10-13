@@ -24,9 +24,17 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | Role | Reports to | Mission |
 |---|---|---|
 | [Learning Designer](learning-designer.md) | head-of-product | Decide what the learner should do, predict and notice, so the lesson teaches the payoff and not the procedure.. |
-| [Mockup Artist](mockup-artist.md) | learning-designer | Draw it before anyone builds it: a mockup is a cheap hypothesis about where things go and what the learner looks at first.. |
 | [Researcher](researcher.md) | learning-designer | Answer the question the work produced, and say where each answer came from, who was studied, and how strong it is.. |
 | [Demo Builder](demo-builder.md) | learning-designer | Make the design executable: the picture has to pay its debts. |
+
+## Design
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Mockup Artist](mockup-artist.md) | design-lead | Draw it before anyone builds it: a mockup is a cheap hypothesis about where things go and what the learner looks at first.. |
+| [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
+| [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
+| [Visual Designer](visual-designer.md) | design-lead | One recognisable, calm, legible style across 500+ lessons and every locale.. |
 
 ## Quality
 

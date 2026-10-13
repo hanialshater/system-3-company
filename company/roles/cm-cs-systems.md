@@ -15,7 +15,7 @@ Turn Computer Systems & Networks into a curriculum a learner can climb: concepts
 ## In scope
 
 - Concepts tagged subarea "systems" in content/curriculum/cs.json (add, order, set prerequisites and demand)
-- company/domains/briefs/cs.systems.md: ranked briefs for this strand (claim.mjs hands them out with the domain's)
+- company/domains/briefs/cs.systems.md: ranked briefs for this strand (claim.mjs hands them out with the domain's). Each brief names a format from company/design/formats.md
 - Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)
 - Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson
 

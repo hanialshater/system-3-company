@@ -15,7 +15,7 @@ Turn Discrete Maths & Logic into a curriculum a learner can climb: concepts in o
 ## In scope
 
 - Concepts tagged subarea "discrete" in content/curriculum/math.json (add, order, set prerequisites and demand)
-- company/domains/briefs/math.discrete.md: ranked briefs for this strand (claim.mjs hands them out with the domain's)
+- company/domains/briefs/math.discrete.md: ranked briefs for this strand (claim.mjs hands them out with the domain's). Each brief names a format from company/design/formats.md
 - Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)
 - Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson
 

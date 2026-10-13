@@ -54,14 +54,18 @@ Work is pulled, not assigned. Any number of builders can work in one domain, bec
 
 1. **Briefs.** Category managers keep `company/domains/briefs/<domain>.md` ranked. Briefs known to be wrong go in `ops/brief-skips.json` with a reason, and are never handed out until fixed.
 2. **Claim.** A builder asks for work with `node tools/claim.mjs next <domain> --agent=<label>`. It gets the next unbuilt brief under an exclusive lock (`ops/claims/`, main checkout, created with O_EXCL so a race has exactly one winner), or `NONE` when the domain is done. An abandoned brief goes back with `claim.mjs release <slug>`. Locks older than 6 h are stale and can be taken again. After a restart, run `claim.mjs seed-worktrees`.
-3. **Build.** Each builder works in its own worktree, with its own `NEXT_DIST_DIR`, `QA_PORT` and `QA_OUT`. It commits every 2 lessons, looks at every phone screenshot, and writes only its lesson folders.
-4. **Integrate.** The chief of staff merges each branch as it reports, regenerates the registry, runs `check` and `tsc`, pushes, and removes the worktree.
-5. **QA.** Before any QA or walkthrough run, confirm the build has every lesson page (`tools/serve.sh` warns otherwise). Run QA for every lesson without a QA record, then `company qa-record`.
-6. **Check.** Fact-checkers (sonnet) take `claims --open`. Learner evaluators (sonnet) review from `transcript.md` plus `sheet.png`, the whole walkthrough in one image. No image seen means no "launch".
-7. **Publish.** After a review batch has fully reported, run `node tools/publish-ready.mjs --publish`. It publishes only lessons whose latest review says launch for the current version, and it respects `ops/publish-holds.json`. Append the batch to the day's launch-review record.
-8. **Revise.** Findings go to revision builders (sonnet). A revision bumps the version, so the lesson goes back through fact-check and review.
-9. **Rituals fire on events** (`rituals/triggers.json`, `node tools/rituals-due.mjs`): a retro every 5 merges or after an incident, a WBR every 10 merges or daily, a launch review after each check batch, and a founder digest every 12 h. HQ's Lobby shows what is due.
-10. **The chief of staff alone writes** the board, the progress log, the event log and the WBR.
+3. **Design (new, 2026-10-13).** Every brief names a format from `company/design/formats.md`.
+   - **Default formats** (single card, simulation run, map explorer) go straight to a builder.
+   - **Other formats, new formats, and briefs flagged hard** go first to the learning designer (the pedagogy note) and the interaction designer (spec plus a mockup from the mockup artist). The spec goes in `company/design/specs/<slug>.md` and the builder follows it.
+   - **Design review** looks at the contact sheet: for every new format, for every lesson with a layout or "told, not shown" finding, and for a 10% sample of each batch. It runs after the learner review.
+4. **Build.** Each builder works in its own worktree, with its own `NEXT_DIST_DIR`, `QA_PORT` and `QA_OUT`. It commits every 2 lessons, looks at every phone screenshot, and writes only its lesson folders.
+5. **Integrate.** The chief of staff merges each branch as it reports, regenerates the registry, runs `check` and `tsc`, pushes, and removes the worktree.
+6. **QA.** Before any QA or walkthrough run, confirm the build has every lesson page (`tools/serve.sh` warns otherwise). Run QA for every lesson without a QA record, then `company qa-record`.
+7. **Check.** Fact-checkers (sonnet) take `claims --open`. Learner evaluators (sonnet) review from `transcript.md` plus `sheet.png`, the whole walkthrough in one image. No image seen means no "launch".
+8. **Publish.** After a review batch has fully reported, run `node tools/publish-ready.mjs --publish`. It publishes only lessons whose latest review says launch for the current version, and it respects `ops/publish-holds.json`. Append the batch to the day's launch-review record.
+9. **Revise.** Findings go to revision builders (sonnet). A revision bumps the version, so the lesson goes back through fact-check and review.
+10. **Rituals fire on events** (`rituals/triggers.json`, `node tools/rituals-due.mjs`): a retro every 5 merges or after an incident, a WBR every 10 merges or daily, a launch review after each check batch, and a founder digest every 12 h. HQ's Lobby shows what is due.
+11. **The chief of staff alone writes** the board, the progress log, the event log and the WBR.
 
 **Concurrency.** The limit is the usage budget, not the org. Hitting it stops every agent for hours.
 - Default: at most 3 Opus builders and about 8 agents in total.

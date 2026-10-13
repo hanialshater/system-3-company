@@ -1,10 +1,59 @@
 {
   "note": "Event-driven ritual cadence (2026-10-13). Agents work in minutes, so most rituals fire on events, not on the calendar. `node tools/rituals-due.mjs` reads this file and company/ops/events.jsonl. The calendar table in tools/company.mjs (constitutional) stays as the upper bound until an amendment replaces it.",
   "triggers": [
-    { "ritual": "retro", "room": "meeting-retro", "every": { "merge": 5 }, "or": ["incident"], "why": "Five merged batches (~50 lessons), or any incident." },
-    { "ritual": "wbr", "room": "meeting-wbr", "every": { "merge": 10 }, "orHours": 24, "why": "A business review per ~100 lessons, and at least daily while agents run." },
-    { "ritual": "demo-crit", "room": "meeting-crit", "every": { "review": 4 }, "why": "A crit per four review batches (~80 lessons reviewed)." },
-    { "ritual": "launch-review", "room": "launch-room", "every": { "review": 1, "verify": 1 }, "why": "After any review or fact-check batch, run the publish loop." },
-    { "ritual": "founder-digest", "room": "lobby", "orHours": 12, "why": "The founder gets a short digest at least twice a day: what shipped, what is blocked, what waits on them." }
+    {
+      "ritual": "retro",
+      "room": "meeting-retro",
+      "every": {
+        "merge": 5
+      },
+      "or": [
+        "incident"
+      ],
+      "why": "Five merged batches (~50 lessons), or any incident."
+    },
+    {
+      "ritual": "wbr",
+      "room": "meeting-wbr",
+      "every": {
+        "merge": 10
+      },
+      "orHours": 24,
+      "why": "A business review per ~100 lessons, and at least daily while agents run."
+    },
+    {
+      "ritual": "demo-crit",
+      "room": "meeting-crit",
+      "every": {
+        "review": 4
+      },
+      "why": "A crit per four review batches (~80 lessons reviewed)."
+    },
+    {
+      "ritual": "launch-review",
+      "room": "launch-room",
+      "every": {
+        "review": 1,
+        "verify": 1
+      },
+      "why": "After any review or fact-check batch, run the publish loop."
+    },
+    {
+      "ritual": "founder-digest",
+      "room": "lobby",
+      "orHours": 12,
+      "why": "The founder gets a short digest at least twice a day: what shipped, what is blocked, what waits on them."
+    },
+    {
+      "ritual": "design-review",
+      "room": "design-studio",
+      "every": {
+        "review": 2
+      },
+      "or": [
+        "incident"
+      ],
+      "why": "A design pass on new formats, on lessons with layout or told-not-shown findings, and on a 10% sample, every two review batches."
+    }
   ]
 }

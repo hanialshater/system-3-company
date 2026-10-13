@@ -30,6 +30,10 @@ export const TEAM_COLOR: Record<string, string> = {
   "cultural-reviewer": "#4fd1a5",
   "principal-pm-verticals": "#7c9cff",
   "head-of-product": "#7c9cff",
+  "design-lead": "#f48fb1",
+  "interaction-designer": "#f48fb1",
+  "visual-designer": "#f48fb1",
+  "mockup-artist": "#f48fb1",
 };
 
 export function teamColor(role: string): string {

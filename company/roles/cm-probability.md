@@ -16,7 +16,7 @@ Decide what Probability & Data should teach next and why, and keep the category'
 
 - content/curriculum/probability.json: concepts, levels, prerequisites, demand (1–3)
 - company/domains/probability.md: the category charter, audience and quality bar
-- Lesson briefs: concept, audience, the misconception worth breaking, why this one next
+- Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)
 - Category OP narrative and its slice of the cycle budget
 - Retiring lessons that no longer help (retirement review)
 - Focus: counter-intuitive results the learner can simulate thousands of times

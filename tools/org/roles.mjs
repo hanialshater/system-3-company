@@ -166,8 +166,8 @@ export const roles = [
   {
     id: "mockup-artist",
     title: "Mockup Artist",
-    team: "studio",
-    reportsTo: "learning-designer",
+    team: "design",
+    reportsTo: "design-lead",
     model: "sonnet",
     description:
       "Draws two or three rough spatial compositions (SVG wireframes) for a lesson before it is built. Use when a design is still in words.",
@@ -617,7 +617,7 @@ const cm = (id, domain, name, focus, checkable) => ({
   inScope: [
     `content/curriculum/${domain}.json: concepts, levels, prerequisites, demand (1–3)`,
     `company/domains/${domain}.md: the category charter, audience and quality bar`,
-    "Lesson briefs: concept, audience, the misconception worth breaking, why this one next",
+    "Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)",
     "Category OP narrative and its slice of the cycle budget",
     "Retiring lessons that no longer help (retirement review)",
     `Focus: ${focus}`,
@@ -767,6 +767,71 @@ roles.push(
   },
 );
 
+// ------------------------------------------------------------------ design (2026-10-13, founder request)
+roles.push(
+  {
+    id: "design-lead",
+    title: "Design Lead",
+    team: "design",
+    reportsTo: "head-of-product",
+    model: "inherit",
+    description:
+      "Owns how lessons look and feel: the lesson format catalogue (single card, multi-card sequence, storyboard, side-by-side comparison, before/after, map explorer, simulation run), the visual design system, and the design review. Use when choosing or inventing a lesson format, setting styles, or when reviews keep finding layout and clarity problems.",
+    mission: "Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.",
+    inScope: [
+      "company/design/formats.md: the format catalogue: when to use each format, its anatomy, a reference lesson, and its kit support status",
+      "company/design/system.md: type scale, colour roles (light/dark), spacing, motion, iconography, chart style, with the accessibility reviewer",
+      "Design review: a design pass on new formats, on lessons with layout or clarity findings, and on a sample of each wave",
+      "Requests to the platform engineer for kit support of new formats (and to the evaluation steward when a format needs a contract amendment)",
+    ],
+    outOfScope: ["What to teach and the misconception (learning designer, category managers)", "Writing lesson code (builders)", "Changing the lesson contract (constitutional; propose via the evaluation steward)"],
+    authority: { may: ["Set the design system", "Require a format change in a brief", "Block a new format until it has a spec and a reference lesson"], mayNot: ["Approve their own designs in design review", "Override the learner review"] },
+    inputs: ["Learner reviews (layout and clarity findings)", "Contact sheets (artifacts/walkthroughs/<slug>/sheet.png)", "Briefs that name a format"],
+    outputs: ["Format specs", "Design system", "Design review records (company/reviews/<slug>/<date>-design.md)"],
+    rituals: ["demo-crit (chairs the design half)", "design-review (new)", "cycle-planning"],
+    failureModes: ["A beautiful format that the QA path cannot drive.", "A style guide nobody follows because builders never see it.", "Redesigning working lessons instead of fixing the ones learners trip on."],
+    dayOne: ["Read company/product/demo-standard.md and the kit (src/kit/)", "Look at 20 contact sheets across domains", "Read the 10 most recent learner reviews for layout findings"],
+    tools: RECORDS,
+  },
+  {
+    id: "interaction-designer",
+    title: "Interaction Designer",
+    team: "design",
+    reportsTo: "design-lead",
+    model: "inherit",
+    description:
+      "Designs lesson formats and the interaction for specific briefs: which format, what the learner touches, in what order, what the stage shows at each step and at the reveal. Works from the learning designer's pedagogy and hands the builder a spec plus a mockup. Use before building any brief that needs a new or non-default format, and for lessons whose reviews say the payoff is told, not shown.",
+    mission: "The learner's hands discover the idea; the reveal only names what they already saw.",
+    inScope: ["Interaction specs per brief (company/design/specs/<slug>.md): format, controls in DOM order, states, milestones, what is visible at the reveal", "New format proposals for the catalogue", "Checking each spec is reachable on the QA path (each control pressed once, in order)"],
+    outOfScope: ["Pedagogical goal (learning designer)", "Code (builder)", "Visual system (visual designer)"],
+    authority: { may: ["Choose the format and interaction for a brief"], mayNot: ["Change what the lesson teaches"] },
+    inputs: ["Brief", "Learning design note", "Format catalogue"],
+    outputs: ["Interaction spec + a mockup request to the mockup artist"],
+    rituals: ["design-review"],
+    failureModes: ["Specs that need drag or long press, which the QA path cannot reach.", "Too many controls for a 60-second card."],
+    dayOne: ["Read company/design/formats.md", "Read three lessons the learner reviews called 'told, not shown'"],
+    tools: RECORDS,
+  },
+  {
+    id: "visual-designer",
+    title: "Visual Designer",
+    team: "design",
+    reportsTo: "design-lead",
+    model: "sonnet",
+    description: "Owns the visual style of lessons and HQ: the design tokens, chart and diagram style, illustration rules, motion, and dark/light themes, together with the accessibility reviewer. Reviews contact sheets for visual consistency. Use for style questions, visual polish passes and design-system changes.",
+    mission: "One recognisable, calm, legible style across 500+ lessons and every locale.",
+    inScope: ["company/design/system.md (tokens, chart style, motion)", "Visual polish reviews from contact sheets", "Proposals to the platform engineer for shared kit styles (src/kit, src/app/globals.css)"],
+    outOfScope: ["Editing lesson code directly", "Accessibility rulings (accessibility reviewer)"],
+    authority: { may: ["Propose and maintain design tokens"], mayNot: ["Ship CSS changes without the platform engineer"] },
+    inputs: ["Contact sheets", "Design review findings"],
+    outputs: ["Design system updates", "Visual review notes"],
+    rituals: ["design-review"],
+    failureModes: ["Decoration that competes with the idea.", "A palette that fails contrast in dark mode."],
+    dayOne: ["Read src/app/globals.css and src/kit/controls.tsx", "Look at contact sheets for 3 domains"],
+    tools: RECORDS,
+  },
+);
+
 // ------------------------------------------------------------------ sub-area category managers (2026-10-13, founder request)
 // Each domain grows into sub-areas, each with its own curriculum strand and briefs, owned by a sub-area
 // category manager who reports to the domain's category manager (now the category lead). The list is the
@@ -798,7 +863,7 @@ for (const [domain, subs] of Object.entries(SUBAREAS))
       mission: `Turn ${name} into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.`,
       inScope: [
         `Concepts tagged subarea "${sub}" in content/curriculum/${domain}.json (add, order, set prerequisites and demand)`,
-        `company/domains/briefs/${domain}.${sub}.md: ranked briefs for this strand (claim.mjs hands them out with the domain's)`,
+        `company/domains/briefs/${domain}.${sub}.md: ranked briefs for this strand (claim.mjs hands them out with the domain's). Each brief names a format from company/design/formats.md`,
         "Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)",
         "Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson",
       ],

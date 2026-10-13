@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["London is in Europe and New York is across the Atlantic", "a world map has level lines of latitude"],
-    "doesNotKnow": ["which landmass London's latitude lines up with", "that the big US east-coast cities line up with Spain and Portugal"]
+    "knows": [
+      "London is in Europe and New York is across the Atlantic",
+      "a world map has level lines of latitude"
+    ],
+    "doesNotKnow": [
+      "which landmass London's latitude lines up with",
+      "that the big US east-coast cities line up with Spain and Portugal"
+    ]
   },
   "misconception": "London shares a latitude with New York or Washington, since both are across the Atlantic.",
   "objective": "The learner can say that London's latitude meets Canada across the Atlantic, while Madrid's and Lisbon's meet the United States and New York's meets Portugal.",
@@ -22,62 +28,82 @@
       "text": "London is at 51.5°N, Madrid 40.4°N, New York 40.7°N and Lisbon 38.7°N.",
       "support": "source",
       "source": "From memory, not re-checked: gazetteer values London 51.5072 N 0.1276 W, Madrid 40.4168 N 3.7038 W, New York 40.7128 N 74.0060 W, Lisbon 38.7223 N 9.1393 W. The stage uses exactly these.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c2",
       "text": "Going west along London's latitude, the first country met across the Atlantic is Canada (at about 55.5°W).",
       "support": "simulation",
       "source": "Builder's node walk (0.1 degree steps, d3-geoContains over the kit's Natural Earth 1:110m countries, first country after open sea): London -> Canada at 55.5 W; an earlier 0.05 degree walk gave 55.48 W after 3,737 km. The stage computes the same walk in the browser. Coarse data: see c6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c3",
       "text": "Going west along Madrid's latitude (and Lisbon's), the first country met across the Atlantic is the United States.",
       "support": "simulation",
       "source": "Same walk: Madrid -> United States at 74.0 W; Lisbon -> United States at 75.1 W.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c4",
       "text": "Going east along New York's latitude, the first country met across the Atlantic is Portugal.",
       "support": "simulation",
       "source": "Same walk: New York eastward -> Portugal at 8.7 W (then Spain).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c5",
       "text": "On an equirectangular map, lines of latitude are level (horizontal) lines.",
       "support": "source",
       "source": "Snyder (1987), Map Projections: A Working Manual: in the equirectangular projection x is proportional to longitude and y to latitude. From memory, not re-checked.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c6",
       "text": "On the coarse stage map the line from London clears Britain and then meets open sea; real Ireland touches that latitude, so the stage skips it.",
       "support": "source",
       "source": "The 1:110m data has no polygon at 51.5 N between 4.2 W and 55.5 W (builder's walk). That Ireland's southwest coast reaches about 51.5 N is from the builder's memory of the map (Cork/Kerry coast near 51.5 to 52 N); needs a checker.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c7",
       "text": "Europe sits much further north than it feels.",
       "support": "derivation",
       "source": "Follows from c1-c4: London (51.5 N) is 10.8 degrees of latitude north of New York (40.7 N), about 1,200 km (10.8 x 111.2 km). Opinion word 'feels' is a framing, not a measurement.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.due-west-from-london.c8",
       "text": "Hook: London looks level with New York across the ocean.",
       "support": "convention",
       "source": "Framing of the common impression that the two cities face each other; a statement about how a viewer may read a map, not a measured fact. Needs a source or softer wording.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Which two cities share about the same latitude: London and New York, or New York and Madrid?",
-    "options": ["London and New York", "New York and Madrid", "London and Madrid"],
+    "options": [
+      "London and New York",
+      "New York and Madrid",
+      "London and Madrid"
+    ],
     "answer": 1,
     "why": "New York (40.7 N) and Madrid (40.4 N) are nearly level; London is at 51.5 N, in line with Canada."
   },

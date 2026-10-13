@@ -37,3 +37,4 @@
   - **People tab:** the org tree from `tools/org/roles.mjs`, showing who reports to whom, who is working and where.
   - Onboarding docs now carry each role's name.
 - Three more orgs (same night): Life Hacks (incubating category with a safety reviewer), Personalization (waiting for the founder's brief) and International (localization, not translation). That is 7 roles, now 40 in total. HQ gains a second floor with floor tabs. A hydration warning in HQ is fixed: the server passes "now".
+- Design org (same night): Ines (design lead), Rafael (interaction designer) and Kiri (visual designer); the mockup artist moves to Design. Format catalogue v0, design system v0, pipeline step 3 "Design", a design-review trigger, and a Design studio on HQ floor 2. Board items notify the head of product, the principal and platform engineers, the evaluation steward, the learning designer, accessibility and the category leads.

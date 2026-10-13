@@ -15,7 +15,7 @@ Turn Neural Networks & Language Models into a curriculum a learner can climb: co
 ## In scope
 
 - Concepts tagged subarea "neural-language" in content/curriculum/ai.json (add, order, set prerequisites and demand)
-- company/domains/briefs/ai.neural-language.md: ranked briefs for this strand (claim.mjs hands them out with the domain's)
+- company/domains/briefs/ai.neural-language.md: ranked briefs for this strand (claim.mjs hands them out with the domain's). Each brief names a format from company/design/formats.md
 - Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)
 - Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson
 

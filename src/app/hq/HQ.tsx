@@ -195,7 +195,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
                   return (
                     <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
-                      {f === 1 ? "Floor 1 · Lessons & company" : f === 2 ? "Floor 2 · Personalization, International" : "Floor 3 · Categories"}
+                      {f === 1 ? "Floor 1 · Lessons & company" : f === 2 ? "Floor 2 · Design, Personalization, International" : "Floor 3 · Categories"}
                       {here ? ` · ${here}` : ""}
                     </button>
                   );
