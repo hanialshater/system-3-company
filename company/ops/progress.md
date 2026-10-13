@@ -33,6 +33,26 @@ Template:
 - Next: demo-builder fixes the 11 disputed wordings (board W-058); fact-checker with network access compares half-of-humanity c1 (W-059). Advisory wording notes (not blocking) are in the review files: horizon-ruler refraction 'a few per cent' (about 8%), sieve 'clear a hundred numbers', friends-have-more-friends c3 'wherever friend counts differ' is false for disconnected networks, throw-it-fast-enough ISS 7.7 vs NASA 7.8 km/s.
 - Blocked: none.
 
+## 2026-10-13 (evening) · chief-of-staff · Three new teams; HQ live locally; 328 lessons
+- Changed:
+  - New teams: backend (backend-engineer, privacy-reviewer), growth (growth-designer) and company tools (tools-lead, hq-engineer). Decision record: company/decisions/2026-10-13-three-new-teams.md.
+  - Event log: company/ops/events.jsonl plus tools/events.mjs, backfilled with about 590 events from git and session transcripts.
+  - HQ at /hq: floor plan, replay, timeline, Lobby with due rituals and founder items.
+  - Event-driven ritual triggers: company/rituals/triggers.json and tools/rituals-due.mjs.
+  - Merged chemistry wave 4 and the pass-4 claim fixes. Check: 0 warnings.
+- Believe now:
+  - HQ works locally (screenshots on desktop, phone and replay; high confidence). It is off in production unless HQ_PUBLIC=1.
+  - The usage limit is the binding constraint: it stopped all 8 agents for about 7 hours.
+- Next (chief-of-staff):
+  - Merge the resumed agents (ai w4, geography w4 builders; life reviser; economics, cs, geography reviewers).
+  - Run the publish loop, then the rituals that are due (retro, demo crit, the first founder digest).
+  - A fact-check pass for chemistry w4, probability w3, geography w3 and the 5 claim fixes.
+- Blocked (founder):
+  - Backend choices: auth provider, database host, under-13 policy.
+  - Budget split between lessons and the new teams.
+  - AMD-001 ratification.
+  - UN WPP and Bullard source checks.
+
 ## 2026-10-13 (late) · chief-of-staff · 248 lessons; wave 4 under way
 - Changed: merged wave 3 (ai, chemistry, life) and CS wave 2, for 248 lessons and 1,300 claims; check passes (6 disputed-claim warnings). The walkthrough driver now follows the QA path (each control once, in DOM order, 1.2 s settle). Running: builders for geography w2, physics w4, math w4, economics w4 and cs w3 (5 Opus, the cap), plus a fact-checker on ai/chemistry/cs.
 - Believe now: about 20k build tokens per lesson holds (cs w2: 196k for 10). The learner launch rate of about 11% is the real constraint, not build throughput (medium-high confidence). Only 2 lessons are published.
