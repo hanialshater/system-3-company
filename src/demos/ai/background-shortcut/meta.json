@@ -28,27 +28,42 @@
       "text": "The toy has 20 invented training photos (10 cows, 10 camels). The background matches the label on 19 (95%); the shape clue, a visible hump meaning camel, is right on 16 (80%): 2 cows show a hump and 2 camels hide theirs.",
       "support": "convention",
       "source": "The lesson's own data in Demo.tsx (TRAIN); accuracy(TRAIN, \"background\") = 0.95 and accuracy(TRAIN, \"shape\") = 0.8 when run.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.background-shortcut.c2",
       "text": "The toy model uses one clue at a time and keeps the one with the higher training score: background.",
       "support": "convention",
       "source": "LEARNED in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.background-shortcut.c3",
       "text": "On 20 test photos with backgrounds shuffled (half the cows on sand, half the camels on grass), the background clue is right on 10 of 20 (50%) and the shape clue still on 16 of 20 (80%).",
       "support": "derivation",
       "source": "With backgrounds independent of the label and matching half the time, a background rule is right exactly when the background matches: 10 / 20. Reproduced by running accuracy(TEST, …) from Demo.tsx: 0.5 and 0.8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.background-shortcut.c4",
       "text": "About real systems: image classifiers have been found to rely on backgrounds and other shortcuts that travel with the label in training data, and to fail when the background changes.",
       "support": "source",
       "source": "Beery, Van Horn & Perona 2018, “Recognition in Terra Incognita”, ECCV (camera-trap classifiers fail at new locations); Geirhos et al. 2020, “Shortcut learning in deep neural networks”, Nature Machine Intelligence 2, 665–673 (discusses cows in unusual locations).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.background-shortcut.c5",
+      "text": "A model takes the cheapest clue that works on its training data, and test photos drawn from the same source share the shortcut, so a high score there does not show the model learned the clue you meant.",
+      "support": "source",
+      "source": "Reveal paragraph 2. Geirhos et al. 2020, Nature Machine Intelligence 2, 665-673 (shortcuts that work on i.i.d. test sets but fail out of distribution). 'Cheapest' is a loose paraphrase of simplicity/shortcut bias, not a measured quantity; the reviewer should confirm the wording is acceptable. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],
