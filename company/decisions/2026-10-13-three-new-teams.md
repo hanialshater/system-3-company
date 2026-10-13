@@ -1,6 +1,7 @@
 # Decision: three new teams: backend, growth, company tools
 
 date: 2026-10-13 · decided by: founder (request), chief-of-staff (design) · status: accepted
+owner: chief-of-staff
 
 ## Context
 The founder asked for three things:
