@@ -28,35 +28,45 @@
       "text": "The test calls a coin biased when |heads - tails| / sqrt(flips) is above 1.96 (the 5% level under the normal approximation).",
       "support": "convention",
       "source": "Standard z-test with the normal approximation; BAND = 1.96 in model.ts. It is an approximation for small flip counts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.stop-when-it-looks-significant.c2",
       "text": "Testing after every flip from flip 10 to flip 100 and stopping at the first significant result wrongly flags a fair coin 28.5% of the time.",
       "support": "derivation",
       "source": "Exact dynamic programme over the +-1 walk (exact().peek = 0.2854), removing mass at the first n in 10..100 with |d|/sqrt(n) > 1.96; recomputed in node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.stop-when-it-looks-significant.c3",
       "text": "A single look at flip 100 wrongly flags a fair coin 5.7% of the time.",
       "support": "derivation",
       "source": "P(|2H - 100| / 10 > 1.96) = P(H >= 60) + P(H <= 40) = 0.0569 (exact().end). Not 5% because the walk only takes steps of 2 at n = 100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.stop-when-it-looks-significant.c4",
       "text": "In the 100 seeded fair coins on the stage, 23 left the band at some look from flip 10, and 5 were outside it at flip 100.",
       "support": "simulation",
       "source": "Experiment i uses mulberry32(6000 + i), untuned (first seed tried). Over 300 other seed sets of 100 coins, peeking flagged 28.3 on average (range 15 to 40) and the end-only look 5.8 (range 0 to 13). The first 20 lines shown flag 6 (every look) and 0 (end only).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.stop-when-it-looks-significant.c5",
       "text": "Each extra look gives noise another chance to cross the line, so the more often you look, the more often a fair coin is wrongly flagged.",
       "support": "derivation",
       "source": "Follows from claims 2 and 3: 28.5% against 5.7%. The 1.96 rule assumes a single planned look (see Armitage, McPherson & Rowe (1969), J. Royal Statistical Society A 132: 235-244, to be checked).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
