@@ -1,0 +1,72 @@
+{
+  "slug": "kitchen-crowding",
+  "title": "Four cooks, one oven",
+  "hook": "One cook makes 10 pizzas an hour. Do four cooks make 40?",
+  "domain": "economics",
+  "concept": "diminishing-returns",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that more workers usually means more output"
+    ],
+    "doesNotKnow": [
+      "that when something else is fixed (the oven), each extra worker often adds less than the one before",
+      "that output can stop rising altogether"
+    ]
+  },
+  "misconception": "Four workers make four times as much as one.",
+  "objective": "The learner can explain that with a fixed input, each added worker adds less output than the last, so total output grows more slowly than the number of workers and can stop growing.",
+  "claims": [
+    {
+      "id": "economics.kitchen-crowding.c1",
+      "text": "If the first worker adds 10 pizzas an hour and each added worker adds 2 fewer than the last, 4 workers make 28 an hour (10 + 8 + 6 + 4), not 40.",
+      "support": "derivation",
+      "source": "10 + 8 + 6 + 4 = 28; 4 × 10 = 40. Demo.tsx totalOf(4).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.kitchen-crowding.c2",
+      "text": "In this model the kitchen tops out at 30 pizzas an hour at 5 workers; worker 6 and later add nothing.",
+      "support": "derivation",
+      "source": "adds(k) = max(0, 12 − 2k): 10, 8, 6, 4, 2, 0, 0, 0; running totals 10, 18, 24, 28, 30, 30, 30, 30.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.kitchen-crowding.c3",
+      "text": "When one input is fixed, adding more of another input eventually adds less and less output (diminishing returns).",
+      "support": "source",
+      "source": "Diminishing marginal product: 'the marginal product of an input declines as the quantity of the input increases' (N. G. Mankiw, Principles of Economics, ch. 13). The oven as the fixed input is the lesson's illustration.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.kitchen-crowding.c4",
+      "text": "The increments (10, 8, 6, 4…) are made-up numbers in a model with one oven and nothing else changing.",
+      "support": "convention",
+      "source": "Brief: 'the increments are made-up, labelled as a model'. Shown on the stage chip and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A café has one espresso machine. Barista 1 serves 30 drinks an hour, barista 2 adds 20, barista 3 adds 10. What best explains the shrinking additions?",
+    "options": [
+      "Later baristas are worse at the job",
+      "They all share the same machine",
+      "Customers want fewer drinks"
+    ],
+    "answer": 1,
+    "why": "With one input fixed (the machine), each extra worker has less of it to use, so each adds less: diminishing returns."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

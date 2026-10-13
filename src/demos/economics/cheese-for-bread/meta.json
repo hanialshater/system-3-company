@@ -1,0 +1,79 @@
+{
+  "slug": "cheese-for-bread",
+  "title": "Better at both, still better to trade",
+  "hook": "Ana is faster at bread and at cheese. Why would she need Ben?",
+  "domain": "economics",
+  "concept": "comparative-advantage",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "opportunity cost: the cost of a choice is what you give up (true-cost-of-free-hours lesson)"
+    ],
+    "doesNotKnow": [
+      "that even someone better at everything gains when each does the job where they give up least",
+      "how to compare what each person gives up per item"
+    ]
+  },
+  "misconception": "If Ana is better at both, she gains nothing by trading with Ben.",
+  "objective": "The learner can explain that what matters for who should make what is what each gives up per item (opportunity cost), not who is faster, and that specialising that way makes more in total, which trade can share.",
+  "claims": [
+    {
+      "id": "economics.cheese-for-bread.c1",
+      "text": "If Ana (4 loaves or 2 cheeses an hour) and Ben (1 loaf or 1 cheese) each split 8 hours evenly, they make 20 loaves and 12 cheeses.",
+      "support": "derivation",
+      "source": "Ana: 4 h × 4 = 16 loaves, 4 h × 2 = 8 cheeses; Ben: 4 loaves, 4 cheeses. Total 20 and 12. Demo.tsx totals(4, 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.cheese-for-bread.c2",
+      "text": "With Ben on cheese for all 8 hours and Ana on cheese for 2, they still make 12 cheeses, and Ana's other 6 hours bake 24 loaves, 4 more.",
+      "support": "derivation",
+      "source": "Ben 8 × 1 = 8 cheeses; Ana 2 × 2 = 4; total 12. Ana 6 × 4 = 24 loaves; Ben 0. Demo.tsx totals(6, 8). On the stage's 2-hour grid this is the only plan with at least 12 cheeses and more than 20 loaves (checked over all 25 plans).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.cheese-for-bread.c3",
+      "text": "Each cheese costs Ana 2 loaves given up, and costs Ben only 1.",
+      "support": "derivation",
+      "source": "Ana: 1 hour = 4 loaves or 2 cheeses, so 1 cheese = 2 loaves. Ben: 1 hour = 1 loaf or 1 cheese, so 1 cheese = 1 loaf.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.cheese-for-bread.c4",
+      "text": "When each does the job where they give up least, the total grows, and the extra can be shared so both gain, even if one is better at everything.",
+      "support": "source",
+      "source": "Comparative advantage (D. Ricardo, 1817; N. G. Mankiw, Principles of Economics, ch. 3, 'Interdependence and the Gains from Trade'). Both gain if the terms of trade lie between their opportunity costs (here between 1 and 2 loaves per cheese).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.cheese-for-bread.c5",
+      "text": "The lesson is a model: fixed output per hour, no transport or trading costs.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation, shown on the stage chip and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In an hour Kim can paint 3 fences or fix 3 bikes. Lee can paint 1 fence or fix 2 bikes. Who should fix the bikes?",
+    "options": [
+      "Kim, she is faster at everything",
+      "Lee, a bike costs him half a fence; it costs Kim a whole fence",
+      "It makes no difference"
+    ],
+    "answer": 1,
+    "why": "Compare what each gives up. One bike costs Kim one fence but costs Lee only half a fence, so Lee should fix bikes and Kim should paint."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

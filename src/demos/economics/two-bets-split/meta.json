@@ -1,0 +1,87 @@
+{
+  "slug": "two-bets-split",
+  "title": "Split the money, keep the average",
+  "hook": "Does spreading money across bets cost you returns? Or just risk?",
+  "domain": "economics",
+  "concept": "diversification",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "expected value: the average result over many tries",
+      "that two coin flips can land four ways"
+    ],
+    "doesNotKnow": [
+      "that splitting across independent bets cuts the chance of the worst outcomes without changing the average",
+      "that this depends on the bets being independent"
+    ]
+  },
+  "misconception": "Splitting your money must lower what you expect to make.",
+  "objective": "The learner can explain that splitting money across independent bets leaves the average unchanged while making extreme outcomes rarer, because the bets partly cancel, and that this needs independence.",
+  "claims": [
+    {
+      "id": "economics.two-bets-split.c1",
+      "text": "Split equally across two independent bets that each pay +20% or −10% with equal chance, you lose money only if both fall: a 25% chance, for −10%.",
+      "support": "derivation",
+      "source": "Four equally likely cases: both up +20%, one each (2 cases) (20 − 10)/2 = +5%, both down −10%. P(loss) = 1/4.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-bets-split.c2",
+      "text": "Half the time one bet rises and one falls, for +5%.",
+      "support": "derivation",
+      "source": "2 of the 4 cases; (20 + (−10))/2 = 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-bets-split.c3",
+      "text": "The average stays +5% however many bets the money is split across.",
+      "support": "derivation",
+      "source": "Each bet's expected return is 0.5 × 20 + 0.5 × (−10) = 5; an equal split's expected return is the average of the bets' expected returns, 5, for every n. Demo.tsx average(n) enumerates the binomial outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-bets-split.c4",
+      "text": "The worst case, every bet falling (−10%), has chance 50%, 25%, 12.5%… halving with each added bet.",
+      "support": "derivation",
+      "source": "P(all n fall) = 0.5^n: 0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625 for n = 1..6.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-bets-split.c5",
+      "text": "The chance of some loss does not fall at every step: with 4 bets it is 31.3%, more than the 25% with 2.",
+      "support": "derivation",
+      "source": "Loss iff the return (20k − 10(n − k))/n < 0, i.e. k < n/3. n = 1: 50%; 2: 25%; 3: 12.5% (k = 1 gives exactly 0%, not a loss); 4: (1 + 4)/16 = 31.25%; 5: 6/32 = 18.75%; 6: 7/64 = 10.9%.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-bets-split.c6",
+      "text": "The lesson is a model: truly independent bets with made-up numbers; real investments often fall together, and it is not advice.",
+      "support": "source",
+      "source": "Diversification reduces risk only to the extent assets are not perfectly correlated; market-wide (systematic) risk cannot be diversified away (Mankiw, Principles of Economics, ch. 27). Shown on the stage chip and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You split money equally between two independent bets with the same average return. Compared with putting it all in one, what changes?",
+    "options": [
+      "The average return halves",
+      "The average stays the same; the worst outcome gets rarer",
+      "Nothing at all"
+    ],
+    "answer": 1,
+    "why": "Each bet has the same average, so the split does too. Both have to go badly for the worst case, which is less likely than one going badly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

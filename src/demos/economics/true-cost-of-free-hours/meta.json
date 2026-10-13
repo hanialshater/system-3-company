@@ -1,0 +1,80 @@
+{
+  "slug": "true-cost-of-free-hours",
+  "title": "What a $50 course really costs",
+  "hook": "The price tag says $50. Is that all you pay?",
+  "domain": "economics",
+  "concept": "opportunity-cost",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a price tag is",
+      "what an hourly wage is"
+    ],
+    "doesNotKnow": [
+      "that the cost of a choice includes the best alternative given up",
+      "that given-up earnings count only if the alternative was really available"
+    ]
+  },
+  "misconception": "A $50 course costs $50.",
+  "objective": "The learner can explain that the cost of a choice is what is given up to make it, including time that could have been paid, and that this part vanishes when there was no paid alternative.",
+  "claims": [
+    {
+      "id": "economics.true-cost-of-free-hours.c1",
+      "text": "A $50 course that takes 3 hours, when you could have earned $20 an hour, costs you $110: the $50 fee plus $60 of pay given up.",
+      "support": "derivation",
+      "source": "50 + 3 × 20 = 110. Demo.tsx cost(3, true).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.true-cost-of-free-hours.c2",
+      "text": "The cost of a choice is what you give up to make it, and time is one of the things given up.",
+      "support": "source",
+      "source": "Opportunity cost: 'the cost of something is what you give up to get it' (N. G. Mankiw, Principles of Economics, ch. 1, Ten Principles, principle 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.true-cost-of-free-hours.c3",
+      "text": "If no paid work was available in those hours, the given-up pay is $0 and the course costs only its $50 fee.",
+      "support": "derivation",
+      "source": "The opportunity cost is the value of the best alternative actually available; with no paid alternative that value is 0 in this model, so cost(h, false) = 50 for every h.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.true-cost-of-free-hours.c4",
+      "text": "On the stage the real cost is $50 + $20 × hours, from $70 at 1 hour to $210 at 8 hours.",
+      "support": "derivation",
+      "source": "Demo.tsx cost(h, true) = 50 + 20h for h = 1..8: 70, 90, 110, 130, 150, 170, 190, 210.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.true-cost-of-free-hours.c5",
+      "text": "The numbers are a toy model: it assumes the $20-an-hour work was on offer and ignores taxes and the value of what the course teaches.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation (Demo.tsx), shown on the stage chip and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A free concert takes 4 hours. You could have tutored for $15 an hour instead. What did the concert cost you?",
+    "options": [
+      "$0, it was free",
+      "$15",
+      "$60"
+    ],
+    "answer": 2,
+    "why": "The cost of a choice is what you give up. Four hours of tutoring at $15 is $60 given up, even though the ticket was free."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

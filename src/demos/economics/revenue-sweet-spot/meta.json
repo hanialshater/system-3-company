@@ -1,0 +1,73 @@
+{
+  "slug": "revenue-sweet-spot",
+  "title": "The price that earns the most",
+  "hook": "Charge more, earn more? Up to a point. Find the point.",
+  "domain": "economics",
+  "concept": "revenue-elasticity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a higher price means fewer sales (supply-demand lesson)",
+      "that revenue is price times quantity sold"
+    ],
+    "doesNotKnow": [
+      "that revenue rises and then falls as the price rises",
+      "why: each price rise gains on every sale but loses some sales"
+    ]
+  },
+  "misconception": "A higher price always means more money.",
+  "objective": "The learner can explain that raising a price gains on each unit still sold but loses some sales, so revenue peaks at a middle price and falls beyond it.",
+  "claims": [
+    {
+      "id": "economics.revenue-sweet-spot.c1",
+      "text": "With 100 − 10 × price loaves sold a day, $3 earns $210 (70 loaves), $5 earns $250 (50 loaves) and $8 earns $160 (20 loaves).",
+      "support": "derivation",
+      "source": "3 × 70 = 210; 5 × 50 = 250; 8 × 20 = 160. Demo.tsx revenue(p) = p × (100 − 10p).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.revenue-sweet-spot.c2",
+      "text": "In this model revenue is highest at $5, of every price from $0 to $10.",
+      "support": "derivation",
+      "source": "R(p) = 100p − 10p²; R'(p) = 100 − 20p = 0 at p = 5. Integer prices 0..10 give 0, 90, 160, 210, 240, 250, 240, 210, 160, 90, 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.revenue-sweet-spot.c3",
+      "text": "Each $1 on the price earns $1 more on every loaf still sold but loses 10 loaves; below $5 the gain is larger, above $5 the lost sales are.",
+      "support": "derivation",
+      "source": "R(p + 1) − R(p) = (100 − 10(p + 1)) × 1 − 10p = 90 − 20p: positive for p ≤ 4, negative for p ≥ 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.revenue-sweet-spot.c4",
+      "text": "The lesson is a model: straight-line demand and revenue only; profit would also subtract the cost of each loaf.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation; on a straight demand line revenue peaks at the midpoint, where demand is unit-elastic (Mankiw, Principles of Economics, ch. 5). Shown on the stage chip.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shop raises its price and its revenue falls. What must have happened?",
+    "options": [
+      "It lost so many sales that they outweighed the gain on each sale",
+      "Its costs went up",
+      "Nothing: a higher price always brings more revenue"
+    ],
+    "answer": 0,
+    "why": "A higher price earns more on each sale but loses some sales. Past the peak, the lost sales outweigh the gain, so revenue falls."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
