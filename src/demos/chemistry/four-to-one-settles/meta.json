@@ -1,0 +1,72 @@
+{
+  "slug": "four-to-one-settles",
+  "title": "Four to one, from anywhere",
+  "hook": "Start with all A or all B. Does the reaction remember where it began?",
+  "domain": "chemistry",
+  "concept": "equilibrium-constant",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that equilibrium is two-way traffic (the-tagged-molecule)",
+      "square-bracket notation for concentration"
+    ],
+    "doesNotKnow": [
+      "that the equilibrium constant K fixes the split, whatever the starting point"
+    ]
+  },
+  "misconception": "A reaction goes to completion, or K = 4 means 4 molecules react.",
+  "objective": "The learner can explain that for A ⇌ B with K = [B]/[A] = 4, 100 molecules settle near 80 B and 20 A from any start, because at that split the forward and backward rates are equal.",
+  "claims": [
+    {
+      "id": "chemistry.four-to-one-settles.c1",
+      "text": "For A ⇌ B with K = [B]/[A] = 4 and 100 molecules, the settled mix is about 80 B and 20 A (80 ÷ 20 = 4).",
+      "support": "derivation",
+      "source": "B/A = 4 with A + B = 100 gives A = 20, B = 80. Equilibrium constant definition (IUPAC Gold Book, 'equilibrium constant'). Demo.tsx B_EQ.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.four-to-one-settles.c2",
+      "text": "Every start settles near 80 B; the count wobbles by a few because each run is chance with only 100 molecules.",
+      "support": "derivation",
+      "source": "Simulation: per step, A -> B with p = 0.20 and B -> A with p = 0.05 (ratio 4); gap to equilibrium shrinks by 0.75 per step. Seeds 1 (all A), 2 (all B), 3 (half) are untuned (first tried): at steps 10-60 they read 79 77 82 86 74 80 / 85 78 73 84 83 88 / 85 79 76 86 71 82. Over seeds 1-500 at step 20, from all A or all B: median 80, 95% range 72 to 87-88 (node). Binomial(100, 0.8) sd = 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.four-to-one-settles.c3",
+      "text": "At equilibrium both reactions keep going at equal rates: 20% of 20 A and 5% of 80 B, 4 each way per step.",
+      "support": "derivation",
+      "source": "0.20 x 20 = 4 = 0.05 x 80 (dynamic equilibrium; Atkins & Jones, Chemical Principles, ch. on equilibrium). The per-step chances are the toy's, chosen so their ratio is K.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.four-to-one-settles.c4",
+      "text": "K fixes where the mix ends up, not where it began; changing the temperature changes K.",
+      "support": "source",
+      "source": "Equilibrium composition is independent of the starting direction for a given K; K depends on temperature (van 't Hoff equation; Atkins & de Paula, Physical Chemistry, ch. on chemical equilibrium).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For A ⇌ B, K = [B]/[A] = 1. You start with 60 B and no A. The settled mix holds about…",
+    "options": [
+      "30 A and 30 B",
+      "60 B and no A",
+      "60 A and no B"
+    ],
+    "answer": 0,
+    "why": "K = 1 means equal amounts at equilibrium, whatever the start: 60 molecules split 30 and 30."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
