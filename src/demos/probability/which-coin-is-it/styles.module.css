@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.svg { flex-shrink: 0; max-height: 36dvh; }
+.label { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.slot { fill: none; stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.head { fill: var(--domain); }
+.tail { fill: var(--bad); }
+.coinLetter { fill: #0d0f14; font-size: 12px; font-weight: 800; pointer-events: none; }
+.grid { stroke: var(--line); stroke-width: 0.8; }
+.prior { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+.tick { fill: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+.trail { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linejoin: round; }
+.dot { fill: var(--domain); stroke: var(--bg-2); stroke-width: 1.2; }
+.dotZero { fill: var(--bad); }
+.ptLabel { fill: var(--fg); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.msg { margin: 0; min-height: 2.5em; text-align: center; font-size: 0.88rem; font-weight: 600; line-height: 1.3; }

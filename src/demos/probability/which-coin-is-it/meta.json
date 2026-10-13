@@ -1,0 +1,87 @@
+{
+  "slug": "which-coin-is-it",
+  "title": "Three heads: which coin is it?",
+  "hook": "One coin is fair, one has two heads. Three heads in a row. Are you sure yet?",
+  "domain": "probability",
+  "concept": "bayesian-updating",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "probability as a share of equally likely cases",
+      "a fair coin lands heads half the time"
+    ],
+    "doesNotKnow": [
+      "updating a probability with repeated evidence",
+      "odds and likelihood ratios"
+    ]
+  },
+  "misconception": "Three heads in a row is not enough evidence to move you: the mystery coin is still 50/50.",
+  "objective": "The learner can explain that each head doubles the odds in favour of the two-headed coin (it is twice as likely under that hypothesis), so three heads give 8 to 1, or 89%, and one tails gives 0.",
+  "claims": [
+    {
+      "id": "probability.which-coin-is-it.c1",
+      "text": "After k heads in a row the chance the coin is two-headed is 2^k / (2^k + 1): 67% after one head, 80% after two, 89% after three.",
+      "support": "derivation",
+      "source": "Bayes' rule: P(2H | k heads) = 0.5 x 1 / (0.5 x 1 + 0.5 x 0.5^k) = 2^k / (2^k + 1). k = 3: 8/9 = 88.9%. Computed by belief() in src/demos/probability/which-coin-is-it/model.ts, which also draws the line.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.which-coin-is-it.c2",
+      "text": "Each head doubles the odds for the two-headed coin, because heads is certain for it and a half chance for the fair coin: 1 to 1, 2 to 1, 4 to 1, 8 to 1.",
+      "support": "derivation",
+      "source": "Odds form of Bayes' rule: posterior odds = prior odds x likelihood ratio; the likelihood ratio of one head is 1 / 0.5 = 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.which-coin-is-it.c3",
+      "text": "A single tails proves the coin is the fair one.",
+      "support": "derivation",
+      "source": "A two-headed coin cannot land tails, so P(tails | 2H) = 0 and the posterior for 2H is 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.which-coin-is-it.c4",
+      "text": "Before any flip the chance is 50%, because the coin is pulled at random from a bag of two.",
+      "support": "convention",
+      "source": "Model assumption stated in the question: one of two coins, chosen at random (PRIOR = 0.5 in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.which-coin-is-it.c5",
+      "text": "In the 1,000 simulated pulls, 578 showed three heads and 505 of those (87%) were the two-headed coin.",
+      "support": "simulation",
+      "source": "test() in model.ts, seed 2024 (untuned: the first seed tried). Across seeds 1-500 the share ranged from 85.0% to 92.6% (middle 95%: 86.3%-91.6%), median 88.9%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.which-coin-is-it.c6",
+      "text": "The coins the learner pulls on the stage are a seeded sequence; the first is the two-headed coin and the second is fair and shows tails on its second flip.",
+      "support": "simulation",
+      "source": "pulls() in model.ts, seed 9. Chosen seed: picked so the first coin can show three heads (the key state) and the second shows an early tails. The line itself depends only on the flips seen, not on which coin it is.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One fair coin, one two-headed coin, one pulled at random. After two heads you are at 4 to 1 for two-headed. A third flip is heads. Now?",
+    "options": [
+      "Still 4 to 1: each flip is independent",
+      "8 to 1: the odds double",
+      "5 to 1: the odds go up by one"
+    ],
+    "answer": 1,
+    "why": "A head is twice as likely from the two-headed coin as from the fair one, so every head multiplies the odds by 2: 4 to 1 becomes 8 to 1 (80% becomes 89%)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

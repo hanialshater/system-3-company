@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 36dvh; }
+.axis { fill: var(--muted); font-size: 10.5px; font-weight: 600; }
+.cell { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.cellBB { fill: color-mix(in srgb, var(--domain) 14%, var(--bg-2)); stroke: var(--domain); stroke-width: 1.4; }
+.cellLabel { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.out { opacity: 0.25; }
+.dot { fill: var(--muted); }
+.dotBB { fill: var(--domain); }
+.dotOut { fill: var(--muted); opacity: 0.15; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 600; }
