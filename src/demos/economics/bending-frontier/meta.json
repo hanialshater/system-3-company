@@ -1,0 +1,73 @@
+{
+  "slug": "bending-frontier",
+  "title": "Does each ton of wheat cost the same?",
+  "hook": "The first ton of wheat costs 1 ton of corn. So does the tenth. Right?",
+  "domain": "economics",
+  "concept": "production-possibilities",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "opportunity cost: making more of one thing means making less of another",
+      "how to read a curve on a graph"
+    ],
+    "doesNotKnow": [
+      "that trading one good for another often gets steeper as you push one side",
+      "why a production frontier bows outward"
+    ]
+  },
+  "misconception": "Moving from corn to wheat always costs the same corn per ton.",
+  "objective": "The learner can read the corn given up for each extra ton of wheat off a bowed frontier, and explain that it grows because resources are not equally suited to both goods.",
+  "claims": [
+    {
+      "id": "economics.bending-frontier.c1",
+      "text": "On the frontier corn = 100 − wheat², going from 0 to 1 ton of wheat costs 1 ton of corn, and going from 9 to 10 tons costs 19.",
+      "support": "derivation",
+      "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bending-frontier.c2",
+      "text": "The corn lost per ton runs 1, 3, 5, … 19, growing by 2 each step.",
+      "support": "derivation",
+      "source": "corn(w − 1) − corn(w) = 2w − 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bending-frontier.c3",
+      "text": "A frontier bends this way because resources are not all alike: the first wheat uses land worst for corn, the last takes the best corn land, so each extra ton costs more corn (increasing opportunity cost).",
+      "support": "source",
+      "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bending-frontier.c4",
+      "text": "The curve is made up to show the shape, not data from a real farm.",
+      "support": "convention",
+      "source": "Stage chip 'Made-up farm'; reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town turns its factories from making bikes to making scooters. The first 100 scooters cost 50 bikes. What usually happens to the cost of the last 100 scooters?",
+    "options": [
+      "Still 50 bikes",
+      "More than 50 bikes",
+      "Fewer than 50 bikes"
+    ],
+    "answer": 1,
+    "why": "The first switch uses the factories best at scooters and worst at bikes. The last switch takes the best bike factories, so each extra scooter costs more bikes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

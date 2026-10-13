@@ -1,0 +1,73 @@
+{
+  "slug": "twenty-dollar-basket",
+  "title": "Is one more loaf free?",
+  "hook": "It still fits in the $20. So adding a loaf costs nothing else. Right?",
+  "domain": "economics",
+  "concept": "budget-constraint",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "prices and simple multiplication",
+      "that a budget is a fixed amount to spend"
+    ],
+    "doesNotKnow": [
+      "that a budget turns every purchase into a trade against another",
+      "that the trade-off between two goods is the ratio of their prices"
+    ]
+  },
+  "misconception": "Buying one more of something is free if it is still within budget.",
+  "objective": "The learner can explain that inside a fixed budget every extra unit of one good costs a fixed number of units of another, equal to the price ratio.",
+  "claims": [
+    {
+      "id": "economics.twenty-dollar-basket.c1",
+      "text": "With $20, apples at $2 and loaves at $4, buying 3 loaves leaves $8, which buys at most 4 apples.",
+      "support": "derivation",
+      "source": "20 − 3 × 4 = 8; 8 / 2 = 4. Demo.tsx maxApples(3).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.twenty-dollar-basket.c2",
+      "text": "Each loaf takes the room of 2 apples, because $4 / $2 = 2.",
+      "support": "derivation",
+      "source": "Price ratio 4 / 2 = 2; maxApples(l) = (20 − 4l) / 2 = 10 − 2l falls by 2 per loaf.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.twenty-dollar-basket.c3",
+      "text": "Inside a fixed budget, one more of one good means giving up some of another; the trade-off is the ratio of the prices.",
+      "support": "source",
+      "source": "Budget constraint: the slope of the budget line is the relative price (N. G. Mankiw, Principles of Economics, ch. 21 'The Theory of Consumer Choice', section 'The Budget Constraint').",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.twenty-dollar-basket.c4",
+      "text": "The prices are made up for the example.",
+      "support": "convention",
+      "source": "Stage chip 'made-up prices'; reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You have $30 to spend on movie tickets at $10 and snacks at $5. If you add one more ticket, how many snacks must you give up?",
+    "options": [
+      "None, if it still fits",
+      "2",
+      "1"
+    ],
+    "answer": 1,
+    "why": "Inside a fixed budget a $10 ticket takes the room of two $5 snacks. The trade-off is the price ratio, 10 / 5 = 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

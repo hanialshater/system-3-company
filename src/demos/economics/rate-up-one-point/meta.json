@@ -1,0 +1,73 @@
+{
+  "slug": "rate-up-one-point",
+  "title": "Up from 4% to 5%: up 1%?",
+  "hook": "The rate went from 4% to 5%. That is a 1% rise. Or is it?",
+  "domain": "economics",
+  "concept": "percentage-points",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a percentage is",
+      "that loans and savings have rates in percent"
+    ],
+    "doesNotKnow": [
+      "that 'up 1 point' and 'up 1 percent' are different statements",
+      "that a percent change depends on the starting value"
+    ]
+  },
+  "misconception": "A rate that goes from 4% to 5% rose by 1%.",
+  "objective": "The learner can tell a change in percentage points (a distance on the scale) from a percent change (that distance divided by the start), and compute both.",
+  "claims": [
+    {
+      "id": "economics.rate-up-one-point.c1",
+      "text": "A rate rising from 4% to 5% rises by 1 percentage point, which is a 25% rise in the rate itself.",
+      "support": "derivation",
+      "source": "5 − 4 = 1 point; (5 − 4) / 4 = 0.25. Demo.tsx pctChange(4, 5).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.rate-up-one-point.c2",
+      "text": "The same 1-point rise is +100% from 1%, +50% from 2% and +12.5% from 8%.",
+      "support": "derivation",
+      "source": "1/1 = 1.00; 1/2 = 0.50; 1/8 = 0.125. Demo.tsx pctChange(a, a + 1).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.rate-up-one-point.c3",
+      "text": "A percent change is the change divided by the starting value.",
+      "support": "convention",
+      "source": "Definition of relative (percent) change: (new − old) / old × 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.rate-up-one-point.c4",
+      "text": "Careful writers call a change from 4% to 5% a rise of one percentage point.",
+      "support": "source",
+      "source": "Style guides distinguish 'percentage point' from 'percent' for differences between rates (e.g. The Economist Style Guide, entry 'percentage points'; AP Stylebook, entry 'percentages').",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A survey says unemployment fell from 10% to 8%. A headline says \"unemployment fell 2%\". What is the more precise statement?",
+    "options": [
+      "It fell 2 percentage points, which is a 20% fall",
+      "It fell 2%, the headline is exact",
+      "It fell 8%"
+    ],
+    "answer": 0,
+    "why": "10 to 8 is a distance of 2 points on the scale. Relative to the start, 2 / 10 = 20%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
