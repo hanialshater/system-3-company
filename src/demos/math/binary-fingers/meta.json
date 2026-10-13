@@ -1,0 +1,72 @@
+{
+  "slug": "binary-fingers",
+  "title": "How far can ten fingers count?",
+  "hook": "Ten fingers count to ten. Unless each finger means something different.",
+  "domain": "math",
+  "concept": "binary-counting",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "place value in base ten",
+      "doubling"
+    ],
+    "doesNotKnow": [
+      "that n two-state places count 2^n different numbers"
+    ]
+  },
+  "misconception": "Ten fingers can show only ten numbers, or at most a hundred.",
+  "objective": "The learner can explain that each up-or-down finger doubles the number of patterns, so ten fingers worth 1, 2, 4 ... 512 show every number from 0 to 1023: 1024 numbers.",
+  "claims": [
+    {
+      "id": "math.binary-fingers.c1",
+      "text": "Ten fingers worth 1, 2, 4, ..., 512 add up to 1023 when all are up.",
+      "support": "derivation",
+      "source": "1 + 2 + ... + 512 = 2^10 - 1 = 1023; recomputed with node from the stage's VALUES.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.binary-fingers.c2",
+      "text": "Ten fingers, each up or down, make 2^10 = 1024 different patterns.",
+      "support": "derivation",
+      "source": "Each finger has 2 states independently: 2 x 2 x ... x 2 (ten times) = 1024.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.binary-fingers.c3",
+      "text": "Every whole number from 0 to 1023 has exactly one finger pattern (its binary representation).",
+      "support": "derivation",
+      "source": "Existence and uniqueness of binary representation, by induction on the number of places; 1024 patterns and 1024 numbers match one to one.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.binary-fingers.c4",
+      "text": "Adding one more finger doubles the count: it can be down (all the old numbers) or up (each old number plus its value).",
+      "support": "derivation",
+      "source": "Patterns with n + 1 places = 2 x patterns with n places.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Using only 8 up-or-down switches worth 1, 2, 4 ... 128, how many different numbers (0 included) can you set?",
+    "options": [
+      "256",
+      "8",
+      "64"
+    ],
+    "answer": 0,
+    "why": "Each switch doubles the count: 2 multiplied by itself 8 times is 256, covering 0 to 255."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

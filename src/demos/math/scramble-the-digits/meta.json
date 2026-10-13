@@ -1,0 +1,72 @@
+{
+  "slug": "scramble-the-digits",
+  "title": "Scramble the digits",
+  "hook": "7254 divides by 9. Shuffle its digits into a new number. Does the luck hold?",
+  "domain": "math",
+  "concept": "divisibility-by-nine",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "place value: thousands, hundreds, tens, ones",
+      "what divisible by 9 means"
+    ],
+    "doesNotKnow": [
+      "that a number's remainder on division by 9 equals its digit sum's"
+    ]
+  },
+  "misconception": "Divisibility is a property you can only test by dividing; rearranging the digits would change it at random.",
+  "objective": "The learner can explain that 10, 100 and 1000 are each a multiple of 9 plus 1, so only the digit sum decides divisibility by 9, and rearranging digits cannot change it.",
+  "claims": [
+    {
+      "id": "math.scramble-the-digits.c1",
+      "text": "7254 is divisible by 9 (7254 = 9 x 806), and so is every rearrangement of its digits.",
+      "support": "derivation",
+      "source": "All 24 orderings of 7, 2, 5, 4 checked with node; the stage computes each quotient from the number on screen.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.scramble-the-digits.c2",
+      "text": "1000 = 999 + 1, 100 = 99 + 1 and 10 = 9 + 1, and 999, 99 and 9 are multiples of 9.",
+      "support": "derivation",
+      "source": "10^k - 1 is a string of k nines, which is 9 x 111...1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.scramble-the-digits.c3",
+      "text": "A whole number leaves the same remainder on division by 9 as the sum of its digits.",
+      "support": "derivation",
+      "source": "Write n = sum of d_k 10^k = sum of d_k (10^k - 1) + sum of d_k; the first sum is a multiple of 9.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.scramble-the-digits.c4",
+      "text": "7 + 2 + 5 + 4 = 18, a multiple of 9, and swapping digits does not change the sum.",
+      "support": "derivation",
+      "source": "Addition is commutative; recomputed with node.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Is 5814 divisible by 9? (Try it without dividing.)",
+    "options": [
+      "Yes: 5 + 8 + 1 + 4 = 18",
+      "No: it does not end in 9",
+      "You have to divide to know"
+    ],
+    "answer": 0,
+    "why": "Each place is a multiple of 9 plus 1, so only the digits' sum matters: 18 is a multiple of 9, so 5814 is too (9 x 646)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
