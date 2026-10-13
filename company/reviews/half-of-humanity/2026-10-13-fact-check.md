@@ -13,3 +13,13 @@ Checker: fact-checker. Method: Demo.tsx text (the walkthrough never reached the 
 ## Other findings
 - The walkthrough transcript says 'The reveal never unlocked': the harness tapped only six countries (India to Nigeria) and the reveal unlocks on crossing half at the seventh (Brazil). The lesson works as designed; the walkthrough run did not reach the reveal, so the reveal text above was checked from Demo.tsx, not from rendered output. Route to qa-tester/whoever owns tools/walkthrough.mjs to raise its step budget for this lesson.
 - Reveal sentence 'You crossed half with N countries, because you did not add them strictly largest first' is conditional learner-state text, not a fact claim.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | unverified | Checker could not reach the UN WPP portal either (egress blocked: population.un.org, data.un.org, Wikipedia, OWID all 403). Partial corroboration only: populationpyramids (UN WPP 2024 based) lists India 1,450,935,802 and China 1.42 billion; INED's WPP 2024 table gives 2025 values (Nigeria 238, Brazil 213, Bangladesh 176, Russia 144, Ethiopia 135, Mexico 132 million) consistent with the 2024 values here given 1-2% growth; world 8.2 billion confirmed. The lesson conclusion (seven countries, 51.4%) is robust to these ranges, but every value still needs a direct compare with the WPP 2024 table by someone with access. Demo.tsx has Japan 123.75 vs the claim's rounded 124 (fine). |
+
+Stage check: c2, c3, c4, c5 were already verified by an earlier pass and are unchanged.

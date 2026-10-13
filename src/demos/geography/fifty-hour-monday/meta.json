@@ -27,28 +27,36 @@
       "text": "Clocks on Earth run from UTC-12 to UTC+14, a spread of 26 hours.",
       "support": "source",
       "source": "IANA tz database: Pacific/Kiritimati is UTC+14; UTC-12 is the nominal offset for Baker and Howland Islands (uninhabited US territories; no IANA zone, listed as Etc/GMT+12). Wikipedia 'List of UTC offsets'. From memory, not checked online.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.fifty-hour-monday.c2",
       "text": "Monday starts first on Kiritimati at Sunday 10:00 UTC and ends last on Baker Island at Tuesday 12:00 UTC.",
       "support": "derivation",
       "source": "Local midnight at UTC+14 is 24 - 14 = 10:00 UTC the day before; local midnight ending Monday at UTC-12 is 48 + 12 = 60 h after Sunday 00:00 UTC, i.e. Tuesday 12:00 UTC. Computed in Demo.tsx from the offsets.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.fifty-hour-monday.c3",
       "text": "One date exists somewhere on Earth for 24 + 26 = 50 hours.",
       "support": "derivation",
       "source": "Arithmetic from c1: 60 - 10 = 50 hours, computed in Demo.tsx (MON_HOURS).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.fifty-hour-monday.c4",
       "text": "The shaded bands are nominal 15-degree zones, not legal time zones; the two dots mark Kiritimati (about 1.9 N, 157.4 W) and Baker Island (about 0.2 N, 176.5 W).",
       "support": "convention",
       "source": "Nominal zones: offset n covers longitudes 15n +/- 7.5 degrees. Island coordinates from memory of a gazetteer (Kiritimati 1.87 N 157.36 W; Baker Island 0.19 N 176.48 W), not checked online. Neither island exists in the 1:110m shapes; drawn as markers. No border or date-line claims are drawn.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

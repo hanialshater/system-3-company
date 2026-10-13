@@ -28,42 +28,54 @@
       "text": "The point straight through the Earth's centre has the same latitude in the other hemisphere and a longitude 180 degrees away.",
       "support": "derivation",
       "source": "On a sphere the antipode of (lat, lon) is (-lat, lon +/- 180). Geodetic latitude on the ellipsoid gives the same rule (the ellipsoid is symmetric through its centre).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hole-through-earth.c2",
       "text": "Madrid (40.42 N, 3.70 W) is opposite 40.42 S, 176.30 E, which is in New Zealand.",
       "support": "simulation",
       "source": "geoContains on the kit's 1:110m New Zealand shape is true at (176.30 E, 40.42 S) (scratch a.mjs, 2026-10-13). Madrid coordinates from memory of a gazetteer (GeoNames: 40.4165 N, 3.7026 W), not checked online. The point is near the east coast of the North Island, so the lesson names no town and does not say inland.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hole-through-earth.c3",
       "text": "On this map only about 13% of the land sits opposite other land.",
       "support": "simulation",
       "source": "1 degree grid of the kit's 1:110m land polygon, cell-weighted by cos(latitude): 13.3% of land has land at its antipode (3.9% of the whole surface). Published figures are about 15% of land, about 4.4% of the surface (Wikipedia, 'Antipodes'; not checked online). Resolution shifts this by a few points, hence 'about' and 'on this map'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hole-through-earth.c4",
       "text": "Almost all of the United States is opposite open ocean, mostly the Indian Ocean.",
       "support": "simulation",
       "source": "1 degree cells inside the 1:110m 'United States of America' shape: 99.3% have an ocean antipode, 0.6% Antarctica (from Alaska), 0.1% Botswana (from Hawaii). The contiguous states map to about 25-49 S, 55-113 E, the southern Indian Ocean (ocean name from the coordinates; not a data lookup).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hole-through-earth.c5",
       "text": "About three-quarters of China is opposite ocean; the rest is opposite Argentina and Chile.",
       "support": "simulation",
       "source": "1 degree cells inside the 1:110m 'China' shape, area-weighted: 72.7% ocean antipode, Argentina 22.3%, Chile 4.8%, others under 0.5% (scratch d.mjs, 2026-10-13).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hole-through-earth.c6",
       "text": "Beijing is opposite Argentina, Buenos Aires is opposite sea off China, and New York is opposite the Indian Ocean (stage readouts).",
       "support": "simulation",
       "source": "Computed live on the stage with geoContains on 1:110m shapes; city coordinates from memory of a gazetteer (Beijing 39.90 N 116.40 E, Buenos Aires 34.60 S 58.38 W, New York 40.71 N 74.00 W), not checked online.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

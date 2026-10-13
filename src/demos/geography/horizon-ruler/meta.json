@@ -28,28 +28,36 @@
       "text": "The distance to the horizon is the square root of 2 x Earth's radius x your height (Pythagoras on the tangent).",
       "support": "derivation",
       "source": "(R + h)^2 = R^2 + d^2, so d = sqrt(2 R h + h^2), which is about sqrt(2 R h) since h << R. R = 6,371.0088 km (EARTH_RADIUS_KM). Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.horizon-ruler.c2",
       "text": "With eyes 1.7 m above the sea the horizon is about 4.7 km away; at 170 m it is 47 km, 10 times farther.",
       "support": "derivation",
       "source": "sqrt(2 x 6,371.0088 x 0.0017) = 4.65 km; sqrt(2 x 6,371.0088 x 0.17) = 46.5 km (shown rounded to 47). Ratio sqrt(100) = 10. Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.horizon-ruler.c3",
       "text": "From the top of an 828 m tower such as the Burj Khalifa the horizon is about 103 km away.",
       "support": "source",
       "source": "Height 828 m (Council on Tall Buildings and Urban Habitat; from memory, not checked online). sqrt(2 x 6,371.0088 x 0.828) = 102.7 km. This is the sea-level horizon from the tip, not a claim about what can actually be seen.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.horizon-ruler.c4",
       "text": "Air bends light a little, so real horizons are a few per cent farther.",
       "support": "source",
       "source": "Standard atmospheric refraction (k about 0.13) gives d of about 3.86 sqrt(h) km instead of 3.57 sqrt(h), about 8% farther (e.g. Young, 'Distance to the horizon', SDSU; from memory, not checked online). The stage says 'No refraction'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

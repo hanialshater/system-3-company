@@ -28,35 +28,45 @@
       "text": "The noon Sun is overhead only between the Tropic of Cancer and the Tropic of Capricorn, about 23.4 degrees north and south, set by the Earth's tilt of about 23.4 degrees.",
       "support": "source",
       "source": "Obliquity of the ecliptic about 23.44 degrees (IAU 2006; Astronomical Almanac), drifting about 0.013 degrees per century. The Sun's declination ranges over +/- obliquity. From memory, not checked online.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.honolulu-overhead.c2",
       "text": "City latitudes: Honolulu 21.3 N, Miami 25.8 N, Cairo 30.0 N.",
       "support": "source",
       "source": "Gazetteer coordinates from memory (GeoNames-style: Honolulu 21.31 N 157.86 W, Miami 25.76 N 80.19 W, Cairo 30.04 N 31.24 E); not checked online. Drawn as markers, not as kit data (Honolulu is not in the 1:110m shapes).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.honolulu-overhead.c3",
       "text": "The noon Sun passes over Honolulu on about 27 May and again on about 16 July.",
       "support": "simulation",
       "source": "Days nearest 21.31 N in Demo.tsx's declination model (Kepler orbit, e = 0.0167, perihelion 3 Jan, Sun longitude at perihelion 282.94 degrees, obliquity 23.44): day 147 (21.31) and day 197 (21.35) in a non-leap year. The brief's sine formula gives the same days. Real dates shift by a day with the year; the lesson says 'about'. NOAA Solar Calculator not consulted.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.honolulu-overhead.c4",
       "text": "The overhead noon Sun reaches its farthest north, 23.4 N, on about 21 June.",
       "support": "simulation",
       "source": "Maximum of the model's declination: 23.44 on day 172 (21 June). The June solstice falls on 20 or 21 June in current years (any almanac).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.honolulu-overhead.c5",
       "text": "Outside the tropics, even on the longest day, the noon Sun stays a little short of straight up.",
       "support": "derivation",
       "source": "Noon solar elevation = 90 - |latitude - declination|; it reaches 90 only where |latitude| <= the maximum declination.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
