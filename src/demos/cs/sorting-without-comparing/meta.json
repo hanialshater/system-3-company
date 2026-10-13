@@ -1,0 +1,79 @@
+{
+  "slug": "sorting-without-comparing",
+  "title": "Can a sort never compare two items?",
+  "hook": "Sort ten scores by dropping them in buckets. Does anything need to be bigger?",
+  "domain": "cs",
+  "concept": "counting-sort",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sorting by comparing items",
+      "a whole number can label a position"
+    ],
+    "doesNotKnow": [
+      "that sorting can use no comparisons when values are small whole numbers"
+    ]
+  },
+  "misconception": "Sorting always works by comparing items to each other.",
+  "objective": "The learner can say that counting sort tallies each value into a bucket and reads the buckets in order, so it needs no comparisons, but only works when values are whole numbers in a small known range.",
+  "claims": [
+    {
+      "id": "cs.sorting-without-comparing.c1",
+      "text": "Tallying the scores 3 0 5 2 2 1 4 5 0 3 gives 2, 1, 2, 2, 1, 2 for scores 0 to 5, and reading the buckets in order gives 0 0 1 2 2 3 3 4 5 5.",
+      "support": "simulation",
+      "source": "Node script: tallies of [3,0,5,2,2,1,4,5,0,3] = [2,1,2,2,1,2]; read out = 0 0 1 2 2 3 3 4 5 5. Demo.tsx derives both from the same SCORES array.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sorting-without-comparing.c2",
+      "text": "Sorting by tallying and writing out takes 0 comparisons between scores: each score goes to the bucket with its own number.",
+      "support": "derivation",
+      "source": "The procedure only increments a tally indexed by the score and writes values out in index order; no step tests one score against another. CLRS 3rd ed. section 8.2 (COUNTING-SORT uses array indexing, not comparisons of keys with each other).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sorting-without-comparing.c3",
+      "text": "This works because the scores are whole numbers in a small range, 0 to 5.",
+      "support": "source",
+      "source": "CLRS 8.2: COUNTING-SORT assumes each of n inputs is an integer in the range 0 to k.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sorting-without-comparing.c4",
+      "text": "With a huge range of possible values you would need a bucket for every possible value.",
+      "support": "source",
+      "source": "CLRS 8.2: it uses an array of k+1 counters, so memory and time include a term in k (running time Theta(n + k)).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sorting-without-comparing.c5",
+      "text": "The question: ten scores, each a whole number from 0 to 5, sorted by tallying; answer 0 comparisons (2 and 3 above). Distractors 9 and 33 are plain numbers, not claims.",
+      "support": "derivation",
+      "source": "Builder scope note: options are distractors only; the reveal does not explain them.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Seven ages, each a whole number from 0 to 9, are sorted by tallying how many of each age occur and writing them out. How many comparisons between ages does that take?",
+    "options": [
+      "0",
+      "6",
+      "21"
+    ],
+    "answer": 0,
+    "why": "Each age goes to the bucket with its own number, and the buckets are read in order, so no age is compared with another. It works because the range 0 to 9 is small."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "two-names-one-list",
+  "title": "Does b = a make a second list?",
+  "hook": "Two names, one list. Change it through one name and look at the other.",
+  "domain": "cs",
+  "concept": "references-aliasing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "assigning a value to a variable"
+    ],
+    "doesNotKnow": [
+      "that assigning a list copies the name, not the list"
+    ]
+  },
+  "misconception": "b = a makes a separate copy of the list.",
+  "objective": "The learner can say that after b = a both names point at one list, so appending through b changes what a shows, and that a copy is needed to get a separate list.",
+  "claims": [
+    {
+      "id": "cs.two-names-one-list.c1",
+      "text": "After a = [1, 2], b = a and b.append(3), a is [1, 2, 3].",
+      "support": "simulation",
+      "source": "Node: let a=[1,2]; let b=a; b.push(3); JSON.stringify(a) = [1,2,3] and a === b is true. Same in Python (list assignment binds a second name).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-names-one-list.c2",
+      "text": "Assigning a list gives a second name for the same list; it does not copy the list.",
+      "support": "source",
+      "source": "Python Language Reference, Data model and Assignment statements: assignment binds a name to an object. ECMAScript spec: arrays are objects and assignment copies the reference.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-names-one-list.c3",
+      "text": "After b is given a copy of a, appending through either name leaves the other list unchanged.",
+      "support": "simulation",
+      "source": "Node: let a2=[1,2]; let c=[...a2]; c.push(3); a2 stays [1,2], c is [1,2,3]. The stage shows the copy as a separate box.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-names-one-list.c4",
+      "text": "To get a separate list you must copy it.",
+      "support": "source",
+      "source": "Python docs, copy module and list.copy(); MDN spread syntax / Array.prototype.slice. Scope: a shallow copy of a list of numbers.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-names-one-list.c5",
+      "text": "The stage's names, arrows and boxes show two names pointing at one list or at two lists.",
+      "support": "derivation",
+      "source": "Model drawing: arrows from the name tags a and b to list boxes, drawn from the same state that the readouts show.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "x = [5]. y = x. y.append(6). What is x?",
+    "options": [
+      "[5]",
+      "[5, 6]",
+      "[6]"
+    ],
+    "answer": 1,
+    "why": "y = x gives the list a second name, so appending through y changes the one list that x also points at."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

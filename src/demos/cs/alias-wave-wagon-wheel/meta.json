@@ -1,0 +1,71 @@
+{
+  "slug": "alias-wave-wagon-wheel",
+  "title": "Can a fast wave pose as a slow one?",
+  "hook": "Sample a wave too slowly and the dots can fit a different, slower wave.",
+  "domain": "cs",
+  "concept": "audio-sampling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "digital audio is a list of numbers"
+    ],
+    "doesNotKnow": [
+      "that too slow a sample rate turns a fast wave into a slower fake"
+    ]
+  },
+  "misconception": "Sampling a sound often enough or not, the samples always trace the original wave.",
+  "objective": "The learner can say that a wave faster than half the sample rate gives the same samples as a slower wave, so audio is sampled at more than twice the highest frequency.",
+  "claims": [
+    {
+      "id": "cs.alias-wave-wagon-wheel.c1",
+      "text": "A 4 Hz wave sampled 5 times a second gives the same sample points as a 1 Hz wave; a 2 Hz wave does not.",
+      "support": "simulation",
+      "source": "Node: cos(2 pi * 4 * n/5) equals cos(2 pi * 1 * n/5) for n = 0..5 (difference < 1e-9); the 2 Hz and 0.5 Hz waves differ at some n. Demo.tsx draws dots from the same cosine with f and FS = 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.alias-wave-wagon-wheel.c2",
+      "text": "A wave faster than half the sample rate (2.5 Hz at 5 samples a second) looks like a slower wave.",
+      "support": "source",
+      "source": "Nyquist-Shannon sampling theorem (Shannon 1949, 'Communication in the presence of noise'): frequencies above half the sampling rate alias to lower frequencies. Stage alias = |f - 5 round(f/5)|, node-checked for f = 3 (2 Hz) and 3.5 (1.5 Hz).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.alias-wave-wagon-wheel.c3",
+      "text": "That is why audio is sampled at more than twice its highest frequency.",
+      "support": "source",
+      "source": "Shannon 1949 / any audio-engineering text (e.g. Pohlmann, Principles of Digital Audio): the sample rate must exceed twice the highest frequency to avoid aliasing.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.alias-wave-wagon-wheel.c4",
+      "text": "The stage uses 5 samples per second and waves from 0.5 to 4 Hz, an idealised cosine wave, not a real recording.",
+      "support": "derivation",
+      "source": "Stage constants FS = 5 and the slider range 0.5 to 4 Hz in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A wave of 7 Hz is sampled 10 times a second. Which slower wave gives exactly the same sample points?",
+    "options": [
+      "3 Hz",
+      "5 Hz",
+      "7 Hz is the slowest"
+    ],
+    "answer": 0,
+    "why": "7 is above half of 10 (5), so it aliases to |7 - 10| = 3 Hz: the samples fit a 3 Hz wave exactly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
