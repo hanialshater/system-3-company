@@ -27,35 +27,45 @@
       "text": "With the pieces un, happi, ness plus single letters and longest-match-first, 'unhappiness' splits into un | happi | ness: 3 tokens.",
       "support": "derivation",
       "source": "tokenize('unhappiness', PIECES) in Demo.tsx; node: [ 'un', 'happi', 'ness' ].",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.word-in-pieces.c2",
       "text": "With all three pieces switched off, 'unhappiness' becomes 11 single-letter tokens; 'zyxxy' matches no piece and becomes 5.",
       "support": "derivation",
       "source": "tokenize('unhappiness', []) has length 11 and tokenize('zyxxy', PIECES) has length 5 in Demo.tsx (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.word-in-pieces.c3",
       "text": "The three-piece vocabulary and the greedy longest-match rule are this toy's; they are labelled on the stage ('Toy tokenizer').",
       "support": "convention",
       "source": "Brief 31 in company/domains/briefs/ai.md. Real subword tokenizers differ in how they apply pieces (e.g. BPE applies learned merges in order).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.word-in-pieces.c4",
       "text": "A model built on a subword tokenizer receives a sequence of piece ids, not the word or its letters.",
       "support": "source",
       "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.word-in-pieces.c5",
       "text": "Real tokenizers learn their piece lists from large amounts of text, so frequent chunks get their own pieces and rare strings fall into many.",
       "support": "source",
       "source": "About real systems: Sennrich et al. 2016 (byte-pair encoding: repeatedly merge the most frequent symbol pair in the training text, so rare words split into more units); Kudo & Richardson 2018.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

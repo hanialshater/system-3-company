@@ -28,21 +28,27 @@
       "text": "With a random card and a random side up, each of the six faces is equally likely to land up.",
       "support": "derivation",
       "source": "Card chosen with chance 1/3, side with chance 1/2, independently: each face 1/6 (model assumption in src/demos/probability/three-cards-one-red-face/model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.three-cards-one-red-face.c2",
       "text": "Three of the six faces are red, and two of those belong to the red/red card, so a red face up hides a red back 2/3 of the time.",
       "support": "derivation",
       "source": "Enumeration of the six faces (exact() in model.ts): red faces = red/red side 1, red/red side 2, red/blue side 1; backs red, red, blue.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.three-cards-one-red-face.c3",
       "text": "The stage's draws are seeded: in the first 60, red was up 23 times with a red back 18 times (78%); over 600 draws, 212 of 310 (68%).",
       "support": "simulation",
       "source": "draws() in model.ts, mulberry32 seed 1889, untuned (the first seed tried). Over seeds 1-500, the red-back share in 60 draws had middle 95% 50%-83% (median 68%). The reveal quotes only the learner's own tally.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

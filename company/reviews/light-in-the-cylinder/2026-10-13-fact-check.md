@@ -14,3 +14,9 @@ Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewr
 
 ## Result (pass 4)
 4 verified, 1 disputed, 0 left unverified, 0 added unverified.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c4.
+
+c4: central cylindrical projection y = tan(phi) so dy/dphi = sec^2(phi): 1 at the equator, unbounded to the pole; true along the touching line. The sentence is about the paper touching along one line (cylinder); the tangent-plane (polar) case touches at a point, which the reveal generalises loosely. Verified as reworded ('With a light at the centre').

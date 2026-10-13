@@ -28,28 +28,36 @@
       "text": "The points (1,1), (2,2), (3,3), (4,4), (5,5) have least-squares slope 1; moving the fifth to (5,0) makes the slope exactly 0 with intercept 2.",
       "support": "derivation",
       "source": "x deviations −2, −1, 0, 1, 2 and y deviations −1, 0, 1, 2, −2 (mean y = 2) give covariance 0, so slope 0, intercept 2. fit(pointsWith(0)) in Demo.tsx; node: slope 0.000, b 2.000. Intermediate heights: y5 = 4 → 0.8, 2 → 0.4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.outlier-flattens-line.c2",
       "text": "With the fifth point at (5,0), keeping the line y = x costs a sum of squared misses of 25 (all from the stray point, 5 off); the flat best-fit line costs 10.",
       "support": "derivation",
       "source": "sse with m = 1, b = 0: 0+0+0+0+25 = 25. With m = 0, b = 2: 1+0+1+4+4 = 10. Q_SSE_OLD and Q_SSE_FIT in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.outlier-flattens-line.c3",
       "text": "The best-fit (least-squares) line is the one with the smallest sum of squared vertical misses.",
       "support": "source",
       "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §3.2 (least squares minimises the residual sum of squares).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.outlier-flattens-line.c4",
       "text": "The five points are invented for the toy; labelled on the stage.",
       "support": "convention",
       "source": "Brief 32 in company/domains/briefs/ai.md.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

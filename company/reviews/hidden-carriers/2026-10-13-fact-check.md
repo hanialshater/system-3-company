@@ -10,3 +10,9 @@ Checker: fact-checker (independent). Inline node arithmetic plus a random-mating
 | c4 | verified (convention) | Assumptions are exactly those stated in the reveal ("random mating, no selection, migration or new mutations, large population; the trait is made up"). |
 
 Non-blocking wording inconsistency for demo-builder: the ledger text of c2 says "about 1 in 50" while the predict option and reveal say "about 1 in 51". The exact value is 1 in 50.5; both round correctly, but pick one so the ledger matches the stage. (Demo.tsx's own comment says 50; the code rounds 10,000/198 = 50.5 to 51.) No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c2, c5.
+
+Node: q = 0.01, 2pq = 0.0198 -> 198 of 10,000 (1 in 50.5); q for 1 in 2,500/400/100 = 0.02/0.05/0.1 as stated in c5 (stage products 50x50, 20x20, 10x10).

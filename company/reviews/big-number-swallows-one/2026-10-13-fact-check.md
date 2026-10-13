@@ -13,3 +13,9 @@ Checker: fact-checker. Scope: claims open (unverified) in this lesson that were 
 | c5 For exact big integers, JavaScript has BigInt.... | verified | BigInt exists in ECMAScript 2020; 9007199254740992n + 1n = ...993n. |
 
 Result: 4 verified, 1 disputed, 0 added unverified.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c3.
+
+Node: Number.MAX_SAFE_INTEGER === 2**53-1; 2**53+1 === 2**53; 2**53+2 = 9007199254740994; spacing 2 on [2^53, 2^54). The builder's revised wording ('just beyond it (up to 2^54)') matches the reveal text.

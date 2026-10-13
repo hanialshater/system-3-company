@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l13.m
 | c5 | verified (convention) | Stated on the stage and in the reveal ("two fixed strategies, chosen payoffs, 10 rounds, random pairing in a huge population ... not a claim about people"). |
 
 Sensitivity worth knowing (not a defect): the 5% / 7% starts sit very close to the 5.88% threshold, so the stage outcome relies on the learner's reading of "about 6%" as the threshold; starts 5.8% and 5.9% give opposite outcomes in 60 generations. The lesson states the exact threshold, 1 in 17. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c2, c3.
+
+Payoffs: TFT/TFT 30, TFT vs cheat 9 (and cheat 14), cheat/cheat 10; break-even 1/17 = 5.88%. Ran the imitation recursion: 3% -> 0 at gen 37; 25% -> 100 at gen 8; 7% -> 100 at gen 37; 6% -> 18 at gen 60; 5.8% falls, 5.9% rises.

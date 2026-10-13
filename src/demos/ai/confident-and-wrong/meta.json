@@ -27,28 +27,36 @@
       "text": "−ln(0.5) = 0.69, −ln(0.1) = 2.30 and −ln(0.01) = 4.61, which is 6.6 times the 50% penalty.",
       "support": "derivation",
       "source": "penalty() in Demo.tsx; node: 0.693, 2.303, 4.605; 4.605 / 0.693 = 6.64 = log2(100). Also −ln(0.9) = 0.105.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.confident-and-wrong.c2",
       "text": "Every halving of the chance on the truth adds the same 0.69 to the penalty; 1% is about 6.6 halvings from certainty, and as the chance goes to 0% the penalty has no ceiling.",
       "support": "derivation",
       "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.confident-and-wrong.c3",
       "text": "For one example, the cross-entropy penalty is −ln(the probability the model gave the true class), and models trained to minimise it are penalised far more for confident mistakes than for hedged ones.",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.confident-and-wrong.c4",
       "text": "The stage shows one example's penalty, labelled 'One example' on the stage; real training averages it over many examples.",
       "support": "convention",
       "source": "Brief 38 in company/domains/briefs/ai.md; Goodfellow et al. 2016 §6.2.1 (cost averaged over the training set).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

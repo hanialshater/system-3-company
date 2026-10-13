@@ -12,3 +12,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l3.mj
 | c6 | verified (convention) | Modelling choice stated on the stage and in the reveal ("The food batch here is made up"). |
 
 No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c1, c2, c3, c6.
+
+Node: 2^30 = 1,073,741,824; 2^21 = 2,097,152 (0.2%); 2^29 = half. Logistic K=1e8: 512 at 3 h, 57.3M at 9 h, 91.5M at 10 h.

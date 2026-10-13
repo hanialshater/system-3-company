@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l8.ts
 | c5 | verified (convention) | Stated in the reveal: complete dominance, independent seeds. |
 
 Non-blocking note for demo-builder: the first field's "exactly one white" count (49) is 7 above the 42% the reveal quotes right afterwards. Both are correct (49 is inside the 33-52 range), but the reveal could say "yours varies; the long-run share is 42%" so the gap is not read as a contradiction. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c3.
+
+Binomial(4, 1/4): P(1)=0.4219, P(0)=0.3164, P(>=2)=0.2617.

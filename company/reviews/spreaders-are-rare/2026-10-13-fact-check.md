@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l12.m
 | c5 | verified (convention) | The reveal says k = 0.1 is an illustration. |
 
 Non-blocking wording note for demo-builder: the reveal says "With even spread ... no case infected more than 7". That is true of the stage's expected-shape picture (largest slice mean is 7), but real random sets of 100 Poisson(2) cases often contain an 8, 9 or more (largest seen in 20,000 sets: 12). The reveal's final line says the 100 cases are an expected shape, not a random outbreak, which covers it; consider "in this picture" next to the 7. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c3, c4, c5.
+
+Extracted cases()/summary(): even (Poisson 2) 14 zeros, total 199, max 7; k=1 33 zeros, total 201; k=0.1 74 zeros, total 200, top 10 = 165. Lloyd-Smith et al. 2005 Nature 438:355 as cited.

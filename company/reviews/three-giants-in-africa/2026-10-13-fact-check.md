@@ -15,3 +15,9 @@ Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewr
 
 ## Result (pass 4)
 5 verified, 1 disputed, 0 left unverified, 0 added unverified.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c1, c6.
+
+c6 verified as a relative claim (see note appended to its source); suggested hook tweak is non-blocking.

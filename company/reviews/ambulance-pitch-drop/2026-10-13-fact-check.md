@@ -39,3 +39,9 @@ Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewr
 
 ## Result (pass 4)
 3 verified, 0 disputed, 0 left unverified, 1 added unverified.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c8.
+
+c8 (builder-reworded caption): 700 Hz x 0.1 s = 70 crests per ring interval; 'every 70th crest' is correct and matches c5/c7.

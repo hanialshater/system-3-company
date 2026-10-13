@@ -29,28 +29,36 @@
       "text": "For a fair coin flipped 100 times, the chance of 60 or more heads is 2.8% (about 3%).",
       "support": "derivation",
       "source": "Exact binomial sum P(X >= 60), X ~ Bin(100, 1/2) = 0.02844 (exactTail() in src/demos/probability/how-surprising-is-sixty/model.ts). For reference P(X >= 62) = 0.0105, P(X >= 58) = 0.0666.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.how-surprising-is-sixty.c2",
       "text": "The stage's batches are seeded fair-coin runs: after 250 batches, 5 had 60+ heads (2.0%); after 500, 16; after 750, 23; after 1,000, 38 (3.8%).",
       "support": "simulation",
       "source": "batches() in model.ts, mulberry32 seed 100, untuned (the first seed tried). Over seeds 1-500, the number of 250-batch runs with 60+ heads had middle 95% 2-13 (median 7); 2 of 500 seeds gave 0. The reveal quotes only the counts the learner saw at marker 60.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.how-surprising-is-sixty.c3",
       "text": "A p-value is how often luck alone, with a coin known to be fair, gives a result at least as extreme as the one seen.",
       "support": "source",
       "source": "Wasserstein & Lazar (2016), The ASA Statement on p-Values, The American Statistician 70(2): 129-133 (principle 2 and the informal definition). The lesson uses the one-sided version (60 or more heads).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.how-surprising-is-sixty.c4",
       "text": "A p-value is not the chance that the coin is fair; working that out would also need to know how common unfair coins are.",
       "support": "source",
       "source": "Wasserstein & Lazar (2016), principle 2: p-values do not measure the probability that the studied hypothesis is true. The prior-dependence follows from Bayes' rule.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

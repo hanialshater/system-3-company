@@ -38,3 +38,8 @@ Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewr
 
 ## Result (pass 4)
 0 verified, 0 disputed, 1 left unverified, 0 added unverified.
+
+
+## Pass 5
+
+Checker: fact-checker. c1 left unverified. population.un.org is still unreachable (page fetch fails at DNS; web search returns only aggregators). Corroboration, not a direct compare: populationpyramids (WPP 2024-based) lists India 1,450,935,802; US 345.4M; Indonesia 283.5M; Pakistan 251.3M; Nigeria 232.7M; Brazil 212.0M, all consistent with the list. Needs someone with access to the WPP 2024 table.

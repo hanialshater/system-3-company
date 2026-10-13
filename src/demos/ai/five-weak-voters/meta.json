@@ -28,35 +28,45 @@
       "text": "If five independent models are each right with chance 0.6, their majority vote is right with chance 0.683 (at least 3 of 5); with 21 voters, 0.826.",
       "support": "derivation",
       "source": "Binomial sum: Σ_{k=3..5} C(5,k) 0.6^k 0.4^(5−k) = 0.68256; for 21, k = 11..21: 0.82561. majority() in Demo.tsx (node: 0.6826, 0.8256).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-weak-voters.c2",
       "text": "In the first seeded batch of 200 questions, one model got 121 right, a vote of five 138 and a vote of 21 158.",
       "support": "simulation",
       "source": "voteRight(1, n, false) in Demo.tsx; batch b uses mulberry32(b), batches shown in order 1, 2, 3, ..., untuned. Spread: in 2,000 batches the vote of five beat the single model in 1,967.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-weak-voters.c3",
       "text": "When every voter copies the same answer ('same mistakes'), the vote is right exactly when one model is: 60% in the long run.",
       "support": "derivation",
       "source": "By construction: voteRight(b, n, true) gives every voter voter 1's outcome, so the majority equals voter 1. Batch 1: 121/200 for any n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-weak-voters.c4",
       "text": "The models are toys (coin flips with chance 0.6), labelled 'Toy models' on the stage; independence is an assumption stated in the question.",
       "support": "convention",
       "source": "Brief 35 in company/domains/briefs/ai.md.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-weak-voters.c5",
       "text": "A vote helps only as far as the voters are wrong in different places.",
       "support": "source",
       "source": "Shown in the toy (c1 vs c3). For real ensembles: Dietterich 2000, 'Ensemble methods in machine learning', Multiple Classifier Systems, LNCS 1857 (an ensemble beats its members when they are accurate and make different errors); Hastie, Tibshirani & Friedman 2009 §8.7 (bagging; correlation between members limits the gain, §15.2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l9.mj
 | c5 | verified (convention) | Strength 20% = e 0.2 per month, the same extra per-capita death rate on both species; stated as "toy model" in the reveal. |
 
 The reveal's "the spray hurts [predators] more" is the qualitative reading of the averages: pests +20%, predators -20% at strength 20%. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c2, c3.
+
+RK4 rerun (dt 0.01, 600 months, start 1.5,1): averages 1.000/1.000 (e=0), 1.199/0.800 (0.2), 1.399/0.600 (0.4); equilibrium (1+e, 1-e).

@@ -27,28 +27,36 @@
       "text": "Starting from zero weights and sweeping (1,1)+, (−1,0)−, (2,−1)+, (−1,−2)−, (0,2)+ in order, the perceptron nudges at (1,1) (weights 1,1, offset 1) and at (−1,0) (weights 2,1, offset 0); the second sweep has no mistakes: 2 nudges in all.",
       "support": "derivation",
       "source": "checkOne() / untilClean() in Demo.tsx with the rule w ← w + label·(x, y, 1) when label·score ≤ 0. Node: nudge at (1,1) → [1,1,1]; nudge at (−1,0) → [2,1,0]; sweep 1 mistakes 2, sweep 2 mistakes 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.one-nudge-per-mistake.c2",
       "text": "In this toy a zero score counts as a mistake, which is why the very first point is nudged when there is no line yet.",
       "support": "convention",
       "source": "Toy convention stated on the stage (locked caption) and in Demo.tsx; brief 33 in company/domains/briefs/ai.md.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.one-nudge-per-mistake.c3",
       "text": "A perceptron changes its weights only when it misclassifies a point, by adding or subtracting that point.",
       "support": "source",
       "source": "Rosenblatt 1958, 'The perceptron: a probabilistic model for information storage and organization in the brain', Psychological Review 65(6); the error-correction rule in modern form: Bishop 2006, Pattern Recognition and Machine Learning, §4.1.7.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.one-nudge-per-mistake.c4",
       "text": "Each nudge moves the line toward putting the missed point on the right side: the missed point's score rises by |point|² + 1 (for a + point) or falls by as much (for a − point).",
       "support": "derivation",
       "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

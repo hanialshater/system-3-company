@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l6.mj
 | c5 | verified (convention) | Stated on the stage ("Survival: no w 85%, one w 100%, two w 0%") and in the reveal ("made-up species, random mating, huge population"). |
 
 Non-blocking: reveal says "the ring ended at the same place: 13 of 100 copies" for both starts at generation 60; true at the default 85% setting (13.03% and 13.04%). No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c2, c3, c6.
+
+Ran the stage recursion q' = pq/(p^2(1-s)+2pq): s=0.15: 1% start 13.0% at gen 50-60, 50% start 13.0%; s=0.05: eq 4.76%, 1% start 4.06% at gen 60 (50% start 4.97%); s=0.30: eq 23.1%. q*=s/(s+1): 5%, 13%, 23%.

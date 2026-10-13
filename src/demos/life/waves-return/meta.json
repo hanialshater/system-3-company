@@ -37,21 +37,27 @@
       "text": "On the stage (infection 0.4/day, recovery 0.2/day, immunity fading at 1/100 per day, 0.1% sick on day 0), waves peak on days 34, 185, 329, 473, 617 and 761 with 50.7%, 50.2% and then 50.0% susceptible at the daily snapshot; by day 900 the town is at 50.0% susceptible and 2.4% sick.",
       "support": "simulation",
       "source": "Euler step 0.01 day, deterministic, no seed; peaks are local maxima of the daily sick share (artifacts/scratch/w3life/sirs.mjs and revision 2026-10-13 rerun): peak S 50.7, 50.2, 50.0, 50.0, 50.0, 50.0%; day 900 S 50.0%, I 2.4%. Parameters are the brief's, made up.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.waves-return.c3",
       "text": "Each wave peaks when the susceptible share is about 1/R0, half the town when R0 = 2: above it cases grow, below it they shrink while fading immunity refills the susceptibles.",
       "support": "derivation",
       "source": "dI/dt = (beta S - gamma) I changes sign at S = gamma/beta = 1/R0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.waves-return.c4",
       "text": "The immunity length changes how many are sick at the endemic level and how far apart the waves are, not the roughly 50% susceptible share: with immunity of about 50 days, 4.5% are sick at day 900; with about 200 days, 1.3% (50% and 49.8% susceptible).",
       "support": "simulation",
       "source": "artifacts/scratch/w3life/sirs.mjs: L = 50 gives S 50.00%, I 4.55% at day 900, waves about 104 days apart; L = 200 gives S 49.77% (still oscillating, 48.9-50.7% over days 700-900), I 1.29%, waves about 200 days apart.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.waves-return.c5",
@@ -67,7 +73,9 @@
       "text": "R0 = 2 means each sick person infects 2 others when everyone can catch the infection; 'susceptible' means able to catch it; recovered people are immune until immunity fades.",
       "support": "convention",
       "source": "Standard definitions (Keeling & Rohani 2008 ch. 2); model parameters beta = 0.4, gamma = 0.2 give R0 = beta/gamma = 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

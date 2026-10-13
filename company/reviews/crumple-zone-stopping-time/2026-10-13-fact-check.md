@@ -39,3 +39,9 @@ Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewr
 
 ## Result (pass 4)
 3 verified, 1 disputed, 0 left unverified, 0 added unverified.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c5.
+
+c5 (builder-reworded): 2d/v = 0.1 s for 0.75 m at 15 m/s; published 56 km/h frontal tests: crush ~0.5-0.9 m, pulse ~80-120 ms (builder's NHTSA/PMC sources), consistent with the 'close to the shorter case' claim. Non-numeric idealisation stated on the stage.

@@ -10,3 +10,9 @@ Checker: fact-checker (independent). Inline node arithmetic plus a mass-action O
 | c4 | verified (convention) | The 100 stations, one molecule each at a time, with busy share S/(1+S), and a pool drawn as "more substrate" not a count, as the reveal says ("the stations are a simplification"). |
 
 Note: occupancy S/(Km+S) uses free substrate concentration equal to total substrate, which holds when substrate is far in excess of enzyme (the usual Michaelis-Menten condition); the lesson presents it as a simplified model. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c1, c2, c3.
+
+10/11 = 91%, 20/21 = 95%, ratio 1.0476; 1/2 -> 2/3 ratio 1.333. Michaelis-Menten form standard.

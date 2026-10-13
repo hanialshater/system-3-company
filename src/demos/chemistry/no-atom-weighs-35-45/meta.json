@@ -29,42 +29,54 @@
       "text": "The periodic table gives chlorine's atomic mass as about 35.45 u.",
       "support": "source",
       "source": "IUPAC CIAAW standard atomic weight of chlorine [35.446, 35.457], conventional value 35.45 (Prohaska et al., Pure Appl. Chem. 2022).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.no-atom-weighs-35-45.c2",
       "text": "Chlorine-35 atoms weigh about 34.97 u and chlorine-37 atoms about 36.97 u; natural chlorine is about 76% chlorine-35 and 24% chlorine-37.",
       "support": "source",
       "source": "NIST Atomic Weights and Isotopic Compositions: Cl-35 34.96885 u, 75.76%; Cl-37 36.96590 u, 24.24%. Weighted mean 0.7576 x 34.96885 + 0.2424 x 36.96590 = 35.453 u (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.no-atom-weighs-35-45.c3",
       "text": "Every chlorine atom has 17 protons; chlorine-35 has 18 neutrons and chlorine-37 has 20.",
       "support": "derivation",
       "source": "Z(Cl) = 17 (IUPAC); neutrons = mass number − Z: 35 − 17 = 18, 37 − 17 = 20.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.no-atom-weighs-35-45.c4",
       "text": "The stage's bag is a toy: 1,000 atoms (758 chlorine-35, 242 chlorine-37) shuffled with a fixed seed; its first 100 atoms hold 24 chlorine-37 and average 35.45 u.",
       "support": "simulation",
-      "source": "Demo.tsx makeBag(): Fisher-Yates shuffle with mulberry32(SEED = 5). Seed CHOSEN so the first 100 draws hold exactly 24 chlorine-37 (nature's share); average 35.448 u (node). Other seeds give 100-atom averages that wander by a few hundredths. A chosen seed is an illustration, not evidence (pattern disclose-chosen-seeds).",
-      "status": "unverified"
+      "source": "Demo.tsx makeBag(): Fisher-Yates shuffle with mulberry32(SEED = 5). Seed CHOSEN so the first 100 draws hold exactly 24 chlorine-37 (nature's share); average 35.448 u (node). Other seeds give 100-atom averages that wander by a few hundredths. A chosen seed is an illustration, not evidence (pattern disclose-chosen-seeds). | FACT-CHECK 2026-10-13 (pass 5): re-run: seed 5 first 100 = 24 Cl-37, mean 35.448 u; 242 Cl-37 in 1,000. Correction to the source: across random seeds a 100-atom mean has sd about 0.09 u (not 'a few hundredths'), so the reveal's 'average was 35.45' is a chosen-seed best case; the stage says only 'fixed seed', not 'chosen'. Builder to consider saying 'chosen' or 'lands near, not on'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.no-atom-weighs-35-45.c5",
       "text": "The unit u (atomic mass unit) is about the mass of one proton.",
       "support": "source",
       "source": "u = 1/12 of the mass of a carbon-12 atom (IUPAC Gold Book, 'atomic mass constant'); proton mass 1.00728 u (CODATA 2018).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.no-atom-weighs-35-45.c6",
       "text": "(Recall) Copper's table mass is about 63.55 u; natural copper is copper-63 and copper-65, mostly copper-63.",
       "support": "source",
       "source": "IUPAC standard atomic weight Cu 63.546(3); NIST: Cu-63 62.9296 u, 69.15%; Cu-65 64.9278 u, 30.85%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -29,28 +29,36 @@
       "text": "With true support exactly 50% and 1,000 random people per poll, the usual 95% interval (share +/- 1.96 x sqrt(share x (1 - share) / 1,000)) misses 50% with chance 5.4%: about 5 in 100.",
       "support": "derivation",
       "source": "Exact binomial sum over the head counts whose interval excludes 0.5: 0.05368 (exactMiss() in src/demos/probability/ninety-five-percent-of-what/model.ts). Slightly above 5% because the interval is an approximation.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.ninety-five-percent-of-what.c2",
       "text": "The stage's pollsters are seeded: the first batch of 100 had 7 misses; ten batches had 7, 6, 9, 11, 11, 4, 7, 4, 6, 1 (66 of 1,000, 6.6%).",
       "support": "simulation",
       "source": "intervals() in model.ts, mulberry32 seed 1937, untuned (the first seed tried). Over seeds 1-300 the misses in one batch of 100 had middle 95% 1-11 (median 5); 2 of 300 seeds gave 0. The reveal quotes only the learner's own counts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.ninety-five-percent-of-what.c3",
       "text": "The true value is known here only because this is a simulation.",
       "support": "convention",
       "source": "Model setup: the population is fixed at exactly 50% support.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.ninety-five-percent-of-what.c4",
       "text": "The 95% belongs to the method: across many polls about 1 in 20 intervals misses, and a single interval gives no sign whether it is one of them.",
       "support": "source",
       "source": "Neyman (1937), Outline of a Theory of Statistical Estimation, Phil. Trans. R. Soc. A 236: 333-380 (coverage as a long-run property of the procedure).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

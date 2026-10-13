@@ -29,28 +29,36 @@
       "text": "Two fair dice have 36 equally likely outcomes, and 11 of them contain at least one six (31%).",
       "support": "derivation",
       "source": "Enumeration (share(\"none\") in src/demos/probability/told-the-sum-is-eight/model.ts): 6 + 6 - 1 = 11; 11/36 = 30.6%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.told-the-sum-is-eight.c2",
       "text": "A total of 8 leaves 5 outcomes (2+6, 3+5, 4+4, 5+3, 6+2), 2 of which contain a six: 2/5 = 40%.",
       "support": "derivation",
       "source": "Enumeration (share(\"eight\")).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.told-the-sum-is-eight.c3",
       "text": "With \"total is 7\" the chance of a six is 2 of 6; with \"total at least 10\" it is 5 of 6.",
       "support": "derivation",
       "source": "Enumeration: total 7 = (1,6), (2,5), (3,4), (4,3), (5,2), (6,1), sixes in 2; total >= 10 = (4,6), (5,5), (5,6), (6,4), (6,5), (6,6), sixes in 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.told-the-sum-is-eight.c4",
       "text": "A clue shrinks the list of possible outcomes; the new chance is the share of what is left.",
       "support": "derivation",
       "source": "Definition of conditional probability over equally likely outcomes: P(A | B) = |A and B| / |B|.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

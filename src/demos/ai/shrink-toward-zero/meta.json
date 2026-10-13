@@ -28,28 +28,36 @@
       "text": "With true value 0.5 and each estimate the average of 4 readings with noise sd 1, the plain average has bias 0, spread (sd) 0.5 and average squared error 0.25; half the average has bias −0.25, spread 0.25 and error 0.125.",
       "support": "derivation",
       "source": "sd of a mean of 4 = 1/√4 = 0.5. For c × average: bias (c − 1)·0.5, sd 0.5c, error = bias² + sd². c = 1: 0.25; c = 0.5: 0.0625 + 0.0625 = 0.125. bias(), spread(), mse() in Demo.tsx. Brief 36 reports 200,000 simulated trials: 0.251 and 0.125.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.shrink-toward-zero.c2",
       "text": "Shrinking too far costs more: at ×0.2 the bias is −0.40 and the error 0.170. The best factor here is exactly 0.5.",
       "support": "derivation",
       "source": "mse(0.2) = 0.16 + 0.01 = 0.17. Minimising 0.25(1 − c)² + 0.25c² gives c = μ²/(μ² + σ²/n) = 0.25/0.5 = 0.5 (BEST in Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.shrink-toward-zero.c3",
       "text": "Average squared error equals bias squared plus variance (spread squared).",
       "support": "source",
       "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.3 (bias-variance decomposition).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.shrink-toward-zero.c4",
       "text": "The setting is a toy and the 40 dots are sample estimates; the error readout is the long-run (expected) value, not computed from the 40 dots.",
       "support": "convention",
       "source": "Stage tag 'Toy · 40 sample estimates' and readout 'Long-run sq. error'. Dots from mulberry32(1) with Box-Muller normals, untuned, used only to show spread.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

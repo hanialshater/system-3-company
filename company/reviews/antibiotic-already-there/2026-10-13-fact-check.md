@@ -11,3 +11,9 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/l1.mj
 | c5 | verified (convention) | Toy-model statement consistent with Demo.tsx (mulberry32(3) places up to 100 ringed spots; 10 million shows none). |
 
 Reveal sentences "Big populations almost always hold a few rare mutants" follows from c1/c4 at this illustrative rate. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c3, c6, c7.
+
+c1 N x 1e-8 expected; c3 (illustrative figure, per-drug frequencies roughly 1e-9 to 1e-7) accepted as a convention; c6 follows from c5; c7: Luria & Delbruck 1943 Genetics 28:491-511.

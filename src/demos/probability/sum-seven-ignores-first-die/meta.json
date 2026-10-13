@@ -29,21 +29,27 @@
       "text": "A total of 7 has 6 of 36 outcomes (1/6), and given any first die it is still 1/6: every row holds exactly one 7.",
       "support": "derivation",
       "source": "Enumeration (before(7), after(7, k) for k = 1..6 in src/demos/probability/sum-seven-ignores-first-die/model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.sum-seven-ignores-first-die.c2",
       "text": "A total of 8 has 5 of 36 outcomes (13.9%); given a first die of 2 to 6 it becomes 1/6 (16.7%), and given a first die of 1 it is 0.",
       "support": "derivation",
       "source": "Enumeration (before(8), after(8, k)).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.sum-seven-ignores-first-die.c3",
       "text": "Two events are independent when knowing one leaves the chance of the other unchanged.",
       "support": "derivation",
       "source": "Definition: P(A | B) = P(A), equivalently P(A and B) = P(A) x P(B); for total 7 and first die 3: 1/36 = 1/6 x 1/6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

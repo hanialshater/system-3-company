@@ -28,28 +28,36 @@
       "text": "For a random poll of n people with support near 50%, the 95% margin of error is 1.96 x sqrt(0.25 / n): about 3.1 points at 1,000, 2.2 at 2,000 and 1.5 at 4,000.",
       "support": "derivation",
       "source": "Normal approximation to the binomial; margin() in src/demos/probability/halve-the-margin-cost/model.ts gives 3.099, 2.191, 1.550 (also 6.2 at 250, 4.4 at 500, 1.1 at 8,000).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.halve-the-margin-cost.c2",
       "text": "About 95% of random polls land within the margin of error of the true value.",
       "support": "derivation",
       "source": "Definition of the 95% margin (1.96 standard errors). The stage's seeded polls (seed 1936, untuned; a separate stream per size) put 95, 96, 95, 97, 95, 97 of 100 inside at 250, 500, 1,000, 2,000, 4,000, 8,000.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.halve-the-margin-cost.c3",
       "text": "The margin shrinks with the square root of the sample size, so half the error costs four times the people.",
       "support": "derivation",
       "source": "margin(4n) = 1.96 x sqrt(0.25 / 4n) = margin(n) / 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.halve-the-margin-cost.c4",
       "text": "The margin covers only random sampling luck, not people who refuse to answer or a biased list.",
       "support": "source",
       "source": "AAPOR, Margin of Sampling Error / Credibility Interval statement: the margin of sampling error does not include non-response, coverage or measurement error.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

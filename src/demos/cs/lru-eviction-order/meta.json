@@ -55,7 +55,9 @@
       "text": "Things used recently tend to be used again soon, so operating systems and web caches use the least-recently-used rule or cheap approximations of it.",
       "support": "source",
       "source": "Principle of temporal locality: Denning, 'The locality principle', CACM 48(7), 2005; Silberschatz et al. 10.4.4 (LRU approximates the optimal policy by using the recent past to predict the near future). 'Usually' is a tendency for workloads with locality, not a guarantee.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.lru-eviction-order.c5",
@@ -71,7 +73,9 @@
       "text": "On the stream A, B, C, A, D with 3 slots, both rules score 1 hit and 4 misses; afterwards a request for B hits under first in, first out (it kept B) and misses under least recently used, while a request for A hits under least recently used and misses under first in, first out.",
       "support": "derivation",
       "source": "Simulated in the stage: LRU leaves {A, C, D}; FIFO leaves {B, C, D}. The only hit is A at step 4 under both.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

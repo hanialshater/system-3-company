@@ -12,3 +12,9 @@ Checker: fact-checker. Method: re-computed in artifacts/scratch/fc-cschem/; read
 | c6 | Verified (convention): with two groups left the join is forced, and its cost is the full weight 8 whatever the order. |
 
 Deterministic, no seeds. Reveal text (join costs 2, 4, 8) matches. No unrecorded claims.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c7.
+
+Added during the pass (builder revision at 17:50): c7. Node: lengths 1,2,3,3 give 14 bits and joins 2+4+8 = 14; codes from joining (C,D), then B, then A with left=0/right=1 are A 1, B 01, C 000, D 001, matching the reveal text in Demo.tsx. I flipped c1-c7 before noticing the revision; each is checked here and the earlier claims were previously verified by an independent pass.

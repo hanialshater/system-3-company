@@ -27,28 +27,36 @@
       "text": "Greedy takes 'cat' (60%) then 'sat' (40%): 0.6 × 0.4 = 24%. 'dog' (40%) then 'barked' (90%) gives 0.4 × 0.9 = 36%, the most likely two-word ending in the tree.",
       "support": "derivation",
       "source": "GREEDY_P and OTHER_P in Demo.tsx; node: 0.24, 0.36. Other leaves: cat ran 21%, cat ate 15%, dog sat 4%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.greedy-word-trap.c2",
       "text": "A sentence's chance is the product of each word's chance given the words before it.",
       "support": "derivation",
       "source": "Chain rule of probability: P(w1, w2) = P(w1) · P(w2 | w1). Standard for autoregressive language models, e.g. Jurafsky & Martin, Speech and Language Processing (3rd ed. draft), ch. 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.greedy-word-trap.c3",
       "text": "The words and their odds are invented, labelled 'Invented word odds' on the stage.",
       "support": "convention",
       "source": "Brief 40 in company/domains/briefs/ai.md (A/B with 60/40, best-next 40% and 90%); words added for readability.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.greedy-word-trap.c4",
       "text": "Some real systems use beam search, keeping several partial sentences at each step, to get closer to the most likely whole sentence than greedy picking.",
       "support": "source",
       "source": "About real systems: Sutskever, Vinyals & Le 2014, 'Sequence to Sequence Learning with Neural Networks', NeurIPS (left-to-right beam search keeping B partial hypotheses); beam search is an approximation, not guaranteed to find the best sequence.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

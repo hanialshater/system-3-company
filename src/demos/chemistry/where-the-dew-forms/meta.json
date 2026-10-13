@@ -29,28 +29,36 @@
       "text": "The most water vapour that can stay vapour rises steeply with temperature; at 30 °C it is about 4.24 kPa.",
       "support": "source",
       "source": "Magnus formula es(T) = 0.61094 exp(17.625 T / (T + 243.04)) kPa (Alduchov & Eskridge 1996, J. Appl. Meteor. 35: 601-609); es(30) = 4.237 kPa (node). CRC Handbook 'Vapor pressure of water': 4.247 kPa at 30 °C.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.where-the-dew-forms.c2",
       "text": "Relative humidity is the water vapour in the air as a share of the most that can stay vapour at that temperature.",
       "support": "convention",
       "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.where-the-dew-forms.c3",
       "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour, which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point).",
       "support": "derivation",
       "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.where-the-dew-forms.c4",
       "text": "Below the dew point the extra water condenses as dew.",
       "support": "source",
       "source": "Definition of dew point (WMO-No. 8; American Meteorological Society Glossary, 'dew point'). The stage keeps the air's total water fixed and ignores pressure changes on cooling (small).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

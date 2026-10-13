@@ -46,7 +46,9 @@
       "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but just beyond it (up to 2^54) only every second whole number exists; Number.MAX_SAFE_INTEGER is 2^53 − 1.",
       "support": "source",
       "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()). | Builder fix 2026-10-13 (pass 4): reworded to 'just beyond it (up to 2^54)' per fact-check; spacing is 2 on [2^53, 2^54), 4 on [2^54, 2^55).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.big-number-swallows-one.c4",

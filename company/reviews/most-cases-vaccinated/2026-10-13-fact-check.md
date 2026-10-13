@@ -10,3 +10,9 @@ Checker: fact-checker (independent). Inline node arithmetic. Stage text from the
 | c4 | verified (convention) | Stated in the reveal: "Made-up numbers ... everyone equally exposed and the vaccine works the same for everyone." |
 
 Non-blocking: other slider positions are also expected counts (80% gives 40 + 100 cases, 28.6% vaccinated; 50% gives 25 + 250, 9.1%), correct under the same model. No unrecorded claims found.
+
+## Pass 5
+
+Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c5.
+
+Expected counts 500; 45 + 50; 50 as stated.
