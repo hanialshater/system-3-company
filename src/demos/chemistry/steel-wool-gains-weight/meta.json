@@ -1,0 +1,81 @@
+{
+  "slug": "steel-wool-gains-weight",
+  "title": "Burnt iron gets heavier",
+  "hook": "Burning makes things vanish into flame. So why does burnt iron weigh more?",
+  "domain": "chemistry",
+  "concept": "conservation-of-mass",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that things burn in air",
+      "that matter is made of atoms",
+      "grams"
+    ],
+    "doesNotKnow": [
+      "that burning rearranges atoms rather than destroying them",
+      "that a burning metal can gain mass by taking oxygen from the air"
+    ]
+  },
+  "misconception": "Burning destroys matter, so the burnt thing always weighs less.",
+  "objective": "The learner can explain that 10.0 g of iron burned completely to Fe2O3 weighs about 14.3 g, because the iron atoms stay and oxygen atoms from the air join them; mass is conserved when the air is counted too.",
+  "claims": [
+    {
+      "id": "chemistry.steel-wool-gains-weight.c1",
+      "text": "10.0 g of iron burned completely to iron(III) oxide, Fe2O3, gives about 14.3 g of ash.",
+      "support": "derivation",
+      "source": "10.0 g / 55.845 g/mol = 0.1791 mol Fe; Fe2O3 = 0.0895 mol x 159.687 g/mol = 14.30 g (node; Demo.tsx FINAL_G gives the same 14.30 g from 8 drawn Fe + 12 drawn O at the same scale). Molar masses: IUPAC 2021 standard atomic weights.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.steel-wool-gains-weight.c2",
+      "text": "Burning does not destroy atoms; it rearranges them, so the mass gained by the ash equals the mass of oxygen taken from the air.",
+      "support": "source",
+      "source": "Law of conservation of mass (Lavoisier 1789; any general chemistry text, e.g. Atkins & Jones, Chemical Principles, Fundamentals). Nuclear-scale mass changes from chemical energy are about 1e-10 of the mass, far below any scale.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.steel-wool-gains-weight.c3",
+      "text": "In Fe2O3, 2 iron atoms combine with 3 oxygen atoms.",
+      "support": "source",
+      "source": "Formula of iron(III) oxide (haematite), CRC Handbook, 'Physical constants of inorganic compounds'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.steel-wool-gains-weight.c4",
+      "text": "Wood seems to lose weight when it burns because its products, carbon dioxide and water vapour, escape into the air.",
+      "support": "source",
+      "source": "Combustion of cellulose gives CO2 and H2O (Atkins & Jones, ch. on thermochemistry); ash is the small mineral residue.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.steel-wool-gains-weight.c5",
+      "text": "The stage is a toy: 8 drawn iron atoms stand for 10.0 g, and the lesson assumes all the iron becomes Fe2O3; real iron wool also forms some Fe3O4 and may not burn completely.",
+      "support": "source",
+      "source": "Iron burning in air or oxygen gives mixtures of Fe3O4 and Fe2O3 (Greenwood & Earnshaw, Chemistry of the Elements, ch. 25). Classroom steel-wool burns show a mass gain, typically smaller than 43% because burning is incomplete.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Magnesium ribbon burns to white magnesium oxide powder. If you collect all the powder, compared with the ribbon it weighs…",
+    "options": [
+      "more",
+      "less",
+      "the same"
+    ],
+    "answer": 0,
+    "why": "The magnesium atoms stay and oxygen atoms from the air join them, so the oxide weighs the metal plus the oxygen."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

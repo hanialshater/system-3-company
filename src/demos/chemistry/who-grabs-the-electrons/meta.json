@@ -1,0 +1,87 @@
+{
+  "slug": "who-grabs-the-electrons",
+  "title": "Who grabs the electrons?",
+  "hook": "A bond is a shared pair of electrons. Is the sharing fair?",
+  "domain": "chemistry",
+  "concept": "bond-polarity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that atoms bond by sharing electrons",
+      "that water is H2O"
+    ],
+    "doesNotKnow": [
+      "that the sharing can be lopsided",
+      "that lopsided sharing leaves the ends of a molecule slightly charged"
+    ]
+  },
+  "misconception": "Shared electrons sit midway between the two atoms.",
+  "objective": "The learner can explain that oxygen (electronegativity about 3.44) pulls shared electrons harder than hydrogen (about 2.20), so in water the oxygen end is slightly negative and the hydrogen ends slightly positive, and that equal atoms share evenly.",
+  "claims": [
+    {
+      "id": "chemistry.who-grabs-the-electrons.c1",
+      "text": "Pauling electronegativities: O about 3.44, Cl about 3.16, C about 2.55, H about 2.20.",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Electronegativity' table (Pauling scale; Allred 1961 revision). These four values drive the drawing (Demo.tsx EN).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c2",
+      "text": "In a bond between two different atoms, the shared electrons spend more time near the more electronegative atom; the bigger the difference, the more lopsided the sharing.",
+      "support": "source",
+      "source": "Definition of electronegativity and bond polarity (IUPAC Gold Book, 'electronegativity'; Atkins & Jones, Chemical Principles, ch. 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c3",
+      "text": "In water, the shared electrons of each O–H bond spend more time near the oxygen, leaving the oxygen slightly negative (δ−) and the hydrogens slightly positive (δ+).",
+      "support": "source",
+      "source": "Water's dipole moment about 1.85 D, negative end at the oxygen (CRC Handbook, 'Dipole moments'); follows from c1 and c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c4",
+      "text": "Two identical atoms (O–O) share their electrons evenly.",
+      "support": "source",
+      "source": "Zero electronegativity difference gives a nonpolar bond (IUPAC Gold Book; Atkins & Jones, ch. 2). In molecules such as ozone the two O atoms are not equivalent, so the lesson draws only the bond itself.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c5",
+      "text": "Because water's ends are slightly charged, neighbouring water molecules attract each other.",
+      "support": "source",
+      "source": "Hydrogen bonding between water molecules (Atkins & Jones, ch. 5; IUPAC 2011 definition of the hydrogen bond, Arunan et al., Pure Appl. Chem. 83, 1637).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c6",
+      "text": "The drawing is a cartoon: the pair's shift and the tint are scaled to the electronegativity difference, not measured electron densities; only the bonds to the central O are drawn.",
+      "support": "derivation",
+      "source": "Demo.tsx pairAt(): the pair is drawn in the gap between the atoms, shifted from the middle toward O by 0.9 x (dEN / 1.24) of the half-gap. Partners such as C would carry other bonds in a real molecule; HOCl and Cl2O are real molecules, others shown are single bonds only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In hydrogen chloride (HCl), which end of the molecule is slightly negative?",
+    "options": [
+      "the chlorine end",
+      "the hydrogen end",
+      "neither: the sharing is even"
+    ],
+    "answer": 0,
+    "why": "Chlorine (about 3.16) pulls shared electrons harder than hydrogen (about 2.20), so the pair sits nearer chlorine."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
