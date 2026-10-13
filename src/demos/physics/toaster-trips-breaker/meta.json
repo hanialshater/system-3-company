@@ -1,0 +1,80 @@
+{
+  "slug": "toaster-trips-breaker",
+  "title": "Which plug trips the breaker?",
+  "hook": "A heater is running. You plug in one more thing and the lights go out. Which thing?",
+  "domain": "physics",
+  "concept": "electric-power-vi",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "appliances are labelled in watts",
+      "breakers cut the power when a circuit is overloaded"
+    ],
+    "doesNotKnow": [
+      "current I = P / V",
+      "that a breaker limits the total current of everything on its circuit"
+    ]
+  },
+  "misconception": "A breaker's limit is about how many things are plugged in, not about the total current they draw.",
+  "objective": "The learner can explain that each device draws watts / volts amps, the breaker counts the total, and so a 1500 W heater (12.5 A) leaves room on a 15 A circuit only for a device under 300 W.",
+  "claims": [
+    {
+      "id": "physics.toaster-trips-breaker.c1",
+      "text": "On a 120 V circuit a device draws I = P / V: a 1500 W heater draws 12.5 A, a 200 W TV 1.7 A, a 600 W blender 5 A, a 1200 W toaster 10 A.",
+      "support": "derivation",
+      "source": "P = V I for a resistive load at its nameplate power: 1500/120 = 12.50, 200/120 = 1.67, 600/120 = 5.00, 1200/120 = 10.00 A (artifacts/scratch/w4phys/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.toaster-trips-breaker.c2",
+      "text": "With the heater on, adding the 200 W TV makes 14.2 A, under 15 A; adding the 600 W blender makes 17.5 A and the 1200 W toaster 22.5 A, both over.",
+      "support": "derivation",
+      "source": "Currents in parallel branches add: 12.5 + 1.67 = 14.17, 12.5 + 5 = 17.5, 12.5 + 10 = 22.5 A. The heater leaves 2.5 A = 300 W of room at 120 V.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.toaster-trips-breaker.c3",
+      "text": "A breaker counts the total current through its circuit, not the number of plugs: TV, blender and toaster together (16.7 A) are over 15 A even with the heater off.",
+      "support": "derivation",
+      "source": "Household outlets on one circuit are in parallel; the breaker carries the sum of branch currents: (200 + 600 + 1200)/120 = 16.67 A. A thermal-magnetic breaker responds to current (UL 489 / IEC 60898 rate breakers in amperes).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.toaster-trips-breaker.c4",
+      "text": "Model: an ideal breaker that opens the instant the total passes 15 A. Real breakers trip on a time curve: a small overload can take minutes or longer, a big one is fast.",
+      "support": "convention",
+      "source": "Stated in the question and on stage ('ideal 15 A breaker') and in the reveal. Thermal-magnetic breakers have an inverse-time thermal trip and an instantaneous magnetic trip at several times rated current; UL 489 requires tripping at 135% of rating within one hour (for ratings up to 50 A) and much faster at 200%, and allows a breaker to carry 100% indefinitely. So 17.5 A (117%) on a real 15 A breaker may take a long time to trip or hold for a while.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.toaster-trips-breaker.c5",
+      "text": "The 120 V circuit, 15 A breaker and appliance wattages are illustrative (typical of US homes); devices are treated as drawing their nameplate power steadily.",
+      "support": "convention",
+      "source": "15 A, 120 V branch circuits are common in US homes (NEC 210.3 rates branch circuits by their overcurrent device); nameplate wattages here are typical round values, not measured appliances. Motors (the blender) draw a brief inrush above their running current, ignored here.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a 230 V circuit with a 10 A breaker, a 2000 W kettle is on. Roughly how many more watts can you add before the total passes 10 A?",
+    "options": [
+      "About 300 W",
+      "About 2000 W",
+      "None at all"
+    ],
+    "answer": 0,
+    "why": "The breaker counts amps: the kettle draws 2000 / 230 ≈ 8.7 A, leaving about 1.3 A, which is 1.3 × 230 ≈ 300 W."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
