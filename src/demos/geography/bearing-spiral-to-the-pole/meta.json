@@ -1,0 +1,88 @@
+{
+  "slug": "bearing-spiral-to-the-pole",
+  "title": "Hold one heading. Where do you end?",
+  "hook": "Point your ship a little north of east and never turn. Do you ever arrive?",
+  "domain": "geography",
+  "concept": "rhumb-lines",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "compass headings in degrees from north",
+      "that the equator is about 10,000 km from the pole"
+    ],
+    "doesNotKnow": [
+      "that a constant heading spirals into the pole",
+      "that the spiral has endless turns but a finite length"
+    ]
+  },
+  "misconception": "Holding a constant compass heading takes you around the world and back, or never anywhere in particular.",
+  "objective": "The learner can say that a constant heading of 80° from the equator spirals into the North Pole after about 57,600 km (the 10,008 km north distance divided by cos 80°), circling it endlessly but over a finite length.",
+  "keyState": "Heading 80° chosen (length and turns readouts at 57,630 km and 6.4) and the view zoomed on the pole to see the turns tighten.",
+  "claims": [
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c1",
+      "text": "Holding a heading of 80° from the equator, you reach the North Pole after about 57,630 km.",
+      "support": "derivation",
+      "source": "Loxodrome arc length s = R Δφ / cos α, α measured from the meridian (Snyder 1987, ch. 7; Bowditch, American Practical Navigator; from memory). 6,371.0088 × (π/2) / cos 80° = 57,631 km. Demo.tsx lengthKm, the value the readout shows. Matches the cm-geography brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c2",
+      "text": "At 80° the path circles the pole about 6.4 times by 89.9°N.",
+      "support": "derivation",
+      "source": "Longitude travelled λ = tan α · ψ(φ), ψ = ln tan(45° + φ/2). tan 80° × ψ(89.9°) / 2π = 5.671 × 7.044 / 6.283 = 6.36 turns (builder node run; Demo.tsx turnsBy). Brief: 6.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c3",
+      "text": "Closer to the pole the path keeps circling without end, but its length is finite.",
+      "support": "derivation",
+      "source": "ψ(φ) → ∞ as φ → 90°, so λ → ∞ (infinitely many turns), while s = R Δφ / cos α stays finite (Snyder 1987, ch. 7; from memory).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c4",
+      "text": "Straight north from the equator to the pole is about 10,010 km.",
+      "support": "derivation",
+      "source": "R · π/2 = 10,007.6 km on the sphere R = 6,371.0088 km; shown as 10,010 km (rounded to 10 km). The question's option says 'about 10,000 km'. On the WGS84 ellipsoid the meridian quadrant is 10,001.97 km (from memory).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c5",
+      "text": "Every kilometre along a constant heading gains the same amount of northing, so the length is the north distance divided by cos(heading).",
+      "support": "derivation",
+      "source": "dφ/ds = cos α / R for a constant azimuth α; integrate from 0 to π/2.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.bearing-spiral-to-the-pole.c6",
+      "text": "A constant heading is called a rhumb line; it is straight on a Mercator map and a spiral on the globe.",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: rhumb lines (loxodromes) are straight on the Mercator; on the sphere they spiral toward the poles (from memory).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ship keeps exactly the same compass heading, a little north of east, forever. What happens?",
+    "options": [
+      "It goes round the world and returns to its start",
+      "It spirals into the North Pole after a finite distance",
+      "It wanders forever and never gets anywhere"
+    ],
+    "answer": 1,
+    "why": "Each kilometre gains the same northing (cos of the heading), so it reaches the pole after the north distance divided by cos(heading), circling ever tighter on the way."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
