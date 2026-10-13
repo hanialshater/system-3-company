@@ -1,0 +1,79 @@
+{
+  "slug": "dog-bites-man-twice",
+  "title": "Does attention know who bit whom?",
+  "hook": "Swap two words and the sentence means the opposite. Does attention notice?",
+  "domain": "ai",
+  "concept": "positional-encoding",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that attention mixes word vectors using weights"
+    ],
+    "doesNotKnow": [
+      "that without position information, attention cannot tell word order",
+      "that position tags are what make order matter"
+    ]
+  },
+  "misconception": "Attention reads words in order, so it knows who bit whom.",
+  "objective": "The learner can say that attention on its own treats a sentence as a set of words, and that adding position information is what lets word order change the result.",
+  "claims": [
+    {
+      "id": "ai.dog-bites-man-twice.c1",
+      "text": "Toy setup: dog = (1, 0), man = (0, 1), bites = (1, 1); the word 'bites' scores every word of the sentence (itself included) by dot product, turns the scores into weights with softmax, and gathers the weighted sum of the word vectors as its summary.",
+      "support": "convention",
+      "source": "Brief 51 in company/domains/briefs/ai.md; summary() in Demo.tsx. The vectors are invented for the toy, labelled 'Toy vectors' on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.dog-bites-man-twice.c2",
+      "text": "With no position tags, the summary for 'bites' is (0.79, 0.79) in both 'dog bites man' and 'man bites dog'.",
+      "support": "derivation",
+      "source": "Scores 1, 2, 1 order-independent as a set; softmax weights 0.212, 0.576, 0.212; summary 0.788 on both axes. Node re-run of summary(): (0.788, 0.788) for both orders.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.dog-bites-man-twice.c3",
+      "text": "With the toy position tags (adding 0, 0.5 and 1 to the first coordinate of words 1, 2, 3) the summary is (1.30, 0.89) for 'dog bites man' and (1.62, 0.59) for 'man bites dog'.",
+      "support": "derivation",
+      "source": "Node re-run of summary(order, true): (1.304, 0.894) and (1.623, 0.587). The tags are the toy's own choice, not a real scheme.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.dog-bites-man-twice.c4",
+      "text": "Self-attention without position information treats its inputs as a set (permuting the input words permutes the outputs but cannot make the word order matter), which is why transformers add position information to their inputs.",
+      "support": "source",
+      "source": "Vaswani et al. 2017, 'Attention Is All You Need', section 3.5 (Positional Encoding). About real systems; the toy only illustrates it.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.dog-bites-man-twice.c5",
+      "text": "The toy's position tags are simpler than the scheme real transformers use (the paper uses sine and cosine waves of different wavelengths).",
+      "support": "source",
+      "source": "Vaswani et al. 2017, section 3.5. Toy tags are in POS in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A model uses attention but gives its words no position information. Which pair of sentences can it not tell apart (same words, different order)?",
+    "options": [
+      "'the cat chased the mouse' and 'the mouse chased the cat'",
+      "'the cat chased the mouse' and 'a dog barked'",
+      "Neither pair: attention always reads left to right"
+    ],
+    "answer": 0,
+    "why": "Without position information, attention sees only which words are present, so reordered sentences look the same. Position tags are what let order matter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
