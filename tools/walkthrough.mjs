@@ -100,30 +100,29 @@ try {
   log.push(`Learner chose **${options[Math.min(choose, options.length - 1)]}**.`, "");
   log.push("## 2. Explore", "", `**Panel:** ${await page.locator(".panel-q").innerText()}`, "");
 
-  for (let s = 0; s < steps; s++) {
-    const controls = page.locator('[data-testid="stage"] [data-qa="control"]');
-    const count = await controls.count();
-    let acted = false;
-    for (let i = 0; i < count && !acted; i++) {
-      const c = controls.nth((s + i) % count);
-      if (!(await c.isVisible()) || (await c.isDisabled())) continue;
-      const label = ((await c.getAttribute("aria-label")) || (await c.innerText().catch(() => "")) || "control").trim();
-      const type = await c.evaluate((el) => (el.tagName === "INPUT" ? el.type : el.tagName));
-      if (type === "range") {
-        await c.focus();
-        const atMax = await c.evaluate((el) => Number(el.value) >= Number(el.max));
-        const key = atMax ? "ArrowLeft" : "ArrowRight";
-        for (let k = 0; k < 3; k++) await page.keyboard.press(key);
-        log.push(`### Step ${s + 1}: moved slider "${label}" ${atMax ? "left" : "right"} (now ${await c.evaluate((el) => el.value)})`);
-      } else {
-        await c.click();
-        log.push(`### Step ${s + 1}: tapped "${label}"`);
-      }
-      acted = true;
-      await page.waitForTimeout(500);
-      log.push("", "```", await stageText(), "```", "", `![step ${s + 1}](${await snap(`step-${s + 1}`)})`, "");
+  // Follow the QA contract's path (tests/qa/contract.spec.ts): each of the first 16 enabled stage
+  // controls pressed once in DOM order, sliders moved two steps. This is the path builders design
+  // the key state for, so reviewers see what the lesson actually shows on that path.
+  const total = Math.min(await page.locator('[data-testid="stage"] [data-qa="control"]').count(), 16, Math.max(steps, 16));
+  let stepNo = 0;
+  for (let i = 0; i < total; i++) {
+    const c = page.locator('[data-testid="stage"] [data-qa="control"]').nth(i);
+    if ((await c.count()) === 0 || !(await c.isVisible()) || (await c.isDisabled())) continue;
+    const label = ((await c.getAttribute("aria-label")) || (await c.innerText().catch(() => "")) || "control").trim();
+    const type = await c.evaluate((el) => (el.tagName === "INPUT" ? el.type : el.tagName));
+    stepNo += 1;
+    if (type === "range") {
+      await c.focus();
+      const atMax = await c.evaluate((el) => Number(el.value) >= Number(el.max));
+      const key = atMax ? "ArrowLeft" : "ArrowRight";
+      for (let k = 0; k < 2; k++) await page.keyboard.press(key);
+      log.push(`### Step ${stepNo}: moved slider "${label}" ${atMax ? "left" : "right"} (now ${await c.evaluate((el) => el.value)})`);
+    } else {
+      await c.click();
+      log.push(`### Step ${stepNo}: tapped "${label}"`);
     }
-    if (!acted) break;
+    await page.waitForTimeout(1200); // let animations settle before the screenshot
+    log.push("", "```", await stageText(), "```", "", `![step ${stepNo}](${await snap(`step-${stepNo}`)})`, "");
   }
 
   const revealBtn = page.locator('[data-testid="reveal-button"]');
