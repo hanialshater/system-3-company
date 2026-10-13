@@ -8,6 +8,9 @@
 // Constant (average) force assumed; real crash forces peak and vary. At constant force,
 // stopping in t from 15 m/s crushes d = v t / 2 (0.75 m at 0.10 s, 1.5 m at 0.20 s).
 // Values are illustrative. The reveal unlocks once the stop takes 0.20 s.
+// v2: "momentum" is shown as mass x speed on the stage before the reveal names it; the force
+// is also given in car-weights; a crush-distance readout (v t / 2) shows that more time needs
+// more crushing; the question says "short crush" vs "longer crush" (fact-check route 1).
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -20,6 +23,9 @@ const V = 15; // m/s
 const P = M * V; // 15,000 kg m/s
 const force = (ms: number) => P / (ms / 1000); // N
 const kN = (n: number) => `${Math.round(n / 1000)} kN`;
+const G = 9.81;
+const carWeights = (n: number) => (n / (M * G)).toFixed(1);
+const crush = (ms: number) => (V * (ms / 1000)) / 2; // m, steady force
 
 const W = 320;
 const H = 184;
@@ -43,7 +49,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1000 kg car hits a wall at 15 m/s and stops in 0.10 s. With a crumple zone it takes 0.20 s. The average force on it is…",
+          "A 1000 kg car hits a wall at 15 m/s. A short crush stops it in 0.10 s; a longer crush takes 0.20 s. In the longer stop, the average force is…",
         options: ["the same", "half as big", "twice as big"],
         answer: 1,
       }}
@@ -53,17 +59,15 @@ export default function CrumpleZone({ slug }: { slug: string }) {
         <>
           <p>
             In 0.10 s the wall pushed with <strong>{kN(force(100))}</strong>; in 0.20 s, <strong>{kN(force(200))}</strong>
-            , half as much. The bar got twice as wide and half as tall, and its area stayed {P.toLocaleString("en-US")}{" "}
-            N·s.
+            , half as much ({carWeights(force(100))} to {carWeights(force(200))} car-weights). The bar got twice as wide and
+            half as tall; its area stayed 1000 kg × 15 m/s.
           </p>
           <p>
-            That area is the car&apos;s momentum, mass times speed: 1000 kg × 15 m/s. Stopping the car means removing all
-            of it, however long it takes. Spread the stop over more time and the force needed at each moment shrinks.
+            Mass times speed is the car&apos;s momentum. Stopping means removing all of it, however long it takes, so
+            spreading the stop over more time shrinks the force. The people inside stop in the same time, so the push on
+            them halves too. The price is distance: {crush(100).toFixed(2)} m of crush became {crush(200).toFixed(2)} m.
           </p>
-          <p className="muted">
-            A crumple zone is not weakness: by crushing (about 1.5 m for a steady 0.20 s stop here) it buys time. Average
-            force, illustrative numbers.
-          </p>
+          <p className="muted">Steady-force model. Real crash forces rise and fall, and real cars crush less and stop faster.</p>
         </>
       )}
     >
@@ -71,7 +75,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
         interactRef.current = interact;
         const caption = locked
           ? "Make a prediction to start."
-          : `1000 kg car, 15 m/s into a wall. Bar area = momentum removed.`;
+          : `Bar area = force × time. It always equals mass × speed: 1000 kg × 15 m/s.`;
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Stopping in ${ms / 1000} s takes an average force of ${kN(F)}`}>
@@ -97,12 +101,17 @@ export default function CrumpleZone({ slug }: { slug: string }) {
               )}
               <rect x={xOf(0)} y={yOf(F)} width={xOf(ms) - xOf(0)} height={GY0 - yOf(F)} className={s.bar} />
               {!locked && (
-                <text x={xOf(ms) + 5} y={yOf(F) + 12} className={s.label}>
+                <text x={Math.max(GX0 + 18, xOf(ms / 2))} y={yOf(F) - 4} textAnchor="middle" className={s.label}>
                   {kN(F)}
                 </text>
               )}
+              {ms !== 100 && (
+                <text x={xOf(100) + 4} y={yOf(force(100)) + 10} className={s.small}>
+                  0.10 s stop
+                </text>
+              )}
               <text x={xOf(ms / 2)} y={GY0 - 6} textAnchor="middle" className={s.area}>
-                15,000 N·s
+                {ms >= 150 ? "1000 kg × 15 m/s" : "1000 × 15"}
               </text>
             </svg>
 
@@ -124,8 +133,8 @@ export default function CrumpleZone({ slug }: { slug: string }) {
               }}
             />
             <Row>
-              <Readout label="Average force" value={locked ? "?" : kN(F)} />
-              <Readout label="Momentum removed" value="15,000 kg·m/s" />
+              <Readout label="Average force" value={locked ? "?" : `${kN(F)} = ${carWeights(F)} car-weights`} />
+              <Readout label="Crush needed" value={locked ? "?" : `${crush(ms).toFixed(2)} m`} />
             </Row>
           </div>
         );
