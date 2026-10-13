@@ -17,8 +17,8 @@ const SIDE = 100;
 const CELL = 3;
 /** "1 in N" people show the trait. Key state first. */
 const RATES = [10000, 2500, 400, 100];
-const START = 100;
-const MILESTONES = ["rare", "compare"] as const;
+const START = 400;
+const MILESTONES = ["rare", "common"] as const;
 
 function counts(oneIn: number) {
   const q = Math.sqrt(1 / oneIn);
@@ -28,7 +28,10 @@ function counts(oneIn: number) {
 }
 
 const RARE = counts(10000); // 1 affected, 198 carriers
-const RARE_ONE_IN = Math.round(TOWN / RARE.carriers); // 50
+const RARE_ONE_IN = Math.floor(TOWN / RARE.carriers); // 10,000 / 198 = 50.5: "about 1 in 50"
+const COMMON = counts(100);
+const COMMON_EACH = Math.round(COMMON.carriers / COMMON.affected); // 18
+const copyIn = (q: number) => Math.round(1 / q);
 
 const ORDER = (() => {
   const rng = mulberry32(7);
@@ -49,7 +52,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const go = (v: number) => {
     setOneIn(v);
     if (v === 10000) reach("rare");
-    else if (v !== START) reach("compare");
+    else if (v === 100) reach("common");
   };
   const carrierSpots = useMemo(() => ORDER.slice(c.affected, c.affected + c.carriers), [c.affected, c.carriers]);
   const affectedSpots = ORDER.slice(0, c.affected);
@@ -82,13 +85,13 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
 
       <div className={s.legend} aria-hidden>
         <span><i className={s.affected} />shows trait (2 copies)</span>
-        <span><i className={s.carrier} />carrier (1 copy)</span>
+        <span><i className={s.carrier} />carrier (1 copy, looks normal)</span>
       </div>
 
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Make a prediction to start. Toy town of 10,000: random mating, no selection."
-          : `1 in ${oneIn.toLocaleString("en-US")} show it: ${c.affected} ${c.affected === 1 ? "person" : "people"}. ${c.carriers.toLocaleString("en-US")} carry one hidden copy.`}
+          : `1 in ${oneIn.toLocaleString("en-US")} show it: ${c.affected} ${c.affected === 1 ? "person" : "people"}. ${c.carriers.toLocaleString("en-US")} carry one hidden copy. Copy share 1 in ${copyIn(c.q)}: ${copyIn(c.q)} × ${copyIn(c.q)} = ${oneIn.toLocaleString("en-US")}.`}
       </p>
 
       <Row>
@@ -101,7 +104,8 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       <Row>
         <Readout label="Show trait" value={locked ? "?" : c.affected} />
         <Readout label="Carriers" value={locked ? "?" : c.carriers.toLocaleString("en-US")} />
-        <Readout label="Carriers each" value={locked ? "?" : Math.round(c.carriers / c.affected)} />
+        <Readout label="Carriers per person showing it" value={locked ? "?" : Math.round(c.carriers / c.affected)} />
+        <Readout label="Copy share" value={locked ? "?" : `1 in ${copyIn(c.q)}`} />
       </Row>
     </div>
   );
@@ -113,24 +117,23 @@ export default function HiddenCarriers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a well-mixed population, 1 in 10,000 shows a made-up recessive trait (it needs two copies). About how many carry one copy and look normal?",
+          "In a town with random mating, 1 in 10,000 people shows a made-up recessive trait: it appears only with two copies of a gene variant, one from each parent. About how many people carry just one copy and look normal?",
         options: ["About 1 in 100", `About 1 in ${RARE_ONE_IN}`, "About 1 in 10,000"],
         answer: 1,
       }}
-      exploreHint="Set the trait to 1 in 10,000 and find the one person who shows it. Then try a commoner trait."
+      exploreHint="Set the trait to 1 in 10,000 and find the one person who shows it. Then set 1 in 100."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            At 1 in 10,000, one person showed the trait, but <strong>{RARE.carriers} carried a hidden copy</strong>: about
-            1 in {RARE_ONE_IN}. For every person who shows it, {RARE.carriers} others carry it.
+            At 1 in 10,000, one person showed the trait but <strong>{RARE.carriers} carried a hidden copy</strong>: about 1
+            in {RARE_ONE_IN}. The copy share was 1 in {copyIn(RARE.q)}, and {copyIn(RARE.q)} &times; {copyIn(RARE.q)} =
+            10,000: two copies are rare, one copy is not, so most copies hide in carriers.
           </p>
           <p>
-            Two copies are needed to show it, so the affected share is the copy share squared: 1 in 10,000 means 1 copy in
-            100. One copy is much likelier than two, so most copies hide in carriers. The rarer the trait, the bigger the
-            hidden share: at 1 in 100 it was only 18 carriers per person showing it.
+            The commoner the trait, the fewer hidden: at 1 in 100 there were {COMMON_EACH} carriers per person showing it.
           </p>
-          <p className="muted">Model (Hardy-Weinberg): random mating, no selection, migration or new mutations, large population. The trait is made up.</p>
+          <p className="muted">Model: random mating, no selection, migration or new mutations, large population. The trait is made up.</p>
         </>
       )}
     >
