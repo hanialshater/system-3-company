@@ -29,3 +29,9 @@ Run `npm run company -- status`, `npm run company -- rituals` and `npm run metri
 4. Append the batch to that day's launch-review record.
 5. Before QA or a walkthrough, confirm the build is fresh: `ls <distDir>/server/app/d/*.html | wc -l` must equal the lesson count. A stale build makes new lessons 404 and records false failures (2026-10-13).
 6. Start and stop servers with `tools/serve.sh start|stop <port>` (pid files, plus a stale-build warning). Never `pkill -f <pattern>`: the pattern matches the shell that runs it.
+
+## Work queue (2026-10-13)
+- Builders get briefs from `tools/claim.mjs next <domain> --agent=<label>`. Each brief is handed out once, with an exclusive lock in `company/ops/claims/` (main checkout, not committed). Several builders can share a domain.
+- Known-wrong briefs live in `company/ops/brief-skips.json` and are never handed out.
+- After merging a builder: `claim.mjs release <slug> --done` is optional, because a built lesson is never handed out again. `claim.mjs list` shows who holds what, and claims over 6 h old are treated as stale.
+- After a container restart, run `claim.mjs seed-worktrees` so lessons in progress in agent worktrees count as claimed.

@@ -213,7 +213,7 @@ export const roles = [
     description:
       "Implements a lesson from its design note: Demo.tsx, styles and meta.json mechanics, and runs QA locally until it passes. Use to build or revise a lesson.",
     mission: "Make the design executable: the picture has to pay its debts. Every control does something; the physics is right; it works on a phone.",
-    inScope: [
+    inScope: ["Getting work from the queue: `node /home/user/system-3-company/tools/claim.mjs next <domain> --agent=<your label>` hands out the next unbuilt brief with an exclusive lock (prints NONE when the domain is done); never pick briefs by hand while other builders run. If you abandon a brief, `claim.mjs release <slug>`", 
       "src/demos/<domain>/<slug>/Demo.tsx, styles.module.css, meta.json (mechanics and claim text)",
       "Running `npm run check`, `npm run typecheck`, build and QA for own lessons",
       "Looking at own screenshots and fixing what a beginner would trip on",
