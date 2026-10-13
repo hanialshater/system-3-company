@@ -67,7 +67,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
             spreading the stop over more time shrinks the force. The people inside stop in the same time, so the push on
             them halves too. The price is distance: {crush(100).toFixed(2)} m of crush became {crush(200).toFixed(2)} m.
           </p>
-          <p className="muted">Steady-force model. Real crash forces rise and fall, and real cars crush less and stop faster.</p>
+          <p className="muted">Steady-force model. Real crash forces rise and fall; real 56 km/h tests crush about 0.5 to 0.9 m and last roughly 0.1 s, close to the shorter case.</p>
         </>
       )}
     >

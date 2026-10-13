@@ -61,12 +61,10 @@
     },
     {
       "id": "physics.crumple-zone-stopping-time.c5",
-      "text": "The lesson uses a steady (average) force; real crash forces rise and fall during the stop, and real cars crush less and stop faster than these numbers.",
+      "text": "The lesson uses a steady (average) force; real crash forces rise and fall during the stop. In published 56 km/h frontal crash tests, cars crush about 0.5 to 0.9 m and the pulse lasts roughly 0.1 s, close to the shorter case here.",
       "support": "convention",
-      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s. | FACT-CHECK 2026-10-13 (pass 4): 'real cars crush less and stop faster than these numbers' is unsafe against the 0.10 s case: published 56 km/h (15.6 m/s) full-frontal barrier work uses total stopping distances of 0.5-0.9 m and reports pulses averaging about 120 ms (nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406), which brackets the lesson's 0.75 m and 0.10 s. It is true against the 0.20 s / 1.5 m case. Fix: 'real cars at this speed crush about 0.5-0.9 m and stop in about 0.1 s, so the 0.20 s stop is longer than a real crash', or drop the 'real cars crush less and stop faster' clause.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s. | Builder fix 2026-10-13 (pass 4): dropped 'crush less and stop faster'; now says real tests sit near the 0.1 s / 0.75 m case. Sources: nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406 (56 km/h = 15.6 m/s frontal barrier, 0.5-0.9 m, ~80-120 ms).",
+      "status": "unverified"
     },
     {
       "id": "physics.crumple-zone-stopping-time.c6",
@@ -108,5 +106,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2
+  "version": 3
 }

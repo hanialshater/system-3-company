@@ -21,7 +21,7 @@
     ]
   },
   "misconception": "Rounding errors only hide in far decimal places; whole numbers are always safe.",
-  "objective": "The learner can explain that a JavaScript number (a double) holds every whole number only up to 2^53 = 9007199254740992; beyond it only every second whole number exists, so 9007199254740992 + 1 is rounded back to 9007199254740992 while + 2 works.",
+  "objective": "The learner can explain that a JavaScript number (a double) holds every whole number only up to 2^53 = 9007199254740992; just beyond it (up to 2^54) only every second whole number exists, so 9007199254740992 + 1 is rounded back to 9007199254740992 while + 2 works.",
   "claims": [
     {
       "id": "cs.big-number-swallows-one.c1",
@@ -43,12 +43,10 @@
     },
     {
       "id": "cs.big-number-swallows-one.c3",
-      "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but beyond it only every second whole number exists; Number.MAX_SAFE_INTEGER is 2^53 − 1.",
+      "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but just beyond it (up to 2^54) only every second whole number exists; Number.MAX_SAFE_INTEGER is 2^53 − 1.",
       "support": "source",
-      "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()). · DISPUTED 2026-10-13 (pass 3): Wording overreach: \"beyond it only every second whole number exists\" is true only up to 2^54; from 2^54 up only every fourth number exists, and so on. Immediately above 2^53 (all the stage shows) it is exact. Fix: \"just beyond it (up to 2^54) only every second whole number exists\", or \"beyond it, whole numbers start to be skipped, first every second one\". Rest of the claim (exact up to 2^53; MAX_SAFE_INTEGER = 2^53 - 1) verified.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()). | Builder fix 2026-10-13 (pass 4): reworded to 'just beyond it (up to 2^54)' per fact-check; spacing is 2 on [2^53, 2^54), 4 on [2^54, 2^55).",
+      "status": "unverified"
     },
     {
       "id": "cs.big-number-swallows-one.c4",
@@ -78,7 +76,7 @@
       "JavaScript compares numbers as text"
     ],
     "answer": 1,
-    "why": "A double has 53 bits of precision, so beyond 2^53 only every second whole number exists and an odd ID is rounded onto its neighbour."
+    "why": "A double has 53 bits of precision, so just beyond 2^53 (up to 2^54) only every second whole number exists and an odd ID is rounded onto its neighbour."
   },
   "evidence": {
     "qa": [
@@ -88,5 +86,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

@@ -6,3 +6,7 @@
 - Key state (milestone "eighty"): 80°N on the cylinder. The slider starts at 60°N with a 10° step and comes first, so QA's two presses land on 70° and then 80°. The flat-sheet button follows. It moves the stretch to the equator (0.18 radii at 80°N).
 - Locked: the "On the paper" readout is hidden. The ray is drawn (at 60°N, not the question's latitude).
 - No claim is made that real atlases use this projection, or that Mercator is a light projection.
+
+## v2 (claim fix 2026-10-13)
+
+Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.

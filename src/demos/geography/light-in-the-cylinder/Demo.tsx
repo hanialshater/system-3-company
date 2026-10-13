@@ -74,7 +74,7 @@ export default function LightInTheCylinder({ slug }: { slug: string }) {
             tan(latitude): {fmt(landing("cylinder", START))} at {START}°N, and the pole itself would never land.
           </p>
           <p>
-            A projection is a rule for putting each point of the globe on paper. Paper touching the globe along one line is true there and
+            A projection is a rule for putting each point of the globe on paper. With a light at the centre, paper touching the globe along one line is true there and
             stretches everything away from it. Lay the sheet flat on the pole instead and the stretch moves to the equator.
           </p>
         </>
