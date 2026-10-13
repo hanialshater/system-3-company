@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 1.4em; }
+.cols { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; align-items: end; }
+.cols .col {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px;
+  padding: 6px 2px; min-height: 120px; min-width: 0;
+}
+.dots { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pair, .trayPair { display: flex; gap: 2px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--domain); display: inline-block; }
+.left { background: var(--warn); box-shadow: 0 0 0 1.5px var(--fg); }
+.gone { opacity: 0.25; box-shadow: none; }
+.num { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+.tray {
+  display: flex; gap: 12px; justify-content: center; align-items: center; min-height: 34px;
+  border: 1px dashed var(--line); border-radius: 10px; padding: 6px;
+}
+.trayPair { padding: 3px; border: 1px solid var(--good); border-radius: 8px; gap: 3px; }
+.trayPair .dot, .alone .dot { width: 12px; height: 12px; }
+.alone { padding: 3px; border: 2px solid var(--bad); border-radius: 8px; display: flex; }
+.trayHint { color: var(--muted); font-size: 0.8rem; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }

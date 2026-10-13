@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 170px; max-height: 40dvh; }
+.axis { stroke: var(--fg); stroke-width: 1.5; }
+.grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 4; }
+.tick { fill: var(--muted); font-size: 11px; text-anchor: middle; }
+.ghost { fill: var(--muted); opacity: 0.45; }
+.path { fill: none; stroke: var(--domain); stroke-width: 1.2; opacity: 0.6; }
+.dot { fill: var(--domain); stroke: var(--fg); stroke-width: 0.8; }
+.last { fill: var(--good); stroke: var(--fg); stroke-width: 1.2; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }

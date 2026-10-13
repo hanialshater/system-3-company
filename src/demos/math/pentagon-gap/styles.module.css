@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 40dvh; }
+.tile { fill: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; stroke-linejoin: round; }
+.extra { fill: color-mix(in srgb, var(--bad) 30%, transparent); stroke: var(--bad); stroke-width: 2; stroke-dasharray: 5 3; }
+.gap { fill: color-mix(in srgb, var(--warn) 70%, transparent); stroke: var(--warn); stroke-width: 1; }
+.overlap { fill: color-mix(in srgb, var(--bad) 65%, transparent); stroke: var(--bad); stroke-width: 1; }
+.dot { fill: var(--fg); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 4px; }

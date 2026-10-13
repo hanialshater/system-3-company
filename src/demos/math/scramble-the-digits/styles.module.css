@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.places { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.place { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.place .tile { width: 100%; min-height: 64px; font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.split { display: flex; flex-direction: column; align-items: center; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.dots { display: grid; grid-template-columns: repeat(3, 10px); gap: 3px; min-height: 36px; align-content: start; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--warn); box-shadow: 0 0 0 1px var(--fg); }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }

@@ -1,0 +1,72 @@
+{
+  "slug": "square-a-plus-b",
+  "title": "The forgotten strips",
+  "hook": "(10 + 3) squared: is it just 10 squared plus 3 squared? Cut the square and count.",
+  "domain": "math",
+  "concept": "binomial-square",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "area of a square and a rectangle",
+      "13 = 10 + 3"
+    ],
+    "doesNotKnow": [
+      "that (a + b)² has two equal cross rectangles, 2ab"
+    ]
+  },
+  "misconception": "(a + b)² = a² + b².",
+  "objective": "The learner can explain, from the cut square, that (a + b)² = a² + 2ab + b², and that a² + b² misses the two a by b strips.",
+  "claims": [
+    {
+      "id": "math.square-a-plus-b.c1",
+      "text": "A square of side a + b cut at a on both sides splits into an a by a square, a b by b square and two a by b strips.",
+      "support": "derivation",
+      "source": "Geometry of the cut; the stage draws the four rectangles from a and N - a on a unit grid.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.square-a-plus-b.c2",
+      "text": "(a + b)² = a² + 2ab + b².",
+      "support": "derivation",
+      "source": "Expand (a + b)(a + b) = a² + ab + ba + b²; equals the sum of the four pieces.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.square-a-plus-b.c3",
+      "text": "13 × 13 = 100 + 30 + 30 + 9 = 169, while 10² + 3² = 109, missing 60.",
+      "support": "derivation",
+      "source": "Recomputed with node; the question, caption and reveal compute from N = 13 and the key split 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.square-a-plus-b.c4",
+      "text": "Wherever the cut is, the four pieces add up to the same 169.",
+      "support": "derivation",
+      "source": "a² + 2a(13 - a) + (13 - a)² = 169 for every a; the slider caption computes it for each a.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What is (20 + 1)², that is, 21 × 21?",
+    "options": [
+      "441",
+      "401",
+      "421"
+    ],
+    "answer": 0,
+    "why": "Two squares, 400 and 1, plus two strips of 20 × 1: 400 + 20 + 20 + 1 = 441. 401 forgets the strips."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

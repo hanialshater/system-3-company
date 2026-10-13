@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.hands { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hand { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; align-items: end; }
+.hand .finger {
+  height: 56px; min-width: 0; padding: 2px 0; border-radius: 12px 12px 4px 4px;
+  display: flex; align-items: flex-start; justify-content: center; transition: height 0.2s;
+}
+.hand .up { height: 110px; border-color: var(--domain); background: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }
+.val { font-size: 0.68rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.up .val { font-size: 0.75rem; }
+.palm { grid-column: 1 / -1; height: 28px; border-radius: 4px 4px 18px 18px; background: var(--bg-2); border: 1px solid var(--line); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }
