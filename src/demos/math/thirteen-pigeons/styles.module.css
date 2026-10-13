@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.queue { text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; margin: 0; }
+.queue strong { color: var(--fg); }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.grid .month {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 3px;
+  min-height: 50px; padding: 5px 2px;
+}
+.grid .month:disabled { opacity: 0.85; }
+.one { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 18%, var(--bg-2)); }
+.double { border-color: var(--bad); border-width: 2px; background: color-mix(in srgb, var(--bad) 22%, var(--bg-2)); }
+.name { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
+.people { display: flex; gap: 3px; flex-wrap: wrap; justify-content: center; }
+.person {
+  display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--domain); color: #0d0f14; font-size: 0.68rem; font-weight: 800;
+}
+.double .person:last-child { background: var(--bad); }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }

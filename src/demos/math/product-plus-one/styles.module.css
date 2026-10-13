@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; justify-content: center; }
+.card {
+  display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 12px;
+  background: var(--bg-2); border: 1px solid var(--line); min-height: 150px; justify-content: center;
+}
+.line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.k { flex: 0 0 86px; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+.chips { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.inList, .newPrime {
+  display: inline-grid; place-items: center; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 14px;
+  font-weight: 800; font-size: 0.85rem; font-variant-numeric: tabular-nums;
+}
+.inList { background: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); border: 1px solid var(--domain); }
+.newPrime { background: color-mix(in srgb, var(--good) 35%, var(--bg-2)); border: 1px solid var(--good); }
+.big { font-weight: 800; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.note { font-size: 0.78rem; color: var(--muted); }
+.hint { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 4px; }
+.wrap :global(.control) { min-width: 40px; }

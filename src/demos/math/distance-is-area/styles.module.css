@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 38dvh; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axisLine { stroke: var(--fg); stroke-width: 1.5; }
+.tick { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.axis { fill: var(--muted); font-size: 10px; }
+.bar { fill: color-mix(in srgb, var(--domain) 35%, transparent); stroke: var(--domain); stroke-width: 1; }
+.tri { fill: color-mix(in srgb, var(--good) 45%, transparent); stroke: var(--good); stroke-width: 1.5; }
+.triText { fill: var(--fg); font-size: 13px; font-weight: 800; }
+.speed { stroke: var(--fg); stroke-width: 2.5; stroke-linecap: round; }
+.chip { fill: var(--bg-2); stroke: var(--line); }
+.chipText { fill: var(--muted); font-size: 10px; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }

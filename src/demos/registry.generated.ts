@@ -56,32 +56,42 @@ import m50 from "./life/ten-percent-up/meta.json";
 import m51 from "./life/three-day-doubling/meta.json";
 import m52 from "./math/circle-slices-to-rectangle/meta.json";
 import m53 from "./math/digits-are-logs/meta.json";
-import m54 from "./math/double-the-size/meta.json";
-import m55 from "./math/exponential-growth/meta.json";
-import m56 from "./math/fifty-up-fifty-down/meta.json";
-import m57 from "./math/gauss-staircase/meta.json";
-import m58 from "./math/nines-without-end/meta.json";
-import m59 from "./math/odd-numbers-make-squares/meta.json";
-import m60 from "./math/one-boss-moves-the-mean/meta.json";
-import m61 from "./math/one-recipe-for-sixty/meta.json";
-import m62 from "./math/seventy-two-doubling/meta.json";
-import m63 from "./math/two-squares-become-one/meta.json";
-import m64 from "./physics/pendulum-period/meta.json";
-import m65 from "./physics/projectile-angle/meta.json";
-import m66 from "./probability/armour-where-no-holes/meta.json";
-import m67 from "./probability/base-rates/meta.json";
-import m68 from "./probability/better-in-every-group-worse-overall/meta.json";
-import m69 from "./probability/birthday-paradox/meta.json";
-import m70 from "./probability/coin-gap-keeps-growing/meta.json";
-import m71 from "./probability/five-heads-then-what/meta.json";
-import m72 from "./probability/hidden-third-cause/meta.json";
-import m73 from "./probability/monty-hall-100-doors/meta.json";
-import m74 from "./probability/one-in-a-million-match/meta.json";
-import m75 from "./probability/praise-then-slump/meta.json";
-import m76 from "./probability/small-hospital-big-swings/meta.json";
-import m77 from "./probability/twenty-harmless-tests/meta.json";
+import m54 from "./math/distance-is-area/meta.json";
+import m55 from "./math/double-the-size/meta.json";
+import m56 from "./math/exponential-growth/meta.json";
+import m57 from "./math/fifty-up-fifty-down/meta.json";
+import m58 from "./math/gauss-staircase/meta.json";
+import m59 from "./math/minus-times-minus/meta.json";
+import m60 from "./math/nines-without-end/meta.json";
+import m61 from "./math/no-fraction-fits/meta.json";
+import m62 from "./math/odd-numbers-make-squares/meta.json";
+import m63 from "./math/one-boss-moves-the-mean/meta.json";
+import m64 from "./math/one-recipe-for-sixty/meta.json";
+import m65 from "./math/paths-by-adding/meta.json";
+import m66 from "./math/plus-and-minus-chips/meta.json";
+import m67 from "./math/product-plus-one/meta.json";
+import m68 from "./math/scoops-in-three-cups/meta.json";
+import m69 from "./math/seventy-two-doubling/meta.json";
+import m70 from "./math/steeper-is-not-taller/meta.json";
+import m71 from "./math/tear-the-corners/meta.json";
+import m72 from "./math/thirteen-pigeons/meta.json";
+import m73 from "./math/two-squares-become-one/meta.json";
+import m74 from "./physics/pendulum-period/meta.json";
+import m75 from "./physics/projectile-angle/meta.json";
+import m76 from "./probability/armour-where-no-holes/meta.json";
+import m77 from "./probability/base-rates/meta.json";
+import m78 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m79 from "./probability/birthday-paradox/meta.json";
+import m80 from "./probability/coin-gap-keeps-growing/meta.json";
+import m81 from "./probability/five-heads-then-what/meta.json";
+import m82 from "./probability/hidden-third-cause/meta.json";
+import m83 from "./probability/monty-hall-100-doors/meta.json";
+import m84 from "./probability/one-in-a-million-match/meta.json";
+import m85 from "./probability/praise-then-slump/meta.json";
+import m86 from "./probability/small-hospital-big-swings/meta.json";
+import m87 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -138,15 +148,25 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "three-day-doubling": () => import("./life/three-day-doubling/Demo"),
   "circle-slices-to-rectangle": () => import("./math/circle-slices-to-rectangle/Demo"),
   "digits-are-logs": () => import("./math/digits-are-logs/Demo"),
+  "distance-is-area": () => import("./math/distance-is-area/Demo"),
   "double-the-size": () => import("./math/double-the-size/Demo"),
   "exponential-growth": () => import("./math/exponential-growth/Demo"),
   "fifty-up-fifty-down": () => import("./math/fifty-up-fifty-down/Demo"),
   "gauss-staircase": () => import("./math/gauss-staircase/Demo"),
+  "minus-times-minus": () => import("./math/minus-times-minus/Demo"),
   "nines-without-end": () => import("./math/nines-without-end/Demo"),
+  "no-fraction-fits": () => import("./math/no-fraction-fits/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
   "one-boss-moves-the-mean": () => import("./math/one-boss-moves-the-mean/Demo"),
   "one-recipe-for-sixty": () => import("./math/one-recipe-for-sixty/Demo"),
+  "paths-by-adding": () => import("./math/paths-by-adding/Demo"),
+  "plus-and-minus-chips": () => import("./math/plus-and-minus-chips/Demo"),
+  "product-plus-one": () => import("./math/product-plus-one/Demo"),
+  "scoops-in-three-cups": () => import("./math/scoops-in-three-cups/Demo"),
   "seventy-two-doubling": () => import("./math/seventy-two-doubling/Demo"),
+  "steeper-is-not-taller": () => import("./math/steeper-is-not-taller/Demo"),
+  "tear-the-corners": () => import("./math/tear-the-corners/Demo"),
+  "thirteen-pigeons": () => import("./math/thirteen-pigeons/Demo"),
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),

@@ -1,0 +1,73 @@
+{
+  "slug": "tear-the-corners",
+  "title": "Tear the corners",
+  "hook": "A fat triangle looks like it has more turn than a thin one. Does it?",
+  "domain": "math",
+  "concept": "angle-sum-triangle",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an angle is, measured in degrees",
+      "that a straight line is a half turn"
+    ],
+    "doesNotKnow": [
+      "that the corners of every triangle add to 180 degrees",
+      "why: the parallel line through the top corner"
+    ]
+  },
+  "misconception": "A triangle's angles depend on its shape: a fatter triangle has more total turn.",
+  "objective": "The learner can say that the three corners of any flat triangle fit together into a straight line (180 degrees), and that a corner growing forces the others to shrink.",
+  "claims": [
+    {
+      "id": "math.tear-the-corners.c1",
+      "text": "The three angles of any triangle in the plane add up to 180 degrees, a straight line.",
+      "support": "source",
+      "source": "Euclid, Elements I.32 (the three interior angles equal two right angles).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tear-the-corners.c2",
+      "text": "The stage's triangles have corners tall 70 + 65 + 45, flat 25 + 30 + 125 and lopsided 40 + 110 + 30 degrees, each summing to 180.",
+      "support": "derivation",
+      "source": "The stage builds each triangle from two whole-degree base angles and sets the third to 180 minus their sum (law of sines for the apex), so the caption's sum is exact by construction; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tear-the-corners.c3",
+      "text": "Each bottom corner fits exactly between the line through the top corner parallel to the base and one side, so the three corners fill that line.",
+      "support": "source",
+      "source": "Alternate angles made by a transversal with two parallel lines are equal (Euclid, Elements I.29); the stage turns each base corner half a turn about the midpoint of its side, which carries it onto that alternate angle at the apex.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tear-the-corners.c4",
+      "text": "When one corner of a triangle grows, the others must shrink by the same total.",
+      "support": "derivation",
+      "source": "Follows from c1: the sum is fixed at 180 degrees.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A triangle has one corner of 90 degrees and another of 35 degrees. What is the third corner?",
+    "options": [
+      "55 degrees",
+      "65 degrees",
+      "It depends on how long the sides are"
+    ],
+    "answer": 0,
+    "why": "The three corners of any flat triangle fill a straight line, 180 degrees, so the third is 180 - 90 - 35 = 55."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

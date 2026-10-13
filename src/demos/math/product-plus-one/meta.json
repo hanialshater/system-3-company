@@ -1,0 +1,79 @@
+{
+  "slug": "product-plus-one",
+  "title": "Product plus one",
+  "hook": "Primes thin out as numbers grow. Could a long enough list hold them all?",
+  "domain": "math",
+  "concept": "infinitude-of-primes",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a prime is",
+      "that every whole number above 1 breaks into primes (prime recipes)"
+    ],
+    "doesNotKnow": [
+      "Euclid's argument that the primes never end"
+    ]
+  },
+  "misconception": "After enough primes you must run out; a long enough list of primes could be complete.",
+  "objective": "The learner can explain that for any finite list of primes, (product + 1) leaves remainder 1 on division by each listed prime, so its prime factors are missing from the list, and so no list contains every prime.",
+  "claims": [
+    {
+      "id": "math.product-plus-one.c1",
+      "text": "2 x 3 x 5 x 7 x 11 x 13 = 30030, and 30030 + 1 = 30031 = 59 x 509.",
+      "support": "derivation",
+      "source": "Recomputed with node by trial division; the stage factors with the same trial division.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.product-plus-one.c2",
+      "text": "For the lists 2; 2, 3; 2, 3, 5; 2, 3, 5, 7; 2 to 11, product + 1 is 3, 7, 31, 211 and 2311, each prime; product + 1 is not always prime (30031 is not).",
+      "support": "derivation",
+      "source": "Trial division up to the square root, recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.product-plus-one.c3",
+      "text": "Product + 1 leaves remainder 1 when divided by each prime in the list, so its prime factors are never in the list.",
+      "support": "derivation",
+      "source": "The product is a multiple of each listed p, so product + 1 = 1 mod p. Checked with node for all 63 non-empty subsets of 2, 3, 5, 7, 11, 13: no factor of product + 1 is in its subset.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.product-plus-one.c4",
+      "text": "No finite list holds every prime: the primes never run out (Euclid).",
+      "support": "source",
+      "source": "Euclid, Elements IX.20 (prime numbers are more than any assigned multitude of prime numbers); e.g. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.product-plus-one.c5",
+      "text": "Every whole number above 1 has at least one prime factor.",
+      "support": "derivation",
+      "source": "Its smallest divisor above 1 is prime (any divisor of it would be a smaller divisor). Used in the reveal's step 'some prime divides it'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Someone claims the list 2, 3, 5, 7 contains every prime. What single number shows them wrong, and how?",
+    "options": [
+      "211 = 2 x 3 x 5 x 7 + 1: none of 2, 3, 5, 7 divides it, so it has a prime factor missing from the list",
+      "210 = 2 x 3 x 5 x 7: it is not prime",
+      "9: it is odd and not in the list"
+    ],
+    "answer": 0,
+    "why": "The product + 1 leaves remainder 1 on division by every listed prime, so its prime factors (here 211 itself) are not on the list."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

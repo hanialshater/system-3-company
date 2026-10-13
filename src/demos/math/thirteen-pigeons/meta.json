@@ -1,0 +1,65 @@
+{
+  "slug": "thirteen-pigeons",
+  "title": "Thirteen pigeons",
+  "hook": "Can you be certain two people share a birth month, without knowing anyone's birthday?",
+  "domain": "math",
+  "concept": "pigeonhole-principle",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting",
+      "that a year has 12 months"
+    ],
+    "doesNotKnow": [
+      "that more items than boxes guarantees a box with two (the pigeonhole principle)"
+    ]
+  },
+  "misconception": "Sharing a box is only ever likely, never certain, with so few items.",
+  "objective": "The learner can explain that 12 people can all have different birth months, but any 13 must include two who share one, because there are only 12 months.",
+  "claims": [
+    {
+      "id": "math.thirteen-pigeons.c1",
+      "text": "There are 12 months, so 12 people can each have a different birth month.",
+      "support": "convention",
+      "source": "The Gregorian calendar has 12 months; one person per month is an arrangement with no month shared.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.thirteen-pigeons.c2",
+      "text": "Any 13 people must include two who share a birth month; 13 is the smallest number that guarantees it.",
+      "support": "derivation",
+      "source": "If every month held at most one person there would be at most 12 people; 12 is not enough because of the arrangement in c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.thirteen-pigeons.c3",
+      "text": "More items than boxes forces some box to hold two (the pigeonhole principle).",
+      "support": "source",
+      "source": "If n boxes held at most one item each there would be at most n items. Named Schubfachprinzip after Dirichlet (1834); e.g. Engel, Problem-Solving Strategies, ch. 4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A drawer holds loose socks in 3 colours. In the dark, how many socks must you take to be certain of a matching pair?",
+    "options": [
+      "4",
+      "3",
+      "6"
+    ],
+    "answer": 0,
+    "why": "Three socks can all be different colours, but a fourth must repeat one of the 3 colours: more socks than colours forces a pair."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "no-fraction-fits",
+  "title": "No fraction fits",
+  "hook": "With big enough numbers, surely some fraction hits √2 exactly?",
+  "domain": "math",
+  "concept": "sqrt2-irrational",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the diagonal of a 1-by-1 square is √2 (Pythagoras)",
+      "even and odd numbers; the idea of a proof by contradiction"
+    ],
+    "doesNotKnow": [
+      "why no fraction of whole numbers equals √2"
+    ]
+  },
+  "misconception": "With big enough whole numbers, some fraction will hit √2 exactly.",
+  "objective": "The learner can explain that p/q = √2 would need p² = 2q², that 2q² keeps landing next to squares but never on one, and that the parity argument shows it never can.",
+  "claims": [
+    {
+      "id": "math.no-fraction-fits.c1",
+      "text": "The diagonal of a 1-by-1 square is √2.",
+      "support": "derivation",
+      "source": "Pythagoras: d² = 1² + 1² = 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.no-fraction-fits.c2",
+      "text": "A fraction p/q equals √2 only if p² = 2 × q².",
+      "support": "derivation",
+      "source": "Square both sides of p/q = √2 and multiply by q².",
+      "status": "unverified"
+    },
+    {
+      "id": "math.no-fraction-fits.c3",
+      "text": "2 × 12² = 288 and 17² = 289, off by 1; the misses are exactly 1 at q = 1, 2, 5, 12, 29, 70, and for q from 1 to 70 the nearest square is never equal.",
+      "support": "derivation",
+      "source": "Recomputed with node for q = 1..70 (and no q up to 100000 gives a perfect square). The miss-by-1 values are the Pell numbers (solutions of p² - 2q² = ±1). The stage computes every value it shows from the same function. Illustration only: a table cannot prove it.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.no-fraction-fits.c4",
+      "text": "If √2 = p/q in lowest terms then p is even, so q is even too, a contradiction; so √2 is not a fraction of whole numbers (it is irrational).",
+      "support": "source",
+      "source": "Classical parity proof, recorded in Aristotle, Prior Analytics I.23, and in later editions of Euclid's Elements (X, appendix); e.g. Hardy, A Mathematician's Apology, sec. 14.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A friend says: 'My computer found p and q, each with a million digits, so that p/q is exactly √2.' What do you say?",
+    "options": [
+      "Impossible: p² = 2q² would force p and q both even, forever",
+      "Possible, if the numbers are big enough",
+      "Possible, but only with a computer"
+    ],
+    "answer": 0,
+    "why": "Exact equality needs p² = 2q². That makes p even, then q even, so the fraction can always be reduced: no lowest-terms fraction works, at any size."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
