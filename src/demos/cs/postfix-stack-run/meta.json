@@ -1,0 +1,62 @@
+{
+  "slug": "postfix-stack-run",
+  "title": "Arithmetic with no brackets",
+  "hook": "No brackets, no 'multiply first' rule. Can a pile of numbers still get the answer right?",
+  "domain": "cs",
+  "concept": "stack-expression-eval",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["a stack: you only add to or take from the top (back-button-stack)", "+, × and −"],
+    "doesNotKnow": ["that a stack can evaluate an expression written with no brackets, because the token order encodes the order of operations"]
+  },
+  "misconception": "Evaluating arithmetic needs brackets and precedence rules.",
+  "objective": "The learner can evaluate 5 1 2 + 4 × + 3 − with a stack (1 + 2 = 3, 3 × 4 = 12, 5 + 12 = 17, 17 − 3 = 14) and say that the token order already fixes the order of operations.",
+  "claims": [
+    {
+      "id": "cs.postfix-stack-run.c1",
+      "text": "Read with a pile, 5 1 2 + 4 × + 3 − gives 1 + 2 = 3, 3 × 4 = 12, 5 + 12 = 17, 17 − 3 = 14, leaving one number: 14.",
+      "support": "simulation",
+      "source": "Demo.tsx run(); builder re-ran the same stack loop in Node: [14].",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.postfix-stack-run.c2",
+      "text": "The pile was never taller than 3.",
+      "support": "simulation",
+      "source": "Node: maximum stack length 3 (after 5 1 2). Demo.tsx FINAL.tallest.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.postfix-stack-run.c3",
+      "text": "With brackets the same expression is 5 + (1 + 2) × 4 − 3.",
+      "support": "derivation",
+      "source": "Rebuild the infix tree from the postfix tokens: ((5 + ((1 + 2) × 4)) − 3). Node: 5+(1+2)*4-3 = 14.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.postfix-stack-run.c4",
+      "text": "This bracket-free way of writing is called postfix, and a stack is all it needs to evaluate.",
+      "support": "source",
+      "source": "Knuth, TAOCP Vol. 1, 2.2.1 and 2.3.2 (postfix / reverse Polish notation, evaluated with a stack); Burks, Warren and Wright (1954) and Hamblin (1962) on the stack evaluation. Notation descends from Lukasiewicz's prefix (Polish) notation.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.postfix-stack-run.c5",
+      "text": "An operator takes the top two numbers off and puts back their result (for −, the lower one minus the top one).",
+      "support": "convention",
+      "source": "Standard postfix evaluation rule; operand order shown on stage as '17 − 3 = 14'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With a pile (stack), what is 2 3 4 × + ?",
+    "options": ["14", "20", "24"],
+    "answer": 0,
+    "why": "Push 2, 3, 4; × takes 3 and 4 and pushes 12; + takes 2 and 12 and pushes 14. It is 2 + 3 × 4."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
