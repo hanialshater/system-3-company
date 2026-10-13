@@ -29,59 +29,69 @@ import m23 from "./chemistry/twice-as-hot-not-twice-as-fast/meta.json";
 import m24 from "./cs/binary-numbers/meta.json";
 import m25 from "./cs/binary-search/meta.json";
 import m26 from "./cs/merge-sort-payoff/meta.json";
-import m27 from "./economics/compound-interest/meta.json";
-import m28 from "./economics/fee-drag-gap/meta.json";
-import m29 from "./economics/inflation-halves-cash/meta.json";
-import m30 from "./economics/longer-loan-cost/meta.json";
-import m31 from "./economics/minimum-payment-trap/meta.json";
-import m32 from "./economics/real-rate-illusion/meta.json";
-import m33 from "./economics/rule-of-72-shortcut/meta.json";
-import m34 from "./economics/shared-pasture/meta.json";
-import m35 from "./economics/start-early-race/meta.json";
-import m36 from "./economics/sunk-cost-exit/meta.json";
-import m37 from "./economics/supply-demand/meta.json";
-import m38 from "./economics/up-then-down-trap/meta.json";
-import m39 from "./geography/mercator-greenland/meta.json";
-import m40 from "./life/cell-too-big/meta.json";
-import m41 from "./life/dish-runs-out/meta.json";
-import m42 from "./life/fastest-at-the-bend/meta.json";
-import m43 from "./life/herd-immunity/meta.json";
-import m44 from "./life/most-cases-vaccinated/meta.json";
-import m45 from "./life/natural-selection/meta.json";
-import m46 from "./life/one-in-four-sprouts/meta.json";
-import m47 from "./life/pesticide-paradox/meta.json";
-import m48 from "./life/same-genes-different-drift/meta.json";
-import m49 from "./life/slow-across-a-room/meta.json";
-import m50 from "./life/ten-percent-up/meta.json";
-import m51 from "./life/three-day-doubling/meta.json";
-import m52 from "./math/circle-slices-to-rectangle/meta.json";
-import m53 from "./math/digits-are-logs/meta.json";
-import m54 from "./math/double-the-size/meta.json";
-import m55 from "./math/exponential-growth/meta.json";
-import m56 from "./math/fifty-up-fifty-down/meta.json";
-import m57 from "./math/gauss-staircase/meta.json";
-import m58 from "./math/nines-without-end/meta.json";
-import m59 from "./math/odd-numbers-make-squares/meta.json";
-import m60 from "./math/one-boss-moves-the-mean/meta.json";
-import m61 from "./math/one-recipe-for-sixty/meta.json";
-import m62 from "./math/seventy-two-doubling/meta.json";
-import m63 from "./math/two-squares-become-one/meta.json";
-import m64 from "./physics/pendulum-period/meta.json";
-import m65 from "./physics/projectile-angle/meta.json";
-import m66 from "./probability/armour-where-no-holes/meta.json";
-import m67 from "./probability/base-rates/meta.json";
-import m68 from "./probability/better-in-every-group-worse-overall/meta.json";
-import m69 from "./probability/birthday-paradox/meta.json";
-import m70 from "./probability/coin-gap-keeps-growing/meta.json";
-import m71 from "./probability/five-heads-then-what/meta.json";
-import m72 from "./probability/hidden-third-cause/meta.json";
-import m73 from "./probability/monty-hall-100-doors/meta.json";
-import m74 from "./probability/one-in-a-million-match/meta.json";
-import m75 from "./probability/praise-then-slump/meta.json";
-import m76 from "./probability/small-hospital-big-swings/meta.json";
-import m77 from "./probability/twenty-harmless-tests/meta.json";
+import m27 from "./economics/apr-apy-gap/meta.json";
+import m28 from "./economics/cheese-for-bread/meta.json";
+import m29 from "./economics/compound-interest/meta.json";
+import m30 from "./economics/fee-drag-gap/meta.json";
+import m31 from "./economics/flour-shock/meta.json";
+import m32 from "./economics/inflation-halves-cash/meta.json";
+import m33 from "./economics/insurance-fair-price/meta.json";
+import m34 from "./economics/kitchen-crowding/meta.json";
+import m35 from "./economics/longer-loan-cost/meta.json";
+import m36 from "./economics/minimum-payment-trap/meta.json";
+import m37 from "./economics/real-rate-illusion/meta.json";
+import m38 from "./economics/revenue-sweet-spot/meta.json";
+import m39 from "./economics/rule-of-72-shortcut/meta.json";
+import m40 from "./economics/shared-pasture/meta.json";
+import m41 from "./economics/start-early-race/meta.json";
+import m42 from "./economics/sunk-cost-exit/meta.json";
+import m43 from "./economics/supply-demand/meta.json";
+import m44 from "./economics/true-cost-of-free-hours/meta.json";
+import m45 from "./economics/two-bets-split/meta.json";
+import m46 from "./economics/up-then-down-trap/meta.json";
+import m47 from "./economics/wait-or-take-now/meta.json";
+import m48 from "./economics/widget-marginal-cost/meta.json";
+import m49 from "./geography/mercator-greenland/meta.json";
+import m50 from "./life/cell-too-big/meta.json";
+import m51 from "./life/dish-runs-out/meta.json";
+import m52 from "./life/fastest-at-the-bend/meta.json";
+import m53 from "./life/herd-immunity/meta.json";
+import m54 from "./life/most-cases-vaccinated/meta.json";
+import m55 from "./life/natural-selection/meta.json";
+import m56 from "./life/one-in-four-sprouts/meta.json";
+import m57 from "./life/pesticide-paradox/meta.json";
+import m58 from "./life/same-genes-different-drift/meta.json";
+import m59 from "./life/slow-across-a-room/meta.json";
+import m60 from "./life/ten-percent-up/meta.json";
+import m61 from "./life/three-day-doubling/meta.json";
+import m62 from "./math/circle-slices-to-rectangle/meta.json";
+import m63 from "./math/digits-are-logs/meta.json";
+import m64 from "./math/double-the-size/meta.json";
+import m65 from "./math/exponential-growth/meta.json";
+import m66 from "./math/fifty-up-fifty-down/meta.json";
+import m67 from "./math/gauss-staircase/meta.json";
+import m68 from "./math/nines-without-end/meta.json";
+import m69 from "./math/odd-numbers-make-squares/meta.json";
+import m70 from "./math/one-boss-moves-the-mean/meta.json";
+import m71 from "./math/one-recipe-for-sixty/meta.json";
+import m72 from "./math/seventy-two-doubling/meta.json";
+import m73 from "./math/two-squares-become-one/meta.json";
+import m74 from "./physics/pendulum-period/meta.json";
+import m75 from "./physics/projectile-angle/meta.json";
+import m76 from "./probability/armour-where-no-holes/meta.json";
+import m77 from "./probability/base-rates/meta.json";
+import m78 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m79 from "./probability/birthday-paradox/meta.json";
+import m80 from "./probability/coin-gap-keeps-growing/meta.json";
+import m81 from "./probability/five-heads-then-what/meta.json";
+import m82 from "./probability/hidden-third-cause/meta.json";
+import m83 from "./probability/monty-hall-100-doors/meta.json";
+import m84 from "./probability/one-in-a-million-match/meta.json";
+import m85 from "./probability/praise-then-slump/meta.json";
+import m86 from "./probability/small-hospital-big-swings/meta.json";
+import m87 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -111,18 +121,28 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "binary-numbers": () => import("./cs/binary-numbers/Demo"),
   "binary-search": () => import("./cs/binary-search/Demo"),
   "merge-sort-payoff": () => import("./cs/merge-sort-payoff/Demo"),
+  "apr-apy-gap": () => import("./economics/apr-apy-gap/Demo"),
+  "cheese-for-bread": () => import("./economics/cheese-for-bread/Demo"),
   "compound-interest": () => import("./economics/compound-interest/Demo"),
   "fee-drag-gap": () => import("./economics/fee-drag-gap/Demo"),
+  "flour-shock": () => import("./economics/flour-shock/Demo"),
   "inflation-halves-cash": () => import("./economics/inflation-halves-cash/Demo"),
+  "insurance-fair-price": () => import("./economics/insurance-fair-price/Demo"),
+  "kitchen-crowding": () => import("./economics/kitchen-crowding/Demo"),
   "longer-loan-cost": () => import("./economics/longer-loan-cost/Demo"),
   "minimum-payment-trap": () => import("./economics/minimum-payment-trap/Demo"),
   "real-rate-illusion": () => import("./economics/real-rate-illusion/Demo"),
+  "revenue-sweet-spot": () => import("./economics/revenue-sweet-spot/Demo"),
   "rule-of-72-shortcut": () => import("./economics/rule-of-72-shortcut/Demo"),
   "shared-pasture": () => import("./economics/shared-pasture/Demo"),
   "start-early-race": () => import("./economics/start-early-race/Demo"),
   "sunk-cost-exit": () => import("./economics/sunk-cost-exit/Demo"),
   "supply-demand": () => import("./economics/supply-demand/Demo"),
+  "true-cost-of-free-hours": () => import("./economics/true-cost-of-free-hours/Demo"),
+  "two-bets-split": () => import("./economics/two-bets-split/Demo"),
   "up-then-down-trap": () => import("./economics/up-then-down-trap/Demo"),
+  "wait-or-take-now": () => import("./economics/wait-or-take-now/Demo"),
+  "widget-marginal-cost": () => import("./economics/widget-marginal-cost/Demo"),
   "mercator-greenland": () => import("./geography/mercator-greenland/Demo"),
   "cell-too-big": () => import("./life/cell-too-big/Demo"),
   "dish-runs-out": () => import("./life/dish-runs-out/Demo"),
