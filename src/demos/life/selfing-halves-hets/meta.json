@@ -1,0 +1,73 @@
+{
+  "slug": "selfing-halves-hets",
+  "title": "Plants that pollinate themselves",
+  "hook": "Start with a field of hybrids. Does self-pollinating keep them hybrid?",
+  "domain": "life",
+  "concept": "selfing-heterozygosity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "offspring get one copy of a gene from each parent",
+      "a one-gene cross of two hybrids gives a 1 : 2 : 1 split"
+    ],
+    "doesNotKnow": [
+      "that self-pollination halves the share of hybrids every generation",
+      "that pure plants only make pure seeds, so hybrids do not come back"
+    ]
+  },
+  "misconception": "Hybrids stay hybrid when they pollinate themselves.",
+  "objective": "The learner can explain that a selfing hybrid leaves only half its seeds hybrid while pure plants stay pure, so the hybrid share halves each generation: 32, 16, 8, 4 of 32 plants, 12.5% after three rounds.",
+  "claims": [
+    {
+      "id": "life.selfing-halves-hets.c1",
+      "text": "A hybrid (Aa) plant that pollinates itself gives seeds that are AA, Aa or aa in a 1 : 2 : 1 split, so half its seeds are hybrid.",
+      "support": "derivation",
+      "source": "Mendelian segregation, Aa x Aa (Griffiths et al., Introduction to Genetic Analysis, ch. 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selfing-halves-hets.c2",
+      "text": "Pure plants (AA or aa) that pollinate themselves only make pure seeds of the same kind.",
+      "support": "derivation",
+      "source": "AA x AA gives only AA; aa x aa gives only aa.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selfing-halves-hets.c3",
+      "text": "Starting from 32 hybrids, the expected number still hybrid is 16, 8, 4 and 2 after 1 to 4 generations of selfing: 12.5% after 3.",
+      "support": "derivation",
+      "source": "Hybrid share halves per generation of complete selfing, H_t = H_0 / 2^t (Hartl & Clark, Principles of Population Genetics, 2007, inbreeding chapter). Demo.tsx HYB = [32, 16, 8, 4, 2], computed from the field it draws; artifacts/scratch/w4life/nums.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selfing-halves-hets.c4",
+      "text": "Model: a made-up plant, complete selfing, one seed per plant, no selection; the field shows the average split, not one random run. Stated on the stage before the prediction.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #35. A random run would scatter around these counts.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A field of hybrid plants pollinates itself for several generations. What happens to the share of hybrids?",
+    "options": [
+      "It stays about the same",
+      "It halves each generation, leaving mostly pure lines",
+      "It drops to zero after one generation"
+    ],
+    "answer": 1,
+    "why": "Each hybrid leaves only half its seeds hybrid, and pure plants never make hybrids, so the hybrid share halves every generation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 26dvh; flex-shrink: 0; }
+.tag { margin: 0; text-align: center; font-size: 0.74rem; color: var(--muted); }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.hollow { fill: none; stroke: var(--muted); stroke-width: 1; stroke-opacity: 0.8; }
+.on { fill: var(--domain); }
+.bad { fill: var(--bad); }
+.good { fill: var(--good); }
+.half { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }
+.line { stroke: var(--line); stroke-width: 1; fill: none; }
+.axis { fill: var(--muted); font-size: 10px; }
+.big { fill: var(--fg); font-size: 22px; font-weight: 700; }
+.small { fill: var(--muted); font-size: 11px; }
+.legend i.hollow { border: 1.5px solid var(--muted); }
+.legend i.on { background: var(--domain); }
+.legend i.bad { background: var(--bad); }
+.legend i.good { background: var(--good); }
+.legend i.half { background: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }

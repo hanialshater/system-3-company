@@ -1,0 +1,73 @@
+{
+  "slug": "one-beetle-a-generation",
+  "title": "Do small groups drift apart?",
+  "hook": "Two small beetle groups drift by chance. What does one traveller per generation change?",
+  "domain": "life",
+  "concept": "gene-flow",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "drift: in a small group, chance alone changes how common a trait is",
+      "left alone, a small group can end up all one colour"
+    ],
+    "doesNotKnow": [
+      "that a trickle of migrants keeps bringing back the other colour",
+      "that about one migrant per generation is enough to keep two small groups from drifting apart"
+    ]
+  },
+  "misconception": "Small populations always drift apart, whatever a few travellers do.",
+  "objective": "The learner can explain that in the toy model two isolated groups of 50 end up far apart in about half of runs, but with one beetle swapped each way per generation only in a few runs in 100, because migrants keep reintroducing the colour drift removes.",
+  "claims": [
+    {
+      "id": "life.one-beetle-a-generation.c1",
+      "text": "In the stage's toy model, two isolated groups of 50 beetles, each half red at the start, end up with red shares more than half apart after 200 generations in 100 of 200 runs (50%); in 95 of those, one group is all red and the other has none.",
+      "support": "simulation",
+      "source": "Wright-Fisher drift, neutral colour, no sex, in Demo.tsx run(); seeds 1-200 (mulberry32), the same for every setting, not chosen. artifacts/scratch/w4life/beetle.mjs and beetle2.mjs; 2,000 seeds give 49.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-beetle-a-generation.c2",
+      "text": "With one beetle swapped each way every generation, the groups end up more than half apart in 4 of 200 runs (2.0%); with five swaps, in 1 of 200.",
+      "support": "simulation",
+      "source": "Same code and seeds; 2,000 seeds give 2.3% (one swap) and 0.1% (five). The brief's check (1 migrant 0.1%) did not reproduce; the answer option is worded 'Rarely: a few runs in 100'. See company/reviews/one-beetle-a-generation/build.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-beetle-a-generation.c3",
+      "text": "About one migrant per generation is enough to keep small groups from drifting to different fixed types.",
+      "support": "source",
+      "source": "Wright 1931, Genetics 16:97 (Nm of about 1 prevents fixation of different alleles under the island model); Hartl & Clark, Principles of Population Genetics, 2007, ch. on migration. 'One migrant per generation' is a rule of thumb; the fact-checker should confirm the wording for haploid groups of 50.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-beetle-a-generation.c4",
+      "text": "Model: made-up beetles, two groups of 50, colour has no effect on survival, each young copies one random parent, migrants chosen at random. Stated on the stage ('Toy beetles: colour is pure chance').",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #38.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two small, isolated populations are drifting apart by chance. What is the least that can hold them together?",
+    "options": [
+      "Nothing: small populations always diverge",
+      "About one migrant per generation",
+      "Mixing them completely every generation"
+    ],
+    "answer": 1,
+    "why": "Each migrant brings back variation that drift removes; around one per generation is enough to keep the groups wandering together."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

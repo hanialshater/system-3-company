@@ -1,0 +1,69 @@
+{
+  "slug": "offspring-regress",
+  "title": "Breed only the tall ones",
+  "hook": "Only the tallest plants get to breed. Are their offspring as tall as they are?",
+  "domain": "life",
+  "concept": "heritability-response",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "selection: the parents who breed pass on their genes",
+      "height depends on genes and on conditions such as soil and sun"
+    ],
+    "doesNotKnow": [
+      "that only the inherited share of the parents' advantage passes to offspring",
+      "the breeder's rule: response = heritability x selection"
+    ]
+  },
+  "misconception": "If only the tallest plants breed, the next generation averages as tall as the parents.",
+  "objective": "The learner can explain that offspring of selected parents move only the inherited share of the way: kept plants 10 cm above a 100 cm field with 40% heritability give offspring of about 104 cm.",
+  "claims": [
+    {
+      "id": "life.offspring-regress.c1",
+      "text": "On the stage, 40 made-up plants averaging 100 cm are kept or not by height; the tallest 15 average 110 cm.",
+      "support": "derivation",
+      "source": "Heights at 40 evenly spaced quantiles of a normal curve (mean 100, spread 10) in Demo.tsx; top-15 mean 110.04 cm (artifacts/scratch/w4life/breed.mjs). No random seed.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.offspring-regress.c2",
+      "text": "With 40% of height differences inherited, offspring of parents 10 cm above average are expected to be 4 cm above average: about 104 cm. At 0% they average 100 cm; at 100%, 110 cm.",
+      "support": "derivation",
+      "source": "Breeder's equation R = h2 S (Falconer & Mackay, Introduction to Quantitative Genetics, 1996, ch. 11): 0.4 x 10.04 = 4.02. Demo.tsx offMean. The brief's 400,000-plant simulation (4.6 for S = 11.6, predicted 4.64) agrees.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.offspring-regress.c3",
+      "text": "Part of a selected parent's extra height comes from conditions such as soil and luck, which offspring do not inherit; that is why offspring move only part of the way.",
+      "support": "source",
+      "source": "Falconer & Mackay 1996: narrow-sense heritability is the share of phenotypic variance due to additive genetic effects; the non-heritable deviations of selected parents average zero in their offspring.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.offspring-regress.c4",
+      "text": "Model: made-up plants, additive genes, random crossing among the kept plants, offspring drawn with the same spread as the parents for illustration. Stated on the stage ('Toy plants') before the prediction.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #37. The offspring spread is not modelled; only the offspring mean comes from the equation.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Breeders cross only plants whose seeds are 20% heavier than average. 30% of seed-weight differences are inherited. The offspring's seeds will be about:",
+    "options": ["20% heavier", "6% heavier", "The same as average"],
+    "answer": 1,
+    "why": "Only the inherited share of the parents' advantage passes on: 30% of 20% is 6%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

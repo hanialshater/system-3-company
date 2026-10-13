@@ -1,0 +1,80 @@
+{
+  "slug": "children-new-mutations",
+  "title": "How many new typos does a child carry?",
+  "hook": "Copying errors are rare per letter of DNA. Are they rare per child?",
+  "domain": "life",
+  "concept": "de-novo-mutations",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA is a long string of letters copied from parent to child",
+      "mutations (copying changes) happen"
+    ],
+    "doesNotKnow": [
+      "how long the genome is compared with how rare an error is per letter",
+      "that every child carries tens of brand-new changes"
+    ]
+  },
+  "misconception": "Mutations are rare events that happen to only a few people.",
+  "objective": "The learner can explain that a tiny per-letter error rate times billions of letters gives every child several dozen new changes (about 74 by the arithmetic, 60 to 70 measured), and that the count scales with the rate.",
+  "claims": [
+    {
+      "id": "life.children-new-mutations.c1",
+      "text": "A human genome copy has about 3.1 billion letters (DNA bases), and each person carries two copies, one from each parent.",
+      "support": "source",
+      "source": "Human reference genome GRCh38 is about 3.1 Gb per haploid copy (Genome Reference Consortium; International Human Genome Sequencing Consortium 2004, Nature 431). Rounded to 3.1 billion in the question and stage (31 squares of 100 million per copy).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.children-new-mutations.c2",
+      "text": "The new-mutation rate in humans is about 1.2 per 100 million letters per generation.",
+      "support": "source",
+      "source": "Kong et al. 2012, Nature 488:471 (about 1.20 x 10^-8 per nucleotide per generation, varying with the father's age). Brief life #33.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.children-new-mutations.c3",
+      "text": "6.2 billion letters times 1.2 in 100 million gives about 74 new changes per child (the reveal rounds this to 'about 74'; the answer option says 'About 70').",
+      "support": "derivation",
+      "source": "2 x 3.1e9 x 1.2e-8 = 74.4 (Demo.tsx EXPECTED; artifacts/scratch/w4life/nums.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.children-new-mutations.c4",
+      "text": "On the stage, child 1 carries 67 new changes at the real rate, 35 at half the rate and 140 at double; the counts vary by chance from child to child around 74.",
+      "support": "simulation",
+      "source": "Poisson placement in Demo.tsx with unit exponential gaps from mulberry32(child number); seeds are 1, 2, 3... in order, not chosen. Children 1-5 at 1.2: 67, 63, 76, 71, 72; mean of 2,000 children 74.4 (node re-run).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.children-new-mutations.c5",
+      "text": "Studies that sequence parents and their children find about 60 to 70 new changes per child.",
+      "support": "source",
+      "source": "Kong et al. 2012, Nature 488 (average about 60 de novo point mutations, rising with paternal age); Acuna-Hidalgo, Veltman & Hoischen 2016, Genome Biology 17:241 (review, about 44-82 per genome). Wording to be checked by the fact-checker; no medical interpretation is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A copying error hits about 1 letter of DNA in 100 million per generation. Which is true of a newborn?",
+    "options": [
+      "Most newborns carry no new changes",
+      "About one newborn in a hundred carries a new change",
+      "Every newborn carries dozens of new changes"
+    ],
+    "answer": 2,
+    "why": "A genome has billions of letters, so a one-in-100-million rate still adds up to dozens of new letters per child."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

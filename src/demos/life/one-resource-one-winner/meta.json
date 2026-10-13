@@ -1,0 +1,80 @@
+{
+  "slug": "one-resource-one-winner",
+  "title": "Two plants, one nutrient",
+  "hook": "Two species live on the same nutrient. What happens in the long run?",
+  "domain": "life",
+  "concept": "competitive-exclusion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "populations grow when food is plentiful and shrink when it runs short",
+      "species can compete for the same food"
+    ],
+    "doesNotKnow": [
+      "that a growing species pulls a shared nutrient down to its own break-even level",
+      "that with one limiting nutrient the species that can live on less excludes the other"
+    ]
+  },
+  "misconception": "Two competitors for one nutrient settle into a shared balance, or the more common one wins.",
+  "objective": "The learner can explain that in the toy pond A, which breaks even at 2 units, pulls the nutrient down to 2, below B's break-even of 5, so B dies out even though it started eight times as common; and that making B need less than A flips the winner.",
+  "claims": [
+    {
+      "id": "life.one-resource-one-winner.c1",
+      "text": "In the stage's toy pond, with A breaking even at 2 units of nutrient and B at 5, and B starting eight times as common, by day 400 A has 80 dots, B has 0, and the nutrient sits at 2.0.",
+      "support": "simulation",
+      "source": "Chemostat-style model in Demo.tsx simulate(): supply 10, dilution and death 0.1/day, growth 0.5 R/(K+R), Euler 0.01 day; day 400: A = 8.000, B = 6.4e-9, R = 2.000 (dt 0.05 agrees). artifacts/scratch/w4life/chemo2.mjs. No random seed. The brief's numbers (A = 18.0) came from a different supply level; the outcome (R = A's break-even) matches.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-resource-one-winner.c2",
+      "text": "If B instead breaks even at 1 unit, B wins: by day 400 B has 90 dots, A 0, and the nutrient sits at 1.0.",
+      "support": "simulation",
+      "source": "Same model with B's break-even 1: day 400 A = 1.7e-8 (rounds to 0 dots), B = 9.000, R = 1.000 (chemo2.mjs). With B at 3, A still wins (A 8.0, B 3.8e-4 at day 400).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-resource-one-winner.c3",
+      "text": "With one limiting resource, the species with the lowest break-even level (R*) drives the resource down to that level and excludes the others.",
+      "support": "source",
+      "source": "Tilman 1982, Resource Competition and Community Structure (R* rule); Gause 1934, The Struggle for Existence (competitive exclusion).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-resource-one-winner.c4",
+      "text": "Several limiting nutrients (or a changing environment) can let competing species coexist.",
+      "support": "source",
+      "source": "Tilman 1982 (two-resource coexistence); stated in the reveal so the lesson does not imply competitors can never coexist.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-resource-one-winner.c5",
+      "text": "The pond is a model: one nutrient, constant supply, equal death rates, no randomness; 1 dot = 0.1 unit of plant. Labelled 'Toy pond' on the stage before the prediction.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #40.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two algae compete for one limiting nutrient. One can keep growing at a lower nutrient level than the other. In a steady environment, what happens?",
+    "options": [
+      "They settle at a shared balance",
+      "The one that can live on less pushes the nutrient below the other's needs and wins",
+      "Whichever starts more common wins"
+    ],
+    "answer": 1,
+    "why": "Each species grows until the nutrient falls to its break-even level; the lower break-even leaves the other shrinking."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

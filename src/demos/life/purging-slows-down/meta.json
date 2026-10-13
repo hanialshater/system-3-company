@@ -1,0 +1,73 @@
+{
+  "slug": "purging-slows-down",
+  "title": "How fast does a lethal gene vanish?",
+  "hook": "Two copies kill, so selection removes it every generation. How long until it is rare?",
+  "domain": "life",
+  "concept": "purging-recessives",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "each person carries two copies of a gene, one from each parent",
+      "a hidden (recessive) form shows only with two copies; one-copy carriers look healthy"
+    ],
+    "doesNotKnow": [
+      "that selection only acts on people with two copies",
+      "that a rare harmful copy hides almost entirely in carriers, so removing it gets slower and slower"
+    ]
+  },
+  "misconception": "A gene that kills in two copies disappears within a few generations.",
+  "objective": "The learner can explain that in the toy model a copy that kills in two copies falls from 10% to 1% only after 90 generations, because the rarer it gets the more of it sits in healthy carriers that selection cannot see.",
+  "claims": [
+    {
+      "id": "life.purging-slows-down.c1",
+      "text": "With random mating, a copy that kills in two copies and does nothing in one changes from share q to q / (1 + q) each generation, so 1/q rises by exactly 1 per generation.",
+      "support": "derivation",
+      "source": "Selection against a recessive lethal (Hartl & Clark, Principles of Population Genetics, 2007, ch. 5): q' = q(1-q)/(1-q^2) = q/(1+q); 1/q' = 1/q + 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.purging-slows-down.c2",
+      "text": "Starting at 10% of copies, it takes 90 generations to fall to 1%; the first 10 generations take it from 10% to 5%.",
+      "support": "derivation",
+      "source": "1/q from 10 to 100 = 90 steps; q(10) = 1/20. Demo.tsx TO_TARGET = 90 and Q[10] = 0.05, iterated; artifacts/scratch/w4life/nums.mjs. Matches the brief's check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.purging-slows-down.c3",
+      "text": "At 10% of copies, 1 baby in 100 is born with two copies and 90% of the bad copies are in healthy carriers; at 1%, 1 in 10,000 and 99%.",
+      "support": "derivation",
+      "source": "Hardy-Weinberg at birth: two copies q^2; share of bad copies in carriers 2pq / (2pq + 2q^2) = 1 - q. Shown on the stage at generations 0 and 90.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.purging-slows-down.c4",
+      "text": "Model: a made-up gene in a large random-mating population, death before breeding with two copies, no effect with one, no new mutations. The stage's 100 people are a rounded picture of the shares.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #36. Stated on the stage before the prediction ('Toy: two bad copies kill before adulthood; one does nothing').",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does selection against a harmful recessive gene slow down as the gene becomes rare?",
+    "options": [
+      "The gene becomes less harmful over time",
+      "Almost all remaining copies sit in healthy carriers, which selection cannot see",
+      "Rare genes mutate back to the healthy form"
+    ],
+    "answer": 1,
+    "why": "Only people with two copies are removed, and when the gene is rare nearly every copy is paired with a healthy one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
