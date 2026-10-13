@@ -27,7 +27,7 @@ const run = (order: number[]) => {
   return { price, cuts };
 };
 const FINAL = run([...OFFS]).price; // 72
-const TOTAL_PCT = ((PRICE - FINAL) / PRICE) * 100; // 28
+const TOTAL_PCT = Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10; // 28
 const SWAPPED = run([...OFFS].reverse());
 const usd = (v: number) => `$${Number.isInteger(v) ? v : v.toFixed(2)}`;
 

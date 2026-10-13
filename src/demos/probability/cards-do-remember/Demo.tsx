@@ -123,7 +123,7 @@ export default function CardsDoRemember({ slug }: { slug: string }) {
           </p>
           <p>
             When you put each card back, it was {BACK.red} of {BACK.total} again: {pct(BACK.pRed)}. That is the coin case: a coin has no
-            pile to run out of. &ldquo;Black is due&rdquo; is wrong for coins but right for cards.
+            pile to run out of, so its odds never shift. For cards, what changed is the mix of the remaining deck, not any &ldquo;due-ness&rdquo;: the next card follows what is left.
           </p>
         </>
       )}

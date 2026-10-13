@@ -61,12 +61,10 @@
     },
     {
       "id": "probability.cards-do-remember.c5",
-      "text": "A coin has no pile to run out of: after any run of flips the next flip is still 50/50, so 'black is due' is wrong for coins but right for cards.",
+      "text": "A coin has no pile to run out of, so after any run of flips the next flip is still 50/50. For cards, what changes is the mix of the remaining deck, not any 'due-ness': the next card follows what is left.",
       "support": "derivation",
-      "source": "Independent fair flips: P(next = heads | any past sequence) = 1/2. For cards the dependence is c2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Independent fair flips: P(next = heads | any past sequence) = 1/2. For cards the dependence is c2. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification.",
+      "status": "unverified"
     },
     {
       "id": "probability.cards-do-remember.c6",
@@ -99,5 +97,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

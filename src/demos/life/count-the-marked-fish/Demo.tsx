@@ -99,7 +99,7 @@ export default function CountTheMarkedFish({ slug }: { slug: string }) {
               Your nets held {m.join(", ")} marked fish of {C}, giving estimates of {e.map(fmt).join(", ")}. The {C} fish you net are a probe, not the lake.
             </p>
             <p>
-              If {M} marked fish are mixed into the lake and {MARKED[0]} of {C} netted fish are marked, the marked share is 1 in {C / MARKED[0]}. So the lake holds about {M} × {C / MARKED[0]} = <strong>{fmt((M * C) / MARKED[0])}</strong>. Nets wobble, so one estimate is a guess; several cluster near the true {fmt(N)}.
+              If {M} marked fish are mixed into the lake and {MARKED[0]} of {C} netted fish are marked, the marked share is 1 in {C / MARKED[0]}. So the lake holds about {M} × {C / MARKED[0]} = <strong>{fmt((M * C) / MARKED[0])}</strong>. Nets wobble, so one estimate is a guess; several scatter around the true {fmt(N)}.
             </p>
           </>
         );
