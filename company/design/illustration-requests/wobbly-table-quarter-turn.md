@@ -6,14 +6,14 @@ status: open
 requested_by: cm-lifehacks   # brief: company/domains/briefs/lifehacks.md #3
 format: hero
 images: 1
-safety_class: none   # proposed; brief safety review pending
+safety_class: none   # safety review: pass with changes (company/reviews/wobbly-table-quarter-turn/2026-10-13-safety.md); cup removed 2026-10-13, awaiting the reviewer's re-check
 ---
 
 ## What the image must show
-An outdoor café scene on uneven stone paving: a small square table with four straight legs and two hands on opposite edges of the top, turning it in place. A cup on the table. Gentle daylight.
+An outdoor café scene on gently uneven stone paving: a small square table with four straight legs and two hands on opposite edges of the top, turning it in place. The table top is empty. Gentle daylight.
 
 ## What it must NOT show
-No folded napkin, beer mat or wedge under a leg (that is the method the lesson replaces). No one standing on, sitting on or leaning their weight on the table. No text, menus with writing, signs or brands. No faces.
+No folded napkin, beer mat or wedge under a leg (that is the method the lesson replaces). No one standing on, sitting on or leaning their weight on the table. No cups, glasses, plates or anything hot on the table while it is turned. No visible slope: the café ground is near level. No text, menus with writing, signs or brands. No faces.
 
 ## Where it goes on the card
 The hero above the prediction question, 1:1, 1024 × 1024.

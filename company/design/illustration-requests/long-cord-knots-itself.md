@@ -6,7 +6,7 @@ status: open
 requested_by: cm-lifehacks   # brief: company/domains/briefs/lifehacks.md #5
 format: hero
 images: 1
-safety_class: none   # proposed; brief safety review pending
+safety_class: none   # safety review passed 2026-10-13 (company/reviews/long-cord-knots-itself/2026-10-13-safety.md)
 ---
 
 ## What the image must show

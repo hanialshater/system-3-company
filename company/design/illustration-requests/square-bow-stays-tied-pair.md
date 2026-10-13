@@ -6,7 +6,7 @@ status: open
 requested_by: cm-lifehacks   # brief: company/domains/briefs/lifehacks.md #4
 format: comparison
 images: 2
-safety_class: none   # proposed; brief safety review pending
+safety_class: none   # safety review passed 2026-10-13 (company/reviews/square-bow-stays-tied/2026-10-13-safety.md)
 ---
 
 ## What the images must show
@@ -25,4 +25,4 @@ The two panels of the side-by-side comparison, 4:3, 1024 × 768 each.
 2. "The same shoe with a twisted bow whose loops point toward the toe and the heel."
 
 ## Accuracy notes for the illustrator
-The only difference between the two images is the bow's orientation (across vs along) and the slight twist of the granny's knot centre. Same lace length, same tightness, same loop size. The fact-checker checks both against a knot reference before acceptance.
+The only difference between the two images is the bow's orientation (across vs along) and the slight twist of the granny's knot centre. Same lace length, same tightness, same loop size. Draw both from Fieggen's diagrams (Ian's Shoelace Site, Granny Knot page); the fact-checker checks both against that reference before acceptance.

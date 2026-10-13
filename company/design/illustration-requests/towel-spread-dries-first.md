@@ -6,7 +6,7 @@ status: open
 requested_by: cm-lifehacks   # brief: company/domains/briefs/lifehacks.md #1; the interaction designer may revise alt text
 format: hero
 images: 1
-safety_class: none   # proposed; brief safety review pending (lifehacks-safety-reviewer)
+safety_class: none   # safety review passed 2026-10-13 (company/reviews/towel-spread-dries-first/2026-10-13-safety.md)
 ---
 
 ## What the image must show

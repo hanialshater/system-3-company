@@ -6,7 +6,7 @@ status: open
 requested_by: cm-lifehacks   # brief: company/domains/briefs/lifehacks.md #1
 format: before-after
 images: 2
-safety_class: none   # proposed; brief safety review pending
+safety_class: none   # safety review passed 2026-10-13 (company/reviews/towel-spread-dries-first/2026-10-13-safety.md)
 ---
 
 ## What the images must show
