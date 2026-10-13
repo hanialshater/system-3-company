@@ -28,49 +28,63 @@
       "text": "The shortest path over the globe from New York (JFK) to Tokyo (Haneda) is about 10,880 km.",
       "support": "derivation",
       "source": "Great-circle distance on a sphere of radius 6,371.0088 km (kit EARTH_RADIUS_KM) with d3-geo geoDistance: 10,875.5 km, shown rounded to 10 km. Coordinates JFK 40.640 N 73.779 W, HND 35.549 N 139.780 E (OurAirports / airport authority; coordinates not independently checked). Script: artifacts/scratch/w1-tokyo.mjs.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c2",
       "text": "That shortest path bows north to about 70°N, passing over northern Alaska.",
       "support": "derivation",
       "source": "Sampling geoInterpolate(JFK, HND): northernmost point 69.85 N, 145.41 W; geoContains on the kit's 1:110m 'United States of America' shape is true there. 1:110m coastline is coarse; the point is inland of the Beaufort Sea coast by a small margin in this data.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c3",
       "text": "The straight line on this Mercator map, a line of constant compass bearing, is about 12,820 km, about 18% longer than the shortest path.",
       "support": "derivation",
       "source": "Rhumb-line length formula (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395, ch. 7 on Mercator loxodromes): 12,818.1 km the short way west; ratio 1.1786. A straight line on Mercator is a rhumb line because Mercator is conformal (same source).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c4",
       "text": "Great-circle routes via Honolulu and via Mexico City are about 14,200 km and 14,680 km.",
       "support": "derivation",
       "source": "Sum of two geoDistance legs, R = 6,371.0088 km: via Honolulu (21.307 N, 157.858 W) 14,201 km; via Mexico City (19.433 N, 99.133 W) 14,678 km. Gazetteer coordinates not independently checked.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c5",
       "text": "On a sphere the shortest path between two points is an arc of a great circle.",
       "support": "source",
       "source": "Standard spherical geometry; Snyder (1987) ch. 5; any text on geodesics on the sphere.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c6",
       "text": "Mercator stretches the map more the farther it is from the equator.",
       "support": "source",
       "source": "Snyder (1987) ch. 7: Mercator scale factor k = sec(latitude).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.shortest-way-to-tokyo.c7",
       "text": "Real flights also bend for winds and airspace; this lesson ignores them.",
       "support": "convention",
       "source": "Modelling choice stated to the learner. The lesson makes no claim about any airline's actual path.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
