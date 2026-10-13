@@ -1,0 +1,79 @@
+{
+  "slug": "growth-gap-seventy-years",
+  "title": "3% growth or 2%: does it matter?",
+  "hook": "Two countries start equal. One grows a point faster. How far apart in a lifetime?",
+  "domain": "economics",
+  "concept": "growth-rate-gap",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that growth compounds year on year",
+      "what a percentage growth rate is"
+    ],
+    "doesNotKnow": [
+      "that a one-point difference in growth rate changes income a lot over generations"
+    ]
+  },
+  "misconception": "3% growth and 2% growth are nearly the same.",
+  "objective": "The learner can explain that the growth gap compounds too, so after 70 years a country growing 3% a year is about twice as rich as one growing 2% (7.92 vs 4.00).",
+  "claims": [
+    {
+      "id": "economics.growth-gap-seventy-years.c1",
+      "text": "Growing 3% a year for 70 years multiplies income by 7.92; growing 2% multiplies it by 4.00.",
+      "support": "derivation",
+      "source": "1.03^70 = 7.918; 1.02^70 = 3.9996. Demo.tsx income().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.growth-gap-seventy-years.c2",
+      "text": "After 70 years the 3% country is 1.98 times as rich as the 2% country (about double).",
+      "support": "derivation",
+      "source": "7.918 / 3.9996 = 1.980. Demo.tsx ratio(1, 70).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.growth-gap-seventy-years.c3",
+      "text": "The gap compounds: 1.03 ÷ 1.02 ≈ 1.0098 a year, and 1.0098^70 ≈ 1.98.",
+      "support": "derivation",
+      "source": "1.03 / 1.02 = 1.009804; 1.009804^70 = 1.980.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.growth-gap-seventy-years.c4",
+      "text": "With a gap of 0.5 points (2.5% vs 2%) the ratio after 70 years is 1.41; with 2 points (4% vs 2%) it is 3.89.",
+      "support": "derivation",
+      "source": "1.025^70 / 1.02^70 = 1.408; 1.04^70 / 1.02^70 = 3.893. Shown in the reveal only for gaps the learner viewed at year 70.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.growth-gap-seventy-years.c5",
+      "text": "The lesson is a model: steady growth every year, invented rates, no shocks; not any country's record and not a forecast.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: steady growth, invented rates'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Country A grows 1 percentage point a year faster than country B, steadily. Over a long lifetime, the gap between them…",
+    "options": [
+      "stays about 1%",
+      "compounds, so A can end up about twice as rich",
+      "shrinks, because B catches up"
+    ],
+    "answer": 1,
+    "why": "Each year's growth builds on the last, so the ratio grows by about 1% a year, compounding to roughly double over 70 years."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
