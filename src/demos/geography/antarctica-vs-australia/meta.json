@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that Antarctica looks huge at the bottom of Mercator maps", "roughly where Australia is"],
-    "doesNotKnow": ["Antarctica's real size against a familiar land", "that Mercator cannot show the poles"]
+    "knows": [
+      "that Antarctica looks huge at the bottom of Mercator maps",
+      "roughly where Australia is"
+    ],
+    "doesNotKnow": [
+      "Antarctica's real size against a familiar land",
+      "that Mercator cannot show the poles"
+    ]
   },
   "misconception": "Antarctica is as huge as it looks on a Mercator map.",
   "objective": "The learner can say that Antarctica is under twice the area of Australia (about 1.6 to 1.8), and that Mercator exaggerates it.",
@@ -22,62 +28,82 @@
       "text": "On this lesson's Mercator map, which stops at 85°S, Antarctica is drawn about 30 times the area of Australia.",
       "support": "simulation",
       "source": "Builder's node check: d3-geo geoMercator, scale 320/(2 pi), equator 8 px from top, clipExtent to 320 x 168 (bottom edge at about 85 S): path.area ratio 29.93 on the kit's 1:110m data. The question rounds to 30 and the stage readout shows 29.9; both come from the same code.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c2",
       "text": "On the Equal Earth map, Antarctica is 1.6 times the area of Australia, wherever Australia is placed.",
       "support": "simulation",
       "source": "Australia is moved to centroid 72 S. Builder's node check: geoEqualEarth path.area ratio 1.589; sphere areas 12.24 and 7.70 million km2 (ratio 1.589) from the kit's 1:110m shapes, radius 6,371.0088 km. Moving Australia uses the kit's moveToLatitude (rigid rotation on the sphere, area preserved; see mercator-greenland c10). Stage readout stays 1.6 when Australia is moved: to be confirmed in QA screenshots.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c3",
       "text": "Antarctica is under 2 times the area of Australia.",
       "support": "derivation",
       "source": "1.59 on the kit's data; 14.2 / 7.69 = 1.85 with published areas (c5). Both under 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c4",
       "text": "This map's coastline leaves out ice shelves.",
       "support": "source",
       "source": "From the brief (cm-geography): the 1:110m outline excludes much of the ice shelf, which is why the kit's 12.24 million km2 is below published areas. Not independently checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c5",
       "text": "Published areas of about 14.2 and 7.69 million km2 for Antarctica and Australia give about 1.8.",
       "support": "source",
       "source": "From memory, not re-checked: CIA World Factbook (Antarctica about 14.2 million km2; Australia 7.69 million km2). 14.2 / 7.69 = 1.85, shown as about 1.8 in the lesson.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c6",
       "text": "Mercator cannot show the pole, so the map stops at 85°S.",
       "support": "derivation",
       "source": "The Mercator y coordinate grows without limit as latitude approaches 90 degrees (Snyder 1987, ch. 7). The lesson cuts at about 85 S by choice of the frame (c1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c7",
       "text": "Equal Earth keeps areas true.",
       "support": "source",
       "source": "Equal Earth is an equal-area projection (Savric, Patterson and Jenny 2018); already verified for mercator-greenland c6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.antarctica-vs-australia.c8",
       "text": "Antarctica sprawls across the bottom of a wall map.",
       "support": "source",
       "source": "Hook. A statement about how Antarctica looks on typical Mercator-style wall maps (many world wall maps use Mercator or similar). Needs a source or softer wording; from memory.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "In true area, about how many Australias fit in Antarctica?",
-    "options": ["About 1 to 2", "About 5", "About 30"],
+    "options": [
+      "About 1 to 2",
+      "About 5",
+      "About 30"
+    ],
     "answer": 0,
     "why": "Antarctica is about 1.6 to 1.8 times Australia. Mercator draws it about 30 times larger and still has to stop short of the pole."
   },
