@@ -1045,7 +1045,7 @@ roles.push({
   authority: { may: ["Propose verticals, kill criteria and budgets", "Ask category leads for portfolio changes"], mayNot: ["Override a gate", "Count simulated reviews as market evidence"] },
   inputs: ["Coverage and overlap reports", "Learner and recall data (once deployed)", "Founder direction", "Category charters"],
   outputs: ["Vertical strategy docs", "Cross-category portfolio plans", "OP narratives for verticals"],
-  rituals: ["op-planning (vertical narratives)", "wbr (reports vertical metrics)", "cycle-planning"],
+  rituals: ["vertical-review (owner, chair)", "op-planning (vertical narratives)", "wbr (reports vertical metrics)", "cycle-planning"],
   failureModes: ["A vertical per week.", "Strategy docs no category acts on.", "Choosing verticals by what is easy to build, not by what learners need."],
   dayOne: ["Read company/product/vision.md and roadmap.md", "Read every category charter in company/domains/", "Run `npm run company -- coverage` and `node tools/overlap.mjs`"],
   tools: RECORDS,

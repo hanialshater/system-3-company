@@ -49,6 +49,7 @@ May not:
 
 ## Rituals
 
+- vertical-review (owner, chair)
 - op-planning (vertical narratives)
 - wbr (reports vertical metrics)
 - cycle-planning
