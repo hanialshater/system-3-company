@@ -30,28 +30,36 @@
       "text": "On an open 5 x 5 grid, opposite corners are 8 steps apart: 4 across and 4 down, in any order.",
       "support": "derivation",
       "source": "With only up/down/left/right moves, each step changes the row or the column by 1, so the distance is |dx| + |dy| = 4 + 4 = 8, and any order of 4 rights and 4 downs achieves it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wave-from-the-corner.c2",
       "text": "Labelling cells ring by ring outward from the start (breadth-first search) gives each reachable cell its shortest distance from the start, with or without walls.",
       "support": "source",
       "source": "CLRS 3rd ed., 22.2, Theorem 22.5: BFS computes shortest-path distances in an unweighted graph. Walls remove vertices; the theorem still applies to the remaining grid.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wave-from-the-corner.c3",
       "text": "The wave labels each cell once, without trying any route.",
       "support": "source",
       "source": "BFS enqueues each vertex at most once (it is coloured on discovery), so the work is proportional to cells plus links: O(V + E). CLRS 3rd ed., 22.2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wave-from-the-corner.c4",
       "text": "On the open 5 x 5 grid there are 70 different shortest corner-to-corner routes.",
       "support": "derivation",
       "source": "A shortest route is an order of 4 rights and 4 downs: C(8, 4) = 8! / (4! 4!) = 70 (builder computed it in Node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

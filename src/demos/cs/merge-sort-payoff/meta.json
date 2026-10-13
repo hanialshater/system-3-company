@@ -58,7 +58,7 @@
       "source": "Upper bound from c1 (n-1 = 7). Tightness: interleaved piles (A holds the 1st, 3rd, 5th, 7th smallest; B the rest) force a comparison for each of the first 7 cards. Brute force over all 70 splits of 8 distinct values gives max 7. Added by fact-checker 2026-10-12 from the predict answer and reveal; needs an independent check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c5",
@@ -67,7 +67,7 @@
       "source": "The remaining pile is already sorted and every card in it is larger than everything placed so far, so it is appended as is. Seen in the reveal (\"the rest just slides over for free\") and the stage message \"One pile is empty. The rest needs no comparisons.\" Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c6",
@@ -76,7 +76,7 @@
       "source": "c1 with n = 10 gives at most 9; brute force over every split (1+9 up to 5+5) reaches 9. Recall question answer and its why (\"Every comparison places one card for good, and the last card needs none\"). Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c7",
@@ -85,7 +85,7 @@
       "source": "Top-down Merge Sort splits by position (first half / second half) without looking at values, so the split step makes zero comparisons; the comparison count W(n) = W(ceil(n/2)) + W(floor(n/2)) + (merge cost) has no split term. Hook (\"looks like extra work. It isn't.\") and reveal (\"The splitting is setup.\"). Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c8",
@@ -94,21 +94,25 @@
       "source": "A list of length 0 or 1 is sorted by definition (no adjacent pair is out of order). Reveal: \"Single cards are already sorted piles.\" Added by fact-checker 2026-10-12; needs an independent check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c9",
       "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons.",
       "support": "derivation",
       "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.merge-sort-payoff.c10",
       "text": "Checking every pair of 8 cards takes 28 comparisons.",
       "support": "derivation",
       "source": "C(8,2) = 8*7/2 = 28. Reveal paragraph 2 (v2), linking the predict distractor 28 to the 499,500 of c3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

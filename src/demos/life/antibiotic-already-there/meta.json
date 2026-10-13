@@ -28,35 +28,45 @@
       "text": "10 billion cells x 1 in 100 million = 100 resistant cells expected; 1 billion gives 10, 100 million gives 1, 10 million gives 0.1.",
       "support": "derivation",
       "source": "10^10 x 10^-8 = 100 (arithmetic, artifacts/scratch/w2life/check.mjs). The stage shows these expected counts, rounded, not a random draw.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.antibiotic-already-there.c2",
       "text": "Resistance mutations in bacteria arise at random before exposure to a selective agent; the agent selects the mutants that already exist.",
       "support": "source",
       "source": "Luria S.E. & Delbruck M. (1943) Genetics 28:491-511; Lederberg J. & Lederberg E.M. (1952) J. Bacteriol. 63:399-406 (replica plating).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.antibiotic-already-there.c3",
       "text": "1 in 100 million is an illustrative figure; real mutation frequencies vary widely between genes, drugs and species.",
       "support": "source",
       "source": "Drake J.W. (1991) PNAS 88:7160-7164 (spontaneous mutation rates); figure chosen in the brief (company/domains/briefs/life.md #17) as a convention.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.antibiotic-already-there.c4",
       "text": "With 0.1 resistant cells expected (10 million cells), a dish usually has none: if resistant cells occur independently, the chance of none is e^-0.1, about 90%.",
       "support": "derivation",
       "source": "Poisson approximation, P(0) = e^-0.1 = 0.905 (artifacts/scratch/w2life/check.mjs). Real counts fluctuate more (Luria-Delbruck jackpots), which this toy ignores.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.antibiotic-already-there.c5",
       "text": "The dish is a toy: the drug kills every non-resistant cell, the lawn is a texture rather than one dot per cell, and resistant cells sit at positions from an untuned seed (mulberry32(3)).",
       "support": "convention",
       "source": "Drawing choices in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,35 +28,45 @@
       "text": "With 15 births a day and each baby a boy with probability 1/2, the chance that more than 60% are boys (10 or more) is 4,944/32,768, about 15.1%, or about 55 days a year.",
       "support": "derivation",
       "source": "P(X >= 10), X ~ Binomial(15, 1/2) = (C(15,10)+...+C(15,15))/2^15 = (3003+1365+455+105+15+1)/32768 = 4944/32768 = 0.1509; x 365 = 55.1. Also computed by model.ts exactOver60(15).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.small-hospital-big-swings.c2",
       "text": "With 45 births a day, the chance that more than 60% are boys (28 or more) is about 6.8%, or about 25 days a year.",
       "support": "derivation",
       "source": "P(X >= 28), X ~ Binomial(45, 1/2) = 0.0676 (exact sum in node; model.ts exactOver60(45)); x 365 = 24.7.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.small-hospital-big-swings.c3",
       "text": "In the stage's seeded year, hospital A (15 a day) had 53 days over 60% boys and hospital B (45 a day) had 30.",
       "support": "simulation",
       "source": "src/demos/probability/small-hospital-big-swings/model.ts year(n), seed 1974 x 1000 + n. Re-run: 15 -> 53 days, 45 -> 30, 5 -> 73, 25 -> 46, 100 -> 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.small-hospital-big-swings.c4",
       "text": "The hospital question (15 vs 45 births a day, days with more than 60% boys) comes from Tversky and Kahneman, and most people they asked answered 'about the same'.",
       "support": "source",
       "source": "A. Tversky and D. Kahneman (1974), 'Judgment under uncertainty: Heuristics and biases', Science 185(4157): 1124-1131, section on insensitivity to sample size (originally D. Kahneman and A. Tversky (1972), 'Subjective probability: A judgment of representativeness', Cognitive Psychology 3: 430-454).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.small-hospital-big-swings.c5",
       "text": "Real births are about 51% boys; the lesson uses 50% as a simplification.",
       "support": "source",
       "source": "The human sex ratio at birth is about 105 boys per 100 girls (51.2% boys): United Nations, World Population Prospects (sex ratio at birth); the 50% figure is the convention of the original problem.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

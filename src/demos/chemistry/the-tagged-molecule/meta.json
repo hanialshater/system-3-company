@@ -28,28 +28,36 @@
       "text": "At chemical equilibrium the forward and reverse reactions continue at equal rates, so the amounts stay constant while individual molecules keep reacting (dynamic equilibrium).",
       "support": "source",
       "source": "IUPAC Gold Book, 'chemical equilibrium' (reversible process ultimately reaching a point where the rates in both directions are identical); Atkins & de Paula, Physical Chemistry (dynamic equilibrium); isotope-exchange experiments show the continuing traffic.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tagged-molecule.c2",
       "text": "In this model each tick 12 A become B and 12 B become A, about a quarter of the 100 molecules, so the counts stay at 50 and 50.",
       "support": "derivation",
       "source": "Simulation rule (seeded): 12 + 12 = 24 of 100 change per tick; net change 12 - 12 = 0. Each molecule has a 12/50 = 24% chance to change per tick.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tagged-molecule.c3",
       "text": "The simulation is a model: it forces exactly equal traffic each tick, while real mixtures balance on average and their counts jitter slightly.",
       "support": "derivation",
       "source": "Modelling simplification stated in the reveal. In a real system k_f[A] = k_b[B] holds for the average rates; fluctuations in counts scale roughly as the square root of the number of molecules (any statistical-mechanics text).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tagged-molecule.c4",
       "text": "The reveal's count of how many times the tagged molecules changed type is read from the learner's own run.",
       "support": "derivation",
       "source": "Counted from the stored history of each tagged molecule (number of adjacent ticks where its type differs).",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,20 +28,33 @@
       "text": "60 = 2 x 2 x 3 x 5, and every first split of 60 (2 x 30, 3 x 20, 4 x 15, 5 x 12, 6 x 10) ends in the primes 2, 2, 3, 5.",
       "support": "derivation",
       "source": "2x30 = 2x(5x(2x3)); 3x20 = 3x((2x2)x5); 4x15 = (2x2)x(3x5); 5x12 = 5x(3x(2x2)); 6x10 = (2x3)x(2x5). The stage computes the trees by trial division; recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.one-recipe-for-sixty.c2",
       "text": "The 6 x 10 tree splits into 2 x 3 and 2 x 5; the 4 x 15 tree splits into 2 x 2 and 3 x 5.",
       "support": "derivation",
       "source": "6 = 2 x 3, 10 = 2 x 5, 4 = 2 x 2, 15 = 3 x 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.one-recipe-for-sixty.c3",
       "text": "Every whole number above 1 can be written as a product of primes in exactly one way, apart from the order of the factors (the fundamental theorem of arithmetic).",
       "support": "source",
       "source": "Euclid, Elements VII.30-32 and IX.14; Hardy and Wright, An Introduction to the Theory of Numbers, ch. 2, Theorem 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.one-recipe-for-sixty.c4",
+      "text": "84 = 2 x 2 x 3 x 7, whether you start from 4 x 21 or 6 x 14.",
+      "support": "derivation",
+      "source": "Recall card in meta.json. Checked by the fact-checker: exhaustive factor trees of 84 give only {2,2,3,7}. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -27,35 +27,45 @@
       "text": "Each molecule of an ideal gas is on the left half 1 time in 2, independently of the others.",
       "support": "source",
       "source": "Ideal gas, non-interacting molecules, uniform position distribution (Atkins, Physical Chemistry, statistical thermodynamics / entropy of expansion).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.why-gas-spreads.c2",
       "text": "The chance that all 20 are on the left at one instant is 1 in 1,048,576, about one in a million.",
       "support": "derivation",
       "source": "(1/2)^20 = 1/1,048,576. Node script; Demo.tsx ODDS = 2^20.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.why-gas-spreads.c3",
       "text": "No force pushes the gas apart; there are vastly more spread-out arrangements than bunched ones.",
       "support": "source",
       "source": "Statistical interpretation of entropy, S = k ln W; free expansion of an ideal gas involves no intermolecular force (Atkins, Physical Chemistry, 'the statistical entropy').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.why-gas-spreads.c4",
       "text": "A real sample of gas holds about 10²³ molecules or more.",
       "support": "source",
       "source": "Avogadro constant 6.022 × 10²³ per mole (CODATA); a mole of gas at room conditions fills about 24 L.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.why-gas-spreads.c5",
       "text": "Stage: each button takes 1,000 independent snapshots from a seeded stream (seed 20, untuned); with 4 molecules about 62 of 1,000 are expected all-left.",
       "support": "simulation",
       "source": "1000/16 = 62.5 expected for 4; 1000/1024 ≈ 1 for 10; 1000/2^20 ≈ 0.001 for 20. Real snapshots close in time are correlated; the model treats them as independent.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,28 +28,36 @@
       "text": "A right triangle with short sides 3 and 4 has a long side of 5.",
       "support": "derivation",
       "source": "3^2 + 4^2 = 9 + 16 = 25 = 5^2. 7 would need 49 and 3.5 would need 12.25.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-squares-become-one.c2",
       "text": "Four copies of a right triangle with short sides a and b fit inside a square of side a + b in two ways: leaving one tilted c-by-c square empty, or leaving an a-by-a and a b-by-b square empty.",
       "support": "derivation",
       "source": "Corner layout: the triangles sit at the four corners with their right angles on the frame's corners; the four long sides form a quadrilateral with equal sides c and right angles (the two acute angles at each side point add to 90 degrees), so a square. Pairs layout: two triangles fill each a-by-b rectangle. Stage coordinates (a=3, b=4): T1 (0,0)(3,0)(0,4) moves by (0,3); T3 (7,7)(4,7)(7,3) by (-4,0); T4 (0,7)(0,4)(4,7) by (3,-4); T2 stays. Nelsen, Proofs Without Words (MAA, 1993), p. 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-squares-become-one.c3",
       "text": "Sliding the triangles without turning them does not change the empty area, so c x c = 9 + 16 = 25 and c = 5 for the 3-4 triangle.",
       "support": "derivation",
       "source": "Empty area in both layouts = (a+b)^2 - 4 x (ab/2) = 49 - 24 = 25 for a=3, b=4. Translations preserve area.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-squares-become-one.c4",
       "text": "The same packing works for any right triangle, so a^2 + b^2 = c^2 (the Pythagorean theorem).",
       "support": "derivation",
       "source": "c2 and c3 with general a, b: c^2 = (a+b)^2 - 2ab = a^2 + b^2. Nelsen, Proofs Without Words (MAA, 1993), p. 3; the theorem itself is Euclid, Elements I.47.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

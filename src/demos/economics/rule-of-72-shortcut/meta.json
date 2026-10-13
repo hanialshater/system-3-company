@@ -28,35 +28,45 @@
       "text": "With yearly compounding at rate r, the exact doubling time is ln 2 / ln(1 + r).",
       "support": "derivation",
       "source": "Solve (1 + r)^t = 2: t = ln 2 / ln(1 + r).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rule-of-72-shortcut.c2",
       "text": "At 9% the exact doubling time is about 8.04 years; 72 ÷ 9 = 8.",
       "support": "derivation",
       "source": "ln 2 / ln 1.09 = 0.6931 / 0.0862 = 8.04; check 1.09^8 = 1.993.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rule-of-72-shortcut.c3",
       "text": "100 ÷ 9 ≈ 11 years is the doubling time without compounding (9% of the original each year).",
       "support": "derivation",
       "source": "Simple interest: 100 + 9t = 200 ⇒ t = 11.1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rule-of-72-shortcut.c4",
       "text": "The rule of 72 is closest around 6% to 10%: at 3% it gives 24 years (exact 23.4); at 20% it gives 3.6 years (exact 3.8).",
       "support": "derivation",
       "source": "ln2/ln1.03 = 23.45 vs 24; ln2/ln1.06 = 11.90 vs 12; ln2/ln1.08 = 9.01 vs 9; ln2/ln1.10 = 7.27 vs 7.2; ln2/ln1.12 = 6.12 vs 6; ln2/ln1.20 = 3.80 vs 3.6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rule-of-72-shortcut.c5",
       "text": "The rule of 72 is an approximation for steady yearly compounding, not a forecast of any return.",
       "support": "source",
       "source": "Rule of 72 as an approximation of ln 2 / ln(1 + r); e.g. Brealey, Myers & Allen, Principles of Corporate Finance (future values), or any finance text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

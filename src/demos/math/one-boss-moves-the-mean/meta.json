@@ -28,27 +28,42 @@
       "text": "Salaries 30, 35, 40, 45, 50 (thousands) have mean 40 and median 40.",
       "support": "derivation",
       "source": "(30 + 35 + 40 + 45 + 50) / 5 = 200 / 5 = 40; middle of five sorted values is the third, 40.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.one-boss-moves-the-mean.c2",
       "text": "With the top salary at 500, the mean is (30 + 35 + 40 + 45 + 500) / 5 = 130 and the median is still 40.",
       "support": "derivation",
       "source": "650 / 5 = 130; sorted values 30, 35, 40, 45, 500, middle is 40. Recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.one-boss-moves-the-mean.c3",
       "text": "The median stays at 40 for every boss salary on the stage (50 to 500), and the mean is above four of the five salaries once the boss earns 100 or more.",
       "support": "derivation",
       "source": "Boss >= 45 keeps 40 in the middle. Mean = (150 + boss) / 5 > 45 iff boss > 75; stage steps are 50, 100, ..., so from 100 (mean 50).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.one-boss-moves-the-mean.c4",
       "text": "The median depends only on the order of the values, so one extreme value cannot drag it far; the mean depends on every value's size.",
       "support": "derivation",
       "source": "Definition of median (middle order statistic) and mean (sum / n). Breakdown point of the median is 50%, of the mean 0: Huber and Ronchetti, Robust Statistics (2nd ed., 2009), sec. 1.4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.one-boss-moves-the-mean.c5",
+      "text": "When one billionaire moves into a village, the median describes a typical villager's wealth better than the mean does.",
+      "support": "source",
+      "source": "Recall question in meta.json and its explanation. True as a statement about robustness (median unaffected by one extreme value; mean pulled up for everyone), but \"describes typical wealth better\" is a judgement that needs a citation (e.g. a statistics text on skewed data) or softer wording. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -109,7 +109,9 @@
       "text": "Each new person makes a pair with everyone already in the room: going from n to n + 1 people adds n new pairs.",
       "support": "derivation",
       "source": "n(n+1)/2 - n(n-1)/2 = n; e.g. 22 -> 23 people adds 22 pairs (231 -> 253). Reveal v2: \"Each new person makes a pair with everyone already there.\"",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.birthday-paradox.c11",
@@ -123,7 +125,9 @@
       "text": "If each of the 253 pairs in a group of 23 is treated as a separate 1-in-365 chance of a match, the chance that every pair misses is about 50%.",
       "support": "derivation",
       "source": "(364/365)^253 = 0.4995. This is an approximation (pairs are not independent); the exact chance of no match is 49.3% (c1). Demo.tsx computes ALL_MISS from the same constants that draw the ring.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

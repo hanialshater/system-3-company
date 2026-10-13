@@ -28,49 +28,63 @@
       "text": "With 10 cows, each cow earns 20 − 10 = 10, so each herder earns 10 and the group earns 100.",
       "support": "derivation",
       "source": "Model rule: each cow earns 20 − N. N = 10 → 10 per cow; 10 × 10 = 100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c2",
       "text": "If you alone add a second cow, there are 11 cows each earning 9, so you earn 18 and every other herder earns 9.",
       "support": "derivation",
       "source": "N = 11 → 20 − 11 = 9 per cow; 2 × 9 = 18.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c3",
       "text": "Adding a cow gives the adder a whole cow's earnings, while the crowding cost (each cow earns 1 less) is spread across all cows.",
       "support": "derivation",
       "source": "Model rule: adding one cow lowers every cow's earnings by 1; the adder gains the new cow's 20 − (N + 1) minus 1 per cow they already own.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c4",
       "text": "If the other herders each add a cow whenever it raises their own income, after the first round there are 18 cows earning 2 each, and the group earns 36 instead of 100. This happens whether you add a cow or keep.",
       "support": "simulation",
       "source": "Demo.tsx othersChoose(): a herder with 1 cow adds when 2 × (19 − N) > 20 − N, i.e. N < 18. If you add (N = 11), herders add up to N = 18; if you keep (N = 10), eight herders add, N = 18. 18 × (20 − 18) = 36.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c5",
       "text": "Group income n × (20 − n) is highest at 10 cows (100) and falls to 0 at 20 cows.",
       "support": "derivation",
       "source": "d/dn [n(20 − n)] = 20 − 2n = 0 at n = 10; 10 × 10 = 100; 20 × 0 = 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c6",
       "text": "Real communities often manage shared resources successfully with their own rules.",
       "support": "source",
       "source": "Elinor Ostrom, Governing the Commons: The Evolution of Institutions for Collective Action (Cambridge University Press, 1990).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.shared-pasture.c7",
       "text": "The lesson is a model with made-up numbers: no ownership, no rules, no communication between herders.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx (after Hardin, 'The Tragedy of the Commons', Science 162, 1968).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

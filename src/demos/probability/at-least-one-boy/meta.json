@@ -28,35 +28,45 @@
       "text": "Two-child families come in four equally likely kinds by older and younger child: boy-boy, boy-girl, girl-boy, girl-girl.",
       "support": "convention",
       "source": "Model assumption: each child independently a boy or girl with chance 1/2 (real birth ratios are about 105 boys to 100 girls, which shifts the answers only slightly).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.at-least-one-boy.c2",
       "text": "If you learn only that at least one child is a boy, the chance both are boys is 1/3.",
       "support": "derivation",
       "source": "Enumeration: the clue removes GG, leaving BB, BG, GB; 1 of 3 (exact() in src/demos/probability/at-least-one-boy/model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.at-least-one-boy.c3",
       "text": "If you learn that the older child is a boy, the chance both are boys is 1/2.",
       "support": "derivation",
       "source": "Enumeration: the clue leaves BB, BG; 1 of 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.at-least-one-boy.c4",
       "text": "The answer depends on how the information was obtained; the lesson uses the rule that you learn only the clue itself.",
       "support": "source",
       "source": "M. Gardner (1959), Mathematical Games, Scientific American, May and October 1959; see also Bar-Hillel & Falk (1982), Cognition 11: 109-122.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.at-least-one-boy.c5",
       "text": "Of the stage's 1,000 families, 744 have at least one boy and 240 of those are boy-boy (32%); 504 have an older boy and 240 of those are boy-boy (48%).",
       "support": "simulation",
       "source": "families() in model.ts, seed 1959, untuned (the first seed tried). Over seeds 1-500 the at-least-one share had middle 95% 29.9%-36.7% (median 33.3%) and the older-boy share 45.9%-54.6% (median 50.1%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

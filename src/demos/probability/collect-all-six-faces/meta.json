@@ -28,28 +28,36 @@
       "text": "On average it takes 14.7 rolls of a fair die to see all six faces.",
       "support": "derivation",
       "source": "Sum of geometric waits: 6/6 + 6/5 + 6/4 + 6/3 + 6/2 + 6/1 = 6 x H_6 = 6 x 2.45 = 14.7 (expectedTotal in src/demos/probability/collect-all-six-faces/model.ts). Reference: W. Feller, An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd ed. (1968), waiting times in sampling (the coupon collector's problem); chapter not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.collect-all-six-faces.c2",
       "text": "With one face missing, only 1 roll in 6 helps, so the last face alone takes 6 rolls on average; the waits for each new face are 1, 1.2, 1.5, 2, 3 and 6 rolls.",
       "support": "derivation",
       "source": "With k faces still missing a roll succeeds with chance k/6; a geometric wait with success chance p has mean 1/p = 6/k (expectedWaits in model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.collect-all-six-faces.c3",
       "text": "Over the stage's 1,000 simulated collections the average was 14.9 rolls, with average waits 1, 1.23, 1.50, 2.04, 2.85 and 6.25.",
       "support": "simulation",
       "source": "many() in model.ts, seed 6000, untuned (the first seed tried). Over 200 other seeds the 1,000-collection average ranged 14.18-15.26 (median 14.74). The first stage collection (seed 600) takes 12 rolls.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.collect-all-six-faces.c4",
       "text": "Only 13 of the 1,000 collections finished in six rolls; the exact chance is about 1.5%.",
       "support": "derivation",
       "source": "Six rolls showing six different faces: 6!/6^6 = 720/46,656 = 0.0154. The 13 is from many() (within6).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

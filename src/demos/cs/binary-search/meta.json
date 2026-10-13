@@ -67,21 +67,27 @@
       "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes.",
       "support": "derivation",
       "source": "With m candidates and the middle one guessed, a wrong answer leaves at most floor(m/2): the lesson's mid = floor((lo+hi)/2) leaves lo..mid-1 or mid+1..hi, sizes mid-lo and hi-mid, both <= floor(m/2) (checked for every m up to 2000 in artifacts/scratch/fc2-binary-search.mjs). Seen in the reveal (\"rules out half of it, whichever way the answer goes\"). The guess itself counts as ruled out. Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.binary-search.c6",
       "text": "A sorted list of 2,000 names needs at most 11 middle checks to find one name.",
       "support": "derivation",
       "source": "floor(log2 2000) + 1 = floor(10.97) + 1 = 11; exhaustive run of the lesson's middle rule over all 2,000 positions gives max 11. Recall question and its why (\"1,000 needs 10; doubling to 2,000 adds just one\"). Assumes one three-way check (less / equal / greater) per step, as in the guessing game. Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.binary-search.c7",
       "text": "After a wrong middle guess, what is left is the worst-case count or one fewer: with 1 to 1,000, \"lower than 500\" leaves 499 while \"higher than 500\" leaves 500.",
       "support": "derivation",
       "source": "With m candidates and mid = floor((lo+hi)/2), the two sides have mid-lo and hi-mid numbers: equal when m is odd, floor(m/2)-1 and floor(m/2) when m is even. For 1..1000, mid = 500: 1..499 (499) or 501..1000 (500). Reveal paragraph 1 (v2), added after learner finding 4 (499 on screen vs 500 in text).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

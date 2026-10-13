@@ -29,28 +29,36 @@
       "text": "If a score is skill plus luck with equal spread, and the luck is drawn fresh each test, the correlation between two tests is 0.5 and a group's expected test-2 score sits halfway between its test-1 average and the overall average.",
       "support": "derivation",
       "source": "X1 = S + L1, X2 = S + L2 with S, L1, L2 independent, equal variance v: cov(X1, X2) = v, var(Xi) = 2v, so r = 0.5. For jointly normal scores E[X2 | X1] = mean + 0.5 (X1 - mean); averaging over any group selected on X1 gives the halfway rule.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.praise-then-slump.c2",
       "text": "In the simulated class of 1,000, the top 10% on test 1 averaged about 76 and then about 62 on test 2, with an overall average near 50.",
       "support": "simulation",
       "source": "src/demos/probability/praise-then-slump/model.ts, seed 1886: score = 50 + 15 (skill + luck)/sqrt(2), rounded and clipped to 0-100. Re-run: class means 49.6 and 49.5, r = 0.48; top 10% 76.1 -> 62.4; top 1% 88.9 -> 71.9; bottom 10% 23.7 -> 37.6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.praise-then-slump.c3",
       "text": "The bottom scorers on test 1 score higher on average on test 2, for the same reason.",
       "support": "simulation",
       "source": "Same model and seed: bottom 10% 23.7 -> 37.6; bottom 50% 37.4 -> 43.6. Follows from the halfway rule in c1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.praise-then-slump.c4",
       "text": "Francis Galton named the effect 'regression' in 1886, from the heights of parents and their adult children.",
       "support": "source",
       "source": "F. Galton (1886), 'Regression towards mediocrity in hereditary stature', Journal of the Anthropological Institute of Great Britain and Ireland 15: 246-263.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

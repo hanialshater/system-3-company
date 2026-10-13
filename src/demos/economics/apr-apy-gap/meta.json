@@ -27,42 +27,54 @@
       "text": "12% a year added as 1% each month turns $100 into about $112.68 after a year.",
       "support": "derivation",
       "source": "100 × 1.01^12 = 112.6825. Demo.tsx endValue(12).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.apr-apy-gap.c2",
       "text": "Added yearly, quarterly, monthly or daily, a quoted 12% gives effective rates of 12.00%, 12.55%, 12.68% and 12.75%.",
       "support": "derivation",
       "source": "(1 + 0.12/n)^n − 1 at n = 1, 4, 12, 365: 0.120000, 0.125509, 0.126825, 0.127475.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.apr-apy-gap.c3",
       "text": "The extra over plain 12% is interest on interest: each month's 1% is taken on a balance that already includes earlier interest.",
       "support": "derivation",
       "source": "Month k adds 1% of 100 × 1.01^(k−1), which exceeds $1 for k ≥ 2; the sum of the excess is 12.6825 − 12 = 0.6825.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.apr-apy-gap.c4",
       "text": "Adding interest more often helps less and less: even continuously, 12% a year gives only about 12.75%.",
       "support": "derivation",
       "source": "lim (1 + 0.12/n)^n = e^0.12 = 1.127497, so 12.7497%; daily (12.7475%) is within 0.003 points of it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.apr-apy-gap.c5",
       "text": "Names vary: APR is often the quoted rate and APY or AER the effective one.",
       "support": "source",
       "source": "US Truth in Savings Act (Regulation DD) defines Annual Percentage Yield as the effective annual rate on deposits; UK uses AER. Usage of 'APR' differs by product (for loans it includes some fees). Brief asks to say 'quoted rate vs effective rate'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.apr-apy-gap.c6",
       "text": "The lesson is a model: one deposit, no fees, a 365-day year, the rate held fixed.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation, shown on the stage chip and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

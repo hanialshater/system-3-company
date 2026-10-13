@@ -28,28 +28,36 @@
       "text": "At 8% a year compounded yearly, money doubles in about 9 years: 1.08^9 = 1.999.",
       "support": "derivation",
       "source": "1.08^9 = 1.99900; exact doubling time ln 2 / ln 1.08 = 9.006 years. Recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.seventy-two-doubling.c2",
       "text": "With simple interest at 8%, where only the first 100 earns, doubling takes 100 / 8 = 12.5 years.",
       "support": "derivation",
       "source": "100 (1 + 0.08 t) = 200 gives t = 12.5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.seventy-two-doubling.c3",
       "text": "The exact doubling time at rate r compounded yearly is ln 2 / ln(1 + r); the stage plots 100 (1 + r)^t year by year.",
       "support": "derivation",
       "source": "Solve (1 + r)^T = 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.seventy-two-doubling.c4",
       "text": "72 / rate gives 9 at 8%, 12 at 6% and 6 at 12%, and is within about 0.2 years of the exact doubling time for every whole-number rate from 5% to 20%.",
       "support": "derivation",
       "source": "Tabulated in node for whole rates 2..20%: abs(72/r - ln2/ln(1+r)) = 1.00 (2%), 0.55 (3%), 0.33 (4%), then at most 0.20 for 5% to 20% (0.19 at 5%, 0.20 at 20%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

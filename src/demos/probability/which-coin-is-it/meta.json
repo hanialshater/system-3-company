@@ -28,42 +28,54 @@
       "text": "After k heads in a row the chance the coin is two-headed is 2^k / (2^k + 1): 67% after one head, 80% after two, 89% after three.",
       "support": "derivation",
       "source": "Bayes' rule: P(2H | k heads) = 0.5 x 1 / (0.5 x 1 + 0.5 x 0.5^k) = 2^k / (2^k + 1). k = 3: 8/9 = 88.9%. Computed by belief() in src/demos/probability/which-coin-is-it/model.ts, which also draws the line.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.which-coin-is-it.c2",
       "text": "Each head doubles the odds for the two-headed coin, because heads is certain for it and a half chance for the fair coin: 1 to 1, 2 to 1, 4 to 1, 8 to 1.",
       "support": "derivation",
       "source": "Odds form of Bayes' rule: posterior odds = prior odds x likelihood ratio; the likelihood ratio of one head is 1 / 0.5 = 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.which-coin-is-it.c3",
       "text": "A single tails proves the coin is the fair one.",
       "support": "derivation",
       "source": "A two-headed coin cannot land tails, so P(tails | 2H) = 0 and the posterior for 2H is 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.which-coin-is-it.c4",
       "text": "Before any flip the chance is 50%, because the coin is pulled at random from a bag of two.",
       "support": "convention",
       "source": "Model assumption stated in the question: one of two coins, chosen at random (PRIOR = 0.5 in model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.which-coin-is-it.c5",
       "text": "In the 1,000 simulated pulls, 578 showed three heads and 505 of those (87%) were the two-headed coin.",
       "support": "simulation",
       "source": "test() in model.ts, seed 2024 (untuned: the first seed tried). Across seeds 1-500 the share ranged from 85.0% to 92.6% (middle 95%: 86.3%-91.6%), median 88.9%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.which-coin-is-it.c6",
       "text": "The coins the learner pulls on the stage are a seeded sequence; the first is the two-headed coin and the second is fair and shows tails on its second flip.",
       "support": "simulation",
       "source": "pulls() in model.ts, seed 9. Chosen seed: picked so the first coin can show three heads (the key state) and the second shows an early tails. The line itself depends only on the flips seen, not on which coin it is.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,27 +28,42 @@
       "text": "With A at x = 0 and B at x = 4 the one-nearest-neighbour border is at x = 2; with A at x = -2 it is at x = 1, halfway between. A moved 2 and the border moved 1.",
       "support": "derivation",
       "source": "On the axis the border is the midpoint: (0 + 4)/2 = 2, (-2 + 4)/2 = 1. Reproduced by axisCrossing() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.border-follows-point.c2",
       "text": "In two dimensions the border between two points is the line through their midpoint at right angles to the line joining them, so lifting A off the axis tilts it.",
       "support": "derivation",
       "source": "|q - A|² = |q - B|²  ⟺  2(B - A)·q = |B|² - |A|², a line perpendicular to B - A through (A + B)/2. Implemented by sideOfA() in Demo.tsx; the axis crossing is (16 - ax² - ay²) / (2(4 - ax)).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.border-follows-point.c3",
       "text": "With many points, a nearest-neighbour border is stitched from such pieces.",
       "support": "source",
       "source": "1-NN decision regions are unions of Voronoi cells, whose edges lie on perpendicular bisectors: de Berg, Cheong, van Kreveld & Overmars 2008, Computational Geometry, 3rd ed., ch. 7; Hastie, Tibshirani & Friedman 2009, §13.3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.border-follows-point.c4",
       "text": "The toy has one training point per class: A (blue, movable) and B (orange, fixed at (4, 0)).",
       "support": "convention",
       "source": "The lesson's own setup in Demo.tsx (B, sliders for A from x = -4 to 0 and y = -2 to 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.border-follows-point.c5",
+      "text": "With many points, moving any training point near a nearest-neighbour border moves the decision for every spot around it.",
+      "support": "derivation",
+      "source": "Reveal paragraph 2. CONCERN from the fact-checker: in 1-NN, nudging one training point only changes the class of spots that switch nearest neighbour (the sliver between its old and new Voronoi cell); in a 6-point test, moving one point by 0.5 changed the class of only 0.8% of the plane. 'Every spot around it' overstates; suggest 'moves the decision for the spots that were closest to it' or similar. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

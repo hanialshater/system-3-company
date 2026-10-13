@@ -28,49 +28,63 @@
       "text": "With a fixed yearly return, a balance after t years is deposit × (1 + rate)^t.",
       "support": "derivation",
       "source": "Each year multiplies the balance by (1 + r). Standard future-value result, e.g. Brealey, Myers & Allen, Principles of Corporate Finance, ch. 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c2",
       "text": "$10,000 at 7% a year for 30 years grows to about $76,123.",
       "support": "derivation",
       "source": "10,000 × 1.07^30 = 76,122.55.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c3",
       "text": "Net of a 1% fee (6% a year), the same $10,000 grows to about $57,435 in 30 years.",
       "support": "derivation",
       "source": "10,000 × 1.06^30 = 57,434.91.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c4",
       "text": "The 1% fee costs about $18,688, about 24.5% of the no-fee balance.",
       "support": "derivation",
       "source": "76,122.55 − 57,434.91 = 18,687.64; 18,687.64 / 76,122.55 = 0.2455.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c5",
       "text": "The stage readouts for other fees use the same formula: net balance = 10,000 × (1.07 − fee)^30; e.g. a 0.5% fee costs about 13.1% and a 2% fee about 43.2% of the no-fee balance.",
       "support": "derivation",
       "source": "10,000 × 1.065^30 = 66,143.6 → 1 − 66,143.6/76,122.55 = 0.131; 10,000 × 1.05^30 = 43,219.4 → 1 − 43,219.4/76,122.55 = 0.432.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c6",
       "text": "Money taken by a fee no longer earns a return, so the dollar gap widens fastest in the later years.",
       "support": "derivation",
       "source": "The gap 10,000 × (1.07^t − 1.06^t) grows each year by 10,000 × (0.07 × 1.07^t − 0.06 × 1.06^t), which increases with t.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-drag-gap.c7",
       "text": "The lesson is a model: a steady 7% gross return with the fee subtracted from it each year, no deposits, withdrawals or taxes. Real returns vary. It is not investment advice.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx (the brief's net-6% convention; charging 1% of the balance after growth, 1.07 × 0.99, gives a slightly larger 26%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

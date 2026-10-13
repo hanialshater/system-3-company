@@ -28,28 +28,36 @@
       "text": "2^10 = 1024, which is about 1000.",
       "support": "derivation",
       "source": "Ten doublings of 1: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.digits-are-logs.c2",
       "text": "2^100 = 1,267,650,600,228,229,401,496,703,205,376, which has 31 digits.",
       "support": "derivation",
       "source": "Exact BigInt arithmetic in node: (1n << 100n).toString() has length 31. The stage computes the same value the same way.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.digits-are-logs.c3",
       "text": "After 10, 20, ..., 100 doublings the number has 4, 7, 10, ..., 31 digits: each 10 doublings add exactly 3 digits in this range.",
       "support": "derivation",
       "source": "Digits of 2^(10k) = floor(10k x 0.30103) + 1 = 3k + 1 for k = 1..10 (and up to k = 33). Recomputed with BigInt in node: 4,7,10,13,16,19,22,25,28,31.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.digits-are-logs.c4",
       "text": "log10(2^100) = 100 x log10(2) = 100 x 0.301, about 30.1; a whole number's digit count is the whole part of its base-10 logarithm plus one.",
       "support": "derivation",
       "source": "log10(2) = 0.30103 (node Math.log10). A number N with d digits satisfies 10^(d-1) <= N < 10^d, so d = floor(log10 N) + 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

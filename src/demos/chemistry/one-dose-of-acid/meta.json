@@ -30,42 +30,54 @@
       "text": "Acetic acid has a pKa of about 4.76 at 25 °C, so a buffer with equal amounts of acetic acid and acetate starts at pH 4.76.",
       "support": "source",
       "source": "CRC Handbook of Chemistry and Physics, 'Dissociation constants of organic acids and bases': acetic acid pKa 4.756 at 25 °C. Equal amounts give log10(1) = 0, so pH = pKa.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.one-dose-of-acid.c2",
       "text": "A buffer's pH follows the ratio of base to acid: pH = pKa + log10([acetate]/[acetic acid]).",
       "support": "source",
       "source": "Henderson-Hasselbalch equation; Atkins & de Paula, Physical Chemistry (acid-base equilibria), or Harris, Quantitative Chemical Analysis, ch. 8. Valid here because both concentrations stay far above [H+].",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.one-dose-of-acid.c3",
       "text": "After 0.010 mol of strong acid the buffer ratio is 0.09 : 0.11 and its pH is about 4.67, a fall of under 0.1.",
       "support": "derivation",
       "source": "Each H+ converts one acetate to acetic acid: acetate 0.10 - 0.010 = 0.090, acid 0.10 + 0.010 = 0.110 mol/L. pH = 4.76 + log10(0.090/0.110) = 4.76 - 0.087 = 4.673 (node script).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.one-dose-of-acid.c4",
       "text": "0.010 mol of strong acid in 1 L of pure water takes it from pH 7 to pH 2, five units; the first 0.001 mol alone takes it to pH 3.",
       "support": "derivation",
       "source": "Strong acid dissociates fully: [H+] = 0.010 mol/L, pH = 2.00; at 0.001 mol, pH = 3.00. Stage solves [H+] = n + Kw/[H+] with Kw = 1.0e-14 at 25 °C (pure water starts at pH 7.00). Ignores dissolved CO2, which makes real 'pure' water slightly acidic.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.one-dose-of-acid.c5",
       "text": "The lesson ignores the small volume the acid itself adds (each 0.001 mol dose is treated as adding no volume to the litre).",
       "support": "derivation",
       "source": "Modelling simplification stated on file. With concentrated acid (e.g. 12 mol/L HCl, 0.083 mL per dose) the volume error is under 0.1%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.one-dose-of-acid.c6",
       "text": "Blood is buffered and stays near pH 7.4.",
       "support": "source",
       "source": "Normal arterial blood pH 7.35-7.45, held mainly by the bicarbonate buffer: Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed., ch. 31 (acid-base regulation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

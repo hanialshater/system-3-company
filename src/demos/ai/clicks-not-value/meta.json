@@ -28,27 +28,42 @@
       "text": "The toy's formula is invented: an article has 10 units of effort split between hype h and substance s; clicks = 2h + s and reader value = s. The article starts at 2 hype, 8 substance (12 clicks, value 8).",
       "support": "convention",
       "source": "The lesson's own model in Demo.tsx (EFFORT, START_HYPE, clicks(), value()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.clicks-not-value.c2",
       "text": "With h + s = 10, clicks = h + 10, so each unit moved from substance to hype gains one click and loses one unit of value; clicks are highest at h = 10: 20 clicks, reader value 0.",
       "support": "derivation",
       "source": "Substitute s = 10 − h. Reproduced by running runToEnd(2, \"clicks\") from Demo.tsx: h = 10, clicks 20, value 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.clicks-not-value.c3",
       "text": "The optimiser moves one unit of effort per step in whichever direction raises its target; aimed at value it ends at 10 value and 10 clicks.",
       "support": "derivation",
       "source": "step() and runToEnd() in Demo.tsx; runToEnd(2, \"value\") = 0, clicks(0) = 10, value(0) = 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.clicks-not-value.c4",
       "text": "The pattern is known as Goodhart's law, often stated as “when a measure becomes a target, it ceases to be a good measure”.",
       "support": "source",
       "source": "The wording is Strathern 1997, “‘Improving ratings’: audit in the British University system”, European Review 5(3), 305–321, paraphrasing Goodhart 1975, “Problems of Monetary Management: the U.K. Experience”; variants classified in Manheim & Garrabrant 2018, “Categorizing Variants of Goodhart's Law”, arXiv:1803.04585.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.clicks-not-value.c5",
+      "text": "Clicks do reward substance (one click per unit), so clicks and value look related, and a measure that tracks the goal while nobody pushes on it can stop tracking it once something optimises it.",
+      "support": "derivation",
+      "source": "Reveal paragraphs 1-2. In the toy clicks = 2h + s rewards s by one click per unit, true. But with effort fixed at 10, clicks = h + 10 = 20 - s, so across all splits clicks and value are perfectly negatively correlated (r = -1, fact-checker script cv.mjs): the toy never shows clicks tracking value before optimisation. The first half is true of the formula; the second half is general Goodhart-style reasoning supported by c4. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -28,48 +28,69 @@
       "text": "The toy has three candidate next words for “The cat sat on the …”: mat, sofa and moon, with invented scores 2, 1 and 0.",
       "support": "convention",
       "source": "The lesson's own model in Demo.tsx (WORDS).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c2",
       "text": "Each word's chance is proportional to e^(score ÷ temperature), divided by the sum over the candidate words (softmax with temperature).",
       "support": "source",
       "source": "Hinton, Vinyals & Dean 2015, “Distilling the Knowledge in a Neural Network”, arXiv:1503.02531, eq. 1 (q_i = exp(z_i/T) / Σ_j exp(z_j/T)); implemented in probs() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c3",
       "text": "For scores 2, 1, 0 the top word's chance is 98.2% at temperature 0.25, 86.7% at 0.5, 66.5% at 1, 50.6% at 2 and 41.9% at 4.",
       "support": "derivation",
       "source": "e.g. T = 0.5: e⁴ : e² : e⁰ = 54.6 : 7.39 : 1, so 54.6 / 63.0 = 0.867. All five reproduced by running probs() from Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c4",
       "text": "Dividing the scores by 0.5 doubles the gaps between them, and bigger gaps give more lopsided chances; as the temperature grows the chances approach a third each.",
       "support": "derivation",
       "source": "Ratios of chances are e^((s_i − s_j)/T), so halving T squares each ratio; as T → ∞ every ratio → 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c5",
       "text": "Temperature never adds or removes a word: at every temperature the same three words have a chance above zero.",
       "support": "derivation",
       "source": "e^(s/T) > 0 for every finite score and T > 0, and the candidate list is fixed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c6",
       "text": "“Draw 20” samples 20 words using these chances (seeded random numbers).",
       "support": "convention",
       "source": "draw20() in Demo.tsx, seed 31.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.temperature-reshapes.c7",
       "text": "About real systems: language models sample text with the same temperature setting, dividing the next-token scores by the temperature before the softmax.",
       "support": "source",
       "source": "Holtzman, Buys, Du, Forbes & Choi 2020, “The Curious Case of Neural Text Degeneration”, ICLR 2020, arXiv:1904.09751 (describes sampling with temperature, dividing logits by t before the softmax, as a standard decoding method). Section number not checked: fact-checker to confirm.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.temperature-reshapes.c8",
+      "text": "A hot model is not more inventive; it just picks unlikely words more often.",
+      "support": "source",
+      "source": "Reveal paragraph 2. As a statement about the toy it is true (temperature only reweights fixed scores, c5). As a statement about real language models it is an interpretation: Peeperkorn et al. 2024 (ICCC), 'Is temperature the creativity parameter of large language models?', report, as I recall and have not re-read, only a weak correlation of temperature with novelty and a moderate one with incoherence, which supports 'not much more inventive' but not a flat 'not'. Needs a source or softer wording ('does not make the model learn anything new'). Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

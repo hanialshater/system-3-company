@@ -28,35 +28,45 @@
       "text": "The toy is trained on three true sentences (Paris is the capital of France. Rome is the capital of Italy. Madrid is the capital of Spain.) and picks the next word from the words that followed its last 1, 2 or 5 words in training, in proportion to their counts.",
       "support": "convention",
       "source": "The lesson's own model in Demo.tsx (CORPUS, nextWords(), ask30()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.true-text-false-claims.c2",
       "text": "With 1 word of memory the model sees only “of”, which was followed by France, Italy and Spain once each, so 2 completions in 3 are false. With 2 words (“capital of”) the options are the same.",
       "support": "derivation",
       "source": "Count in the three sentences. Reproduced by running nextWords(1) and nextWords(2) from Demo.tsx: France 1, Italy 1, Spain 1 (also for 3 and 4 words).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.true-text-false-claims.c3",
       "text": "With all 5 words of the prompt in memory, the only continuation is Italy, so every answer is true, and the model is repeating a training sentence word for word.",
       "support": "derivation",
       "source": "“Rome is the capital of” occurs once in the training text, followed by Italy. nextWords(5) in Demo.tsx returns only Italy.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.true-text-false-claims.c4",
       "text": "“Ask 30 times” draws 30 completions with seeded random numbers; the first press with 1 word of memory gives 22 false of 30, close to the expected 20.",
       "support": "simulation",
       "source": "ask30() in Demo.tsx with seed 2024; successive presses give 22, 20, 17, 20, 25 false (script run of the lesson's code).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.true-text-false-claims.c5",
       "text": "About real systems: real language models also generate fluent but false statements, called hallucinations.",
       "support": "source",
       "source": "Ji et al. 2023, “Survey of Hallucination in Natural Language Generation”, ACM Computing Surveys 55(12), article 248.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

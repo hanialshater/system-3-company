@@ -28,49 +28,63 @@
       "text": "A level monthly payment on a loan P at monthly rate r over n months is P·r / (1 − (1 + r)^−n).",
       "support": "derivation",
       "source": "Present value of an annuity solved for the payment. Standard, e.g. Brealey, Myers & Allen, Principles of Corporate Finance, ch. 2 (annuities).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c2",
       "text": "$20,000 at 6% a year (0.5% a month) over 5 years: $386.66 a month, $3,199 total interest.",
       "support": "derivation",
       "source": "20,000 × 0.005 / (1 − 1.005^−60) = 386.66; 386.66 × 60 = 23,199.36; − 20,000 = 3,199.36.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c3",
       "text": "Over 7 years: $292.17 a month, $4,542 total interest.",
       "support": "derivation",
       "source": "20,000 × 0.005 / (1 − 1.005^−84) = 292.17; × 84 = 24,542.37; − 20,000 = 4,542.37.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c4",
       "text": "Stretching from 5 to 7 years cuts the payment by about $95 a month and adds about $1,343 of interest.",
       "support": "derivation",
       "source": "386.66 − 292.17 = 94.49; 4,542.37 − 3,199.36 = 1,343.01.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c5",
       "text": "The stage's payments and interest for other terms (2 to 8 years) use the same formula, e.g. 2 years: $886.41 a month, $1,274 interest; 8 years: $262.83 a month, $5,232 interest.",
       "support": "derivation",
       "source": "n = 24: 886.41 × 24 − 20,000 = 1,273.89; n = 96: 262.83 × 96 − 20,000 = 5,231.55.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c6",
       "text": "A longer loan repays the balance more slowly, so more money stays owed each month and is charged interest.",
       "support": "derivation",
       "source": "Monthly interest = 0.5% × balance still owed; with a smaller payment the balance falls more slowly, so the sum of monthly interest over more months is larger.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.longer-loan-cost.c7",
       "text": "The lesson is a model: a fixed, illustrative 6% rate, level monthly payments, no fees. It is not a current market rate.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

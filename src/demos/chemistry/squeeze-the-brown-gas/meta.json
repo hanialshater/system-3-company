@@ -27,42 +27,54 @@
       "text": "N₂O₄ is colourless and NO₂ is brown, and the two are in equilibrium: N₂O₄ ⇌ 2 NO₂.",
       "support": "source",
       "source": "Brown et al., Chemistry: The Central Science, ch. 15 (the N₂O₄/NO₂ equilibrium); Greenwood & Earnshaw, Chemistry of the Elements, ch. 11.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.squeeze-the-brown-gas.c2",
       "text": "At 25 °C the equilibrium constant Kp is about 0.15 bar.",
       "support": "derivation",
       "source": "Kp = exp(−ΔG°/RT), ΔG° = 2 ΔfG°(NO₂) − ΔfG°(N₂O₄) = 2(51.31) − 97.89 = 4.73 kJ/mol (NBS/NIST tables via Atkins, Physical Chemistry, data section) → Kp = 0.148 at 298 K. Kc = Kp/RT = 0.00597 mol/L.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.squeeze-the-brown-gas.c3",
       "text": "Halving the volume lowers the NO₂ share of molecules from about 31% to about 24%.",
       "support": "derivation",
       "source": "Ideal gas, 298 K, starting at about 1 bar total (0.0340 mol/L N₂O₄ before splitting). Solve Kc = 4a²c/(1 − a): a = 0.189 at c, 0.138 at 2c; share 2a/(1+a) = 32% → 24%. Stage rounds to 60 N₂O₄ units: 22 NO₂ + 49 N₂O₄ (31%) → 16 + 52 (24%). Node script.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.squeeze-the-brown-gas.c4",
       "text": "Right after the squeeze the gas is darker at once, then fades part way back but stays darker than at the start.",
       "support": "derivation",
       "source": "Brownness follows NO₂ per volume: 22/V before, 44/V the instant after halving, 32/V at the new equilibrium (same model as c3).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.squeeze-the-brown-gas.c5",
       "text": "Squeezed, the mixture shifts toward the side with fewer gas molecules and only partly undoes the squeeze.",
       "support": "source",
       "source": "Le Chatelier's principle for pressure changes (Atkins, Physical Chemistry, 'response of equilibria to pressure'; Brown et al. ch. 15).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.squeeze-the-brown-gas.c6",
       "text": "Stage: the plunger halves the volume at constant 25 °C; dot positions come from a seeded generator (seed 4, untuned, positions only).",
       "support": "convention",
       "source": "Demo.tsx. Real compression warms a gas; the model holds temperature fixed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

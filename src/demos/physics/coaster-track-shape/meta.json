@@ -30,35 +30,45 @@
       "text": "Without friction, a cart that starts from rest and drops 5 m reaches 9.90 m/s at the bottom, whatever the track's shape.",
       "support": "derivation",
       "source": "Energy conservation m g h = 1/2 m v^2 gives v = sqrt(2 g h) = sqrt(2 x 9.81 x 5) = 9.905 m/s. The lesson does not use this formula: it computes each of 240 straight pieces with v1^2 = v0^2 + 2 g (drop / length) length, and gets 9.905 m/s for all 30 tracks; an independent RK4 integration of s'' = -g dy/ds agrees (builder's check script).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.coaster-track-shape.c2",
       "text": "The time to the bottom does depend on the track: from about 1.2 s for the steepest track to about 11 s for the longest, highest-bulging one.",
       "support": "simulation",
       "source": "Piecewise-constant-acceleration computation, t = 2 l / (v0 + v1) per piece: straight 3 m ramp 1.18 s (analytic 2 sqrt(3^2 + 5^2) / 9.905 = 1.18 s); straight 20 m ramp 4.16 s (analytic 4.16 s); 3 m dipping 1.16 s; 20 m bulging (c = 0.3) 10.82 s, matched by RK4 at 1e-5 s.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.coaster-track-shape.c3",
       "text": "Steep pieces of track speed the cart up hard but briefly; gentle pieces speed it up gently for longer.",
       "support": "derivation",
       "source": "Along a piece at angle theta, acceleration is g sin(theta) over a length h / sin(theta), so the speed gained, sqrt(v0^2 + 2 g h) - v0, depends only on the drop h.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.coaster-track-shape.c4",
       "text": "The mass of the cart does not matter.",
       "support": "derivation",
       "source": "m cancels in m g h = 1/2 m v^2 and in m a = m g sin(theta).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.coaster-track-shape.c5",
       "text": "The cart is idealised: no friction, no air drag and no energy in spinning wheels (a sliding block); the track only pushes at right angles to itself.",
       "support": "convention",
       "source": "Stated idealisation. With rolling wheels some energy goes into rotation and the final speed is a little lower (Halliday, Resnick and Walker, ch. 11, rolling).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -30,49 +30,63 @@
       "text": "In simple collision theory the share of collisions with at least the barrier energy Ea is e^(−Ea/RT), and the rate is proportional to it (the Arrhenius form k = A e^(−Ea/RT)).",
       "support": "source",
       "source": "Atkins & de Paula, Physical Chemistry, chapters on reaction rates (Arrhenius equation) and collision theory (fraction of collisions with energy along the line of centres >= Ea is exp(-Ea/RT)).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c2",
       "text": "R = 8.314 J/(mol K).",
       "support": "source",
       "source": "CODATA 2018: R = 8.314462618 J mol^-1 K^-1 (exact since the 2019 SI redefinition, as N_A x k).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c3",
       "text": "With Ea = 50 kJ/mol, warming from 298 K to 308 K multiplies the rate by about 1.9.",
       "support": "derivation",
       "source": "ratio = exp[(Ea/R)(1/298 - 1/308)] = exp[6014 x 1.0895e-4] = exp(0.655) = 1.93 (node script). Assumes A unchanged.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c4",
       "text": "About 1.7 collisions per billion clear a 50 kJ/mol barrier at 298 K and about 3.3 per billion at 308 K.",
       "support": "derivation",
       "source": "exp(-50000 / (8.314 x 298)) = 1.72e-9; exp(-50000 / (8.314 x 308)) = 3.31e-9 (node script).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c5",
       "text": "Ea/RT is about 20 at 298 K, so a 3% change in T is about a 0.65 change in the exponent, and e^0.65 ≈ 1.9.",
       "support": "derivation",
       "source": "50000 / (8.314 x 298) = 20.2; 20.2 x (1 - 298/308) = 0.655; e^0.655 = 1.93.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c6",
       "text": "The chart's right side is drawn 250 million times taller than the left, and its energy axis is broken between 15 and 48 kJ/mol; the left side shows the crowd at 298 K (dashed) and now.",
       "support": "derivation",
       "source": "Representation choice. Heights are f(E) = exp(-E/RT)/RT relative to f(0) at 298 K; right side multiplied by 2.5e8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.the-tail-that-reacts.c7",
       "text": "'About double per 10 K' is a rule of thumb that fits barriers near 50 kJ/mol around room temperature, not a law.",
       "support": "derivation",
       "source": "From c3: the factor is exp[(Ea/R)(10/(T(T+10)))], so it depends on Ea and T; at 298 K it is 1.93 for 50 kJ/mol 1.48 for 30 kJ/mol and 2.50 for 70 kJ/mol (node script). Atkins & de Paula discuss the rule's limits.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,28 +28,36 @@
       "text": "Each k-means step assigns every point to its nearest centre, then moves each centre to the mean of its points.",
       "support": "source",
       "source": "Bishop 2006, Pattern Recognition and Machine Learning, §9.1 (the two-stage k-means iteration). Toy conventions in Demo.tsx: ties go to centre 1; a centre with no points stays put.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.bad-start-kmeans.c2",
       "text": "From centres 0 and 4 on points 0, 4, 6, 10: the first step gives groups {0} and {4, 6, 10} and moves the second centre to 6.67; then 4 is 2.67 from that centre and 4 from the other, so nothing changes again. Total squared distance 18.7.",
       "support": "derivation",
       "source": "Assign: 0 → 0; 4, 6, 10 → 4. Means: 0 and 20/3 = 6.67. Reassign unchanged. Cost 0 + (4 - 6.67)² + (6 - 6.67)² + (10 - 6.67)² = 7.11 + 0.44 + 11.11 = 18.67. Reproduced by centresAfter/cost in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.bad-start-kmeans.c3",
       "text": "The grouping {0, 4} and {6, 10} costs 16, and starting centres such as 2 and 8 reach it.",
       "support": "derivation",
       "source": "Means 2 and 8: (0-2)² + (4-2)² + (6-8)² + (10-8)² = 16. From (2, 8): 0, 4 → 2; 6, 10 → 8; centres stay (2, 8). Reproduced by centresAfter/cost in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.bad-start-kmeans.c4",
       "text": "k-means settles on a local, not necessarily the best, grouping, which is why it is usually run from several starts.",
       "support": "source",
       "source": "Bishop 2006, §9.1 (convergence to a local minimum; multiple restarts); Arthur & Vassilvitskii 2007, 'k-means++: the advantages of careful seeding' (SODA).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

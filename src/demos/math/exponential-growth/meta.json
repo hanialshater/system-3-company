@@ -74,28 +74,36 @@
       "text": "The pond picture is a 32 x 32 grid of 1,024 equal squares, so each small square is 1/1024 of the pond, and on day 20 the algae covers exactly one such square.",
       "support": "derivation",
       "source": "Demo.tsx GRID = 32, 32 x 32 = 1024; c1 gives (1/2)^10 = 1/1024 for day 20.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.exponential-growth.c7",
       "text": "A pond that looks 97% clear (3% covered, as on day 25) is five days from full.",
       "support": "derivation",
       "source": "Day 25 coverage is 1/32 (c2), so 1 - 1/32 = 96.875%, rounded to 97%; 30 - 25 = 5 days.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.exponential-growth.c8",
       "text": "Guessing 'proportional to the days' gives about 83% for day 25 (25 of 30 days).",
       "support": "derivation",
       "source": "25 / 30 = 0.8333, the misconception distractor.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.exponential-growth.c9",
       "text": "If a town's cases double every 3 days and the hospital is full in 12 days, today it is 1/16 full (about 6%).",
       "support": "derivation",
       "source": "Recall question. 12 / 3 = 4 doublings; (1/2)^4 = 1/16 = 6.25%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,28 +28,36 @@
       "text": "The toy has ten invented emails with spam scores: spam 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Mail scoring at or above the threshold is flagged.",
       "support": "convention",
       "source": "The lesson's own data in Demo.tsx (SPAM, REAL, counts()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.spam-threshold-tradeoff.c2",
       "text": "At 0.50, 4 of 5 spam are caught and 1 real email (0.6) is flagged. At 0.25, all 5 spam are caught and 3 real emails (0.6, 0.4, 0.3) are flagged. At 0.65, no real mail is flagged and 2 spam get through.",
       "support": "derivation",
       "source": "Count the scores at or above each threshold. Reproduced by running counts() from Demo.tsx: t = 50 → 4, 1; t = 25 → 5, 3; t = 65 → 3, 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.spam-threshold-tradeoff.c3",
       "text": "The lowest-scoring spam (0.3) is below real mail at 0.6 and 0.4 and level with one at 0.3, so no threshold catches all spam without flagging real mail.",
       "support": "derivation",
       "source": "Catching the 0.3 spam needs threshold ≤ 0.3, which also flags real mail at 0.6, 0.4 and 0.3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.spam-threshold-tradeoff.c4",
       "text": "Recall is spam caught ÷ all spam; precision is spam flagged ÷ all flagged. Going from 0.50 to 0.25, recall goes 4/5 → 5/5 and precision 4/5 → 5/8.",
       "support": "source",
       "source": "Manning, Raghavan & Schütze 2008, Introduction to Information Retrieval, Cambridge University Press, §8.3 (definitions); values from counts() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

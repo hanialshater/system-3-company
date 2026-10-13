@@ -27,35 +27,45 @@
       "text": "2 x 3 x 5 x 7 x 11 x 13 = 30030, and 30030 + 1 = 30031 = 59 x 509.",
       "support": "derivation",
       "source": "Recomputed with node by trial division; the stage factors with the same trial division.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.product-plus-one.c2",
       "text": "For the lists 2; 2, 3; 2, 3, 5; 2, 3, 5, 7; 2 to 11, product + 1 is 3, 7, 31, 211 and 2311, each prime; product + 1 is not always prime (30031 is not).",
       "support": "derivation",
       "source": "Trial division up to the square root, recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.product-plus-one.c3",
       "text": "Product + 1 leaves remainder 1 when divided by each prime in the list, so its prime factors are never in the list.",
       "support": "derivation",
       "source": "The product is a multiple of each listed p, so product + 1 = 1 mod p. Checked with node for all 63 non-empty subsets of 2, 3, 5, 7, 11, 13: no factor of product + 1 is in its subset.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.product-plus-one.c4",
       "text": "No finite list holds every prime: the primes never run out (Euclid).",
       "support": "source",
       "source": "Euclid, Elements IX.20 (prime numbers are more than any assigned multitude of prime numbers); e.g. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.product-plus-one.c5",
       "text": "Every whole number above 1 has at least one prime factor.",
       "support": "derivation",
       "source": "Its smallest divisor above 1 is prime (any divisor of it would be a smaller divisor). Used in the reveal's step 'some prime divides it'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

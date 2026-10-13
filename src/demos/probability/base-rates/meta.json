@@ -75,28 +75,36 @@
       "text": "In a 1978 study at Harvard Medical School, the most common answer from 60 staff and students to a similar question (1 in 1,000 disease, a test that wrongly flags 5% of healthy people) was 95%; the correct answer, if the test catches every case, is about 2%.",
       "support": "source",
       "source": "Casscells, Schoenberger & Graboys (1978), 'Interpretation by physicians of clinical laboratory results', New England Journal of Medicine 299: 999-1001. Secondary reports: 27 of 60 answered 95%, 11 of 60 answered about 2%. The original did not state sensitivity; 0.001 / (0.001 + 0.05 x 0.999) = 1.96% assumes 100%. v2 wording adds the sensitivity condition (fact-check F1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.base-rates.c7",
       "text": "A test being \"99% accurate\" does not tell you your chance of being sick after a positive result; that also depends on how rare the disease is (about 9%, 50% and 92% for 1 in 1,000, 1 in 100 and 1 in 10).",
       "support": "derivation",
       "source": "Reveal: \"'99% accurate' describes the test. Your chance also depends on how rare the disease is.\" Instances are c3 and c4 (Bayes: 0.0902, 0.5000, 0.9167 recomputed by the fact-checker). Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.base-rates.c8",
       "text": "For a condition affecting 1 in 10,000, with a test that catches 99% of cases and wrongly flags 1% of healthy people, out of 10,000 people about 1 sick person tests positive and about 100 healthy people do too, so about 1 in 100 positives is sick.",
       "support": "derivation",
       "source": "Recall card in meta.json. 10,000 x 0.0001 x 0.99 = 0.99 true positives; 10,000 x 0.9999 x 0.01 = 99.99 false positives; 0.99 / (0.99 + 99.99) = 0.0098. Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.base-rates.c9",
       "text": "On the stage's full town of 1,000, the 1-in-1,000 setting shows 11 positives of whom 1 is sick; 1 in 100 shows 20 positives, 10 sick; 1 in 10 shows 108 positives, 99 sick.",
       "support": "derivation",
       "source": "Demo.tsx counts(): round(sick x 0.99) true positives, round((1000 - sick) x 0.01) false positives: 1 + 10, 10 + 10, 99 + 9. The v2 reveal quotes these values from the same function that draws the grid.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

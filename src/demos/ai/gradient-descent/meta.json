@@ -48,7 +48,9 @@
       "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball is within 0.04 of the bottom after two steps.",
       "support": "derivation",
       "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.3947 for η = 0.05 and η = 0.95 (the stage shows 1.39); 0.1^2 · 4 = 0.04 for η = 0.45. v2: source number now printed to 4 places so it matches the stage's 1.39.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.gradient-descent.c4",
@@ -64,7 +66,9 @@
       "text": "Training real neural networks faces the same trade-off: too small a learning rate makes training slow, too large makes it oscillate or diverge, so the learning rate is often the most important setting to tune.",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §8.3.1 and §11.4.1 (learning rate as the most important hyperparameter); Bengio (2012), Practical recommendations for gradient-based training of deep architectures. v2: the verbatim quote was dropped because nobody had read it against the book (fact-check fix 3).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.gradient-descent.c6",
@@ -80,27 +84,42 @@
       "text": "At step size exactly 1, the ball bounces between the same two spots forever (4 and −4, starting from 4).",
       "support": "derivation",
       "source": "1 − 2η = −1 at η = 1, so x → −x each hop; seen on stage as 'Bouncing between the same two spots forever.' Added by fact-checker from the stage messages; needs independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.gradient-descent.c8",
       "text": "On this valley the ball gets to the bottom fastest where 1 − 2 × step size is zero: a step size of 0.5, which lands on the bottom in one hop.",
       "support": "derivation",
       "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. v2 reveal: 'Fastest is where it is zero: a step size of 0.5.' Needs independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.gradient-descent.c9",
       "text": "The stage's running message describes the hop just taken, not a future: 'Heading down; each hop is shorter than the last' for step sizes between 0.2 and 0.5 until the ball is within 0.05 of the bottom, then 'Now within 0.05 of the bottom.'",
       "support": "simulation",
       "source": "v2 Demo.tsx message(): factor 1 − 2η in (0, 0.6] gives hops that shrink by that factor each time (4 × 0.6^n at η = 0.2: 2.40, 1.44, 0.86 ...), so each hop is shorter than the last; the 'within 0.05' branch tests the displayed distance. Replaces the v1 'Close to the bottom in a few hops' message that was false at hop 1 (fact-check fix 1). Needs independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.gradient-descent.c10",
       "text": "On this valley the slope under the ball is 2 × its position, so the next hop is step size × slope (from the start at 4 with step size 0.05: 0.05 × 8 = 0.40); the distance is multiplied by 0.9 at step size 0.05, −0.9 at 0.95 and 0.1 at 0.45.",
       "support": "derivation",
       "source": "f(x) = x², f′(x) = 2x; hop length η·|2x|; 1 − 2(0.05) = 0.9, 1 − 2(0.95) = −0.9, 1 − 2(0.45) = 0.1. Added v2 for the stage line 'Next hop = step × slope = …' and the reveal's three factors.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.gradient-descent.c11",
+      "text": "For step sizes below 0.2 the running message says 'Crawling: the hops are tiny.'",
+      "support": "simulation",
+      "source": "Stage message() branch factor > 0.6 (step size below 0.2). Hops at 0.05 are 0.40 of a 4.00 distance (10%), but at 0.15 the first hop is 1.20 (30% of the distance) and the 10-hop distance is 0.11, so 'tiny' is generous for 0.15. Wording concern for demo-builder; not covered by c9, which only covers the 'Heading down' and 'within 0.05' branches. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

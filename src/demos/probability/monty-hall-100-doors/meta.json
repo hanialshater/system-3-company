@@ -29,35 +29,45 @@
       "text": "With 100 doors, one car, and a host who knows where the car is and always opens 98 empty doors other than yours, switching wins with probability 99/100 and staying with 1/100.",
       "support": "derivation",
       "source": "Staying wins only if the first pick was the car: 1/100. The host never opens the car, so whenever the first pick is empty (99/100) the door he leaves shut is the car. Switching wins exactly when staying loses: 99/100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.monty-hall-100-doors.c2",
       "text": "With 3 doors and the same knowing host, switching wins 2 times in 3.",
       "support": "derivation",
       "source": "Same argument with N = 3: stay wins 1/3, switch wins (N-1)/N = 2/3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.monty-hall-100-doors.c3",
       "text": "The host can always open 98 empty doors whatever you picked, so his opening does not change the 1-in-100 chance of your first pick.",
       "support": "derivation",
       "source": "Of the 99 doors you did not pick, at least 98 are empty, so the host's action is possible in every case and P(your door has the car | host opens 98 empty doors) = P(your door has the car) = 1/100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.monty-hall-100-doors.c4",
       "text": "If the host opened 98 of the other doors at random and they happened to be empty, your door and the remaining door would each have a 50% chance.",
       "support": "derivation",
       "source": "Bayes: P(mine | 98 random openings all empty) = (1/100 x 1) / (1/100 x 1 + 99/100 x 1/99) = 1/2. P(all 98 empty | car elsewhere) = 1/99, the chance his random choice spares the car's door.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.monty-hall-100-doors.c5",
       "text": "The stage's rounds use a seeded generator with the car equally likely behind every door; 'Play 100 rounds both ways' plays each round with a random first pick and counts how staying and switching would have done.",
       "support": "simulation",
       "source": "src/demos/probability/monty-hall-100-doors/model.ts (carFor, hostLeaves, batch). Re-run with node --experimental-strip-types: first batch at 100 doors stay 2, switch 98; at 10 doors 7/93; at 3 doors 30/70. Over 100 batches of 100: 100 doors 92/9,908; 10 doors 1,002/8,998; 3 doors 3,303/6,697. In every round exactly one of stay or switch wins.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,49 +28,63 @@
       "text": "With constant inflation i, what cash buys after t years, in today's money, is cash / (1 + i)^t.",
       "support": "derivation",
       "source": "Prices multiply by (1 + i) each year, so a fixed sum buys 1/(1 + i) as much each year. Standard, e.g. Mankiw, Principles of Economics, chapter 'Measuring the Cost of Living' (chapter numbers vary by edition).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c2",
       "text": "At 3% a year for 24 years, $100 buys what about $49 buys today.",
       "support": "derivation",
       "source": "1.03^24 = 2.0328; 100 / 2.0328 = 49.19.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c3",
       "text": "Losing a flat $3 a year would leave $28 after 24 years; that straight-line answer is wrong because each year's 3% applies to a smaller value.",
       "support": "derivation",
       "source": "100 − 24 × 3 = 28, versus 100 / 1.03^24 = 49.19.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c4",
       "text": "At 3%, the first year takes about $2.91 of the $100's buying power; year 24 takes about $1.48.",
       "support": "derivation",
       "source": "100 − 100/1.03 = 2.913; 100/1.03^23 − 100/1.03^24 = 50.67 − 49.19 = 1.476.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c5",
       "text": "Rule of 72: 72 ÷ 3 = 24 years is a rough estimate of the time for 3% inflation to halve what cash buys.",
       "support": "derivation",
       "source": "Exact halving time ln 2 / ln 1.03 = 23.45 years; 72 / 3 = 24. An approximation.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c6",
       "text": "The stage's values at other years and rates (2%, 3%, 5%) use the same formula, e.g. after 24 years: 2% → $62.17, 5% → $31.01.",
       "support": "derivation",
       "source": "100/1.02^24 = 62.17; 100/1.05^24 = 31.01.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.inflation-halves-cash.c7",
       "text": "The lesson is a model: a constant inflation rate, which real inflation is not. The rates are illustrative, not a forecast.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

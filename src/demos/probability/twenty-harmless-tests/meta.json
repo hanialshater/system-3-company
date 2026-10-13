@@ -28,35 +28,45 @@
       "text": "For 20 independent tests of true nulls, each with a 5% false-alarm rate, the chance of at least one false alarm is about 64%.",
       "support": "derivation",
       "source": "1 - 0.95^20 = 1 - 0.3585 = 0.6415 (complement rule, independence).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.twenty-harmless-tests.c2",
       "text": "The chance that all 20 stay quiet is 0.95 multiplied by itself 20 times, about 36%.",
       "support": "derivation",
       "source": "0.95^20 = 0.3585.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.twenty-harmless-tests.c3",
       "text": "On average, a batch of 20 such tests produces one false alarm.",
       "support": "derivation",
       "source": "Expected count = 20 x 0.05 = 1 (linearity of expectation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.twenty-harmless-tests.c4",
       "text": "The stage's batches are seeded independent tests with a 5% false-alarm chance each; the first 1,000 bulk batches give 638 with at least one alarm (63.8%).",
       "support": "simulation",
       "source": "src/demos/probability/twenty-harmless-tests/model.ts, seed 4 (picked from seeds 1-8 for a first batch with 2 alarms; seeds 1-8 gave 61.8%-66.8% over 1,000 batches). Batches 1000-1999: 638 with an alarm, 996 alarms in total; batches 2000-2999: 636.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.twenty-harmless-tests.c5",
       "text": "The 64% figure assumes the tests are independent and that none of the 20 has a real effect.",
       "support": "convention",
       "source": "Assumption stated in the lesson. With dependent tests the chance differs (for positively correlated tests it is usually lower).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

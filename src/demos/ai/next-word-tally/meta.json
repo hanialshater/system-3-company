@@ -28,42 +28,54 @@
       "text": "The toy model is trained on three sentences (the cat sat on the mat. the cat ate the fish. the dog sat on the rug.) and stores only how many times each word followed each other word: one word of memory.",
       "support": "convention",
       "source": "The lesson's own model in Demo.tsx (CORPUS and countPairs between the MODEL markers).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.next-word-tally.c2",
       "text": "In the training text, “the” is followed by cat twice and by mat, fish, dog and rug once each (6 times in all).",
       "support": "derivation",
       "source": "Count the six occurrences of “the” in the three sentences: the cat, the mat, the cat, the fish, the dog, the rug. Reproduced by running countPairs from Demo.tsx: {cat:2, mat:1, fish:1, dog:1, rug:1}.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.next-word-tally.c3",
       "text": "“the dog sat on the mat” is not one of the training sentences, but every adjacent pair in it (the→dog, dog→sat, sat→on, on→the, the→mat) occurs in the training text, so the model can write it.",
       "support": "derivation",
       "source": "Inspection of the three sentences; checked by script against the counts from Demo.tsx (each pair has count ≥ 1; the sentence is not in CORPUS).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.next-word-tally.c4",
       "text": "The same counts can also produce the nonsense sentence “the cat sat on the cat ate the fish”.",
       "support": "derivation",
       "source": "Its pairs the→cat, cat→sat, sat→on, on→the, the→cat, cat→ate, ate→the, the→fish, fish→. all occur in the training text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.next-word-tally.c5",
       "text": "“Let the model pick” draws the next word with probability proportional to its count after the current word (seeded random numbers); a word whose only follower is the full stop ends the sentence.",
       "support": "convention",
       "source": "The lesson's own sampler and append rule in Demo.tsx (seed 7).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.next-word-tally.c6",
       "text": "About real systems: large language models also generate text one token at a time, each drawn from a probability distribution over the next token, and they condition on thousands of previous tokens rather than one word.",
       "support": "source",
       "source": "Vaswani et al. 2017, “Attention Is All You Need”, NeurIPS, §3 (the decoder is auto-regressive, consuming previously generated symbols when generating the next); Brown et al. 2020, “Language Models are Few-Shot Learners”, arXiv:2005.14165, §2.1 (GPT-3 context window of 2048 tokens).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

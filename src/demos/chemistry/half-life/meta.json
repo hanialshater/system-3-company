@@ -75,21 +75,27 @@
       "text": "A new run of fresh atoms keeps different survivors from the previous run.",
       "support": "simulation",
       "source": "Each run draws every atom's decay half-life from a different seeded generator (seed 1009 + 7919 * run). Survivors after 3 half-lives of runs r and r+1 were identical in 0 of 200 pairs; mean overlap (Jaccard) 0.065 against 0.067 expected for independent draws (artifacts/scratch/fc2-half-life.mjs). Seen in the stage message \"Fresh atoms. Different ones will survive this time.\" and the reveal (\"a new run keeps different ones\"). Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.half-life.c7",
       "text": "Survivors that have already lasted 3 half-lives still decay at about the same rate: roughly half of whatever is left decays in each half-life.",
       "support": "simulation",
       "source": "Reveal v2: \"They had already lasted 3 half-lives and still went at about the same rate.\" Follows from c2 (memoryless decay). Fact-checker's runs: the share is about half on average at every step; single small runs wobble (c4), which is why v2 caps the stage at 4 half-lives (about 12 atoms left).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.half-life.c8",
       "text": "A half-life is the time in which about half of a large number of atoms of a radioactive isotope decays.",
       "support": "convention",
       "source": "Standard definition (e.g. IUPAC Gold Book, 'half life, t1/2': the time for a quantity to fall to half its initial value; for radioactive decay, the time for half the nuclei to decay). Shown in the v2 predict question (learner finding 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

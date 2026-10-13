@@ -27,21 +27,27 @@
       "text": "A car speeding up steadily from 0 to 20 m/s over 10 s travels 100 m: the triangle under the speed line, 1/2 x 10 x 20, or the average speed 10 m/s for 10 s.",
       "support": "derivation",
       "source": "Constant acceleration a = 2 m/s^2: distance = 1/2 a t^2 = 1/2 x 2 x 100 = 100 m; also the area of the triangle; recomputed with node. Idealised model (steady acceleration from rest), labelled on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.distance-is-area.c2",
       "text": "Strips using the speed at the end of each slice give 200 m with 1 strip, 110 m with 10 and 105 m with 20: always above 100 m and closing in on it.",
       "support": "derivation",
       "source": "Right Riemann sum for v = 2t on [0, 10] with n strips = 100 (n + 1) / n; n = 1: 200, 10: 110, 20: 105; the stage computes the bars with the same function; recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.distance-is-area.c3",
       "text": "Distance travelled is the area under the speed-time graph.",
       "support": "source",
       "source": "Distance = integral of speed over time (for speed >= 0), the fundamental theorem of calculus; e.g. Stewart, Calculus, sec. 5.1 (the distance problem).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -30,34 +30,51 @@
       "text": "If cat and dog share counter 2, after 5 cats and 3 dogs it reads 5 + 3 = 8.",
       "support": "derivation",
       "source": "Each item adds 1 to its counter; counter 2 receives every cat and every dog: 5 + 3 = 8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sketch-the-counts.c2",
       "text": "A count-min reading is never below the item's true count, because collisions only add.",
       "support": "derivation",
       "source": "Counters only increase; an item's counter in each row equals its own count plus the counts of every item that hashes to the same counter, each of which is >= 0. Cormode and Muthukrishnan, 'An improved data stream summary: the count-min sketch and its applications', J. Algorithms 55 (2005), Theorem 1 (a_i <= estimate).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sketch-the-counts.c3",
       "text": "With row 2 hashing cat to a counter it shares with nothing, the smallest reading is min(8, 5) = 5, the true count.",
       "support": "derivation",
       "source": "Stage row 2 sends cat to counter 1, dog and eel to counter 3, so counter 1 holds cat's 5 alone; min(8, 5) = 5. Builder-chosen toy hashes (Demo.tsx HASH).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sketch-the-counts.c4",
       "text": "This structure, a few rows of shared counters read by their minimum, is called a count-min sketch.",
       "support": "source",
       "source": "Cormode and Muthukrishnan (2005), J. Algorithms 55(1): 58-75. With width ceil(e/eps) and depth ceil(ln(1/delta)), the estimate exceeds the truth by at most eps x N with probability at least 1 - delta.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sketch-the-counts.c5",
       "text": "The stage's row hashes are fixed, hand-picked assignments standing in for independent hash functions.",
       "support": "convention",
       "source": "Demo.tsx HASH table: row 1 cat 2, dog 2, eel 4 (from the brief); rows 2-4 chosen by the builder so the estimate visibly settles (cat 8 -> 5; dog 8 -> 4 -> 3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.sketch-the-counts.c6",
+      "text": "A count-min sketch is a small fixed table that counts a huge stream, never too low and usually close.",
+      "support": "source",
+      "source": "Cormode and Muthukrishnan (2005), J. Algorithms 55(1): 58-75: the estimate is never below the true count and exceeds it by at most eps x N with probability at least 1 - delta. Seen in the reveal's closing line ('never too low and usually close'). Fact-checker simulation: 300 random hash sets, width 100, 4 rows, 2,000-item stream over 50 keys: 0 of 15,000 readings under the truth, 97.8% exact. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

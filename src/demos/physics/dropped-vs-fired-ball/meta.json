@@ -30,35 +30,45 @@
       "text": "Without air drag, a ball's fall depends only on gravity and the height, not on its sideways speed: both balls are at the same height at every instant.",
       "support": "derivation",
       "source": "Newton's second law with the only force m g acting vertically: x'' = 0 and y'' = -g, so y(t) = h - g t^2 / 2 for any horizontal speed. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4 (Projectile Motion).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.dropped-vs-fired-ball.c2",
       "text": "From 20 m, both balls land 2.02 s after release (g = 9.81 m/s^2).",
       "support": "derivation",
       "source": "t = sqrt(2 h / g) = sqrt(40 / 9.81) = 2.019 s. Checked by numerical integration of y'' = -g (dt = 1e-5 s): 2.019 s.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.dropped-vs-fired-ball.c3",
       "text": "Fired at 15 m/s, the ball lands 30.3 m from the foot of the cliff; the landing distance is speed times 2.02 s (10.1, 20.2, 30.3, 40.4, 50.5 m for 5 to 25 m/s).",
       "support": "derivation",
       "source": "x = v t with t = 2.019 s: 15 x 2.019 = 30.29 m; 5 x 2.019 = 10.09 m; 25 x 2.019 = 50.47 m.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.dropped-vs-fired-ball.c4",
       "text": "The lesson ignores air drag; with drag the fast ball would be slowed a little and its flight would differ slightly.",
       "support": "convention",
       "source": "Stated idealisation. Drag force 1/2 rho C_d A v^2 has a vertical component that depends on total speed, so with drag the motions are no longer independent (Taylor, Classical Mechanics, ch. 2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.dropped-vs-fired-ball.c5",
       "text": "Gravity pulls only downwards, so it changes the vertical motion and leaves the sideways motion alone.",
       "support": "derivation",
       "source": "Weight is the vector (0, -m g); its horizontal component is zero, so horizontal velocity is constant. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -31,42 +31,54 @@
       "text": "With 10 equally likely slots, the chance 4 keys all land in different slots is 1 x 0.9 x 0.8 x 0.7 = 0.504.",
       "support": "derivation",
       "source": "Key k misses the k - 1 occupied slots with probability (10 - (k - 1))/10; independent keys multiply: 1 x 0.9 x 0.8 x 0.7 = 0.504. Builder computed it in Node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.hash-bucket-pileup.c2",
       "text": "With 5 keys the chance of no collision falls to 0.3024, so a collision has about a 70% chance: 5 is the first number of keys where a collision is more likely than not.",
       "support": "derivation",
       "source": "0.504 x 0.6 = 0.3024; 1 - 0.3024 = 0.6976. At 4 keys the collision chance is 0.496 < 0.5. Builder computed both in Node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.hash-bucket-pileup.c3",
       "text": "When the first collision happens at key 5, at least half the 10 slots are still empty.",
       "support": "derivation",
       "source": "5 keys with at least one shared slot occupy at most 4 slots, leaving at least 6 of 10 empty.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.hash-bucket-pileup.c4",
       "text": "Hash tables handle collisions on purpose, for example by keeping a short list of keys in each slot (chaining).",
       "support": "source",
       "source": "CLRS 3rd ed., 11.2 'Hash tables', collision resolution by chaining.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.hash-bucket-pileup.c5",
       "text": "Java's HashMap grows its table when it is 75% full (default load factor 0.75).",
       "support": "source",
       "source": "Java SE API docs, java.util.HashMap: 'the default load factor (.75) offers a good tradeoff between time and space costs'; the table is rehashed when the number of entries exceeds load factor x capacity.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.hash-bucket-pileup.c6",
       "text": "The stage's slot choices are seeded pseudo-random, so its tallies are a sample, not the exact probabilities.",
       "support": "convention",
       "source": "Demo.tsx slotOf(): a fixed integer mix of (table, key). Builder checked 201 seeded tables: 67.7% had a collision by key 5 (exact 69.76%), mean first collision at key 4.83.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

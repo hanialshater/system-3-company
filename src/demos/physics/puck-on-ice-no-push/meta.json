@@ -30,35 +30,45 @@
       "text": "With no friction and no push, a puck moving at 2 m/s keeps moving at 2 m/s: it covers 2 m every second, 20 m in 10 s.",
       "support": "derivation",
       "source": "Newton's first law: zero net force means zero acceleration, so velocity is constant; x = v t = 2 x 10 = 20 m. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.puck-on-ice-no-push.c2",
       "text": "Kinetic friction slows a sliding puck at a steady rate mu g, so it stops after v / (mu g) seconds, having gone v^2 / (2 mu g).",
       "support": "derivation",
       "source": "Dry kinetic friction model: friction force mu m g opposing motion, a = -mu g (Coulomb friction; Halliday, Resnick and Walker, ch. 6). x(t) = v t - mu g t^2 / 2 until v = 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.puck-on-ice-no-push.c3",
       "text": "On the lanes, high friction (mu = 0.10) stops the puck in 2.0 m; medium (0.03) in 6.8 m; low (0.01) leaves it at about 1 m/s after 10 s, 15.1 m along.",
       "support": "derivation",
       "source": "v^2 / (2 mu g): 4 / (2 x 0.1 x 9.81) = 2.04 m; 4 / (2 x 0.03 x 9.81) = 6.80 m. For mu = 0.01: v(10) = 2 - 0.0981 x 10 = 1.02 m/s, x = 20 - 0.5 x 0.0981 x 100 = 15.10 m. Checked by numerical integration (dt = 1e-4 s).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.puck-on-ice-no-push.c4",
       "text": "The friction values (0.10, 0.03, 0.01, 0) are illustrative, not measurements of particular surfaces; a truly frictionless surface is an idealisation.",
       "support": "convention",
       "source": "Stated idealisation chosen by the builder so the four stopping distances fit one 20 m lane.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.puck-on-ice-no-push.c5",
       "text": "A force changes motion; without one, motion carries on. Friction is the force that stops things in daily life.",
       "support": "source",
       "source": "Newton, Principia (1687), Law I; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5 and 6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -29,42 +29,54 @@
       "text": "Ten hours of doubling every 20 minutes is 30 doublings; 2^30 = 1,073,741,824, about 1.07 billion.",
       "support": "derivation",
       "source": "600 min / 20 min = 30; 2^30 = 1,073,741,824 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.dish-runs-out.c2",
       "text": "After 7 hours the colony was under 1% of its 10-hour size; most of the dish filled in the last hour and half of it in the last 20 minutes.",
       "support": "derivation",
       "source": "At 7 h the count is 2^21 = 2^-9 of 2^30, about 0.2%. At 9 h it is 2^27 = 1/8 of 2^30, so 7/8 arrives in the last hour; at 9 h 40 min it is 1/2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.dish-runs-out.c3",
       "text": "With one batch of food, growth looks the same at first, then bends and stops below 100 million cells as the food runs out.",
       "support": "simulation",
       "source": "Stage model (convention): logistic growth N(k) = K / (1 + (K - 1) e^(-k ln 2)) per 20-minute step with K = 100 million. Gives 512 cells at 3 h (same as unlimited), 57 million at 9 h and 91 million at 10 h, approaching but never exceeding 100 million.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.dish-runs-out.c4",
       "text": "In a closed culture, growth slows and stops when nutrients run out (or waste builds up); unlimited doubling cannot continue.",
       "support": "source",
       "source": "Monod, J. (1949), 'The growth of bacterial cultures', Annual Review of Microbiology 3: 371-394; Madigan et al., Brock Biology of Microorganisms, chapter on microbial growth (batch culture growth curve).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.dish-runs-out.c5",
       "text": "E. coli can double about every 20 minutes in rich lab broth; many bacteria, and E. coli in poorer conditions, divide far more slowly.",
       "support": "source",
       "source": "Madigan et al., Brock Biology of Microorganisms (generation times); Sezonov, Joseleau-Petit & D'Ari (2007), 'Escherichia coli physiology in Luria-Bertani broth', Journal of Bacteriology 189(23): 8746-8749.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.dish-runs-out.c6",
       "text": "The drawing is scaled: colony area is proportional to the number of cells, and 2^30 cells fill the dish. The 100-million food batch is made up.",
       "support": "convention",
       "source": "Modelling and drawing choice in Demo.tsx (FULL = 2^30, K = 1e8).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

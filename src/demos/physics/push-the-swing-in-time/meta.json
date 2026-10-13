@@ -28,35 +28,45 @@
       "text": "A swing has its own rhythm, set by its length: a 2.0 s period needs a rope of 0.99 m.",
       "support": "derivation",
       "source": "Small-angle pendulum period T = 2 pi sqrt(L/g); L = g T^2 / (4 pi^2) = 9.81 x 4 / 39.48 = 0.994 m. Point-mass swing idealisation.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.push-the-swing-in-time.c2",
       "text": "Shoving every 2 s, each shove meets the swing moving forward and adds; 8 shoves reach about 26 degrees in this model.",
       "support": "simulation",
       "source": "Damped linear oscillator theta'' = -w^2 theta - 2 z w theta' (w = pi rad/s, z = 0.01), 8 forward kicks of 4 degrees' amplitude each from rest, Euler-Cromer at dt = 1/2400 s (Demo.tsx): max 25.5 degrees. Kick size and damping are illustrative.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.push-the-swing-in-time.c3",
       "text": "Shoving every 1 s or every 3 s, every other shove hits the swing coming back and stops it, so it never passes one shove's swing of about 4 degrees.",
       "support": "simulation",
       "source": "Same model: kicks at half-odd multiples of the period arrive at the bottom with the swing moving backward and cancel its speed; max 3.9 degrees for both rhythms. Derivation: a kick at t = T/2 or 3T/2 after the previous one meets velocity -J e^(-z w t), leaving J(1 - e^(-z w t)), near zero.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.push-the-swing-in-time.c4",
       "text": "Driving a lightly damped oscillator in step with its natural period builds a large motion (resonance); out of step, pushes partly undo each other.",
       "support": "source",
       "source": "Driven damped harmonic oscillator; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 15 (forced oscillations and resonance).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.push-the-swing-in-time.c5",
       "text": "Model: small swings, light friction, equal brief forward shoves, played 8 times faster than real time.",
       "support": "convention",
       "source": "Stated on stage ('Played 8x fast') and in the reveal. At 26 degrees the small-angle period error is about 1%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

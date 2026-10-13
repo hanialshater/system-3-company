@@ -28,49 +28,63 @@
       "text": "20% a year is treated as 1.667% a month.",
       "support": "convention",
       "source": "20% / 12 = 1.6667%. A simplification: real cards differ in how they compute interest (e.g. daily balances).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c2",
       "text": "In the first month the interest on $3,000 is $50, so a $90 payment takes only $40 off the debt.",
       "support": "derivation",
       "source": "3,000 × 0.016667 = 50.00; 90 − 50 = 40.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c3",
       "text": "Paying $90 a month, the $3,000 balance is cleared on the 50th payment (versus 33.3 months with no interest).",
       "support": "derivation",
       "source": "n = −ln(1 − 3,000 × 0.016667 / 90) / ln(1.016667) = 0.8109 / 0.016529 = 49.06, so the 50th (partial) payment. Confirmed by stepping the balance month by month (Demo.tsx schedule()). 3,000 / 90 = 33.3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c4",
       "text": "Paying $90 a month, the total interest is about $1,415.",
       "support": "derivation",
       "source": "Month-by-month stepping: total interest 1,415.46 (≈ 49.06 × 90 − 3,000 = 1,415.4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c5",
       "text": "At $50 a month the payment equals the monthly interest, so the balance never falls.",
       "support": "derivation",
       "source": "3,000 × 0.016667 = 50: balance + 50 − 50 = balance, every month.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c6",
       "text": "The stage's payoff times and interest totals for other payments come from the same month-by-month stepping (e.g. $150 a month: 25 months, about $680 interest).",
       "support": "derivation",
       "source": "Demo.tsx schedule(): b ← b × 1.016667 − pay until b ≤ 0. At $150: 25 payments, interest 679.82.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.minimum-payment-trap.c7",
       "text": "The lesson is a model: a fixed rate, interest added monthly, no fees, no new purchases.",
       "support": "convention",
       "source": "Assumptions of the lesson's own calculation in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

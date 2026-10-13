@@ -28,28 +28,36 @@
       "text": "The toy has 12 invented people plus 'you' (30 years, $50,000); A is 31 and earns $58,000, B is 60 and earns $51,000. Distance is √(age gap² + income gap²), with income in the chosen unit.",
       "support": "convention",
       "source": "The lesson's own data and distance in Demo.tsx (QUERY, PEOPLE, dist). The ten unlabelled people were placed by hand so that only A or B is ever nearest.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.income-in-dollars.c2",
       "text": "With income in dollars, B is 1,000.4 away and A is 8,000.0 away, so B is nearest. In $100s B is still nearest (31.6 vs 80.0).",
       "support": "derivation",
       "source": "√(30² + 1000²) = 1000.45; √(1² + 8000²) = 8000.00; √(30² + 10²) = 31.62; √(1² + 80²) = 80.01. Reproduced by dist() and nearest() from Demo.tsx in node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.income-in-dollars.c3",
       "text": "With income in $1,000s, A is 8.1 away and B is 30.0 away, so A is nearest.",
       "support": "derivation",
       "source": "√(1² + 8²) = 8.06; √(30² + 1²) = 30.02. Reproduced by dist() and nearest() from Demo.tsx in node; the next nearest person is 10.3 away.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.income-in-dollars.c4",
       "text": "Features are put on comparable scales before distance-based methods such as nearest neighbours.",
       "support": "source",
       "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §13.3 (features standardised before nearest-neighbour classification); scikit-learn user guide, 'Preprocessing data' (standardisation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

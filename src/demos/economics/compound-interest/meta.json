@@ -47,7 +47,9 @@
       "text": "Simple interest (7% of the original $1,000 each year, never on past interest) pays $2,800 of interest over 40 years, a balance of $3,800.",
       "support": "derivation",
       "source": "40 × 70 = 2,800; 1000 + 2,800 = 3,800. v2 says 'a balance of $3,800' so it cannot be read as total interest (fact-check fix 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.compound-interest.c8",
@@ -99,14 +101,18 @@
       "text": "At 7% a year each decade adds about twice what the decade before added: $967, $1,903, $3,743 and $7,362 for years 1–10, 11–20, 21–30 and 31–40.",
       "support": "derivation",
       "source": "1000 × (1.07^(10d) − 1.07^(10d−10)) for d = 1..4: 967.15, 1,902.53, 3,742.57, 7,362.20; each ratio is 1.07^10 = 1.967. Shown on the v2 stage as the decade row and in the reveal. Added v2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.compound-interest.c10",
       "text": "The dashed line on the stage keeps the first decade's pace ($96.72 a year) forever; it reaches about $4,869 at 40 years.",
       "support": "derivation",
       "source": "1000 + (967.15 / 10) × t; at t = 40: 4,868.6 (the reveal rounds it to $4,900, claim c8). Added v2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

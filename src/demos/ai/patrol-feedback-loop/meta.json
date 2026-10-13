@@ -28,28 +28,36 @@
       "text": "The toy's rule: two districts with the same true incident rate; records start at A = 6 and B = 5. Each round one patrol goes to the district with more records, and only the patrolled district logs one new incident. This is a simplification invented for the lesson (one log per round, incidents logged only where patrolled).",
       "support": "convention",
       "source": "The lesson's own model in Demo.tsx (run(), rule \"most\").",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.patrol-feedback-loop.c2",
       "text": "Under that rule A is always ahead, so it gets every patrol: after 20 rounds A has 26 of 31 records (83.9%) and B still has 5.",
       "support": "derivation",
       "source": "6 + 20 = 26 versus 5; 26 / 31 = 0.839. Reproduced by running run(\"most\", 20) from Demo.tsx: a 26, b 5, all 20 patrols to A.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.patrol-feedback-loop.c3",
       "text": "If patrols take turns (A first), after 20 rounds A has 16 of 31 records (51.6%).",
       "support": "derivation",
       "source": "A gets 10 patrols and B 10: 16 versus 15, 16 / 31 = 0.516. Reproduced by running run(\"turns\", 20) from Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.patrol-feedback-loop.c4",
       "text": "About real systems: analyses of predictive policing describe the same runaway feedback loop, where patrols sent by past records generate the records that justify more patrols.",
       "support": "source",
       "source": "Lum & Isaac 2016, “To predict and serve?”, Significance 13(5), 14–19; Ensign, Friedler, Neville, Scheidegger & Venkatasubramanian 2018, “Runaway Feedback Loops in Predictive Policing”, Proceedings of Machine Learning Research 81 (FAT* 2018).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
