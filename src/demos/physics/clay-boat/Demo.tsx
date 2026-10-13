@@ -167,12 +167,12 @@ export default function ClayBoat({ slug }: { slug: string }) {
               </text>
               <line x1={FX + 26} y1={FY} x2={FX + 26} y2={FY + FK * CLAY_KG - 5} className={s.wgt} />
               <path d={`M ${FX + 22} ${FY + FK * CLAY_KG - 6} L ${FX + 26} ${FY + FK * CLAY_KG} L ${FX + 30} ${FY + FK * CLAY_KG - 6} Z`} className={s.wgtHead} />
-              <text x={FX + 26} y={FY - 4} textAnchor="middle" className={s.small}>
+              <text x={FX + 26} y={FY + FK * CLAY_KG + 12} textAnchor="middle" className={s.small}>
                 weight 1 kg
               </text>
               <line x1={FX - 8} y1={FY} x2={FX + 34} y2={FY} className={s.dim} />
-              <line x1={W - 40} y1={BOTTOM - 8} x2={W - 40 + 10 * K * 0.25} y2={BOTTOM - 8} className={s.dim} />
-              <text x={W - 40} y={BOTTOM - 12} className={s.small}>
+              <line x1={14} y1={BOTTOM - 8} x2={14 + 10 * K * 0.25} y2={BOTTOM - 8} className={s.dim} />
+              <text x={14} y={BOTTOM - 12} className={s.small}>
                 2.5 cm
               </text>
             </svg>

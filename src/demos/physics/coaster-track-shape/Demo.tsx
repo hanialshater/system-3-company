@@ -137,8 +137,8 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
               : " The shape changed the time, not the final speed."}
           </p>
           <p>
-            What sets the speed is the height lost: each cart&rsquo;s label climbed as it dropped, and on the floor both
-            read the same. All 5 m of drop becomes 9.90 m/s: v = &radic;(2 g h), with g = 9.81 m/s&sup2; (gravity) and h =
+            What sets the speed is the height lost: each cart&rsquo;s label climbs as it drops, and both readouts end at
+            the same bottom speed. All 5 m of drop becomes 9.90 m/s: v = &radic;(2 g h), with g = 9.81 m/s&sup2; (gravity) and h =
             5 m.
           </p>
           <p className="muted">Without friction, only the drop matters, not the road taken.</p>
@@ -190,7 +190,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
                   <circle cx={X0 + cart.x * K} cy={FLOOR - cart.y * K - 5} r={5.5} className={s.cart} />
                   {racing && (
                     <>
-                      <text x={X0 + rcart.x * K - 8} y={FLOOR - rcart.y * K - 12} textAnchor="end" className={s.ghostLabel}>
+                      <text x={X0 + rcart.x * K + 8} y={FLOOR - rcart.y * K - 3} className={s.ghostLabel}>
                         {rcart.v.toFixed(1)}
                       </text>
                       <text x={Math.min(W - 16, X0 + cart.x * K + 9)} y={FLOOR - cart.y * K - 12} className={s.label}>
