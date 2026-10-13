@@ -11,6 +11,10 @@
 // A cup whose outer volume is under 1 L fills and sinks; then it displaces only its
 // clay, 0.556 L. Fresh water 1000 kg/m^3; stability and surface tension ignored.
 // The reveal unlocks once a shape has floated.
+// v2: no density in the question; shape names are unique ("small cup" sinks, "big cup" is
+// the first to float on the QA path); a side diagram draws the water's push (weight of water
+// pushed aside) against the clay's 1 kg weight; the caption is fixed-height so the tank does
+// not rescale between shapes; the ball's 0.56 L shows from the predict state.
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -42,10 +46,10 @@ function cup(name: string, hull: number, aspect: number): Shape {
 const R_BALL = Math.cbrt((3 * CLAY_CM3) / (4 * Math.PI)); // 5.10 cm
 const SHAPES: Shape[] = [
   { name: "ball", hull: CLAY_CM3, D: 2 * R_BALL, H: 2 * R_BALL, t: 0, ball: true },
-  cup("deep cup", 800, 0.6),
-  cup("cup", 1250, 0.5),
+  cup("small cup", 800, 0.6),
+  cup("big cup", 1250, 0.5),
   cup("bowl", 1800, 0.4),
-  cup("wide bowl", 2500, 0.33),
+  cup("wide dish", 2500, 0.33),
 ];
 
 const floats = (sh: Shape) => !sh.ball && sh.hull > NEED_CM3;
@@ -58,7 +62,10 @@ const Hh = 196;
 const K = 7; // px per cm
 const SURF = 46;
 const BOTTOM = 186;
-const CX = W / 2;
+const CX = W / 2 - 14;
+const FX = 256; // force diagram
+const FY = 112;
+const FK = 46; // px per kg
 
 export default function ClayBoat({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
@@ -73,8 +80,8 @@ export default function ClayBoat({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1 kg lump of clay (about 1800 kg/m³) sinks in water. Reshaped into a bowl, how much water must it push aside to float?",
-        options: ["0.56 L", "1 L", "1.8 L"],
+          "A 1 kg ball of clay (0.56 L) sinks in water. Reshaped into a bowl, how much water must it push aside to float?",
+        options: ["0.56 L, same as the ball", "1 L", "2 L"],
         answer: 1,
       }}
       exploreHint="Reshape the clay until it floats. Watch how much water it pushes aside."
@@ -84,13 +91,14 @@ export default function ClayBoat({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              The ball sank pushing aside only <strong>{L(CLAY_CM3)} L</strong>, its own volume. Your {f.name} floated
-              pushing aside <strong>{L(NEED_CM3)} L</strong>: exactly 1 kg of water, the clay&apos;s own weight. The deep
-              cup could hold back only {L(SHAPES[1].hull)} L before water poured in, so it sank.
+              The ball pushed aside only <strong>{L(CLAY_CM3)} L</strong>, so the water&apos;s push was {L(CLAY_CM3)} kg
+              against its 1 kg weight: it sank. The {f.name} floated pushing aside <strong>{L(NEED_CM3)} L</strong>, which
+              weighs 1 kg: push and weight matched. The small cup could hold back only {L(SHAPES[1].hull)} L before water
+              poured in; flooded, only its {L(CLAY_CM3)} L of clay pushed water aside.
             </p>
             <p>
-              Water pushes up with a force equal to the weight of the water a thing shoves aside. Clay is heavier than
-              water litre for litre, so a solid lump never shoves aside enough. A hollow shape encloses air and can.
+              Water pushes up with the weight of the water a thing shoves aside. Clay is heavier than water litre for
+              litre, so solid clay never shoves aside enough. A hollow shape encloses air and can.
             </p>
             <p className="muted">Same clay, same weight. Only the water it moves changed.</p>
           </>
@@ -99,13 +107,12 @@ export default function ClayBoat({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
-        const caption = locked
-          ? "Make a prediction to start."
-          : sh.ball
-            ? "1 kg of clay as a ball. Fresh water."
-            : fl
-              ? `Floats: it pushes aside ${L(NEED_CM3)} L of water, weighing ${L(NEED_CM3)} kg.`
-              : `Sank: even full to the rim it holds back only ${L(sh.hull)} L.`;
+        const caption = sh.ball
+          ? "1 kg of clay as a ball. 1 L of water weighs 1 kg."
+          : fl
+            ? `Floats: pushes aside ${L(NEED_CM3)} L of water, weighing ${L(NEED_CM3)} kg.`
+            : `Sank: held back at most ${L(sh.hull)} L, then flooded. Now only its clay pushes water aside.`;
+        const pushKg = pushed(sh) / 1000;
 
         const w = sh.D * K;
         const hgt = sh.H * K;
@@ -152,6 +159,18 @@ export default function ClayBoat({ slug }: { slug: string }) {
               <text x={12} y={SURF - 8} className={s.small}>
                 water
               </text>
+              {/* forces on the clay: the water's push (weight of water pushed aside) vs its weight */}
+              <line x1={FX} y1={FY} x2={FX} y2={FY - FK * pushKg + 5} className={s.push} />
+              <path d={`M ${FX - 4} ${FY - FK * pushKg + 6} L ${FX} ${FY - FK * pushKg} L ${FX + 4} ${FY - FK * pushKg + 6} Z`} className={s.pushHead} />
+              <text x={FX} y={FY - FK * pushKg - 4} textAnchor="middle" className={s.small}>
+                push {L(pushed(sh))} kg
+              </text>
+              <line x1={FX + 26} y1={FY} x2={FX + 26} y2={FY + FK * CLAY_KG - 5} className={s.wgt} />
+              <path d={`M ${FX + 22} ${FY + FK * CLAY_KG - 6} L ${FX + 26} ${FY + FK * CLAY_KG} L ${FX + 30} ${FY + FK * CLAY_KG - 6} Z`} className={s.wgtHead} />
+              <text x={FX + 26} y={FY - 4} textAnchor="middle" className={s.small}>
+                weight 1 kg
+              </text>
+              <line x1={FX - 8} y1={FY} x2={FX + 34} y2={FY} className={s.dim} />
               <line x1={W - 40} y1={BOTTOM - 8} x2={W - 40 + 10 * K * 0.25} y2={BOTTOM - 8} className={s.dim} />
               <text x={W - 40} y={BOTTOM - 12} className={s.small}>
                 2.5 cm
@@ -180,7 +199,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
             />
             <Row>
               <Readout label="Clay" value={`${CLAY_KG.toFixed(2)} kg`} />
-              <Readout label="Water pushed aside" value={locked ? "?" : `${L(pushed(sh))} L`} />
+              <Readout label="Water pushed aside" value={`${L(pushed(sh))} L`} />
             </Row>
           </div>
         );

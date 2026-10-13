@@ -150,7 +150,7 @@ export default function FlourOnTheMoon({ slug }: { slug: string }) {
                   <path d={`M ${BX + dx - 4} ${BY + 20 + weight * PULL_PX} L ${BX + dx} ${BY + 26 + weight * PULL_PX} L ${BX + dx + 4} ${BY + 20 + weight * PULL_PX} Z`} className={s.arrowHead} />
                 </g>
               ))}
-              <text x={BX - 70} y={BY + 34} textAnchor="end" className={s.tick}>
+              <text x={BX + 54} y={BY + 40} textAnchor="start" className={s.tick}>
                 pull
               </text>
               <path d={`M ${BX} ${BY} L ${BX - 9} ${BY + 60} L ${BX + 9} ${BY + 60} Z`} className={s.stand} />
