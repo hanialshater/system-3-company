@@ -1,0 +1,74 @@
+{
+  "slug": "saturated-enzyme",
+  "title": "Twice the substrate, twice as fast?",
+  "hook": "Give an enzyme twice as much to work on. Does it work twice as fast?",
+  "domain": "life",
+  "concept": "enzyme-saturation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "enzymes speed up reactions",
+      "an enzyme works on one substrate molecule at a time"
+    ],
+    "doesNotKnow": [
+      "that reaction speed levels off when almost all enzymes are busy (saturation)",
+      "how small the gain from extra substrate is near saturation"
+    ]
+  },
+  "misconception": "Doubling the substrate doubles the reaction rate.",
+  "objective": "The learner can explain that speed is proportional to S/(Km + S), so at 10 times the half-way concentration almost all enzymes are busy and doubling the substrate adds only about 5%, while at low substrate doubling helps far more.",
+  "claims": [
+    {
+      "id": "life.saturated-enzyme.c1",
+      "text": "For a simple single-substrate enzyme, reaction speed is v = Vmax x S / (Km + S), where Km is the substrate concentration that gives half the top speed (Michaelis-Menten).",
+      "support": "source",
+      "source": "Nelson D.L. & Cox M.M., Lehninger Principles of Biochemistry, chapter on enzyme kinetics (Michaelis-Menten equation).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.saturated-enzyme.c2",
+      "text": "At S = 10 Km the speed is 10/11 = 91% of the top speed; at 20 Km it is 20/21 = 95%, so doubling from 10 to 20 speeds it up by about 5% (1.048 times).",
+      "support": "derivation",
+      "source": "(20/21)/(10/11) = 1.0476, recomputed in node (artifacts/scratch/w2life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.saturated-enzyme.c3",
+      "text": "From S = 1 Km to 2 Km, speed goes from 50% to 67% of the top: about 33% faster.",
+      "support": "derivation",
+      "source": "(2/3)/(1/2) = 1.333 (artifacts/scratch/w2life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.saturated-enzyme.c4",
+      "text": "The 100 stations, each handling one molecule at a time with a busy share S/(Km + S), are a simplification of single-substrate kinetics; the waiting-substrate pool is a picture, not a count.",
+      "support": "convention",
+      "source": "Drawing choice in Demo.tsx; pool positions from an untuned seed (mulberry32(9)).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An enzyme is already almost fully busy. You triple the substrate. The reaction speed…",
+    "options": [
+      "triples",
+      "roughly doubles",
+      "rises only a little",
+      "falls"
+    ],
+    "answer": 2,
+    "why": "Near saturation almost every enzyme is already working, so extra substrate mostly waits its turn; speed creeps toward its top rate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

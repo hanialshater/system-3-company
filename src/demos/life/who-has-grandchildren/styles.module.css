@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 27dvh; flex-shrink: 0; }
+.base { stroke: var(--line); stroke-width: 1.5; }
+.barW { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); transition: height 0.2s, y 0.2s; }
+.barM { fill: color-mix(in srgb, #e08a1e 75%, var(--bg-2)); transition: height 0.2s, y 0.2s; }
+.w { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.m { fill: color-mix(in srgb, #e08a1e 75%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.num { fill: var(--fg); font-size: 11px; font-weight: 800; }
+.small { fill: var(--muted); font-size: 10px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.chip { min-width: 72px; }
+.wT { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); }
+.mT { fill: color-mix(in srgb, #e08a1e 75%, var(--bg-2)); }
