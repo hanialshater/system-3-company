@@ -33,5 +33,6 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [ADR-001](adr/ADR-001-nextjs-static-lessons.md) | Next.js with statically generated lesson pages and a generated registry | accepted |
 | [ADR-002](adr/ADR-002-geo-kit.md) | The geo kit: d3-geo + Natural Earth 1:110m, bundled | accepted |
 | [EDD-001](edd/EDD-001-feed-at-500-lessons.md) | The feed at 500+ lessons | proposed |
+| [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
 
 See also [best-practices.md](best-practices.md).
