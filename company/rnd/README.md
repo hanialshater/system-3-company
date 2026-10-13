@@ -18,6 +18,9 @@ There are two orgs, and both report to the VP of R&D in the CEO office:
 
 **Budget:** a lesson is ≤ 15 KB of its own code. A kit library should cost a lesson ≤ 10 KB gzipped for what it imports, so keep it tree-shakeable.
 
+## How R&D works: code evolution
+Several R&D engineers write competing variants in parallel, and a fixed evaluator owned by the R&D lead scores them (`tools/evolve.mjs`). The best are kept and recombined over a few generations. See [evolution.md](evolution.md). Each bet below has a generation budget (default 4 generations of 3–5 agents).
+
 ## Bet list
 | Bet | Org | Needed by | Exit criterion | Status |
 |---|---|---|---|---|

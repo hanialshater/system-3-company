@@ -13,9 +13,9 @@ Correct first, then small, then easy to use in a 60-second lesson.
 
 ## In scope
 
-- src/lab/<name>/**
+- Its own candidate folder src/lab/<p>/candidates/<gen>-<name>/ (or the baseline in generation 0)
 - Prior-art research with links (libraries, papers, datasets) and their licences
-- Test suites against published values
+- Proposing new tests to the lead (the lead decides)
 
 ## Out of scope
 
@@ -30,6 +30,8 @@ May:
 
 May not:
 - Copy code under a licence that forbids it
+- Edit the evaluator (tests, bench, evolve.json)
+- Read other candidates of the same generation before scoring
 - Mark lesson claims verified
 
 ## Inputs

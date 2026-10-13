@@ -14,6 +14,8 @@ Small, tested, dependency-free libraries that a builder can use in an afternoon.
 ## In scope
 
 - src/lab/<name>/: libraries in incubation, each with a README, an API, tests (`node --test`) and a size budget
+- The evaluator of each project: test/, bench.mjs, evolve.json (weights, gzip budget, lineage)
+- Generation briefs, selection and generation records (company/rnd/evolution/)
 - Code review of R&D engineers
 - EDDs for promoting lab libraries into the kit
 
@@ -27,9 +29,11 @@ Small, tested, dependency-free libraries that a builder can use in an afternoon.
 May:
 - Set an R&D library's API and budget
 - Reject lab code without tests
+- Disqualify a candidate that games the evaluator
 
 May not:
 - Import lab code from lessons before promotion
+- Write a candidate in a generation they judge
 
 ## Inputs
 

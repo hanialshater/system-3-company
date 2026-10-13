@@ -293,6 +293,28 @@ async function tabUntil(page, pred, max, seen, ringless) {
   return { found: false };
 }
 
+
+// Mouse/QA-style pressing: DOM order, once each, only when enabled at press time; two passes.
+async function pressAll(page, waitMs = 250, afterEach) {
+  const sel = '[data-testid="stage"] [data-qa="control"], [data-testid="stage"] input[type=range]';
+  const n = Math.min(await page.locator(sel).count(), 16);
+  const done = new Set();
+  for (let pass = 0; pass < 2; pass++) {
+    for (let i = 0; i < n; i++) {
+      if (done.has(i)) continue;
+      const el = page.locator(sel).nth(i);
+      if (!(await el.isEnabled().catch(() => false))) continue;
+      done.add(i);
+      try {
+        if ((await el.getAttribute("type")) === "range") { await el.focus(); await page.keyboard.press("ArrowRight"); await page.keyboard.press("ArrowRight"); }
+        else await el.click({ timeout: 1500 });
+      } catch {}
+      await sleep(waitMs);
+      if (afterEach) await afterEach(i);
+    }
+  }
+}
+
 async function keyboardRun(page, findings, add) {
   const listing = async () => page.evaluate(() => window.__a11y.interactiveList());
   let l0 = await listing();
@@ -343,14 +365,20 @@ async function keyboardRun(page, findings, add) {
   if (trap) add("fail", "kit", "keyboard", "Keyboard trap: focus stopped moving during Tab.");
   for (const s of ringless) add("fix", /control|primary|option/.test(s) ? "kit" : "lesson", "focus-visible", `No visible focus indicator on ${s}.`);
 
-  // Activate each control with the keyboard (Enter for buttons, ArrowRight for sliders).
-  const ids = enabled.slice(0, 16).map((i) => ({ id: i.id, range: i.type === "range" || i.role === "slider" }));
-  for (const c of ids) {
-    const ok = await page.evaluate((id) => { const e = document.querySelector(`[data-a11y-id="${id}"]`); if (!e || e.disabled) return false; e.focus(); return document.activeElement === e; }, c.id);
-    if (!ok) continue;
-    if (c.range) { await page.keyboard.press("ArrowRight"); await sleep(120); await page.keyboard.press("ArrowRight"); }
-    else await page.keyboard.press("Enter");
-    await sleep(300);
+  // Activate each control with the keyboard, in DOM order, once each, only if enabled at press time
+  // (this is what QA does, plus a second pass for controls that were disabled on the first).
+  const ids = l1.items.filter((i) => i.inLesson && !/predict|commit|reveal/.test(i.sel)).slice(0, 16).map((i) => ({ id: i.id, range: i.type === "range" || i.role === "slider" }));
+  const pressed = new Set();
+  for (let pass = 0; pass < 2; pass++) {
+    for (const c of ids) {
+      if (pressed.has(c.id)) continue;
+      const ok = await page.evaluate((id) => { const e = document.querySelector(`[data-a11y-id="${id}"]`); if (!e || e.disabled || e.getAttribute("aria-disabled") === "true") return false; e.focus(); return document.activeElement === e; }, c.id);
+      if (!ok) continue;
+      pressed.add(c.id);
+      if (c.range) { await page.keyboard.press("ArrowRight"); await sleep(120); await page.keyboard.press("ArrowRight"); }
+      else await page.keyboard.press("Enter");
+      await sleep(300);
+    }
   }
   await sleep(500);
 
@@ -421,11 +449,7 @@ async function scanLesson(browser, slug) {
       contrast.dark.explore = await p.evaluate(() => window.__a11y.contrastScan());
       const cc = await p.evaluate(() => window.__a11y.colourCues());
       // exercise controls by mouse to move the stage, then re-measure colours
-      const btns = p.locator('[data-testid="stage"] [data-qa="control"]:enabled');
-      const nb = Math.min(await btns.count(), 16);
-      for (let i = 0; i < nb; i++) { try { await btns.nth(i).click({ timeout: 1500 }); await sleep(250); } catch {} }
-      const sliders = p.locator('[data-testid="stage"] input[type=range]:enabled');
-      for (let i = 0; i < Math.min(await sliders.count(), 4); i++) { try { await sliders.nth(i).focus(); await p.keyboard.press("ArrowRight"); await p.keyboard.press("ArrowRight"); await sleep(250); } catch {} }
+      await pressAll(p, 250);
       const cc2 = await p.evaluate(() => window.__a11y.colourCues());
       const used = Array.from(new Set([...cc.used, ...cc2.used]));
       const lacking = Math.max(cc.lacking, cc2.lacking);
@@ -484,10 +508,7 @@ async function scanLesson(browser, slug) {
       await p.locator('[data-testid="commit-prediction"]').click();
       await sleep(500);
       contrast.light.explore = await p.evaluate(() => window.__a11y.contrastScan());
-      const btns = p.locator('[data-testid="stage"] [data-qa="control"]:enabled');
-      for (let i = 0; i < Math.min(await btns.count(), 16); i++) { try { await btns.nth(i).click({ timeout: 1500 }); await sleep(250); } catch {} }
-      const sliders = p.locator('[data-testid="stage"] input[type=range]:enabled');
-      for (let i = 0; i < Math.min(await sliders.count(), 4); i++) { try { await sliders.nth(i).focus(); await p.keyboard.press("ArrowRight"); await p.keyboard.press("ArrowRight"); await sleep(250); } catch {} }
+      await pressAll(p, 250);
       const rb = p.locator('[data-testid="reveal-button"]');
       if (await rb.isEnabled().catch(() => false)) { await rb.click(); await sleep(500); contrast.light.reveal = await p.evaluate(() => window.__a11y.contrastScan()); }
       if (SHOTS) await p.screenshot({ path: path.join(SHOTS, slug, "5-reveal-light.png") });
@@ -533,16 +554,7 @@ async function scanLesson(browser, slug) {
     await p.locator('[data-testid="predict-option"]').first().click();
     await p.locator('[data-testid="commit-prediction"]').click();
     await sleep(400);
-    const btns = p.locator('[data-testid="stage"] [data-qa="control"]:enabled');
-    const nb = Math.min(await btns.count(), 16);
-    for (let i = 0; i < nb; i++) {
-      try { await btns.nth(i).click({ timeout: 1500 }); } catch {}
-      await sleep(60);
-      probes.push(await probe("explore-" + i));
-      await sleep(150);
-    }
-    const sliders = p.locator('[data-testid="stage"] input[type=range]:enabled');
-    for (let i = 0; i < Math.min(await sliders.count(), 4); i++) { try { await sliders.nth(i).focus(); await p.keyboard.press("ArrowRight"); await p.keyboard.press("ArrowRight"); await sleep(60); probes.push(await probe("slider-" + i)); } catch {} }
+    await pressAll(p, 150, async (i) => { probes.push(await probe("explore-" + i)); });
     // idle: does the stage keep changing by itself?
     await sleep(800);
     await p.evaluate(() => { window.__mut = 0; });
