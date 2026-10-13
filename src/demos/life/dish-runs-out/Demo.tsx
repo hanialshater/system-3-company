@@ -29,6 +29,11 @@ function fmt(n: number) {
   return Math.round(n).toLocaleString("en-US");
 }
 
+const pct = (n: number) => {
+  const p = (100 * n) / FULL;
+  return p < 1 ? p.toFixed(1) : String(Math.round(p));
+};
+
 function clock(k: number) {
   const min = k * 20;
   const h = Math.floor(min / 60);
@@ -55,18 +60,18 @@ export default function DishRunsOut({ slug }: { slug: string }) {
         options: ["About 30,000", "About a million", "About a billion"],
         answer: 2,
       }}
-      exploreHint="Take the topped-up dish to 10 hours. Then switch to one batch of food."
-      minInteractions={2}
+      exploreHint="With food topped up, jump to 7 h, 9 h 40, then 10 h. Then switch to one batch of food."
+      minInteractions={4}
       reveal={() => (
         <>
           <p>
-            Ten hours is 30 doublings, and 2 doubled 30 times is about <strong>1.07 billion</strong>. After 7 hours the
-            colony was still under 1% of the dish. Most of the dish filled in the last hour, and half of it in the last
-            20 minutes.
+            One cell doubling 30 times is 2<sup>30</sup>, about <strong>{fmt(FULL)}</strong>. At 7 h you saw{" "}
+            {fmt(cells(21, "topped"))}, under 1% of that. At 9 h 40 you saw {fmt(cells(29, "topped"))}: half of all the
+            cells arrived in the last 20 minutes.
           </p>
           <p>
-            With one batch of food, growth looked the same at first, then bent and stopped below 100 million as the food
-            ran out. Doubling feels slow, then is suddenly everywhere, and something finite always ends it.
+            With one batch of food the curve bent and levelled off near 100 million ({fmt(cells(STEPS, "batch"))} at 10 h).
+            Doubling feels slow, then suddenly everywhere, and something finite ends it.
           </p>
           <p className="muted">
             E. coli can double about every 20 minutes in rich lab broth; many bacteria are far slower. The food batch
@@ -86,18 +91,20 @@ export default function DishRunsOut({ slug }: { slug: string }) {
               interact();
             }
           };
+          if (nf === "topped" && kk === 21) mark("seven-hours");
+          if (nf === "topped" && kk === 29) mark("half-way-in-last-20");
           if (nf === "topped" && kk === STEPS) mark("full");
-          if (nf === "batch" && kk >= 27) mark("batch");
+          if (nf === "batch" && kk === STEPS) mark("batch");
         };
         const msg = locked
           ? "Make a prediction to start."
           : k === 0
             ? "Time 0: one cell. Each cell splits every 20 minutes."
-            : food === "batch" && foodLeft < 0.15
-              ? `${clock(k)}: food nearly gone. Growth stalls.`
-              : speck
-                ? `${clock(k)}: still a speck in the dish.`
-                : `${clock(k)}: the colony is spreading.`;
+            : food === "batch"
+              ? `${clock(k)}: ${fmt(n)} cells. One batch feeds about 100 million${foodLeft < 0.15 ? ", so growth stalls" : ""}.`
+              : k === STEPS
+                ? `${clock(k)}: ${fmt(n)} cells. The dish is full (100%).`
+                : `${clock(k)}: ${fmt(n)} cells, ${pct(n)}% of the 10 h count.`;
         return (
           <div className={s.wrap}>
             <svg viewBox="0 0 300 300" className={`stage-svg ${s.svg}`} role="img" aria-label={`Dish at ${clock(k)}: ${fmt(n)} cells`}>
@@ -121,6 +128,12 @@ export default function DishRunsOut({ slug }: { slug: string }) {
             <Row>
               <Control disabled={locked || k >= STEPS} onClick={() => go(k + 1, food)}>
                 +20 min
+              </Control>
+              <Control disabled={locked || k >= 21} onClick={() => go(21, food)}>
+                To 7 h
+              </Control>
+              <Control disabled={locked || k >= 29} onClick={() => go(29, food)}>
+                To 9 h 40
               </Control>
               <Control disabled={locked || k >= STEPS} onClick={() => go(STEPS, food)}>
                 To 10 h

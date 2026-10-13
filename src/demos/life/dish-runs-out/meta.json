@@ -1,7 +1,7 @@
 {
   "slug": "dish-runs-out",
   "title": "One cell, ten hours",
-  "hook": "A bacterium splits every 20 minutes. How crowded is the dish by evening?",
+  "hook": "A bacterium splits every 20 minutes. How crowded is the dish after 10 hours?",
   "domain": "life",
   "concept": "exponential-bacteria",
   "status": "review",
@@ -26,30 +26,24 @@
   "claims": [
     {
       "id": "life.dish-runs-out.c1",
-      "text": "Ten hours of doubling every 20 minutes is 30 doublings; 2^30 = 1,073,741,824, about 1.07 billion.",
+      "text": "One cell doubling 30 times (10 hours of 20-minute doublings) gives 2^30 = 1,073,741,824 cells, about 1.07 billion.",
       "support": "derivation",
       "source": "600 min / 20 min = 30; 2^30 = 1,073,741,824 (checked with node).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.dish-runs-out.c2",
-      "text": "After 7 hours the colony was under 1% of its 10-hour size; most of the dish filled in the last hour and half of it in the last 20 minutes.",
+      "text": "At 7 hours the colony was 2.1 million cells, under 1% of its 10-hour size; at 9 h 40 min it was 537 million, half the 10-hour size, so half of all cells arrived in the last 20 minutes.",
       "support": "derivation",
-      "source": "At 7 h the count is 2^21 = 2^-9 of 2^30, about 0.2%. At 9 h it is 2^27 = 1/8 of 2^30, so 7/8 arrives in the last hour; at 9 h 40 min it is 1/2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "At 7 h (21 doublings) 2^21 = 2,097,152 = 0.2% of 2^30. At 9 h 40 min (29 doublings) 2^29 = 536,870,912 = exactly half of 2^30.",
+      "status": "unverified"
     },
     {
       "id": "life.dish-runs-out.c3",
-      "text": "With one batch of food, growth looks the same at first, then bends and stops below 100 million cells as the food runs out.",
+      "text": "With one batch of food, growth looks the same at first, then bends and levels off near 100 million cells (91.5 million at 10 hours) as the food runs out.",
       "support": "simulation",
       "source": "Stage model (convention): logistic growth N(k) = K / (1 + (K - 1) e^(-k ln 2)) per 20-minute step with K = 100 million. Gives 512 cells at 3 h (same as unlimited), 57 million at 9 h and 91 million at 10 h, approaching but never exceeding 100 million.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.dish-runs-out.c4",
@@ -71,12 +65,10 @@
     },
     {
       "id": "life.dish-runs-out.c6",
-      "text": "The drawing is scaled: colony area is proportional to the number of cells, and 2^30 cells fill the dish. The 100-million food batch is made up.",
+      "text": "The drawing is scaled: colony area is proportional to the number of cells, and 2^30 cells fill the dish (the stage calls this 100%). The 100-million food batch is made up.",
       "support": "convention",
       "source": "Modelling and drawing choice in Demo.tsx (FULL = 2^30, K = 1e8).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,5 +93,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
