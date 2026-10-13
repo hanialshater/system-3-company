@@ -1,0 +1,73 @@
+{
+  "slug": "land-hemisphere",
+  "title": "Find the half of Earth that is land",
+  "hook": "Earth is mostly water, but land bunches up. Can one half of the globe be mostly land?",
+  "domain": "geography",
+  "concept": "land-water-hemispheres",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that Earth has more water than land",
+      "that the continents are unevenly spread"
+    ],
+    "doesNotKnow": [
+      "how lopsided the land is",
+      "that even the landiest half of the Earth is more than half water"
+    ]
+  },
+  "misconception": "Somewhere there is a half of the Earth that is mostly land.",
+  "objective": "The learner can say that the most land-heavy hemisphere, centred near Western Europe, is still just under half land, while the planet as a whole is about 29% land.",
+  "claims": [
+    {
+      "id": "geography.land-hemisphere.c1",
+      "text": "The landiest half of the Earth on this map is centred near 42 N, 2 E, in Western Europe, and is about 47% land.",
+      "support": "simulation",
+      "source": "Every hemisphere centre on a 2 degree grid, searched at build time over the lesson's own 2 degree land mask (mask.ts; cells cos-weighted): maximum 47.1% at 42 N, 2 E. The page recomputes the share at that centre from the same mask. Published land-hemisphere centres are near Nantes, France, at about 47 N, 2 W, with land about 47-49% (Boggs 1945; Wikipedia 'Land and water hemispheres'; from memory, not checked online). 1:110m omits small islands, so it is a slight underestimate; the lesson says 'on this map'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.land-hemisphere.c2",
+      "text": "The whole planet is about 29% land.",
+      "support": "simulation",
+      "source": "Cos-weighted share of land cells in the 2 degree mask: 29.0%. NOAA and USGS give about 29% (from memory, not checked online).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.land-hemisphere.c3",
+      "text": "The Northern Hemisphere is about 40% land.",
+      "support": "simulation",
+      "source": "Same mask, hemisphere centred on the North Pole: 39.5% (shown rounded). The brief gives 39% by its own grid.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.land-hemisphere.c4",
+      "text": "The emptiest half, centred in the South Pacific near New Zealand, is only about 11% land.",
+      "support": "simulation",
+      "source": "Minimum of the same build-time search: 10.9% at 42 S, 178 W, just east of New Zealand's North Island (place description from the coordinates).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Someone says: 'From the right spot in space you could see a half of Earth that is mostly land.' Are they right?",
+    "options": [
+      "No: even the landiest half is just under half land",
+      "Yes: the half centred on Asia is mostly land",
+      "Yes: the Northern Hemisphere is mostly land"
+    ],
+    "answer": 0,
+    "why": "The most land you can fit in one hemisphere, centred near Western Europe, is still a little under half. The Northern Hemisphere is only about 40% land."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
