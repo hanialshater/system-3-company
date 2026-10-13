@@ -13,3 +13,11 @@ Checker: fact-checker. Method: transcript + Demo.tsx; model rebuilt in artifacts
 - c5: reveal says two lines give "a band between them". Only 18 of the 54 solutions are parallel (band); 36 are crossing lines giving opposite wedges. Wording concern for demo-builder; not a false numeric claim.
 
 The stage 'Your best with one line was N of 4' is learner state and reported by the code, not a claim. No seeds.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | 'a band between them' holds only for parallel lines. Of the toy's solving two-line settings, non-parallel ones give two opposite wedges, not a band, and learners can build those. Fix: 'for example a band when the lines are parallel'. |

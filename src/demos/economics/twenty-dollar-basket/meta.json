@@ -28,28 +28,36 @@
       "text": "With $20, apples at $2 and loaves at $4, buying 3 loaves leaves $8, which buys at most 4 apples.",
       "support": "derivation",
       "source": "20 − 3 × 4 = 8; 8 / 2 = 4. Demo.tsx maxApples(3).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-dollar-basket.c2",
       "text": "Each loaf takes the room of 2 apples, because $4 / $2 = 2.",
       "support": "derivation",
       "source": "Price ratio 4 / 2 = 2; maxApples(l) = (20 − 4l) / 2 = 10 − 2l falls by 2 per loaf.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-dollar-basket.c3",
       "text": "Inside a fixed budget, one more of one good means giving up some of another; the trade-off is the ratio of the prices.",
       "support": "source",
       "source": "Budget constraint: the slope of the budget line is the relative price (N. G. Mankiw, Principles of Economics, ch. 21 'The Theory of Consumer Choice', section 'The Budget Constraint').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-dollar-basket.c4",
       "text": "The prices are made up for the example.",
       "support": "convention",
       "source": "Stage chip 'made-up prices'; reveal's last line.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "Inside a fixed budget a $10 ticket takes the room of two $5 snacks. The trade-off is the price ratio, 10 / 5 = 2."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/twenty-dollar-basket/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

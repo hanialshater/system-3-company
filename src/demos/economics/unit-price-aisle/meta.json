@@ -28,28 +28,36 @@
       "text": "500 g for $3.50 is $0.70 per 100 g; 750 g for $5.10 is $0.68 per 100 g; 1.2 kg for $8.40 is $0.70 per 100 g.",
       "support": "derivation",
       "source": "350 / 5 = 70 cents; 510 / 7.5 = 68 cents; 840 / 12 = 70 cents. Demo.tsx per100(cents, grams).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.unit-price-aisle.c2",
       "text": "Of the three, the 750 g pack is cheapest per 100 g, and the 1.2 kg pack costs the same rate as the 500 g pack.",
       "support": "derivation",
       "source": "68 < 70 = 70 (c1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.unit-price-aisle.c3",
       "text": "On the slider, the 1.2 kg pack's price per 100 g is its shelf price divided by 12 (for example $8.16 gives $0.68).",
       "support": "derivation",
       "source": "1200 g / 100 g = 12; 816 / 12 = 68 cents. Slider runs $7.20 to $9.60 in $0.12 steps (one cent per 100 g).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.unit-price-aisle.c4",
       "text": "The prices are invented, not real shop prices; a unit price ignores waste and storage.",
       "support": "convention",
       "source": "Stage chip 'Made-up prices'; reveal's last line.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "$5.00 / 2.5 = $2.00 per 100 g; $22.00 / 10 = $2.20 per 100 g. Divide price by size; the rate need not fall as the pack grows."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/unit-price-aisle/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

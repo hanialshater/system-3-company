@@ -27,35 +27,45 @@
       "text": "With 10% on the first $20,000 and 30% above, $19,000 of pay is taxed $1,900, leaving $17,100.",
       "support": "derivation",
       "source": "0.1 × 19,000 = 1,900; 19,000 − 1,900 = 17,100. Demo.tsx tax(), takeHome().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.raise-into-new-bracket.c2",
       "text": "$21,000 of pay is taxed $2,300 ($2,000 + $300), leaving $18,700: take-home rises by $1,600.",
       "support": "derivation",
       "source": "0.1 × 20,000 + 0.3 × 1,000 = 2,300; 21,000 − 2,300 = 18,700; 18,700 − 17,100 = 1,600.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.raise-into-new-bracket.c3",
       "text": "In this system each extra dollar above $20,000 keeps 70 cents, so more pay always means more take-home.",
       "support": "derivation",
       "source": "d(takeHome)/d(pay) = 0.9 below 20,000 and 0.7 above, both positive.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.raise-into-new-bracket.c4",
       "text": "A higher bracket's rate applies only to the dollars above its threshold.",
       "support": "source",
       "source": "Marginal vs average tax rate in a progressive bracket system (N. G. Mankiw, Principles of Economics, ch. 12 'The Design of the Tax System', marginal and average tax rates).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.raise-into-new-bracket.c5",
       "text": "The brackets are invented, not any country's, and the model ignores credits and other taxes.",
       "support": "convention",
       "source": "Stage chip 'Made-up tax'; reveal's last line. (Real systems can have benefit phase-outs that are not modelled here.)",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -70,7 +80,9 @@
     "why": "The first $1,000 of the raise is taxed 20% (keep $800), the next $1,000 at 40% (keep $600). Only dollars above the line pay the higher rate."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/raise-into-new-bracket/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

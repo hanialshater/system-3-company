@@ -26,28 +26,36 @@
       "text": "Cutting the biggest square off a 48 by 18 rectangle again and again cuts squares of 18, 18, 12 and 6 and leaves a 6 by 6 square.",
       "support": "derivation",
       "source": "Recomputed with node; the stage's euclid() function produces the cuts and the chips' labels.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.euclid-square-cutting.c2",
       "text": "The biggest square tile that covers a 48 by 18 floor exactly has side 6, and 8 by 3 = 24 of them cover it; 9 and 12 do not divide both sides.",
       "support": "derivation",
       "source": "gcd(48, 18) = 6, recomputed with node; 48 / 9 and 18 / 12 are not whole numbers.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.euclid-square-cutting.c3",
       "text": "A tile that fits a rectangle exactly also fits what is left after cutting off a square, and the last square left fits every piece, so it is the biggest shared tile.",
       "support": "derivation",
       "source": "If t divides a and b it divides a - b; conversely the final side divides every earlier side by working back up. This is gcd(a, b) = gcd(b, a - b).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.euclid-square-cutting.c4",
       "text": "This repeated-subtraction method is Euclid's.",
       "support": "source",
       "source": "Euclid, Elements VII.2 (finding the greatest common measure of two numbers).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -62,7 +70,9 @@
     "why": "Cut 15 (leaves 6 by 15), cut 6 twice (leaves 6 by 3), cut 3 (leaves 3 by 3). So 3 is the biggest tile that fits both 21 and 15."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/euclid-square-cutting/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

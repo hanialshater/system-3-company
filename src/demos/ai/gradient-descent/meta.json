@@ -119,8 +119,10 @@
       "id": "ai.gradient-descent.c11",
       "text": "For step sizes below 0.2 the running message says 'Crawling: the hops are tiny.'",
       "support": "simulation",
-      "source": "Stage message() branch factor > 0.6 (step size below 0.2). Hops at 0.05 are 0.40 of a 4.00 distance (10%), but at 0.15 the first hop is 1.20 (30% of the distance) and the 10-hop distance is 0.11, so 'tiny' is generous for 0.15. Wording concern for demo-builder; not covered by c9, which only covers the 'Heading down' and 'within 0.05' branches. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "Stage message() branch factor > 0.6 (step size below 0.2). Hops at 0.05 are 0.40 of a 4.00 distance (10%), but at 0.15 the first hop is 1.20 (30% of the distance) and the 10-hop distance is 0.11, so 'tiny' is generous for 0.15. Wording concern for demo-builder; not covered by c9, which only covers the 'Heading down' and 'within 0.05' branches. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: The message 'Crawling: the hops are tiny.' fires for step sizes below 0.2 (factor above 0.6). At 0.15-0.19 the first hop is 1.2-1.5 of a 4.0 distance (30-38%), not tiny. Code behaviour is as stated; the displayed wording is not. Fix: 'Slow: each hop covers only a small share of the distance' or lower the threshold.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -136,7 +138,8 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/gradient-descent/2026-10-12-qa.md"
+      "company/reviews/gradient-descent/2026-10-12-qa.md",
+      "company/reviews/gradient-descent/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/gradient-descent/2026-10-12-learner-adult-beginner.md"

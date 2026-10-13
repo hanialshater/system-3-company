@@ -19,3 +19,11 @@ Reveal para 2 says "the model answers only from what retrieval hands it": added 
 
 ## Not verified by me
 Unverified (needs an independent checker): c5.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | 'The model answers only from what retrieval hands it' is true of the toy but the sentence follows a remark about real systems; real retrieval-augmented models also carry knowledge in their weights (Lewis et al. 2020, parametric memory, checked). Fix: 'In this setup the model answers only from what retrieval hands it'. |

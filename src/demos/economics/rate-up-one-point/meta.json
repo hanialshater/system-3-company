@@ -28,28 +28,36 @@
       "text": "A rate rising from 4% to 5% rises by 1 percentage point, which is a 25% rise in the rate itself.",
       "support": "derivation",
       "source": "5 − 4 = 1 point; (5 − 4) / 4 = 0.25. Demo.tsx pctChange(4, 5).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rate-up-one-point.c2",
       "text": "The same 1-point rise is +100% from 1%, +50% from 2% and +12.5% from 8%.",
       "support": "derivation",
       "source": "1/1 = 1.00; 1/2 = 0.50; 1/8 = 0.125. Demo.tsx pctChange(a, a + 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rate-up-one-point.c3",
       "text": "A percent change is the change divided by the starting value.",
       "support": "convention",
       "source": "Definition of relative (percent) change: (new − old) / old × 100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.rate-up-one-point.c4",
       "text": "Careful writers call a change from 4% to 5% a rise of one percentage point.",
       "support": "source",
       "source": "Style guides distinguish 'percentage point' from 'percent' for differences between rates (e.g. The Economist Style Guide, entry 'percentage points'; AP Stylebook, entry 'percentages').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "10 to 8 is a distance of 2 points on the scale. Relative to the start, 2 / 10 = 20%."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/rate-up-one-point/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

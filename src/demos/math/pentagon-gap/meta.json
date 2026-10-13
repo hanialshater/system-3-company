@@ -27,35 +27,45 @@
       "text": "The corner of a regular n-sided polygon is (n - 2) x 180 / n degrees: 60 for a triangle, 90 for a square, 108 for a pentagon, 120 for a hexagon.",
       "support": "derivation",
       "source": "Angle sum of an n-gon is (n - 2) x 180 (split into n - 2 triangles); divided equally among n corners. Values recomputed with node from the same corner() function the stage draws with.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pentagon-gap.c2",
       "text": "Three regular pentagons around a point fill 324 degrees and leave a 36 degree gap; a fourth would overlap by 72 degrees.",
       "support": "derivation",
       "source": "3 x 108 = 324, 360 - 324 = 36, 4 x 108 - 360 = 72; recomputed with node from the stage's fits() and corner().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pentagon-gap.c3",
       "text": "Six triangles (6 x 60), four squares (4 x 90) and three hexagons (3 x 120) each fill exactly 360 degrees around a point.",
       "support": "derivation",
       "source": "Arithmetic, recomputed with node from the stage's functions.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pentagon-gap.c4",
       "text": "Where tile corners meet at a point they must fill exactly 360 degrees; corners meeting against another tile's straight edge must fill 180 degrees.",
       "support": "derivation",
       "source": "A full turn around a point is 360 degrees; a straight edge occupies 180 of it. No gaps or overlaps means the angles at the point sum exactly.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pentagon-gap.c5",
       "text": "Regular pentagons cannot tile the plane in any arrangement; among regular polygons only triangles, squares and hexagons tile on their own.",
       "support": "source",
       "source": "Grunbaum and Shephard, Tilings and Patterns (1987), section 2.1; follows from 108 dividing neither 360 nor 180.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -70,7 +80,9 @@
     "why": "Tiles meeting at a point must fill 360 degrees exactly. Two octagons make 270, three make 405: a gap or an overlap, whichever way you turn them."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/pentagon-gap/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

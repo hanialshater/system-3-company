@@ -63,8 +63,10 @@
       "id": "ai.clicks-not-value.c5",
       "text": "Clicks do reward substance (one click per unit), so clicks and value look related, and a measure that tracks the goal while nobody pushes on it can stop tracking it once something optimises it.",
       "support": "derivation",
-      "source": "Reveal paragraphs 1-2. In the toy clicks = 2h + s rewards s by one click per unit, true. But with effort fixed at 10, clicks = h + 10 = 20 - s, so across all splits clicks and value are perfectly negatively correlated (r = -1, fact-checker script cv.mjs): the toy never shows clicks tracking value before optimisation. The first half is true of the formula; the second half is general Goodhart-style reasoning supported by c4. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "Reveal paragraphs 1-2. In the toy clicks = 2h + s rewards s by one click per unit, true. But with effort fixed at 10, clicks = h + 10 = 20 - s, so across all splits clicks and value are perfectly negatively correlated (r = -1, fact-checker script cv.mjs): the toy never shows clicks tracking value before optimisation. The first half is true of the formula; the second half is general Goodhart-style reasoning supported by c4. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: The reveal says clicks and value 'look related' and that the measure 'tracks the goal' before optimisation. In the toy (effort fixed at 10) clicks = 20 - value, perfectly inverse, and the stage bars move in opposite directions; the toy never shows clicks tracking value. Fix: state the Goodhart point without claiming the toy's clicks track value, or let the toy vary total effort.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -80,7 +82,8 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/clicks-not-value/2026-10-12-qa.md"
+      "company/reviews/clicks-not-value/2026-10-12-qa.md",
+      "company/reviews/clicks-not-value/2026-10-13-qa.md"
     ],
     "simulatedLearner": [],
     "pairwise": [],

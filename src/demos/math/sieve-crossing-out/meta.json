@@ -27,28 +27,36 @@
       "text": "Crossing out the multiples of 2, 3, 5 and 7 (but not the numbers themselves) from 2 to 100 leaves 25 numbers, and they are exactly the 25 primes up to 100.",
       "support": "derivation",
       "source": "Recomputed with node, checking each survivor by trial division; the stage counts survivors from the same struck set it draws.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.sieve-crossing-out.c2",
       "text": "Every number that is not prime is a x b with the smaller factor at most its square root, so up to 100 it has a prime factor of at most 10.",
       "support": "derivation",
       "source": "If n = ab with a <= b then a x a <= n, so a <= sqrt(n) <= 10; any prime factor of a also divides n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.sieve-crossing-out.c3",
       "text": "After the sweeps of 2, 3, 5 and 7, sweeping 11 crosses out nothing new; its first multiple without a smaller factor would be 11 x 11 = 121, past 100.",
       "support": "derivation",
       "source": "22, 33, 44, 55, 66, 77, 88, 99 each have a factor among 2, 3, 5, 7 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.sieve-crossing-out.c4",
       "text": "This crossing-out method is the sieve credited to Eratosthenes.",
       "support": "source",
       "source": "Nicomachus of Gerasa, Introduction to Arithmetic I.13, attributes the sieve to Eratosthenes.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -63,7 +71,9 @@
     "why": "A non-prime up to 200 has a factor at most the square root of 200, about 14.1. 13 is still needed (169 = 13 x 13), but the next prime, 17, has 17 x 17 = 289, past 200."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/sieve-crossing-out/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

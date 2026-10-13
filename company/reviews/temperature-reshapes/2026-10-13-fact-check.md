@@ -14,3 +14,11 @@ Checker: fact-checker. Method: transcript + Demo.tsx; probs() and draw20() re-ru
 
 ## Added (unverified)
 - c8: 'A hot model is not more inventive' (interpretive generalisation to real models).
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c8 | disputed | True of the toy, but stated as a flat fact about hot models. Peeperkorn et al. 2024 (ICCC; arXiv 2405.00492) report a weak positive link of temperature with novelty (beta about 0.31) and a moderate reduction in coherence, so 'not more inventive' is too strong. Fix: 'does not make the model learn anything new; it only spreads its choices'. |

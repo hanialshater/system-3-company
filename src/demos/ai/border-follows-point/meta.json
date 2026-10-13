@@ -63,8 +63,10 @@
       "id": "ai.border-follows-point.c5",
       "text": "With many points, moving any training point near a nearest-neighbour border moves the decision for every spot around it.",
       "support": "derivation",
-      "source": "Reveal paragraph 2. CONCERN from the fact-checker: in 1-NN, nudging one training point only changes the class of spots that switch nearest neighbour (the sliver between its old and new Voronoi cell); in a 6-point test, moving one point by 0.5 changed the class of only 0.8% of the plane. 'Every spot around it' overstates; suggest 'moves the decision for the spots that were closest to it' or similar. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "Reveal paragraph 2. CONCERN from the fact-checker: in 1-NN, nudging one training point only changes the class of spots that switch nearest neighbour (the sliver between its old and new Voronoi cell); in a 6-point test, moving one point by 0.5 changed the class of only 0.8% of the plane. 'Every spot around it' overstates; suggest 'moves the decision for the spots that were closest to it' or similar. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: In 1-NN, moving one training point changes the class only of spots that switch nearest neighbour (the sliver between its old and new cell); 'every spot around it' overstates. Fix: 'moves the decision for the spots nearest to it' or 'moves the border near it'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -79,7 +81,9 @@
     "why": "A nearest-neighbour border is wherever opposing training points are equally far away. Remove or move a point near it and the border moves, changing the label of every new email in the region it sweeps."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/border-follows-point/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

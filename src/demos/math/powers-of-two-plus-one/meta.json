@@ -27,28 +27,36 @@
       "text": "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 = 255.",
       "support": "derivation",
       "source": "Recomputed with node; the stage's question and reveal use the same SIZES array and TOTAL it draws from.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.powers-of-two-plus-one.c2",
       "text": "Blocks of 1, 2, 4 ... 128 cells fit inside a 16 by 16 square (256 cells) with exactly one cell left empty.",
       "support": "derivation",
       "source": "Construction in layout(): each block takes half of the remaining rectangle, so after 8 halvings a 1-cell region is left; 256 - 255 = 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.powers-of-two-plus-one.c3",
       "text": "Adding one unit to the pile doubles it to the size of each next block in turn: 1+1 = 2, 2+2 = 4, ..., 128+128 = 256.",
       "support": "derivation",
       "source": "Induction: if the pile is 2^k it joins block 2^k to make 2^(k+1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.powers-of-two-plus-one.c4",
       "text": "For any n, 1 + 2 + ... + 2^(n-1) = 2^n - 1.",
       "support": "derivation",
       "source": "Geometric series, or the merge argument above by induction on n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -63,7 +71,9 @@
     "why": "Add one unit and it doubles through every block: 2, 4, 8, 16, 32, 64. So the blocks alone are 64 - 1 = 63."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/powers-of-two-plus-one/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

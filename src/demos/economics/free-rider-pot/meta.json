@@ -28,42 +28,54 @@
       "text": "With 10 neighbours holding $10 each and every pot dollar becoming $3 shared equally, if you give all $10 and the others give nothing, you end with $3 and each of them with $13.",
       "support": "derivation",
       "source": "Pot 10 × 3 = 30; share 30 / 10 = 3. You: 0 + 3 = 3. Others: 10 + 3 = 13. Demo.tsx payoffs().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.free-rider-pot.c2",
       "text": "In that case the group goes from $100 to $120.",
       "support": "derivation",
       "source": "3 + 9 × 13 = 120. (The brief's key state said $130; recomputed as $120.)",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.free-rider-pot.c3",
       "text": "If everyone gives $10, everyone ends with $30.",
       "support": "derivation",
       "source": "Pot 100 × 3 = 300; 300 / 10 = 30 each, with $0 kept.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.free-rider-pot.c4",
       "text": "Each dollar you give returns 30 cents to you, so whatever the others do, each dollar held back leaves you 70 cents better off while the group loses $2.",
       "support": "derivation",
       "source": "Your total = 10 − g + 0.3 × (g + others) has slope −0.7 in g; group total = 100 + 2 × pot. (The brief said $2.70 per dollar; recomputed as $0.70.)",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.free-rider-pot.c5",
       "text": "The 'some' setting is one seeded draw of the nine neighbours' gifts ($0 to $10 each).",
       "support": "simulation",
       "source": "mulberry32 seed 7, untuned (first seed tried): gifts 0, 0, 10, 7, 5, 4, 5, 2, 6 (sum 39). It illustrates c4; c4 does not rest on it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.free-rider-pot.c6",
       "text": "The lesson is a model of one round with no talking and no punishment; in lab versions of this game many people do give, at least at first.",
       "support": "source",
       "source": "J. O. Ledyard (1995), 'Public Goods: A Survey of Experimental Research', in Kagel & Roth (eds.), Handbook of Experimental Economics: one-shot and early-round contributions typically 40–60% of the endowment, falling with repetition.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -78,7 +90,9 @@
     "why": "$1 becomes $2 of benefit split five ways, so the giver gets 40 cents of it. For each person holding back pays; for the group giving pays."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/free-rider-pot/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

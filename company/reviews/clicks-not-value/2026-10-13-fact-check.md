@@ -11,3 +11,11 @@ Checker: fact-checker. Method: transcript + Demo.tsx; model re-run in artifacts/
 
 ## Added (unverified) and a concern
 - c5: "Clicks do reward substance ... clicks and value look related". True of the marginal reward (one click per unit of substance) but with fixed effort the stage never shows them rising together; across splits r = -1. Not wrong, but a learner could read 'look related' as 'move together'. For the demo-builder / pedagogy-critic to consider; not a fact error.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | The reveal says clicks and value 'look related' and that the measure 'tracks the goal' before optimisation. In the toy (effort fixed at 10) clicks = 20 - value, perfectly inverse, and the stage bars move in opposite directions; the toy never shows clicks tracking value. Fix: state the Goodhart point without claiming the toy's clicks track value, or let the toy vary total effort. |

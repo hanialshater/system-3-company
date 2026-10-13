@@ -15,3 +15,11 @@ Nuance on c4 / the reveal wording 'a moderate penalty beat none': the 490 counts
 
 ## Added (unverified)
 - c5: 'nearly flat' at lambda 10 (see claim).
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | Re-ran model: at penalty 10 the curve loses to no penalty in 441/500 seeds (88%), so 'loses again' needs 'usually'; and 'nearly flat' is loose (the curve is strongly shrunk, median about 37% of the training range per earlier check, not flat). Fix: 'goes much flatter and usually loses again'. |

@@ -27,28 +27,36 @@
       "text": "Ten fingers worth 1, 2, 4, ..., 512 add up to 1023 when all are up.",
       "support": "derivation",
       "source": "1 + 2 + ... + 512 = 2^10 - 1 = 1023; recomputed with node from the stage's VALUES.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.binary-fingers.c2",
       "text": "Ten fingers, each up or down, make 2^10 = 1024 different patterns.",
       "support": "derivation",
       "source": "Each finger has 2 states independently: 2 x 2 x ... x 2 (ten times) = 1024.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.binary-fingers.c3",
       "text": "Every whole number from 0 to 1023 has exactly one finger pattern (its binary representation).",
       "support": "derivation",
       "source": "Existence and uniqueness of binary representation, by induction on the number of places; 1024 patterns and 1024 numbers match one to one.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.binary-fingers.c4",
       "text": "Adding one more finger doubles the count: it can be down (all the old numbers) or up (each old number plus its value).",
       "support": "derivation",
       "source": "Patterns with n + 1 places = 2 x patterns with n places.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -63,7 +71,9 @@
     "why": "Each switch doubles the count: 2 multiplied by itself 8 times is 256, covering 0 to 255."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/binary-fingers/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

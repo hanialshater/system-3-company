@@ -15,3 +15,11 @@ Checker: fact-checker, a different checker from the 2026-10-12 record (which ver
 - c11: the 'Crawling: the hops are tiny' message (eta < 0.2). At eta 0.15 hops are 30% of the distance; wording concern.
 
 Stage check: reveal's 'Bigger is not faster', 'Past 1 it drops below -1' and the 0.05/0.95 tie are exact. The model is the stage's own f(x)=x^2 and is labelled as 'this valley'.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c11 | disputed | The message 'Crawling: the hops are tiny.' fires for step sizes below 0.2 (factor above 0.6). At 0.15-0.19 the first hop is 1.2-1.5 of a 4.0 distance (30-38%), not tiny. Code behaviour is as stated; the displayed wording is not. Fix: 'Slow: each hop covers only a small share of the distance' or lower the threshold. |

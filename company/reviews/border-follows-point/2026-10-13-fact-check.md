@@ -13,3 +13,13 @@ Checker: fact-checker. Method: transcript + Demo.tsx; geometry re-run in artifac
 - c5: the reveal's last clause, "moving any training point near it moves the decision for every spot around it". This is stronger than the geometry. In a 6-point check, nudging one point by 0.5 changed the label of 0.8% of the plane. Not marked disputed (the phrase is vague and the next checker may read it as 'spots near it'), but it should be reworded by demo-builder before launch.
 
 Other stage text: "A moved 2; the border moved 1" is true on the axis, as stated.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | In 1-NN, moving one training point changes the class only of spots that switch nearest neighbour (the sliver between its old and new cell); 'every spot around it' overstates. Fix: 'moves the decision for the spots nearest to it' or 'moves the border near it'. |
+
+Stage check: with the stage's two points the border does move for a whole half-plane, which is where the over-generalisation to 'every spot' comes from.

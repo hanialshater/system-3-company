@@ -28,28 +28,36 @@
       "text": "On the frontier corn = 100 − wheat², going from 0 to 1 ton of wheat costs 1 ton of corn, and going from 9 to 10 tons costs 19.",
       "support": "derivation",
       "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bending-frontier.c2",
       "text": "The corn lost per ton runs 1, 3, 5, … 19, growing by 2 each step.",
       "support": "derivation",
       "source": "corn(w − 1) − corn(w) = 2w − 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bending-frontier.c3",
       "text": "A frontier bends this way because resources are not all alike: the first wheat uses land worst for corn, the last takes the best corn land, so each extra ton costs more corn (increasing opportunity cost).",
       "support": "source",
       "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bending-frontier.c4",
       "text": "The curve is made up to show the shape, not data from a real farm.",
       "support": "convention",
       "source": "Stage chip 'Made-up farm'; reveal's last line.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "The first switch uses the factories best at scooters and worst at bikes. The last switch takes the best bike factories, so each extra scooter costs more bikes."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/bending-frontier/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

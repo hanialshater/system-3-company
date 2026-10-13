@@ -23,3 +23,13 @@ None.
 
 ## Result
 4 verified, 0 disputed, 1 added unverified.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Median robust to one extreme value, mean not (node: median stays 40 for boss 50..500 while mean reaches 130). 'Typical' is a judgement, but it is the standard statistical use of the median for skewed data (e.g. household income reports; secondary sources found); stage hedges it as 'closer to a typical person'. Advisory: a statistics text citation would be stronger. |
+
+Stage check: Also noted: the reveal unlocks at mean > 45 (boss >= 76), while c3 says 'boss earns 100 or more'; both true, no claim is wrong.

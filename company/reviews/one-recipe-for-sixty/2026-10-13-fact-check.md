@@ -22,3 +22,11 @@ None.
 
 ## Result
 3 verified, 0 disputed, 1 added unverified.
+
+## Fact-check pass 2 (independent second check, 2026-10-13)
+
+Checker: fact-checker. Method: re-derived numbers by extracting the model code from Demo.tsx and running it in node; compared each claim to the stage text; checked cited sources.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | node: exhaustive factor trees of 84 give only {2,2,3,7}; 84=4*21=6*14. |

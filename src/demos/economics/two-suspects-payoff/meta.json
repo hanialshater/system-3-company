@@ -28,28 +28,36 @@
       "text": "If the other player cooperates, defecting gives you 5 instead of 3.",
       "support": "derivation",
       "source": "Table: (D, C) = 5 for you, (C, C) = 3; 5 > 3. Demo.tsx PAY.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-suspects-payoff.c2",
       "text": "If the other player defects, defecting gives you 1 instead of 0.",
       "support": "derivation",
       "source": "Table: (D, D) = 1, (C, D) = 0; 1 > 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-suspects-payoff.c3",
       "text": "So defecting is better for you whatever the other does; the other player faces the same table, so both defect and each gets 1 instead of 3.",
       "support": "source",
       "source": "Dominant-strategy equilibrium of the one-shot prisoner's dilemma (e.g. Dixit & Nalebuff, The Art of Strategy, ch. 3; Mankiw, Principles of Economics, ch. 17 'Oligopoly').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-suspects-payoff.c4",
       "text": "The payoffs are invented, the game is one round with no talking, and when the same players meet again and again cooperation can last.",
       "support": "source",
       "source": "Stage chip 'Invented payoffs · one round · no talking'. Repeated-game cooperation: R. Axelrod, The Evolution of Cooperation (1984). Stated as possible, not guaranteed; tit-for-tat is not claimed optimal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "Low beats high in each column of the table, so each shop picks low, even though both would do better at high. Best for each, worse for both."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/two-suspects-payoff/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

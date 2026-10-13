@@ -27,28 +27,36 @@
       "text": "In 1, 1, 2, 3, 5, 8, 13, ... the ratios of each term to the one before are 1, 2, 1.5, 1.667, 1.6, 1.625, ... and 89/55 = 1.6182, 144/89 = 1.6180.",
       "support": "derivation",
       "source": "Recomputed with node from the same run() the stage plots.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.rabbit-ratio.c2",
       "text": "Starting from 1, 3 or from 3, 1 instead, the twelfth ratio is also 1.618 to three decimals.",
       "support": "derivation",
       "source": "Recomputed with node: 521/322 = 1.6180 and 411/254 = 1.6181. The three starts shown are illustrations chosen to start far apart, not evidence for all starts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.rabbit-ratio.c3",
       "text": "The ratios approach (1 + sqrt 5) / 2 = 1.6180... for any two positive starting numbers.",
       "support": "derivation",
       "source": "If r_n = t_(n+1)/t_n then r_(n+1) = 1 + 1/r_n; the map x -> 1 + 1/x contracts on x >= 1 towards its fixed point x = 1 + 1/x, i.e. x² = x + 1, positive root (1 + sqrt 5)/2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.rabbit-ratio.c4",
       "text": "The ratios alternate above and below the limit, getting closer each time.",
       "support": "derivation",
-      "source": "x -> 1 + 1/x is decreasing, so successive errors alternate in sign; its slope -1/x² has size below 1 near the fixed point, so the errors shrink.",
-      "status": "unverified"
+      "source": "x -> 1 + 1/x is decreasing, so successive errors alternate in sign; its slope -1/x² has size below 1 near the fixed point, so the errors shrink. DISPUTED 2026-10-13: node: for the start 3, 1 (offered on the stage) the ratios are 0.333, 4.0, 1.25, 1.8 ...: errors from 1.618 are 1.285 then 2.382, so the second ratio is farther, not closer. Alternation holds for all starts; 'closer each time' holds only from the second ratio on (and fails at step 2 for 3,1). Reveal says 'by less each time' too. Fix: 'getting closer after the first step or two' or 'and the gap shrinks'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -63,7 +71,9 @@
     "why": "The start does not matter: the rule makes the ratio zigzag in to the number x with x = 1 + 1/x, about 1.618."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/rabbit-ratio/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

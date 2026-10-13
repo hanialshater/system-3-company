@@ -81,8 +81,10 @@
       "id": "economics.two-bets-split.c7",
       "text": "As you split across more bets, the chance of some loss does not fall at every step, but the losses left are small ones.",
       "support": "derivation",
-      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: node: exact loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6; the average loss when there is a loss is -10% for n=1,2,3 and only -4.0, -5.0, -5.7% for n=4,5,6. So 'the losses left are small ones' is false at 2-3 bets (the loss is the full -10%) and 'small' is unanchored. Fix: restrict to 4+ bets or say 'and the big loss gets rarer: 50%, 25%, 12.5%'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -97,7 +99,9 @@
     "why": "Each bet has the same average, so the split does too. Both have to go badly for the worst case, which is less likely than one going badly."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/two-bets-split/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

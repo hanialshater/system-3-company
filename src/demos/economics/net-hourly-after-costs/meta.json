@@ -28,28 +28,36 @@
       "text": "At $22 an hour, 15 miles an hour and $0.50 a mile, driving costs $7.50 an hour and $14.50 is left.",
       "support": "derivation",
       "source": "15 × 0.50 = 7.50; 22 − 7.50 = 14.50. Demo.tsx kept(15, 50) in cents.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.net-hourly-after-costs.c2",
       "text": "At 15 miles an hour, $0.25 a mile leaves $18.25 and $0.70 a mile leaves $11.50.",
       "support": "derivation",
       "source": "22 − 15 × 0.25 = 18.25; 22 − 15 × 0.70 = 11.50.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.net-hourly-after-costs.c3",
       "text": "A car's fuel and wear are costs that grow with every mile driven.",
       "support": "source",
       "source": "Per-mile operating costs (fuel, maintenance, tyres, mileage-driven depreciation): AAA, 'Your Driving Costs' (annual). The lesson's $0.25 / $0.50 / $0.70 are illustrative, not AAA's or an official rate.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.net-hourly-after-costs.c4",
       "text": "The lesson is a model that ignores tax and tips; the per-mile costs are examples, not an official rate.",
       "support": "convention",
       "source": "Stage chip 'Model: no tax, no tips'; reveal's last line.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -64,7 +72,9 @@
     "why": "20 × $0.60 = $12 of driving costs each hour, so $30 − $12 = $18 is left. Earnings are what remains after the costs of earning them."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/net-hourly-after-costs/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

@@ -27,28 +27,36 @@
       "text": "7254 is divisible by 9 (7254 = 9 x 806), and so is every rearrangement of its digits.",
       "support": "derivation",
       "source": "All 24 orderings of 7, 2, 5, 4 checked with node; the stage computes each quotient from the number on screen.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.scramble-the-digits.c2",
       "text": "1000 = 999 + 1, 100 = 99 + 1 and 10 = 9 + 1, and 999, 99 and 9 are multiples of 9.",
       "support": "derivation",
       "source": "10^k - 1 is a string of k nines, which is 9 x 111...1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.scramble-the-digits.c3",
       "text": "A whole number leaves the same remainder on division by 9 as the sum of its digits.",
       "support": "derivation",
       "source": "Write n = sum of d_k 10^k = sum of d_k (10^k - 1) + sum of d_k; the first sum is a multiple of 9.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.scramble-the-digits.c4",
       "text": "7 + 2 + 5 + 4 = 18, a multiple of 9, and swapping digits does not change the sum.",
       "support": "derivation",
       "source": "Addition is commutative; recomputed with node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -63,7 +71,9 @@
     "why": "Each place is a multiple of 9 plus 1, so only the digits' sum matters: 18 is a multiple of 9, so 5814 is too (9 x 646)."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/scramble-the-digits/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

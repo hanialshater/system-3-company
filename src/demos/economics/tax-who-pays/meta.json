@@ -28,42 +28,54 @@
       "text": "In the toy market (buyers want 100 − 10p loaves, bakers bake 10p − 20) the price is $6 and 40 loaves sell.",
       "support": "derivation",
       "source": "100 − 10p = 10p − 20 gives p = 6; 100 − 60 = 40. Demo.tsx market(\"none\", 10).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.tax-who-pays.c2",
       "text": "A $2 tax collected from bakers makes buyers pay $7.00 and leaves bakers $5.00; 30 loaves sell.",
       "support": "derivation",
       "source": "Bakers bake 10(p − 2) − 20 = 10p − 40; 100 − 10p = 10p − 40 gives p = 7; bakers keep 7 − 2 = 5; 100 − 70 = 30. Demo.tsx market(\"bakers\", 10).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.tax-who-pays.c3",
       "text": "Collected from buyers instead, the same $2 tax gives the same result: buyers pay $7.00 in total, bakers keep $5.00, 30 loaves sell.",
       "support": "derivation",
       "source": "Buyers want 100 − 10(p + 2) = 80 − 10p at shelf price p; 80 − 10p = 10p − 20 gives p = 5; buyers pay 5 + 2 = 7. Demo.tsx market(\"buyers\", 10).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.tax-who-pays.c4",
       "text": "When buyers react less to price, they carry more of the tax ($1.33 of $2); when they react more, less ($0.67).",
       "support": "derivation",
       "source": "Demand A − b·p with A = 40 + 6b (keeps the untaxed price at $6), supply 10p − 20. Buyers' share = 2 × 10 / (10 + b): b = 5 gives 1.33, b = 20 gives 0.67. The slopes 5, 10, 20 are illustrative choices.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.tax-who-pays.c5",
       "text": "Who bears a tax depends on how strongly each side reacts to price, not on who hands over the money.",
       "support": "source",
       "source": "Tax incidence result for competitive markets with straight-line supply and demand (N. G. Mankiw, Principles of Economics, ch. 6 'Supply, Demand, and Government Policies', section on taxes; edition-dependent numbering). Stated as a model result.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.tax-who-pays.c6",
       "text": "The lesson is a toy model with straight-line supply and demand and makes no claim about whether any tax is good.",
       "support": "convention",
       "source": "Stage chip 'Toy market: straight-line supply and demand'; reveal's last paragraph.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -78,7 +90,9 @@
     "why": "The tax opens a gap between what customers pay and what shops keep. The side that reacts less to price carries more of it, whoever hands the money over."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/tax-who-pays/2026-10-13-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
