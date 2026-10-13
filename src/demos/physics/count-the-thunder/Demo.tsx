@@ -7,6 +7,9 @@
 //
 // 6 s -> 2058 m; light takes 6.9 microseconds. Wind, temperature changes and the
 // height of the lightning channel are ignored. The reveal unlocks at a 6 s count.
+// v2: the flash time is shown in seconds (0.0000069 s), not microseconds; the flash is drawn
+// as a ray reaching you; each arc is labelled 343 m; the caption applies "count / 3 = km"
+// against the ruler; the reveal describes the count the learner ends on.
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -19,6 +22,7 @@ const C_LIGHT = 3.0e8; // m/s
 const dist = (sec: number) => C_SOUND * sec; // m
 const km = (m: number) => (m / 1000).toFixed(2);
 const lightUs = (m: number) => (m / C_LIGHT) * 1e6;
+const lightS = (m: number) => (m / C_LIGHT).toFixed(7);
 
 const W = 320;
 const H = 150;
@@ -43,12 +47,15 @@ export default function CountTheThunder({ slug }: { slug: string }) {
       }}
       exploreHint="Set your count to 6 seconds. Each arc is one second of the thunder's trip."
       minInteractions={1}
-      reveal={() => (
+      reveal={() => {
+        const n = sec > 0 ? sec : 6;
+        return (
         <>
           <p>
-            A 6 s count put the strike <strong>{km(dist(6))} km</strong> away: six arcs of {C_SOUND} m each. The flash
-            covered the same distance in {lightUs(dist(6)).toFixed(1)} millionths of a second, so the delay is almost all
-            the thunder&apos;s trip.
+            Your {n} s count put the strike <strong>{km(dist(n))} km</strong> away: {n} arcs of {C_SOUND} m each
+            {n !== 6 ? ` (6 s is ${km(dist(6))} km)` : ""}. The flash covered the same distance in{" "}
+            {lightUs(dist(n)).toFixed(1)} millionths of a second ({lightS(dist(n))} s), so the delay is almost all the
+            thunder&apos;s trip.
           </p>
           <p>
             Sound in air goes about {C_SOUND} m every second, so every 3 s of counting is about 1 km (
@@ -56,15 +63,16 @@ export default function CountTheThunder({ slug }: { slug: string }) {
           </p>
           <p className="muted">Same event, two messengers: light is fast, sound is slow.</p>
         </>
-      )}
+        );
+      }}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
         const caption = locked
-          ? "Make a prediction to start."
+          ? `Each arc: one second of the thunder's trip, ${C_SOUND} m (air at 20 °C).`
           : sec === 0
             ? "Flash and thunder together: the strike is right here."
-            : `Arcs: where the thunder was each second. Sound in air at 20 °C.`;
+            : `Count ÷ 3 = ${sec / 3}: the strike sits near the ${sec / 3} km mark.`;
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Thunder after ${sec} seconds: strike ${km(d)} kilometres away`}>
@@ -96,6 +104,20 @@ export default function CountTheThunder({ slug }: { slug: string }) {
               <text x={X0} y={GROUND - 28} textAnchor="middle" className={s.small}>
                 you
               </text>
+              {/* the flash: reaches you almost at once */}
+              {sec > 0 && (
+                <>
+                  <line x1={sx - 6} y1={60} x2={X0 + 6} y2={GROUND - 22} className={s.ray} />
+                  <text x={(sx + X0) / 2} y={(60 + GROUND - 22) / 2 - 5} textAnchor="middle" className={s.small}>
+                    flash
+                  </text>
+                </>
+              )}
+              {sec > 0 && (
+                <text x={sx - C_SOUND * K - 2} y={GROUND - 4} textAnchor="end" className={s.small}>
+                  {C_SOUND} m
+                </text>
+              )}
               {/* strike */}
               <ellipse cx={sx} cy={18} rx={22} ry={9} className={s.cloud} />
               <path d={`M ${sx + 2} 26 L ${sx - 5} 62 L ${sx + 3} 62 L ${sx - 4} ${GROUND}`} className={s.bolt} />
@@ -128,7 +150,7 @@ export default function CountTheThunder({ slug }: { slug: string }) {
             />
             <Row>
               <Readout label="Strike distance" value={locked ? "?" : `${km(d)} km`} />
-              <Readout label="Flash took" value={locked ? "?" : `${lightUs(d).toFixed(1)} µs`} />
+              <Readout label="Flash took" value={locked ? "?" : `${lightS(d)} s`} />
             </Row>
           </div>
         );

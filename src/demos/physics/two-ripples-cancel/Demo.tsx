@@ -2,17 +2,21 @@
 
 // Two speakers, one tone. Top view: speakers A and B 1.5 m apart play the same 343 Hz
 // tone in step (wavelength 343 / 343 = 1.00 m). The listener walks along a line 4 m in
-// front of them. The stage offers the spots where B's path is shorter than A's by
+// front of them. The slider offers the spots where B's path is shorter than A's by
 // 0, 1/4, 1/2, 3/4 and 1 wavelength (solved below by bisection).
 //
 // Superposition: with equal amplitudes, the combined amplitude is |2 cos(pi D / lambda)|
 // times one speaker's, where D is the path difference: 2x at D = 0, 0 at D = lambda/2.
 // Idealised: each speaker is taken as equally loud at the listener (no 1/r falloff
-// difference), open air, no reflections. The rings are crests at one instant.
-// The reveal unlocks once the listener stands at a silent spot with both speakers on.
+// difference), open air, no reflections. Solid rings are crests, dashed rings troughs,
+// at one instant. The strip at the top draws A's and B's waves as they arrive at the
+// listener, and their sum, so "crest meets trough" is on the stage.
+// v2: the reveal unlocks once the listener stands at the cancelling spot (QA path: the
+// slider's two steps land on it). The B on/off toggle was removed so the last screen
+// always has both speakers; the one-speaker reference is A's own trace (height 1).
 
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import { useRef, useState } from "react";
 import s from "./styles.module.css";
@@ -34,100 +38,113 @@ function xFor(target: number) {
   }
   return lo;
 }
+const FRACS = ["0", "¼", "½", "¾", "1"];
 const SPOTS = [0, 1, 2, 3, 4].map((k) => xFor((k * LAMBDA) / 4));
+const CANCEL = 2; // index of the half-wavelength spot
 const amp = (d: number) => Math.abs(2 * Math.cos((Math.PI * d) / LAMBDA));
 
 const W = 320;
-const H = 222;
+const H = 280;
 const OX = 80;
-const OY = 212;
+const OY = 270;
 const K = 44; // px per m
 const px = (x: number) => OX + x * K;
 const py = (y: number) => OY - y * K;
 
+// Wave strip at the top: two cycles of each arriving wave.
+const TX0 = 40;
+const TX1 = 312;
+const trace = (yc: number, a: number, f: (t: number) => number) => {
+  const pts: string[] = [];
+  for (let i = 0; i <= 80; i++) {
+    const t = (i / 80) * 2;
+    pts.push(`${(TX0 + (i / 80) * (TX1 - TX0)).toFixed(1)},${(yc - a * f(t)).toFixed(1)}`);
+  }
+  return pts.join(" ");
+};
+
+const loud = (v: number) => (v < 0.05 ? "0×" : `${v.toFixed(1)}×`);
+
 export default function TwoRipplesCancel({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
-  const [bOn, setBOn] = useState(true);
+  const [seenFar, setSeenFar] = useState(false);
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["silent-spot"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["cancel-spot"]);
   const x = SPOTS[k];
   const d = diff(x);
-  const a = bOn ? amp(d) : 1;
-  const silent = bOn && a < 0.05;
-  const check = (kk: number, on: boolean) => {
-    if (on && amp(diff(SPOTS[kk])) < 0.05) reach("silent-spot");
-  };
-  const loud = (v: number) => (v < 0.05 ? "silent" : `${v.toFixed(1)}×`);
+  const a = amp(d);
+  const silent = a < 0.05;
+  const lag = (2 * Math.PI * d) / LAMBDA;
+  const wB = (t: number) => Math.sin(2 * Math.PI * t);
+  const wA = (t: number) => Math.sin(2 * Math.PI * t - lag);
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Two identical speakers play the same pure tone. Where one speaker's path is half a wavelength longer, the sound is…",
-        options: ["twice as loud", "the same as one speaker", "almost silent"],
+          "Two identical speakers play the same note. Where A's path is half a wavelength longer than B's, the sound is…",
+        options: ["louder than one speaker", "the same as one speaker", "almost nothing"],
         answer: 2,
       }}
-      exploreHint="Walk the listener sideways. Find where the extra path is half a wave."
+      exploreHint="Walk the listener out until A's path is half a wave longer."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            Where A&apos;s path was <strong>{diff(SPOTS[2]).toFixed(2)} m</strong> longer, half of the 1.00 m wavelength,
-            the sound dropped to <strong>silent</strong>. Straight ahead, with equal paths, it was {amp(0).toFixed(1)}× one
-            speaker; one more step out, with a whole wavelength extra, loud again.
+            Straight ahead, with equal paths, the waves arrived in step and the sum was {amp(0).toFixed(1)}× one
+            speaker&apos;s height. Where A&apos;s path was <strong>{diff(SPOTS[CANCEL]).toFixed(2)} m</strong> longer,
+            half of the 1.00 m wave, the sum went <strong>flat</strong>.
+            {seenFar
+              ? " At a whole wave extra, you saw them back in step."
+              : " Further out, with a whole wave extra, they come back in step."}
           </p>
           <p>
-            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel. In step,
-            crest meets crest and they build. Two sounds can make less than one.
+            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel. Two
+            sounds can make less than one.
           </p>
-          <p className="muted">Idealised: equal loudness from each speaker, no echoes. Real rooms leave a quiet spot, not silence.</p>
+          <p className="muted">Idealised: equal loudness from each speaker, no echoes. A real room leaves a quiet spot, not silence.</p>
         </>
       )}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
-        const caption = locked
-          ? "Make a prediction to start."
-          : silent
-            ? "Crest meets trough here."
-            : "Top view. Rings are crests, 1.00 m apart (343 Hz). Each speaker equally loud.";
-        const speakers = bOn ? [-HALF, HALF] : [-HALF];
+        const caption = silent
+          ? "Crest meets trough: the sum is flat."
+          : "Solid rings: crests. Dashed: troughs. One wave = 1.00 m. Equally loud.";
         return (
           <div className={s.wrap}>
-            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Listener ${x.toFixed(2)} m to the side: ${loud(a)}`}>
-              {speakers.map((sx) =>
-                Array.from({ length: 6 }, (_, n) => {
-                  const r = (n + 1) * LAMBDA * K;
+            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Listener ${x.toFixed(2)} m to the side: sum ${loud(a)} one speaker`}>
+              {[-HALF, HALF].map((sx) =>
+                Array.from({ length: 12 }, (_, n) => {
+                  const r = ((n + 1) / 2) * LAMBDA * K;
                   return (
                     <path
                       key={`${sx}-${n}`}
                       d={`M ${px(sx) - r} ${OY} A ${r} ${r} 0 0 1 ${px(sx) + r} ${OY}`}
-                      className={sx < 0 ? s.ringA : s.ringB}
+                      className={`${sx < 0 ? s.ringA : s.ringB} ${n % 2 === 0 ? s.trough : ""}`}
                     />
                   );
                 }),
               )}
+              <rect x={0} y={0} width={W} height={72} className={s.band} />
+              <text x={4} y={20} className={s.tagA}>A</text>
+              <text x={16} y={20} className={s.tagB}>B</text>
+              <polyline points={trace(17, 9, wB)} className={s.waveB} />
+              <polyline points={trace(17, 9, wA)} className={s.waveA} />
+              <text x={4} y={54} className={s.tagSum}>A+B</text>
+              <line x1={TX0} y1={50} x2={TX1} y2={50} className={s.axis} />
+              <polyline points={trace(50, 9, (t) => wA(t) + wB(t))} className={s.waveSum} />
+
               <line x1={0} y1={py(Y_L)} x2={W} y2={py(Y_L)} className={s.walk} />
-              {speakers.map((sx) => (
-                <line key={sx} x1={px(sx)} y1={OY} x2={px(x)} y2={py(Y_L)} className={s.path} />
-              ))}
+              <line x1={px(-HALF)} y1={OY} x2={px(x)} y2={py(Y_L)} className={s.pathA} />
+              <line x1={px(HALF)} y1={OY} x2={px(x)} y2={py(Y_L)} className={s.pathB} />
               <rect x={px(-HALF) - 7} y={OY - 6} width={14} height={10} rx={2} className={s.spkA} />
-              <text x={px(-HALF)} y={OY + 1} textAnchor="middle" className={s.spkLabel}>
-                A
-              </text>
-              {bOn && (
-                <>
-                  <rect x={px(HALF) - 7} y={OY - 6} width={14} height={10} rx={2} className={s.spkB} />
-                  <text x={px(HALF)} y={OY + 1} textAnchor="middle" className={s.spkLabel}>
-                    B
-                  </text>
-                </>
-              )}
+              <text x={px(-HALF)} y={OY + 1} textAnchor="middle" className={s.spkLabel}>A</text>
+              <rect x={px(HALF) - 7} y={OY - 6} width={14} height={10} rx={2} className={s.spkB} />
+              <text x={px(HALF)} y={OY + 1} textAnchor="middle" className={s.spkLabel}>B</text>
               <circle cx={px(x)} cy={py(Y_L)} r={6 + 4 * a} className={silent ? s.quiet : s.listener} />
-              <text x={px(x)} y={py(Y_L) - 14} textAnchor="middle" className={s.small}>
-                you
-              </text>
+              <text x={px(x)} y={py(Y_L) + 26} textAnchor="middle" className={s.small}>you</text>
             </svg>
 
             <p className={s.caption} aria-live="polite">
@@ -144,22 +161,13 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
               format={(v) => `${SPOTS[v].toFixed(2)} m right`}
               onChange={(v) => {
                 setK(v);
-                check(v, bOn);
+                if (v === CANCEL) reach("cancel-spot");
+                if (v === SPOTS.length - 1) setSeenFar(true);
               }}
             />
             <Row>
-              <Control
-                className={bOn ? "active" : ""}
-                disabled={locked}
-                onClick={() => {
-                  setBOn(!bOn);
-                  check(k, !bOn);
-                }}
-              >
-                {bOn ? "Speaker B: on" : "Speaker B: off"}
-              </Control>
-              <Readout label="A's extra path" value={locked ? "?" : `${d.toFixed(2)} m`} />
-              <Readout label="Sound vs one" value={locked ? "?" : loud(a)} />
+              <Readout label="A's path longer by" value={locked ? "?" : `${d.toFixed(2)} m = ${FRACS[k]} wave`} />
+              <Readout label="Sum vs one" value={locked ? "?" : loud(a)} />
             </Row>
           </div>
         );

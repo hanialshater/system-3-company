@@ -6,10 +6,14 @@
 //
 // Physics: constant deceleration a = 5 m/s^2 (about mu = 0.5 on a dry road),
 // d = v^2 / (2 a). Braking distance only: the reaction distance is left out.
-// The reveal unlocks once the learner has reached 60 km/h.
+// The reveal unlocks once the learner has reached 60 km/h (<Milestones>; the QA path's two
+// slider steps from 30 km/h land on 60).
+// v2: readouts compare speed x, movement energy x (speed squared) and road x (blocks) side by
+// side, so the "because" is on the stage; blocks are numbered; reveal quotes computed values.
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
 
@@ -28,7 +32,6 @@ const ROAD_H = 34;
 
 export default function DoublingSpeedBraking({ slug }: { slug: string }) {
   const [speed, setSpeed] = useState(30);
-  const [seen60, setSeen60] = useState(false);
   const d = dist(speed);
   const blocks = d / UNIT;
   const carX = X0 + d * K;
@@ -41,25 +44,33 @@ export default function DoublingSpeedBraking({ slug }: { slug: string }) {
         options: ["about 14 m", "about 21 m", "about 28 m"],
         answer: 2,
       }}
-      exploreHint="Raise the speed to 60 km/h. Count the blocks, then go faster."
+      exploreHint="Raise the speed to 60 km/h. Compare the three readouts, then go faster."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            At 60 km/h the car needed <strong>27.8 m</strong>: four of the 30 km/h stops, not two. At 90 km/h it is
-            nine; at 120 km/h, sixteen. Braking distance grows with the square of the speed.
+            At 60 km/h the car needed <strong>{dist(60).toFixed(1)} m</strong>: {Math.round(dist(60) / UNIT)} of the 30
+            km/h stops, not two.
+            {speed > 60
+              ? ` At ${speed} km/h you saw ${(dist(speed) / UNIT).toFixed(speed % 30 === 0 ? 0 : 2)} blocks.`
+              : " At 90 km/h it is nine; at 120 km/h, sixteen."}{" "}
+            Braking distance grows with the square of the speed.
           </p>
           <p>
-            Why: twice the speed carries four times the movement energy (it goes as speed squared), and the same
-            brakes remove the same energy per metre. So twice the speed needs four times the road.
+            Why: the readouts showed Speed 2× but Energy 4×. A car&apos;s movement energy grows with speed times speed.
+            The same brakes remove the same energy for each metre, so four times the energy takes four times the road.
           </p>
-          <p className="muted">This is braking only. Reaction time adds more road on top, growing with speed.</p>
+          <p className="muted">Braking only, same brakes on the same road.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["sixty"]}>
+          {(reach) => {
         const caption = locked
           ? "Make a prediction to start."
-          : "Each block is one 30 km/h stop (6.9 m). Braking only, same brakes.";
+          : "Each block: the 6.9 m of road the brakes need to remove a 30 km/h car's movement energy.";
+        const ratio = speed / 30;
         const nice = Math.abs(blocks - Math.round(blocks)) < 0.01 ? String(Math.round(blocks)) : blocks.toFixed(2);
         return (
           <div className={s.wrap}>
@@ -80,6 +91,14 @@ export default function DoublingSpeedBraking({ slug }: { slug: string }) {
                     rx={2}
                     className={i % 2 ? s.blockB : s.blockA}
                   />
+                );
+              })}
+              {Array.from({ length: Math.floor(blocks + 1e-9) }, (_, i) => {
+                const x = X0 + (i + 0.5) * UNIT * K;
+                return (
+                  <text key={`n${i}`} x={x} y={ROAD_Y + ROAD_H / 2 + 3} textAnchor="middle" className={s.blockNum}>
+                    {i + 1}
+                  </text>
                 );
               })}
               {/* car at its stopping point */}
@@ -117,19 +136,19 @@ export default function DoublingSpeedBraking({ slug }: { slug: string }) {
               format={(v) => `${v} km/h`}
               onChange={(v) => {
                 setSpeed(v);
-                if (seen60 || v === 60) {
-                  setSeen60(true);
-                  interact();
-                }
+                if (v === 60) reach("sixty");
               }}
             />
             <Row>
-              <Readout label="Braking distance" value={`${d.toFixed(1)} m`} />
-              <Readout label="Speed vs 30 km/h" value={`${(speed / 30).toFixed(1)}×`} />
+              <Readout label="Speed vs 30" value={`${ratio.toFixed(1)}×`} />
+              <Readout label="Energy vs 30" value={locked ? "?" : `${Number.isInteger(ratio * ratio) ? ratio * ratio : (ratio * ratio).toFixed(2)}×`} />
+              <Readout label="Road" value={locked ? "?" : `${d.toFixed(1)} m`} />
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

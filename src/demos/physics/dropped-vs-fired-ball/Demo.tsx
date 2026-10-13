@@ -9,11 +9,15 @@
 //   fired:   x = v t,    y = h - g t^2 / 2
 //   both land at t = sqrt(2 h / g) = 2.02 s; the fired ball lands v * 2.02 m out.
 // Both axes share one scale so the arc has its true shape.
-// The reveal unlocks when a run lands (interact() is called at touchdown), so the
+// The reveal unlocks when a run lands (milestone 'landed' at touchdown), so the
 // landing itself has to be seen.
+// v2: a "Jump to landing" step button reaches touchdown at once (the QA path waits only
+// ~450 ms per press, the flight takes 2.02 s); a legend names the balls, the rings and the
+// dashed lines; a clock runs during flight; the reveal quotes the speeds the learner fired.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
 import { useEffect, useRef, useState } from "react";
 import s from "./styles.module.css";
 
@@ -21,6 +25,7 @@ const G = 9.81; // m/s^2
 const H_M = 20; // cliff height, m
 const T_LAND = Math.sqrt((2 * H_M) / G); // 2.019 s
 const FRAME = 0.25; // s between freeze-frame dots
+const SLOWMO = 0.5; // flight plays at half speed (4 s on screen); the clock shows real flight time
 
 const W = 330;
 const H = 156;
@@ -43,6 +48,15 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
   const [flying, setFlying] = useState(false);
   const [landings, setLandings] = useState<Landing[]>([]);
   const interactRef = useRef<() => void>(() => {});
+  const { reach } = useMilestones(() => interactRef.current(), ["landed"]);
+  const reachRef = useRef(reach);
+  reachRef.current = reach;
+  const land = (v: number) => {
+    setLandings((ls) => [...ls.filter((l) => l.v !== v), { v, range: v * T_LAND }].slice(-3));
+    reachRef.current("landed"); // the reveal is earned by seeing the touchdown
+  };
+  const landRef = useRef(land);
+  landRef.current = land;
   const speedRef = useRef(speed);
   speedRef.current = speed;
 
@@ -52,13 +66,11 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
     let start: number | null = null;
     const tick = (now: number) => {
       if (start === null) start = now;
-      const tt = Math.min(T_LAND, (now - start) / 1000);
+      const tt = Math.min(T_LAND, (SLOWMO * (now - start)) / 1000);
       setT(tt);
       if (tt >= T_LAND) {
         setFlying(false);
-        const v = speedRef.current;
-        setLandings((ls) => [...ls.filter((l) => l.v !== v), { v, range: v * T_LAND }].slice(-3));
-        interactRef.current(); // the reveal is earned by seeing the touchdown
+        landRef.current(speedRef.current);
         return;
       }
       raf = requestAnimationFrame(tick);
@@ -80,20 +92,26 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
         options: ["The dropped ball", "The fired ball", "Both together"],
         answer: 2,
       }}
-      exploreHint="Fire both and watch them land. Then change the speed and fire again."
-      reveal={() => (
+      exploreHint="Fire both and watch them land. Try other speeds if you like."
+      minInteractions={1}
+      reveal={() => {
+        const shots = landings.length ? landings : [{ v: 15, range: 15 * T_LAND }];
+        const where = shots.map((l) => `${l.range.toFixed(1)} m out at ${l.v} m/s`).join(", ");
+        return (
         <>
           <p>
-            They landed together, <strong>{T_LAND.toFixed(2)} s</strong> after release, at every speed you tried. The
-            dots show why: at each moment the two balls sat on the same horizontal line, at the same height.
+            They landed together, <strong>{T_LAND.toFixed(2)} s</strong> after release
+            {shots.length > 1 ? ", at every speed you tried" : ""}. The rings show why: at each moment the two balls sat on
+            the same dashed line, at the same height.
           </p>
           <p>
-            Gravity pulls only downwards, so the fall is the same for both: 20 m takes 2.02 s whatever the sideways
-            speed. Going sideways changes where the ball lands (30.3 m out at 15 m/s), never when.
+            Gravity pulls only downwards, so the fall is the same for both: 20 m takes {T_LAND.toFixed(2)} s whatever
+            the sideways speed. Going sideways changed where the ball landed ({where}), never when.
           </p>
           <p className="muted">This ignores air drag, which would slow the fast ball a little.</p>
         </>
-      )}
+        );
+      }}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
@@ -102,13 +120,19 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
           setT(0);
           setFlying(true);
         };
+        const jump = () => {
+          if (locked) return;
+          setFlying(false);
+          setT(T_LAND);
+          land(speed);
+        };
         const fall = height(t);
         const dropped = px(0, fall);
         const fired = px(speed * t, fall);
         const caption = locked
           ? "Make a prediction to start."
-          : flying
-            ? "Watch the two heights."
+          : flying || (t > 0 && !landed)
+            ? "Rings: both balls every 0.25 s. Dashed line: same height."
             : landed
               ? `Both landed at ${T_LAND.toFixed(2)} s.`
               : "Both leave the edge at the same instant.";
@@ -153,6 +177,16 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
                 </g>
               ))}
 
+              {/* legend and clock */}
+              <circle cx={W - 118} cy={8} r={4} className={s.dropBall} />
+              <text x={W - 111} y={11} className={s.tickLabel}>dropped</text>
+              <circle cx={W - 64} cy={8} r={4} className={s.fireBall} />
+              <text x={W - 57} y={11} className={s.tickLabel}>fired</text>
+              {!locked && (
+                <text x={W - 6} y={28} textAnchor="end" className={s.clock}>
+                  t = {t.toFixed(2)} s{flying ? " (slow-mo)" : ""}
+                </text>
+              )}
               <circle cx={dropped.x} cy={dropped.y} r={5.5} className={s.dropBall} />
               <circle cx={fired.x} cy={fired.y} r={5.5} className={s.fireBall} />
             </svg>
@@ -178,8 +212,13 @@ export default function DroppedVsFired({ slug }: { slug: string }) {
               <Control disabled={locked || flying} onClick={fire}>
                 {landed ? "Fire again" : "Fire both"}
               </Control>
-              <Readout label="Dropped lands" value={landed ? `${T_LAND.toFixed(2)} s` : "?"} />
-              <Readout label="Fired lands" value={landed ? `${T_LAND.toFixed(2)} s` : "?"} />
+              <Control disabled={locked || landed} onClick={jump}>
+                Jump to landing
+              </Control>
+            </Row>
+            <Row>
+              <Readout label="Dropped landed at" value={landed ? `${T_LAND.toFixed(2)} s` : "?"} />
+              <Readout label="Fired landed at" value={landed ? `${T_LAND.toFixed(2)} s` : "?"} />
             </Row>
           </div>
         );

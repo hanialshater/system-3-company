@@ -10,3 +10,10 @@
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
 .wrap > label { flex: 0 0 auto; }
 .wrap :global(.readout) { flex: 1 1 0; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 2; }
+.wArrow { stroke: var(--bad); stroke-width: 1.6; }
+.wHead { fill: var(--bad); }
+.arm { stroke: var(--domain); stroke-width: 1.2; }
+.armTick { stroke: var(--domain); stroke-width: 0.8; stroke-dasharray: 2 2; }
+.armLabel { fill: var(--fg); font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.wrap :global(.readout) { min-width: 0; padding: 4px 8px; }
