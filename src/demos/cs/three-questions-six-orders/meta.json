@@ -1,0 +1,78 @@
+{
+  "slug": "three-questions-six-orders",
+  "title": "Fewest questions to order 3 cards?",
+  "hook": "Three cards, yes-or-no questions. Can a clever order of questions beat luck?",
+  "domain": "cs",
+  "concept": "sort-lower-bound",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sorting by comparing two items"
+    ],
+    "doesNotKnow": [
+      "that information theory limits how few comparisons can ever work"
+    ]
+  },
+  "misconception": "With a clever enough method, any list can be sorted with just a few questions.",
+  "objective": "The learner can say that 3 cards have 6 orders, each yes/no question at most halves them, so 3 questions are the fewest that always work, and that n items need about n log n.",
+  "claims": [
+    {
+      "id": "cs.three-questions-six-orders.c1",
+      "text": "Three different cards can be in 6 possible orders.",
+      "support": "derivation",
+      "source": "3! = 6; Demo.tsx generates the six tiles by permutation. Node: permutations of 3 = 6.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.three-questions-six-orders.c2",
+      "text": "After two questions, in the worst case, two orders are still possible; the third question leaves one.",
+      "support": "simulation",
+      "source": "Node script: for every asking order of A>B, A>C, B>C, answering to keep more orders gives 6 -> 3 -> 2 -> 1. Stage answers are the worst-case answers, disclosed on stage as the unluckiest ones.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.three-questions-six-orders.c3",
+      "text": "Each answer can at most halve the possible orders; two questions tell apart at most 4 and three tell apart 8.",
+      "support": "derivation",
+      "source": "A yes/no answer splits a set in two, so q answers distinguish at most 2^q cases: 4 and 8. Decision-tree argument, CLRS 3rd ed. section 8.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.three-questions-six-orders.c4",
+      "text": "So 3 is the fewest comparisons that always suffice to order 3 cards.",
+      "support": "simulation",
+      "source": "Node: exhaustive search over all question strategies gives optimal worst-case depth 3 for n=3 (5 for n=4, 7 for n=5); ceil(log2 6) = 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.three-questions-six-orders.c5",
+      "text": "For n cards you need about log2(n!) questions, which grows like n log n.",
+      "support": "source",
+      "source": "CLRS 3rd ed. section 8.1: any comparison sort needs Omega(n lg n) comparisons in the worst case; lg(n!) = Theta(n lg n).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "4 different cards have 24 possible orders. Could 4 yes-or-no comparison questions always be enough to find the order?",
+    "options": [
+      "Yes, 4 are enough",
+      "No, 4 questions tell apart at most 16 orders",
+      "No, it always takes 24 questions"
+    ],
+    "answer": 1,
+    "why": "Each question at most halves the orders, so 4 questions tell apart at most 2^4 = 16 orders, fewer than 24. At least 5 are needed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
