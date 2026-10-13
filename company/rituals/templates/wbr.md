@@ -19,6 +19,16 @@ Report the controllable inputs and the outputs separately. Engagement numbers co
 
 Anything that looks interesting is probably wrong (Twyman). Before explaining a move, check logging, sample ratios and novelty.
 
+## 2b. Agents (from `npm run metrics -- --md`, "Agents" table)
+
+Read these before the anomalies. Each one is a question to answer, not just a number to report:
+- **Roles never dispatched:** is the role unneeded (retire it, write an offboarding record), or is the chief of staff doing its work alone and skipping its check (for example QA, release, design)?
+- **Stop rate:** usage limits, crashes, restarts. Above 10% means re-plan the concurrency.
+- **Tokens per run by role,** against last week: did a brief get bloated?
+- **Rework:** lessons revised ÷ lessons built. Rising rework means fix the upstream role (briefs, design), not the builders.
+- **First-review launch rate by builder model** (EXP-003).
+- **Brief errors found by builders:** count them from build notes and board items. They are a measure of category-manager quality.
+
 ## 3. Anomalies and owners
 
 | Anomaly | Hypotheses (each predicts something different) | Probe | Owner | Due |

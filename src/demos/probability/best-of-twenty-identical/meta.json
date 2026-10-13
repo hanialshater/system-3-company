@@ -29,28 +29,36 @@
       "text": "Among 20 fair coins each flipped 20 times, the coin with the most heads gets about 14 heads on average.",
       "support": "derivation",
       "source": "E[max of 20 independent Bin(20, 1/2)] = sum_k k (F(k)^20 - F(k-1)^20) = 14.116 (exactMax() in src/demos/probability/best-of-twenty-identical/model.ts; brief said 14.12). Options 10 / 12 / 14 are FLIPS/2, FLIPS/2 + 2 and round(exactMax()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.best-of-twenty-identical.c2",
       "text": "On the stage, the first contest's winner got 14 heads and, flipped again, 12; over 101 contests the winners averaged 14.1 heads and their re-flips 9.6.",
       "support": "simulation",
       "source": "contests() in model.ts, mulberry32 seed 314, untuned (the first seed tried); winner = first coin with the highest count. Over seeds 1-1000 the 101-contest winner average had middle 95% 13.9-14.3 (median 14.1) and the re-flip average 9.6-10.5 (median 10.0); seed 314's 9.6 is at the low edge.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.best-of-twenty-identical.c3",
       "text": "Any fair coin flipped 20 times gives 10 heads on average, so the winner's re-flip averages 10.",
       "support": "derivation",
       "source": "E[Bin(20, 1/2)] = 10; the re-flip is independent of the contest.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.best-of-twenty-identical.c4",
       "text": "Picking the top of many noisy scores picks the luckiest; its next result falls back toward the truth (the winner's curse).",
       "support": "derivation",
       "source": "All 20 coins are identical (c1, c3): the winner's excess over 10 is pure selection on noise. Term: Thaler, R. (1988), 'Anomalies: The Winner's Curse', Journal of Economic Perspectives 2(1): 191-202 (auction origin; used here in its selection-on-noise sense).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

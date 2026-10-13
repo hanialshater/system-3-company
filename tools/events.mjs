@@ -198,7 +198,14 @@ function transcriptEvents(dir) {
       }
       for (const m of q.matchAll(/<task-notification>[\s\S]*?<task-id>(a[0-9a-f]{8,})<\/task-id>[\s\S]*?<status>(\w+)<\/status>[\s\S]*?<summary>([\s\S]*?)<\/summary>/g)) {
         const a = agents[m[1]];
-        if (!a || m[2] === "completed") continue;
+        if (!a) continue;
+        if (m[2] === "completed") {
+          // Usage per finished run: the source for agent metrics (tools/metrics.mjs, WBR).
+          const tok = Number(q.slice(m.index).match(/<subagent_tokens>(\d+)<\/subagent_tokens>/)?.[1] ?? 0);
+          const ms = Number(q.slice(m.index).match(/<duration_ms>(\d+)<\/duration_ms>/)?.[1] ?? 0);
+          if (tok) events.push({ id: `tx-${hash(m[1] + "usage" + tok)}`, ts, type: "usage", room: roomFor(a.role), actor: a.role, agent: a.label, summary: `${a.label.split(" ·")[0]}: ${Math.round(tok / 1000)}k tokens, ${Math.round(ms / 60000)} min`, tokens: tok, durationMs: ms });
+          continue;
+        }
         const reason = /session limit|rate_limit|429/.test(m[3]) ? "usage limit" : "ended early";
         events.push({ id: `tx-${hash(m[1] + "stop" + ts.slice(0, 16))}`, ts, type: "stopped", room: roomFor(a.role), actor: a.role, agent: a.label, summary: `${a.label.split(" ·")[0]} stopped: ${reason}`, body: m[3].trim(), state: "stopped" });
       }

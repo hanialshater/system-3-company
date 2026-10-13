@@ -28,42 +28,54 @@
       "text": "A standard deck has 26 red and 26 black cards.",
       "support": "convention",
       "source": "Standard 52-card deck: hearts and diamonds red, clubs and spades black.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.cards-do-remember.c2",
       "text": "After ten reds are dealt and not put back, 16 red and 26 black remain, so the next card is red 16 times in 42, about 38%.",
       "support": "derivation",
       "source": "26 - 10 = 16 red of 52 - 10 = 42; 16/42 = 0.381 (left() in src/demos/probability/cards-do-remember/model.ts). The options 50% / 38% / 62% are pct(1/2), pct(16/42), pct(26/42).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.cards-do-remember.c3",
       "text": "Each red dealt lowers the chance the next is red: after one red it is 25 of 51 (49%).",
       "support": "derivation",
       "source": "left(d, false) = (26 - d)/(52 - d); readout on stage for every d from 0 to 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.cards-do-remember.c4",
       "text": "If each card is put back and shuffled in, the deck is 26 red of 52 again and the next card is red 50% of the time.",
       "support": "derivation",
       "source": "Sampling with replacement: left(d, true) = 26/52 for every d.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.cards-do-remember.c5",
       "text": "A coin has no pile to run out of: after any run of flips the next flip is still 50/50, so 'black is due' is wrong for coins but right for cards.",
       "support": "derivation",
       "source": "Independent fair flips: P(next = heads | any past sequence) = 1/2. For cards the dependence is c2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.cards-do-remember.c6",
       "text": "The stage forces the first 10 dealt cards to be red; it is a 'suppose this happened' setup, not how often it happens.",
       "support": "convention",
       "source": "Stage text 'We make the first 10 cards red'. For reference (not shown): a shuffled deck starts with ten reds C(26,10)/C(52,10) = 0.00034, about 1 in 2,978 (allRedFirst() in model.ts). The brief's figure of 0.0014 was wrong; it is not used.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

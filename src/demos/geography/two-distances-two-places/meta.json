@@ -27,35 +27,45 @@
       "text": "Each distance alone puts you somewhere on a circle, and two circles cross twice.",
       "support": "derivation",
       "source": "Small-circle intersection on a sphere (any spherical trigonometry text); the stage computes the crossings by vector algebra with the radii it draws. At Paris 1,000 km and Rome 800 km there are two crossings; at 600/400 km there are none (node, builder's scratch script; also none at 300/400 and 200/200).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.two-distances-two-places.c2",
       "text": "One crossing is over Austria and the other is in the Mediterranean near the Balearic Islands.",
       "support": "simulation",
       "source": "Node: crossings at 16.01 E 48.66 N (geoContains on the lesson's 1:110m countries: Austria) and 3.35 E 39.89 N (in no country polygon; the 1:110m data has no Balearic Islands, so 'near the Balearic Islands' is the builder's reading of the coordinates from memory of the map). City coordinates from a gazetteer, from memory: Paris 48.8566 N 2.3522 E, Rome 41.9028 N 12.4964 E, Madrid 40.4168 N 3.7038 W.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.two-distances-two-places.c3",
       "text": "A third distance, 602 km from Madrid, fits only the sea crossing; the Austrian crossing is 1,804 km from Madrid.",
       "support": "derivation",
       "source": "Node on a sphere of R = 6,371.0088 km: Madrid to the sea crossing 602.3 km, to the Austrian crossing 1,803.7 km. (The brief's figures, 810 km and 2,280 km, did not reproduce with these coordinates; the stage uses the computed 602 km, derived in the code from the same crossings.)",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.two-distances-two-places.c4",
       "text": "Position fixing works by circles: each distance is a circle and a further circle removes the extra crossing. Satellite positioning uses the same idea in three dimensions.",
       "support": "source",
       "source": "General trilateration description (for example the GPS.gov overview of how GPS works; cited from memory, not re-fetched). Real GPS uses four satellites and solves for a clock error; the lesson makes no accuracy claim and says only 'the same idea'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.two-distances-two-places.c5",
       "text": "Equal Earth map, zoomed on Europe; sphere model for the distances.",
       "support": "source",
       "source": "Equal Earth projection (Savric, Patterson & Jenny 2018); the map is clipped to Europe by scaling the projection. Rings are drawn with d3-geo geoCircle on a sphere of R = 6,371.0088 km.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

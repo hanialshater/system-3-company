@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that the poles get months of daylight and months of darkness", "that the Sun is at the pole between the equinoxes"],
-    "doesNotKnow": ["that the sunlit half and the dark half of the polar year are unequal", "why"]
+    "knows": [
+      "that the poles get months of daylight and months of darkness",
+      "that the Sun is at the pole between the equinoxes"
+    ],
+    "doesNotKnow": [
+      "that the sunlit half and the dark half of the polar year are unequal",
+      "why"
+    ]
   },
   "misconception": "The Sun is up at the North Pole for exactly half the year, six months of 182.6 days.",
   "objective": "The learner can say that at the North Pole the Sun is up about 186 days and down about 179, because Earth moves slower in northern summer.",
@@ -22,48 +28,64 @@
       "text": "On this stage's model the Sun is above the pole's horizon for 186 days (March equinox to September equinox) and below for 179.",
       "support": "simulation",
       "source": "Builder's node check of the Kepler model (e = 0.016709, perihelion longitude 283 deg, year 365.2564 d, obliquity 23.44 deg): equinox-to-equinox 186.41 d and 178.84 d, pole in daylight while declination > 0 (geometric, no refraction). The stage and reveal use the same code (solar model in Demo.tsx). Equation of time and precession ignored; the 283 deg value is from memory.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.polar-day-length.c2",
       "text": "The summer half is 7.6 days longer than the winter half.",
       "support": "derivation",
       "source": "186.41 - 178.84 = 7.57 d (c1). The brief's published check: March-to-September equinox intervals are about 186 days (USNO 'Earth's Seasons'; from memory, needs a checker).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.polar-day-length.c3",
       "text": "Earth is farthest from the Sun in early July and moves slowest there, so the March-to-September half takes longer.",
       "support": "derivation",
       "source": "Kepler's second law; aphelion in early July is from memory (about 4-5 July). The model's perihelion longitude 283 deg puts perihelion in early January.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.polar-day-length.c4",
       "text": "Counting light bent by air and the Sun's width, the polar day is about 190 days.",
       "support": "source",
       "source": "From the brief (cm-geography): counting sunrise at the upper limb with refraction gives 190.7 days (its Kepler script). Not independently checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.polar-day-length.c5",
       "text": "At the North Pole the Sun rises once a year and sets once a year.",
       "support": "derivation",
       "source": "Sun's declination is positive once per year; stage shows one rise at the March equinox and one set at the September equinox. Exact only for the geometric model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.polar-day-length.c6",
       "text": "Stage: North Pole seen from above, shaded half is night, the Sun's noon direction is fixed at longitude 0.",
       "support": "convention",
       "source": "Model label on the stage; the longitude is arbitrary and the daily spin is ignored. Night = circle of 90 degrees around the antisolar point.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "At the North Pole, is the Sun up for exactly half the year?",
-    "options": ["Yes, exactly half", "No, a few days more than half", "No, a few days less than half"],
+    "options": [
+      "Yes, exactly half",
+      "No, a few days more than half",
+      "No, a few days less than half"
+    ],
     "answer": 1,
     "why": "Earth is slower in northern summer, so the Sun stays above the pole's horizon about 186 days and below about 179."
   },

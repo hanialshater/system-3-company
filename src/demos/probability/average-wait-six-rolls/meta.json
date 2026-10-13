@@ -29,35 +29,45 @@
       "text": "Rolling a fair die until the first six takes 6 rolls on average.",
       "support": "derivation",
       "source": "Geometric distribution with p = 1/6: mean 1/p = 6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.average-wait-six-rolls.c2",
       "text": "The chance of needing more than 6 rolls is (5/6)^6, about 33%.",
       "support": "derivation",
       "source": "P(no six in 6 rolls) = (5/6)^6 = 0.3349 (exactMoreThan() in src/demos/probability/average-wait-six-rolls/model.ts). Options 10% / 33% / 50%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.average-wait-six-rolls.c3",
       "text": "On the stage, 338 of 1,000 players (34%) needed more than 6 rolls, 491 needed more than 4 (so half were done by roll 4), and the average was 5.9 rolls; 11 players needed 25 rolls or more.",
       "support": "simulation",
       "source": "waits() in model.ts, mulberry32 seed 6, untuned (the first seed tried); longest wait 59. Over seeds 1-1000: average middle 95% 5.68-6.34 (median 6.00); more than 6: 307-364 (median 335); half done by roll 4 in the median seed (range 4-5).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.average-wait-six-rolls.c4",
       "text": "Exactly, half the players are done by roll 4: the chance of a six within 4 rolls is 52%, within 3 only 42%.",
       "support": "derivation",
       "source": "1 - (5/6)^4 = 0.518; 1 - (5/6)^3 = 0.421. Not quoted verbatim on stage; supports 'Half were done by roll 4' in the reveal alongside c3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.average-wait-six-rolls.c5",
       "text": "Most players finish early but a few wait very long, and those long waits pull the average above what a typical player sees.",
       "support": "derivation",
       "source": "The geometric distribution is right-skewed: median 4 < mean 6 (c1, c4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

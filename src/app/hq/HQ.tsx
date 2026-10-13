@@ -100,8 +100,8 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
     return m;
   }, [upto, t]);
 
-  const roomEvents = useMemo(() => upto.filter((e) => e.room === room).slice(-80).reverse(), [upto, room]);
-  const feed = useMemo(() => upto.slice(-25).reverse(), [upto]);
+  const roomEvents = useMemo(() => upto.filter((e) => e.room === room && e.type !== "usage").slice(-80).reverse(), [upto, room]);
+  const feed = useMemo(() => upto.filter((e) => e.type !== "usage").slice(-25).reverse(), [upto]);
   const sel = rooms.find((r) => r.id === room);
   const working = people.filter((p) => p.state === "working" && p.role !== "founder").length;
   const stopped = people.filter((p) => p.state === "stopped").length;

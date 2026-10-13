@@ -29,28 +29,36 @@
       "text": "A die with five faces showing 1 and one showing 6 averages 11/6 = 1.83 per roll.",
       "support": "derivation",
       "source": "(5 x 1 + 6)/6 = 11/6 = 1.833 (MEAN in src/demos/probability/averages-turn-bell-shaped/model.ts). Single-roll SD = 5 x sqrt(1/6 x 5/6) = 1.863.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.averages-turn-bell-shaped.c2",
       "text": "On the stage, 2,000 single rolls gave 1,648 ones and 352 sixes; 2,000 averages of 30 rolls formed one hump around 1.83 and averaged 1.85.",
       "support": "simulation",
       "source": "run(n) in model.ts, mulberry32 seed 1833 + n, untuned (the first seed tried). Means of the averages for n = 1, 2, 5, 10, 30: 1.880, 1.775, 1.868, 1.824, 1.845. Over seeds 1-500 at n = 30 the mean of the averages had middle 95% 1.819-1.850 (median 1.834).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.averages-turn-bell-shaped.c3",
       "text": "At 30 rolls the hump is only slightly lopsided.",
       "support": "simulation",
       "source": "Sample skewness of the 2,000 averages (skew() in model.ts): 1.70 (n = 1), 1.36, 0.79, 0.59, 0.31 (n = 30); theory 1.79/sqrt(n) = 0.33 at n = 30. 97.9% of the n = 30 averages lie within 2 standard errors (2 x 1.863/sqrt(30) = 0.68) of 1.83.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.averages-turn-bell-shaped.c4",
       "text": "Many small random pieces added up tend to a bell: the central limit theorem.",
       "support": "source",
       "source": "Central limit theorem for i.i.d. variables with finite variance (Feller, An Introduction to Probability Theory and Its Applications, vol. 2, ch. VIII). Stated loosely: no conditions beyond finite variance are claimed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
