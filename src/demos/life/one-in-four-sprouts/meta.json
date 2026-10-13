@@ -28,35 +28,45 @@
       "text": "When two carriers (one dominant and one recessive copy each) breed, each offspring gets one copy from each parent with equal chance, so it has two recessive copies with chance 1/4, independently of its siblings.",
       "support": "source",
       "source": "Mendel's law of segregation; Griffiths et al., Introduction to Genetic Analysis (W. H. Freeman), chapter on single-gene inheritance.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-in-four-sprouts.c2",
       "text": "With 4 independent seeds at 1/4 each, all four are purple with chance (3/4)^4 = 81/256, about 32%, so at least one is white with chance about 68%.",
       "support": "derivation",
       "source": "1 - 81/256 = 175/256 = 0.684 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-in-four-sprouts.c3",
       "text": "Exactly one white of four happens only about 42% of the time; about a third of families get none.",
       "support": "derivation",
       "source": "Binomial: P(1) = 4 x (1/4) x (3/4)^3 = 108/256 = 0.42; P(0) = 81/256 = 0.32.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-in-four-sprouts.c4",
       "text": "The 100 families on the stage are seeded random draws; the counts the learner sees vary from field to field around the expected 68 and 42.",
       "support": "simulation",
       "source": "Demo.tsx batch(): two fair allele draws per seed with a seeded PRNG; 'New field' changes the seed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-in-four-sprouts.c5",
       "text": "The flower is made up: one purple copy (P) is enough for purple (complete dominance), and seeds are independent.",
       "support": "convention",
       "source": "Modelling choice stated in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

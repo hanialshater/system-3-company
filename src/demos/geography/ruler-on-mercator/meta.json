@@ -26,35 +26,45 @@
       "text": "On this Mercator map the yellow bar spans 2,000 km at the equator.",
       "support": "simulation",
       "source": "Demo.tsx sets the bar's screen length to projection.scale() x 2,000 / 6,371.0088 and measures ground distance by inverting both ends: R cos(lat) x difference in longitude, which is 2,000 km at the equator. Design change from the brief: the brief used a 1,000 km bar, which would be under 25 px wide on a phone-width world map; the ratio and the answer ('half') are unchanged.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.ruler-on-mercator.c2",
       "text": "At 60°N the same bar spans 1,000 km on the ground, measured along the parallel.",
       "support": "derivation",
       "source": "Mercator x is proportional to longitude, so the bar covers the same difference in longitude (17.99 degrees) at every latitude; along the parallel that is 2,000 x cos 60 = 1,000 km. The readout measures along the parallel (the straight east-west line on Mercator); the great-circle chord would be 996.9 km, 0.3% shorter (artifacts/scratch/w1-tissot.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.ruler-on-mercator.c3",
       "text": "Mercator's stretch is 1 / cos(latitude): 2 at 60°, about 2.9 at 70°.",
       "support": "source",
       "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: Mercator scale factor k = h = sec(latitude). sec 60 = 2.000; sec 70 = 2.924.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.ruler-on-mercator.c4",
       "text": "Mercator's stretch is the same north-south as east-west, which is why shapes look right while sizes do not.",
       "support": "source",
       "source": "Snyder (1987) ch. 7: Mercator is conformal (h = k), so small shapes are preserved while areas scale by sec^2(latitude).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.ruler-on-mercator.c5",
       "text": "A single scale bar on a world map is only true along one line.",
       "support": "source",
       "source": "On Mercator the scale is true only along the equator (or two standard parallels for secant forms) (Snyder 1987 ch. 7). No flat map has constant scale everywhere (Snyder ch. 1). The lesson's statement is about this world map.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

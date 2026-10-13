@@ -30,7 +30,9 @@
       "text": "In this model (young always share their parent's colour, generations do not overlap, a very large population so chance plays no part, and dark beetles leave a fixed share more young than pale ones), the ratio of dark to pale beetles is multiplied by (1 + edge) every generation.",
       "support": "derivation",
       "source": "Haploid selection recursion with discrete, non-overlapping generations: p' = p w / (p w + 1 - p), so p'/(1-p') = w p/(1-p). Gillespie (2004), Population Genetics: A Concise Guide, 2nd ed., ch. 3; Hartl & Clark (2007), Principles of Population Genetics, 4th ed., ch. 5. v2 adds non-overlapping generations (fact-check F4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.natural-selection.c2",
@@ -91,35 +93,45 @@
       "text": "In the model, 1.1 multiplied by itself 100 times is about 14,000 (1.1^100 = 13,781), so a starting ratio of 1 dark to 99 pale becomes about 139 dark to 1 pale, which is about 99 in 100.",
       "support": "derivation",
       "source": "1.1^100 = 13,780.6; (1/99) x 13,780.6 = 139.2; 139.2 / 140.2 = 0.9929. Demo.tsx computes GROWTH, RATIO_AT_100 and AT_100 from darkShare(), the function that draws the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.natural-selection.c9",
       "text": "Selection needs many generations rather than a big edge: with a 1% edge starting from 1% dark, dark beetles take about 462 generations to pass half the population.",
       "support": "derivation",
       "source": "Reveal: \"selection needs time, not a big edge\". odds = (1/99) x 1.01^g > 1 first at g = 462 (fact-checker script). Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.natural-selection.c10",
       "text": "If one type of seed survives drought 5% more often than another and seeds inherit their parent's type, the first type's share keeps growing generation after generation, even if it starts rare; no plant changes type.",
       "support": "derivation",
       "source": "Recall card in meta.json. Same recursion as c1 with w = 1.05: the A:B ratio is multiplied by 1.05 each generation (assumes the 5% is a constant relative advantage in leaving offspring, large population, no other forces). Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.natural-selection.c11",
       "text": "In this lesson's made-up scenario, birds spot pale beetles more easily on sooty bark, which is why dark beetles leave more young.",
       "support": "convention",
       "source": "Scenario stated in the predict question (v2, learner finding 7). The mechanism mirrors bird predation on peppered moths (Cook, Grant, Saccheri & Mallet (2012), 'Selective bird predation on the peppered moth: the last experiment of Michael Majerus', Biology Letters 8: 609-612), but the beetles and the 10% figure are invented.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.natural-selection.c12",
       "text": "On the stage, 100 beetles stand for a very large population, and each generation shown is entirely new beetles.",
       "support": "convention",
       "source": "Demo.tsx: the grid shows round(100 x share) dark beetles; stage label v2 \"Model: 100 beetles stand for a huge population. Each generation is all new.\" (learner finding 3, label-the-model-on-the-stage).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

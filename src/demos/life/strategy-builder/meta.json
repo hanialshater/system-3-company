@@ -28,35 +28,45 @@
       "text": "In 10 rounds with payoffs 3/3 (both help), 0/5 (helper vs cheat) and 1/1 (both cheat), tit-for-tat scores 30 against itself and 9 against a cheat; a cheat scores 14 against tit-for-tat and 10 against a cheat.",
       "support": "derivation",
       "source": "TFT vs TFT: 10 x 3 = 30. TFT vs cheat: round 1 gives 0 vs 5, rounds 2-10 give 1 each: 9 vs 14. Cheat vs cheat: 10 x 1 = 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.strategy-builder.c2",
       "text": "With random pairing and tit-for-tat share f, the two strategies score the same when 30f + 9(1 - f) = 14f + 10(1 - f), that is 21f + 9 = 4f + 10, f = 1/17, about 6%; above it tit-for-tat scores more.",
       "support": "derivation",
       "source": "Algebra; 1/17 = 0.0588 (artifacts/scratch/w2life/check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.strategy-builder.c3",
       "text": "On the stage, starting at 5% tit-for-tat falls to 1 of 100 by generation 60; starting at 7% it reaches 100 of 100 by generation 40.",
       "support": "simulation",
       "source": "Deterministic imitation dynamics f' = f + f(1-f)(W_TFT - W_cheat)/15, clamped to 0..1, replicated in artifacts/scratch/w2life/pd.mjs. No random seed (grid positions only, untuned mulberry32(8)). The speed constant 15 is a choice; the tipping point does not depend on it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.strategy-builder.c4",
       "text": "Reciprocal strategies such as tit-for-tat can invade and hold against always-defect when the same partners meet repeatedly.",
       "support": "source",
       "source": "Axelrod R. & Hamilton W.D. (1981) The evolution of cooperation, Science 211:1390-1396.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.strategy-builder.c5",
       "text": "The model is a toy: two fixed strategies, chosen payoffs, exactly 10 rounds, random pairing in a very large population; it is not a claim about people.",
       "support": "convention",
       "source": "Model choice in Demo.tsx, stated on the stage and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

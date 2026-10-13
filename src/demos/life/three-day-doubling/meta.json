@@ -28,35 +28,45 @@
       "text": "100 cases doubling every 3 days reach 100 x 2^10 = 102,400 after 30 days, about 100,000.",
       "support": "derivation",
       "source": "30 / 3 = 10 doublings; 100 x 1,024 = 102,400 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.three-day-doubling.c2",
       "text": "The last 3 days (day 27 to 30) added about as many cases as the first 27 days.",
       "support": "derivation",
       "source": "Day 27: 100 x 2^9 = 51,200; day 30: 102,400. Last 3 days add 51,200; days 0-27 add 51,200 - 100 = 51,100.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.three-day-doubling.c3",
       "text": "Going from day 30 back to day 24 cuts the count to a quarter (25,600): six days is two doublings, so a 6-day delay means four times as many cases.",
       "support": "derivation",
       "source": "2^(6/3) = 4; 100 x 2^8 = 25,600.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.three-day-doubling.c4",
       "text": "The disease is made up and its doubling time never changes; each lit dot stands for 100 cases.",
       "support": "convention",
       "source": "Modelling choice in Demo.tsx (cases = 100 x 2^(day/3); 1,024 dots).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.three-day-doubling.c5",
       "text": "Real outbreaks do not double forever: growth slows as people become immune or change how they mix.",
       "support": "source",
       "source": "Kermack & McKendrick (1927), 'A contribution to the mathematical theory of epidemics', Proceedings of the Royal Society A 115: 700-721; Anderson & May (1991), Infectious Diseases of Humans, Oxford University Press.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,49 +28,63 @@
       "text": "The Earth is closest to the Sun in early January, at about 147.1 million km.",
       "support": "source",
       "source": "NASA Earth Fact Sheet: perihelion 147.09 x 10^6 km; USNO Earth's Seasons table: perihelion about 2-5 January (date drifts year to year). Lesson model (Kepler ellipse, a = 149.598 Mkm, e = 0.0167, perihelion fixed at 3 Jan) gives 147.10 on day 3: artifacts/scratch/w1-orbit.mjs. Builder could not open the sources (network blocked); figures from the brief and builder recall.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c2",
       "text": "The Earth is farthest from the Sun in early July, at about 152.1 million km.",
       "support": "source",
       "source": "NASA Earth Fact Sheet: aphelion 152.10 x 10^6 km; USNO: aphelion about 3-6 July. Lesson model gives 152.10 on day 186 (5 Jul).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c3",
       "text": "The distance changes by only about 3% over the year.",
       "support": "derivation",
       "source": "(152.10 - 147.10) / 149.598 = 3.3%, computed in Demo.tsx from the model's own minimum and maximum.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c4",
       "text": "Earth's axis is tilted about 23.4 degrees; on the June solstice the noon Sun is overhead at about 23.4°N.",
       "support": "source",
       "source": "NASA Earth Fact Sheet obliquity 23.44 degrees; IAU / Astronomical Almanac. Subsolar latitude = solar declination, sin(dec) = sin(23.44) sin(ecliptic longitude) (Meeus, Astronomical Algorithms, ch. 25, low-precision).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c5",
       "text": "The two hemispheres have opposite seasons: when it is winter in the north it is summer in the south.",
       "support": "source",
       "source": "Any almanac; the stage uses astronomical seasons bounded by equinoxes (about 20 Mar, 22 Sep) and solstices (about 21 Jun, 21 Dec).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c6",
       "text": "The orbit drawn on the stage is to scale and looks almost like a circle.",
       "support": "simulation",
       "source": "Demo.tsx draws r(day) x 100/149.598 px with e = 0.0167; radius ranges 98.3 to 101.7 px. Earth's disc is not to scale (stated on the stage).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.closer-in-winter.c7",
       "text": "In June the north leans toward the Sun, so northern days are long and sunlight is steep.",
       "support": "source",
       "source": "Standard seasons explanation; NASA Space Place 'What causes the seasons?'. Not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

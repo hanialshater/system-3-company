@@ -28,35 +28,45 @@
       "text": "Individual variation in spread can be modelled by a negative binomial offspring distribution with mean R and dispersion k; small k means very uneven spread.",
       "support": "source",
       "source": "Lloyd-Smith J.O., Schreiber S.J., Kopp P.E. & Getz W.M. (2005) Superspreading and the effect of individual variation on disease emergence, Nature 438:355-359.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.spreaders-are-rare.c2",
       "text": "With mean 2 and k = 0.1, the share of cases that infect no one is (k/(k+R))^k = (0.1/2.1)^0.1 = 0.74; with even (Poisson) spread it is e^-2 = 0.14.",
       "support": "derivation",
       "source": "Negative binomial P(0) = (k/(k+R))^k = 0.7375; Poisson P(0) = e^-2 = 0.1353. Recomputed in node (artifacts/scratch/w2life/check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.spreaders-are-rare.c3",
       "text": "On the stage's 100 cases: very uneven spread gives 74 who infect no one and the top 10 causing 165 of 200 infections; even spread gives 14 who infect no one, a total of 199 and no case above 7; k = 1 gives 33 and a total of 201.",
       "support": "derivation",
       "source": "Each case gets the mean of its 1% slice of the distribution, rounded (expected shape, no random draw), replicated in artifacts/scratch/w2life/check2.mjs. Grid positions use an untuned seed (mulberry32(11)) and carry no information.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.spreaders-are-rare.c4",
       "text": "When a few cases cause most spread, most transmission chains die out on their own, so outbreaks often fizzle, and the rare large spreaders decide whether one takes off.",
       "support": "source",
       "source": "Lloyd-Smith et al. (2005) Nature 438:355-359 (higher extinction probability of introductions for small k).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.spreaders-are-rare.c5",
       "text": "k = 0.1 is an illustration, not a measured value for any named disease.",
       "support": "convention",
       "source": "Brief choice (company/domains/briefs/life.md #15); stated in the reveal and the stage says toy model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

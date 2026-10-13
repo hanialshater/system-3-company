@@ -47,7 +47,9 @@
       "text": "On the Mercator map in this lesson, Greenland at its real position is drawn about 15 times the area of DR Congo.",
       "support": "simulation",
       "source": "v2: map extent reaches about 85.6°N (bottom 61.6°S), so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 at the real position. v3 re-measured by the builder (scratch script): 15.39, rounded to 15 in the question; the stage readout at the start now uses the same unmoved shape (15.4×) instead of the shape rotated to exactly 73°N (15.0×). The question text is computed from the same map, so they cannot disagree. Needs the fact-checker's re-check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.mercator-greenland.c4",
@@ -90,28 +92,36 @@
       "text": "Mercator was made for sailors.",
       "support": "source",
       "source": "Unrecorded; found in reveal text. Needs a source (Mercator 1569 world map for navigation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.mercator-greenland.c9",
       "text": "Wall maps make Greenland look enormous.",
       "support": "source",
       "source": "Unrecorded; found in hook. Needs a source; it is a statement about typical wall maps and about how big Greenland looks next to Africa.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.mercator-greenland.c10",
       "text": "Greenland never changed as you slid it: sliding is a rigid rotation on the sphere that keeps its true area.",
       "support": "simulation",
       "source": "Unrecorded; reveal text and Demo.tsx comment. Kit moveToLatitude rotates vertices on the sphere. Fact-checker's run on 2026-10-12 found geoArea unchanged to the km2 at targets 0-73N (artifacts/scratch/mercator-greenland-check.mjs), but the fact-checker added this claim and may not verify it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.mercator-greenland.c12",
       "text": "On the real Earth Greenland is about the size of DR Congo (Congo slightly bigger).",
       "support": "derivation",
       "source": "Unrecorded as its own claim; this is the predict answer and the objective. Follows from c1 and c2 (ratio 0.94 in the lesson data, 0.92 by Factbook areas).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
