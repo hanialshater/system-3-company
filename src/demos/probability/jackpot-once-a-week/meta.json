@@ -1,0 +1,88 @@
+{
+  "slug": "jackpot-once-a-week",
+  "title": "One ticket a week until you win",
+  "hook": "Jackpot odds are 1 in 292 million. How long would a ticket every week take to win?",
+  "domain": "probability",
+  "concept": "lottery-odds",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "'1 in a million' means very unlikely",
+      "a year has about 52 weeks"
+    ],
+    "doesNotKnow": [
+      "how big 1 in 292 million is in human time",
+      "that an expected wait is an average, not a promise"
+    ]
+  },
+  "misconception": "Lottery wins are unlikely per ticket, but a lifetime of weekly tickets gives a real chance.",
+  "objective": "The learner can say that weekly tickets would take about 5.6 million years to expect one jackpot, and that a lifetime of tickets (about 4,200) gives roughly a 0.0014% chance.",
+  "keyState": "Reached 80 years (4,174 tickets, 0.0014% chance, no win) and the expected wait (5.6 million years, 63% chance by then).",
+  "claims": [
+    {
+      "id": "probability.jackpot-once-a-week.c1",
+      "text": "The jackpot odds are 1 in 292,201,338 per ticket.",
+      "support": "source",
+      "source": "Powerball jackpot odds since October 2015: C(69,5) x 26 = 11,238,513 x 26 = 292,201,338 (recomputed in node). Operator's published odds: powerball.com 'Prizes and Odds'. The lesson uses it as 'a jackpot', no other Powerball rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.jackpot-once-a-week.c2",
+      "text": "One ticket a week for 1, 10, 80, 1,000 and 100,000 years is 52, 522, 4,174, 52,179 and 5,217,857 tickets.",
+      "support": "derivation",
+      "source": "tickets(y) = round(y x 365.25/7) with 52.18 weeks per year (model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.jackpot-once-a-week.c3",
+      "text": "To expect one win takes 292,201,338 weekly tickets, about 5.6 million years.",
+      "support": "derivation",
+      "source": "Mean of a geometric wait = 1/p = 292,201,338 weeks; / 52.1786 = 5,600,026 years (EXPECTED_YEARS in model.ts). Options 5,600 / 56,000 / 5.6 million years are this value /1000, /100 and x1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.jackpot-once-a-week.c4",
+      "text": "The chance of at least one jackpot is 0.0014% over an 80-year lifetime of weekly tickets, 0.018% over 1,000 years, 1.8% over 100,000 years and 63% by the expected wait.",
+      "support": "derivation",
+      "source": "chanceBy(t) = 1 - (1 - 1/292,201,338)^t in model.ts: t = 4,174 gives 1.43e-5; 52,179 gives 1.79e-4; 5,217,857 gives 0.0177; 292,201,338 gives 1 - 1/e = 0.632. 1 and 10 years: 1.8e-5% and 1.8e-4%. At this run's first win (343,820,670 tickets, 6.6 million years) the readout shows 69%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.jackpot-once-a-week.c5",
+      "text": "In the stage's run, the first win came at about 6.6 million years, later than the expected wait; before that it had 0 wins at every span.",
+      "support": "simulation",
+      "source": "firstWinWeek() in model.ts: one mulberry32 draw, seed 1969, untuned (the first seed tried), inverted through the geometric distribution: week 343,820,670 = 6,589,308 years (1.18x the mean). Over seeds 1-1000 the first win / expected wait had median 0.68, middle 95% 0.023-3.6, and 64% of runs won before the expected wait; no seed won within 80 years.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.jackpot-once-a-week.c6",
+      "text": "An 80-year lifetime is under 0.002% of the 5.6-million-year expected wait.",
+      "support": "derivation",
+      "source": "80 / 5,600,026 = 1.4e-5 (the timeline's 'a lifetime' mark vs the expected-wait span; log axis, each tick 10x).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A lottery has odds of 1 in 10 million per ticket. Playing once a week, roughly how long until you would expect a win?",
+    "options": [
+      "About a lifetime",
+      "About 2,000 years",
+      "About 200,000 years"
+    ],
+    "answer": 2,
+    "why": "10 million weekly tickets at 52 a year is about 190,000 years. Divide the odds by tickets per year; a lifetime is only about 4,000 tickets."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

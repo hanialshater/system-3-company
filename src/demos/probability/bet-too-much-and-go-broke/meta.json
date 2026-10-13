@@ -1,0 +1,81 @@
+{
+  "slug": "bet-too-much-and-go-broke",
+  "title": "How much of your money to bet?",
+  "hook": "A coin favours you 60/40. Does betting a bigger share of your money grow it faster?",
+  "domain": "probability",
+  "concept": "multiplicative-bets",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a favourable bet wins more often than it loses",
+      "gains and losses on a share of your money multiply"
+    ],
+    "doesNotKnow": [
+      "that there is a best stake for a favourable bet",
+      "that staking more than it shrinks the typical result"
+    ]
+  },
+  "misconception": "With a favourable bet, staking more of your money each round always grows it faster.",
+  "objective": "The learner can explain that because a loss at a large stake costs more than a win regains (1.6 x 0.4 = 0.64), the middle player's money grows fastest at a 20% stake and shrinks at 60%, even though every bet favours them.",
+  "keyState": "Seen stakes 20% (middle player x7.49) and 60% (x0.00021, 1 of 31 above start).",
+  "claims": [
+    {
+      "id": "probability.bet-too-much-and-go-broke.c1",
+      "text": "On the stage's 31 players the middle player ends 100 rounds with x2.40 at a 5% stake, x4.50 at 10%, x7.49 at 20%, x0.78 at 40% and x0.00021 at 60%.",
+      "support": "simulation",
+      "source": "flips(), middle(), path() in src/demos/probability/bet-too-much-and-go-broke/model.ts, mulberry32 seed 2, CHOSEN: the first seed whose middle player has exactly 60 heads, the median over seeds (seed 60, tried first, gave 57 heads and x2.46 at 10% vs x2.22 at 20%, i.e. 10% best for that run). Over seeds 1-1000 the middle player's heads had middle 95% 58-62, and 20% was the best of the five stakes for the middle player in 982 of 1000 seeds. With 60 heads these values equal the exact typical result e^(100 g(f)).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bet-too-much-and-go-broke.c2",
+      "text": "Players above their start after 100 rounds: 31, 30, 27, 13 and 1 of 31 at stakes 5%, 10%, 20%, 40%, 60%.",
+      "support": "simulation",
+      "source": "above() in Demo.tsx over the seed-2 sample (c1); one chosen sample, not a rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bet-too-much-and-go-broke.c3",
+      "text": "At a 60% stake, one win then one loss leaves 1.6 x 0.4 = 0.64 of your money.",
+      "support": "derivation",
+      "source": "Arithmetic; order does not matter (0.4 x 1.6 is the same).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bet-too-much-and-go-broke.c4",
+      "text": "The share that grows money fastest is 2 x 0.6 - 1 = 20% (the Kelly rule).",
+      "support": "source",
+      "source": "Typical growth per round g(f) = 0.6 ln(1+f) + 0.4 ln(1-f), maximised at f* = 2p - 1 (growth() in model.ts: 0.0088, 0.0150, 0.0201, -0.0024, -0.0845). Kelly, J. L. (1956), 'A New Interpretation of Information Rate', Bell System Technical Journal 35: 917-926.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bet-too-much-and-go-broke.c5",
+      "text": "The middle player is the one half the players do better than and half worse; with the same coin flips at every stake it is the same player throughout.",
+      "support": "derivation",
+      "source": "Final money (1+f)^H (1-f)^(100-H) increases with heads H for any f in (0,1), so ranking by heads ranks by money at every stake; middle() picks the 16th of 31.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bet wins 70% of the time at even money. A friend stakes 80% of their money every round. Will they typically get rich?",
+    "options": [
+      "Yes, the bet favours them",
+      "No, the stake is far above the best share of 40%",
+      "Only if they play more rounds"
+    ],
+    "answer": 1,
+    "why": "The best share is 2 x 0.7 - 1 = 40%. At 80% one win and one loss leave 1.8 x 0.2 = 0.36, so the typical player shrinks, and more rounds make it worse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "longer-series-fewer-upsets",
+  "title": "The underdog in a best-of-seven",
+  "hook": "A team wins 40% of its games. How often does it win a series of seven?",
+  "domain": "probability",
+  "concept": "series-length-upsets",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a team's chance of winning a single game",
+      "a best-of-seven is won by the first team to four wins"
+    ],
+    "doesNotKnow": [
+      "that more games filter out luck",
+      "how fast an underdog's series chance falls with length"
+    ]
+  },
+  "misconception": "A team that wins 40% of games has about the same 40% chance of winning any series.",
+  "objective": "The learner can explain that a 40% underdog wins a best-of-seven only about 29% of the time, and less the longer the series, because each extra game gives the better team another chance to show it.",
+  "keyState": "Seen best-of-7 (298 of 1,000 underdog wins, exact 29.0%) and best-of-101 (29 of 1,000, exact 2.1%).",
+  "claims": [
+    {
+      "id": "probability.longer-series-fewer-upsets.c1",
+      "text": "A 40% underdog wins a best-of-seven series with probability 29.0%.",
+      "support": "derivation",
+      "source": "P(at least 4 wins in 7, p = 0.4) = sum_{k=4..7} C(7,k) 0.4^k 0.6^(7-k) = 0.2898 (exact() in src/demos/probability/longer-series-fewer-upsets/model.ts). Playing all 7 games or stopping at 4 wins gives the same winner. Options 40% / 29% / 10%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.longer-series-fewer-upsets.c2",
+      "text": "The exact chance is 40.0% for best-of-1, 35.2% for best-of-3, 17.4% for best-of-21 and 2.1% for best-of-101.",
+      "support": "derivation",
+      "source": "exact(n) in model.ts: 0.4, 0.352, 0.1744, 0.0209 (matches brief 40).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.longer-series-fewer-upsets.c3",
+      "text": "On the stage the underdog won 392, 331, 298, 166 and 29 of 1,000 seeded series at lengths 1, 3, 7, 21 and 101.",
+      "support": "simulation",
+      "source": "series(n) in model.ts, mulberry32 seed 4000 + n, untuned (the first seed tried). Over seeds 1-500 per length the middle 95% of wins was 370-430 (1), 324-378 (3), 261-319 (7), 153-201 (21), 12-30 (101).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.longer-series-fewer-upsets.c4",
+      "text": "Each extra game is another chance for the better team to show it, so luck washes out.",
+      "support": "derivation",
+      "source": "Law of large numbers: the underdog's win share over n games concentrates at 0.4 < 0.5, so P(share > 1/2) falls towards 0 as n grows (c2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.longer-series-fewer-upsets.c5",
+      "text": "This assumes independent games at a steady 40%; real teams vary from game to game.",
+      "support": "convention",
+      "source": "Model assumption (brief 40, claim b).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A weaker chess player wins 45% of games against a stronger one. Which match format gives the weaker player the best chance?",
+    "options": [
+      "A single game",
+      "Best of 5",
+      "Best of 25"
+    ],
+    "answer": 0,
+    "why": "Every extra game gives the stronger player another chance to show it, so the underdog's chance is highest in the shortest match: 45% for one game, and lower for any longer series."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

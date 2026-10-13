@@ -1,0 +1,81 @@
+{
+  "slug": "bus-wait-longer-than-half",
+  "title": "Buses every 10 minutes, on average",
+  "hook": "Buses come every 10 minutes on average. Turn up at a random moment: how long do you wait?",
+  "domain": "probability",
+  "concept": "waiting-time-paradox",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an average is",
+      "that buses do not always keep to a timetable"
+    ],
+    "doesNotKnow": [
+      "that a random arrival is likelier to land in a long gap",
+      "that for random buses the average wait equals the average gap"
+    ]
+  },
+  "misconception": "If buses come every 10 minutes on average, a rider who turns up at random waits 5 minutes on average.",
+  "objective": "The learner can explain that long gaps cover more of the clock, so random riders land in them more often, and with random buses the average wait is the full average gap (10 minutes), while regular buses give half (5).",
+  "keyState": "211 riders dropped on random buses (average wait 9.4 min against a 9.5-min average gap), then regular buses (5.2 min).",
+  "claims": [
+    {
+      "id": "probability.bus-wait-longer-than-half.c1",
+      "text": "If buses arrive at random, 10 minutes apart on average, a rider who turns up at a random moment waits 10 minutes on average.",
+      "support": "derivation",
+      "source": "For a stationary renewal process the mean wait is E[gap^2] / (2 E[gap]); exponential gaps with mean 10 have E[gap^2] = 200, so 200/20 = 10 (memorylessness gives the same). Brief 38 check: a 1,000,000-minute simulation gives 10.03.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bus-wait-longer-than-half.c2",
+      "text": "With perfectly regular buses every 10 minutes, a random rider waits 5 minutes on average.",
+      "support": "derivation",
+      "source": "Uniform arrival within a 10-minute gap: mean wait 10/2 = 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bus-wait-longer-than-half.c3",
+      "text": "On the stage, 8 hours of random buses had an average gap of 9.5 minutes; 211 random riders waited 9.4 minutes on average (13.7 for the first rider, 8.4 for the first 11), and 5.2 minutes with regular buses.",
+      "support": "simulation",
+      "source": "randomBuses() (mulberry32 seed 1010) and riders() (seed 1011) in src/demos/probability/bus-wait-longer-than-half/model.ts, untuned (the first seed tried); 48 buses in 480 min, longest gap 33 min. Over seeds 1-1000 with 211 riders: random-bus average wait middle 95% 6.9-15.0 min (median 9.7), regular 4.6-5.4 (median 5.0), run's average gap 7.7-13.5 (median 9.9).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bus-wait-longer-than-half.c4",
+      "text": "Random buses leave some long gaps, and long gaps cover more of the clock, so a random arrival is likelier to land in one.",
+      "support": "derivation",
+      "source": "Length-biased sampling: a uniform arrival falls in a gap with probability proportional to its length (Feller, An Introduction to Probability Theory and Its Applications, vol. 2, 'waiting time paradox', ch. I.4).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.bus-wait-longer-than-half.c5",
+      "text": "Real buses lie between random and regular; the 10-minute answer holds only if buses really run at random.",
+      "support": "convention",
+      "source": "Model assumption stated in the reveal ('If buses really ran at random'); brief 38 claim (c).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Trains arrive at random, 20 minutes apart on average. You arrive at a random time. About how long is your average wait?",
+    "options": [
+      "10 minutes",
+      "20 minutes",
+      "40 minutes"
+    ],
+    "answer": 1,
+    "why": "Random arrivals leave long gaps that you are likelier to land in. For truly random trains the average wait equals the average gap, 20 minutes; only a regular timetable halves it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

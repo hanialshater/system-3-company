@@ -1,0 +1,95 @@
+{
+  "slug": "city-poll-nation-poll",
+  "title": "1,000 voters: city or nation?",
+  "hook": "Ask 1,000 people in a city or 1,000 in a whole nation. Does the crowd's size matter?",
+  "domain": "probability",
+  "concept": "sample-vs-population",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a poll asks some people to estimate what everyone thinks",
+      "asking more people makes a poll more reliable"
+    ],
+    "doesNotKnow": [
+      "that the share of the population sampled barely matters",
+      "the finite-population correction"
+    ]
+  },
+  "misconception": "Polling 1,000 people in a city of 100,000 is much more reliable than polling 1,000 in a nation of 300 million, because a bigger share of the city was asked.",
+  "objective": "The learner can explain that a random sample's margin of error depends on how many people are asked, not on the share of the population, until the sample is a large part of the population.",
+  "keyState": "Seen the margin at 300 million (±3.10), at 100,000 (±3.08) and at 2,000 (±2.19), with the 40 dots barely changing until 2,000.",
+  "claims": [
+    {
+      "id": "probability.city-poll-nation-poll.c1",
+      "text": "For a random poll of 1,000 people on a 50/50 question, the 95% margin of error is ±3.10 points in a nation of 300 million and ±3.08 points in a city of 100,000.",
+      "support": "derivation",
+      "source": "margin(N) = 1.96 x sqrt(0.25/1000) x sqrt((N-1000)/(N-1)) x 100 in src/demos/probability/city-poll-nation-poll/model.ts: 3.099 (N = 3e8, factor 1.0000), 3.084 (N = 1e5, factor 0.9950). Also 3.097 at 1 million and 2.940 at 10,000 (shown on stage).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c2",
+      "text": "With 2,000 people, where the poll of 1,000 is half of everyone, the margin shrinks to ±2.19 points.",
+      "support": "derivation",
+      "source": "Finite-population factor sqrt(1000/1999) = 0.7073; 3.099 x 0.7073 = 2.192 (margin() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c3",
+      "text": "The margin of error is how far a poll may miss the truth, 95% of the time; about 95% of random polls land inside it.",
+      "support": "convention",
+      "source": "Standard 95% normal-approximation interval, z = 1.96, for a sample proportion (any intro statistics text, e.g. Freedman, Pisani and Purves, Statistics, ch. 21).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c4",
+      "text": "1,000 people are 0.00033% of 300 million, 1% of 100,000 and 50% of 2,000.",
+      "support": "derivation",
+      "source": "1000/3e8 = 3.3e-6; 1000/1e5 = 0.01; 1000/2000 = 0.5 (share() in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c5",
+      "text": "The stage's 40 dots are seeded polls of 1,000 people drawn without replacement from a population exactly 50% yes; at 300 million and 100,000 all 40 land inside the margin, at 2,000 37 of 40 do.",
+      "support": "simulation",
+      "source": "polls() in model.ts, mulberry32 seed 2026, untuned (the first seed tried), the same seed for every population size. Inside counts 40, 40, 40, 39, 37 for 300M, 1M, 100k, 10k, 2k. Seed 2026 is on the lucky side: over seeds 1-200 the inside count (of 40) had median 38 and middle 95% 35-40 at 300M, 100k and 2,000 alike.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c6",
+      "text": "A poll's accuracy comes from how many people it asks, not what share of the crowd they are, until the sample is a large share of the population.",
+      "support": "derivation",
+      "source": "The population size enters the standard error only through sqrt((N-n)/(N-1)), which is above 0.99 whenever n/N < 1% (c1, c2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.city-poll-nation-poll.c7",
+      "text": "This assumes truly random picks; real polls only approximate that.",
+      "support": "convention",
+      "source": "Simple random sampling is the model; real polls face non-response and weighting (brief 32, claim c).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town of 50,000 and a country of 50 million each get a random poll of 500 people. Which poll is more precise?",
+    "options": [
+      "The town's, because it asked 1% of people",
+      "The country's, because it is bigger",
+      "About the same"
+    ],
+    "answer": 2,
+    "why": "Precision depends on the 500 people asked. The share asked only matters when the poll is a big part of the population; at 1% the correction factor is 0.995."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
