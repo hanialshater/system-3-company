@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 10px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+
+.strip { display: grid; grid-template-columns: repeat(8, 34px); gap: 4px; justify-content: center; }
+.px {
+  width: 34px; height: 40px; padding: 0; border-radius: 4px; font-size: 0.72rem; font-weight: 700;
+  border: 2px solid var(--line);
+}
+.white { background: #f4f4f4; color: #777; }
+.black { background: #161616; color: #aaa; border-color: #161616; }
+
+.code {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; min-height: 34px; align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1.05rem; font-weight: 800;
+}
+.chunk { padding: 2px 4px; border-radius: 5px; border: 1px solid var(--line); }
+.cw { background: var(--bg-2); color: var(--fg); }
+.cb { background: var(--fg); color: var(--bg); }

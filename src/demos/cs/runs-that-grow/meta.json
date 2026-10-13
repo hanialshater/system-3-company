@@ -1,0 +1,73 @@
+{
+  "slug": "runs-that-grow",
+  "title": "When compression makes it bigger",
+  "hook": "Squeezing a picture should make it smaller. Can it ever make it bigger?",
+  "domain": "cs",
+  "concept": "run-length-encoding",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading a row of black and white squares",
+      "counting"
+    ],
+    "doesNotKnow": [
+      "run-length encoding (count-then-letter)",
+      "that a compression scheme can make some inputs bigger"
+    ]
+  },
+  "misconception": "Compression always makes things smaller.",
+  "objective": "The learner can explain that run-length coding shrinks rows with long runs (16 white pixels become 16W, 3 characters) and doubles rows without runs (BWBWBWBW becomes 16 characters), and that no lossless scheme shrinks every input.",
+  "claims": [
+    {
+      "id": "cs.runs-that-grow.c1",
+      "text": "Coded count-then-letter, BWBWBWBW becomes 1B1W1B1W1B1W1B1W: 16 characters for 8 pixels, twice as long.",
+      "support": "simulation",
+      "source": "Demo.tsx encode('BWBWBWBW'); builder also ran a regex run-length coder in Node: '1B1W1B1W1B1W1B1W', length 16.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.runs-that-grow.c2",
+      "text": "16 white pixels code as 16W, 3 characters.",
+      "support": "simulation",
+      "source": "Demo.tsx encode('W' x 16) = '16W' (builder ran in Node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.runs-that-grow.c3",
+      "text": "With no runs, every pixel costs a count and a letter, so the code is twice the length of the row.",
+      "support": "derivation",
+      "source": "Each run of length 1 encodes as '1' plus a letter: 2 characters per pixel.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.runs-that-grow.c4",
+      "text": "No lossless scheme can shrink every input: there are fewer short codes than inputs, so if some get shorter, others must get longer.",
+      "support": "source",
+      "source": "Counting (pigeonhole) argument: 2^n strings of length n but only 2^n - 1 strings shorter than n. Sayood, Introduction to Data Compression, 4th ed., ch. 1; MacKay, Information Theory, Inference, and Learning Algorithms (2003), 4.1 / exercise 4.12-style argument.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A compressor shrinks every photo you test it on. Your friend says it must shrink every possible file. Is that right?",
+    "options": [
+      "Yes, a good compressor shrinks everything",
+      "No, some possible files must come out the same size or bigger",
+      "Yes, as long as it is lossless"
+    ],
+    "answer": 1,
+    "why": "There are fewer short outputs than possible inputs, so a lossless compressor that shrinks some files must grow others, just as run-length coding doubles a row with no runs."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

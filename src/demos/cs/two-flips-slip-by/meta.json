@@ -1,0 +1,73 @@
+{
+  "slug": "two-flips-slip-by",
+  "title": "Can one check bit catch every error?",
+  "hook": "One extra bit lets the receiver spot a corrupted message. Does it spot every one?",
+  "domain": "cs",
+  "concept": "parity-check",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bits are 0 or 1 (binary-numbers)",
+      "even and odd numbers"
+    ],
+    "doesNotKnow": [
+      "how a parity check bit is chosen and tested",
+      "that parity misses any even number of flipped bits"
+    ]
+  },
+  "misconception": "A check bit catches any corruption of the message.",
+  "objective": "The learner can explain that each bit flip switches the count of 1s between even and odd, so an even-parity check catches one (or any odd number of) flips and passes two (or any even number), wherever they are.",
+  "claims": [
+    {
+      "id": "cs.two-flips-slip-by.c1",
+      "text": "An even-parity check bit is chosen so that the count of 1s, check bit included, is even; the receiver passes the message if the count it gets is even.",
+      "support": "convention",
+      "source": "Definition of even parity: Tanenbaum and Wetherall, Computer Networks, 5th ed., 3.2.2 'Error-detecting codes'. Demo.tsx CHECK and passes().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-flips-slip-by.c2",
+      "text": "Every bit flip changes the count of 1s by one, switching it between even and odd, so a single flip is always caught.",
+      "support": "derivation",
+      "source": "A flip turns a 0 into 1 (+1) or a 1 into 0 (-1); either changes the parity of the count.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-flips-slip-by.c3",
+      "text": "Two flips anywhere in the message, check bit included, leave the count even again, so the check passes on a wrong message; in general parity catches any odd number of flips and misses any even number.",
+      "support": "derivation",
+      "source": "k flips change the count by k changes of parity; parity is restored iff k is even. The stage lets the learner test 1 to 8 flips on the message 1011010 + check bit 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-flips-slip-by.c4",
+      "text": "Links that expect bursts of noise use stronger checks, such as CRCs, built from many parity-style sums.",
+      "support": "source",
+      "source": "Tanenbaum and Wetherall, 3.2.2: CRC (polynomial code) detects all burst errors of length up to r; IEEE 802.3 Ethernet frames carry a CRC-32. Each CRC bit is the XOR (a parity) of a fixed subset of message bits, since the CRC is linear over GF(2).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A byte with an even-parity bit arrives and the check passes. What do you know?",
+    "options": [
+      "No bits flipped",
+      "An even number of bits flipped, possibly zero",
+      "At most one bit flipped"
+    ],
+    "answer": 1,
+    "why": "Each flip switches the count of 1s between even and odd, so the check passes after 0, 2, 4 ... flips. A pass only rules out an odd number of flips."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
