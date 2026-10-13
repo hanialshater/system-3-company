@@ -1,0 +1,73 @@
+{
+  "slug": "shrink-toward-zero",
+  "title": "Can a biased guess beat an honest one?",
+  "hook": "One estimate is right on average. The other is deliberately off. Which misses by less?",
+  "domain": "ai",
+  "concept": "bias-variance",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that averaging noisy readings gives an estimate",
+      "that a model can overfit noise"
+    ],
+    "doesNotKnow": [
+      "that average squared error splits into bias² plus spread²",
+      "that a deliberately biased estimate can have lower total error"
+    ]
+  },
+  "misconception": "An unbiased estimate is always the best one.",
+  "objective": "The learner can explain that average squared error is bias² plus spread², so shrinking an estimate trades a little bias for much less spread and can lower the error, up to a point.",
+  "claims": [
+    {
+      "id": "ai.shrink-toward-zero.c1",
+      "text": "With true value 0.5 and each estimate the average of 4 readings with noise sd 1, the plain average has bias 0, spread (sd) 0.5 and average squared error 0.25; half the average has bias −0.25, spread 0.25 and error 0.125.",
+      "support": "derivation",
+      "source": "sd of a mean of 4 = 1/√4 = 0.5. For c × average: bias (c − 1)·0.5, sd 0.5c, error = bias² + sd². c = 1: 0.25; c = 0.5: 0.0625 + 0.0625 = 0.125. bias(), spread(), mse() in Demo.tsx. Brief 36 reports 200,000 simulated trials: 0.251 and 0.125.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.shrink-toward-zero.c2",
+      "text": "Shrinking too far costs more: at ×0.2 the bias is −0.40 and the error 0.170. The best factor here is exactly 0.5.",
+      "support": "derivation",
+      "source": "mse(0.2) = 0.16 + 0.01 = 0.17. Minimising 0.25(1 − c)² + 0.25c² gives c = μ²/(μ² + σ²/n) = 0.25/0.5 = 0.5 (BEST in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.shrink-toward-zero.c3",
+      "text": "Average squared error equals bias squared plus variance (spread squared).",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.3 (bias-variance decomposition).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.shrink-toward-zero.c4",
+      "text": "The setting is a toy and the 40 dots are sample estimates; the error readout is the long-run (expected) value, not computed from the 40 dots.",
+      "support": "convention",
+      "source": "Stage tag 'Toy · 40 sample estimates' and readout 'Long-run sq. error'. Dots from mulberry32(1) with Box-Muller normals, untuned, used only to show spread.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A model's predictions are right on average but swing wildly from one data set to the next. Adding a penalty makes them a little biased but much steadier. What can happen to its average error?",
+    "options": [
+      "It can go down, because spread shrinks more than bias grows",
+      "It must go up, because the model is now biased",
+      "It cannot change: bias and spread always cancel"
+    ],
+    "answer": 0,
+    "why": "Average squared error is bias² plus spread². A small bias added for a big cut in spread can lower the total, until the bias grows too large."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
