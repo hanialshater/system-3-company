@@ -1,0 +1,77 @@
+{
+  "slug": "atlantic-to-pacific-heading",
+  "title": "Through the Panama Canal",
+  "hook": "A ship sails from the Atlantic into the Pacific. Which way does it head?",
+  "domain": "geography",
+  "concept": "east-west-surprises",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["that the Panama Canal links the Atlantic and the Pacific", "compass directions"],
+    "doesNotKnow": ["which way a ship heads through the canal", "that the Pacific end is east of the Atlantic end"]
+  },
+  "misconception": "Going from the Atlantic to the Pacific through the canal means sailing west.",
+  "objective": "The learner can say that a ship going from the Atlantic to the Pacific through the canal heads south-east overall (about 142 degrees), because the isthmus runs east-west.",
+  "claims": [
+    {
+      "id": "geography.atlantic-to-pacific-heading.c1",
+      "text": "The canal's Atlantic end is at Colon (9.36 N, 79.90 W) and its Pacific end at Balboa (8.95 N, 79.57 W).",
+      "support": "source",
+      "source": "From memory, not re-checked: approximate gazetteer coordinates of the Colon/Cristobal and Balboa terminals (brief cites the Panama Canal Authority or a gazetteer). The stage uses exactly these points. On the kit's 1:110m outline the Colon point falls just off the coast, which is expected at that resolution.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.atlantic-to-pacific-heading.c2",
+      "text": "The straight-line heading from the Atlantic end to the Pacific end is about 142 degrees (south-east).",
+      "support": "derivation",
+      "source": "Builder's node check, initial great-circle bearing from the Colon point to the Balboa point: 141.50 degrees, shown rounded as 142 (the brief gives 140.9 from slightly different coordinates). Computed by the same bearing() as the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.atlantic-to-pacific-heading.c3",
+      "text": "The straight line between the two ends is about 58 km long, and the Pacific end is 0.33 degrees of longitude east of the Atlantic end.",
+      "support": "derivation",
+      "source": "Builder's node check: geoDistance x 6,371.0088 km = 58.2 km; -79.57 - (-79.90) = 0.33 degrees. The canal's own length is longer; the lesson says 'straight line'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.atlantic-to-pacific-heading.c4",
+      "text": "Panama's isthmus curves like an S, running east-west, so the Pacific end of the canal is further east than the Atlantic end.",
+      "support": "source",
+      "source": "From the brief (cm-geography). Consistent with c1 and c3. The kit's Panama outline shows the east-west run. Not independently checked by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.atlantic-to-pacific-heading.c5",
+      "text": "The canal winds, so the stated heading is its overall direction, not every turn.",
+      "support": "source",
+      "source": "From the brief: the bearing is between terminals, not the canal's own course; the canal's winding is from memory.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.atlantic-to-pacific-heading.c6",
+      "text": "On a Mercator map compass bearings are true angles, so a heading can be read directly (north up).",
+      "support": "source",
+      "source": "Snyder (1987), ch. 7: Mercator is conformal, so angles are preserved. Already verified for mercator-greenland c5. Stage is labelled Mercator, zoomed on Panama.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Going from the Atlantic to the Pacific through the Panama Canal, you head mostly...",
+    "options": ["South-east", "West", "North-east"],
+    "answer": 0,
+    "why": "The isthmus runs east-west, so the Pacific end is south-east of the Atlantic end (about 142 degrees)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,98 @@
+{
+  "slug": "high-satellite-view",
+  "title": "How much can a high satellite see?",
+  "hook": "A satellite parked 36,000 km up looks down at the whole planet. Does it?",
+  "domain": "geography",
+  "concept": "satellite-coverage",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["that some satellites stay over one spot on the equator", "what a globe looks like"],
+    "doesNotKnow": ["how much of the Earth a very high satellite can see", "why the visible share grows slowly with height"]
+  },
+  "misconception": "A satellite 36,000 km up sees half of the planet.",
+  "objective": "The learner can say that a geostationary satellite sees a bit under half of the surface (about 42%), that the poles are out of view, and why height buys view slowly.",
+  "claims": [
+    {
+      "id": "geography.high-satellite-view.c1",
+      "text": "A geostationary satellite orbits 35,786 km above the equator.",
+      "support": "source",
+      "source": "From memory, not re-checked: the commonly quoted geostationary altitude (35,786 km above mean sea level; orbital radius about 42,164 km from Earth's centre). Brief cites IERS/ITU. Needs a checker to attach a link.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c2",
+      "text": "A satellite h km above a spherical Earth sees a circle out to an angle acos(R/(R+h)) from the point below it, and that circle covers (1 - R/(R+h))/2 of the surface.",
+      "support": "derivation",
+      "source": "Tangent-line geometry: the sightline that just grazes the sphere meets the radius at a right angle, so cos(angle) = R/(R+h); a spherical cap of half-angle a has area fraction (1 - cos a)/2 (Archimedes). R = 6,371.0088 km (kit EARTH_RADIUS_KM). The stage draws and reads out from this one function.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c3",
+      "text": "From 35,786 km a satellite sees about 42% of the surface, everything within about 81 degrees of the point below it.",
+      "support": "derivation",
+      "source": "Builder's node check: acos(6371.0088/42157.0088) = 81.31 degrees; share 42.44%. Using the equatorial radius 6378.137 km instead gives the same 42.44%.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c4",
+      "text": "From 1,000 km a satellite sees about 7% of the surface.",
+      "support": "derivation",
+      "source": "Builder's node check: (1 - 6371.0088/7371.0088)/2 = 6.78%.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c5",
+      "text": "Seeing exactly half the surface needs an infinite height.",
+      "support": "derivation",
+      "source": "(1 - R/(R+h))/2 tends to 1/2 as h grows and equals 1/2 only in the limit. Builder's check: 45.2% at 60,000 km.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c6",
+      "text": "The poles stay out of view of a geostationary satellite.",
+      "support": "derivation",
+      "source": "The satellite is on the equator; the visible cap reaches 81.3 degrees from the point below it, and the poles are 90 degrees away. Spherical Earth, no terrain.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c7",
+      "text": "Near the edge of the visible circle, a dish sees the satellite on the horizon.",
+      "support": "derivation",
+      "source": "At the cap's edge the sightline is tangent to the surface, so the satellite sits at 0 degrees elevation by construction. Practical service limits are not computed here.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c8",
+      "text": "Stage buttons: the space station is about 400 km up and a GPS satellite about 20,200 km up.",
+      "support": "source",
+      "source": "From memory, not re-checked: ISS altitude is roughly 400 km and varies; GPS orbits are about 20,200 km (US government GPS documentation). Needs a checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.high-satellite-view.c9",
+      "text": "The stage models a spherical Earth with no terrain or atmosphere, and the satellite sits above the equator at longitude 0.",
+      "support": "convention",
+      "source": "Model label on the stage; the longitude is arbitrary and changes nothing.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A satellite 36,000 km up sees what share of the Earth?",
+    "options": ["About all of it", "About half", "A bit under half", "About a tenth"],
+    "answer": 2,
+    "why": "The visible edge is where the sightline just grazes the ball. It moves out slowly with height, so 42% at 35,786 km and never half."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
