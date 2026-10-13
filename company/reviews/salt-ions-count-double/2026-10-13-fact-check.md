@@ -9,3 +9,11 @@ Node: NaCl 58.44 g/mol; 2x1.86x1 = 3.72, 1.86 for sugar; 3.72 x 0.93 = 3.46. c5 
 ## Pass 6
 
 c5 left unverified: text still reads about 3.5; tabulated 5.5 wt% NaCl depression interpolates to about 3.4 degC. Builder fix requested in pass 5 still pending.
+
+## Pass 7
+
+Checker: fact-checker (did not write these claims; builder-rewritten claims checked as rewritten). Numbers re-derived in node from the lesson's own constants or model.ts.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | unverified (left) | Text still says 'about 3.5', not 'about 3.4'. A second search for the CRC concentrative-properties table returned only the ideal 3.72; I cannot open the table. Same suggested fix as pass 5/6: change to 'about 3.4 degC'. I will verify once the text changes or a tabulated value is reached. |

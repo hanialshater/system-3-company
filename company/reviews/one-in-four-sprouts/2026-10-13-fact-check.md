@@ -17,3 +17,11 @@ Non-blocking note for demo-builder: the first field's "exactly one white" count 
 Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c3.
 
 Binomial(4, 1/4): P(1)=0.4219, P(0)=0.3164, P(>=2)=0.2617.
+
+## Pass 7
+
+Checker: fact-checker (did not write these claims; builder-rewritten claims checked as rewritten). Numbers re-derived in node from the lesson's own constants or model.ts.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c3 | verified | Binomial(4,1/4) in node: P(1)=0.4219, P(0)=0.3164, P(>=2)=0.2617; matches 42/32/26. |

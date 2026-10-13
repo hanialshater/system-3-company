@@ -19,3 +19,11 @@ c1 source: cite IPCC SROCC ch.1 and NOAA rather than AR6 "virtually certain" (th
 
 ## Not verified by me
 None; every claim above is checked.
+
+## Pass 7
+
+Checker: fact-checker (did not write these claims; builder-rewritten claims checked as rewritten). Numbers re-derived in node from the lesson's own constants or model.ts.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | verified | pH = -log10[H+] (IUPAC definition), so lower pH means more H+. Stage statement matches. |
