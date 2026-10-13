@@ -1,0 +1,62 @@
+{
+  "slug": "byte-in-two-digits",
+  "title": "What is 11010110 in hex?",
+  "hook": "Programmers write a byte with two symbols, like A0 or 7C. Where do the two come from?",
+  "domain": "cs",
+  "concept": "hexadecimal",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["reading switches as 8, 4, 2, 1 (binary place value)"],
+    "doesNotKnow": ["that one hex symbol is exactly four bits"]
+  },
+  "misconception": "Hex is a new, separate number system you must convert through decimal.",
+  "objective": "The learner can read 11010110 as D6 by reading 1101 (13, D) and 0110 (6) separately, and explain why changing one group of four changes only its symbol.",
+  "claims": [
+    {
+      "id": "cs.byte-in-two-digits.c1",
+      "text": "1101 is 8 + 4 + 1 = 13, written D; 0110 is 4 + 2 = 6; so 11010110 is D6 in hex.",
+      "support": "derivation",
+      "source": "Place values 8, 4, 2, 1. Node: parseInt('11010110', 2).toString(16) = 'd6'. Demo.tsx START_HEX.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.byte-in-two-digits.c2",
+      "text": "Hex symbols are 0 to 9, then A to F for 10 to 15.",
+      "support": "convention",
+      "source": "Standard hexadecimal digits (e.g. Knuth, TAOCP Vol. 2, 4.1; ISO/IEC 9899 C standard, hexadecimal constants 6.4.4.1).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.byte-in-two-digits.c3",
+      "text": "Four switches have exactly 16 settings, one per hex symbol.",
+      "support": "derivation",
+      "source": "2^4 = 16 = number of hex digits.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.byte-in-two-digits.c4",
+      "text": "Flipping a switch in one group of four changes only that group's hex symbol.",
+      "support": "derivation",
+      "source": "Value = 16 × high + low with 0 ≤ low ≤ 15, so the two hex digits are exactly the two 4-bit groups; a change in one group leaves the other's digit unchanged. Stage: QA path D6 → 56 (left), 26 → 2E (right).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.byte-in-two-digits.c5",
+      "text": "Every byte (8 switches) is exactly two hex symbols.",
+      "support": "derivation",
+      "source": "8 bits = two groups of 4; values 0..255 = 00..FF.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Without converting to ordinary numbers, what is 0011 1111 in hex?",
+    "options": ["3F", "F3", "63"],
+    "answer": 0,
+    "why": "Read each group of four on its own: 0011 is 3 and 1111 is 15, written F."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

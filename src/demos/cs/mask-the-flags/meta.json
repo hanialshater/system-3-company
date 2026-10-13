@@ -1,0 +1,62 @@
+{
+  "slug": "mask-the-flags",
+  "title": "Which settings survive the mask?",
+  "hook": "Five on/off settings live in one number. How do you read just two of them?",
+  "domain": "cs",
+  "concept": "bit-masks",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["AND, OR and XOR on single bits"],
+    "doesNotKnow": ["that a mask applies AND, OR or XOR to every bit of a number at once"]
+  },
+  "misconception": "To check which of five settings are on you need five separate tests.",
+  "objective": "The learner can compute 10110 AND 00110 = 00110 and explain that one mask reads (AND), sets (OR) or flips (XOR) chosen bits all at once.",
+  "claims": [
+    {
+      "id": "cs.mask-the-flags.c1",
+      "text": "10110 AND 00110 gives 00110: only the places the mask marks keep their setting, and the 1 at the far left is dropped.",
+      "support": "derivation",
+      "source": "Bitwise AND place by place. Node: (0b10110 & 0b00110).toString(2) = '110' = 00110. Demo.tsx START_RESULT.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.mask-the-flags.c2",
+      "text": "AND gives 1 only where both are 1; OR gives 1 where either is 1; XOR gives 1 where they differ.",
+      "support": "convention",
+      "source": "Truth tables of AND, OR, exclusive OR (e.g. Harris and Harris, Digital Design and Computer Architecture, 1.5).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.mask-the-flags.c3",
+      "text": "OR with a mask turns every marked place on, and XOR with a mask flips every marked place; unmarked places keep their setting.",
+      "support": "derivation",
+      "source": "x OR 1 = 1, x OR 0 = x; x XOR 1 = not x, x XOR 0 = x. Stage QA path: 10110 OR 11001 = 11111, 10110 XOR 11001 = 01111 (Node check).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.mask-the-flags.c4",
+      "text": "One mask works on all five places in one step.",
+      "support": "source",
+      "source": "Bitwise operators act on every bit of a machine word in a single instruction (Kernighan and Ritchie, The C Programming Language, 2nd ed., 2.9 Bitwise Operators).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.mask-the-flags.c5",
+      "text": "File permissions on Unix are stored and changed this way.",
+      "support": "source",
+      "source": "chmod(1) and chmod(2) man pages: permission bits form a mode word (e.g. 0755) combined with bit masks; POSIX sys/stat.h defines S_IRUSR, S_IWUSR etc. as mask constants.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Settings are 0101. Which mask and operation switch the leftmost setting on without touching the others?",
+    "options": ["OR with 1000", "AND with 1000", "XOR with 0111"],
+    "answer": 0,
+    "why": "OR with a 1 turns that place on; OR with 0 leaves the other places as they were."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
