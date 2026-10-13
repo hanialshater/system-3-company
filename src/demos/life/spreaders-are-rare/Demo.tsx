@@ -19,9 +19,9 @@ const CASES = 100;
 const MILESTONES = ["uneven", "even"] as const;
 type Mode = "k0.1" | "k1" | "even";
 const MODES: { id: Mode; label: string; k: number }[] = [
-  { id: "k0.1", label: "Very uneven (k = 0.1)", k: 0.1 },
   { id: "even", label: "Even", k: Infinity },
-  { id: "k1", label: "Uneven (k = 1)", k: 1 },
+  { id: "k1", label: "Uneven", k: 1 },
+  { id: "k0.1", label: "Very uneven", k: 0.1 },
 ];
 
 function pmf(k: number, x: number) {
@@ -77,12 +77,15 @@ const SPOT = (() => {
 // Numbers in the question and reveal come from the same allocation as the stage.
 const U = summary(DATA.get("k0.1")!);
 const E = summary(DATA.get("even")!);
+const M = summary(DATA.get("k1")!);
+const E_MAX = Math.max(...DATA.get("even")!);
 const P0 = (k: number) => `${Math.round(100 * pmf(k, 0))}%`;
 
 function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
   const [mode, setMode] = useState<Mode>("k1");
   const { reach } = useMilestones(interact, MILESTONES);
   const c = DATA.get(mode)!;
+  const biggest = Math.max(...c);
   const sum = useMemo(() => summary(c), [c]);
   const go = (m: Mode) => {
     setMode(m);
@@ -100,7 +103,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
           return (
             <g key={i}>
               {n === 0 ? <circle cx={x} cy={y} r={3} className={s.zero} /> : <circle cx={x} cy={y} r={2.1 * Math.sqrt(n)} className={s.case} />}
-              {n >= 10 && (
+              {(n >= 10 || (n === biggest && n > 0)) && (
                 <text x={x} y={y + 4} textAnchor="middle" className={s.num}>
                   {n}
                 </text>
@@ -112,7 +115,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
 
       <p className={s.msg} aria-live="polite">
         {locked
-          ? "Make a prediction to start. 100 cases, averaging 2 new infections each. Toy model."
+          ? "Make a prediction to start. 100 cases (infected people), averaging 2 new infections each. Toy model."
           : `${sum.zeros} of 100 cases infected no one. The top 10 caused ${sum.top10} of ${sum.total}. Circle area = people infected.`}
       </p>
 
@@ -138,26 +141,23 @@ export default function SpreadersAreRare({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An outbreak averages 2 new infections per case, but spread is very uneven (negative binomial, dispersion k = 0.1). What share of cases infect no one?",
+          "An outbreak averages 2 new infections per case, but spread is very uneven: a few people infect many, most infect few. What share of cases infect no one at all?",
         options: [`About ${P0(Infinity)}`, "About 40%", `About ${P0(0.1)}`],
         answer: 2,
       }}
-      exploreHint="Switch to very uneven spread and count the empty circles. Then compare even spread."
+      exploreHint="Switch to very uneven spread and count the empty circles. Then try even spread."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            With very uneven spread, <strong>{U.zeros} of 100 cases infected no one</strong>, yet the average was still 2:
-            the top 10 cases caused {U.top10} of the {U.total} infections. With even spread only {E.zeros} infected no one,
-            and no case infected more than {Math.max(...DATA.get("even")!)}.
+            With very uneven spread, <strong>{U.zeros} of 100 cases infected no one</strong>, yet the average was still 2: the
+            top 10 cases caused {U.top10} of the {U.total} infections. With even spread only {E.zeros} infected no one, and
+            no case in this picture infected more than {E_MAX}. In between, {M.zeros} infected no one.
           </p>
-          <p>
-            An average of 2 does not mean each case infects 2. When a few cases cause most of the spread, most chains die
-            out on their own, and an outbreak lives or dies on the rare big spreaders.
-          </p>
+          <p>An average of 2 does not mean each case infects 2: a few big spreaders can drive an outbreak.</p>
           <p className="muted">
-            Model: k = 0.1 is an illustration, not a measured value for any named disease. The 100 cases show the
-            distribution&rsquo;s expected shape, not one random outbreak.
+            &ldquo;Very uneven&rdquo; is an illustration, not a measured value for any disease. The 100 cases are an expected
+            shape, rounded (totals 199 to 201), not one random outbreak.
           </p>
         </>
       )}

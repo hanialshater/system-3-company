@@ -8,3 +8,8 @@
 .chip { min-width: 72px; }
 .tftT { fill: color-mix(in srgb, var(--good) 75%, var(--bg-2)); }
 .cheatT { fill: color-mix(in srgb, var(--bad) 70%, var(--bg-2)); }
+.pay { width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: center; }
+.pay th, .pay td { padding: 2px 4px; border-bottom: 1px solid var(--line); }
+.pay thead th { color: var(--muted); font-weight: 600; }
+.pay tbody th { text-align: left; font-weight: 700; }
+.pay td { font-variant-numeric: tabular-nums; font-weight: 700; }
