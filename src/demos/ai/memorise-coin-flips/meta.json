@@ -1,0 +1,80 @@
+{
+  "slug": "memorise-coin-flips",
+  "title": "Can a curve learn coin flips?",
+  "hook": "The labels are pure chance. Can a flexible curve still fit every one of them?",
+  "domain": "ai",
+  "concept": "memorise-random-labels",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model can overfit its training data",
+      "that a curve's degree sets how much it can bend"
+    ],
+    "doesNotKnow": [
+      "that a model with as many tunable numbers as data points can fit any labels, even random ones",
+      "that a perfect training fit is therefore not evidence of a pattern"
+    ]
+  },
+  "misconception": "If a model fits the training data perfectly, it must have found a pattern.",
+  "objective": "The learner can say that enough freedom fits anything, including coin flips, so a zero training error alone does not show that a model learned a real pattern.",
+  "claims": [
+    {
+      "id": "ai.memorise-coin-flips.c1",
+      "text": "The six points and their coin-flip labels are a toy, labelled 'Coin-flip labels · toy fit' on the stage. Label set n is drawn with mulberry32(n): set 1 is −1, 1, −1, −1, −1, 1; set 2 is −1, 1, 1, −1, −1, −1.",
+      "support": "convention",
+      "source": "Brief 50 in company/domains/briefs/ai.md (the brief's example labels 1, −1, −1, 1, 1, −1 were not used); labelsFor() in Demo.tsx. Seeds 1, 2, ... are taken in order, untuned.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.memorise-coin-flips.c2",
+      "text": "A degree-5 curve has six numbers to tune, so it passes through all six dots for any labels: its largest miss is 0.00.",
+      "support": "derivation",
+      "source": "Polynomial interpolation: six distinct x values determine a unique degree-5 interpolant. fit() in Demo.tsx; node over label sets 1-1000: largest miss below 1e-10 in every set.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.memorise-coin-flips.c3",
+      "text": "On label set 1 the degree-1 line misses by up to 1.51 and the degree-3 curve by 0.76; the degree-5 fit's biggest coefficient is 833 (625 on set 2).",
+      "support": "simulation",
+      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000 (coef 833); set 2 d5 coef 625. Degree 3 misses some dot in 967 of 1000 label sets.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.memorise-coin-flips.c4",
+      "text": "Because the labels are coin flips, the fitted curve's guesses on new points are right only by chance (about half the time).",
+      "support": "derivation",
+      "source": "By construction: a new point's label is an independent fair coin flip, so any guess matches it with probability 1/2 whatever the curve.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.memorise-coin-flips.c5",
+      "text": "Large neural networks have been shown to fit randomly shuffled labels perfectly too.",
+      "support": "source",
+      "source": "About real systems: Zhang, Bengio, Hardt, Recht & Vinyals 2017, 'Understanding deep learning requires rethinking generalization', ICLR (image classifiers reach zero training error on CIFAR-10 with random labels).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A model with millions of parameters reaches zero training error on your data. What does that alone tell you about whether it found a real pattern?",
+    "options": [
+      "That it found one: a perfect fit proves it",
+      "Little: a model that flexible could fit even random labels; check it on held-out data",
+      "That the data has no pattern"
+    ],
+    "answer": 1,
+    "why": "Enough freedom fits anything, including coin flips. Only performance on data the model did not see can show a pattern was learned."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

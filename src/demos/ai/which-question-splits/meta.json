@@ -1,0 +1,72 @@
+{
+  "slug": "which-question-splits",
+  "title": "Where does a tree make its first cut?",
+  "hook": "Eight labelled dots, one cut. Which cut leaves the two groups least mixed?",
+  "domain": "ai",
+  "concept": "decision-tree-splits",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a classifier sorts examples into labels"
+    ],
+    "doesNotKnow": [
+      "how a decision tree picks its first question",
+      "that a mix score such as Gini, weighted by group size, ranks candidate cuts"
+    ]
+  },
+  "misconception": "A tree asks whichever question comes to mind first, or the one that makes one group perfectly pure.",
+  "objective": "The learner can compare candidate cuts by weighted Gini impurity and say that a tree keeps the cut whose groups come out most alike, even when another cut gives one perfectly pure group.",
+  "claims": [
+    {
+      "id": "ai.which-question-splits.c1",
+      "text": "The labels 0, 0, 1, 0, 1, 1, 1, 1 at x = 1 to 8 are a toy, labelled 'Toy labels' on the stage.",
+      "support": "convention",
+      "source": "Brief 44 in company/domains/briefs/ai.md; LABELS in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-question-splits.c2",
+      "text": "Weighted Gini for the cuts: 2|3 0.21, 4|5 0.19 (the lowest of all seven cuts), 6|7 0.38; the others are 1|2 0.36, 3|4 0.37, 5|6 0.30.",
+      "support": "derivation",
+      "source": "weighted(c) in Demo.tsx; node re-run: 0.3571, 0.2083, 0.3667, 0.1875, 0.3000, 0.3750, 0.4286 for cuts 1|2 to 7|8.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-question-splits.c3",
+      "text": "At 4|5 the left group 0, 0, 1, 0 has one stray and the right group is all 1s; at 2|3 the left group is pure but the stray 0 at x = 4 sits in the right group of six, which counts for more.",
+      "support": "derivation",
+      "source": "4|5: (4·0.375 + 4·0)/8 = 0.1875. 2|3: (2·0 + 6·(1 − (5/6)² − (1/6)²))/8 = 6·0.2778/8 = 0.2083.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-question-splits.c4",
+      "text": "Gini impurity of a group is 1 minus the sum of squared label shares (0 = one label only, 0.5 = half and half for two labels), and CART-style trees choose the split that most reduces size-weighted impurity.",
+      "support": "source",
+      "source": "Breiman, Friedman, Olshen & Stone 1984, Classification and Regression Trees (Gini index). Placing cuts between neighbouring values is a convention.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tree can cut A, giving one perfectly pure group of 2 and a mixed group of 10, or cut B, giving two groups of 6 with one stray each. How does it decide?",
+    "options": [
+      "Always A: a perfectly pure group is best",
+      "It compares the size-weighted mix (e.g. Gini) of both groups for each cut and keeps the lower",
+      "It takes whichever cut comes first"
+    ],
+    "answer": 1,
+    "why": "A pure but tiny group can leave a big mixed one behind. The tree weighs each group's mix by its size and keeps the cut with the lowest total."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

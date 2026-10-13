@@ -1,0 +1,73 @@
+{
+  "slug": "keep-the-top-85",
+  "title": "Drop rare words: who gets their chance?",
+  "hook": "A sampler throws away unlikely next words. What happens to the odds of the rest?",
+  "domain": "ai",
+  "concept": "top-p-sampling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a language model gives each possible next word a chance",
+      "that temperature reshapes those chances"
+    ],
+    "doesNotKnow": [
+      "that a sampler can cut off the unlikely tail entirely",
+      "that the kept words are rescaled to share the removed chance"
+    ]
+  },
+  "misconception": "Sampling always includes every word, however unlikely, and cutting words leaves the others' chances unchanged.",
+  "objective": "The learner can apply top-p: keep the fewest top words whose chances reach p, rescale them to total 100%, and say that cut words can no longer be drawn.",
+  "claims": [
+    {
+      "id": "ai.keep-the-top-85.c1",
+      "text": "The next-word odds after 'I ate' (pizza 45%, rice 30%, soup 15%, cake 6%, glue 4%) are invented, labelled 'Invented odds' on the stage.",
+      "support": "convention",
+      "source": "Brief 41 in company/domains/briefs/ai.md (odds 45/30/15/6/4); words added for readability. WORDS in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.keep-the-top-85.c2",
+      "text": "At p = 85%, the top three words add to 45 + 30 + 15 = 90% (the top two give only 75%), so three are kept and cake and glue are cut; pizza's rescaled chance is 45/90 = 50%.",
+      "support": "derivation",
+      "source": "keptCount(85) = 3, keptSum(3) = 90, share(0, 3) = 50 in Demo.tsx; node re-run: kept 3, sum 90, top 0.5. Start p = 75 keeps 2 (pizza 60%).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.keep-the-top-85.c3",
+      "text": "Words cut by top-p cannot be drawn: in any set of 20 draws they come up 0 times.",
+      "support": "derivation",
+      "source": "draw20(k, seed) in Demo.tsx samples only among the first k words (index never exceeds k - 1). Draw sets use mulberry32(seed = draw number 1, 2, ...), untuned; the zero count holds for every seed by construction.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.keep-the-top-85.c4",
+      "text": "Top-p sampling, also called nucleus sampling, is used in some real text generators: it keeps the smallest set of top words whose probabilities reach p and renormalises them.",
+      "support": "source",
+      "source": "About real systems: Holtzman, Buys, Du, Forbes & Choi 2020, 'The Curious Case of Neural Text Degeneration', ICLR (defines nucleus / top-p sampling as the smallest set with cumulative probability >= p, rescaled). 'Some real text generators' rather than 'all'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sampler keeps only the top words whose chances add to at least 80%. Odds: 50%, 30%, 20%. What is the top word's chance after rescaling?",
+    "options": [
+      "50%: cutting words changes nothing for the others",
+      "62.5%: the two kept words (80%) are rescaled to 100%",
+      "80%"
+    ],
+    "answer": 1,
+    "why": "50 + 30 = 80 reaches 80%, so two words stay; rescaling divides by 80, giving 50/80 = 62.5%. The 20% word can no longer be drawn."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

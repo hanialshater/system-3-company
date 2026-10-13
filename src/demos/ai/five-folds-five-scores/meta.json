@@ -1,0 +1,73 @@
+{
+  "slug": "five-folds-five-scores",
+  "title": "Same rule, five test groups",
+  "hook": "Score one unchanging rule on five different held-out groups. Do the scores agree?",
+  "domain": "ai",
+  "concept": "cross-validation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model is scored on held-out data it was not fitted to",
+      "that a small test set is noisy"
+    ],
+    "doesNotKnow": [
+      "how much one held-out slice's score can swing",
+      "that k-fold cross-validation rotates the held-out group so every point is used once"
+    ]
+  },
+  "misconception": "Whichever test slice you picked gives the model's accuracy.",
+  "objective": "The learner can say that scores on different held-out groups differ even for a fixed rule, and that averaging over k folds uses every point once and gives a steadier number.",
+  "claims": [
+    {
+      "id": "ai.five-folds-five-scores.c1",
+      "text": "The 20 points, their labels and the rule 'say 1 if x > 0.5' are a toy: exactly 4 labels (20%) are flipped, and the rule is fixed, not trained. Labelled 'Toy data · fixed rule, not trained' on the stage.",
+      "support": "convention",
+      "source": "Brief 43 in company/domains/briefs/ai.md, adapted: the brief used random 20% flips with an LCG; this build flips exactly 4 of 20 so the answer does not depend on the seed. MODEL block in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.five-folds-five-scores.c2",
+      "text": "On the stage's split the five folds score 100%, 75%, 100%, 50% and 75%: a spread of 50 points; their mean is 80%, the same as the 16 of 20 points the rule gets right.",
+      "support": "simulation",
+      "source": "SCORES, MEAN, RIGHT_ALL in Demo.tsx with mulberry32(seed 1), the first seed, untuned (flipped points 3, 6, 11, 13). node re-run: [100, 75, 100, 50, 75], mean 80. The mean equals 16/20 for every seed, since equal folds partition the points.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.five-folds-five-scores.c3",
+      "text": "With 4 wrong labels in five groups of 4, the fold scores can never all be equal; in 1,000 shuffles the spread was 25 points or more every time.",
+      "support": "simulation",
+      "source": "Derivation: equal scores need an equal number of wrong labels per fold, impossible for 4 across 5 folds (4 is not 0 or a multiple of 5). node over seeds 1-1000: spread 25 in 253, 50 in 671, 75 in 76, never below 25.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.five-folds-five-scores.c4",
+      "text": "k-fold cross-validation splits the data into k groups, holds out each group once, and averages the k scores, so every point is used for testing exactly once.",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.10 (K-fold cross-validation).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A model scores 95% on one held-out slice of 20 examples. A colleague's 5-fold cross-validation gives 82%. Which number better describes the model, and why?",
+    "options": [
+      "95%: it is the real test result",
+      "82%: it averages five held-out groups, so one lucky slice counts less",
+      "Neither: they disagree, so both are meaningless"
+    ],
+    "answer": 1,
+    "why": "One small held-out slice can swing a long way by luck of which points land in it. Rotating the held-out group and averaging uses every point once."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

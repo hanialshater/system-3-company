@@ -1,0 +1,72 @@
+{
+  "slug": "stuck-in-the-shallow-valley",
+  "title": "Downhill all the way: which valley?",
+  "hook": "A ball always steps downhill. Does it always find the lowest point?",
+  "domain": "ai",
+  "concept": "local-minima",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that gradient descent takes small steps downhill on a loss curve"
+    ],
+    "doesNotKnow": [
+      "that the starting point can decide which valley descent settles in",
+      "that descent cannot climb out of a shallow valley to reach a deeper one"
+    ]
+  },
+  "misconception": "Rolling downhill always reaches the lowest point.",
+  "objective": "The learner can say that small downhill steps stop in the valley on the starting side of a hump, so descent finds the nearest valley, not necessarily the lowest.",
+  "claims": [
+    {
+      "id": "ai.stuck-in-the-shallow-valley.c1",
+      "text": "The curve f(x) = x⁴ − 3x² + x and the step rule (step size 0.01, 2000 steps) are a toy, labelled 'Toy curve · small downhill steps' on the stage.",
+      "support": "convention",
+      "source": "Brief 47 in company/domains/briefs/ai.md; MODEL block in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stuck-in-the-shallow-valley.c2",
+      "text": "Released at x = 1.5 or 0.5, the ball stops at x = 1.13 (height −1.07); released at x = −0.5 or −1.5, it reaches x = −1.30 (height −3.51), the deeper valley.",
+      "support": "simulation",
+      "source": "roll(x0) in Demo.tsx (x ← x − 0.01 f′(x), 2000 steps); node re-run: 1.5 → 1.131, 0.5 → 1.131, −0.5 → −1.301, −1.5 → −1.301; f = −1.070 and −3.514. Deterministic, no seed.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stuck-in-the-shallow-valley.c3",
+      "text": "The hump between the valleys is near x = 0.17, where the slope 4x³ − 6x + 1 is zero; starts on either side of it end in different valleys.",
+      "support": "derivation",
+      "source": "HUMP in Demo.tsx (bisection on [0, 0.5]): 0.1699. node: start 0.2 → 1.131, start 0.15 → −1.301.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stuck-in-the-shallow-valley.c4",
+      "text": "Gradient descent in real model training follows the same downhill rule, so its starting point can affect where it ends.",
+      "support": "source",
+      "source": "About real systems: Goodfellow, Bengio & Courville 2016, Deep Learning, §8.2.2 (local minima) and §8.4 (initialisation affects the outcome). Do not overclaim: for large networks many local minima found have similar loss (Choromanska et al. 2015; Dauphin et al. 2014); the lesson does not say real training usually gets stuck.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two runs of the same descent on the same curve start on opposite sides of a hump. What should you expect?",
+    "options": [
+      "Both reach the lowest point eventually",
+      "They may settle in different valleys, because each step only goes downhill from where it is",
+      "Both stop on top of the hump"
+    ],
+    "answer": 1,
+    "why": "Downhill steps cannot climb a hump, so each run settles in the valley on its own side. The nearest valley need not be the lowest."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

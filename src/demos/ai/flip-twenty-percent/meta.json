@@ -1,0 +1,65 @@
+{
+  "slug": "flip-twenty-percent",
+  "title": "Grading a model that is never wrong",
+  "hook": "The model always knows the truth. The answer key does not. What score does it get?",
+  "domain": "ai",
+  "concept": "label-noise-ceiling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model is graded on a test set with an answer key"
+    ],
+    "doesNotKnow": [
+      "that wrong labels in the key cap the score even a perfect model can get",
+      "that near that cap, remaining 'errors' may be the key's"
+    ]
+  },
+  "misconception": "A perfect model scores 100%.",
+  "objective": "The learner can say that a measured score is agreement with the labels, so if a share of the key is wrong, a never-wrong model scores at most 100% minus that share.",
+  "claims": [
+    {
+      "id": "ai.flip-twenty-percent.c1",
+      "text": "The test set and the never-wrong model are a toy: exactly the stated share of the 100 key labels is wrong. Labelled 'Toy test set · model never wrong' on the stage.",
+      "support": "convention",
+      "source": "Brief 46 in company/domains/briefs/ai.md, adapted to an exact count of flips (the brief's random 20% gives 80.0% on average over 100,000 draws). MODEL block in Demo.tsx; flipped items chosen by mulberry32(seed 1), untuned; which items are flipped does not change any number.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.flip-twenty-percent.c2",
+      "text": "With 20 of 100 key labels wrong, a model that always gives the true answer scores 80%, and all 20 of its 'misses' are the key's mistakes; with 40 wrong it scores 60%.",
+      "support": "derivation",
+      "source": "scoreAt(noise) = 100 − noise in Demo.tsx (the model disagrees with the key exactly where the key is wrong). node re-run: 100, 90, 80, 70, 60 for 0..40%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.flip-twenty-percent.c3",
+      "text": "Real benchmark test sets contain some wrong labels.",
+      "support": "source",
+      "source": "About real systems: Northcutt, Athalye & Mueller 2021, 'Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks', NeurIPS Datasets and Benchmarks (estimated an average of at least 3.3% label errors across 10 common test sets). The toy's 20% is invented and much higher.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "About 5% of a benchmark's test labels are wrong. Two models score 94.6% and 95.1%. What should you conclude?",
+    "options": [
+      "The 95.1% model is clearly better",
+      "Both are near the ceiling the noisy key allows, so the gap may reflect the key rather than the models",
+      "Neither model can be any good"
+    ],
+    "answer": 1,
+    "why": "If 5% of the key is wrong, even a perfect model scores about 95%. Near that ceiling, some of the remaining 'errors' are the key's, so a half-point gap says little."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
