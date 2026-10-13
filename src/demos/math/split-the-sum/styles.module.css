@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 120px; max-height: 38dvh; }
+.left { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }
+.right { fill: color-mix(in srgb, var(--good) 45%, var(--bg-2)); }
+.cell { stroke: color-mix(in srgb, var(--fg) 28%, transparent); stroke-width: 0.8; }
+.cutline { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.dim { fill: var(--fg); font-size: 13px; font-weight: 800; text-anchor: middle; }
+.dimL { fill: var(--fg); font-size: 13px; font-weight: 800; text-anchor: start; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.4em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
