@@ -69,3 +69,11 @@ cell-too-big, cut-the-island, epidemic-overshoot, falling-yet-adding, fastest-at
 The 30 lessons left without a QA record all passed (60/60) on the fresh 298-lesson build.
 
 Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
+
+## Sixth batch (evening): 10 lessons (7 cs, 3 geography)
+
+call-stack-depth, lopsided-tree, pivot-lands-home, quadratic-wall, runs-that-grow, sketch-the-counts, tournament-second-best, china-one-clock, coastline-ruler and eratosthenes-shadow were published by `tools/publish-ready.mjs --publish`. Each has a launch verdict on its current version and passed every gate.
+
+**Held back:** lru-eviction-order. Its reviewer's verdict was launch, but the same review says the reveal claims LRU "keeps more hits" while the stage showed identical hits and misses under both rules. That is a sentence the stage contradicts, so the lesson was put back to review and added to `publish-holds.json`.
+
+Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
