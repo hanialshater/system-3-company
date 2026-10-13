@@ -1,0 +1,94 @@
+{
+  "slug": "red-apple-green-light",
+  "title": "A red apple under a green lamp",
+  "hook": "In a dark room, light a ripe red apple with a pure green lamp. What colour do you see?",
+  "domain": "physics",
+  "concept": "colour-filters",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "apples are red and leaves are green",
+      "light comes in colours, as in a rainbow"
+    ],
+    "doesNotKnow": [
+      "that objects send back some colours of light and absorb the rest",
+      "that white light is a mix of colours"
+    ]
+  },
+  "misconception": "A red apple has its own redness that it shows under any light.",
+  "objective": "The learner can explain that an object's colour is the part of the light falling on it that it sends back, so a red apple under pure green light has almost nothing to return and looks nearly black.",
+  "claims": [
+    {
+      "id": "physics.red-apple-green-light.c1",
+      "text": "An object's colour comes from the light it sends back (reflects); the colours it does not send back are absorbed.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e, section 26.3 Color and Color Vision: the colour of an object is set by the wavelengths it reflects; the rest are absorbed.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c2",
+      "text": "White light is a mix of colours; on the stage it is drawn as equal red, green and blue.",
+      "support": "source",
+      "source": "Newton's prism experiments; OpenStax College Physics 2e, section 25.5 Dispersion. The equal three-band split is a drawing simplification (real white light is a continuous spectrum), labelled 'toy values' on stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c3",
+      "text": "A red apple reflects red light strongly and absorbs most green and blue light.",
+      "support": "source",
+      "source": "Apple skin reflectance spectra (e.g. Merzlyak, Solovchenko and Gitelson 2003, 'Reflectance spectral features and non-destructive estimation of chlorophyll, carotenoid and anthocyanin content in apple fruit', Postharvest Biology and Technology 27:197-211): red (anthocyanin-rich) skin reflects weakly at 500-600 nm and strongly above about 640 nm. Verifier must confirm against a real curve before publication.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c4",
+      "text": "The stage's reflectance values (apple 80% red, 5% green, 5% blue; banana 80%, 70%, 10%; leaf 8%, 45%, 6%) are illustrative toy values, not measurements.",
+      "support": "convention",
+      "source": "Chosen by the builder to match the qualitative shape of each object's reflectance (red / yellow / green). Labelled 'toy values' on the stage. REFL table in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c5",
+      "text": "With these values the apple sends back 30% of white light, 80% of red, 5% of green and 5% of blue.",
+      "support": "derivation",
+      "source": "Fraction returned = sum over bands of reflectance x lamp band / lamp bands lit: white (0.80 + 0.05 + 0.05) / 3 = 0.30; red 0.80; green 0.05; blue 0.05. Computed by back() in Demo.tsx; node check in build note.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c6",
+      "text": "Under pure green light a red apple returns only a little green, so it looks very dark green, almost black.",
+      "support": "derivation",
+      "source": "Follows from c1 and c3: a monochromatic green lamp contains no red light to reflect; the small green reflectance returns a dim green. Pure single-colour lamp and no other light in the room are stated on the stage ('Dark room, one lamp').",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.red-apple-green-light.c7",
+      "text": "A yellow banana sends back both red and green light, so under a red lamp it looks red and under a green lamp it looks green.",
+      "support": "derivation",
+      "source": "Yellow surfaces reflect long and middle wavelengths (OpenStax College Physics 2e, 26.3). With the toy values: red lamp 80%, green lamp 70% returned.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A white shirt is lit only by a pure red lamp in a dark room. It looks...",
+    "options": [
+      "Red",
+      "White",
+      "Black"
+    ],
+    "answer": 0,
+    "why": "A white shirt sends back every colour that falls on it, but the only colour arriving is red, so red is all it can return."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

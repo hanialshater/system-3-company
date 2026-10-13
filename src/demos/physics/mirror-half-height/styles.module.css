@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 42dvh; }
+.floor { stroke: var(--fg); stroke-width: 2; opacity: 0.6; }
+.wall { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+.mirror { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--domain); stroke-width: 1; }
+.person { stroke: var(--fg); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.ghost { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 3 2; opacity: 0.55; }
+.seen { stroke: var(--domain); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.sightOk { stroke: var(--good); stroke-width: 1.2; }
+.sightBad { stroke: var(--bad); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.cross { fill: var(--fg); }
+.eye { fill: var(--fg); }
+.tick { fill: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap :global(.readout) { flex: 0 0 auto; }
