@@ -12,3 +12,7 @@
 ## v2 (claim fix 2026-10-13)
 
 Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.
+
+## v3 (revision 2026-10-13)
+
+- Reveal no longer says Africa is bigger than "the three largest"; it says the US, China and India together fit inside it. "Without stretching ... across the globe" replaced by a rigid cut-out wording. Claim c1 text updated to match and set unverified.

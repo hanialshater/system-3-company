@@ -5,3 +5,7 @@
 - Key state: D's eviction under LRU (B) and under first-in (A). Milestones ["lru-evict", "fifo-evict"], minInteractions 2. QA path: Next, Play to end, Rule toggle, Restart.
 - Numbers: question stream, slot count and the reveal's evicted letters come from STREAM/simulate() in Demo.tsx. Brief answer (B) re-computed in Node with an independent implementation and held.
 - After screenshots: layout reads on phone; no changes.
+
+## v2 (revision 2026-10-13)
+
+- Reveal no longer claims LRU "keeps more hits" (both rules show 1 hit, 4 misses on this stream). It now says the rules score the same here and shows where they differ if B or A is requested again. Claim c4 rewritten (unverified); new derivation claim c6 (unverified).

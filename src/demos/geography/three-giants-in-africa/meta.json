@@ -21,16 +21,14 @@
     ]
   },
   "misconception": "Africa is about as big as one big country.",
-  "objective": "The learner can explain that the US, China and India together cover only about three quarters of Africa's area (about 22 of 30 million km²), and that an equal-area map shows this while Mercator hides it.",
+  "objective": "The learner can explain that the US, China and India together cover only about three quarters of Africa's area (about 22 of 30 million km\u00b2), and that an equal-area map shows this while Mercator hides it.",
   "claims": [
     {
       "id": "geography.three-giants-in-africa.c1",
-      "text": "The US (lower 48 and Alaska), China and India together cover about 22.0 million km², about 73% of Africa's 30.0 million km², leaving about 8.0 million km².",
+      "text": "The US (lower 48 and Alaska), China and India together cover about 22.0 million km\u00b2, about 73% of Africa's 30.0 million km\u00b2, so the three fit inside Africa with about 8.0 million km\u00b2 to spare.",
       "support": "simulation",
-      "source": "d3-geo geoArea x 6,371.0088² on the kit's 1:110m shapes, computed in Demo.tsx: US lower 48 7.98 + Alaska 1.48 (the US's two largest polygons; Hawaii and small islands, 0.04 M km², are not moved), China 9.41 (including Hainan), India 3.15, total 22.01; Africa = 51 shapes listed in africa.json, 30.04 (builder's node check, 2026-10-13). Published areas (CIA World Factbook: US 9.83, China 9.60, India 3.29; Africa about 30.4 million km²; from memory, not checked online) give about 74%. The lesson says 'about'. | FACT-CHECK 2026-10-13 (pass 4): Re-ran in node with d3-geo geoArea x 6371.0088^2 on the kit's 110m shapes: lower 48 7.98, Alaska 1.48, China 9.41, India 3.15 = 22.01 M km2; Africa (51 shapes in africa.json) 30.04; 73.3%; room 8.03. Published areas (US 9.83 total, China 9.60, India 3.29, Africa about 30.4 M km2 incl. islands) give about 75%, so 'about 73%' on coarse shapes is within 2 points; wording says 'about' and the stage names the shapes.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "d3-geo geoArea x 6,371.0088\u00b2 on the kit's 1:110m shapes, computed in Demo.tsx: US lower 48 7.98 + Alaska 1.48 (the US's two largest polygons; Hawaii and small islands, 0.04 M km\u00b2, are not moved), China 9.41 (including Hainan), India 3.15, total 22.01; Africa = 51 shapes listed in africa.json, 30.04 (builder's node check, 2026-10-13). Published areas (CIA World Factbook: US 9.83, China 9.60, India 3.29; Africa about 30.4 million km\u00b2; from memory, not checked online) give about 74%. The lesson says 'about'. | FACT-CHECK 2026-10-13 (pass 4): Re-ran in node with d3-geo geoArea x 6371.0088^2 on the kit's 110m shapes: lower 48 7.98, Alaska 1.48, China 9.41, India 3.15 = 22.01 M km2; Africa (51 shapes in africa.json) 30.04; 73.3%; room 8.03. Published areas (US 9.83 total, China 9.60, India 3.29, Africa about 30.4 M km2 incl. islands) give about 75%, so 'about 73%' on coarse shapes is within 2 points; wording says 'about' and the stage names the shapes.",
+      "status": "unverified"
     },
     {
       "id": "geography.three-giants-in-africa.c2",
@@ -45,7 +43,7 @@
       "id": "geography.three-giants-in-africa.c3",
       "text": "On an Equal Earth map, drawn areas are proportional to true areas.",
       "support": "source",
-      "source": "Šavrič, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3) (cited in mercator-greenland, verified there). From memory for this lesson. | FACT-CHECK 2026-10-13 (pass 4): Equal Earth is an equal-area pseudocylindrical projection (Savric, Patterson and Jenny 2018, Int. J. Geographical Information Science 33(3):454-465).",
+      "source": "\u0160avri\u010d, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3) (cited in mercator-greenland, verified there). From memory for this lesson. | FACT-CHECK 2026-10-13 (pass 4): Equal Earth is an equal-area pseudocylindrical projection (Savric, Patterson and Jenny 2018, Int. J. Geographical Information Science 33(3):454-465).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -54,7 +52,7 @@
       "id": "geography.three-giants-in-africa.c4",
       "text": "The placement shown fits the three countries inside Africa with about 3% of the pieces overlapping a coast or each other; the fit is by total area, not an exact tiling.",
       "support": "simulation",
-      "source": "gen.mjs (committed alongside) searches rigid moves on a 0.5° raster of Africa; it reports the share of sample points outside Africa or on another piece (outsidePct in placements.json). The shown placement is one search result, chosen to illustrate the area comparison; the answer rests on c1, not on the placement. | FACT-CHECK 2026-10-13 (pass 4): placements.json outsidePct = 2.57, shown as 'About 3%' (Math.round). The lesson says the placement is a search result and the answer rests on the total area.",
+      "source": "gen.mjs (committed alongside) searches rigid moves on a 0.5\u00b0 raster of Africa; it reports the share of sample points outside Africa or on another piece (outsidePct in placements.json). The shown placement is one search result, chosen to illustrate the area comparison; the answer rests on c1, not on the placement. | FACT-CHECK 2026-10-13 (pass 4): placements.json outsidePct = 2.57, shown as 'About 3%' (Math.round). The lesson says the placement is a search result and the answer rests on the total area.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -63,7 +61,7 @@
       "id": "geography.three-giants-in-africa.c5",
       "text": "On a Mercator map the US and China, farther from the equator than most of Africa, are inflated more, which hides this.",
       "support": "derivation",
-      "source": "Mercator area scale sec² φ (Snyder 1987, ch. 7; verified in mercator-greenland c4). Centroids: contiguous US about 40°N, China about 36°N, Africa mostly within 35° of the equator. Not shown on this stage (no Mercator view); stated in the reveal. | FACT-CHECK 2026-10-13 (pass 4): Mercator area scale is sec^2(lat) (Snyder ch. 7): about 1.7 at 40N (contiguous US), 1.5 at 35N (China), versus about 1.0-1.5 across most of Africa (which lies mostly within 35 deg of the equator). The stage has no Mercator view; stated only in the reveal.",
+      "source": "Mercator area scale sec\u00b2 \u03c6 (Snyder 1987, ch. 7; verified in mercator-greenland c4). Centroids: contiguous US about 40\u00b0N, China about 36\u00b0N, Africa mostly within 35\u00b0 of the equator. Not shown on this stage (no Mercator view); stated in the reveal. | FACT-CHECK 2026-10-13 (pass 4): Mercator area scale is sec^2(lat) (Snyder ch. 7): about 1.7 at 40N (contiguous US), 1.5 at 35N (China), versus about 1.0-1.5 across most of Africa (which lies mostly within 35 deg of the equator). The stage has no Mercator view; stated only in the reveal.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -85,7 +83,7 @@
       "Africa, with about a quarter to spare"
     ],
     "answer": 2,
-    "why": "The three cover about 22 million km², Africa about 30 million: they fill under three quarters of it."
+    "why": "The three cover about 22 million km\u00b2, Africa about 30 million: they fill under three quarters of it."
   },
   "evidence": {
     "qa": [],
@@ -93,5 +91,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2
+  "version": 3
 }

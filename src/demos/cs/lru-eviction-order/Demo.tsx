@@ -88,8 +88,10 @@ export default function LruEvictionOrder({ slug }: { slug: string }) {
             {fifoOut}, the oldest arrival, even though it was just asked for.
           </p>
           <p>
-            Things used recently tend to be used again soon, so evicting the least recently used item usually keeps more
-            hits. Operating systems and web caches use this rule or cheap approximations of it.
+            Both rules scored the same on this short stream. They differ in who they throw out: if B is asked for again,
+            first in, first out keeps it, but if A is asked for again, least recently used keeps it. Things used
+            recently tend to be used again soon, so operating systems and web caches use this rule or cheap
+            approximations of it.
           </p>
           <p className="muted">Recency, not arrival, decides who stays.</p>
         </>

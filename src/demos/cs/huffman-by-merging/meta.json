@@ -1,7 +1,7 @@
 {
   "slug": "huffman-by-merging",
   "title": "Short codes for common letters",
-  "hook": "8 letters, 2 bits each, 16 bits. Can a code with uneven lengths do better?",
+  "hook": "8 letters, 2 bits each, 16 bits. Can uneven codes do better?",
   "domain": "cs",
   "concept": "huffman-coding",
   "status": "review",
@@ -56,7 +56,7 @@
       "id": "cs.huffman-by-merging.c4",
       "text": "In a code read off such a tree, no code is the start of another, so a message can be decoded without separators.",
       "support": "source",
-      "source": "Codes are the paths to leaves; a leaf has no descendants, so no codeword is a prefix of another (prefix code). CLRS 3rd ed., 16.3 'Huffman codes'. Example from the brief's tree: 0, 10, 110, 111.",
+      "source": "Codes are the paths to leaves; a leaf has no descendants, so no codeword is a prefix of another (prefix code). CLRS 3rd ed., 16.3 'Huffman codes'. Example from the brief's tree: 1, 01, 000, 001.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -78,6 +78,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.huffman-by-merging.c7",
+      "text": "The tree you build by joining C + D, then B, then A gives the codes A 1, B 01, C 000, D 001.",
+      "support": "derivation",
+      "source": "Demo.tsx joins (C,D), then (CD,B), then (CDB,A), labelling the left child 0 and the right 1: A is the right child of the root (1), B the right child of the left subtree (01), C and D are 000 and 001. Lengths 1, 2, 3, 3 match c1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,5 +108,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

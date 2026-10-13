@@ -7,15 +7,16 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
+import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
 import s from "./styles.module.css";
 
 type Tree = { id: string; w: number; sym?: string; l?: Tree; r?: Tree };
 const LEAVES: Tree[] = [
-  { id: "A", w: 4, sym: "A" },
-  { id: "B", w: 2, sym: "B" },
   { id: "C", w: 1, sym: "C" },
   { id: "D", w: 1, sym: "D" },
+  { id: "B", w: 2, sym: "B" },
+  { id: "A", w: 4, sym: "A" },
 ];
 const FIXED = 16;
 
@@ -74,7 +75,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A message has 4 A's, 2 B's, 1 C and 1 D. Fixed 2-bit codes (00, 01, 10, 11) cost 16 bits. Codes can differ in length if none is the start of another. How few bits can it take?",
+          "A message has 4 A's, 2 B's, 1 C and 1 D. Giving every letter a code of two 0s and 1s (00, 01, 10, 11) costs 16 bits, one bit per 0 or 1. Codes may be shorter for some letters if no code is the start of another. How few bits can it take?",
         options: ["16", "14", "10"],
         answer: 1,
       }}
@@ -88,21 +89,20 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
             rarest first (C + D = 2, then with B = 4, then with A = 8) and the total is 2 + 4 + 8 = <strong>14</strong>.
           </p>
           <p>
-            No code is the start of another (
-            {done
-              ? Object.entries(code)
-                  .sort()
-                  .map(([k, v]) => `${k} ${v}`)
-                  .join(", ")
-              : "A 0, B 10, C 110, D 111"}
-            ), so the message decodes without gaps. Always joining the two lightest gives the fewest bits possible:
-            Huffman coding.
+            {done && bits < FIXED
+              ? `The tree you built gives ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}`
+              : "The best tree gives A 1, B 01, C 000, D 001"}
+            . A costs 4 × 1, B 2 × 2, C and D 3 each: 4 + 4 + 3 + 3 =
+            14 bits. No code is the start of another, so the message decodes without gaps. Always joining the two
+            lightest gives the fewest bits possible: Huffman coding.
           </p>
           <p className="muted">Short codes for common symbols, long codes for rare ones.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+      <Milestones interact={interact} names={["best-tree"]}>
+        {(reach) => {
         const join = (a: number, b: number, f: Tree[], total: number) => {
           let next = f.filter((_, i) => i !== a && i !== b);
           const m = merge(f[a], f[b]);
@@ -119,7 +119,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
           setSel(null);
           if (next.length === 1) {
             setBuilt((x) => [...x, total]);
-            interact();
+            if (total < FIXED) reach("best-tree");
           }
         };
         const tap = (i: number) => {
@@ -131,7 +131,8 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
         const lightest = () => {
           if (locked || done) return;
           const idx = forest.map((t, i) => ({ w: t.w, i })).sort((x, y) => x.w - y.w || y.i - x.i);
-          join(idx[0].i, idx[1].i, forest, bits);
+          const [lo, hi] = [idx[0].i, idx[1].i].sort((x, y) => x - y);
+          join(lo, hi, forest, bits);
         };
         const reset = () => {
           if (locked) return;
@@ -144,7 +145,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
           ? "Make a prediction to start."
           : done
             ? bits >= FIXED
-              ? `Done: ${bits} bits, no better than fixed. Start over?`
+              ? `Done: ${bits} bits, no better than fixed. Start over and join the two rarest first.`
               : `Done: ${bits} bits, versus ${FIXED} fixed.`
             : sel !== null
               ? "Now tap another circle to join them."
@@ -224,7 +225,9 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
             </Row>
           </div>
         );
-      }}
+        }}
+      </Milestones>
+      )}
     </Lesson>
   );
 }

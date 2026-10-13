@@ -88,11 +88,11 @@ export default function ThreeGiantsInAfrica({ slug }: { slug: string }) {
         <>
           <p>
             <strong>They fit, with room to spare.</strong> Together the three cover {mkm(total)}, only {pct(total)}% of Africa&rsquo;s{" "}
-            {mkm(data.africaKm2)}, leaving {mkm(data.africaKm2 - total)} empty. Africa is not &ldquo;one big country&rdquo; in size: it is
-            bigger than the three largest you moved put together.
+            {mkm(data.africaKm2)}, leaving {mkm(data.africaKm2 - total)} empty. Africa is not &ldquo;one big country&rdquo; in size: the US,
+            China and India together fit inside it.
           </p>
           <p>
-            You moved each country across the globe without stretching it, and this Equal Earth map draws equal areas equal, so what you saw
+            Each country was turned and slid across the globe like a rigid cut-out, so its size did not change, and this Equal Earth map draws equal areas equal, so what you saw
             is true size. On a Mercator map the US and China sit farther from the equator than most of Africa and get inflated more, which
             hides this.
           </p>
