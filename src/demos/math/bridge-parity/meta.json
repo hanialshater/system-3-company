@@ -1,0 +1,72 @@
+{
+  "slug": "bridge-parity",
+  "title": "Seven bridges, one walk?",
+  "hook": "A city of rivers and bridges. Is there a walk that crosses each bridge just once?",
+  "domain": "math",
+  "concept": "euler-path-parity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "odd and even numbers",
+      "reading a simple map"
+    ],
+    "doesNotKnow": [
+      "that a walk crossing every bridge once needs at most two places with an odd number of bridges"
+    ]
+  },
+  "misconception": "If I try hard enough, or start in the right place, I can find a route crossing every bridge once.",
+  "objective": "The learner can explain that passing through a place uses two bridges, so only the start and end of a walk can have an odd bridge count; Königsberg has four odd places, so no such walk exists.",
+  "claims": [
+    {
+      "id": "math.bridge-parity.c1",
+      "text": "In Euler's Königsberg problem there were 4 land areas joined by 7 bridges: the island to the north bank twice, to the south bank twice and to the east once, plus north-east and south-east.",
+      "support": "source",
+      "source": "Euler, 'Solutio problematis ad geometriam situs pertinentis' (1736). The stage map is a simplified diagram with the same connections, not to scale; the modern city (Kaliningrad) is not claimed.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-parity.c2",
+      "text": "The bridge counts at the four places are 5, 3, 3 and 3: all four are odd.",
+      "support": "derivation",
+      "source": "Island: 2 + 2 + 1 = 5; north: 2 + 1 = 3; south: 2 + 1 = 3; east: 1 + 1 + 1 = 3. Sum 14 = 2 × 7. degree() in Demo.tsx counts from the bridge list.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-parity.c3",
+      "text": "Passing through a place uses two bridges, one in and one out, so only the start and the end of a walk can have an odd count; with more than two odd places no walk crosses every bridge exactly once, from any start.",
+      "support": "source",
+      "source": "Euler (1736); for a connected graph a walk using every edge once exists iff 0 or 2 vertices have odd degree (Euler; sufficiency Hierholzer 1873).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-parity.c4",
+      "text": "With bridge 7 (south-east) closed only two places are odd, and a walk crossing all six bridges exists.",
+      "support": "derivation",
+      "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A park has paths meeting at junctions; four junctions have 3 paths each and the rest have 2 or 4. Can you walk every path exactly once?",
+    "options": [
+      "Yes, if you pick the right start",
+      "No",
+      "Only if the park is small"
+    ],
+    "answer": 1,
+    "why": "Every junction you pass through uses two paths. Only the start and end can have an odd count, so four odd junctions are two too many."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
