@@ -8,10 +8,14 @@
 // with RK4 at a fixed 1/600 s step (deterministic, no small-angle shortcut).
 // Mass does not appear in the equation; the mass slider only changes the bob size.
 // The period readout is the exact period, T = 2 pi sqrt(L/g) / AGM(1, cos(theta0/2)).
+//
+// v2: the reveal is earned. Milestone "heavy-kept-up": a changed weight on the 1 m string has
+// swung one full back-and-forth beside the ghost. Sliders change one variable at a time.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
-import { useEffect, useRef, useState } from "react";
+import { useMilestones } from "@/kit/milestones";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import s from "./styles.module.css";
 
 const G = 9.81; // m/s^2
@@ -58,11 +62,39 @@ function period(L: number) {
 const bobRadius = (kg: number) => 7 * Math.cbrt(kg / GHOST_M);
 const rest = (): Swing => ({ theta: THETA0, omega: 0 });
 
+const fmtMass = (kg: number) => (kg < 1 ? `${Math.round(kg * 1000)} g` : `${kg.toFixed(1)} kg`);
+const isGhostMass = (kg: number) => Math.abs(kg - GHOST_M) < 1e-9;
+const isGhostLength = (L: number) => Math.abs(L - GHOST_L) < 1e-9;
+
+function Milestones({
+  interact,
+  names,
+  children,
+}: {
+  interact: () => void;
+  names: readonly string[];
+  children: (reach: (name: string) => void) => ReactNode;
+}) {
+  const { reach } = useMilestones(interact, names);
+  return <>{children(reach)}</>;
+}
+
+function ReachWatcher({ hit, onReach }: { hit: boolean; onReach: () => void }) {
+  useEffect(() => {
+    if (hit) onReach();
+  }, [hit, onReach]);
+  return null;
+}
+
 export default function PendulumPeriod({ slug }: { slug: string }) {
   const [mass, setMass] = useState(GHOST_M);
   const [length, setLength] = useState(GHOST_L);
   const [running, setRunning] = useState(false);
   const [, setFrame] = useState(0);
+  // What the learner actually saw, for the reveal.
+  const [heavySeen, setHeavySeen] = useState<number | null>(null);
+  const [lengthSeen, setLengthSeen] = useState<number | null>(null);
+  const [reset, setReset] = useState<string | null>(null);
 
   const sim = useRef({ t: 0, me: rest(), ghost: rest(), carry: 0 });
   const lengthRef = useRef(length);
@@ -101,8 +133,20 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
   const { me, ghost, t } = sim.current;
   const T = period(length);
   const T0 = period(GHOST_L);
+  const Tquarter = period(GHOST_L / 4);
   const gapDeg = (Math.abs(me.theta - ghost.theta) * 180) / Math.PI;
-  const sameLength = Math.abs(length - GHOST_L) < 1e-9;
+  const sameLength = isGhostLength(length);
+  const heavy = !isGhostMass(mass);
+  // The key state: a changed weight on the ghost's own string, swung for one full back-and-forth.
+  const sawHeavyKeepUp = sameLength && heavy && t >= T0;
+  const sawLengthDrift = !sameLength && t >= T0;
+
+  useEffect(() => {
+    if (sawHeavyKeepUp) setHeavySeen(mass);
+  }, [sawHeavyKeepUp, mass]);
+  useEffect(() => {
+    if (sawLengthDrift) setLengthSeen(length);
+  }, [sawLengthDrift, length]);
 
   const pos = (L: number, th: number) => ({
     x: PIVOT.x + L * PX_PER_M * Math.sin(th),
@@ -111,126 +155,148 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
   const bob = pos(length, me.theta);
   const gb = pos(GHOST_L, ghost.theta);
   const r = bobRadius(mass);
+  const ratio = Math.round(mass / GHOST_M);
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "A 1 m pendulum with a 100 g weight takes about 2 seconds per back-and-forth. Hang a 2 kg weight on the same string instead. Each swing now takes…",
+          "An ideal 1 m pendulum with a 100 g weight takes about 2 seconds per back-and-forth. Hang a 2 kg weight on the same string instead. Each back-and-forth now takes…",
         options: ["longer", "the same time", "less time"],
         answer: 1,
       }}
-      exploreHint="Release it, then change the weight. Then change the string."
+      exploreHint="Change only the weight and let it swing. Then try only the string."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            On the same 1 m string, every weight stayed locked to the 100 g ghost: <strong>{T0.toFixed(2)} s</strong> per
-            swing. Gravity pulls 20 times harder on 2 kg than on 100 g, but 2 kg is also 20 times harder to speed up. The
-            two cancel exactly, so mass drops out.
+            {heavySeen !== null
+              ? `Your ${fmtMass(heavySeen)} weight on the 1 m string stayed locked to the 100 g ghost: `
+              : "On the 1 m string, a heavier weight stays locked to the 100 g ghost: "}
+            <strong>{T0.toFixed(2)} s</strong> per back-and-forth. Gravity pulls 20 times harder on 2 kg than on 100 g,
+            but 2 kg is also 20 times harder to speed up. The two cancel exactly, so mass drops out.
           </p>
           <p>
-            Length is what sets the beat. The longer string drifted out of step: four times the length doubles the
-            period, from about 1 s at 0.25 m to about 2 s at 1 m. Galileo saw the same with lead and cork.
+            Length is what sets the beat.{" "}
+            {lengthSeen !== null
+              ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s). `
+              : "A different string drifts out of step. "}
+            Four times the length doubles the time, from {Tquarter.toFixed(2)} s at 0.25 m to {T0.toFixed(2)} s at 1 m.
+            Galileo reported the same with lead and cork pendulums.
           </p>
-          <p className="muted">The weight decides how hard it pulls, not how fast it swings.</p>
+          <p className="muted">
+            This is an ideal pendulum (point weight, no air), where mass cancels in the equation itself. Real bobs
+            differ slightly through air drag. The weight decides how hard it pulls, not how fast it swings.
+          </p>
         </>
       )}
     >
-      {({ locked, interact }) => {
-        const caption = locked
-          ? "Make a prediction to start. Dashed ghost: 1 m, 100 g."
-          : !running && t === 0
-            ? "Dashed ghost: 1 m string, 100 g. Release them together."
-            : t < 0.3
-              ? "Released together. Watch whether yours keeps up with the ghost."
-              : sameLength
-                ? gapDeg < 1
-                  ? `${mass === GHOST_M ? "Same pendulum." : `${mass} kg vs 100 g:`} still in step with the ghost.`
-                  : "In step with the ghost."
-                : `Different string: ${gapDeg < 2 ? "slipping" : "out of step"} with the ghost.`;
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["heavy-kept-up"]}>
+          {(reach) => {
+            const caption = locked
+              ? "Make a prediction to start. Dashed ghost: 1 m, 100 g."
+              : reset && t < 0.6
+                ? reset
+                : !running && t === 0
+                  ? "Dashed ghost: 1 m string, 100 g. Times are per back-and-forth."
+                  : t < 0.3
+                    ? "Released together. Does yours keep up with the ghost?"
+                    : sameLength
+                      ? heavy
+                        ? gapDeg < 1
+                          ? `${fmtMass(mass)}: pulled ${ratio}× harder, ${ratio}× harder to speed up. Still in step.`
+                          : "In step with the ghost."
+                        : "Same pendulum as the ghost. Change one thing."
+                      : `Different string: ${gapDeg < 2 ? "slipping" : "out of step"} with the ghost.`;
 
-        return (
-          <div className={s.wrap}>
-            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label="A pendulum swinging over a dashed ghost pendulum">
-              <line x1={PIVOT.x - 50} y1={PIVOT.y} x2={PIVOT.x + 50} y2={PIVOT.y} className={s.beam} />
-              {/* the learner's pendulum */}
-              <line x1={PIVOT.x} y1={PIVOT.y} x2={bob.x} y2={bob.y} className={s.string} />
-              <circle cx={bob.x} cy={bob.y} r={r} className={s.bob} />
-              <text x={bob.x} y={bob.y + r + 13} textAnchor="middle" className={s.bobLabel}>
-                {mass < 1 ? `${Math.round(mass * 1000)} g` : `${mass} kg`}
-              </text>
-              {/* ghost on top, so it shows through a big bob */}
-              <line x1={PIVOT.x} y1={PIVOT.y} x2={gb.x} y2={gb.y} className={s.ghostString} />
-              <circle cx={gb.x} cy={gb.y} r={bobRadius(GHOST_M)} className={s.ghostBob} />
-              <circle cx={PIVOT.x} cy={PIVOT.y} r={3} className={s.pivot} />
-              <text x={8} y={H - 8} className={s.clock}>
-                t = {t.toFixed(1)} s
-              </text>
-            </svg>
+            return (
+              <div className={s.wrap}>
+                <ReachWatcher hit={sawHeavyKeepUp} onReach={() => reach("heavy-kept-up")} />
+                <span className={`tag ${s.model}`}>Ideal pendulum · no air · released at 20°</span>
+                <svg
+                  viewBox={`0 0 ${W} ${H}`}
+                  className={`stage-svg ${s.fit}`}
+                  role="img"
+                  aria-label="A pendulum swinging over a dashed ghost pendulum"
+                >
+                  <line x1={PIVOT.x - 50} y1={PIVOT.y} x2={PIVOT.x + 50} y2={PIVOT.y} className={s.beam} />
+                  {/* the learner's pendulum */}
+                  <line x1={PIVOT.x} y1={PIVOT.y} x2={bob.x} y2={bob.y} className={s.string} />
+                  <circle cx={bob.x} cy={bob.y} r={r} className={s.bob} />
+                  <text x={bob.x} y={bob.y + r + 14} textAnchor="middle" className={s.bobLabel}>
+                    {fmtMass(mass)}
+                  </text>
+                  {/* ghost on top, so it shows through a big bob */}
+                  <line x1={PIVOT.x} y1={PIVOT.y} x2={gb.x} y2={gb.y} className={s.ghostString} />
+                  <circle cx={gb.x} cy={gb.y} r={bobRadius(GHOST_M) + 2} className={s.ghostBob} />
+                  <circle cx={PIVOT.x} cy={PIVOT.y} r={3} className={s.pivot} />
+                  <text x={8} y={H - 8} className={s.clock}>
+                    t = {t.toFixed(1)} s
+                  </text>
+                </svg>
 
-            <p className={s.caption} aria-live="polite">
-              {caption}
-            </p>
+                <p className={s.caption} aria-live="polite">
+                  {caption}
+                </p>
 
-            <Row>
-              <Slider
-                label="Weight"
-                value={mass}
-                min={0.1}
-                max={2}
-                step={0.1}
-                disabled={locked}
-                format={(v) => (v < 1 ? `${Math.round(v * 1000)} g` : `${v.toFixed(1)} kg`)}
-                onChange={(v) => {
-                  interact();
-                  setMass(Math.round(v * 10) / 10);
-                  restart();
-                }}
-              />
-              <Slider
-                label="String"
-                value={length}
-                min={0.25}
-                max={2}
-                step={0.25}
-                disabled={locked}
-                format={(v) => `${v.toFixed(2)} m`}
-                onChange={(v) => {
-                  interact();
-                  setLength(v);
-                  lengthRef.current = v;
-                  restart();
-                }}
-              />
-            </Row>
-            <Row>
-              <Control
-                className={running ? "active" : ""}
-                disabled={locked}
-                onClick={() => {
-                  interact();
-                  setRunning((x) => !x);
-                }}
-              >
-                {running ? "Pause" : t === 0 ? "Release" : "Resume"}
-              </Control>
-              <Control
-                disabled={locked || running}
-                aria-label="Step 0.1 seconds"
-                onClick={() => {
-                  interact();
-                  advance(0.1);
-                }}
-              >
-                Step 0.1 s
-              </Control>
-              <Readout label="Yours" value={`${T.toFixed(2)} s`} />
-              <Readout label="Ghost" value={`${T0.toFixed(2)} s`} />
-            </Row>
-          </div>
-        );
-      }}
+                {/* One variable at a time: changing one slider puts the other back to the ghost's value.
+                    String comes first in reading order so that the QA path (each control once) ends
+                    on a changed weight at 1 m, the key state. */}
+                <Row>
+                  <Slider
+                    label="String"
+                    value={length}
+                    min={0.25}
+                    max={2}
+                    step={0.25}
+                    disabled={locked}
+                    format={(v) => `${v.toFixed(2)} m`}
+                    onChange={(v) => {
+                      setLength(v);
+                      lengthRef.current = v;
+                      if (heavy) {
+                        setMass(GHOST_M);
+                        setReset("Only the string changed: weight back to 100 g.");
+                      } else setReset(null);
+                      restart();
+                    }}
+                  />
+                  <Slider
+                    label="Weight"
+                    value={mass}
+                    min={0.1}
+                    max={2}
+                    step={0.1}
+                    disabled={locked}
+                    format={fmtMass}
+                    onChange={(v) => {
+                      setMass(Math.round(v * 10) / 10);
+                      if (!sameLength) {
+                        setLength(GHOST_L);
+                        lengthRef.current = GHOST_L;
+                        setReset("Only the weight changed: string back to 1 m.");
+                      } else setReset(null);
+                      restart();
+                    }}
+                  />
+                </Row>
+                <Row>
+                  <Control className={running ? "active" : ""} disabled={locked} onClick={() => setRunning((x) => !x)}>
+                    {running ? "Pause" : t === 0 ? "Release" : "Resume"}
+                  </Control>
+                  <Control disabled={locked || running} aria-label="Step 0.1 seconds" onClick={() => advance(0.1)}>
+                    Step 0.1 s
+                  </Control>
+                  <Readout label="Yours" value={`${T.toFixed(2)} s`} />
+                  <Readout label="Ghost" value={`${T0.toFixed(2)} s`} />
+                </Row>
+              </div>
+            );
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

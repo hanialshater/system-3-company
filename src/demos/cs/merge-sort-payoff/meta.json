@@ -1,7 +1,7 @@
 {
   "slug": "merge-sort-payoff",
   "title": "The merge is the payoff",
-  "hook": "Splitting cards into piles looks like extra work. It isn't.",
+  "hook": "Merge Sort first splits the deck into single cards. Why would that help?",
   "domain": "cs",
   "concept": "divide-and-conquer",
   "status": "review",
@@ -95,6 +95,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-12"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c9",
+      "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons.",
+      "support": "derivation",
+      "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c10",
+      "text": "Checking every pair of 8 cards takes 28 comparisons.",
+      "support": "derivation",
+      "source": "C(8,2) = 8*7/2 = 28. Reveal paragraph 2 (v2), linking the predict distractor 28 to the 499,500 of c3.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -118,5 +132,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
