@@ -12,3 +12,13 @@ Checker: fact-checker. Method: re-computed in artifacts/scratch/fc-cschem/; read
 | c6 | Verified: a hull's enclosed volume (mostly air) makes its average density below water's. |
 
 Recall (200 g in 250 cm3 = 0.8 g/cm3, floats) is correct. Deterministic. No unrecorded claims.
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c5 A floating object has the same fraction of its volume under water as i... | verified | Fraction submerged = rho/rho_w = 0.625 (Archimedes). Checked the stage fix: cap volume fraction x^2(3-x)/4 with x = h/r; ball bottom at SURF + x r so centre y = SURF + (x-1) r, as in Demo.tsx. At 0.625, x is about 1.17, so about 62.5% of the ball is under the surface. Not rendered by me, but the geometry in code is right. |
+
+Result: 1 verified, 0 disputed, 0 added unverified.

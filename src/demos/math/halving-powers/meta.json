@@ -27,21 +27,27 @@
       "text": "2³ = 2 × 2 × 2 = 8, 2² = 4, 2¹ = 2, and each step down in the power divides by 2.",
       "support": "derivation",
       "source": "2^n / 2 = 2^(n-1) for whole n ≥ 1; values from 2 ** n in Demo.tsx (recomputed in node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.halving-powers.c2",
       "text": "Continuing the pattern, 2⁰ = 2 ÷ 2 = 1, 2⁻¹ = 1/2 and 2⁻² = 1/4.",
       "support": "convention",
       "source": "Standard definitions a^0 = 1 and a^-n = 1/a^n (a ≠ 0), chosen so the halving pattern and the rules of powers keep working. 2 ** 0 = 1, 2 ** -1 = 0.5, 2 ** -2 = 0.25 in node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.halving-powers.c3",
       "text": "2⁰ × 2³ must be 2⁰⁺³ = 2³, so 2⁰ has to be 1; the same holds for any number other than 0 to the power 0.",
       "support": "derivation",
       "source": "From a^m × a^n = a^(m+n): a^0 × a^n = a^n, divide by a^n ≠ 0 to get a^0 = 1. 0^0 is excluded (left undefined or set to 1 by convention depending on context), so the sentence says 'other than 0'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

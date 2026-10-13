@@ -27,35 +27,45 @@
       "text": "SHA-256 turns any message into 256 bits.",
       "support": "source",
       "source": "NIST FIPS 180-4, Secure Hash Standard (2015), section 6.2: SHA-256 message digest is 256 bits.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.one-bit-avalanche.c2",
       "text": "Flipping one bit of the message changes about half of the 256 output bits, about 128 on average, not a handful.",
       "support": "simulation",
       "source": "Builder ran 1,000 random one-bit flips of random 3-byte messages through sha256.ts in Node: mean 127.7 changed bits, min 103, max 157. On the stage's QA path (bits 1-16 of 'cat', flipped in turn) the counts were 129, 112, 129, 131, 137, 122, 135, 123, 127, 125, 127, 136, 117, 132, 127, 126.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.one-bit-avalanche.c3",
       "text": "The stage computes a real SHA-256 of the 3-letter message (8 bits per letter) on every tap.",
       "support": "simulation",
       "source": "sha256.ts in the lesson folder. Builder checked: 'abc' gives ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad (FIPS 180-4 example) and 200 further inputs match Node's crypto.createHash('sha256'). Letters are ASCII bytes ('c' = 0x63).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.one-bit-avalanche.c4",
       "text": "A good hash is built so that each output bit flips with a chance of about one half, like a coin toss, when any input bit changes.",
       "support": "source",
       "source": "Strict avalanche criterion: Webster and Tavares, 'On the Design of S-Boxes', CRYPTO '85. Expected 256 x 1/2 = 128 matches c2's simulation.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.one-bit-avalanche.c5",
       "text": "So similar messages do not get similar hashes, and a message cannot be nudged toward a chosen hash bit by bit.",
       "support": "source",
       "source": "Preimage resistance as a design goal of SHA-2: NIST SP 800-107 Rev. 1 (2012), section 4.1; the avalanche result (c2) is why small edits give no partial progress. Stated as a design property, not a proof.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

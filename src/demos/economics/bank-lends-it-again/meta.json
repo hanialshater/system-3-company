@@ -27,42 +27,54 @@
       "text": "If banks keep 10% and every loan is redeposited, a $1,000 deposit leads to new deposits of $900, $810, … each 90% of the last.",
       "support": "derivation",
       "source": "deposit(r) = 1,000 × 0.9^(r − 1). Demo.tsx deposit().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bank-lends-it-again.c2",
       "text": "Total deposits approach $1,000 ÷ 0.10 = $10,000; after 62 rounds they are $9,985 (within 1% from round 44).",
       "support": "derivation",
       "source": "Geometric sum: 1,000 × (1 − 0.9^r) / 0.1; r = 44 → 9,903.02; r = 62 → 9,985.44; limit 10,000. The reveal quotes the most rounds the learner reached at 10%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bank-lends-it-again.c3",
       "text": "Keeping 20% stops the total at $5,000; keeping 50% at $2,000.",
       "support": "derivation",
       "source": "1,000 / 0.2 = 5,000; 1,000 / 0.5 = 2,000. Shown in the reveal only for shares the learner ran to within 1% of their limit.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bank-lends-it-again.c4",
       "text": "The money multiplier is a textbook simplification: real banks lend when they find creditworthy borrowers and are limited by capital rules, not mainly by reserves.",
       "support": "source",
       "source": "McLeay, Radia & Thomas, 'Money creation in the modern economy', Bank of England Quarterly Bulletin 2014 Q1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bank-lends-it-again.c5",
       "text": "Many central banks set no reserve requirement; the US Federal Reserve cut it to zero in March 2020.",
       "support": "source",
       "source": "Federal Reserve Board press release, 15 March 2020: reserve requirement ratios reduced to zero percent effective 26 March 2020. Canada, the UK, Australia and others also have no reserve requirement.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.bank-lends-it-again.c6",
       "text": "The lesson is a model: every loan is spent and redeposited, no one holds cash, the bank keeps a fixed share.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Textbook model: every loan is spent and redeposited'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

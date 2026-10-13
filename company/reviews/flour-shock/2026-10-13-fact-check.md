@@ -12,3 +12,13 @@ Checker: fact-checker. Method: transcript + Demo.tsx; model re-run in artifacts/
 | c6 | verified | Chip 'Toy bread market: straight lines' and reveal 'A model: straight lines, one market. Here the lines are equally steep'. |
 
 Stage check: 'The price rose $1, not $2' and the unsold-loaves statement at $8 confirmed. Unrecorded claims: none.
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c4 On the stage the price rises by half the added cost (for example $1 of... | verified | Re-derived: demand 100-10p = supply 10p-20-10c gives p = 6 + c/2, q = 40 - 5c; c=1 gives $6.50, 35. Pass-through to price = supply slope/(supply+demand slope) in quantity-per-dollar slopes = 10/20; corrected source note is right (and d/(s+d) in price-per-loaf form). |
+
+Result: 1 verified, 0 disputed, 0 added unverified.

@@ -27,21 +27,27 @@
       "text": "If the guest in room n moves to room n + 1 for every n, every guest still has a room, no two share, and room 1 is empty.",
       "support": "derivation",
       "source": "The map n -> n + 1 on the positive whole numbers is one-to-one and every value is a room (there is always a room n + 1); no n maps to 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.infinite-hotel.c2",
       "text": "In a hotel with 12 rooms the same move leaves guest 12 with no room 13.",
       "support": "derivation",
       "source": "Rooms 1..12 only; n -> n + 1 sends 12 to 13, which does not exist. More guests (13) than rooms (12) forces someone out (pigeonhole).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.infinite-hotel.c3",
       "text": "With infinitely many rooms, 'full' does not mean 'no space': this is Hilbert's hotel, a thought experiment about infinite sets, not a real building.",
       "support": "source",
       "source": "Attributed to David Hilbert's 1924 lectures, popularised by George Gamow, 'One Two Three... Infinity' (1947).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

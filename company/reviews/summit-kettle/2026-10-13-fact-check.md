@@ -21,3 +21,14 @@ Recommend "about 0.3 atm" and "about 70 C" in the predict question and reveal, o
 
 ## Not verified by me
 None; every claim above is checked.
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c1 Air pressure on the summit of Mount Everest is about 0.3 atm (sea leve... | verified | ICAO standard atmosphere at 8,850 m gives 0.310 atm; measured about 0.33 (West); "about 0.3" correct. Stage shows P_SUM.toFixed(1) = 0.3. |
+| c2 Water on the summit of Everest boils at about 70 °C.... | verified | Clausius-Clapeyron 69.4 C at 0.31 atm, 71 C at 0.33; published 68-71; "about 70" correct. |
+
+Result: 2 verified, 0 disputed, 0 added unverified.

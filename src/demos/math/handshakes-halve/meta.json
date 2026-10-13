@@ -27,21 +27,27 @@
       "text": "When person k arrives they shake k − 1 hands, so 10 people make 1 + 2 + ... + 9 = 45 handshakes.",
       "support": "derivation",
       "source": "Each newcomer pairs with everyone already present; sum 1..9 = 45 (recomputed in node). The stage draws one line per pair.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.handshakes-halve.c2",
       "text": "Each of the 10 people has 9 lines, so 10 × 9 = 90 line ends; every handshake has two ends, so there are 90 ÷ 2 = 45.",
       "support": "derivation",
       "source": "Double counting (handshake lemma): the degrees sum to twice the number of edges. 10 × 9 / 2 = 45 (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.handshakes-halve.c3",
       "text": "10 × 10 = 100 also counts people shaking their own hand.",
       "support": "derivation",
       "source": "n × n counts every ordered pair (a, b) including a = b; removing the 10 self-pairs gives 90 ordered pairs, halved to 45.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -23,3 +23,7 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | c1 | unverified | Checker could not reach the UN WPP portal either (egress blocked: population.un.org, data.un.org, Wikipedia, OWID all 403). Partial corroboration only: populationpyramids (UN WPP 2024 based) lists India 1,450,935,802 and China 1.42 billion; INED's WPP 2024 table gives 2025 values (Nigeria 238, Brazil 213, Bangladesh 176, Russia 144, Ethiopia 135, Mexico 132 million) consistent with the 2024 values here given 1-2% growth; world 8.2 billion confirmed. The lesson conclusion (seven countries, 51.4%) is robust to these ranges, but every value still needs a direct compare with the WPP 2024 table by someone with access. Demo.tsx has Japan 123.75 vs the claim's rounded 124 (fine). |
 
 Stage check: c2, c3, c4, c5 were already verified by an earlier pass and are unchanged.
+
+## Pass 3 (2026-10-13)
+
+c1 left unverified. Search corroboration of UN WPP 2024 mid-2024 values: India 1,450.94M, USA 345.4, Indonesia 283.5, Pakistan 251.3, Nigeria 232.7 (populationpyramids, WPP 2024 based), Brazil 212.0, Bangladesh 173.6, Russia 144.8, Ethiopia 132.1 (top-10 listing), China 1.42 billion. Not corroborated: Mexico 130.86, Japan 123.75, Egypt 116.54, Philippines 115.84, DR Congo 109.28, and world 8,162 to the thousand. The conclusion is robust (top 6 = 3,983M = 48.8%; top 7 = 4,195M = 51.4% of 8,162M), but the UN table itself was still unreachable, so the direct compare is still owed. Not a dispute; needs someone with access to population.un.org.

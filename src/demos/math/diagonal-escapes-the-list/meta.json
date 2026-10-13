@@ -27,21 +27,27 @@
       "text": "A string whose place k is the opposite of row k's place k differs from row k, for every k.",
       "support": "derivation",
       "source": "By construction: new[k] = 1 - row_k[k] ≠ row_k[k]. Node check on the stage's 8 rows: the new string 01000110 differs from each row at its diagonal place.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.diagonal-escapes-the-list.c2",
       "text": "The stage shows only the first 8 rows and 8 places; the argument is for the whole endless list, where row n differs at place n.",
       "support": "derivation",
       "source": "The same rule applies to every n; the grid is an illustration. Rows come from mulberry32(1891), an arbitrary seed not chosen for the result (any list gives the same outcome).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.diagonal-escapes-the-list.c3",
       "text": "No list of endless 0-1 strings can hold them all; this is Cantor's diagonal argument.",
       "support": "source",
       "source": "G. Cantor, 'Über eine elementare Frage der Mannigfaltigkeitslehre' (1891). The lesson does not claim more than this about sizes of infinity.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

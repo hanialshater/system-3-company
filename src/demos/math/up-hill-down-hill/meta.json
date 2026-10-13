@@ -27,28 +27,36 @@
       "text": "60 km at 30 km/h takes 2 h; 60 km at 60 km/h takes 1 h.",
       "support": "derivation",
       "source": "time = distance ÷ speed: 60/30 = 2, 60/60 = 1 (recomputed in node; hours() in Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.up-hill-down-hill.c2",
       "text": "Average speed is total distance ÷ total time: 120 km in 3 h is 40 km/h, not 45.",
       "support": "derivation",
       "source": "Definition of average speed; 120/3 = 40 (node). Equivalent to the harmonic mean for equal distances: 2 × 30 × 60 / (30 + 60) = 40. avg() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.up-hill-down-hill.c3",
       "text": "On the chart each leg's block has width = hours and height = speed, so its area is the 60 km driven.",
       "support": "derivation",
       "source": "speed × time = distance; 30 × 2 = 60 and v × 60/v = 60 for every slider value.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.up-hill-down-hill.c4",
       "text": "45 would be right only with equal time at each speed; with 2 hours at 30 and 1 at 60, (30 + 30 + 60) ÷ 3 = 40.",
       "support": "derivation",
       "source": "Time-weighted mean: (30 × 2 + 60 × 1) / 3 = 40 (node). Equal times would give (30 + 60)/2 = 45.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

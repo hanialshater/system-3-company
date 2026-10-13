@@ -27,28 +27,36 @@
       "text": "If H says D halts, D loops forever; if H says D loops forever, D stops. Both of H's answers about D are wrong.",
       "support": "derivation",
       "source": "Case analysis of D's two branches (Demo.tsx PROGRAMS.D.run); there are only two verdicts and each leads to the opposite behaviour.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.the-contrary-program.c2",
       "text": "From any checker H that claims to work on every program, we could build its own D.",
       "support": "source",
       "source": "Standard diagonal construction: Sipser, Introduction to the Theory of Computation (3rd ed.), Theorem 4.11 and its proof (machine D built from H). The stage simplifies 'D run on its own description' to 'D asks H about D'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.the-contrary-program.c3",
       "text": "Turing proved in 1936 that the halting problem cannot be solved by any program: no checker is right about every program.",
       "support": "source",
       "source": "A. M. Turing, 'On Computable Numbers, with an Application to the Entscheidungsproblem', Proc. London Math. Soc. 2(42), 1936-37. The modern 'halting problem' phrasing is later (often credited to Martin Davis); Sipser Thm 4.11 gives the halting form.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.the-contrary-program.c4",
       "text": "Particular programs can be checked: A (print, then stop) halts and B (repeat forever) loops, and a verdict on them can be right.",
       "support": "derivation",
       "source": "Read off the two programs' code on the stage. Stated narrowly: undecidability is about one checker for all programs, not about any single program.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

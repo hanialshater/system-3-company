@@ -28,42 +28,54 @@
       "text": "Testing the middle of the suspects rules out half of them whichever answer comes back: 999 → 500 → 250 → 125 → 63 → 32 → 16 → 8 → 4 → 2 → 1.",
       "support": "simulation",
       "source": "Demo.tsx testAt()/mid() on the stage's fixed first-broken version v737 (chosen only as a fixed value; 974 of the 999 possible positions also take 10 tests, 25 take 9). Builder re-ran the halving in Node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bisect-the-bad-commit.c2",
       "text": "Halving 999 suspects down to 1 takes at most 10 tests, because 2^9 = 512 is too few and 2^10 = 1,024 is enough.",
       "support": "derivation",
       "source": "ceil(log2 999) = 10 (Demo.tsx WORST). Builder checked over all 999 positions in Node: max 10 tests.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bisect-the-bad-commit.c3",
       "text": "Testing one by one from v2 would have taken 736 tests to reach v737.",
       "support": "derivation",
       "source": "v2 to v737 inclusive is 737 - 1 = 736 versions (Demo.tsx BAD - 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bisect-the-bad-commit.c4",
       "text": "The method works only because once a version breaks, every later version stays broken.",
       "support": "derivation",
       "source": "Assumption of the method: the test result must be monotone over versions (works ... works, broken ... broken). git-bisect documentation describes the same good/bad split.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bisect-the-bad-commit.c5",
       "text": "git bisect finds the commit that broke a program this way.",
       "support": "source",
       "source": "git-bisect(1) manual: 'Use binary search to find the commit that introduced a bug' (https://git-scm.com/docs/git-bisect).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bisect-the-bad-commit.c6",
       "text": "A test away from the middle can rule out fewer than half the suspects and waste a step.",
       "support": "derivation",
       "source": "Testing v(lo+1) rules out one suspect if it works (Demo.tsx testNext); the worst case of an off-middle split is the larger side.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

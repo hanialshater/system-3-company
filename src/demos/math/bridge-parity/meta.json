@@ -27,28 +27,36 @@
       "text": "In Euler's Königsberg problem there were 4 land areas joined by 7 bridges: the island to the north bank twice, to the south bank twice and to the east once, plus north-east and south-east.",
       "support": "source",
       "source": "Euler, 'Solutio problematis ad geometriam situs pertinentis' (1736). The stage map is a simplified diagram with the same connections, not to scale; the modern city (Kaliningrad) is not claimed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.bridge-parity.c2",
       "text": "The bridge counts at the four places are 5, 3, 3 and 3: all four are odd.",
       "support": "derivation",
       "source": "Island: 2 + 2 + 1 = 5; north: 2 + 1 = 3; south: 2 + 1 = 3; east: 1 + 1 + 1 = 3. Sum 14 = 2 × 7. degree() in Demo.tsx counts from the bridge list.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.bridge-parity.c3",
       "text": "Passing through a place uses two bridges, one in and one out, so only the start and the end of a walk can have an odd count; with more than two odd places no walk crosses every bridge exactly once, from any start.",
       "support": "source",
       "source": "Euler (1736); for a connected graph a walk using every edge once exists iff 0 or 2 vertices have odd degree (Euler; sufficiency Hierholzer 1873).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.bridge-parity.c4",
       "text": "With bridge 7 (south-east) closed only two places are odd, and a walk crossing all six bridges exists.",
       "support": "derivation",
       "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

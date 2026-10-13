@@ -27,42 +27,54 @@
       "text": "In the bread model (buyers want 100 − 10p, bakers bake 10p − 20) the lines cross at $6 and 40 loaves.",
       "support": "derivation",
       "source": "100 − 10p = 10p − 20 → p = 6; 100 − 60 = 40.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.price-floor-glut.c2",
       "text": "With a floor at $8, buyers want 20 loaves and bakers bake 60, so 40 go unsold.",
       "support": "derivation",
       "source": "100 − 80 = 20; 80 − 20 = 60; 60 − 20 = 40. Demo.tsx market(8).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.price-floor-glut.c3",
       "text": "With the floor at $8 the price rises $2 and the loaves actually sold fall from 40 to 20.",
       "support": "derivation",
       "source": "8 − 6 = 2; demand(8) = 20 vs 40 at $6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.price-floor-glut.c4",
       "text": "A floor at or below $6 changes nothing: the market price is already at least that high.",
       "support": "derivation",
       "source": "market(f) uses max(f, 6); for f ≤ 6 the outcome is $6, 40 loaves, 0 unsold. Shown in the reveal only if the learner moved the floor below $6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.price-floor-glut.c5",
       "text": "Baked loaves that buyers do not take at the floor price are a surplus.",
       "support": "source",
       "source": "Standard usage, e.g. Mankiw, Principles of Economics, ch. 6 (price floors and surpluses).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.price-floor-glut.c6",
       "text": "The lesson is a model: straight lines, one market, bakers bake what they would supply at the floor price; it makes no claim about any real minimum price.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Toy bread market: straight lines'. Real floors often come with buying schemes or quotas that change who holds the surplus.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

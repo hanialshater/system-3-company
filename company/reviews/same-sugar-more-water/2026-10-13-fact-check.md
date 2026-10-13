@@ -12,3 +12,13 @@ Checker: fact-checker. Method: re-computed in artifacts/scratch/fc-cschem/; read
 | c6 | DISPUTED (minor, blocks until fixed). The claim says the bottom 100 mL holds '20, 10, about 7, 5 and 4 dots' at 100..500 mL. The stage's own dots (stratified, mulberry32 seed 4242) show 20, 10, 6, 5 and 4: at 300 mL the readout is 6, not 7 (and 6 at 350 mL). The exact share is 6.67, so '6 or 7' is the honest statement: over 500 other seeds 300 mL gives 7 in 77% and 6 in 23%, never outside plus or minus one. The 20/10/5/4 values and the reveal's 'from 20 dots to 4' are right. Fix for demo-builder: change c6 to '20, 10, 6 or 7, 5 and 4 dots' (and state the stage seed 4242 gives 6 at 300 mL), or choose placement that yields 7. |
 
 Reveal text ('same 20 dots', '0.10 mol / 0.500 L = 0.20', '0.25 comes from dividing by the 400 mL of water') checked: 0.1 mol / 0.4 L = 0.25. Seed 4242 is the dot layout only; the seed is not claimed to be typical. No unrecorded claims.
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c6 The bottom 100 mL holds 20, 10, 6 or 7, 5 and 4 dots at 100, 200, 300,... | verified | Replayed the stage dots (mulberry32(4242)): bottom 100 mL holds 20, 10, 6, 5, 4 at 100-500 mL. |
+
+Result: 1 verified, 0 disputed, 0 added unverified.

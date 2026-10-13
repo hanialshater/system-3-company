@@ -27,28 +27,36 @@
       "text": "The sun's rays arrive almost parallel, so a stick and a tree at the same moment make the same angle with the ground.",
       "support": "source",
       "source": "The Sun is about 150 million km away, so rays reaching two points metres apart differ in direction by a negligible angle; this is the standard assumption in shadow-measurement problems. The reveal says 'almost'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.shadow-height.c2",
       "text": "Triangles with the same angles have the same shape, so height and shadow grow by the same factor: every 3 m of shadow climbs 2 m.",
       "support": "source",
       "source": "AA similarity: equiangular triangles have proportional sides (Euclid, Elements VI.4). The stage draws the staircase of 3-across, 2-up steps under the ray from STICK_S and STICK_H.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.shadow-height.c3",
       "text": "A 21 m shadow is 7 stick shadows of 3 m, so the tree is 7 × 2 m = 14 m tall.",
       "support": "derivation",
       "source": "21 / 3 = 7; 7 × 2 = 14 (recomputed in node; TREE_H in Demo.tsx = (21/3) × 2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.shadow-height.c4",
       "text": "Adding the extra 18 m of shadow to the stick's 2 m gives 20 m, the wrong answer; the inverted ratio gives 31.5 m.",
       "support": "derivation",
       "source": "21 - 3 = 18, 18 + 2 = 20; (3/2) × 21 = 31.5 (recomputed in node). Distractors computed in Demo.tsx from the same constants.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

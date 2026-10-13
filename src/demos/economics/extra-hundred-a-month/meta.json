@@ -28,42 +28,54 @@
       "text": "A $200,000 loan at 6% a year (0.5% a month) takes 30 years (360 payments) at $1,199.10 a month.",
       "support": "derivation",
       "source": "Annuity payment 200,000 × 0.005 / (1 − 1.005^−360) = 1,199.10. Demo.tsx PAYMENT.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.extra-hundred-a-month.c2",
       "text": "Adding $100 to every payment pays the loan off at month 295: 24 years 7 months (about 24.6 years).",
       "support": "simulation",
       "source": "Step balance × 1.005 − 1,299.10 monthly from 200,000 until it reaches 0 (last payment only what is owed): 295 months. Deterministic, no randomness. Demo.tsx run(100).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.extra-hundred-a-month.c3",
       "text": "Total interest falls from $231,676 to $182,538, a saving of $49,138.",
       "support": "simulation",
       "source": "Sum of monthly interest in the same stepping: run(0) 231,676.38; run(100) 182,537.97; difference 49,138.41.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.extra-hundred-a-month.c4",
       "text": "Other extras on the slider ($50 steps to $500) use the same stepping, e.g. +$50: 27 yr 0 mo; +$200: 21 yr 0 mo; +$500: 14 yr 11 mo.",
       "support": "simulation",
       "source": "run(50) 324 months; run(200) 252 months; run(500) 179 months. Shown in the reveal only for values the learner visited.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.extra-hundred-a-month.c5",
       "text": "An extra payment goes straight to what is still owed, so the next month's interest (0.5% of that) is smaller and more of the regular payment repays the loan.",
       "support": "derivation",
       "source": "Model rule: interest_m = 0.005 × balance; balance_m = balance + interest − (1,199.10 + extra). A lower balance lowers every later interest charge.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.extra-hundred-a-month.c6",
       "text": "The lesson is a model: a fixed, illustrative 6% rate and no prepayment fee; it is arithmetic, not advice on whether to prepay.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: fixed 6%, no prepayment fee'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

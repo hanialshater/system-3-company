@@ -17,3 +17,13 @@ Reword c10 to what the model supports, for example: "At 80% immune each case cau
 ## Other checks
 
 Reveal numbers "You saw 2 of 80 ... 168 of 200" are the learner's own runs (not a claim). "Unprotected people who cluster together can keep outbreaks going even above the threshold" is c6, already verified (not reopened). No unrecorded claims found.
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c10 At 80% immune each case causes 4 x 0.2 = 0.8 new cases on average, so ... | verified | 4 x 0.2 = 0.8; stage 4 x 79/399 = 0.79. Re-ran simulate(): mean total cases at 80% immune = 3.9-4.2 (matches reveal "about 4 of the 80"). Share of outbreaks of 16 or fewer: 95.5% (seeds 1-200), 96.3% (5,000), 96.7% (20,000): "about 97 in 100" is the long-run figure (the reveal itself does not quote it). |
+
+Result: 1 verified, 0 disputed, 0 added unverified.

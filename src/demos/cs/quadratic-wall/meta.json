@@ -27,28 +27,36 @@
       "text": "Checking every pair among n files takes n × (n − 1) ÷ 2 comparisons: 5 files → 10, 10 → 45, 20 → 190.",
       "support": "derivation",
       "source": "Each of n files pairs with n - 1 others, and each pair is counted twice. Demo.tsx pairs(); builder ran it in Node: 10, 45, 190. The stage draws exactly that many lines.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.quadratic-wall.c2",
       "text": "1,000 files need 1,000 × 999 ÷ 2 = 499,500 comparisons.",
       "support": "derivation",
       "source": "Arithmetic (Demo.tsx pairs(1000); builder ran it in Node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.quadratic-wall.c3",
       "text": "Doubling from 10 to 20 files multiplies the pairs by 4.2, not 2; 100 times the files gives 11,100 times the work.",
       "support": "derivation",
       "source": "190 / 45 = 4.22; 499,500 / 45 = 11,100 (arithmetic, computed in Demo.tsx). The ratio tends to the square of the growth (10,000x for 100x) as n grows.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.quadratic-wall.c4",
       "text": "Work that grows with the square of the input hits a wall long before the input looks big.",
       "support": "derivation",
       "source": "Follows from c1-c3: n(n-1)/2 is Theta(n^2) (CLRS 3.1 asymptotic notation). Stated qualitatively.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

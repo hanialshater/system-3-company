@@ -28,35 +28,45 @@
       "text": "In JavaScript, 9007199254740992 + 1 comes out as 9007199254740992, with no error or warning.",
       "support": "simulation",
       "source": "Builder ran in Node 22: 2**53 + 1 === 2**53 is true. The stage computes the sums with real JavaScript arithmetic (Demo.tsx add()), and option B is the string of P + 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.big-number-swallows-one.c2",
       "text": "A JavaScript number is a double (IEEE 754 binary64) with 53 bits of precision.",
       "support": "source",
       "source": "ECMAScript 2024 Language Specification, 6.1.6.1 The Number Type (IEEE 754-2019 binary64); IEEE 754 binary64 has a 53-bit significand (52 stored + 1 implicit).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.big-number-swallows-one.c3",
       "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but beyond it only every second whole number exists; Number.MAX_SAFE_INTEGER is 2^53 − 1.",
       "support": "source",
-      "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()).",
-      "status": "unverified"
+      "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()). · DISPUTED 2026-10-13 (pass 3): Wording overreach: \"beyond it only every second whole number exists\" is true only up to 2^54; from 2^54 up only every fourth number exists, and so on. Immediately above 2^53 (all the stage shows) it is exact. Fix: \"just beyond it (up to 2^54) only every second whole number exists\", or \"beyond it, whole numbers start to be skipped, first every second one\". Rest of the claim (exact up to 2^53; MAX_SAFE_INTEGER = 2^53 - 1) verified.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.big-number-swallows-one.c4",
       "text": "Past 2^53, adding 1 lands exactly halfway between two numbers and is rounded to the even one, so it either does nothing or jumps by 2; adding 2 moves 9007199254740992 to 9007199254740994.",
       "support": "simulation",
       "source": "Round-half-to-even is IEEE 754's default rounding (roundTiesToEven, 4.3.1). Builder ran in Node: 2**53 + 2 = 9007199254740994; (2**53 + 2) + 1 = 9007199254740996; (2**53 + 4) + 1 = 9007199254740996.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.big-number-swallows-one.c5",
       "text": "For exact big integers, JavaScript has BigInt.",
       "support": "source",
       "source": "ECMAScript 2020+ BigInt type (ECMAScript 2024, 6.1.6.2). Builder checked: 9007199254740992n + 1n === 9007199254740993n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -23,3 +23,13 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c5 | disputed | Re-ran model: at penalty 10 the curve loses to no penalty in 441/500 seeds (88%), so 'loses again' needs 'usually'; and 'nearly flat' is loose (the curve is strongly shrunk, median about 37% of the training range per earlier check, not flat). Fix: 'goes much flatter and usually loses again'. |
+
+## Pass 3 (2026-10-13)
+
+Checker: fact-checker. Scope: claims open (unverified) in this lesson that were not added by a fact-checker, including builder-rewritten claims after claim fixes. Method: re-derived numbers in node from the Demo.tsx model code, compared each claim with what the stage and reveal text actually say, checked cited sources (web search where reachable; the BoE, NASA and UN hosts were not directly reachable from this sandbox).
+
+| Claim | Verdict | What I re-ran / found |
+|---|---|---|
+| c4 In 490 of 500 toy data sets some moderate penalty (the best of five, 0... | verified | Re-ran the lesson model independently (extracted MODEL block, seeds 1-500, five lambdas 1e-4..1): some moderate penalty beats none in 490 of 500; lambda 10 is worse than the best moderate in 500 of 500. Seed 1: held-out miss 0.444 at 0, 0.377 at 0.01, 0.725 at 10. Matches the claim. |
+
+Result: 1 verified, 0 disputed, 0 added unverified.

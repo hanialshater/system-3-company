@@ -25,3 +25,7 @@ None found.
 
 ## Result
 5 verified, 1 disputed, 0 added unverified.
+
+## Pass 3 (2026-10-13)
+
+c2 stays disputed (source field unchanged). Re-checked by search: NASA's planetary fact sheet table lists gravity (m/s2) Earth 9.8, Moon 1.6, Mars 3.7, Jupiter 23.1 (equatorial, 1 bar, rotation included); 24.79 is not in that table. Re-cite (ESA/other for 24.79) or use NASA's figures and name the convention.

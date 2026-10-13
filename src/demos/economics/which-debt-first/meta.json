@@ -27,35 +27,45 @@
       "text": "Paying the $4,000 24% debt first (then the $1,000 6% debt) with $300 a month costs $793 of interest and is done in 20 months.",
       "support": "simulation",
       "source": "Monthly: add each balance × APR/12, then pay $300 to the 24% debt first, any leftover that month to the other. Total 793.19, 20 months. Deterministic. Demo.tsx run('high').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.which-debt-first.c2",
       "text": "Paying the $1,000 6% debt first costs $1,095 of interest and is done in 21 months.",
       "support": "simulation",
       "source": "Same stepping with the 6% debt first: total 1,094.57, 21 months. Demo.tsx run('low').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.which-debt-first.c3",
       "text": "The 24%-first order costs $302 less interest (about $300).",
       "support": "derivation",
       "source": "From the rounded totals the stage shows: 1,095 − 793 = 302. Exact difference 1,094.57 − 793.19 = 301.37.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.which-debt-first.c4",
       "text": "Each month the 24% balance adds 2% of itself and the 6% balance 0.5%, so a dollar that clears the 24% debt stops four times as much interest.",
       "support": "derivation",
       "source": "0.24 / 12 = 0.02; 0.06 / 12 = 0.005; 0.02 / 0.005 = 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.which-debt-first.c5",
       "text": "The lesson is a model: fixed rates charged monthly (APR / 12), no minimum payments, no new spending; it is arithmetic about this model, not advice to anyone.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: fixed rates, no minimums, no new spending'. Real cards may compound daily and require minimums on every debt.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
