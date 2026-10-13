@@ -1,0 +1,74 @@
+{
+  "slug": "kettle-vs-bulb-kwh",
+  "title": "Kettle or bulb: which costs more?",
+  "hook": "The kettle says 2000 W, the bulb 60 W. So the kettle always costs more to run. Right?",
+  "domain": "physics",
+  "concept": "power-vs-energy",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "appliance labels give a power in watts",
+      "electricity bills charge for kilowatt-hours",
+      "minutes and hours"
+    ],
+    "doesNotKnow": [
+      "that energy = power x time",
+      "the difference between power (a rate) and energy (an amount)"
+    ]
+  },
+  "misconception": "The higher-wattage appliance always uses more energy and costs more to run.",
+  "objective": "The learner can explain that power is how fast energy flows and the bill counts energy, power x time: a 60 W bulb on for 2 h (0.12 kWh) uses more than a 2000 W kettle for 3 min (0.10 kWh).",
+  "claims": [
+    {
+      "id": "physics.kettle-vs-bulb-kwh.c1",
+      "text": "Energy used = power x time; 1 kWh is 1 kW for 1 hour, or 3.6 million joules.",
+      "support": "derivation",
+      "source": "E = P t; 1 kWh = 1000 W x 3600 s = 3.6e6 J. BIPM, The International System of Units (SI Brochure, 9th ed.), table 8 (non-SI units accepted for use).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.kettle-vs-bulb-kwh.c2",
+      "text": "A 2000 W kettle for 3 minutes uses 0.10 kWh; a 60 W bulb for 2 hours uses 0.12 kWh.",
+      "support": "derivation",
+      "source": "2 kW x 0.05 h = 0.10 kWh; 0.06 kW x 2 h = 0.12 kWh. The stage computes (P / 1000) x (minutes / 60) for the bulb 0.5-3 h and kettle 1-6 min; checked in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.kettle-vs-bulb-kwh.c3",
+      "text": "Each minute of the kettle is 0.033 kWh and each minute of the bulb is 0.001 kWh; these are the slices of the bars.",
+      "support": "derivation",
+      "source": "2 kW x 1/60 h = 0.0333 kWh; 0.06 kW x 1/60 h = 0.001 kWh. The stage draws the kettle's lines every minute and the bulb's every 10 minutes (labelled).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.kettle-vs-bulb-kwh.c4",
+      "text": "The lesson assumes each appliance draws its label power steadily for the whole run.",
+      "support": "convention",
+      "source": "Stated idealisation (reveal). Real kettles switch off at the boil and draw slightly below nameplate as the element heats; nameplate power is a rated value (IEC 60335-1, rated power input).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 1000 W heater runs for 6 minutes; a 10 W phone charger runs for 12 hours. Which uses more energy?",
+    "options": [
+      "The heater",
+      "The charger",
+      "They use the same"
+    ],
+    "answer": 1,
+    "why": "Energy is power x time: heater 1 kW x 0.1 h = 0.10 kWh; charger 0.01 kW x 12 h = 0.12 kWh."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
