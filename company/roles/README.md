@@ -85,4 +85,21 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Category Manager — Economics & Money](cm-economics.md) | head-of-product | Decide what Economics & Money should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Life Sciences](cm-life.md) | head-of-product | Decide what Life Sciences should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Geography & Maps](cm-geography.md) | head-of-product | Decide what Geography & Maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Manager — Life Hacks](cm-lifehacks.md) | head-of-product | Decide what Life Hacks should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Manager — Chemistry](cm-chemistry.md) | head-of-product | Decide what Chemistry should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Life Hacks Safety Reviewer](lifehacks-safety-reviewer.md) | evaluation-steward | No learner gets hurt, poisoned, burned, shocked, cheated or misled by a 60-second hack we showed them.. |
+
+## Personalization
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Personalization Lead](personalization-lead.md) | head-of-product | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
+| [Learner Model Engineer](learner-model-engineer.md) | personalization-lead | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
+
+## International
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Localization Lead (International)](localization-lead.md) | head-of-product | A learner in any locale gets a lesson that feels made for them: their language, units, money, examples and norms, with every fact still true where they live.. |
+| [Localizer](localizer.md) | localization-lead | Same insight, native feel, still true.. |
+| [Cultural & Regional Reviewer](cultural-reviewer.md) | localization-lead | Catch what a translator cannot: the example that lands wrong, the norm that differs, the fact that is not true here.. |

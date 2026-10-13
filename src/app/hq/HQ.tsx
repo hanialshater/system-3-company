@@ -35,15 +35,17 @@ const HOUR = 3_600_000;
 const fmt = (ms: number) => new Date(ms).toISOString().slice(5, 16).replace("T", " ") + " UTC";
 const roleOf = (e: HqEvent) => (e.actor === "chief-of-staff" && e.agent ? "chief-of-staff" : e.actor);
 
-export default function HQ({ events, rooms, founderQueue, due, org }: { events: HqEvent[]; rooms: Room[]; founderQueue: { id: string; title: string }[]; due: Due[]; org: OrgRole[] }) {
+export default function HQ({ events, rooms, founderQueue, due, org, now }: { events: HqEvent[]; rooms: Room[]; founderQueue: { id: string; title: string }[]; due: Due[]; org: OrgRole[]; now: number }) {
   const router = useRouter();
   const times = useMemo(() => events.map((e) => Date.parse(e.ts)), [events]);
   const t0 = times[0] ?? Date.now();
-  const t1 = Math.max(times.at(-1) ?? Date.now(), Date.now());
+  // "now" comes from the server so the first render matches on both sides (no hydration mismatch).
+  const t1 = Math.max(times.at(-1) ?? now, now);
   const [t, setT] = useState(t1);
   const [live, setLive] = useState(false); // decided on mount: live unless the URL names a moment
   const [playing, setPlaying] = useState(false);
   const [view, setView] = useState<"office" | "people">("office");
+  const [floor, setFloor] = useState<1 | 2>(1);
   const [room, setRoom] = useState<string>("lobby");
   const [open, setOpen] = useState<Record<string, string | null>>({});
   const tick = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -54,7 +56,8 @@ export default function HQ({ events, rooms, founderQueue, due, org }: { events: 
     const at = q.get("t") ? Date.parse(q.get("t")!) : NaN;
     if (Number.isFinite(at)) setT(Math.min(Math.max(at, t0), t1));
     else setLive(true);
-    if (q.get("room")) setRoom(q.get("room")!);
+    if (q.get("room")) (setRoom(q.get("room")!), setFloor(rooms.find((r) => r.id === q.get("room"))?.floor ?? 1));
+    if (q.get("floor") === "2") setFloor(2);
     if (q.get("view") === "people") setView("people");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -117,8 +120,10 @@ export default function HQ({ events, rooms, founderQueue, due, org }: { events: 
     setPlaying(false);
     setT(v);
   };
+  const floorOf = (id: string) => rooms.find((r) => r.id === id)?.floor ?? 1;
   const pickRoom = (id: string) => {
     setRoom(id);
+    setFloor(floorOf(id));
     setView("office");
   };
   const pickPerson = (p: Person) => setRoom(p.room);
@@ -185,7 +190,18 @@ export default function HQ({ events, rooms, founderQueue, due, org }: { events: 
         <div className={s.stage}>
           {view === "office" ? (
             <div className={s.planWrap}>
-              <Office rooms={rooms} people={people} activity={activity} selected={room} onRoom={setRoom} onPerson={pickPerson} />
+              <div className={s.floors} role="tablist" aria-label="Floor">
+                {([1, 2] as const).map((f) => {
+                  const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
+                  return (
+                    <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
+                      {f === 1 ? "Floor 1 · Lessons & company" : "Floor 2 · Life Hacks, Personalization, International"}
+                      {here ? ` · ${here}` : ""}
+                    </button>
+                  );
+                })}
+              </div>
+              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={setRoom} onPerson={pickPerson} />
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />

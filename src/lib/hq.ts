@@ -30,6 +30,8 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
+  /** Building floor: 1 = lessons and company core, 2 = Life Hacks, Personalization, International. */
+  floor?: 1 | 2;
 }
 
 const DOMAINS: [string, string, string][] = [
@@ -65,6 +67,15 @@ export const ROOMS: Room[] = [
   { id: "studio", name: "Studio", x: 386, y: 476, w: 200, h: 76, kind: "office" },
   { id: "incident", name: "Incident room", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
   { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 400, h: 76, kind: "lobby" },
+  // Floor 2 (2026-10-13): Life Hacks, Personalization, International.
+  { id: "cm-lifehacks", name: "Life Hacks", x: 20, y: 16, w: 300, h: 150, kind: "office", color: "#ffb74d", floor: 2 },
+  { id: "lifehacks-safety", name: "Safety desk", x: 330, y: 16, w: 190, h: 150, kind: "floor", floor: 2 },
+  { id: "personalization", name: "Personalization", x: 20, y: 186, w: 300, h: 200, kind: "office", color: "#c792ea", floor: 2 },
+  { id: "model-lab", name: "Learner model lab", x: 330, y: 186, w: 190, h: 200, kind: "floor", floor: 2 },
+  { id: "international", name: "International", x: 540, y: 16, w: 440, h: 150, kind: "office", color: "#4fd1a5", floor: 2 },
+  { id: "locale-desks", name: "Locale desks", x: 540, y: 186, w: 440, h: 200, kind: "floor", floor: 2 },
+  { id: "culture-review", name: "Culture review", x: 540, y: 406, w: 440, h: 130, kind: "meeting", floor: 2 },
+  { id: "lounge-2", name: "Floor 2 lounge", x: 20, y: 406, w: 500, h: 130, kind: "lobby", floor: 2 },
 ];
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");

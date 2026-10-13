@@ -9,6 +9,7 @@ const DOMAIN_COLOR: Record<string, string> = {
   life: "#a5d66f",
   chemistry: "#f48fb1",
   geography: "#64b5f6",
+  lifehacks: "#ffb74d",
 };
 
 export const TEAM_COLOR: Record<string, string> = {
@@ -21,6 +22,12 @@ export const TEAM_COLOR: Record<string, string> = {
   "platform-engineer": "#c792ea",
   "chief-of-staff": "#eef1f7",
   founder: "#ffd54f",
+  "lifehacks-safety-reviewer": "#ffb74d",
+  "personalization-lead": "#c792ea",
+  "learner-model-engineer": "#c792ea",
+  "localization-lead": "#4fd1a5",
+  localizer: "#4fd1a5",
+  "cultural-reviewer": "#4fd1a5",
 };
 
 export function teamColor(role: string): string {

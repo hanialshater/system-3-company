@@ -7,5 +7,5 @@ export const metadata = { title: "HQ — System 3 Company" };
 
 export default function HqPage() {
   if (!hqEnabled()) notFound();
-  return <HQ events={loadEvents()} rooms={ROOMS} founderQueue={founderQueue()} due={ritualsDue()} org={loadOrg()} />;
+  return <HQ events={loadEvents()} rooms={ROOMS} founderQueue={founderQueue()} due={ritualsDue()} org={loadOrg()} now={Date.now()} />;
 }

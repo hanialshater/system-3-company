@@ -36,3 +36,4 @@
   - Office: the rooms have furniture (desks, meeting tables, a lobby with sofas), floor textures and live status dots. A new Studio room holds the design roles.
   - **People tab:** the org tree from `tools/org/roles.mjs`, showing who reports to whom, who is working and where.
   - Onboarding docs now carry each role's name.
+- Three more orgs (same night): Life Hacks (incubating category with a safety reviewer), Personalization (waiting for the founder's brief) and International (localization, not translation). That is 7 roles, now 40 in total. HQ gains a second floor with floor tabs. A hydration warning in HQ is fixed: the server passes "now".

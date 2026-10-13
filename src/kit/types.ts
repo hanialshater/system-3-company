@@ -9,7 +9,9 @@ export type DomainId =
   | "ai"
   | "economics"
   | "life"
-  | "chemistry";
+  | "chemistry"
+  | "geography"
+  | "lifehacks";
 
 export type DemoStatus = "draft" | "review" | "published" | "retired";
 

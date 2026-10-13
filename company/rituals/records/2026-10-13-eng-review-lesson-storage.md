@@ -67,3 +67,11 @@ Pending. Objections that travel with it (from the author):
 - Iframes in a snap feed may fail on touch and focus; the spike decides this before the ADR does.
 - Per-lesson builds pay off only with change-proportional CI; the stage-1 trigger includes a CI-time measurement.
 - Changing where the gates look is close to changing the gates; the evaluation steward signs off on each amendment.
+
+## Heads-up for the principal engineer (chief of staff, 2026-10-13 22:50)
+Three new orgs exist: Life Hacks, Personalization and International (`company/decisions/2026-10-13-three-more-orgs.md`). They touch this review directly:
+- International makes locale variants a first-class axis: variants as data, a format and units layer, RTL, and claims per locale.
+- Personalization needs ordering outside lesson code, plus the backend.
+- Life Hacks may bring media assets, which affects the per-lesson budget and the CDN policy.
+
+Please fold these into EDD-003 stage 1, or open EDD-004 if they are big enough (board W-089).
