@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.room { fill: #141518; }
+.lamp { stroke: #888; stroke-width: 1; }
+.lampText { fill: #ddd; font-size: 10px; font-weight: 700; }
+.chip { fill: #aaa; font-size: 8.5px; }
+.outline { stroke: #777; stroke-width: 1; stroke-dasharray: 3 2; transition: fill 0.3s ease; }
+.stem { stroke: #8a6a3a; stroke-width: 2; fill: none; stroke-linecap: round; }
+.base { stroke: #666; stroke-width: 1; }
+.label { fill: #eee; font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap :global(.readout) { flex: 1 1 0; }

@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.ceiling { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; opacity: 0.8; }
+.spring { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linejoin: round; }
+.bar { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.hook { stroke: var(--fg); stroke-width: 1.5; }
+.mass { fill: var(--fg); }
+.massText { fill: var(--bg-3); font-size: 9px; font-weight: 800; }
+.unloaded { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.bracket { stroke: var(--good); stroke-width: 2.5; }
+.drop { fill: var(--good); font-size: 10px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.each { fill: var(--bad); font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.chip { fill: var(--muted); font-size: 8.5px; }
+.wrap :global(.readout) { flex: 1 1 0; }

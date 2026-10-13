@@ -1,0 +1,80 @@
+{
+  "slug": "carry-box-level",
+  "title": "How much work is carrying a box?",
+  "hook": "Carrying a heavy box across a room wears you out. How much work do your arms do on it?",
+  "domain": "physics",
+  "concept": "work-definition",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "carrying boxes is tiring",
+      "forces in newtons; a 10 kg mass weighs about 98 N"
+    ],
+    "doesNotKnow": [
+      "the physics definition of work, W = F d cos(theta)",
+      "that a force at right angles to the motion does no work"
+    ]
+  },
+  "misconception": "Holding or carrying a load along a level floor does work on it.",
+  "objective": "The learner can explain that work is force times the distance moved along the force, so arms that only hold a box up do no work on it while it moves level, and do work only when it rises.",
+  "claims": [
+    {
+      "id": "physics.carry-box-level.c1",
+      "text": "In physics, work is force times the distance moved along the force's direction, measured in joules (J): W = F d cos(theta).",
+      "support": "source",
+      "source": "OpenStax University Physics Vol. 1, section 7.1 Work (W = F d cos theta; 1 J = 1 N m).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.carry-box-level.c2",
+      "text": "Carried at a steady speed, a 10 kg box needs an upward push of 98.1 N from the arms and no sideways push.",
+      "support": "derivation",
+      "source": "Constant velocity means zero net force (Newton's first law): the arms balance the weight m g = 10 x 9.81 = 98.1 N. Starting and stopping, which need a brief sideways push, are ignored and stated on stage ('steady speed').",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.carry-box-level.c3",
+      "text": "Carried 20 m along a level floor, the box rises 0 m, so the arms do 0 J of work on it.",
+      "support": "derivation",
+      "source": "W = 98.1 N x 20 m x cos 90 deg = 98.1 x 0 m of rise = 0 J (node; work() in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.carry-box-level.c4",
+      "text": "Carried 20 m up a 30° ramp the box rises 10 m (981 J of work); lifted 20 m straight up, 1962 J.",
+      "support": "derivation",
+      "source": "Rise = 20 sin 30 = 10.0 m, 98.1 x 10 = 981 J; 98.1 x 20 = 1962 J (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.carry-box-level.c5",
+      "text": "Your muscles still use energy to hold a load still or carry it level, though they do no work on the box.",
+      "support": "source",
+      "source": "Muscle fibres consume ATP to maintain tension (isometric contraction) even with no external work; OpenStax Anatomy and Physiology 2e, section 10.3 Muscle Fiber Contraction and Relaxation; OpenStax University Physics Vol. 1, section 7.1 (holding a weight does no work on it).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A waiter carries a tray at a steady speed across a level room, holding it up with 20 N. How much work does he do on the tray over 10 m?",
+    "options": [
+      "0 J",
+      "200 J",
+      "2 J"
+    ],
+    "answer": 0,
+    "why": "His push is straight up and the tray moves level, so it moves no distance along the push: no work is done on the tray."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

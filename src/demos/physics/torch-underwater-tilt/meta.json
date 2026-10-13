@@ -1,0 +1,80 @@
+{
+  "slug": "torch-underwater-tilt",
+  "title": "A torch beam tilted under water",
+  "hook": "From under water, tilt a torch further and further. Does its light always get out?",
+  "domain": "physics",
+  "concept": "total-internal-reflection",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "light bends when it crosses from water into air",
+      "angles in degrees"
+    ],
+    "doesNotKnow": [
+      "the critical angle",
+      "that some light always reflects at a surface, and that past a certain tilt all of it does"
+    ]
+  },
+  "misconception": "Some light always gets through a boundary between water and air.",
+  "objective": "The learner can explain that light leaving water bends away from straight up, more than it is tilted, and that beyond about 48.6 degrees there is no exit direction left, so all of it reflects back down.",
+  "claims": [
+    {
+      "id": "physics.torch-underwater-tilt.c1",
+      "text": "Light crossing from water into air bends away from straight up, following Snell's law: 1.333 × sin(angle in water) = 1.00 × sin(angle in air).",
+      "support": "source",
+      "source": "OpenStax College Physics 2e, section 25.3 The Law of Refraction (Snell's law; n water = 1.333, n air = 1.000293, taken as 1.00).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.torch-underwater-tilt.c2",
+      "text": "The critical angle for water to air is 48.6° from straight up; beyond it no light leaves and all of it reflects back down (total internal reflection).",
+      "support": "derivation",
+      "source": "sin(theta_c) = 1.00 / 1.333 = 0.750, theta_c = 48.61 degrees (node). OpenStax College Physics 2e, section 25.4 Total Internal Reflection gives 48.6 degrees for water.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.torch-underwater-tilt.c3",
+      "text": "At 45° in water the beam leaves at 70.5° from straight up; at 30°, at 41.8°.",
+      "support": "derivation",
+      "source": "asin(1.333 sin 45) = asin(0.943) = 70.5 degrees; asin(1.333 sin 30) = 41.8 degrees (node, same snell() as Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.torch-underwater-tilt.c4",
+      "text": "Below the critical angle a little light still reflects: about 2% straight up, 14% at 45°, rising to 100% at 48.6°.",
+      "support": "derivation",
+      "source": "Fresnel equations for unpolarised light, average of s and p reflectance, n = 1.333 to 1.00: 0 deg 2.0%, 30 deg 2.6%, 40 deg 5.6%, 45 deg 13.9%, critical 100% (node, fresnel() in Demo.tsx). Hecht, Optics, 5th ed., section 4.6.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.torch-underwater-tilt.c5",
+      "text": "Idealisations: a still, flat surface and light of one colour; absorption in the water is ignored.",
+      "support": "convention",
+      "source": "Stated on stage ('Still, flat surface') and in the reveal. Refractive index varies slightly with colour (dispersion), shifting the critical angle by a fraction of a degree.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A diver looks up at the water's surface at a slant far from straight up. Instead of the sky she sees...",
+    "options": [
+      "A reflection of the pool below, as in a mirror",
+      "The sky, just dimmer",
+      "Nothing: the surface looks black"
+    ],
+    "answer": 0,
+    "why": "Past the critical angle (about 49 degrees from straight up) light cannot leave the water, so the surface reflects all of it back down like a perfect mirror."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

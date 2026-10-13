@@ -1,0 +1,88 @@
+{
+  "slug": "higher-orbit-slower",
+  "title": "Is a higher orbit a faster one?",
+  "hook": "It takes a big rocket burn to lift a satellite to a high orbit. Does it then go faster?",
+  "domain": "physics",
+  "concept": "kepler-orbit-speed",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "satellites circle the Earth",
+      "rockets must burn fuel to climb higher",
+      "speeds in km/s"
+    ],
+    "doesNotKnow": [
+      "that the speed of a circular orbit is set by gravity at that radius, v = sqrt(GM / r)",
+      "that gravity weakens with distance from Earth"
+    ]
+  },
+  "misconception": "A higher orbit is a faster orbit, because it took more energy to get there.",
+  "objective": "The learner can explain that gravity is weaker farther out, so a circular orbit there needs less speed to keep bending round, and higher orbits are slower and take longer per lap.",
+  "claims": [
+    {
+      "id": "physics.higher-orbit-slower.c1",
+      "text": "A circular orbit's speed is set by the radius: v = sqrt(GM / r), with GM for Earth = 3.986 × 10^14 m^3/s^2 and r measured from Earth's centre.",
+      "support": "source",
+      "source": "OpenStax University Physics Vol. 1, section 13.4 Satellite Orbits and Energy (v_orbit = sqrt(G M_E / r)). GM_E = 3.986004418e14 m^3/s^2 (IERS Conventions 2010, Table 1.1).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.higher-orbit-slower.c2",
+      "text": "At the ISS's orbit radius (6,771 km) the speed is 7.67 km/s and one lap takes 92 minutes; at geostationary radius (42,164 km) it is 3.07 km/s and 23.9 hours.",
+      "support": "derivation",
+      "source": "sqrt(3.986e14 / 6.771e6) = 7672 m/s, T = 2 pi r / v = 5545 s = 92.4 min; sqrt(3.986e14 / 4.2164e7) = 3075 m/s, T = 86,166 s = 23.93 h (node; same orbit() as Demo.tsx). Geostationary radius 42,164 km and period one sidereal day 23.93 h: standard values (e.g. NASA/ESA). ISS radius: Earth radius 6371 km + about 400 km altitude, illustrative (the ISS altitude varies, roughly 370-460 km).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.higher-orbit-slower.c3",
+      "text": "At 200 km up (radius 6,571 km) the speed is 7.79 km/s and a lap takes 88 minutes; at 20,000 km radius, 4.46 km/s and 7.8 hours.",
+      "support": "derivation",
+      "source": "sqrt(3.986e14 / 6.571e6) = 7788 m/s, T = 88.4 min; sqrt(3.986e14 / 2.0e7) = 4464 m/s, T = 7.82 h (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.higher-orbit-slower.c4",
+      "text": "Earth's gravity falls with the square of the distance from its centre, so at geostationary radius it is about 2.6% as strong as at the ISS.",
+      "support": "derivation",
+      "source": "Newton's law of gravitation, g = GM / r^2: (6771 / 42164)^2 = 0.0258.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.higher-orbit-slower.c5",
+      "text": "Reaching a higher orbit still takes energy: the satellite gains more height (gravitational) energy than it loses in speed.",
+      "support": "derivation",
+      "source": "Circular orbit total energy E = -GMm / (2r), kinetic energy GMm / (2r), potential -GMm / r: raising r raises E though kinetic energy falls. OpenStax University Physics Vol. 1, section 13.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.higher-orbit-slower.c6",
+      "text": "Idealisations: circular orbits around a point-mass Earth, no air drag; the stage is drawn to scale and runs 2,000 times faster than real time.",
+      "support": "convention",
+      "source": "Stated on stage. Drawing: radii in km x 88 / 42164 px; laps take T / 2000 seconds on screen.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two satellites circle the Earth, one 500 km up and one 2,000 km up. Which is moving faster?",
+    "options": [
+      "The one 500 km up",
+      "The one 2,000 km up",
+      "Both the same"
+    ],
+    "answer": 0,
+    "why": "Gravity is stronger closer in, so a lower circular orbit needs more speed to keep bending round; higher orbits are slower."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

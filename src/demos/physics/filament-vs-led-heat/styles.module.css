@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 42dvh; }
+.chip { fill: var(--muted); font-size: 8.5px; }
+.label { fill: var(--fg); font-size: 9.5px; font-weight: 700; }
+.glass { fill: #ffd34d; stroke: var(--fg); stroke-width: 1; }
+.ledGlass { fill: #f4f8ff; stroke: var(--fg); stroke-width: 1; }
+.cap { fill: var(--muted); }
+.wave { fill: none; stroke: var(--bad); stroke-width: 1.4; opacity: 0.8; }
+.outline { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 2; }
+.unknown { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); }
+.light { fill: #f5b400; }
+.heat { fill: var(--bad); transition: width 0.3s ease; }
+.lightText { fill: #c48f00; font-size: 9.5px; font-weight: 700; }
+.heatText { fill: var(--bad); font-size: 9.5px; font-weight: 700; }
+.wrap :global(.readout) { flex: 1 1 0; }

@@ -1,0 +1,80 @@
+{
+  "slug": "race-down-the-ramp",
+  "title": "Disc or hoop: which rolls down first?",
+  "hook": "Same mass, same size, same ramp. A solid disc and a thin hoop roll down. Who wins?",
+  "domain": "physics",
+  "concept": "rolling-inertia",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "round things roll downhill",
+      "a heavier object is pulled down harder"
+    ],
+    "doesNotKnow": [
+      "that a rolling object's energy is shared between moving along and spinning",
+      "that mass far from the axis takes a bigger share for spinning"
+    ]
+  },
+  "misconception": "Objects of the same mass and size roll down at the same speed, or the heavier one wins.",
+  "objective": "The learner can explain that a hoop, with all its mass at the rim, puts more of its energy into spinning than a solid disc, so it gains speed more slowly and loses the race whatever its mass.",
+  "claims": [
+    {
+      "id": "physics.race-down-the-ramp.c1",
+      "text": "Rolling without slipping down a slope, an object's acceleration is g sin(angle) / (1 + I / (m r²)): 1/2 for a solid disc, 1 for a thin hoop, whatever the mass or radius.",
+      "support": "derivation",
+      "source": "Newton's second law for translation and rotation with the rolling condition a = alpha r: OpenStax University Physics Vol. 1, section 11.1 Rolling Motion (Example 11.1). I/(m r^2) = 1/2 for a solid cylinder or disc, 1 for a thin hoop (section 10.5, Figure 10.20).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.race-down-the-ramp.c2",
+      "text": "On a 30° ramp the disc accelerates at 3.27 m/s² and the hoop at 2.45 m/s²; down 2 m from rest the disc takes 1.11 s and the hoop 1.28 s.",
+      "support": "derivation",
+      "source": "9.81 x 0.5 / 1.5 = 3.270; 9.81 x 0.5 / 2 = 2.453 m/s^2; t = sqrt(2 x 2 / a) = 1.106 s and 1.277 s (node; same accel() as Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.race-down-the-ramp.c3",
+      "text": "Doubling the hoop's mass does not change its time: mass cancels out of the acceleration.",
+      "support": "derivation",
+      "source": "Follows from c1: the acceleration contains only g, the angle and I/(m r^2), a shape factor.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.race-down-the-ramp.c4",
+      "text": "A rolling object's energy is shared between moving along and spinning; a hoop puts half of it into spinning, a solid disc a third.",
+      "support": "derivation",
+      "source": "KE = 1/2 m v^2 (1 + I/(m r^2)); spin share = k / (1 + k): hoop 1/2, disc (1/2)/(3/2) = 1/3. OpenStax University Physics Vol. 1, section 11.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.race-down-the-ramp.c5",
+      "text": "Idealisations: rolling without slipping and no air drag or rolling resistance; the race is shown in slow motion.",
+      "support": "convention",
+      "source": "Stated on stage ('No slipping, no air drag', clock marked slow-mo; animation at 1/3 real speed).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A heavy steel ring and a light wooden disc of the same radius roll down the same slope from rest. Which reaches the bottom first?",
+    "options": [
+      "The wooden disc",
+      "The steel ring",
+      "They tie"
+    ],
+    "answer": 0,
+    "why": "Mass cancels; only shape counts. The ring has all its mass at the rim, so more of its energy goes into spinning and less into speed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

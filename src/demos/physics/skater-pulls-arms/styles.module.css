@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 42dvh; }
+.chip { fill: var(--muted); font-size: 8.5px; }
+.label { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.ice { fill: color-mix(in srgb, #3b82ff 10%, var(--bg-2)); stroke: var(--line); stroke-width: 1; }
+.mark { stroke: var(--muted); stroke-width: 2; }
+.arm { stroke: var(--fg); stroke-width: 4; stroke-linecap: round; transition: all 0.3s; }
+.hand { fill: var(--domain); }
+.body { fill: var(--domain); }
+.head { fill: color-mix(in srgb, var(--fg) 25%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.nose { fill: var(--fg); }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin { animation-name: spin; animation-iteration-count: infinite; animation-timing-function: linear; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap :global(.readout) { flex: 1 1 0; }
