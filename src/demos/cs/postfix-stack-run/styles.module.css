@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+.tape { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.tok { min-width: 32px; height: 40px; padding: 0 4px; font-size: 1.1rem; font-weight: 800; }
+.op { color: var(--domain); }
+.used { opacity: 0.55; }
+.reset { order: 1; min-width: 32px; height: 40px; padding: 0 6px; }
+.middle { display: flex; justify-content: center; align-items: flex-end; gap: 18px; min-height: 180px; }
+.pile { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.slot {
+  width: 64px; height: 34px; border-radius: 8px; border: 1px dashed var(--line); display: grid; place-items: center;
+  font-weight: 800; font-size: 1.1rem; font-variant-numeric: tabular-nums;
+}
+.full { border-style: solid; border-color: var(--fg); background: var(--bg-2); }
+.top { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 25%, var(--bg-2)); }
+.pileLab { font-size: 0.75rem; color: var(--muted); }
+.log { margin: 0; padding-left: 1.2em; font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 110px; }
+.log li { margin: 2px 0; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }

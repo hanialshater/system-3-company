@@ -1,0 +1,69 @@
+{
+  "slug": "hamming-points-at-the-bug",
+  "title": "One bit flipped. Which one?",
+  "hook": "A parity check can tell you a message got damaged. Can three checks tell you where?",
+  "domain": "cs",
+  "concept": "hamming-code",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["a parity check notices an odd number of flipped bits (two-flips-slip-by)", "adding small numbers"],
+    "doesNotKnow": ["that several overlapping parity checks can locate, and so correct, a single flipped bit"]
+  },
+  "misconception": "Error detection can say something is wrong but cannot say where.",
+  "objective": "The learner can read the failing checks of a 7-bit Hamming word (checks 2 and 3 fail, worth 2 + 4) as the position of the flipped bit (6), and say that flipping it back repairs the word.",
+  "claims": [
+    {
+      "id": "cs.hamming-points-at-the-bug.c1",
+      "text": "The sent word 0110011 passes all three checks over positions {1,3,5,7}, {2,3,6,7} and {4,5,6,7}: each holds an even number of 1s.",
+      "support": "simulation",
+      "source": "Demo.tsx fails(received(null)) = [false, false, false]. Builder ran the same parity sums in Node: [0,0,0]. 0110011 is the Hamming(7,4) codeword for data 1011 at positions 3,5,6,7.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hamming-points-at-the-bug.c2",
+      "text": "Flipping bit 6 makes checks 2 and 3 fail and check 1 pass; their worths 2 + 4 add up to 6.",
+      "support": "simulation",
+      "source": "Node: flipping position 6 of 0110011 gives 0110001; parities [0,1,1]; 2 + 4 = 6. Demo.tsx TARGET_FAILS, TARGET_SUM.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hamming-points-at-the-bug.c3",
+      "text": "For every single flipped bit, the worths of the failing checks add up to that bit's position, and each position fails a different set of checks.",
+      "support": "simulation",
+      "source": "Node, all 7 positions: sums 1,2,3,4,5,6,7, all distinct. Follows from position p lying in check k exactly when bit k of p (in binary) is 1 (Hamming 1950).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hamming-points-at-the-bug.c4",
+      "text": "A check fails when its bits hold an odd number of 1s.",
+      "support": "convention",
+      "source": "Even-parity convention used by the stage (Hamming 1950; any coding-theory text, e.g. MacKay, Information Theory, Inference and Learning Algorithms, 1.2).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hamming-points-at-the-bug.c5",
+      "text": "Flipping the located bit back repairs the word, not just flags it.",
+      "support": "derivation",
+      "source": "Flipping a bit twice restores it; with one error the located position is the flipped one (c3). Only single-bit errors are claimed.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hamming-points-at-the-bug.c6",
+      "text": "Richard Hamming published this code in 1950.",
+      "support": "source",
+      "source": "R. W. Hamming, 'Error detecting and error correcting codes', Bell System Technical Journal 29(2), 147-160, April 1950.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With the same three checks (worth 1, 2 and 4), one bit flipped and only checks 1 and 3 fail. Which bit do you flip back?",
+    "options": ["Bit 4", "Bit 5", "Bit 3"],
+    "answer": 1,
+    "why": "The failing checks are worth 1 and 4, and 1 + 4 = 5: bit 5 is the only position in checks 1 and 3 but not check 2."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

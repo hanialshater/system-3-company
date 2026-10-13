@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.92rem; font-weight: 700; }
+.tree { position: relative; width: 100%; max-width: 380px; height: 190px; margin: 0 auto; }
+.edges { position: absolute; inset: 0; width: 100%; height: 100%; }
+.edge { stroke: var(--line); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.node {
+  position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border-radius: 50%;
+  font-size: 1.1rem; font-weight: 800; border-color: var(--fg);
+}
+.seen { border-color: var(--domain); }
+.badge {
+  position: absolute; top: -8px; right: -8px; min-width: 20px; height: 20px; border-radius: 10px; font-size: 0.7rem;
+  display: grid; place-items: center; background: var(--domain); color: #0d0f14; font-weight: 800;
+}
+.list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; max-width: 360px; width: 100%; margin: 0 auto; }
+.slot {
+  height: 34px; border-radius: 6px; border: 1px dashed var(--line); display: grid; place-items: center;
+  font-weight: 800; font-size: 1rem;
+}
+.filled { border-style: solid; border-color: var(--good); background: color-mix(in srgb, var(--good) 15%, transparent); }
+.buttons { display: flex; justify-content: center; gap: 8px; }
+.reset { order: 5; align-self: center; }

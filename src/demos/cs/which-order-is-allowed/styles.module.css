@@ -1,0 +1,23 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.92rem; font-weight: 700; }
+.arrow { stroke: var(--fg); stroke-width: 2; }
+.head { fill: var(--fg); }
+.headBad { fill: var(--bad); }
+.loop { fill: none; stroke: var(--bad); stroke-width: 2.5; stroke-dasharray: 6 3; }
+.node { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.free { fill: color-mix(in srgb, var(--good) 25%, var(--bg-2)); stroke: var(--good); }
+.placed { fill: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); stroke: var(--domain); }
+.label { font-size: 16px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.tasks { display: flex; justify-content: center; gap: 8px; }
+.task { min-width: 48px; height: 40px; font-size: 1.1rem; font-weight: 800; }
+.line { display: flex; justify-content: center; align-items: center; gap: 2px; }
+.cellGroup { display: flex; align-items: center; gap: 2px; }
+.slot {
+  width: 44px; height: 40px; border-radius: 8px; border: 1px dashed var(--line); display: grid; place-items: center;
+  font-weight: 800; font-size: 1.1rem;
+}
+.filled { border-style: solid; border-color: var(--domain); background: color-mix(in srgb, var(--domain) 20%, var(--bg-2)); }
+.swap { min-width: 30px; height: 32px; padding: 0 4px; font-size: 0.95rem; }
+.found { margin: 0; min-height: 1.2em; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+.bottom { display: flex; justify-content: center; gap: 8px; }
+.clear { order: 5; align-self: center; }
