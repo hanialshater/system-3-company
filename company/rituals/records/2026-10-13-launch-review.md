@@ -57,3 +57,15 @@ Decision: **go with conditions** (accessibility review, W-057). Signed: chief-of
 heat-in-no-rise, most-collisions-bounce, one-ml-of-steam and steel-wool-gains-weight were published through `tools/publish-ready.mjs --publish`. Each has a launch verdict on the current version and passed every gate. Their QA records come from the 80-lesson QA run, on a build that contained them.
 
 **Incident, recorded here because it touched launch evidence:** that run went against a stale build (268 lessons, from 06:23). My rebuild had been killed by my own `pkill -f`. The 20 newest math and economics lessons therefore 404'd and were recorded as QA "fail". Those 20 records are false and were deleted, not committed. The lessons are being re-run on a fresh 298-lesson build. Mechanism: before any QA or walkthrough run, the checklist now checks that the build contains every lesson (count the HTML pages under `.next-*/server/app/d/` and compare with the lesson count).
+
+## Fifth batch (same day): 18 life lessons
+
+cell-too-big, cut-the-island, epidemic-overshoot, falling-yet-adding, fastest-at-the-bend, few-survivors, five-day-generations, immunity-eats-r, isolate-by-day-three, leaky-vaccine-threshold, mouse-vs-elephant, pockets-below-threshold, same-genes-different-drift, slow-across-a-room, stale-case-counts, ten-percent-up, three-day-doubling and who-has-grandchildren. Each has a launch verdict on v1 and passed every gate; their claims were verified in fact-check pass 2.
+
+**Objection that travels:** about 12 of the reviewer's 29 life lessons have a hook or answer option that leans on the answer, and several reveals are clipped at the card edge (W-061). Neither was rated blocking for the 18 published lessons.
+
+**Incident:** friends-have-more-friends was published with v1, the version whose c3 is known false, and unpublished within minutes. Cause: I lifted its hold in the same command as the merge of its v2 revision. The merge silently failed, because a worktree branch is listed as `+ name` and my `tr` left the `+`, while the hold release still ran. Fix: holds are lifted only after the merged version is confirmed in meta.json, in a separate step. The hold is restored until v2 is re-reviewed.
+
+The 30 lessons left without a QA record all passed (60/60) on the fresh 298-lesson build.
+
+Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
