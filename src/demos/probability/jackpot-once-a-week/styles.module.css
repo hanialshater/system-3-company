@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 26dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.86rem; font-weight: 600; }
+.axis { stroke: var(--muted); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 10.5px; }
+.track { fill: var(--bg-2); stroke: var(--line); }
+.fill { fill: var(--domain); opacity: 0.85; }
+.life { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.lifeLabel { fill: var(--fg); font-size: 10.5px; font-weight: 700; }
+.win { fill: var(--good); stroke: var(--fg); stroke-width: 1; }
+.winLabel { fill: var(--good); font-size: 11px; font-weight: 800; }
