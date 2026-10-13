@@ -1,0 +1,88 @@
+{
+  "slug": "filament-vs-led-heat",
+  "title": "Where does a bulb's power go?",
+  "hook": "An old 60 W bulb lights a room. How much of its 60 W actually comes out as light?",
+  "domain": "physics",
+  "concept": "efficiency-waste-heat",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bulbs glow and get warm",
+      "bulbs are sold by watts (60 W, 9 W)"
+    ],
+    "doesNotKnow": [
+      "the watt as energy per second",
+      "efficiency: the share of the input that ends up as the useful output",
+      "that energy in equals energy out, so what is not light is heat"
+    ]
+  },
+  "misconception": "A bulb turns nearly all its electricity into light.",
+  "objective": "The learner can explain that a bulb's input power all leaves as light plus heat, that a filament bulb turns only about 5% into visible light, and that an LED gives the same light for far less input and far less heat.",
+  "claims": [
+    {
+      "id": "physics.filament-vs-led-heat.c1",
+      "text": "A watt (W) is one joule of energy per second.",
+      "support": "convention",
+      "source": "SI derived unit: 1 W = 1 J/s (BIPM SI Brochure, 9th ed., Table 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.filament-vs-led-heat.c2",
+      "text": "Energy is conserved: all the power going into a bulb leaves as visible light plus heat.",
+      "support": "derivation",
+      "source": "First law of thermodynamics for a device in steady state: power in = power out. 'Heat' here includes invisible infrared radiation and warmth carried off by the air and the fitting.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.filament-vs-led-heat.c3",
+      "text": "A 60 W filament bulb turns about 5% of its power into visible light (about 3 W); the other 57 W leave as heat.",
+      "support": "source",
+      "source": "Typical estimate, to be sourced by the verifier: incandescent radiant efficiency in the visible band is roughly 2-5% (US DOE Energy Saver, 'Incandescent lighting'; Wikipedia 'Luminous efficacy' table gives 1.9-2.6% luminous efficiency for 40-100 W tungsten bulbs, which counts eye-weighted light and is lower than the radiant visible share). 60 x 0.05 = 3 W, 60 - 3 = 57 W.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.filament-vs-led-heat.c4",
+      "text": "A 9 W LED bulb gives about the same light as a 60 W filament bulb, so about a third of its input (3 W) is light and about 6 W is heat.",
+      "support": "source",
+      "source": "Typical estimate, to be sourced: US DOE / ENERGY STAR equivalence of an 800 lumen LED (8-10 W) to a 60 W incandescent; white-LED wall-plug radiant efficiency roughly 30-40%. 9 - 3 = 6 W; 3 / 9 = 33%.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.filament-vs-led-heat.c5",
+      "text": "The LED gives the same light for less than a sixth of the filament bulb's power.",
+      "support": "derivation",
+      "source": "9 / 60 = 0.15, less than 1/6 = 0.167 (figures from c3 and c4).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.filament-vs-led-heat.c6",
+      "text": "A filament bulb makes light by heating a thin wire until it glows white hot; an LED makes light directly in a semiconductor.",
+      "support": "source",
+      "source": "Incandescence (thermal emission from a hot tungsten filament, about 2,700 K) vs electroluminescence in a semiconductor diode: US DOE Energy Saver, 'Lighting Choices to Save You Money' and 'LED Lighting'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 100 W filament bulb turns about 5% of its power into light. Roughly how much heat does it give off each second?",
+    "options": [
+      "About 95 J",
+      "About 5 J",
+      "About 50 J"
+    ],
+    "answer": 0,
+    "why": "Power in equals power out: 5 W leaves as light, so the other 95 W, 95 joules each second, leaves as heat."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
