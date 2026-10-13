@@ -1,0 +1,73 @@
+{
+  "slug": "five-day-generations",
+  "title": "R = 1.5 is not 50% more",
+  "hook": "Each case passes it to 1.5 others. After a month, is that 50% more cases, or far more?",
+  "domain": "life",
+  "concept": "reproduction-number-growth",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "doubling time",
+      "R is the average number of people one case infects"
+    ],
+    "doesNotKnow": [
+      "that R is growth per generation of infection, so it compounds",
+      "that R below 1 shrinks an outbreak the same compounding way"
+    ]
+  },
+  "misconception": "R = 1.5 means cases grow by 50% over the whole outbreak.",
+  "objective": "The learner can explain that R multiplies new cases once per generation, so 20 cases at R = 1.5 become about 228 after 6 generations, and that R below 1 makes each generation smaller.",
+  "claims": [
+    {
+      "id": "life.five-day-generations.c1",
+      "text": "Starting from 20 new cases with R = 1.5 per generation, the generations have about 20, 30, 45, 68, 101, 152 and 228 new cases; 20 x 1.5^6 = 227.8.",
+      "support": "derivation",
+      "source": "Arithmetic; computed in Demo.tsx (cases) and in node (artifacts/scratch/w3life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.five-day-generations.c2",
+      "text": "On the stage, R = 0.8 gives 20 x 0.8^6 = 5.2 new cases in generation 6, R = 1.2 gives 59.7, and R = 2 gives 1,280; below 1 each generation is smaller than the last.",
+      "support": "derivation",
+      "source": "Arithmetic (node); same function draws the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.five-day-generations.c3",
+      "text": "The model is a made-up infection with R fixed, generations exactly 5 days apart and no overlap between generations.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question and on the stage ('Toy: R fixed, generations 5 days apart').",
+      "status": "unverified"
+    },
+    {
+      "id": "life.five-day-generations.c4",
+      "text": "In real outbreaks R changes as behaviour and immunity change.",
+      "support": "source",
+      "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans: Dynamics and Control, Oxford UP, ch. 2 and 4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A made-up outbreak has R = 2 and 10 new cases in one generation. With R unchanged, about how many new cases are in the third generation after it?",
+    "options": [
+      "About 20",
+      "About 30",
+      "About 80"
+    ],
+    "answer": 2,
+    "why": "R multiplies once per generation: 10 x 2 x 2 x 2 = 80."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
