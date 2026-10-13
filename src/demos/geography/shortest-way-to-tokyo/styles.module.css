@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap p { margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.route { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linecap: round; }
+.ghost { fill: none; stroke: var(--fg); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.55; }
+.best { fill: none; stroke: var(--good); stroke-width: 2; stroke-dasharray: 5 3; }
+.place { fill: var(--warn); stroke: var(--bg-2); stroke-width: 0.6; }
+.end { fill: var(--fg); stroke: var(--bg-2); stroke-width: 0.8; }
+.label { font-size: 9px; fill: var(--fg); paint-order: stroke; stroke: var(--bg-2); stroke-width: 2.5px; stroke-linejoin: round; }
+.msg { text-align: center; font-weight: 600; font-size: 0.9rem; }

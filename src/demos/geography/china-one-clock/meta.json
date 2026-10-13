@@ -1,0 +1,87 @@
+{
+  "slug": "china-one-clock",
+  "title": "How many clocks does China need?",
+  "hook": "China is as wide as four hours of sunlight. Check what its clocks say.",
+  "domain": "geography",
+  "concept": "time-zones",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the world has time zones",
+      "that the Sun is highest around noon"
+    ],
+    "doesNotKnow": [
+      "that time zones are set by law, not by geometry",
+      "how far clock time can drift from Sun time"
+    ]
+  },
+  "misconception": "A country as wide as China has several time zones, and clock time tracks the Sun.",
+  "objective": "The learner can explain that China uses one official time, UTC+8, so in the far west the Sun is highest around 3 p.m. on the clock, and that time zones are decisions rather than geometry.",
+  "claims": [
+    {
+      "id": "geography.china-one-clock.c1",
+      "text": "China uses one official standard time, Beijing time, UTC+8.",
+      "support": "source",
+      "source": "IANA tz database (zone1970.tab: Asia/Shanghai for most of China, UTC+08 with no DST since 1991). Asia/Urumqi (UTC+06) is listed for local usage in Xinjiang; the lesson says 'official standard time' and makes no claim about local conventions. Not opened by the builder (network blocked).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.china-one-clock.c2",
+      "text": "China spans about 61° of longitude, roughly 4 hours of the Sun's travel.",
+      "support": "simulation",
+      "source": "Kit 1:110m 'China' outline: 73.68 E to 135.02 E, 61.35 degrees; 61.35 / 15 = 4.09 h (artifacts/scratch/w1-misc.mjs; computed live in Demo.tsx). The outline makes no border claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.china-one-clock.c3",
+      "text": "On the official clock the Sun is highest over Kashgar at about 14:56, nearly 3 p.m., and over Shanghai at about 11:54.",
+      "support": "derivation",
+      "source": "Mean solar noon at longitude L is 12:00 UTC - L/15 h; plus 8 h. Kashgar 75.99 E: 14:56; Shanghai 121.47 E: 11:54. Gazetteer coordinates (GeoNames) not opened. The equation of time shifts real solar noon by up to about 16 minutes (c4).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.china-one-clock.c4",
+      "text": "The real Sun runs up to about 16 minutes early or late during the year compared with mean Sun time.",
+      "support": "source",
+      "source": "Equation of time, range about -14 to +16 minutes (Astronomical Almanac; Meeus, Astronomical Algorithms ch. 28).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.china-one-clock.c5",
+      "text": "The Sun's noon moves 15° of longitude per hour, so 15° bands are what geometry alone would suggest for time zones.",
+      "support": "derivation",
+      "source": "360 degrees / 24 h = 15 degrees per hour. The dashed lines are nominal bands centred on multiples of 15 degrees (edges at 67.5, 82.5, ... 142.5 E), not legal zones; the stage caption says '15° bands'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.china-one-clock.c6",
+      "text": "A time zone is a decision made by law, not a line drawn by the Sun.",
+      "support": "source",
+      "source": "Time zones are set by national governments (e.g. IANA tz database notes; Wikipedia 'Time zone'). Framing claim.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In western China the clock reads 15:00. Roughly where is the Sun?",
+    "options": [
+      "Low in the west, near sunset",
+      "Close to its highest point of the day",
+      "Not yet risen"
+    ],
+    "answer": 1,
+    "why": "All of China keeps UTC+8, which fits the east; in the far west the Sun reaches its highest point around 3 p.m. on that clock."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
