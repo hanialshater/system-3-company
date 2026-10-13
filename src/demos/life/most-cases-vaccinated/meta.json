@@ -1,7 +1,7 @@
 {
   "slug": "most-cases-vaccinated",
-  "title": "Half the cases were vaccinated",
-  "hook": "Nearly half the cases were vaccinated. Does that mean the vaccine failed?",
+  "title": "Vaccinated people on the case list",
+  "hook": "In a mostly vaccinated town, who fills the list of cases?",
   "domain": "life",
   "concept": "vaccinated-share-of-cases",
   "status": "review",
@@ -59,6 +59,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "life.most-cases-vaccinated.c5",
+      "text": "In the model each vaccinated person has a tenth of an unvaccinated person's risk (5% against 50%), and the stage shows 500 cases with nobody vaccinated, 50 at 90% vaccinated (plus 45 vaccinated) and 50 with everybody vaccinated.",
+      "support": "derivation",
+      "source": "RISK_VAX = 0.05, RISK_UNVAX = 0.5, expected counts: 1,000 x 0.5 = 500; 900 x 0.05 = 45 and 100 x 0.5 = 50; 1,000 x 0.05 = 50 (as c1, c2).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -83,5 +90,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

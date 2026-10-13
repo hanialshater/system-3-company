@@ -39,11 +39,14 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
   const [seed, setSeed] = useState(1);
   const [grown, setGrown] = useState(0);
   const hit = useRef(new Set<string>());
+  // The 100-family result the learner actually saw (kept after "New field").
+  const [full, setFull] = useState<{ atLeast: number; exactly: number; none: number } | null>(null);
   const fams = useMemo(() => batch(seed), [seed]);
 
   const whites = fams.slice(0, grown).map((f) => f.filter(isWhite).length);
   const atLeast = whites.filter((w) => w >= 1).length;
   const exactly = whites.filter((w) => w === 1).length;
+  const none = grown - atLeast;
   const last = grown > 0 ? fams[grown - 1] : null;
 
   return (
@@ -60,17 +63,16 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {grown === FAMILIES && `In your 100 families, ${atLeast} had at least one white flower and ${exactly} had exactly one. `}
-            Each seed is its own 1-in-4 draw, so all four are purple with chance (3/4)<sup>4</sup> &asymp; 32%. At least
-            one white: 1 &minus; 0.32 &asymp; <strong>68%</strong>.
+            {full &&
+              `In your 100 families, ${full.atLeast} had at least one white flower, ${full.exactly} exactly one and ${full.none} none; another field would differ. `}
+            Each seed is its own 1-in-4 draw, so all four are purple with chance (3/4)<sup>4</sup> &asymp; 32%, and at least
+            one is white with 1 &minus; 0.32 &asymp; <strong>68%</strong>.
           </p>
           <p>
-            &ldquo;1 in 4&rdquo; is a chance per seed, not a quota per family. Exactly one white happens only about 42% of
-            the time; some families get two or more, and about a third get none.
+            &ldquo;1 in 4&rdquo; is a chance per seed, not a quota per family. Over many fields, exactly one white is only
+            about 42% of families; some get two or more, about a third get none.
           </p>
-          <p className="muted">
-            Made-up flower: one purple copy (P) is enough for purple, and seeds are independent.
-          </p>
+          <p className="muted">Made-up flower: one purple copy (P) gives purple; seeds are independent.</p>
         </>
       )}
     >
@@ -85,13 +87,19 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
             }
           };
           if (n >= 1) mark("one");
-          if (n === FAMILIES) mark("all");
+          if (n === FAMILIES) {
+            const w = fams.map((f) => f.filter(isWhite).length);
+            setFull({ atLeast: w.filter((x) => x >= 1).length, exactly: w.filter((x) => x === 1).length, none: w.filter((x) => x === 0).length });
+            mark("all");
+          }
         };
         const lastWhite = last ? last.filter(isWhite).length : 0;
         const msg = locked
           ? "Make a prediction to start. Each square will hold one family of 4 seeds."
           : !last
-            ? "Each seed gets one copy from each parent. ww is white."
+            ? "Each seed gets one copy from each parent: P (purple) or w (white). Two w make a white flower."
+          : grown === FAMILIES
+            ? `${FAMILIES} families: ${atLeast} with a white flower, ${exactly} with exactly one, ${none} with none.`
             : `Family ${grown}: ${last.map(label).join(", ")}. ${lastWhite} white.`;
         return (
           <div className={s.wrap}>

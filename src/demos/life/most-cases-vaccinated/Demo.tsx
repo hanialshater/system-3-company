@@ -5,9 +5,10 @@
 // so the learner sees exactly 45 + 50 cases at 90%. Vaccinated people fill the
 // grid from the left, column by column, so the two groups sit side by side.
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const COLS = 40;
@@ -45,92 +46,99 @@ function town(sharePct: number) {
   return { nVax, vaxCases, unvaxCases, vax, cases };
 }
 
-export default function MostCasesVaccinated({ slug }: { slug: string }) {
-  const [share, setShare] = useState(80);
-  const hit = useRef(new Set<string>());
+const SHARES = [0, 50, 90, 100];
+const START = 90; // the question setting; the stage opens here
+const MILESTONES = ["nobody", "everybody"] as const;
+// Reveal numbers come from the same function as the stage.
+const AT90 = town(START);
+const AT0 = town(0);
+const AT100 = town(100);
+const PCT90 = Math.round((100 * AT90.vaxCases) / (AT90.vaxCases + AT90.unvaxCases));
+
+function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
+  const [share, setShare] = useState(START);
+  const { reach } = useMilestones(interact, MILESTONES);
   const t = useMemo(() => town(share), [share]);
   const total = t.vaxCases + t.unvaxCases;
   const pctVax = total ? Math.round((100 * t.vaxCases) / total) : 0;
   const divider = Math.ceil(t.nVax / ROWS) * GAP;
 
   return (
+    <div className={s.wrap}>
+      <svg viewBox={`0 0 ${COLS * GAP} ${ROWS * GAP}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${share}% vaccinated${locked ? "" : `: ${total} cases, ${t.vaxCases} of them vaccinated`}`}>
+        {t.vax.map((v, i) => {
+          const x = Math.floor(i / ROWS) * GAP + GAP / 2;
+          const y = (i % ROWS) * GAP + GAP / 2;
+          const sick = !locked && t.cases.has(i);
+          return <circle key={i} cx={x} cy={y} r={sick ? 3.2 : 2.6} className={sick ? s.case : v ? s.vax : s.unvax} />;
+        })}
+        {t.nVax > 0 && t.nVax < N && <line x1={divider} x2={divider} y1={0} y2={ROWS * GAP} className={s.divider} />}
+      </svg>
+
+      <div className={s.legend} aria-hidden>
+        <span><i className={s.vax} />vaccinated</span>
+        <span><i className={s.unvax} />not vaccinated</span>
+        <span><i className={s.case} />case</span>
+      </div>
+
+      <p className={s.msg} aria-live="polite">
+        {locked ? "Make a prediction to start." : `Everyone is exposed. ${share}% vaccinated. Risk per person: 5% if vaccinated, 50% if not.`}
+      </p>
+
+      <Row>
+        {SHARES.map((v) => (
+          <Control
+            key={v}
+            className={`${s.chip} ${share === v ? "active" : ""}`}
+            aria-pressed={share === v}
+            disabled={locked || share === v}
+            onClick={() => {
+              setShare(v);
+              if (v === 0) reach("nobody");
+              if (v === 100) reach("everybody");
+            }}
+          >
+            {v}% vaccinated
+          </Control>
+        ))}
+      </Row>
+      <Row>
+        <Readout label="All cases" value={locked ? "?" : total} />
+        <Readout label="Vaccinated" value={locked ? "?" : `${t.vaxCases} (${pctVax}%)`} />
+        <Readout label="Unvaccinated" value={locked ? "?" : t.unvaxCases} />
+      </Row>
+    </div>
+  );
+}
+
+export default function MostCasesVaccinated({ slug }: { slug: string }) {
+  return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "1,000 people, 90% vaccinated, all exposed. Unvaccinated risk is 50%; the vaccine cuts that risk by 90%. Roughly what share of the cases are vaccinated people?",
-        options: ["About 5%", "About 47%", "About 90%"],
-        answer: 1,
+          "A town of 1,000 people, 90% of them vaccinated, is exposed to a disease. An unvaccinated person has a 50% chance of falling ill; the vaccine cuts that to 5%. About what share of the sick people are vaccinated?",
+        options: ["About 5%", "About 25%", "About 47%", "About 90%"],
+        answer: 2,
       }}
-      exploreHint="Slide to 90% vaccinated and count. Then go to 100%."
-      minInteractions={2}
+      exploreHint="Try 0% vaccinated, then 100%, and compare the case counts with the 90% you started at."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            At 90%: 100 unvaccinated people &times; 50% = 50 cases, and 900 vaccinated &times; 5% = 45 cases. So{" "}
-            <strong>about 47%</strong> of cases (45 of 95) were vaccinated, while each vaccinated person had a tenth of the
-            risk.
+            At {START}% vaccinated: {N - AT90.nVax} unvaccinated &times; 50% = {AT90.unvaxCases} cases, and {AT90.nVax}{" "}
+            vaccinated &times; 5% = {AT90.vaxCases} cases. So <strong>about {PCT90}%</strong> of cases ({AT90.vaxCases} of{" "}
+            {AT90.vaxCases + AT90.unvaxCases}) were vaccinated, though each vaccinated person had a tenth of the risk.
           </p>
           <p>
-            At 100%, every case was vaccinated, yet there were 50 cases instead of 500 with nobody vaccinated. A big
-            protected group fills a big share of a short case list. To judge a vaccine, compare risk per person in each
-            group, not who fills the list.
+            With nobody vaccinated there were {AT0.unvaxCases} cases; with everybody, {AT100.vaxCases}, all vaccinated. A big
+            protected group can fill a big share of a short list. Compare risk per person, not who fills the list.
           </p>
-          <p className="muted">
-            Made-up numbers. The model assumes everyone is equally exposed and the vaccine works the same for everyone.
-          </p>
+          <p className="muted">Made-up numbers; everyone equally exposed and the vaccine works the same for everyone.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <svg viewBox={`0 0 ${COLS * GAP} ${ROWS * GAP}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${share}% vaccinated${locked ? "" : `: ${total} cases, ${t.vaxCases} of them vaccinated`}`}>
-            {t.vax.map((v, i) => {
-              const x = Math.floor(i / ROWS) * GAP + GAP / 2;
-              const y = (i % ROWS) * GAP + GAP / 2;
-              const sick = !locked && t.cases.has(i);
-              return <circle key={i} cx={x} cy={y} r={sick ? 3.2 : 2.6} className={sick ? s.case : v ? s.vax : s.unvax} />;
-            })}
-            {t.nVax > 0 && t.nVax < N && <line x1={divider} x2={divider} y1={0} y2={ROWS * GAP} className={s.divider} />}
-          </svg>
-
-          <div className={s.legend} aria-hidden>
-            <span><i className={s.vax} />vaccinated</span>
-            <span><i className={s.unvax} />not vaccinated</span>
-            <span><i className={s.case} />case</span>
-          </div>
-
-          <p className={s.msg} aria-live="polite">
-            {locked ? "Make a prediction to start." : "Everyone is exposed. Risk: 5% if vaccinated, 50% if not."}
-          </p>
-
-          <Slider
-            label="Vaccinated"
-            value={share}
-            min={0}
-            max={100}
-            step={10}
-            format={(v) => `${v}%`}
-            disabled={locked}
-            onChange={(v) => {
-              setShare(v);
-              const mark = (k: string) => {
-                if (!hit.current.has(k)) {
-                  hit.current.add(k);
-                  interact();
-                }
-              };
-              if (v === 90) mark("90");
-              if (v === 100) mark("100");
-            }}
-          />
-          <Row>
-            <Readout label="All cases" value={locked ? "?" : total} />
-            <Readout label="Vaccinated" value={locked ? "?" : `${t.vaxCases} (${pctVax}%)`} />
-            <Readout label="Unvaccinated" value={locked ? "?" : t.unvaxCases} />
-          </Row>
-        </div>
-      )}
+      {({ locked, interact }) => <Stage locked={locked} interact={interact} />}
     </Lesson>
   );
 }
