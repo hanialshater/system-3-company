@@ -1,0 +1,74 @@
+{
+  "slug": "told-the-sum-is-eight",
+  "title": "Told the total is 8",
+  "hook": "Two dice, and someone tells you the total. Does that change the chance of a six?",
+  "domain": "probability",
+  "concept": "conditional-probability",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "two dice have 36 equally likely outcomes",
+      "a chance as a share of equally likely cases"
+    ],
+    "doesNotKnow": [
+      "that new information shrinks the list of possible cases",
+      "that the new chance is a share within the shrunken list"
+    ]
+  },
+  "misconception": "Information about the total does not change how likely a six is, because each die is a 1/6 event.",
+  "objective": "The learner can explain that \"the total is 8\" leaves 5 of 36 outcomes, 2 of which contain a six, so the chance becomes 2/5 = 40% instead of 11/36 = 31%.",
+  "keyState": "Clue \"Total is 8\" applied: 5 cells left, 2 outlined; then another clue for contrast.",
+  "claims": [
+    {
+      "id": "probability.told-the-sum-is-eight.c1",
+      "text": "Two fair dice have 36 equally likely outcomes, and 11 of them contain at least one six (31%).",
+      "support": "derivation",
+      "source": "Enumeration (share(\"none\") in src/demos/probability/told-the-sum-is-eight/model.ts): 6 + 6 - 1 = 11; 11/36 = 30.6%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.told-the-sum-is-eight.c2",
+      "text": "A total of 8 leaves 5 outcomes (2+6, 3+5, 4+4, 5+3, 6+2), 2 of which contain a six: 2/5 = 40%.",
+      "support": "derivation",
+      "source": "Enumeration (share(\"eight\")).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.told-the-sum-is-eight.c3",
+      "text": "With \"total is 7\" the chance of a six is 2 of 6; with \"total at least 10\" it is 5 of 6.",
+      "support": "derivation",
+      "source": "Enumeration: total 7 = (1,6), (2,5), (3,4), (4,3), (5,2), (6,1), sixes in 2; total >= 10 = (4,6), (5,5), (5,6), (6,4), (6,5), (6,6), sixes in 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.told-the-sum-is-eight.c4",
+      "text": "A clue shrinks the list of possible outcomes; the new chance is the share of what is left.",
+      "support": "derivation",
+      "source": "Definition of conditional probability over equally likely outcomes: P(A | B) = |A and B| / |B|.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two dice are rolled and you are told the total is 11. How likely is it that one die shows a six?",
+    "options": [
+      "11/36",
+      "1/2",
+      "1 (certain)"
+    ],
+    "answer": 2,
+    "why": "A total of 11 leaves only 5+6 and 6+5. Both contain a six, so the share of what is left is 2 of 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
