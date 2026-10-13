@@ -1,0 +1,79 @@
+{
+  "slug": "ten-to-one-buffer",
+  "title": "Ten to one, one pH unit",
+  "hook": "Pour in ten times the acid. Does the pH fall ten times as far?",
+  "domain": "chemistry",
+  "concept": "henderson-hasselbalch",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a buffer holds a stock of a weak acid and its base (one-dose-of-acid)",
+      "that pH is a log scale (ph-log-scale)"
+    ],
+    "doesNotKnow": [
+      "that a buffer's pH is set by the log of the base-to-acid ratio, not by the amounts"
+    ]
+  },
+  "misconception": "More buffer, or more of the acid, changes the pH in proportion.",
+  "objective": "The learner can explain that pH = pKa + log10(base/acid), so an acetate buffer with 10 times as much acid as base has pH about 3.76, one unit below pKa 4.76, and that equal amounts give pH = pKa however much buffer there is.",
+  "claims": [
+    {
+      "id": "chemistry.ten-to-one-buffer.c1",
+      "text": "Acetic acid has a pKa of about 4.76 at 25 °C.",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Dissociation constants of organic acids in aqueous solution': acetic acid pKa 4.756 at 25 °C.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ten-to-one-buffer.c2",
+      "text": "A buffer's pH is pKa + log10(base ÷ acid) (Henderson-Hasselbalch), so 10 times as much acid as base gives about 4.76 − 1 = 3.76.",
+      "support": "derivation",
+      "source": "Henderson-Hasselbalch equation (Atkins & Jones, Chemical Principles, ch. on buffers; Harris, Quantitative Chemical Analysis, ch. 9). 4.76 + log10(10/100) = 3.76 (node; Demo.tsx pH()).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ten-to-one-buffer.c3",
+      "text": "Each tenfold change in the base-to-acid ratio moves the pH by 1; equal amounts give pH = pKa however much buffer there is.",
+      "support": "derivation",
+      "source": "From c2: log10(10) = 1; log10(1) = 0 for any equal amounts (10:10 and 100:100 both give 4.76 on the stage).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ten-to-one-buffer.c4",
+      "text": "More buffer only makes the pH harder to push (more buffer capacity).",
+      "support": "source",
+      "source": "Buffer capacity grows with the total buffer concentration (Harris, Quantitative Chemical Analysis, ch. 9, 'buffer capacity'; one-dose-of-acid lesson).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ten-to-one-buffer.c5",
+      "text": "The equation holds well for moderate concentrations, about 0.01 to 1 mol/L.",
+      "support": "source",
+      "source": "Henderson-Hasselbalch neglects water's own ions and activity coefficients; it fails for very dilute buffers or ratios far from 1 (Harris, ch. 9; Po & Senozan, J. Chem. Educ. 78, 1499, 2001). Range quoted as a rule of thumb; the stage's amounts (mmol) are assumed to be in a volume giving such concentrations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A buffer with pKa 7.2 holds 10 times as much base as acid. Its pH is about…",
+    "options": [
+      "8.2",
+      "72",
+      "6.2"
+    ],
+    "answer": 0,
+    "why": "pH = pKa + log10(base/acid) = 7.2 + log10(10) = 8.2. A tenfold ratio moves pH by one unit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
