@@ -51,6 +51,34 @@ Template:
 - Next: demo-builder fixes the 11 disputed wordings (board W-058); fact-checker with network access compares half-of-humanity c1 (W-059). Advisory wording notes (not blocking) are in the review files: horizon-ruler refraction 'a few per cent' (about 8%), sieve 'clear a hundred numbers', friends-have-more-friends c3 'wherever friend counts differ' is false for disconnected networks, throw-it-fast-enough ISS 7.7 vs NASA 7.8 km/s.
 - Blocked: none.
 
+## 2026-10-13 (night) · chief-of-staff · 504 lessons: past the 500 target
+- **Changed:**
+  - Lessons went from 328 to 504 this evening, with every domain except Life Hacks at or near the end of its brief list.
+  - New orgs and roles: Life Hacks, Personalization, International, Design, 27 sub-area category managers, the Principal PM for verticals, and the CEO-office chief of staff (Leonie). That is 72 roles in total.
+  - The work queue (`tools/claim.mjs`), the walkthrough contact sheets and the publish loop.
+  - HQ now has 3 floors.
+  - Agent metrics are in the WBR.
+  - SPIKE-001 came back "go with changes".
+- **Believe now:**
+  - 504 lessons is a count of lessons built and QA'd, not of good lessons (high confidence). Roughly 80 are published. Most of the rest have no learner review yet or a "revise" verdict, and about 415 claims are still unverified (two fact-checkers are on them).
+  - The quality loop is the bottleneck, not building: the launch rate is about 37% on first review.
+  - 53 of 72 roles have never been dispatched. Leonie is evaluating that now.
+- **Next:**
+  1. Leonie's role evaluation and handoff map: the founder decides on her proposals.
+  2. Finish fact-check pass 8 and the reviews, then run the publish loop.
+  3. Hand QA and publishing back to qa-tester and release-manager.
+  4. Run the accessibility review (W-057).
+  5. EXP-003 result: Sonnet vs Opus builders.
+  6. Design review of new briefs.
+- **Blocked (founder):**
+  - backend choices (auth provider, database host, under-13 policy);
+  - usage budget;
+  - AMD-001;
+  - UN WPP and Bullard source checks;
+  - the Personalization brief;
+  - the image-generation agent setup (waiting for a yes).
+- **Tooling note:** builders report that the claim schema rejects support "citation", so they use "source". Either document "source" as the type for citations in demo-standard, or propose adding "citation" (the gate is constitutional).
+
 ## 2026-10-13 (evening) · chief-of-staff · Three new teams; HQ live locally; 328 lessons
 - Changed:
   - New teams: backend (backend-engineer, privacy-reviewer), growth (growth-designer) and company tools (tools-lead, hq-engineer). Decision record: company/decisions/2026-10-13-three-new-teams.md.
