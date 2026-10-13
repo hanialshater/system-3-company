@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 120px; }
+.ground { stroke: var(--fg); stroke-width: 2; }
+.trail { stroke: var(--domain); stroke-width: 5; }
+.trailS { stroke: var(--good); stroke-width: 4; }
+.barA { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); stroke: var(--fg); stroke-width: 0.8; }
+.barB { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 0.8; }
+.over { fill: var(--bad); stroke: var(--fg); stroke-width: 0.8; }
+.tick { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 2; }
+.tickLab { fill: var(--muted); font-size: 11px; font-weight: 700; text-anchor: middle; }
+.wheel { fill: color-mix(in srgb, var(--domain) 18%, var(--bg-2)); stroke: var(--fg); stroke-width: 2.5; }
+.wheelS { fill: color-mix(in srgb, var(--good) 22%, var(--bg-2)); stroke: var(--fg); stroke-width: 2; }
+.spoke { stroke: var(--muted); stroke-width: 1; }
+.dot { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.4em; font-variant-numeric: tabular-nums; }
+.chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+.chips :global(.control) { padding: 8px 0; min-width: 0; font-size: 0.8rem; white-space: nowrap; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.chips :global(.control):last-child { grid-column: 1 / -1; }

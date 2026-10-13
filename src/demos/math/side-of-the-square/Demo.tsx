@@ -1,0 +1,147 @@
+"use client";
+
+// Side of the square. A square floor on a 1 m grid (0-11 m shown), starting at side 5 (25 m²).
+// Chips set the side to 25, 10, 8, 7, 7.1 and 7.07 m; the area readout is side × side, and the
+// dashed outline is the 50 m² target (side √50), drawn only after the prediction.
+// The 25 m square is clipped by the frame; its area still reads 625 m².
+// Key states: both 7 m (49) and 8 m (64) seen, and 7.07 m (49.98, just under 50).
+
+import { Lesson } from "@/kit/Lesson";
+import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import { useState } from "react";
+import s from "./styles.module.css";
+
+const TARGET = 50;
+const SIDES = [25, 10, 8, 7, 7.1, 7.07];
+const START = 5;
+const MILESTONES = ["bracketed", "close"] as const;
+const area = (x: number) => Number((x * x).toFixed(2));
+const ROOT = Math.sqrt(TARGET);
+const LO = Math.floor(ROOT);
+const HI = LO + 1;
+
+const U = 24;
+const MAXM = 11;
+const PAD = 22;
+const F = MAXM * U;
+const W = F + PAD * 2;
+const H = F + PAD + 26;
+
+export default function SideOfTheSquare({ slug }: { slug: string }) {
+  const [side, setSide] = useState(START);
+  const [seen, setSeen] = useState<number[]>([]);
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question: `A square floor has area ${TARGET} square metres. Its side is...`,
+        options: [`${TARGET / 2} m`, `just over ${LO} m`, "10 m"],
+        answer: 1,
+      }}
+      exploreHint="Try sides until the square covers the dashed 50 m² outline."
+      minInteractions={MILESTONES.length}
+      reveal={() => (
+        <>
+          <p>
+            {seen.includes(TARGET / 2) ? `A ${TARGET / 2} m side gave ${area(TARGET / 2)} m², far too much: halving 50 does not find the side. ` : ""}
+            {LO} m gave {area(LO)} m² and {HI} m gave {area(HI)}, so the side lies between them. 7.07 m gave {area(7.07)} m², just
+            under {TARGET}.
+          </p>
+          <p>
+            The square root of {TARGET} is the side whose square is {TARGET}: about {ROOT.toFixed(2)} m. It is not a whole number,
+            because {LO} × {LO} = {area(LO)} and {HI} × {HI} = {area(HI)} skip right over {TARGET}.
+          </p>
+        </>
+      )}
+    >
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => (
+            <Stage
+              locked={locked}
+              side={side}
+              onSide={(x) => {
+                const next = seen.includes(x) ? seen : [...seen, x];
+                setSide(x);
+                setSeen(next);
+                if (next.includes(LO) && next.includes(HI)) reach("bracketed");
+                if (x === 7.07) reach("close");
+              }}
+            />
+          )}
+        </Milestones>
+      )}
+    </Lesson>
+  );
+}
+
+function Stage({ locked, side, onSide }: { locked: boolean; side: number; onSide: (x: number) => void }) {
+  const a = area(side);
+  const verdict = a > TARGET ? (a - TARGET < 1 ? `just over ${TARGET}` : "too big") : a === TARGET ? "exactly 50" : TARGET - a < 0.1 ? `just under ${TARGET}` : "too small";
+  const caption = locked
+    ? "Make a prediction to start."
+    : side === START
+      ? `Area = side × side: ${START} × ${START} = ${a} m². Which side covers ${TARGET} m²?`
+      : `${side} × ${side} = ${a} m²: ${verdict}.`;
+  const shown = Math.min(side, MAXM + 0.6);
+  const y0 = PAD + F;
+
+  return (
+    <div className={s.wrap}>
+      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
+        <defs>
+          <clipPath id="sots-frame">
+            <rect x={PAD} y={PAD - 6} width={F + 8} height={F + 6} />
+          </clipPath>
+        </defs>
+        {Array.from({ length: MAXM + 1 }, (_, i) => (
+          <g key={i}>
+            <line x1={PAD + i * U} y1={PAD} x2={PAD + i * U} y2={y0} className={s.grid} />
+            <line x1={PAD} y1={y0 - i * U} x2={PAD + F} y2={y0 - i * U} className={s.grid} />
+            {i % 2 === 1 || i === 0 ? null : (
+              <text x={PAD + i * U} y={y0 + 16} className={s.tick}>
+                {i}
+              </text>
+            )}
+          </g>
+        ))}
+        <g clipPath="url(#sots-frame)">
+          <rect x={PAD} y={y0 - shown * U} width={shown * U} height={shown * U} className={a > TARGET ? s.over : s.sq} />
+        </g>
+        {!locked && <rect x={PAD} y={y0 - ROOT * U} width={ROOT * U} height={ROOT * U} className={s.target} />}
+        {!locked && (
+          <text x={PAD + ROOT * U - 4} y={y0 - ROOT * U - 5} className={s.targetLab}>
+            {TARGET} m²
+          </text>
+        )}
+        <text x={PAD + (Math.min(shown, MAXM) * U) / 2} y={y0 - (Math.min(shown, MAXM) * U) / 2 + 6} className={s.inside}>
+          {locked ? "?" : `${a} m²`}
+        </text>
+      </svg>
+
+      <p className={s.caption} aria-live="polite">
+        {caption}
+      </p>
+
+      <div className={s.chips} role="group" aria-label="Pick the side">
+        {SIDES.map((x) => (
+          <Control
+            key={x}
+            disabled={locked || x === side}
+            className={x === side ? "active" : ""}
+            aria-label={`Make the side ${x} metres`}
+            onClick={() => onSide(x)}
+          >
+            {x} m
+          </Control>
+        ))}
+      </div>
+      <Row>
+        <Readout label="Side" value={`${side} m`} />
+        <Readout label="Area" value={locked ? "?" : `${a} m²`} />
+      </Row>
+    </div>
+  );
+}

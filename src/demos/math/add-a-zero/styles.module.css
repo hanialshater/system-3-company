@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 110px; }
+.col { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.head { fill: var(--muted); font-size: 12px; font-weight: 700; text-anchor: middle; }
+.point { fill: var(--fg); }
+.tile { transition: transform 0.3s ease-out; }
+.digit { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.zeroTile { fill: color-mix(in srgb, var(--warn, orange) 35%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 4 2; }
+.digitText { fill: var(--fg); font-size: 30px; font-weight: 800; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.controls :global(.control) { min-width: 0; padding: 10px 6px; font-size: 0.95rem; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
