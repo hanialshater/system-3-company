@@ -15,3 +15,6 @@
 .readBox { fill: var(--bg-2); stroke: var(--good); stroke-width: 1.2; }
 .reading { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.spots { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.spots :global(.control) { min-height: 34px; padding: 4px 6px; font-size: 0.86rem; }
+.wrap :global(.control.active:disabled) { opacity: 1; }
