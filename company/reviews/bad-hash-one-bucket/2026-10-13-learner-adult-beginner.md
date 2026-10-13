@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: bad-hash-one-bucket
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the number part (1 slot, 7 slots) yes; the "why it matters" part no.
 - Problems: (1) hook leaks the answer; (2) "table / key / slot / hash" never grounded in anything a non-programmer knows; (3) colour coding and greyed slots unexplained; (4) the payoff (slow lookup) is told, not shown; (5) reveal text clipped in the screenshot.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief assumes the learner has done hash-bucket-pileup and knows division with remainder; my boundary has neither, which is why 'table, key, slot, mod' read as unexplained. The objective's third clause (a pileup makes lookups walk one long list) has no stage element, so that part is told. The misconception (only table size matters) is hit by the hook, which also leaks the answer.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

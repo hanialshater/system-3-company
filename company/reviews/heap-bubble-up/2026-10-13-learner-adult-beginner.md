@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: heap-bubble-up
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the climbing idea yes; the efficiency claim by assertion.
 - Problems: (1) the question's vocabulary (min-heap, index, array, the formula) blocks a non-programmer; (2) tree-to-array link not shown; (3) the rule disappears from the stage during exploring; (4) log2 and "19 for a million" told.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief says the learner knows trees as parents and children and arrays with numbered positions; my boundary does not, and 'min-heap' plus the index formula blocked the prediction. The objective (insert at the end, swap with parent while smaller; [1, 5, 2, 9, 6, 3] after 2 swaps) is shown clearly by the stage. The tree-to-array link, which the brief lists as unknown, is not shown. The misconception (re-sort everything) is hit by the hook.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: lru-eviction-order
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: yes.
 - Problems: (1) hook hints the oldest does not go; (2) HITS/MISSES not defined; (3) the "usually keeps more hits" claim is not demonstrated (the stage's counters were identical, 1 hit and 4 misses under both rules, so nothing here shows LRU beats FIFO).
 - No FATAL. Point (3) is worth fixing: the stage's own numbers do not support the reveal's "keeps more hits".
+
+## 2. After reading the brief
+
+- The brief's learner knows that far fetches are slow; they do not know what a cache is, and neither did I, but the slots and labels carried it. The objective (A refreshed at step 4 so D evicts B; first-in would evict A) is shown in both rules. The misconception (a full cache drops whatever arrived first) is hit by option A and the hook. The reveal's 'usually keeps more hits' is not supported by the stage's own counters, which were equal under both rules.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: launch

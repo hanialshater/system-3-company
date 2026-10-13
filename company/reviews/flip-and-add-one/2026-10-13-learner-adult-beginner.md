@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: flip-and-add-one
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the -5 pattern yes; the "why a machine does this" payoff no.
 - Problems: (1) binary is a prerequisite never taught; (2) -128 place value unexplained; (3) stage at reveal can be in a leftover toggle state that contradicts the reveal; (4) subtraction payoff and the sign-bit counterexample are told only; (5) "123" in the reveal is not on the default stage path.
 - No FATAL; the behaviour shown is true.
+
+## 2. After reading the brief
+
+- The brief assumes wheel-of-negatives (the -128 top bit) and binary addition with carries; my boundary has neither, so the -128 column and '= -5' labels had to be taken on trust. The objective (flip, add 1, get 11111011 = -5, add 5 gives 0 with the carry dropped) is shown by the first three taps. The explore's bit-toggle buttons are extra and can leave the stage in a state that contradicts the reveal. Misconception (minus-sign bit) is stated only in the reveal.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

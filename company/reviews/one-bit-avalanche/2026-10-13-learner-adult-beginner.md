@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: one-bit-avalanche
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the 128 fact yes; the security consequence no (told, not shown).
 - Problems: (1) SHA-256 and "hash" never introduced or motivated; (2) why it matters is told only; (3) many taps for one lesson; (4) "·" glyph unexplained.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner already knows that a hash maps data to a fixed-size output and letters are 8 bits; my boundary does not, so SHA-256 and 'hash' were jargon. The objective (flip one input bit and about half of the 256 output bits change) is shown vividly and the reveal's numbers match the counts. The second half of the objective (a message cannot be nudged toward a target hash) is told only. The misconception (similar inputs give similar hashes) is hit directly by the prediction option About 1.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

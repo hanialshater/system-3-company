@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: list-doubling-copies
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the 15 yes; the "cheap on average" explanation partly; the real-world claim no.
 - Problems: (1) list/append/resize jargon; (2) hook presupposes appending is fast; (3) auto-run hides the doublings; (4) PER APPEND undefined; (5) stage at the reveal is reset to empty; (6) ArrayList claim told.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows a fixed-slot list and doubling; my boundary does not know lists/append/resize. The objective (1 + 2 + 4 + 8 = 15 over 16 appends, a big copy buys as many free appends as it cost) is shown as an end total with the doublings skipped by the auto-run; the 'free appends' idea is told. Misconception (n appends cost about n squared) is not directly hit by any element.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

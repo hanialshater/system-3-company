@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: hash-bucket-pileup
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: "collisions come early" yes (I watched them); the exact threshold and the maths no.
 - Problems: (1) bar chart axis and colours unlabelled; (2) no running total or 50% line, so the question cannot be answered from the stage; (3) 15-of-21 and all the probabilities are told; (4) "hash table", "key", "HashMap" never grounded.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows numbered slots and multiplying decimals; my boundary does not know hash tables, which the question assumes. The objective (collision more likely than not by the 5th key because chances multiply) is told in the reveal; the stage shows early collisions and a histogram but no running probability and no 50% line. The misconception (10 slots hold about 10 keys) is hit well by the prediction.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

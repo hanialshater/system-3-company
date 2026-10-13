@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: coin-greedy-trap
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: for 6, yes. For 8, 10 and the real-coin claim, no.
 - Problems: (1) the prediction is solvable by arithmetic and does not test greedy; (2) hook flags the trap; (3) targets 8 and 10 show nothing until the learner presses two more buttons; (4) the everyday-coins claim is told only.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows making change and adding; matches. The objective is that greedy fails at 6 with coins 1, 3, 4 and works for 8; the stage shows 6 well. But the misconception (grabbing the best-looking option always wins) is not actually tested by the prediction, because 3 + 3 is obvious arithmetic, and the hook 'Usually' flags the trap. The 8 and 10 cases in the reveal need two extra button presses the default path did not make.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: call-stack-depth
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the count of 4 yes; the stack-overflow warning no (it is an aside).
 - Problems: (1) "function" and "factorial" never explained to a non-programmer, though the stage carries me through; (2) hook plus "(waiting or running)" gives away the idea; (3) stack overflow told not shown; (4) reveal text clipped in the screenshot.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows calling a function and factorial; my boundary does not, yet the stage carried me through. The objective (4 calls open, base case lets answers return) is shown start to finish by the stage. The misconception (a call replaces the earlier one) is hit. Remaining issues are the hook plus '(waiting or running)' leaking, and the stack-overflow aside being told only.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: launch

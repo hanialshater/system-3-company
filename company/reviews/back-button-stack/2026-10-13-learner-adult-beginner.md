@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: back-button-stack
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: partly. The "thrown away" idea was earned by the stage; the exact answer B was not demonstrated.
 - Problems: (1) the reveal can be unlocked without seeing the final Back; (2) the reveal's state (C and D discarded) differs from what the stage showed along the transcript path; (3) "Forward" unexplained and not on the stage; (4) the hook hints the obvious answer is wrong; (5) queue paragraph is unearned filler.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner already knows Back and a pile; that matches my boundary. The objective (Back lands on B after A,B,C,D, Back x2, E) is exactly the walkthrough question, but the stage path I could take never displays the final Back, so the objective is stated by the reveal rather than shown. The misconception (Back retraces the order seen) is hit by option C and the hook. Brief says it does not expect 'stack and queue by name', yet the reveal spends a paragraph on queue, which the objective does not need.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

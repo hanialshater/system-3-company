@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: lopsided-tree
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: yes for the main point (order decides depth).
 - Problems: (1) hook leaks that order matters; (2) "binary search tree" and "self-balancing" jargon; (3) the left-smaller rule is not stated before the first tap; (4) the closing "into a list" line is undefined.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows binary search and comparing numbers; my boundary lacks binary search, but the captions ('2 goes right of 1') teach the insert rule as I tap. The objective (sorted input gives 7 levels, 4 2 6 1 3 5 7 gives 3) is exactly what the stage shows. The misconception (a binary search tree is always shallow) is hit by option 3 and the hook, which also leaks that order matters.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: launch

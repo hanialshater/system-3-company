@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: hanoi-tower-doubles
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the structure for 3 disks yes; the doubling to 63 only if the learner chooses to press Add a disk.
 - Problems: (1) the doubling control is optional, so the key numbers may never be seen; (2) "+3" shortcut cost is asserted; (3) hook hints "worse"; (4) 2^n and 18 quintillion told.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows the disk rule and doubling; matches. The objective (n disks = n-1 aside, the biggest, n-1 back, so 7, 15, 31, 63) is shown for 3 disks with the shortcut; the 'Add a disk' control that shows 15, 31, 63 is optional and unused on my path. The misconception (a few more moves per disk) is hit by the option 12 and the hook ('something worse').
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

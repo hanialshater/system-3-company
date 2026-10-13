@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: huffman-by-merging
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: no, in the transcript path: the stage showed the failure, the reveal asserted the fix.
 - Problems: (1) hook and question jargon; (2) the 14-bit tree is not on any stage the default tap path reaches; (3) the reveal's code list belongs to the 16-bit tree and contradicts its own 14; (4) optimality asserted.
 - No FATAL, but the reveal's code list is misleading.
+
+## 2. After reading the brief
+
+- The brief's learner knows bits and 2-bit codes; my boundary does not, but the larger issue is on the page. The objective is that 14 bits beats 16 by joining the rarest first. The reveal states 'total is 14' and in the next paragraph lists 'A 00, B 01, C 11, D 10' as the codes, which are the four 2-bit codes costing 16. Per the lesson's own trust sheet the 14-bit lengths are A 1, B 2, C 3, D 3, so the listed codes contradict the headline and a learner will leave believing the 14-bit code is the 2-bit code. On my default path the stage never shows the 14-bit tree either. FATAL here means the reveal as shown teaches a false pairing; the fix is small.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: fatal

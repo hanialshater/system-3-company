@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: bisect-the-bad-commit
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the halving idea yes; the "at most 10" ceiling only by assertion.
 - Problems: (1) hook leaks the answer; (2) the auto-run skips the steps the reveal quotes; (3) 736 and powers of two unshown/unexplained; (4) worst case vs single run.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows binary search; my boundary does not, but the stage stands alone well for the first halving. The objective (999 to 1 in at most 10 tests, 2^10 = 1,024) is delivered by the reveal's arithmetic; the stage shows only the first halving and an auto-run. The misconception (test one by one) is hit by the hook, which also leaks the answer.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

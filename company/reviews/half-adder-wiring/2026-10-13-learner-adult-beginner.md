@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: half-adder-wiring
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: partly. The idea "the right gates make the arithmetic" is earned by the 4 of 4 moment; why those gates, and the binary link, are not.
 - Problems: (1) binary, carry, gate vocabulary never taught before the question; (2) the stage does not state what correct addition is, so the score is opaque; (3) the reveal can be reached after Reset, and then its "your working circuit" does not match the stage; (4) OR never defined; (5) chaining is told only.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows binary and 1 + 1 = 10 and has not met AND/OR/XOR; my boundary lacks the binary, so the question 'what are the outputs (carry, sum)' was opaque. The objective (build a half adder, sum = XOR, carry = AND) is reachable through the gate-swap puzzle, but the stage never states the target arithmetic, and the transcript path reaches the reveal after Reset, so the stage no longer shows the circuit the reveal speaks of. Misconception (a machine must know arithmetic) is hit by the hook, which leaks the answer.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: pivot-lands-home
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: yes for the headline; the quicksort and worst-case material is bonus, not earned.
 - Problems: (1) solvable by counting, so weak prediction; (2) the colour meaning of "home" after the second step is unclear; (3) the n^2/2 sorted-input claim is told only; (4) "counting from 0".
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows sorted order and splitting problems in halves; my boundary does not, but the question explains partition inline and the stage places each card. The objective (5 lands at position 3 and never moves; two independent piles) is shown by the stage's 'It is home' caption. The misconception (everything must be compared before anything is final) is hit by the hook, though the prediction can be solved by counting smaller cards. Second-pass 'home' colouring is unclear.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: launch

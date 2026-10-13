@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: pennies-dont-add-up
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: partly. "No set of switches makes exactly 0.1" is demonstrated well enough. "So the sum is over" is only asserted, though the box shows it.
 - Problems: (1) hook leaks that the computer says no; (2) switches' purpose and binary not set up; (3) default tap path moves away from 0.1; (4) why "high" is asserted; (5) reveal's "closest try 0.5" mismatches stage; (6) reveal clipped.
 - No FATAL; the displayed numbers are true.
+
+## 2. After reading the brief
+
+- The brief's learner knows binary place value with 1, 2, 4, 8 switches, fractions like 1/2 and 1/4, and 1/3 = 0.333...; my boundary does not, which is why the switches were unexplained. The objective (0.1 has no exact binary form, so the nearest fraction is stored and the sum comes out a bit above 0.3) is shown only by a pre-computed text box, not by the switches. Misconception (decimal arithmetic is exact) is hit by the hook, which gives away that the computer says no.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

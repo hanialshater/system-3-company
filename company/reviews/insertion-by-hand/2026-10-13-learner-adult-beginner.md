@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: insertion-by-hand
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: for 10 vs 0 yes; for pairs and 4,950 no.
 - Problems: (1) hook gives away 10; (2) the pair-counting insight is only told; (3) the two middle hands need not be run, so "1" is unshown; (4) 100-card figure told.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows ordering and sorting cards informally; matches. The objective (each slide fixes one out-of-order pair, reversed 5 gives 10 slides, sorted gives 0) is shown for 10 and 0, but not the pair-counting link. The misconception (sorting always costs the same) is hit by the 10 vs 0 comparison. The hook 'one hand take 10 slides and another none' states the answer to the prediction.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

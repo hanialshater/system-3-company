@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: big-number-swallows-one
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: the fact yes; the reason no.
 - Problems: (1) "JavaScript", "double", "53 bits", "MAX_SAFE_INTEGER", "BigInt" undefined; (2) hook assumes knowledge of decimal rounding; (3) 2^53 label unexplained; (4) the "jump by 2" half of the rule never shown; (5) disputed claim sentence sits in the reveal.
 - No FATAL; the displayed behaviour is true.
+
+## 2. After reading the brief
+
+- The brief assumes pennies-dont-add-up and powers of 2; I had neither, so JavaScript/double/53 bits blocked the explanation, not the experiment. The stage delivers the 'adding 1 does nothing' half of the objective but not the 'every second number exists' framing beyond the hollow dots. Separately the trust sheet I could see lists claim c3 as DISPUTED (wording overreach: 'beyond it only every second whole number exists'), and that sentence is in the reveal as learners read it.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

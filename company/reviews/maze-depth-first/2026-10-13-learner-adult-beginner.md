@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: maze-depth-first
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: yes for the 3-place map; the bigger-maze claim is not earned unless the learner runs it.
 - Problems: (1) "depth-first" and "stack" jargon; (2) the bigger maze, which carries the main generalisation, is optional and un-run; (3) "dead end" and "breadth-first" unshown; (4) the 3-place map is so small that "deeper first" looks like a detour caused by the alphabet rule rather than a general behaviour.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows maps and backing up from dead ends, and does not know depth-first search or its stack. The objective (trace DFS to S, A, G; not necessarily shortest) is delivered on the 3-place map. The bigger maze, which carries the generalisation and the dead-end idea, is not run on my path, so it is told. Misconception (the first path found is the shortest) is hit by the hook and option S, G.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: fib-call-explosion
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult who uses a phone and a laptop daily and has never programmed (no idea what a variable, array, function or "algorithm" is; comfortable with everyday apps and basic arithmetic).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult who uses a phone and a laptop daily and has never programmed 
 - Reveal earned: yes for the 15 and the repeats; the fib(30) explosion is an assertion. The reveal text is also clipped at the card's bottom in the screenshot.
 - Problems: (1) "Tap calls to open them" vs a single button that opens all; (2) nodes show bare numbers; (3) the question's definition is hard to read; (4) hook leaks that the answer is not 5; (5) fib(30) told only.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows following the recursive rule and adding but not call trees; my boundary lacks the rule, so the question reads as maths notation. The objective (15 calls, repeated fib(3) and fib(2), remembering answers cuts the work) is delivered by 'Open every call' and 'Remember answers'. The panel's 'tap calls to open them' does not match the stage, where one button opens everything, and nodes show bare numbers. fib(30) is told.
+- Claims: not assessed here (fact-checker's job); my notes about claims are limited to wording a learner reads.
+
+Verdict: revise
