@@ -4,6 +4,7 @@
 // in worktrees share them. A lock is created with O_EXCL: if two agents race, exactly one wins.
 //
 //   node /home/user/system-3-company/tools/claim.mjs next <domain> --agent="<label>"   → prints a slug, or NONE
+//        add --from-end to take briefs from the end of the list
 //   node …/claim.mjs release <slug> [--done]   done = built and merged; otherwise the brief goes back
 //   node …/claim.mjs list
 //   node …/claim.mjs seed-worktrees   lessons in progress in agent worktrees count as claimed
@@ -53,7 +54,9 @@ function tryLock(slug, agent) {
 if (cmd === "next") {
   if (!arg) throw new Error("usage: claim.mjs next <domain> --agent=<label>");
   const skip = skipped();
-  const slug = briefSlugs(arg).find((s) => !built(s) && !skip.has(s) && tryLock(s, String(opt.agent ?? "unknown")));
+  const list = briefSlugs(arg);
+  if (opt["from-end"]) list.reverse(); // take from the end while an older builder works forward without the queue
+  const slug = list.find((s) => !built(s) && !skip.has(s) && tryLock(s, String(opt.agent ?? "unknown")));
   console.log(slug ?? "NONE");
 } else if (cmd === "release") {
   const prev = read(arg);
