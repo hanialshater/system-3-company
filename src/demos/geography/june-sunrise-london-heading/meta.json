@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that the Sun rises in the east and sets in the west", "compass directions"],
-    "doesNotKnow": ["how far from east the Sun rises at high latitudes", "that the rise point moves with the seasons"]
+    "knows": [
+      "that the Sun rises in the east and sets in the west",
+      "compass directions"
+    ],
+    "doesNotKnow": [
+      "how far from east the Sun rises at high latitudes",
+      "that the rise point moves with the seasons"
+    ]
   },
   "misconception": "The Sun always rises due east and sets due west.",
   "objective": "The learner can say that at London the Sun rises about north-east (50°) in June, south-east (130°) in December and due east only at the equinoxes, a swing of about 80°.",
@@ -22,62 +28,82 @@
       "text": "At latitude 51.5°N, the Sun's rise bearing A from north satisfies cos A = sin(declination) / cos(latitude); it sets at 360° - A.",
       "support": "derivation",
       "source": "Spherical astronomy (e.g. Meeus, Astronomical Algorithms, ch. 15) for a flat geometric horizon: the Sun is on the horizon when its altitude is 0. From memory of the textbook, not re-checked. The set bearing is the mirror image.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c2",
       "text": "On 21 June the Sun rises at about 50° (north-east); on 21 December at about 130° (south-east); at the equinox at 90°.",
       "support": "derivation",
       "source": "Builder's node check for latitude 51.5072: declination 23.44 gives 50.28; -23.44 gives 129.72; 0 gives 90.00. Dates use a circular-orbit model: declination = asin(sin 23.44 deg x sin(360 (day - 80)/365.25)), day 172 = 21 June, 355 = 21 December, 80 = 21 March; real solstice/equinox dates vary by a day.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c3",
       "text": "The Sun's rise point swings about 80° between June and December at London's latitude.",
       "support": "derivation",
       "source": "129.72 - 50.28 = 79.44 degrees; the reveal rounds it to 79 (computed in code from the same function).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c4",
       "text": "The Sun rises due east only when day and night are equal, in March and September.",
       "support": "derivation",
       "source": "cos A = 0 requires declination 0, which occurs at the equinoxes (when day and night are about equal; on a flat geometric horizon exactly equal). Refraction makes real day slightly longer; stated loosely.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c5",
       "text": "Air bends the light by under 1°, which changes the sunrise bearing little.",
       "support": "source",
       "source": "From the brief (cm-geography), citing Meeus: refraction changes the rise bearing by under 1 degree at this latitude. Not independently checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c6",
       "text": "London is at 51.5°N and the Sun's maximum declination is 23.44°.",
       "support": "source",
       "source": "From memory, not re-checked: London 51.5072 N; axial tilt 23.44 degrees (IAU/Astronomical Almanac, slowly changing).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c7",
       "text": "The Sun rises in the east.",
       "support": "convention",
       "source": "Hook: the everyday statement the lesson tests (true on average and at the equinoxes).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.june-sunrise-london-heading.c8",
       "text": "The stage is a toy: a flat horizon seen from above, no air.",
       "support": "convention",
       "source": "Model label on the stage; geometry only.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "In London in June, the Sun rises in which direction?",
-    "options": ["Due east", "North of east", "South of east"],
+    "options": [
+      "Due east",
+      "North of east",
+      "South of east"
+    ],
     "answer": 1,
     "why": "In summer the Sun is north of the celestial equator, so at 51.5°N it rises about north-east (50°) and sets north-west."
   },

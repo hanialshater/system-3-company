@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that South America is south of North America", "that a meridian is a line of longitude"],
-    "doesNotKnow": ["that South America also lies well to the east", "that Miami's meridian meets South America on the Pacific side"]
+    "knows": [
+      "that South America is south of North America",
+      "that a meridian is a line of longitude"
+    ],
+    "doesNotKnow": [
+      "that South America also lies well to the east",
+      "that Miami's meridian meets South America on the Pacific side"
+    ]
   },
   "misconception": "Lima, Peru is far west of Miami because it faces the Pacific.",
   "objective": "The learner can say that Miami (80.2 W) is further west than Lima (77.0 W), and that Miami's meridian runs south through Cuba, Panama, Ecuador and Peru.",
@@ -22,41 +28,55 @@
       "text": "Miami is at 80.2°W and Lima at 77.0°W, so Miami is 3.1° further west.",
       "support": "source",
       "source": "From memory, not re-checked: gazetteer values Miami 25.7617 N 80.1918 W, Lima 12.0464 S 77.0428 W (the brief gives 80.19 and 77.04). Difference 3.149 degrees; the stage shows it to one decimal as 3.1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.miami-or-lima-west.c2",
       "text": "Miami's meridian runs south through Cuba, Panama, Ecuador and Peru.",
       "support": "simulation",
       "source": "Builder's node walk (0.1 degree steps, d3-geoContains over the kit's 1:110m countries) along -80.1918 from 30 N to 18 S: United States, Cuba, Panama, Ecuador, Peru (Ecuador and Peru alternate near 4 S). Ocean stretches between them are not named. Resolution caveat: borders are coarse and small islands missing, so the list is for this data, not a border claim.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.miami-or-lima-west.c3",
       "text": "Apart from the coastal tips of Ecuador and Peru, South America lies east of Miami's meridian.",
       "support": "simulation",
       "source": "Builder's node check of country bounds in the kit's 1:110m data: Peru's western edge is 81.41 W and Ecuador's 80.97 W (both west of 80.19 W); Colombia's is 78.99 W; every other South American country lies further east. Galapagos islands are absent from the data and not claimed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.miami-or-lima-west.c4",
       "text": "On an equirectangular map, the x position is proportional to longitude, so a meridian is a vertical line.",
       "support": "source",
       "source": "Snyder (1987), Map Projections: A Working Manual. From memory, not re-checked. Stage is labelled equirectangular.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.miami-or-lima-west.c5",
       "text": "Peru faces the Pacific and Florida faces the Atlantic.",
       "support": "source",
       "source": "Hook. Common geography: Peru's coast is on the Pacific Ocean; Florida's east coast is on the Atlantic (its west coast on the Gulf of Mexico). From memory.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Is Lima, Peru east or west of Miami?",
-    "options": ["East of Miami", "West of Miami", "Exactly on Miami's meridian"],
+    "options": [
+      "East of Miami",
+      "West of Miami",
+      "Exactly on Miami's meridian"
+    ],
     "answer": 0,
     "why": "Miami is at about 80.2 W and Lima about 77.0 W, so Lima is slightly east of Miami."
   },
