@@ -3,12 +3,16 @@
 // Geography exemplar. The learner slides Greenland toward the equator along its own meridian
 // (a rigid rotation on the sphere, so its true size never changes) and watches the Mercator
 // map shrink it. The projection does the distorting, not the land.
+// v3: the reveal is gated on two states (Greenland has been slid, and its true size has been
+// seen: near the equator on Mercator, or on the equal-area map); the equator is drawn; the
+// readout at the start uses the unmoved shape, the same one the question's number comes from.
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
 import {
-    WorldMap,
+  WorldMap,
   country,
   geoCentroid,
   geoEqualEarth,
@@ -19,6 +23,18 @@ import {
 
 const W = 320;
 const H = 236;
+const MILESTONES = ["slid", "true-size"] as const;
+const NEAR_EQUATOR = 10; // degrees: on Mercator, within this of the equator drawn sizes are near true
+const EQUATOR = {
+  type: "LineString" as const,
+  coordinates: [
+    [-180, 0],
+    [-90, 0],
+    [0, 0],
+    [90, 0],
+    [180, 0],
+  ],
+};
 
 function makeProjection(kind: "mercator" | "equal") {
   if (kind === "mercator") {
@@ -36,7 +52,9 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
   const congo = country("Dem. Rep. Congo")!;
   const startLat = Math.round(geoCentroid(greenland)[1]);
   const lat = startLat - south;
-  const moved = useMemo(() => moveToLatitude(greenland, lat), [greenland, lat]);
+  const moved = useMemo(() => (south === 0 ? greenland : moveToLatitude(greenland, lat)), [greenland, lat, south]);
+  const interactRef = useRef<() => void>(() => {});
+  const { reach } = useMilestones(() => interactRef.current(), MILESTONES);
   const projection = useMemo(() => makeProjection(kind), [kind]);
   const path = useMemo(() => geoPath(projection), [projection]);
 
@@ -56,7 +74,7 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Slide Greenland south toward the equator, then try the other map."
-      minInteractions={2}
+      minInteractions={MILESTONES.length}
       reveal={({ correct }) => (
         <>
           <p>
@@ -72,7 +90,9 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        interactRef.current = interact;
+        return (
         <div>
           <WorldMap
             projection={projection}
@@ -81,8 +101,17 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
             highlight={["Dem. Rep. Congo"]}
             label={`World map, ${kind === "mercator" ? "Mercator" : "Equal Earth"} projection. Greenland moved ${south}° south, drawn ${mapRatio.toFixed(1)} times the size of DR Congo.`}
           >
-            {({ path: p }) => (
+            {({ path: p, projection: proj }) => (
               <>
+                <path d={p(EQUATOR)} fill="none" stroke="var(--fg)" strokeWidth={0.8} opacity={0.6} />
+                {(() => {
+                  const at = proj([-178, 0]);
+                  return at ? (
+                    <text x={at[0] + 2} y={at[1] - 3} fontSize={9} fill="var(--fg)" opacity={0.8}>
+                      equator
+                    </text>
+                  ) : null;
+                })()}
                 {south > 0 && (
                   <path d={p(greenland)} fill="none" stroke="var(--fg)" strokeDasharray="2 2" strokeWidth={0.8} />
                 )}
@@ -98,10 +127,11 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
               min={0}
               max={startLat}
               disabled={locked}
-              format={(v) => (v === startLat ? "to the equator" : `${v}°`)}
+              format={(v) => (v === startLat ? "to the equator" : `${v}° (now ${startLat - v}°N)`)}
               onChange={(v) => {
                 setSouth(v);
-                interact();
+                if (v > 0) reach("slid");
+                if (kind === "equal" || startLat - v <= NEAR_EQUATOR) reach("true-size");
               }}
             />
           </Row>
@@ -111,16 +141,18 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
               disabled={locked}
               className={kind === "equal" ? "active" : ""}
               onClick={() => {
-                setKind(kind === "mercator" ? "equal" : "mercator");
-                interact();
+                const next = kind === "mercator" ? "equal" : "mercator";
+                setKind(next);
+                if (next === "equal" || lat <= NEAR_EQUATOR) reach("true-size");
               }}
             >
               {kind === "mercator" ? "Show Equal Earth map" : "Show Mercator map"}
             </Control>
           </Row>
-          {!locked && south > 0 && <p className="muted tiny">Dashed outline: where Greenland really is.</p>}
+          {!locked && south > 0 && <p className="muted tiny">Same land, same true size. Dashed outline: where Greenland really is.</p>}
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

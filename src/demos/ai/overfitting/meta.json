@@ -72,9 +72,9 @@
     },
     {
       "id": "ai.overfitting.c6",
-      "text": "Each reading is the day's smooth warming plus random jitter.",
+      "text": "Each simulated reading is a smooth rise and fall over the day plus random jitter; the dashed curve drawn after the reveal is that smooth curve.",
       "support": "derivation",
-      "source": "Demo.tsx truth(t): 8 + 20·(0.15 + 2.8·t(1−t)) °C is 11 °C at 6am, 25 °C at noon, 11 °C at 6pm, so it warms then cools; a hump, not only warming. Added by fact-checker from the reveal; needs independent check.",
+      "source": "Demo.tsx truth(t): 8 + 20·(0.15 + 2.8·t(1−t)) °C is 11 °C at 6am, 25 °C at noon, 11 °C at 6pm (a hump), plus 20 × 0.09 °C Gaussian noise. v2 replaced 'the day's smooth warming' (fact-check fix 1) and draws toC(truth(t)) dashed in the reveal phase. Needs independent check.",
       "status": "unverified"
     },
     {
@@ -93,9 +93,16 @@
     },
     {
       "id": "ai.overfitting.c9",
-      "text": "The stage labels the readings, the 8 solid dots and the 5 new dots as 'Temperature readings' with no on-stage mention that they are simulated.",
+      "text": "The stage says the dots are simulated ('simulated data' in the legend; the reveal opens its second paragraph with 'These dots are simulated').",
       "support": "convention",
-      "source": "Demo.tsx aria-label 'Temperature readings and a fitted curve'; the 'simulated' statement exists only in claim ai.overfitting.c1 on the trust sheet. Recorded by fact-checker; needs independent check.",
+      "source": "v2 Demo.tsx legend text and aria-label 'Simulated temperature readings and a fitted curve'; the generator is claim c1. Answers fact-check fix 2. Needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.overfitting.c10",
+      "text": "On these dots 6 bends even lost to the straight line, but that depends on the random draw: with other random dots from the same generator it does not always lose to the line, though it usually loses to a gentle curve (1 to 3 bends).",
+      "support": "simulation",
+      "source": "Same generator and fit as Demo.tsx over seeds 1-500: 6 bends missed the held-back dots by more than the straight line in 190/500 (38%) and by more than the best of 1-3 bends in 455/500 (91%). Fact-check 2026-10-12 found the same counts; builder re-ran it for v2 (scratch script, not committed). Seed 5 is the lesson's draw. Added v2 (fact-check fix 4, learner-of-record risk that 'worse than a line' reads as a rule).",
       "status": "unverified"
     }
   ],
@@ -120,5 +127,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

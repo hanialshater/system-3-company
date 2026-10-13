@@ -46,7 +46,7 @@
       "id": "geography.mercator-greenland.c3",
       "text": "On the Mercator map in this lesson, Greenland at its real position is drawn about 15 times the area of DR Congo.",
       "support": "simulation",
-      "source": "v2: map extent now reaches about 85°N, so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 (artifacts/scratch/mg2.mjs). The question text is computed from the same map, so they cannot disagree.",
+      "source": "v2: map extent reaches about 85.6°N (bottom 61.6°S), so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 at the real position. v3 re-measured by the builder (scratch script): 15.39, rounded to 15 in the question; the stage readout at the start now uses the same unmoved shape (15.4×) instead of the shape rotated to exactly 73°N (15.0×). The question text is computed from the same map, so they cannot disagree. Needs the fact-checker's re-check.",
       "status": "unverified"
     },
     {
@@ -126,14 +126,12 @@
     "why": "Mercator stretches area by about 1/cos²(latitude), so the farther from the equator, the bigger it looks."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/mercator-greenland/2026-10-12-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [
       "company/reviews/mercator-greenland/2026-10-12-learner-adult-beginner.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2
+  "version": 3
 }

@@ -76,3 +76,13 @@
 .sd > :global(.slider) {
   flex: none;
 }
+
+.capLabel {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* v2: when the reveal panel takes room, scroll the controls instead of cutting them off. */
+.sd {
+  overflow-y: auto;
+}

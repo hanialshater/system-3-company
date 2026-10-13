@@ -50,3 +50,23 @@
   gap: 8px;
   margin-left: auto;
 }
+
+.rule {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+.runs {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* v2: when the reveal panel takes room, scroll the controls instead of cutting them off. */
+.gd {
+  overflow-y: auto;
+}

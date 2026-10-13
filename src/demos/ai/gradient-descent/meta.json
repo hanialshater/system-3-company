@@ -47,10 +47,8 @@
       "id": "ai.gradient-descent.c3",
       "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball is within 0.04 of the bottom after two steps.",
       "support": "derivation",
-      "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.395 for η = 0.05 and η = 0.95; 0.1^2 · 4 = 0.04 for η = 0.45.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.3947 for η = 0.05 and η = 0.95 (the stage shows 1.39); 0.1^2 · 4 = 0.04 for η = 0.45. v2: source number now printed to 4 places so it matches the stage's 1.39.",
+      "status": "unverified"
     },
     {
       "id": "ai.gradient-descent.c4",
@@ -65,10 +63,8 @@
       "id": "ai.gradient-descent.c5",
       "text": "Training real neural networks faces the same trade-off: too small a learning rate makes training slow, too large makes it oscillate or diverge, so the learning rate is often the most important setting to tune.",
       "support": "source",
-      "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §8.3.1 and §11.4.1 (\"If you have time to tune only one hyperparameter, tune the learning rate\").",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "source": "Goodfellow, Bengio & Courville, Deep Learning (2016), §8.3.1 and §11.4.1 (learning rate as the most important hyperparameter); Bengio (2012), Practical recommendations for gradient-based training of deep architectures. v2: the verbatim quote was dropped because nobody had read it against the book (fact-check fix 3).",
+      "status": "unverified"
     },
     {
       "id": "ai.gradient-descent.c6",
@@ -88,16 +84,23 @@
     },
     {
       "id": "ai.gradient-descent.c8",
-      "text": "On this valley the ball gets to the bottom fastest when 1 − 2 × step size is near zero (step size near 0.5, which lands on the bottom in one hop).",
+      "text": "On this valley the ball gets to the bottom fastest where 1 − 2 × step size is zero: a step size of 0.5, which lands on the bottom in one hop.",
       "support": "derivation",
-      "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. Added by fact-checker from the reveal sentence 'fast is where that number is near zero'; needs independent check.",
+      "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. v2 reveal: 'Fastest is where it is zero: a step size of 0.5.' Needs independent check.",
       "status": "unverified"
     },
     {
       "id": "ai.gradient-descent.c9",
-      "text": "With step size 0.2 the stage says 'Close to the bottom in a few hops' after the first hop, when the ball is still 2.40 from the bottom.",
+      "text": "The stage's running message describes the hop just taken, not a future: 'Heading down; each hop is shorter than the last' for step sizes between 0.2 and 0.5 until the ball is within 0.05 of the bottom, then 'Now within 0.05 of the bottom.'",
       "support": "simulation",
-      "source": "Demo.tsx message(): factor 0.6 falls through to the 'Close to the bottom in a few hops.' branch; 4 × 0.6^n gives 2.40, 1.44, 0.86, 0.52, 0.31 after 1–5 hops. Recorded by fact-checker as a learner-visible statement whose truth depends on how many hops 'a few' is; needs independent check.",
+      "source": "v2 Demo.tsx message(): factor 1 − 2η in (0, 0.6] gives hops that shrink by that factor each time (4 × 0.6^n at η = 0.2: 2.40, 1.44, 0.86 ...), so each hop is shorter than the last; the 'within 0.05' branch tests the displayed distance. Replaces the v1 'Close to the bottom in a few hops' message that was false at hop 1 (fact-check fix 1). Needs independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-descent.c10",
+      "text": "On this valley the slope under the ball is 2 × its position, so the next hop is step size × slope (from the start at 4 with step size 0.05: 0.05 × 8 = 0.40); the distance is multiplied by 0.9 at step size 0.05, −0.9 at 0.95 and 0.1 at 0.45.",
+      "support": "derivation",
+      "source": "f(x) = x², f′(x) = 2x; hop length η·|2x|; 1 − 2(0.05) = 0.9, 1 − 2(0.95) = −0.9, 1 − 2(0.45) = 0.1. Added v2 for the stage line 'Next hop = step × slope = …' and the reveal's three factors.",
       "status": "unverified"
     }
   ],
@@ -122,5 +125,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
