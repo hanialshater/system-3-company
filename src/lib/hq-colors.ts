@@ -1,0 +1,30 @@
+// Role colours for HQ, shared by the server page and the client floor plan (no node imports here).
+const DOMAIN_COLOR: Record<string, string> = {
+  math: "#7c9cff",
+  cs: "#4fd1a5",
+  probability: "#f6c453",
+  physics: "#ff8a65",
+  ai: "#c792ea",
+  economics: "#80cbc4",
+  life: "#a5d66f",
+  chemistry: "#f48fb1",
+  geography: "#64b5f6",
+};
+
+export const TEAM_COLOR: Record<string, string> = {
+  "demo-builder": "#7c9cff",
+  "fact-checker": "#f6c453",
+  "learner-evaluator": "#4fd1a5",
+  "pedagogy-critic": "#4fd1a5",
+  "qa-tester": "#ff8a65",
+  "principal-engineer": "#c792ea",
+  "platform-engineer": "#c792ea",
+  "chief-of-staff": "#eef1f7",
+  founder: "#ffd54f",
+};
+
+export function teamColor(role: string): string {
+  if (TEAM_COLOR[role]) return TEAM_COLOR[role];
+  return DOMAIN_COLOR[role.replace(/^cm-/, "")] ?? "#9aa3b5";
+}
+

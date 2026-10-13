@@ -1,0 +1,211 @@
+.hq {
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  padding: 0 16px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+.spacer {
+  flex: 1;
+}
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.slider {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+  height: 28px;
+}
+.btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.on {
+  background: var(--good);
+  color: #0d0f14;
+  border-color: var(--good);
+}
+.strip {
+  width: 100%;
+  height: 28px;
+  margin: 6px 0 12px;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--line) 40%, transparent);
+  border-radius: 6px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.planWrap {
+  overflow-x: auto;
+  min-width: 0;
+}
+.plan {
+  width: 100%;
+  min-width: 760px;
+  height: auto;
+  display: block;
+}
+.building {
+  fill: color-mix(in srgb, var(--line) 35%, var(--bg));
+  stroke: var(--line);
+}
+.room {
+  cursor: pointer;
+}
+.roomRect {
+  fill: var(--bg);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.floor {
+  fill: color-mix(in srgb, #7c9cff 7%, var(--bg));
+}
+.meeting {
+  fill: color-mix(in srgb, #c792ea 7%, var(--bg));
+}
+.lobby {
+  fill: color-mix(in srgb, #ffd54f 9%, var(--bg));
+}
+.selected {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+.roomName {
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--fg);
+}
+.count {
+  font-size: 11px;
+  fill: var(--muted);
+}
+.dotLabel {
+  font-size: 8.5px;
+  fill: var(--muted);
+  pointer-events: none;
+}
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  max-height: 78vh;
+  overflow-y: auto;
+}
+.panel h2,
+.feedWrap h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+.queue h3 {
+  font-size: 14px;
+  margin: 8px 0 4px;
+  color: var(--warn);
+}
+.queue ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+  font-size: 14px;
+}
+.thread {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.event {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.eventHead {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+}
+.type {
+  color: #0d0f14;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.roomLink {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+}
+.summary {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 14px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+.summary:disabled {
+  cursor: default;
+  opacity: 1;
+}
+.more {
+  color: var(--accent);
+}
+.body {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 12.5px;
+  line-height: 1.45;
+  background: color-mix(in srgb, var(--line) 30%, transparent);
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  margin: 4px 0;
+}
+.refs {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: ui-monospace, monospace;
+  word-break: break-all;
+}
+.feedWrap {
+  margin-top: 20px;
+}

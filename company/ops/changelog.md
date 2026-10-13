@@ -21,3 +21,10 @@
 - 2026-10-13: reveal phase no longer squeezes the stage; the card body scrolls (tier 1, shared CSS).
 - 2026-10-13: kit adds <Milestones> component (no inner Stage boilerplate needed); useMilestones always calls the latest interact.
 - 2026-10-13: metrics count only learner verdicts on the current lesson version (revised lessons show 'needs re-review').
+
+## 2026-10-13: HQ and the event log (company tools)
+- `company/ops/events.jsonl` is an append-only event log (schema in `company/ops/events.md`). `tools/events.mjs` adds events and backfills them from git history and session transcripts: dispatches, reports, stop notices and founder messages. `tools/snapshot.sh` backfills before every commit.
+- `/hq` shows the company as a floor plan (Sococo-style rooms with the agents working in them), plus a replay slider, a timeline strip and per-room threads. Clicking an event loads its brief or report. Any moment can be linked: `/hq?t=2026-10-13T06:20Z&room=build-floor`.
+  - The Lobby shows rituals due and the board items waiting on the founder.
+  - HQ is off in production unless `HQ_PUBLIC=1`, because it shows internal prompts. It goes behind the login once the backend lands.
+- Event-driven rituals: `company/rituals/triggers.json` and `node tools/rituals-due.mjs`. The calendar table in the gate CLI stays as the upper bound until an amendment replaces it.
