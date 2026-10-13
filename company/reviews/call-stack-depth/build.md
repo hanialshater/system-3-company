@@ -1,0 +1,7 @@
+# Build note: call-stack-depth (demo-builder, 2026-10-13)
+
+- Design intent: factorial(3) as a stack of boxes growing upward (factorial(0) at the top). Each open box shows its own n and what it waits for; the running box is highlighted. The running box carries its button: "Call factorial(n−1)" going down, then "Return v" coming back (the box shows "n × v = result"). Readouts: calls open, most at once; at the end the answer and "Start again".
+- Mechanics: all seven buttons exist from the start in the order they are used (call 2, call 1, call 0, return 0, 1, 2, 3), placed into their box's grid row; the ones that do not apply yet are hidden. "Start again" comes first in the DOM and is hidden until done, so the QA path ends on the finished stack.
+- Key state: the base case open with 4 boxes, then one return. Milestones ["base-case", "first-return"], minInteractions 2. QA path: the full trace, so returns 1, 1, 2, 6 are all seen.
+- Numbers: option 4 is MAX_DEPTH = TOP + 1; reveal quotes the learner's max depth and the returns they saw. Brief answer (C, 4) re-computed in Node with a depth counter; stack overflow without a base case checked (RangeError).
+- After screenshots: v1 stacked downward with factorial(3) on top, against the hook's "wait on top of it"; flipped so new calls sit on top, and returned boxes now say which call returned. The locked screenshot showed three dashed empty boxes above factorial(3), which counts out the answer (4) before the prediction; empty slots are now borderless.
