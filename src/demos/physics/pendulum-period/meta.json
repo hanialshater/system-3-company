@@ -99,6 +99,20 @@
       "support": "derivation",
       "source": "Recall question. Treat the swing as a pendulum: the period depends on length, not mass (c1). Idealisation: rider and seat are not a point mass, so a real adult sitting differently shifts the effective length; 'the same way' is the stated condition.",
       "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c10",
+      "text": "The lesson's pendulum is ideal (point weight, light string, no air), so mass cancels in its equation itself; real bobs of different mass differ slightly through air drag.",
+      "support": "derivation",
+      "source": "Demo.tsx integrates theta'' = -(g/L) sin(theta), which has no mass term (c1). Drag force depends on size and speed, not mass, so its effect on motion scales as 1/m: a lighter bob of the same size loses amplitude sooner. Reveal paragraph 3 and stage label (v2), added after fact-check 2026-10-12 fix 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pendulum-period.c11",
+      "text": "A bob k times heavier is pulled k times harder by gravity and is k times harder to speed up.",
+      "support": "derivation",
+      "source": "Weight m g and inertia m both scale linearly with m (generalises c7). Stage caption in v2: '<mass>: pulled k× harder, k× harder to speed up. Still in step.' with k = mass / 100 g.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -110,7 +124,7 @@
       "About 1.5 seconds"
     ],
     "answer": 0,
-    "why": "The period depends on the length of the chain, not the weight: extra weight pulls harder but is equally harder to move."
+    "why": "Treat swing and rider as a pendulum: the time depends on the length of the chain, not the weight. Extra weight pulls harder but is equally harder to move."
   },
   "evidence": {
     "qa": [
@@ -122,5 +136,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

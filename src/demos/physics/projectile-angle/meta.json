@@ -72,12 +72,10 @@
     },
     {
       "id": "physics.projectile-angle.c6",
-      "text": "With real air drag the two complementary throws no longer land together; the steep, long-flight throw loses more distance.",
+      "text": "With real air drag the two complementary throws no longer land together; the steep, long-flight throw loses more metres, so the flatter throw lands farther.",
       "support": "source",
-      "source": "Drag acts throughout the flight, so the longer flight loses more range, and the optimum angle drops below 45 deg. Taylor, Classical Mechanics (2005), sec. 2.4-2.5 (projectile with linear and quadratic air resistance).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "source": "Drag acts throughout the flight, so the longer flight loses more range, and the optimum angle drops below 45 deg. Fact-check 2026-10-12 numeric integration (linear and quadratic drag, pairs 20/70, 30/60, 40/50): the flatter throw lands farther in all 21 cases. Background: Taylor, Classical Mechanics (2005), ch. 2 (projectiles with linear and quadratic air resistance); section pin removed in v2 because 'sec. 2.4-2.5' looked mis-pinned.",
+      "status": "unverified"
     },
     {
       "id": "physics.projectile-angle.c7",
@@ -99,11 +97,18 @@
       "support": "derivation",
       "source": "Recall question. 25 + 65 = 90, so c2 applies: sin(50 deg) = sin(130 deg).",
       "status": "unverified"
+    },
+    {
+      "id": "physics.projectile-angle.c10",
+      "text": "Ignoring air resistance, a ball thrown at 20 m/s and 25 degrees from the ground lands about 31.2 m away.",
+      "support": "derivation",
+      "source": "c1: 400 sin(50 deg) / 9.81 = 31.23 m. Recall question (v2), matched to the lesson's 20 m/s after fact-check 2026-10-12 fix 4.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Ignoring air resistance, a ball thrown at 25 degrees lands 30 m away. At the same speed, which other angle lands at the same spot?",
+    "question": "Ignoring air resistance, a ball thrown at 20 m/s and 25 degrees lands 31.2 m away. At the same speed, which other angle lands at the same spot?",
     "options": [
       "65 degrees",
       "50 degrees",
@@ -122,5 +127,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
