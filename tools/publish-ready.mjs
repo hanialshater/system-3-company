@@ -43,9 +43,18 @@ for (const dom of fs.readdirSync(rel("src/demos"))) {
     const why = (r) => ((held[r] ??= []).push(slug), null);
     if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
     if (!reviews.length) { why("no learner review"); continue; }
-    const t = fs.readFileSync(path.join(rd, reviews.at(-1)), "utf8");
+    // The latest review is the one for the highest lesson version, then the latest date. Filename order
+    // is not enough: "…-beginner-v2.md" sorts before "…-beginner.md".
+    const latest = reviews
+      .map((f) => {
+        const t = fs.readFileSync(path.join(rd, f), "utf8");
+        return { f, t, v: Number(t.match(/lesson version:\s*v(\d+)/i)?.[1] ?? 0), d: f.slice(0, 10) };
+      })
+      .sort((a, b) => a.v - b.v || a.d.localeCompare(b.d))
+      .at(-1);
+    const t = latest.t;
     const verdict = t.match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase();
-    const v = Number(t.match(/lesson version:\s*v(\d+)/i)?.[1] ?? 0);
+    const v = latest.v;
     if (verdict !== "launch") { why(`verdict ${verdict ?? "missing"}`); continue; }
     if (v !== (meta.version ?? 1)) { why("verdict is for an older version"); continue; }
     ready.push(slug);

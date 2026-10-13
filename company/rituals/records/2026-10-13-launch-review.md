@@ -79,3 +79,11 @@ call-stack-depth, lopsided-tree, pivot-lands-home, quadratic-wall, runs-that-gro
 Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
 
 **Correction to batch 6 (same evening):** eratosthenes-shadow is unpublished. The geography reviewer reported afterwards that 21 of its first image reads failed, so 17 verdicts, including this launch, were written from transcripts without seeing the screenshots. A launch needs the artifact itself. eratosthenes-shadow and the other 7 launch verdicts from that group are held in `publish-holds.json` until a reviewer looks at the screenshots. china-one-clock and coastline-ruler stay published, because their screenshots were re-read.
+
+## Seventh batch (night): 8 lessons after re-review
+
+Two runs of the publish loop. The first published overfitting, half-life, supply-demand and base-rates; the second published summit-kettle, lru-eviction-order, drunk-walk-distance and friends-have-more-friends. Each has a launch verdict on its **current revised version**: new review files `…-beginner-v<N>.md`, screenshots seen. base-rates and half-life were fatal at v1.
+- friends-have-more-friends: the W-060 hold is lifted. v2 narrows c3 to connected networks, and the claim was re-verified in pass 5.
+- **Tool bug found and fixed:** publish-ready picked the "latest" review by filename, and `…-beginner-v2.md` sorts before `…-beginner.md`. So on the first run four same-day revised lessons (summit-kettle, the-tagged-molecule, lru-eviction-order, friends-have-more-friends) were judged on their old review. The bug was conservative: all four were held as stale, and nothing was published wrongly. It now picks the review for the highest lesson version.
+
+Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
