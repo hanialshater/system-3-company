@@ -1,0 +1,73 @@
+{
+  "slug": "king-queen-arrow",
+  "title": "King, plus the man-to-woman arrow",
+  "hook": "Can you do arithmetic with words? On the right map, king - man + woman lands somewhere.",
+  "domain": "ai",
+  "concept": "embeddings",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a point on a map can stand for something",
+      "adding and subtracting coordinates"
+    ],
+    "doesNotKnow": [
+      "that models represent words as points (embeddings)",
+      "that directions in an embedding can carry relations"
+    ]
+  },
+  "misconception": "The computer stores each word's dictionary meaning, and similarity is looked up.",
+  "objective": "The learner can explain that in a good embedding a relation (man to woman) is a direction, so an analogy can be answered by adding that direction to another word's position and finding the nearest word.",
+  "claims": [
+    {
+      "id": "ai.king-queen-arrow.c1",
+      "text": "The toy map's positions were placed by hand: man (0,0), woman (0,1), king (1,0), queen (1,1), crown (1,0.4), prince (1,-0.5).",
+      "support": "convention",
+      "source": "The lesson's own data in Demo.tsx (WORDS); the brief's coordinates, designed so the arithmetic is exact.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.king-queen-arrow.c2",
+      "text": "On the toy map, king + (woman - man) = (1, 1), exactly queen; crown is 0.6 away and prince 1.5 away. Woman + (king - man) also lands on queen.",
+      "support": "derivation",
+      "source": "(1,0) + ((0,1) - (0,0)) = (1,1); |(1,1) - (1,0.4)| = 0.6; |(1,1) - (1,-0.5)| = 1.5; (0,1) + (1,0) = (1,1). Reproduced by add/sub/dist/nearest in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.king-queen-arrow.c3",
+      "text": "In real learned word vectors, such analogies hold only roughly.",
+      "support": "source",
+      "source": "About real systems, from papers: Mikolov, Yih & Zweig 2013, 'Linguistic regularities in continuous space word representations' (NAACL-HLT), analogy accuracy well below 100%; Rogers, Drozd & Li 2017, 'The (too many) problems of analogical reasoning with word vectors' (*SEM), on the limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.king-queen-arrow.c4",
+      "text": "Models represent words as points, and the nearest word to a computed point is the analogy's answer; nothing is looked up from a dictionary.",
+      "support": "source",
+      "source": "Mikolov et al. 2013 (as c3): answers are found as the word whose vector is closest (cosine) to vec(king) - vec(man) + vec(woman), excluding the input words. The toy uses straight-line distance instead of cosine, a simplification.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a word map, the arrow from 'Paris' to 'France' is a direction. Add the same arrow to 'Rome'. Where should you look for the answer?",
+    "options": [
+      "Near 'Italy'",
+      "Near 'Paris'",
+      "Anywhere: the arrow has no meaning away from Paris"
+    ],
+    "answer": 0,
+    "why": "If a relation (capital to country) is a consistent direction in the map, carrying the arrow to another capital lands near its country. Real maps make this only roughly true."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "draw-the-xor-lines",
+  "title": "One line can't. Two can.",
+  "hook": "Four dots, two colours. Why can't one straight cut ever separate them?",
+  "domain": "ai",
+  "concept": "hidden-layers-xor",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a straight line can separate two groups of points",
+      "that a simple classifier labels points by which side of a line they are on"
+    ],
+    "doesNotKnow": [
+      "that some patterns cannot be cut by any one line",
+      "why networks need hidden layers"
+    ]
+  },
+  "misconception": "Any pattern can be cut by one good line; a bigger model is only more of the same.",
+  "objective": "The learner can explain why no single line separates the XOR pattern, and that combining two line cuts (what a hidden layer of two units does) makes a shape one cut cannot.",
+  "claims": [
+    {
+      "id": "ai.draw-the-xor-lines.c1",
+      "text": "No single straight line puts (0,0) and (1,1) on one side and (0,1) and (1,0) on the other: both pairs have the same midpoint (0.5, 0.5), and a side that contains two points contains their midpoint.",
+      "support": "derivation",
+      "source": "Half-planes are convex, so a half-plane holding both blues holds (0.5, 0.5), and so does the half-plane holding both oranges; the two sides of a line cannot share a point. Toy check: the best of all 24 lines in the toy is 3 of 4 (bestOneLine in Demo.tsx), and 20,000 random lines also never exceed 3 (node script).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.draw-the-xor-lines.c2",
+      "text": "With two lines, labelling a point orange when it is on the 'on' side of exactly one line gets all four dots right, for example two parallel diagonal lines with the oranges in the band between them.",
+      "support": "derivation",
+      "source": "Output = OR minus AND of the two cuts. With both lines at 45° and offsets +0.35 and -0.35 from the centre: (0,0) is on neither, (1,1) on both, (0,1) and (1,0) on exactly one. Checked on all four points by score() in Demo.tsx; 54 of the toy's 576 two-line settings solve it.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.draw-the-xor-lines.c3",
+      "text": "A single perceptron (one line) cannot learn XOR; a hidden layer with two units can.",
+      "support": "source",
+      "source": "Minsky & Papert 1969, Perceptrons (MIT Press); Goodfellow, Bengio & Courville 2016, Deep Learning, §6.1 (learning XOR with one hidden layer of two units).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.draw-the-xor-lines.c4",
+      "text": "In the toy each line turns in 45° steps and slides through three positions; the shading shows what the model says at every point.",
+      "support": "convention",
+      "source": "The lesson's own controls in Demo.tsx (OFFSETS, Line.turn); the shading is predict() evaluated on a 20 × 20 grid.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A classifier that draws one straight line keeps failing on a pattern where opposite corners share a label. What would fix it?",
+    "options": [
+      "Combining two or more line cuts, as a hidden layer does",
+      "Training the single line for longer",
+      "Moving the line closer to the centre"
+    ],
+    "answer": 0,
+    "why": "No single line can separate opposite-corner (XOR-like) patterns, however long you train. Combining several cuts, which is what a hidden layer does, can carve out the band or region the pattern needs."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

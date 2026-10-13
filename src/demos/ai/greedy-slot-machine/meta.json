@@ -1,0 +1,80 @@
+{
+  "slug": "greedy-slot-machine",
+  "title": "Always pick the best-looking machine?",
+  "hook": "Always choosing what looks best sounds smart. Can it lock you into the worse machine?",
+  "domain": "ai",
+  "concept": "exploration-exploitation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "expected value: 70% of 100 pulls is about 70 wins",
+      "that a learner estimates which choice is best from its own results"
+    ],
+    "doesNotKnow": [
+      "that a learner who only repeats what looks best can lock itself into a worse choice",
+      "that a little deliberate random exploration prevents it"
+    ]
+  },
+  "misconception": "Always choosing the best-looking option is the best strategy.",
+  "objective": "The learner can explain that a purely greedy learner can be fooled by an unlucky early result and never revisit the better option, while exploring a small fraction of the time costs a little and protects against that.",
+  "claims": [
+    {
+      "id": "ai.greedy-slot-machine.c1",
+      "text": "In the toy, machine A pays on 30% of pulls and B on 70%; both players pull A once and B once, then greedy always picks the machine with the better win rate so far (ties to A), and the explorer does the same except on 10% of pulls, when it picks a machine at random.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (PAY, play). Payout rates are invented for the toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-slot-machine.c2",
+      "text": "Once the explorer has found B it wins about 68 per 100 pulls: 90 pulls on B at 70% (63 wins) plus 10 random pulls at an average 50% (5 wins).",
+      "support": "derivation",
+      "source": "0.9 × 70 + 0.1 × (70 + 30) / 2 = 68. Toy check: over seeds 1-2000 the explorer's pulls 401-500 averaged 67.95 wins and 95.0 pulls on B (node script reproducing play() from Demo.tsx; also computed live in the reveal).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-slot-machine.c3",
+      "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls.",
+      "support": "simulation",
+      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-slot-machine.c4",
+      "text": "Across 2,000 toy runs greedy was stuck on A in about 30% of them, and its last 100 pulls averaged about 58 wins against the explorer's 68. Exploring costs about 2 wins per 100 when greedy is lucky and saves about 40 when it is not.",
+      "support": "simulation",
+      "source": "Seeds 1-2000 of play() (node script and live in the reveal): greedy stuck 30.2% (601 of 604 stuck runs began with B's first pull losing), greedy last-100 mean 57.7, explorer 67.95. 'About 2' = 70 - 68 when greedy has found B; 'about 40' = 68 - 30 when stuck (rounded).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-slot-machine.c5",
+      "text": "Picking a random option a small fraction of the time and the best-looking one otherwise is the ε-greedy method of reinforcement learning.",
+      "support": "source",
+      "source": "Sutton & Barto 2018, Reinforcement Learning: An Introduction, 2nd ed., §2.2-2.3 (ε-greedy action selection; greedy methods can get stuck on suboptimal actions).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A music app only ever recommends the genre you have liked most so far. After one bad jazz track early on, it never plays jazz again. What would help it find what you like?",
+    "options": [
+      "Occasionally recommending something it is less sure about",
+      "Recommending its current favourite even more often",
+      "Waiting longer before recommending anything"
+    ],
+    "answer": 0,
+    "why": "A purely greedy learner trusts early, noisy results and never revisits what looked bad. A little deliberate exploration costs a few plays and lets it discover a better option."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

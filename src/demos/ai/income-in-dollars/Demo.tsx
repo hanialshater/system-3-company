@@ -1,0 +1,165 @@
+"use client";
+
+// Feature scaling. Query: 30 years, $50,000. A: 31, $58,000. B: 60, $51,000. Distance is
+// sqrt(age gap^2 + income gap^2) with income in the chosen unit. In dollars B is nearer
+// (1,000.4 vs 8,000.0); in $100s still B (31.6 vs 80.0); in $1,000s A is nearer (8.06 vs 30.0).
+// The plot uses the same scale on both axes, so the drawn circle is the true distance.
+
+import { useRef, useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Readout, Row } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
+import s from "./styles.module.css";
+
+// MODEL START
+type Person = { id: string; age: number; income: number };
+const QUERY: Person = { id: "you", age: 30, income: 50000 };
+const PEOPLE: Person[] = [
+  { id: "A", age: 31, income: 58000 },
+  { id: "B", age: 60, income: 51000 },
+  { id: "", age: 25, income: 72000 },
+  { id: "", age: 45, income: 64000 },
+  { id: "", age: 52, income: 38000 },
+  { id: "", age: 22, income: 30000 },
+  { id: "", age: 38, income: 85000 },
+  { id: "", age: 66, income: 77000 },
+  { id: "", age: 41, income: 44000 },
+  { id: "", age: 19, income: 59000 },
+  { id: "", age: 57, income: 26000 },
+  { id: "", age: 35, income: 41000 },
+];
+const UNITS = [1, 100, 1000] as const;
+
+const dist = (p: Person, unit: number) => Math.hypot(p.age - QUERY.age, (p.income - QUERY.income) / unit);
+function nearest(unit: number) {
+  let best = PEOPLE[0];
+  for (const p of PEOPLE) if (dist(p, unit) < dist(best, unit)) best = p;
+  return best;
+}
+// MODEL END
+
+const unitName = (u: number) => (u === 1 ? "$1" : `$${u.toLocaleString("en-US")}`);
+const unitsLabel = (u: number) => (u === 1 ? "dollars" : `${unitName(u)}s`);
+const fmt = (d: number) => (d >= 100 ? d.toFixed(0) : d.toFixed(1));
+
+// Plot box (viewBox 320 x 236): x 34..306, y 22..206, equal scale on both axes.
+const BX0 = 34;
+const BX1 = 306;
+const BY0 = 22;
+const BY1 = 206;
+
+function layout(unit: number) {
+  const all = [QUERY, ...PEOPLE];
+  const xs = all.map((p) => p.age);
+  const ys = all.map((p) => p.income / unit);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const k = Math.min((BX1 - BX0) / (maxX - minX), (BY1 - BY0) / (maxY - minY));
+  const cx = (BX0 + BX1) / 2 - ((minX + maxX) / 2) * k;
+  const cy = (BY0 + BY1) / 2 + ((minY + maxY) / 2) * k;
+  return { k, X: (p: Person) => cx + p.age * k, Y: (p: Person) => cy - (p.income / unit) * k };
+}
+
+export default function IncomeInDollars({ slug }: { slug: string }) {
+  const [unit, setUnit] = useState<number>(1);
+  const interactRef = useRef<() => void>(() => {});
+  const { reach } = useMilestones(() => interactRef.current(), ["thousands"]);
+  const { k, X, Y } = layout(unit);
+  const near = nearest(unit);
+  const [A, B] = PEOPLE;
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question:
+          "Find the person most like a 30-year-old earning $50,000. A is 31 and earns $58,000. B is 60 and earns $51,000. Straight-line distance, with income in dollars, picks:",
+        options: ["A", "B", "A tie"],
+        answer: 1,
+      }}
+      exploreHint="Change the unit income is measured in. Watch who counts as nearest."
+      minInteractions={1}
+      reveal={() => (
+        <>
+          <p>
+            In dollars, B is {fmt(dist(B, 1))} away and A is {fmt(dist(A, 1))}: <strong>B wins</strong>, though B is 30 years
+            older. A one-year gap counts the same as a one-dollar gap, so age barely registers: on the plot everyone squeezed into
+            one vertical line.
+          </p>
+          <p>
+            Measure income in $1,000s and A is {fmt(dist(A, 1000))} away, B {fmt(dist(B, 1000))}: <strong>A wins</strong>. Nothing
+            about the people changed, only the units. Distance obeys the size of the numbers, not their importance, so features
+            are put on comparable scales before asking who is near.
+          </p>
+        </>
+      )}
+    >
+      {({ locked, interact }) => {
+        interactRef.current = interact;
+        const r = dist(near, unit) * k;
+        return (
+          <div className={s.wrap}>
+            <svg viewBox="0 0 320 236" className="stage-svg" role="img" aria-label={`Income in ${unitName(unit)} units`}>
+              <defs>
+                <clipPath id="iid-clip">
+                  <rect x={0} y={16} width={320} height={200} />
+                </clipPath>
+              </defs>
+              <text x={160} y={12} textAnchor="middle" className={s.small} fill="var(--muted)">
+                Same scale both ways: 1 year = {unitName(unit)}
+              </text>
+              {!locked && (
+                <g clipPath="url(#iid-clip)">
+                  <circle cx={X(QUERY)} cy={Y(QUERY)} r={r} fill="var(--domain)" opacity={0.1} stroke="var(--domain)" strokeDasharray="4 3" />
+                  <line x1={X(QUERY)} y1={Y(QUERY)} x2={X(near)} y2={Y(near)} stroke="var(--domain)" strokeWidth={2.5} />
+                </g>
+              )}
+              {PEOPLE.map((p, i) => (
+                <circle key={i} cx={X(p)} cy={Y(p)} r={p.id ? 6 : 4} fill={p.id ? "var(--fg)" : "var(--muted)"} opacity={p.id ? 1 : 0.7} />
+              ))}
+              {[A, B].map((p) => (
+                <text key={p.id} x={X(p) + 9} y={Y(p) + 4} className={s.label} fill="var(--fg)">
+                  {p.id}
+                </text>
+              ))}
+              <rect x={X(QUERY) - 6} y={Y(QUERY) - 6} width={12} height={12} fill="var(--domain)" transform={`rotate(45 ${X(QUERY)} ${Y(QUERY)})`} />
+              <text x={X(QUERY) - 10} y={Y(QUERY) + 4} textAnchor="end" className={s.label} fill="var(--domain)">
+                you
+              </text>
+              <text x={BX1} y={230} textAnchor="end" className={s.tiny} fill="var(--muted)">
+                age →
+              </text>
+              <text x={6} y={230} className={s.tiny} fill="var(--muted)">
+                ↑ income ({unitsLabel(unit)})
+              </text>
+            </svg>
+            <Row>
+              <span className={s.small}>Income in:</span>
+              {UNITS.map((u) => (
+                <Control
+                  key={u}
+                  className={unit === u ? "active" : ""}
+                  aria-pressed={unit === u}
+                  disabled={locked || unit === u}
+                  onClick={() => {
+                    setUnit(u);
+                    if (u === 1000) reach("thousands");
+                  }}
+                >
+                  {unitsLabel(u)}
+                </Control>
+              ))}
+            </Row>
+            <Row>
+              <Readout label="Nearest" value={locked ? "–" : near.id} />
+              <Readout label="A away" value={locked ? "–" : fmt(dist(A, unit))} />
+              <Readout label="B away" value={locked ? "–" : fmt(dist(B, unit))} />
+            </Row>
+          </div>
+        );
+      }}
+    </Lesson>
+  );
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "border-follows-point",
+  "title": "Move a point, move the border",
+  "hook": "Nobody draws a nearest-neighbour border. So where does it come from?",
+  "domain": "ai",
+  "concept": "decision-boundary",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that nearest-neighbour labels a new point by its closest training example",
+      "midpoints and distances on a plane"
+    ],
+    "doesNotKnow": [
+      "that a decision boundary is built from the training points",
+      "where a nearest-neighbour border lies between two points"
+    ]
+  },
+  "misconception": "Moving one training point changes only that point's label, not the boundary.",
+  "objective": "The learner can explain that a one-nearest-neighbour border lies where two opposing points are equally far away (halfway between them, at right angles to the line joining them), so moving a training point moves the decision for the whole region around it.",
+  "claims": [
+    {
+      "id": "ai.border-follows-point.c1",
+      "text": "With A at x = 0 and B at x = 4 the one-nearest-neighbour border is at x = 2; with A at x = -2 it is at x = 1, halfway between. A moved 2 and the border moved 1.",
+      "support": "derivation",
+      "source": "On the axis the border is the midpoint: (0 + 4)/2 = 2, (-2 + 4)/2 = 1. Reproduced by axisCrossing() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.border-follows-point.c2",
+      "text": "In two dimensions the border between two points is the line through their midpoint at right angles to the line joining them, so lifting A off the axis tilts it.",
+      "support": "derivation",
+      "source": "|q - A|² = |q - B|²  ⟺  2(B - A)·q = |B|² - |A|², a line perpendicular to B - A through (A + B)/2. Implemented by sideOfA() in Demo.tsx; the axis crossing is (16 - ax² - ay²) / (2(4 - ax)).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.border-follows-point.c3",
+      "text": "With many points, a nearest-neighbour border is stitched from such pieces.",
+      "support": "source",
+      "source": "1-NN decision regions are unions of Voronoi cells, whose edges lie on perpendicular bisectors: de Berg, Cheong, van Kreveld & Overmars 2008, Computational Geometry, 3rd ed., ch. 7; Hastie, Tibshirani & Friedman 2009, §13.3.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.border-follows-point.c4",
+      "text": "The toy has one training point per class: A (blue, movable) and B (orange, fixed at (4, 0)).",
+      "support": "convention",
+      "source": "The lesson's own setup in Demo.tsx (B, sliders for A from x = -4 to 0 and y = -2 to 2).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A nearest-neighbour model separates 'spam' from 'not spam'. One spam training example near the border is deleted. What happens?",
+    "options": [
+      "The border shifts, and some nearby new emails change label",
+      "Only that one example's label changes",
+      "Nothing, the border was fixed when the model was built"
+    ],
+    "answer": 0,
+    "why": "A nearest-neighbour border is wherever opposing training points are equally far away. Remove or move a point near it and the border moves, changing the label of every new email in the region it sweeps."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

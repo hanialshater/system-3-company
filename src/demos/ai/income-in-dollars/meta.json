@@ -1,0 +1,73 @@
+{
+  "slug": "income-in-dollars",
+  "title": "Nearest, measured in dollars",
+  "hook": "Who is most like you: a 31-year-old or a 60-year-old? Depends on your units.",
+  "domain": "ai",
+  "concept": "feature-scaling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that nearest-neighbour methods find the most similar example by distance",
+      "straight-line distance between two points"
+    ],
+    "doesNotKnow": [
+      "that the units of each feature decide which feature dominates distance",
+      "that features are rescaled before distance-based methods"
+    ]
+  },
+  "misconception": "'Nearest' means nearest in every way that matters, regardless of how each feature is measured.",
+  "objective": "The learner can explain that straight-line distance is dominated by whichever feature has the biggest numbers, so changing units can change who is nearest, and that features are scaled to comparable ranges first.",
+  "claims": [
+    {
+      "id": "ai.income-in-dollars.c1",
+      "text": "The toy has 12 invented people plus 'you' (30 years, $50,000); A is 31 and earns $58,000, B is 60 and earns $51,000. Distance is √(age gap² + income gap²), with income in the chosen unit.",
+      "support": "convention",
+      "source": "The lesson's own data and distance in Demo.tsx (QUERY, PEOPLE, dist). The ten unlabelled people were placed by hand so that only A or B is ever nearest.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.income-in-dollars.c2",
+      "text": "With income in dollars, B is 1,000.4 away and A is 8,000.0 away, so B is nearest. In $100s B is still nearest (31.6 vs 80.0).",
+      "support": "derivation",
+      "source": "√(30² + 1000²) = 1000.45; √(1² + 8000²) = 8000.00; √(30² + 10²) = 31.62; √(1² + 80²) = 80.01. Reproduced by dist() and nearest() from Demo.tsx in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.income-in-dollars.c3",
+      "text": "With income in $1,000s, A is 8.1 away and B is 30.0 away, so A is nearest.",
+      "support": "derivation",
+      "source": "√(1² + 8²) = 8.06; √(30² + 1²) = 30.02. Reproduced by dist() and nearest() from Demo.tsx in node; the next nearest person is 10.3 away.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.income-in-dollars.c4",
+      "text": "Features are put on comparable scales before distance-based methods such as nearest neighbours.",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §13.3 (features standardised before nearest-neighbour classification); scikit-learn user guide, 'Preprocessing data' (standardisation).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A house-price model finds similar houses by distance on floor area (in square feet, 500 to 5,000) and number of bedrooms (1 to 6), unscaled. Which feature mostly decides 'similar'?",
+    "options": [
+      "Floor area, because its numbers are far bigger",
+      "Bedrooms, because they matter more to buyers",
+      "Both equally"
+    ],
+    "answer": 0,
+    "why": "Unscaled distance is dominated by the feature with the largest numeric spread. A gap of a few hundred square feet swamps a gap of several bedrooms unless the features are rescaled."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
