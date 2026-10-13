@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; }
+.circle { fill: none; stroke: var(--muted); stroke-width: 2; }
+.diam { stroke: var(--fg); stroke-width: 2.5; }
+.tri { fill: color-mix(in srgb, var(--domain) 18%, transparent); stroke: var(--domain); stroke-width: 2.5; stroke-linejoin: round; }
+.radius { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 5 3; }
+.mark { fill: none; stroke: var(--good); stroke-width: 2.5; }
+.dot { fill: var(--fg); }
+.p { fill: var(--domain); stroke: var(--bg); stroke-width: 2; }
+.lbl { fill: var(--fg); font-size: 13px; font-weight: 800; text-anchor: middle; }
+.x { fill: var(--good); font-size: 13px; font-weight: 800; font-style: italic; text-anchor: middle; dominant-baseline: central; }
+.y { fill: var(--warn); font-size: 13px; font-weight: 800; font-style: italic; text-anchor: middle; dominant-baseline: central; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
