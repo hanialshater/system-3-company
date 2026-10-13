@@ -28,10 +28,12 @@ const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith(
 const lockPath = (slug) => path.join(DIR, `${slug}.json`);
 const read = (slug) => { try { return JSON.parse(fs.readFileSync(lockPath(slug), "utf8")); } catch { return null; } };
 
+// The domain's own list first, then each sub-area strand's list (company/domains/briefs/<domain>.<strand>.md).
 function briefSlugs(domain) {
-  const f = path.join(ROOT, "company/domains/briefs", `${domain}.md`);
-  if (!fs.existsSync(f)) throw new Error(`no briefs for ${domain}`);
-  return [...fs.readFileSync(f, "utf8").matchAll(/^#{2,3}\s+\d+\.\s+([a-z0-9-]+)\s/gm)].map((m) => m[1]);
+  const dir = path.join(ROOT, "company/domains/briefs");
+  const files = [`${domain}.md`, ...fs.readdirSync(dir).filter((f) => f.startsWith(`${domain}.`) && f !== `${domain}.md`).sort()];
+  if (!fs.existsSync(path.join(dir, files[0]))) throw new Error(`no briefs for ${domain}`);
+  return files.flatMap((f) => [...fs.readFileSync(path.join(dir, f), "utf8").matchAll(/^#{2,3}\s+\d+\.\s+([a-z0-9-]+)\s/gm)].map((m) => m[1]));
 }
 const built = (slug) => fs.readdirSync(path.join(ROOT, "src/demos")).some((d) => fs.existsSync(path.join(ROOT, "src/demos", d, slug, "meta.json")));
 // Briefs known to be wrong (company/ops/brief-skips.json, each with a reason and board id) are never handed out.

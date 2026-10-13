@@ -1,11 +1,13 @@
 // Who is who in HQ: names, avatar seeds, home rooms and live presence, all derived from the event log.
 import type { HqEvent } from "@/lib/hq";
 import { MANY, nameFor, seedOf } from "../../../tools/org/people.mjs";
+import { SUBAREAS } from "../../../tools/org/roles.mjs";
 
 /** Where a single-agent role sits when it is not working elsewhere. */
 export const HOME: Record<string, string> = {
   "chief-of-staff": "chief-of-staff",
-  "head-of-product": "chief-of-staff",
+  "head-of-product": "product",
+  "principal-pm-verticals": "strategy",
   "learning-designer": "studio",
   "mockup-artist": "studio",
   researcher: "studio",
@@ -29,6 +31,8 @@ export const HOME: Record<string, string> = {
   "localization-lead": "international",
 };
 for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography"]) HOME[`cm-${d}`] = `cm-${d}`;
+// Sub-area managers sit in their category's office on floor 3.
+for (const [d, subs] of Object.entries(SUBAREAS)) for (const [sub] of subs) HOME[`cm-${d}-${sub}`] = `cm-${d}`;
 
 export interface Person {
   key: string;

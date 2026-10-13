@@ -1,4 +1,4 @@
-# Category Manager — Computer Science
+# Category Manager (category lead) — Computer Science
 
 name: Lin
 team: categories

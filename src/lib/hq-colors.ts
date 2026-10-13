@@ -28,10 +28,12 @@ export const TEAM_COLOR: Record<string, string> = {
   "localization-lead": "#4fd1a5",
   localizer: "#4fd1a5",
   "cultural-reviewer": "#4fd1a5",
+  "principal-pm-verticals": "#7c9cff",
+  "head-of-product": "#7c9cff",
 };
 
 export function teamColor(role: string): string {
   if (TEAM_COLOR[role]) return TEAM_COLOR[role];
-  return DOMAIN_COLOR[role.replace(/^cm-/, "")] ?? "#9aa3b5";
+  return DOMAIN_COLOR[role.replace(/^cm-/, "").split("-")[0]] ?? DOMAIN_COLOR[role.replace(/^cm-/, "")] ?? "#9aa3b5";
 }
 

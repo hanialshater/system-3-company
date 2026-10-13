@@ -1,4 +1,4 @@
-# Category Manager — Geography & Maps
+# Category Manager (category lead) — Geography & Maps
 
 name: Ana
 team: categories

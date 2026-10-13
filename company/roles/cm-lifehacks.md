@@ -1,4 +1,4 @@
-# Category Manager — Life Hacks
+# Category Manager (category lead) — Life Hacks
 
 name: Tess
 team: categories

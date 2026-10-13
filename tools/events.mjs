@@ -59,10 +59,11 @@ const ROOM_BY_ROLE = {
   localizer: "locale-desks",
   "cultural-reviewer": "culture-review",
   "pattern-librarian": "meeting-crit",
-  "head-of-product": "chief-of-staff",
+  "head-of-product": "product",
+  "principal-pm-verticals": "strategy",
   "chief-of-staff": "chief-of-staff",
 };
-const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role : "chief-of-staff");
+const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
 
 // ------------------------------------------------------------------ git history
 

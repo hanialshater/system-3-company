@@ -44,6 +44,7 @@ export const PERSONA = {
   "localization-lead": "Yuki",
   "localizer": "Localizers",
   "cultural-reviewer": "Amira",
+  "principal-pm-verticals": "Selin",
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.
@@ -56,6 +57,15 @@ export const POOL = [
   "Odin", "Pia", "Quinn", "Remy", "Suri", "Tariq", "Uma", "Vik", "Wren", "Yara",
 ];
 
+import { SUBAREAS } from "./roles.mjs";
+const STRAND_IDS = Object.entries(SUBAREAS).flatMap(([d, subs]) => subs.map(([id]) => `cm-${d}-${id}`));
+
+export const STRAND = [
+  "Aria", "Bastian", "Chiara", "Dev", "Elena", "Farid", "Gaia", "Hugo", "Isla", "Jonas",
+  "Kemi", "Lars", "Mira", "Nikhil", "Olga", "Pedro", "Rhea", "Soren", "Talia", "Umar",
+  "Vera", "Wei", "Ximena", "Yusra", "Zane", "Anouk", "Bodhi", "Cyrus", "Dalia", "Emil",
+];
+
 function h(s) {
   let x = 2166136261;
   for (let i = 0; i < s.length; i++) x = Math.imul(x ^ s.charCodeAt(i), 16777619);
@@ -65,6 +75,9 @@ function h(s) {
 /** The display name for a role, or for one dispatched agent of that role. */
 export function nameFor(role, label) {
   if (label && MANY.has(role)) return POOL[h(label) % POOL.length];
+  // Sub-area category managers (cm-<domain>-<strand>) get a unique name, by their order in SUBAREAS.
+  const i = STRAND_IDS.indexOf(role);
+  if (!PERSONA[role] && i >= 0) return STRAND[i % STRAND.length];
   return PERSONA[role] ?? (label ? POOL[h(label) % POOL.length] : role);
 }
 

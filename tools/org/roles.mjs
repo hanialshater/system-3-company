@@ -607,7 +607,7 @@ export const roles = [
 
 const cm = (id, domain, name, focus, checkable) => ({
   id,
-  title: `Category Manager — ${name}`,
+  title: `Category Manager (category lead) — ${name}`,
   team: "categories",
   reportsTo: "head-of-product",
   model: "inherit",
@@ -766,5 +766,75 @@ roles.push(
     tools: RECORDS,
   },
 );
+
+// ------------------------------------------------------------------ sub-area category managers (2026-10-13, founder request)
+// Each domain grows into sub-areas, each with its own curriculum strand and briefs, owned by a sub-area
+// category manager who reports to the domain's category manager (now the category lead). The list is the
+// single source: tools/org/generate.mjs copies it into content/domains.json.
+export const SUBAREAS = {
+  math: [["algebra", "Number & Algebra"], ["geometry", "Geometry & Measurement"], ["discrete", "Discrete Maths & Logic"]],
+  cs: [["algorithms", "Algorithms & Data Structures"], ["systems", "Computer Systems & Networks"], ["security", "Data, Security & Cryptography"]],
+  probability: [["chance", "Chance & Randomness"], ["statistics", "Statistics & Inference"], ["data-literacy", "Data Literacy & Graphs"]],
+  physics: [["mechanics", "Mechanics & Motion"], ["waves", "Waves, Sound & Light"], ["electricity", "Electricity, Magnetism & Energy"]],
+  ai: [["ml-basics", "Machine Learning Basics"], ["neural-language", "Neural Networks & Language Models"], ["ai-society", "AI Safety & Society"]],
+  economics: [["personal-finance", "Personal Finance"], ["markets", "Markets & Microeconomics"], ["macro", "Macroeconomics & Growth"]],
+  life: [["genetics-evolution", "Genetics & Evolution"], ["health-epidemiology", "Health & Epidemiology"], ["ecology-body", "Ecology & the Human Body"]],
+  chemistry: [["matter-reactions", "Matter & Reactions"], ["solutions-acids", "Solutions, Acids & Bases"], ["energy-rates", "Energy, Rates & Equilibrium"]],
+  geography: [["maps-projections", "Maps & Projections"], ["earth-climate", "Earth, Sky & Climate"], ["people-places", "People & Places"]],
+};
+const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps" };
+
+for (const [domain, subs] of Object.entries(SUBAREAS))
+  for (const [sub, name] of subs)
+    roles.push({
+      id: `cm-${domain}-${sub}`,
+      title: `Sub-area Category Manager — ${DOMAIN_NAMES[domain]}: ${name}`,
+      team: "categories",
+      reportsTo: `cm-${domain}`,
+      model: "sonnet",
+      domain,
+      subarea: sub,
+      description: `Owns the ${name} strand of ${DOMAIN_NAMES[domain]}: its concepts in the curriculum map, its ranked briefs and its coverage. Use when growing ${name} lessons or writing briefs for it.`,
+      mission: `Turn ${name} into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.`,
+      inScope: [
+        `Concepts tagged subarea "${sub}" in content/curriculum/${domain}.json (add, order, set prerequisites and demand)`,
+        `company/domains/briefs/${domain}.${sub}.md: ranked briefs for this strand (claim.mjs hands them out with the domain's)`,
+        "Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)",
+        "Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson",
+      ],
+      outOfScope: ["Other strands' concepts", "Building or verifying lessons", "Changing the domain charter (category lead)"],
+      authority: { may: ["Add concepts and briefs in the strand"], mayNot: ["Publish", "Reorder other strands"] },
+      inputs: [`company/domains/${domain}.md (the charter)`, "Reviews of the strand's lessons", "Coverage and overlap reports"],
+      outputs: ["Curriculum updates for the strand", "Ranked, answer-checked briefs"],
+      rituals: ["cycle-planning (brings 1–3 briefs)", "portfolio review with the category lead"],
+      failureModes: ["Briefs whose answer is wrong.", "A strand that re-teaches another strand's concept under a new name."],
+      dayOne: [`Read company/domains/${domain}.md`, `Read content/curriculum/${domain}.json and tag the concepts that belong to ${name}`, `Read company/domains/briefs/${domain}.md`],
+      tools: RECORDS,
+    });
+
+roles.push({
+  id: "principal-pm-verticals",
+  title: "Principal Product Manager — Strategic Verticals",
+  team: "product",
+  reportsTo: "head-of-product",
+  model: "inherit",
+  description:
+    "Owns strategy across categories: which verticals to build (for example exam prep, workplace skills, parents and kids, everyday science, or a new subject), sizing and sequencing them, and turning each into a portfolio plan that category leads and sub-area managers execute. Use for vertical strategy, cross-category bets and new-market questions.",
+  mission: "Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.",
+  inScope: [
+    "company/product/verticals/*.md: one strategy doc per vertical (audience, job to be done, evidence, competitors, the portfolio of concepts across categories, success metric, kill criteria)",
+    "Cross-category portfolios: which concepts from which categories and strands a vertical needs, and in what order",
+    "Inputs to the OP: vertical bets and their budgets",
+    "Working with International (which verticals and locales go together) and Personalization (paths through a vertical)",
+  ],
+  outOfScope: ["Writing briefs (sub-area managers)", "Building lessons", "Deciding the mission (founder)"],
+  authority: { may: ["Propose verticals, kill criteria and budgets", "Ask category leads for portfolio changes"], mayNot: ["Override a gate", "Count simulated reviews as market evidence"] },
+  inputs: ["Coverage and overlap reports", "Learner and recall data (once deployed)", "Founder direction", "Category charters"],
+  outputs: ["Vertical strategy docs", "Cross-category portfolio plans", "OP narratives for verticals"],
+  rituals: ["op-planning (vertical narratives)", "wbr (reports vertical metrics)", "cycle-planning"],
+  failureModes: ["A vertical per week.", "Strategy docs no category acts on.", "Choosing verticals by what is easy to build, not by what learners need."],
+  dayOne: ["Read company/product/vision.md and roadmap.md", "Read every category charter in company/domains/", "Run `npm run company -- coverage` and `node tools/overlap.mjs`"],
+  tools: RECORDS,
+});
 
 export { common };

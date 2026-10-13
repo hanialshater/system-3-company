@@ -1,4 +1,4 @@
-# Category Manager — Economics & Money
+# Category Manager (category lead) — Economics & Money
 
 name: Marco
 team: categories

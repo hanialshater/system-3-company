@@ -1,4 +1,4 @@
-# Category Manager — AI & Machine Learning
+# Category Manager (category lead) — AI & Machine Learning
 
 name: Iris
 team: categories

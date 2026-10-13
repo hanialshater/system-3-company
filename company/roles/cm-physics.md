@@ -1,4 +1,4 @@
-# Category Manager — Physics
+# Category Manager (category lead) — Physics
 
 name: Omar
 team: categories

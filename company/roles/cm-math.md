@@ -1,4 +1,4 @@
-# Category Manager — Mathematics
+# Category Manager (category lead) — Mathematics
 
 name: Ravi
 team: categories

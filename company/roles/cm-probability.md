@@ -1,4 +1,4 @@
-# Category Manager — Probability & Data
+# Category Manager (category lead) — Probability & Data
 
 name: Bea
 team: categories

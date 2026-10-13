@@ -45,7 +45,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
   const [live, setLive] = useState(false); // decided on mount: live unless the URL names a moment
   const [playing, setPlaying] = useState(false);
   const [view, setView] = useState<"office" | "people">("office");
-  const [floor, setFloor] = useState<1 | 2>(1);
+  const [floor, setFloor] = useState<1 | 2 | 3>(1);
   const [room, setRoom] = useState<string>("lobby");
   const [open, setOpen] = useState<Record<string, string | null>>({});
   const tick = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -57,7 +57,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
     if (Number.isFinite(at)) setT(Math.min(Math.max(at, t0), t1));
     else setLive(true);
     if (q.get("room")) (setRoom(q.get("room")!), setFloor(rooms.find((r) => r.id === q.get("room"))?.floor ?? 1));
-    if (q.get("floor") === "2") setFloor(2);
+    if (q.get("floor") === "2" || q.get("floor") === "3") setFloor(Number(q.get("floor")) as 2 | 3);
     if (q.get("view") === "people") setView("people");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -191,17 +191,17 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           {view === "office" ? (
             <div className={s.planWrap}>
               <div className={s.floors} role="tablist" aria-label="Floor">
-                {([1, 2] as const).map((f) => {
+                {([1, 2, 3] as const).map((f) => {
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
                   return (
                     <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
-                      {f === 1 ? "Floor 1 · Lessons & company" : "Floor 2 · Life Hacks, Personalization, International"}
+                      {f === 1 ? "Floor 1 · Lessons & company" : f === 2 ? "Floor 2 · Personalization, International" : "Floor 3 · Categories"}
                       {here ? ` · ${here}` : ""}
                     </button>
                   );
                 })}
               </div>
-              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={setRoom} onPerson={pickPerson} />
+              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (id.startsWith("to-floor-") ? setFloor(Number(id.slice(-1)) as 2 | 3) : setRoom(id))} onPerson={pickPerson} />
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />

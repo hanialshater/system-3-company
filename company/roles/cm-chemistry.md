@@ -1,4 +1,4 @@
-# Category Manager — Chemistry
+# Category Manager (category lead) — Chemistry
 
 name: Freya
 team: categories

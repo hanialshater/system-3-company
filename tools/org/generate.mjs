@@ -5,8 +5,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { roles } from "./roles.mjs";
-import { PERSONA } from "./people.mjs";
+import { roles, SUBAREAS } from "./roles.mjs";
+import { PERSONA, nameFor } from "./people.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const list = (xs) => (xs?.length ? xs.map((x) => `- ${x}`).join("\n") : "- none");
@@ -25,7 +25,7 @@ function onboarding(r) {
   const agentLine = r.human ? "human: true" : `agent: .claude/agents/${r.id}.md`;
   return `# ${r.title}
 
-name: ${PERSONA[r.id] ?? r.title}${PERSONA[r.id] === "Builders" ? " (each running builder gets its own name in HQ)" : ""}
+name: ${PERSONA[r.id] ?? nameFor(r.id, r.id)}${PERSONA[r.id] === "Builders" ? " (each running builder gets its own name in HQ)" : ""}
 team: ${r.team}
 reports_to: ${r.reportsTo}
 ${agentLine}${r.domain ? `\ndomain: ${r.domain}` : ""}${r.constitutional ? "\nconstitutional: true (this role's authority is part of the constitutional surface)" : ""}
@@ -123,4 +123,20 @@ for (const t of teams) {
   chart.push("");
 }
 fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
+
+// Sub-areas: copy the single source (roles.mjs) into content/domains.json, and make sure each strand has a briefs file.
+{
+  const dp = path.join(ROOT, "content/domains.json");
+  const d = JSON.parse(fs.readFileSync(dp, "utf8"));
+  for (const dom of d.domains) {
+    const subs = SUBAREAS[dom.id];
+    if (subs) dom.subareas = subs.map(([id, name]) => ({ id, name, categoryManager: `cm-${dom.id}-${id}` }));
+  }
+  fs.writeFileSync(dp, JSON.stringify(d, null, 2) + "\n");
+  for (const [dom, subs] of Object.entries(SUBAREAS))
+    for (const [id, name] of subs) {
+      const bp = path.join(ROOT, "company/domains/briefs", `${dom}.${id}.md`);
+      if (!fs.existsSync(bp)) fs.writeFileSync(bp, `# ${name} briefs (cm-${dom}-${id})\n\nRanked briefs for this strand, in the same format as \`${dom}.md\` (\`### N. slug · concept: <id> · level · demand N\`). \`tools/claim.mjs next ${dom}\` hands these out after the domain's own list. Check every brief's answer in node before adding it.\n`);
+    }
+}
 console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents`);

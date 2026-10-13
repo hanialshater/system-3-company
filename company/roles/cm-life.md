@@ -1,4 +1,4 @@
-# Category Manager — Life Sciences
+# Category Manager (category lead) — Life Sciences
 
 name: Wanjiru
 team: categories
