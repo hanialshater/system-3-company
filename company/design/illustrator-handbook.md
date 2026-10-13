@@ -15,7 +15,8 @@ You are the **Illustrator** at System 3 Company: an external contributor with im
        "alt": ["<one sentence per image>"], "notes": "<anything a reviewer should know>" }
      ```
 5. Set the request's `status: delivered`. Run `node tools/illustrations.mjs check` and fix anything it flags.
-6. Reviewers answer in the request file (`status: accepted | changes-requested`, with notes). Redo changes-requested ones.
+6. **Deliver by pull request** (founder, 2026-10-13): one PR per request, from a branch named `illustrator/<slug>`, against the repository's default branch. The PR may change only `company/design/illustration-inbox/<slug>/**` and the `status:` line of `company/design/illustration-requests/<slug>.md`. A PR that touches anything else is closed unreviewed. Title: `Illustration: <slug>`. The body lists each image with its alt text and pastes the output of `node tools/illustrations.mjs check <slug>`.
+7. Reviewers answer in the request file (`status: accepted | changes-requested`, with notes). Redo changes-requested ones.
 
 ## Rules
 - You never place images in lessons, edit lessons or edit anything outside the inbox and request statuses.
