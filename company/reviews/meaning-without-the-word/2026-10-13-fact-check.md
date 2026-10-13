@@ -27,3 +27,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c5 | disputed | 'The model answers only from what retrieval hands it' is true of the toy but the sentence follows a remark about real systems; real retrieval-augmented models also carry knowledge in their weights (Lewis et al. 2020, parametric memory, checked). Fix: 'In this setup the model answers only from what retrieval hands it'. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | In this setup the model answers only from what retrieval hands it: a right passage below t... | Rechecked: reveal says 'in this setup the model answers only from what retrieval hands it'. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

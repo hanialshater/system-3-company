@@ -21,3 +21,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c5 | disputed | 'a band between them' holds only for parallel lines. Of the toy's solving two-line settings, non-parallel ones give two opposite wedges, not a band, and learners can build those. Fix: 'for example a band when the lines are parallel'. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | Two lines solve it by labelling orange where exactly one line says 'on', for example a ban... | Rechecked: 'for example a band when parallel' is an example. Note: parallel lines with same-direction normals give an orange band; opposite normals give orange outside a band. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

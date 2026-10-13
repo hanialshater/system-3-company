@@ -24,3 +24,15 @@ None.
 
 ## Result
 5 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c6 | verified | Ramps covering 3, 5, 8, 12, 16 and 20 m of floor for a 5 m drop slope at about 59, 45, 32,... | Node: atan(5/L) in degrees for L = 3,5,8,12,16,20 gives 59.04, 45.00, 32.01, 22.62, 17.35, 14.04; slopeDeg() rounds to 59, 45, 32, 23, 17, 14. |
+| c7 | verified | In v = sqrt(2 g h), g = 9.81 m/s^2 is the pull of gravity and h = 5 m is the drop. | sqrt(2 x 9.81 x 5) = 9.9045 m/s -> 9.90; h = 5 m is the drop the stage labels ('Both drop 5 m'). Standard gravity 9.80665 rounds to 9.81. |
+
+## Result (pass 4)
+2 verified, 0 disputed, 0 left unverified, 0 added unverified.

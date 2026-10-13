@@ -27,43 +27,55 @@
       "id": "geography.three-giants-in-africa.c1",
       "text": "The US (lower 48 and Alaska), China and India together cover about 22.0 million km², about 73% of Africa's 30.0 million km², leaving about 8.0 million km².",
       "support": "simulation",
-      "source": "d3-geo geoArea x 6,371.0088² on the kit's 1:110m shapes, computed in Demo.tsx: US lower 48 7.98 + Alaska 1.48 (the US's two largest polygons; Hawaii and small islands, 0.04 M km², are not moved), China 9.41 (including Hainan), India 3.15, total 22.01; Africa = 51 shapes listed in africa.json, 30.04 (builder's node check, 2026-10-13). Published areas (CIA World Factbook: US 9.83, China 9.60, India 3.29; Africa about 30.4 million km²; from memory, not checked online) give about 74%. The lesson says 'about'.",
-      "status": "unverified"
+      "source": "d3-geo geoArea x 6,371.0088² on the kit's 1:110m shapes, computed in Demo.tsx: US lower 48 7.98 + Alaska 1.48 (the US's two largest polygons; Hawaii and small islands, 0.04 M km², are not moved), China 9.41 (including Hainan), India 3.15, total 22.01; Africa = 51 shapes listed in africa.json, 30.04 (builder's node check, 2026-10-13). Published areas (CIA World Factbook: US 9.83, China 9.60, India 3.29; Africa about 30.4 million km²; from memory, not checked online) give about 74%. The lesson says 'about'. | FACT-CHECK 2026-10-13 (pass 4): Re-ran in node with d3-geo geoArea x 6371.0088^2 on the kit's 110m shapes: lower 48 7.98, Alaska 1.48, China 9.41, India 3.15 = 22.01 M km2; Africa (51 shapes in africa.json) 30.04; 73.3%; room 8.03. Published areas (US 9.83 total, China 9.60, India 3.29, Africa about 30.4 M km2 incl. islands) give about 75%, so 'about 73%' on coarse shapes is within 2 points; wording says 'about' and the stage names the shapes.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.three-giants-in-africa.c2",
       "text": "Moving a country across the globe by a rotation on the sphere does not change its size.",
       "support": "derivation",
-      "source": "Rotations of the sphere preserve area; place() in Demo.tsx composes d3-geo geoRotation calls (the kit's moveToLatitude uses the same method). Areas of the moved pieces are measured after the move.",
-      "status": "unverified"
+      "source": "Rotations of the sphere preserve area; place() in Demo.tsx composes d3-geo geoRotation calls (the kit's moveToLatitude uses the same method). Areas of the moved pieces are measured after the move. | FACT-CHECK 2026-10-13 (pass 4): Rotations of the sphere are isometries and preserve area; place() composes geoRotation only. Node confirms the moved pieces' geoArea equals the originals.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.three-giants-in-africa.c3",
       "text": "On an Equal Earth map, drawn areas are proportional to true areas.",
       "support": "source",
-      "source": "Šavrič, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3) (cited in mercator-greenland, verified there). From memory for this lesson.",
-      "status": "unverified"
+      "source": "Šavrič, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3) (cited in mercator-greenland, verified there). From memory for this lesson. | FACT-CHECK 2026-10-13 (pass 4): Equal Earth is an equal-area pseudocylindrical projection (Savric, Patterson and Jenny 2018, Int. J. Geographical Information Science 33(3):454-465).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.three-giants-in-africa.c4",
       "text": "The placement shown fits the three countries inside Africa with about 3% of the pieces overlapping a coast or each other; the fit is by total area, not an exact tiling.",
       "support": "simulation",
-      "source": "gen.mjs (committed alongside) searches rigid moves on a 0.5° raster of Africa; it reports the share of sample points outside Africa or on another piece (outsidePct in placements.json). The shown placement is one search result, chosen to illustrate the area comparison; the answer rests on c1, not on the placement.",
-      "status": "unverified"
+      "source": "gen.mjs (committed alongside) searches rigid moves on a 0.5° raster of Africa; it reports the share of sample points outside Africa or on another piece (outsidePct in placements.json). The shown placement is one search result, chosen to illustrate the area comparison; the answer rests on c1, not on the placement. | FACT-CHECK 2026-10-13 (pass 4): placements.json outsidePct = 2.57, shown as 'About 3%' (Math.round). The lesson says the placement is a search result and the answer rests on the total area.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.three-giants-in-africa.c5",
       "text": "On a Mercator map the US and China, farther from the equator than most of Africa, are inflated more, which hides this.",
       "support": "derivation",
-      "source": "Mercator area scale sec² φ (Snyder 1987, ch. 7; verified in mercator-greenland c4). Centroids: contiguous US about 40°N, China about 36°N, Africa mostly within 35° of the equator. Not shown on this stage (no Mercator view); stated in the reveal.",
-      "status": "unverified"
+      "source": "Mercator area scale sec² φ (Snyder 1987, ch. 7; verified in mercator-greenland c4). Centroids: contiguous US about 40°N, China about 36°N, Africa mostly within 35° of the equator. Not shown on this stage (no Mercator view); stated in the reveal. | FACT-CHECK 2026-10-13 (pass 4): Mercator area scale is sec^2(lat) (Snyder ch. 7): about 1.7 at 40N (contiguous US), 1.5 at 35N (China), versus about 1.0-1.5 across most of Africa (which lies mostly within 35 deg of the equator). The stage has no Mercator view; stated only in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.three-giants-in-africa.c6",
       "text": "On most world maps Africa looks like one big country.",
       "support": "convention",
-      "source": "Hook. A claim about common perception, after the misconception in the brief. No source; needs one (e.g. a survey of perceived country sizes) or softening.",
-      "status": "unverified"
+      "source": "Hook. A claim about common perception, after the misconception in the brief. No source; needs one (e.g. a survey of perceived country sizes) or softening. | FACT-CHECK 2026-10-13 (pass 4): Hook, learner-visible, unsupported and doubtful as written: world maps draw Africa with its borders and, on the Mercator maps most people know, make it look smaller than it is (sec^2 lat), not like 'one big country'. The recorded misconception (Africa is about as big as one big country) is about perceived size, which is a claim about people, not maps, and has no source. The builder's own note says it needs a source or softening. Fix: 'On a Mercator map Africa looks smaller than it is. Try fitting the giants inside it.' or cite a survey of perceived size and reword as 'Many people think Africa is about the size of one big country.'",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

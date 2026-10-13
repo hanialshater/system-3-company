@@ -27,36 +27,46 @@
       "id": "geography.triangle-three-right-angles.c1",
       "text": "The triangle from the North Pole to 0°,0° to 90°E on the equator has three right angles, so its angles add to 270°.",
       "support": "derivation",
-      "source": "Meridians meet the equator at right angles; the meridians 0° and 90°E meet at the pole at 90°. Demo.tsx computes each corner angle from 3-D tangent vectors (cornerAngle) on the same corners it draws: 90°, 90°, 90° at 90°E. Builder re-ran in node (scratch c.mjs): sum 270.000.",
-      "status": "unverified"
+      "source": "Meridians meet the equator at right angles; the meridians 0° and 90°E meet at the pole at 90°. Demo.tsx computes each corner angle from 3-D tangent vectors (cornerAngle) on the same corners it draws: 90°, 90°, 90° at 90°E. Builder re-ran in node (scratch c.mjs): sum 270.000. | FACT-CHECK 2026-10-13 (pass 4): Node: cornerAngle at 90E gives 90, 90, 90 (sum 270.000); meridians meet the equator at right angles.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.triangle-three-right-angles.c2",
       "text": "On a sphere a triangle's angles add to 180° plus the spherical excess, and the excess in radians times R² is exactly its area (Girard's theorem).",
       "support": "source",
-      "source": "Girard's theorem (Albert Girard, 1629); any spherical trigonometry text, e.g. Todhunter, Spherical Trigonometry (1886), ch. on area. From memory, not checked online. The stage shows both numbers side by side: geoArea x R² and (sum - 180°) in radians x R² agree at every slider stop 15°-135°E (scratch c.mjs).",
-      "status": "unverified"
+      "source": "Girard's theorem (Albert Girard, 1629); any spherical trigonometry text, e.g. Todhunter, Spherical Trigonometry (1886), ch. on area. From memory, not checked online. The stage shows both numbers side by side: geoArea x R² and (sum - 180°) in radians x R² agree at every slider stop 15°-135°E (scratch c.mjs). | FACT-CHECK 2026-10-13 (pass 4): Girard's theorem: spherical excess (radians) x R^2 = area. Node: at 15,30,60,90,135E geoArea x R^2 = (sum-180) rad x R^2 to 3 d.p. (10.626, 21.253, 42.505, 63.758, 95.637 M km2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.triangle-three-right-angles.c3",
       "text": "With the corner at 90°E the triangle's area is π/2 × R², about 63.8 million km², one-eighth (12.5%) of the Earth's 510 million km² surface.",
       "support": "derivation",
-      "source": "Sphere of radius R = 6,371.0088 km (EARTH_RADIUS_KM): (π/2) R² = 63.758 million km²; 4πR² = 510.066 million km². d3-geo geoArea on the exact corners gives 63.758 (scratch c.mjs). The Earth is modelled as a sphere.",
-      "status": "unverified"
+      "source": "Sphere of radius R = 6,371.0088 km (EARTH_RADIUS_KM): (π/2) R² = 63.758 million km²; 4πR² = 510.066 million km². d3-geo geoArea on the exact corners gives 63.758 (scratch c.mjs). The Earth is modelled as a sphere. | FACT-CHECK 2026-10-13 (pass 4): Node: (pi/2) R^2 = 63.758 M km2 with R = 6371.0088; 4 pi R^2 = 510.066 M km2; ratio exactly 1/8 = 12.5%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.triangle-three-right-angles.c4",
       "text": "The 180° rule holds only on a flat surface; on a sphere the sides bulge outward and the angles add up to more.",
       "support": "derivation",
-      "source": "Follows from c2: excess = area / R² > 0 for any triangle of positive area on a sphere; it tends to 0 as the triangle shrinks relative to R.",
-      "status": "unverified"
+      "source": "Follows from c2: excess = area / R² > 0 for any triangle of positive area on a sphere; it tends to 0 as the triangle shrinks relative to R. | FACT-CHECK 2026-10-13 (pass 4): Follows from Girard (excess = area/R^2 > 0). 'Holds only on a flat surface' is read as zero-curvature geometry; on negatively curved surfaces the sum is less than 180, which the lesson does not discuss. 'Bulge outward' is a picture of how great-circle sides look on a globe view. Non-blocking.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.triangle-three-right-angles.c5",
       "text": "Tiny triangles have almost no excess, which is why a triangle on paper shows 180°.",
       "support": "derivation",
-      "source": "Excess = area / R². A 1 km² triangle on the Earth has excess 1 / 6,371² rad, about 0.0000014°. The stage's smallest triangle (15°E) has 15° of excess; the claim is an extrapolation stated in the reveal.",
-      "status": "unverified"
+      "source": "Excess = area / R². A 1 km² triangle on the Earth has excess 1 / 6,371² rad, about 0.0000014°. The stage's smallest triangle (15°E) has 15° of excess; the claim is an extrapolation stated in the reveal. | FACT-CHECK 2026-10-13 (pass 4): Node: a 1 km2 triangle has excess 1/R^2 rad = 0.0000014 deg; stage's smallest triangle (15E) has 15 deg, so the claim is an extrapolation from the formula, stated as such.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

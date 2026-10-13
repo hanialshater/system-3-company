@@ -23,3 +23,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c11 | disputed | The message 'Crawling: the hops are tiny.' fires for step sizes below 0.2 (factor above 0.6). At 0.15-0.19 the first hop is 1.2-1.5 of a 4.0 distance (30-38%), not tiny. Code behaviour is as stated; the displayed wording is not. Fix: 'Slow: each hop covers only a small share of the distance' or lower the threshold. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c11 | verified | For step sizes below 0.2 the running message says 'Slow: each hop covers under 40% of the ... | Rechecked: message 'Slow: each hop covers under 40% of the distance left.' fires when factor 1-2*eta > 0.6, i.e. eta < 0.2, where a hop is 2*eta < 40% of the distance (node: eta 0.15 -> 30%, 0.19 -> 38%, 0.20 falls to the next branch). |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

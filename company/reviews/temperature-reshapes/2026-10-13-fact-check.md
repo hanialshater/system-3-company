@@ -22,3 +22,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c8 | disputed | True of the toy, but stated as a flat fact about hot models. Peeperkorn et al. 2024 (ICCC; arXiv 2405.00492) report a weak positive link of temperature with novelty (beta about 0.31) and a moderate reduction in coherence, so 'not more inventive' is too strong. Fix: 'does not make the model learn anything new; it only spreads its choices'. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c8 | verified | A hot model does not learn anything new; it only spreads its choices, picking unlikely wor... | Rechecked: narrowed to the mechanical effect on the toy (scores fixed, only probabilities reweighted); no longer a claim about novelty of real models. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

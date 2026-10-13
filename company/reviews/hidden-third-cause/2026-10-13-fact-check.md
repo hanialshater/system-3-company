@@ -10,3 +10,14 @@ Checker: fact-checker (independent). No claim was written by me. Script: artifac
 | c4 | verified (convention) | By construction; the reveal says "This town is built so temperature is the only link". |
 
 Notes: the 28 bands overlap (a band starts every degree and is 3 degrees wide), so "28 bands average about 0.05" is an average over overlapping subsets, not 28 independent estimates; nothing the lesson says depends on independence. No unrecorded claims found.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | Correlation runs from -1 to +1: +1 means two quantities rise together perfectly, 0 means n... | Pearson's r lies in [-1, +1] (Cauchy-Schwarz); +1 = perfect increasing straight-line relation, 0 = no linear association. Stage key reads 'Correlation: +1 rise together, 0 no link', consistent. (Minor: the readout word 'weak' covers /r/ 0.3-0.6, which many texts call moderate; labelling, not a recorded claim.) |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

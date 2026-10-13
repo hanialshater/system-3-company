@@ -12,3 +12,15 @@ Checker: fact-checker (independent). No walkthrough transcript exists for this s
 | c6 | verified | O. Peters (2019), "The ergodicity problem in economics", Nature Physics 15: 1216-1221, uses this +50% / -40% coin game as its running example. |
 
 Wording note for demo-builder (non-blocking): c5 says "8 of 50 ended above $100, and their average was $430". The $430 is the average of all 50 players (the reveal says so correctly); "their" in the claim could be read as the 8 winners. Reword the claim to "the average of all 50 was $430".
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $1... | Re-ran paths()/stats() in node (seed 1505): median 1.288 -> $1.29, 8 of 50 above $100, mean 429.76 -> $430 (the average of all 50). Over batches 1-500 (my own run): players above start 1-14 (median 7); batch mean exceeded $100 in 78.6%. The wording now says 'the average of all 50' so it cannot be read as the winners' average. |
+| c7 | verified | A head then a tail turns $100 into $150 and then $90, a loss though heads and tails are eq... | 100 x 1.5 = 150, 150 x 0.6 = 90 (node); median in stats() is the mean of the two middle of 50 sorted wealths; gridlines at $0.01, $1, $100, $10,000, $1,000,000 are each 100x the one below (Demo.tsx line 36 and stage text). Also checked in node: 56+ heads in 100 needed to end ahead, P = 13.6%; expected wealth 100 x 1.05^100 = $13,150. |
+
+## Result (pass 4)
+2 verified, 0 disputed, 0 left unverified, 0 added unverified.

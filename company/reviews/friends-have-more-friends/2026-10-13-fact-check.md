@@ -24,3 +24,15 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | c5 | verified | node: re-derived. Mean friend-of-random-person degree = (1/n) sum over friendships (d_i/d_j + d_j/d_i) >= 2m/n = mean degree, equality iff every friendship joins equal degrees. Star: 1.6 vs 3.4. Triangle + K4: 2.571 vs 2.571 (equal although degrees differ across the network). 20,000 random connected graphs: never below, and strictly above whenever degrees are not all equal. The claim as worded is true. Advisory for builder: the reveal's 'wherever friend counts differ' (and verified claim c3) is not literally true for disconnected networks like triangle + K4; 'wherever friends differ in how many friends they have' is exact. |
 
 Stage check: Reveal numbers 3.4, 1.6, 0.2*1+0.8*4=3.4 and 'four in five are leaves' re-derived and correct.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c3 | verified | In any connected network where friend counts differ, a friend picked as a random person's ... | Feld 1991 is a result on the mean over friendship links; the claim as revised (random person then random friend, connected network, degrees differ) follows from the pairing argument d_i/d_j + d_j/d_i >= 2. Brute-forced 20,000 random connected graphs (3-10 nodes): the pick-person-then-friend mean exceeded the mean degree whenever degrees differed (19,248 cases, 0 violations) and equalled it when all degrees were equal. |
+| c5 | verified | With the stage's way of picking (a random person, then one of their friends at random), th... | Rechecked: the equality case (triangle + K4: both means 2.571) is correct; the revised text now states connected + degrees differ gives strict inequality, supported by the 20,000-graph brute force and the algebra. Hub toy: 0.2 x 1 + 0.8 x 4 = 3.4 vs mean 1.6. |
+
+## Result (pass 4)
+2 verified, 0 disputed, 0 left unverified, 0 added unverified.

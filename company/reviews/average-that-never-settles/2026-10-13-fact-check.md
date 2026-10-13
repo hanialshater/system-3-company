@@ -11,3 +11,14 @@ Checker: fact-checker (independent). No walkthrough transcript exists for this s
 | c5 | verified (convention) | E abs X is infinite for the Cauchy, so the law of large numbers does not apply. |
 
 No unrecorded learner-visible factual claims found.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c4 | verified | The stage draws 30 seeded runs of each kind. After 1 draw, 17 of 30 Cauchy dots are beyond... | Re-ran dots() from model.ts in node (seed 1853): 17/30 beyond +/-1 and die span 5.00 at 1 draw; 18/30 and span 0.07 at 10,000; farthest Cauchy dot 24.7 with one draw 250,115 (/10,000 = 25.0). Over 200 other seeds the mean count beyond +/-1 is 15.1 (1 draw) and 14.6 (10,000), expected 15, so the seed is not unusual; die span at 10,000 ranges 0.04-0.12 over those seeds. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

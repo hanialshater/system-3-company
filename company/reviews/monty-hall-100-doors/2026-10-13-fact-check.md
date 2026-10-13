@@ -11,3 +11,14 @@ Checker: fact-checker (independent). Scripts: artifacts/scratch/fc-problife/a12.
 | c5 | verified | Stage batches start at round 100000 + 100 x batches (Demo.tsx), and the claim's numbers reproduce exactly: first batch at 100 / 10 / 3 doors gives stay 2 / 7 / 30 and switch 98 / 93 / 70; over 100 batches 92/9,908, 1,002/8,998, 3,303/6,697. Exactly one of stay or switch wins in every round (0 violations in 15,000 checks). The seed is not shown to be chosen; the 100-batch totals sit at 1/N, so it is typical. |
 
 The reveal's live line ("staying won 51/200, switching won 150/201") is a tally of batches plus manual rounds; the denominators differ because the learner played one extra round by switching, which is correct. No unrecorded claims found.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | The stage's rounds use a seeded generator with the car equally likely behind every door; '... | Re-ran model.ts in node: batch(100000+100k,100,N): first batch 100 doors 2/98, 10 doors 7/93, 3 doors 30/70; 100 batches 92/9,908, 1,002/8,998, 3,303/6,697 (all match). guessingBatch from 200000 first batch: kept 14 (6/8), 209 (107/102), 671 (353/318); over 200 batches kept 4,037 (2,017/2,020), 39,759 (19,868/19,891), 132,924 (66,100/66,824), matching the source. Theory: kept chance 2/N, stay and switch each half of kept rounds. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

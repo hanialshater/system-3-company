@@ -25,3 +25,17 @@ None found.
 
 ## Result
 6 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c3 | verified | Standing 3 m from the road, you hear about 754 Hz with the ambulance 20 m before you, abou... | Re-derived in node from heard(): -20 m 754.47 (stage shows 754), 0 m 703.74 (704), +20 m 653.01 (653); other stops 755.0, 755.0, 754.9, 652.6, 652.5, 652.5 match the source list. |
+| c6 | verified | Model: still air, sound at 343 m/s. | Speed of sound 343 m/s at 20 C in dry air (standard value, 343.2); stated as the model's assumption. |
+| c7 | verified | Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m ap... | Node: 34.3, 31.8, 36.8 m; 34.3/31.8 = 1.0786 -> '1.08'; 700 x 343/318 = 755.03. Stage caption is a separate claim (added c8). |
+| c8 | added (unverified) | Each ring is a crest, sent 0.1 s apart. Hz = crests per second. | Stage caption before the reveal. CONCERN: a 700 Hz siren sends crests 1/700 s (1.4 ms) apart, so rings 0.1 s apart are every 70th crest (Demo.tsx header comment and c5 say so); the caption says each ring is a crest. Suggest 'Each ring marks sound sent 0.1 s ago; a real 700 Hz siren sends 70 crests in that time.' |
+
+## Result (pass 4)
+3 verified, 0 disputed, 0 left unverified, 1 added unverified.

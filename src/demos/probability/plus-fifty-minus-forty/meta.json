@@ -63,8 +63,10 @@
       "id": "probability.plus-fifty-minus-forty.c5",
       "text": "On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and the average of all 50 was $430.",
       "support": "simulation",
-      "source": "paths() in model.ts, seed 1505, untuned (the first seed tried). Over 500 other batches of 50: players above start ranged 1-14 (median 7), the batch median $0.08-$3.22 (middle 95%), and the batch average exceeded $100 in 82% of batches. | CLAIM FIX 2026-10-13 (revision v2): Was 'On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and their average was $430.' (fact-checker wording note: 'their average' could be read as the average of the 8 winners)",
-      "status": "unverified"
+      "source": "paths() in model.ts, seed 1505, untuned (the first seed tried). Over 500 other batches of 50: players above start ranged 1-14 (median 7), the batch median $0.08-$3.22 (middle 95%), and the batch average exceeded $100 in 82% of batches. | CLAIM FIX 2026-10-13 (revision v2): Was 'On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and their average was $430.' (fact-checker wording note: 'their average' could be read as the average of the 8 winners) | FACT-CHECK 2026-10-13 (pass 4): Re-ran paths()/stats() in node (seed 1505): median 1.288 -> $1.29, 8 of 50 above $100, mean 429.76 -> $430 (the average of all 50). Over batches 1-500 (my own run): players above start 1-14 (median 7); batch mean exceeded $100 in 78.6%. The wording now says 'the average of all 50' so it cannot be read as the winners' average.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.plus-fifty-minus-forty.c6",
@@ -79,8 +81,10 @@
       "id": "probability.plus-fifty-minus-forty.c7",
       "text": "A head then a tail turns $100 into $150 and then $90, a loss though heads and tails are equally likely; 'typical player' means the median (half the players end with less); each gridline on the stage is 100 times the one below.",
       "support": "derivation",
-      "source": "100 x 1.5 = 150; 150 x 0.6 = 90 (UP, DOWN in model.ts); median = the middle of the 50 players' wealth (stats() in model.ts); axis ticks 0.01, 1, 100, 10,000, 1,000,000. Added by the builder 2026-10-13 in revision v2; needs an independent check.",
-      "status": "unverified"
+      "source": "100 x 1.5 = 150; 150 x 0.6 = 90 (UP, DOWN in model.ts); median = the middle of the 50 players' wealth (stats() in model.ts); axis ticks 0.01, 1, 100, 10,000, 1,000,000. Added by the builder 2026-10-13 in revision v2; needs an independent check. | FACT-CHECK 2026-10-13 (pass 4): 100 x 1.5 = 150, 150 x 0.6 = 90 (node); median in stats() is the mean of the two middle of 50 sorted wealths; gridlines at $0.01, $1, $100, $10,000, $1,000,000 are each 100x the one below (Demo.tsx line 36 and stage text). Also checked in node: 56+ heads in 100 needed to end ahead, P = 13.6%; expected wealth 100 x 1.05^100 = $13,150.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

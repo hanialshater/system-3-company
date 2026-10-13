@@ -25,3 +25,16 @@ None found.
 
 ## Result
 6 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c2 | verified | With a 6 V battery and two 6 ohm bulbs the current is 0.50 A; the battery slider gives I =... | Node: I = V/12 at 2,4,6,8,10,12 V = 0.17, 0.33, 0.50, 0.67, 0.83, 1.00 A; per-bulb drop V/2 = 1..6 V; matches Demo.tsx amps() and drop. |
+| c5 | verified | The moving dots show the direction of conventional current (out of the battery's + end); t... | Checked against the stage: battery drawn with long plate and '+' on top, dots path runs up from it (conventional current); dot speed scales with I/0.5; dot opacity steps 1, 0.5, 0.12 after each bulb (qualitative picture); electron drift in ordinary wires is of order 0.1 mm/s (Halliday-Resnick-Walker ch. 26). |
+| c7 | verified | Amps measure charge passing per second; volts measure the energy each charge carries (or h... | SI: ampere = coulomb per second, volt = joule per coulomb (BIPM SI Brochure 9th ed.). 'Energy each charge carries' is read as energy per unit charge. |
+
+## Result (pass 4)
+3 verified, 0 disputed, 0 left unverified, 0 added unverified.

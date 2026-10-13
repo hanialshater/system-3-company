@@ -25,3 +25,14 @@ None.
 
 ## Result
 6 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c7 | verified | A weight turns the beam more the further it sits from the pivot: its turning effect is wei... | Torque m g d with common g dropped; checked turns() in node: at 75 cm 2.5/2.5 kg x cm, at 62.5 cm left 1.25, right 3.75, matching the stage readouts. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

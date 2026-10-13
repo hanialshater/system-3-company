@@ -29,3 +29,16 @@ None found.
 ## Pass 3 (2026-10-13)
 
 c2 stays disputed (source field unchanged). Re-checked by search: NASA's planetary fact sheet table lists gravity (m/s2) Earth 9.8, Moon 1.6, Mars 3.7, Jupiter 23.1 (equatorial, 1 bar, rotation included); 24.79 is not in that table. Re-cite (ESA/other for 24.79) or use NASA's figures and name the convention.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c2 | verified | Surface gravity: Earth 9.81, Moon 1.62, Mars 3.73 and Jupiter 23.12 m/s^2 (Jupiter has no ... | NASA NSSDC fact sheets via search (direct fetch blocked): Jupiter equatorial gravity at 1 bar 23.12 (mean 25.92, polar 27.01); Mars mean 3.73 (equatorial 3.69); Moon 1.62; Earth standard 9.80665 shown 9.81. Note ESA/Wikipedia give 24.79 for Jupiter at 1 bar, a different reference; 23.12 is the NASA equatorial figure and is labelled as such. |
+| c5 | verified | A bathroom scale is a spring scale marked in kg for Earth: on the Moon it shows about a si... | Bathroom scales measure force (spring or strain-gauge load cell) and are calibrated in kg for Earth; 1.62/9.81 = 0.165, about a sixth. 'Is a spring scale' is loose for strain-gauge scales but the behaviour claimed holds for both. |
+| c7 | verified | A spring scale marked in kg for Earth's gravity shows a 1 kg bag as 0.17 kg on the Moon, 0... | Node: g/9.81 = 0.165, 0.380, 2.357 -> 0.17, 0.38, 2.36 kg and 17%, 38%, 236%; matches Demo.tsx toFixed(2) and pct. NASA ratio to Earth for Jupiter 2.364 (eq.) is consistent. |
+
+## Result (pass 4)
+3 verified, 0 disputed, 0 left unverified, 0 added unverified.

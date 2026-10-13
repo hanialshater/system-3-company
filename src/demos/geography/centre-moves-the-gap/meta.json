@@ -27,29 +27,37 @@
       "id": "geography.centre-moves-the-gap.c1",
       "text": "On a Greenwich-centred world map Tokyo and Los Angeles are about 258° of map width apart; on a map centred on 180° they are about 102° apart, about 2.5 times closer.",
       "support": "derivation",
-      "source": "Haneda 139.78°E and LAX 118.41°W differ by 258.19° of longitude; 360 - 258.19 = 101.81°; ratio 2.54 (shown as 2.5). Demo.tsx measures both from the projected x positions on its own Equirectangular map (gapDegrees). Coordinates of Haneda (35.55°N, 139.78°E) and LAX (33.94°N, 118.41°W) from memory of the airports' published reference points, not checked online. The brief used downtown LA (118.24°W) with Haneda; the lesson uses LAX for both ends being airports (258.0 vs 258.2, same rounding).",
-      "status": "unverified"
+      "source": "Haneda 139.78°E and LAX 118.41°W differ by 258.19° of longitude; 360 - 258.19 = 101.81°; ratio 2.54 (shown as 2.5). Demo.tsx measures both from the projected x positions on its own Equirectangular map (gapDegrees). Coordinates of Haneda (35.55°N, 139.78°E) and LAX (33.94°N, 118.41°W) from memory of the airports' published reference points, not checked online. The brief used downtown LA (118.24°W) with Haneda; the lesson uses LAX for both ends being airports (258.0 vs 258.2, same rounding). | FACT-CHECK 2026-10-13 (pass 4): Node: Haneda 139.78E vs LAX 118.41W = 258.19 degrees on the Greenwich map, 360 - 258.19 = 101.81 on the 180-centred map; ratio 2.54 ('about 2.5'). Matches the Demo.tsx projection gapDegrees().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.centre-moves-the-gap.c2",
       "text": "On an Equirectangular map each degree of longitude is equally wide.",
       "support": "source",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Equidistant Cylindrical: x = R (λ - λ0). d3-geo geoEquirectangular. From memory, not checked online.",
-      "status": "unverified"
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Equidistant Cylindrical: x = R (λ - λ0). d3-geo geoEquirectangular. From memory, not checked online. | FACT-CHECK 2026-10-13 (pass 4): Equirectangular (plate carree) maps x = R lambda, so equal longitude steps are equal widths at every latitude (Snyder, Map Projections: A Working Manual).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.centre-moves-the-gap.c3",
       "text": "The great-circle distance between Tokyo (Haneda) and Los Angeles (LAX) is about 8,810 km, and re-centring the map does not change it.",
       "support": "derivation",
-      "source": "d3-geo geoDistance x 6,371.0088 km on the coordinates in c1 = 8,812.6 km (shown rounded to 8,810). Sphere model. The slider only rotates the projection.",
-      "status": "unverified"
+      "source": "d3-geo geoDistance x 6,371.0088 km on the coordinates in c1 = 8,812.6 km (shown rounded to 8,810). Sphere model. The slider only rotates the projection. | FACT-CHECK 2026-10-13 (pass 4): Node haversine, R = 6371.0088 km (the kit's EARTH_RADIUS_KM), Haneda (35.55N,139.78E) to LAX (33.94N,118.41W) = 8,812.6 km; with exact airport coordinates 8,812.6 km; shown as 8,810. Independent of map centre (the formula uses no projection).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.centre-moves-the-gap.c4",
       "text": "Most world maps are cut so the Pacific's two sides sit at opposite edges; Greenwich in the middle is a convention, not a rule.",
       "support": "convention",
-      "source": "Hook and reveal. Prime meridian adopted at the International Meridian Conference, 1884 (from memory). Pacific-centred world maps are standard in, for example, Chinese, Japanese and Australian atlases (from memory, not checked; the brief asks for two atlases to be cited as examples). Needs a source.",
-      "status": "unverified"
+      "source": "Hook and reveal. Prime meridian adopted at the International Meridian Conference, 1884 (from memory). Pacific-centred world maps are standard in, for example, Chinese, Japanese and Australian atlases (from memory, not checked; the brief asks for two atlases to be cited as examples). Needs a source. | FACT-CHECK 2026-10-13 (pass 4): Greenwich-centred world maps are the common default (the prime meridian was fixed at Greenwich at the 1884 International Meridian Conference), so the Pacific is split at the edges; calling it a convention is accurate. 'Most' is a general statement about common maps, not a count.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -25,3 +25,17 @@ None found.
 
 ## Result
 6 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c4 | verified | At a steady force, stopping from 15 m/s in t seconds crushes 15 t / 2 metres: 0.75 m in 0.... | Node: v t / 2 for t = 0.05..0.30 s gives 0.375, 0.75, 1.125, 1.5, 1.875, 2.25 m (0.38 to 2.25 m); slider min 50, max 300 ms step 50. |
+| c5 | disputed | The lesson uses a steady (average) force; real crash forces rise and fall during the stop,... | 'real cars crush less and stop faster than these numbers' is unsafe against the 0.10 s case: published 56 km/h (15.6 m/s) full-frontal barrier work uses total stopping distances of 0.5-0.9 m and reports pulses averaging about 120 ms (nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406), which brackets the lesson's 0.75 m and 0.10 s. It is true against the 0.20 s / 1.5 m case. Fix: 'real cars at this speed crush about 0.5-0.9 m and stop in about 0.1 s, so the 0.20 s stop is longer than a real crash', or drop the 'real cars crush less and stop faster' clause. |
+| c6 | verified | A crumple zone protects by crushing, which lengthens the stopping time and so lowers the f... | Standard impulse-momentum account; with occupants held to the car (belts) the push on them scales with deceleration, so doubling the stop time halves it. Idealised: real restraints let the occupant's stop lag the car's slightly, so 'the same time' is the model, not exact. Accepted as stated since the reveal frames it as a steady-force model. |
+| c7 | verified | The car's weight is about 9.8 kN, so 150 kN is about 15.3 car-weights and 75 kN about 7.6. | Node: 1000 x 9.81 = 9810 N; 150000/9810 = 15.29 -> 15.3; 75000/9810 = 7.645 -> toFixed(1) shows 7.6 (matches Demo.tsx carWeights); slider values 30.6, 15.3, 10.2, 7.6, 6.1, 5.1. |
+
+## Result (pass 4)
+3 verified, 1 disputed, 0 left unverified, 0 added unverified.

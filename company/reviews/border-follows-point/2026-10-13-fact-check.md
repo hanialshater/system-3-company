@@ -23,3 +23,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | c5 | disputed | In 1-NN, moving one training point changes the class only of spots that switch nearest neighbour (the sliver between its old and new cell); 'every spot around it' overstates. Fix: 'moves the decision for the spots nearest to it' or 'moves the border near it'. |
 
 Stage check: with the stage's two points the border does move for a whole half-plane, which is where the over-generalisation to 'every spot' comes from.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | With many points, moving a training point near a nearest-neighbour border moves the border... | Rechecked: revised reveal says the border moves near the moved point and spots between old and new border change class; matches 1-NN geometry. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

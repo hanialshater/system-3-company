@@ -19,3 +19,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c5 | disputed | The reveal says clicks and value 'look related' and that the measure 'tracks the goal' before optimisation. In the toy (effort fixed at 10) clicks = 20 - value, perfectly inverse, and the stage bars move in opposite directions; the toy never shows clicks tracking value. Fix: state the Goodhart point without claiming the toy's clicks track value, or let the toy vary total effort. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | In this toy, substance earns one click per unit and hype earns two, so each step from subs... | Rechecked: clicks gain +1 and value -1 per unit moved to hype (2h+s); revised reveal no longer claims clicks track value; the Goodhart sentence is hedged ('can stop tracking'). |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

@@ -33,3 +33,14 @@ Checker: fact-checker. Scope: claims open (unverified) in this lesson that were 
 | c4 In 490 of 500 toy data sets some moderate penalty (the best of five, 0... | verified | Re-ran the lesson model independently (extracted MODEL block, seeds 1-500, five lambdas 1e-4..1): some moderate penalty beats none in 490 of 500; lambda 10 is worse than the best moderate in 500 of 500. Seed 1: held-out miss 0.444 at 0, 0.377 at 0.01, 0.725 at 10. Matches the claim. |
 
 Result: 1 verified, 0 disputed, 0 added unverified.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c5 | verified | Push the penalty to 10 and the curve goes much flatter and usually loses again to no penal... | Re-ran model.ts from Demo.tsx over seeds 1-500: lambda 10 held-out miss worse than no penalty in 441/500 (88%) so 'usually loses'; curve range at lambda 10 is a median 37% of training range (95% range 21%-54%), 'much flatter' fits. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

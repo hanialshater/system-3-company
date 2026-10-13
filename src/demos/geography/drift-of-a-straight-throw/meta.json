@@ -27,43 +27,55 @@
       "id": "geography.drift-of-a-straight-throw.c1",
       "text": "On a frictionless platform spinning like the Earth at 45°N, an object sliding north at 100 m/s for 1,000 km ends up about 470 km east of its aim.",
       "support": "simulation",
-      "source": "Toy model (f-plane, labelled on the stage): f = 2 Ω sin φ, Ω = 7.2921e-5 rad/s (IERS value; from memory). Exact inertial-circle solution x = (v/f)(1 - cos ft), y = (v/f) sin ft with path length v t = 1,000 km: x = 471.5 km, y = 831.9 km (drift() in Demo.tsx; node check). Changed from the brief's small-deflection formula Ω sin φ v t² (515.6 km), which is not valid when ft ≈ 1 (here 1.03 rad). Both round to 'about 500 km'. On the real rotating sphere latitude changes by about 7.5° over the run; the toy holds it fixed.",
-      "status": "unverified"
+      "source": "Toy model (f-plane, labelled on the stage): f = 2 Ω sin φ, Ω = 7.2921e-5 rad/s (IERS value; from memory). Exact inertial-circle solution x = (v/f)(1 - cos ft), y = (v/f) sin ft with path length v t = 1,000 km: x = 471.5 km, y = 831.9 km (drift() in Demo.tsx; node check). Changed from the brief's small-deflection formula Ω sin φ v t² (515.6 km), which is not valid when ft ≈ 1 (here 1.03 rad). Both round to 'about 500 km'. On the real rotating sphere latitude changes by about 7.5° over the run; the toy holds it fixed. | FACT-CHECK 2026-10-13 (pass 4): Re-derived in node: f = 2*7.2921e-5*sin45 = 1.0313e-4 /s; 1,000 km at 100 m/s = 1e4 s, ft = 1.031 rad, east = (v/f)(1-cos ft) = 471.5 km (stage shows ~470). Toy is labelled on the stage; the small-angle formula would give 515.6 km, which the lesson does not use.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c2",
       "text": "Over 10 km the same object drifts about 52 m, and over 100 km about 5.2 km.",
       "support": "simulation",
-      "source": "Same toy: 0.0516 km and 5.152 km at 45°N, 100 m/s (drift()).",
-      "status": "unverified"
+      "source": "Same toy: 0.0516 km and 5.152 km at 45°N, 100 m/s (drift()). | FACT-CHECK 2026-10-13 (pass 4): Node: 10 km -> 0.0516 km (52 m); 100 km -> 5.152 km (5.2 km) at 45N.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c3",
       "text": "The drift grows with the square of the travel time; 100 times the distance gave about 9,000 times the drift, a bit under 100² because the long path curls.",
       "support": "derivation",
-      "source": "For small ft, x ≈ (1/2) f v t² = Ω sin φ v t². Ratio 471.5 / 0.0516 = 9,138 (rounded to 9,000 in the reveal), versus 10,000 for a pure square law.",
-      "status": "unverified"
+      "source": "For small ft, x ≈ (1/2) f v t² = Ω sin φ v t². Ratio 471.5 / 0.0516 = 9,138 (rounded to 9,000 in the reveal), versus 10,000 for a pure square law. | FACT-CHECK 2026-10-13 (pass 4): Node: 471.5 / 0.0516 = 9,145, shown as 'about 9,000'; pure square law would give 10,000; small-angle x ~ (1/2) f v t^2 so drift scales with t^2 for short runs.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c4",
       "text": "The Coriolis effect is zero at the equator and strongest at the poles.",
       "support": "derivation",
-      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory).",
-      "status": "unverified"
+      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory). | FACT-CHECK 2026-10-13 (pass 4): f = 2 Omega sin(lat) is 0 at the equator and largest at the poles (Holton, Intro to Dynamic Meteorology, ch. 1/2). Node: latitude 0 gives 0 m east; slider shows it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c5",
       "text": "The Coriolis effect shapes winds and ocean currents over hundreds of kilometres.",
       "support": "source",
-      "source": "Large-scale winds and currents are close to geostrophic balance, in which the Coriolis term balances the pressure gradient (Holton, ch. 3; from memory, not checked online).",
-      "status": "unverified"
+      "source": "Large-scale winds and currents are close to geostrophic balance, in which the Coriolis term balances the pressure gradient (Holton, ch. 3; from memory, not checked online). | FACT-CHECK 2026-10-13 (pass 4): Large-scale winds and ocean currents are close to geostrophic balance (Coriolis vs pressure gradient), a standard result (Holton ch. 3; Vallis, Atmospheric and Oceanic Fluid Dynamics). 'Hundreds of kilometres' is the usual synoptic-scale threshold.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c6",
       "text": "100 m/s is 360 km/h.",
       "support": "derivation",
-      "source": "100 x 3.6 = 360.",
-      "status": "unverified"
+      "source": "100 x 3.6 = 360. | FACT-CHECK 2026-10-13 (pass 4): 100 m/s x 3.6 = 360 km/h (node).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

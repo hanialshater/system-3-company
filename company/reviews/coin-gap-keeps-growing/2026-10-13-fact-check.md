@@ -11,3 +11,14 @@ Checker: fact-checker (independent). Script: artifacts/scratch/fc-problife/a6.ts
 | c5 | verified | Law of large numbers is a statement about the share (relative frequency); it does not imply the difference H - T converges or shrinks (Feller vol. 1, ch. III and X). Re-computed fact: the gap SD grows as sqrt(n). |
 
 Caveat routed to demo-builder (not blocking): the reveal says "every run ended between 49.0% and 50.9%". That is true of the stage's runs but not a general bound; adding "(in these 20 runs)" or "about 95% of runs land within 1 point" keeps a learner from reading it as a hard limit. Also the stage's own 1,000-flip average is 16.3, well under the 25 the reveal quotes (the 20-run sample is low there, about 2 standard errors); the reveal's "about ... 25 at 1,000" is the exact figure, so it is correct, but a learner scrubbing to 1,000 will see 16, not 25. The source for c4 does not say whether seed 1713 was chosen; it should (disclose-chosen-seeds).
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c4 | verified | The 20 runs on the stage are seeded fair flips; their gaps averaged 2.5, 8.3, 16.3 and 86.... | Re-ran model.ts in node (seed 1713): mean /gap/ 2.5, 8.3, 16.3, 86.1 at 10/100/1,000/10,000; share range at 10,000 = 49.0%-50.9%; sqrt(2k/pi) = 2.5, 8.0, 25.2, 79.8 (shown 2.5, 8, 25, 80). Seed disclosed as an unrecorded-tuning illustration and the reveal says twenty runs wobble; the low 1,000-flip mean (16.3) is a stated draw. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

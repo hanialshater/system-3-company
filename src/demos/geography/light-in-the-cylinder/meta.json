@@ -27,36 +27,46 @@
       "id": "geography.light-in-the-cylinder.c1",
       "text": "With a light at the Earth's centre and a cylinder touching the equator, latitude φ lands tan φ globe radii above the equator: 80°N at 5.67 radii, 60°N at 1.73.",
       "support": "derivation",
-      "source": "Similar triangles in the cross-section: the ray through (cos φ, sin φ) meets x = 1 at y = tan φ. This is the central cylindrical projection, y = R tan φ (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395; from memory, not checked online). tan 80° = 5.671, tan 60° = 1.732 (node). Demo.tsx landing() places the drawn ray with the same function.",
-      "status": "unverified"
+      "source": "Similar triangles in the cross-section: the ray through (cos φ, sin φ) meets x = 1 at y = tan φ. This is the central cylindrical projection, y = R tan φ (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395; from memory, not checked online). tan 80° = 5.671, tan 60° = 1.732 (node). Demo.tsx landing() places the drawn ray with the same function. | FACT-CHECK 2026-10-13 (pass 4): Node: tan 80 = 5.671, tan 60 = 1.732; the ray through (cos p, sin p) from the centre meets x = 1 at y = tan p (central cylindrical projection).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.light-in-the-cylinder.c2",
       "text": "Measured along the globe's curve, 80°N is 1.40 radii from the equator.",
       "support": "derivation",
-      "source": "Arc length = angle in radians: 80 x π/180 = 1.396 radii. Shown as the green arc and the 'Along the globe' readout.",
-      "status": "unverified"
+      "source": "Arc length = angle in radians: 80 x π/180 = 1.396 radii. Shown as the green arc and the 'Along the globe' readout. | FACT-CHECK 2026-10-13 (pass 4): Node: 80 deg = 1.3963 rad = 1.40 radii of arc on a unit globe.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.light-in-the-cylinder.c3",
       "text": "With a flat sheet on the North Pole the stretch moves to the equator: latitude φ lands cot φ radii from the pole.",
       "support": "derivation",
-      "source": "Same cross-section: the ray meets y = 1 at x = cot φ (the gnomonic projection, polar aspect; Snyder 1987, from memory). 80°N lands at 0.18 radii; 10°N at 5.67; the equator never lands.",
-      "status": "unverified"
+      "source": "Same cross-section: the ray meets y = 1 at x = cot φ (the gnomonic projection, polar aspect; Snyder 1987, from memory). 80°N lands at 0.18 radii; 10°N at 5.67; the equator never lands. | FACT-CHECK 2026-10-13 (pass 4): Node: cot 80 = 0.176 (0.18), cot 10 = 5.67; ray meets y = 1 at x = cot p (polar gnomonic); at the equator it is parallel to the sheet and never lands. Stage slider tops out at 80N and 0N reads 'never' for the sheet.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.light-in-the-cylinder.c4",
       "text": "Paper that touches the globe along one line is true there and stretches everything away from it.",
       "support": "derivation",
-      "source": "For the cylinder, dy/dφ = sec² φ, which is 1 at the equator and grows without limit toward the pole; for the polar sheet the same holds measured from the pole. True of these two light projections; stated generally in the reveal as the idea of a tangent surface (Snyder 1987, ch. on developable surfaces; from memory).",
-      "status": "unverified"
+      "source": "For the cylinder, dy/dφ = sec² φ, which is 1 at the equator and grows without limit toward the pole; for the polar sheet the same holds measured from the pole. True of these two light projections; stated generally in the reveal as the idea of a tangent surface (Snyder 1987, ch. on developable surfaces; from memory). | FACT-CHECK 2026-10-13 (pass 4): Stated as a general rule about paper touching the globe along one line: 'true there and stretches everything away from it'. That holds for this light (central cylindrical) projection only. Other tangent cylinders do not stretch everything: the Lambert cylindrical equal-area compresses north-south distances away from the equator (meridian scale cos^2 lat) while stretching east-west ones, and the polar sheet touches at a point, not along a line (Snyder, Map Projections: A Working Manual, USGS PP 1395). The claim's own source note admits it is true of 'these two light projections'. Fix: 'With a light at the centre, paper touching the globe along one line is true there and stretches everything away from it.'",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.light-in-the-cylinder.c5",
       "text": "A projection is a rule for putting each point of the globe on paper.",
       "support": "convention",
-      "source": "Definition (Snyder 1987, ch. 1). The lesson does not claim that real atlases use the central cylindrical projection, nor that Mercator is a light projection (it is not).",
-      "status": "unverified"
+      "source": "Definition (Snyder 1987, ch. 1). The lesson does not claim that real atlases use the central cylindrical projection, nor that Mercator is a light projection (it is not). | FACT-CHECK 2026-10-13 (pass 4): Standard definition: a map projection is a systematic rule for transferring points of the globe to a plane (Snyder 1987, ch. 1). The reveal does not claim atlases use this projection.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

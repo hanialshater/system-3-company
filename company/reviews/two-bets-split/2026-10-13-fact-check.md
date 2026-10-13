@@ -23,3 +23,14 @@ Checker: fact-checker. Method: re-derived numbers by extracting the model code f
 | Claim | Verdict | Basis |
 |---|---|---|
 | c7 | disputed | node: exact loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6; the average loss when there is a loss is -10% for n=1,2,3 and only -4.0, -5.0, -5.7% for n=4,5,6. So 'the losses left are small ones' is false at 2-3 bets (the loss is the full -10%) and 'small' is unanchored. Fix: restrict to 4+ bets or say 'and the big loss gets rarer: 50%, 25%, 12.5%'. |
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c7 | verified | As you split across more bets, the chance of some loss does not fall at every step, but th... | Re-derived in node: loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6 (not monotone); worst case 0.5^n halves each step. Matches reveal. |
+
+## Result (pass 4)
+1 verified, 0 disputed, 0 left unverified, 0 added unverified.

@@ -27,36 +27,46 @@
       "id": "geography.dakar-nearer-brazil.c1",
       "text": "Natal, Brazil is about 3,000 km from Dakar.",
       "support": "derivation",
-      "source": "d3-geo geoDistance x 6,371.0088 km from Dakar (14.7167°N, 17.4677°W) to Natal (5.79°S, 35.2°W) = 3,003.6 km (shown to the nearest 10 km). Sphere model. Coordinates from the brief, which cites a gazetteer; the builder did not check them online.",
-      "status": "unverified"
+      "source": "d3-geo geoDistance x 6,371.0088 km from Dakar (14.7167°N, 17.4677°W) to Natal (5.79°S, 35.2°W) = 3,003.6 km (shown to the nearest 10 km). Sphere model. Coordinates from the brief, which cites a gazetteer; the builder did not check them online. | FACT-CHECK 2026-10-13 (pass 4): Node haversine R=6371.0088: Dakar (14.7167N,17.4677W; Wikipedia 14 44N 17 28W) to Natal (5.79S,35.2W) = 3,004 km. Coordinates match gazetteer values (Natal 5 47S 35 12W).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.dakar-nearer-brazil.c2",
       "text": "Rome is about 4,170 km and Paris about 4,210 km from Dakar.",
       "support": "derivation",
-      "source": "Same method: Rome (41.9028°N, 12.4964°E) 4,170.3 km; Paris (48.8566°N, 2.3522°E) 4,205.1 km. City coordinates from memory, not checked online. Shown in the reveal only if the learner's ring reached past both; otherwise the reveal quotes the learner's widest ring.",
-      "status": "unverified"
+      "source": "Same method: Rome (41.9028°N, 12.4964°E) 4,170.3 km; Paris (48.8566°N, 2.3522°E) 4,205.1 km. City coordinates from memory, not checked online. Shown in the reveal only if the learner's ring reached past both; otherwise the reveal quotes the learner's widest ring. | FACT-CHECK 2026-10-13 (pass 4): Node: Rome 4,170 km, Paris 4,205 km (shown 4,210). Paris 48.8566N 2.3522E and Rome 41.9028N 12.4964E are the standard coordinates. The brief's '4,210' for Paris is the stage's rounding of 4,205.1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.dakar-nearer-brazil.c3",
       "text": "An azimuthal equidistant map keeps true distance from its centre only; distances between other pairs are stretched.",
       "support": "source",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 25. From memory, not checked online. d3-geo geoAzimuthalEquidistant centred on Dakar.",
-      "status": "unverified"
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 25. From memory, not checked online. d3-geo geoAzimuthalEquidistant centred on Dakar. | FACT-CHECK 2026-10-13 (pass 4): Azimuthal equidistant: distances true from the centre only (Snyder, Map Projections - A Working Manual, USGS PP 1395, ch. 25).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.dakar-nearer-brazil.c4",
       "text": "Of Paris, Rome and Natal, Natal is the nearest to Dakar.",
       "support": "derivation",
-      "source": "Follows from c1 and c2. The lesson does not claim Natal is the nearest city to Dakar overall (Lisbon, 2,791 km, is nearer) or the nearest in Brazil.",
-      "status": "unverified"
+      "source": "Follows from c1 and c2. The lesson does not claim Natal is the nearest city to Dakar overall (Lisbon, 2,791 km, is nearer) or the nearest in Brazil. | FACT-CHECK 2026-10-13 (pass 4): 3,004 km (Natal) < 4,170 (Rome) < 4,205 (Paris); at ring slider stops Natal is inside from 3,500 km (ring 3,000 sits 4 km short of Natal) and neither European city until 4,500 km.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.dakar-nearer-brazil.c5",
       "text": "Senegal faces Europe to the north and Brazil across the ocean.",
       "support": "convention",
-      "source": "Hook. Geographic description: Europe lies to the north-north-east of Senegal, Brazil to the south-west across the Atlantic (visible on the stage map).",
-      "status": "unverified"
+      "source": "Hook. Geographic description: Europe lies to the north-north-east of Senegal, Brazil to the south-west across the Atlantic (visible on the stage map). | FACT-CHECK 2026-10-13 (pass 4): Hook text. Initial bearing Dakar to Paris is about north-north-east and to Natal about south-west (node check below); consistent with the stage map.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

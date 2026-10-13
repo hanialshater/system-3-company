@@ -27,3 +27,14 @@ Stage check: c2, c3, c4, c5 were already verified by an earlier pass and are unc
 ## Pass 3 (2026-10-13)
 
 c1 left unverified. Search corroboration of UN WPP 2024 mid-2024 values: India 1,450.94M, USA 345.4, Indonesia 283.5, Pakistan 251.3, Nigeria 232.7 (populationpyramids, WPP 2024 based), Brazil 212.0, Bangladesh 173.6, Russia 144.8, Ethiopia 132.1 (top-10 listing), China 1.42 billion. Not corroborated: Mexico 130.86, Japan 123.75, Egypt 116.54, Philippines 115.84, DR Congo 109.28, and world 8,162 to the thousand. The conclusion is robust (top 6 = 3,983M = 48.8%; top 7 = 4,195M = 51.4% of 8,162M), but the UN table itself was still unreachable, so the direct compare is still owed. Not a dispute; needs someone with access to population.un.org.
+
+## Pass 4 (2026-10-13)
+
+Checker: fact-checker. Scope: claims still open after builder revisions (v2 rewrites, claim fixes) or never checked. I wrote none of these claims except where marked "added". Method: re-derived numbers in node from the lesson model code (scratch scripts in the session scratchpad), compared each claim with the stage and reveal text, checked sources by web search where reachable.
+
+| Claim | Verdict | Text (short) | Basis |
+|---|---|---|---|
+| c1 | unverified | Populations in mid-2024 (millions): India 1,451, China 1,419, USA 345, Indonesia 283, Paki... | Pass 4: egress still blocked (population.un.org, data.un.org, ourworldindata.org, api.worldbank.org all 403 via proxy). Only new corroboration: UN WPP 2024 world total for 2024 = 8,161,972,573 (Iberdrola-hosted extract of the WPP 2024 regional tables) matches 'world 8,162'. Country values still need a direct compare with the WPP 2024 table. |
+
+## Result (pass 4)
+0 verified, 0 disputed, 1 left unverified, 0 added unverified.
