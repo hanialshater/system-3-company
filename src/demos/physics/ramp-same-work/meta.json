@@ -1,0 +1,74 @@
+{
+  "slug": "ramp-same-work",
+  "title": "Does a ramp save you work?",
+  "hook": "A long ramp makes a heavy crate easy to push. So it must save effort. Does it?",
+  "domain": "physics",
+  "concept": "inclined-plane-work",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ramps make lifting heavy things easier",
+      "force in newtons; weight is mass x 9.81",
+      "metres"
+    ],
+    "doesNotKnow": [
+      "work = force x distance",
+      "that the force saved by a ramp is paid for in distance"
+    ]
+  },
+  "misconception": "A ramp reduces the work needed to raise a load.",
+  "objective": "The learner can explain that a longer frictionless ramp needs a smaller push (m g h / L) over a longer path, so the work, force x distance, stays m g h: 122.6 N x 4 m = 490.5 J for 50 kg raised 1 m.",
+  "claims": [
+    {
+      "id": "physics.ramp-same-work.c1",
+      "text": "On a frictionless ramp, the steady push needed along the slope is weight x height / length (m g sin theta).",
+      "support": "derivation",
+      "source": "Resolve weight along the incline: m g sin(theta), with sin(theta) = h / L; at constant speed the push balances it. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5-6.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ramp-same-work.c2",
+      "text": "Raising 50 kg by 1.0 m along a 4 m ramp needs a push of 122.6 N; the work is 122.6 N x 4 m = 490.5 J, the same as lifting it straight up (490.5 N x 1 m).",
+      "support": "derivation",
+      "source": "50 x 9.81 x 1 / 4 = 122.6 N; x 4 m = 490.5 J = m g h. The stage computes 490.5 / L for L = 1-8 m (490.5, 245.3, 163.5, 122.6, 98.1, 81.8, 70.1, 61.3 N); checked in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ramp-same-work.c3",
+      "text": "Work is force x distance moved along the force, so a smaller push over a longer path does the same work.",
+      "support": "derivation",
+      "source": "W = F d for a constant force parallel to the motion; (m g h / L) x L = m g h. Work-energy theorem, Halliday, Resnick and Walker, ch. 7.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ramp-same-work.c4",
+      "text": "The lesson assumes no friction and a steady (constant-speed) push; real ramps add friction work, so they cost a little more work, not less.",
+      "support": "convention",
+      "source": "Stated on stage ('Frictionless. Steady push.') and in the reveal. With kinetic friction mu, extra work mu m g cos(theta) L is added.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two ramps lift the same box onto the same truck bed: one 2 m long, one 6 m long, both frictionless. Which needs more work?",
+    "options": [
+      "The 2 m ramp",
+      "The 6 m ramp",
+      "The same work"
+    ],
+    "answer": 2,
+    "why": "The longer ramp needs a third of the push over three times the distance; work = force x distance = m g h either way."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
