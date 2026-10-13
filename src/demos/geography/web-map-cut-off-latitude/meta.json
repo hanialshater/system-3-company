@@ -1,0 +1,81 @@
+{
+  "slug": "web-map-cut-off-latitude",
+  "title": "Where does the web map stop?",
+  "hook": "Scroll a web map north and you hit an edge before the pole. Why there?",
+  "domain": "geography",
+  "concept": "web-mercator-limit",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that Mercator maps stretch areas near the poles",
+      "latitude from 0° at the equator to 90° at the poles"
+    ],
+    "doesNotKnow": [
+      "that a Mercator map's height has no limit toward the poles",
+      "that square web map tiles therefore stop at about 85°"
+    ]
+  },
+  "misconception": "Online maps show the whole world pole to pole; the poles are just far away.",
+  "objective": "The learner can explain that Mercator's height grows without limit toward the poles, so a square world map must stop where height equals width, at 85.05° north and south.",
+  "keyState": "The cut has been set to 85.05° (the map exactly fills the square) and a cut beyond it (89° or the pole) has been seen with the extra map dimmed outside the square.",
+  "claims": [
+    {
+      "id": "geography.web-map-cut-off-latitude.c1",
+      "text": "Standard web map tiles (Web Mercator) draw the whole world as one square Mercator map.",
+      "support": "source",
+      "source": "EPSG:3857 / the 'slippy map' tile scheme: zoom level 0 is one square tile covering the world in spherical Mercator (OpenStreetMap wiki, 'Slippy map tilenames'; from memory). The lesson names no product.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.web-map-cut-off-latitude.c2",
+      "text": "A square Mercator world map stops at about 85.05° north and south.",
+      "support": "derivation",
+      "source": "Height equals width when ψ(L) = π, with ψ = ln tan(45° + L/2): L = atan(sinh π) = 85.0511° (builder node run; Demo.tsx SQUARE_LAT). Matches the EPSG:3857 latitude bound (OpenStreetMap wiki; from memory) and the cm-geography brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.web-map-cut-off-latitude.c3",
+      "text": "Mercator stretches north–south distances more and more toward the poles, so its height has no limit.",
+      "support": "source",
+      "source": "Mercator ordinate y = R ln tan(45° + φ/2), which diverges as φ → 90° (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395, ch. 7; from memory).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.web-map-cut-off-latitude.c4",
+      "text": "Cut at 89°, a Mercator world map is about 1.51 times as tall as it is wide.",
+      "support": "derivation",
+      "source": "ψ(89°)/π = 4.741/3.1416 = 1.509 (builder node run; Demo.tsx ratio). Quoted in the reveal only if the learner chose 89°. Other values on the stage: 75° 0.65, 80° 0.78.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.web-map-cut-off-latitude.c5",
+      "text": "Everything closer to the poles than 85.05° is left off a square web map.",
+      "support": "derivation",
+      "source": "Follows from c1 and c2 for the zoom-0 square; tiles at every zoom subdivide the same square (OpenStreetMap wiki; from memory).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can't a square Mercator map of the world include the North Pole?",
+    "options": [
+      "The pole is ice, not land, so it is left off",
+      "Mercator's height grows without limit toward the pole, so the square must stop short",
+      "Satellites cannot photograph the pole"
+    ],
+    "answer": 1,
+    "why": "Mercator's height grows as ln tan(45° + φ/2), which is infinite at 90°; height equals width at 85.05°, so the square stops there."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
