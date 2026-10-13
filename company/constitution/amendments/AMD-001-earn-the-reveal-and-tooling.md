@@ -618,3 +618,11 @@ need, and the first split chosen with the rest automatic. Life and chemistry rep
 pressure. This is the failure the book warns about ("if your ecosystem rewards clicks, clickable
 organisms evolve"), produced by our own evaluator. Part (a), or a per-lesson declared QA route
 (`data-qa-steps`), would let the lesson define the path to its key state instead of the harness.
+
+## Proposed part (d): gates must read the verdict and the version (chief-of-staff, 2026-10-13)
+On the first launch review, `launchGates` reported 30 lessons "ready to publish", but most had a
+learner verdict of "revise", or a review written for an older version of the lesson. The gate
+only checks that a review file exists. Proposal: a lesson is publishable only if its most recent
+learner review names the current `version` and ends "Verdict: launch", and no fatal finding is
+open. Until this is ratified, the launch review applies the rule by hand (see the 2026-10-13
+launch-review record).
