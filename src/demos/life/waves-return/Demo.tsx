@@ -131,7 +131,7 @@ function Stage({
         <span><i className={s.sick} />sick</span>
         <span><i className={s.imm} />immune</span>
         <span><i className={s.dash} />half the town</span>
-        <span>grey line: susceptible share; red line: sick share</span>
+        <span>grey: susceptible share; red: sick</span>
       </div>
 
       <p className={s.msg} aria-live="polite">{msg}</p>

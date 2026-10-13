@@ -77,7 +77,7 @@ function Stage({
   return (
     <div className={s.wrap}>
       <svg
-        viewBox="0 0 300 175"
+        viewBox="0 0 300 182"
         className={`stage-svg ${s.svg}`}
         role="img"
         aria-label={`Generation ${gen}: share of w is ${pct(rare[gen])} from a 1% start and ${pct(common[gen])} from a 50% start`}
