@@ -49,7 +49,7 @@ export default function CafeIsFiveBytes({ slug }: { slug: string }) {
             {seen[EMOJI] ? ` ${EMOJI} took four (${hexOf(EMOJI)}).` : ""}
           </p>
           <p>
-            UTF-8 gives the plain English letters one byte and other characters two, three or four. So counting bytes
+            UTF-8 gives every ASCII character (English letters, digits, spaces and basic punctuation) one byte, and accented letters, emoji and most other characters two, three or four. So counting bytes
             and counting characters give different answers.
           </p>
         </>
