@@ -1,0 +1,80 @@
+{
+  "slug": "london-december-noon-sun",
+  "title": "How high is London's winter Sun?",
+  "hook": "Everyone knows the winter Sun is lower. Guess how low it gets at noon in London.",
+  "domain": "geography",
+  "concept": "sun-path-sky",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the Sun is lower in winter",
+      "that the Earth's axis is tilted"
+    ],
+    "doesNotKnow": [
+      "how low the winter noon Sun is at a mid-latitude city",
+      "that noon height is 90° minus latitude, plus or minus the tilt"
+    ]
+  },
+  "misconception": "The winter Sun in a mid-latitude city is only a little lower than at the equinox.",
+  "objective": "The learner can explain that the noon Sun's height is 90° minus latitude plus the Sun's declination, so in London it is about 62° in June, 38° at the equinox and 15° in December: 47° apart, twice the tilt.",
+  "claims": [
+    {
+      "id": "geography.london-december-noon-sun.c1",
+      "text": "In London the Sun is about 15° above the horizon at noon on 21 December, 38.5° at the equinox and 61.9° on 21 June.",
+      "support": "derivation",
+      "source": "Noon altitude = 90° - latitude + declination (any astronomy text, e.g. Meeus, Astronomical Algorithms, ch. 13; from memory). Latitude 51.5072°N; declination ±23.44° at the solstices. 15.05°, 38.49°, 61.93° (noonAltitude in Demo.tsx). Geometric: no refraction (adds about 0.1° at 15°; brief). Uses the solstice declination, not the exact value on 21 December of a given year.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c2",
+      "text": "London is at about 51.5°N.",
+      "support": "source",
+      "source": "51.5072°N, 0.1276°W (gazetteer coordinates for central London; from memory, not checked online).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c3",
+      "text": "The Earth's axis is tilted about 23.44°, so the noon Sun swings 23.44° above and below its equinox height.",
+      "support": "source",
+      "source": "Obliquity of the ecliptic 23.44° (Astronomical Almanac; from memory, not checked online). Changes by about 0.013° per century.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c4",
+      "text": "London's winter noon Sun is about 46.9° lower than its summer noon Sun, twice the tilt.",
+      "support": "derivation",
+      "source": "61.93° - 15.05° = 46.88° = 2 x 23.44°.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c5",
+      "text": "A low Sun spreads the same light over more ground, and its light passes through more air.",
+      "support": "derivation",
+      "source": "Light per unit of level ground scales with sin(altitude): sin 15° / sin 62° = 0.29. Path length through the atmosphere is about 1/sin(altitude) for altitudes above about 10° (plane-parallel air mass), about 3.9 at 15°. Stated qualitatively in the reveal; numbers not shown.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A city is at 40°N. Roughly how high is the noon Sun there at the December solstice?",
+    "options": [
+      "About 27°",
+      "About 50°",
+      "About 74°"
+    ],
+    "answer": 0,
+    "why": "Noon height = 90° - latitude - 23.4° in December: 90 - 40 - 23.4 = 26.6°."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

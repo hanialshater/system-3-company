@@ -74,8 +74,10 @@
       "id": "physics.coaster-track-shape.c6",
       "text": "Ramps covering 3, 5, 8, 12, 16 and 20 m of floor for a 5 m drop slope at about 59, 45, 32, 23, 17 and 14 degrees.",
       "support": "derivation",
-      "source": "Slope = atan(5 / L) in degrees, rounded: atan(5/3) = 59.0, atan(1) = 45, atan(5/8) = 32.0, atan(5/12) = 22.6, atan(5/16) = 17.4, atan(5/20) = 14.0. Computed in Demo.tsx slopeDeg().",
-      "status": "unverified"
+      "source": "Slope = atan(5 / L) in degrees, rounded: atan(5/3) = 59.0, atan(1) = 45, atan(5/8) = 32.0, atan(5/12) = 22.6, atan(5/16) = 17.4, atan(5/20) = 14.0. Computed in Demo.tsx slopeDeg(). | FACT-CHECK 2026-10-13 (pass 4): Node: atan(5/L) in degrees for L = 3,5,8,12,16,20 gives 59.04, 45.00, 32.01, 22.62, 17.35, 14.04; slopeDeg() rounds to 59, 45, 32, 23, 17, 14.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.coaster-track-shape.c7",

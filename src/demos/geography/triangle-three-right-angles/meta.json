@@ -1,0 +1,80 @@
+{
+  "slug": "triangle-three-right-angles",
+  "title": "A triangle drawn on the Earth",
+  "hook": "You learned a triangle's angles add to 180°. Draw one big enough on a globe and measure.",
+  "domain": "geography",
+  "concept": "spherical-triangles",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a flat triangle's angles add to 180°",
+      "the equator, the North Pole and lines of longitude"
+    ],
+    "doesNotKnow": [
+      "that the 180° rule holds only on a flat plane",
+      "that on a sphere the extra angle measures the triangle's area"
+    ]
+  },
+  "misconception": "Every triangle has angles summing to 180 degrees.",
+  "objective": "The learner can explain that a triangle on a sphere has angles adding to more than 180°, that the pole-equator triangle to 90°E has three right angles (270°), and that the excess in radians times R² is its area.",
+  "claims": [
+    {
+      "id": "geography.triangle-three-right-angles.c1",
+      "text": "The triangle from the North Pole to 0°,0° to 90°E on the equator has three right angles, so its angles add to 270°.",
+      "support": "derivation",
+      "source": "Meridians meet the equator at right angles; the meridians 0° and 90°E meet at the pole at 90°. Demo.tsx computes each corner angle from 3-D tangent vectors (cornerAngle) on the same corners it draws: 90°, 90°, 90° at 90°E. Builder re-ran in node (scratch c.mjs): sum 270.000.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.triangle-three-right-angles.c2",
+      "text": "On a sphere a triangle's angles add to 180° plus the spherical excess, and the excess in radians times R² is exactly its area (Girard's theorem).",
+      "support": "source",
+      "source": "Girard's theorem (Albert Girard, 1629); any spherical trigonometry text, e.g. Todhunter, Spherical Trigonometry (1886), ch. on area. From memory, not checked online. The stage shows both numbers side by side: geoArea x R² and (sum - 180°) in radians x R² agree at every slider stop 15°-135°E (scratch c.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.triangle-three-right-angles.c3",
+      "text": "With the corner at 90°E the triangle's area is π/2 × R², about 63.8 million km², one-eighth (12.5%) of the Earth's 510 million km² surface.",
+      "support": "derivation",
+      "source": "Sphere of radius R = 6,371.0088 km (EARTH_RADIUS_KM): (π/2) R² = 63.758 million km²; 4πR² = 510.066 million km². d3-geo geoArea on the exact corners gives 63.758 (scratch c.mjs). The Earth is modelled as a sphere.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.triangle-three-right-angles.c4",
+      "text": "The 180° rule holds only on a flat surface; on a sphere the sides bulge outward and the angles add up to more.",
+      "support": "derivation",
+      "source": "Follows from c2: excess = area / R² > 0 for any triangle of positive area on a sphere; it tends to 0 as the triangle shrinks relative to R.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.triangle-three-right-angles.c5",
+      "text": "Tiny triangles have almost no excess, which is why a triangle on paper shows 180°.",
+      "support": "derivation",
+      "source": "Excess = area / R². A 1 km² triangle on the Earth has excess 1 / 6,371² rad, about 0.0000014°. The stage's smallest triangle (15°E) has 15° of excess; the claim is an extrapolation stated in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A triangle drawn on a globe covers a quarter of one hemisphere. What can you say about its angles?",
+    "options": [
+      "They add to exactly 180°",
+      "They add to more than 180°",
+      "They add to less than 180°"
+    ],
+    "answer": 1,
+    "why": "On a sphere the sides bulge outward; the angle sum exceeds 180° by an amount proportional to the triangle's area."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

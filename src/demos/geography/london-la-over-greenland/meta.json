@@ -1,0 +1,80 @@
+{
+  "slug": "london-la-over-greenland",
+  "title": "London to LA: what's underneath?",
+  "hook": "On a wall map, London to LA looks like a hop over the Atlantic. Fly it and look down.",
+  "domain": "geography",
+  "concept": "gnomonic-great-circles",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that long flights look curved on flat maps",
+      "roughly where Greenland, Iceland and Canada are"
+    ],
+    "doesNotKnow": [
+      "how to see the shortest path as a straight line",
+      "what the London to Los Angeles shortest path passes over"
+    ]
+  },
+  "misconception": "A flight from London to Los Angeles crosses open Atlantic and then Canada, because the straight line on a Mercator map does.",
+  "objective": "The learner can explain that on a gnomonic map every great circle is straight, that the shortest London to Los Angeles route crosses the southern tip of Greenland, and that the straight line on Mercator is a longer constant-bearing route.",
+  "claims": [
+    {
+      "id": "geography.london-la-over-greenland.c1",
+      "text": "On a gnomonic map every great circle, the shortest path between two points on a ball, is a straight line.",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 22 (Gnomonic). From memory, not checked online. d3-geo geoGnomonic.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-la-over-greenland.c2",
+      "text": "A gnomonic map shows less than half the globe.",
+      "support": "derivation",
+      "source": "Points 90° from the centre project to infinity (r = R tan c). The lesson clips at 52° from the route's midpoint.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-la-over-greenland.c3",
+      "text": "The shortest London to Los Angeles route crosses the southern tip of Greenland, not Iceland or only open ocean.",
+      "support": "simulation",
+      "source": "geoInterpolate between London (51.5072°N, 0.1276°W) and Los Angeles (34.0522°N, 118.2437°W), sampled at 2,000 points against the kit's 1:110m countries with geoContains: UK, Ireland, sea, Greenland (about 2,780-3,156 km out, 42.6°W-49.9°W at about 62.3°N), sea, Canada, United States. Iceland's outline is about 432 km from the route at its closest. City coordinates from memory, not checked online. The 1:110m outline is coarse; the lesson says 'southern tip' and gives no length for the land leg (brief rule 4). The stage's marker shows 'Greenland' at the 3,000 km slider stop.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-la-over-greenland.c4",
+      "text": "The shortest London to Los Angeles route is about 8,760 km on a round Earth, ignoring winds.",
+      "support": "derivation",
+      "source": "d3-geo geoDistance x 6,371.0088 km = 8,755.6 km (shown to the nearest 10 km). Sphere model. No claim that any airline flies this exact path; real routes vary with winds and airspace.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-la-over-greenland.c5",
+      "text": "The line that looks straight on Mercator is a constant compass bearing; from London to Los Angeles it crosses open Atlantic far south of Greenland and is about 9,730 km, longer than the shortest route.",
+      "support": "derivation",
+      "source": "Rhumb-line length d = sqrt(Δφ² + q² Δλ²) R with q = Δφ / Δψ, Δψ = ln(tan(π/4 + φ2/2) / tan(π/4 + φ1/2)) (Snyder 1987, ch. 7; from memory). Computed in Demo.tsx rhumbKm: 9,733 km. Mercator rhumb lines are straight: Snyder ch. 7.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You want to see the shortest route between two cities as a straight line. Which kind of map do you use?",
+    "options": [
+      "Mercator",
+      "Gnomonic",
+      "Any map, if you draw carefully"
+    ],
+    "answer": 1,
+    "why": "Gnomonic maps send every great circle to a straight line. On Mercator a straight line is a constant compass bearing, which is longer."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

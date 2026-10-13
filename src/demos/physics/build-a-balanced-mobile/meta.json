@@ -81,8 +81,10 @@
       "id": "physics.build-a-balanced-mobile.c7",
       "text": "A weight turns the beam more the further it sits from the pivot: its turning effect is weight times distance (shown on the stage as kg x cm on each side).",
       "support": "derivation",
-      "source": "Torque about the pivot = m g d; the stage drops the common factor g and shows m d in kg x cm (Demo.tsx turns()). At 75 cm: 0.10 x 25 = 2.5 each side; at 62.5 cm: left 0.10 x 12.5 = 1.25, right 0.10 x 37.5 = 3.75.",
-      "status": "unverified"
+      "source": "Torque about the pivot = m g d; the stage drops the common factor g and shows m d in kg x cm (Demo.tsx turns()). At 75 cm: 0.10 x 25 = 2.5 each side; at 62.5 cm: left 0.10 x 12.5 = 1.25, right 0.10 x 37.5 = 3.75. | FACT-CHECK 2026-10-13 (pass 4): Torque m g d with common g dropped; checked turns() in node: at 75 cm 2.5/2.5 kg x cm, at 62.5 cm left 1.25, right 3.75, matching the stage readouts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

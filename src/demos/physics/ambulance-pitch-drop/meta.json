@@ -45,8 +45,10 @@
       "id": "physics.ambulance-pitch-drop.c3",
       "text": "Standing 3 m from the road, you hear about 754 Hz with the ambulance 20 m before you, about 704 Hz as it is beside you (that sound left a moment earlier, while still approaching), and about 653 Hz 20 m past you.",
       "support": "derivation",
-      "source": "Computed in Demo.tsx with retarded emission time tau from (x - v tau)^2 + 3^2 = (c tau)^2 and f' = f c / (c - v cos phi). Values at slider stops x = -80, -60, -40, -20, 0, 20, 40, 60, 80 m: 755.0, 755.0, 754.9, 754.5, 703.7, 653.0, 652.6, 652.5, 652.5 Hz.",
-      "status": "unverified"
+      "source": "Computed in Demo.tsx with retarded emission time tau from (x - v tau)^2 + 3^2 = (c tau)^2 and f' = f c / (c - v cos phi). Values at slider stops x = -80, -60, -40, -20, 0, 20, 40, 60, 80 m: 755.0, 755.0, 754.9, 754.5, 703.7, 653.0, 652.6, 652.5, 652.5 Hz. | FACT-CHECK 2026-10-13 (pass 4): Re-derived in node from heard(): -20 m 754.47 (stage shows 754), 0 m 703.74 (704), +20 m 653.01 (653); other stops 755.0, 755.0, 754.9, 652.6, 652.5, 652.5 match the source list.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.ambulance-pitch-drop.c4",
@@ -70,14 +72,25 @@
       "id": "physics.ambulance-pitch-drop.c6",
       "text": "Model: still air, sound at 343 m/s.",
       "support": "convention",
-      "source": "Stated in the reveal. Sound speed in dry air at 20 C. (v2 removed the learner-visible sentence about standing close making the drop quick: no control showed it.)",
-      "status": "unverified"
+      "source": "Stated in the reveal. Sound speed in dry air at 20 C. (v2 removed the learner-visible sentence about standing close making the drop quick: no control showed it.) | FACT-CHECK 2026-10-13 (pass 4): Speed of sound 343 m/s at 20 C in dry air (standard value, 343.2); stated as the model's assumption.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.ambulance-pitch-drop.c7",
       "text": "Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m apart; from the ambulance at 25 m/s they are 31.8 m apart ahead and 36.8 m behind, so ahead crests arrive 34.3 / 31.8 = 1.08 times as often, up to 755 Hz.",
       "support": "derivation",
-      "source": "Hz = cycles per second (SI). Parked spacing c x 0.1 = 34.3 m; ahead (c - v) x 0.1 = 31.8 m; behind (c + v) x 0.1 = 36.8 m. 34.3 / 31.8 = 1.079; 700 x 1.079 = 755 Hz (same as c2, 700 x 343 / 318). Computed from the same constants in Demo.tsx.",
+      "source": "Hz = cycles per second (SI). Parked spacing c x 0.1 = 34.3 m; ahead (c - v) x 0.1 = 31.8 m; behind (c + v) x 0.1 = 36.8 m. 34.3 / 31.8 = 1.079; 700 x 1.079 = 755 Hz (same as c2, 700 x 343 / 318). Computed from the same constants in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 4): Node: 34.3, 31.8, 36.8 m; 34.3/31.8 = 1.0786 -> '1.08'; 700 x 343/318 = 755.03. Stage caption is a separate claim (added c8).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.ambulance-pitch-drop.c8",
+      "text": "Each ring is a crest, sent 0.1 s apart. Hz = crests per second.",
+      "support": "derivation",
+      "source": "Stage caption before the reveal. CONCERN: a 700 Hz siren sends crests 1/700 s (1.4 ms) apart, so rings 0.1 s apart are every 70th crest (Demo.tsx header comment and c5 say so); the caption says each ring is a crest. Suggest 'Each ring marks sound sent 0.1 s ago; a real 700 Hz siren sends 70 crests in that time.' Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

@@ -1,0 +1,101 @@
+{
+  "slug": "north-is-up-convention",
+  "title": "Which way is up?",
+  "hook": "North sits at the top of almost every map today. Did mapmakers always put it there?",
+  "domain": "geography",
+  "concept": "map-orientation-north-up",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that maps have north at the top",
+      "roughly where Europe, Asia and Africa are"
+    ],
+    "doesNotKnow": [
+      "that north-up is a convention that has changed",
+      "how medieval European world maps were laid out"
+    ]
+  },
+  "misconception": "North has always been up because that is the natural way to draw the world.",
+  "objective": "The learner can explain that which direction is at the top of a map is a choice, and that medieval European world maps such as the Hereford map put east at the top.",
+  "claims": [
+    {
+      "id": "geography.north-is-up-convention.c1",
+      "text": "The Hereford world map (Hereford Mappa Mundi) dates from about 1300.",
+      "support": "source",
+      "source": "Hereford Cathedral, 'The Mappa Mundi' (usually dated c. 1300). From memory, not checked online.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c2",
+      "text": "The Hereford map puts Asia at the top, Europe at lower left and Africa at lower right.",
+      "support": "source",
+      "source": "The map follows the T-O scheme: Asia fills the upper half, Europe the lower left quarter, Africa the lower right quarter (Hereford Cathedral; British Library 'T-O maps'). From memory, not checked online. Note: on the original, the labels for Europe and Africa are famously swapped; the layout of the land is as stated.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c3",
+      "text": "The Hereford map, like other medieval European world maps, has east at the top.",
+      "support": "source",
+      "source": "Hereford Cathedral; Harvey, Mappa Mundi: The Hereford World Map (1996). From memory, not checked online. The lesson also derives it: turning the globe so the layout in c2 holds puts east at the top (topDirection(90) in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c4",
+      "text": "The Hereford map is centred on Jerusalem.",
+      "support": "source",
+      "source": "Hereford Cathedral, 'The Mappa Mundi'. From memory, not checked online. Used for the stage caption and the globe's centre.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c5",
+      "text": "The word 'orient' comes from the Latin for 'rising', the east, where the Sun rises.",
+      "support": "source",
+      "source": "Oxford English Dictionary, 'orient': from Latin oriens, oriens -entis 'rising, sunrise, east', present participle of oriri 'to rise'. From memory, not checked online.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c6",
+      "text": "Al-Idrisi drew his world map in 1154 with south at the top.",
+      "support": "source",
+      "source": "The Tabula Rogeriana, made for Roger II of Sicily in 1154, is oriented with south at the top (Bodleian Library, MS. Pococke 375 copy). From memory, not checked online.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c7",
+      "text": "North at the top is today's convention for almost every map.",
+      "support": "convention",
+      "source": "Hook and reveal. A statement about modern practice (national survey sheets, atlases, web maps all print north up by default). No source checked; needs one or softening.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.north-is-up-convention.c8",
+      "text": "The Earth has no top, so which way is up on a map is a choice.",
+      "support": "derivation",
+      "source": "A sphere has no preferred direction in space for a picture of it; the stage turns one orthographic view (d3-geo geoOrthographic, third rotation angle) and every turn is equally correct. The lesson makes no claim about why north-up won.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is north at the top of most maps today?",
+    "options": [
+      "The North Pole is the top of the Earth",
+      "It is a convention; medieval European maps put east at the top",
+      "Compasses only work with north up"
+    ],
+    "answer": 1,
+    "why": "A ball has no top. Which way is up on a map is a choice, and it has changed: the Hereford map put east up, al-Idrisi put south up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

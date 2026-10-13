@@ -119,8 +119,10 @@
       "id": "ai.gradient-descent.c11",
       "text": "For step sizes below 0.2 the running message says 'Slow: each hop covers under 40% of the distance left.'",
       "support": "simulation",
-      "source": "Stage message() branch factor > 0.6 (step size below 0.2). Hops at 0.05 are 0.40 of a 4.00 distance (10%), but at 0.15 the first hop is 1.20 (30% of the distance) and the 10-hop distance is 0.11, so 'tiny' is generous for 0.15. Wording concern for demo-builder; not covered by c9, which only covers the 'Heading down' and 'within 0.05' branches. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: The message 'Crawling: the hops are tiny.' fires for step sizes below 0.2 (factor above 0.6). At 0.15-0.19 the first hop is 1.2-1.5 of a 4.0 distance (30-38%), not tiny. Code behaviour is as stated; the displayed wording is not. Fix: 'Slow: each hop covers only a small share of the distance' or lower the threshold. | CLAIM FIX 2026-10-13: Was 'Crawling: the hops are tiny.' (disputed: at 0.15-0.19 a hop is 30-38% of the distance). Each hop is 2*eta of the distance, under 40% when eta < 0.2, so the new message is exact.",
-      "status": "unverified"
+      "source": "Stage message() branch factor > 0.6 (step size below 0.2). Hops at 0.05 are 0.40 of a 4.00 distance (10%), but at 0.15 the first hop is 1.20 (30% of the distance) and the 10-hop distance is 0.11, so 'tiny' is generous for 0.15. Wording concern for demo-builder; not covered by c9, which only covers the 'Heading down' and 'within 0.05' branches. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: The message 'Crawling: the hops are tiny.' fires for step sizes below 0.2 (factor above 0.6). At 0.15-0.19 the first hop is 1.2-1.5 of a 4.0 distance (30-38%), not tiny. Code behaviour is as stated; the displayed wording is not. Fix: 'Slow: each hop covers only a small share of the distance' or lower the threshold. | CLAIM FIX 2026-10-13: Was 'Crawling: the hops are tiny.' (disputed: at 0.15-0.19 a hop is 30-38% of the distance). Each hop is 2*eta of the distance, under 40% when eta < 0.2, so the new message is exact. | FACT-CHECK 2026-10-13 (pass 4): Rechecked: message 'Slow: each hop covers under 40% of the distance left.' fires when factor 1-2*eta > 0.6, i.e. eta < 0.2, where a hop is 2*eta < 40% of the distance (node: eta 0.15 -> 30%, 0.19 -> 38%, 0.20 falls to the next branch).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -1,0 +1,87 @@
+{
+  "slug": "equinox-twelve-everywhere",
+  "title": "The day every place gets 12 hours",
+  "hook": "Summer days are long in the north and winter days short. Is there a day when that stops?",
+  "domain": "geography",
+  "concept": "daylight-by-latitude",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that summer has long days and winter short ones",
+      "latitude in degrees north of the equator"
+    ],
+    "doesNotKnow": [
+      "that at the equinox every latitude gets about 12 hours of daylight",
+      "why day length depends on latitude only when the Sun is off the equator"
+    ]
+  },
+  "misconception": "Even at the equinox, places far from the equator get longer or shorter days than the tropics.",
+  "objective": "The learner can explain that at the equinox the day-night line runs pole to pole, so every parallel is half lit (about 12 hours at 60°N as at the equator), and that the tilt makes day length depend on latitude on other dates.",
+  "claims": [
+    {
+      "id": "geography.equinox-twelve-everywhere.c1",
+      "text": "On the March equinox the Sun is above the horizon for about 12 hours at 60°N, the same as at the equator.",
+      "support": "derivation",
+      "source": "Day length from cos H = -tan φ tan δ (Meeus, Astronomical Algorithms, ch. 15; from memory). At δ = 0, H = 90° for every φ < 90°, so 2H/15° = 12.000 h. Computed in Demo.tsx dayHours, the same function that draws the lit part of the line. Geometric day: Sun's centre on the horizon, no refraction.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c2",
+      "text": "At the equinox the line between day and night runs from pole to pole, so every line of latitude is half lit.",
+      "support": "derivation",
+      "source": "With the subsolar point on the equator, the terminator is the great circle 90° from it, which passes through both poles (a pair of meridians). Drawn by nightPolygons in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c3",
+      "text": "On the equinox the Sun is overhead at the equator; on other dates the Earth's tilt puts it north or south of the equator.",
+      "support": "source",
+      "source": "Definition of the equinox (Sun's declination 0) and obliquity 23.44° (Astronomical Almanac; from memory, not checked online). The stage uses a simple model, declination = -23.44° cos(angle round the orbit) at five dates 1/8 year apart; 'early Feb' and 'early May' are model dates (declination ±16.6°), not almanac values.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c4",
+      "text": "On 21 June the same formula gives about 18.5 hours of daylight at 60°N.",
+      "support": "derivation",
+      "source": "cos H = -tan 60° tan 23.44° = -0.751, H = 138.7°, 2H/15 = 18.5 h. Shown in the reveal only if the learner looked at 60°N on 21 June.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c5",
+      "text": "Real equinox days run a few minutes over 12 hours, because air bends sunlight and the Sun is a disc, not a point.",
+      "support": "source",
+      "source": "Sunrise and sunset are defined by the Sun's upper limb with about 34' of refraction (US Naval Observatory definition, -0.833° altitude; from memory, not checked online). The brief's check gives about 7 minutes extra at the equator and 13 at 60°N; the lesson says 'a few minutes' and shows no number.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c6",
+      "text": "Oslo and Helsinki lie at about 60°N.",
+      "support": "source",
+      "source": "Oslo 59.9°N, Helsinki 60.2°N (any gazetteer; from memory).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On the September equinox, which place gets the most hours of daylight: Quito (equator), Rome (42°N) or Oslo (60°N)?",
+    "options": [
+      "Quito",
+      "Oslo",
+      "All about the same"
+    ],
+    "answer": 2,
+    "why": "At an equinox the Sun is over the equator and the day-night line runs pole to pole, so every latitude is half lit: about 12 hours everywhere."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
