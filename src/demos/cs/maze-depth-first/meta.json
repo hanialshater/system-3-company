@@ -1,0 +1,80 @@
+{
+  "slug": "maze-depth-first",
+  "title": "Found a path. The shortest one?",
+  "hook": "A search that always goes deeper first will find the exit. Will it find the quick way?",
+  "domain": "cs",
+  "concept": "depth-first-search",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a map as places joined by links",
+      "backing up when a corridor is a dead end"
+    ],
+    "doesNotKnow": [
+      "depth-first search and its stack of places",
+      "that the first path depth-first search finds need not be the shortest"
+    ]
+  },
+  "misconception": "The first path an exploring algorithm finds is the shortest.",
+  "objective": "The learner can trace depth-first search on S-A, S-G, A-G (alphabetical) to S, A, G and explain that going deeper first finds a path but not necessarily the one with fewest links.",
+  "claims": [
+    {
+      "id": "cs.maze-depth-first.c1",
+      "text": "On S-A, S-G, A-G, depth-first search from S trying neighbours alphabetically returns S, A, G: 2 links, though S, G is 1.",
+      "support": "simulation",
+      "source": "Demo.tsx dfsSteps(TRIANGLE): S -> A (A before G), A's unvisited neighbour G -> stop; stack S, A, G. shortest() (breadth-first) gives S, G. Builder also ran an independent recursive DFS in Node: [S, A, G].",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.maze-depth-first.c2",
+      "text": "In the bigger maze depth-first search hits the dead end B, backs up, and returns S, A, C, D, G (4 links) where S, E, G (2 links) would do.",
+      "support": "simulation",
+      "source": "Demo.tsx dfsSteps(MAZE) and shortest(MAZE) on the edges listed in MAZE (S-A, S-E, A-B, A-C, C-D, D-G, E-G). The maze was designed by the builder to show a long find; it is an illustration, not a typical case.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.maze-depth-first.c3",
+      "text": "Depth-first search commits to one branch and only backs up at a dead end, keeping the current path on a stack.",
+      "support": "derivation",
+      "source": "Demo.tsx dfsSteps (explicit stack: push on a new neighbour, pop when none is left). CLRS 3rd ed., 22.3 'Depth-first search'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.maze-depth-first.c4",
+      "text": "Depth-first search always finds a path if one exists, but not necessarily the shortest.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 22.3 (DFS visits every vertex reachable from the source; no shortest-path guarantee) contrasted with 22.2 (BFS computes shortest-path distances in unweighted graphs).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.maze-depth-first.c5",
+      "text": "To find the path with the fewest links, search breadth-first.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 22.2, Theorem 22.5 (breadth-first search computes shortest-path distances in unweighted graphs).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A robot explores a building depth-first and reports the first route it found to the exit. What can you say about that route?",
+    "options": [
+      "It is a real route, but may be far from the shortest",
+      "It is the shortest route",
+      "It may not reach the exit"
+    ],
+    "answer": 0,
+    "why": "Depth-first search follows one branch until it dead-ends, so it finds a route if one exists, but it commits to whichever branch it tried first, not the shortest."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
