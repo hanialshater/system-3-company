@@ -1,5 +1,6 @@
 # Analytics & Experiment Steward
 
+name: Grace
 team: insight
 reports_to: head-of-product
 agent: .claude/agents/analytics-steward.md

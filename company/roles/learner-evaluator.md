@@ -1,5 +1,6 @@
 # Learner Evaluator (borrowed mind)
 
+name: Sam
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/learner-evaluator.md

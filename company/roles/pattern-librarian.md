@@ -1,5 +1,6 @@
 # Pattern Librarian
 
+name: Ottilie
 team: insight
 reports_to: chief-of-staff
 agent: .claude/agents/pattern-librarian.md

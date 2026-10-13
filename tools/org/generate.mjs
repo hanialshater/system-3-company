@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { roles } from "./roles.mjs";
+import { PERSONA } from "./people.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const list = (xs) => (xs?.length ? xs.map((x) => `- ${x}`).join("\n") : "- none");
@@ -24,6 +25,7 @@ function onboarding(r) {
   const agentLine = r.human ? "human: true" : `agent: .claude/agents/${r.id}.md`;
   return `# ${r.title}
 
+name: ${PERSONA[r.id] ?? r.title}${PERSONA[r.id] === "Builders" ? " (each running builder gets its own name in HQ)" : ""}
 team: ${r.team}
 reports_to: ${r.reportsTo}
 ${agentLine}${r.domain ? `\ndomain: ${r.domain}` : ""}${r.constitutional ? "\nconstitutional: true (this role's authority is part of the constitutional surface)" : ""}

@@ -1,5 +1,6 @@
 # Researcher
 
+name: Mei
 team: studio
 reports_to: learning-designer
 agent: .claude/agents/researcher.md

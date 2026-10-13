@@ -1,5 +1,6 @@
 # Chief of Staff (operator)
 
+name: Ada
 team: leadership
 reports_to: founder
 agent: .claude/agents/chief-of-staff.md

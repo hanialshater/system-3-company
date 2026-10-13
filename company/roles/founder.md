@@ -1,5 +1,6 @@
 # Founder
 
+name: You
 team: leadership
 reports_to: nobody
 human: true

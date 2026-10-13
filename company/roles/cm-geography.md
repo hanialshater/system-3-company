@@ -1,5 +1,6 @@
 # Category Manager — Geography & Maps
 
+name: Ana
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-geography.md

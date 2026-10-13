@@ -1,5 +1,6 @@
 # Category Manager — Physics
 
+name: Omar
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-physics.md

@@ -1,5 +1,6 @@
 # Pedagogy Critic (pairwise)
 
+name: Yusuf
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/pedagogy-critic.md

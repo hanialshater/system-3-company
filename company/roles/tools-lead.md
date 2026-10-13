@@ -1,5 +1,6 @@
 # Company Tools Lead
 
+name: Sora
 team: company-tools
 reports_to: chief-of-staff
 agent: .claude/agents/tools-lead.md

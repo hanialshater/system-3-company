@@ -1,5 +1,6 @@
 # Accessibility Reviewer
 
+name: Arjun
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/accessibility-reviewer.md

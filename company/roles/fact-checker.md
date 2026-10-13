@@ -1,5 +1,6 @@
 # Fact-Checker
 
+name: Ingrid
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/fact-checker.md

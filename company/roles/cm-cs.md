@@ -1,5 +1,6 @@
 # Category Manager — Computer Science
 
+name: Lin
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-cs.md

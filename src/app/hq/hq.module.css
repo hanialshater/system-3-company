@@ -1,4 +1,17 @@
 .hq {
+  --hq-tile: #161a23;
+  --hq-tile-line: #1f2430;
+  --hq-wood: #2a2420;
+  --hq-wood-line: #322a24;
+  --hq-carpet: #251f33;
+  --hq-carpet-dot: #31294a;
+  --hq-lobby: #2c2717;
+  --hq-floor: #172033;
+  --hq-desk: #3a4254;
+  --hq-monitor: #7c9cff;
+  --hq-sofa: #4b3f6b;
+  --hq-head: #1e2433;
+  --hq-card: #12151d;
   min-height: 100dvh;
   background: var(--bg);
   color: var(--fg);
@@ -76,43 +89,30 @@
   display: block;
 }
 .building {
-  fill: color-mix(in srgb, var(--line) 35%, var(--bg));
   stroke: var(--line);
+  stroke-width: 2;
 }
 .room {
   cursor: pointer;
 }
 .roomRect {
-  fill: var(--bg);
   stroke: var(--line);
-  stroke-width: 1.5;
-}
-.floor {
-  fill: color-mix(in srgb, #7c9cff 7%, var(--bg));
-}
-.meeting {
-  fill: color-mix(in srgb, #c792ea 7%, var(--bg));
-}
-.lobby {
-  fill: color-mix(in srgb, #ffd54f 9%, var(--bg));
+  stroke-width: 1;
 }
 .selected {
   stroke: var(--accent);
   stroke-width: 3;
 }
 .roomName {
-  font-size: 13px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   font-weight: 600;
   fill: var(--fg);
 }
 .count {
   font-size: 11px;
   fill: var(--muted);
-}
-.dotLabel {
-  font-size: 8.5px;
-  fill: var(--muted);
-  pointer-events: none;
 }
 .panel {
   border: 1px solid var(--line);
@@ -146,6 +146,9 @@
 .event {
   border-top: 1px solid var(--line);
   padding-top: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
 }
 .eventHead {
   display: flex;
@@ -209,3 +212,211 @@
 .feedWrap {
   margin-top: 20px;
 }
+
+@media (prefers-color-scheme: light) {
+  .hq {
+    --hq-tile: #eef1f6;
+    --hq-tile-line: #e3e7ef;
+    --hq-wood: #f3e7d7;
+    --hq-wood-line: #ead9c3;
+    --hq-carpet: #efe8f8;
+    --hq-carpet-dot: #e1d6f1;
+    --hq-lobby: #fbf1d6;
+    --hq-floor: #e8eefc;
+    --hq-desk: #c9cfdb;
+    --hq-monitor: #5b7cf0;
+    --hq-sofa: #b9a7e0;
+    --hq-head: #ffffff;
+    --hq-card: #ffffff;
+  }
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.title strong {
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, var(--accent), var(--good));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.okText {
+  color: var(--good);
+  font-weight: 600;
+}
+.badText {
+  color: var(--bad);
+  font-weight: 600;
+}
+.tabs {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+.tab,
+.tabOn {
+  border: none;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+}
+.tabOn {
+  background: var(--accent);
+  color: #0d0f14;
+  font-weight: 600;
+}
+.stage {
+  min-width: 0;
+  border-radius: 20px;
+  background: var(--hq-card);
+  border: 1px solid var(--line);
+  padding: 10px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+}
+.tileBg { fill: var(--hq-tile); }
+.tileLine { fill: none; stroke: var(--hq-tile-line); stroke-width: 1; }
+.woodBg { fill: var(--hq-wood); }
+.woodLine { fill: none; stroke: var(--hq-wood-line); stroke-width: 1; }
+.carpetBg { fill: var(--hq-carpet); }
+.lobbyBg { fill: var(--hq-lobby); }
+.carpetDot { fill: var(--hq-carpet-dot); }
+.heat { fill: #7c9cff; }
+.door { fill: var(--hq-tile); }
+.desk { fill: var(--hq-desk); }
+.monitor { fill: var(--hq-monitor); opacity: 0.8; }
+.table { fill: var(--hq-desk); }
+.chair { fill: var(--hq-sofa); }
+.sofa { fill: var(--hq-sofa); }
+.plant { fill: #2f8f5b; }
+.plantLight { fill: #4fbf7f; }
+.roomHead { fill: var(--hq-head); opacity: 0.92; }
+.onColor { fill: #0d0f14 !important; }
+.chip { fill: var(--accent); opacity: 0.9; }
+.chipText { font-size: 9.5px; font-weight: 700; fill: #0d0f14; }
+.person { cursor: pointer; }
+.person:hover .pill { stroke: var(--accent); }
+.pill { fill: var(--hq-card); stroke: var(--line); stroke-width: 1; }
+.pillIdle { fill: var(--hq-card); stroke: var(--line); stroke-width: 1; opacity: 0.7; }
+.pillText { font-size: 9px; font-weight: 600; fill: var(--fg); pointer-events: none; }
+.more { font-size: 10px; fill: var(--muted); }
+.moreLink { color: var(--accent); }
+.roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px;
+}
+.rosterItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 10px 2px 2px;
+}
+.eventMain {
+  min-width: 0;
+  flex: 1;
+}
+.orgRoot {
+  padding: 4px 4px 4px 0 !important;
+  margin: 0;
+}
+.orgList {
+  list-style: none;
+  margin: 0;
+  padding-left: 22px;
+  position: relative;
+}
+.orgItem {
+  position: relative;
+  padding: 6px 0 0 14px;
+}
+.orgList .orgList .orgItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid var(--line);
+}
+.orgList .orgList .orgItem:last-child::before {
+  bottom: auto;
+  height: 28px;
+}
+.orgList .orgList .orgItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 28px;
+  width: 12px;
+  border-top: 2px solid var(--line);
+}
+.orgCard {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--team);
+  border-radius: 12px;
+  padding: 6px 10px;
+  background: var(--hq-head);
+  max-width: 460px;
+}
+.orgStack {
+  display: flex;
+}
+.orgStack > svg + svg {
+  margin-left: -10px;
+}
+.orgText {
+  min-width: 0;
+}
+.orgName {
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.orgTitle {
+  font-size: 12px;
+  color: var(--muted);
+}
+.orgWhere {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  color: var(--accent);
+  text-align: left;
+  cursor: pointer;
+}
+.orgWhereIdle {
+  font-size: 12px;
+  color: var(--muted);
+}
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 1px 7px;
+  color: #0d0f14;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge.working { background: var(--good); }
+.badge.stopped { background: var(--bad); }
+.badge.done { background: var(--muted); }

@@ -28,3 +28,8 @@
   - The Lobby shows rituals due and the board items waiting on the founder.
   - HQ is off in production unless `HQ_PUBLIC=1`, because it shows internal prompts. It goes behind the login once the backend lands.
 - Event-driven rituals: `company/rituals/triggers.json` and `node tools/rituals-due.mjs`. The calendar table in the gate CLI stays as the upper bound until an amendment replaces it.
+- HQ v2 (same day): every agent has a name and a generated face.
+  - Names: residents have persona names (Ada, chief of staff; Kenji, principal engineer; the category managers Ravi, Lin, Bea…). Each running builder, checker or reviewer gets its own name from `tools/org/people.mjs`, and it keeps that name across replays.
+  - Office: the rooms have furniture (desks, meeting tables, a lobby with sofas), floor textures and live status dots. A new Studio room holds the design roles.
+  - **People tab:** the org tree from `tools/org/roles.mjs`, showing who reports to whom, who is working and where.
+  - Onboarding docs now carry each role's name.

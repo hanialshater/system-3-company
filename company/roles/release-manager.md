@@ -1,5 +1,6 @@
 # Release Manager
 
+name: Diego
 team: platform
 reports_to: head-of-product
 agent: .claude/agents/release-manager.md

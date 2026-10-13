@@ -1,5 +1,6 @@
 # HQ Engineer
 
+name: Pip
 team: company-tools
 reports_to: tools-lead
 agent: .claude/agents/hq-engineer.md

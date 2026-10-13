@@ -1,5 +1,6 @@
 # Computer-Use QA Tester
 
+name: Rosa
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/qa-tester.md

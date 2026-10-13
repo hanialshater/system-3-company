@@ -1,5 +1,6 @@
 # Category Manager — Economics & Money
 
+name: Marco
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-economics.md

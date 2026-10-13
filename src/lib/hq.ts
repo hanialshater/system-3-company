@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 export { teamColor } from "./hq-colors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
+import { roles } from "../../tools/org/roles.mjs";
 
 export interface HqEvent {
   id: string;
@@ -45,7 +46,7 @@ const DOMAINS: [string, string, string][] = [
 
 // The floor plan, in SVG units (1000 × 660). Offices around the edge, the work floor in the middle.
 export const ROOMS: Room[] = [
-  ...DOMAINS.map(([id, name, color], i) => ({ id: `cm-${id}`, name: `${name} office`, x: 20 + i * 107, y: 16, w: 101, h: 84, kind: "office" as const, color })),
+  ...DOMAINS.map(([id, name, color], i) => ({ id: `cm-${id}`, name: name, x: 20 + i * 107, y: 16, w: 101, h: 84, kind: "office" as const, color })),
   { id: "meeting-wbr", name: "WBR room", x: 20, y: 116, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-retro", name: "Retro room", x: 20, y: 236, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-crit", name: "Demo Crit", x: 20, y: 356, w: 150, h: 110, kind: "meeting" },
@@ -60,8 +61,9 @@ export const ROOMS: Room[] = [
   { id: "qa-lab", name: "QA lab", x: 186, y: 356, w: 196, h: 110, kind: "floor" },
   { id: "launch-room", name: "Launch room", x: 392, y: 356, w: 194, h: 110, kind: "meeting" },
   { id: "constitution", name: "Constitution", x: 598, y: 356, w: 216, h: 110, kind: "meeting" },
-  { id: "chief-of-staff", name: "Chief of Staff", x: 186, y: 476, w: 300, h: 76, kind: "office" },
-  { id: "incident", name: "Incident room", x: 498, y: 476, w: 150, h: 76, kind: "meeting" },
+  { id: "chief-of-staff", name: "Chief of Staff", x: 186, y: 476, w: 190, h: 76, kind: "office" },
+  { id: "studio", name: "Studio", x: 386, y: 476, w: 200, h: 76, kind: "office" },
+  { id: "incident", name: "Incident room", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
   { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 400, h: 76, kind: "lobby" },
 ];
 
@@ -110,4 +112,16 @@ export function ritualsDue(): Due[] {
   } catch {
     return [];
   }
+}
+
+export interface OrgRole {
+  id: string;
+  title: string;
+  team: string;
+  reportsTo: string;
+}
+
+/** The org as HQ needs it: who reports to whom (from tools/org/roles.mjs, the single source). */
+export function loadOrg(): OrgRole[] {
+  return roles.map(({ id, title, team, reportsTo }) => ({ id, title, team, reportsTo }));
 }

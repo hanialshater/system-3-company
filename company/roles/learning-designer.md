@@ -1,5 +1,6 @@
 # Learning Designer
 
+name: Lena
 team: studio
 reports_to: head-of-product
 agent: .claude/agents/learning-designer.md

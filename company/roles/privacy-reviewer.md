@@ -1,5 +1,6 @@
 # Privacy & Safety Reviewer
 
+name: Elif
 team: backend
 reports_to: principal-engineer
 agent: .claude/agents/privacy-reviewer.md

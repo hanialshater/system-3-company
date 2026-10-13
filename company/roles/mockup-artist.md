@@ -1,5 +1,6 @@
 # Mockup Artist
 
+name: Tomás
 team: studio
 reports_to: learning-designer
 agent: .claude/agents/mockup-artist.md

@@ -1,5 +1,6 @@
 # Category Manager — Probability & Data
 
+name: Bea
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-probability.md

@@ -1,5 +1,6 @@
 # Evaluation Steward
 
+name: Hilde
 team: quality
 reports_to: founder
 agent: .claude/agents/evaluation-steward.md

@@ -1,5 +1,6 @@
 # Principal Engineer
 
+name: Kenji
 team: platform
 reports_to: founder
 agent: .claude/agents/principal-engineer.md

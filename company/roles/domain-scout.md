@@ -1,5 +1,6 @@
 # Domain Scout
 
+name: Kofi
 team: product
 reports_to: head-of-product
 agent: .claude/agents/domain-scout.md

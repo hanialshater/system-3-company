@@ -1,5 +1,6 @@
 # Platform Engineer
 
+name: Noor
 team: platform
 reports_to: head-of-product
 agent: .claude/agents/platform-engineer.md

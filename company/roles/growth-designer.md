@@ -1,5 +1,6 @@
 # Growth & Gamification Designer
 
+name: Jonah
 team: growth
 reports_to: head-of-product
 agent: .claude/agents/growth-designer.md

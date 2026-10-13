@@ -1,5 +1,6 @@
 # Demo Builder
 
+name: Builders (each running builder gets its own name in HQ)
 team: studio
 reports_to: learning-designer
 agent: .claude/agents/demo-builder.md

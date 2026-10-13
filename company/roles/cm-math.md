@@ -1,5 +1,6 @@
 # Category Manager — Mathematics
 
+name: Ravi
 team: categories
 reports_to: head-of-product
 agent: .claude/agents/cm-math.md

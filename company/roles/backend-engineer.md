@@ -1,5 +1,6 @@
 # Backend Engineer
 
+name: Amara
 team: backend
 reports_to: principal-engineer
 agent: .claude/agents/backend-engineer.md

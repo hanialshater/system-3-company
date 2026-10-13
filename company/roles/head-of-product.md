@@ -1,5 +1,6 @@
 # Head of Product
 
+name: Priya
 team: product
 reports_to: founder
 agent: .claude/agents/head-of-product.md
