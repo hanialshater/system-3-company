@@ -1,0 +1,65 @@
+{
+  "slug": "steeper-is-not-taller",
+  "title": "Steeper is not taller",
+  "hook": "One ramp ends higher than the other. Does that make it the steeper one?",
+  "domain": "math",
+  "concept": "slope-as-rate",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading points on a simple grid or graph",
+      "division"
+    ],
+    "doesNotKnow": [
+      "slope as rise per run, a ratio"
+    ]
+  },
+  "misconception": "A line that climbs higher is steeper.",
+  "objective": "The learner can compare steepness by the climb over the same distance across (rise / run), and explain why a ramp rising 2 over 4 is steeper than one rising 3 over 12.",
+  "claims": [
+    {
+      "id": "math.steeper-is-not-taller.c1",
+      "text": "Steepness (slope) is the rise divided by the run: how far a line climbs per step across.",
+      "support": "convention",
+      "source": "Definition of the slope of a line, m = rise / run = (y2 - y1) / (x2 - x1).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.steeper-is-not-taller.c2",
+      "text": "Ramp A rises 3 over 12, a slope of 0.25; ramp B rises 2 over 4, a slope of 0.5, twice as steep.",
+      "support": "derivation",
+      "source": "3 / 12 = 0.25 and 2 / 4 = 0.5; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.steeper-is-not-taller.c3",
+      "text": "Over the same 4 across, A climbs 1 and B climbs 2; kept going for 12 across, B would climb 6.",
+      "support": "derivation",
+      "source": "0.25 x 4 = 1, 0.5 x 4 = 2, 0.5 x 12 = 6; the stage computes the climbs from the same slopes; recomputed with node.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Path P climbs 10 m over 100 m across. Path Q climbs 6 m over 30 m across. Which is steeper?",
+    "options": [
+      "Q",
+      "P, because it climbs higher",
+      "They are the same"
+    ],
+    "answer": 0,
+    "why": "Steepness is rise per run: P is 10 / 100 = 0.1, Q is 6 / 30 = 0.2. Q climbs twice as much per metre across, even though P ends higher."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

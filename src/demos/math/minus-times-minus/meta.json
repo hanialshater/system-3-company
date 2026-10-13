@@ -1,0 +1,65 @@
+{
+  "slug": "minus-times-minus",
+  "title": "Minus times minus",
+  "hook": "\"Minus times minus is plus\" sounds like a rule someone made up. Is it?",
+  "domain": "math",
+  "concept": "negative-times-negative",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "negative numbers as opposites of positives",
+      "that 3 x (-2) = -6 (three debts of 2)"
+    ],
+    "doesNotKnow": [
+      "why (-3) x (-2) = 6"
+    ]
+  },
+  "misconception": "Two negatives multiplied should stay negative; 'minus times minus is plus' is an arbitrary rule.",
+  "objective": "The learner can explain that as the first factor steps down by 1, a product with -2 rises by 2 each step, so the pattern passes through 0 and gives (-3) x (-2) = 6.",
+  "claims": [
+    {
+      "id": "math.minus-times-minus.c1",
+      "text": "(-3) x (-2) = 6.",
+      "support": "derivation",
+      "source": "Integer multiplication; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-times-minus.c2",
+      "text": "Stepping the first factor down from 3 to -3 gives products with -2 of -6, -4, -2, 0, 2, 4, 6: each step down adds 2.",
+      "support": "derivation",
+      "source": "(a - 1) x (-2) = a x (-2) + 2; recomputed with node for a = 3..-3.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-times-minus.c3",
+      "text": "(-3) x (-2) + (-3) x 2 = (-3) x 0 = 0, and (-3) x 2 = -6, so (-3) x (-2) must be 6: anything else would break the distributive law.",
+      "support": "derivation",
+      "source": "Distributive law: (-3)((-2) + 2) = (-3)(-2) + (-3)(2); the left side is (-3)(0) = 0. Standard derivation of (-a)(-b) = ab in any ring, e.g. Courant and Robbins, What Is Mathematics?, ch. 2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Without a rule to remember: 4 x (-5) = -20 and 3 x (-5) = -15. Continuing the pattern, what is (-1) x (-5)?",
+    "options": [
+      "5",
+      "-5",
+      "0"
+    ],
+    "answer": 0,
+    "why": "Each step down in the first factor adds 5: -20, -15, -10, -5, 0, then 5. The pattern does not break at zero."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "plus-and-minus-chips",
+  "title": "Plus and minus chips",
+  "hook": "Is a negative number just a positive one wearing a minus sign?",
+  "domain": "math",
+  "concept": "negative-numbers",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting and subtraction of whole numbers"
+    ],
+    "doesNotKnow": [
+      "negative numbers as opposites that cancel positives",
+      "why adding a negative is the same as subtracting"
+    ]
+  },
+  "misconception": "A negative number is just a positive one with a sign painted on, with no arithmetic meaning.",
+  "objective": "The learner can explain that a plus and a minus together make zero, so 5 plus-chips and 3 minus-chips total 2, and 5 + (-3) = 5 - 3.",
+  "claims": [
+    {
+      "id": "math.plus-and-minus-chips.c1",
+      "text": "5 plus-chips and 3 minus-chips total 2: three pairs cancel and two plus-chips are left.",
+      "support": "derivation",
+      "source": "p plus-chips and m minus-chips total p - m; 5 - 3 = 2; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.plus-and-minus-chips.c2",
+      "text": "A plus-chip and a minus-chip together are worth zero, so cancelling a pair never changes the total.",
+      "support": "derivation",
+      "source": "1 + (-1) = 0 (additive inverse); removing a pair changes the total by -(1 + (-1)) = 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.plus-and-minus-chips.c3",
+      "text": "A negative number is the opposite that cancels a positive one, like a debt against cash; so 5 + (-3) = 5 - 3 = 2.",
+      "support": "convention",
+      "source": "Integers as additive inverses (a + (-a) = 0, a + (-b) = a - b). The chip picture is the two-colour counter model used in teaching integers, e.g. Van de Walle, Karp and Bay-Williams, Elementary and Middle School Mathematics, chapter on integers.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Your wallet holds 4 one-pound coins and 6 one-pound IOUs. What is it worth?",
+    "options": [
+      "-2 pounds",
+      "10 pounds",
+      "2 pounds"
+    ],
+    "answer": 0,
+    "why": "Each coin cancels one IOU. Four pairs make zero and two IOUs are left: 4 + (-6) = -2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

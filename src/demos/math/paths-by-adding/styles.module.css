@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; align-items: center; }
+.board { position: relative; width: min(100%, 300px, 42dvh); aspect-ratio: 1; margin: 26px auto 26px; }
+.streets { position: absolute; inset: 0; width: 100%; height: 100%; }
+.street { stroke: var(--line); stroke-width: 2.2; }
+.feed { stroke: var(--domain); stroke-width: 3; stroke-linecap: round; }
+.board .node {
+  position: absolute; transform: translate(-50%, -50%); width: 42px; height: 42px; padding: 0;
+  border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+.board .node:disabled { opacity: 1; }
+.board .node:not(:disabled) { border: 2px dashed var(--domain); }
+.start { background: var(--domain); color: #0d0f14; border: 1px solid var(--domain); }
+.board .done { background: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); border-color: var(--domain); }
+.board .last { background: color-mix(in srgb, var(--good) 45%, var(--bg-2)); border-color: var(--good); }
+.board .end { width: 46px; height: 46px; }
+.tagStart, .tagEnd { position: absolute; font-size: 0.7rem; font-weight: 700; color: var(--muted); pointer-events: none; }
+.tagStart { transform: translate(-50%, 18px); margin-top: 8px; }
+.tagEnd { transform: translate(-50%, -48px); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }

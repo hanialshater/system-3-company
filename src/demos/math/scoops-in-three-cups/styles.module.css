@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 40dvh; }
+.cup { fill: none; stroke: var(--fg); stroke-width: 2; }
+.scoopA { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); stroke: var(--bg-2); stroke-width: 1.5; }
+.scoopB { fill: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); stroke: var(--bg-2); stroke-width: 1.5; }
+.num { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.label { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 4px; }
+.wrap :global(.control) { padding: 8px 10px; min-width: 40px; }

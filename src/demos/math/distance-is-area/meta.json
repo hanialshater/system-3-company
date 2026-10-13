@@ -1,0 +1,65 @@
+{
+  "slug": "distance-is-area",
+  "title": "Distance is area",
+  "hook": "You know the speed at every moment but not the position. Can you still find the distance?",
+  "domain": "math",
+  "concept": "area-under-curve",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distance = speed x time when the speed is steady",
+      "reading a straight-line graph; slope as a rate"
+    ],
+    "doesNotKnow": [
+      "that total distance is the area under the speed-time graph"
+    ]
+  },
+  "misconception": "To find distance you need a formula that mentions position; speed alone is not enough when it changes.",
+  "objective": "The learner can explain that slicing time into strips turns a changing speed into many small speed x time pieces, and that their total approaches the area under the speed line (100 m here).",
+  "claims": [
+    {
+      "id": "math.distance-is-area.c1",
+      "text": "A car speeding up steadily from 0 to 20 m/s over 10 s travels 100 m: the triangle under the speed line, 1/2 x 10 x 20, or the average speed 10 m/s for 10 s.",
+      "support": "derivation",
+      "source": "Constant acceleration a = 2 m/s^2: distance = 1/2 a t^2 = 1/2 x 2 x 100 = 100 m; also the area of the triangle; recomputed with node. Idealised model (steady acceleration from rest), labelled on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.distance-is-area.c2",
+      "text": "Strips using the speed at the end of each slice give 200 m with 1 strip, 110 m with 10 and 105 m with 20: always above 100 m and closing in on it.",
+      "support": "derivation",
+      "source": "Right Riemann sum for v = 2t on [0, 10] with n strips = 100 (n + 1) / n; n = 1: 200, 10: 110, 20: 105; the stage computes the bars with the same function; recomputed with node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.distance-is-area.c3",
+      "text": "Distance travelled is the area under the speed-time graph.",
+      "support": "source",
+      "source": "Distance = integral of speed over time (for speed >= 0), the fundamental theorem of calculus; e.g. Stewart, Calculus, sec. 5.1 (the distance problem).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A cyclist slows steadily from 8 m/s to 0 over 6 s. Which picture gives the distance she covers?",
+    "options": [
+      "The area of the triangle under her speed line: 1/2 x 6 x 8 = 24 m",
+      "Her top speed times the time: 8 x 6 = 48 m",
+      "The slope of her speed line"
+    ],
+    "answer": 0,
+    "why": "Distance is the area under the speed-time graph. A steady slowdown makes a triangle, half of the 48 m rectangle."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
