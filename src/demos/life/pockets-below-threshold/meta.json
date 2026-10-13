@@ -1,0 +1,72 @@
+{
+  "slug": "pockets-below-threshold",
+  "title": "Above the line on average",
+  "hook": "Overall coverage is above the herd threshold. Can an outbreak still grow somewhere?",
+  "domain": "life",
+  "concept": "vaccine-coverage-limits",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the herd-immunity threshold is 1 - 1/R0",
+      "R is the average number of people one case infects"
+    ],
+    "doesNotKnow": [
+      "that the threshold applies inside each group that mixes, not to a national average"
+    ]
+  },
+  "misconception": "If overall coverage is above the threshold, no outbreak can grow anywhere.",
+  "objective": "The learner can explain that with R0 = 12, a town at 88% has R = 1.44 and can sustain spread even when the two-town average (93%) is above the 91.7% threshold, because the threshold applies within each mixing group.",
+  "claims": [
+    {
+      "id": "life.pockets-below-threshold.c1",
+      "text": "With R0 = 12 and perfect protection, the herd threshold is 1 - 1/12 = 91.7%.",
+      "support": "derivation",
+      "source": "1 - 1/R0 (Anderson & May 1991, Infectious Diseases of Humans, ch. 5).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pockets-below-threshold.c2",
+      "text": "In a town with 88% vaccinated, R = 12 x 0.12 = 1.44, so an outbreak can grow there; at 98%, R = 12 x 0.02 = 0.24; two equal towns at 98% and 88% average 93%.",
+      "support": "derivation",
+      "source": "Arithmetic; computed in Demo.tsx (rIn, comb), the same functions that label the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pockets-below-threshold.c3",
+      "text": "Raising coverage in a town whose people never meet another town raises the average but does not change R in the other town.",
+      "support": "derivation",
+      "source": "Follows from the model's assumption of no contact between towns.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.pockets-below-threshold.c4",
+      "text": "The model is a made-up disease: no contact between the towns, random mixing inside each, perfect vaccine protection.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: R0 12, no contact between towns') and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy country has two separate regions of equal size, 99% and 85% vaccinated, for a disease with R0 = 10 (threshold 90%). Can an outbreak grow in the 85% region?",
+    "options": [
+      "No: the 92% average is above 90%",
+      "Yes: R there is about 1.5",
+      "Only if the 99% region is hit too"
+    ],
+    "answer": 1,
+    "why": "The threshold applies inside each mixing group: 10 x 0.15 = 1.5, above 1, whatever the average is."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

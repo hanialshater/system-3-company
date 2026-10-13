@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 24dvh; flex-shrink: 0; }
+.name { fill: var(--muted); font-size: 9px; font-weight: 600; }
+.vax { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.unvax { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.risk { fill: none; stroke: var(--bad); stroke-width: 2; }
+.lines { display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: 0.85rem; text-align: center; min-height: 4em; }
+.lines strong { font-size: 0.9rem; }
+.legend { display: flex; justify-content: center; gap: 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.legend i.vax { background: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.legend i.unvax { border: 1.5px solid var(--muted); }
