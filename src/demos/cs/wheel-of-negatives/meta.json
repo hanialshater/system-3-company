@@ -28,35 +28,45 @@
       "text": "In 8-bit two's complement the top bit is worth -128 instead of 128.",
       "support": "convention",
       "source": "Patterson and Hennessy, Computer Organization and Design, 2.4 'Signed and Unsigned Numbers' (bit 31 weight -2^31 in 32-bit; same rule at 8 bits). Demo.tsx WEIGHTS and signed().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wheel-of-negatives.c2",
       "text": "01111111 + 1 = 10000000, which is -128 in 8-bit two's complement.",
       "support": "simulation",
       "source": "Demo.tsx signed(128) = -128; builder checked in Node: ((128 << 24) >> 24) = -128.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wheel-of-negatives.c3",
       "text": "Eight bits in two's complement go from -128 to 127.",
       "support": "derivation",
       "source": "-2^7 to 2^7 - 1 (Patterson and Hennessy 2.4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wheel-of-negatives.c4",
       "text": "11111111 is -1 (-128 + 127), and -1 + 1 wraps to 0.",
       "support": "derivation",
       "source": "-128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = -1; (255 + 1) mod 256 = 0 (builder checked in Node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.wheel-of-negatives.c5",
       "text": "Adding past the top wraps to the most negative number; this is overflow, and a counter that grows too big comes out negative.",
       "support": "source",
       "source": "Patterson and Hennessy 2.4 / 3.2 (overflow in two's complement addition). Hardware addition is modulo 2^n. Note: in C, signed overflow is undefined behaviour; Java defines int arithmetic as wrapping (JLS 15.18.2). The stage models the hardware wrap.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,28 +28,36 @@
       "text": "Starting with room for 1 and doubling when full, 16 appends trigger resizes that copy 1 + 2 + 4 + 8 = 15 items in total.",
       "support": "simulation",
       "source": "Demo.tsx grows(16) = [1, 2, 4, 8], sum 15 (builder also ran an independent loop in Node: resizes at appends 2, 3, 5, 9 copying 1, 2, 4, 8).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.list-doubling-copies.c2",
       "text": "For any power of two n, n appends cost n - 1 copies in total, less than one copy per append.",
       "support": "derivation",
-      "source": "Geometric sum 1 + 2 + ... + n/2 = n - 1 for n = 2^k. CLRS 3rd ed., 17.4 'Dynamic tables' (amortized O(1) insertion with table doubling).",
-      "status": "unverified"
+      "source": "Geometric sum 1 + 2 + ... + n/2 = n - 1 for n = 2^k. CLRS 3rd ed., 17.4 'Dynamic tables' (amortized O(1) insertion with table doubling). · Fact-check 2026-10-13: Checked n = 2..64: copies = n - 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.list-doubling-copies.c3",
       "text": "After copying 8 items into room for 16 there is room for 8 more appends before the next copy.",
       "support": "derivation",
       "source": "Capacity 16 minus 8 items; the stage draws it (Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.list-doubling-copies.c4",
       "text": "Real growable lists also grow by a factor, not a fixed amount; Java's ArrayList grows by 1.5 times.",
       "support": "source",
       "source": "OpenJDK java.util.ArrayList.grow(): newCapacity = oldCapacity + (oldCapacity >> 1). CPython listobject.c list_resize also over-allocates proportionally (about 1/8 extra). A fixed increment would make n appends cost about n^2/(2c) copies.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

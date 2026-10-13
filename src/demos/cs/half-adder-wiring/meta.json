@@ -28,28 +28,36 @@
       "text": "1 + 1 = 2, which is 10 in binary: carry 1, sum 0.",
       "support": "derivation",
       "source": "Binary place value; Demo.tsx rightOn() checks (carry, sum) against floor((a+b)/2) and (a+b) mod 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.half-adder-wiring.c2",
       "text": "XOR outputs 1 when exactly one input is 1; AND outputs 1 only when both inputs are 1; OR outputs 1 when at least one is 1.",
       "support": "convention",
       "source": "Truth tables (definition). Patterson and Hennessy, Computer Organization and Design, Appendix B (A.2 in some editions) 'Gates, Truth Tables, and Logic Equations'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.half-adder-wiring.c3",
       "text": "Sum = A XOR B and carry = A AND B add two bits correctly on all four inputs; this pair of gates is called a half adder. No other choice of AND, OR, XOR for the two slots gets all four.",
       "support": "simulation",
-      "source": "Demo.tsx rightOn(sum, carry) over the 9 gate pairs: only (XOR, AND) scores 4 of 4 (builder enumerated in Node). Patterson and Hennessy, Appendix B, adders.",
-      "status": "unverified"
+      "source": "Demo.tsx rightOn(sum, carry) over the 9 gate pairs: only (XOR, AND) scores 4 of 4 (builder enumerated in Node). Patterson and Hennessy, Appendix B, adders. · Fact-check 2026-10-13: Enumerated all 9 gate pairs: only (XOR, AND) scores 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.half-adder-wiring.c4",
       "text": "Giving each column a third input for the incoming carry and chaining the columns adds numbers of any width.",
       "support": "source",
       "source": "Full adder and ripple-carry adder: Patterson and Hennessy, Appendix B ('Constructing a basic ALU', 1-bit full adder chained into an n-bit adder).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

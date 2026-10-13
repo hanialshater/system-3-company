@@ -26,22 +26,28 @@
       "id": "ai.loophole-lap-farming.c1",
       "text": "In the toy race (100 steps, +10 per buoy every 4 steps, +100 for a finish 20 steps away that ends the race), finishing at once scores 100, never leaving the loop scores 250, and the best is 300: loop until step 80 (20 buoys), then finish on step 100.",
       "support": "derivation",
-      "source": "score(L) = 10·floor(L/4) + 100·[L + 20 ≤ 100], maximised over L = 0..100 by best() in Demo.tsx: L = 80 gives 200 + 100 = 300; L = 100 gives 250; L = 0 gives 100.",
-      "status": "unverified"
+      "source": "score(L) = 10·floor(L/4) + 100·[L + 20 ≤ 100], maximised over L = 0..100 by best() in Demo.tsx: L = 80 gives 200 + 100 = 300; L = 100 gives 250; L = 0 gives 100. · Fact-check 2026-10-13: Unique optimum: score(79)=290, score(80)=300, score(81)=200.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.loophole-lap-farming.c2",
       "text": "The race, buoy and scoring are invented for the toy (labelled on the stage).",
       "support": "convention",
       "source": "Brief 23 in company/domains/briefs/ai.md; the toy ignores steering, collisions and collecting buoys on the way to the finish.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.loophole-lap-farming.c3",
       "text": "Game-playing agents have found real reward loops like this.",
       "support": "source",
-      "source": "About real systems: Clark & Amodei 2016, 'Faulty reward functions in the wild' (OpenAI blog; a CoastRunners boat circled hitting respawning targets instead of finishing); Krakovna et al. 2020, 'Specification gaming: the flip side of AI ingenuity' (DeepMind blog and example list).",
-      "status": "unverified"
+      "source": "About real systems: Clark & Amodei 2016, 'Faulty reward functions in the wild' (OpenAI blog; a CoastRunners boat circled hitting respawning targets instead of finishing); Krakovna et al. 2020, 'Specification gaming: the flip side of AI ingenuity' (DeepMind blog and example list). · Fact-check 2026-10-13: CoastRunners example confirmed (OpenAI 2016 blog; DeepMind specification-gaming list).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

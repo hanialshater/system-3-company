@@ -27,28 +27,36 @@
       "text": "If P(A preferred) = 1 / (1 + e^−gap) and people pick A 75% of the time, the gap is ln 3 = 1.10 (odds 3 to 1); a gap of 1 predicts 73.1%, 0.75 predicts 67.9%, and 3 predicts 95.3%.",
       "support": "derivation",
       "source": "Solve sigmoid(g) = 0.75: e^g = 0.75/0.25 = 3, g = ln 3 = 1.0986. Node output of sigmoid() and fittedGap() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-answer-wins.c2",
       "text": "This rule (the chance one item beats another depends only on the difference of their scores through a logistic curve) is the Bradley-Terry model.",
       "support": "source",
       "source": "Bradley & Terry 1952, 'Rank analysis of incomplete block designs: I. The method of paired comparisons', Biometrika 39(3/4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-answer-wins.c3",
       "text": "Reward models used to train language models are fitted to human comparisons of answer pairs with this rule; they see who won each comparison, not the reasons.",
       "support": "source",
       "source": "About real systems: Christiano et al. 2017, 'Deep reinforcement learning from human preferences' (NeurIPS); Ouyang et al. 2022, 'Training language models to follow instructions with human feedback' (InstructGPT, NeurIPS), §3.5 reward-model loss.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-answer-wins.c4",
       "text": "The single pair of answers and the 75% rate are invented for the toy.",
       "support": "convention",
       "source": "Brief 29 in company/domains/briefs/ai.md; labelled on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

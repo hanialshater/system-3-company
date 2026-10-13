@@ -28,28 +28,36 @@
       "text": "A point spread evenly in a cube is within 5% of a face in one dimension with chance 10%, so it avoids every edge in d dimensions with chance 0.9^d; the near-a-wall share is 1 − 0.9^d: 10% (1-D), 19% (2-D), 65.1% (10-D), 99.997% (100-D).",
       "support": "derivation",
       "source": "Independence of coordinates of a uniform point in the unit cube; 0.9^10 = 0.3487. Reproduced by exactShare in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.near-the-wall.c2",
       "text": "In 500 seeded draws of 200 points in 10 dimensions, the near-a-wall count ranged from 108 to 149 (54% to 75%).",
       "support": "simulation",
       "source": "spread(10, 500) in Demo.tsx, seeds 1-500 (seed*1000 + d into mulberry32), untuned. The stage's draws use seeds 1, 2, 3, ... in order, also untuned; draw 1 at 10-D gives 132 of 200.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.near-the-wall.c3",
       "text": "The 5% edge band is the toy's own convention, labelled on the stage.",
       "support": "convention",
       "source": "Chosen for the toy (brief 21 in company/domains/briefs/ai.md); a different band changes the numbers, not the trend.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.near-the-wall.c4",
       "text": "In many dimensions points end up far apart and distances concentrate, so 'nearest neighbour' stops meaning near.",
       "support": "source",
-      "source": "About real methods: Beyer, Goldstein, Ramakrishnan & Shaft 1999, 'When is nearest neighbor meaningful?' (ICDT); Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, §2.5.",
-      "status": "unverified"
+      "source": "About real methods: Beyer, Goldstein, Ramakrishnan & Shaft 1999, 'When is nearest neighbor meaningful?' (ICDT); Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, §2.5. · Fact-check 2026-10-13: Holds under the conditions of Beyer et al. (distance concentration); real data of low intrinsic dimension can behave better. The reveal states it as the toy lesson, acceptable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

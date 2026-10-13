@@ -28,28 +28,36 @@
       "text": "Coded count-then-letter, BWBWBWBW becomes 1B1W1B1W1B1W1B1W: 16 characters for 8 pixels, twice as long.",
       "support": "simulation",
       "source": "Demo.tsx encode('BWBWBWBW'); builder also ran a regex run-length coder in Node: '1B1W1B1W1B1W1B1W', length 16.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.runs-that-grow.c2",
       "text": "16 white pixels code as 16W, 3 characters.",
       "support": "simulation",
       "source": "Demo.tsx encode('W' x 16) = '16W' (builder ran in Node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.runs-that-grow.c3",
       "text": "With no runs, every pixel costs a count and a letter, so the code is twice the length of the row.",
       "support": "derivation",
       "source": "Each run of length 1 encodes as '1' plus a letter: 2 characters per pixel.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.runs-that-grow.c4",
       "text": "No lossless scheme can shrink every input: there are fewer short codes than inputs, so if some get shorter, others must get longer.",
       "support": "source",
-      "source": "Counting (pigeonhole) argument: 2^n strings of length n but only 2^n - 1 strings shorter than n. Sayood, Introduction to Data Compression, 4th ed., ch. 1; MacKay, Information Theory, Inference, and Learning Algorithms (2003), 4.1 / exercise 4.12-style argument.",
-      "status": "unverified"
+      "source": "Counting (pigeonhole) argument: 2^n strings of length n but only 2^n - 1 strings shorter than n. Sayood, Introduction to Data Compression, 4th ed., ch. 1; MacKay, Information Theory, Inference, and Learning Algorithms (2003), 4.1 / exercise 4.12-style argument. · Fact-check 2026-10-13: Strictly, \"others must get longer\" needs the code to decode every input length; for same-length rows alone some can shrink without others growing. Standard result as stated for lossless compression; acceptable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

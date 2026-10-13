@@ -28,35 +28,45 @@
       "text": "With 3 slots and requests A, B, C, A, D, the least-recently-used rule evicts B when D arrives.",
       "support": "simulation",
       "source": "Demo.tsx simulate(5, 'lru'): last uses B = 2, C = 3, A = 4; B has the oldest last use. Builder also ran an independent LRU in Node: evicted [B], 4 misses.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.lru-eviction-order.c2",
       "text": "On the same stream a first-in, first-out rule evicts A, the oldest arrival, even though A was just requested.",
       "support": "simulation",
       "source": "Demo.tsx simulate(5, 'fifo'): arrivals A = 1, B = 2, C = 3; A evicted. Builder ran an independent FIFO in Node: evicted [A].",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.lru-eviction-order.c3",
       "text": "Asking for an item that is already in the cache is a hit and makes it the most recently used.",
       "support": "convention",
       "source": "Definition of LRU replacement: Silberschatz, Galvin and Gagne, Operating System Concepts, 10th ed., 10.4.4 'LRU Page Replacement'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.lru-eviction-order.c4",
       "text": "Things used recently tend to be used again soon, so evicting the least recently used item usually keeps more hits.",
       "support": "source",
       "source": "Principle of temporal locality: Denning, 'The locality principle', CACM 48(7), 2005; Silberschatz et al. 10.4.4 (LRU approximates the optimal policy by using the recent past to predict the near future). 'Usually' is a tendency for workloads with locality, not a guarantee.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.lru-eviction-order.c5",
       "text": "Operating systems and web caches use the least-recently-used rule or cheap approximations of it.",
       "support": "source",
       "source": "Silberschatz et al. 10.4.5 'LRU-Approximation Page Replacement' (reference bits, second-chance/clock); Redis documentation 'Key eviction' (allkeys-lru, an approximated LRU).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

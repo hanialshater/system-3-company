@@ -27,28 +27,36 @@
       "text": "In the toy model (each reactive face a quarter of the surface), about 1 in 16 random collisions react: 1/4 x 1/4 = 1/16.",
       "support": "derivation",
       "source": "Independent uniform orientations: P(A's face toward B) = 90/360, P(B's face toward A) = 90/360; product 1/16 = 6.25% (Demo.tsx SHARE). Over 500 seeds, mean hits in 111 shots = 6.78 vs 6.94 expected (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.most-collisions-bounce.c2",
       "text": "The stage's run is one seeded run (mulberry32 seed 1), not chosen: seed 1 was the first tried. It gives 5 reactions in the first 100 collisions (6 in 111); in 95% of seeds a run of 100 gives between 2 and 11.",
       "support": "derivation",
-      "source": "Node: seed 1 gives 5 hits in 100 shots, 6 in 111; over seeds 1 to 500, 100 shots give 2 to 11 hits at the 2.5th and 97.5th percentiles (min 0, max 15), matching Binomial(100, 1/16). Untuned seed (pattern disclose-chosen-seeds).",
-      "status": "unverified"
+      "source": "Node: seed 1 gives 5 hits in 100 shots, 6 in 111; over seeds 1 to 500, 100 shots give 2 to 11 hits at the 2.5th and 97.5th percentiles (min 0, max 15), matching Binomial(100, 1/16). Untuned seed (pattern disclose-chosen-seeds). · Fact-check 2026-10-13: Reproduced: seed 1 gives 5/100 and 6/111; 500-seed 2.5-97.5 percentile 2-11.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.most-collisions-bounce.c3",
       "text": "Real molecules must also meet in a suitable orientation to react, so the reaction rate is far lower than the collision rate.",
       "support": "source",
-      "source": "Steric factor P in collision theory (Atkins & de Paula, Physical Chemistry, ch. on reaction dynamics; IUPAC Gold Book, 'steric factor').",
-      "status": "unverified"
+      "source": "Steric factor P in collision theory (Atkins & de Paula, Physical Chemistry, ch. on reaction dynamics; IUPAC Gold Book, 'steric factor'). · Fact-check 2026-10-13: Orientation alone does not always make rate far lower (steric factors near 1 exist); the reveal pairs it with energy and hedges in c4, acceptable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.most-collisions-bounce.c4",
       "text": "How strict the orientation requirement is varies from reaction to reaction; the quarter faces here are a toy.",
       "support": "source",
       "source": "Measured steric factors range from about 1 down to 1e-6 or less (Atkins & de Paula, table of steric factors). The 90° faces and the collisions all having enough energy are assumptions of the toy, labelled on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -26,28 +26,36 @@
       "text": "With a 20-token document and a window of the last 8 tokens, positions 13-20 are visible, so a fact at a random position is usable with chance 8/20 = 40%; a fact at position 5 is outside.",
       "support": "derivation",
       "source": "share(w) = w / 20 and visible() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.window-forgets-start.c2",
       "text": "Across 500 seeded tries of 20 random fact positions, between 1 and 15 landed inside an 8-token window; the average is 8.",
       "support": "simulation",
-      "source": "spread(8, 500) in Demo.tsx, mulberry32 seeds 1-500, untuned. The stage's 'Drop at 20 random spots' uses seeds 1, 2, 3, ... in order (untuned; seed 1 gives 7 of 20).",
-      "status": "unverified"
+      "source": "spread(8, 500) in Demo.tsx, mulberry32 seeds 1-500, untuned. The stage's 'Drop at 20 random spots' uses seeds 1, 2, 3, ... in order (untuned; seed 1 gives 7 of 20). · Fact-check 2026-10-13: Mean over seeds 1-500 is 7.94.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.window-forgets-start.c3",
       "text": "The 20-token document and window sizes are invented for the toy; real models have windows of thousands of tokens or more.",
       "support": "convention",
       "source": "Brief 26 in company/domains/briefs/ai.md. Window sizes vary by model and are given in each model's documentation.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.window-forgets-start.c4",
       "text": "Real language models answer from a fixed-length context of tokens; text outside it is not available to the model for that answer.",
       "support": "source",
       "source": "About real systems: Vaswani et al. 2017, 'Attention is all you need' (NeurIPS; attention over a fixed-length input sequence); Brown et al. 2020, 'Language models are few-shot learners' (GPT-3, context window of 2,048 tokens).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

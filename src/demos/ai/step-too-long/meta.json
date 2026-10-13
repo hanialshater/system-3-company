@@ -27,21 +27,27 @@
       "text": "On f(x) = x², a step x ← x − η·2x multiplies x by (1 − 2η), so the distance from the bottom is multiplied by |1 − 2η| each step: 0.8 at η = 0.1, 0.2 at 0.4, 0 at 0.5, 1 at 1, 1.2 at 1.1.",
       "support": "derivation",
       "source": "Algebra: x − 2ηx = (1 − 2η)x. Reproduced by path() and factor() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.step-too-long.c2",
       "text": "From x = 1 with η = 1.1 the positions are −1.2, 1.44, −1.73, 2.07, −2.49: after 5 steps the ball is 2.49 from the bottom (1.2⁵). With η = 0.5 one step lands exactly on the bottom; with η = 1 it bounces between 1 and −1 forever.",
       "support": "derivation",
       "source": "path(1.1, 5) in Demo.tsx (node output: -1.2000 1.4400 -1.7280 2.0736 -2.4883).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.step-too-long.c3",
       "text": "The bowl is a toy loss; past a step-size limit set by the slope's steepness, gradient descent diverges.",
       "support": "source",
       "source": "About real training, with the caveat that real losses are not one bowl: Goodfellow, Bengio & Courville 2016, Deep Learning, §4.3 (step size and the curvature/Hessian, overshooting) and §8.2. For a quadratic with curvature c, descent is stable for η < 2/c; here f'' = 2, so η < 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

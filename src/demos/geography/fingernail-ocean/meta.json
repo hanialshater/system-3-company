@@ -1,0 +1,80 @@
+{
+  "slug": "fingernail-ocean",
+  "title": "An ocean at fingernail speed",
+  "hook": "Continents creep at the pace your nails grow. How long does that take to build an ocean?",
+  "domain": "geography",
+  "concept": "plate-motion-rates",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that continents drift",
+      "that the Atlantic separates South America and Africa"
+    ],
+    "doesNotKnow": [
+      "how slow plates move",
+      "how much time it takes such a slow speed to make an ocean"
+    ]
+  },
+  "misconception": "Continents move fast enough to notice, or not at all in human terms; both miss the scale.",
+  "objective": "The learner can compute that 2.5 cm a year opens 3,000 km in 120 million years, and explain that tiny rates times geological time make oceans.",
+  "claims": [
+    {
+      "id": "geography.fingernail-ocean.c1",
+      "text": "At 2.5 cm a year, widening an ocean by 3,000 km takes 120 million years; each million years adds 25 km.",
+      "support": "derivation",
+      "source": "3,000 km = 3 x 10^8 cm; 3 x 10^8 / 2.5 = 1.2 x 10^8 years. Computed in Demo.tsx (TARGET_MYR, gapKm).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fingernail-ocean.c2",
+      "text": "Plates move about as fast as fingernails grow.",
+      "support": "source",
+      "source": "Fingernails grow about 3 to 3.5 mm a month, about 3.5 to 4 cm a year (dermatology references, e.g. Yaemsiri et al. 2010, J Eur Acad Dermatol Venereol, 3.47 mm/month; from memory, not checked online). The lesson's 2.5 cm a year is the same order; the comparison is 'about'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fingernail-ocean.c3",
+      "text": "Real spreading in the Atlantic varies along the ridge and over time, about 2 to 4 cm a year.",
+      "support": "source",
+      "source": "Full spreading rates of the Mid-Atlantic Ridge are about 2 to 4 cm a year, slower in the north (USGS 'This Dynamic Earth: Plate Motions'; NASA Earth Observatory; from memory, not checked online).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fingernail-ocean.c4",
+      "text": "2.5 cm a year is about 2 metres in a lifetime.",
+      "support": "derivation",
+      "source": "2.5 cm x 80 years = 200 cm. 'Lifetime' taken as about 80 years.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fingernail-ocean.c5",
+      "text": "The stage is a toy: South America's shapes slide due west at a steady average rate; it is not a plate reconstruction.",
+      "support": "convention",
+      "source": "Demo.tsx rotates the 1:110m South American country shapes about the Earth's axis by (rate x time) / (R cos 10 degrees), so the stated distance is exact along 10 S and smaller toward the south. Labelled 'Toy' on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A rift opens at 5 cm a year. Roughly how long until it is 1,000 km wide?",
+    "options": [
+      "20 million years",
+      "2 million years",
+      "200 million years"
+    ],
+    "answer": 0,
+    "why": "1,000 km is 100 million cm. At 5 cm a year that is 20 million years: slow speeds times geological time make oceans."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

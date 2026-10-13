@@ -27,21 +27,27 @@
       "text": "At the new dot, the single nearest dot is the mislabelled orange one, so k = 1 gives orange; its 5 nearest dots are 4 blue and 1 orange, so k = 5 gives blue (k = 3: 2 blue, 1 orange; k = 7: 6 blue, 1 orange).",
       "support": "derivation",
       "source": "Fixed layout in Demo.tsx (DOTS, QUERIES[0] = (3.2, 3.0)); Euclidean distances 0.28, 0.72, 1.00, 1.13, 1.17, 1.60, 1.81 to the seven nearest. Reproduced by vote() in Demo.tsx. The layout is invented for the toy.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.one-bad-label-knn.c2",
       "text": "With k = 13 every dot votes (6 blue, 7 orange), so every new dot is labelled orange wherever it sits.",
       "support": "derivation",
       "source": "When k equals the number of training points the vote is the same for every query: the overall majority class. Toy counts from DOTS in Demo.tsx (the bad label counts as orange).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.one-bad-label-knn.c3",
       "text": "Small k follows noise in the labels; larger k smooths the boundary, and too large a k blurs real boundaries.",
       "support": "source",
       "source": "About real methods: Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, §2.3.2 and §13.3 (k-nearest-neighbour classifiers, effect of k).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

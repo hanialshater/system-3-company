@@ -27,28 +27,36 @@
       "text": "The least-squares line through y = x² at x = 0, 0.25, 0.5, 0.75, 1 has slope 1 and intercept −0.125, and is off by at most 0.125 anywhere between 0 and 1.",
       "support": "derivation",
       "source": "Mean x 0.5, mean y 0.375, Sxy = Sxx = 0.625. Error x² − x + 0.125 is +0.125 at 0 and 1 and −0.125 at 0.5. Reproduced by fit() and maxInsideError() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.line-stops-at-the-edge.c2",
       "text": "At x = 3 the line predicts 2.875 while the truth is 9, a gap of 6.125 (at x = 2: 1.875 vs 4).",
       "support": "derivation",
       "source": "line(3) = 3 − 0.125; truth(3) = 9. Node output of line() and truth() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.line-stops-at-the-edge.c3",
       "text": "The truth y = x² is invented for the toy.",
       "support": "convention",
       "source": "Brief 28 in company/domains/briefs/ai.md; labelled on the stage and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.line-stops-at-the-edge.c4",
       "text": "A model is only tested where its data lived; predictions for inputs unlike the training data (dataset shift, extrapolation) can fail without the training error warning.",
       "support": "source",
       "source": "About real systems: Quiñonero-Candela, Sugiyama, Schwaighofer & Lawrence (eds.) 2009, Dataset Shift in Machine Learning (MIT Press), ch. 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

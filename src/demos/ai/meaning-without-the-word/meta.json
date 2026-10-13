@@ -27,27 +27,42 @@
       "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each, so with ties in knowledge-base order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
       "support": "derivation",
       "source": "wordScore() and ranking('words') in Demo.tsx (node output: scores 0,1,1,1,1; order 1,2,3,4,0). The tie-break rule is the toy's.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.meaning-without-the-word.c2",
       "text": "The meaning scores are hand-set for the toy, not computed by an embedding model.",
       "support": "convention",
       "source": "CHUNKS[].meaning in Demo.tsx, chosen by the builder so that the Paris chunk ranks first; labelled in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.meaning-without-the-word.c3",
       "text": "Paris is the seat of the French government (the capital of France).",
       "support": "source",
-      "source": "Constitution of the French Republic / any standard reference (e.g. Encyclopaedia Britannica, 'Paris').",
-      "status": "unverified"
+      "source": "Constitution of the French Republic / any standard reference (e.g. Encyclopaedia Britannica, 'Paris'). · Fact-check 2026-10-13: Source is weak: the 1958 Constitution does not name Paris as capital; cite Encyclopaedia Britannica \"Paris\" or the Government of France instead.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.meaning-without-the-word.c4",
       "text": "Retrieval-augmented systems pass the top-k retrieved passages to the model, and real systems use learned embeddings to match by meaning.",
       "support": "source",
       "source": "About real systems: Lewis et al. 2020, 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks' (NeurIPS); Karpukhin et al. 2020, 'Dense Passage Retrieval for Open-Domain Question Answering' (EMNLP).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.meaning-without-the-word.c5",
+      "text": "The model answers only from what retrieval hands it: a right passage below the cut does not exist for it.",
+      "support": "derivation",
+      "source": "Reveal paragraph 2. True of the toy and of a system that is given only the retrieved passages. Real retrieval-augmented models also carry knowledge in their weights (Lewis et al. 2020 call it parametric memory), so \"only\" overstates for real systems; suggest \"answers from what retrieval hands it, in this setup\". Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],

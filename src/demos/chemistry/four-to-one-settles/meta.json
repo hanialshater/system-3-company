@@ -27,28 +27,36 @@
       "text": "For A ⇌ B with K = [B]/[A] = 4 and 100 molecules, the settled mix is about 80 B and 20 A (80 ÷ 20 = 4).",
       "support": "derivation",
       "source": "B/A = 4 with A + B = 100 gives A = 20, B = 80. Equilibrium constant definition (IUPAC Gold Book, 'equilibrium constant'). Demo.tsx B_EQ.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.four-to-one-settles.c2",
       "text": "Every start settles near 80 B; the count wobbles by a few because each run is chance with only 100 molecules.",
       "support": "derivation",
-      "source": "Simulation: per step, A -> B with p = 0.20 and B -> A with p = 0.05 (ratio 4); gap to equilibrium shrinks by 0.75 per step. Seeds 1 (all A), 2 (all B), 3 (half) are untuned (first tried): at steps 10-60 they read 79 77 82 86 74 80 / 85 78 73 84 83 88 / 85 79 76 86 71 82. Over seeds 1-500 at step 20, from all A or all B: median 80, 95% range 72 to 87-88 (node). Binomial(100, 0.8) sd = 4.",
-      "status": "unverified"
+      "source": "Simulation: per step, A -> B with p = 0.20 and B -> A with p = 0.05 (ratio 4); gap to equilibrium shrinks by 0.75 per step. Seeds 1 (all A), 2 (all B), 3 (half) are untuned (first tried): at steps 10-60 they read 79 77 82 86 74 80 / 85 78 73 84 83 88 / 85 79 76 86 71 82. Over seeds 1-500 at step 20, from all A or all B: median 80, 95% range 72 to 87-88 (node). Binomial(100, 0.8) sd = 4. · Fact-check 2026-10-13: Reproduced: seeds 1/2/3 and the 500-seed range (median 80, 72-87) match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.four-to-one-settles.c3",
       "text": "At equilibrium both reactions keep going at equal rates: 20% of 20 A and 5% of 80 B, 4 each way per step.",
       "support": "derivation",
       "source": "0.20 x 20 = 4 = 0.05 x 80 (dynamic equilibrium; Atkins & Jones, Chemical Principles, ch. on equilibrium). The per-step chances are the toy's, chosen so their ratio is K.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.four-to-one-settles.c4",
       "text": "K fixes where the mix ends up, not where it began; changing the temperature changes K.",
       "support": "source",
       "source": "Equilibrium composition is independent of the starting direction for a given K; K depends on temperature (van 't Hoff equation; Atkins & de Paula, Physical Chemistry, ch. on chemical equilibrium).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

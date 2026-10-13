@@ -1,0 +1,73 @@
+{
+  "slug": "eratosthenes-shadow",
+  "title": "Measure the Earth with a shadow",
+  "hook": "Over 2,000 years ago someone sized the whole planet with a stick and a walk. How?",
+  "domain": "geography",
+  "concept": "earth-circumference-eratosthenes",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the Earth is round",
+      "that a full circle is 360 degrees"
+    ],
+    "doesNotKnow": [
+      "how the size of the Earth was first measured",
+      "that a shadow angle and one distance are enough"
+    ]
+  },
+  "misconception": "The size of the Earth could only be found after satellites or long voyages.",
+  "objective": "The learner can explain that, with parallel sunlight, the shadow angle equals the angle at the Earth's centre, so circumference = (360 / angle) x distance.",
+  "claims": [
+    {
+      "id": "geography.eratosthenes-shadow.c1",
+      "text": "In the account, at noon on the solstice a well at Syene had no shadow, a pole's shadow in Alexandria made 7.2 degrees, and the distance was 5,000 stadia, giving 250,000 stadia.",
+      "support": "source",
+      "source": "Cleomedes, 'On the Circular Motions of the Celestial Bodies' (I.7), reporting Eratosthenes, whose own text is lost. The often-quoted 252,000 stadia comes from other ancient writers (e.g. Strabo, Pliny). From memory, not checked online. The lesson says 'as the account tells it'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.eratosthenes-shadow.c2",
+      "text": "Because the Sun is so far away its rays arrive parallel, so the shadow angle equals the angle at the Earth's centre between the two places.",
+      "support": "derivation",
+      "source": "Alternate angles between parallel lines (the rays) cut by a transversal (the radius through Alexandria). The Sun's rays across Earth's diameter diverge by under 0.01 degrees (12,742 km / 150 million km), which is negligible here.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.eratosthenes-shadow.c3",
+      "text": "With modern numbers, 7.11 degrees and 843 km give about 42,700 km, within 7% of the true 40,008 km.",
+      "support": "simulation",
+      "source": "Latitudes Alexandria 31.20 N 29.92 E and Aswan 24.09 N 32.90 E (gazetteer, from memory, not checked online); difference 7.11 degrees; great-circle distance 843.2 km by geoDistance with R = 6,371.0088 km, computed in Demo.tsx; 843 x 360 / 7.11 = 42,684 km, which the reveal rounds to 42,700 (the circumference readout shows the unrounded value). 40,008 km is the WGS84 meridional circumference (about 40,007.86 km, from memory). The cities are not on one meridian (3 degrees of longitude apart), which accounts for much of the excess.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.eratosthenes-shadow.c4",
+      "text": "Nobody knows the exact length of a stadion, so how close Eratosthenes was in km cannot be said.",
+      "support": "source",
+      "source": "Proposed stadion lengths range from about 157 m to about 185 m (e.g. Engels 1985, 'The Length of Eratosthenes' Stade', American Journal of Philology; from memory, not checked online).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two towns 1,000 km apart lie on one north-south line. At the same noon their shadows differ by 9 degrees. How big is the planet round?",
+    "options": [
+      "40,000 km",
+      "9,000 km",
+      "360,000 km"
+    ],
+    "answer": 0,
+    "why": "The shadow difference is the angle at the centre. 9 degrees is 1/40 of 360, so the circumference is 40 x 1,000 km = 40,000 km."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

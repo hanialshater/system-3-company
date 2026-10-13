@@ -1,0 +1,73 @@
+{
+  "slug": "two-bulges",
+  "title": "Why two tides a day?",
+  "hook": "There is one Moon and it pulls one way. So why does the sea rise twice a day?",
+  "domain": "geography",
+  "concept": "tides-moon",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that tides rise and fall with the Moon",
+      "that the Earth spins once a day"
+    ],
+    "doesNotKnow": [
+      "why most coasts have two high tides a day",
+      "that there is a bulge on the side away from the Moon"
+    ]
+  },
+  "misconception": "The Moon pulls water into one bulge facing it, so there should be one high tide a day.",
+  "objective": "The learner can explain that the Moon's pull differs across the Earth, stretching the ocean into two bulges, so a turning coast meets two highs per lunar day of about 24 h 50 min.",
+  "claims": [
+    {
+      "id": "geography.two-bulges.c1",
+      "text": "On most ocean coasts there are two high tides in each lunar day, about 12 h 25 min apart.",
+      "support": "source",
+      "source": "Principal lunar semidiurnal constituent M2, period 12.42 h; most of the world's coasts are semidiurnal or mixed (NOAA CO-OPS, 'Tides and Water Levels'; from memory, not checked online). 12 h 25 min = half of 24 h 50 min, computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.two-bulges.c2",
+      "text": "A lunar day, the time for a place to face the Moon again, is about 24 h 50 min.",
+      "support": "source",
+      "source": "Mean lunar day 24 h 50 min 28 s (any almanac; NOAA; from memory). The Moon moves along its orbit in the same direction the Earth spins, so the Earth must turn a little more than once.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.two-bulges.c3",
+      "text": "The Moon pulls near-side water harder than the Earth's centre, and the centre harder than far-side water; the difference stretches the ocean into two bulges along the Moon line.",
+      "support": "derivation",
+      "source": "Tidal acceleration is the difference of the Moon's gravity across the Earth, approximately 2 G M r / d^3 along the Earth-Moon line on both sides (Newtonian gravity). Equilibrium tide height goes as cos(2 x angle from the Moon) plus a constant, which is what the stage draws (with a made-up amplitude).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.two-bulges.c4",
+      "text": "Real coasts differ, and some get only one tide a day.",
+      "support": "source",
+      "source": "Diurnal tides occur on some coasts, e.g. parts of the Gulf of Mexico and Southeast Asia (NOAA tide classifications; from memory, not checked online). The stage labels itself 'Toy: no continents, bulges exaggerated'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "High tide at a beach is at 8:00 in the morning. Roughly when is the next high tide?",
+    "options": [
+      "About 20:25",
+      "About 8:50 the next morning",
+      "About 14:12"
+    ],
+    "answer": 0,
+    "why": "There are two bulges, one toward the Moon and one away, so a coast meets a high every half lunar day, about 12 h 25 min."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

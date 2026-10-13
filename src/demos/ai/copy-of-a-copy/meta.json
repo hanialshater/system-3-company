@@ -27,35 +27,45 @@
       "text": "A word that is 2% of the data is missed by all 50 draws with chance 0.98^50 = 36.4%; once its count is 0 it can never be drawn again.",
       "support": "derivation",
       "source": "Independent draws: (1 − 0.02)^50 = 0.3642. Absorption at 0 follows from drawing only from current frequencies (nextGen in Demo.tsx). exactLoss(50) in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.copy-of-a-copy.c2",
       "text": "In 2,000 seeded runs, the 2% word vanished after one generation 37.3% of the time.",
       "support": "simulation",
       "source": "lossRate(50, 2000) in Demo.tsx, runs 1-2000 (seed run*1000 + generation into mulberry32), untuned. The stage shows runs 1, 2, 3, ... in order, also untuned: run 1 has lost 5 of 10 words by generation 3, and runs 1-10 each lost 4-6 words by generation 11.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.copy-of-a-copy.c3",
       "text": "With 500 draws per generation the 2% word is lost in one generation with chance 0.98^500 ≈ 0.004%, but losses still only accumulate.",
       "support": "derivation",
       "source": "exactLoss(500) = 4.1e-5 in Demo.tsx; lossRate(500, 2000) = 0 in 2,000 seeded runs.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.copy-of-a-copy.c4",
       "text": "The toy resamples word counts only; it has no real model, and the ten words are invented.",
       "support": "convention",
       "source": "Brief 30 in company/domains/briefs/ai.md; labelled on the stage and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.copy-of-a-copy.c5",
       "text": "Real models trained recursively on model-generated data lose the rare cases (the tails of the distribution) first.",
       "support": "source",
-      "source": "About real systems: Shumailov et al. 2024, 'AI models collapse when trained on recursively generated data', Nature 631, 755-759.",
-      "status": "unverified"
+      "source": "About real systems: Shumailov et al. 2024, 'AI models collapse when trained on recursively generated data', Nature 631, 755-759. · Fact-check 2026-10-13: Shumailov et al. 2024, Nature 631:755-759 confirmed; abstract says tails of the original distribution disappear.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

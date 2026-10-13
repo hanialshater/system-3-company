@@ -26,43 +26,55 @@
       "id": "chemistry.summit-kettle.c1",
       "text": "Air pressure on the summit of Mount Everest is about 0.31 atm (sea level: 1 atm).",
       "support": "derivation",
-      "source": "ICAO standard atmosphere at 8,850 m: p/p0 = (1 - 2.25577e-5 x 8850)^5.25588 = 0.310 (node, Demo.tsx air()). Measured summit pressures are about 31 to 34 kPa, i.e. 0.31 to 0.34 atm (West, High Altitude Medicine & Biology 7(2), 2006), higher than the standard atmosphere because of the warm tropical air column.",
-      "status": "unverified"
+      "source": "ICAO standard atmosphere at 8,850 m: p/p0 = (1 - 2.25577e-5 x 8850)^5.25588 = 0.310 (node, Demo.tsx air()). Measured summit pressures are about 31 to 34 kPa, i.e. 0.31 to 0.34 atm (West, High Altitude Medicine & Biology 7(2), 2006), higher than the standard atmosphere because of the warm tropical air column. · Fact-check 2026-10-13: Standard-atmosphere value 0.310 reproduced. Measured summit pressure is 253 mmHg = 33.7 kPa = 0.333 atm (West 1983/1999); the cited West 2006 HAMB 7(2) paper was not located. \"About 0.31\" holds loosely; recommend \"about 0.3 atm\".",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.summit-kettle.c2",
       "text": "Water on the summit of Everest boils at about 69 °C.",
       "support": "derivation",
-      "source": "Clausius-Clapeyron with dH_vap = 40.7 kJ/mol held constant and 1 atm at 373.15 K: 1/T = 1/373.15 + (8.314/40700) ln(1/0.310); T = 342.6 K = 69.4 °C (node). Published summit boiling points are about 68 to 71 °C. At the measured 0.33 atm the model gives about 71 °C.",
-      "status": "unverified"
+      "source": "Clausius-Clapeyron with dH_vap = 40.7 kJ/mol held constant and 1 atm at 373.15 K: 1/T = 1/373.15 + (8.314/40700) ln(1/0.310); T = 342.6 K = 69.4 °C (node). Published summit boiling points are about 68 to 71 °C. At the measured 0.33 atm the model gives about 71 °C. · Fact-check 2026-10-13: Model 69.4 C at 0.31 atm; 71 C at the measured 0.33 atm. \"About 69\" is within the published 68-71 range.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.summit-kettle.c3",
       "text": "Water boils when its vapour pressure equals the pressure of the air on it; at sea level (1 atm) that is at 100 °C.",
       "support": "source",
       "source": "Definition of boiling point (IUPAC Gold Book; Atkins & de Paula, Physical Chemistry, ch. 4). Normal boiling point of water 99.97 °C at 101.325 kPa (CRC Handbook).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.summit-kettle.c4",
       "text": "The curve is water's vapour pressure from a model with a constant heat of vaporisation (40.7 kJ/mol) and the air line comes from the standard atmosphere.",
       "support": "source",
-      "source": "dH_vap of water 40.65 kJ/mol at 100 °C (CRC Handbook). The constant-dH Clausius-Clapeyron curve overestimates vapour pressure at room temperature (0.031 vs 0.026 atm at 22 °C) but is within about 1 °C of steam tables for the boiling point between 0.3 and 1 atm.",
-      "status": "unverified"
+      "source": "dH_vap of water 40.65 kJ/mol at 100 °C (CRC Handbook). The constant-dH Clausius-Clapeyron curve overestimates vapour pressure at room temperature (0.031 vs 0.026 atm at 22 °C) but is within about 1 °C of steam tables for the boiling point between 0.3 and 1 atm. · Fact-check 2026-10-13: Reproduced: model 0.0312 atm at 22 C vs 0.0261 true.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.summit-kettle.c5",
       "text": "Food in water boiling at a lower temperature cooks more slowly.",
       "support": "source",
       "source": "Cooking rates rise steeply with temperature (Arrhenius); high-altitude cooking guidance (USDA, 'High Altitude Cooking') advises longer cooking times.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.summit-kettle.c6",
       "text": "(Recall) Water under 2 atm boils at about 120 °C.",
       "support": "source",
-      "source": "Steam tables: saturation temperature 120.2 °C at 202.6 kPa (CRC Handbook / IAPWS-IF97). The lesson's constant-dH model gives 120.8 °C (node).",
-      "status": "unverified"
+      "source": "Steam tables: saturation temperature 120.2 °C at 202.6 kPa (CRC Handbook / IAPWS-IF97). The lesson's constant-dH model gives 120.8 °C (node). · Fact-check 2026-10-13: Model gives 120.8 C; steam table 120.2 C.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
