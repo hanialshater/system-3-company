@@ -39,6 +39,25 @@ const built = (slug) => fs.readdirSync(path.join(ROOT, "src/demos")).some((d) =>
 // Briefs known to be wrong (company/ops/brief-skips.json, each with a reason and board id) are never handed out.
 const skipped = () => { try { return new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, "company/ops/brief-skips.json"), "utf8")).skips)); } catch { return new Set(); } };
 
+
+// Format line per brief: "format: …" or "**Format:** …" inside the brief's section.
+function formatOf(domain) {
+  const dir = path.join(ROOT, "company/domains/briefs");
+  const m = new Map();
+  for (const f of fs.readdirSync(dir).filter((f) => f === `${domain}.md` || f.startsWith(`${domain}.`))) {
+    const parts = fs.readFileSync(path.join(dir, f), "utf8").split(/^(?=#{2,3}\s+\d+\.\s)/m);
+    for (const p of parts) {
+      const h = p.match(/^#{2,3}\s+\d+\.\s+([a-z0-9-]+)\s/);
+      if (!h) continue;
+      const fm = p.match(/\*{0,2}format\*{0,2}\s*[:\u2014-]\s*\*{0,2}\s*([^\n]+)/i);
+      m.set(h[1], fm ? fm[1].replace(/\*+/g, "").trim() : undefined);
+    }
+  }
+  return m;
+}
+// Briefs not yet built when the rule started are "new style" and must name a format.
+const NEW_STYLE = { has: (s) => !built(s) };
+
 function tryLock(slug, agent) {
   const prev = read(slug);
   if (prev && (prev.done || Date.now() - Date.parse(prev.at) < STALE_MS)) return false;
@@ -58,7 +77,12 @@ if (cmd === "next") {
   const skip = skipped();
   const list = briefSlugs(arg);
   if (opt["from-end"]) list.reverse(); // take from the end while an older builder works forward without the queue
-  const slug = list.find((s) => !built(s) && !skip.has(s) && tryLock(s, String(opt.agent ?? "unknown")));
+  // A brief must name its format (company/design/formats.md) before a builder takes it (founder, 2026-10-13).
+  // Briefs written before the design org (no format line) are grandfathered as single card; pass --any-format to take them.
+  const fmt = formatOf(arg);
+  const ok = (s) => opt["any-format"] || fmt.get(s) !== undefined || !NEW_STYLE.has(s);
+  const slug = list.find((s) => !built(s) && !skip.has(s) && ok(s) && tryLock(s, String(opt.agent ?? "unknown")));
+  if (slug && fmt.get(slug)) console.error(`format: ${fmt.get(slug)}`);
   console.log(slug ?? "NONE");
 } else if (cmd === "release") {
   const prev = read(arg);

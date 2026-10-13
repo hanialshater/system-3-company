@@ -628,7 +628,7 @@ const cm = (id, domain, name, focus, checkable) => ({
     may: ["Set demand and order inside the category", "Propose new concepts and prerequisites"],
     mayNot: ["Publish", "Count simulated reviews as learning evidence"],
   },
-  inputs: ["Coverage and unmet demand (`npm run company -- coverage " + domain + "`)", "Possible overlaps (`node tools/overlap.mjs`): a signal, not a gate. Prefer briefs that add a distinct insight, and say in the brief how it differs from its nearest lesson (including other categories').", "Revisit recall rates for the category", "Learner requests", "Reviews of the category's lessons"],
+  inputs: ["Coverage and unmet demand (`npm run company -- coverage " + domain + "`)", "Possible overlaps (`node tools/overlap.mjs`): a signal, not a gate. Prefer briefs that add a distinct insight, and say in the brief how it differs from its nearest lesson (including other categories').", "Revisit recall rates for the category", "Learner requests", "Reviews of the category's lessons", "The format catalogue (company/design/formats.md) and the HQ Design inspector (/hq/design): which UI concepts exist, how they look across lessons, and which ones reviews keep flagging"],
   outputs: ["Curriculum updates", "Briefs on the board", "Category OP narrative", "Charter"],
   rituals: ["op-planning (writes category narrative)", "cycle-planning (brings 1–3 briefs)", "wbr (reports category)", "retirement"],
   failureModes: [
@@ -636,7 +636,7 @@ const cm = (id, domain, name, focus, checkable) => ({
     "Chasing the category leader's format for every lesson.",
     `Unverifiable content. ${checkable}`,
   ],
-  dayOne: [`Read company/domains/${domain}.md`, `Run \`npm run company -- coverage ${domain}\``, "Read every review of the category's lessons"],
+  dayOne: [`Read company/domains/${domain}.md`, `Run \`npm run company -- coverage ${domain}\``, "Read every review of the category's lessons", "Read company/design/formats.md and browse /hq/design: pick formats per brief from it; a brief that needs a non-default or new format goes to the interaction designer before any builder claims it"],
   tools: RECORDS,
 });
 
@@ -1022,7 +1022,7 @@ for (const [domain, subs] of Object.entries(SUBAREAS))
       outputs: ["Curriculum updates for the strand", "Ranked, answer-checked briefs"],
       rituals: ["cycle-planning (brings 1–3 briefs)", "portfolio review with the category lead"],
       failureModes: ["Briefs whose answer is wrong.", "A strand that re-teaches another strand's concept under a new name."],
-      dayOne: [`Read company/domains/${domain}.md`, `Read content/curriculum/${domain}.json and tag the concepts that belong to ${name}`, `Read company/domains/briefs/${domain}.md`],
+      dayOne: [`Read company/domains/${domain}.md`, `Read content/curriculum/${domain}.json and tag the concepts that belong to ${name}`, `Read company/domains/briefs/${domain}.md`, "Read company/design/formats.md and browse /hq/design (UI concepts); every brief names a format"],
       tools: RECORDS,
     });
 

@@ -61,7 +61,8 @@ May not:
 2. Read company/domains/ai.md
 3. Read content/curriculum/ai.json and tag the concepts that belong to Neural Networks & Language Models
 4. Read company/domains/briefs/ai.md
-5. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
+5. Read company/design/formats.md and browse /hq/design (UI concepts); every brief names a format
+6. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
 
 ## Working agreement (every role)
 

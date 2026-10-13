@@ -44,6 +44,7 @@ May not:
 - Revisit recall rates for the category
 - Learner requests
 - Reviews of the category's lessons
+- The format catalogue (company/design/formats.md) and the HQ Design inspector (/hq/design): which UI concepts exist, how they look across lessons, and which ones reviews keep flagging
 
 ## Outputs
 
@@ -71,7 +72,8 @@ May not:
 2. Read company/domains/lifehacks.md
 3. Run `npm run company -- coverage lifehacks`
 4. Read every review of the category's lessons
-5. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
+5. Read company/design/formats.md and browse /hq/design: pick formats per brief from it; a brief that needs a non-default or new format goes to the interaction designer before any builder claims it
+6. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
 
 ## Working agreement (every role)
 
