@@ -1,0 +1,73 @@
+{
+  "slug": "two-suspects-payoff",
+  "title": "Both can see the best deal. Will they?",
+  "hook": "Cooperating gives you both 3. Defecting gives you both 1. Easy choice?",
+  "domain": "economics",
+  "concept": "prisoners-dilemma",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "choices have payoffs",
+      "how to read a small table"
+    ],
+    "doesNotKnow": [
+      "that a choice can be best for each player whatever the other does",
+      "that such a choice can leave both players worse off together"
+    ]
+  },
+  "misconception": "If both players can see the best result, they will pick it.",
+  "objective": "The learner can check, column by column, that one move beats the other whatever the other player does, and explain why both players taking it leaves each with less than both cooperating.",
+  "claims": [
+    {
+      "id": "economics.two-suspects-payoff.c1",
+      "text": "If the other player cooperates, defecting gives you 5 instead of 3.",
+      "support": "derivation",
+      "source": "Table: (D, C) = 5 for you, (C, C) = 3; 5 > 3. Demo.tsx PAY.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-suspects-payoff.c2",
+      "text": "If the other player defects, defecting gives you 1 instead of 0.",
+      "support": "derivation",
+      "source": "Table: (D, D) = 1, (C, D) = 0; 1 > 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-suspects-payoff.c3",
+      "text": "So defecting is better for you whatever the other does; the other player faces the same table, so both defect and each gets 1 instead of 3.",
+      "support": "source",
+      "source": "Dominant-strategy equilibrium of the one-shot prisoner's dilemma (e.g. Dixit & Nalebuff, The Art of Strategy, ch. 3; Mankiw, Principles of Economics, ch. 17 'Oligopoly').",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.two-suspects-payoff.c4",
+      "text": "The payoffs are invented, the game is one round with no talking, and when the same players meet again and again cooperation can last.",
+      "support": "source",
+      "source": "Stage chip 'Invented payoffs · one round · no talking'. Repeated-game cooperation: R. Axelrod, The Evolution of Cooperation (1984). Stated as possible, not guaranteed; tit-for-tat is not claimed optimal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two shops each choose a low or a high price. Whatever the other shop does, pricing low earns each shop more. Both pricing high would earn both more than both pricing low. With one round and no talking, what does the model predict?",
+    "options": [
+      "Both price high, since both can see it is better",
+      "Both price low",
+      "One high, one low"
+    ],
+    "answer": 1,
+    "why": "Low beats high in each column of the table, so each shop picks low, even though both would do better at high. Best for each, worse for both."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
