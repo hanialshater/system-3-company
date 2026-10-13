@@ -1,0 +1,95 @@
+{
+  "slug": "lap-at-89-north",
+  "title": "Around the world near the pole",
+  "hook": "Around the world is 40,000 km. Is it always?",
+  "domain": "geography",
+  "concept": "polar-circle-geometry",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the equator is about 40,000 km around",
+      "that lines of longitude meet at the poles"
+    ],
+    "doesNotKnow": [
+      "how quickly circles of latitude shrink near the pole",
+      "that a lap at 89°N is only about 700 km"
+    ]
+  },
+  "misconception": "Going around the world always means about 40,000 km.",
+  "objective": "The learner can say that a circle of latitude has length 2πR cos(latitude), so a lap at 89°N is about 700 km, under 2% of the equator.",
+  "keyState": "The equator or 60°N lap seen first (big), then 89°N (about 700 km), with the map zoomed and the scale bar showing it.",
+  "claims": [
+    {
+      "id": "geography.lap-at-89-north.c1",
+      "text": "Once around the world along 89°N is about 700 km.",
+      "support": "derivation",
+      "source": "2πR cos 89° with R = 6,371.0088 km = 698.6 km (builder node run; Demo.tsx lapKm). Matches the cm-geography brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c2",
+      "text": "Once around the equator is about 40,030 km on the lesson's sphere, and 89°N is under 2% of that.",
+      "support": "derivation",
+      "source": "2πR = 40,030.2 km; 698.6 / 40,030 = 1.75%. The real equator is 40,075 km on WGS84 (from memory); the question says 'about 40,000'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c3",
+      "text": "At 85°N one lap is about 3,490 km.",
+      "support": "derivation",
+      "source": "2πR cos 85° = 3,488.9 km (builder node run). Quoted in the reveal only if 85°N was visited.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c4",
+      "text": "A circle of latitude has radius R × cos(latitude); cos 89° is about 0.017.",
+      "support": "derivation",
+      "source": "Geometry of the sphere; cos 89° = 0.01745.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c5",
+      "text": "One degree from the pole, the circle is about 220 km across.",
+      "support": "derivation",
+      "source": "Diameter measured over the surface: 2 × (1° × π/180 × R) = 222.4 km, shown as 220 km (r10 rounding). Demo.tsx fromPoleKm.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c6",
+      "text": "89°N lies on the drifting sea ice of the Arctic Ocean.",
+      "support": "source",
+      "source": "The North Pole region is ocean about 4 km deep, covered by drifting sea ice (NSIDC, 'Arctic sea ice' pages; from memory). Seasonal open water is possible; the reveal says 'if you could walk it'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.lap-at-89-north.c7",
+      "text": "On a map centred on the pole (azimuthal equidistant), distances from the pole are true.",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, azimuthal equidistant (from memory). The scale bar is computed from the same projection scale.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is a walk 'around the world' along 89°N far shorter than along the equator?",
+    "options": [
+      "Because the ice slows you down",
+      "Because circles of latitude shrink with the cosine of latitude, almost to nothing near the pole",
+      "It isn't: every lap around the world is about 40,000 km"
+    ],
+    "answer": 1,
+    "why": "A parallel's radius is R cos(latitude); at 89°N cos is 0.017, so the lap is about 700 km instead of 40,000."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

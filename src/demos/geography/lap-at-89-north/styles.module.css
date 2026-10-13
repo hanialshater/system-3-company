@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap p { margin: 0; }
+.wrap svg { max-height: 300px; }
+.lap { fill: none; stroke: var(--warn); stroke-width: 2.6; }
+.bar { stroke: var(--fg); stroke-width: 2; }
+.pole { fill: var(--fg); }
+.ice { fill: var(--bg-2); stroke: var(--line); }
+.leg { fill: none; stroke: var(--domain); stroke-width: 2.2; }
+.east { fill: none; stroke: var(--warn); stroke-width: 2.6; }
+.gap { stroke: var(--bad); stroke-width: 2; stroke-dasharray: 3 2; }
+.pin { fill: var(--good); stroke: var(--fg); stroke-width: 1; }
+.endpin { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.lab { font-size: 9px; fill: var(--fg); font-weight: 700; paint-order: stroke; stroke: var(--bg-2); stroke-width: 2.5px; }
+.note { font-size: 0.72rem; color: var(--muted); }
