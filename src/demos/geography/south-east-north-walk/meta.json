@@ -1,0 +1,88 @@
+{
+  "slug": "south-east-north-walk",
+  "title": "South, east, north, and home again",
+  "hook": "1 km south, 1 km east, 1 km north, and you're back. Only at the North Pole?",
+  "domain": "geography",
+  "concept": "polar-circle-geometry",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that walking east follows a circle of latitude",
+      "that circles of latitude shrink toward the poles"
+    ],
+    "doesNotKnow": [
+      "that near the South Pole an east leg can go round a small circle whole times",
+      "that the puzzle therefore has infinitely many answers"
+    ]
+  },
+  "misconception": "Only the North Pole works for the walk 1 km south, 1 km east, 1 km north back to the start.",
+  "objective": "The learner can explain that near the South Pole any start from which the 1 km east leg goes round its circle a whole number of times also works, giving a ring of answers for each whole number: infinitely many.",
+  "keyState": "A failing start seen (the walk ends off the start), then two working starts found: 1.159 km (one lap) and 1.080 km (two laps) from the South Pole.",
+  "claims": [
+    {
+      "id": "geography.south-east-north-walk.c1",
+      "text": "From the North Pole, walking 1 km south, 1 km east, then 1 km north brings you back to the start.",
+      "support": "derivation",
+      "source": "Every direction from the North Pole is south; the east leg follows a parallel; the north leg returns along a meridian to the pole. Classic puzzle (Martin Gardner; Peter Winkler, Mathematical Puzzles: A Connoisseur's Collection; from memory).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.south-east-north-walk.c2",
+      "text": "Starting about 1.159 km from the South Pole, the south leg leaves you on a circle 1 km round, so the east leg goes exactly once round it and the north leg retraces your steps.",
+      "support": "derivation",
+      "source": "The parallel at surface distance r from the pole has circumference 2πR sin(r/R) ≈ 2πr. Circumference 1 km at r = R asin(1/(2πR)) = 0.159155 km, so start 1.159155 km out (Demo.tsx startForLaps(1); builder node run, planar 1 + 1/2π agrees to 1e-10 km).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.south-east-north-walk.c3",
+      "text": "From about 1.080 km the east leg laps twice; from about 1.053 km, three times.",
+      "support": "derivation",
+      "source": "startForLaps(k) = 1 + R asin(1/(2πkR)): k = 2 gives 1.079577 km, k = 3 gives 1.053052 km. The simulated walk returns to within a micrometre at each (Demo.tsx walk(), gap by geoDistance on the sphere). The k = 3 figure is quoted only if visited.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.south-east-north-walk.c4",
+      "text": "Every whole number of laps works, and each gives a whole ring of starting points around the pole: infinitely many.",
+      "support": "derivation",
+      "source": "For each k = 1, 2, 3, … the starts at distance startForLaps(k) form a circle around the South Pole; any longitude on it works by symmetry. (The North Pole adds one more point.)",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.south-east-north-walk.c5",
+      "text": "These starting points are all on the Antarctic ice.",
+      "support": "source",
+      "source": "The South Pole lies on the Antarctic ice sheet, about 2.7 km thick there (from memory, e.g. USGS / British Antarctic Survey); every start is within 1.2 km of the pole.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.south-east-north-walk.c6",
+      "text": "The plan view is to scale; at this size the Earth's curvature is negligible.",
+      "support": "derivation",
+      "source": "Within 1.6 km of the pole, sin(r/R) differs from r/R by under 1e-8 relative; the stage draws a flat plan (105 px per km) while the walk is computed on the sphere.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Near the South Pole, why can the 1 km east leg of the walk end where it began?",
+    "options": [
+      "Because compasses fail near the pole",
+      "Because the circle you walk east on can be exactly 1 km, ½ km, ⅓ km… round, so you go round it whole times",
+      "Because east and west swap at the South Pole"
+    ],
+    "answer": 1,
+    "why": "If the parallel you reach after the south leg is 1/k km round, 1 km east goes round it exactly k times; the north leg then retraces the south leg. One ring of starts for each k."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

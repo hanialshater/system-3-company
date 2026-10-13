@@ -1,0 +1,88 @@
+{
+  "slug": "indonesia-vs-the-us-width",
+  "title": "Is Indonesia wider than the US?",
+  "hook": "Indonesia is a scatter of islands. Lay it over the US and measure it.",
+  "domain": "geography",
+  "concept": "country-span",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that Indonesia is a country made of islands",
+      "roughly where the US and Indonesia are on a world map"
+    ],
+    "doesNotKnow": [
+      "how far Indonesia stretches end to end",
+      "that a shape can be moved across the globe without changing its size"
+    ]
+  },
+  "misconception": "Indonesia is a modest cluster of islands, a fraction of a big country's reach.",
+  "objective": "The learner can say that Indonesia stretches further end to end than the contiguous US (about 15% on the lesson's outlines), because a country of islands spans the sea between them.",
+  "keyState": "Indonesia has been moved onto the contiguous US and both rulers (longest span of each outline) are shown.",
+  "claims": [
+    {
+      "id": "geography.indonesia-vs-the-us-width.c1",
+      "text": "On the lesson's outlines Indonesia measures about 5,320 km end to end.",
+      "support": "simulation",
+      "source": "Longest great-circle distance between two vertices of the Natural Earth 1:110m 'Indonesia' feature (kit data), R = 6,371.0088 km: 5,322.7 km, from 5.48N 95.29E to 9.12S 141.03E. Computed in Demo.tsx longestSpan (the same function that draws the ruler); re-run by the builder in a scratch script. Matches the cm-geography brief (5,323 km).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.indonesia-vs-the-us-width.c2",
+      "text": "On the lesson's outlines the contiguous US (the 48 joined states) measures about 4,650 km coast to coast.",
+      "support": "simulation",
+      "source": "Same method on the largest polygon of the 1:110m 'United States of America' feature (7.98 M km², the lower 48; excludes Alaska, Hawaii and islands): 4,648.1 km, from 44.81N 66.97W to 38.95N 123.73W. Demo.tsx lower48 + longestSpan.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.indonesia-vs-the-us-width.c3",
+      "text": "Measured the same way, Indonesia is about 15% longer than the contiguous US.",
+      "support": "derivation",
+      "source": "5,322.7 / 4,648.1 = 1.145. Computed on the stage from c1 and c2. Published extents use other definitions (east-west extent, full-resolution coastlines) and differ; the lesson claims only its own measure.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.indonesia-vs-the-us-width.c4",
+      "text": "Moving a shape around the globe by a rotation keeps its true size and every distance inside it.",
+      "support": "derivation",
+      "source": "Rotations of the sphere are isometries (they preserve great-circle distance and area). Demo.tsx moveTo composes d3 geoRotation only, the same construction as the kit's moveToLatitude.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.indonesia-vs-the-us-width.c5",
+      "text": "The Equal Earth map shows true sizes (it is an equal-area projection).",
+      "support": "source",
+      "source": "Šavrič, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3). Stage label 'Equal Earth map (true sizes)'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.indonesia-vs-the-us-width.c6",
+      "text": "Indonesia is a country made of islands, and its land area is far smaller than the contiguous US.",
+      "support": "simulation",
+      "source": "Kit data: the 'Indonesia' feature is a MultiPolygon of 13 island polygons at 1:110m; geoArea gives about 1.83 M km² for Indonesia vs 7.98 M km² for the lower-48 polygon (builder scratch run). Published: Indonesia about 1.9 M km², contiguous US about 8.1 M km² (CIA World Factbook, from memory).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A country is made of islands spread over a wide sea. Compared with a solid country of the same land area, its end-to-end reach is usually:",
+    "options": [
+      "Shorter",
+      "About the same",
+      "Longer"
+    ],
+    "answer": 2,
+    "why": "Its reach includes the sea between the islands: Indonesia has under a quarter of the contiguous US's land but stretches about 15% further end to end."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

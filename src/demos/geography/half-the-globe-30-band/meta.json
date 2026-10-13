@@ -1,0 +1,81 @@
+{
+  "slug": "half-the-globe-30-band",
+  "title": "How much of Earth is near the equator?",
+  "hook": "30° is a third of the way to the pole. Is 30°S to 30°N a third of the Earth?",
+  "domain": "geography",
+  "concept": "area-by-latitude",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "latitude runs from 90°S to 90°N",
+      "what the equator and poles are"
+    ],
+    "doesNotKnow": [
+      "that equal steps of latitude do not cover equal areas",
+      "that half the Earth's surface lies within 30° of the equator"
+    ]
+  },
+  "misconception": "Equal steps of latitude cover equal areas, so the band within 30° of the equator is about a third of the planet.",
+  "objective": "The learner can explain that area grows with the sine of latitude, so the band from 30°S to 30°N, a third of the degrees, holds half the surface, while the cap beyond 60°N holds under 7%.",
+  "keyState": "The 30°S–30°N band shaded with both readouts (33.3% of the degrees, 50% of the surface), and the 60°N-to-pole cap compared (6.7%).",
+  "claims": [
+    {
+      "id": "geography.half-the-globe-30-band.c1",
+      "text": "Half of the Earth's surface lies between 30°S and 30°N.",
+      "support": "derivation",
+      "source": "Area of a spherical zone 2πRh (Archimedes' hat-box theorem; any geometry text, from memory) gives the share (sin n − sin s)/2 = (0.5 + 0.5)/2 = 0.5. Demo.tsx surfaceShare; the drawn band polygon's geoArea gives 0.5000 (builder node run). On the real ellipsoid the figure differs by under 0.2% (cm-geography brief).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-the-globe-30-band.c2",
+      "text": "The band from 30°S to 30°N is a third of the latitude range (60° of 180°).",
+      "support": "derivation",
+      "source": "Arithmetic: 60/180 = 33.3%. Demo.tsx rangeShare.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-the-globe-30-band.c3",
+      "text": "The cap from 60°N to the pole spans 30° of latitude but holds only about 6.7% of the surface.",
+      "support": "derivation",
+      "source": "(sin 90° − sin 60°)/2 = (1 − 0.866)/2 = 0.0670; geoArea of the drawn cap 0.0670 (builder node run).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-the-globe-30-band.c4",
+      "text": "Area grows with the sine of latitude, not with the degrees: sin 30° is one half, so half of each hemisphere lies within 30° of the equator.",
+      "support": "derivation",
+      "source": "From c1: the area from the equator to latitude φ is 2πR² sin φ, half of a hemisphere (2πR²) at φ = 30°.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.half-the-globe-30-band.c5",
+      "text": "Other bands on the stage: 10°S–10°N holds 17.4% of the surface and 60°S–60°N holds 86.6%.",
+      "support": "derivation",
+      "source": "sin 10° = 0.1736, sin 60° = 0.8660 (builder node run). Readout values only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which holds more of Earth's surface: the band from the equator to 30°N, or everything from 30°N to the North Pole?",
+    "options": [
+      "From the equator to 30°N",
+      "From 30°N to the pole, because it spans twice the degrees",
+      "They are equal"
+    ],
+    "answer": 2,
+    "why": "Area from the equator grows with sin(latitude); sin 30° = 1/2, so each holds exactly a quarter of the globe, though one spans 30° and the other 60°."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

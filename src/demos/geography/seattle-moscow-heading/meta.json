@@ -1,0 +1,95 @@
+{
+  "slug": "seattle-moscow-heading",
+  "title": "Which way to Moscow?",
+  "hook": "Moscow is far east of Seattle. So why would you set off facing north?",
+  "domain": "geography",
+  "concept": "initial-bearing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "compass directions",
+      "that long flights follow curved-looking routes on flat maps"
+    ],
+    "doesNotKnow": [
+      "that the starting direction of a shortest route can be far from the map direction",
+      "that a map centred on a place shows shortest routes from it as straight lines"
+    ]
+  },
+  "misconception": "Moscow is far east of Seattle, so you start by flying east.",
+  "objective": "The learner can say that the shortest route from Seattle to Moscow starts almost due north (about 11.5° east of north) because it is a great circle over the Arctic.",
+  "keyState": "East has been tried (the route misses Moscow by thousands of km) and the heading has then been turned to within 2° of 11.5°, where the drawn route reaches Moscow.",
+  "claims": [
+    {
+      "id": "geography.seattle-moscow-heading.c1",
+      "text": "The shortest route from Seattle to Moscow starts about 11.5° east of north.",
+      "support": "derivation",
+      "source": "Initial great-circle bearing atan2(sin Δλ cos φ2, cos φ1 sin φ2 − sin φ1 cos φ2 cos Δλ) (Williams, Aviation Formulary; Movable Type Scripts; from memory) for Seattle 47.61N 122.33W and Moscow 55.76N 37.62E: 11.505°. Demo.tsx bearing(), the value the stage prints. Matches the cm-geography brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c2",
+      "text": "The shortest route from Seattle to Moscow is about 8,370 km.",
+      "support": "derivation",
+      "source": "d3 geoDistance × 6,371.0088 km = 8,369.9 km on a sphere (Demo.tsx DIST_KM). The brief says 8,371 km; the 1 km difference is coordinate rounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c3",
+      "text": "Setting off due east from Seattle on a great circle, the route passes about 7,940 km from Moscow.",
+      "support": "simulation",
+      "source": "Demo.tsx missKm(90): minimum distance from Moscow to the first 9,500 km of the great circle leaving Seattle at 90°, sampled every 10 km: 7,938 km (builder scratch mirror). The reveal quotes it only if the learner pressed 'Face east'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c4",
+      "text": "On a map centred on Seattle (azimuthal equidistant), straight lines from Seattle are shortest routes and distances from it are true.",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, azimuthal equidistant: great circles through the centre are straight lines with true scale along them (from memory).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c5",
+      "text": "The route crosses Canada, the far north of Greenland and the Arctic Ocean, then Norway and Finland.",
+      "support": "simulation",
+      "source": "Builder scratch run: d3 geoInterpolate Seattle→Moscow sampled every 0.25% against the kit's 1:110m countries: USA, Canada (incl. Arctic islands), Greenland at about 82°N, sea, Norway at 71°N 26°E, Finland, Russia. Peak latitude 82.3°N.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c6",
+      "text": "Moscow lies far east of Seattle, and both are far north.",
+      "support": "source",
+      "source": "Gazetteer coordinates (from memory): Seattle 47.61N 122.33W, Moscow 55.76N 37.62E; 160° of longitude apart.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c7",
+      "text": "Real flights also bend for winds and airspace.",
+      "support": "source",
+      "source": "General aviation practice (flight planning uses wind-optimal tracks and airspace restrictions; from memory, needs a source such as an ICAO or FAA flight-planning reference).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two cities are both far north, one far east of the other. The shortest route between them starts out heading:",
+    "options": [
+      "Roughly east, toward the other city on the map",
+      "Well north of east, climbing toward the pole",
+      "South of east"
+    ],
+    "answer": 1,
+    "why": "The great circle between two high-latitude cities bends over the polar region, so it starts much further north than the map direction: Seattle to Moscow starts 11.5° east of north."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
