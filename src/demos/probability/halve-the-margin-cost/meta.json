@@ -1,0 +1,73 @@
+{
+  "slug": "halve-the-margin-cost",
+  "title": "Halving a poll's margin",
+  "hook": "A poll's margin of error is too wide. How many more people does it take to halve it?",
+  "domain": "probability",
+  "concept": "poll-margin-of-error",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that polls report a plus-or-minus",
+      "that bigger samples wobble less"
+    ],
+    "doesNotKnow": [
+      "how the margin of error scales with sample size"
+    ]
+  },
+  "misconception": "Doubling the sample halves the margin of error.",
+  "objective": "The learner can explain that the margin shrinks with the square root of the sample size: 1,000 people give about 3.1 points, 2,000 only 2.2, and 4,000 (four times as many) 1.5.",
+  "keyState": "Sample size 2,000 seen (margin 2.2) and then 4,000 (margin 1.5).",
+  "claims": [
+    {
+      "id": "probability.halve-the-margin-cost.c1",
+      "text": "For a random poll of n people with support near 50%, the 95% margin of error is 1.96 x sqrt(0.25 / n): about 3.1 points at 1,000, 2.2 at 2,000 and 1.5 at 4,000.",
+      "support": "derivation",
+      "source": "Normal approximation to the binomial; margin() in src/demos/probability/halve-the-margin-cost/model.ts gives 3.099, 2.191, 1.550 (also 6.2 at 250, 4.4 at 500, 1.1 at 8,000).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.halve-the-margin-cost.c2",
+      "text": "About 95% of random polls land within the margin of error of the true value.",
+      "support": "derivation",
+      "source": "Definition of the 95% margin (1.96 standard errors). The stage's seeded polls (seed 1936, untuned; a separate stream per size) put 95, 96, 95, 97, 95, 97 of 100 inside at 250, 500, 1,000, 2,000, 4,000, 8,000.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.halve-the-margin-cost.c3",
+      "text": "The margin shrinks with the square root of the sample size, so half the error costs four times the people.",
+      "support": "derivation",
+      "source": "margin(4n) = 1.96 x sqrt(0.25 / 4n) = margin(n) / 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.halve-the-margin-cost.c4",
+      "text": "The margin covers only random sampling luck, not people who refuse to answer or a biased list.",
+      "support": "source",
+      "source": "AAPOR, Margin of Sampling Error / Credibility Interval statement: the margin of sampling error does not include non-response, coverage or measurement error.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A survey of 500 people has a margin of about 4.4 points. Roughly how many people would bring it to about 2.2 points?",
+    "options": [
+      "1,000",
+      "2,000",
+      "4,000"
+    ],
+    "answer": 1,
+    "why": "Halving the margin takes four times the sample: 500 x 4 = 2,000. Doubling to 1,000 only reaches about 3.1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

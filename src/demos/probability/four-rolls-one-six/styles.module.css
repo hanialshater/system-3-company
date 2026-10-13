@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.bar { fill: var(--domain); opacity: 0.85; }
+.barLabel { fill: #0d0f14; font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.tick { fill: var(--muted); font-size: 10.5px; }
+.adding { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 5 4; }
+.addLabel { fill: var(--bad); font-size: 10.5px; font-weight: 700; }

@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 36dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.hit { stroke: var(--muted); stroke-width: 1.4; opacity: 0.8; }
+.miss { stroke: var(--bad); stroke-width: 2.2; }
+.truth { stroke: var(--fg); stroke-width: 1.5; }
+.tick { fill: var(--muted); font-size: 10.5px; }

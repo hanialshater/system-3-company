@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.band { fill: color-mix(in srgb, var(--domain) 22%, transparent); }
+.truth { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.dotIn { fill: var(--domain); }
+.dotOut { fill: var(--bad); }
+.tick { fill: var(--muted); font-size: 10.5px; }

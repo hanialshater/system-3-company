@@ -1,0 +1,74 @@
+{
+  "slug": "ninety-five-percent-of-what",
+  "title": "95% of what, exactly?",
+  "hook": "A hundred pollsters each report a 95% interval. How many of them are wrong?",
+  "domain": "probability",
+  "concept": "confidence-intervals",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a poll reports a share plus or minus a margin of error",
+      "that random samples wobble around the truth"
+    ],
+    "doesNotKnow": [
+      "that \"95%\" describes the method over many polls, not one interval",
+      "that some intervals miss and look no different from those that hit"
+    ]
+  },
+  "misconception": "A 95% interval is right 95% of the time in the sense that every interval you see is trustworthy, and the misses never appear.",
+  "objective": "The learner can explain that across many polls about 5 in 100 intervals miss the truth (5.4% here), and that one interval on its own gives no sign whether it is a miss.",
+  "keyState": "The first batch of 100 intervals drawn, with some red bars that miss the 50% line.",
+  "claims": [
+    {
+      "id": "probability.ninety-five-percent-of-what.c1",
+      "text": "With true support exactly 50% and 1,000 random people per poll, the usual 95% interval (share +/- 1.96 x sqrt(share x (1 - share) / 1,000)) misses 50% with chance 5.4%: about 5 in 100.",
+      "support": "derivation",
+      "source": "Exact binomial sum over the head counts whose interval excludes 0.5: 0.05368 (exactMiss() in src/demos/probability/ninety-five-percent-of-what/model.ts). Slightly above 5% because the interval is an approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.ninety-five-percent-of-what.c2",
+      "text": "The stage's pollsters are seeded: the first batch of 100 had 7 misses; ten batches had 7, 6, 9, 11, 11, 4, 7, 4, 6, 1 (66 of 1,000, 6.6%).",
+      "support": "simulation",
+      "source": "intervals() in model.ts, mulberry32 seed 1937, untuned (the first seed tried). Over seeds 1-300 the misses in one batch of 100 had middle 95% 1-11 (median 5); 2 of 300 seeds gave 0. The reveal quotes only the learner's own counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.ninety-five-percent-of-what.c3",
+      "text": "The true value is known here only because this is a simulation.",
+      "support": "convention",
+      "source": "Model setup: the population is fixed at exactly 50% support.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.ninety-five-percent-of-what.c4",
+      "text": "The 95% belongs to the method: across many polls about 1 in 20 intervals misses, and a single interval gives no sign whether it is one of them.",
+      "support": "source",
+      "source": "Neyman (1937), Outline of a Theory of Statistical Estimation, Phil. Trans. R. Soc. A 236: 333-380 (coverage as a long-run property of the procedure).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A lab reports a 95% interval for a drug's effect. What does the 95% describe?",
+    "options": [
+      "A 95% chance that this particular interval is right",
+      "How often intervals made this way catch the true value, over many studies",
+      "That 95% of patients fall inside the interval"
+    ],
+    "answer": 1,
+    "why": "The 95% is a property of the method: about 19 in 20 intervals made this way contain the truth. Any one interval either does or does not, and you cannot tell which from the interval alone."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "four-rolls-one-six",
+  "title": "Four rolls for one six",
+  "hook": "Each roll has a 1 in 6 chance of a six. What do four rolls give you?",
+  "domain": "probability",
+  "concept": "at-least-once",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "one roll of a fair die gives a six with chance 1/6"
+    ],
+    "doesNotKnow": [
+      "how chances combine over repeated tries",
+      "the complement trick: count the ways to miss every time"
+    ]
+  },
+  "misconception": "Four rolls, each 1/6, so the chance of at least one six is 4/6 (67%).",
+  "objective": "The learner can explain that each roll removes 1/6 of those still without a six, so the no-six share is (5/6)^4 = 48% and at least one six is 1 - (5/6)^4 = 52%, not 4/6.",
+  "keyState": "All four rolls done: the no-six bars 1,000 -> 844 -> 701 -> 581 -> 477, above the dashed adding line (333 at roll 4).",
+  "claims": [
+    {
+      "id": "probability.four-rolls-one-six.c1",
+      "text": "Each roll of a fair die gives a six with chance 1/6.",
+      "support": "convention",
+      "source": "Fair-die model; the hook's premise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.four-rolls-one-six.c2",
+      "text": "The chance of at least one six in four rolls is 1 - (5/6)^4 = 51.8%, about 52%.",
+      "support": "derivation",
+      "source": "(5/6)^4 = 625/1296 = 0.4823; 1 - 0.4823 = 0.5177 (exactNone() in src/demos/probability/four-rolls-one-six/model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.four-rolls-one-six.c3",
+      "text": "The stage's 1,000 seeded players went 1,000 -> 844 -> 701 -> 581 -> 477 with no six, so 523 (52%) had at least one six after four rolls.",
+      "support": "simulation",
+      "source": "players() and stillNoSix() in model.ts, mulberry32 seed 1654, untuned (the first seed tried). Exact expected: 1,000, 833, 694, 579, 482. Over seeds 1-500 the no-six count after 4 rolls had middle 95% 454-512 (median 482).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.four-rolls-one-six.c4",
+      "text": "Adding 1/6 per roll predicts 333 players left with no six after four rolls (67% with a six), and would pass 100% by the seventh roll.",
+      "support": "derivation",
+      "source": "1,000 x (1 - 4/6) = 333; 7/6 > 1 (addingNone() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.four-rolls-one-six.c5",
+      "text": "Each roll removes about 1/6 of the players still without a six, not 1/6 of everyone.",
+      "support": "derivation",
+      "source": "Independence of rolls: the no-six group after r rolls is (5/6)^r of all players in expectation.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A free throw goes in 50% of the time. Is the chance of at least one basket in two tries 100%?",
+    "options": [
+      "Yes, 50% + 50%",
+      "No, it is 75%",
+      "No, it is 50%"
+    ],
+    "answer": 1,
+    "why": "Missing both happens 1/2 x 1/2 = 1/4 of the time, so at least one basket is 1 - 1/4 = 75%. Chances of tries do not add."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
