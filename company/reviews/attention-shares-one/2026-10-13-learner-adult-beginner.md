@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: attention-shares-one
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has heard "AI pays attention to words"; knows percentages and angles; has never met dot products or softmax). Screenshots seen (sheet.png, all 3 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,11 @@ boundary: an adult with school-level maths and science, new to the topic (has he
 - Reveal earned: 45% partly (the learner can see shares are not 100%); the numbers and the term softmax are not earned.
 - Problems: (1) two undefined terms in the stem; (2) reveal numbers never on stage; (3) a single slider nudge unlocks the reveal; (4) "words" are arrows; (5) the hook leaks the "not all" answer.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows words can be arrows and that arrows pointing the same way are similar; the unknowns include what an attention weight is and that softmax makes weights compete. The stem uses "dot products" and "softmax" as if known, which is beyond even the brief's learner (it does not list either as known). The bar that always fills the width is the right picture and does deliver "fixed pie".
+- The objective also says "the output is the weighted average of the words" (the blend arrow); that is told only.
+- Claims verified (5/5), but the numbers 44.6, 10.8 and 66.5 in the reveal were never seen by the learner on stage.
+
+Verdict: revise

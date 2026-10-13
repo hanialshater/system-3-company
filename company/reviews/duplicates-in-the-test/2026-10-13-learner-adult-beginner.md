@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: duplicates-in-the-test
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows "test score" from school; has heard AI "was tested on its training data"; has not met data leakage). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 60% yes, and the full vs fresh gap yes.
 - Problems: (1) 50% on fresh items looks like a finding, not the stem's rule; (2) "only if nothing ... sat in training" is absolute; (3) hook gives away the mechanism.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows a model is checked on unseen test data; the objective (copies inflate the score while fresh items stay put) is exactly what the toggle and slider show. Intent and experience match closely.
+- Claims verified (4/4).
+
+Verdict: launch

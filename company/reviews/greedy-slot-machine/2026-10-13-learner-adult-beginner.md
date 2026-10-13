@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: greedy-slot-machine
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows slot machines and percent; has no reinforcement-learning vocabulary). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 68 yes (explorer bars sit around 62 to 77), the lock-in idea shown once.
 - Problems: (1) the stem mixes "you" and "a player"; (2) question and demo point at different numbers; (3) the lock-in mechanism is told; (4) hook leaks.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's objective is that a greedy learner can be fooled by an unlucky early result and never revisit the better option, while exploring costs little. The stage shows greedy stuck in run 1 and fine in run 2, which supports "can be fooled, not always". The prediction question, however, is about the explorer's win rate (68), a different quantity from the lesson's point, and the early-pull mechanism is only told.
+- Claims verified (5/5).
+
+Verdict: revise

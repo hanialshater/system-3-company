@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: ambulance-pitch-drop
-lesson version: vNN
+lesson version: v3
 boundary: an adult with school-level maths and science, new to the topic (knows pitch, frequency and Hz roughly; has heard the siren effect but has never been told why). Screenshots seen (sheet.png, all 3 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: the direction (up then down), yes for the receding half; the approaching half is told.
 - Problems: (1) hook states the effect; (2) 754 Hz and 704 Hz never shown, reveal enables after one move; (3) ring-per-70-crests construction unexplained; (4) the "beside you" reading unexplained.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows sirens sound higher then lower and what Hz means; the unknown is the bunching of crests. The gap-labels (31.8, 36.8, parked 34.3) deliver that. The failure is in the explore path: one slider nudge is enough to enable the reveal, and the approaching reading is never displayed.
+- Claims verified (8/8), including 754 and 704 Hz, which the learner is never shown.
+
+Verdict: revise

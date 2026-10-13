@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: flagged-means-what
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows percentages; has heard "the test is 96% accurate"; has not met base rates, precision or recall). Screenshots seen (sheet.png, all 5 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 17% yes. The recall/precision vocabulary is earned by the contrast, though 95.8% is told.
 - Problems: (1) "Show missed ill" does nothing visible and its purpose is unclear; (2) 95.8% appears first in the reveal; (3) the squares are very small.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows percentages and that accuracy can mislead when one class is rare. The objective (precision vs recall; rare condition makes precision low) is met by the sort and the flag-all contrast. The reveal's vocabulary is introduced at the right moment.
+- Claims verified (4/4).
+
+Verdict: launch

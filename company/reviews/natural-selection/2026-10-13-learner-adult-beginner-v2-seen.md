@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: natural-selection
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows "survival of the fittest" as a slogan; no model of how a 10% edge compounds). Screenshots seen (sheet.png, all 11 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,11 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: the number 99 yes; the 1.1^100 explanation not.
 - Problems: (1) odds/ratio explanation not earned; (2) chart axis text unreadable; (3) "edge" term appears on buttons without a pointer to the stem's 10%; (4) stage state at reveal differs from after reset.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner does not know exponential growth or relative fitness; the objective ("a heritable edge is applied again every generation... 1% to about 99%") is delivered by the curve and the 1% contrast. The reveal's odds-ratio explanation is the step the learner model cannot follow and the stage never prepares.
+- The hook's "how does the whole population change?" matches the "none changed colour" caption; that part works.
+- Claims verified (12/12).
+
+Verdict: revise

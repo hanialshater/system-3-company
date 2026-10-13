@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: border-follows-point
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows coordinates and midpoints; has heard "AI classifies by similarity"; has not met nearest-neighbour). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: x = 1 yes, and the tilt yes; the many-point claim is told.
 - Problems: (1) the many-point claim has no picture; (2) "training point"/"class" terms before the picture; (3) no sentence marking the 2-D toy against real high-dimensional data.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows nearest-neighbour labelling and midpoints; the unknown is that the border comes from the points. Intent and experience match: the border moves by half the point's move, then tilts.
+- The many-point closing sentence goes beyond the objective as stated and is told. Claims verified (5/5).
+
+Verdict: launch

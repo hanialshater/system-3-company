@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: one-in-four-sprouts
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (remembers Mendel's peas vaguely; has basic probability but no habit of "at least one" thinking). Screenshots seen (sheet.png, all 6 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (rememb
 - Reveal earned: the ~68% from the 67, yes; the arithmetic route, moderately.
 - Problems: (1) ww/PP/Pw notation used before defined; (2) square-to-family mapping unlabelled; (3) 42% is a number the stage could not produce; (4) "hidden white copy" not explained for newcomers.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows "offspring get one copy from each parent" and "a recessive trait shows only with two copies"; so ww/PP/Pw notation is arguably within their knowledge, but it is still used before the stage defines it, and the brief lists "that a Mendelian ratio is a chance per offspring" as the unknown, which the 67-of-100 counters do deliver.
+- The 42% figure in the reveal is not producible by anything the learner did. Claims verified.
+
+Verdict: revise

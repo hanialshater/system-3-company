@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: draw-the-xor-lines
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows coordinates, straight lines and midpoints; has heard "neural networks" without knowing hidden layers). Screenshots seen (sheet.png, all 7 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: "No, never" is earned empirically only weakly (two taps) and by the proof not at all on stage; "two lines work" is shown.
 - Problems: (1) hook states the answer; (2) reveal's "your best was 1 of 4" contradicts the opening 2 of 4; (3) midpoint proof not drawn; (4) two lines are placed for the learner in one tap; (5) "hidden layer" jargon at the end.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows a line can separate two groups; the unknown is that some patterns cannot be cut by any line. The stage lets the learner fail with one line and succeed with two, which fits. The reveal's "your best with one line was 1 of 4" conflicts with the opening 2 of 4, and the proof of impossibility is only in words.
+- The objective names "what a hidden layer of two units does", which appears only in the final sentence. Claims verified (5/5).
+
+Verdict: revise

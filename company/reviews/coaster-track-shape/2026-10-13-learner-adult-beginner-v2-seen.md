@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: coaster-track-shape
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows gravity and "steeper is faster" as a feeling; remembers energy only as a word). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: same speed yes; the reason (height lost) is told.
 - Problems: (1) the static mid-track speed labels mislead; (2) "label climbs" never visible; (3) formula and g unearned; (4) "frictionless" jargon; (5) odd option stands out.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief says the learner knows downhill speed-up and m/s and does not know energy bookkeeping or v = sqrt(2gh). The objective (same speed, different time) is delivered by the paired readouts, strongly. The static mid-track speed labels and the unseen "label climbs" are where experience and intent come apart.
+- Claims verified (7/7).
+
+Verdict: revise

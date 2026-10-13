@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: saturated-enzyme
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows enzymes as "proteins that speed up reactions"; no feel for Michaelis-Menten saturation). Screenshots seen (sheet.png, all 5 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 5% yes; the "extra substrate waits its turn" mechanism is told, though the dots visually crowd, which helps.
 - Problems: (1) displayed gains not equal to displayed busy counts; (2) "half-way" unit and "share of top" unexplained; (3) no full curve; (4) new-busy stations too small.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's objective says speed is proportional to S/(Km + S); the stage's "SPEED (SHARE OF TOP)" and "× half-way" are the same quantities under informal names. The learner model says the learner knows one substrate molecule at a time, which the stem and stage use well.
+- The rounding mismatch (91 to 95 shown as +5%) is not something the brief anticipated. Claims verified (4/4), but a verified claim of "+5%" does not reconcile with the displayed busy counts.
+
+Verdict: revise

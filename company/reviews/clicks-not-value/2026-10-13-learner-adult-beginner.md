@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: clicks-not-value
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows "AI optimises things"; has heard recommender systems chase engagement; has not met Goodhart's law). Screenshots seen (sheet.png, all 6 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 0, yes; the Goodhart generalisation is told but the lesson labels it a pattern.
 - Problems: (1) the value-optimiser end state (10 and 10) is never shown unless the learner runs it; (2) the prediction can be solved from the stem, so it tests arithmetic more than intuition.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows what a metric is and simple formulas like 2h + s; the objective (a proxy can be maximised by abandoning the goal) is shown cleanly by the run to the end. The value-optimiser end state (10 and 10) is not shown unless the learner runs it.
+- Claims verified (5/5).
+
+Verdict: launch

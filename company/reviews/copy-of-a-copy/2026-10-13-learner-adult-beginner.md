@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: copy-of-a-copy
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has read "AI trained on AI output degrades"; knows chance as percent; can raise a number to a power with a calculator). Screenshots seen (sheet.png, all 6 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (has re
 - Reveal earned: 36% partly (one run does not show 36%; the arithmetic is told); the "losses pile up" idea yes.
 - Problems: (1) 500-draw run not shown; (2) 0.98^50 told; (3) "next model cannot produce it" worded as general fact; (4) 2,000-run figure unverifiable on stage.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows models learn word frequencies and that outputs can end up in training data. The objective (a loop can only lose rare items, never regain them) is shown by the vanishing bars. The 500-draw comparison is not experienced as the panel intends: the toggle resets to generation 0 and never runs.
+- Claims verified (5/5), including the Shumailov et al. citation; the toy-vs-real wording issue is separate from claim status.
+
+Verdict: revise

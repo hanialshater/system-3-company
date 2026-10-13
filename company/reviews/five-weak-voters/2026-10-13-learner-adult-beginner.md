@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: five-weak-voters
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows "majority vote" and percent; has not met ensembles or independence as a technical idea; has no feel for binomial chances). Screenshots seen (sheet.png, all 6 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 68% yes (the 138 and 68.3% appear on stage); the mechanism told.
 - Problems: (1) "long run" undefined and competes with the batch number; (2) "independent" undefined until the toggle; (3) the 1-model baseline not shown; (4) the 68.3% calculation cannot be reconstructed.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows models are right a certain share of the time and that averages settle down. The objective (majority of independent voters wrong only when most are wrong; shared mistakes remove the gain) is delivered by the 5, 21 and "Same mistakes" clicks. The "long run" readout is the unexplained element.
+- Claims verified (5/5).
+
+Verdict: launch

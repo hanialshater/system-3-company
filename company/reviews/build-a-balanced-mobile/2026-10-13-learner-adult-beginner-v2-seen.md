@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: build-a-balanced-mobile
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (has used a see-saw; has not met turning effect, weight × distance, or centre of mass). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult with school-level maths and science, new to the topic (has us
 - Reveal earned: 75 cm yes; the general rule is told but plausible given two equal masses.
 - Problems: (1) "turn" and kg×cm unexplained; (2) ruler-weight arrow too small; (3) heavier-lump claim not shown; (4) the slider can be dragged to any pivot, level is found only by closeness, no snap, so "level" might be judged by eye.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows see-saws and that a ruler balances at its middle; the objective (balance at the mass-weighted average, halfway between ruler middle and lump) is found by sliding to 75 and confirmed by 2.5 vs 2.5. Intent and experience match.
+- The unknowns torque and centre of mass are named only lightly; "turn" is the lesson's word. Claims verified.
+
+Verdict: launch

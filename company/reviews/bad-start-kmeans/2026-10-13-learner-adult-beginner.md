@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: bad-start-kmeans
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows "average" and "nearest"; has never seen k-means or any clustering algorithm). Screenshots seen (sheet.png, all 6 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,11 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: the answer {0} {4, 6, 10} yes; "start decides the end" not, in the path a learner would take.
 - Problems: (1) explore path shows the start not mattering; (2) the good start (2 and 8) and cost 16 never shown; (3) total squared distance undefined; (4) the intermediate step skipped; (5) the hook leaks.
 - No FATAL, but this is a strong revise.
+
+## 2. After reading the brief
+
+- The brief's objective is "k-means only improves its current guess... can settle on a worse grouping from a bad start, and is usually run from several starts". The stage as the panel directs it (nudge the start by one unit) never produces a different outcome, so the central claim is not experienced. The brief assumes the learner will see two outcomes; the tested starts all converge.
+- Claims verified (4/4), including the 2 and 8 start that the learner is not led to try.
+- I would hold this one: it is a revise with a high priority.
+
+Verdict: revise

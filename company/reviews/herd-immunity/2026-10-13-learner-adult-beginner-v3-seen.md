@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: herd-immunity
-lesson version: vNN
+lesson version: v3
 boundary: an adult with school-level maths and science, new to the topic (knows vaccines protect people; has heard "herd immunity" and "R0" in the news but could not say what R0 does). Screenshots seen (sheet.png, all 10 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,11 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: "just a handful" yes (4 of 80 average, 2 of 80 seen); the threshold language not.
 - Problems: (1) single-run vs average confusion; (2) 75% threshold and the formula not shown; (3) "Step 1: 1 new case" vs "2 caught"; (4) the hook leans to the answer.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner does not know R0 or branching processes; the readout "4 × 20% = 0.8" is a good bridge. But the objective includes "more than 1 - 1/R0 immune", and the 75% threshold appears only in the reveal while the buttons are 50 to 90. Intent says "learner can explain"; experience gives a number to accept.
+- The single-run vs average-of-200 readouts are not mentioned in the brief's learner model; they are the part that confused me.
+- Claims verified (12/12).
+
+Verdict: revise

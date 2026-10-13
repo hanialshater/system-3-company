@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: antibiotic-already-there
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows "antibiotics kill bacteria"; has heard "bacteria become resistant"; has not met random mutation vs selection). Screenshots seen (sheet.png, all 8 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,11 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Values in the reveal never on stage: "10 billion × 1 in 100 million = 100" is shown as arithmetic only in the reveal for the first time; the stage shows the product only for the three smaller sizes. Minor.
 - Problems: (1) smaller-size frames show no cells at all, so the "usually none" claim is told; (2) "expected" undefined; (3) why 1 in 100 million (where does the rate come from) is asserted, but the toy label says so.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner does not know that resistant mutants can exist before the drug; the stage's step 3 ("the same 100 were already here, ringed") is the intended payoff and my beginner got it. The objective (100 cells, drug selects rather than causes) matches the experience.
+- The one gap I found, smaller-size frames with no visible resistant cell and "expected" undefined, is outside the objective's core. The brief does not require them to be seen.
+- Claims verified (7/7 shown on the lesson).
+
+Verdict: launch

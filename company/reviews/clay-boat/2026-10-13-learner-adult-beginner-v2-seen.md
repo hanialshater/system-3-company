@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: clay-boat
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows ships float and clay sinks; has heard "displacement" but not the rule behind it). Screenshots seen (sheet.png, all 3 frames).
 
 ## 1. From the artifact
@@ -13,3 +13,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 1 L, yes. "Clay is heavier than water litre for litre" is shown by 1 kg being 0.56 L (1.8 kg per litre) but not said that way.
 - Problems: (1) stage leaks the answer through the push/weight labels; (2) small cup and flooding told not shown; (3) 5.9 cm and 2.5 cm unexplained.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner does not know Archimedes' principle; the stage's "push 0.56 kg" arrow is that principle in picture form shown before the learner has guessed, which is where my leak finding comes from. The objective (floating object pushes aside its own weight of water; a hollow shape lets heavy material do it) is met by the big cup.
+- The small cup and flooding in the reveal are outside what the one slider step shows. Claims verified (6/6).
+
+Verdict: revise

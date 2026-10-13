@@ -44,13 +44,13 @@ for (const dom of fs.readdirSync(rel("src/demos"))) {
     if (holds[slug]) { why(`hold: ${holds[slug]}`); continue; }
     if (!reviews.length) { why("no learner review"); continue; }
     // The latest review is the one for the highest lesson version, then the latest date. Filename order
-    // is not enough: "…-beginner-v2.md" sorts before "…-beginner.md".
+    // is not enough: "…-beginner-v2.md" sorts before "…-beginner.md". Same version and day: the last written wins.
     const latest = reviews
       .map((f) => {
         const t = fs.readFileSync(path.join(rd, f), "utf8");
-        return { f, t, v: Number(t.match(/lesson version:\s*v(\d+)/i)?.[1] ?? 0), d: f.slice(0, 10) };
+        return { f, t, v: Number(t.match(/lesson version:\s*v(\d+)/i)?.[1] ?? 0), d: f.slice(0, 10), m: fs.statSync(path.join(rd, f)).mtimeMs };
       })
-      .sort((a, b) => a.v - b.v || a.d.localeCompare(b.d))
+      .sort((a, b) => a.v - b.v || a.d.localeCompare(b.d) || a.m - b.m)
       .at(-1);
     const t = latest.t;
     const verdict = t.match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase();

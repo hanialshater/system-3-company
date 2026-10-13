@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: waves-return
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (lived through epidemic news; has heard "waves" and "R number", cannot say why waves recur). Screenshots seen (sheet.png, all 7 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (lived 
 - Reveal earned: "about half" yes; the reason is told.
 - Problems: (1) the grow/shrink mechanism is told not shown; (2) 1/R0 not derived; (3) only wave 1 peak examined; (4) dashed 50% line visible before prediction.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner is assumed to know the SIR picture and that an epidemic peaks when susceptibles fall to 1/R0. If that were true, the reveal's mechanism would be recall; my beginner (boundary: new to the topic) did not have it, and the lesson does not teach it. The brief's boundary is higher than mine; I flag the gap, not a fault of the lesson against its own learner.
+- The objective's second half ("whatever the immunity length") is delivered well by the 50 d and 200 d clicks. Claims verified.
+
+Verdict: revise

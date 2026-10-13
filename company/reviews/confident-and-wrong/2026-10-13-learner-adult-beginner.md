@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: confident-and-wrong
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows probability as percent; has heard "AI is confidently wrong"; has not necessarily met ln or loss functions). Screenshots seen (sheet.png, all 5 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: 4.6 yes (the number 4.61 appears on the stage); the halving rule and no ceiling are told.
 - Problems: (1) "-ln" undefined; the prediction is unanswerable by reasoning; (2) halving rule and "no ceiling" told; (3) real-training claim stated flat; (4) hook leaks.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows a model can give a chance to each answer and does not know how that becomes a penalty. The stem hands the formula, but the brief does not list ln as known; the prediction is therefore not answerable by reasoning. The objective (each halving adds the same amount; unbounded) is half shown (the curve and ratios) and half told (halving, no ceiling).
+- Claims verified (4/4).
+
+Verdict: revise

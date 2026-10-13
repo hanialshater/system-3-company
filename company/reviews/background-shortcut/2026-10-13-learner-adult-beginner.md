@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: background-shortcut
-lesson version: vNN
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has heard "AI learns from examples"; has no sense of how a classifier picks its clue). Screenshots seen (sheet.png, all 4 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (has he
 - Reveal earned: 50% yes; the "cheapest clue" principle is asserted from one toy.
 - Problems: (1) training 95% and shape-on-training never shown; (2) hook leaks; (3) toy rule stated as a law of models; (4) the learner is not asked to test shape on training, so "held 80% on both sets" is told.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner knows models are trained and tested and does not know that a model can learn a cue that travels with the label. The shuffle step delivers that well. The objective's "takes whichever clue works best" is the toy's rule and the reveal turns it into a general statement.
+- Claims verified (5/5); the unshown part is the training-side 95% and the shape-on-training 80%.
+
+Verdict: revise

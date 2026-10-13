@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: dish-runs-out
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows "doubling" and powers loosely; has no feel for exponential growth). Screenshots seen (sheet.png, all 8 frames).
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult with school-level maths and science, new to the topic (knows 
 - Reveal earned: the billion, yes; the "something finite ends it" lesson, only half.
 - Problems: (1) the 30 doublings are not shown; (2) the levelling-off curve is told, not shown; (3) small dish dot at 0 to 1 h is nearly invisible, so early frames look like nothing happens (which is the point, but the 4 and 8 cells are not visible as cells).
 - No FATAL.
+
+## 2. After reading the brief
+
+- The objective names "30 doublings", "most growth at the very end" and "a finite food supply bends the curve and stops it". The end-heavy growth is shown; "30 doublings" and "bends the curve" are not (no doubling count on stage, no curve). Intent and experience diverge on two of three parts of the objective.
+- Claims verified.
+
+Verdict: revise

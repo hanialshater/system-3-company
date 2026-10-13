@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: count-the-thunder
-lesson version: vNN
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (has counted "one Mississippi" after lightning without knowing the rule; knows sound is slower than light as a fact). Screenshots seen (sheet.png, all 3 frames).
 
 ## 1. From the artifact
@@ -14,3 +14,10 @@ boundary: an adult with school-level maths and science, new to the topic (has co
 - Reveal earned: about 2 km, yes; the rule ÷3, yes.
 - Problems: (1) light speed never shown or stated, 6.9 µs unverifiable; (2) no visual for the flash messenger.
 - No FATAL.
+
+## 2. After reading the brief
+
+- The brief's learner does not know that light arrives almost instantly and sound travels about 343 m/s, and the objective is the 1 km per 3 s rule. Both are met on the stage. The flash-time readout is a supporting claim that goes beyond the objective.
+- Claims verified (5/5).
+
+Verdict: launch
