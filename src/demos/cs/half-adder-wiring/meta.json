@@ -1,0 +1,73 @@
+{
+  "slug": "half-adder-wiring",
+  "title": "Can two switches do arithmetic?",
+  "hook": "A computer adds numbers. Does it need to know arithmetic, or just the right wiring?",
+  "domain": "cs",
+  "concept": "logic-gates",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "binary digits and 1 + 1 = 10 in binary (binary-numbers)",
+      "on/off switches"
+    ],
+    "doesNotKnow": [
+      "the gates AND, OR and XOR",
+      "that a sum digit and a carry digit are each one gate"
+    ]
+  },
+  "misconception": "A computer has to \"know\" arithmetic; it cannot be wires and switches.",
+  "objective": "The learner can build and explain a half adder: sum = A XOR B and carry = A AND B, so 1 + 1 gives carry 1, sum 0 (binary 10).",
+  "claims": [
+    {
+      "id": "cs.half-adder-wiring.c1",
+      "text": "1 + 1 = 2, which is 10 in binary: carry 1, sum 0.",
+      "support": "derivation",
+      "source": "Binary place value; Demo.tsx rightOn() checks (carry, sum) against floor((a+b)/2) and (a+b) mod 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.half-adder-wiring.c2",
+      "text": "XOR outputs 1 when exactly one input is 1; AND outputs 1 only when both inputs are 1; OR outputs 1 when at least one is 1.",
+      "support": "convention",
+      "source": "Truth tables (definition). Patterson and Hennessy, Computer Organization and Design, Appendix B (A.2 in some editions) 'Gates, Truth Tables, and Logic Equations'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.half-adder-wiring.c3",
+      "text": "Sum = A XOR B and carry = A AND B add two bits correctly on all four inputs; this pair of gates is called a half adder. No other choice of AND, OR, XOR for the two slots gets all four.",
+      "support": "simulation",
+      "source": "Demo.tsx rightOn(sum, carry) over the 9 gate pairs: only (XOR, AND) scores 4 of 4 (builder enumerated in Node). Patterson and Hennessy, Appendix B, adders.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.half-adder-wiring.c4",
+      "text": "Giving each column a third input for the incoming carry and chaining the columns adds numbers of any width.",
+      "support": "source",
+      "source": "Full adder and ripple-carry adder: Patterson and Hennessy, Appendix B ('Constructing a basic ALU', 1-bit full adder chained into an n-bit adder).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a half adder, which gate produces the carry digit?",
+    "options": [
+      "AND, because the carry is 1 only when both bits are 1",
+      "XOR, because the carry is 1 when the bits differ",
+      "OR, because the carry is 1 when either bit is 1"
+    ],
+    "answer": 0,
+    "why": "A carry happens only for 1 + 1, the one case where both inputs are 1: that is AND. XOR gives the sum digit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
