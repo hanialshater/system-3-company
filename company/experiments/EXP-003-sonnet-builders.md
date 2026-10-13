@@ -18,5 +18,7 @@ Can Sonnet builders make new lessons at close to Opus quality for much less budg
 | Disputed claims per 10 lessons | about equal (≤ 1 apart) | Sonnet ≥ 3 more |
 | QA failures at merge | 0 for both | any Sonnet merge fails QA |
 
+would_be_wrong_if: Sonnet build tokens per lesson > 80% of Opus, or a first-review launch rate more than 15 points below Opus, or ≥ 3 more disputed claims per 10 lessons, or any Sonnet merge failing QA.
+
 ## Decision rule
 If Sonnet comes within the bounds, new lessons default to Sonnet builders and Opus is kept for new interaction types and hard domains. Otherwise Opus stays the builder default and Sonnet keeps revisions.
