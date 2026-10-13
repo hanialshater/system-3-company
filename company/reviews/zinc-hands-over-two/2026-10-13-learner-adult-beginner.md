@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: zinc-hands-over-two
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has seen the zinc-in-copper-sulfate demo; does not think in electrons).
 Screenshots seen: yes (sheet.png, 6 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 6 frames)
 - Mismatch: the panel says "until 3 zinc atoms have dissolved" and the reveal says "3 zinc dissolved, 6 electrons moved, 3 copper atoms", but the stage beside it shows 4 / 8 / 4. A beginner reads that as an error.
 - Told, not shown: oxidised / reduced (named only in the reveal); the "Pass 1 electron" button exists but the half-state (a copper with one electron) is never forced, so "electrons only move" is not tested.
 - Fix suggested: have the reveal quote the current tally (or stop the stage at 3), and require one "Pass 1 electron" tap so the learner sees a half-filled copper.
+
+## 2. After reading the brief
+
+- Intent (2 given, 2 taken, one for one) is on stage; the reveal quotes a 3-atom state while the stage shows 4.
+- Claims in meta.json: 5 verified. I cannot vouch for any of them.
 
 Verdict: launch

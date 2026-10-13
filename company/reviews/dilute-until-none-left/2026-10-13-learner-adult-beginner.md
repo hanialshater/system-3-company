@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: dilute-until-none-left
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has heard of "moles" but could not use one; thinks dilution can go on forever).
 Screenshots seen: yes (sheet.png, 7 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 7 frames)
 - Told, not shown: the starting count; "by chance a few still catch one" (the stage only ever shows one tube, so the chance is not seen).
 - Layout: in the reveal frame the stage shrinks to a small tube and tiny labels ("step 24 / this tube: 0 molecules" are barely legible on phone). Slider and buttons duplicate each other.
 - Fix suggested: relabel the jump buttons so they do not name an option (e.g. "x10 steps", "+1 step"), and show the starting count on the stage at step 0 ("start tube: 6.0 × 10²¹ molecules").
+
+## 2. After reading the brief
+
+- Intent is the 6.0 × 10²¹ start count and ~22 steps. The step-21/22 contrast delivers the second half; the start count is only in the reveal, and the predict-screen buttons give the answer away, so the prediction cannot test the objective.
+- Claims in meta.json: 6 verified. I cannot vouch for any of them.
 
 Verdict: revise

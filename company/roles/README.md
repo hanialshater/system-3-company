@@ -12,6 +12,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Chief of Staff (operator, day-to-day loop)](chief-of-staff.md) | founder | Given everything we know, choose what to try next and send it to the narrowest role that can do it. |
 | [Principal Engineer, CEO Office](principal-engineer.md) | founder | Keep the system simple enough to change and strong enough to grow: decide which changes need a design and a review, and make sure those get one.. |
 | [Chief of Staff, CEO Office (company health)](chief-of-staff-ceo-office.md) | founder | The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.. |
+| [VP of R&D (CEO Office)](vp-rnd.md) | founder | Turn 'we can't teach that in 60 seconds' into a library, an engine or a finding, and stop the bets that don't pay.. |
 | [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
 | [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
 
@@ -28,7 +29,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | Role | Reports to | Mission |
 |---|---|---|
 | [Learning Designer](learning-designer.md) | head-of-product | Decide what the learner should do, predict and notice, so the lesson teaches the payoff and not the procedure.. |
-| [Researcher](researcher.md) | learning-designer | Answer the question the work produced, and say where each answer came from, who was studied, and how strong it is.. |
 | [Demo Builder](demo-builder.md) | learning-designer | Make the design executable: the picture has to pay its debts. |
 
 ## Design
@@ -41,6 +41,14 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Illustrator (external contributor, image generation)](illustrator.md) | visual-designer | Beautiful, consistent watercolor illustrations that show exactly what the lesson needs, and nothing that is false or unsafe.. |
 | [Design Engineer (SWE, Design team)](design-engineer.md) | design-lead | Designers can see every concept and every lesson for it at a glance, and a new format is a component, not a hand-built one-off.. |
 | [Visual Designer](visual-designer.md) | design-lead | One recognisable, calm, legible style across 500+ lessons and every locale.. |
+
+## Research
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Researcher (Research org, learning and teaching)](researcher.md) | research-lead | Answer the question the work produced, and say where each answer came from, who was studied, and how strong it is.. |
+| [Research Lead](research-lead.md) | vp-rnd | Every big bet rests on evidence someone can check.. |
+| [Research Scientist](research-scientist.md) | research-lead | Find out what is known, say how sure we are, and say what it means for a lesson.. |
 
 ## Quality
 
@@ -144,3 +152,10 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Localization Lead (International)](localization-lead.md) | head-of-product | A learner in any locale gets a lesson that feels made for them: their language, units, money, examples and norms, with every fact still true where they live.. |
 | [Localizer](localizer.md) | localization-lead | Same insight, native feel, still true.. |
 | [Cultural & Regional Reviewer](cultural-reviewer.md) | localization-lead | Catch what a translator cannot: the example that lands wrong, the norm that differs, the fact that is not true here.. |
+
+## Rnd
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [R&D Engineering Lead](rnd-lead.md) | vp-rnd | Small, tested, dependency-free libraries that a builder can use in an afternoon.. |
+| [R&D Engineer](rnd-engineer.md) | rnd-lead | Correct first, then small, then easy to use in a 60-second lesson.. |

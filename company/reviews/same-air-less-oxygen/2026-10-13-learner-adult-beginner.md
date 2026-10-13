@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: same-air-less-oxygen
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (believes "there is less oxygen up high" means a lower oxygen percentage).
 Screenshots seen: yes (sheet.png, 5 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 5 frames)
 - Told, not shown: "each gas pushes its share of the total pressure"; "each breath holds about a third as much"; the 34 kPa measured figure.
 - Layout: the slider's first move (to 2 m) changes nothing visible; intermediate heights are only reachable by dragging, which the walkthrough barely did. Fine otherwise.
 - Fix suggested: drop "21% at every height" from the question and ask instead "on the summit, oxygen's share of the air is: 21% / about 7% / about 14%", so the stage's unchanged 21% chip is the surprise.
+
+## 2. After reading the brief
+
+- Intent is "still 21%, but thinner". The question states the 21% up front, so the misconception the objective targets is never tested by the prediction.
+- Claims in meta.json: 7 verified. I cannot vouch for any of them.
 
 Verdict: revise

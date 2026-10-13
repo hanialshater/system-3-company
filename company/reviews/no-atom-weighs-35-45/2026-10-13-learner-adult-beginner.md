@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: no-atom-weighs-35-45
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has seen the periodic table; has never heard "isotope" used).
 Screenshots seen: yes (sheet.png, 4 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 4 frames)
 - Told, not shown: neutrons/protons (17 protons, 18 vs 20 neutrons) appear only in the reveal; the 76/24 split is told although it is visible as pile sizes (no counts on the piles).
 - Layout: "Draw 1" adds one atom that is invisible among 100; the step has no visible effect except 35.45 -> 35.44.
 - Fix suggested: hide the isotope labels until the first draw, and make option 2 neutral in wording (e.g. "no") so it is not the only explained choice; label pile counts (76, 24).
+
+## 2. After reading the brief
+
+- Intent (35 or 37, never 35.45; 76/24 mix) is what the stage shows. The predict-screen isotope labels and option wording undercut the prediction.
+- Claims in meta.json: 6 verified. I cannot vouch for any of them.
 
 Verdict: revise

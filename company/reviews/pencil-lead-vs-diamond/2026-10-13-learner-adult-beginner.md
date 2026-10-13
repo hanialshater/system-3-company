@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: pencil-lead-vs-diamond
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows diamond is hard and pencil lead soft; may think "same atoms = same count").
 Screenshots seen: yes (sheet.png, 5 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 5 frames)
 - Told, not shown: "sheets leave gaps between layers", "graphite slides", "net is rigid" — the schematic shows no layers or gaps, just atoms on a rectangle's edge.
 - Layout: dot size changes between frames (scatter dots larger in step 3 than at predict); reveal frame shrinks everything.
 - Fix suggested: draw the sheets as two visible layers with a gap and the net with 4 links per atom, so the 1.55 box is seen to come from the gap.
+
+## 2. After reading the brief
+
+- Intent (same atoms, 1.76 vs 1.13 × 10²³, ratio 1.55) is shown as boxes; "gaps between layers" is not drawn.
+- Claims in meta.json: 6 verified. I cannot vouch for any of them.
 
 Verdict: launch

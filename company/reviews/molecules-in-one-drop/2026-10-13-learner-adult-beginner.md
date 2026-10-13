@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: molecules-in-one-drop
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows molecules are tiny; has no feel for Avogadro-scale numbers).
 Screenshots seen: yes (sheet.png, 7 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 7 frames)
 - Told, not shown: the 1.7 × 10²¹ total; "2.1 × 10¹¹ times the people on Earth".
 - Layout: tile grid is identical-looking at every grouping until step 7 ("too many tiles to draw"), so most taps change only a number. Reveal frame shrinks the stage.
 - Fix suggested: rename the jump buttons so they do not mirror the options, and add one stage line deriving the count (0.05 g -> 0.0028 mol -> x 6.0 × 10²³).
+
+## 2. After reading the brief
+
+- Intent includes the 1.7 × 10²¹ count and "a billion tiles after four steps". The tiles part is on stage; the count itself is asserted by the first tap rather than derived, and a button leaks the option.
+- Claims in meta.json: 6 verified. I cannot vouch for any of them.
 
 Verdict: revise

@@ -30,8 +30,8 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Personalization and International, 3 = Categories. */
-  floor?: 1 | 2 | 3;
+  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories, 4 = R&D and Research. */
+  floor?: 1 | 2 | 3 | 4;
 }
 
 const DOMAINS: [string, string, string][] = [
@@ -85,6 +85,12 @@ export const ROOMS: Room[] = [
   { id: "locale-desks", name: "Locale desks", x: 540, y: 186, w: 440, h: 200, kind: "floor", floor: 2 },
   { id: "culture-review", name: "Culture review", x: 540, y: 406, w: 440, h: 130, kind: "meeting", floor: 2 },
   { id: "design-studio", name: "Design studio", x: 20, y: 406, w: 500, h: 130, kind: "office", color: "#f48fb1", floor: 2 },
+  // Floor 4 (2026-10-13): R&D and Research, reporting to the VP of R&D in the CEO office.
+  { id: "rnd-lab", name: "R&D lab · libraries & engines", x: 20, y: 16, w: 470, h: 330, kind: "floor", color: "#64b5f6", floor: 4 },
+  { id: "research-lab", name: "Research lab · learning & domain science", x: 510, y: 16, w: 470, h: 330, kind: "floor", color: "#81c784", floor: 4 },
+  { id: "rnd-office", name: "R&D leads", x: 20, y: 366, w: 470, h: 130, kind: "office", color: "#64b5f6", floor: 4 },
+  { id: "research-office", name: "Research leads", x: 510, y: 366, w: 470, h: 130, kind: "office", color: "#81c784", floor: 4 },
+  { id: "seminar", name: "Seminar room · R&D review", x: 20, y: 516, w: 960, h: 124, kind: "meeting", floor: 4 },
 ];
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");

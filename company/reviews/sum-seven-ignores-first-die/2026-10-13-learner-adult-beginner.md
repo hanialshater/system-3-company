@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: sum-seven-ignores-first-die
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths, new to the topic (knows 7 is the most common total; feels a seen die "must" tell you something).
 Screenshots seen: yes (sheet.png, 9 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 9 frames)
 - Shown well: dimming all rows except the chosen first die, with one 7 per row; 1/6 every time.
 - Layout: six near-identical taps (first die 1..6) all give 1/6; the walk is long for a 60 s lesson. Grid cells are small on phone.
 - Fix suggested: make the banner depend on the selected total (or show it only after the learner has tried two clues), and shorten the guided path to two or three clues.
+
+## 2. After reading the brief
+
+- Intent includes the contrast "7 independent, 8 not". The stage banner says "independent" during the total-8 case, contradicting that half of the objective.
+- Claims in meta.json: 3 verified. I cannot vouch for any of them.
 
 Verdict: revise

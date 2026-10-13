@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: eight-percent-showing
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows ice floats and "most of an iceberg is under water", cannot say why).
 Screenshots seen: yes (sheet.png, 5 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 5 frames)
 - Layout: in step 2 the dashed "half" line sits on the waterline and the "half" label collides with it. In the reveal the stage is cropped so the water band is short; fine.
 - Reveal answered my question (why so little shows): yes.
 - Fix suggested: optional sea-water toggle so the 11% line is seen, not told.
+
+## 2. After reading the brief
+
+- Intent (8% showing, displacement) matches what I experienced; the density-to-share link is seen on the slider. No gap worth blocking on.
+- Claims in meta.json: 5 verified. I cannot vouch for any of them.
 
 Verdict: launch

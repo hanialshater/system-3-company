@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: growth-gap-seventy-years
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows compound interest exists; would guess "1 point for 70 years is small").
 Screenshots seen: yes (sheet.png, 7 frames)
 
@@ -14,5 +14,10 @@ Screenshots seen: yes (sheet.png, 7 frames)
 - Told, not shown: 1.03 ÷ 1.02 ≈ 1.0098 to the power 70; the stage never shows the yearly ratio.
 - Layout: in step 1 the "income, start = 1" label collides with the "7.92x" bar label. Reveal frame shrinks the bars.
 - Fix suggested: reset the stage to 1 pt / year 70 on reveal (or have the reveal quote the current state); move the axis label clear of the bar values.
+
+## 2. After reading the brief
+
+- Intent (about 2x after 70 years) delivered; the reveal quotes an earlier state than the stage shows.
+- Claims in meta.json: 5 verified. I cannot vouch for any of them.
 
 Verdict: launch

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: helium-leaks-first
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows helium balloons go flat; would guess "7 times lighter, 7 times faster").
 Screenshots seen: yes (sheet.png, 6 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 6 frames)
 - Told, not shown: "same average energy" and "speed scales as one over the square root of mass" are stated only in the reveal; the stage does not let me test the square root (no readout of ratio, e.g. "He/N2 = 2.6x").
 - Layout: count labels sit under the bars in small type; the reveal frame shrinks the stage to near-illegible size. "Same time window" is not stated on the stage, so the counts could be read as totals.
 - Fix suggested: add a ratio chip ("He ÷ N2 = 2.6x, mass ratio 7x") so the gap between 7 and 2.6 is seen on stage.
+
+## 2. After reading the brief
+
+- Intent (2.6x, 1/sqrt(mass)) is delivered as a ratio on stage; the square-root law is told. Matches.
+- Claims in meta.json: 5 verified. I cannot vouch for any of them.
 
 Verdict: launch

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: salt-ions-count-double
-lesson version: VERSION_TBD
+lesson version: v2
 boundary: an adult with school-level maths and science, new to the topic (knows road salt melts ice; does not know salt splits into ions).
 Screenshots seen: yes (sheet.png, 5 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 5 frames)
 - Told, not shown: 1.86 °C per mole of particles; "real salt water drops about 3.5 °C".
 - Layout: clean. The thermometer arrow and label sit well. The trust link reads "5/6 claims checked", so one learner-facing claim is not checked.
 - Fix suggested: state "1 mol of sugar lowers it 1.9 °C" in the question; then the prediction tests "does salt count once or twice", which is the lesson.
+
+## 2. After reading the brief
+
+- Intent matches the stage (10 vs 20 dots, -1.9 vs -3.7). One claim is unverified in meta.json, consistent with the "5/6 claims checked" footer.
+- Claims in meta.json: 5 verified, 1 unverified. I cannot vouch for any of them.
 
 Verdict: launch

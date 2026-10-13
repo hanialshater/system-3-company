@@ -1,8 +1,8 @@
-# Researcher
+# Researcher (Research org, learning and teaching)
 
 name: Mei
-team: studio
-reports_to: learning-designer
+team: research
+reports_to: research-lead
 agent: .claude/agents/researcher.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

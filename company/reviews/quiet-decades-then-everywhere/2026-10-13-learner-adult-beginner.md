@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: quiet-decades-then-everywhere
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (has heard "exponential" but expects halfway in time to look about halfway).
 Screenshots seen: yes (sheet.png, 7 frames)
 
@@ -14,5 +14,10 @@ Screenshots seen: yes (sheet.png, 7 frames)
 - Picture problem: the filled squares form regular diagonal stripes at years 40 and 45. An invasion spreading from a few points does not look like that; the stripe pattern looks like a rendering artefact and distracts.
 - Layout: single sub-square dots (year 10, 25) are hard to see on phone.
 - Fix suggested: fill squares as a spreading patch (or random scatter), and add a "doublings: 6 of 13" counter so the doubling claim is on stage.
+
+## 2. After reading the brief
+
+- Intent (about 1% at year 25) delivered; doubling claim told. Stripe pattern is a picture issue, not a meaning issue.
+- Claims in meta.json: 4 verified. I cannot vouch for any of them.
 
 Verdict: launch

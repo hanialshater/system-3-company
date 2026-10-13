@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: rabbit-ratio
-lesson version: VERSION_TBD
+lesson version: v2
 boundary: an adult with school-level maths, new to the topic (has heard of "the golden ratio" without knowing what it is).
 Screenshots seen: yes (sheet.png, 6 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 6 frames)
 - Told, not shown: x = 1 + 1/x and (1 + √5)/2 — algebra only in the reveal.
 - Layout: earlier runs stay as grey dots, which helps comparison but crowds the top rows; step 4 slider (ratios shown 10) changes little visibly.
 - Fix suggested: label the axis "ratio" and rows "step 1, 2, ..."; replace 1.618 option with a less give-away set (e.g. 1.5 / 1.6 / 1.7, or ask "same for every start: yes/no").
+
+## 2. After reading the brief
+
+- Intent (zig-zag to 1.618 for any start; x = 1 + 1/x) delivered for the first half on stage; algebra told.
+- Claims in meta.json: 4 verified. I cannot vouch for any of them.
 
 Verdict: launch

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: which-dissolves-in-oil
-lesson version: VERSION_TBD
+lesson version: v1
 boundary: an adult with school-level maths and science, new to the topic (knows oil and water do not mix; has never heard "like dissolves like").
 Screenshots seen: yes (sheet.png, 5 frames)
 
@@ -13,5 +13,10 @@ Screenshots seen: yes (sheet.png, 5 frames)
 - Told, not shown: "a liquid dissolves what pulls on it as strongly as its own molecules do" — the pull is never pictured.
 - Layout: good; jars and chips are legible. Text readout does not change between steps (only the picture), so a screen-reader user gets nothing from the taps.
 - Fix suggested: move the charge labels from the chips to appear after each drop, and add a text line per jar ("dissolved / settled").
+
+## 2. After reading the brief
+
+- Intent (like dissolves like) delivered visually; the predict labels make it partly a word match.
+- Claims in meta.json: 6 verified. I cannot vouch for any of them.
 
 Verdict: launch
