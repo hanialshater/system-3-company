@@ -1,0 +1,101 @@
+{
+  "slug": "first-payment-mostly-interest",
+  "title": "5 years of payments: how much is gone?",
+  "hook": "$1,199 a month, every month, for five years. How far down is the loan?",
+  "domain": "economics",
+  "concept": "amortization",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that loans charge interest",
+      "what a monthly payment is"
+    ],
+    "doesNotKnow": [
+      "that a level payment is mostly interest at first",
+      "that the loan is not paid down in a straight line"
+    ]
+  },
+  "misconception": "A loan is paid down in a straight line.",
+  "objective": "The learner can explain that interest is charged on the balance still owed, so early level payments are mostly interest: after 5 of 30 years on $200,000 at 6%, only about $13,900 is paid off.",
+  "claims": [
+    {
+      "id": "economics.first-payment-mostly-interest.c1",
+      "text": "A $200,000 loan at 6% a year (0.5% a month) repaid in 360 level monthly payments has a payment of $1,199.10.",
+      "support": "derivation",
+      "source": "Annuity payment P·r / (1 − (1 + r)^−n) = 200,000 × 0.005 / (1 − 1.005^−360) = 1,199.10. Demo.tsx PAYMENT.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c2",
+      "text": "Payment 1 is $1,000 of interest and $199 toward the loan.",
+      "support": "derivation",
+      "source": "0.5% × 200,000 = 1,000; 1,199.10 − 1,000 = 199.10. Demo.tsx split(1).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c3",
+      "text": "After 60 payments (5 years) you have paid in $71,946, paid off $13,891, and $186,109 is still owed.",
+      "support": "derivation",
+      "source": "Step 60 months of balance × 1.005 − 1,199.10 from 200,000: 186,108.71; 200,000 − 186,108.71 = 13,891.29; 60 × 1,199.10 = 71,946.06. Demo.tsx balanceAfter(60).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c4",
+      "text": "An even pace (1/360 of the loan each month) would have paid off $33,333 after 60 payments.",
+      "support": "derivation",
+      "source": "200,000 × 60 / 360 = 33,333.33. The stage's dashed 'even pace' marker is at k/360 of the loan bar.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c5",
+      "text": "Payment 60 is still $932 of interest (and $267 toward the loan).",
+      "support": "derivation",
+      "source": "Balance after 59 payments × 0.005 = 931.88; 1,199.10 − 931.88 = 267.22. Demo.tsx split(60).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c6",
+      "text": "Each month's interest is 0.5% of what is still owed, so early payments, made on a big balance, barely shrink it.",
+      "support": "derivation",
+      "source": "Definition of the model: interest_m = 0.005 × balance before payment m; the rest of the level payment reduces the balance.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c7",
+      "text": "The part of the payment that repays the loan first exceeds the interest at payment 223, more than 18 years in (shown in the reveal only if the learner stepped that far).",
+      "support": "derivation",
+      "source": "Stepping the balance: payment 222 is 599.62 interest vs 599.48 to the loan; payment 223 is 596.63 vs 602.48. 223 months = 18.6 years. Demo.tsx CROSS.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.first-payment-mostly-interest.c8",
+      "text": "The lesson is a model: a fixed, illustrative 6% rate, level monthly payments, no fees; not a current market rate and not advice.",
+      "support": "convention",
+      "source": "Assumptions of the lesson's own calculation in Demo.tsx; stage chip 'Model: fixed 6%, 30 years, no fees'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ten years into a 30-year loan with level payments, have you paid off a third of what you borrowed?",
+    "options": [
+      "Yes, ten years is a third of thirty",
+      "Less than a third: early payments are mostly interest",
+      "More than a third: payments are biggest at the start"
+    ],
+    "answer": 1,
+    "why": "Interest is charged on what is still owed, which is largest at the start, so early payments go mostly to interest and the balance falls slowly at first."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
