@@ -69,8 +69,9 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
             one is white with 1 &minus; 0.32 &asymp; <strong>68%</strong>.
           </p>
           <p>
-            &ldquo;1 in 4&rdquo; is a chance per seed, not a quota per family. Over many fields, exactly one white is only
-            about 42% of families; some get two or more, about a third get none.
+            &ldquo;1 in 4&rdquo; is a chance per seed, not a quota per family.{" "}
+            {full ? `Exactly one white happened in ${full.exactly} of your 100 families, ${full.none} had none. ` : ""}Averaged over
+            many fields, exactly one white is about 42% of families, about a third get none, and some get two or more.
           </p>
           <p className="muted">Made-up flower: one purple copy (P) gives purple; seeds are independent.</p>
         </>
@@ -97,10 +98,10 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
         const msg = locked
           ? "Make a prediction to start. Each square will hold one family of 4 seeds."
           : !last
-            ? "Each seed gets one copy from each parent: P (purple) or w (white). Two w make a white flower."
+            ? "Each seed gets one copy from each parent."
           : grown === FAMILIES
             ? `${FAMILIES} families: ${atLeast} with a white flower, ${exactly} with exactly one, ${none} with none.`
-            : `Family ${grown}: ${last.map(label).join(", ")}. ${lastWhite} white.`;
+            : `Family ${grown}: seeds ${last.map(label).join(", ")}. ${lastWhite} white (only ww is white).`;
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${TILE * 10} ${TILE * 10}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${grown} families grown; ${atLeast} have a white flower`}>
@@ -126,6 +127,7 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
             </svg>
 
             <p className={s.msg} aria-live="polite">{msg}</p>
+            <p className={s.msg}>Each seed has two copies, P (purple) or w (white). Only ww is white.</p>
 
             <Row>
               <Control disabled={locked || grown >= FAMILIES} onClick={() => grow(grown + 1)}>

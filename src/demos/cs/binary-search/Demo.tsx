@@ -5,7 +5,7 @@
 // One representation: the number line, with what is still possible lit up.
 //
 // v2: the reveal is earned. Milestone "found": the learner has finished one search (found my
-// number). "Middles to the end" plays the rest with middle guesses, one guess at a time, so the
+// number).  plays the rest with middle guesses, one guess at a time, so the
 // QA path (each control pressed once) finishes a search and a learner can watch the halving.
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -16,7 +16,6 @@ import s from "./styles.module.css";
 
 const N = 1000;
 const BUDGET = 10;
-const PLAY_MS = 380;
 
 function secretFor(round: number) {
   // Deterministic: the same rounds give the same secrets in every QA run.
@@ -72,7 +71,7 @@ export default function BinarySearch({ slug }: { slug: string }) {
   const [guess, setGuess] = useState(250);
   const [steps, setSteps] = useState<Step[]>([]);
   const [solved, setSolved] = useState<Step[] | null>(null); // the last finished search, for the reveal
-  const [playing, setPlaying] = useState(false);
+  const playing = false;
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const { lo, hi } = range;
   const secret = secretFor(round);
@@ -139,24 +138,18 @@ export default function BinarySearch({ slug }: { slug: string }) {
 
             const playOut = () => {
               if (locked || done || playing) return;
-              // Middle guesses, one at a time, from wherever the learner is.
-              setPlaying(true);
+              // Middle guesses from wherever the learner is, all at once (the chain shows every step).
               let r = range;
               let ss = steps;
-              const tick = () => {
-                const g = Math.floor((r.lo + r.hi) / 2);
-                setGuess(g);
+              let g = Math.floor((r.lo + r.hi) / 2);
+              for (let i = 0; i < 20; i++) {
+                g = Math.floor((r.lo + r.hi) / 2);
                 const res = apply(g, r, ss);
                 r = res.range;
                 ss = res.steps;
-                if (g === secret) {
-                  if (timer.current) clearInterval(timer.current);
-                  timer.current = null;
-                  setPlaying(false);
-                }
-              };
-              tick();
-              timer.current = setInterval(tick, PLAY_MS);
+                if (g === secret) break;
+              }
+              setGuess(g);
             };
 
             const newNumber = () => {
@@ -170,7 +163,7 @@ export default function BinarySearch({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : done
-                ? `Got it: ${secret}, in ${steps.length} guess${steps.length === 1 ? "" : "es"}.`
+                ? `Got it: ${secret}, in ${steps.length} guess${steps.length === 1 ? "" : "es"}. Left: ${chain(steps)}.`
                 : !last
                   ? "Pick a guess, then tap Guess."
                   : last.ruledOut
@@ -235,7 +228,7 @@ export default function BinarySearch({ slug }: { slug: string }) {
                 </svg>
 
                 <div className={s.dots} aria-label={`${steps.length} guesses used`}>
-                  {Array.from({ length: Math.max(BUDGET, steps.length) }, (_, i) => (
+                  {Array.from({ length: steps.length }, (_, i) => (
                     <span
                       key={i}
                       className={`${s.dot} ${i < steps.length ? (i >= BUDGET ? s.over : s.used) : ""} ${

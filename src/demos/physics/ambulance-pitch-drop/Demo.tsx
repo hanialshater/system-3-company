@@ -51,10 +51,9 @@ const px = (x: number) => MID + x * K;
 
 export default function AmbulancePitchDrop({ slug }: { slug: string }) {
   const [x, setX] = useState(-20);
-  const [heardHi, setHeardHi] = useState(heard(-20));
-  const [heardLo, setHeardLo] = useState<number | null>(null);
+  const [log, setLog] = useState<Record<number, number>>({});
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["going-away"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["heard-approach", "heard-going-away"]);
   const f = heard(x);
 
   return (
@@ -71,18 +70,18 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Drive the ambulance past you. Watch the rings and the pitch you hear."
-      minInteractions={1}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
-            Coming toward you, you heard <strong>{Math.round(heardHi)} Hz</strong>; going away,{" "}
-            <strong>{Math.round(heardLo ?? heard(20))} Hz</strong>. The siren itself stayed 700 Hz.
+            Coming toward you, you heard <strong>{Math.round(heard(-20))} Hz</strong> at 20 m before you; going away,{" "}
+            <strong>{Math.round(heard(20))} Hz</strong> at 20 m past you. The siren itself stayed 700 Hz.
           </p>
           <p>
             Each crest leaves from a spot further along the road. Ahead, the rings were {GAP_AHEAD.toFixed(1)} m apart
             instead of a parked siren&apos;s {GAP0.toFixed(1)} m, so crests reach you {(GAP0 / GAP_AHEAD).toFixed(2)} times
             as often: up to {Math.round(LIMIT_UP)} Hz. Behind, {GAP_BEHIND.toFixed(1)} m apart: down to{" "}
-            {Math.round(LIMIT_DOWN)} Hz. Beside you it read {Math.round(heard(0))} Hz, because that sound left a moment
+            {Math.round(LIMIT_DOWN)} Hz. Beside you it read {Math.round(log[0] ?? heard(0))} Hz, because that sound left a moment
             earlier, still approaching.
           </p>
           <p className="muted">Still air, sound at 343 m/s.</p>
@@ -149,17 +148,19 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
               format={(v) => (v === 0 ? "beside you" : v < 0 ? `${-v} m before you` : `${v} m past you`)}
               onChange={(v) => {
                 setX(v);
-                const hz = heard(v);
-                if (v < 0) setHeardHi(Math.max(heardHi, hz));
-                if (v > 0) {
-                  setHeardLo(heardLo === null ? hz : Math.min(heardLo, hz));
-                  reach("going-away");
-                }
+                // the starting position (-20 m) was on screen once unlocked: count it as heard
+                setLog((l) => ({ [-20]: heard(-20), ...l, [v]: heard(v) }));
+                if (v >= -20 || x >= -20) reach("heard-approach");
+                if (v > 0) reach("heard-going-away");
               }}
             />
             <Row>
               <Readout label="Siren (driver)" value={`${F0} Hz`} />
               <Readout label="You hear" value={locked ? "?" : `${Math.round(f)} Hz`} />
+              <Readout
+                label="Heard at -20 / 0 / +20 m"
+                value={locked ? "?" : [-20, 0, 20].map((m) => (m === -20 || log[m] !== undefined ? Math.round(heard(m)) : "–")).join(" / ")}
+              />
             </Row>
           </div>
         );

@@ -19,3 +19,7 @@ Key state: one search finished (my number found). Gate: `useMilestones(["found"]
 | Fact-check F2 (c5, c6 need a second checker) | Routed by status; not mine to verify. |
 
 QA: contract passes phone + desktop (local, 2026-10-13).
+
+## v3 (revision 2026-10-13)
+
+- Review: reveal never unlocked on the QA path (Middles to the end animated for ~3.5 s, New number disabled meanwhile). Fix: 'Middles to the end' now plays all remaining middle guesses at once and the message shows the whole halving chain; ten pre-drawn dots (which announced the answer) now appear only as guesses are used.

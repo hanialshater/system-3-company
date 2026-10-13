@@ -10,3 +10,7 @@
 - P/w notation before a key -> the idle caption now says "P (purple) or w (white). Two w make a white flower" before the first family; the family caption keeps the letters. After 100 families the caption states the three counts the reveal repeats.
 - Title and hook leaked the answer ("not one of four") -> "Four seeds, one in four each" / "How likely is a white one among four?".
 - Claims: c3 reworded (adds 26% for two or more), unverified. Milestones unchanged (one family, all 100), both reached on the QA path.
+
+## v3 (revision 2026-10-13)
+
+- Review: ww/PP/Pw used before defined; 42% not producible. Fix: a permanent one-line legend (P purple, w white, only ww white) on the stage; reveal quotes the learner's own exactly-one and none counts, with 42% as the long-run average. Claim c3 reworded and set unverified.

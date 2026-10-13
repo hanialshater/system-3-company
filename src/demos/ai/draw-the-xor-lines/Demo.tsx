@@ -63,7 +63,7 @@ function segment(l: Line) {
 export default function DrawTheXorLines({ slug }: { slug: string }) {
   const [l1, setL1] = useState<Line>({ turn: 0, slide: 0 });
   const [l2, setL2] = useState<Line | null>(null);
-  const [bestSingle, setBestSingle] = useState<number | null>(null);
+  const [bestSingle, setBestSingle] = useState<number>(score({ turn: 0, slide: 0 }, null));
   const interactRef = useRef<() => void>(() => {});
   const { reach } = useMilestones(() => interactRef.current(), ["one-line", "solved"]);
 
@@ -72,7 +72,7 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
     setL2(n2);
     const sc = score(n1, n2);
     if (!n2) {
-      setBestSingle((b) => Math.max(b ?? 0, sc));
+      setBestSingle((b) => Math.max(b, sc));
       reach("one-line");
     }
     if (sc === 4) reach("solved");
@@ -95,13 +95,13 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
         <>
           <p>
             One line never got all four.{" "}
-            {bestSingle !== null ? `Your best with one line was ${bestSingle} of 4; ` : ""}the best any line can do is{" "}
+            With one line you reached {bestSingle} of 4 (you began at {score({ turn: 0, slide: 0 }, null)}); the best any line can do is{" "}
             {bestOneLine()} of 4. The two blue dots share a midpoint with the two orange dots, (0.5, 0.5), so any side that holds both
             blues holds that midpoint, and so does any side that holds both oranges.
           </p>
           <p>
             Two lines did it: orange where exactly one line says &quot;on&quot;, for example a band between them when the lines are parallel. Combining two simple cuts makes a
-            shape no single cut can. That combining step is what a hidden layer adds: here, two hidden units, each one line.
+            shape no single cut can. That combining step is what a hidden layer adds: here, two hidden units (small calculators inside a network between input and answer), each one line.
           </p>
         </>
       )}
@@ -138,6 +138,10 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
               <g clipPath="url(#xor-clip)">
                 {[l1, l2].map((l, i) => (l ? <line key={i} {...segment(l)} stroke="var(--fg)" strokeWidth={3} /> : null))}
               </g>
+              <circle cx={X(0.5)} cy={Y(0.5)} r={3} fill="var(--fg)" />
+              <text x={X(0.5) - 24} y={Y(0.5) + 16} className={s.label} fill="var(--muted)">
+                middle
+              </text>
               {POINTS.map((p, i) => {
                 const ok = predict(l1, l2, p.x, p.y) === p.orange;
                 return (
