@@ -1,0 +1,86 @@
+{
+  "slug": "same-dollars-more-shares",
+  "title": "Buying at $10, $5, $10",
+  "hook": "You invest $100 each month while the price dips and recovers. What did a share cost you?",
+  "domain": "economics",
+  "concept": "average-purchase-cost",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an average is"
+    ],
+    "doesNotKnow": [
+      "that buying equal dollars gets more units when the price is low",
+      "that average cost per share differs from the average of the prices"
+    ]
+  },
+  "misconception": "My average cost per share is the average of the prices.",
+  "objective": "The learner can explain that equal dollars buy more shares at a low price, so with prices $10, $5, $10 the average cost is $7.50, below the plain average price of $8.33.",
+  "claims": [
+    {
+      "id": "economics.same-dollars-more-shares.c1",
+      "text": "Putting $100 in at $10, $5 and $10 a share buys 10, 20 and 10 shares: 40 shares for $300.",
+      "support": "derivation",
+      "source": "100 / 10 = 10; 100 / 5 = 20; 10 + 20 + 10 = 40; 3 x 100 = 300. Demo.tsx shares(), totalShares().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-dollars-more-shares.c2",
+      "text": "The average cost per share is $300 / 40 = $7.50.",
+      "support": "derivation",
+      "source": "300 / 40 = 7.50. Demo.tsx avgCost(5).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-dollars-more-shares.c3",
+      "text": "The plain average of the three prices is $8.33.",
+      "support": "derivation",
+      "source": "(10 + 5 + 10) / 3 = 8.333. Demo.tsx avgPrice(5).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-dollars-more-shares.c4",
+      "text": "The average cost of equal-dollar purchases is the harmonic mean of the prices, which is never above their plain average.",
+      "support": "derivation",
+      "source": "Cost per share = n x D / sum(D / p_i) = n / sum(1 / p_i), the harmonic mean; harmonic mean <= arithmetic mean (a standard inequality). Checked on the stage at middle prices $2, $5, $10, $20.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-dollars-more-shares.c5",
+      "text": "Equal dollars buy more shares when the price is low, so the low-price month counts for more.",
+      "support": "derivation",
+      "source": "Shares = dollars / price; at $5 the same $100 buys twice as many shares as at $10.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-dollars-more-shares.c6",
+      "text": "The lesson is a model: three equal buys at invented prices; arithmetic only, with no claim about returns or what to buy.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: $100 a month at invented prices'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You spend $60 on a share at $6, then $60 at $3. What is your average cost per share?",
+    "options": [
+      "$4.50",
+      "$4",
+      "$3"
+    ],
+    "answer": 1,
+    "why": "60 / 6 = 10 shares and 60 / 3 = 20 shares: 30 shares for $120, or $4 a share, below the plain average price of $4.50."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

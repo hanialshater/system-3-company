@@ -1,0 +1,85 @@
+{
+  "slug": "lemon-market-unravels",
+  "title": "Buyers who can't tell good cars",
+  "hook": "Half the used cars are good. Buyers offer a fair average price. Who shows up to sell?",
+  "domain": "economics",
+  "concept": "adverse-selection",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a fair price can be an average over a pool"
+    ],
+    "doesNotKnow": [
+      "that when buyers cannot tell quality, the better items leave the market"
+    ]
+  },
+  "misconception": "If buyers pay the average value, a fair price brings all cars to market.",
+  "objective": "The learner can explain that an offer equal to the average value of all cars is below what owners of good cars will accept, so only bad cars are sold and the average quality on offer falls to $1,000.",
+  "claims": [
+    {
+      "id": "economics.lemon-market-unravels.c1",
+      "text": "The average value of five good cars (worth $3,000) and five bad cars (worth $1,000) is $2,000.",
+      "support": "derivation",
+      "source": "(5 x 3,000 + 5 x 1,000) / 10 = 2,000. Demo.tsx Q_OFFER.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lemon-market-unravels.c2",
+      "text": "At an offer of $2,000, owners of good cars (who want at least $2,500) do not sell, and owners of bad cars (who want at least $500) do: only the five bad cars are for sale.",
+      "support": "derivation",
+      "source": "2,000 < 2,500 so good cars stay off the market; 2,000 >= 500 so bad cars sell. Demo.tsx forSale(2000).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lemon-market-unravels.c3",
+      "text": "The five cars still for sale at $2,000 are worth $1,000 on average, so buyers paying $2,000 pay $1,000 more than they are worth.",
+      "support": "derivation",
+      "source": "All remaining cars are bad (value $1,000). Demo.tsx avgValue(2000).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lemon-market-unravels.c4",
+      "text": "At an offer of $3,000 all ten cars are for sale and are worth $2,000 on average, so buyers who pay $3,000 pay more than the average value.",
+      "support": "derivation",
+      "source": "3,000 >= 2,500 so both kinds sell; average (5 x 3,000 + 5 x 1,000) / 10 = 2,000. Demo.tsx avgValue(3000).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lemon-market-unravels.c5",
+      "text": "A price that ignores quality drives out the cars worth more, so the average quality on offer falls (adverse selection).",
+      "support": "convention",
+      "source": "Akerlof, 'The Market for Lemons', Quarterly Journal of Economics, 1970; the stage's two-type car lot is an invented instance of his argument.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lemon-market-unravels.c6",
+      "text": "The lesson is a model: two kinds of car with invented values and sale prices, buyers cannot tell them apart.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: two kinds of car, invented values'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Half of used bikes are good (worth $600, owners sell at $500 or more) and half are bad (worth $200, owners sell at $100 or more). Buyers cannot tell and offer the average, $400. Which bikes are for sale?",
+    "options": [
+      "All of them",
+      "Only the good ones",
+      "Only the bad ones"
+    ],
+    "answer": 2,
+    "why": "$400 is below the $500 good-bike owners want, but above the $100 bad-bike owners want, so only bad bikes are sold."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

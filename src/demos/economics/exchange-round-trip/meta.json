@@ -1,0 +1,79 @@
+{
+  "slug": "exchange-round-trip",
+  "title": "Change money there and back",
+  "hook": "You swap dollars to euros and straight back. Does the same amount come home?",
+  "domain": "economics",
+  "concept": "currency-spread",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that currencies have exchange rates"
+    ],
+    "doesNotKnow": [
+      "that buying and selling rates differ",
+      "that a round trip loses money even if the market does not move"
+    ]
+  },
+  "misconception": "Exchange the money there and back and I end with the same.",
+  "objective": "The learner can explain that the gap between a booth's buy and sell rates is a cost paid on a round trip: $1,000 at 0.90 euro per dollar and $1.05 per euro returns $945.",
+  "claims": [
+    {
+      "id": "economics.exchange-round-trip.c1",
+      "text": "At 0.90 euro per dollar, $1,000 becomes 900 euros.",
+      "support": "derivation",
+      "source": "1,000 x 0.90 = 900. Demo.tsx euros.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.exchange-round-trip.c2",
+      "text": "Selling those 900 euros back at $1.05 per euro returns $945, a loss of $55 with no market move.",
+      "support": "derivation",
+      "source": "900 x 1.05 = 945; 1,000 - 945 = 55. Demo.tsx back(1.05).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.exchange-round-trip.c3",
+      "text": "Getting the full $1,000 back would take 1 / 0.90 = 1.1111 dollars per euro on the way back, which means no gap between the two rates.",
+      "support": "derivation",
+      "source": "1,000 = 900 x p gives p = 1.1111. Demo.tsx BREAK_EVEN.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.exchange-round-trip.c4",
+      "text": "The gap between a booth's buy and sell rates is a cost paid whenever you cross.",
+      "support": "convention",
+      "source": "Standard definition of a bid-ask spread in currency exchange; the loss on the stage is the arithmetic of the two invented rates.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.exchange-round-trip.c5",
+      "text": "The lesson is a model: one booth, two invented rates, no fees, no market movement, and no advice on where to change money.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: one booth, invented rates, no fees'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A booth gives 0.80 euro per dollar and sells dollars at $1.20 per euro. You change $500 to euros and straight back. What do you hold?",
+    "options": [
+      "$500",
+      "$480",
+      "$400"
+    ],
+    "answer": 1,
+    "why": "500 x 0.80 = 400 euros; 400 x 1.20 = $480. The gap between the two rates is lost on the round trip."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
