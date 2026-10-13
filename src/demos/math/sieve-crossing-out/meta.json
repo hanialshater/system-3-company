@@ -1,0 +1,72 @@
+{
+  "slug": "sieve-crossing-out",
+  "title": "Which primes do the sieving?",
+  "hook": "Finding every prime up to 100 sounds like testing each number against every smaller one.",
+  "domain": "math",
+  "concept": "sieve-primes",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what multiples are",
+      "a prime has no factors except 1 and itself"
+    ],
+    "doesNotKnow": [
+      "why crossing out the multiples of only 2, 3, 5 and 7 is enough up to 100"
+    ]
+  },
+  "misconception": "Finding all the primes up to 100 means testing each number for divisibility by every smaller number.",
+  "objective": "The learner can explain that every non-prime up to 100 has a factor of at most 10, so sweeping out the multiples of 2, 3, 5 and 7 leaves exactly the 25 primes, and sweeping 11 adds nothing.",
+  "claims": [
+    {
+      "id": "math.sieve-crossing-out.c1",
+      "text": "Crossing out the multiples of 2, 3, 5 and 7 (but not the numbers themselves) from 2 to 100 leaves 25 numbers, and they are exactly the 25 primes up to 100.",
+      "support": "derivation",
+      "source": "Recomputed with node, checking each survivor by trial division; the stage counts survivors from the same struck set it draws.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.sieve-crossing-out.c2",
+      "text": "Every number that is not prime is a x b with the smaller factor at most its square root, so up to 100 it has a prime factor of at most 10.",
+      "support": "derivation",
+      "source": "If n = ab with a <= b then a x a <= n, so a <= sqrt(n) <= 10; any prime factor of a also divides n.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.sieve-crossing-out.c3",
+      "text": "After the sweeps of 2, 3, 5 and 7, sweeping 11 crosses out nothing new; its first multiple without a smaller factor would be 11 x 11 = 121, past 100.",
+      "support": "derivation",
+      "source": "22, 33, 44, 55, 66, 77, 88, 99 each have a factor among 2, 3, 5, 7 (checked with node).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.sieve-crossing-out.c4",
+      "text": "This crossing-out method is the sieve credited to Eratosthenes.",
+      "support": "source",
+      "source": "Nicomachus of Gerasa, Introduction to Arithmetic I.13, attributes the sieve to Eratosthenes.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To find every prime up to 200 by crossing out multiples, what is the largest prime you need to sweep?",
+    "options": [
+      "13",
+      "97",
+      "7"
+    ],
+    "answer": 0,
+    "why": "A non-prime up to 200 has a factor at most the square root of 200, about 14.1. 13 is still needed (169 = 13 x 13), but the next prime, 17, has 17 x 17 = 289, past 200."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
