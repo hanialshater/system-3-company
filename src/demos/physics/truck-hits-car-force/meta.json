@@ -30,35 +30,45 @@
       "text": "When two objects push on each other, each feels a force of the same size in the opposite direction, at every instant (Newton's third law).",
       "support": "source",
       "source": "Newton, Principia (1687), Law III; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 5 (Newton's third law).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.truck-hits-car-force.c2",
       "text": "The same force changes the 1,000 kg car's velocity ten times as much as the 10,000 kg truck's.",
       "support": "derivation",
       "source": "a = F / m for each vehicle with the same F, so a_car / a_truck = 10,000 / 1,000 = 10; integrated over the contact, delta v_car / delta v_truck = 10. Simulation: truck 10 -> 7.59 m/s (change 2.41), car -10 -> +14.09 m/s (change 24.09), ratio 10.00.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.truck-hits-car-force.c3",
       "text": "In the crash shown (both at 10 m/s), the car's velocity reverses while the truck slows only a little.",
       "support": "simulation",
       "source": "1D head-on collision, truck +10 m/s, car -10 m/s; contact modelled as a spring-damper F = max(0, k d + c d'), k = 5e5 N/m, damping for restitution about 0.2; RK4 at 1e-5 s. Momentum conserved: 10,000 x 7.59 + 1,000 x 14.09 = 90,000 kg m/s = 10,000 x 10 - 1,000 x 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.truck-hits-car-force.c4",
       "text": "The force sizes shown (peaks of roughly 300 to 400 kN over about 0.1 s) come from an illustrative contact model, not a measured crash; the equality of the two forces does not depend on the model.",
       "support": "simulation",
       "source": "Same simulation as c3: peak 293 kN (1,000 kg truck), 395 kN (10,000 kg), 404 kN (20,000 kg); contact lasts 77 to 107 ms. The model applies one contact force to both bodies, so equality is Newton's third law by construction.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.truck-hits-car-force.c5",
       "text": "The car comes off worse because it changes speed far more abruptly, not because it is pushed harder.",
       "support": "derivation",
       "source": "Injury risk scales with the acceleration experienced by occupants; with equal forces, a = F / m is ten times larger for the car (c1, c2). Halliday, Resnick and Walker, ch. 9 (collisions and impulse).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

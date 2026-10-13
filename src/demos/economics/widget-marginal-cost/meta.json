@@ -28,42 +28,54 @@
       "text": "With $100 fixed costs and $2 per widget, the average cost of 50 widgets is $4.",
       "support": "derivation",
       "source": "Total = 100 + 2 × 50 = 200; 200 / 50 = 4.00. Demo.tsx avg(n) = (100 + 2n) / n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.widget-marginal-cost.c2",
       "text": "Widget #51 adds $2: the total goes from $200 to $202, and the average slips from $4.00 to $3.96.",
       "support": "derivation",
       "source": "total(51) − total(50) = 202 − 200 = 2; 202 / 51 = 3.9608.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.widget-marginal-cost.c3",
       "text": "On the stage the average is 100/n + 2 (for example $12 at 10 widgets, $3 at 100), while the next widget always adds $2.",
       "support": "derivation",
       "source": "100/10 + 2 = 12; 100/100 + 2 = 3; total(n) − total(n − 1) = 2 for every n in this model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.widget-marginal-cost.c4",
       "text": "The average carries the fixed costs spread over every widget; one more widget brings no new fixed cost, only its own $2.",
       "support": "source",
       "source": "Average total cost = fixed cost / Q + average variable cost; marginal cost = change in total cost from one more unit (N. G. Mankiw, Principles of Economics, ch. 13, The Costs of Production).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.widget-marginal-cost.c5",
       "text": "An order for one more widget at $3 adds $1 of profit here, even though $3 is below the $4 average.",
       "support": "derivation",
       "source": "Revenue +3, cost +2 (total 200 → 202), profit change +1. Assumes the order does not change the price of other sales.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.widget-marginal-cost.c6",
       "text": "The lesson is a model with a constant $2 per widget; real added costs often rise when a workshop gets busy.",
       "support": "source",
       "source": "Typical cost curves have rising marginal cost at high output (diminishing marginal product), Mankiw ch. 13. The stage chip labels the model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

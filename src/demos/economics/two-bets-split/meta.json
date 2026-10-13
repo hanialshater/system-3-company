@@ -28,41 +28,60 @@
       "text": "Split equally across two independent bets that each pay +20% or −10% with equal chance, you lose money only if both fall: a 25% chance, for −10%.",
       "support": "derivation",
       "source": "Four equally likely cases: both up +20%, one each (2 cases) (20 − 10)/2 = +5%, both down −10%. P(loss) = 1/4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-bets-split.c2",
       "text": "Half the time one bet rises and one falls, for +5%.",
       "support": "derivation",
       "source": "2 of the 4 cases; (20 + (−10))/2 = 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-bets-split.c3",
       "text": "The average stays +5% however many bets the money is split across.",
       "support": "derivation",
       "source": "Each bet's expected return is 0.5 × 20 + 0.5 × (−10) = 5; an equal split's expected return is the average of the bets' expected returns, 5, for every n. Demo.tsx average(n) enumerates the binomial outcomes.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-bets-split.c4",
       "text": "The worst case, every bet falling (−10%), has chance 50%, 25%, 12.5%… halving with each added bet.",
       "support": "derivation",
       "source": "P(all n fall) = 0.5^n: 0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625 for n = 1..6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-bets-split.c5",
       "text": "The chance of some loss does not fall at every step: with 4 bets it is 31.3%, more than the 25% with 2.",
       "support": "derivation",
       "source": "Loss iff the return (20k − 10(n − k))/n < 0, i.e. k < n/3. n = 1: 50%; 2: 25%; 3: 12.5% (k = 1 gives exactly 0%, not a loss); 4: (1 + 4)/16 = 31.25%; 5: 6/32 = 18.75%; 6: 7/64 = 10.9%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.two-bets-split.c6",
       "text": "The lesson is a model: truly independent bets with made-up numbers; real investments often fall together, and it is not advice.",
       "support": "source",
       "source": "Diversification reduces risk only to the extent assets are not perfectly correlated; market-wide (systematic) risk cannot be diversified away (Mankiw, Principles of Economics, ch. 27). Shown on the stage chip and in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.two-bets-split.c7",
+      "text": "As you split across more bets, the chance of some loss does not fall at every step, but the losses left are small ones.",
+      "support": "derivation",
+      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check.",
       "status": "unverified"
     }
   ],
