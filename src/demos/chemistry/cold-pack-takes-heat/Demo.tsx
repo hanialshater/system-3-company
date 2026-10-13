@@ -84,7 +84,7 @@ export default function ColdPack({ slug }: { slug: string }) {
                   <text x={226} y={yOf(T0) + 4} className={s.small}>
                     20 °C start
                   </text>
-                  <text x={226} y={yOf(t) + 16} className={s.big}>
+                  <text x={226} y={yOf(t) + 24} className={s.big}>
                     {t.toFixed(1)} °C
                   </text>
                   <text x={310} y={20} textAnchor="end" className={s.small}>

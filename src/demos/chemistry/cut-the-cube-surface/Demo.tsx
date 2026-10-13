@@ -12,7 +12,7 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const SIDE_CM = 1;
-const area1 = (n: number) => n ** 3 * 6 * (SIDE_CM / n) ** 2;
+const area1 = (n: number) => Math.round(n ** 3 * 6 * (SIDE_CM / n) ** 2 * 1e6) / 1e6;
 const STEPS = [1, 2, 5, 10];
 const BIG = 10;
 const NAMES = ["thousand"] as const;

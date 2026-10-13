@@ -1,0 +1,33 @@
+{
+  "slug": "which-pair-pushes-hardest",
+  "title": "Three metals, three batteries",
+  "hook": "Pair zinc, copper and silver two at a time. Which pair pushes electrons hardest?",
+  "domain": "chemistry",
+  "concept": "galvanic-cell-voltage",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that two metals and a salt bridge can make a battery", "that voltage is measured in volts"],
+    "doesNotKnow": ["that cell voltage is the gap between two metals' electron grip", "that electrode size does not change the voltage"]
+  },
+  "misconception": "The voltage of a cell depends on how big the electrodes are.",
+  "objective": "The learner can say that a cell's voltage is the difference between the two metals' standard electrode potentials, so Zn with Ag (1.56 V) beats Zn with Cu (1.10 V) and Cu with Ag (0.46 V), whatever the electrode size.",
+  "claims": [
+    { "id": "chemistry.which-pair-pushes-hardest.c1", "text": "Standard electrode potentials versus the hydrogen electrode at 25 °C: Zn²⁺/Zn −0.76 V, Cu²⁺/Cu +0.34 V, Ag⁺/Ag +0.80 V.", "support": "source", "source": "CRC Handbook of Chemistry and Physics, Electrochemical Series (−0.7618, +0.3419, +0.7996 V, rounded).", "status": "unverified" },
+    { "id": "chemistry.which-pair-pushes-hardest.c2", "text": "A cell's standard voltage is the difference between the two metals' standard electrode potentials.", "support": "source", "source": "E°cell = E°(cathode) − E°(anode) (Atkins, Physical Chemistry; IUPAC Green Book).", "status": "unverified" },
+    { "id": "chemistry.which-pair-pushes-hardest.c3", "text": "The three cell voltages are Zn with Cu 1.10 V, Zn with Ag 1.56 V, and Cu with Ag 0.46 V.", "support": "derivation", "source": "0.34 − (−0.76) = 1.10; 0.80 − (−0.76) = 1.56; 0.80 − 0.34 = 0.46 V (node; Demo.tsx volts()). Standard conditions (1 mol/L ions, 25 °C).", "status": "unverified" },
+    { "id": "chemistry.which-pair-pushes-hardest.c4", "text": "A higher rung on the ladder means the metal's ion grabs electrons harder.", "support": "source", "source": "A more positive reduction potential means a stronger tendency to be reduced (Atkins, Physical Chemistry; Chemistry LibreTexts, Standard electrode potentials).", "status": "unverified" },
+    { "id": "chemistry.which-pair-pushes-hardest.c5", "text": "The cell voltage does not depend on electrode size; a bigger electrode changes how much current the cell can supply.", "support": "source", "source": "Potential is an intensive quantity (Nernst equation has no area term; Atkins, Physical Chemistry). Open-circuit cell voltage. Current capacity scales with electrode area.", "status": "unverified" },
+    { "id": "chemistry.which-pair-pushes-hardest.c6", "text": "Model: standard conditions only (1 mol/L ions, 25 °C); real cell voltages shift with concentration and temperature.", "support": "source", "source": "Nernst equation (Atkins). Stage label 'standard conditions'.", "status": "unverified" }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Metal X has a standard potential of +0.20 V, metal Y −0.50 V, metal Z +0.60 V. Which pair gives the largest cell voltage?",
+    "options": ["Y and Z", "X and Z", "X and Y"],
+    "answer": 0,
+    "why": "Voltage is the gap: Y and Z are 1.10 V apart, X and Y 0.70 V, X and Z only 0.40 V."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
