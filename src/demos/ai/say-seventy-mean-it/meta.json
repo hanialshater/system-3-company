@@ -1,0 +1,73 @@
+{
+  "slug": "say-seventy-mean-it",
+  "title": "Should a model sound more sure?",
+  "hook": "A model is right 70% of the time. What confidence should it claim?",
+  "domain": "ai",
+  "concept": "calibration",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what it means for a model to be right a share of the time",
+      "that a model can state a probability"
+    ],
+    "doesNotKnow": [
+      "that a stated confidence can be scored for honesty",
+      "that the squared-gap score is lowest when the stated confidence equals the true hit rate"
+    ]
+  },
+  "misconception": "A model that sounds more sure is better.",
+  "objective": "The learner can explain that under the squared-gap (Brier) score the best confidence to state is the true hit rate, so both overconfidence and underconfidence raise the score.",
+  "claims": [
+    {
+      "id": "ai.say-seventy-mean-it.c1",
+      "text": "Right on 14 of 20, stating r every time, the average squared gap is 0.7(1 − r)² + 0.3r²: 0.250 at 90%, 0.210 at 70%, 0.250 at 50%.",
+      "support": "derivation",
+      "source": "avgGap() in Demo.tsx over the 20 outcomes (exact, not sampled); node: 0.2500, 0.2100, 0.2500. Also 0.300 at 100%, 0.220 at 60% and 80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.say-seventy-mean-it.c2",
+      "text": "The average squared gap is lowest exactly at r = 0.7, the hit rate; at 90% each miss costs 0.81, and at 50% each hit costs 0.25.",
+      "support": "derivation",
+      "source": "d/dr [0.7(1 − r)² + 0.3r²] = −1.4(1 − r) + 0.6r = 0 → r = 0.7. gap(0.9, wrong) = 0.81, gap(0.5, right) = 0.25.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.say-seventy-mean-it.c3",
+      "text": "The squared-gap score is the Brier score, and it is proper: on average it is minimised by stating the true probability, so it cannot be gamed by sounding surer or by hedging.",
+      "support": "source",
+      "source": "Brier 1950, 'Verification of forecasts expressed in terms of probability', Monthly Weather Review 78(1); Gneiting & Raftery 2007, 'Strictly proper scoring rules, prediction, and estimation', JASA 102(477) (the Brier/quadratic score is strictly proper).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.say-seventy-mean-it.c4",
+      "text": "The model and its 14 of 20 record are a toy, labelled on the stage; which answers are wrong comes from an untuned mulberry32(1) shuffle and does not change the score.",
+      "support": "convention",
+      "source": "Brief 39 in company/domains/briefs/ai.md (which used 'right 70% of the time'; the toy fixes exactly 14 of 20 so the stage average equals the expected value).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A weather app says '90% chance of rain' on days when it rains only 6 times in 10. What would improve its squared-gap (Brier) score?",
+    "options": [
+      "Saying about 60% on those days",
+      "Saying 100%, to sound decisive",
+      "Nothing: it is right more often than not"
+    ],
+    "answer": 0,
+    "why": "The squared-gap score is lowest when the stated chance matches how often it actually rains. Claiming 90% when the rate is 60% is overconfident and costs on every dry day."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

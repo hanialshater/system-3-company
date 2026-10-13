@@ -1,0 +1,72 @@
+{
+  "slug": "greedy-word-trap",
+  "title": "Best word each time, best sentence?",
+  "hook": "Always pick the likeliest next word. Do you end up with the likeliest sentence?",
+  "domain": "ai",
+  "concept": "greedy-decoding",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a language model gives each possible next word a chance"
+    ],
+    "doesNotKnow": [
+      "that a sentence's chance is the product of its words' chances",
+      "that taking the likeliest word at each step can miss the likeliest sentence"
+    ]
+  },
+  "misconception": "Taking the most likely word at each step gives the most likely text.",
+  "objective": "The learner can explain that a sentence's chance is the product along its path, so a less likely first word can lead to a more likely whole sentence than the greedy choice.",
+  "claims": [
+    {
+      "id": "ai.greedy-word-trap.c1",
+      "text": "Greedy takes 'cat' (60%) then 'sat' (40%): 0.6 × 0.4 = 24%. 'dog' (40%) then 'barked' (90%) gives 0.4 × 0.9 = 36%, the most likely two-word ending in the tree.",
+      "support": "derivation",
+      "source": "GREEDY_P and OTHER_P in Demo.tsx; node: 0.24, 0.36. Other leaves: cat ran 21%, cat ate 15%, dog sat 4%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-word-trap.c2",
+      "text": "A sentence's chance is the product of each word's chance given the words before it.",
+      "support": "derivation",
+      "source": "Chain rule of probability: P(w1, w2) = P(w1) · P(w2 | w1). Standard for autoregressive language models, e.g. Jurafsky & Martin, Speech and Language Processing (3rd ed. draft), ch. 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-word-trap.c3",
+      "text": "The words and their odds are invented, labelled 'Invented word odds' on the stage.",
+      "support": "convention",
+      "source": "Brief 40 in company/domains/briefs/ai.md (A/B with 60/40, best-next 40% and 90%); words added for readability.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.greedy-word-trap.c4",
+      "text": "Some real systems use beam search, keeping several partial sentences at each step, to get closer to the most likely whole sentence than greedy picking.",
+      "support": "source",
+      "source": "About real systems: Sutskever, Vinyals & Le 2014, 'Sequence to Sequence Learning with Neural Networks', NeurIPS (left-to-right beam search keeping B partial hypotheses); beam search is an approximation, not guaranteed to find the best sequence.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A text generator always picks the single likeliest next word. Why can the sentence it produces be less likely than another one?",
+    "options": [
+      "A strong first word can lead to weak next words; the sentence's chance multiplies along the way",
+      "Because the likeliest word is always wrong",
+      "It cannot: the likeliest words always make the likeliest sentence"
+    ],
+    "answer": 0,
+    "why": "A sentence's chance is the product of its words' chances. A slightly less likely first word can open up a near-certain next word and win overall."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
