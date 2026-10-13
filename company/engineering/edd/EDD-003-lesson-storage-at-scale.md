@@ -75,7 +75,7 @@ Linear from the per-lesson numbers above. Real growth will be worse for the regi
 | git clone / status / worktree | fine | fine (kernel-sized) | **breaks**: clone takes minutes, status takes seconds without fsmonitor, each agent worktree checks out 680k files (5 parallel agents need 8.5 GB) | **broken**: needs Scalar/VFS-class tooling |
 | Next build (≈0.2 s per lesson) | ~3.5 min | **~35 min**, close to a hosted 45-min build cap; every deploy re-renders every page | **~6 h: broken** | broken |
 | Server build output | 0.56 GB | **5.6 GB** | 56 GB | 560 GB |
-| All-metas chunk on every page | 3.7 MB | 37 MB | — | — | 
+| All-metas chunk on every page | 3.7 MB | 37 MB | — | — |
 | Feed HTML | ~5 MB | ~50 MB | — | — |
 | Registry module | 150 KB | 1.5 MB / 20k lines, one module | 15 MB: **broken** | broken |
 | Full QA at 2 workers | 1.8 h | **18 h** (34 browser-hours) | 340 browser-hours | 3,400 browser-hours (~140 days) |
@@ -266,6 +266,23 @@ During stage 1 migration, `DemoHost` (or its successor) can resolve a slug eithe
 compiled component or to a runtime bundle. Rollback for any lesson is a manifest change, and for
 the whole stage it is one revert of the manifest switch. Bundles and kit versions are never deleted
 while any manifest version (live or archived) references them.
+
+## ADRs this implies (all status: proposed; none written until the review closes)
+
+| Draft | Title | One-line decision |
+|---|---|---|
+| ADR-003 | Lesson code never runs on the server | Lesson code executes only in the learner's browser; servers serve manifests, metadata and static previews, never lesson modules. |
+| ADR-004 | Lessons are immutable, content-addressed versions | Every lesson version is `<slug>@<sha256>` of its canonical tree, and every claim check, QA, learner, fact-check and pairwise record cites that hash. |
+| ADR-005 | Independently built lesson bundles against a versioned kit | Each lesson builds alone into an ES module bundle with React and `@/kit/*` external, resolved through an import map to a semver'd kit; supersedes ADR-001's compiled registry for runtime loading. |
+| ADR-006 | Sandboxed cross-origin iframe host with a postMessage bridge | Lesson bundles run in `sandbox="allow-scripts"` frames on a separate origin; progress and events cross a typed bridge; host credentials are unreachable (pending the spike). |
+| ADR-007 | The manifest is the registry; rollback is a pointer change | A generated, versioned manifest maps slug → version, bundle and kit hashes and status; publishing and rollback edit only the manifest; bundles are never deleted while referenced. |
+| ADR-008 | Variants are data, not code | Levels, languages and contexts are specs (parameters, strings, framing) over one lesson bundle, each spec version hashed and reviewed like a lesson version. |
+| ADR-009 (stage 2) | Lesson sources move to domain-sharded content repos with a generated index | Triggered by the stage-2 numbers; git remains the memory; no submodules. |
+| Decision record | Lesson bundler dependency | Which bundler (if `tsc` is not enough) builds lesson and kit bundles, with `npm audit` and a license check (best practice 5). |
+
+Amendments implied (evaluation steward drafts the gate text; constitutional review ratifies):
+registry → manifest generator; QA evidence bound to the bundle hash; content-addressed evidence
+addresses; incremental `check`; `tests/qa/lessons.ts` reads the manifest.
 
 ## Open questions and objections
 

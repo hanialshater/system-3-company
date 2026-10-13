@@ -34,5 +34,6 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [ADR-002](adr/ADR-002-geo-kit.md) | The geo kit: d3-geo + Natural Earth 1:110m, bundled | accepted |
 | [EDD-001](edd/EDD-001-feed-at-500-lessons.md) | The feed at 500+ lessons | proposed |
 | [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
+| [EDD-003](edd/EDD-003-lesson-storage-at-scale.md) | Lesson storage and loading at 10k–1M (client-side bundles, hybrid) | proposed (review open) |
 
 See also [best-practices.md](best-practices.md).
