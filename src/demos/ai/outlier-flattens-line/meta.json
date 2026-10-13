@@ -1,0 +1,73 @@
+{
+  "slug": "outlier-flattens-line",
+  "title": "Can one point flatten a line?",
+  "hook": "Four points sit on a perfect line. How much can a fifth one move it?",
+  "domain": "ai",
+  "concept": "linear-regression-fit",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a line has a slope",
+      "that a fitted line should pass close to the points"
+    ],
+    "doesNotKnow": [
+      "that the usual best-fit line minimises the sum of squared misses",
+      "that squaring lets one far point dominate the fit"
+    ]
+  },
+  "misconception": "One odd point among five barely moves a fitted line.",
+  "objective": "The learner can explain that a least-squares line minimises the sum of squared misses, so one far point costs so much that the line tilts to share the miss, and a single stray point can move the whole fit.",
+  "claims": [
+    {
+      "id": "ai.outlier-flattens-line.c1",
+      "text": "The points (1,1), (2,2), (3,3), (4,4), (5,5) have least-squares slope 1; moving the fifth to (5,0) makes the slope exactly 0 with intercept 2.",
+      "support": "derivation",
+      "source": "x deviations −2, −1, 0, 1, 2 and y deviations −1, 0, 1, 2, −2 (mean y = 2) give covariance 0, so slope 0, intercept 2. fit(pointsWith(0)) in Demo.tsx; node: slope 0.000, b 2.000. Intermediate heights: y5 = 4 → 0.8, 2 → 0.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.outlier-flattens-line.c2",
+      "text": "With the fifth point at (5,0), keeping the line y = x costs a sum of squared misses of 25 (all from the stray point, 5 off); the flat best-fit line costs 10.",
+      "support": "derivation",
+      "source": "sse with m = 1, b = 0: 0+0+0+0+25 = 25. With m = 0, b = 2: 1+0+1+4+4 = 10. Q_SSE_OLD and Q_SSE_FIT in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.outlier-flattens-line.c3",
+      "text": "The best-fit (least-squares) line is the one with the smallest sum of squared vertical misses.",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §3.2 (least squares minimises the residual sum of squares).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.outlier-flattens-line.c4",
+      "text": "The five points are invented for the toy; labelled on the stage.",
+      "support": "convention",
+      "source": "Brief 32 in company/domains/briefs/ai.md.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Nine houses' prices fall neatly along a line by size. A tenth, a huge house, sold for almost nothing. What does an ordinary least-squares line do?",
+    "options": [
+      "Tilts noticeably toward the cheap huge house",
+      "Barely changes, because nine points outvote one",
+      "Ignores the tenth house automatically"
+    ],
+    "answer": 0,
+    "why": "Least squares minimises squared misses. Leaving the tenth house far off would cost its miss squared, so the line tilts to share the miss among all the points."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
