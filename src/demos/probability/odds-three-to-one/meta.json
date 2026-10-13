@@ -1,0 +1,81 @@
+{
+  "slug": "odds-three-to-one",
+  "title": "Three to one against",
+  "hook": "The bookie says 3 to 1 against. What chance of winning does that actually mean?",
+  "domain": "probability",
+  "concept": "odds-vs-probability",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "percentages",
+      "a chance as a share of all equally likely outcomes"
+    ],
+    "doesNotKnow": [
+      "odds notation",
+      "that odds compare wins with losses, not wins with everything"
+    ]
+  },
+  "misconception": "\"3 to 1 against\" means a 1-in-3 (33%) chance of winning.",
+  "objective": "The learner can turn odds of L to W against into a chance of W / (W + L), and explains that 3 to 1 against is 1 in 4 (25%).",
+  "keyState": "3 blocks in Lose and 1 in Win (odds 3 to 1 against, win chance 1 of 4 = 25%), then 2 and 2 (evens, 50%).",
+  "claims": [
+    {
+      "id": "probability.odds-three-to-one.c1",
+      "text": "Odds of L to W against mean L losses for every W wins; the lesson reads \"3 to 1 against\" this way, as bookmakers' fractional odds 3/1 do.",
+      "support": "convention",
+      "source": "Betting convention for fractional odds (e.g. 3/1 = 3 to 1 against). Bookmakers' quoted odds also include a profit margin, so their implied chances add to more than 100%; the lesson uses odds as a plain ratio of outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.odds-three-to-one.c2",
+      "text": "The chance of a win is wins divided by all outcomes: W / (W + L).",
+      "support": "derivation",
+      "source": "Definition of probability over equally likely outcomes; chance() in src/demos/probability/odds-three-to-one/Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.odds-three-to-one.c3",
+      "text": "3 to 1 against is a win chance of 1 of 4 = 25%, not 1 in 3 (33%).",
+      "support": "derivation",
+      "source": "1 / (1 + 3) = 0.25; 1/3 = 0.333.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.odds-three-to-one.c4",
+      "text": "Odds of 2 to 2 are the same as 1 to 1 (\"evens\"): a 50% chance.",
+      "support": "derivation",
+      "source": "2 / (2 + 2) = 0.5. \"Evens\" is the betting name for 1 to 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.odds-three-to-one.c5",
+      "text": "Odds of 4 to 1 against are a 1 in 5 (20%) chance (recall question).",
+      "support": "derivation",
+      "source": "1 / (1 + 4) = 0.2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A team is at odds of 4 to 1 against. What chance of winning does that imply?",
+    "options": [
+      "25%",
+      "20%",
+      "80%"
+    ],
+    "answer": 1,
+    "why": "4 to 1 against is 4 losses for every 1 win: 1 win out of 5 outcomes, so 20%. 25% would divide wins by losses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
