@@ -457,6 +457,412 @@
       "prerequisites": [
         "binary-numbers"
       ]
+    },
+    {
+      "id": "sort-stability",
+      "name": "Stable sorting: ties keep their order",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "insertion-sort"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "quicksort-worst-case",
+      "name": "Quicksort's worst case: already-sorted input",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "quicksort-partition"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "bfs-vs-dfs-frontier",
+      "name": "BFS vs DFS: a queue or a stack is the only difference",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "graph-shortest-path",
+        "depth-first-search",
+        "stack-and-queue"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "knapsack-01",
+      "name": "0/1 knapsack: best value per kilo is not best",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "edit-distance",
+      "name": "Edit distance: fewest edits between two words",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "dp-grid-paths"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "frequency-analysis",
+      "name": "Frequency analysis: cracking a Caesar shift",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "text-encoding"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "compression-limits",
+      "name": "No compressor shrinks every file (counting argument)",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "binary-numbers"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "interval-scheduling",
+      "name": "Interval scheduling: earliest finish first",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "two-pointers",
+      "name": "Two pointers on a sorted list",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "binary-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "cycle-detection",
+      "name": "Cycle detection: tortoise and hare",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "linked-list-vs-array"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "trie",
+      "name": "Tries: lookup cost is word length, not word count",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-search-tree"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "fisher-yates-shuffle",
+      "name": "Fair shuffling: why the naive swap is biased",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "interpolation-search",
+      "name": "Interpolation search: guessing the page from the value",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "binary-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "radix-sort",
+      "name": "Radix sort: last digit first",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "counting-sort",
+        "sort-stability"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "open-addressing",
+      "name": "Open addressing: linear probing and clusters",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "hash-deletion-tombstones",
+      "name": "Deleting from a probed hash table: tombstones",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "open-addressing"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "negative-edge-weights",
+      "name": "Negative edges break Dijkstra (Bellman-Ford)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "weighted-shortest-path"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "a-star-search",
+      "name": "A* search: a heuristic that aims at the goal",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "weighted-shortest-path",
+        "bfs-vs-dfs-frontier"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "coin-change-ways",
+      "name": "Counting ways to make change: order does not matter",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "dp-grid-paths"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "max-subarray",
+      "name": "Maximum subarray: drop a losing start (Kadane)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "dp-grid-paths"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "shortest-job-first",
+      "name": "Shortest job first minimises total waiting",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "stack-and-queue"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "game-of-life",
+      "name": "Game of Life: local rules, a moving glider",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "finite-state-machine"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "n-queens-backtracking",
+      "name": "Backtracking prunes: four queens",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "depth-first-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "minimax",
+      "name": "Minimax: perfect tic-tac-toe is a draw",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "recursion",
+        "depth-first-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "rsa-trapdoor",
+      "name": "RSA intuition: a lock anyone can close",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "public-key-crypto",
+        "fast-exponentiation",
+        "euclid-gcd"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "egg-drop",
+      "name": "Two eggs, a hundred floors (dynamic programming)",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "memoization"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "longest-increasing-subsequence",
+      "name": "Longest increasing subsequence: patience piles",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "dp-grid-paths"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "quickselect",
+      "name": "Quickselect: the median without sorting",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "quicksort-partition"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "build-heap-linear",
+      "name": "Building a heap bottom-up is linear",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "heap-priority-queue"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "prim-mst",
+      "name": "Prim's algorithm: any start, same cheapest network",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "minimum-spanning-tree"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "union-find",
+      "name": "Union-find: who is connected, in a few hops",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "minimum-spanning-tree",
+        "tree-traversal"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "gas-station-circuit",
+      "name": "Gas station circuit: start after the worst deficit",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "peak-finding",
+      "name": "Peak finding by halving",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "binary-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "queue-two-stacks",
+      "name": "A queue from two stacks (amortized cost)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "stack-and-queue",
+        "dynamic-array-doubling"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "rolling-hash",
+      "name": "Rolling hash string search (Rabin-Karp)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "kmp-string-search",
+      "name": "KMP string search: never step back in the text",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "rolling-hash"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "lz77",
+      "name": "LZ77: copies that point backwards, even into themselves",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "run-length-encoding"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "stable-matching",
+      "name": "Stable matching: the proposing side gets its best",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "max-flow",
+      "name": "Maximum flow: undoing a bad push (augmenting paths)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "graph-shortest-path",
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "convex-hull",
+      "name": "Convex hull: the rubber band around points",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "algorithms"
     }
   ]
 }
