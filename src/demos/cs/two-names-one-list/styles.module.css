@@ -1,0 +1,5 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 700; }
+.btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btns > button { min-height: 44px; font-family: ui-monospace, monospace; font-weight: 700; font-size: 0.85rem; }
