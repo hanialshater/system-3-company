@@ -1,0 +1,71 @@
+{
+  "slug": "seven-odds-leave-one",
+  "title": "Seven odds leave one",
+  "hook": "Pick any seven odd numbers you like. Can you make them add up to an even total?",
+  "domain": "math",
+  "concept": "parity-rules",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "which whole numbers are odd and which are even"
+    ],
+    "doesNotKnow": [
+      "why the rules for adding odd and even numbers hold"
+    ]
+  },
+  "misconception": "Odd and even rules are facts to memorise, or the parity of a sum depends on which numbers you pick.",
+  "objective": "The learner can explain, using leftover dots, that a sum of odd numbers is odd exactly when there is an odd count of them, whatever the numbers are.",
+  "claims": [
+    {
+      "id": "math.seven-odds-leave-one.c1",
+      "text": "Every odd number is some pairs plus one leftover: 2k + 1.",
+      "support": "convention",
+      "source": "Definition of an odd whole number.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.seven-odds-leave-one.c2",
+      "text": "The sum of seven odd numbers is always odd: the seven leftovers make three pairs and one alone.",
+      "support": "derivation",
+      "source": "Sum of (2k_i + 1) over seven terms = 2(sum of k_i) + 7 = 2(sum of k_i + 3) + 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.seven-odds-leave-one.c3",
+      "text": "A sum of odd numbers has the parity of how many there are, so an even count of odd numbers gives an even total.",
+      "support": "derivation",
+      "source": "Sum of n terms (2k_i + 1) = 2(sum of k_i) + n, which has the parity of n.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.seven-odds-leave-one.c4",
+      "text": "The stage starts at 1 + 3 + 5 + 7 + 9 + 11 + 13 = 49.",
+      "support": "derivation",
+      "source": "Recomputed with node; the stage computes its total with the same sum() it displays.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You add up 10 odd numbers. Without knowing them, what can you say about the total?",
+    "options": [
+      "It is even",
+      "It is odd",
+      "It could be either"
+    ],
+    "answer": 0,
+    "why": "Each odd number has one leftover dot after pairing. Ten leftovers pair off completely, so the total is even."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
