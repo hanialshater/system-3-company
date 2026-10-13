@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 120px; max-height: 34dvh; }
+.plank { fill: color-mix(in srgb, var(--fg) 35%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.plankLevel { fill: color-mix(in srgb, var(--good) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.tick { fill: var(--fg); font-size: 9px; font-weight: 700; text-anchor: middle; }
+.weight { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.pivot { fill: var(--muted); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.4em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; }
