@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.water { fill: color-mix(in srgb, #3b82ff 22%, var(--bg-2)); }
+.surface { stroke: #3b82ff; stroke-width: 2; }
+.normal { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.arc { fill: none; stroke: var(--muted); stroke-width: 1; }
+.tag { fill: var(--muted); font-size: 9px; }
+.angle { fill: var(--fg); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.beam { stroke: #f5b400; stroke-width: 3.5; stroke-linecap: round; transition: opacity 0.2s; }
+.torch { fill: var(--fg); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap :global(.readout) { flex: 1 1 0; }

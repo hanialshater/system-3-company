@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 40dvh; }
+.chip { fill: var(--muted); font-size: 8.5px; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.loop { fill: color-mix(in srgb, var(--domain) 14%, transparent); stroke: none; }
+.string { stroke: var(--fg); stroke-width: 1.6; }
+.end { fill: var(--fg); opacity: 0.7; }
+.finger { fill: color-mix(in srgb, var(--fg) 20%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.dim { stroke: var(--muted); stroke-width: 1; }
+.label { fill: var(--fg); font-size: 9.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+@keyframes pulse { 0% { transform: scaleY(1); } 50% { transform: scaleY(-1); } 100% { transform: scaleY(1); } }
+.pulse { animation-name: pulse; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+.wrap :global(.readout) { flex: 1 1 0; }
+.wave { fill: none; stroke: var(--domain); stroke-width: 2.2; }

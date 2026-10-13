@@ -1,0 +1,87 @@
+{
+  "slug": "press-the-string",
+  "title": "Press a guitar string at its middle",
+  "hook": "An open guitar string hums at 110 Hz. Press it down at the middle: what comes out?",
+  "domain": "physics",
+  "concept": "standing-wave-pitch",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "shorter strings sound higher",
+      "a plucked string vibrates"
+    ],
+    "doesNotKnow": [
+      "hertz as vibrations per second",
+      "that a string's frequency is inversely proportional to its vibrating length"
+    ]
+  },
+  "misconception": "Shortening a string raises its pitch by some small, arbitrary amount.",
+  "objective": "The learner can explain that a string's lowest vibration takes the shape of one loop over its free length, so halving the length halves the time per vibration and doubles the frequency (one octave).",
+  "claims": [
+    {
+      "id": "physics.press-the-string.c1",
+      "text": "Hz (hertz) means vibrations per second.",
+      "support": "convention",
+      "source": "SI derived unit: 1 Hz = 1 s^-1 (BIPM SI Brochure, 9th ed., Table 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.press-the-string.c2",
+      "text": "A guitar's open A string is tuned to 110 Hz, and a typical guitar's vibrating length (scale length) is about 0.65 m.",
+      "support": "source",
+      "source": "Standard tuning A2 = 110 Hz (with A4 = 440 Hz, ISO 16:1975). Fender standard scale length 25.5 in = 0.648 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.press-the-string.c3",
+      "text": "A string's lowest note has frequency f = v / (2L): one loop over its free length L, with v the wave speed set by tension and mass per length.",
+      "support": "source",
+      "source": "OpenStax University Physics Vol. 1, section 16.6 Standing Waves and Resonance (f_n = n v / 2L).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.press-the-string.c4",
+      "text": "With the same tension, pressing at the middle (0.325 m left) gives 220 Hz; a quarter along (0.4875 m) about 147 Hz; three quarters along (0.1625 m) 440 Hz.",
+      "support": "derivation",
+      "source": "f = 110 x 0.65 / L: 0.325 -> 220.0, 0.4875 -> 146.7, 0.1625 -> 440.0 Hz (node; freq() in Demo.tsx). Pressing a real string stretches it slightly, raising the pitch a little; ignored.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.press-the-string.c5",
+      "text": "Doubling the frequency raises the note by one octave.",
+      "support": "convention",
+      "source": "An octave is a frequency ratio of 2:1 (any music acoustics text, e.g. Rossing, The Science of Sound, ch. 7).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.press-the-string.c6",
+      "text": "On the stage the vibration is slowed 55 times so it can be seen, and its width is exaggerated.",
+      "support": "convention",
+      "source": "Drawing choice: the loop pulses at f / 55 per second (110 Hz -> 2 per second). Labelled on stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A string playing 200 Hz is shortened to a quarter of its length, same tension. Its note is about...",
+    "options": [
+      "800 Hz",
+      "400 Hz",
+      "250 Hz"
+    ],
+    "answer": 0,
+    "why": "Frequency goes as one over the vibrating length: a quarter of the length gives four times the frequency, two octaves up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
