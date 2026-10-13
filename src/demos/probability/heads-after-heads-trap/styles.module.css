@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.grid :global(.control) { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 2px; min-height: 48px; }
+.seq { font-family: ui-monospace, monospace; letter-spacing: 0.1em; font-size: 0.9rem; }
+.share { font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.none { opacity: 0.7; }

@@ -1,0 +1,80 @@
+{
+  "slug": "heads-after-heads-trap",
+  "title": "After a head, how often is a head next?",
+  "hook": "A fair coin, four flips. Look only at flips that follow a head. What share are heads?",
+  "domain": "probability",
+  "concept": "hot-hand",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "each flip of a fair coin is independent of the last (gamblers-fallacy)"
+    ],
+    "doesNotKnow": [
+      "that averaging a share within short sequences is biased below 50%",
+      "how this counting method misled hot-hand studies"
+    ]
+  },
+  "misconception": "In a fair coin sequence the average share of heads right after a heads is 50%, so any lower share is evidence the coin is cold after heads.",
+  "objective": "The learner can say that averaging the per-sequence share over four-flip sequences gives 40.5%, while pooling all flips after a head gives exactly 50%, so the lower average comes from how it is counted.",
+  "keyState": "All 14 four-flip sequences that have a flip after a head opened: shares average 17/42 = 40.5%; pooled 12 of 24 = 50%.",
+  "claims": [
+    {
+      "id": "probability.heads-after-heads-trap.c1",
+      "text": "Of the 16 sequences of four fair flips, 14 have at least one flip right after a head; TTTT and TTTH have none.",
+      "support": "derivation",
+      "source": "Enumeration of all 16 sequences (SEQS in model.ts; recomputed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.heads-after-heads-trap.c2",
+      "text": "Averaging each sequence's share of heads after a head over those 14 sequences gives 17/42 = 40.5%.",
+      "support": "derivation",
+      "source": "Sum of shares = 17/3 over 14 sequences = 17/42 = 0.4048 (avgShare(); the 14 shares are listed on the tiles).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.heads-after-heads-trap.c3",
+      "text": "Pooling every flip that follows a head over all 16 sequences, 12 of 24 are heads: exactly 50%.",
+      "support": "derivation",
+      "source": "Each of the three positions after the first has a head before it in 8 of the 16 sequences, giving 24 flips, and half of them (12) are heads; pooled() in model.ts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.heads-after-heads-trap.c4",
+      "text": "Each flip is still fair; the lower average comes from averaging per-sequence shares, because sequences with many heads in a row contribute many flips after a head but only one share.",
+      "support": "derivation",
+      "source": "Follows from claims 2 and 3: the same flips give 40.5% by averaging shares and 50% by pooling.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.heads-after-heads-trap.c5",
+      "text": "Miller and Sanjurjo (2018) showed that this counting bias affected early studies of the hot hand in basketball.",
+      "support": "source",
+      "source": "Miller, J. B. & Sanjurjo, A. (2018). Surprised by the hot hand fallacy? A truth in the law of small numbers. Econometrica 86(6): 2019-2047. To be checked: wording of 'early studies'. The lesson makes no claim about whether the hot hand exists.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You average, over many 4-flip fair-coin sequences, each sequence's share of heads right after a head. Roughly what do you get?",
+    "options": [
+      "50%",
+      "About 40%",
+      "About 60%"
+    ],
+    "answer": 1,
+    "why": "Averaging shares within short sequences gives 40.5% for four flips, although pooling all flips after a head gives exactly 50%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
