@@ -6,26 +6,75 @@
   "concept": "multiplication-as-area",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-math", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["single-digit products", "area of a rectangle is width times height"],
-    "doesNotKnow": ["that a hard product splits into easy ones"]
+    "knows": [
+      "single-digit products",
+      "area of a rectangle is width times height"
+    ],
+    "doesNotKnow": [
+      "that a hard product splits into easy ones"
+    ]
   },
   "misconception": "13 × 7 must be done as a single step; bigger factors need a different method.",
   "objective": "The learner can explain that a rectangle can be cut anywhere and the two areas add up to the whole, so a product can be split into easy products.",
   "claims": [
-    { "id": "math.split-the-sum.c1", "text": "A rectangle cut into two pieces has area equal to the sum of the pieces' areas, so a(b + c) = ab + ac.", "support": "derivation", "source": "Distributive law, area model: a rectangle of width b + c and height a is two rectangles of widths b and c and height a.", "status": "unverified" },
-    { "id": "math.split-the-sum.c2", "text": "13 × 7 = 91, and cutting at 10 gives 10 × 7 = 70 and 3 × 7 = 21, which add to 91.", "support": "derivation", "source": "Recomputed in node: 13*7 = 91; 10*7 + 3*7 = 70 + 21 = 91 (Demo.tsx LEN, ROWS, TEN).", "status": "unverified" },
-    { "id": "math.split-the-sum.c3", "text": "Whatever column the cut is placed at, the two pieces add to the same total, 91 (the learner's own visited cut is quoted).", "support": "derivation", "source": "a x 7 + (13 - a) x 7 = 13 x 7 for every a from 1 to 12; the stage computes both pieces from the slider value.", "status": "unverified" },
-    { "id": "math.split-the-sum.c4", "text": "Multiplying by 10 is easy, so a cut at 10 makes the easiest products.", "support": "convention", "source": "Place value: multiplying by 10 appends a zero. A teaching judgement, not a theorem.", "status": "unverified" }
+    {
+      "id": "math.split-the-sum.c1",
+      "text": "A rectangle cut into two pieces has area equal to the sum of the pieces' areas, so a(b + c) = ab + ac.",
+      "support": "derivation",
+      "source": "Distributive law, area model: a rectangle of width b + c and height a is two rectangles of widths b and c and height a.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.split-the-sum.c2",
+      "text": "13 × 7 = 91, and cutting at 10 gives 10 × 7 = 70 and 3 × 7 = 21, which add to 91.",
+      "support": "derivation",
+      "source": "Recomputed in node: 13*7 = 91; 10*7 + 3*7 = 70 + 21 = 91 (Demo.tsx LEN, ROWS, TEN).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.split-the-sum.c3",
+      "text": "Whatever column the cut is placed at, the two pieces add to the same total, 91 (the learner's own visited cut is quoted).",
+      "support": "derivation",
+      "source": "a x 7 + (13 - a) x 7 = 13 x 7 for every a from 1 to 12; the stage computes both pieces from the slider value.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.split-the-sum.c4",
+      "text": "Multiplying by 10 is easy, so a cut at 10 makes the easiest products.",
+      "support": "convention",
+      "source": "Place value: multiplying by 10 appends a zero. A teaching judgement, not a theorem.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "To work out 14 × 6 in your head by cutting a rectangle, which split is easiest?",
-    "options": ["10 × 6 and 4 × 6", "7 × 6 and 7 × 6 and 1 × 6", "14 × 5 and 14 × 1"],
+    "options": [
+      "10 × 6 and 4 × 6",
+      "7 × 6 and 7 × 6 and 1 × 6",
+      "14 × 5 and 14 × 1"
+    ],
     "answer": 0,
     "why": "Cut 14 into 10 and 4: 10 × 6 + 4 × 6 = 60 + 24 = 84. Other cuts also work, but 10 × 6 is easy."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

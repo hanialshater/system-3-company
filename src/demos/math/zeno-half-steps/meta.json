@@ -6,26 +6,75 @@
   "concept": "infinite-series-halves",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-math", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["halves and quarters", "adding fractions with a common denominator"],
-    "doesNotKnow": ["that infinitely many halves can add to a finite total"]
+    "knows": [
+      "halves and quarters",
+      "adding fractions with a common denominator"
+    ],
+    "doesNotKnow": [
+      "that infinitely many halves can add to a finite total"
+    ]
   },
   "misconception": "Adding infinitely many things must give infinity.",
   "objective": "The learner can explain that the halves 1/2 + 1/4 + 1/8 + ... always fit inside a unit square, so their total cannot pass 1, and that it approaches exactly 1.",
   "claims": [
-    { "id": "math.zeno-half-steps.c1", "text": "After n terms, 1/2 + 1/4 + ... + 1/2^n = 1 − 1/2^n; after 6 terms that is 63/64, leaving a white sliver of 1/64.", "support": "derivation", "source": "Geometric sum; recomputed in node for n = 6: 32/64 + 16/64 + 8/64 + 4/64 + 2/64 + 1/64 = 63/64. Stage prints (2^k - 1)/2^k from the same k that draws the pieces.", "status": "unverified" },
-    { "id": "math.zeno-half-steps.c2", "text": "Carried on forever, the total is exactly 1: the white sliver halves each time and shrinks toward nothing (the limit of 1 − 1/2^n).", "support": "derivation", "source": "Limit of 1 - 2^-n as n grows is 1; the sum of an infinite series is defined as the limit of its partial sums.", "status": "unverified" },
-    { "id": "math.zeno-half-steps.c3", "text": "Every piece lies inside the unit square of area 1, so the total area of the pieces can never exceed 1.", "support": "derivation", "source": "Each piece is half of the white region that remains, so the pieces never overlap and never leave the square (pieces() in Demo.tsx).", "status": "unverified" },
-    { "id": "math.zeno-half-steps.c4", "text": "Each step shades half of what is left, so the white part is halved every time and never reaches zero in finitely many steps.", "support": "derivation", "source": "White after k steps is 1/2^k, which is positive for every finite k.", "status": "unverified" }
+    {
+      "id": "math.zeno-half-steps.c1",
+      "text": "After n terms, 1/2 + 1/4 + ... + 1/2^n = 1 − 1/2^n; after 6 terms that is 63/64, leaving a white sliver of 1/64.",
+      "support": "derivation",
+      "source": "Geometric sum; recomputed in node for n = 6: 32/64 + 16/64 + 8/64 + 4/64 + 2/64 + 1/64 = 63/64. Stage prints (2^k - 1)/2^k from the same k that draws the pieces.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.zeno-half-steps.c2",
+      "text": "Carried on forever, the total is exactly 1: the white sliver halves each time and shrinks toward nothing (the limit of 1 − 1/2^n).",
+      "support": "derivation",
+      "source": "Limit of 1 - 2^-n as n grows is 1; the sum of an infinite series is defined as the limit of its partial sums.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.zeno-half-steps.c3",
+      "text": "Every piece lies inside the unit square of area 1, so the total area of the pieces can never exceed 1.",
+      "support": "derivation",
+      "source": "Each piece is half of the white region that remains, so the pieces never overlap and never leave the square (pieces() in Demo.tsx).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.zeno-half-steps.c4",
+      "text": "Each step shades half of what is left, so the white part is halved every time and never reaches zero in finitely many steps.",
+      "support": "derivation",
+      "source": "White after k steps is 1/2^k, which is positive for every finite k.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "You eat half a cake, then half of what is left, then half of that, and so on without end. How much cake do you eat in total?",
-    "options": ["More than the cake", "The whole cake", "Half the cake"],
+    "options": [
+      "More than the cake",
+      "The whole cake",
+      "Half the cake"
+    ],
     "answer": 1,
     "why": "Each bite is half of what is left, so you never take more than the cake. The pieces add to 1/2 + 1/4 + 1/8 + ... = 1, the whole cake."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

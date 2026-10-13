@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["odd and even", "that neighbouring countries on a map get different colours"],
-    "doesNotKnow": ["that any page cut only by straight lines can be coloured with two colours"]
+    "knows": [
+      "odd and even",
+      "that neighbouring countries on a map get different colours"
+    ],
+    "doesNotKnow": [
+      "that any page cut only by straight lines can be coloured with two colours"
+    ]
   },
   "misconception": "Every map needs many colours, or at least three or four.",
   "objective": "The learner can explain that flipping the colours on one side of each new line removes its clashes without creating new ones, so two colours always suffice for regions cut by straight lines.",
@@ -22,34 +27,46 @@
       "text": "These three lines cut the page into 7 pieces, and 2 colours are enough for them.",
       "support": "simulation",
       "source": "Demo.tsx pieces(3, 3): half-plane clipping of the 300 × 200 page by the three fixed lines gives 7 non-empty pieces (node check: all three crossings inside the page); colours are parities, so at most 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-colours-enough.c2",
       "text": "A new line makes clashes only along itself; flipping every colour on one side fixes them all and makes no new ones, because pieces touching across an older line flip together.",
       "support": "derivation",
       "source": "Two pieces touching across an old line lie on the same side of the new line (the shared border is not crossed by it), so both flip or neither does; pieces touching across the new line now differ. Standard induction on the number of lines.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-colours-enough.c3",
       "text": "For any number of straight lines, a piece's colour can be whether it lies on the flipped side of an odd or even number of lines.",
       "support": "derivation",
       "source": "Colour(x) = parity of #{lines with x on the chosen side}; crossing one line changes exactly one term. E.g. Engel, Problem-Solving Strategies, ch. 1 (invariance and colouring).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.two-colours-enough.c4",
       "text": "Maps with curved borders are different and can need up to four colours.",
       "support": "source",
       "source": "Four colour theorem (Appel and Haken, 1976): every planar map needs at most four colours, and some need four (e.g. four mutually touching regions). Brief 48: do not conflate.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A page is cut by 10 straight lines from edge to edge. How many colours are enough so touching pieces differ?",
-    "options": ["2", "4", "10"],
+    "options": [
+      "2",
+      "4",
+      "10"
+    ],
     "answer": 0,
     "why": "Each new line is fixed by flipping one side; colour each piece by whether it is beyond an odd or even number of lines."
   },

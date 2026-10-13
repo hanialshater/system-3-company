@@ -38,3 +38,8 @@
   - Onboarding docs now carry each role's name.
 - Three more orgs (same night): Life Hacks (incubating category with a safety reviewer), Personalization (waiting for the founder's brief) and International (localization, not translation). That is 7 roles, now 40 in total. HQ gains a second floor with floor tabs. A hydration warning in HQ is fixed: the server passes "now".
 - Design org (same night): Ines (design lead), Rafael (interaction designer) and Kiri (visual designer); the mockup artist moves to Design. Format catalogue v0, design system v0, pipeline step 3 "Design", a design-review trigger, and a Design studio on HQ floor 2. Board items notify the head of product, the principal and platform engineers, the evaluation steward, the learning designer, accessibility and the category leads.
+- Illustration pipeline (same night):
+  - New external `illustrator` role, with a stand-in subagent for intake checks.
+  - Watercolor house style guide and request template; the first request is `_reference` (5 style anchors).
+  - Inbox, provenance format and `tools/illustrations.mjs` (list/check/accept, which requires all reviews), plus the kit `<Illustration>` with an "AI-generated" note.
+  - `snapshot.sh` now also commits `public/`.

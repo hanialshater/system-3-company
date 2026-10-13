@@ -6,10 +6,18 @@
   "concept": "genetic-inheritance",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["dominant and recessive traits", "a seed gets one copy of a gene from each parent"],
-    "doesNotKnow": ["that some traits blend, so a cross of two blends gives red, pink and white at 1 : 2 : 1"]
+    "knows": [
+      "dominant and recessive traits",
+      "a seed gets one copy of a gene from each parent"
+    ],
+    "doesNotKnow": [
+      "that some traits blend, so a cross of two blends gives red, pink and white at 1 : 2 : 1"
+    ]
   },
   "misconception": "Pink x pink gives all pink; red and white never come back.",
   "objective": "The learner can explain that two pink (R W) parents each pass R or W with equal chance, giving red, pink and white seeds at 1 : 2 : 1, so half are pink.",
@@ -19,37 +27,54 @@
       "text": "In incomplete dominance the heterozygote looks in between the two homozygotes (a red x white cross gives pink, as in snapdragons).",
       "support": "source",
       "source": "Griffiths et al., Introduction to Genetic Analysis, ch. 6 (incomplete dominance; snapdragon flower colour). The lesson's flower is invented.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.pink-from-red-white.c2",
       "text": "Two R W parents give seeds R R, R W, W R, W W with equal chance: red 1, pink 2, white 1 out of 4, so half the seeds are pink.",
       "support": "derivation",
       "source": "Enumeration of the 4 equally likely allele pairs (Mendelian segregation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.pink-from-red-white.c3",
       "text": "In the 100 seeded seeds the stage fills, 27 are red, 51 pink and 22 white.",
       "support": "simulation",
       "source": "Demo.tsx, mulberry32 seed 1, each seed takes one random copy from each R W parent. Seed 1 was the first tried and was not tuned (seeds 2 and 3 give 21/55/24 and 23/49/28 red/pink/white). artifacts/scratch/w5life/pink.mjs.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.pink-from-red-white.c4",
       "text": "Model (stated on the stage): a made-up flower with one gene, R giving red and W giving white, pink for one of each; each parent passes either copy with equal chance.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; brief life #48.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A flower is pink when it has one red copy and one white copy of a gene. Cross two pink flowers. About what share of the seeds are pink?",
-    "options": ["All", "Half", "A quarter"],
+    "options": [
+      "All",
+      "Half",
+      "A quarter"
+    ],
     "answer": 1,
     "why": "Each parent passes red or white with equal chance, giving red, pink and white seeds at 1 : 2 : 1, so half are pink."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

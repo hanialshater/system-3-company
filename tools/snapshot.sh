@@ -3,7 +3,7 @@
 cd "$(dirname "$0")/.." || exit 1
 git checkout -q tsconfig.json 2>/dev/null
 node tools/events.mjs backfill >/dev/null 2>&1 || echo "events backfill failed (continuing)"
-git add -A .gitignore company content src .claude tools package.json package-lock.json next.config.mjs tsconfig.json vercel.json playwright.config.ts tests README.md CLAUDE.md .github 2>/dev/null
+git add -A .gitignore public company content src .claude tools package.json package-lock.json next.config.mjs tsconfig.json vercel.json playwright.config.ts tests README.md CLAUDE.md .github 2>/dev/null
 if git diff --cached --quiet; then git push -q origin HEAD 2>/dev/null; echo "nothing new to commit; pushed $(git rev-parse --short HEAD)"; exit 0; fi
 git commit -qm "${1:-Snapshot: work in progress from running agents}
 

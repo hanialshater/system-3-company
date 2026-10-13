@@ -6,10 +6,17 @@
   "concept": "topological-sort",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["following arrows in a graph (maze-depth-first)"],
-    "doesNotKnow": ["that dependencies can allow several valid orders, and that a loop of dependencies allows none"]
+    "knows": [
+      "following arrows in a graph (maze-depth-first)"
+    ],
+    "doesNotKnow": [
+      "that dependencies can allow several valid orders, and that a loop of dependencies allows none"
+    ]
   },
   "misconception": "Tasks with dependencies have only one valid order, or every set of dependencies can be satisfied.",
   "objective": "The learner can build both valid orders of A before B, A before C, B before D, C before D (A B C D and A C B D) by repeatedly taking a free task, and explain why adding D before A leaves no order.",
@@ -19,44 +26,63 @@
       "text": "With A before B, A before C, B before D and C before D, exactly 2 orders of all four tasks obey every rule: A B C D and A C B D.",
       "support": "simulation",
       "source": "Demo.tsx VALID: brute force over all 24 permutations. Builder re-ran the same filter in Node: [ABCD, ACBD].",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.which-order-is-allowed.c2",
       "text": "Taking, again and again, any task with nothing left before it builds a valid order.",
       "support": "source",
       "source": "Kahn, 'Topological sorting of large networks', CACM 5(11), 1962; CLRS (3rd ed.) 22.4 and exercise 22.4-5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.which-order-is-allowed.c3",
       "text": "After A, both B and C are free, and that choice is the only freedom, so there are exactly 2 orders.",
       "support": "derivation",
       "source": "A is the only task with no arrows in, so it is first; D needs B and C, so it is last; B and C have no arrow between them, giving 2 ways. Matches c1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.which-order-is-allowed.c4",
       "text": "With D before A added, every task waits for another, so nothing can go first: a loop has no order at all.",
       "support": "source",
       "source": "A directed graph has a topological order iff it has no cycle (CLRS 22.4, Lemma 22.11). Here A→B→D→A is a cycle; every node has an incoming arrow (A from D, B and C from A, D from B and C).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.which-order-is-allowed.c5",
       "text": "Swapping neighbours in a valid line is allowed only if no arrow joins them (A B C D: swapping A and B or B and D breaks an arrow; swapping B and C gives A C B D).",
       "support": "derivation",
       "source": "Swapping adjacent x, y changes only their relative order, so it is valid iff there is no arrow x→y. Demo.tsx swap().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Tasks: X before Y, Y before Z, Z before X. How many orders obey every rule?",
-    "options": ["0", "1", "3"],
+    "options": [
+      "0",
+      "1",
+      "3"
+    ],
     "answer": 0,
     "why": "The rules form a loop: every task waits for another, so no task can go first and no order exists."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

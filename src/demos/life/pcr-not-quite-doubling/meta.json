@@ -6,10 +6,17 @@
   "concept": "pcr-amplification",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["repeated doubling"],
-    "doesNotKnow": ["that a slightly lower per-cycle factor compounds into a large shortfall"]
+    "knows": [
+      "repeated doubling"
+    ],
+    "doesNotKnow": [
+      "that a slightly lower per-cycle factor compounds into a large shortfall"
+    ]
   },
   "misconception": "90% efficient copying gives about 90% of the perfect result.",
   "objective": "The learner can explain that a x1.9 cycle instead of x2 is 95% of perfect, and 0.95 multiplied over 30 cycles leaves about 21% of the perfect count.",
@@ -19,30 +26,45 @@
       "text": "In the exponential phase of PCR each cycle roughly doubles the number of DNA copies; real efficiency is below 100%.",
       "support": "source",
       "source": "Saiki et al., Science 239, 1988 (PCR); Kubista et al., Molecular Aspects of Medicine 27, 2006 (efficiency in real-time PCR).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.pcr-not-quite-doubling.c2",
       "text": "After 30 cycles, a perfect doubling gives 2^30 = 1.07 billion copies from one molecule; at x1.9 per cycle it gives 1.9^30 = 230 million, which is 21% of perfect.",
       "support": "derivation",
       "source": "Computed in Demo.tsx from count(e, c) = (1 + e/100)^c; node check: 1.9^30 = 230,466,618; 2^30 = 1,073,741,824; ratio 0.2146. Other stage values: 80% gives 45.5 million (4%), 95% gives 502 million (47%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.pcr-not-quite-doubling.c3",
       "text": "Model (stated on the stage): one starting molecule, a fixed efficiency every cycle, no plateau. A x1.9 cycle is 0.95 of a perfect cycle, and 0.95 multiplied 30 times is 0.21.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; brief life #44. Real PCR plateaus as reagents run out (Kubista et al. 2006). 0.95^30 = 0.2146.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A copying process should double each cycle but only manages x1.9. After 30 cycles, the result is closest to what share of the perfect count?",
-    "options": ["About 90%", "About 50%", "About 20%"],
+    "options": [
+      "About 90%",
+      "About 50%",
+      "About 20%"
+    ],
     "answer": 2,
     "why": "Each cycle is 95% of perfect, and that shortfall multiplies every cycle: 0.95^30 is about 0.21."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

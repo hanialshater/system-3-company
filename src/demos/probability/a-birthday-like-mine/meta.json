@@ -28,42 +28,54 @@
       "text": "The model uses 365 equally likely birthdays and ignores leap days and uneven birth rates.",
       "support": "convention",
       "source": "Stated assumption; DAYS = 365 in model.ts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.a-birthday-like-mine.c2",
       "text": "With 23 other people, some two of them share a birthday 50.7% of the time, but someone shares yours only 6.1% of the time.",
       "support": "derivation",
       "source": "1 - prod_{i<23}(1 - i/365) = 0.5073; 1 - (364/365)^23 = 0.0612 (pAny, pMe in model.ts; recomputed in node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.a-birthday-like-mine.c3",
       "text": "With 183 other people, someone shares your birthday 39.5% of the time.",
       "support": "derivation",
       "source": "1 - (364/365)^183 = 0.3947 (pMe).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.a-birthday-like-mine.c4",
       "text": "With 253 other people, someone shares your birthday 50.0% of the time; 252 gives 49.9%, so 253 is the smallest crowd with even odds.",
       "support": "derivation",
       "source": "1 - (364/365)^253 = 0.5005; 1 - (364/365)^252 = 0.4991 (evenOdds() returns 253).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.a-birthday-like-mine.c5",
       "text": "23 people make 253 pairs, but you are in only 23 of them; each comparison matches with chance 1 in 365.",
       "support": "derivation",
       "source": "23 x 22 / 2 = 253 pairs; you versus 23 others = 23 comparisons; each other person matches you with probability 1/365.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.a-birthday-like-mine.c6",
       "text": "It takes about 253 comparisons with you to reach even odds.",
       "support": "derivation",
       "source": "n = 253 gives 1 - (364/365)^n = 0.5005 (claim 4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

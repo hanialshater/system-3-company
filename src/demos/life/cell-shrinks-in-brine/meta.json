@@ -6,10 +6,18 @@
   "concept": "osmosis",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["diffusion: things spread from crowded to less crowded"],
-    "doesNotKnow": ["that water moves toward the more concentrated side until the two concentrations match", "how to compute the final volume"]
+    "knows": [
+      "diffusion: things spread from crowded to less crowded"
+    ],
+    "doesNotKnow": [
+      "that water moves toward the more concentrated side until the two concentrations match",
+      "how to compute the final volume"
+    ]
   },
   "misconception": "Salt moves into the cell and the cell swells.",
   "objective": "The learner can explain that when only water can cross, a cell with 0.3 stuff per volume in a 0.6 bath loses water until its volume is 0.3 / 0.6 = 0.5, because the stuff inside cannot leave.",
@@ -19,30 +27,45 @@
       "text": "If only water can cross a membrane, water moves toward the side with more dissolved stuff until the concentrations on the two sides match.",
       "support": "source",
       "source": "Osmosis, van't Hoff ideal osmometer (Nelson, Biological Physics, 2004; Alberts et al., Molecular Biology of the Cell, ch. 11).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.cell-shrinks-in-brine.c2",
       "text": "A toy cell with 0.3 dissolved stuff per volume, volume 1, in a bath of 0.6 where only water crosses ends at volume 0.3 / 0.6 = 0.5.",
       "support": "derivation",
       "source": "The amount of stuff inside is fixed: 0.3 x 1 = V x 0.6, so V = 0.5. Demo.tsx computes vol(pct) = 30 / pct. Other baths shown: 0.15 gives 2.00, 0.9 gives 0.33.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.cell-shrinks-in-brine.c3",
       "text": "Model (stated on the stage): an ideal toy cell where only water crosses; real cells shrink less because they have walls and their own non-water bulk. Cell area is drawn proportional to volume.",
       "support": "convention",
       "source": "Idealised ideal-osmometer model; brief life #43. Real cell volume change is smaller because part of the volume is not water (Nelson, Biological Physics).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Only water can cross a cell's membrane. The cell holds less dissolved stuff than the bath around it. What happens?",
-    "options": ["Water leaves and the cell shrinks", "Water enters and the cell swells", "Nothing moves"],
+    "options": [
+      "Water leaves and the cell shrinks",
+      "Water enters and the cell swells",
+      "Nothing moves"
+    ],
     "answer": 0,
     "why": "Water moves toward the side with more dissolved stuff, so the cell loses water until the two sides match."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

@@ -11,8 +11,12 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["area of a square as side × side, in square metres"],
-    "doesNotKnow": ["the square root as the side that gives an area, and that it need not be a whole number"]
+    "knows": [
+      "area of a square as side × side, in square metres"
+    ],
+    "doesNotKnow": [
+      "the square root as the side that gives an area, and that it need not be a whole number"
+    ]
   },
   "misconception": "The square root of 50 is 25 (halving), or it must be a whole number.",
   "objective": "The learner can bracket √50 between 7 (49) and 8 (64), refine it to about 7.07, and say that a square root is the side of a square with that area.",
@@ -22,41 +26,55 @@
       "text": "A square's area is side × side: 5 × 5 = 25, 10 × 10 = 100 and 25 × 25 = 625 square metres.",
       "support": "derivation",
       "source": "Area of a square = s². Demo.tsx area(x) = x × x rounded to 2 decimals; node recomputed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.side-of-the-square.c2",
       "text": "7 × 7 = 49 and 8 × 8 = 64, so a 50 m² square has a side between 7 m and 8 m, and no whole number squared is 50.",
       "support": "derivation",
       "source": "7² = 49 < 50 < 64 = 8²; squares of whole numbers increase, so none lies strictly between 49 and 64.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.side-of-the-square.c3",
       "text": "7.1 × 7.1 = 50.41 (just over 50) and 7.07 × 7.07 = 49.98 (just under 50).",
       "support": "derivation",
       "source": "Node: 7.1 ** 2 = 50.41, 7.07 ** 2 = 49.9849, shown as 49.98.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.side-of-the-square.c4",
       "text": "The square root of 50 is the side whose square is 50: about 7.07 m.",
       "support": "derivation",
       "source": "Definition of the principal square root; node Math.sqrt(50) = 7.0711 (Demo.tsx ROOT). The dashed outline is drawn at side ROOT.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.side-of-the-square.c5",
       "text": "Halving 50 does not find the side: a 25 m side gives 625 m².",
       "support": "derivation",
       "source": "25² = 625 ≠ 50.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A square garden has area 30 m². Its side is...",
-    "options": ["15 m", "between 5 m and 6 m", "exactly 6 m"],
+    "options": [
+      "15 m",
+      "between 5 m and 6 m",
+      "exactly 6 m"
+    ],
     "answer": 1,
     "why": "5 × 5 = 25 and 6 × 6 = 36, so the side (√30, about 5.48 m) lies between them."
   },

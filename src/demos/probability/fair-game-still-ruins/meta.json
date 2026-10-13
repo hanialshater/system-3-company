@@ -28,42 +28,54 @@
       "text": "In a fair game of $1 bets where you hold $a and the house $b, you end up with all $(a + b) with probability a / (a + b).",
       "support": "source",
       "source": "Classical gambler's ruin result for a symmetric random walk (Feller, An Introduction to Probability Theory and Its Applications, vol. 1, ch. 14); exact(stake) = stake / 110 in model.ts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.fair-game-still-ruins.c2",
       "text": "With $10 against $100 your chance of taking all $110 is 10/110 = 9.1%; with $50 against $60 it is 45.5%.",
       "support": "derivation",
       "source": "a / (a + b) = 10/110 = 0.0909 and 50/110 = 0.4545 (claim 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.fair-game-still-ruins.c3",
       "text": "On the stage, 2 of 30 games from $10 reached $110, and 24 of 330 after 300 more; from $50, 13 of 30.",
       "support": "simulation",
       "source": "Game g at stake a uses mulberry32(4000 + 1000 a + g), untuned (first seeds tried). Over 60 other seed sets: $10 / 30 games averaged 2.4 wins (SD 1.4, range 0 to 6); $10 / 330 games 29.3 (SD 4.7, range 19 to 39); $50 / 30 games 13.6 (SD 2.3, range 9 to 18). Expected 2.7, 30 and 13.6.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.fair-game-still-ruins.c4",
       "text": "Each bet is a fair coin, so the average change in your money per bet is zero.",
       "support": "derivation",
       "source": "+1 or -1 with probability 1/2 each has mean 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.fair-game-still-ruins.c5",
       "text": "The poorer side is usually ruined while the rare wins run long: most lines on the stage end at $0.",
       "support": "derivation",
       "source": "Follows from claim 2: from $10, 90.9% of games end in ruin. The drawn lines are a seeded illustration (claim 3).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.fair-game-still-ruins.c6",
       "text": "The model says nothing about the odds in real casinos, which are not fair.",
       "support": "convention",
       "source": "Scope statement: the lesson uses a fair coin and unlimited play until one side is out of money.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

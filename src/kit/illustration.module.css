@@ -1,0 +1,27 @@
+.frame {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 360px;
+  background: #faf6ee; /* paper, in both themes: watercolor never sits on a dark ground */
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.04), 0 6px 18px rgb(0 0 0 / 0.08);
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.note {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 9px;
+  color: #6b5f4a;
+  background: rgb(250 246 238 / 0.85);
+  padding: 1px 6px;
+  border-radius: 999px;
+}

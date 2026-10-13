@@ -28,28 +28,36 @@
       "text": "The layers h = 3x + 1 and y = 2h − 5 are a toy, labelled 'Toy two-layer stack' on the stage.",
       "support": "convention",
       "source": "Brief 49 in company/domains/briefs/ai.md; A1, B1, A2, B2 in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.stack-without-bend.c2",
       "text": "Stacked, the two layers give y = 2(3x + 1) − 5 = 6x − 3: at x = 0, 1, 2 the outputs are −3, 3, 9, all on one straight line.",
       "support": "derivation",
       "source": "Algebra; stack(x, false) in Demo.tsx, node: −3, 3, 9 (and −9 at x = −1). A composition of affine maps is affine.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.stack-without-bend.c3",
       "text": "With a ReLU between the layers (negative h becomes 0), the output is flat at −5 for x below −1/3 and follows 6x − 3 above it, a kink no single straight layer can make.",
       "support": "derivation",
       "source": "stack(x, true) in Demo.tsx: h = 3x + 1 < 0 iff x < −1/3, then y = 2·0 − 5 = −5. node: x = −1 gives −5 (bent) vs −9 (straight).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.stack-without-bend.c4",
       "text": "A nonlinearity between layers is what lets extra layers add power; real neural networks put one after each hidden layer.",
       "support": "source",
       "source": "About real systems: Goodfellow, Bengio & Courville 2016, Deep Learning §6.1 (a linear-only stack is still linear) and §6.3 (ReLU is the default hidden-unit nonlinearity); universal approximation with nonlinear activations: Cybenko 1989, Hornik 1991. 'After each hidden layer' describes standard practice, not every architecture.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

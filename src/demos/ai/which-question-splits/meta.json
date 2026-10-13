@@ -27,28 +27,36 @@
       "text": "The labels 0, 0, 1, 0, 1, 1, 1, 1 at x = 1 to 8 are a toy, labelled 'Toy labels' on the stage.",
       "support": "convention",
       "source": "Brief 44 in company/domains/briefs/ai.md; LABELS in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-question-splits.c2",
       "text": "Weighted Gini for the cuts: 2|3 0.21, 4|5 0.19 (the lowest of all seven cuts), 6|7 0.38; the others are 1|2 0.36, 3|4 0.37, 5|6 0.30.",
       "support": "derivation",
       "source": "weighted(c) in Demo.tsx; node re-run: 0.3571, 0.2083, 0.3667, 0.1875, 0.3000, 0.3750, 0.4286 for cuts 1|2 to 7|8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-question-splits.c3",
       "text": "At 4|5 the left group 0, 0, 1, 0 has one stray and the right group is all 1s; at 2|3 the left group is pure but the stray 0 at x = 4 sits in the right group of six, which counts for more.",
       "support": "derivation",
       "source": "4|5: (4·0.375 + 4·0)/8 = 0.1875. 2|3: (2·0 + 6·(1 − (5/6)² − (1/6)²))/8 = 6·0.2778/8 = 0.2083.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.which-question-splits.c4",
       "text": "Gini impurity of a group is 1 minus the sum of squared label shares (0 = one label only, 0.5 = half and half for two labels), and CART-style trees choose the split that most reduces size-weighted impurity.",
       "support": "source",
       "source": "Breiman, Friedman, Olshen & Stone 1984, Classification and Regression Trees (Gini index). Placing cuts between neighbouring values is a convention.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

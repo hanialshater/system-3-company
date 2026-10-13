@@ -26,28 +26,36 @@
       "text": "Toy scores: spam 0.9, 0.8, 0.7, 0.5, 0.3 and real mail 0.6, 0.4, 0.3, 0.2, 0.1, giving 25 spam-real pairs. The stage is labelled 'Toy scores'.",
       "support": "convention",
       "source": "Brief 55 in company/domains/briefs/ai.md; SPAM, REAL in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.rank-the-pairs.c2",
       "text": "In 21.5 of the 25 pairs the spam scores higher (one tie, 0.3 against 0.3, counts half), so the chance is 86%.",
       "support": "derivation",
       "source": "Row wins 5, 5, 5, 4, 2.5 = 21.5; 21.5 / 25 = 0.86. Node re-run of score() agrees. Losses: spam 0.5 loses to real 0.6; spam 0.3 loses to real 0.4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.rank-the-pairs.c3",
       "text": "The share of correctly ordered spam-real pairs (ties half) is called AUC, the area under the ROC curve; it equals the probability that a randomly chosen positive scores higher than a randomly chosen negative.",
       "support": "source",
       "source": "Hanley & McNeil 1982, 'The meaning and use of the area under a receiver operating characteristic (ROC) curve', Radiology 143.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.rank-the-pairs.c4",
       "text": "AUC needs no cutoff but can hide how a scorer behaves at the cutoff you actually use.",
       "support": "derivation",
       "source": "AUC averages over all possible cutoffs; two scorers with equal AUC can differ at one chosen threshold. General property of the measure (about real systems); not shown on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -6,10 +6,17 @@
   "concept": "molecular-clock",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["DNA differences accumulate over time as mutations"],
-    "doesNotKnow": ["that the difference between two species builds up along both lines since they split"]
+    "knows": [
+      "DNA differences accumulate over time as mutations"
+    ],
+    "doesNotKnow": [
+      "that the difference between two species builds up along both lines since they split"
+    ]
   },
   "misconception": "Two species differing by 1.2% split when one line gained 1.2%.",
   "objective": "The learner can explain that the difference between two species is the changes on both branches, 2 x rate x time, so 1.2% at 0.1% per line per million years means a split 6 million years ago, not 12.",
@@ -19,30 +26,45 @@
       "text": "After two species split, each lineage accumulates changes independently, so the difference between them is about 2 x rate x time since the split.",
       "support": "source",
       "source": "Zuckerkandl & Pauling, Evolving Genes and Proteins, 1965 (molecular clock); Graur & Li, Fundamentals of Molecular Evolution, 2000, divergence d = 2rt.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.clock-counts-both-branches.c2",
       "text": "With a difference of 1.2% and a rate of 0.1% per million years on each line, the split was 1.2 / (2 x 0.1) = 6 million years ago; splits 3 and 12 million years ago would give 0.6% and 2.4%.",
       "support": "derivation",
       "source": "Arithmetic; Demo.tsx diff(t) = 2 x t tenths of a percent. 3 gives 0.6%, 6 gives 1.2%, 9 gives 1.8%, 12 gives 2.4%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.clock-counts-both-branches.c3",
       "text": "Model (stated on the stage): the rate of 0.1% per million years is made up; the toy clock assumes a constant rate and no letter changing twice.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; brief life #46. Real rates vary by gene and lineage, and repeat hits at the same site make older differences undercounted (Graur & Li 2000).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Two species differ at 3% of their DNA letters, and each line changes at 0.1% per million years. About when did they split?",
-    "options": ["15 million years ago", "30 million years ago", "60 million years ago"],
+    "options": [
+      "15 million years ago",
+      "30 million years ago",
+      "60 million years ago"
+    ],
     "answer": 0,
     "why": "The 3% builds up on both branches, so each line gained 1.5%; at 0.1% per million years that is 15 million years."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

@@ -6,26 +6,75 @@
   "concept": "pythagoras-by-rearrangement",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-math", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that a² + b² = c² for the long side of a right triangle", "how to add distances"],
-    "doesNotKnow": ["how much walking a diagonal saves"]
+    "knows": [
+      "that a² + b² = c² for the long side of a right triangle",
+      "how to add distances"
+    ],
+    "doesNotKnow": [
+      "how much walking a diagonal saves"
+    ]
   },
   "misconception": "A diagonal is only a little shorter than the two sides added.",
   "objective": "The learner can compute a diagonal from its two legs and see that it is far shorter than going round the corner.",
   "claims": [
-    { "id": "math.straight-across-saves.c1", "text": "Straight across 300 m east and 400 m north is √(300² + 400²) = √250000 = 500 m.", "support": "derivation", "source": "Pythagorean theorem; recomputed in node: Math.hypot(300, 400) = 500.", "status": "unverified" },
-    { "id": "math.straight-across-saves.c2", "text": "The L-route is 300 + 400 = 700 m, so straight across saves 700 − 500 = 200 m, about 29% of the walk.", "support": "derivation", "source": "Node: 700 - 500 = 200; 200/700 = 0.2857 (Demo.tsx lRoute, straight, saved).", "status": "unverified" },
-    { "id": "math.straight-across-saves.c3", "text": "For the straight side c of a right triangle with legs a and b, a² + b² = c², and c is always shorter than a + b.", "support": "derivation", "source": "Pythagorean theorem; (a + b)² = a² + b² + 2ab > c² for a, b > 0, so a + b > c.", "status": "unverified" },
-    { "id": "math.straight-across-saves.c4", "text": "The distances assume flat, open ground with nothing in the way of the straight path.", "support": "convention", "source": "Stated on stage ('Flat ground') and in the reveal.", "status": "unverified" }
+    {
+      "id": "math.straight-across-saves.c1",
+      "text": "Straight across 300 m east and 400 m north is √(300² + 400²) = √250000 = 500 m.",
+      "support": "derivation",
+      "source": "Pythagorean theorem; recomputed in node: Math.hypot(300, 400) = 500.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.straight-across-saves.c2",
+      "text": "The L-route is 300 + 400 = 700 m, so straight across saves 700 − 500 = 200 m, about 29% of the walk.",
+      "support": "derivation",
+      "source": "Node: 700 - 500 = 200; 200/700 = 0.2857 (Demo.tsx lRoute, straight, saved).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.straight-across-saves.c3",
+      "text": "For the straight side c of a right triangle with legs a and b, a² + b² = c², and c is always shorter than a + b.",
+      "support": "derivation",
+      "source": "Pythagorean theorem; (a + b)² = a² + b² + 2ab > c² for a, b > 0, so a + b > c.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.straight-across-saves.c4",
+      "text": "The distances assume flat, open ground with nothing in the way of the straight path.",
+      "support": "convention",
+      "source": "Stated on stage ('Flat ground') and in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "You walk 60 m east then 80 m north. Straight across instead, how much shorter is the walk?",
-    "options": ["40 m", "20 m", "10 m"],
+    "options": [
+      "40 m",
+      "20 m",
+      "10 m"
+    ],
     "answer": 0,
     "why": "Straight across is √(60² + 80²) = √10000 = 100 m, against 60 + 80 = 140 m: 40 m shorter."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

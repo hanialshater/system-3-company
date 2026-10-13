@@ -6,10 +6,18 @@
   "concept": "password-search-space",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that passwords can be guessed", "multiplying choices (2 shirts x 3 trousers = 6 outfits)"],
-    "doesNotKnow": ["how to compare password strength by counting equally likely possibilities"]
+    "knows": [
+      "that passwords can be guessed",
+      "multiplying choices (2 shirts x 3 trousers = 6 outfits)"
+    ],
+    "doesNotKnow": [
+      "how to compare password strength by counting equally likely possibilities"
+    ]
   },
   "misconception": "A long-looking string of random letters is stronger than a few random words.",
   "objective": "The learner can compare 26^8 (about 209 billion) with 2048^4 (about 17.6 trillion), say the words win by about 84 times, and explain that each added letter multiplies by 26 and each added word by 2,048.",
@@ -19,44 +27,63 @@
       "text": "8 random lowercase letters give 208,827,064,576 possible passwords; 4 random words from a list of 2,048 give 17,592,186,044,416, about 84 times more.",
       "support": "simulation",
       "source": "Node: 26**8 = 208827064576, 2048**4 = 17592186044416, ratio 84.24. Demo.tsx computes with BigInt (count()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.four-words-beat-eight-letters.c2",
       "text": "At 10 billion guesses a second, trying every 8-letter password takes about 21 seconds and every 4-word password about 29 minutes.",
       "support": "derivation",
       "source": "208827064576 / 1e10 = 20.9 s; 17592186044416 / 1e10 = 1759 s = 29.3 min. The 10-billion rate is a stated assumption on the stage, not a measured attacker speed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.four-words-beat-eight-letters.c3",
       "text": "Each extra letter multiplies the count by 26, each extra word by 2,048.",
       "support": "derivation",
       "source": "Multiplication principle: n independent choices from a pool of p give p^n; p^(n+1) = p x p^n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.four-words-beat-eight-letters.c4",
       "text": "Strength is the number of equally likely passwords, which holds only if every letter or word is picked at random.",
       "support": "source",
       "source": "NIST SP 800-63B (2017), Appendix A: entropy estimates apply to randomly generated secrets; human-chosen passwords are far weaker. Bonneau, 'The science of guessing', IEEE S&P 2012.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.four-words-beat-eight-letters.c5",
       "text": "Live counts on the stage, e.g. 10 letters give 141,167,095,653,376 and 6 words give 73,786,976,294,838,206,464 (try all: about 4 hours and 234 years at 10 billion a second); the bar shows the number of digits.",
       "support": "simulation",
       "source": "Node: 26**10 = 141167095653376 > 2048**4; 26**9 = 5429503678976 < 2048**4; 2048**6 = 2^66 = 73786976294838206464 (BigInt). Times: 26**10/1e10 = 14117 s = 3.9 h; 2048**6/1e10 = 7.38e9 s = 234.0 years of 365 days. A 2,048-word list is the BIP-39 list size; the stage says only 'a list of 2,048'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Which has more equally likely possibilities: 3 random words from a 2,048-word list, or 6 random digits (0-9)?",
-    "options": ["3 words", "6 digits", "About the same"],
+    "options": [
+      "3 words",
+      "6 digits",
+      "About the same"
+    ],
     "answer": 0,
     "why": "2048^3 = 8,589,934,592 against 10^6 = 1,000,000: each word multiplies by 2,048, each digit only by 10."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

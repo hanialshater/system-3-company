@@ -49,6 +49,7 @@ export const PERSONA = {
   "design-lead": "Ines",
   "interaction-designer": "Rafael",
   "visual-designer": "Kiri",
+  illustrator: "Aquarelle",
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.

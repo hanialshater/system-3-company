@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["perimeter as the distance around a shape", "area of a rectangle as width × height"],
-    "doesNotKnow": ["that a fixed perimeter fixes neither the shape nor the area of a rectangle"]
+    "knows": [
+      "perimeter as the distance around a shape",
+      "area of a rectangle as width × height"
+    ],
+    "doesNotKnow": [
+      "that a fixed perimeter fixes neither the shape nor the area of a rectangle"
+    ]
   },
   "misconception": "The same length of fence always encloses the same area; or a long thin pen holds more.",
   "objective": "The learner can explain that with w + h fixed at 10, the area w × (10 − w) peaks at 25 for the 5 × 5 square and falls by the square of the distance from 5.",
@@ -22,41 +27,55 @@
       "text": "A rectangle w by h uses w + h + w + h of fence, so 20 m of fence means w + h = 10.",
       "support": "derivation",
       "source": "Perimeter of a rectangle = 2(w + h). Demo.tsx FENCE = 20, HALF = FENCE / 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.fence-for-biggest-pen.c2",
       "text": "With 20 m of fence the pens hold 1 × 9 = 9, 2 × 8 = 16, 3 × 7 = 21, 4 × 6 = 24 and 5 × 5 = 25 square metres (and the same again for 6 × 4 down to 9 × 1).",
       "support": "derivation",
       "source": "area(w) = w × (10 − w) in Demo.tsx, recomputed in node for w = 1..9: 9, 16, 21, 24, 25, 24, 21, 16, 9.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.fence-for-biggest-pen.c3",
       "text": "Moving d metres away from the square costs d² square metres: the area is 25 minus the square of the distance from 5.",
       "support": "derivation",
       "source": "w(10 − w) = 25 − (w − 5)² (expand both sides: 10w − w² = 25 − w² + 10w − 25). The reveal quotes the learner's visited width nearest 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.fence-for-biggest-pen.c4",
       "text": "For a fixed length of fence, the square pen holds the most of any rectangle.",
       "support": "derivation",
       "source": "With w + h = P/2, w·h = (P/4)² − (w − P/4)² ≤ (P/4)², equality only at w = h (AM-GM). Rectangles only; a circle would hold more.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.fence-for-biggest-pen.c5",
       "text": "Each small grid square is 1 m², so the area is the number of squares inside the fence.",
       "support": "convention",
       "source": "Definition of area in square metres; the stage draws a 1 m grid (U px per metre in Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "You have 40 m of fence for a rectangular pen. Which holds the most?",
-    "options": ["5 m by 15 m", "10 m by 10 m", "1 m by 19 m"],
+    "options": [
+      "5 m by 15 m",
+      "10 m by 10 m",
+      "1 m by 19 m"
+    ],
     "answer": 1,
     "why": "Width plus height is 20. The square 10 × 10 = 100 m² beats 5 × 15 = 75 and 1 × 19 = 19."
   },

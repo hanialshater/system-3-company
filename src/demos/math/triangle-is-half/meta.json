@@ -11,8 +11,12 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["area of a rectangle as width × height, counted in grid squares"],
-    "doesNotKnow": ["that every triangle is half a base × height rectangle, however slanted"]
+    "knows": [
+      "area of a rectangle as width × height, counted in grid squares"
+    ],
+    "doesNotKnow": [
+      "that every triangle is half a base × height rectangle, however slanted"
+    ]
   },
   "misconception": "A lopsided triangle has a different area from an upright one on the same base and height.",
   "objective": "The learner can explain that sliding the top corner along a line parallel to the base keeps the base and height, so the area stays base × height ÷ 2 (here 12).",
@@ -22,34 +26,46 @@
       "text": "A triangle with base 6 and height 4 has area 12 squares wherever its top corner sits on the line 4 above the base (tried from 6 left of the base to 6 past its end).",
       "support": "derivation",
       "source": "Shoelace area of (0,0), (6,0), (x,4) is |6·4|/2 = 12 for every x. Demo.tsx shoelace(corners(x)); node gives 12 for x = −6, −3, 0, 3, 6, 9, 12.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.triangle-is-half.c2",
       "text": "With the tip over the base, its drop line cuts the 6 × 4 box in two and the triangle is half of each part: half of 24.",
       "support": "derivation",
       "source": "Each part is a rectangle split by its diagonal into two equal right triangles. 6 × 4 = 24, 24 / 2 = 12.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.triangle-is-half.c3",
       "text": "Sliding the tip, each line across the triangle keeps its length and only shifts sideways, so the total area cannot change.",
       "support": "derivation",
       "source": "At height y the cross-section has length 6(1 − y/4), independent of the tip's x (Demo.tsx strip lines at y = 1, 2, 3). Cavalieri's principle: equal cross-sections give equal areas.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.triangle-is-half.c4",
       "text": "Any triangle's area is base × height ÷ 2.",
       "support": "derivation",
       "source": "Standard result (Euclid, Elements I.41: a triangle is half a parallelogram on the same base and between the same parallels).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Two triangles share a base of 10 cm and both reach 3 cm high. One is upright, one leans far over. Which has more area?",
-    "options": ["The upright one", "The leaning one", "Neither: both are 15 cm²"],
+    "options": [
+      "The upright one",
+      "The leaning one",
+      "Neither: both are 15 cm²"
+    ],
     "answer": 2,
     "why": "Same base, same height: 10 × 3 ÷ 2 = 15 for both. Leaning only shifts each slice sideways."
   },

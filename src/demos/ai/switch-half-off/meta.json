@@ -27,35 +27,45 @@
       "text": "Toy setup: four units each output 1; in each pass each unit is switched off with chance 50% and the survivors are doubled, so a pass total is 0, 2, 4, 6 or 8. The stage is labelled 'Toy: 4 units, each outputs 1'.",
       "support": "convention",
       "source": "Brief 54 in company/domains/briefs/ai.md; makePasses(), totalOf() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.switch-half-off.c2",
       "text": "Each unit's average output is 0.5 x 2 = 1, so the four units average 4, the same as all on.",
       "support": "derivation",
       "source": "Expectation: 4 x (0.5 x 2 + 0.5 x 0) = 4. The brief's script (100,000 passes) gave a mean of 3.994.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.switch-half-off.c3",
       "text": "In this toy, after 221 passes (1 + 20 + 200) the average total is 3.96, and single passes ran from 0 to 8.",
       "support": "derivation",
       "source": "Node re-run of makePasses() with seed 3 (one of three seeds looked at, 3, 5 and 21, none tuned for the result): mean of 221 passes 3.964, min 0, max 8; after 21 passes 4.48. The reveal quotes the average at the learner's own pass count.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.switch-half-off.c4",
       "text": "Over 2000 seeds the average of 221 passes ran from 3.78 to 4.23 (5th to 95th percentile; median 4.00).",
       "support": "derivation",
       "source": "Node re-run over seeds 1 to 2000 with the same generator: p5 3.783, median 4.000, p95 4.226.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.switch-half-off.c5",
       "text": "Dropout switches units off at random during training; the authors report that it reduces units' reliance on particular partners (co-adaptation) and helps against overfitting.",
       "support": "source",
       "source": "Srivastava, Hinton, Krizhevsky, Sutskever & Salakhutdinov 2014, 'Dropout: A Simple Way to Prevent Neural Networks from Overfitting', JMLR 15. About real systems; the effect is the authors' claim and this toy does not demonstrate it, only the unchanged average.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

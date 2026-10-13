@@ -27,35 +27,45 @@
       "text": "Toy setup: two tanh hidden units, each starting at input weight 0.5, bias 0 and output weight 1, trained by gradient descent (learning rate 0.3) on four points (x = -1.5, -0.5, 0.5, 1.5 with targets 0, 1, 1, 0). The stage is labelled 'Toy: 2 units, 4 data points'.",
       "support": "convention",
       "source": "Brief 52 in company/domains/briefs/ai.md (the brief's data and numbers differ: this toy uses its own data); XS, TS, LR, START in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.twins-never-split.c2",
       "text": "In this toy, after 200 steps the two input weights are equal (both about 0.000) and the largest gap between them at any step is exactly 0; the loss is 0.250.",
       "support": "derivation",
       "source": "Node re-run of the model in Demo.tsx (deterministic): weights 1.1e-17 and 1.1e-17, max |w1 - w2| over all 200 steps = 0, loss 0.25.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.twins-never-split.c3",
       "text": "Equal units receive equal gradients, so gradient descent changes them by equal amounts and they stay equal at every step.",
       "support": "derivation",
       "source": "By symmetry: both units compute the same output, so the gradient of the loss with respect to each unit's weights is the same function of the same numbers.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.twins-never-split.c4",
       "text": "In this toy, nudging unit 2's weight by 0.01 and training 200 more steps gives weights of about -1.627 and 1.627 (a gap of 3.254), and the loss falls from 0.250 to 0.003.",
       "support": "derivation",
       "source": "Node re-run: after the nudge and 200 steps, w1 = -1.6269, w2 = 1.6269, gap 3.2538, loss 0.2500 -> 0.0025. Deterministic; the nudge size is the lesson's choice and the numbers depend on this toy's data and learning rate.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.twins-never-split.c5",
       "text": "Neural networks are started from random weights, which breaks the symmetry between units so they can learn different things.",
       "support": "source",
       "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, section 8.4 (parameter initialization: the initial parameters need to 'break symmetry' between different units). About real systems.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

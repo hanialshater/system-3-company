@@ -28,28 +28,36 @@
       "text": "The next-word odds after 'I ate' (pizza 45%, rice 30%, soup 15%, cake 6%, glue 4%) are invented, labelled 'Invented odds' on the stage.",
       "support": "convention",
       "source": "Brief 41 in company/domains/briefs/ai.md (odds 45/30/15/6/4); words added for readability. WORDS in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.keep-the-top-85.c2",
       "text": "At p = 85%, the top three words add to 45 + 30 + 15 = 90% (the top two give only 75%), so three are kept and cake and glue are cut; pizza's rescaled chance is 45/90 = 50%.",
       "support": "derivation",
       "source": "keptCount(85) = 3, keptSum(3) = 90, share(0, 3) = 50 in Demo.tsx; node re-run: kept 3, sum 90, top 0.5. Start p = 75 keeps 2 (pizza 60%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.keep-the-top-85.c3",
       "text": "Words cut by top-p cannot be drawn: in any set of 20 draws they come up 0 times.",
       "support": "derivation",
       "source": "draw20(k, seed) in Demo.tsx samples only among the first k words (index never exceeds k - 1). Draw sets use mulberry32(seed = draw number 1, 2, ...), untuned; the zero count holds for every seed by construction.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.keep-the-top-85.c4",
       "text": "Top-p sampling, also called nucleus sampling, is used in some real text generators: it keeps the smallest set of top words whose probabilities reach p and renormalises them.",
       "support": "source",
       "source": "About real systems: Holtzman, Buys, Du, Forbes & Choi 2020, 'The Curious Case of Neural Text Degeneration', ICLR (defines nucleus / top-p sampling as the smallest set with cumulative probability >= p, rescaled). 'Some real text generators' rather than 'all'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

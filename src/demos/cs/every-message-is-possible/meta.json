@@ -6,10 +6,17 @@
   "concept": "one-time-pad",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["XOR on bits (logic-gates)"],
-    "doesNotKnow": ["that XOR with a random key used once hides the message completely"]
+    "knows": [
+      "XOR on bits (logic-gates)"
+    ],
+    "doesNotKnow": [
+      "that XOR with a random key used once hides the message completely"
+    ]
   },
   "misconception": "If you try all keys, the one that gives a sensible message reveals the message.",
   "objective": "The learner can explain that the ciphertext 1101 fits all 16 possible 4-bit messages, each with its own key, so trying keys cannot single out the message.",
@@ -19,44 +26,63 @@
       "text": "XOR gives 1 where the two bits differ.",
       "support": "convention",
       "source": "Truth table of exclusive OR (e.g. Harris and Harris, Digital Design and Computer Architecture, 1.5).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.every-message-is-possible.c2",
       "text": "For every 4-bit message there is a key that turns it into 1101: the key is the message XOR 1101.",
       "support": "derivation",
       "source": "(m XOR k) = c iff k = m XOR c, since XOR is its own inverse. Demo.tsx keyFor(m) = m ^ CIPHER; the stage shows m XOR key = 1101.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.every-message-is-possible.c3",
       "text": "All 16 possible 4-bit messages fit 1101, and all 16 keys are different.",
       "support": "simulation",
       "source": "Node: new Set([...Array(16)].map((_, m) => m ^ 0b1101)).size = 16. Demo.tsx DISTINCT_KEYS.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.every-message-is-possible.c4",
       "text": "If the key was random, every message is equally likely given 1101, so trying keys only lists every message.",
       "support": "source",
       "source": "Perfect secrecy of the one-time pad with a uniformly random key: C. E. Shannon, 'Communication Theory of Secrecy Systems', Bell System Technical Journal 28(4), 1949. Here: each message maps to exactly one of the 16 equally likely keys.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.every-message-is-possible.c5",
       "text": "This is a one-time pad, and it stays unbreakable only if the key is never used again.",
       "support": "derivation",
       "source": "Reuse leaks: c1 XOR c2 = (m1 XOR k) XOR (m2 XOR k) = m1 XOR m2. Name: Vernam (1919 patent) / Mauborgne; Shannon 1949. 'Unbreakable' is meant as perfect secrecy against key search, assuming a truly random, secret key.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A 3-bit message was XORed with a random 3-bit key used once. You see the result. How many 3-bit messages could it be?",
-    "options": ["1", "3", "8"],
+    "options": [
+      "1",
+      "3",
+      "8"
+    ],
     "answer": 2,
     "why": "Every one of the 8 messages has its own key that gives the same result (key = message XOR result), so none is ruled out."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

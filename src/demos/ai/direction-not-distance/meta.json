@@ -27,35 +27,45 @@
       "text": "The vectors Q = (1, 1), B = (k, k) and C = (1, 0.2) are a toy, labelled 'Toy 2-D vectors' on the stage.",
       "support": "convention",
       "source": "Brief 42 in company/domains/briefs/ai.md; Q, C, bAt in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.direction-not-distance.c2",
       "text": "B = (k, k) has cosine 1.00 with Q for every length k from 1 to 10; its straight-line distance from Q is 1.4 × (k − 1): 12.7 at (10, 10), 9.9 at (8, 8).",
       "support": "derivation",
       "source": "cos(Q, kQ) = k|Q|² / (|Q| · k|Q|) = 1. node: cosine 1.00 and dist sqrt(2)(k−1) for k = 1..10 (12.73 at 10, 9.90 at 8).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.direction-not-distance.c3",
       "text": "C = (1, 0.2) is 0.8 from Q but has cosine 0.83 with it, so by distance C is closer and by cosine B is more similar.",
       "support": "derivation",
       "source": "cos = (1·1 + 1·0.2) / (sqrt 2 · sqrt 1.04) = 1.2 / 1.442 = 0.832; |Q − C| = 0.8. node re-run in the build session.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.direction-not-distance.c4",
       "text": "Cosine similarity is the dot product divided by the two lengths, so it measures the angle between arrows and ignores their length (1 = same direction).",
       "support": "source",
       "source": "Manning, Raghavan & Schütze 2008, Introduction to Information Retrieval, §6.3 (cosine similarity, length normalisation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.direction-not-distance.c5",
       "text": "Some real systems compare text embeddings by cosine similarity, so a longer document about the same topic can still match.",
       "support": "source",
       "source": "About real systems: Mikolov et al. 2013, 'Distributed Representations of Words and Phrases' (NeurIPS) compare word vectors by cosine; Manning et al. 2008 §6.3 motivates length normalisation with a document and its doubled copy. 'Some', not all.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

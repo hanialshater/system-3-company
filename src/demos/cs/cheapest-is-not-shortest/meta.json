@@ -6,10 +6,17 @@
   "concept": "weighted-shortest-path",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["spreading out from a start finds the fewest steps (wave-from-the-corner)"],
-    "doesNotKnow": ["that with costs on roads the fewest-road route can be the dearest, and how settling the smallest label finds true costs"]
+    "knows": [
+      "spreading out from a start finds the fewest steps (wave-from-the-corner)"
+    ],
+    "doesNotKnow": [
+      "that with costs on roads the fewest-road route can be the dearest, and how settling the smallest label finds true costs"
+    ]
   },
   "misconception": "The route with the fewest stops is the cheapest.",
   "objective": "The learner can settle S, A, B, G in order of smallest label, watch G's label drop from 10 to 6, and explain why settling the smallest label first gives true cheapest costs when no cost is negative.",
@@ -19,44 +26,63 @@
       "text": "With roads S–G 10, S–A 2, A–B 2 and B–G 2, the cheapest cost from S to G is 2 + 2 + 2 = 6, and the one-road route costs 10.",
       "support": "simulation",
       "source": "Demo.tsx runAll(): final labels S 0, A 2, B 4, G 6. Builder re-ran the relaxation in Node: same.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c2",
       "text": "Settling S gives A 2 and G 10; settling A gives B 4; settling B drops G from 10 to 6.",
       "support": "simulation",
       "source": "Demo.tsx settle() trace on the QA path (S, A, B, G); messages show each update.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c3",
       "text": "Settling the smallest label first is safe: with no negative costs, a route found later can only cost more, so each settled label is a true cheapest cost.",
       "support": "source",
       "source": "CLRS (3rd ed.) 24.3, Theorem 24.6 (correctness of Dijkstra's algorithm for non-negative weights). It can fail with negative weights (CLRS 24.3 discussion); not shown on stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c4",
       "text": "This is Dijkstra's algorithm (1959).",
       "support": "source",
       "source": "E. W. Dijkstra, 'A note on two problems in connexion with graphs', Numerische Mathematik 1, 269-271, 1959.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c5",
       "text": "A label is the cheapest cost from S found so far.",
       "support": "convention",
       "source": "Definition of the tentative distance d[v] (CLRS 24.1, 'shortest-path estimate').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Roads: P–Q costs 7. P–R costs 3 and R–Q costs 3. Settling the smallest label first, what is Q's final label?",
-    "options": ["7", "6", "3"],
+    "options": [
+      "7",
+      "6",
+      "3"
+    ],
     "answer": 1,
     "why": "Settling P gives R 3 and Q 7; settling R (the smaller) drops Q to 3 + 3 = 6, cheaper than the one-road 7."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

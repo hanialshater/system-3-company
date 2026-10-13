@@ -6,10 +6,18 @@
   "concept": "dp-grid-paths",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["memoization means reusing answers already computed (fib-call-explosion)", "adding small numbers"],
-    "doesNotKnow": ["that the routes into a grid cell equal the routes into its left and upper neighbours added together"]
+    "knows": [
+      "memoization means reusing answers already computed (fib-call-explosion)",
+      "adding small numbers"
+    ],
+    "doesNotKnow": [
+      "that the routes into a grid cell equal the routes into its left and upper neighbours added together"
+    ]
   },
   "misconception": "To count robot routes you must list every route; a blocked cell means redoing the work.",
   "objective": "The learner can fill a 4 x 4 grid with left-plus-above counts, with the blocked cell at 0, get 8 at the corner, and explain why each cell is the sum of its two neighbours.",
@@ -19,44 +27,63 @@
       "text": "On a 4 x 4 grid, moving only right or down, with the cell in row 2, column 2 blocked, there are 8 routes from top-left to bottom-right.",
       "support": "simulation",
       "source": "Demo.tsx counts(true) corner = 8; builder re-ran the same fill in Node: [[1,1,1,1],[1,0,1,2],[1,1,2,4],[1,2,4,8]]. Cross-check: 20 − 12 = 8.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.blocked-cell-routes.c2",
       "text": "With the block removed the corner reads 20: the block cut 12 routes.",
       "support": "simulation",
       "source": "Demo.tsx counts(false) corner = 20 = C(6,3). Routes through (2,2): 2 to reach it x C(4,2) = 6 from it = 12.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.blocked-cell-routes.c3",
       "text": "Every route into a cell arrives from the left or from above, so its count is those two added; a blocked cell holds 0.",
       "support": "derivation",
       "source": "The last move into (r, c) is either right from (r, c−1) or down from (r−1, c); these route sets are disjoint, so N(r,c) = N(r,c−1) + N(r−1,c). A blocked cell has no routes into it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.blocked-cell-routes.c4",
       "text": "Reusing counts you already have, instead of listing routes one by one, is called dynamic programming.",
       "support": "source",
       "source": "CLRS (3rd ed.) ch. 15 introduction: dynamic programming solves each subproblem once and stores its answer. Bellman, Dynamic Programming, 1957.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.blocked-cell-routes.c5",
       "text": "The start counts as 1 route.",
       "support": "convention",
       "source": "Base case N(1,1) = 1 (the empty route), standard for lattice-path counting.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Moving only right or down, a cell's left neighbour has 3 routes into it and the cell above has 6. How many routes reach the cell?",
-    "options": ["9", "18", "6"],
+    "options": [
+      "9",
+      "18",
+      "6"
+    ],
     "answer": 0,
     "why": "Every route arrives from the left or from above, never both, so the counts add: 3 + 6 = 9."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

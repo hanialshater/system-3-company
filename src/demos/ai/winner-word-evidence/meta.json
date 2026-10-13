@@ -28,28 +28,36 @@
       "text": "The rates (10% spam; 'winner' in 60% of spam and 10% of real mail) are invented for the toy, labelled 'Invented rates · 100 emails' on the stage.",
       "support": "convention",
       "source": "Brief 45 in company/domains/briefs/ai.md; IN_SPAM, IN_REAL, SHARE_Q in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.winner-word-evidence.c2",
       "text": "Of 100 emails at 10% spam, 'winner' is in 6 spam and 9 real emails, so an email with 'winner' is spam 6 out of 15 times: 40%. Real mail outnumbers spam 9 to 1, and the word is 6 times likelier in spam.",
       "support": "derivation",
       "source": "counts(10) in Demo.tsx: 0.6 × 10 = 6, 0.1 × 90 = 9, 6/15 = 0.4 (Bayes' rule: 0.06 / (0.06 + 0.09)). node re-run.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.winner-word-evidence.c3",
       "text": "With the same word rates, an email with 'winner' is spam 60% of the time at 20% spam, 72% at 30%, 80% at 40% and 86% at 50%.",
       "support": "derivation",
       "source": "counts(s) in Demo.tsx: 12/20, 18/25, 24/30, 30/35 (0.857). All counts are whole numbers at the slider's steps. node re-run.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.winner-word-evidence.c4",
       "text": "Naive Bayes spam filters combine word evidence with the base rate of spam using Bayes' rule.",
       "support": "source",
       "source": "About real systems: Sahami, Dumais, Heckerman & Horvitz 1998, 'A Bayesian Approach to Filtering Junk E-Mail', AAAI Workshop on Learning for Text Categorization; Manning, Raghavan & Schütze 2008, Introduction to Information Retrieval, ch. 13 (prior P(c) times word likelihoods).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

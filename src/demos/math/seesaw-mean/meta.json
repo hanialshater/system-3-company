@@ -6,25 +6,66 @@
   "concept": "mean-vs-median",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-math", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["the mean as total divided by count", "the median as the middle value"],
-    "doesNotKnow": ["that the mean is the balance point"]
+    "knows": [
+      "the mean as total divided by count",
+      "the median as the middle value"
+    ],
+    "doesNotKnow": [
+      "that the mean is the balance point"
+    ]
   },
   "misconception": "The balancing point is the middle number (the median).",
   "objective": "The learner can explain that the mean is the point where the distances of the values above and below it cancel, so a far value pulls it toward itself.",
   "claims": [
-    { "id": "math.seesaw-mean.c1", "text": "The distances of the weights from the mean, taken with sign (below negative, above positive), add to zero.", "support": "derivation", "source": "Sum(x_i - m) = Sum x_i - n m = 0 when m = Sum x_i / n. For 1, 2, 3, 10 and m = 4: -3 - 2 - 1 + 6 = 0 (node).", "status": "unverified" },
-    { "id": "math.seesaw-mean.c2", "text": "(1 + 2 + 3 + 10) ÷ 4 = 4, and the median of 1, 2, 3, 10 is 2.5.", "support": "derivation", "source": "Recomputed in node: 16/4 = 4; (2+3)/2 = 2.5. The brief called 6.5 the midrange, but (1+10)/2 = 5.5, so the stage and question use 5.5 as the third option (a distractor, never named in the reveal).", "status": "unverified" },
-    { "id": "math.seesaw-mean.c3", "text": "A plank with equal weights tips toward the side whose weights are farther from the pivot in total, and is level when those distances cancel (equal weights, rigid plank, weightless plank assumed).", "support": "derivation", "source": "Torque about the pivot is proportional to Sum(x_i - p) for equal weights; the stage tilts by 3 degrees per unit of that sum, capped at 14 degrees (Demo.tsx tilt).", "status": "unverified" }
+    {
+      "id": "math.seesaw-mean.c1",
+      "text": "The distances of the weights from the mean, taken with sign (below negative, above positive), add to zero.",
+      "support": "derivation",
+      "source": "Sum(x_i - m) = Sum x_i - n m = 0 when m = Sum x_i / n. For 1, 2, 3, 10 and m = 4: -3 - 2 - 1 + 6 = 0 (node).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.seesaw-mean.c2",
+      "text": "(1 + 2 + 3 + 10) ÷ 4 = 4, and the median of 1, 2, 3, 10 is 2.5.",
+      "support": "derivation",
+      "source": "Recomputed in node: 16/4 = 4; (2+3)/2 = 2.5. The brief called 6.5 the midrange, but (1+10)/2 = 5.5, so the stage and question use 5.5 as the third option (a distractor, never named in the reveal).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.seesaw-mean.c3",
+      "text": "A plank with equal weights tips toward the side whose weights are farther from the pivot in total, and is level when those distances cancel (equal weights, rigid plank, weightless plank assumed).",
+      "support": "derivation",
+      "source": "Torque about the pivot is proportional to Sum(x_i - p) for equal weights; the stage tilts by 3 degrees per unit of that sum, capped at 14 degrees (Demo.tsx tilt).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "Equal weights sit at 0, 0, 0 and 8 on a plank. Where does it balance?",
-    "options": ["0", "2", "4"],
+    "options": [
+      "0",
+      "2",
+      "4"
+    ],
     "answer": 1,
     "why": "The mean is (0 + 0 + 0 + 8) ÷ 4 = 2. Distances from 2: -2, -2, -2 and +6 cancel."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

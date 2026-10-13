@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["addition and multiplication by 12", "how to read a 12-hour clock"],
-    "doesNotKnow": ["that remainders make wrap-around (clock) arithmetic: whole laps of 12 can be thrown away"]
+    "knows": [
+      "addition and multiplication by 12",
+      "how to read a 12-hour clock"
+    ],
+    "doesNotKnow": [
+      "that remainders make wrap-around (clock) arithmetic: whole laps of 12 can be thrown away"
+    ]
   },
   "misconception": "Finding the time 100 hours later means counting 100 steps one by one; or the remainder itself is the answer.",
   "objective": "The learner can split 100 hours into 8 laps of 12 plus 4, explain that the laps leave the hand where it was, and get 9 + 4 = 13, shown as 1 o'clock.",
@@ -22,34 +27,46 @@
       "text": "On a 12-hour clock, adding 12 hours is one full lap of the hour hand and brings it back to the same number.",
       "support": "convention",
       "source": "A 12-hour dial: the hour hand turns 30° per hour, so 12 hours = 360°. Demo.tsx clock(h) = ((9 + h − 1) mod 12) + 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.clock-after-a-hundred.c2",
       "text": "100 hours is 8 laps of 12 hours (96 hours) plus 4 hours: 100 = 8 × 12 + 4.",
       "support": "derivation",
       "source": "Node: Math.floor(100 / 12) = 8, 100 % 12 = 4. Demo.tsx LAPS and LEFT.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.clock-after-a-hundred.c3",
       "text": "From 9 o'clock, the last 4 hours move the hand to 10, 11, 12 and then 1, so 100 hours after 9 o'clock it is 1 o'clock (9 + 4 = 13, shown as 1).",
       "support": "derivation",
       "source": "Node: clock(h) for h = 97..100 gives 10, 11, 12, 1; (9 + 100) % 12 = 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.clock-after-a-hundred.c4",
       "text": "On a clock, full laps change nothing; only the remainder after dividing by 12 moves the hand.",
       "support": "derivation",
       "source": "(t + 12k + r) mod 12 = (t + r) mod 12 for whole k (modular arithmetic; e.g. any number theory text on congruences).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "It is 5 o'clock on a 12-hour clock. What time is it 50 hours later?",
-    "options": ["7 o'clock", "2 o'clock", "5 o'clock"],
+    "options": [
+      "7 o'clock",
+      "2 o'clock",
+      "5 o'clock"
+    ],
     "answer": 0,
     "why": "50 = 4 × 12 + 2. The four laps change nothing; 5 + 2 = 7."
   },

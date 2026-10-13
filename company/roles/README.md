@@ -35,6 +35,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Mockup Artist](mockup-artist.md) | design-lead | Draw it before anyone builds it: a mockup is a cheap hypothesis about where things go and what the learner looks at first.. |
 | [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
 | [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
+| [Illustrator (external contributor, image generation)](illustrator.md) | visual-designer | Beautiful, consistent watercolor illustrations that show exactly what the lesson needs, and nothing that is false or unsafe.. |
 | [Visual Designer](visual-designer.md) | design-lead | One recognisable, calm, legible style across 500+ lessons and every locale.. |
 
 ## Quality

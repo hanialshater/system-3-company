@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["whole numbers 1, 2, 3, … go on forever", "what it means for a statement to be true for one number"],
-    "doesNotKnow": ["what proof by induction is: a start plus a step rule covers every whole number"]
+    "knows": [
+      "whole numbers 1, 2, 3, … go on forever",
+      "what it means for a statement to be true for one number"
+    ],
+    "doesNotKnow": [
+      "what proof by induction is: a start plus a step rule covers every whole number"
+    ]
   },
   "misconception": "Proving something for every whole number needs checking each number, so it can never be finished.",
   "objective": "The learner can say that a start (true for 1) and a step (true for n means true for n + 1) together make a statement true for every whole number, and that a single broken step stops the chain.",
@@ -22,34 +27,46 @@
       "text": "With every link intact, pushing domino 1 knocks down all 12; with domino 6 out of reach, dominoes 1 to 5 fall and 6 to 12 stand.",
       "support": "simulation",
       "source": "Demo.tsx fallen(pushed, broken): N = 12 when the chain is intact, GAP_AT − 1 = 5 when domino 6 is moved 44 px further than a domino's 52 px reach. A model, not physics.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.domino-chain.c2",
       "text": "If domino 1 falls, and whenever one falls the next does, then every domino falls: 2 falls, so 3 falls, and so on past any number you name.",
       "support": "derivation",
       "source": "Principle of mathematical induction (an axiom of the natural numbers in Peano arithmetic; equivalent to the well-ordering principle).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.domino-chain.c3",
       "text": "Proof by induction: prove a statement for 1, prove that true for n means true for n + 1, and it holds for every whole number.",
       "support": "convention",
       "source": "Standard statement of induction, e.g. any discrete mathematics text (Rosen, Discrete Mathematics and Its Applications, 5.1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.domino-chain.c4",
       "text": "The dominoes picture induction; they do not prove it.",
       "support": "convention",
       "source": "Brief 43 claim (2): the domino image is an analogy. A finite row cannot show infinitely many cases.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A rule is true for 1, and whenever it is true for some number it is also true for the next. What do you still need to check?",
-    "options": ["Nothing: it holds for every whole number", "Each number up to a million", "Only the even numbers"],
+    "options": [
+      "Nothing: it holds for every whole number",
+      "Each number up to a million",
+      "Only the even numbers"
+    ],
     "answer": 0,
     "why": "The start and the step make a chain: 1, then 2, then 3, and on forever. That is proof by induction."
   },

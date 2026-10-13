@@ -6,10 +6,19 @@
   "concept": "genetic-code-redundancy",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["DNA is written in four letters", "genes make proteins"],
-    "doesNotKnow": ["that many single-letter changes leave the protein unchanged", "that the slack sits mostly in the third letter of a codon"]
+    "knows": [
+      "DNA is written in four letters",
+      "genes make proteins"
+    ],
+    "doesNotKnow": [
+      "that many single-letter changes leave the protein unchanged",
+      "that the slack sits mostly in the third letter of a codon"
+    ]
   },
   "misconception": "Any change in the code changes the protein.",
   "objective": "The learner can explain that the genetic code is redundant: of the 549 single-letter changes to amino-acid codons, 134 (24%) keep the same amino acid, almost all at the third letter.",
@@ -19,37 +28,54 @@
       "text": "In the standard genetic code, three-letter codons name amino acids, and several codons can name the same amino acid.",
       "support": "source",
       "source": "Standard genetic code table (Nirenberg & Matthaei 1961; Alberts et al., Molecular Biology of the Cell, ch. 6).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.silent-letter-swaps.c2",
       "text": "The 61 amino-acid codons have 549 single-letter changes; 134 (24%) keep the amino acid, 392 give a different amino acid and 23 give a stop.",
       "support": "derivation",
       "source": "Enumerated from the standard code table in Demo.tsx; artifacts/scratch/w5life/codons.mjs gives total 549, same 134, new 392, stop 23, 24.4%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.silent-letter-swaps.c3",
       "text": "By position, the same amino acid is kept by 8 of 183 first-letter changes, 0 of 183 second-letter changes and 126 of 183 third-letter changes.",
       "support": "derivation",
       "source": "Same enumeration (codons.mjs, pos array: 8, 0, 126 of 183 each).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.silent-letter-swaps.c4",
       "text": "For the three codons on the stage: CTT (Leu) keeps Leu for all 3 third-letter changes; TAT (Tyr) keeps Tyr for 1 change (TAC) and gives stop for 2 (TAA, TAG); GGA (Gly) keeps Gly for all 3 third-letter changes and gives a stop for TGA.",
       "support": "derivation",
       "source": "Standard code table; codons.mjs lists the nine changes of each. The codon is a model of the code, not of any particular gene; DNA letters are shown on the coding strand.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Roughly what share of single-letter changes to a codon leave its amino acid unchanged, and which letter is most often silent?",
-    "options": ["About a quarter, the third letter", "About three quarters, the first letter", "Almost none, any letter"],
+    "options": [
+      "About a quarter, the third letter",
+      "About three quarters, the first letter",
+      "Almost none, any letter"
+    ],
     "answer": 0,
     "why": "The standard code has built-in slack: about 24% of changes are silent, nearly all at the third letter of the codon."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["what a circle and its width across (diameter) are", "reading a ruler in metres"],
-    "doesNotKnow": ["that the rim of every circle is a bit more than three times its width across"]
+    "knows": [
+      "what a circle and its width across (diameter) are",
+      "reading a ruler in metres"
+    ],
+    "doesNotKnow": [
+      "that the rim of every circle is a bit more than three times its width across"
+    ]
   },
   "misconception": "The rim is two or four widths long, or the ratio depends on the size of the circle.",
   "objective": "The learner can say that one turn of a wheel rolls its rim's length, about 3.14 times its width, the same ratio π for a 1 m and a ½ m wheel.",
@@ -22,34 +27,46 @@
       "text": "Rolling without slipping lays the whole rim on the ground, so one turn rolls a distance equal to the rim's length.",
       "support": "derivation",
       "source": "Rolling without slipping: the arc length turned equals the distance travelled (s = rθ; one turn θ = 2π gives s = 2πr). Assumes no slipping.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pi-is-three-and-a-bit.c2",
       "text": "One turn of a 1 m wheel rolls 3.14 m: three wheel-widths and 0.14 m over; a quarter turn is 0.79 m, half 1.57 m, three quarters 2.36 m.",
       "support": "derivation",
       "source": "dist(d, t) = t × π × d in Demo.tsx; node: π = 3.14159, π − 3 = 0.1416, π/4 = 0.785, π/2 = 1.571, 3π/4 = 2.356.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pi-is-three-and-a-bit.c3",
       "text": "One turn of a ½ m wheel rolls 1.57 m, again 3.14 of its own widths.",
       "support": "derivation",
       "source": "π × 0.5 = 1.5708 m; 1.5708 / 0.5 = 3.1416 (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.pi-is-three-and-a-bit.c4",
       "text": "For every circle the rim is the same 3.14… times the width across; that number is called π (pi), and circumference = π × diameter.",
       "support": "convention",
       "source": "Definition of π as the ratio of circumference to diameter, the same for all circles because circles are similar (scaling multiplies both by the same factor). π ≈ 3.14159 (any reference table).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A bicycle wheel is 0.7 m across. About how far does it roll in one full turn?",
-    "options": ["1.4 m", "about 2.2 m", "2.8 m"],
+    "options": [
+      "1.4 m",
+      "about 2.2 m",
+      "2.8 m"
+    ],
     "answer": 1,
     "why": "One turn rolls the rim: π × 0.7 ≈ 2.2 m, a bit over three widths."
   },

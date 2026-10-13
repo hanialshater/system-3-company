@@ -27,35 +27,45 @@
       "text": "Each dot lands at a uniformly random place on the grid, independently of the others.",
       "support": "convention",
       "source": "Stage text and model.ts batch(): two mulberry32 uniform draws per dot.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.random-dots-cluster.c2",
       "text": "The chance that some square among 100 holds 3 or more of 40 random dots is 55.5%.",
       "support": "derivation",
       "source": "Exact count of placements with every square holding at most 2 dots, via the polynomial (1 + x + x^2/2)^100: P = 1 - 40! [x^40](...) / 100^40 = 0.5550 (pCrowded() in model.ts; recomputed in node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.random-dots-cluster.c3",
       "text": "With 25 dots the chance is 18.2%, and with 30 dots 29.3%.",
       "support": "derivation",
       "source": "pCrowded(25) = 0.1823, pCrowded(30) = 0.2931 (same method). Not shown on the stage; recorded for checking the brief.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.random-dots-cluster.c4",
       "text": "The tally of batches with a ringed square is a seeded run of batches, shown on the stage as k of m; it varies around the exact 55.5%.",
       "support": "simulation",
       "source": "Batch i uses mulberry32(9000 + i), untuned. The first 111 batches give 60 of 111 (54%). Over 300 other seed sets of 111 batches the count averaged 61.4 (55.3%) with SD 5.0 (range 47 to 74), so it is near 55% but not equal to it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.random-dots-cluster.c5",
       "text": "An evenly spread pattern of dots is the unusual outcome; lumps are what random scatter looks like.",
       "support": "derivation",
       "source": "Follows from claim 2: more than half of random scatters contain a crowded square. No claim is made about real-world clusters.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

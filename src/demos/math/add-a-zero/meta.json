@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["place value for whole numbers (ones, tens, hundreds)", "that 3.5 means three and a half"],
-    "doesNotKnow": ["that multiplying by 10 moves every digit one place left, rather than appending a zero"]
+    "knows": [
+      "place value for whole numbers (ones, tens, hundreds)",
+      "that 3.5 means three and a half"
+    ],
+    "doesNotKnow": [
+      "that multiplying by 10 moves every digit one place left, rather than appending a zero"
+    ]
   },
   "misconception": "Multiplying by 10 means adding a zero to the end, so 3.5 × 10 = 3.50.",
   "objective": "The learner can explain that × 10 moves each digit one column left (3 ones → 3 tens, 5 tenths → 5 ones), so 3.5 × 10 = 35, and that 3.50 is still 3.5.",
@@ -22,34 +27,46 @@
       "text": "3.5 is 3 ones and 5 tenths, and each column is worth 10 times the one to its right.",
       "support": "convention",
       "source": "Base-ten place value: column k is worth 10^k; 3.5 = 3 × 1 + 5 × 0.1. Demo.tsx value() sums digit × 10^place.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.add-a-zero.c2",
       "text": "A 0 stuck on the end of 3.5 lands in the hundredths: 3.50 is still worth 3.5.",
       "support": "derivation",
       "source": "3 + 5 × 0.1 + 0 × 0.01 = 3.5; node: 3.50 === 3.5 is true.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.add-a-zero.c3",
       "text": "× 10 moves every digit one column left: 3 ones become 3 tens and 5 tenths become 5 ones, so 3.5 × 10 = 35 (and × 100 gives 350).",
       "support": "derivation",
       "source": "10 × Σ d_k 10^k = Σ d_k 10^(k+1). Node: 3.5 * 10 = 35, 3.5 * 100 = 350.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "math.add-a-zero.c4",
       "text": "\"Add a zero\" only works for whole numbers, where the shift leaves an empty ones column to fill with 0.",
       "support": "derivation",
       "source": "For a whole number every digit already sits at place ≥ 0; shifting left empties the ones place, written as 0 (e.g. 35 × 10 = 350). With a decimal part, the shift instead moves a tenths digit into the ones.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "What is 0.6 × 10?",
-    "options": ["0.60", "6", "60"],
+    "options": [
+      "0.60",
+      "6",
+      "60"
+    ],
     "answer": 1,
     "why": "× 10 moves each digit one place left: 6 tenths become 6 ones. 0.60 is still 0.6."
   },

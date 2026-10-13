@@ -27,21 +27,27 @@
       "text": "The test set and the never-wrong model are a toy: exactly the stated share of the 100 key labels is wrong. Labelled 'Toy test set · model never wrong' on the stage.",
       "support": "convention",
       "source": "Brief 46 in company/domains/briefs/ai.md, adapted to an exact count of flips (the brief's random 20% gives 80.0% on average over 100,000 draws). MODEL block in Demo.tsx; flipped items chosen by mulberry32(seed 1), untuned; which items are flipped does not change any number.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.flip-twenty-percent.c2",
       "text": "With 20 of 100 key labels wrong, a model that always gives the true answer scores 80%, and all 20 of its 'misses' are the key's mistakes; with 40 wrong it scores 60%.",
       "support": "derivation",
       "source": "scoreAt(noise) = 100 − noise in Demo.tsx (the model disagrees with the key exactly where the key is wrong). node re-run: 100, 90, 80, 70, 60 for 0..40%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.flip-twenty-percent.c3",
       "text": "Real benchmark test sets contain some wrong labels.",
       "support": "source",
       "source": "About real systems: Northcutt, Athalye & Mueller 2021, 'Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks', NeurIPS Datasets and Benchmarks (estimated an average of at least 3.3% label errors across 10 common test sets). The toy's 20% is invented and much higher.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

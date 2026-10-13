@@ -28,28 +28,36 @@
       "text": "The 20 points, their labels and the rule 'say 1 if x > 0.5' are a toy: exactly 4 labels (20%) are flipped, and the rule is fixed, not trained. Labelled 'Toy data · fixed rule, not trained' on the stage.",
       "support": "convention",
       "source": "Brief 43 in company/domains/briefs/ai.md, adapted: the brief used random 20% flips with an LCG; this build flips exactly 4 of 20 so the answer does not depend on the seed. MODEL block in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-folds-five-scores.c2",
       "text": "On the stage's split the five folds score 100%, 75%, 100%, 50% and 75%: a spread of 50 points; their mean is 80%, the same as the 16 of 20 points the rule gets right.",
       "support": "simulation",
       "source": "SCORES, MEAN, RIGHT_ALL in Demo.tsx with mulberry32(seed 1), the first seed, untuned (flipped points 3, 6, 11, 13). node re-run: [100, 75, 100, 50, 75], mean 80. The mean equals 16/20 for every seed, since equal folds partition the points.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-folds-five-scores.c3",
       "text": "With 4 wrong labels in five groups of 4, the fold scores can never all be equal; in 1,000 shuffles the spread was 25 points or more every time.",
       "support": "simulation",
       "source": "Derivation: equal scores need an equal number of wrong labels per fold, impossible for 4 across 5 folds (4 is not 0 or a multiple of 5). node over seeds 1-1000: spread 25 in 253, 50 in 671, 75 in 76, never below 25.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "ai.five-folds-five-scores.c4",
       "text": "k-fold cross-validation splits the data into k groups, holds out each group once, and averages the k scores, so every point is used for testing exactly once.",
       "support": "source",
       "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.10 (K-fold cross-validation).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
