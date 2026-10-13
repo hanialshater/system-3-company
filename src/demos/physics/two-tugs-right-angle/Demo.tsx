@@ -57,7 +57,8 @@ function side(p: P, q: P, opp: P, tier: number) {
     nx = -nx;
     ny = -ny;
   }
-  return { x: mx + nx * d, y: my + ny * d + 3, textAnchor: "middle" as const };
+  const textAnchor = nx > 0.35 ? ("start" as const) : nx < -0.35 ? ("end" as const) : ("middle" as const);
+  return { x: mx + nx * d, y: my + ny * d + 3, textAnchor };
 }
 
 export default function TwoTugsRightAngle({ slug }: { slug: string }) {

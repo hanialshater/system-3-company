@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 36dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.floor { stroke: var(--fg); stroke-width: 2; opacity: 0.7; }
+.crate { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.crateLabel { fill: var(--fg); font-size: 10px; font-weight: 800; }
+.push { stroke: var(--fg); stroke-width: 2.6; }
+.fric { stroke: var(--domain); stroke-width: 2.6; }
+.headP { fill: var(--fg); }
+.headF { fill: var(--domain); }
+.limit { stroke: var(--bad); stroke-width: 2; }
+.labLimit { fill: var(--bad); font-size: 8px; font-weight: 700; }
+.labP { fill: var(--fg); font-size: 9px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.labF { fill: var(--domain); font-size: 9px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.motion line { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+.chip { fill: var(--muted); font-size: 9px; }

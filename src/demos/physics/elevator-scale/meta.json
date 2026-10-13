@@ -1,0 +1,80 @@
+{
+  "slug": "elevator-scale",
+  "title": "Weigh yourself in a lift",
+  "hook": "You stand on a scale in a lift and it lurches upward. Does your weight change?",
+  "domain": "physics",
+  "concept": "apparent-weight",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "weight is mass times gravity, W = m g",
+      "forces in newtons"
+    ],
+    "doesNotKnow": [
+      "that a scale reads the support force N from the floor, not gravity itself",
+      "that N changes whenever you accelerate up or down (N = m (g + a))"
+    ]
+  },
+  "misconception": "What a scale shows is a fixed property of you; a lift cannot change it.",
+  "objective": "The learner can explain that a scale measures how hard the floor pushes, and that the floor must push harder than gravity to accelerate you upward: 70 x (9.81 + 2) = 827 N.",
+  "claims": [
+    {
+      "id": "physics.elevator-scale.c1",
+      "text": "A 70 kg person's weight (gravity's pull) is about 687 N, and it does not change when the lift moves.",
+      "support": "derivation",
+      "source": "W = m g = 70 x 9.81 = 686.7 N with g = 9.81 m/s^2; the lift's motion does not change the Earth's pull (the lift moves a few metres, g changes negligibly).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.elevator-scale.c2",
+      "text": "A scale reads the push of the floor on you (the normal force), not gravity's pull directly.",
+      "support": "source",
+      "source": "A spring or strain-gauge scale measures the compressive force between you and the platform: the normal force (OpenStax University Physics Vol. 1, section 6.1, worked example 'What Does the Bathroom Scale Read in an Elevator?').",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.elevator-scale.c3",
+      "text": "Accelerating upward at 2 m/s², the scale reads 70 × (9.81 + 2) = 827 N; accelerating downward at 2 m/s², 547 N.",
+      "support": "derivation",
+      "source": "Second law for the person, up positive: N - m g = m a, so N = m (g + a): 826.7 N at a = +2, 546.7 N at a = -2 (artifacts/scratch/w4phys/check.mjs). Stage slider 0.5-4 m/s^2 gives 406.7-966.7 N.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.elevator-scale.c4",
+      "text": "Riding at steady speed reads the same as standing still; 'accelerating up' includes slowing down on the way down.",
+      "support": "derivation",
+      "source": "N depends on acceleration a, not velocity: a = 0 at any steady speed gives N = m g. A lift moving down and braking has an upward acceleration, so N > m g.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.elevator-scale.c5",
+      "text": "Model: the person stands still relative to the lift and the scale reads instantly; g = 9.81 m/s².",
+      "support": "convention",
+      "source": "Idealisation stated in this record: no bouncing of the scale's spring, constant acceleration in each phase.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A lift is moving down and braking to stop at the ground floor. Compared with standing still, a scale under you reads…",
+    "options": [
+      "More",
+      "Less",
+      "The same"
+    ],
+    "answer": 0,
+    "why": "Braking while going down is an upward acceleration, so the floor must push harder than gravity pulls: N = m(g + a) is more than m g."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
