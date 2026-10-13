@@ -1,0 +1,87 @@
+{
+  "slug": "bisect-the-bad-commit",
+  "title": "Which of 1,000 versions broke it?",
+  "hook": "Version 1 works, version 1,000 doesn't. Do you really have to test them one by one?",
+  "domain": "cs",
+  "concept": "binary-search",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a program changes over many saved versions",
+      "halving a sorted list (binary-search)"
+    ],
+    "doesNotKnow": [
+      "that any yes/no test that flips once (works, then broken) can be halved",
+      "that 1,000 versions need at most 10 tests"
+    ]
+  },
+  "misconception": "To find which of 1,000 versions broke something you must test them one by one, or about half of them.",
+  "objective": "The learner can explain that testing the middle of the suspects rules out half of them whatever the answer, so 999 suspects shrink to 1 in at most 10 tests (2^10 = 1,024), provided the break stays once it appears.",
+  "claims": [
+    {
+      "id": "cs.bisect-the-bad-commit.c1",
+      "text": "Testing the middle of the suspects rules out half of them whichever answer comes back: 999 → 500 → 250 → 125 → 63 → 32 → 16 → 8 → 4 → 2 → 1.",
+      "support": "simulation",
+      "source": "Demo.tsx testAt()/mid() on the stage's fixed first-broken version v737 (chosen only as a fixed value; 974 of the 999 possible positions also take 10 tests, 25 take 9). Builder re-ran the halving in Node.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bisect-the-bad-commit.c2",
+      "text": "Halving 999 suspects down to 1 takes at most 10 tests, because 2^9 = 512 is too few and 2^10 = 1,024 is enough.",
+      "support": "derivation",
+      "source": "ceil(log2 999) = 10 (Demo.tsx WORST). Builder checked over all 999 positions in Node: max 10 tests.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bisect-the-bad-commit.c3",
+      "text": "Testing one by one from v2 would have taken 736 tests to reach v737.",
+      "support": "derivation",
+      "source": "v2 to v737 inclusive is 737 - 1 = 736 versions (Demo.tsx BAD - 1).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bisect-the-bad-commit.c4",
+      "text": "The method works only because once a version breaks, every later version stays broken.",
+      "support": "derivation",
+      "source": "Assumption of the method: the test result must be monotone over versions (works ... works, broken ... broken). git-bisect documentation describes the same good/bad split.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bisect-the-bad-commit.c5",
+      "text": "git bisect finds the commit that broke a program this way.",
+      "support": "source",
+      "source": "git-bisect(1) manual: 'Use binary search to find the commit that introduced a bug' (https://git-scm.com/docs/git-bisect).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bisect-the-bad-commit.c6",
+      "text": "A test away from the middle can rule out fewer than half the suspects and waste a step.",
+      "support": "derivation",
+      "source": "Testing v(lo+1) rules out one suspect if it works (Demo.tsx testNext); the worst case of an off-middle split is the larger side.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bug appeared somewhere in the last 4,000 saved versions and has stayed ever since. With 'works / broken' tests, about how many tests do you need at most?",
+    "options": [
+      "About 12",
+      "About 2,000",
+      "About 4,000"
+    ],
+    "answer": 0,
+    "why": "Each middle test halves the suspects, and 2^12 = 4,096 covers 4,000, so 12 tests are enough."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
