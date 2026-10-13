@@ -1,0 +1,86 @@
+{
+  "slug": "monopolist-holds-back",
+  "title": "No rivals: why not charge the most?",
+  "hook": "A seller with no competition can pick any price. Which one earns the most?",
+  "domain": "economics",
+  "concept": "monopoly-pricing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that profit is what is left after costs",
+      "that buyers buy less at a higher price"
+    ],
+    "doesNotKnow": [
+      "that a seller with no rivals picks a price between cost and the top of demand, and sells less than buyers would take at cost"
+    ]
+  },
+  "misconception": "A seller with no rival charges whatever it likes, so price is unlimited.",
+  "objective": "The learner can explain that a higher price earns more per unit but loses buyers, so profit (price − cost) × units peaks in between: $60 in the model, 40 units and $1,600, against $20 and 80 units with rivals.",
+  "claims": [
+    {
+      "id": "economics.monopolist-holds-back.c1",
+      "text": "If buyers pay 100 − q for the q-th unit, a single price p sells 100 − p units.",
+      "support": "derivation",
+      "source": "Buyer q buys if 100 − q ≥ p, i.e. q ≤ 100 − p. Demo.tsx units().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.monopolist-holds-back.c2",
+      "text": "With a $20 cost per unit, profit (p − 20)(100 − p) is largest at $60: 40 × 40 = $1,600.",
+      "support": "derivation",
+      "source": "Profits on the $10 grid: 20 → 0, 30 → 700, 40 → 1,200, 50 → 1,500, 60 → 1,600, 70 → 1,500, 80 → 1,200, 90 → 700, 100 → 0. Continuous maximum: derivative 120 − 2p = 0 → p = 60.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.monopolist-holds-back.c3",
+      "text": "Below $60 a higher price adds more profit than the lost sales cost; above $60 the lost sales cost more.",
+      "support": "derivation",
+      "source": "d/dp (p − 20)(100 − p) = 120 − 2p, positive below 60, negative above.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.monopolist-holds-back.c4",
+      "text": "With rivals undercutting each other, the price falls to the $20 cost: 80 units are sold and profit is zero.",
+      "support": "source",
+      "source": "Textbook result for price competition with identical constant costs (Bertrand), e.g. Mankiw, Principles of Economics, ch. 15–17; units(20) = 80. Shown in the reveal only if the learner pressed 'Rivals arrive'.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.monopolist-holds-back.c5",
+      "text": "The lone seller sells fewer units (40) than buyers would take at cost (80).",
+      "support": "derivation",
+      "source": "units(60) = 40; units(20) = 80.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.monopolist-holds-back.c6",
+      "text": "The lesson is a model: straight-line demand, one price for every unit, no regulation; it takes no view on any real firm.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: one seller, straight-line buyers'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A seller with no competitors raises its price. Why might its profit fall?",
+    "options": [
+      "It can't: with no rivals, a higher price always earns more",
+      "The higher margin can be outweighed by the buyers it loses",
+      "Costs rise with the price"
+    ],
+    "answer": 1,
+    "why": "Profit is margin times units sold. Past the best price, each rise loses more in sales than it gains per unit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
