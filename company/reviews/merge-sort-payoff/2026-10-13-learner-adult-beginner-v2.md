@@ -19,6 +19,8 @@ Screenshots seen: predict, step 4 ("Finish for me"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1 boundary: sorted lists, 8 findings): reveal reachable with the stage unfinished; thesis in reveal text only; hook raises a misconception the learner does not hold; 10,000 figure untraceable; worst case unlinked; wrong taps muddy "comparison"; unlabelled placed row; unverified claims. Now: the stage explains that a wrong tap is not a comparison and "Finish for me" completes the merge. Mixed. Still open: the thesis is still told, the 10,000 and 499,500 figures are told, and rounds are not shown on my path.
+- The brief's learner does not know recursion or Merge Sort; the objective (a merge needs at most n-1 comparisons, which is why splitting pays) is half stage, half reveal text. The misconception (splitting adds work) is hit by the hook but not tested by the prediction, which asks something else.
+- Claims verified.
 
 Verdict: revise

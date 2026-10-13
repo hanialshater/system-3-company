@@ -18,6 +18,8 @@ Screenshots seen: predict, step 2 ("Pick 100 more"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, launch): generalisation told; 1.6 visible as a distractor; two-stage pick wording. Unchanged in substance: the general-network sentence is still told and the two-stage wording is still easy to misread. I add that the card title narrows my options and the single named pick after 100 picks confuses.
+- The brief's learner does not know size-biased sampling; the star graph and "78 of 101 was the hub" chip serve the objective well. The misconception (friends are as popular as average) is hit by 1.6.
+- Claims verified.
 
 Verdict: launch

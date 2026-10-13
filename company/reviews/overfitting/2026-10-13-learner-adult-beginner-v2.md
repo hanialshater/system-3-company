@@ -19,6 +19,8 @@ Screenshots seen: predict, step 6 (6 bends), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): bends unexplained, 1 to 3 look alike; reveal after one notch; worst misses off the chart; jitter told; comparison line carried in memory; empty band and resizing; no "how many bends" answer. Now: the question explains bends, a row of numbers under the buttons holds every miss (4.1, 1.5, 1.6, 1.6, 3.0, 2.7, 5.1), the dashed true curve appears in the reveal, and the status lines name the moment. Mostly fixed. Still open: the curve at 6 bends still plunges off the chart, the stage still resizes, and the "how many bends" follow-up is answered only as "held-back data".
+- The brief's learner does not know regression or test sets; the objective (a flexible curve learns the jitter) is carried by the 0.0 vs 5.1 pair. The misconception (best fit on the data is the best model) is hit by option 3.
+- Claims verified.
 
 Verdict: launch

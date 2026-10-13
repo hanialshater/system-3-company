@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Wait to half-life 4"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, fatal): a learner could tap once, open the reveal, and be told "Your run ... 48% ... even the long survivors" about a run they did not make. Now: on the walkthrough path the reveal quotes my run (49%, 46%, 55%, 48%) and the four bars match it. Fixed for the path I walked. I did not test whether the reveal can still be opened after one half-life, so the old fatal flag is not shown to be gone for that path.
+- The brief's learner does not know that decay is random per nucleus; the share-per-half-life bars deliver the objective directly. The misconception (survivors are overdue or tough) is hit by options 2 and 3.
+- Claims verified.
 
 Verdict: launch

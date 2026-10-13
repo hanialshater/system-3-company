@@ -19,6 +19,8 @@ Screenshots seen: predict, step 5 (jump to 40 years), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 6 findings): mixed readouts; reveal after a one-year nudge; straight-line claim told; lower layers hard to tell apart; why $967 not said; chart rescales. Now: four decade cards are labelled by years, the dashed "first decade's pace" line is drawn, and the hook gives the $967. Mostly fixed. Still open: the two lower layers are pale, the chart shrinks in the reveal view, and the title leaks.
+- The brief's learner does not know exponential growth; the decade cards carry the objective (each decade adds more). The misconception (straight-line growth) is hit by options 1 and 2.
+- Claims verified (10/10 on the trust line).
 
 Verdict: revise

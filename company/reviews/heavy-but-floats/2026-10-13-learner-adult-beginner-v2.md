@@ -18,6 +18,8 @@ Screenshots seen: predict, step 1 (volume moved to 500 cm3), reveal (all viewed)
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): question value 800 vs stage default 400; reveal unlocks without 800; float never observed; water label overlaps the ball when locked. Now: none of these is fixed. The stage still opens at 400 cm3, "Show me why" is available after one notch to 500 cm3, the reveal says "you see the same 500 g ball rise and float" at 800 cm3 which the path never showed, and the "water, about 1.0 g/cm3" label is still covered by the ball. Not fixed. I would block launch on the reveal claiming a sight the learner has not had.
+- The brief's learner does not know that density is mass per volume; the 500 cm3 "hovers" state delivers half of the objective. The float at 800 cm3 and the 62.5% submerged claim are told. The misconception (heavy sinks) is hit by "Sinks".
+- Claims verified.
 
 Verdict: revise

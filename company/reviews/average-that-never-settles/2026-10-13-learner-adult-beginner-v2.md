@@ -19,6 +19,8 @@ Screenshots seen: predict, step 4 (1,000 draws), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): jargon in the question; picture read as slow settling; "no matter how many draws" not visited; key spread claim told. Now: the stage plots 30 runs of each kind at 1 to 10,000 draws, so the non-narrowing red dots are seen rather than told and 10,000 draws is visited. Mostly fixed. The question's jargon ("Cauchy distribution") is glossed in one clause only. New problems found: hook leaks, chips undefined, the 250,115 draw not on the stage.
+- The brief's learner knows the law of large numbers for die rolls and does not know that it needs a finite mean; the die-vs-Cauchy contrast matches that boundary, and the misconception ("averaging more data always settles") is hit by the hook. The objective (one draw can outweigh thousands) is delivered only through the reveal sentence about the 250,115 draw, which the stage does not show.
+- Claims are marked verified on the trust sheet; I did not check them.
 
 Verdict: revise

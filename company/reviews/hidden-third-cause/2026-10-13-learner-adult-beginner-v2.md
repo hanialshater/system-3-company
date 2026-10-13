@@ -19,6 +19,8 @@ Screenshots seen: predict, step 1 ("Same temperature only"), reveal (all viewed)
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): correlation undefined; the all-days number never shown before the reveal; 28-band statistic told; hook/title gives the answer away. Now: none of the four is clearly fixed. The correlation caption is cut off on the locked stage, the 0.83 all-days figure appears only in the reveal on my path, the 28-band statistics are still told, and the question itself says "neither affects the other". Not fixed.
+- The brief's learner does not know confounders or stratifying; the same-temperature slice delivers the objective visually. The misconception (rising together means causing) is hit only weakly because the question has already stated the answer.
+- Claims verified.
 
 Verdict: revise

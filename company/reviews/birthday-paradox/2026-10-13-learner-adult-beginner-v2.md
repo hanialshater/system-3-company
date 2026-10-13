@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("20 rooms"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): exploration about the wrong group size; pair count 253 vs 406 on the diagram; a match visible before predicting; opaque tally; "exact chance" unexplained; odd clustering; stale panel text. Now: the stage and reveal agree on 23 and 253, the locked stage shows no match, the tally reads "10 of 21 (48%)". Mostly fixed. Still open: "EXACT CHANCE" is a number handed over rather than derived, and it appears on the first tap.
+- The brief's learner does not know pair counting; the ring-and-lines picture serves the objective (a match can happen in any pair) and the "my birthday" contrast matches the misconception. That contrast is told in the reveal only.
+- Claims verified.
 
 Verdict: revise

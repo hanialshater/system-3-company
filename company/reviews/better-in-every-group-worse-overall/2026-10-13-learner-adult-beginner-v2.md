@@ -19,6 +19,8 @@ Screenshots seen: predict, step 1 ("Combine groups"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): 343 vs 350 unexplained; slider direction/label confusing; flip point never visited by default; hook leaks. Now: "Combine groups" and "Share hard cases evenly" give the two flips on the stage, which was missing before. Still open: 343 vs 350 (the caption still says "263 of the 343 large-stone patients" with no 343 explained), the 220 flip point is told, and the title still leaks. Partly fixed.
+- The brief's learner does not know weighted averages or Simpson's paradox; the objective (an overall rate is a weighted average) is stated in the reveal sentence and carried by the bar widths. The misconception (A better in every group must be better overall) is hit by option A.
+- Claims verified.
 
 Verdict: revise

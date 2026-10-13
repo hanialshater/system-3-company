@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Five ticks"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, launch): hook leaks; the tagged molecule's one flip can underplay the traffic; A and B are meaningless labels. Now: shaded cells show which molecules switched on each tick, so the traffic is visible, which partly fixes the second finding. The third is not fixed: the stage symbols are still not labelled A and B, and the hook still leaks. I am stricter than the previous review on the missing labels, so I change launch to revise.
+- The brief's learner does not know that both directions keep running at equilibrium; the shaded changed-cells and the ringed molecule serve the objective. The misconception (the reaction has stopped) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

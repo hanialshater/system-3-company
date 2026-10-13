@@ -19,6 +19,8 @@ Screenshots seen: predict, step 1 ("Climb to the summit"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, launch): hook leak; vapour pressure undefined until the reveal; clipped reveal text. Unchanged: all three still apply. I add that the reveal screenshot shows the sea-level state while its text says "you saw", and that the reveal says 70 C while the stage says 69 C.
+- The brief's learner does not know that the boiling point depends on air pressure; the two-line crossing is the objective and it is on the stage. The misconception (always 100 C) is hit by option 1.
+- Claims verified.
 
 Verdict: launch

@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 (1,000 steps), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): reveal quoted 9.4 m after the stage showed 7.3 m; square-root law told; bar caption unclear. Now: the reveal quotes my 7.3 m and adds "exactly 8.0 m over all possible walks", the bar caption reads "Bar: average distance from the start, either direction", and a "10x steps, 2.6x distance" chip carries the ratio. Mostly fixed. Still open: square root is stated, no single-walker path is drawn.
+- The brief's learner does not know the square-root growth; the ratio chips are the right device for the objective. Misconception (stays near, or drifts in proportion) is hit by options 1 and 3.
+- Claims verified.
 
 Verdict: launch

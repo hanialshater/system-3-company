@@ -19,6 +19,8 @@ Screenshots seen: predict, step 1 (slider at 8.0), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): pH never defined; reveal unlocks without 8.1; logarithm asserted; "100^0.1" hard to read. Now: the notation reads 10 to the 0.1 as a superscript. The rest is not fixed: pH is still undefined, my path stops at 8.0 (+58%), not 8.1, so the reveal's "126" is not on screen, and the multiplication is asserted. The title also gives the answer. Mostly not fixed.
+- The brief's learner does not know that 0.1 on pH is 26%; the dot-block picture does carry "more dots", but the objective (each 0.1 is x1.26, 0.3 is a doubling) is told. The misconception (about 1%) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

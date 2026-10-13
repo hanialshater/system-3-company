@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Cap at $4"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): title and hook nearly gave the answer; reveal unlocked before the cap; the cap silently dropped on slider move; points on the lines unexplained; "shortage" and "surplus" only in the reveal; "Let price move" unclear; clipped buttons. Now: the hook frames the intent ("so more people can afford it"), the stage shows "shortage: 40" and "surplus: 20" bars, and "Shortage: price rises $0.50" and "Surplus: price falls $0.50" replace the unclear control. Mostly fixed. I did not test whether the reveal can still be opened before the cap is pressed.
+- The brief's learner does not know supply and demand curves; the objective (the amount sold is limited by both sides) is carried by WANT 60, BAKED 20, SOLD 20. The misconception (a lower price means more bread) is hit by option 1.
+- Claims verified.
 
 Verdict: launch

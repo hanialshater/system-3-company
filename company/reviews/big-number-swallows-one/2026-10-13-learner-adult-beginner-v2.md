@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("+ 1, five times"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): jargon undefined; hook assumes decimal-rounding knowledge; 2^53 label unexplained; the "jump by 2" half never shown; disputed claim sentence in the reveal. Now: "+ 2" is a stage button and shows 992 to 994, the hollow circles show the missing numbers, and the reveal wording is rewritten. Partly fixed. Still open: JavaScript, double, bits, MAX_SAFE_INTEGER and BigInt are undefined, and 2^53 appears before it is explained.
+- The brief's learner does not know that big numbers lose whole integers; the number line with missing points is the objective's picture, and round-to-even is told. The misconception (whole numbers are always safe) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

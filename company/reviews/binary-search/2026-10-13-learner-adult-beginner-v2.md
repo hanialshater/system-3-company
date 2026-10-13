@@ -18,6 +18,8 @@ Screenshots seen: predict, step 4 (after "Middles to the end"). Reveal screensho
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): reveal reachable with zero guesses; "prediction held" shown untested; option "10" gave the answer away by form; 499 vs 500; no payoff moment; "Pick the middle" does the clever step; no contrast with a bad guess. Now: the options are four numbers, the 499-left line is honest, and the reveal did not unlock on my path at all, so the earlier problem has flipped into a dead end. Not otherwise fixed: "Pick the middle" still does the key step, and there is still no payoff moment or bad-guess contrast.
+- The brief's learner does not know binary search or logarithms; the objective (1,000 numbers need at most 10 guesses) is carried by the shrinking bar. The misconception (about 50 or 100 guesses) is hit by options 2 and 3.
+- Claims verified.
 
 Verdict: revise

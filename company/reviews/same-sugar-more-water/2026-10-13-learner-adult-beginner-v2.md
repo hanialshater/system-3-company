@@ -19,6 +19,8 @@ Screenshots seen: predict, step 1 (300 mL), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): question endpoint 500 mL not required; mol and mol/L undefined; hook leak; one claim unchecked (5/6). Now: trust sheet reads 6/6. Not fixed: my path stops at 300 mL, the reveal still says "at 500 mL the same thing goes further", mol is defined only by a clipped chip, and the hook and title still state the idea. Mostly not fixed.
+- The brief's learner does not know that adding water leaves the solute unchanged or the mole; the dot picture delivers the first. The misconception (concentration falls in proportion to the water added, giving 0.25) is hit by option 3 and explained in the reveal.
+- Claims verified.
 
 Verdict: revise

@@ -19,6 +19,8 @@ Screenshots seen: predict, step 3 ("Show average and typical"), reveal (all view
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): log axis unexplained; "typical" undefined; the x0.9 pairing not demonstrated; $13,150 vs stage averages; hook invites the wrong answer. Now: "Try heads then tails" shows 150 then 90 on the stage, the average and typical lines are drawn, and "(MEDIAN)" is on a chip. Mostly fixed for the x0.9 demonstration and "typical". Still open: the log axis rests on one grey sentence, $13,150 still sits far from any stage average, and the sqrt(0.9) step is told.
+- The brief's learner does not know that compounding bets are judged by the typical outcome; the objective (1.5 x 0.6 = 0.9 per pair) is reached by the heads-then-tails demo. The misconception (positive expected return makes you richer) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

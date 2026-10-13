@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 (slid to pH 2), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): first action went up to water; pH 7 unreadable; acid/ions link missing; pH undefined and "powers of ten" told; vocabulary mismatch; steps unlabelled; wrong-answer cause missing. Now: the first button is "pH down 1 (x10)", the squares grow strip, block, ten blocks, and "STEPS FROM COFFEE: 3 down (1,000x)" is on the chip. Mostly fixed for direction and the told-not-shown multiplication. Still open: the title and the (x10) button give the method away, the slider runs opposite to pH, and pH itself is not defined.
+- The brief's learner does not know logarithms or that pH comes from hydrogen ions; the objective (each step is x10, three steps 1,000) is carried by the picture. The misconception (linear scale) is hit by options 1 and 2.
+- Claims verified except one (7/8 on the trust line).
 
 Verdict: revise

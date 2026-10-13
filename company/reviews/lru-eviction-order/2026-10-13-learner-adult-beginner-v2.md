@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Play to the end"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, launch): hook hints the oldest does not go; HITS/MISSES undefined; "keeps more hits" not demonstrated by the stage. Now: the reveal says both rules scored the same on this stream, which matches the stage; the third finding is fixed. The hook and the undefined hit and miss remain.
+- The brief's learner does not know what a cache is; the objective (D evicts B because A was refreshed) is shown by the "used step N" labels. The misconception (a full cache drops whatever arrived first) is hit by option A, with FIFO shown for contrast.
+- Claims verified.
 
 Verdict: launch

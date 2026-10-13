@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Guessing host: 1,000 rounds"), reveal (all v
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): 99% not visited by default; 3-door framing in reveal vs 100-door question; empty stage layout; knowledge-of-host point told. Now: "Play 100 rounds" at 100 doors is the first action and "Guessing host" has its own run, so the 99% and the host contrast are both reached by tapping. Mostly fixed. New problem: the chips that carry those numbers are clipped under the doors on the phone, and the guessing-host rule is hard to read.
+- The brief's learner does not know conditional probability; the objective (the one door left shut carries 99%) is told in words in the reveal. The misconception (two doors, 50/50) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

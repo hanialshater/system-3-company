@@ -19,6 +19,8 @@ Screenshots seen: predict, step 3 (10,000 flips), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise): 16 at 1,000 flips vs 25 in the reveal; 86 vs 80 confusing; square-root law told; "share" unexplained until after. Now: a "Show heads share" toggle is on the stage and the reveal tells me the 20 runs wobble. Partly fixed: the stage numbers (16.3 and 86.1) still sit beside the reveal's 25 and 80, and the square-root law is still told. "Share" is now explained by the second picture.
+- The brief's learner does not know the law of large numbers concerns proportions; the gap-versus-share contrast delivers that objective directly. The misconception (counts converge) is hit by "Under 5".
+- Claims verified.
 
 Verdict: revise

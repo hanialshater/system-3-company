@@ -18,6 +18,8 @@ Screenshots seen: predict, step 9 (255 + 1), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, revise; 7 findings): prediction is arithmetic; doubling never shown; "+1 from 127" purpose unclear; "binary" undefined until the end; 255+1 unexplained; byte in the last line; dense reveal. Now: the question explains the doubling, the stage shows x2 arrows and the running sum, and the rollover is explained on the stage ("needs a ninth switch"). Mostly fixed. Still open: the count of patterns is not shown, the carry from 127 is off the walkthrough path, and "bit", "byte" and four billion come in the last line.
+- The brief's learner does not know base-2 place value; the objective (eight switches reach 255, 256 numbers) is carried by the stage. The misconception (switches stand for about eight numbers) is hit by option 1.
+- Claims verified.
 
 Verdict: revise

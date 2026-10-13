@@ -19,6 +19,8 @@ Screenshots seen: predict, step 4 (run at 0.95), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v2, revise; 6 findings): slope undefined; reveal unlockable after one hop; the 0.05-vs-0.95 tie had no side-by-side; formula dense; valley picture shrinks in the reveal; the hook not named as the misconception. Now: "slope" is glossed in brackets, a 10-hop log shows all runs side by side, and the "Run 10 at" buttons exist. Mostly fixed for slope and the tie. Still open: the formula (1 - 2 x step) is told and 0.5 is never run, the valley still shrinks in the reveal view, and the hook still pushes the wrong answer.
+- The brief's learner does not know gradients or learning rates; the objective (too small crawls, too big overshoots, past a limit flies away) is carried by the run log. The misconception (bigger step is always faster) is hit by option 3 and the hook.
+- Claims verified (11/11 on the trust line).
 
 Verdict: revise

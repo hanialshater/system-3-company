@@ -19,6 +19,8 @@ Screenshots seen: predict, step 2 ("Group of weight 2"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, fatal): the reveal's code list (A 00, B 01, C 11, D 10) belonged to the 16-bit tree and contradicted its own 14; the 14-bit tree was not reached on the default path. Now: "Join the two lightest" builds the tree, the stage ends on "Done: 14 bits, versus 16 fixed" with codes 000, 001, 01, 1, and the reveal lists the same codes. Fixed. Still open: hook and question jargon, optimality asserted. Fatal to revise.
+- The brief's learner knows bits and 2-bit codes; my boundary does not know prefix codes, which is the brief's own doesNotKnow. The objective (a join adds a bit to everything below it) is told in the caption and the reveal; the stage shows the codes growing but not which letters each join touches.
+- Claims verified.
 
 Verdict: revise

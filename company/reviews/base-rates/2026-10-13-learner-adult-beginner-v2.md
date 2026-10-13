@@ -20,6 +20,8 @@ Screenshots seen: predict, step 3 ("Test all"), reveal (all viewed).
 
 ## 2. After reading the brief
 
-(PENDING-SECTION-2)
+- Previous review (v1, fatal): the reveal could be reached after only seeing "1 in 10" where 99 of 108 are sick, reinforcing the misconception. Now: the stage opens at 1 in 1,000, the contract path fills the town and tests it at that setting (11 positives, 1 sick) before the other prevalences, and the reveal quotes those same numbers. That finding is fixed on the path I walked. I did not test a path that jumps to 1 in 10 first.
+- The brief's learner knows percentages and "1 in 1,000" but not Bayes; the counting-a-town method matches the objective, and the misconception (99% accurate means 99% likely) is voiced by the hook and caught by option 1.
+- Claims verified.
 
 Verdict: launch
