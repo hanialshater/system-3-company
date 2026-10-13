@@ -1,0 +1,80 @@
+{
+  "slug": "two-random-walks-agree",
+  "title": "Two random lines: do they track?",
+  "hook": "Two lines, each driven by its own coin flips. Could they still move together?",
+  "domain": "probability",
+  "concept": "spurious-trends",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "correlation as two things moving together"
+    ],
+    "doesNotKnow": [
+      "that trending random series correlate by chance",
+      "that independent random walks often look related"
+    ]
+  },
+  "misconception": "Two unrelated lines that track each other must share a cause.",
+  "objective": "The learner can say that two independent random walks have |r| above 0.5 about 40% of the time, so tracking lines are not evidence of a shared cause.",
+  "keyState": "At least 41 seeded pairs drawn (on the click path 17 of 41 have |r| above 0.5; strongest r = +0.88).",
+  "claims": [
+    {
+      "id": "probability.two-random-walks-agree.c1",
+      "text": "Each line is a random walk of 100 steps, each step +1 or -1 by a fair coin flip, and the two lines never influence each other.",
+      "support": "convention",
+      "source": "model.ts pair(): alternating mulberry32 draws for the two walks.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-random-walks-agree.c2",
+      "text": "Over 100,000 seeded pairs of independent 100-step walks, 39.8% have a correlation r with |r| above 0.5.",
+      "support": "simulation",
+      "source": "strongShare(100000, 1000000) in model.ts: pairs seeded mulberry32(1000000 + i), r over the 101 points of each walk (recomputed in node, 0.3979). Brief's earlier 39.7% is consistent within sampling error (about 0.15 percentage points).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-random-walks-agree.c3",
+      "text": "In the pairs on the stage, 17 of the first 41 have |r| above 0.5, and the strongest has r = +0.88.",
+      "support": "simulation",
+      "source": "Pair i uses mulberry32(5000 + i), untuned (first seed tried). Over 300 other seed sets of 41 pairs the strong count averaged 15.9 (range 6 to 24), so 17 is typical; the first 11 pairs have only 2 strong (expected about 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-random-walks-agree.c4",
+      "text": "Random walks drift in slow trends, so two independent ones often rise or fall together by accident (spurious correlation).",
+      "support": "source",
+      "source": "Known as spurious regression: Yule, G. U. (1926), J. Royal Statistical Society 89: 1-63; Granger, C. W. J. & Newbold, P. (1974), J. Econometrics 2: 111-120. Wording to be checked against the papers.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-random-walks-agree.c5",
+      "text": "Lines that track each other do not prove a shared cause.",
+      "support": "derivation",
+      "source": "Follows from claim 2: independent walks have |r| > 0.5 about 40% of the time.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent random walks are plotted over 100 steps. About how often will they look strongly correlated (|r| above 0.5)?",
+    "options": [
+      "About 5% of the time",
+      "About 40% of the time",
+      "Almost never"
+    ],
+    "answer": 1,
+    "why": "Each walk drifts in slow trends, so two of them line up by accident about 40% of the time."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
