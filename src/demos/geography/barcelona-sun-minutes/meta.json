@@ -1,0 +1,77 @@
+{
+  "slug": "barcelona-sun-minutes",
+  "title": "One clock, two noons",
+  "hook": "Madrid and Barcelona show the same time. Do they get noon together?",
+  "domain": "geography",
+  "concept": "sun-time-from-longitude",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["that Madrid and Barcelona share one clock time", "that the Sun is highest around midday"],
+    "doesNotKnow": ["that the Sun's peak arrives earlier further east", "how much earlier per degree of longitude"]
+  },
+  "misconception": "Two cities on the same official clock reach midday at the same moment.",
+  "objective": "The learner can say that solar noon moves 4 minutes per degree of longitude, so Barcelona's sun peaks about 23 minutes before Madrid's.",
+  "claims": [
+    {
+      "id": "geography.barcelona-sun-minutes.c1",
+      "text": "Barcelona is about 505 km east of Madrid, 5.9 degrees of longitude apart.",
+      "support": "derivation",
+      "source": "Builder's node check: great-circle Madrid (40.4168 N, 3.7038 W) to Barcelona (41.3874 N, 2.1686 E) = 505.1 km on R = 6,371.0088 km; longitude difference 5.8724 degrees. City coordinates from memory (gazetteer values), not re-checked. 'East' is nearly due east; Barcelona is also about 1 degree further north.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.barcelona-sun-minutes.c2",
+      "text": "The Sun's highest point moves 4 minutes per degree of longitude: 360 degrees in 24 hours.",
+      "support": "derivation",
+      "source": "24 h x 60 / 360 = 4 min per degree. Any astronomy text; mean solar time.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.barcelona-sun-minutes.c3",
+      "text": "The Sun reaches its highest point in Barcelona about 23 minutes (23.5) before Madrid.",
+      "support": "derivation",
+      "source": "5.8724 x 4 = 23.49 min. The equation of time shifts both cities by the same amount, so the difference holds (brief's reasoning). The stage computes the same figure from the two longitudes; the line sits at Barcelona's longitude at 0 min and at Madrid's at 23.5 min.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.barcelona-sun-minutes.c4",
+      "text": "Madrid and Barcelona keep the same official clock.",
+      "support": "source",
+      "source": "From memory, not re-checked: mainland Spain uses one time zone (CET/CEST). No claim is made about why.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.barcelona-sun-minutes.c5",
+      "text": "The Sun moves west across the sky, so the peak reaches the west later.",
+      "support": "derivation",
+      "source": "Earth turns west to east, so the noon line travels east to west. The stage draws it moving west.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.barcelona-sun-minutes.c6",
+      "text": "The stage map is equirectangular, so east-west distances on it are stretched compared with north-south ones at this latitude.",
+      "support": "source",
+      "source": "Snyder (1987): equirectangular uses the same scale on both axes in degrees; at 40 N a degree of longitude is about 0.77 of a degree of latitude (cos 40). Only the label 'Equirectangular map' is shown on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two places 5 degrees of longitude apart on one clock: by how much do their solar noons differ?",
+    "options": ["About 20 minutes", "About 5 minutes", "About 2 hours"],
+    "answer": 0,
+    "why": "The Sun's peak moves 4 minutes per degree of longitude, so 5 degrees is 20 minutes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
