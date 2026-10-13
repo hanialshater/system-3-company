@@ -179,3 +179,10 @@ a { color: inherit; }
 
 /* An active choice that is disabled because it is already selected (builder request, wave 1). */
 .control.active:disabled { opacity: 1; cursor: default; }
+
+/* Reveal phase: the stage keeps its natural height and the card body scrolls, instead of the
+   reveal panel squeezing the stage and clipping its controls (reported by 4 builders, wave 1). */
+.card-body { overflow-y: auto; overscroll-behavior: contain; }
+.lesson[data-phase="reveal"] { min-height: auto; }
+.lesson[data-phase="reveal"] .stage { flex: none; overflow: visible; }
+.lesson[data-phase="reveal"] .reveal { max-height: none; overflow: visible; }

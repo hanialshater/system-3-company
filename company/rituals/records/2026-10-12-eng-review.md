@@ -11,3 +11,6 @@ owner: principal-engineer (run by chief-of-staff) · tier: 2 (build config) · a
 
 ## Decision
 Approve. Builders in wave 2 report whether plain `next build` works in their worktree.
+
+## Follow-up (2026-10-13)
+Confirmed: wave 2 builders (economics, math, life, chemistry) report plain `next build` with Turbopack works in worktrees. Closed.

@@ -7,3 +7,4 @@
 - 2026-10-12: geo kit re-exports geoProjection, geoConicEqualArea, geoStereographic (additive; cm-geography request).
 - 2026-10-12: kit adds useMilestones (earn-the-reveal helper) and an .active:disabled style (wave 1 builder requests).
 - 2026-10-12: kit adds src/kit/random.ts (mulberry32); standard documents QA control order and seed disclosure.
+- 2026-10-13: reveal phase no longer squeezes the stage; the card body scrolls (tier 1, shared CSS).
