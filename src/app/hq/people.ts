@@ -14,6 +14,7 @@ export const HOME: Record<string, string> = {
   "design-lead": "design-studio",
   "interaction-designer": "design-studio",
   "visual-designer": "design-studio",
+  "design-engineer": "design-studio",
   researcher: "studio",
   "domain-scout": "studio",
   "pattern-librarian": "studio",

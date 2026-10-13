@@ -34,6 +34,7 @@ export const TEAM_COLOR: Record<string, string> = {
   "design-lead": "#f48fb1",
   "interaction-designer": "#f48fb1",
   "visual-designer": "#f48fb1",
+  "design-engineer": "#f48fb1",
   "mockup-artist": "#f48fb1",
 };
 

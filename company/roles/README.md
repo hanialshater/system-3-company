@@ -36,6 +36,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
 | [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
 | [Illustrator (external contributor, image generation)](illustrator.md) | visual-designer | Beautiful, consistent watercolor illustrations that show exactly what the lesson needs, and nothing that is false or unsafe.. |
+| [Design Engineer (SWE, Design team)](design-engineer.md) | design-lead | Designers can see every concept and every lesson for it at a glance, and a new format is a component, not a hand-built one-off.. |
 | [Visual Designer](visual-designer.md) | design-lead | One recognisable, calm, legible style across 500+ lessons and every locale.. |
 
 ## Quality

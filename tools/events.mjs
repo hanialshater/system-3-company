@@ -64,6 +64,7 @@ const ROOM_BY_ROLE = {
   "design-lead": "design-studio",
   "interaction-designer": "design-studio",
   "visual-designer": "design-studio",
+  "design-engineer": "design-studio",
   "mockup-artist": "design-studio",
   "chief-of-staff": "chief-of-staff",
   "chief-of-staff-ceo-office": "ceo-office",
