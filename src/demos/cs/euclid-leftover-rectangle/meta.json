@@ -6,10 +6,18 @@
   "concept": "euclid-gcd",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["division with remainder", "what a square and a rectangle are"],
-    "doesNotKnow": ["that the greatest common divisor survives cutting off squares (gcd(a, b) = gcd(b, a mod b))"]
+    "knows": [
+      "division with remainder",
+      "what a square and a rectangle are"
+    ],
+    "doesNotKnow": [
+      "that the greatest common divisor survives cutting off squares (gcd(a, b) = gcd(b, a mod b))"
+    ]
   },
   "misconception": "Finding the greatest common divisor means testing every smaller number.",
   "objective": "The learner can find the largest square tile for a 48 by 18 floor by cutting off the biggest squares (18, 18, 12, 6, 6) and explain why the last square, 6, is the answer.",
@@ -72,10 +80,21 @@
   "confidence": "",
   "recall": {
     "question": "You cut the biggest squares from a 30 by 12 rectangle: 12, 12, then 6, 6. What is the largest square tile for 30 by 12?",
-    "options": ["6", "12", "3"],
+    "options": [
+      "6",
+      "12",
+      "3"
+    ],
     "answer": 0,
     "why": "The last square that fits exactly is 6, and cutting squares never changes which tiles fit, so 6 is the largest common tile (gcd(30, 12) = 6)."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/euclid-leftover-rectangle/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

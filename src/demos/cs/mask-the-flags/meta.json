@@ -6,10 +6,17 @@
   "concept": "bit-masks",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["AND, OR and XOR on single bits"],
-    "doesNotKnow": ["that a mask applies AND, OR or XOR to every bit of a number at once"]
+    "knows": [
+      "AND, OR and XOR on single bits"
+    ],
+    "doesNotKnow": [
+      "that a mask applies AND, OR or XOR to every bit of a number at once"
+    ]
   },
   "misconception": "To check which of five settings are on you need five separate tests.",
   "objective": "The learner can compute 10110 AND 00110 = 00110 and explain that one mask reads (AND), sets (OR) or flips (XOR) chosen bits all at once.",
@@ -63,10 +70,21 @@
   "confidence": "",
   "recall": {
     "question": "Settings are 0101. Which mask and operation switch the leftmost setting on without touching the others?",
-    "options": ["OR with 1000", "AND with 1000", "XOR with 0111"],
+    "options": [
+      "OR with 1000",
+      "AND with 1000",
+      "XOR with 0111"
+    ],
     "answer": 0,
     "why": "OR with a 1 turns that place on; OR with 0 leaves the other places as they were."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/mask-the-flags/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

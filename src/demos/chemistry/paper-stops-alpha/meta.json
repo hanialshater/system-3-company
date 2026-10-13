@@ -6,30 +6,97 @@
   "concept": "radiation-penetration",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that radioactive atoms decay and give off radiation"],
-    "doesNotKnow": ["that alpha, beta and gamma are stopped by very different amounts of material", "that the heaviest radiation is the easiest to stop"]
+    "knows": [
+      "that radioactive atoms decay and give off radiation"
+    ],
+    "doesNotKnow": [
+      "that alpha, beta and gamma are stopped by very different amounts of material",
+      "that the heaviest radiation is the easiest to stop"
+    ]
   },
   "misconception": "All radiation passes through everything, or alpha is the most penetrating because it is the heaviest.",
   "objective": "The learner can say that a sheet of paper stops alpha almost entirely, a few millimetres of aluminium stop beta, and gamma needs thick lead to be cut a lot, because heavy charged radiation gives up its energy quickly.",
   "claims": [
-    { "id": "chemistry.paper-stops-alpha.c1", "text": "Alpha radiation is helium nuclei, beta radiation is fast electrons, and gamma radiation is high-energy light.", "support": "source", "source": "IAEA / US NRC radiation basics; Atkins, Chemical Principles (types of radioactive decay). Beta here means beta-minus.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c2", "text": "A sheet of paper stops alpha particles almost entirely.", "support": "source", "source": "US NRC 'Types of radiation' and IAEA radiation basics: alpha is stopped by a sheet of paper or the outer layer of skin. Alpha range in air about 5 cm for 5 MeV.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c3", "text": "Beta radiation is stopped by a few millimetres of aluminium; about 3 mm stops a beta of about 1 MeV.", "support": "source", "source": "US NRC / IAEA: beta is stopped by a thin sheet of aluminium. Range of a 1 MeV electron in aluminium about 0.4 g/cm² / 2.7 g/cm³ = 1.5 mm (NIST ESTAR), so 3 mm stops it.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c4", "text": "Most beta rays pass through a sheet of paper (about 95 in 100 in this model).", "support": "derivation", "source": "Paper is about 0.008 g/cm² (80 g/m²) against a 1 MeV beta range of about 0.4 g/cm² (NIST ESTAR); stage count 95 is a rounded illustration, not a measurement.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c5", "text": "Gamma rays pass through paper and 3 mm of aluminium almost unchanged (about 100 and about 95 in 100).", "support": "derivation", "source": "Narrow-beam attenuation I/I0 = exp(−(μ/ρ)·ρ·x); 1 MeV photons, aluminium μ/ρ 0.0613 cm²/g, ρ 2.70 g/cm³, x 0.3 cm gives 0.95 (NIST XCOM). Rounded.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c6", "text": "Even 5 cm of lead leaves about 2 in 100 gamma rays of 1 MeV; thick lead reduces gamma a lot but does not stop it completely.", "support": "derivation", "source": "Lead μ/ρ 0.0710 cm²/g at 1 MeV, ρ 11.35 g/cm³, x 5 cm: exp(−4.03) = 0.018 (NIST XCOM), about 2 in 100. Narrow beam, ignores scattered rays.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c7", "text": "Model: each source sends 100 rays per second; the counts are rounded illustrations for about 5 MeV alpha and 1 MeV beta and gamma.", "support": "convention", "source": "Stage caption '100 rays per second from each source; counts are about'. Energy dependence: other energies stop differently.", "status": "unverified" },
-    { "id": "chemistry.paper-stops-alpha.c8", "text": "Alpha particles give up their energy in the first bit of matter they meet because they are heavy and charged; neutral gamma goes deep.", "support": "source", "source": "Bethe stopping power grows with charge squared; photons have no charge (Knoll, Radiation Detection and Measurement, ch. 2). IAEA radiation basics.", "status": "unverified" }
+    {
+      "id": "chemistry.paper-stops-alpha.c1",
+      "text": "Alpha radiation is helium nuclei, beta radiation is fast electrons, and gamma radiation is high-energy light.",
+      "support": "source",
+      "source": "IAEA / US NRC radiation basics; Atkins, Chemical Principles (types of radioactive decay). Beta here means beta-minus.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c2",
+      "text": "A sheet of paper stops alpha particles almost entirely.",
+      "support": "source",
+      "source": "US NRC 'Types of radiation' and IAEA radiation basics: alpha is stopped by a sheet of paper or the outer layer of skin. Alpha range in air about 5 cm for 5 MeV.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c3",
+      "text": "Beta radiation is stopped by a few millimetres of aluminium; about 3 mm stops a beta of about 1 MeV.",
+      "support": "source",
+      "source": "US NRC / IAEA: beta is stopped by a thin sheet of aluminium. Range of a 1 MeV electron in aluminium about 0.4 g/cm² / 2.7 g/cm³ = 1.5 mm (NIST ESTAR), so 3 mm stops it.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c4",
+      "text": "Most beta rays pass through a sheet of paper (about 95 in 100 in this model).",
+      "support": "derivation",
+      "source": "Paper is about 0.008 g/cm² (80 g/m²) against a 1 MeV beta range of about 0.4 g/cm² (NIST ESTAR); stage count 95 is a rounded illustration, not a measurement.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c5",
+      "text": "Gamma rays pass through paper and 3 mm of aluminium almost unchanged (about 100 and about 95 in 100).",
+      "support": "derivation",
+      "source": "Narrow-beam attenuation I/I0 = exp(−(μ/ρ)·ρ·x); 1 MeV photons, aluminium μ/ρ 0.0613 cm²/g, ρ 2.70 g/cm³, x 0.3 cm gives 0.95 (NIST XCOM). Rounded.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c6",
+      "text": "Even 5 cm of lead leaves about 2 in 100 gamma rays of 1 MeV; thick lead reduces gamma a lot but does not stop it completely.",
+      "support": "derivation",
+      "source": "Lead μ/ρ 0.0710 cm²/g at 1 MeV, ρ 11.35 g/cm³, x 5 cm: exp(−4.03) = 0.018 (NIST XCOM), about 2 in 100. Narrow beam, ignores scattered rays.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c7",
+      "text": "Model: each source sends 100 rays per second; the counts are rounded illustrations for about 5 MeV alpha and 1 MeV beta and gamma.",
+      "support": "convention",
+      "source": "Stage caption '100 rays per second from each source; counts are about'. Energy dependence: other energies stop differently.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.paper-stops-alpha.c8",
+      "text": "Alpha particles give up their energy in the first bit of matter they meet because they are heavy and charged; neutral gamma goes deep.",
+      "support": "source",
+      "source": "Bethe stopping power grows with charge squared; photons have no charge (Knoll, Radiation Detection and Measurement, ch. 2). IAEA radiation basics.",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "Which is stopped most easily by a thin barrier like paper or skin?",
-    "options": ["alpha radiation", "gamma radiation", "none of them can be stopped"],
+    "options": [
+      "alpha radiation",
+      "gamma radiation",
+      "none of them can be stopped"
+    ],
     "answer": 0,
     "why": "Alpha particles are heavy and charged, so they lose their energy within the first thin layer; gamma needs thick lead or concrete to be reduced much."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/paper-stops-alpha/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

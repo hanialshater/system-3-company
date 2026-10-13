@@ -6,28 +6,84 @@
   "concept": "surface-area-rate",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that powders burn or dissolve faster than lumps", "what a cube is"],
-    "doesNotKnow": ["that cutting keeps the volume but multiplies the outside area", "that only the outside of a solid can meet a reactant"]
+    "knows": [
+      "that powders burn or dissolve faster than lumps",
+      "what a cube is"
+    ],
+    "doesNotKnow": [
+      "that cutting keeps the volume but multiplies the outside area",
+      "that only the outside of a solid can meet a reactant"
+    ]
   },
   "misconception": "Cutting something into pieces does not change its surface.",
   "objective": "The learner can say that cutting a 1 cm cube into 1,000 cubes of 1 mm raises the total outside area from 6 cm² to 60 cm², ten times more, and that this is why finer solids react faster.",
   "claims": [
-    { "id": "chemistry.cut-the-cube-surface.c1", "text": "A cube with edge a has outside area 6a², so a 1 cm cube has 6 cm².", "support": "derivation", "source": "Six square faces of area a²; a = 1 cm gives 6 cm² (geometry).", "status": "unverified" },
-    { "id": "chemistry.cut-the-cube-surface.c2", "text": "Cutting each edge into n equal parts gives n × n × n pieces (2 per edge: 8; 5: 125; 10: 1,000), each with edge 10/n mm.", "support": "derivation", "source": "n³ pieces; 1 cm = 10 mm so edge = 10/n mm (node; Demo.tsx).", "status": "unverified" },
-    { "id": "chemistry.cut-the-cube-surface.c3", "text": "The total outside area of the pieces is 6n cm²: 12 cm² for 8 pieces, 30 cm² for 125, 60 cm² for 1,000.", "support": "derivation", "source": "n³ × 6 × (1/n)² = 6n cm² (node; Demo.tsx area1(n)). Equals ten times the original at n = 10.", "status": "unverified" },
-    { "id": "chemistry.cut-the-cube-surface.c4", "text": "Each 1 mm cube has outside area 6 × (0.1 cm)² = 0.06 cm², and 1,000 of them add up to 60 cm².", "support": "derivation", "source": "6 × 0.01 = 0.06; × 1,000 = 60 cm² (node).", "status": "unverified" },
-    { "id": "chemistry.cut-the-cube-surface.c5", "text": "Cutting does not change the total volume, 1 cm³.", "support": "derivation", "source": "n³ × (1/n)³ cm³ = 1 cm³ (geometry). Ignores material lost in the cuts.", "status": "unverified" },
-    { "id": "chemistry.cut-the-cube-surface.c6", "text": "A reaction between a solid and something around it can only happen at the solid's outside, so finer pieces react faster.", "support": "source", "source": "Surface-area effect on rate (Atkins, Physical Chemistry, heterogeneous reactions; Chemistry LibreTexts, Factors affecting reaction rates). Other things equal.", "status": "unverified" }
+    {
+      "id": "chemistry.cut-the-cube-surface.c1",
+      "text": "A cube with edge a has outside area 6a², so a 1 cm cube has 6 cm².",
+      "support": "derivation",
+      "source": "Six square faces of area a²; a = 1 cm gives 6 cm² (geometry).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cut-the-cube-surface.c2",
+      "text": "Cutting each edge into n equal parts gives n × n × n pieces (2 per edge: 8; 5: 125; 10: 1,000), each with edge 10/n mm.",
+      "support": "derivation",
+      "source": "n³ pieces; 1 cm = 10 mm so edge = 10/n mm (node; Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cut-the-cube-surface.c3",
+      "text": "The total outside area of the pieces is 6n cm²: 12 cm² for 8 pieces, 30 cm² for 125, 60 cm² for 1,000.",
+      "support": "derivation",
+      "source": "n³ × 6 × (1/n)² = 6n cm² (node; Demo.tsx area1(n)). Equals ten times the original at n = 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cut-the-cube-surface.c4",
+      "text": "Each 1 mm cube has outside area 6 × (0.1 cm)² = 0.06 cm², and 1,000 of them add up to 60 cm².",
+      "support": "derivation",
+      "source": "6 × 0.01 = 0.06; × 1,000 = 60 cm² (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cut-the-cube-surface.c5",
+      "text": "Cutting does not change the total volume, 1 cm³.",
+      "support": "derivation",
+      "source": "n³ × (1/n)³ cm³ = 1 cm³ (geometry). Ignores material lost in the cuts.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cut-the-cube-surface.c6",
+      "text": "A reaction between a solid and something around it can only happen at the solid's outside, so finer pieces react faster.",
+      "support": "source",
+      "source": "Surface-area effect on rate (Atkins, Physical Chemistry, heterogeneous reactions; Chemistry LibreTexts, Factors affecting reaction rates). Other things equal.",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "A 2 cm cube (outside area 24 cm²) is cut into eight 1 cm cubes. The total outside area becomes…",
-    "options": ["48 cm², twice as much", "24 cm², the same", "192 cm², eight times as much"],
+    "options": [
+      "48 cm², twice as much",
+      "24 cm², the same",
+      "192 cm², eight times as much"
+    ],
     "answer": 0,
     "why": "Each 1 cm cube has 6 cm²; eight of them give 48 cm², twice the original, while the volume is unchanged."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/cut-the-cube-surface/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

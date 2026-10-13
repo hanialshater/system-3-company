@@ -6,10 +6,18 @@
   "concept": "finite-state-machine",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["pushing through a turnstile", "putting in a coin"],
-    "doesNotKnow": ["that a machine can remember only which state it is in, not a count"]
+    "knows": [
+      "pushing through a turnstile",
+      "putting in a coin"
+    ],
+    "doesNotKnow": [
+      "that a machine can remember only which state it is in, not a count"
+    ]
   },
   "misconception": "The turnstile counts coins, so two coins in a row buy two passes.",
   "objective": "The learner can trace a two-state machine: on coin, push, push, coin, coin, push from locked, 2 people pass, because the second coin in a row changes nothing.",
@@ -63,10 +71,21 @@
   "confidence": "",
   "recall": {
     "question": "A door lock has two states. Entering the code unlocks it; opening the door lets you in and locks it again. Events from locked: code, code, open, open. How many entries?",
-    "options": ["1", "2", "0"],
+    "options": [
+      "1",
+      "2",
+      "0"
+    ],
     "answer": 0,
     "why": "The second code finds it already unlocked and is lost; the first open lets one person in and locks it, so the second open is blocked."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/turnstile-remembers-state/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

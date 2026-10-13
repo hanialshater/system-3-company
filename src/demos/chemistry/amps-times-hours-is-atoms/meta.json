@@ -6,29 +6,91 @@
   "concept": "electrolysis-faraday",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that an electric current is moving charge", "that a mole is a counted amount"],
-    "doesNotKnow": ["that charge converts to a count of electrons and so to a mass of metal", "that each copper ion needs a fixed two electrons"]
+    "knows": [
+      "that an electric current is moving charge",
+      "that a mole is a counted amount"
+    ],
+    "doesNotKnow": [
+      "that charge converts to a count of electrons and so to a mass of metal",
+      "that each copper ion needs a fixed two electrons"
+    ]
   },
   "misconception": "The current alone decides how much metal is deposited.",
   "objective": "The learner can work out that 2.0 A for 1.0 h is 7,200 C, about 0.0746 mol of electrons, about 0.0373 mol of copper and about 2.4 g, and that halving the current or the time halves the copper.",
   "claims": [
-    { "id": "chemistry.amps-times-hours-is-atoms.c1", "text": "A current of 1 ampere is 1 coulomb of charge per second, so the charge is current times time.", "support": "convention", "source": "SI definition of the ampere (BIPM SI Brochure, 9th ed.): 1 A = 1 C/s.", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c2", "text": "One mole of electrons carries about 96,485 coulombs (the Faraday constant).", "support": "source", "source": "Faraday constant F = 96,485.33 C/mol (CODATA 2018; SI exact value 96,485.332...).", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c3", "text": "Copper(II) ions take two electrons to become a copper atom: Cu²⁺ + 2 e⁻ → Cu.", "support": "source", "source": "Standard cathode half-reaction (Atkins, Physical Chemistry; CRC Handbook electrochemical series).", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c4", "text": "The molar mass of copper is about 63.55 g/mol.", "support": "source", "source": "IUPAC standard atomic weight of copper 63.546, rounded 63.55.", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c5", "text": "2.0 A for 1.0 h passes 7,200 C, which is about 0.0746 mol of electrons, about 0.0373 mol of copper, and about 2.4 g (2.37 g).", "support": "derivation", "source": "Q = 2.0 × 3,600 = 7,200 C; 7,200 / 96,485 = 0.07462 mol; / 2 = 0.03731 mol; × 63.55 = 2.371 g (node; Demo.tsx grams()). Wrong options: 1.2 g (forgot the 2 electrons, i.e. halved), 4.7 g (treated 1 electron per atom).", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c6", "text": "The other stage values: 15 min at 2.0 A gives about 0.59 g, 30 min about 1.19 g; 1 h at 1.0 A gives about 1.19 g.", "support": "derivation", "source": "Mass is proportional to current × time: 1,800 C → 0.5926 g; 3,600 C → 1.185 g (node).", "status": "unverified" },
-    { "id": "chemistry.amps-times-hours-is-atoms.c7", "text": "Model: all the current goes into depositing copper (100% current efficiency).", "support": "convention", "source": "Stage label 'all current making copper'. Real plating baths lose a few percent to side reactions (Faraday's laws describe the ideal).", "status": "unverified" }
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c1",
+      "text": "A current of 1 ampere is 1 coulomb of charge per second, so the charge is current times time.",
+      "support": "convention",
+      "source": "SI definition of the ampere (BIPM SI Brochure, 9th ed.): 1 A = 1 C/s.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c2",
+      "text": "One mole of electrons carries about 96,485 coulombs (the Faraday constant).",
+      "support": "source",
+      "source": "Faraday constant F = 96,485.33 C/mol (CODATA 2018; SI exact value 96,485.332...).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c3",
+      "text": "Copper(II) ions take two electrons to become a copper atom: Cu²⁺ + 2 e⁻ → Cu.",
+      "support": "source",
+      "source": "Standard cathode half-reaction (Atkins, Physical Chemistry; CRC Handbook electrochemical series).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c4",
+      "text": "The molar mass of copper is about 63.55 g/mol.",
+      "support": "source",
+      "source": "IUPAC standard atomic weight of copper 63.546, rounded 63.55.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c5",
+      "text": "2.0 A for 1.0 h passes 7,200 C, which is about 0.0746 mol of electrons, about 0.0373 mol of copper, and about 2.4 g (2.37 g).",
+      "support": "derivation",
+      "source": "Q = 2.0 × 3,600 = 7,200 C; 7,200 / 96,485 = 0.07462 mol; / 2 = 0.03731 mol; × 63.55 = 2.371 g (node; Demo.tsx grams()). Wrong options: 1.2 g (forgot the 2 electrons, i.e. halved), 4.7 g (treated 1 electron per atom).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c6",
+      "text": "The other stage values: 15 min at 2.0 A gives about 0.59 g, 30 min about 1.19 g; 1 h at 1.0 A gives about 1.19 g.",
+      "support": "derivation",
+      "source": "Mass is proportional to current × time: 1,800 C → 0.5926 g; 3,600 C → 1.185 g (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.amps-times-hours-is-atoms.c7",
+      "text": "Model: all the current goes into depositing copper (100% current efficiency).",
+      "support": "convention",
+      "source": "Stage label 'all current making copper'. Real plating baths lose a few percent to side reactions (Faraday's laws describe the ideal).",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "The same cell deposits copper using 1.0 A for 2.0 h. Compared with 2.0 A for 1.0 h, the copper is…",
-    "options": ["the same", "half as much", "twice as much"],
+    "options": [
+      "the same",
+      "half as much",
+      "twice as much"
+    ],
     "answer": 0,
     "why": "Charge is current times time: 1.0 × 2.0 = 2.0 A·h either way, the same count of electrons, the same copper."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/amps-times-hours-is-atoms/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

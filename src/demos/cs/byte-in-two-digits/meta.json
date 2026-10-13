@@ -6,10 +6,17 @@
   "concept": "hexadecimal",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["reading switches as 8, 4, 2, 1 (binary place value)"],
-    "doesNotKnow": ["that one hex symbol is exactly four bits"]
+    "knows": [
+      "reading switches as 8, 4, 2, 1 (binary place value)"
+    ],
+    "doesNotKnow": [
+      "that one hex symbol is exactly four bits"
+    ]
   },
   "misconception": "Hex is a new, separate number system you must convert through decimal.",
   "objective": "The learner can read 11010110 as D6 by reading 1101 (13, D) and 0110 (6) separately, and explain why changing one group of four changes only its symbol.",
@@ -63,10 +70,21 @@
   "confidence": "",
   "recall": {
     "question": "Without converting to ordinary numbers, what is 0011 1111 in hex?",
-    "options": ["3F", "F3", "63"],
+    "options": [
+      "3F",
+      "F3",
+      "63"
+    ],
     "answer": 0,
     "why": "Read each group of four on its own: 0011 is 3 and 1111 is 15, written F."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/byte-in-two-digits/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

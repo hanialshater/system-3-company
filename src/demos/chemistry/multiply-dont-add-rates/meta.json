@@ -6,27 +6,77 @@
   "concept": "rate-law-concentration",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that more reactant usually makes a reaction faster", "what doubling means"],
-    "doesNotKnow": ["that the effects of different reactants multiply", "that the exponents in a rate law come from experiments"]
+    "knows": [
+      "that more reactant usually makes a reaction faster",
+      "what doubling means"
+    ],
+    "doesNotKnow": [
+      "that the effects of different reactants multiply",
+      "that the exponents in a rate law come from experiments"
+    ]
   },
   "misconception": "Doubling two ingredients adds their separate speed-ups.",
   "objective": "The learner can say that when doubling A alone makes a reaction 2 times faster and doubling B alone makes it 4 times faster, doubling both makes it 2 × 4 = 8 times faster, because the effects multiply (rate = k[A][B]²).",
   "claims": [
-    { "id": "chemistry.multiply-dont-add-rates.c1", "text": "For many reactions the rate has the form rate = k[A]^m[B]^n, where [A] and [B] are concentrations and k is a constant.", "support": "source", "source": "Atkins, Physical Chemistry, ch. on rate laws; IUPAC Gold Book 'rate law (rate equation)'.", "status": "unverified" },
-    { "id": "chemistry.multiply-dont-add-rates.c2", "text": "The exponents m and n are found by experiment, not read from the balanced equation.", "support": "source", "source": "Atkins, Physical Chemistry: reaction orders are experimentally determined; IUPAC Gold Book 'order of reaction'.", "status": "unverified" },
-    { "id": "chemistry.multiply-dont-add-rates.c3", "text": "In the made-up reaction, rate = k[A][B]²: doubling A alone makes the rate 2 times faster, doubling B alone 4 times faster.", "support": "derivation", "source": "2^1 = 2 and 2^2 = 4 (node; Demo.tsx rate(a, b) = a × b²). The reaction is invented for the lesson and labelled so on the stage.", "status": "unverified" },
-    { "id": "chemistry.multiply-dont-add-rates.c4", "text": "Doubling both A and B makes the rate 2 × 4 = 8 times faster, not 2 + 4 = 6 times.", "support": "derivation", "source": "2 × 2² = 8 (node; Demo.tsx BOTH); additive slip 2 + 4 = 6.", "status": "unverified" },
-    { "id": "chemistry.multiply-dont-add-rates.c5", "text": "Model: a made-up reaction with all other conditions (temperature, volume) unchanged; rates are relative to the start run.", "support": "convention", "source": "Stage label 'Made-up reaction. [A], [B] = amount per litre'; bars show rate relative to the start run (×1). Rate constants depend on temperature only.", "status": "unverified" }
+    {
+      "id": "chemistry.multiply-dont-add-rates.c1",
+      "text": "For many reactions the rate has the form rate = k[A]^m[B]^n, where [A] and [B] are concentrations and k is a constant.",
+      "support": "source",
+      "source": "Atkins, Physical Chemistry, ch. on rate laws; IUPAC Gold Book 'rate law (rate equation)'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.multiply-dont-add-rates.c2",
+      "text": "The exponents m and n are found by experiment, not read from the balanced equation.",
+      "support": "source",
+      "source": "Atkins, Physical Chemistry: reaction orders are experimentally determined; IUPAC Gold Book 'order of reaction'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.multiply-dont-add-rates.c3",
+      "text": "In the made-up reaction, rate = k[A][B]²: doubling A alone makes the rate 2 times faster, doubling B alone 4 times faster.",
+      "support": "derivation",
+      "source": "2^1 = 2 and 2^2 = 4 (node; Demo.tsx rate(a, b) = a × b²). The reaction is invented for the lesson and labelled so on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.multiply-dont-add-rates.c4",
+      "text": "Doubling both A and B makes the rate 2 × 4 = 8 times faster, not 2 + 4 = 6 times.",
+      "support": "derivation",
+      "source": "2 × 2² = 8 (node; Demo.tsx BOTH); additive slip 2 + 4 = 6.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.multiply-dont-add-rates.c5",
+      "text": "Model: a made-up reaction with all other conditions (temperature, volume) unchanged; rates are relative to the start run.",
+      "support": "convention",
+      "source": "Stage label 'Made-up reaction. [A], [B] = amount per litre'; bars show rate relative to the start run (×1). Rate constants depend on temperature only.",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "For rate = k[A][B], doubling A and tripling B (together) makes the rate…",
-    "options": ["6 times faster", "5 times faster", "2 times faster"],
+    "options": [
+      "6 times faster",
+      "5 times faster",
+      "2 times faster"
+    ],
     "answer": 0,
     "why": "The effects multiply: doubling A gives ×2, tripling B gives ×3, and 2 × 3 = 6."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/multiply-dont-add-rates/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

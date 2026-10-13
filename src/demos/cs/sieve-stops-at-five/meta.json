@@ -6,10 +6,18 @@
   "concept": "sieve-of-eratosthenes",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["what a prime is", "multiplication tables"],
-    "doesNotKnow": ["that you need only cross out multiples of numbers up to the square root"]
+    "knows": [
+      "what a prime is",
+      "multiplication tables"
+    ],
+    "doesNotKnow": [
+      "that you need only cross out multiples of numbers up to the square root"
+    ]
   },
   "misconception": "To find all primes up to 30 you must cross out multiples of every number up to 30.",
   "objective": "The learner can explain why crossing out multiples of 2, 3 and 5 already leaves only primes up to 30: every non-prime up to 30 has a factor of at most 5, because 6 × 6 = 36 > 30.",
@@ -72,10 +80,21 @@
   "confidence": "",
   "recall": {
     "question": "You sieve the numbers 2 to 100. What is the largest number whose multiples you need to cross out?",
-    "options": ["7", "50", "97"],
+    "options": [
+      "7",
+      "50",
+      "97"
+    ],
     "answer": 0,
     "why": "Any non-prime up to 100 has a factor of at most 10 (since 11 × 11 = 121), and the largest prime up to 10 is 7."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/sieve-stops-at-five/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

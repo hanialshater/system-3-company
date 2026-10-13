@@ -6,10 +6,18 @@
   "concept": "pixels-rgb",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that three numbers describe a pixel's colour", "mixing paints"],
-    "doesNotKnow": ["that screens add light, so red plus green looks yellow"]
+    "knows": [
+      "that three numbers describe a pixel's colour",
+      "mixing paints"
+    ],
+    "doesNotKnow": [
+      "that screens add light, so red plus green looks yellow"
+    ]
   },
   "misconception": "Colours on a screen mix like paint, so red plus green gives brown.",
   "objective": "The learner can explain that rgb(255, 255, 0) is yellow because a pixel's three lights add, and that raising blue moves it toward white, the opposite of mixing paint.",
@@ -81,10 +89,21 @@
   "confidence": "",
   "recall": {
     "question": "A pixel shows red 255, green 0, blue 255. Is it darker or lighter than the pure red pixel (255, 0, 0)?",
-    "options": ["Lighter: more light is added", "Darker: mixing colours muddies them", "The same brightness"],
+    "options": [
+      "Lighter: more light is added",
+      "Darker: mixing colours muddies them",
+      "The same brightness"
+    ],
     "answer": 0,
     "why": "A screen adds light, so turning blue on adds to the red; it never takes light away the way paint does."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/light-adds-to-yellow/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

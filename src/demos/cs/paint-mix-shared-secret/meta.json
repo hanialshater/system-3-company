@@ -6,10 +6,18 @@
   "concept": "public-key-crypto",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["multiplication", "how a clock wraps from the last hour back to the first"],
-    "doesNotKnow": ["that two people can agree on a secret number while someone hears everything they send"]
+    "knows": [
+      "multiplication",
+      "how a clock wraps from the last hour back to the first"
+    ],
+    "doesNotKnow": [
+      "that two people can agree on a secret number while someone hears everything they send"
+    ]
   },
   "misconception": "Two strangers cannot agree on a secret over a channel an eavesdropper hears completely.",
   "objective": "The learner can explain why Bob (8 multiplied 15 times) and Alice (19 multiplied 6 times) land on the same mark of the 23-clock: both are 5 multiplied 90 times, while Eve heard only 8 and 19.",
@@ -89,6 +97,13 @@
     "answer": 0,
     "why": "Each multiplies the other's public number by their own secret count, so both reach the base multiplied (A × B) times; the secrets never travel."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/paint-mix-shared-secret/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

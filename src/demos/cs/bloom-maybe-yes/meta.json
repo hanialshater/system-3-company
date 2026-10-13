@@ -6,10 +6,17 @@
   "concept": "bloom-filter",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that a word can be turned into a fixed position (as in a hash table)"],
-    "doesNotKnow": ["that 'all my bits are lit' does not prove the word was added"]
+    "knows": [
+      "that a word can be turned into a fixed position (as in a hash table)"
+    ],
+    "doesNotKnow": [
+      "that 'all my bits are lit' does not prove the word was added"
+    ]
   },
   "misconception": "If the filter says an item might be there, the item is there.",
   "objective": "The learner can explain why a Bloom filter's No is certain but its Maybe is not: eel's bits 1, 2, 7 were lit by cat and dog, so the filter said Maybe for a word never added.",
@@ -71,6 +78,13 @@
     "answer": 0,
     "why": "Other words can light all of its bits, so Maybe can be wrong. Only a No (a dark bit) is certain."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/bloom-maybe-yes/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

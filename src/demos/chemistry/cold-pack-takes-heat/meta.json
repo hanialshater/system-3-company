@@ -6,28 +6,84 @@
   "concept": "exothermic-endothermic",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that fires and many reactions give out heat", "what a thermometer reads"],
-    "doesNotKnow": ["that some processes absorb heat from their surroundings", "that dissolving a solid can cool the water"]
+    "knows": [
+      "that fires and many reactions give out heat",
+      "what a thermometer reads"
+    ],
+    "doesNotKnow": [
+      "that some processes absorb heat from their surroundings",
+      "that dissolving a solid can cool the water"
+    ]
   },
   "misconception": "Chemical changes always release heat, and a cold pack stores cold.",
   "objective": "The learner can say that dissolving 1.0 mol (80 g) of ammonium nitrate takes about 25.7 kJ from 500 g of water, cooling it by about 11 °C, because the process absorbs heat from its surroundings.",
   "claims": [
-    { "id": "chemistry.cold-pack-takes-heat.c1", "text": "Dissolving ammonium nitrate in water absorbs about 25.7 kJ of heat per mole (an enthalpy of solution of about +25.7 kJ/mol).", "support": "source", "source": "CRC Handbook of Chemistry and Physics, enthalpy of solution of NH4NO3 about +25.7 kJ/mol at 25 °C (infinite dilution).", "status": "unverified" },
-    { "id": "chemistry.cold-pack-takes-heat.c2", "text": "One mole of ammonium nitrate weighs about 80 g, so 80 g is 1.0 mol and one scoop of 20 g is 0.25 mol.", "support": "derivation", "source": "NH4NO3 molar mass 14.01×2 + 1.008×4 + 16.00×3 = 80.04 g/mol (IUPAC atomic weights).", "status": "unverified" },
-    { "id": "chemistry.cold-pack-takes-heat.c3", "text": "Warming 1 g of water by 1 °C takes about 4.18 J; the mixture is treated the same way.", "support": "source", "source": "Specific heat of liquid water about 4.18 J/(g·K) at 25 °C (CRC Handbook). Treating the salt solution as 4.18 J/(g·K) is an approximation (real solutions are a little lower, so the real drop is slightly larger).", "status": "unverified" },
-    { "id": "chemistry.cold-pack-takes-heat.c4", "text": "Dissolving 1.0 mol (80 g) in 500 g of water takes about 25.7 kJ from the water and cools it by about 11 °C, from 20 °C to about 9 °C.", "support": "derivation", "source": "25,700 J / ((500 + 80) g × 4.18 J/(g·K)) = 10.60 K; 20 − 10.6 = 9.4 °C (node; Demo.tsx drop(n)). Scoops: 0.25 mol each, temperature drop = heat absorbed over (total mass × 4.18).", "status": "unverified" },
-    { "id": "chemistry.cold-pack-takes-heat.c5", "text": "Heat flows from the water into the dissolving salt, so the water cools; this is how an instant cold pack works.", "support": "source", "source": "Instant cold packs contain ammonium nitrate or urea and water in separate compartments (Chemistry LibreTexts, Enthalpy of solution; Atkins, Physical Chemistry). Endothermic dissolution: positive enthalpy of solution.", "status": "unverified" },
-    { "id": "chemistry.cold-pack-takes-heat.c6", "text": "Model: an insulated beaker with no heat from the room, and the salt dissolves completely.", "support": "source", "source": "Stage label 'insulated'. Ammonium nitrate solubility about 190 g per 100 g water at 20 °C, so 80 g in 500 g dissolves fully (CRC Handbook).", "status": "unverified" }
+    {
+      "id": "chemistry.cold-pack-takes-heat.c1",
+      "text": "Dissolving ammonium nitrate in water absorbs about 25.7 kJ of heat per mole (an enthalpy of solution of about +25.7 kJ/mol).",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, enthalpy of solution of NH4NO3 about +25.7 kJ/mol at 25 °C (infinite dilution).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cold-pack-takes-heat.c2",
+      "text": "One mole of ammonium nitrate weighs about 80 g, so 80 g is 1.0 mol and one scoop of 20 g is 0.25 mol.",
+      "support": "derivation",
+      "source": "NH4NO3 molar mass 14.01×2 + 1.008×4 + 16.00×3 = 80.04 g/mol (IUPAC atomic weights).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cold-pack-takes-heat.c3",
+      "text": "Warming 1 g of water by 1 °C takes about 4.18 J; the mixture is treated the same way.",
+      "support": "source",
+      "source": "Specific heat of liquid water about 4.18 J/(g·K) at 25 °C (CRC Handbook). Treating the salt solution as 4.18 J/(g·K) is an approximation (real solutions are a little lower, so the real drop is slightly larger).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cold-pack-takes-heat.c4",
+      "text": "Dissolving 1.0 mol (80 g) in 500 g of water takes about 25.7 kJ from the water and cools it by about 11 °C, from 20 °C to about 9 °C.",
+      "support": "derivation",
+      "source": "25,700 J / ((500 + 80) g × 4.18 J/(g·K)) = 10.60 K; 20 − 10.6 = 9.4 °C (node; Demo.tsx drop(n)). Scoops: 0.25 mol each, temperature drop = heat absorbed over (total mass × 4.18).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cold-pack-takes-heat.c5",
+      "text": "Heat flows from the water into the dissolving salt, so the water cools; this is how an instant cold pack works.",
+      "support": "source",
+      "source": "Instant cold packs contain ammonium nitrate or urea and water in separate compartments (Chemistry LibreTexts, Enthalpy of solution; Atkins, Physical Chemistry). Endothermic dissolution: positive enthalpy of solution.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.cold-pack-takes-heat.c6",
+      "text": "Model: an insulated beaker with no heat from the room, and the salt dissolves completely.",
+      "support": "source",
+      "source": "Stage label 'insulated'. Ammonium nitrate solubility about 190 g per 100 g water at 20 °C, so 80 g in 500 g dissolves fully (CRC Handbook).",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "A student dissolves a salt in water and the thermometer falls. The dissolving process…",
-    "options": ["took heat from the water", "released heat into the water", "made no heat change at all"],
+    "options": [
+      "took heat from the water",
+      "released heat into the water",
+      "made no heat change at all"
+    ],
     "answer": 0,
     "why": "A falling temperature means heat left the water and went into the dissolving salt, so the process absorbed heat."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/cold-pack-takes-heat/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

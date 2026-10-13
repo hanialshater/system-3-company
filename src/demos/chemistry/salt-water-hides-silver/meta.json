@@ -6,29 +6,91 @@
   "concept": "solubility-product",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that salts dissolve only up to a limit", "that dissolved salts are separate ions"],
-    "doesNotKnow": ["that adding an ion already present lowers how much of the other ion can stay dissolved", "that the two ions' concentrations multiply to a fixed ceiling"]
+    "knows": [
+      "that salts dissolve only up to a limit",
+      "that dissolved salts are separate ions"
+    ],
+    "doesNotKnow": [
+      "that adding an ion already present lowers how much of the other ion can stay dissolved",
+      "that the two ions' concentrations multiply to a fixed ceiling"
+    ]
   },
   "misconception": "A salt's solubility is a fixed number of grams per litre, whatever else is in the water.",
   "objective": "The learner can say that in 0.10 mol/L chloride the silver ion concentration over AgCl crystals falls from about 1.3 × 10⁻⁵ to about 1.8 × 10⁻⁹ mol/L, because the product of the two ion concentrations has a fixed ceiling of about 1.8 × 10⁻¹⁰.",
   "claims": [
-    { "id": "chemistry.salt-water-hides-silver.c1", "text": "Silver chloride (AgCl) is a salt that dissolves only a little in water, giving silver ions (Ag⁺) and chloride ions (Cl⁻).", "support": "source", "source": "CRC Handbook of Chemistry and Physics, solubility product constants; AgCl is sparingly soluble.", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c2", "text": "While AgCl crystals remain in the water, [Ag⁺] × [Cl⁻] equals about 1.8 × 10⁻¹⁰ (mol/L)² at 25 °C.", "support": "source", "source": "Ksp(AgCl) = 1.8 × 10⁻¹⁰ at 25 °C (CRC Handbook). Concentrations used in place of activities, an approximation.", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c3", "text": "In pure water [Ag⁺] is about 1.3 × 10⁻⁵ mol/L.", "support": "derivation", "source": "[Ag⁺] = [Cl⁻] = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ mol/L (node; Demo.tsx ag(0)).", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c4", "text": "In water with 0.10 mol/L of NaCl, [Ag⁺] is about 1.8 × 10⁻⁹ mol/L, about 7,500 times lower than in pure water.", "support": "derivation", "source": "[Ag⁺] = 1.8 × 10⁻¹⁰ / 0.10 = 1.8 × 10⁻⁹ mol/L (the solved quadratic gives the same to 2 figures); 1.34 × 10⁻⁵ / 1.8 × 10⁻⁹ = 7,450 (node; Demo.tsx RATIO). Ignores activity and soluble AgCl₂⁻ complexes, which matter more at higher chloride.", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c5", "text": "The intermediate steps, 0.001 and 0.010 mol/L of NaCl, give [Ag⁺] of about 1.8 × 10⁻⁷ and 1.8 × 10⁻⁸ mol/L.", "support": "derivation", "source": "1.8e-10 / 0.001 = 1.8e-7; 1.8e-10 / 0.01 = 1.8e-8 (node; the exact quadratic differs by under 0.1%).", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c6", "text": "Adding one of the ions already in the solution lowers how much of the other can stay dissolved (the common-ion effect).", "support": "source", "source": "Atkins, Physical Chemistry / Chemical Principles, common-ion effect; Chemistry LibreTexts.", "status": "unverified" },
-    { "id": "chemistry.salt-water-hides-silver.c7", "text": "Square brackets mean moles per litre: [Ag⁺] is the number of moles of silver ions in each litre.", "support": "convention", "source": "IUPAC Gold Book 'amount concentration'.", "status": "unverified" }
+    {
+      "id": "chemistry.salt-water-hides-silver.c1",
+      "text": "Silver chloride (AgCl) is a salt that dissolves only a little in water, giving silver ions (Ag⁺) and chloride ions (Cl⁻).",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, solubility product constants; AgCl is sparingly soluble.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c2",
+      "text": "While AgCl crystals remain in the water, [Ag⁺] × [Cl⁻] equals about 1.8 × 10⁻¹⁰ (mol/L)² at 25 °C.",
+      "support": "source",
+      "source": "Ksp(AgCl) = 1.8 × 10⁻¹⁰ at 25 °C (CRC Handbook). Concentrations used in place of activities, an approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c3",
+      "text": "In pure water [Ag⁺] is about 1.3 × 10⁻⁵ mol/L.",
+      "support": "derivation",
+      "source": "[Ag⁺] = [Cl⁻] = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ mol/L (node; Demo.tsx ag(0)).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c4",
+      "text": "In water with 0.10 mol/L of NaCl, [Ag⁺] is about 1.8 × 10⁻⁹ mol/L, about 7,500 times lower than in pure water.",
+      "support": "derivation",
+      "source": "[Ag⁺] = 1.8 × 10⁻¹⁰ / 0.10 = 1.8 × 10⁻⁹ mol/L (the solved quadratic gives the same to 2 figures); 1.34 × 10⁻⁵ / 1.8 × 10⁻⁹ = 7,450 (node; Demo.tsx RATIO). Ignores activity and soluble AgCl₂⁻ complexes, which matter more at higher chloride.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c5",
+      "text": "The intermediate steps, 0.001 and 0.010 mol/L of NaCl, give [Ag⁺] of about 1.8 × 10⁻⁷ and 1.8 × 10⁻⁸ mol/L.",
+      "support": "derivation",
+      "source": "1.8e-10 / 0.001 = 1.8e-7; 1.8e-10 / 0.01 = 1.8e-8 (node; the exact quadratic differs by under 0.1%).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c6",
+      "text": "Adding one of the ions already in the solution lowers how much of the other can stay dissolved (the common-ion effect).",
+      "support": "source",
+      "source": "Atkins, Physical Chemistry / Chemical Principles, common-ion effect; Chemistry LibreTexts.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-water-hides-silver.c7",
+      "text": "Square brackets mean moles per litre: [Ag⁺] is the number of moles of silver ions in each litre.",
+      "support": "convention",
+      "source": "IUPAC Gold Book 'amount concentration'.",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "A sparingly soluble salt has an ion-product ceiling of 1 × 10⁻¹⁰ (mol/L)². If the water already holds 0.01 mol/L of the salt's negative ion, the positive ion's concentration over crystals is about…",
-    "options": ["1 × 10⁻⁸ mol/L", "1 × 10⁻⁵ mol/L", "0.01 mol/L"],
+    "options": [
+      "1 × 10⁻⁸ mol/L",
+      "1 × 10⁻⁵ mol/L",
+      "0.01 mol/L"
+    ],
     "answer": 0,
     "why": "The ceiling divided by the existing ion's concentration: 1 × 10⁻¹⁰ ÷ 0.01 = 1 × 10⁻⁸ mol/L."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/salt-water-hides-silver/2026-10-13-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }
