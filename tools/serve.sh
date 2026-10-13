@@ -17,7 +17,13 @@ case "$cmd" in
     echo $! >"$RUN/$port.pid"; sleep 5
     curl -s -o /dev/null -w "port $port: HTTP %{http_code}\n" "localhost:$port/" ;;
   stop)
-    [ -f "$RUN/$port.pid" ] || { echo "no pid file for port $port"; exit 1; }
+    if [ ! -f "$RUN/$port.pid" ]; then
+      # No pid file (someone else started it): find the listener through its socket inode.
+      hex=$(printf '%04X' "$port"); ino=$(awk -v h=":$hex" 'NR>1 && substr($2, length($2)-4)==h && $4=="0A"{print $10; exit}' /proc/net/tcp)
+      [ -z "$ino" ] && { echo "nothing listening on $port"; exit 0; }
+      for d in /proc/[0-9]*; do ls -l "$d/fd" 2>/dev/null | grep -q "socket:\[$ino\]" && { kill "${d#/proc/}"; echo "stopped pid ${d#/proc/} on port $port"; }; done
+      exit 0
+    fi
     pid=$(cat "$RUN/$port.pid"); kill -- -"$pid" 2>/dev/null || kill "$pid" 2>/dev/null
     rm -f "$RUN/$port.pid"; echo "stopped port $port (pid group $pid)" ;;
   status)
