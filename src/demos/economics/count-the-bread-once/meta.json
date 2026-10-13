@@ -1,0 +1,62 @@
+{
+  "slug": "count-the-bread-once",
+  "title": "What did the chain produce?",
+  "hook": "Wheat, flour, bread: $10 of sales. Is that what the economy made?",
+  "domain": "economics",
+  "concept": "gdp-value-added",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["what a sale is"],
+    "doesNotKnow": ["that adding every sale in a chain counts the same wheat several times"]
+  },
+  "misconception": "Output is the total of everything sold.",
+  "objective": "The learner can explain that value added at each stage is its sale minus what it bought, and that the slices add to the final sale ($6), not to the $10 of all sales.",
+  "claims": [
+    {
+      "id": "economics.count-the-bread-once.c1",
+      "text": "In the chain wheat $1, flour $3, bread $6, the sales add to $10.",
+      "support": "derivation",
+      "source": "1 + 3 + 6 = 10 (Demo.tsx SALES_TOTAL).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.count-the-bread-once.c2",
+      "text": "Value added is a stage's sale minus what it bought: the farmer adds $1, the miller $2, the baker $3.",
+      "support": "derivation",
+      "source": "1 - 0 = 1; 3 - 1 = 2; 6 - 3 = 3 (Demo.tsx added()). Definition of value added (national accounts, production approach).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.count-the-bread-once.c3",
+      "text": "The value added by all stages ($6) equals the final sale of the bread ($6), so GDP in this chain is $6.",
+      "support": "derivation",
+      "source": "1 + 2 + 3 = 6 = final sale. The final-sales and value-added methods of measuring GDP agree (Mankiw, Principles of Economics, ch. 'Measuring a Nation's Income').",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.count-the-bread-once.c4",
+      "text": "Adding every sale counts the wheat's value inside the flour price and the flour inside the bread price, so it overstates output.",
+      "support": "derivation",
+      "source": "Double counting of intermediate goods; wheat's $1 appears in the $1, $3 and $6 sales (Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.count-the-bread-once.c5",
+      "text": "The lesson is a model: a three-step chain with invented prices, no imports and no stocks of unsold goods.",
+      "support": "convention",
+      "source": "Stage chip 'Model: a three-step chain, nothing imported'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tree farm sells timber for $20 to a sawmill, which sells planks for $50 to a carpenter, who sells a table for $90. What is the value added by the sawmill?",
+    "options": ["$30", "$50", "$20"],
+    "answer": 0,
+    "why": "The sawmill sold for $50 and bought $20 of timber, so it added $30. The slices 20 + 30 + 40 add to the $90 table."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

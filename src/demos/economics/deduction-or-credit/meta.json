@@ -1,0 +1,62 @@
+{
+  "slug": "deduction-or-credit",
+  "title": "Two ways to take off $1,000",
+  "hook": "A $1,000 deduction and a $1,000 credit sound alike. Do they save the same?",
+  "domain": "economics",
+  "concept": "deduction-vs-credit",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that a flat tax rate takes a fixed share of income"],
+    "doesNotKnow": ["that a deduction lowers the income the tax is taken from, while a credit lowers the tax bill itself"]
+  },
+  "misconception": "A $1,000 deduction and a $1,000 credit are worth the same.",
+  "objective": "The learner can compute that at a 20% rate a $1,000 deduction cuts the bill by $200 and a $1,000 credit by $1,000, and that a higher rate makes the deduction worth more.",
+  "claims": [
+    {
+      "id": "economics.deduction-or-credit.c1",
+      "text": "On $10,000 of income at a 20% rate the tax is $2,000; a $1,000 deduction makes it $1,800, a cut of $200.",
+      "support": "derivation",
+      "source": "0.20 x 10,000 = 2,000; 0.20 x (10,000 - 1,000) = 1,800 (node; Demo.tsx bill()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.deduction-or-credit.c2",
+      "text": "A $1,000 credit makes the same $2,000 bill $1,000, a cut of $1,000.",
+      "support": "derivation",
+      "source": "2,000 - 1,000 = 1,000 (Demo.tsx bill()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.deduction-or-credit.c3",
+      "text": "A deduction is worth the tax rate times its size (so more at higher rates); a credit is worth its full size at any rate (when the bill is at least as large).",
+      "support": "derivation",
+      "source": "deduction cut = r x 1,000; credit cut = min(1,000, r x 10,000). At 10%, 40%: deduction cuts $100, $400; credit cuts $1,000 at both (node; slider range 10-40%).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.deduction-or-credit.c4",
+      "text": "A deduction subtracts from the income the tax is taken from; a credit subtracts from the tax bill itself.",
+      "support": "source",
+      "source": "Standard definitions of tax deduction and tax credit (general public-finance texts).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.deduction-or-credit.c5",
+      "text": "The lesson uses a fictional tax system with invented numbers and one flat rate; it is not any country's rules and not tax advice.",
+      "support": "convention",
+      "source": "Stage chip 'Made-up system: income $10,000, one flat rate'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a made-up flat 25% system, which saves more tax: a $400 deduction or a $150 credit?",
+    "options": ["The $400 deduction", "The $150 credit", "They save the same"],
+    "answer": 1,
+    "why": "The deduction cuts the bill by 25% of $400 = $100. The credit cuts it by the full $150."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

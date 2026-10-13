@@ -1,0 +1,62 @@
+{
+  "slug": "helium-leaks-first",
+  "title": "Which gas leaks fastest?",
+  "hook": "Two gases at the same temperature leak through a pinhole. Which empties first?",
+  "domain": "chemistry",
+  "concept": "effusion-graham",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that molecules move faster when hot"],
+    "doesNotKnow": ["that at one temperature lighter molecules move faster, with speed scaling as one over the square root of mass"]
+  },
+  "misconception": "At the same temperature all gas molecules move at the same speed.",
+  "objective": "The learner can say that at equal temperature helium escapes through a pinhole about 2.6 times as fast as nitrogen, because lighter molecules move faster (speed scales as 1/sqrt(molar mass)).",
+  "claims": [
+    {
+      "id": "chemistry.helium-leaks-first.c1",
+      "text": "The molar mass of helium is about 4.003 g/mol and of nitrogen gas (N2) about 28.014 g/mol.",
+      "support": "source",
+      "source": "IUPAC standard atomic weights: He 4.0026, N 14.007 (N2 = 28.014).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.helium-leaks-first.c2",
+      "text": "Through a pinhole, the rate of escape of a gas is proportional to one over the square root of its molar mass (Graham's law), so helium escapes about 2.6 times as fast as nitrogen at the same temperature.",
+      "support": "derivation",
+      "source": "Graham's law (Atkins, Physical Chemistry, effusion): rate ratio = sqrt(28.014 / 4.003) = 2.645 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.helium-leaks-first.c3",
+      "text": "At one temperature all gases share the same average kinetic energy, so lighter molecules move faster.",
+      "support": "source",
+      "source": "Kinetic theory of gases: mean kinetic energy = (3/2) kT, independent of mass (Atkins, Physical Chemistry).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.helium-leaks-first.c4",
+      "text": "In the stage's simulation (20,000 non-colliding particles in a 2-D box, a fixed time window) 1,166 helium particles reach the pinhole against 441 nitrogen, a ratio of about 2.6.",
+      "support": "derivation",
+      "source": "Demo.tsx run(), seeds 100 (He) and 102 (N2); speeds drawn from a normal distribution with spread proportional to 1/sqrt(mass). The seeds were taken as the first tried (100 + gas index), not selected; other seeds gave helium:nitrogen ratios between about 2.6 and 2.9 (node). Neon and argon counts are also from the simulation and are not quoted in the lesson.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.helium-leaks-first.c5",
+      "text": "The stage is a simplified model: two dimensions, no collisions between particles, a fixed number of particles, the same temperature for every gas. Real gases escape through small holes in three dimensions.",
+      "support": "convention",
+      "source": "Stage chip 'Simulated 2-D box, same temperature, no collisions'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At the same temperature, which gas leaks through a pinhole faster: hydrogen (2.0 g/mol) or oxygen (32.0 g/mol)?",
+    "options": ["Hydrogen, about 4 times as fast", "Oxygen, about 4 times as fast", "Both leak at the same rate"],
+    "answer": 0,
+    "why": "Rate scales as 1/sqrt(mass): sqrt(32.0 / 2.0) = sqrt(16) = 4, so lighter hydrogen leaks about 4 times as fast."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

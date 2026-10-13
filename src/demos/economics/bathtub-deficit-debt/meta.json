@@ -1,0 +1,66 @@
+{
+  "slug": "bathtub-deficit-debt",
+  "title": "A tap and a tub",
+  "hook": "You overspend $200 a month. How big is the debt after six months?",
+  "domain": "economics",
+  "concept": "stock-vs-flow",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["what spending and income are"],
+    "doesNotKnow": ["that a deficit is an amount per period (a flow) and debt is the running total (a stock)"]
+  },
+  "misconception": "A deficit and a debt are the same thing.",
+  "objective": "The learner can explain that a $200 monthly deficit added to a $1,000 debt gives $2,200 after six months, and that debt falls only in months when the gap turns negative.",
+  "claims": [
+    {
+      "id": "economics.bathtub-deficit-debt.c1",
+      "text": "Owing $1,000 and spending $200 more than you earn each month for 6 months leaves $2,200 owed, ignoring interest.",
+      "support": "derivation",
+      "source": "1,000 + 6 x 200 = 2,200 (node; Demo.tsx levelAfter()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bathtub-deficit-debt.c2",
+      "text": "The $200 is a deficit, an amount per month (a flow); the $2,200 is the debt, an accumulated total (a stock).",
+      "support": "convention",
+      "source": "Standard stock-flow definitions: a flow is measured per period, a stock at a point in time (Mankiw, Principles of Economics; national debt vs budget deficit).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bathtub-deficit-debt.c3",
+      "text": "A month in which you save $200 lowers the debt by $200; debt only falls when the monthly gap is negative.",
+      "support": "derivation",
+      "source": "level(next) = level + gap (Demo.tsx levelAfter()); a negative gap lowers the level.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bathtub-deficit-debt.c4",
+      "text": "With interest the tap would grow, because interest is added to the debt on top of the gap.",
+      "support": "derivation",
+      "source": "Interest on a positive debt is a further inflow each month; this stage ignores it.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bathtub-deficit-debt.c5",
+      "text": "The lesson is a model: the tub is an analogy, there is no interest, and debt in the stage cannot fall below $0.",
+      "support": "convention",
+      "source": "Stage chip 'Model: no interest; the tap is spending minus income'; Demo.tsx levelAfter() floors at 0.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A household has a budget deficit of $100 each month for a year. Which statement is right?",
+    "options": [
+      "Its debt grows by $1,200 over the year",
+      "Its debt equals $100",
+      "Its debt stays the same"
+    ],
+    "answer": 0,
+    "why": "The deficit is a flow of $100 per month; twelve months add 12 x $100 = $1,200 to the debt (ignoring interest)."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
