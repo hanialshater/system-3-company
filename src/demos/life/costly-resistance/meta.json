@@ -1,0 +1,73 @@
+{
+  "slug": "costly-resistance",
+  "title": "Drug gone. Do resistant cells go too?",
+  "hook": "Resistance slows these bacteria down. Stop the drug: how fast does resistance fade?",
+  "domain": "life",
+  "concept": "antibiotic-resistance",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "resistant bacteria survive a drug that kills the others",
+      "bacteria multiply in generations"
+    ],
+    "doesNotKnow": [
+      "that resistance can carry a growth cost when the drug is absent",
+      "that a small cost removes resistance only slowly, so it lingers"
+    ]
+  },
+  "misconception": "Once the drug is gone, resistant bacteria quickly vanish.",
+  "objective": "The learner can explain that in the toy dish a 5% growth cost takes resistant cells from 10% to only about 4% in 20 generations and 0.5% in 60: the cost shrinks their ratio to normal cells by 5% a generation, so resistance fades slowly and lingers.",
+  "claims": [
+    {
+      "id": "life.costly-resistance.c1",
+      "text": "In the toy dish with no drug, if 10% of cells are resistant and they leave 5% fewer offspring each generation, the resistant share is 3.8% after 20 generations and 0.51% after 60.",
+      "support": "derivation",
+      "source": "r_g = 0.1 x 0.95^g / (0.9 + 0.1 x 0.95^g): g = 20 gives 0.0383, g = 60 gives 0.0051 (Demo.tsx share(); node). Matches the brief's check (3.8%).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.costly-resistance.c2",
+      "text": "A 5% cost shrinks the ratio of resistant to normal cells by 5% each generation, so the resistant share falls slowly and never reaches exactly zero.",
+      "support": "derivation",
+      "source": "Ratio r/(1-r) multiplies by (1 - cost) per generation in the same model.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.costly-resistance.c3",
+      "text": "Resistance often carries a fitness cost, and bacteria often gain extra (compensating) mutations that reduce that cost, so resistance can persist without the drug.",
+      "support": "source",
+      "source": "Andersson & Hughes 2010, Nature Reviews Microbiology 8:260 ('Antibiotic resistance and its cost: is it possible to reverse resistance?').",
+      "status": "unverified"
+    },
+    {
+      "id": "life.costly-resistance.c4",
+      "text": "The dish is a model: a fixed 5% cost, no drug, no new mutations, no compensation, no randomness. It is a model, not treatment advice; stated on the stage ('Toy dish, no drug') and in the reveal.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #39 (the 5% cost is invented). The stage also offers 1% and 10% costs (8.3% and 1.3% at generation 20).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Resistant bacteria grow a little slower than normal ones when no drug is present. After the drug is stopped, the resistant share:",
+    "options": [
+      "Drops to zero within a few generations",
+      "Shrinks slowly and can linger for a long time",
+      "Stays exactly the same"
+    ],
+    "answer": 1,
+    "why": "A small cost trims their share a little each generation, so it fades slowly; compensating mutations can slow it further."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
