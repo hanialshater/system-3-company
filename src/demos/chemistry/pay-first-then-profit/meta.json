@@ -1,0 +1,33 @@
+{
+  "slug": "pay-first-then-profit",
+  "title": "Methane burning: the bond ledger",
+  "hook": "Burning methane gives out heat, but breaking bonds costs energy. Where is the gain?",
+  "domain": "chemistry",
+  "concept": "bond-energy-enthalpy",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that burning releases heat", "that molecules are atoms joined by bonds"],
+    "doesNotKnow": ["that every reaction first pays energy to break bonds and then collects energy from forming new ones", "that heat released is the difference between the two"]
+  },
+  "misconception": "Heat comes only from forming bonds, or breaking bonds releases energy.",
+  "objective": "The learner can say that burning 1 mol of methane costs about 2,648 kJ to break bonds and returns about 3,450 kJ from forming new ones, so about 802 kJ is released, because the new bonds are stronger in total.",
+  "claims": [
+    { "id": "chemistry.pay-first-then-profit.c1", "text": "Breaking a chemical bond costs energy; forming a bond returns energy.", "support": "source", "source": "Atkins, Chemical Principles / Physical Chemistry: bond enthalpy is the energy needed to break a bond; forming it releases the same amount (Hess's law).", "status": "unverified" },
+    { "id": "chemistry.pay-first-then-profit.c2", "text": "Average bond energies in kJ per mole of bonds: C–H 413, O=O 498, C=O (in CO2) 799, O–H 463.", "support": "source", "source": "Average bond enthalpies, CRC Handbook / Atkins, Chemical Principles tables. Average values (they vary with the molecule), so totals are 'about'.", "status": "unverified" },
+    { "id": "chemistry.pay-first-then-profit.c3", "text": "Burning 1 mol of methane (CH4 + 2 O2 → CO2 + 2 H2O) breaks 4 C–H and 2 O=O bonds, costing about 2,648 kJ.", "support": "derivation", "source": "4 × 413 + 2 × 498 = 1,652 + 996 = 2,648 kJ (node; Demo.tsx PAID).", "status": "unverified" },
+    { "id": "chemistry.pay-first-then-profit.c4", "text": "The same reaction forms 2 C=O and 4 O–H bonds, returning about 3,450 kJ.", "support": "derivation", "source": "2 × 799 + 4 × 463 = 1,598 + 1,852 = 3,450 kJ (node; Demo.tsx BACK).", "status": "unverified" },
+    { "id": "chemistry.pay-first-then-profit.c5", "text": "The net is about 802 kJ released per mole of methane burned, close to the measured value of about 802 kJ/mol for water as a gas.", "support": "source", "source": "3,450 − 2,648 = 802 kJ. Measured standard enthalpy of combustion of CH4 to CO2(g) + 2 H2O(g) = −802.3 kJ/mol (NIST WebBook, from ΔfH° of CH4 −74.6, CO2 −393.5, H2O(g) −241.8 kJ/mol). The match is partly luck: bond energies are averages.", "status": "unverified" },
+    { "id": "chemistry.pay-first-then-profit.c6", "text": "Heat is released when the bonds formed are stronger in total than the bonds broken.", "support": "source", "source": "Atkins, Chemical Principles: ΔH ≈ Σ(bonds broken) − Σ(bonds formed); negative means exothermic.", "status": "unverified" }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A reaction breaks bonds worth 1,000 kJ and forms bonds worth 1,400 kJ. It…",
+    "options": ["releases about 400 kJ", "absorbs about 400 kJ", "releases about 2,400 kJ"],
+    "answer": 0,
+    "why": "Heat released is the energy returned by new bonds minus the energy paid to break the old ones: 1,400 − 1,000 = 400 kJ released."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
