@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.cell { min-height: 40px; padding: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.crossed { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--muted); opacity: 0.45; }
+.tapped { border-radius: 999px; }
+.prime { border-color: var(--domain); border-width: 2px; }
+.now { outline: 3px solid var(--domain); outline-offset: 1px; }

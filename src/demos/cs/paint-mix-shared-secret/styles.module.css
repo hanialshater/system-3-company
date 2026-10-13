@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.rim { fill: var(--bg-2); stroke: var(--line); stroke-width: 2; }
+.tick { stroke: var(--muted); stroke-width: 1.5; }
+.num { font-size: 12px; fill: var(--muted); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.hot { fill: var(--fg); font-weight: 800; font-size: 14px; }
+
+.bobTrail { fill: color-mix(in srgb, var(--domain) 55%, transparent); }
+.aliceTrail { fill: color-mix(in srgb, var(--fg) 45%, transparent); }
+.bobHand { stroke: var(--domain); stroke-width: 3; }
+.aliceHand { stroke: var(--fg); stroke-width: 3; }
+.bobDot { fill: var(--domain); }
+.aliceDot { fill: var(--fg); }
+.whoA { font-size: 12px; font-weight: 800; fill: var(--bg-2); text-anchor: middle; }
+.who { font-size: 12px; font-weight: 800; fill: #0d0f14; text-anchor: middle; }
+.check { fill: none; stroke: var(--fg); stroke-width: 2.5; stroke-dasharray: 4 3; }
+.eve { font-size: 12px; fill: var(--muted); text-anchor: middle; }

@@ -1,0 +1,69 @@
+{
+  "slug": "sieve-stops-at-five",
+  "title": "How far must the sieve go?",
+  "hook": "Cross out multiples on a 2-to-30 grid until only primes are left. When can you stop?",
+  "domain": "cs",
+  "concept": "sieve-of-eratosthenes",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["what a prime is", "multiplication tables"],
+    "doesNotKnow": ["that you need only cross out multiples of numbers up to the square root"]
+  },
+  "misconception": "To find all primes up to 30 you must cross out multiples of every number up to 30.",
+  "objective": "The learner can explain why crossing out multiples of 2, 3 and 5 already leaves only primes up to 30: every non-prime up to 30 has a factor of at most 5, because 6 × 6 = 36 > 30.",
+  "claims": [
+    {
+      "id": "cs.sieve-stops-at-five.c1",
+      "text": "After crossing out the multiples of 2, 3 and 5 on a 2-to-30 grid, no non-prime is left uncrossed.",
+      "support": "simulation",
+      "source": "Demo.tsx: COMPOSITES all in crossed after taps 2, 3, 5. Builder re-ran in Node: survivors [2,3,5,7,11,13,17,19,23,29].",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sieve-stops-at-five.c2",
+      "text": "Tapping 7 after that crosses out nothing new: 14, 21 and 28 were already crossed.",
+      "support": "derivation",
+      "source": "Multiples of 7 up to 30 are 14 = 2 × 7, 21 = 3 × 7, 28 = 4 × 7, crossed by 2 and 3. Demo.tsx multiples(7).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sieve-stops-at-five.c3",
+      "text": "Every non-prime up to 30 has a factor of 5 or less: if both factors were 6 or more, it would be at least 6 × 6 = 36.",
+      "support": "derivation",
+      "source": "If n = ab with a ≤ b then a² ≤ n, so a ≤ √n; √30 ≈ 5.48, so a ≤ 5 (Hardy and Wright, An Introduction to the Theory of Numbers, §1.2).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sieve-stops-at-five.c4",
+      "text": "So you only sieve up to the number that, times itself, reaches 30 (its square root).",
+      "support": "derivation",
+      "source": "Generalises c3: every composite n has a prime factor ≤ √n.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sieve-stops-at-five.c5",
+      "text": "The 10 numbers left are the primes up to 30: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29.",
+      "support": "simulation",
+      "source": "Demo.tsx PRIMES (trial division); Node check gives the same 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.sieve-stops-at-five.c6",
+      "text": "This is the sieve of Eratosthenes, an ancient method.",
+      "support": "source",
+      "source": "Attributed to Eratosthenes of Cyrene by Nicomachus, Introduction to Arithmetic I.13. No date is given in the lesson.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You sieve the numbers 2 to 100. What is the largest number whose multiples you need to cross out?",
+    "options": ["7", "50", "97"],
+    "answer": 0,
+    "why": "Any non-prime up to 100 has a factor of at most 10 (since 11 × 11 = 121), and the largest prime up to 10 is 7."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

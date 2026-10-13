@@ -1,0 +1,76 @@
+{
+  "slug": "light-adds-to-yellow",
+  "title": "Red light plus green light makes…?",
+  "hook": "A screen pixel is three tiny lights. Turn two of them up and guess the colour.",
+  "domain": "cs",
+  "concept": "pixels-rgb",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that three numbers describe a pixel's colour", "mixing paints"],
+    "doesNotKnow": ["that screens add light, so red plus green looks yellow"]
+  },
+  "misconception": "Colours on a screen mix like paint, so red plus green gives brown.",
+  "objective": "The learner can explain that rgb(255, 255, 0) is yellow because a pixel's three lights add, and that raising blue moves it toward white, the opposite of mixing paint.",
+  "claims": [
+    {
+      "id": "cs.light-adds-to-yellow.c1",
+      "text": "A pixel set to red 255, green 255, blue 0 looks yellow.",
+      "support": "convention",
+      "source": "CSS Color Module Level 4, named colours: yellow = #ffff00 = rgb(255, 255, 0). The stage paints the swatch with exactly that value.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c2",
+      "text": "With all three lights at 255 the pixel is white; with all at 0 it is black.",
+      "support": "convention",
+      "source": "CSS Color Module Level 4: white = #ffffff, black = #000000.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c3",
+      "text": "Each light runs from 0 (off) to 255 (full).",
+      "support": "convention",
+      "source": "8 bits per channel in sRGB colour as used by CSS rgb() (CSS Color Module Level 4, 'The RGB functions'). 255 = 2^8 - 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c4",
+      "text": "The stage names the eight corner colours black, red, green, blue, yellow, cyan, magenta and white; CSS calls rgb(0,255,0) lime, rgb(0,255,255) aqua and rgb(255,0,255) fuchsia.",
+      "support": "convention",
+      "source": "CSS Color Module Level 4 named colours (lime #00ff00, aqua/cyan #00ffff, fuchsia/magenta #ff00ff). 'green' and 'magenta' here are everyday names, disclosed.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c5",
+      "text": "A screen pixel gives off light and its three lights add, so adding light only makes it brighter.",
+      "support": "source",
+      "source": "Additive colour mixing: Hunt, The Reproduction of Colour, 6th ed., ch. 2 (additive and subtractive mixing); emissive displays combine red, green and blue primaries additively.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c6",
+      "text": "Each pigment soaks up some light, so mixing paints leaves less light, which is why red and green paint make a dark brown.",
+      "support": "source",
+      "source": "Subtractive mixing: Hunt, The Reproduction of Colour, ch. 2. 'Dark brown' is the typical result for red and green artists' paints, not an exact colour; stated narrowly.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.light-adds-to-yellow.c7",
+      "text": "Raising blue on a yellow pixel makes it paler, and at blue 255 it is white.",
+      "support": "convention",
+      "source": "rgb(255,255,128) and rgb(255,255,255) as painted by the stage; white per c2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A pixel shows red 255, green 0, blue 255. Is it darker or lighter than the pure red pixel (255, 0, 0)?",
+    "options": ["Lighter: more light is added", "Darker: mixing colours muddies them", "The same brightness"],
+    "answer": 0,
+    "why": "A screen adds light, so turning blue on adds to the red; it never takes light away the way paint does."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

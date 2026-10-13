@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.axis { stroke: var(--line); stroke-width: 2; }
+.tick { stroke: var(--muted); stroke-width: 1.5; }
+.num { font-size: 10px; fill: var(--muted); text-anchor: middle; }
+.goal { fill: var(--fg); font-weight: 800; font-size: 12px; }
+
+.sqArc { fill: none; stroke: var(--domain); stroke-width: 3; }
+.sqDot { fill: var(--domain); }
+.stepNum { font-size: 11px; font-weight: 800; fill: var(--domain); text-anchor: middle; }
+.oneArc { fill: none; stroke: var(--muted); stroke-width: 2; }
+.oneDot { fill: var(--fg); }
+.lane { font-size: 11px; fill: var(--muted); }

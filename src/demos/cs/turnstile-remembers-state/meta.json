@@ -1,0 +1,62 @@
+{
+  "slug": "turnstile-remembers-state",
+  "title": "How many get through the turnstile?",
+  "hook": "A locked turnstile, six events, a few people. Count who gets through.",
+  "domain": "cs",
+  "concept": "finite-state-machine",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["pushing through a turnstile", "putting in a coin"],
+    "doesNotKnow": ["that a machine can remember only which state it is in, not a count"]
+  },
+  "misconception": "The turnstile counts coins, so two coins in a row buy two passes.",
+  "objective": "The learner can trace a two-state machine: on coin, push, push, coin, coin, push from locked, 2 people pass, because the second coin in a row changes nothing.",
+  "claims": [
+    {
+      "id": "cs.turnstile-remembers-state.c1",
+      "text": "A turnstile that starts locked and receives coin, push, push, coin, coin, push lets 2 people through.",
+      "support": "simulation",
+      "source": "Demo.tsx run(6): passed = 2. Builder re-ran the trace in Node with an independent loop: 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turnstile-remembers-state.c2",
+      "text": "In this turnstile a coin unlocks it, a push while unlocked lets one person through and locks it, a push while locked is blocked, and a coin while unlocked changes nothing.",
+      "support": "convention",
+      "source": "The rules of the standard coin-operated turnstile example (Wikipedia, 'Finite-state machine', section 'Example: coin-operated turnstile', state-transition table).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turnstile-remembers-state.c3",
+      "text": "On this run the second coin in a row (event 5) found the turnstile already unlocked and changed nothing.",
+      "support": "simulation",
+      "source": "Demo.tsx run(5).edge = 'coin-wasted'; WASTED_AT = 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turnstile-remembers-state.c4",
+      "text": "The turnstile counts nothing: its whole memory is which of its two states it is in.",
+      "support": "derivation",
+      "source": "Follows from c2: the next state depends only on the current state and the event; the model stores no other value.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turnstile-remembers-state.c5",
+      "text": "A finite-state machine has fixed states and a rule for each event in each state.",
+      "support": "convention",
+      "source": "Sipser, Introduction to the Theory of Computation, 3rd ed., Definition 1.5 (finite automaton: finite set of states, alphabet, transition function, start state, accept states). Lesson wording is the informal reading; accept states are omitted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A door lock has two states. Entering the code unlocks it; opening the door lets you in and locks it again. Events from locked: code, code, open, open. How many entries?",
+    "options": ["1", "2", "0"],
+    "answer": 0,
+    "why": "The second code finds it already unlocked and is lost; the first open lets one person in and locks it, so the second open is blocked."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

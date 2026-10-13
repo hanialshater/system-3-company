@@ -1,0 +1,66 @@
+{
+  "slug": "bloom-maybe-yes",
+  "title": "Was eel ever added?",
+  "hook": "A strip of 10 lights remembers which words went in. Ask it about a word.",
+  "domain": "cs",
+  "concept": "bloom-filter",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that a word can be turned into a fixed position (as in a hash table)"],
+    "doesNotKnow": ["that 'all my bits are lit' does not prove the word was added"]
+  },
+  "misconception": "If the filter says an item might be there, the item is there.",
+  "objective": "The learner can explain why a Bloom filter's No is certain but its Maybe is not: eel's bits 1, 2, 7 were lit by cat and dog, so the filter said Maybe for a word never added.",
+  "claims": [
+    {
+      "id": "cs.bloom-maybe-yes.c1",
+      "text": "After adding cat (bits 1, 4, 7) and dog (bits 2, 4, 8), bits 1, 2, 4, 7 and 8 are lit, so eel's bits 1, 2, 7 are all lit and the filter answers Maybe although eel was never added.",
+      "support": "simulation",
+      "source": "Demo.tsx answer(['cat','dog'], 'eel') = 'Maybe'; builder re-ran the set union in Node: lit {1,2,4,7,8}, eel bits all in it.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bloom-maybe-yes.c2",
+      "text": "Fox would use bits 0, 4, 9; bit 0 and bit 9 are dark after adding cat and dog, so the filter answers No.",
+      "support": "simulation",
+      "source": "Demo.tsx answer(['cat','dog'], 'fox') = 'No'; FOX_DARK = [0, 9]. The bit table is chosen for the lesson (not a real hash), disclosed here.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bloom-maybe-yes.c3",
+      "text": "Each word always points at the same 3 bits.",
+      "support": "convention",
+      "source": "A Bloom filter uses k fixed hash functions, so a given item always maps to the same k positions (Bloom, 'Space/time trade-offs in hash coding with allowable errors', CACM 13(7), 1970). The stage uses a fixed table with k = 3 in place of hash functions.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bloom-maybe-yes.c4",
+      "text": "A dark bit means no added word ever lit it, so a No is always certain; a Maybe can be wrong.",
+      "support": "derivation",
+      "source": "Bits are only ever turned on; an added word lights all its bits, so an added word can never find one of its bits dark (no false negatives). False positives arise when other words lit all its bits (Bloom 1970).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bloom-maybe-yes.c5",
+      "text": "That one-sided doubt is the price of remembering many words in a few bits; this structure is a Bloom filter.",
+      "support": "source",
+      "source": "Bloom 1970 (the structure and its space/error trade-off); Broder and Mitzenmacher, 'Network Applications of Bloom Filters: A Survey', Internet Mathematics 1(4), 2004.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A Bloom filter answers 'Maybe' for a word. What do you know for sure?",
+    "options": [
+      "Nothing for sure: the word may or may not have been added",
+      "The word was definitely added",
+      "The word was definitely not added"
+    ],
+    "answer": 0,
+    "why": "Other words can light all of its bits, so Maybe can be wrong. Only a No (a dark bit) is certain."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

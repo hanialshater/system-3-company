@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.slot { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 3; }
+.target { stroke: var(--domain); stroke-width: 4; stroke-dasharray: none; }
+.idx { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+.item { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.movedItem { stroke: var(--bad); stroke-width: 2.5; }
+.newItem { fill: color-mix(in srgb, var(--domain) 40%, var(--bg-2)); stroke: var(--domain); stroke-width: 2.5; }
+.label { font-size: 15px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.mover { transition: transform 0.35s ease-out; }
+.note { font-size: 12px; fill: var(--muted); text-anchor: start; }
+.noteMid { font-size: 12px; fill: var(--muted); text-anchor: middle; }
+
+.arrow { stroke: var(--muted); stroke-width: 2; fill: none; }
+.changed { stroke: var(--domain); stroke-width: 3; }
+.hop { stroke: var(--domain); stroke-width: 3.5; }
+.hopNum { font-size: 12px; font-weight: 800; fill: var(--domain); text-anchor: middle; }
