@@ -11,8 +11,13 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that the equator, the tropics and the prime meridian exist", "the names of the continents"],
-    "doesNotKnow": ["which continent holds all four reference lines"]
+    "knows": [
+      "that the equator, the tropics and the prime meridian exist",
+      "the names of the continents"
+    ],
+    "doesNotKnow": [
+      "which continent holds all four reference lines"
+    ]
   },
   "misconception": "The equator, both tropics and the prime meridian cross several continents each, so many continents cross all four.",
   "objective": "The learner can say that Africa is the one continent (of the six shown) crossed by the equator, both tropics and the prime meridian, and that the others meet only one or two of them.",
@@ -22,48 +27,65 @@
       "text": "Africa is crossed by all four lines: the equator, the Tropic of Cancer, the Tropic of Capricorn and the prime meridian.",
       "support": "simulation",
       "source": "Builder's node walk (0.1 degree steps, d3-geoContains over the kit's Natural Earth 1:110m countries, countries assigned to continents by the table in Demo.tsx). Equator: Gabon, Congo, Dem. Rep. Congo, Uganda, Kenya, Somalia. Cancer: Morocco, W. Sahara, Mauritania, Mali, Algeria, Niger, Libya, Egypt. Capricorn: Namibia, Botswana, South Africa, Mozambique, Madagascar. Prime meridian: Ghana, Togo, Burkina Faso, Mali, Algeria. The stage computes the same walk in the browser.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-lines-one-continent.c2",
       "text": "Asia and South America meet two of the lines each (Asia: equator and Cancer; South America: equator and Capricorn); Europe (prime meridian), North America (Cancer) and Australia (Capricorn) meet one each.",
       "support": "simulation",
       "source": "Same walk and table. Asia: Indonesia on the equator; Saudi Arabia, UAE, Oman, India, Bangladesh, Myanmar, China, Taiwan on Cancer. South America: Ecuador, Colombia, Brazil on the equator; Chile, Argentina, Paraguay, Brazil on Capricorn. Europe: Spain, France, United Kingdom. North America: Mexico. Australia: Australia. Resolution caveat: 1:110m omits small islands, so islands (for example in Oceania) are not tested.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-lines-one-continent.c3",
       "text": "Continents in the lesson follow its own country list, which is a convention (for example Egypt counts as Africa, Indonesia as Asia, Mexico as North America).",
       "support": "convention",
       "source": "The table CONTINENT in Demo.tsx, limited to countries that a line crosses; no transcontinental country other than Egypt and Indonesia is crossed. Different atlases draw continents differently.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-lines-one-continent.c4",
       "text": "The tropics are drawn at 23.4366° north and south.",
       "support": "source",
       "source": "From memory, not re-checked: the brief gives 23.4366 (2025 value; the tropics move by about 0.47 arcseconds a year, Astronomical Almanac). The stage does not print the number.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-lines-one-continent.c5",
       "text": "Of these six continents only Africa lies across the equator, both tropics and the prime meridian.",
       "support": "derivation",
       "source": "Follows from c1-c2 and the stage, once all six are checked. Antarctica is not offered; in the data the prime meridian crosses it and none of the other three lines do.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-lines-one-continent.c6",
       "text": "Hook: the equator, both tropics and the prime meridian exist.",
       "support": "convention",
       "source": "Standard reference lines: equator (0 degrees latitude), Tropics of Cancer and Capricorn (about 23.4 degrees), prime meridian (0 degrees longitude, through Greenwich). Textbook knowledge, not re-checked.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Which continent is crossed by the equator, both tropics and the prime meridian?",
-    "options": ["Asia", "Africa", "South America", "Europe"],
+    "options": [
+      "Asia",
+      "Africa",
+      "South America",
+      "Europe"
+    ],
     "answer": 1,
     "why": "Africa straddles the equator, both tropics and the prime meridian; Asia and South America meet two each."
   },

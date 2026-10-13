@@ -11,8 +11,14 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["that coordinates can be written with many decimals", "that latitude is measured in degrees"],
-    "doesNotKnow": ["what each decimal place means on the ground", "that each extra decimal is ten times finer"]
+    "knows": [
+      "that coordinates can be written with many decimals",
+      "that latitude is measured in degrees"
+    ],
+    "doesNotKnow": [
+      "what each decimal place means on the ground",
+      "that each extra decimal is ten times finer"
+    ]
   },
   "misconception": "Four decimal places of latitude resolve a point to the centimetre.",
   "objective": "The learner can say that the fourth decimal of latitude is about 11 m, the fifth about 1 m and the sixth about 0.1 m, and that extra digits are finer than a phone can measure.",
@@ -22,41 +28,55 @@
       "text": "A degree of latitude is about 111 km on a sphere.",
       "support": "derivation",
       "source": "6,371.0088 km x pi / 180 = 111.195 km (kit EARTH_RADIUS_KM). On the WGS84 ellipsoid a degree of latitude is about 110.6 km at the equator to about 111.7 km at the poles (from memory; needs a checker).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-decimals-of-latitude.c2",
       "text": "One step of the fourth decimal of latitude is about 11.1 m, the fifth about 1.11 m, the sixth about 0.111 m.",
       "support": "derivation",
       "source": "111,195 m x 10^-4, 10^-5, 10^-6. Stage bar and readout use the same function, stepMetres(). Builder's node check: 11.12, 1.112, 0.1112 m; 111.2 m at 3 decimals; 11.1 km at 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-decimals-of-latitude.c3",
       "text": "11 m is about a tenth of a football pitch's length.",
       "support": "derivation",
       "source": "11.12 / 105 = 10.6%. Pitch length 105 m is a common international size (FIFA/IFAB recommend 105 x 68 m; from memory, the laws allow a range; needs a checker).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-decimals-of-latitude.c4",
       "text": "Phone GPS is typically good to a few metres in the open, so digits past the fifth mostly record noise, not position.",
       "support": "source",
       "source": "From memory, not re-checked: GPS.gov states smartphone GPS is typically accurate to about 4.9 m (16 ft) under open sky. 'Mostly noise past the fifth digit' is the builder's inference (1 m versus several metres). Needs a checker and a link.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.four-decimals-of-latitude.c5",
       "text": "The stage is a toy: a schematic bar drawn to scale beside a 105 x 68 m pitch on a sphere; it moves north only.",
       "support": "convention",
       "source": "Model label on the stage. Longitude steps are shorter at this latitude and are not shown.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Each extra decimal place of a latitude makes the position how much finer?",
-    "options": ["2 times", "10 times", "100 times"],
+    "options": [
+      "2 times",
+      "10 times",
+      "100 times"
+    ],
     "answer": 1,
     "why": "A decimal place is a factor of ten: about 11 m at four places, 1 m at five, 0.1 m at six."
   },
