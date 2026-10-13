@@ -14,3 +14,6 @@ owner: principal-engineer · tier: 2 · attendees: author, one affected role (e.
 ## Findings (problems, not fixes)
 ## Decision
 approve / approve with changes / reject. Objections that travel with it:
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

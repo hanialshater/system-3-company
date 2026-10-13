@@ -28,3 +28,6 @@ To each category manager, the brief requests by strand, in order. To design, the
 
 ## 4. Objections
 Each objection, with the answer that travels with the decision.
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

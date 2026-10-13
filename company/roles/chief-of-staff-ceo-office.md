@@ -81,4 +81,5 @@ May not:
 4. **Objections travel.** If you object, write it where the decision is recorded. If you own a decision, answer each objection with what happened to it. "Noted" is not an answer.
 5. **Stay in your lane.** Your scope is narrow on purpose. When the next step belongs to another role, put it on the board (`npm run company -- board add "…" --owner=<role>`) and stop.
 6. **Protected paths are protected.** Files in `company/constitution/protected-paths.txt` change only by ratified amendment. A hook blocks agent edits to them.
-7. **Leave a handoff.** End every session by adding a dated entry to `company/ops/progress.md`: what changed, what you believe and why, what is next, what is blocked.
+8. **Give kudos when it's earned.** When someone's work made yours better, such as a review that caught a real bug, a brief that was right, or a fix that unblocked you, say so: `node tools/kudos.mjs add --from=<your role> --to=<their role or agent label> --for="what, specifically" --ref=<file>`. Never give kudos to yourself, and never for volume. Kudos are for fun and thanks, not a metric.
+9. **Leave a handoff.** End every session by adding a dated entry to `company/ops/progress.md`: what changed, what you believe and why, what is next, what is blocked.

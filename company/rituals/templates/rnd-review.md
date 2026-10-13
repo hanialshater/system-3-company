@@ -17,3 +17,6 @@ Each one says who needs it and its exit criterion. Budget asks go to the founder
 
 ## 5. Objections
 Each objection, with its answer.
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

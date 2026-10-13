@@ -19,7 +19,8 @@ const WORKING_AGREEMENT = `## Working agreement (every role)
 4. **Objections travel.** If you object, write it where the decision is recorded. If you own a decision, answer each objection with what happened to it. "Noted" is not an answer.
 5. **Stay in your lane.** Your scope is narrow on purpose. When the next step belongs to another role, put it on the board (\`npm run company -- board add "…" --owner=<role>\`) and stop.
 6. **Protected paths are protected.** Files in \`company/constitution/protected-paths.txt\` change only by ratified amendment. A hook blocks agent edits to them.
-7. **Leave a handoff.** End every session by adding a dated entry to \`company/ops/progress.md\`: what changed, what you believe and why, what is next, what is blocked.`;
+8. **Give kudos when it's earned.** When someone's work made yours better, such as a review that caught a real bug, a brief that was right, or a fix that unblocked you, say so: \`node tools/kudos.mjs add --from=<your role> --to=<their role or agent label> --for="what, specifically" --ref=<file>\`. Never give kudos to yourself, and never for volume. Kudos are for fun and thanks, not a metric.
+9. **Leave a handoff.** End every session by adding a dated entry to \`company/ops/progress.md\`: what changed, what you believe and why, what is next, what is blocked.`;
 
 function onboarding(r) {
   const agentLine = r.human ? "human: true" : r.external ? "external: true (works outside this repo through company/design/illustration-inbox/; see company/design/illustrator-handbook.md)" : `agent: .claude/agents/${r.id}.md`;
@@ -144,3 +145,11 @@ fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
     }
 }
 console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents`);
+
+// Org-change hygiene (company/ceo-office/org-change-process.md): every role should appear in a decision record.
+{
+  const dec = fs.readdirSync(path.join(ROOT, "company/decisions")).map((f) => fs.readFileSync(path.join(ROOT, "company/decisions", f), "utf8")).join("\n");
+  const missing = roles.filter((r) => !r.human && !dec.includes(r.id));
+  if (missing.length) console.log(`note: ${missing.length} role(s) are not named in any decision record (see company/ceo-office/org-change-process.md): ${missing.map((r) => r.id).slice(0, 12).join(", ")}${missing.length > 12 ? "…" : ""}`);
+}
+

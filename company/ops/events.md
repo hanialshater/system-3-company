@@ -28,7 +28,7 @@ place a fact lives. The disk is still the memory, and the log is its index in ti
 
 `dispatch` (the chief of staff sends work), `report` (an agent hands back), `stopped` (an agent
 ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `ritual`, `decision`,
-`incident`, `blocked`, `founder` (a message from the founder), `commit`, `note`.
+`incident`, `blocked`, `founder` (a message from the founder), `commit`, `note`, `kudos` (thanks from one role to another: actor = giver, subjects[0] = recipient role or agent label, summary = what for), `org-change` (a role added, moved or retired; subjects = role ids).
 
 ## Rooms
 

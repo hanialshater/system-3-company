@@ -46,3 +46,6 @@ Read these before the anomalies. Each one is a question to answer, not just a nu
 
 ## Operational health (principal-engineer-ops)
 One line from `node tools/ops-health.mjs`: burn rate, stop rate, tier-1 red lines, open SEV1/SEV2. Point to the last ops review.
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

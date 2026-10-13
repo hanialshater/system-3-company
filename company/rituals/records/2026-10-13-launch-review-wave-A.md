@@ -17,3 +17,17 @@ Basis: latest learner review says "Verdict: launch" for v1 (current version); ev
 - Rewording of cards-do-remember.
 - Learner reviews for the 267 unreviewed lessons; revisions for the 138 revise verdicts.
 - Reviews should state "Screenshots seen: yes" so the check is not inferred.
+
+## Wave A2 (2026-10-13)
+
+Signed: Release Manager (Diego). Published count 94 -> 125 (+31).
+
+Basis: 46 candidates from `node tools/publish-ready.mjs` (latest learner review says launch for current version, "Screenshots seen: yes", every claim verified). I opened sheet.png for bloom-maybe-yes, monopolist-holds-back, tax-who-pays, rabbit-ratio, which-dissolves-in-oil: reveals complete and match the reviews. 31 passed `company publish`.
+
+W-135 (phone reveal clips last paragraph): not a hold reason unless the review says the clipped text carries the explanation. in-order-is-sorted review notes the last line "unfolds it" clipped, but the why-sorted reasoning is earlier in the paragraph; no hold for W-135. It is held for the QA record (below).
+
+Held (new):
+- salt-ions-count-double (v2): one claim unverified in meta.json; hold until fact-checker re-checks.
+- cards-do-remember (v2): reworded, edited claim unverified until re-checked; stays held.
+- 15 refused by the publish gate, no computer-use QA record (not worked around): chain-of-blame, flip-twenty-percent, keep-the-top-85, noisy-compass, twins-never-split, which-question-splits, helium-leaks-first, pencil-lead-vs-diamond, every-message-is-possible, four-words-beat-eight-letters, hamming-points-at-the-bug, in-order-is-sorted, three-pizzas-four-people, red-apple-green-light, stop-when-it-looks-significant. Need a QA run, then publish.
+- Unchanged: 8 geography lessons (no screenshot re-review), paint-mix-shared-secret and twenty-then-ten-off (fatal), cafe-is-five-bytes (verdict for older version), 179 revise, 177 unreviewed.

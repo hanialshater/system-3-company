@@ -20,3 +20,6 @@ chair: head-of-product · executes: release-manager · attests: qa-tester, fact-
 
 ## Decision
 go / no-go / go with conditions. Signed: head-of-product.
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

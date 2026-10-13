@@ -25,3 +25,6 @@ New services, data stores or deficits, reclassifications, and anything `missing`
 
 ## 6. Decisions and actions
 Each action gets an owner and a board item. Objections go with the decisions.
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.

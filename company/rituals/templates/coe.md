@@ -25,3 +25,6 @@ Which claims rested on what failed? Which decisions rested on those claims?
 
 ## Pattern update
 New pattern, new known_failure, or confidence change (pattern librarian).
+
+## Kudos (optional)
+Thanks that were earned, one line each: `- @<role or agent label>: what they did and why it mattered`. Run `node tools/kudos.mjs harvest` after writing this, or use `kudos.mjs add`. Never to yourself, never for volume.
