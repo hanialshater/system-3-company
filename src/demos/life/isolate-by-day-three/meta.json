@@ -1,0 +1,72 @@
+{
+  "slug": "isolate-by-day-three",
+  "title": "Isolation does not need to catch all",
+  "hook": "A case is isolated halfway through being infectious. Does that do much?",
+  "domain": "life",
+  "concept": "isolation-timing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "R is the average number of people one case infects",
+      "R below 1 makes an outbreak shrink"
+    ],
+    "doesNotKnow": [
+      "that isolating a case early cuts R in proportion to the infectious days removed"
+    ]
+  },
+  "misconception": "Isolation only matters if it eventually catches everyone, so isolating late does little.",
+  "objective": "The learner can explain that in a model with even spread, isolating at the end of day 3 of 6 removes half of each case's spread (R 3 becomes 1.5), and that each day earlier removes another share, with day 2 bringing R to 1.",
+  "claims": [
+    {
+      "id": "life.isolate-by-day-three.c1",
+      "text": "If a case with R0 = 3 is infectious for 6 days and spreads evenly across them, isolating at the end of day d (and stopping all later spread) gives R = 3 x d / 6: day 3 gives 1.5, day 2 gives 1.0, day 1 gives 0.5.",
+      "support": "derivation",
+      "source": "Even spread: 0.5 infections per day; R = 0.5 x d. Computed in Demo.tsx (rAt) and node.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.isolate-by-day-three.c2",
+      "text": "On the stage, 10 cases make 30 would-be infections, 5 per day; isolating after day 3 leaves 15 of them, after day 2 leaves 10.",
+      "support": "derivation",
+      "source": "Arithmetic; same constants draw the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.isolate-by-day-three.c3",
+      "text": "The model is a made-up infection with even spread across the infectious days and perfect isolation.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... spread evenly over 6 infectious days') and in the reveal.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.isolate-by-day-three.c4",
+      "text": "Real infectiousness is not even across the infectious period, and some spread can happen before symptoms.",
+      "support": "source",
+      "source": "Ferretti L. et al. (2020) Quantifying SARS-CoV-2 transmission suggests epidemic control with digital contact tracing. Science 368: eabb6936 (brief flagged: verify before use).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy model a case with R0 = 4 spreads evenly over 8 infectious days. If every case is isolated at the end of day 2 and spreads no more, what is R?",
+    "options": [
+      "4",
+      "2",
+      "1"
+    ],
+    "answer": 2,
+    "why": "Two of 8 days are kept, a quarter of the spread: 4 x 2/8 = 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 24dvh; flex-shrink: 0; }
+.sus { fill: none; stroke: var(--muted); stroke-width: 1; stroke-opacity: 0.8; }
+.sick { fill: var(--bad); }
+.imm { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.half { fill: none; stroke: var(--fg); stroke-width: 2; stroke-dasharray: 5 3; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.legend i.sus { border: 1.5px solid var(--muted); }
+.legend i.sick { background: var(--bad); }
+.legend i.imm { background: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.legend i.dash { width: 14px; height: 0; border-radius: 0; border-top: 2px dashed var(--fg); }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }
