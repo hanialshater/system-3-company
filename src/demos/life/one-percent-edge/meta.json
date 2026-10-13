@@ -1,0 +1,81 @@
+{
+  "slug": "one-percent-edge",
+  "title": "How long does a 5% edge take?",
+  "hook": "A new type leaves 5% more offspring. How long until it is half of everyone?",
+  "domain": "life",
+  "concept": "natural-selection",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "selection favours variants that leave more offspring",
+      "percentages and repeated multiplication"
+    ],
+    "doesNotKnow": [
+      "that a small, steady edge compounds into a takeover",
+      "how many generations that takes, and that it looks like nothing for most of them"
+    ]
+  },
+  "misconception": "A 5% advantage either takes over in a few generations or makes no visible difference.",
+  "objective": "The learner can explain that a steady edge multiplies the new type's ratio to the old one each generation, so in the toy model a 5% edge takes about 95 generations to go from 1% to half, stays rare for most of that time, and a doubled edge roughly halves the time.",
+  "claims": [
+    {
+      "id": "life.one-percent-edge.c1",
+      "text": "In the stage's toy model, a type that starts at 1% and leaves 5% more offspring than the old type each generation first reaches half the population at generation 95.",
+      "support": "derivation",
+      "source": "Iterated p' = p(1+s)/(1+sp), s = 0.05, p0 = 0.01, in Demo.tsx (HALF[5]) and artifacts/scratch/w4life/nums.mjs: generation 94 = 49.8%, generation 95 = 51.0%. Closed form: odds grow by 1.05 per generation, ln 99 / ln 1.05 = 94.2. Matches the brief's check (95).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-percent-edge.c2",
+      "text": "With the 5% edge, at generation 48 (about halfway to half) the new type is still only 9.5% of the population; at generation 10 it is 1.6%.",
+      "support": "derivation",
+      "source": "Same recursion in Demo.tsx (TRAJ[5][48] = 0.0951, TRAJ[5][10] = 0.0162), re-run in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-percent-edge.c3",
+      "text": "In the same model a 10% edge reaches half in 49 generations and a 1% edge in 462: doubling the edge roughly halves the time.",
+      "support": "derivation",
+      "source": "Demo.tsx HALF[10] = 49, HALF[1] = 462; artifacts/scratch/w4life/nums.mjs also gives 2% = 233. ln 99 / ln(1+s) is about (ln 99)/s for small s.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-percent-edge.c4",
+      "text": "Each generation multiplies the ratio of new type to old type by 1 + s (1.05 for a 5% edge); going from 1 : 99 to 1 : 1 needs that ratio to grow 99-fold, about 95 steps of 1.05.",
+      "support": "derivation",
+      "source": "From p' = p(1+s)/(1+sp): p'/(1-p') = (1+s) p/(1-p). Standard haploid selection recursion (Gillespie, Population Genetics: A Concise Guide, 2004, ch. 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-percent-edge.c5",
+      "text": "The model is a toy: a very large asexual population (no drift, no sex), a constant advantage, and no new mutations. It is labelled 'Toy: huge population, no sex' on the stage and in the question.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #32 (company/domains/briefs/life.md).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new variant has a small, steady advantage (a few percent more offspring per generation). Which describes its rise best?",
+    "options": [
+      "It takes over within a few generations",
+      "It stays rare for a long time, then rises quickly to take over",
+      "It rises by the same amount every generation",
+      "A few percent is too small to matter"
+    ],
+    "answer": 1,
+    "why": "The advantage multiplies its ratio to the old type every generation, so its share grows like compound interest: slow while rare, then fast."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
