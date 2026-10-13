@@ -54,29 +54,37 @@
       "id": "physics.crumple-zone-stopping-time.c4",
       "text": "At a steady force, stopping from 15 m/s in t seconds crushes 15 t / 2 metres: 0.75 m in 0.10 s, 1.50 m in 0.20 s (0.38 to 2.25 m across the slider).",
       "support": "derivation",
-      "source": "Constant deceleration from v: distance = v t / 2 = 7.5 t m. t = 0.05..0.30 s gives 0.375, 0.75, 1.125, 1.5, 1.875, 2.25 m. Computed in Demo.tsx crush().",
-      "status": "unverified"
+      "source": "Constant deceleration from v: distance = v t / 2 = 7.5 t m. t = 0.05..0.30 s gives 0.375, 0.75, 1.125, 1.5, 1.875, 2.25 m. Computed in Demo.tsx crush(). | FACT-CHECK 2026-10-13 (pass 4): Node: v t / 2 for t = 0.05..0.30 s gives 0.375, 0.75, 1.125, 1.5, 1.875, 2.25 m (0.38 to 2.25 m); slider min 50, max 300 ms step 50.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.crumple-zone-stopping-time.c5",
       "text": "The lesson uses a steady (average) force; real crash forces rise and fall during the stop, and real cars crush less and stop faster than these numbers.",
       "support": "convention",
-      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s.",
-      "status": "unverified"
+      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s. | FACT-CHECK 2026-10-13 (pass 4): 'real cars crush less and stop faster than these numbers' is unsafe against the 0.10 s case: published 56 km/h (15.6 m/s) full-frontal barrier work uses total stopping distances of 0.5-0.9 m and reports pulses averaging about 120 ms (nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406), which brackets the lesson's 0.75 m and 0.10 s. It is true against the 0.20 s / 1.5 m case. Fix: 'real cars at this speed crush about 0.5-0.9 m and stop in about 0.1 s, so the 0.20 s stop is longer than a real crash', or drop the 'real cars crush less and stop faster' clause.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.crumple-zone-stopping-time.c6",
       "text": "A crumple zone protects by crushing, which lengthens the stopping time and so lowers the force on the car and the people in it; the people stop in the same time as the car, so the push on them halves when the stop takes twice as long.",
       "support": "source",
-      "source": "Standard account of crumple-zone design (e.g. Hewitt, Conceptual Physics, ch. 6, impulse and momentum; vehicle crashworthiness literature).",
-      "status": "unverified"
+      "source": "Standard account of crumple-zone design (e.g. Hewitt, Conceptual Physics, ch. 6, impulse and momentum; vehicle crashworthiness literature). | FACT-CHECK 2026-10-13 (pass 4): Standard impulse-momentum account; with occupants held to the car (belts) the push on them scales with deceleration, so doubling the stop time halves it. Idealised: real restraints let the occupant's stop lag the car's slightly, so 'the same time' is the model, not exact. Accepted as stated since the reveal frames it as a steady-force model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.crumple-zone-stopping-time.c7",
       "text": "The car's weight is about 9.8 kN, so 150 kN is about 15.3 car-weights and 75 kN about 7.6.",
       "support": "derivation",
-      "source": "Weight = 1000 kg x 9.81 m/s^2 = 9810 N. 150,000 / 9810 = 15.29; 75,000 / 9810 = 7.65 (shown 7.6 by toFixed(1) in Demo.tsx carWeights(); 7.645 rounds to 7.6). Slider: 300 kN = 30.6, 100 kN = 10.2, 60 kN = 6.1, 50 kN = 5.1.",
-      "status": "unverified"
+      "source": "Weight = 1000 kg x 9.81 m/s^2 = 9810 N. 150,000 / 9810 = 15.29; 75,000 / 9810 = 7.65 (shown 7.6 by toFixed(1) in Demo.tsx carWeights(); 7.645 rounds to 7.6). Slider: 300 kN = 30.6, 100 kN = 10.2, 60 kN = 6.1, 50 kN = 5.1. | FACT-CHECK 2026-10-13 (pass 4): Node: 1000 x 9.81 = 9810 N; 150000/9810 = 15.29 -> 15.3; 75000/9810 = 7.645 -> toFixed(1) shows 7.6 (matches Demo.tsx carWeights); slider values 30.6, 15.3, 10.2, 7.6, 6.1, 5.1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
