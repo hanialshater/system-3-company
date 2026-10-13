@@ -65,7 +65,7 @@ export default function FingernailOcean({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Plates move about as fast as fingernails grow, 2.5 cm a year. How long to widen an ocean by 3,000 km?",
+        question: "Plates move about 2.5 cm a year, the same order as fingernail growth (about 4 cm a year). How long to widen an ocean by 3,000 km?",
         options: ["12 million years", "120 million years", "1.2 billion years"],
         answer: 1,
       }}

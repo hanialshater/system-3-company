@@ -24,21 +24,17 @@
   "claims": [
     {
       "id": "chemistry.summit-kettle.c1",
-      "text": "Air pressure on the summit of Mount Everest is about 0.31 atm (sea level: 1 atm).",
+      "text": "Air pressure on the summit of Mount Everest is about 0.3 atm (sea level: 1 atm).",
       "support": "derivation",
-      "source": "ICAO standard atmosphere at 8,850 m: p/p0 = (1 - 2.25577e-5 x 8850)^5.25588 = 0.310 (node, Demo.tsx air()). Measured summit pressures are about 31 to 34 kPa, i.e. 0.31 to 0.34 atm (West, High Altitude Medicine & Biology 7(2), 2006), higher than the standard atmosphere because of the warm tropical air column. · Fact-check 2026-10-13: Standard-atmosphere value 0.310 reproduced. Measured summit pressure is 253 mmHg = 33.7 kPa = 0.333 atm (West 1983/1999); the cited West 2006 HAMB 7(2) paper was not located. \"About 0.31\" holds loosely; recommend \"about 0.3 atm\".",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "ICAO standard atmosphere at 8,850 m: p/p0 = (1 - 2.25577e-5 x 8850)^5.25588 = 0.310 (node, Demo.tsx air()). Measured summit pressures are about 31 to 34 kPa, i.e. 0.31 to 0.34 atm (West 1983/1999: 253 mmHg = 33.7 kPa = 0.333 atm), higher than the standard atmosphere because of the warm tropical air column. · Fact-check 2026-10-13: Standard-atmosphere value 0.310 reproduced. Measured summit pressure is 253 mmHg = 33.7 kPa = 0.333 atm (West 1983/1999); the cited West 2006 HAMB 7(2) paper was not located. \"About 0.31\" holds loosely; recommend \"about 0.3 atm\". | CLAIM FIX 2026-10-13: Wording per checker: 'about 0.3 atm' (standard atmosphere gives 0.310; measured summit 253 mmHg = 0.333 atm, West 1983/1999). Predict question and reveal now say 0.3. The West 2006 HAMB 7(2) citation could not be located and is replaced by West 1983/1999.",
+      "status": "unverified"
     },
     {
       "id": "chemistry.summit-kettle.c2",
-      "text": "Water on the summit of Everest boils at about 69 °C.",
+      "text": "Water on the summit of Everest boils at about 70 °C.",
       "support": "derivation",
-      "source": "Clausius-Clapeyron with dH_vap = 40.7 kJ/mol held constant and 1 atm at 373.15 K: 1/T = 1/373.15 + (8.314/40700) ln(1/0.310); T = 342.6 K = 69.4 °C (node). Published summit boiling points are about 68 to 71 °C. At the measured 0.33 atm the model gives about 71 °C. · Fact-check 2026-10-13: Model 69.4 C at 0.31 atm; 71 C at the measured 0.33 atm. \"About 69\" is within the published 68-71 range.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Clausius-Clapeyron with dH_vap = 40.7 kJ/mol held constant and 1 atm at 373.15 K: 1/T = 1/373.15 + (8.314/40700) ln(1/0.310); T = 342.6 K = 69.4 °C (node). Published summit boiling points are about 68 to 71 °C. At the measured 0.33 atm the model gives about 71 °C. · Fact-check 2026-10-13: Model 69.4 C at 0.31 atm; 71 C at the measured 0.33 atm. \"About 69\" is within the published 68-71 range. | CLAIM FIX 2026-10-13: Wording per checker: 'about 70 C' (model 69.4 C at 0.31 atm, 71 C at measured 0.33 atm, published 68 to 71). Predict option and reveal now say 70 (B_SAY rounds the model to the nearest 5; the stage readout still shows the model's own value).",
+      "status": "unverified"
     },
     {
       "id": "chemistry.summit-kettle.c3",
@@ -94,5 +90,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

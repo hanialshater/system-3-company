@@ -6,3 +6,7 @@
 - Reveal gate: milestones "day-0", "peak" and "another-day" (any other date, including Never); the first three chips reach them on the QA path. The reveal quotes other days tried with their outcomes.
 - After screenshots: paired each tried day with its outcome in the reveal; aligned the claims with the stage's rounding (77.5% shows as 78%).
 - No health advice: the reveal says "Model, not guidance". All claims unverified.
+
+## v2 (claim fix 2026-10-13)
+
+Claim c3 disputed ('most infections were still to come' at the peak; 65.5% already infected). Reveal now: 'The peak is not the end of the epidemic: on day 19, 35% of the town had never been infected.' Claim rewritten; unverified.

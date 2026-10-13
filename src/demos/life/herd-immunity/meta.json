@@ -108,12 +108,10 @@
     },
     {
       "id": "life.herd-immunity.c10",
-      "text": "At 80% immune, each step of the outbreak usually is smaller than the one before, so the chain usually shrinks and dies out.",
+      "text": "At 80% immune each case causes 4 x 0.2 = 0.8 new cases on average, so outbreaks usually fizzle out: in the stage model about 97 in 100 outbreaks reach 16 people or fewer.",
       "support": "derivation",
-      "source": "Reveal v2: \"The chain usually shrinks and dies.\" Expected new cases per case 4 x 0.2 = 0.8 (model 4 x 79/399 = 0.79); true on average, not in every run.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Reveal v2: \"The chain usually shrinks and dies.\" Expected new cases per case 4 x 0.2 = 0.8 (model 4 x 79/399 = 0.79); true on average, not in every run. | CLAIM FIX 2026-10-13: Was 'each step of the outbreak usually is smaller than the one before, so the chain usually shrinks and dies out' (disputed: false per step; a step is strictly smaller in only 17.5% of steps). Reveal now says 'Outbreaks usually fizzle out: on average about 4 of the 80.'",
+      "status": "unverified"
     },
     {
       "id": "life.herd-immunity.c11",
@@ -157,5 +155,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2
+  "version": 3
 }

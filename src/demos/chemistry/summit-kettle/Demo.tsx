@@ -23,6 +23,7 @@ const boil = (p: number) => 1 / (1 / T0 - (R / DH) * Math.log(p)) - 273.15;
 
 const P_SUM = air(SUMMIT);
 const B_SUM = boil(P_SUM);
+const B_SAY = Math.round(B_SUM / 5) * 5; // said as "about 70 °C": measured summit boiling points span 68 to 71 °C
 
 const W = 320;
 const H = 200;
@@ -52,16 +53,16 @@ export default function SummitKettle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Air pressure on the summit of Mount Everest is about ${P_SUM.toFixed(2)} atm (sea level: 1 atm). Water there boils at about…`,
-        options: ["100 °C", `${Math.round(B_SUM)} °C`, "40 °C"],
+        question: `Air pressure on the summit of Mount Everest is about ${P_SUM.toFixed(1)} atm (sea level: 1 atm). Water there boils at about…`,
+        options: ["100 °C", `${B_SAY} °C`, "40 °C"],
         answer: 1,
       }}
       exploreHint="Climb to the summit and watch where the two lines meet."
       reveal={() => (
         <>
           <p>
-            {top >= SUMMIT ? "At the summit you saw" : "At the summit"} the air line drop to about {P_SUM.toFixed(2)} atm,
-            and the meeting point slide to about <strong>{Math.round(B_SUM)} °C</strong>.
+            {top >= SUMMIT ? "At the summit you saw" : "At the summit"} the air line drop to about {P_SUM.toFixed(1)} atm,
+            and the meeting point slide to about <strong>{B_SAY} °C</strong>.
           </p>
           <p>
             Water boils when its own vapour pressure, the push of molecules escaping as bubbles, matches the air

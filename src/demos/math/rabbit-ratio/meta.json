@@ -51,12 +51,10 @@
     },
     {
       "id": "math.rabbit-ratio.c4",
-      "text": "The ratios alternate above and below the limit, getting closer each time.",
+      "text": "The ratios alternate above and below the limit, and after the first step or two the gap shrinks each time.",
       "support": "derivation",
-      "source": "x -> 1 + 1/x is decreasing, so successive errors alternate in sign; its slope -1/x² has size below 1 near the fixed point, so the errors shrink. DISPUTED 2026-10-13: node: for the start 3, 1 (offered on the stage) the ratios are 0.333, 4.0, 1.25, 1.8 ...: errors from 1.618 are 1.285 then 2.382, so the second ratio is farther, not closer. Alternation holds for all starts; 'closer each time' holds only from the second ratio on (and fails at step 2 for 3,1). Reveal says 'by less each time' too. Fix: 'getting closer after the first step or two' or 'and the gap shrinks'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "x -> 1 + 1/x is decreasing, so successive errors alternate in sign; its slope -1/x² has size below 1 near the fixed point, so the errors shrink. DISPUTED 2026-10-13: node: for the start 3, 1 (offered on the stage) the ratios are 0.333, 4.0, 1.25, 1.8 ...: errors from 1.618 are 1.285 then 2.382, so the second ratio is farther, not closer. Alternation holds for all starts; 'closer each time' holds only from the second ratio on (and fails at step 2 for 3,1). Reveal says 'by less each time' too. Fix: 'getting closer after the first step or two' or 'and the gap shrinks'. | CLAIM FIX 2026-10-13: Was 'getting closer each time' (disputed: from the start 3, 1 the second ratio is farther from 1.618 than the first). Reveal reworded the same way.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -78,5 +76,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

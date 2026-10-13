@@ -8,3 +8,7 @@
 - Key state: 3,000 km of new ocean on the readout, with the strip of new ocean visible. One milestone, "ocean". The controls are add-time chips (+100, +20, +5 million years, then Back to today). +100 then +20 lands exactly on 120, so QA reaches the key state on its second press.
 - Locked: the "New ocean" readout shows "?".
 - Iteration: the QA phone shot ends on "Back to today", where the moved shape covers its ghost. That is expected, and I made no change.
+
+## v2 (claim fix 2026-10-13)
+
+Claim c2 disputed (question attributed 2.5 cm/yr to fingernails; nails grow about 4 cm/yr). Predict question reworded to 'Plates move about 2.5 cm a year, the same order as fingernail growth (about 4 cm a year).' Claim rewritten; unverified.
