@@ -25,8 +25,19 @@ Pages: `/` feed · `/d/<slug>` one lesson · `/catalog` the map of what we teach
 
 ## Deploy (Vercel)
 
-Import the repository in Vercel. `vercel.json` already sets the build. For production, set
-`SHOW_REVIEW=off` so that only published lessons appear. See [the deploy runbook](company/ops/runbook-deploy.md).
+The release manager deploys with `npm run deploy -- preview` or `npm run deploy -- production`
+(also `/deploy` in Claude Code). One-time setup: `npx vercel login`, then
+`npx vercel link --project system-3-company` in this checkout.
+
+The command verifies the app, checks the linked project, deploys, smoke-tests the hosted pages,
+and writes a release record. Production hides unpublished lessons on every page and promotes
+only after the staged deployment passes its checks. Use `--dry-run` to inspect the plan.
+See [the deploy runbook](company/ops/runbook-deploy.md).
+
+The **Deploy to Vercel** GitHub Actions pipeline automatically creates a preview after successful
+CI on the default branch. Run it manually with `target=production` to release production. It uses
+prebuilt output and the same release-manager checks. Configure the Vercel IDs and deployment
+token once in the GitHub environments described in the runbook.
 
 ## How the company works
 

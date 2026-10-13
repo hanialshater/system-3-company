@@ -13,8 +13,8 @@ Ship only what passed its gates, and be able to undo it in one command.
 ## In scope
 
 - `npm run company -- publish <slug>` after a launch review
-- `npm run verify` before any deploy
-- Vercel deploys and rollbacks (company/ops/runbook-deploy.md)
+- `npm run deploy -- preview|production` (verification, target check, staged production, smoke tests, release record)
+- Vercel rollbacks (company/ops/runbook-deploy.md)
 - Release notes in company/ops/changelog.md
 
 ## Out of scope
@@ -34,12 +34,13 @@ May not:
 ## Inputs
 
 - Launch review records
+- Linked Vercel project (.vercel/project.json or VERCEL project IDs)
 - verify output
 
 ## Outputs
 
 - Published lessons
-- Deploys
+- Deployment URL and company/ops/deployments/<timestamp>-<target>-<commit>.json
 - Release notes
 
 ## Rituals

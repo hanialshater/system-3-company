@@ -15,12 +15,12 @@ export function visibleDemos(opts: { includeDrafts?: boolean } = {}): DemoMeta[]
     (d) =>
       d.status === "published" ||
       (showReview && d.status === "review") ||
-      (opts.includeDrafts && d.status === "draft"),
+      (showReview && opts.includeDrafts && d.status === "draft"),
   );
 }
 
 export function findDemo(slug: string): DemoMeta | undefined {
-  return allDemos.find((d) => d.slug === slug);
+  return visibleDemos({ includeDrafts: true }).find((d) => d.slug === slug);
 }
 
 export { allDemos };
