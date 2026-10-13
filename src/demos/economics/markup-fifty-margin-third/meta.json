@@ -6,10 +6,17 @@
   "concept": "markup-vs-margin",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-economics", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["what a percentage of a number is"],
-    "doesNotKnow": ["that markup is measured against cost and margin against the selling price"]
+    "knows": [
+      "what a percentage of a number is"
+    ],
+    "doesNotKnow": [
+      "that markup is measured against cost and margin against the selling price"
+    ]
   },
   "misconception": "A 50% markup is a 50% margin.",
   "objective": "The learner can say that a $30 profit on a $60 cost is a 50% markup but a 33% margin of the $90 price, and that margin stays below 100% however large the markup.",
@@ -19,44 +26,63 @@
       "text": "A $60 jacket with a 50% markup sells for $90, with $30 profit; $30 is 50% of the cost and about 33.3% of the price.",
       "support": "derivation",
       "source": "60 x 1.5 = 90; 90 - 60 = 30; 30 / 60 = 0.5; 30 / 90 = 0.3333 (node; Demo.tsx price(), profit(), margin()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.markup-fifty-margin-third.c2",
       "text": "Markup is profit divided by cost; margin is profit divided by the selling price.",
       "support": "convention",
       "source": "Standard retail definitions (retail accounting): markup = (price - cost) / cost; gross margin = (price - cost) / price.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.markup-fifty-margin-third.c3",
       "text": "Margin equals markup divided by (1 + markup), so it stays below 100% however large the markup.",
       "support": "derivation",
       "source": "profit/price = (m x cost) / (cost x (1 + m)) = m / (1 + m) < 1 for every m (algebra).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.markup-fifty-margin-third.c4",
       "text": "At a 100% markup the $60 jacket sells for $120 and the $60 profit is half the price.",
       "support": "derivation",
       "source": "60 x 2 = 120; 60 / 120 = 0.5 (node; Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.markup-fifty-margin-third.c5",
       "text": "The lesson is a model: one jacket, a fixed $60 cost, no other costs, illustrative numbers.",
       "support": "convention",
       "source": "Stage chip 'Model: one jacket, $60 cost, no other costs'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A shop buys a lamp for $40 and adds a 100% markup. What share of the selling price is profit?",
-    "options": ["100%", "50%", "25%"],
+    "options": [
+      "100%",
+      "50%",
+      "25%"
+    ],
     "answer": 1,
     "why": "Price is 40 x 2 = $80, profit $40, and 40 / 80 = 50% of the price. A 100% markup is a 50% margin."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

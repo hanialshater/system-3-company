@@ -26,35 +26,45 @@
       "text": "A $15 fee on $100 for two weeks is 15% for that period.",
       "support": "derivation",
       "source": "15 / 100 = 0.15. Demo.tsx FEE.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-on-two-week-loan.c2",
       "text": "A year of 364 days holds 26 two-week periods, so 26 fees of $15 come to $390 per $100, a simple yearly rate of 390%.",
       "support": "derivation",
       "source": "364 / 14 = 26; 15 x 26 = 390. Demo.tsx periods(14), yearly(14). The 364-day year is the lesson's simplification (a calendar year is 365 days, 26.07 periods).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-on-two-week-loan.c3",
       "text": "With the same $15 fee per $100, loans of 7, 28 and 91 days correspond to simple yearly rates of 780%, 195% and 60%.",
       "support": "derivation",
       "source": "15 x 364/7 = 780; 15 x 364/28 = 195; 15 x 364/91 = 60. Demo.tsx yearly().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-on-two-week-loan.c4",
       "text": "The fee per loan is the same at every length; the shorter the loan, the more times it repeats in a year.",
       "support": "derivation",
       "source": "Number of loans in a year = 364 / length in days; the fee is fixed in the model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.fee-on-two-week-loan.c5",
       "text": "The lesson is a model: simple annualising with no compounding, the fee only, no rollover, a 364-day year, and no view on any lender.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: simple yearly rate, fee only'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

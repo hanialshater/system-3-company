@@ -27,35 +27,45 @@
       "text": "At 0.90 euro per dollar, $1,000 becomes 900 euros.",
       "support": "derivation",
       "source": "1,000 x 0.90 = 900. Demo.tsx euros.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.exchange-round-trip.c2",
       "text": "Selling those 900 euros back at $1.05 per euro returns $945, a loss of $55 with no market move.",
       "support": "derivation",
       "source": "900 x 1.05 = 945; 1,000 - 945 = 55. Demo.tsx back(1.05).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.exchange-round-trip.c3",
       "text": "Getting the full $1,000 back would take 1 / 0.90 = 1.1111 dollars per euro on the way back, which means no gap between the two rates.",
       "support": "derivation",
       "source": "1,000 = 900 x p gives p = 1.1111. Demo.tsx BREAK_EVEN.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.exchange-round-trip.c4",
       "text": "The gap between a booth's buy and sell rates is a cost paid whenever you cross.",
       "support": "convention",
       "source": "Standard definition of a bid-ask spread in currency exchange; the loss on the stage is the arithmetic of the two invented rates.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.exchange-round-trip.c5",
       "text": "The lesson is a model: one booth, two invented rates, no fees, no market movement, and no advice on where to change money.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: one booth, invented rates, no fees'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

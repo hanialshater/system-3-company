@@ -6,6 +6,7 @@ import { SUBAREAS } from "../../../tools/org/roles.mjs";
 /** Where a single-agent role sits when it is not working elsewhere. */
 export const HOME: Record<string, string> = {
   "chief-of-staff": "chief-of-staff",
+  "chief-of-staff-ceo-office": "ceo-office",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
   "learning-designer": "studio",

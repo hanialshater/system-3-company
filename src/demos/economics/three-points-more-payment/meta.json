@@ -26,42 +26,54 @@
       "text": "A $300,000 loan over 30 years (360 level monthly payments) at 4% a year has a payment of $1,432.25.",
       "support": "derivation",
       "source": "P r / (1 - (1 + r)^-360) with r = 0.04 / 12: 300,000 x 0.003333 / (1 - 1.003333^-360) = 1,432.25. Demo.tsx payment(4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.three-points-more-payment.c2",
       "text": "At 7% a year the same loan has a payment of $1,995.91.",
       "support": "derivation",
       "source": "r = 0.07 / 12: 300,000 x 0.005833 / (1 - 1.005833^-360) = 1,995.91. Demo.tsx payment(7).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.three-points-more-payment.c3",
       "text": "The payment at 7% is 39% higher than at 4% (1,995.91 / 1,432.25 = 1.394).",
       "support": "derivation",
       "source": "1,995.91 / 1,432.25 = 1.3935. Demo.tsx RISE_Q.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.three-points-more-payment.c4",
       "text": "The rate rising from 4% to 7% is a 75% rise as a ratio (7 / 4 - 1), which is not the rise in the payment.",
       "support": "derivation",
       "source": "7 / 4 = 1.75. Demo.tsx RATE_RATIO.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.three-points-more-payment.c5",
       "text": "The first month's interest on $300,000 is $1,000 at 4% and $1,750 at 7%.",
       "support": "derivation",
       "source": "300,000 x 0.04 / 12 = 1,000; 300,000 x 0.07 / 12 = 1,750. Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.three-points-more-payment.c6",
       "text": "The lesson is a model: fixed rate, fixed 30-year term, level payments, illustrative rates, not a forecast and not advice.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: $300,000, 30 years, fixed rate'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

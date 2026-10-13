@@ -66,6 +66,7 @@ const ROOM_BY_ROLE = {
   "visual-designer": "design-studio",
   "mockup-artist": "design-studio",
   "chief-of-staff": "chief-of-staff",
+  "chief-of-staff-ceo-office": "ceo-office",
 };
 const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
 

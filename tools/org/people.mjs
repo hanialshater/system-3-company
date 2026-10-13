@@ -6,6 +6,7 @@
 export const PERSONA = {
   founder: "You",
   "chief-of-staff": "Ada",
+  "chief-of-staff-ceo-office": "Leonie",
   "head-of-product": "Priya",
   "domain-scout": "Kofi",
   "learning-designer": "Lena",

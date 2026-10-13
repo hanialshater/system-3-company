@@ -22,6 +22,7 @@ export const TEAM_COLOR: Record<string, string> = {
   "platform-engineer": "#c792ea",
   "chief-of-staff": "#eef1f7",
   founder: "#ffd54f",
+  "chief-of-staff-ceo-office": "#ffd54f",
   "lifehacks-safety-reviewer": "#ffb74d",
   "personalization-lead": "#c792ea",
   "learner-model-engineer": "#c792ea",

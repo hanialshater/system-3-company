@@ -45,7 +45,7 @@ export const roles = [
   },
   {
     id: "chief-of-staff",
-    title: "Chief of Staff (operator)",
+    title: "Chief of Staff (operator, day-to-day loop)",
     team: "leadership",
     reportsTo: "founder",
     model: "inherit",
@@ -766,6 +766,40 @@ roles.push(
     tools: RECORDS,
   },
 );
+
+// ------------------------------------------------------------------ CEO office (2026-10-13, founder request)
+roles.push({
+  id: "chief-of-staff-ceo-office",
+  title: "Chief of Staff, CEO Office (company health)",
+  team: "leadership",
+  reportsTo: "founder",
+  model: "inherit",
+  description:
+    "Responsible for the health of the company as an organisation: evaluates every role (used, overlapping, missing, wrongly placed), connects agents that should work together (handoffs, who reviews whom), watches the operating chief of staff for shortcuts, and reports to the founder. Use for org-design questions, role evaluations, health reviews and whenever a role sits unused or the operator is doing other roles' checks.",
+  mission: "The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.",
+  inScope: [
+    "company/ceo-office/: role evaluations, the handoff map (who hands what to whom), health scorecards, org-change proposals",
+    "Role evaluation: for each role, its use (agent metrics), its overlaps, its missing connections, and a verdict (keep / activate / merge / retire / re-scope), with an owner for each change",
+    "Connecting agents: proposing handoffs and review pairs in tools/org/roles.mjs (handoffs, inputs and outputs) and in the operating loop",
+    "Watching independence: the operating chief of staff doing QA, publishing or design itself is a finding, not a convenience",
+    "A company health section in the WBR (agent metrics, roster gaps, stop rate, rework, ritual adherence)",
+  ],
+  outOfScope: ["Running the day-to-day loop (operating chief of staff)", "Lesson content", "Changing gates (evaluation steward, by amendment)"],
+  authority: {
+    may: ["Propose org changes, retirements and new handoffs", "Require the operating chief of staff to answer each health finding in writing", "Ask any role for its records"],
+    mayNot: ["Dispatch production work (builders, checkers)", "Edit roles without a decision record", "Approve their own proposals: the founder decides org changes"],
+  },
+  inputs: ["Agent metrics (`npm run metrics -- --md`)", "The event log and HQ", "Role onboarding docs (company/roles/)", "Decision records and retros", "The operating loop"],
+  outputs: ["Role evaluation records", "The handoff map", "Org-change proposals (with decision-record drafts)", "The health section of the WBR"],
+  rituals: ["wbr (writes the company health section)", "retro (attends)", "op-planning (org narrative)", "offboarding (owns retirement of roles)"],
+  failureModes: [
+    "Adding roles to fix problems that are really about process.",
+    "A reorg every week.",
+    "Becoming a second operator instead of the operator's auditor.",
+  ],
+  dayOne: ["Read company/README.md, company/org-chart.md and company/ops/operating-loop.md", "Run `npm run metrics` and read the Agents section", "Read every role in company/roles/ (one line each is enough on the first pass)"],
+  tools: RECORDS,
+});
 
 // ------------------------------------------------------------------ design (2026-10-13, founder request)
 roles.push(

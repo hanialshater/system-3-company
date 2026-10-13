@@ -27,35 +27,45 @@
       "text": "A household spending 50% on rent (up 6%), 30% on food (up 2%) and 20% on fun (up 0%) sees its total cost of living rise by 3.6%.",
       "support": "derivation",
       "source": "0.5 x 6 + 0.3 x 2 + 0.2 x 0 = 3.0 + 0.6 + 0 = 3.6. Demo.tsx total(50).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.personal-inflation-basket.c2",
       "text": "The plain average of the three rises 6, 2 and 0 is 2.7% (2.67).",
       "support": "derivation",
       "source": "(6 + 2 + 0) / 3 = 2.667. Demo.tsx PLAIN.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.personal-inflation-basket.c3",
       "text": "Rent adds 3.0 percentage points to the overall rise, food 0.6 and fun 0.0 (share x rise).",
       "support": "derivation",
       "source": "0.5 x 6 = 3.0; 0.3 x 2 = 0.6; 0.2 x 0 = 0. Demo.tsx contrib().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.personal-inflation-basket.c4",
       "text": "A price index weights each price by its share of spending, so a household's own inflation depends on its own mix.",
       "support": "convention",
       "source": "Definition of a fixed-basket (Laspeyres-type) price index, e.g. standard macroeconomics texts on the consumer price index; the weighted average is the calculation on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.personal-inflation-basket.c5",
       "text": "The lesson is a model: the shares and rises are invented, the basket is fixed, and households do not switch goods.",
       "support": "convention",
       "source": "Assumptions of Demo.tsx; stage chip 'Model: fixed basket, invented numbers'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

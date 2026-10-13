@@ -1,4 +1,4 @@
-# Chief of Staff (operator)
+# Chief of Staff (operator, day-to-day loop)
 
 name: Ada
 team: leadership

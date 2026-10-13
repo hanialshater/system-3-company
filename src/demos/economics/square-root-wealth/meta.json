@@ -26,35 +26,45 @@
       "text": "In the model, the felt value of a 50-50 coin paying $0 or $100 is 0.5 x sqrt(0) + 0.5 x sqrt(100) = 5.",
       "support": "derivation",
       "source": "0.5 x 0 + 0.5 x 10 = 5. Demo.tsx COIN.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.square-root-wealth.c2",
       "text": "The felt value of a sure $25 is sqrt(25) = 5, equal to the coin's, although the coin pays $50 on average.",
       "support": "derivation",
       "source": "sqrt(25) = 5; 0.5 x 0 + 0.5 x 100 = 50. Demo.tsx SURE.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.square-root-wealth.c3",
       "text": "A sure $50 has felt value sqrt(50) = 7.07, above the coin's 5.",
       "support": "derivation",
       "source": "sqrt(50) = 7.071. Demo.tsx felt(50).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.square-root-wealth.c4",
       "text": "When each extra dollar adds less felt value than the one before, a sure amount below the average payoff can equal a gamble.",
       "support": "derivation",
       "source": "The square-root curve is concave: the chord between (0,0) and (100,10) lies below the curve, so the curve reaches the coin's height at 25, left of 50.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.square-root-wealth.c5",
       "text": "Square-root felt value is one textbook choice, not a measure of any person, and the lesson gives no advice about choices.",
       "support": "convention",
       "source": "Concave utility functions such as sqrt(W) are standard textbook examples (e.g. Bernoulli 1738 used a logarithm); stage chip 'Model: felt value = square root of wealth'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
