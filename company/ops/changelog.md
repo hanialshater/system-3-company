@@ -9,3 +9,4 @@
 - 2026-10-12: kit adds src/kit/random.ts (mulberry32); standard documents QA control order and seed disclosure.
 - 2026-10-13: reveal phase no longer squeezes the stage; the card body scrolls (tier 1, shared CSS).
 - 2026-10-13: kit adds <Milestones> component (no inner Stage boilerplate needed); useMilestones always calls the latest interact.
+- 2026-10-13: metrics count only learner verdicts on the current lesson version (revised lessons show 'needs re-review').

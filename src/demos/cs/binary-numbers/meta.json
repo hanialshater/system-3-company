@@ -75,21 +75,27 @@
       "text": "Adding 1 to 127 flips all eight switches (01111111 becomes 10000000); 255 + 1 = 256 needs a ninth switch, so an 8-switch counter rolls all eight back to 0.",
       "support": "derivation",
       "source": "127 = 01111111, 128 = 10000000 differ in all 8 bits; the carry runs through every 1. 255 + 1 = 256 = 2^8 needs a ninth switch, so an 8-switch counter wraps to 0. Flip count (trailing ones + 1) checked for every n in 0..255 in artifacts/scratch/fc2-binary-numbers.mjs. v2 stage messages: '127 + 1 = 128: 8 switches flip, carrying left like 9 + 1 = 10.' and '255 + 1 = 256 needs a ninth switch, so all eight roll back to 0.' Text changed in v2; needs an independent check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.binary-numbers.c7",
       "text": "Carrying in binary works like carrying in ordinary decimal counting (9 + 1 = 10): when +1 meets a switch that is already on, it turns it off and carries one to the switch on its left.",
       "support": "derivation",
       "source": "Positional addition with carry is the same procedure in any base (Knuth, TAOCP Vol. 2, 4.1 and 4.3.1). In base 2, 1 + 1 = 10, as 9 + 1 = 10 in base 10. Added v2 for the stage message shown when +1 flips more than one switch.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.binary-numbers.c8",
       "text": "Each switch is worth one more than all the switches to its right put together (for example 128 = 127 + 1), and a computer byte is eight such switches (bits).",
       "support": "derivation",
       "source": "Restates c3 (2^k = (2^0 + ... + 2^(k-1)) + 1) and c5 (byte = 8 bits, IEC 80000-13). Added v2 for the reveal and the stage message 'All N on = 2^N - 1: one less than the next switch, 2^N'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

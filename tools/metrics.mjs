@@ -33,13 +33,19 @@ for (const dom of ls(rel("src/demos"))) {
   }
 }
 
-function reviewVerdicts(slug) {
+function reviewVerdicts(slug, version = 1) {
   const dir = rel("company/reviews", slug);
-  const out = { learner: [], factCheck: false, qa: false, fatal: false };
+  const out = { learner: [], factCheck: false, qa: false, fatal: false, superseded: false };
+  // A verdict is superseded when the lesson was revised after it: build.md has a "## v<current>" section
+  // and the review does not mention that version.
+  const build = fs.existsSync(path.join(dir, "build.md")) ? fs.readFileSync(path.join(dir, "build.md"), "utf8") : "";
+  const revisedTo = version > 1 && new RegExp(`##\\s*v${version}\\b`).test(build);
   for (const f of ls(dir)) {
     const t = fs.readFileSync(path.join(dir, f), "utf8");
     if (f.includes("learner")) {
       const v = t.match(/Verdict:\s*\**\s*(launch|revise|fatal)/i)?.[1]?.toLowerCase();
+      const stale = revisedTo && !new RegExp(`\\bv${version}\\b`).test(t);
+      if (stale) { out.superseded = true; continue; }
       if (v) out.learner.push(v);
       if (v === "fatal") out.fatal = true;
     }
@@ -52,7 +58,7 @@ function reviewVerdicts(slug) {
 const live = lessons.filter((l) => l.status !== "retired");
 const claims = live.flatMap((l) => l.claims ?? []);
 const by = (k) => live.reduce((m, l) => ((m[l[k]] = (m[l[k]] ?? 0) + 1), m), {});
-const rows = live.map((l) => ({ l, r: reviewVerdicts(l.slug) }));
+const rows = live.map((l) => ({ l, r: reviewVerdicts(l.slug, l.version ?? 1) }));
 const pct = (a, b) => (b ? `${Math.round((100 * a) / b)}%` : "—");
 
 const stat = {
@@ -68,6 +74,7 @@ const stat = {
   fatal: rows.filter((x) => x.r.fatal).map((x) => x.l.slug),
   revise: rows.filter((x) => x.r.learner.includes("revise") && !x.r.fatal).length,
   launchVerdict: rows.filter((x) => x.r.learner.length && x.r.learner.every((v) => v === "launch")).length,
+  needsReReview: rows.filter((x) => x.r.superseded && !x.r.learner.length).length,
   exploration: 0,
 };
 
@@ -107,7 +114,7 @@ if (md) {
   console.log(`| Claims verified | ${stat.claimsVerified}/${stat.claims} (${pct(stat.claimsVerified, stat.claims)}) · disputed ${stat.claimsDisputed} |`);
   console.log(`| Claims per lesson | ${stat.claimsPerLesson} |`);
   console.log(`| Fact-checked / learner-reviewed / QA pass | ${stat.factChecked} / ${stat.learnerReviewed} / ${stat.qaPass} of ${stat.lessons} |`);
-  console.log(`| Learner verdicts | fatal ${stat.fatal.length} · revise ${stat.revise} · launch ${stat.launchVerdict} |`);
+  console.log(`| Learner verdicts (current version) | fatal ${stat.fatal.length} · revise ${stat.revise} · launch ${stat.launchVerdict} · needs re-review ${stat.needsReReview} |`);
   console.log(`| Board | ${open.length} open (oldest ${open.length ? Math.max(...open.map(age)) : 0} days) |`);
   console.log(`\n| Domain | Lessons | Published | Reviewed | Fatal |\n|---|---|---|---|---|`);
   for (const d of perDomain) console.log(`| ${d.id} | ${d.lessons} | ${d.published} | ${d.reviewed} | ${d.fatal} |`);
@@ -121,7 +128,7 @@ if (md) {
   console.log(`Lessons ${stat.lessons}  ·  ${Object.entries(stat.status).map(([k, v]) => `${k} ${v}`).join(" · ")}`);
   console.log(`Claims  ${stat.claimsVerified}/${stat.claims} verified (${pct(stat.claimsVerified, stat.claims)}), ${stat.claimsDisputed} disputed, ${stat.claimsPerLesson} per lesson`);
   console.log(`Checks  fact-checked ${stat.factChecked} · learner-reviewed ${stat.learnerReviewed} · QA pass ${stat.qaPass}  (of ${stat.lessons})`);
-  console.log(`Verdict fatal ${stat.fatal.length} · revise ${stat.revise} · launch ${stat.launchVerdict}${stat.fatal.length ? `\n        fatal: ${stat.fatal.join(", ")}` : ""}`);
+  console.log(`Verdict fatal ${stat.fatal.length} · revise ${stat.revise} · launch ${stat.launchVerdict} · revised since review (needs re-review) ${stat.needsReReview}${stat.fatal.length ? `\n        fatal: ${stat.fatal.join(", ")}` : ""}`);
   console.log(`Board   ${open.length} open; oldest ${open.length ? Math.max(...open.map(age)) : 0} days; by owner: ${Object.entries(open.reduce((m, i) => ((m[i.owner] = (m[i.owner] ?? 0) + 1), m), {})).map(([k, v]) => `${k} ${v}`).join(", ")}`);
   console.log(`Rituals ${Object.entries(ritualCount).map(([k, v]) => `${k} ${v}`).join(" · ") || "none run"}`);
   console.log(`\nDomain        lessons published reviewed fatal`);
