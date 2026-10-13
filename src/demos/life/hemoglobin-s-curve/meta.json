@@ -1,0 +1,67 @@
+{
+  "slug": "hemoglobin-s-curve",
+  "title": "Why blood lets go of oxygen so fast",
+  "hook": "Oxygen drops from 40 to 20 mmHg in working muscle. How much does the carrier release?",
+  "domain": "life",
+  "concept": "oxygen-binding",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["saturation: the share of binding sites holding oxygen"],
+    "doesNotKnow": ["that cooperative binding makes release steep near tissue oxygen pressures"]
+  },
+  "misconception": "Oxygen carriers fill and empty along a gentle curve.",
+  "objective": "The learner can explain that cooperative binding makes the haemoglobin curve S-shaped, so a fall from 40 to 20 mmHg releases about 2.5 times as much oxygen as a one-site carrier would.",
+  "keyState": "Oxygen pressure set to 40 and then 20 mmHg: real carrier 74.7% to 31.2% (43.5 points) against one-site 59.9% to 42.7% (17.1 points).",
+  "claims": [
+    {
+      "id": "life.hemoglobin-s-curve.c1",
+      "text": "Toy model: saturation follows the Hill equation S = 1 / (1 + (P50 / P)^n) with half-point P50 = 26.8 mmHg; pH, CO2 and temperature are held fixed.",
+      "support": "convention",
+      "source": "Hill equation; adult human haemoglobin P50 about 26.6-26.8 mmHg (brief cites Dash et al., Bioeng. Rev., to verify). Label on the stage: 'Toy: Hill curve, adult haemoglobin, pH and CO2 held fixed.'",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hemoglobin-s-curve.c2",
+      "text": "Real adult haemoglobin binds oxygen cooperatively: a Hill coefficient of about 2.7 (4 sites). A one-site carrier has coefficient 1.",
+      "support": "source",
+      "source": "Hill coefficient of human haemoglobin about 2.7 (standard physiology/biochemistry texts; verify). One site: n = 1 (hyperbola).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hemoglobin-s-curve.c3",
+      "text": "From 40 to 20 mmHg the real carrier falls from 74.7% to 31.2% saturation, 43.5 points; the one-site carrier from 59.9% to 42.7%, 17.1 points; the ratio is 2.5.",
+      "support": "derivation",
+      "source": "sat(p,n) = 100 / (1 + (26.8/p)^n) in Demo.tsx, node: 74.67, 31.21, 43.46; 59.88, 42.74, 17.15; ratio 2.535. Question, readouts and reveal all use this function.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hemoglobin-s-curve.c4",
+      "text": "Resting tissue is about 40 mmHg of oxygen and working muscle can fall to about 20 mmHg; the lungs are about 100 mmHg.",
+      "support": "source",
+      "source": "Typical venous (about 40) and alveolar (about 100) oxygen pressures; exercising muscle near 20 mmHg (standard physiology texts; verify).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hemoglobin-s-curve.c5",
+      "text": "Each site that lets go makes the others let go more easily, so the carrier gives up most oxygen where tissue oxygen is scarce.",
+      "support": "derivation",
+      "source": "Cooperative binding (Monod-Wyman-Changeux / Adair models); result of the steep part of the Hill curve between 20 and 40 mmHg.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does haemoglobin release much more oxygen between 40 and 20 mmHg than a carrier with one binding site would?",
+    "options": [
+      "Its sites work together: when one lets go, the others let go more easily",
+      "It holds less oxygen to begin with",
+      "Its curve is a straight line"
+    ],
+    "answer": 0,
+    "why": "Cooperation makes the saturation curve S-shaped, steepest at tissue oxygen pressures, so a small fall in oxygen releases a lot."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

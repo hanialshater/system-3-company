@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 26dvh; }
+.tag { margin: 0; text-align: center; font-size: 0.74rem; color: var(--muted); }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.86rem; font-weight: 600; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 9px; text-anchor: middle; }
+.bar { fill: var(--domain); }
+.barOver { fill: var(--bad); }
+.mark { stroke: var(--good); stroke-width: 2; stroke-dasharray: 3 2; }
+.markText { fill: var(--good); font-size: 9px; font-weight: 700; text-anchor: middle; }
+.chain { fill: none; stroke: var(--domain); stroke-width: 2; }
+.bead { fill: var(--domain); }

@@ -1,0 +1,70 @@
+{
+  "slug": "protein-search-space",
+  "title": "Could a protein try every shape?",
+  "hook": "A chain of 100 links, three bends each. Why can't it just test them all?",
+  "domain": "life",
+  "concept": "protein-search-space",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["proteins are chains of links (amino acids)"],
+    "doesNotKnow": ["how astronomically many shapes a chain could take", "that every extra link multiplies the count"]
+  },
+  "misconception": "A chain can find its shape by trying them all.",
+  "objective": "The learner can explain that each extra link multiplies the shapes by 3, so a 100-link chain has about 5 x 10^47 shapes, far more than could be tried in the age of the universe, so folding cannot be a blind search.",
+  "keyState": "A 100-link chain built on the ruler (3^100 = 5.15e47 shapes), then the race switched on: 1.6e27 years at 10^13 tries a second against 13.8 billion years.",
+  "claims": [
+    {
+      "id": "life.protein-search-space.c1",
+      "text": "Toy model: each link of the chain has 3 possible bends, chosen independently, so a chain of n links has 3 to the power n shapes. Real chains have more states per link and bends that constrain each other.",
+      "support": "convention",
+      "source": "Levinthal (1969) style simplification; stated on the stage ('Toy: 3 bends per link'). Counted by shapes() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.protein-search-space.c2",
+      "text": "A 100-link chain with 3 bends per link has 3^100 = 515377520732011331036461129765621272702107522001 shapes, about 5.15 x 10^47: a 5 followed by 47 more digits.",
+      "support": "derivation",
+      "source": "BigInt 3n**100n in node: 48 digits, leading 515. The stage readout and the option text come from the same computation.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.protein-search-space.c3",
+      "text": "Trying one shape every 10^-13 seconds (10^13 tries a second, a deliberately generous speed), a 100-link chain would need about 1.6 x 10^27 years to try all shapes.",
+      "support": "derivation",
+      "source": "5.15e47 / 1e13 = 5.15e34 s; / 3.15576e7 s per year = 1.63e27 years (node). The rate 10^13 per second is a chosen assumption (about one bond vibration), as in the brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.protein-search-space.c4",
+      "text": "The universe is about 13.8 billion years old, so that search would take about 1.2 x 10^17 times the age of the universe.",
+      "support": "source",
+      "source": "Age 13.8 billion years: Planck Collaboration 2018 (13.787 +/- 0.020 Gyr). Ratio 1.63e27 / 13.8e9 = 1.18e17 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.protein-search-space.c5",
+      "text": "All the tries made at 10^13 a second since the Big Bang would be about 4.4 x 10^30, which is 10^30.6 on the ruler.",
+      "support": "derivation",
+      "source": "1e13 * 13.8e9 * 3.15576e7 = 4.35e30; log10 = 30.64 (node). Drawn as the marker on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.protein-search-space.c6",
+      "text": "Real proteins fold in about a millisecond to a few seconds, so folding cannot be a blind search; the chain is guided toward its shape (a folding funnel).",
+      "support": "source",
+      "source": "Levinthal (1969), 'How to fold graciously'; Dill & Chan (1997), Nature Structural Biology 4:10, 'From Levinthal to pathways to funnels'. To be verified: exact folding-time range.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each link of a chain can bend 3 ways. Roughly what happens to the number of possible shapes when you add one link?",
+    "options": ["It goes up by 3", "It is multiplied by 3", "It stays about the same"],
+    "answer": 1,
+    "why": "Every old shape can be extended in 3 ways, so the count is multiplied by 3 per link. That is why long chains have too many shapes to try blindly."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
