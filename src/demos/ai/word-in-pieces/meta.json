@@ -1,0 +1,79 @@
+{
+  "slug": "word-in-pieces",
+  "title": "How many pieces is one word?",
+  "hook": "You see one word. Does the model see one word too?",
+  "domain": "ai",
+  "concept": "tokenization",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a language model reads text"
+    ],
+    "doesNotKnow": [
+      "that the text is cut into pieces from a fixed list before the model sees it",
+      "that rare strings cost more pieces than common ones"
+    ]
+  },
+  "misconception": "A model sees whole words, one per slot.",
+  "objective": "The learner can explain that a tokenizer cuts text into pieces from its list, so common chunks cost one token and rare strings fall into many, and the model sees the pieces, not the word.",
+  "claims": [
+    {
+      "id": "ai.word-in-pieces.c1",
+      "text": "With the pieces un, happi, ness plus single letters and longest-match-first, 'unhappiness' splits into un | happi | ness: 3 tokens.",
+      "support": "derivation",
+      "source": "tokenize('unhappiness', PIECES) in Demo.tsx; node: [ 'un', 'happi', 'ness' ].",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.word-in-pieces.c2",
+      "text": "With all three pieces switched off, 'unhappiness' becomes 11 single-letter tokens; 'zyxxy' matches no piece and becomes 5.",
+      "support": "derivation",
+      "source": "tokenize('unhappiness', []) has length 11 and tokenize('zyxxy', PIECES) has length 5 in Demo.tsx (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.word-in-pieces.c3",
+      "text": "The three-piece vocabulary and the greedy longest-match rule are this toy's; they are labelled on the stage ('Toy tokenizer').",
+      "support": "convention",
+      "source": "Brief 31 in company/domains/briefs/ai.md. Real subword tokenizers differ in how they apply pieces (e.g. BPE applies learned merges in order).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.word-in-pieces.c4",
+      "text": "A model built on a subword tokenizer receives a sequence of piece ids, not the word or its letters.",
+      "support": "source",
+      "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.word-in-pieces.c5",
+      "text": "Real tokenizers learn their piece lists from large amounts of text, so frequent chunks get their own pieces and rare strings fall into many.",
+      "support": "source",
+      "source": "About real systems: Sennrich et al. 2016 (byte-pair encoding: repeatedly merge the most frequent symbol pair in the training text, so rare words split into more units); Kudo & Richardson 2018.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tokenizer has the pieces 'play' and 'ing' plus every single letter. Which costs a model more tokens?",
+    "options": [
+      "'playing'",
+      "'qwzing'",
+      "They cost the same: one word each"
+    ],
+    "answer": 1,
+    "why": "'playing' is play | ing (2 tokens). 'qwzing' has no piece for qwz, so it is q | w | z | ing (4). The model sees pieces, and rare strings cost more of them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "duplicates-in-the-test",
+  "title": "A great test score. Earned?",
+  "hook": "The model aced part of the test. What if it had seen those questions before?",
+  "domain": "ai",
+  "concept": "data-leakage",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model is checked on test data it was not trained on"
+    ],
+    "doesNotKnow": [
+      "that copies of training items inside the test inflate the score",
+      "that the score on fresh items is the one that measures skill"
+    ]
+  },
+  "misconception": "A high test score always means the model generalises.",
+  "objective": "The learner can explain that test items copied from training let memory pass as skill, so the score rises with the leak while the score on fresh items stays where it was.",
+  "claims": [
+    {
+      "id": "ai.duplicates-in-the-test.c1",
+      "text": "With 20 test items of which 20% (4) are copies: the model gets the 4 copies right from memory and 8 of the 16 fresh items, so it scores 12/20 = 60%; on the fresh items alone it scores 50%.",
+      "support": "derivation",
+      "source": "scores(20) in Demo.tsx: all 0.6, fresh 0.5. Arithmetic: 0.2 × 100% + 0.8 × 50% = 60%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.duplicates-in-the-test.c2",
+      "text": "At every copied share on the slider (0% to 50%) the fresh-item score stays 50% while the full test score rises (50%, 55%, 60%, 65%, 70%, 75%).",
+      "support": "derivation",
+      "source": "scores(v) in Demo.tsx for v = 0, 10, ..., 50: fresh counts 20, 18, ..., 10 are all even, and fresh answers alternate yes/no, so exactly half are right; all = 0.5 + v/200.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.duplicates-in-the-test.c3",
+      "text": "The test, the model's 'always yes' rule and the numbers are invented for the toy; labelled 'Toy test' on the stage. Which cells are copies comes from an untuned mulberry32(1) shuffle and affects only the layout.",
+      "support": "convention",
+      "source": "Brief 34 in company/domains/briefs/ai.md (brief says 'guesses 50/50'; the toy makes the fresh score exactly 50% with an always-yes rule on a half-yes set).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.duplicates-in-the-test.c4",
+      "text": "Leakage between training and test data has inflated reported results in real published research.",
+      "support": "source",
+      "source": "About real systems (not shown as a number on the stage): Kapoor & Narayanan 2023, 'Leakage and the reproducibility crisis in machine-learning-based science', Patterns 4(9):100804; Elangovan, He & Verspoor 2021, 'Memorization vs. generalization: quantifying data leakage in NLP performance evaluation', EACL. The reveal's general advice ('a high score means something only if nothing in the test sat in training') rests on these.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A chatbot scores 90% on a public quiz. Later you learn many quiz questions were in its training data. What should you do with the 90%?",
+    "options": [
+      "Re-score it on questions it cannot have seen",
+      "Trust it: a score is a score",
+      "Add 10% to account for the hard questions"
+    ],
+    "answer": 0,
+    "why": "Questions it saw in training can be answered from memory, so they inflate the score. Only fresh questions measure how well it handles something new."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

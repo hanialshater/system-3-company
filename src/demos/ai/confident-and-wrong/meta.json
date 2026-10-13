@@ -1,0 +1,72 @@
+{
+  "slug": "confident-and-wrong",
+  "title": "How much does a sure mistake cost?",
+  "hook": "Two models miss the same answer. One hedged, one was nearly certain. Same penalty?",
+  "domain": "ai",
+  "concept": "cross-entropy-loss",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model can give a chance to each possible answer"
+    ],
+    "doesNotKnow": [
+      "how the chance given to the true answer becomes a training penalty",
+      "that the penalty grows without limit as that chance goes to zero"
+    ]
+  },
+  "misconception": "A wrong answer costs the same whether the model was unsure or certain.",
+  "objective": "The learner can explain that the penalty −ln(p) adds the same amount for every halving of the chance on the truth, so it climbs steeply and without limit as the model grows confidently wrong.",
+  "claims": [
+    {
+      "id": "ai.confident-and-wrong.c1",
+      "text": "−ln(0.5) = 0.69, −ln(0.1) = 2.30 and −ln(0.01) = 4.61, which is 6.6 times the 50% penalty.",
+      "support": "derivation",
+      "source": "penalty() in Demo.tsx; node: 0.693, 2.303, 4.605; 4.605 / 0.693 = 6.64 = log2(100). Also −ln(0.9) = 0.105.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.confident-and-wrong.c2",
+      "text": "Every halving of the chance on the truth adds the same 0.69 to the penalty; 1% is about 6.6 halvings from certainty, and as the chance goes to 0% the penalty has no ceiling.",
+      "support": "derivation",
+      "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.confident-and-wrong.c3",
+      "text": "For one example, the cross-entropy penalty is −ln(the probability the model gave the true class), and models trained to minimise it are penalised far more for confident mistakes than for hedged ones.",
+      "support": "source",
+      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.confident-and-wrong.c4",
+      "text": "The stage shows one example's penalty, labelled 'One example' on the stage; real training averages it over many examples.",
+      "support": "convention",
+      "source": "Brief 38 in company/domains/briefs/ai.md; Goodfellow et al. 2016 §6.2.1 (cost averaged over the training set).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On one example, model A gave the true answer a 40% chance and model B gave it 2%. Under the −ln(p) penalty, which is penalised more?",
+    "options": [
+      "B, by a lot (about 3.9 versus 0.9)",
+      "A, because it was closer to 50%",
+      "They are penalised the same: both were wrong"
+    ],
+    "answer": 0,
+    "why": "The penalty depends on the chance given to the truth: −ln 0.4 = 0.92, −ln 0.02 = 3.91. Being confidently wrong costs far more than hedging."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
