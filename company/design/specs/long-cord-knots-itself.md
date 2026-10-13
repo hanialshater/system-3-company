@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-13 · status: draft, for design review · brief: `company/domains/briefs/lifehacks.md` #5 · wireframe: `long-cord-knots-itself.svg`
 
+**Changes requested (design lead, 2026-10-13):** "Ends clipped: on" tumbles 20 at the current length immediately (ring at 0/20), or add the box icon to the anatomy; dot labels must not overlap (0.3 / 0.5 m) or clip (3 m). Details in `company/design/reviews/2026-10-13-design-lead-decisions.md` §3.4.
+
 **Format: Simulation run.** The idea is a probability that depends on length; one trial says nothing. The learner runs batches of 20 at lengths they choose, and their own dots trace the curve before the published curve is shown.
 
 ## Change from the brief (interaction designer's call)

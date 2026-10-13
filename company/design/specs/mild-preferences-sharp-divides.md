@@ -1,6 +1,9 @@
 # Spec: mild-preferences-sharp-divides
 
 owner: interaction-designer (Rafael) · 2026-10-13 · status: draft, for design review · brief: `company/domains/briefs/economics.markets.md` #1 · wireframe: `mild-preferences-sharp-divides.svg`
+
+**Changes requested (design lead, 2026-10-13):** rule line names the active threshold, not "T"; chart end labels must not overlap or clip (right gutter or legend); the reveal pin shows the 30% chip active; the accessibility reviewer checks shape and hollow cues at 7.2 px; count stage words against the 25-word budget. The ABM format is approved with rules (`company/design/formats.md`). Details in `company/design/reviews/2026-10-13-design-lead-decisions.md` §1 and §3.2.
+
 **First lesson in the proposed Agent-based simulation format.** Not buildable until the design lead approves the format (`company/design/formats.md`). Decisions here are meant to become the format's defaults; the second lesson (schelling-on-new-york) should reuse them so the shared `src/kit/abm` engine can be lifted out.
 
 **Why this format:** the payoff is emergence. No single agent wants a majority, yet the grid sorts into blocks. Independent trials (Simulation run) cannot show that; agents must react to each other's moves, tick by tick, on one visible world.

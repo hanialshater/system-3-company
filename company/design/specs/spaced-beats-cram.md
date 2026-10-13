@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-13 · status: draft, for design review · brief: `company/domains/briefs/lifehacks.md` #2 · wireframe: `spaced-beats-cram.svg`
 
+**Changes requested (design lead, 2026-10-13):** use a broken x axis so days 0–5 get about 40% of the width; put cursor tags on opposite sides at the next morning; move or drop the hero so it does not cover the "A month later" marker. Details in `company/design/reviews/2026-10-13-design-lead-decisions.md` §3.5.
+
 **Format: Storyboard / scrub.** The idea is a process over a month, and the payoff is a reversal between two moments: the cram is ahead (or level) the next morning and far behind a month later. A scrubber lets the learner *walk* the calendar; two key-frame buttons land exactly on the two test days.
 
 ## Calendar (fixed, shown on the axis)

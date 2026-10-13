@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-13 · status: draft, for design review · brief: `company/domains/briefs/lifehacks.md` #1 · wireframe: `towel-spread-dries-first.svg`
 
+**Changes requested (design lead, 2026-10-13):** the results line tags each dry time with its air (still / breeze) so the stage at reveal matches the quoted times; keep "toy ×2" on the Breeze toggle; no covered marks on the single-layer spread. Pair in the reveal is approved; use `.tap` for 44 px controls until the kit fix. Details in `company/design/reviews/2026-10-13-design-lead-decisions.md` §2 and §3.3.
+
 **Format: Before / after toggle.** One change (fold) with one visible effect (fewer "doorways" for the water). The stage opens on the question's folded towel; the learner finds its drying time with their own hands, then opens it out. Spread is the state that persists into the reveal.
 
 ## Stage at 390×844 (stage budget: ~330 px at predict, ~480 px in explore)

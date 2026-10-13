@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-13 · status: draft, for design review · brief: `company/domains/briefs/lifehacks.md` #4 · wireframe: `square-bow-stays-tied.svg`
 
+**Approved by design lead, 2026-10-13.** Notes in `company/design/reviews/2026-10-13-design-lead-decisions.md` §3.1.
+
 **Format: Side-by-side comparison.** Two shoes, one shared walk control. The difference the learner must see is one hidden step (the loop-wrap direction) that changes how the bow sits and how fast it loosens. Two panels sharing one control is the only honest way to keep "same laces, same tension" true on the stage.
 
 ## Stage at 390×844 (~330 px at predict, ~480 px in explore)
