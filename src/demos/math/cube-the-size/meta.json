@@ -1,0 +1,72 @@
+{
+  "slug": "cube-the-size",
+  "title": "Three times as wide, how heavy?",
+  "hook": "Same material, three times as wide. Is it three times the weight?",
+  "domain": "math",
+  "concept": "volume-scaling",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that area grows with the square of length (a pizza twice as wide is 4 pizzas)",
+      "multiplying small whole numbers"
+    ],
+    "doesNotKnow": [
+      "that volume, and so weight, grows with the cube of length"
+    ]
+  },
+  "misconception": "A cube three times as wide has three times the volume, or weight (or nine times, by analogy with area).",
+  "objective": "The learner can explain that scaling a solid by 3 in width also scales depth and height by 3, so its volume and weight grow 3 × 3 × 3 = 27 times.",
+  "claims": [
+    {
+      "id": "math.cube-the-size.c1",
+      "text": "A 6-inch cube is filled exactly by 3 × 3 × 3 = 27 cubes of 2 inches.",
+      "support": "derivation",
+      "source": "6 / 2 = 3 cubes along each edge; 3 × 3 × 3 = 27 (recomputed in node). The stage draws k^3 unit cubes from the slider value k.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.cube-the-size.c2",
+      "text": "Each small cube of the same material weighs 1 kg, so the 6-inch cube weighs 27 kg.",
+      "support": "derivation",
+      "source": "Same material means the same density, so weight is proportional to volume: 27 × 1 kg = 27 kg.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.cube-the-size.c3",
+      "text": "Making a solid 3 times as wide, as deep and as tall multiplies its volume by 3 × 3 × 3; 3 counts one direction and 9 counts two, which is how area grows.",
+      "support": "source",
+      "source": "For similar solids the volume ratio is k^3 and the area ratio k^2 (e.g. any school geometry text on scale factors). Recomputed: 3, 3^2 = 9, 3^3 = 27.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.cube-the-size.c4",
+      "text": "Each layer of the k-times-wide cube holds k × k small cubes, and there are k layers (stage caption, e.g. 3 layers of 9).",
+      "support": "derivation",
+      "source": "Counting by z-layer: k layers of k × k = k^3. Computed in Demo.tsx from k.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bronze statue is copied at twice the height, same shape, same bronze. The copy needs how much bronze?",
+    "options": [
+      "2 times as much",
+      "4 times as much",
+      "8 times as much"
+    ],
+    "answer": 2,
+    "why": "Twice the height is also twice the width and twice the depth, so the volume is 2 × 2 × 2 = 8 times."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
