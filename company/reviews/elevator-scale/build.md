@@ -7,3 +7,4 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Earned reveal: milestones 'up' and 'down'. QA presses the three mode buttons first, so both are reached. The reveal quotes the up and down accelerations the learner actually used (QA: up at 2, down at 2 then 3 via the slider) and their readings.
 - Departure from the brief: no separate free-body diagram (the two arrows sit on the rider instead), to keep one representation.
 - After screenshots: the 'a = 3 m/s²' and 'floor push' labels ran over the car's wall and the caption ran off the right edge; car widened, dial moved right and shrunk, caption right-aligned.
+- Second look: the "at rest" label was clipped at the dial's right edge and "floor push" crossed the car wall; the label moved into the caption ("Red mark: at rest") and "floor push" now sits on two lines inside the car.

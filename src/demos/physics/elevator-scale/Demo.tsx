@@ -118,8 +118,9 @@ export default function ElevatorScale({ slug }: { slug: string }) {
                   {!locked && (
                     <>
                       <line x1={px + 22} y1={FLOOR - 10} x2={px + 22} y2={FLOOR - 10 - nLen} className={s.push} markerEnd="url(#el-n)" />
-                      <text x={px + 26} y={FLOOR - 14 - nLen} className={s.labN}>
-                        floor push
+                      <text x={px + 27} y={FLOOR - 16 - nLen} className={s.labN}>
+                        <tspan x={px + 27}>floor</tspan>
+                        <tspan x={px + 27} dy={10}>push</tspan>
                       </text>
                     </>
                   )}
@@ -155,16 +156,13 @@ export default function ElevatorScale({ slug }: { slug: string }) {
                     );
                   })}
                   <line x1={rest[0].x} y1={rest[0].y} x2={rest[1].x} y2={rest[1].y} className={s.restMark} />
-                  <text x={rest[1].x + 2} y={rest[1].y - 2} className={s.labRest}>
-                    at rest
-                  </text>
                   <line x1={DCX} y1={DCY} x2={needle.x} y2={needle.y} className={s.needle} />
                   <circle cx={DCX} cy={DCY} r={3} className={s.hub} />
                   <text x={DCX} y={DCY + 22} textAnchor="middle" className={s.big}>
                     {locked ? "? N" : n0(N)}
                   </text>
                   <text x={W - 4} y={DCY + 36} textAnchor="end" className={s.chip}>
-                    Scale, newtons. {M} kg rider.
+                    Red mark: at rest. {M} kg rider.
                   </text>
                 </svg>
 

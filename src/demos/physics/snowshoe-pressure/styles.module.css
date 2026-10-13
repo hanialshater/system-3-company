@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 40dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.wrap :global(.control) { flex: 1 1 0; }
+.snow { fill: color-mix(in srgb, var(--muted) 10%, var(--bg)); }
+.surface { stroke: var(--muted); stroke-width: 1.4; }
+.hole { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); }
+.leg { fill: color-mix(in srgb, var(--muted) 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.shoe { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.label { fill: var(--fg); font-size: 9px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.sinkLabel { fill: var(--bad); font-size: 9px; font-weight: 700; }
+.axis { stroke: var(--fg); stroke-width: 1.2; }
+.barOver { fill: var(--bad); }
+.barOk { fill: var(--good); }
+.limit { stroke: var(--fg); stroke-width: 1.4; stroke-dasharray: 3 2; }
+.limitLabel { fill: var(--fg); font-size: 8px; }
+.chip { fill: var(--muted); font-size: 9px; }

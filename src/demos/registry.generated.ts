@@ -186,36 +186,38 @@ import m180 from "./physics/ramp-same-work/meta.json";
 import m181 from "./physics/release-the-spinning-ball/meta.json";
 import m182 from "./physics/river-crossing-time/meta.json";
 import m183 from "./physics/same-push-twice-the-mass/meta.json";
-import m184 from "./physics/skydiver-speed-limit/meta.json";
-import m185 from "./physics/sticky-cart-merge/meta.json";
-import m186 from "./physics/throw-it-fast-enough/meta.json";
-import m187 from "./physics/truck-hits-car-force/meta.json";
-import m188 from "./physics/two-ripples-cancel/meta.json";
-import m189 from "./physics/two-tugs-right-angle/meta.json";
-import m190 from "./probability/armour-where-no-holes/meta.json";
-import m191 from "./probability/at-least-one-boy/meta.json";
-import m192 from "./probability/average-that-never-settles/meta.json";
-import m193 from "./probability/base-rates/meta.json";
-import m194 from "./probability/better-in-every-group-worse-overall/meta.json";
-import m195 from "./probability/birthday-paradox/meta.json";
-import m196 from "./probability/coin-gap-keeps-growing/meta.json";
-import m197 from "./probability/collect-all-six-faces/meta.json";
-import m198 from "./probability/drunk-walk-distance/meta.json";
-import m199 from "./probability/five-heads-then-what/meta.json";
-import m200 from "./probability/friends-have-more-friends/meta.json";
-import m201 from "./probability/hidden-third-cause/meta.json";
-import m202 from "./probability/monty-hall-100-doors/meta.json";
-import m203 from "./probability/one-in-a-million-daily/meta.json";
-import m204 from "./probability/one-in-a-million-match/meta.json";
-import m205 from "./probability/plus-fifty-minus-forty/meta.json";
-import m206 from "./probability/praise-then-slump/meta.json";
-import m207 from "./probability/same-average-different-ride/meta.json";
-import m208 from "./probability/small-hospital-big-swings/meta.json";
-import m209 from "./probability/twenty-harmless-tests/meta.json";
-import m210 from "./probability/which-coin-is-it/meta.json";
-import m211 from "./probability/why-seven-wins/meta.json";
+import m184 from "./physics/seesaw-sit-closer/meta.json";
+import m185 from "./physics/skydiver-speed-limit/meta.json";
+import m186 from "./physics/snowshoe-pressure/meta.json";
+import m187 from "./physics/sticky-cart-merge/meta.json";
+import m188 from "./physics/throw-it-fast-enough/meta.json";
+import m189 from "./physics/truck-hits-car-force/meta.json";
+import m190 from "./physics/two-ripples-cancel/meta.json";
+import m191 from "./physics/two-tugs-right-angle/meta.json";
+import m192 from "./probability/armour-where-no-holes/meta.json";
+import m193 from "./probability/at-least-one-boy/meta.json";
+import m194 from "./probability/average-that-never-settles/meta.json";
+import m195 from "./probability/base-rates/meta.json";
+import m196 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m197 from "./probability/birthday-paradox/meta.json";
+import m198 from "./probability/coin-gap-keeps-growing/meta.json";
+import m199 from "./probability/collect-all-six-faces/meta.json";
+import m200 from "./probability/drunk-walk-distance/meta.json";
+import m201 from "./probability/five-heads-then-what/meta.json";
+import m202 from "./probability/friends-have-more-friends/meta.json";
+import m203 from "./probability/hidden-third-cause/meta.json";
+import m204 from "./probability/monty-hall-100-doors/meta.json";
+import m205 from "./probability/one-in-a-million-daily/meta.json";
+import m206 from "./probability/one-in-a-million-match/meta.json";
+import m207 from "./probability/plus-fifty-minus-forty/meta.json";
+import m208 from "./probability/praise-then-slump/meta.json";
+import m209 from "./probability/same-average-different-ride/meta.json";
+import m210 from "./probability/small-hospital-big-swings/meta.json";
+import m211 from "./probability/twenty-harmless-tests/meta.json";
+import m212 from "./probability/which-coin-is-it/meta.json";
+import m213 from "./probability/why-seven-wins/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta, m88 as DemoMeta, m89 as DemoMeta, m90 as DemoMeta, m91 as DemoMeta, m92 as DemoMeta, m93 as DemoMeta, m94 as DemoMeta, m95 as DemoMeta, m96 as DemoMeta, m97 as DemoMeta, m98 as DemoMeta, m99 as DemoMeta, m100 as DemoMeta, m101 as DemoMeta, m102 as DemoMeta, m103 as DemoMeta, m104 as DemoMeta, m105 as DemoMeta, m106 as DemoMeta, m107 as DemoMeta, m108 as DemoMeta, m109 as DemoMeta, m110 as DemoMeta, m111 as DemoMeta, m112 as DemoMeta, m113 as DemoMeta, m114 as DemoMeta, m115 as DemoMeta, m116 as DemoMeta, m117 as DemoMeta, m118 as DemoMeta, m119 as DemoMeta, m120 as DemoMeta, m121 as DemoMeta, m122 as DemoMeta, m123 as DemoMeta, m124 as DemoMeta, m125 as DemoMeta, m126 as DemoMeta, m127 as DemoMeta, m128 as DemoMeta, m129 as DemoMeta, m130 as DemoMeta, m131 as DemoMeta, m132 as DemoMeta, m133 as DemoMeta, m134 as DemoMeta, m135 as DemoMeta, m136 as DemoMeta, m137 as DemoMeta, m138 as DemoMeta, m139 as DemoMeta, m140 as DemoMeta, m141 as DemoMeta, m142 as DemoMeta, m143 as DemoMeta, m144 as DemoMeta, m145 as DemoMeta, m146 as DemoMeta, m147 as DemoMeta, m148 as DemoMeta, m149 as DemoMeta, m150 as DemoMeta, m151 as DemoMeta, m152 as DemoMeta, m153 as DemoMeta, m154 as DemoMeta, m155 as DemoMeta, m156 as DemoMeta, m157 as DemoMeta, m158 as DemoMeta, m159 as DemoMeta, m160 as DemoMeta, m161 as DemoMeta, m162 as DemoMeta, m163 as DemoMeta, m164 as DemoMeta, m165 as DemoMeta, m166 as DemoMeta, m167 as DemoMeta, m168 as DemoMeta, m169 as DemoMeta, m170 as DemoMeta, m171 as DemoMeta, m172 as DemoMeta, m173 as DemoMeta, m174 as DemoMeta, m175 as DemoMeta, m176 as DemoMeta, m177 as DemoMeta, m178 as DemoMeta, m179 as DemoMeta, m180 as DemoMeta, m181 as DemoMeta, m182 as DemoMeta, m183 as DemoMeta, m184 as DemoMeta, m185 as DemoMeta, m186 as DemoMeta, m187 as DemoMeta, m188 as DemoMeta, m189 as DemoMeta, m190 as DemoMeta, m191 as DemoMeta, m192 as DemoMeta, m193 as DemoMeta, m194 as DemoMeta, m195 as DemoMeta, m196 as DemoMeta, m197 as DemoMeta, m198 as DemoMeta, m199 as DemoMeta, m200 as DemoMeta, m201 as DemoMeta, m202 as DemoMeta, m203 as DemoMeta, m204 as DemoMeta, m205 as DemoMeta, m206 as DemoMeta, m207 as DemoMeta, m208 as DemoMeta, m209 as DemoMeta, m210 as DemoMeta, m211 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta, m88 as DemoMeta, m89 as DemoMeta, m90 as DemoMeta, m91 as DemoMeta, m92 as DemoMeta, m93 as DemoMeta, m94 as DemoMeta, m95 as DemoMeta, m96 as DemoMeta, m97 as DemoMeta, m98 as DemoMeta, m99 as DemoMeta, m100 as DemoMeta, m101 as DemoMeta, m102 as DemoMeta, m103 as DemoMeta, m104 as DemoMeta, m105 as DemoMeta, m106 as DemoMeta, m107 as DemoMeta, m108 as DemoMeta, m109 as DemoMeta, m110 as DemoMeta, m111 as DemoMeta, m112 as DemoMeta, m113 as DemoMeta, m114 as DemoMeta, m115 as DemoMeta, m116 as DemoMeta, m117 as DemoMeta, m118 as DemoMeta, m119 as DemoMeta, m120 as DemoMeta, m121 as DemoMeta, m122 as DemoMeta, m123 as DemoMeta, m124 as DemoMeta, m125 as DemoMeta, m126 as DemoMeta, m127 as DemoMeta, m128 as DemoMeta, m129 as DemoMeta, m130 as DemoMeta, m131 as DemoMeta, m132 as DemoMeta, m133 as DemoMeta, m134 as DemoMeta, m135 as DemoMeta, m136 as DemoMeta, m137 as DemoMeta, m138 as DemoMeta, m139 as DemoMeta, m140 as DemoMeta, m141 as DemoMeta, m142 as DemoMeta, m143 as DemoMeta, m144 as DemoMeta, m145 as DemoMeta, m146 as DemoMeta, m147 as DemoMeta, m148 as DemoMeta, m149 as DemoMeta, m150 as DemoMeta, m151 as DemoMeta, m152 as DemoMeta, m153 as DemoMeta, m154 as DemoMeta, m155 as DemoMeta, m156 as DemoMeta, m157 as DemoMeta, m158 as DemoMeta, m159 as DemoMeta, m160 as DemoMeta, m161 as DemoMeta, m162 as DemoMeta, m163 as DemoMeta, m164 as DemoMeta, m165 as DemoMeta, m166 as DemoMeta, m167 as DemoMeta, m168 as DemoMeta, m169 as DemoMeta, m170 as DemoMeta, m171 as DemoMeta, m172 as DemoMeta, m173 as DemoMeta, m174 as DemoMeta, m175 as DemoMeta, m176 as DemoMeta, m177 as DemoMeta, m178 as DemoMeta, m179 as DemoMeta, m180 as DemoMeta, m181 as DemoMeta, m182 as DemoMeta, m183 as DemoMeta, m184 as DemoMeta, m185 as DemoMeta, m186 as DemoMeta, m187 as DemoMeta, m188 as DemoMeta, m189 as DemoMeta, m190 as DemoMeta, m191 as DemoMeta, m192 as DemoMeta, m193 as DemoMeta, m194 as DemoMeta, m195 as DemoMeta, m196 as DemoMeta, m197 as DemoMeta, m198 as DemoMeta, m199 as DemoMeta, m200 as DemoMeta, m201 as DemoMeta, m202 as DemoMeta, m203 as DemoMeta, m204 as DemoMeta, m205 as DemoMeta, m206 as DemoMeta, m207 as DemoMeta, m208 as DemoMeta, m209 as DemoMeta, m210 as DemoMeta, m211 as DemoMeta, m212 as DemoMeta, m213 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -402,7 +404,9 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "release-the-spinning-ball": () => import("./physics/release-the-spinning-ball/Demo"),
   "river-crossing-time": () => import("./physics/river-crossing-time/Demo"),
   "same-push-twice-the-mass": () => import("./physics/same-push-twice-the-mass/Demo"),
+  "seesaw-sit-closer": () => import("./physics/seesaw-sit-closer/Demo"),
   "skydiver-speed-limit": () => import("./physics/skydiver-speed-limit/Demo"),
+  "snowshoe-pressure": () => import("./physics/snowshoe-pressure/Demo"),
   "sticky-cart-merge": () => import("./physics/sticky-cart-merge/Demo"),
   "throw-it-fast-enough": () => import("./physics/throw-it-fast-enough/Demo"),
   "truck-hits-car-force": () => import("./physics/truck-hits-car-force/Demo"),
