@@ -1,0 +1,73 @@
+{
+  "slug": "unit-price-aisle",
+  "title": "Is the biggest pack the best deal?",
+  "hook": "Three bags of rice. Surely the biggest one is cheapest per gram?",
+  "domain": "economics",
+  "concept": "unit-pricing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "shelf prices and pack sizes",
+      "how to divide"
+    ],
+    "doesNotKnow": [
+      "that the biggest pack is not always the cheapest per gram",
+      "that the rate, price divided by size, is what compares packs"
+    ]
+  },
+  "misconception": "Bigger packs are always better value.",
+  "objective": "The learner can compare packs by dividing price by size, and explain that the rate need not fall as the pack grows.",
+  "claims": [
+    {
+      "id": "economics.unit-price-aisle.c1",
+      "text": "500 g for $3.50 is $0.70 per 100 g; 750 g for $5.10 is $0.68 per 100 g; 1.2 kg for $8.40 is $0.70 per 100 g.",
+      "support": "derivation",
+      "source": "350 / 5 = 70 cents; 510 / 7.5 = 68 cents; 840 / 12 = 70 cents. Demo.tsx per100(cents, grams).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.unit-price-aisle.c2",
+      "text": "Of the three, the 750 g pack is cheapest per 100 g, and the 1.2 kg pack costs the same rate as the 500 g pack.",
+      "support": "derivation",
+      "source": "68 < 70 = 70 (c1).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.unit-price-aisle.c3",
+      "text": "On the slider, the 1.2 kg pack's price per 100 g is its shelf price divided by 12 (for example $8.16 gives $0.68).",
+      "support": "derivation",
+      "source": "1200 g / 100 g = 12; 816 / 12 = 68 cents. Slider runs $7.20 to $9.60 in $0.12 steps (one cent per 100 g).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.unit-price-aisle.c4",
+      "text": "The prices are invented, not real shop prices; a unit price ignores waste and storage.",
+      "support": "convention",
+      "source": "Stage chip 'Made-up prices'; reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Coffee: 250 g for $5.00 or 1 kg for $22.00. Which costs less per 100 g?",
+    "options": [
+      "The 1 kg bag, because bigger is cheaper",
+      "The 250 g bag",
+      "They cost the same per 100 g"
+    ],
+    "answer": 1,
+    "why": "$5.00 / 2.5 = $2.00 per 100 g; $22.00 / 10 = $2.20 per 100 g. Divide price by size; the rate need not fall as the pack grows."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

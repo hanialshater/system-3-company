@@ -1,0 +1,79 @@
+{
+  "slug": "break-even-cups",
+  "title": "How many cups to break even?",
+  "hook": "The stand costs $300 a day. Sell $300 of lemonade and you are even. Right?",
+  "domain": "economics",
+  "concept": "break-even",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "revenue is price times quantity",
+      "a business has costs that do not depend on sales (rent, a licence)"
+    ],
+    "doesNotKnow": [
+      "that fixed costs are repaid one unit at a time by what each sale leaves after its own cost"
+    ]
+  },
+  "misconception": "I break even when I have sold as much as I spent.",
+  "objective": "The learner can compute break-even as the fixed cost divided by what each unit leaves after its own cost, and explain why revenue at break-even is more than the fixed cost.",
+  "claims": [
+    {
+      "id": "economics.break-even-cups.c1",
+      "text": "With $300 a day of fixed cost, $1 to make each cup and a $3 price, each cup leaves $2 and the stand breaks even at 150 cups.",
+      "support": "derivation",
+      "source": "3 − 1 = 2; 300 / 2 = 150. Demo.tsx breakEven(3).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.break-even-cups.c2",
+      "text": "At $4 a cup the stand breaks even at 100 cups; at $2, at 300 cups.",
+      "support": "derivation",
+      "source": "300 / (4 − 1) = 100; 300 / (2 − 1) = 300. Demo.tsx breakEven(p).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.break-even-cups.c3",
+      "text": "The 150 cups bring in $450: $150 pays for the cups themselves and $300 for the day.",
+      "support": "derivation",
+      "source": "150 × 3 = 450; 150 × 1 = 150; 450 − 150 = 300.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.break-even-cups.c4",
+      "text": "Break-even is the fixed cost divided by what each unit leaves after its own cost.",
+      "support": "source",
+      "source": "Break-even quantity = fixed cost / (price − variable cost per unit), the contribution-margin formula in introductory managerial accounting (e.g. Garrison, Noreen & Brewer, Managerial Accounting, cost-volume-profit chapter).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.break-even-cups.c5",
+      "text": "The lesson is a model: the same price and cost for every cup, and every cup made is sold.",
+      "support": "convention",
+      "source": "Stage chip 'Model: steady price, $1 a cup to make'; reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A food truck pays $600 a day to operate. Each taco costs $2 to make and sells for $5. How many tacos does it need to sell to break even?",
+    "options": [
+      "120",
+      "200",
+      "300"
+    ],
+    "answer": 1,
+    "why": "Each taco leaves $5 − $2 = $3 toward the day's $600, so 600 / 3 = 200 tacos."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
