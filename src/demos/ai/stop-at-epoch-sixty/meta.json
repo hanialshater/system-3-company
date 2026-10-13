@@ -1,0 +1,73 @@
+{
+  "slug": "stop-at-epoch-sixty",
+  "title": "Does training longer always help?",
+  "hook": "Training error falls with every step. Is the model getting better the whole time?",
+  "domain": "ai",
+  "concept": "early-stopping",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model can overfit its training data",
+      "that held-out data checks a model on examples it did not train on"
+    ],
+    "doesNotKnow": [
+      "that held-out error can fall and then rise during training while training error keeps falling",
+      "that stopping training early is one cure for overfitting"
+    ]
+  },
+  "misconception": "Training longer always improves a model.",
+  "objective": "The learner can explain that during training the held-out error can reach a minimum and then climb as the model fits noise, while training error keeps falling, so the held-out curve says when to stop.",
+  "claims": [
+    {
+      "id": "ai.stop-at-epoch-sixty.c1",
+      "text": "In the lesson's run (seed 12), held-out error is 0.751 at step 0, lowest at 0.299 at step 67, 0.320 at step 100, 0.486 at step 1,000 and 0.693 at step 20,000, while training error falls from 0.793 to 0.170.",
+      "support": "simulation",
+      "source": "trainRun(12) in Demo.tsx (degree 7, powers of x, weights from 0, full-batch gradient descent on mean squared error, step 0.1; truth sin(2x), x uniform on [−1, 1], noise sd 0.3; 8 training and 200 held-out dots from mulberry32(12); RMS errors at 74 log-spaced checkpoints). Node, model block extracted from Demo.tsx: 0:0.793/0.751 67:0.238/0.299 100:0.204/0.320 1000:0.177/0.486 20000:0.170/0.693. Seed 12 was CHOSEN to show a clear dip (disclosed on the stage and in the reveal).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stop-at-epoch-sixty.c2",
+      "text": "In 483 of 500 seeded runs of this toy, the lowest held-out error came before the end of training.",
+      "support": "simulation",
+      "source": "trainRun(s) for seeds 1-500, same code (min over checkpoints). Also: in 379 of 500 the final held-out error was at least 1.2× the lowest; the lowest came before step 100 in only 123 of 500, so 'before step 100' is true of seed 12, not in general (the reveal says the dip moves from run to run).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stop-at-epoch-sixty.c3",
+      "text": "Early in training the curve learns the broad shape; later it bends to pass through the noise in its training dots, which training error cannot detect and held-out error can.",
+      "support": "source",
+      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §7.8 (early stopping: validation error eventually rises while training error keeps decreasing; early stopping as regularisation); Prechelt 1998, 'Early stopping — but when?', in Neural Networks: Tricks of the Trade, LNCS 1524.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.stop-at-epoch-sixty.c4",
+      "text": "The curve, data and seed are a toy, labelled on the stage ('Toy · degree-7 curve · seed 12 (chosen)').",
+      "support": "convention",
+      "source": "Brief 37 in company/domains/briefs/ai.md (its numbers came from a different generator, seed 11 LCG; this lesson reproduces the idea in its own toy, per the brief).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "While a model trains, its training error keeps dropping, but its error on a held-out set started rising a while ago. What does that tell you?",
+    "options": [
+      "It is now fitting noise; the best stopping point has passed",
+      "It is still improving, because training error is falling",
+      "The held-out set must be broken"
+    ],
+    "answer": 0,
+    "why": "Training error keeps falling as the model bends to fit noise in its training data. Held-out error rising means the model is getting worse on new data, so the best place to stop was where held-out error was lowest."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
