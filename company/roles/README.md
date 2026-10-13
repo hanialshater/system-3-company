@@ -11,6 +11,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Founder](founder.md) | nobody | Own the desire layer: what the company is for, what counts as a good lesson (Surface Value), and every change to the constitution. |
 | [Chief of Staff (operator, day-to-day loop)](chief-of-staff.md) | founder | Given everything we know, choose what to try next and send it to the narrowest role that can do it. |
 | [Chief of Staff, CEO Office (company health)](chief-of-staff-ceo-office.md) | founder | The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.. |
+| [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
 
 ## Product
 

@@ -7,6 +7,7 @@ import { SUBAREAS } from "../../../tools/org/roles.mjs";
 export const HOME: Record<string, string> = {
   "chief-of-staff": "chief-of-staff",
   "chief-of-staff-ceo-office": "ceo-office",
+  "portfolio-manager": "ceo-office",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
   "learning-designer": "studio",

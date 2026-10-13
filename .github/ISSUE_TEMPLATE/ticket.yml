@@ -1,0 +1,22 @@
+name: Ticket
+description: Report a problem with a lesson or the app, or ask for something
+labels: ["intake"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options: ["Wrong or unclear lesson content", "Lesson bug (broken, stuck, layout)", "App or feed bug", "Accessibility", "Idea or request", "Other"]
+    validations: { required: true }
+  - type: input
+    id: slug
+    attributes:
+      label: Lesson (slug or URL), if any
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations: { required: true }
+  - type: markdown
+    attributes:
+      value: "The portfolio manager mirrors every ticket to the company board, gives it a priority (P1–P4) and comments with the board id. See company/ops/triage.md."

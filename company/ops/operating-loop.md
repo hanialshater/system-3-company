@@ -88,3 +88,6 @@ Work is pulled, not assigned. Any number of builders can work in one domain, bec
 - Evaluate only lessons in `review`; do not re-review unchanged lessons.
 - Kill branches that underperform for two generations unless they hold an exploration slot.
 - `company check` is free; run it often. `verify` costs about two minutes; run it before you push.
+
+## Intake and triage (2026-10-13)
+All new work, including GitHub issues, enters through `company/ops/triage.md`. The portfolio manager (CEO office) sets priorities and approves items into "next". Dispatch from the top of "next" by priority (`node tools/triage.mjs list`), not by board order. When 10 or more open items are untriaged, or a P1 arrives, dispatch the portfolio manager.
