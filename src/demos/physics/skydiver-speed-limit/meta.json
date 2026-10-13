@@ -1,0 +1,88 @@
+{
+  "slug": "skydiver-speed-limit",
+  "title": "Does a skydiver keep speeding up?",
+  "hook": "Gravity never lets go of a falling skydiver. So why does her speed stop growing?",
+  "domain": "physics",
+  "concept": "terminal-velocity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "skydivers fall fast",
+      "speed in m/s and km/h",
+      "air pushes back on moving things"
+    ],
+    "doesNotKnow": [
+      "that drag grows with the square of speed",
+      "that speed levels off when drag equals weight (terminal velocity)"
+    ]
+  },
+  "misconception": "A falling body keeps accelerating until it hits the ground.",
+  "objective": "The learner can explain that drag grows with speed until it equals weight, after which the net force is zero and speed stops growing.",
+  "claims": [
+    {
+      "id": "physics.skydiver-speed-limit.c1",
+      "text": "Air drag on a skydiver grows with the square of speed, F = 1/2 rho C_d A v^2.",
+      "support": "source",
+      "source": "Quadratic drag law at high Reynolds number; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 6 (drag force and terminal speed).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.skydiver-speed-limit.c2",
+      "text": "Speed stops growing when drag equals weight: v_t = sqrt(2 m g / (rho C_d A)).",
+      "support": "derivation",
+      "source": "Set 1/2 rho C_d A v^2 = m g (zero net force, Newton's second law).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.skydiver-speed-limit.c3",
+      "text": "For 80 kg belly-down (C_d A = 0.7 m^2) the limit is 43.2 m/s, about 156 km/h; head-down (C_d A = 0.3 m^2) it is 66.0 m/s.",
+      "support": "derivation",
+      "source": "sqrt(2 x 80 x 9.81 / (1.2 x 0.7)) = 43.23 m/s (x 3.6 = 155.6 km/h); sqrt(2 x 80 x 9.81 / (1.2 x 0.3)) = 66.03 m/s. The predict option says 'near 43 m/s (155 km/h)'.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.skydiver-speed-limit.c4",
+      "text": "Belly-down at 80 kg she reaches 42.3 m/s after 10 s, within 3% of the limit; head-down takes about 15 s to come within 3%.",
+      "support": "simulation",
+      "source": "RK4 integration of m dv/dt = m g - 1/2 rho C_d A v^2 from rest, dt = 0.01 s (in Demo.tsx): belly 35.1 m/s at 5 s, 42.3 at 10 s (97.9%); head-down 59.6 at 10 s (90.3%), 64.5 at 15 s (97.7%). Analytic check: v = v_t tanh(g t / v_t) gives 42.3 m/s at 10 s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.skydiver-speed-limit.c5",
+      "text": "Model: air density held at 1.2 kg/m^3 (sea level) and C_d A values of 0.7 and 0.3 m^2 are typical estimates, not measurements of one person.",
+      "support": "convention",
+      "source": "Stated idealisation (brief cm-physics #13). Real jumps from about 4 km start in thinner air (about 0.8 kg/m^3), so real early speeds run higher; commonly quoted belly-to-earth terminal speeds are about 50-55 m/s (e.g. USPA skydiving references), which this toy model's 0.7 m^2 underestimates.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.skydiver-speed-limit.c6",
+      "text": "A heavier skydiver has a higher limit speed, growing as the square root of mass.",
+      "support": "derivation",
+      "source": "v_t proportional to sqrt(m) at fixed C_d A and rho: 50 kg gives 34.2 m/s, 120 kg gives 52.9 m/s belly-down.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A raindrop falls from a high cloud. Halfway down, what is happening to its speed?",
+    "options": [
+      "Still growing by 9.8 m/s every second",
+      "Steady: air drag has grown to match its weight",
+      "Shrinking: drag is now larger than its weight"
+    ],
+    "answer": 1,
+    "why": "Drag grows with speed until it equals the weight; then the net force is zero and the speed stays steady."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

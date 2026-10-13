@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 110px; max-height: 40dvh; }
+.table { stroke: var(--muted); stroke-width: 1.5; }
+.pivot { fill: var(--fg); }
+.ruler { fill: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); stroke: var(--domain); stroke-width: 1; }
+.tick { stroke: var(--fg); stroke-width: 0.8; opacity: 0.7; }
+.lump { fill: var(--fg); }
+.small { fill: var(--muted); font-size: 9px; }
+.pivLabel { fill: var(--fg); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.readout) { flex: 1 1 0; }

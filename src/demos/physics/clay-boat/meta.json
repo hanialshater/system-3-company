@@ -1,0 +1,88 @@
+{
+  "slug": "clay-boat",
+  "title": "Same clay, now it floats?",
+  "hook": "A lump of clay sinks. Same clay, new shape: how much water must it shove aside to float?",
+  "domain": "physics",
+  "concept": "buoyancy",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "some things float and some sink",
+      "litres and kilograms"
+    ],
+    "doesNotKnow": [
+      "Archimedes' principle",
+      "density",
+      "that shape changes how much water an object can displace"
+    ]
+  },
+  "misconception": "Heavy things sink and light things float; changing the shape of the same material cannot make it float.",
+  "objective": "The learner can explain that a floating object pushes aside its own weight of water, and that a hollow shape lets the same heavy material do that.",
+  "claims": [
+    {
+      "id": "physics.clay-boat.c1",
+      "text": "The upward push of water on an object equals the weight of the water it pushes aside (Archimedes' principle); a floating object pushes aside its own weight of water.",
+      "support": "source",
+      "source": "Archimedes' principle; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 14 (fluids).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clay-boat.c2",
+      "text": "1 kg of fresh water has a volume of 1.00 L, so a floating 1 kg object pushes aside 1.00 L.",
+      "support": "derivation",
+      "source": "Fresh water density 1000 kg/m^3 (about 20 C; 998 kg/m^3 exactly, idealised as 1000). 1 kg / 1000 kg/m^3 = 0.001 m^3 = 1 L.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clay-boat.c3",
+      "text": "1 kg of clay at about 1800 kg/m^3 has a volume of 0.56 L, so as a sunken ball it pushes aside only 0.56 L.",
+      "support": "derivation",
+      "source": "1 / 1800 m^3 = 0.000556 m^3 = 0.556 L. Clay density 1800 kg/m^3 is a typical value for wet modelling clay, stated as approximate (brief cm-physics #11).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clay-boat.c4",
+      "text": "The stage draws to scale four open cylindrical cups of 1 kg of clay with outer volumes 0.80, 1.25, 1.80 and 2.50 L; the 0.80 L cup sinks, and the others float with 5.9, 4.0 and 2.8 cm below the waterline.",
+      "support": "derivation",
+      "source": "Computed in Demo.tsx: outer diameter D from volume and a chosen height/diameter ratio (0.6, 0.5, 0.4, 0.33); wall and floor thickness solved so clay volume stays 0.556 L; draft = 1000 cm^3 / (pi D^2 / 4) = 5.88, 3.98, 2.81 cm. The 0.80 L cup would need 8.95 cm of draft but is only 7.16 cm tall. Shapes are illustrative; stability and surface tension ignored.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clay-boat.c5",
+      "text": "A cup that sinks fills with water and then pushes aside only its clay, 0.56 L.",
+      "support": "derivation",
+      "source": "Once flooded, the only volume excluding water is the clay itself (0.556 L).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clay-boat.c6",
+      "text": "Clay is heavier than water litre for litre, so a solid lump of it never pushes aside enough water to float.",
+      "support": "derivation",
+      "source": "Solid lump displaces its own volume V; buoyancy 1000 g V < weight 1800 g V for any V.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 3 kg steel pot floats in a sink of fresh water. How much water is it pushing aside?",
+    "options": [
+      "Less than 1 L, steel is dense",
+      "3 L",
+      "It depends on the pot's shape"
+    ],
+    "answer": 1,
+    "why": "A floating object pushes aside its own weight of water: 3 kg of water is 3 L, whatever the shape."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,138 @@
+"use client";
+
+// Count the thunder. Light from a lightning flash reaches you almost at once
+// (3.00 x 10^8 m/s); the thunder travels at 343 m/s (dry air, 20 C). The learner sets
+// how many seconds they counted between flash and thunder; the strike sits at
+// d = 343 x seconds, with arcs marking where the sound front was each second.
+//
+// 6 s -> 2058 m; light takes 6.9 microseconds. Wind, temperature changes and the
+// height of the lightning channel are ignored. The reveal unlocks at a 6 s count.
+
+import { Lesson } from "@/kit/Lesson";
+import { Readout, Row, Slider } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
+import { useRef, useState } from "react";
+import s from "./styles.module.css";
+
+const C_SOUND = 343; // m/s
+const C_LIGHT = 3.0e8; // m/s
+const dist = (sec: number) => C_SOUND * sec; // m
+const km = (m: number) => (m / 1000).toFixed(2);
+const lightUs = (m: number) => (m / C_LIGHT) * 1e6;
+
+const W = 320;
+const H = 150;
+const X0 = 24;
+const GROUND = 118;
+const K = 280 / 5200; // px per m
+
+export default function CountTheThunder({ slug }: { slug: string }) {
+  const [sec, setSec] = useState(0);
+  const interactRef = useRef<() => void>(() => {});
+  const { reach } = useMilestones(() => interactRef.current(), ["six-seconds"]);
+  const d = dist(sec);
+  const sx = X0 + d * K;
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question: "You see a lightning flash and hear the thunder 6 s later. How far away did it strike?",
+        options: ["about 200 m", "about 2 km", "about 20 km"],
+        answer: 1,
+      }}
+      exploreHint="Set your count to 6 seconds. Each arc is one second of the thunder's trip."
+      minInteractions={1}
+      reveal={() => (
+        <>
+          <p>
+            A 6 s count put the strike <strong>{km(dist(6))} km</strong> away: six arcs of {C_SOUND} m each. The flash
+            covered the same distance in {lightUs(dist(6)).toFixed(1)} millionths of a second, so the delay is almost all
+            the thunder&apos;s trip.
+          </p>
+          <p>
+            Sound in air goes about {C_SOUND} m every second, so every 3 s of counting is about 1 km (
+            {(3 * C_SOUND).toLocaleString("en-US")} m). Divide your count by 3 for kilometres.
+          </p>
+          <p className="muted">Same event, two messengers: light is fast, sound is slow.</p>
+        </>
+      )}
+    >
+      {({ locked, interact }) => {
+        interactRef.current = interact;
+        const caption = locked
+          ? "Make a prediction to start."
+          : sec === 0
+            ? "Flash and thunder together: the strike is right here."
+            : `Arcs: where the thunder was each second. Sound in air at 20 °C.`;
+        return (
+          <div className={s.wrap}>
+            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Thunder after ${sec} seconds: strike ${km(d)} kilometres away`}>
+              <defs>
+                <clipPath id="thunderSky">
+                  <rect x={0} y={0} width={W} height={GROUND} />
+                </clipPath>
+              </defs>
+              <g clipPath="url(#thunderSky)">
+                {Array.from({ length: sec }, (_, i) => {
+                  const r = (i + 1) * C_SOUND * K;
+                  return (
+                    <path
+                      key={i}
+                      d={`M ${sx - r} ${GROUND} A ${r} ${r} 0 0 1 ${sx + r} ${GROUND}`}
+                      className={s.arc}
+                    />
+                  );
+                })}
+              </g>
+              <line x1={0} y1={GROUND} x2={W} y2={GROUND} className={s.ground} />
+              {/* you */}
+              <g transform={`translate(${X0} ${GROUND})`}>
+                <circle cx={0} cy={-19} r={4} className={s.you} />
+                <line x1={0} y1={-15} x2={0} y2={-6} className={s.youLine} />
+                <line x1={0} y1={-6} x2={-4} y2={0} className={s.youLine} />
+                <line x1={0} y1={-6} x2={4} y2={0} className={s.youLine} />
+              </g>
+              <text x={X0} y={GROUND - 28} textAnchor="middle" className={s.small}>
+                you
+              </text>
+              {/* strike */}
+              <ellipse cx={sx} cy={18} rx={22} ry={9} className={s.cloud} />
+              <path d={`M ${sx + 2} 26 L ${sx - 5} 62 L ${sx + 3} 62 L ${sx - 4} ${GROUND}`} className={s.bolt} />
+              {[0, 1, 2, 3, 4, 5].map((k) => (
+                <g key={k}>
+                  <line x1={X0 + k * 1000 * K} y1={GROUND} x2={X0 + k * 1000 * K} y2={GROUND + 5} className={s.tick} />
+                  <text x={X0 + k * 1000 * K} y={GROUND + 16} textAnchor="middle" className={s.small}>
+                    {k} km
+                  </text>
+                </g>
+              ))}
+            </svg>
+
+            <p className={s.caption} aria-live="polite">
+              {caption}
+            </p>
+
+            <Slider
+              label="Thunder heard after"
+              value={sec}
+              min={0}
+              max={15}
+              step={3}
+              disabled={locked}
+              format={(v) => `${v} s`}
+              onChange={(v) => {
+                setSec(v);
+                if (v === 6) reach("six-seconds");
+              }}
+            />
+            <Row>
+              <Readout label="Strike distance" value={locked ? "?" : `${km(d)} km`} />
+              <Readout label="Flash took" value={locked ? "?" : `${lightUs(d).toFixed(1)} µs`} />
+            </Row>
+          </div>
+        );
+      }}
+    </Lesson>
+  );
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "build-a-balanced-mobile",
+  "title": "Where does a loaded ruler balance?",
+  "hook": "A ruler with a lump on one end. Does it balance at the middle, the lump, or elsewhere?",
+  "domain": "physics",
+  "concept": "center-of-mass",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "seesaws balance when the weights match",
+      "a ruler balances on its middle"
+    ],
+    "doesNotKnow": [
+      "the centre of mass as a mass-weighted average position",
+      "torque about a pivot"
+    ]
+  },
+  "misconception": "A uniform stick with a lump on it balances at its middle or right under the lump.",
+  "objective": "The learner can explain that the balance point is the average position of all the mass, so a ruler and an equal lump balance halfway between the ruler's middle and the lump.",
+  "claims": [
+    {
+      "id": "physics.build-a-balanced-mobile.c1",
+      "text": "The centre of mass is the mass-weighted average position: x = (sum of m x) / (sum of m).",
+      "support": "source",
+      "source": "Definition; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 9.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.build-a-balanced-mobile.c2",
+      "text": "A uniform ruler's own weight acts at its middle, 50 cm.",
+      "support": "derivation",
+      "source": "Centre of mass of a uniform rod is at its midpoint by symmetry.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.build-a-balanced-mobile.c3",
+      "text": "With a 0.10 kg ruler and a 0.10 kg lump at 100 cm, the balance point is 75 cm.",
+      "support": "derivation",
+      "source": "(0.10 x 50 + 0.10 x 100) / 0.20 = 75 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.build-a-balanced-mobile.c4",
+      "text": "A beam on a pivot balances when the turning effects on each side are equal (net torque zero); at 75 cm, 0.10 kg sits 25 cm to each side.",
+      "support": "derivation",
+      "source": "Torque about the pivot: 0.10 g x (75 - 50) = 0.10 g x (100 - 75). Rigid beam, knife-edge pivot, no friction: stated in the code comment and the reveal.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.build-a-balanced-mobile.c5",
+      "text": "Off balance, the beam tips toward the side with the larger turning effect; the stage draws a fixed tip to a stop rather than a graded tilt.",
+      "support": "convention",
+      "source": "A rigid beam on a knife edge at its own level has no restoring torque; it tips until it meets a stop. The 8 degree tip angle is a drawing convention.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.build-a-balanced-mobile.c6",
+      "text": "A heavier lump pulls the balance point further toward it.",
+      "support": "derivation",
+      "source": "x = (0.10 x 50 + m x 100) / (0.10 + m) increases with m toward 100 cm.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 2 kg plank, 4 m long, has a 2 kg toolbox on one end. How far from that end is its balance point?",
+    "options": [
+      "0 m, under the toolbox",
+      "1 m",
+      "2 m, the middle"
+    ],
+    "answer": 1,
+    "why": "Equal masses at the middle (2 m from the end) and at the end average to halfway between them: 1 m from the toolbox end."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

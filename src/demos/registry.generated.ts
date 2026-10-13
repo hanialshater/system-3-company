@@ -66,32 +66,42 @@ import m60 from "./math/one-boss-moves-the-mean/meta.json";
 import m61 from "./math/one-recipe-for-sixty/meta.json";
 import m62 from "./math/seventy-two-doubling/meta.json";
 import m63 from "./math/two-squares-become-one/meta.json";
-import m64 from "./physics/coaster-track-shape/meta.json";
-import m65 from "./physics/current-same-around-loop/meta.json";
-import m66 from "./physics/doubling-speed-braking/meta.json";
-import m67 from "./physics/dropped-vs-fired-ball/meta.json";
-import m68 from "./physics/flour-on-the-moon/meta.json";
-import m69 from "./physics/light-at-double-distance/meta.json";
-import m70 from "./physics/moon-hammer-feather/meta.json";
-import m71 from "./physics/pendulum-period/meta.json";
-import m72 from "./physics/projectile-angle/meta.json";
-import m73 from "./physics/puck-on-ice-no-push/meta.json";
-import m74 from "./physics/same-push-twice-the-mass/meta.json";
-import m75 from "./physics/truck-hits-car-force/meta.json";
-import m76 from "./probability/armour-where-no-holes/meta.json";
-import m77 from "./probability/base-rates/meta.json";
-import m78 from "./probability/better-in-every-group-worse-overall/meta.json";
-import m79 from "./probability/birthday-paradox/meta.json";
-import m80 from "./probability/coin-gap-keeps-growing/meta.json";
-import m81 from "./probability/five-heads-then-what/meta.json";
-import m82 from "./probability/hidden-third-cause/meta.json";
-import m83 from "./probability/monty-hall-100-doors/meta.json";
-import m84 from "./probability/one-in-a-million-match/meta.json";
-import m85 from "./probability/praise-then-slump/meta.json";
-import m86 from "./probability/small-hospital-big-swings/meta.json";
-import m87 from "./probability/twenty-harmless-tests/meta.json";
+import m64 from "./physics/ambulance-pitch-drop/meta.json";
+import m65 from "./physics/build-a-balanced-mobile/meta.json";
+import m66 from "./physics/clay-boat/meta.json";
+import m67 from "./physics/coaster-track-shape/meta.json";
+import m68 from "./physics/count-the-thunder/meta.json";
+import m69 from "./physics/crumple-zone-stopping-time/meta.json";
+import m70 from "./physics/current-same-around-loop/meta.json";
+import m71 from "./physics/doubling-speed-braking/meta.json";
+import m72 from "./physics/dropped-vs-fired-ball/meta.json";
+import m73 from "./physics/flour-on-the-moon/meta.json";
+import m74 from "./physics/lifeguard-fastest-path/meta.json";
+import m75 from "./physics/light-at-double-distance/meta.json";
+import m76 from "./physics/moon-hammer-feather/meta.json";
+import m77 from "./physics/pendulum-period/meta.json";
+import m78 from "./physics/projectile-angle/meta.json";
+import m79 from "./physics/puck-on-ice-no-push/meta.json";
+import m80 from "./physics/push-the-swing-in-time/meta.json";
+import m81 from "./physics/release-the-spinning-ball/meta.json";
+import m82 from "./physics/same-push-twice-the-mass/meta.json";
+import m83 from "./physics/skydiver-speed-limit/meta.json";
+import m84 from "./physics/truck-hits-car-force/meta.json";
+import m85 from "./physics/two-ripples-cancel/meta.json";
+import m86 from "./probability/armour-where-no-holes/meta.json";
+import m87 from "./probability/base-rates/meta.json";
+import m88 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m89 from "./probability/birthday-paradox/meta.json";
+import m90 from "./probability/coin-gap-keeps-growing/meta.json";
+import m91 from "./probability/five-heads-then-what/meta.json";
+import m92 from "./probability/hidden-third-cause/meta.json";
+import m93 from "./probability/monty-hall-100-doors/meta.json";
+import m94 from "./probability/one-in-a-million-match/meta.json";
+import m95 from "./probability/praise-then-slump/meta.json";
+import m96 from "./probability/small-hospital-big-swings/meta.json";
+import m97 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta, m88 as DemoMeta, m89 as DemoMeta, m90 as DemoMeta, m91 as DemoMeta, m92 as DemoMeta, m93 as DemoMeta, m94 as DemoMeta, m95 as DemoMeta, m96 as DemoMeta, m97 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -158,18 +168,28 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "one-recipe-for-sixty": () => import("./math/one-recipe-for-sixty/Demo"),
   "seventy-two-doubling": () => import("./math/seventy-two-doubling/Demo"),
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
+  "ambulance-pitch-drop": () => import("./physics/ambulance-pitch-drop/Demo"),
+  "build-a-balanced-mobile": () => import("./physics/build-a-balanced-mobile/Demo"),
+  "clay-boat": () => import("./physics/clay-boat/Demo"),
   "coaster-track-shape": () => import("./physics/coaster-track-shape/Demo"),
+  "count-the-thunder": () => import("./physics/count-the-thunder/Demo"),
+  "crumple-zone-stopping-time": () => import("./physics/crumple-zone-stopping-time/Demo"),
   "current-same-around-loop": () => import("./physics/current-same-around-loop/Demo"),
   "doubling-speed-braking": () => import("./physics/doubling-speed-braking/Demo"),
   "dropped-vs-fired-ball": () => import("./physics/dropped-vs-fired-ball/Demo"),
   "flour-on-the-moon": () => import("./physics/flour-on-the-moon/Demo"),
+  "lifeguard-fastest-path": () => import("./physics/lifeguard-fastest-path/Demo"),
   "light-at-double-distance": () => import("./physics/light-at-double-distance/Demo"),
   "moon-hammer-feather": () => import("./physics/moon-hammer-feather/Demo"),
   "pendulum-period": () => import("./physics/pendulum-period/Demo"),
   "projectile-angle": () => import("./physics/projectile-angle/Demo"),
   "puck-on-ice-no-push": () => import("./physics/puck-on-ice-no-push/Demo"),
+  "push-the-swing-in-time": () => import("./physics/push-the-swing-in-time/Demo"),
+  "release-the-spinning-ball": () => import("./physics/release-the-spinning-ball/Demo"),
   "same-push-twice-the-mass": () => import("./physics/same-push-twice-the-mass/Demo"),
+  "skydiver-speed-limit": () => import("./physics/skydiver-speed-limit/Demo"),
   "truck-hits-car-force": () => import("./physics/truck-hits-car-force/Demo"),
+  "two-ripples-cancel": () => import("./physics/two-ripples-cancel/Demo"),
   "armour-where-no-holes": () => import("./probability/armour-where-no-holes/Demo"),
   "base-rates": () => import("./probability/base-rates/Demo"),
   "better-in-every-group-worse-overall": () => import("./probability/better-in-every-group-worse-overall/Demo"),

@@ -1,0 +1,80 @@
+{
+  "slug": "two-ripples-cancel",
+  "title": "Can two speakers make silence?",
+  "hook": "Two speakers, one note. Is there a spot where adding the second one makes it quieter?",
+  "domain": "physics",
+  "concept": "waves-interference",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sound and water make waves",
+      "waves have crests and troughs"
+    ],
+    "doesNotKnow": [
+      "superposition: waves add by height",
+      "that a half-wavelength path difference makes waves cancel"
+    ]
+  },
+  "misconception": "Two sounds are always louder than one.",
+  "objective": "The learner can explain that waves add by height, so where one path is half a wavelength longer, crest meets trough and the sound cancels.",
+  "claims": [
+    {
+      "id": "physics.two-ripples-cancel.c1",
+      "text": "Overlapping waves add by height (superposition).",
+      "support": "source",
+      "source": "Principle of superposition for linear waves; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 16-17.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-ripples-cancel.c2",
+      "text": "With equal amplitudes, a path difference of half a wavelength makes the waves cancel; zero or one whole wavelength makes them add to twice one speaker's amplitude.",
+      "support": "derivation",
+      "source": "A sin(wt) + A sin(wt - 2 pi D / lambda) has amplitude |2 A cos(pi D / lambda)|: 2A at D = 0 or lambda, 0 at D = lambda/2; 1.41 A at D = lambda/4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-ripples-cancel.c3",
+      "text": "A 343 Hz tone in air has a wavelength of 1.00 m.",
+      "support": "derivation",
+      "source": "lambda = v / f = 343 m/s / 343 Hz = 1.00 m (sound speed in dry air at 20 C).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-ripples-cancel.c4",
+      "text": "With speakers 1.5 m apart and the listener 4 m in front, A's path is 0.50 m longer at 1.44 m to the right, and 1.00 m longer at 3.61 m.",
+      "support": "derivation",
+      "source": "D(x) = sqrt((x + 0.75)^2 + 16) - sqrt((x - 0.75)^2 + 16), solved by bisection in Demo.tsx: D = 0.25, 0.50, 0.75, 1.00 m at x = 0.69, 1.44, 2.34, 3.61 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-ripples-cancel.c5",
+      "text": "Idealised: each speaker is taken as equally loud at the listener, with no echoes; in a real room the cancelled spot is quiet, not silent.",
+      "support": "convention",
+      "source": "Stated on stage and in the reveal. With 1/r spreading the paths at x = 1.44 m (4.56 vs 4.06 m) give amplitudes in ratio 0.89, leaving about 12% of one speaker's amplitude; reflections also fill in the minimum.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Noise-cancelling headphones play a sound into your ear. To cancel a hum, that sound must be…",
+    "options": [
+      "The same hum, louder",
+      "The same hum, shifted half a cycle",
+      "A different, higher note"
+    ],
+    "answer": 1,
+    "why": "Waves add by height: a copy shifted half a cycle puts its crests on the hum's troughs, and they cancel."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
