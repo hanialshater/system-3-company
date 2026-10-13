@@ -1,0 +1,7 @@
+/* SPIKE-001: appended after src/app/globals.css in the kit's frame stylesheet.
+   The frame document plays the role of DemoCard's .card-body. */
+html, body { height: 100%; background: var(--bg-2); }
+/* globals.css sets overscroll-behavior: none on body. Inside a frame that traps the feed's
+   swipe: let the gesture chain to the host's scroll-snap feed. */
+body { overscroll-behavior: auto; }
+#root { height: 100%; display: flex; overflow-y: auto; overscroll-behavior-y: auto; }

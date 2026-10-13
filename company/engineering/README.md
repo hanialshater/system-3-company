@@ -35,5 +35,6 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [EDD-001](edd/EDD-001-feed-at-500-lessons.md) | The feed at 500+ lessons | proposed |
 | [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
 | [EDD-003](edd/EDD-003-lesson-storage-at-scale.md) | Lesson storage and loading at 10k–1M (client-side bundles, hybrid) | proposed (review open) |
+| [SPIKE-001](spikes/SPIKE-001-frontend-sandbox.md) | 3 lessons as content-hashed bundles in a sandboxed cross-origin iframe (EDD-003 stage-1 spike) | done: go with changes |
 
 See also [best-practices.md](best-practices.md).

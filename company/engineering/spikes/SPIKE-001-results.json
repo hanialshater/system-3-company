@@ -1,0 +1,503 @@
+{
+ "spike": "SPIKE-001",
+ "date": "2026-10-13",
+ "machine": "4 vCPU shared with other agents (load average ~30 during timing runs)",
+ "chromium": "141.0.7390.37",
+ "kit": {
+  "version": "1.0.0",
+  "js": {
+   "url": "/kit/1.0.0/kit.4ff47011b148bfa7a4e18bd3c050a1d31ac12f318f14ad3d2046bd934d9c3c08.js",
+   "sri": "sha384-qapnS641Z6ZP5hNp12RW5h7RrGB5PzYZ4Ll+bsG3gweTbYoHyKWr0nmeNceQw/i/",
+   "raw": 196326,
+   "gzip": 61820,
+   "brotli": 53024
+  },
+  "css": {
+   "url": "/kit/1.0.0/kit.35a10dc865f93a93056994350ddc817b1453afabc2a69eeed4c3c754f83bfcee.css",
+   "sri": "sha384-W5/sqXRvmiX74mLS43iAMo6BQcncP89yzQ3b/uV6U0G4S4FRStT20vNqKZJvaVKI",
+   "raw": 9455,
+   "gzip": 2653,
+   "brotli": 2294
+  },
+  "boot": {
+   "url": "/kit/1.0.0/boot.3750a447772fb68b9f6f0e3d005dce8d1619b355429105c0aed303a17c383b63.js",
+   "sri": "sha384-iHbaYKIAfktqLpCjWl4MPFnImIDK+AwObg2p368UnYdfiyKF4zP+7Ex3QEIEbIvi",
+   "raw": 145,
+   "gzip": 144,
+   "brotli": 132
+  },
+  "geo": {
+   "url": "/kit-geo/1.0.0/geo.4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45.js",
+   "sri": "sha384-sf46PV5r51VAlPZ/uRIFkYF8wi25ycfwpsOpjE7+bCSCtQZMP7jW2KGzOYULyOYe",
+   "raw": 204255,
+   "gzip": 71368,
+   "brotli": 49700
+  },
+  "buildMs": 37730
+ },
+ "lessons": [
+  {
+   "slug": "why-seven-wins",
+   "variant": "A",
+   "hash": "6ea316ed7cbaddc0d7e09f9e85b4e22a891c3439dcffde404f9ef3b195e30d60",
+   "frameHash": "e3578addee9a1bb45865be0107ba13983fe6a150d653f63d58494537891737d6",
+   "raw": 5899,
+   "gzip": 2502,
+   "brotli": 2230,
+   "geo": false,
+   "buildMs": 1641,
+   "frameBytes": 1967
+  },
+  {
+   "slug": "throw-it-fast-enough",
+   "variant": "A",
+   "hash": "66b9552898555d4ebb6596376ca358e2b21ada19c3e292a2e153effe36bc19df",
+   "frameHash": "fb0ece9d04b090a9efea6c6c35f4a365ea595a64f3e53fdd5bae38b6aa114337",
+   "raw": 4809,
+   "gzip": 2327,
+   "brotli": 2093,
+   "geo": false,
+   "buildMs": 1448,
+   "frameBytes": 1973
+  },
+  {
+   "slug": "bearing-spiral-to-the-pole",
+   "variant": "A",
+   "hash": "5bfaa34a81fcf12c53b28818c0e62359b78e7c1dfc21ad60d1dce0e708ac4d51",
+   "frameHash": "ed36a71552ef32398243d286110afcf71fc763bf3f2aebe5d2d4f53c19fa4765",
+   "raw": 4877,
+   "gzip": 2237,
+   "brotli": 1999,
+   "geo": true,
+   "buildMs": 1160,
+   "frameBytes": 2453
+  },
+  {
+   "slug": "why-seven-wins",
+   "variant": "B",
+   "hash": "a2c4fc641f07033f1a17325319917a9e56d7a055902a5da0fadb6142ae1c747b",
+   "frameHash": "decf61c79406e09663b56fa3f5dd9271f07ba50cb7f90ff8d6e7106be7b36b17",
+   "raw": 5926,
+   "gzip": 2526,
+   "brotli": 2249,
+   "geo": false,
+   "frameBytes": 1967
+  },
+  {
+   "slug": "__hostile",
+   "variant": "A",
+   "hash": "9b841bb7a6078b7d6f1357caf53df4f00d501c1b2727f962c729b76156492a36",
+   "frameHash": "bfe43d87cbdab62121d113820b3ec631f10545af41a7212528a258b254b6e5aa",
+   "raw": 3866,
+   "gzip": 1663,
+   "brotli": 1408,
+   "geo": false,
+   "frameBytes": 1962
+  }
+ ],
+ "allLessons": {
+  "built": 348,
+  "total": 348,
+  "failed": [],
+  "wallMs": 225487,
+  "gzipP50": 2380,
+  "gzipP90": 2834,
+  "gzipP99": 3421,
+  "gzipMax": 8328,
+  "over15KB": 0,
+  "geoLessons": 35
+ },
+ "timing": {
+  "default": {
+   "why-seven-wins": {
+    "frame": {
+     "coldInsertToReadyMs": 190.3,
+     "warmInsertToReadyMs": 227.6,
+     "navToReadyMs": 447.7,
+     "samples": {
+      "cold": [
+       294,
+       216,
+       175,
+       169,
+       171,
+       190,
+       213
+      ],
+      "warm": [
+       355,
+       228,
+       310,
+       201,
+       208,
+       326,
+       161
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 2223,
+     "samples": [
+      1656,
+      1605,
+      2223,
+      2509,
+      1882,
+      2381,
+      2240
+     ]
+    }
+   },
+   "throw-it-fast-enough": {
+    "frame": {
+     "coldInsertToReadyMs": 299,
+     "warmInsertToReadyMs": 318.5,
+     "navToReadyMs": 675.3,
+     "samples": {
+      "cold": [
+       291,
+       246,
+       303,
+       536,
+       299,
+       216,
+       306
+      ],
+      "warm": [
+       288,
+       200,
+       251,
+       353,
+       370,
+       363,
+       319
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 2002.9,
+     "samples": [
+      1846,
+      2005,
+      2419,
+      2003,
+      2083,
+      1974,
+      1833
+     ]
+    }
+   },
+   "bearing-spiral-to-the-pole": {
+    "frame": {
+     "coldInsertToReadyMs": 356.3,
+     "warmInsertToReadyMs": 315.2,
+     "navToReadyMs": 640.6,
+     "samples": {
+      "cold": [
+       296,
+       369,
+       371,
+       338,
+       356,
+       286,
+       449
+      ],
+      "warm": [
+       305,
+       315,
+       316,
+       282,
+       340,
+       277,
+       415
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 2167.1,
+     "samples": [
+      2167,
+      1963,
+      2031,
+      2024,
+      2206,
+      2820,
+      2576
+     ]
+    }
+   }
+  },
+  "midPhone4xInProcess": {
+   "why-seven-wins": {
+    "frame": {
+     "coldInsertToReadyMs": 599.4,
+     "warmInsertToReadyMs": 266.9,
+     "navToReadyMs": 1648,
+     "samples": {
+      "cold": [
+       303,
+       523,
+       942,
+       587,
+       599,
+       882,
+       669
+      ],
+      "warm": [
+       192,
+       349,
+       267,
+       216,
+       327,
+       314,
+       135
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 5867.5,
+     "samples": [
+      4926,
+      6081,
+      8882,
+      4652,
+      4178,
+      7839,
+      5868
+     ]
+    }
+   },
+   "throw-it-fast-enough": {
+    "frame": {
+     "coldInsertToReadyMs": 971,
+     "warmInsertToReadyMs": 456.5,
+     "navToReadyMs": 2065.1,
+     "samples": {
+      "cold": [
+       892,
+       1208,
+       1214,
+       971,
+       526,
+       1448,
+       737
+      ],
+      "warm": [
+       874,
+       439,
+       525,
+       527,
+       97,
+       457,
+       204
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 5779.6,
+     "samples": [
+      7152,
+      5780,
+      5475,
+      6391,
+      5428,
+      5327,
+      6009
+     ]
+    }
+   },
+   "bearing-spiral-to-the-pole": {
+    "frame": {
+     "coldInsertToReadyMs": 1111.5,
+     "warmInsertToReadyMs": 686.5,
+     "navToReadyMs": 2675.4,
+     "samples": {
+      "cold": [
+       1503,
+       1112,
+       1006,
+       965,
+       2488,
+       1399,
+       888
+      ],
+      "warm": [
+       502,
+       1055,
+       867,
+       1052,
+       462,
+       687,
+       434
+      ]
+     }
+    },
+    "inApp": {
+     "navToReadyMs": 7575.5,
+     "samples": [
+      9903,
+      6460,
+      9714,
+      10362,
+      7576,
+      7384,
+      6026
+     ]
+    }
+   }
+  },
+  "runs": 7
+ },
+ "memory": {
+  "default": {
+   "blank": {
+    "pssMB": 261.7,
+    "renderers": 2
+   },
+   "feed / (3 lesson cards mounted)": {
+    "pssMB": 385.8,
+    "renderers": 2
+   },
+   "/spike (3 sandboxed frames mounted)": {
+    "pssMB": 327.4,
+    "renderers": 3
+   }
+  },
+  "inProcess": {
+   "blank": {
+    "pssMB": 255.4,
+    "renderers": 1
+   },
+   "feed / (3 lesson cards mounted)": {
+    "pssMB": 380.7,
+    "renderers": 1
+   },
+   "/spike (3 sandboxed frames mounted)": {
+    "pssMB": 309.7,
+    "renderers": 1
+   }
+  }
+ },
+ "gestures": {
+  "appSwipe": [
+   {
+    "y": 150,
+    "hit": "p.card-hook",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 300,
+    "hit": "ellipse",
+    "moved": false,
+    "snapped": true
+   },
+   {
+    "y": 500,
+    "hit": "div.stage",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 700,
+    "hit": "button.option",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 760,
+    "hit": "button.primary",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 800,
+    "hit": "span.muted",
+    "moved": true,
+    "snapped": true
+   }
+  ],
+  "spikeSwipe": [
+   {
+    "y": 150,
+    "hit": "p.card-hook",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 300,
+    "hit": "iframe",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 500,
+    "hit": "iframe",
+    "moved": false,
+    "snapped": true
+   },
+   {
+    "y": 700,
+    "hit": "iframe",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 760,
+    "hit": "iframe",
+    "moved": true,
+    "snapped": true
+   },
+   {
+    "y": 800,
+    "hit": "article.card-shell",
+    "moved": false,
+    "snapped": true
+   }
+  ],
+  "spikeArrowDownInFrameMovedFeed": true,
+  "appSliderTouchDrag": {
+   "before": "4",
+   "after": "6"
+  },
+  "spikeSliderTouchDrag": {
+   "before": "4",
+   "after": "6"
+  }
+ },
+ "rollback": {
+  "steps": [
+   {
+    "label": "A",
+    "manifestVersion": 3,
+    "frame": "e3578addee9a",
+    "bundle": "6ea316ed7cba",
+    "expected": "6ea316ed7cba",
+    "ok": true,
+    "repointMs": 1.67,
+    "freshLoadMs": 1118
+   },
+   {
+    "label": "B",
+    "manifestVersion": 4,
+    "frame": "decf61c79406",
+    "bundle": "a2c4fc641f07",
+    "expected": "a2c4fc641f07",
+    "ok": true,
+    "repointMs": 12.22,
+    "freshLoadMs": 1401
+   },
+   {
+    "label": "A",
+    "manifestVersion": 5,
+    "frame": "e3578addee9a",
+    "bundle": "6ea316ed7cba",
+    "expected": "6ea316ed7cba",
+    "ok": true,
+    "repointMs": 9.06,
+    "freshLoadMs": 1369
+   }
+  ],
+  "immutable": true
+ }
+}
