@@ -25,36 +25,46 @@
       "id": "cs.two-names-one-list.c1",
       "text": "After a = [1, 2], b = a and b.append(3), a is [1, 2, 3].",
       "support": "simulation",
-      "source": "Node: let a=[1,2]; let b=a; b.push(3); JSON.stringify(a) = [1,2,3] and a === b is true. Same in Python (list assignment binds a second name).",
-      "status": "unverified"
+      "source": "Node: let a=[1,2]; let b=a; b.push(3); JSON.stringify(a) = [1,2,3] and a === b is true. Same in Python (list assignment binds a second name). | FACT-CHECK 2026-10-13 (pass 9): Python: a=[1,2]; b=a; b.append(3) gives a == [1,2,3] (assignment binds a name, Python Language Reference 7.2). Stage question matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-names-one-list.c2",
       "text": "Assigning a list gives a second name for the same list; it does not copy the list.",
       "support": "source",
-      "source": "Python Language Reference, Data model and Assignment statements: assignment binds a name to an object. ECMAScript spec: arrays are objects and assignment copies the reference.",
-      "status": "unverified"
+      "source": "Python Language Reference, Data model and Assignment statements: assignment binds a name to an object. ECMAScript spec: arrays are objects and assignment copies the reference. | FACT-CHECK 2026-10-13 (pass 9): Python Language Reference s.7.2 (assignment binds names to objects; no copy). Reveal says 'copies the name, not the list', same meaning.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-names-one-list.c3",
       "text": "After b is given a copy of a, appending through either name leaves the other list unchanged.",
       "support": "simulation",
-      "source": "Node: let a2=[1,2]; let c=[...a2]; c.push(3); a2 stays [1,2], c is [1,2,3]. The stage shows the copy as a separate box.",
-      "status": "unverified"
+      "source": "Node: let a2=[1,2]; let c=[...a2]; c.push(3); a2 stays [1,2], c is [1,2,3]. The stage shows the copy as a separate box. | FACT-CHECK 2026-10-13 (pass 9): Python: b = a.copy(); b.append(3) leaves a == [1,2]. Demo.tsx gives b its own list after copy and the 'held' readout shows the other list unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-names-one-list.c4",
       "text": "To get a separate list you must copy it.",
       "support": "source",
-      "source": "Python docs, copy module and list.copy(); MDN spread syntax / Array.prototype.slice. Scope: a shallow copy of a list of numbers.",
-      "status": "unverified"
+      "source": "Python docs, copy module and list.copy(); MDN spread syntax / Array.prototype.slice. Scope: a shallow copy of a list of numbers. | FACT-CHECK 2026-10-13 (pass 9): Python docs: list.copy() / copy module give a new list (shallow, sufficient for a list of ints).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-names-one-list.c5",
       "text": "The stage's names, arrows and boxes show two names pointing at one list or at two lists.",
       "support": "derivation",
-      "source": "Model drawing: arrows from the name tags a and b to list boxes, drawn from the same state that the readouts show.",
-      "status": "unverified"
+      "source": "Model drawing: arrows from the name tags a and b to list boxes, drawn from the same state that the readouts show. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: arrow end y (aY, bY) and the second Box are drawn from 'aliased' = bPoints === 0, the same state as the readouts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

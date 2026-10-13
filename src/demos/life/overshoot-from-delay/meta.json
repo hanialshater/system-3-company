@@ -6,10 +6,17 @@
   "concept": "logistic-growth",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["logistic growth is an S-curve that levels off at a limit"],
-    "doesNotKnow": ["that delayed feedback can make a stable system boom and bust"]
+    "knows": [
+      "logistic growth is an S-curve that levels off at a limit"
+    ],
+    "doesNotKnow": [
+      "that delayed feedback can make a stable system boom and bust"
+    ]
   },
   "misconception": "Logistic growth always settles smoothly at its limit.",
   "objective": "The learner can explain that when growth responds to old information the population overshoots and swings, and that swings start once growth rate times delay passes about 1.6 (pi/2).",
@@ -19,36 +26,46 @@
       "id": "life.overshoot-from-delay.c1",
       "text": "Toy model: a population N, shown as a multiple of its food limit, grows at rate r N (1 - N delayed) where the delayed term is the population from the delay ago (the delayed logistic of Hutchinson). It starts at half the limit.",
       "support": "convention",
-      "source": "Hutchinson (1948) delay logistic; stated on the stage before the prediction ('Toy: population as a share of its food limit, food counted late.'). Start 0.5 and constant history 0.5 are choices in Demo.tsx.",
-      "status": "unverified"
+      "source": "Hutchinson (1948) delay logistic; stated on the stage before the prediction ('Toy: population as a share of its food limit, food counted late.'). Start 0.5 and constant history 0.5 are choices in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx sim(): N' = r N (1 - N(t - tau)), start and history 0.5; Hutchinson (1948), 'Circular causal systems in ecology', Ann. N.Y. Acad. Sci. 50: 221-246. Stage toy label present.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.overshoot-from-delay.c2",
       "text": "With growth 0.5 a year and a 4-year delay, the population keeps swinging, reaching about 2.9 times the limit and falling to about 0.07 times the limit.",
       "support": "simulation",
-      "source": "Euler integration dt = 0.01 yr, 60 years, window years 30-60 (node, same sim() as Demo.tsx): max 2.895, min 0.0722. Deterministic; no random seed. Brief figures 2.9 and 0.07 match.",
-      "status": "unverified"
+      "source": "Euler integration dt = 0.01 yr, 60 years, window years 30-60 (node, same sim() as Demo.tsx): max 2.895, min 0.0722. Deterministic; no random seed. Brief figures 2.9 and 0.07 match. | FACT-CHECK 2026-10-13 (pass 9): node, own Euler sim: years 30-60 max 2.895, min 0.0722 at dt 0.01; dt 0.001 gives 2.897, 0.0731, so not a step-size artefact.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.overshoot-from-delay.c3",
       "text": "With growth 0.2 a year and the same 4-year delay, the population settles at the limit.",
       "support": "simulation",
-      "source": "Same sim(): window years 30-60 max 1.0095, min 0.9973 (node).",
-      "status": "unverified"
+      "source": "Same sim(): window years 30-60 max 1.0095, min 0.9973 (node). | FACT-CHECK 2026-10-13 (pass 9): node: max 1.0095, min 0.9973 (dt 0.01); 1.0094, 0.9973 (dt 0.001).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.overshoot-from-delay.c4",
       "text": "The swings start once growth rate times delay passes about 1.6 (pi/2 = 1.571): 0.5 x 4 = 2 swings; 0.2 x 4 = 0.8 settles.",
       "support": "source",
-      "source": "Linear stability of the delayed logistic, oscillations sustained when r x tau > pi/2 (Murray, Mathematical Biology I). Checked numerically: r 0.5 with tau 3 (1.5) still decays, tau 3.2 (1.6) is still near the threshold.",
-      "status": "unverified"
+      "source": "Linear stability of the delayed logistic, oscillations sustained when r x tau > pi/2 (Murray, Mathematical Biology I). Checked numerically: r 0.5 with tau 3 (1.5) still decays, tau 3.2 (1.6) is still near the threshold. | FACT-CHECK 2026-10-13 (pass 9): Hopf threshold r tau = pi/2 for the Hutchinson equation (Murray, Mathematical Biology I, s.1.4). node at r=1, 400 years: amplitude 0.0001 at r tau 1.5, decaying 0.024 -> 0.021 at 1.55, sustained 0.61 at 1.59. 2 swings, 0.8 settles.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.overshoot-from-delay.c5",
       "text": "The population reacts to old food, so it overshoots before the signal arrives. Real boom-and-bust cycles in animals such as lemmings have other causes too.",
       "support": "derivation",
-      "source": "Mechanism of the delay equation; the caveat is from the brief (reindeer and lemming cycles have other causes). The lesson names only the delay model.",
-      "status": "unverified"
+      "source": "Mechanism of the delay equation; the caveat is from the brief (reindeer and lemming cycles have other causes). The lesson names only the delay model. | FACT-CHECK 2026-10-13 (pass 9): Mechanism follows from the delay term; the lemming caveat is a hedge (no specific cause asserted) and is not on the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -62,6 +79,11 @@
     "answer": 0,
     "why": "The correction arrives late, so the population overshoots, then overcorrects. Slower growth or a shorter delay lets it settle."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

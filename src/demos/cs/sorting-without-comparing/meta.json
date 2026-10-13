@@ -26,36 +26,46 @@
       "id": "cs.sorting-without-comparing.c1",
       "text": "Tallying the scores 3 0 5 2 2 1 4 5 0 3 gives 2, 1, 2, 2, 1, 2 for scores 0 to 5, and reading the buckets in order gives 0 0 1 2 2 3 3 4 5 5.",
       "support": "simulation",
-      "source": "Node script: tallies of [3,0,5,2,2,1,4,5,0,3] = [2,1,2,2,1,2]; read out = 0 0 1 2 2 3 3 4 5 5. Demo.tsx derives both from the same SCORES array.",
-      "status": "unverified"
+      "source": "Node script: tallies of [3,0,5,2,2,1,4,5,0,3] = [2,1,2,2,1,2]; read out = 0 0 1 2 2 3 3 4 5 5. Demo.tsx derives both from the same SCORES array. | FACT-CHECK 2026-10-13 (pass 9): node: tallies of [3,0,5,2,2,1,4,5,0,3] = 2,1,2,2,1,2; sorted = 0 0 1 2 2 3 3 4 5 5. Demo.tsx derives TALLY and SORTED from SCORES.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sorting-without-comparing.c2",
       "text": "Sorting by tallying and writing out takes 0 comparisons between scores: each score goes to the bucket with its own number.",
       "support": "derivation",
-      "source": "The procedure only increments a tally indexed by the score and writes values out in index order; no step tests one score against another. CLRS 3rd ed. section 8.2 (COUNTING-SORT uses array indexing, not comparisons of keys with each other).",
-      "status": "unverified"
+      "source": "The procedure only increments a tally indexed by the score and writes values out in index order; no step tests one score against another. CLRS 3rd ed. section 8.2 (COUNTING-SORT uses array indexing, not comparisons of keys with each other). | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx only compares each score with a bucket index (x === b), never score with score; COMPARISONS = 0 is shown. Counting sort is not a comparison sort (CLRS 3e s.8.2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sorting-without-comparing.c3",
       "text": "This works because the scores are whole numbers in a small range, 0 to 5.",
       "support": "source",
-      "source": "CLRS 8.2: COUNTING-SORT assumes each of n inputs is an integer in the range 0 to k.",
-      "status": "unverified"
+      "source": "CLRS 8.2: COUNTING-SORT assumes each of n inputs is an integer in the range 0 to k. | FACT-CHECK 2026-10-13 (pass 9): CLRS 3e s.8.2: counting sort assumes integer keys in 0..k. Stage K = 6 buckets for 0..5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sorting-without-comparing.c4",
       "text": "With a huge range of possible values you would need a bucket for every possible value.",
       "support": "source",
-      "source": "CLRS 8.2: it uses an array of k+1 counters, so memory and time include a term in k (running time Theta(n + k)).",
-      "status": "unverified"
+      "source": "CLRS 8.2: it uses an array of k+1 counters, so memory and time include a term in k (running time Theta(n + k)). | FACT-CHECK 2026-10-13 (pass 9): CLRS 3e s.8.2: k+1 counters, Theta(n + k) time and space.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sorting-without-comparing.c5",
       "text": "The question: ten scores, each a whole number from 0 to 5, sorted by tallying; answer 0 comparisons (2 and 3 above). Distractors 9 and 33 are plain numbers, not claims.",
       "support": "derivation",
-      "source": "Builder scope note: options are distractors only; the reveal does not explain them.",
-      "status": "unverified"
+      "source": "Builder scope note: options are distractors only; the reveal does not explain them. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx options ['0','9','33'], answer 0; reveal explains only 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

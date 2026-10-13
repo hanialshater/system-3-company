@@ -6,10 +6,17 @@
   "concept": "oxygen-binding",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["saturation: the share of binding sites holding oxygen"],
-    "doesNotKnow": ["that cooperative binding makes release steep near tissue oxygen pressures"]
+    "knows": [
+      "saturation: the share of binding sites holding oxygen"
+    ],
+    "doesNotKnow": [
+      "that cooperative binding makes release steep near tissue oxygen pressures"
+    ]
   },
   "misconception": "Oxygen carriers fill and empty along a gentle curve.",
   "objective": "The learner can explain that cooperative binding makes the haemoglobin curve S-shaped, so a fall from 40 to 20 mmHg releases about 2.5 times as much oxygen as a one-site carrier would.",
@@ -19,36 +26,46 @@
       "id": "life.hemoglobin-s-curve.c1",
       "text": "Toy model: saturation follows the Hill equation S = 1 / (1 + (P50 / P)^n) with half-point P50 = 26.8 mmHg; pH, CO2 and temperature are held fixed.",
       "support": "convention",
-      "source": "Hill equation; adult human haemoglobin P50 about 26.6-26.8 mmHg (brief cites Dash et al., Bioeng. Rev., to verify). Label on the stage: 'Toy: Hill curve, adult haemoglobin, pH and CO2 held fixed.'",
-      "status": "unverified"
+      "source": "Hill equation; adult human haemoglobin P50 about 26.6-26.8 mmHg (brief cites Dash et al., Bioeng. Rev., to verify). Label on the stage: 'Toy: Hill curve, adult haemoglobin, pH and CO2 held fixed.' | FACT-CHECK 2026-10-13 (pass 9): Hill equation in Demo.tsx sat(); P50 26.8 mmHg is the standard adult value at pH 7.4, PCO2 40, 37 C (Radiometer acutecaretesting 'What is P50' gives 26.7; Severinghaus-based curves 26.8). Stage label states the toy and fixed pH/CO2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.hemoglobin-s-curve.c2",
       "text": "Real adult haemoglobin binds oxygen cooperatively: a Hill coefficient of about 2.7 (4 sites). A one-site carrier has coefficient 1.",
       "support": "source",
-      "source": "Hill coefficient of human haemoglobin about 2.7 (standard physiology/biochemistry texts; verify). One site: n = 1 (hyperbola).",
-      "status": "unverified"
+      "source": "Hill coefficient of human haemoglobin about 2.7 (standard physiology/biochemistry texts; verify). One site: n = 1 (hyperbola). | FACT-CHECK 2026-10-13 (pass 9): Published adult HbA Hill coefficients about 2.5-3.0 (2.7 widely used, e.g. Dash and Bassingthwaighte curves; Comprehensive Physiology gives about 2.5-2.8). 'About 2.7' holds. n = 1 for one site (hyperbola) by definition.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.hemoglobin-s-curve.c3",
       "text": "From 40 to 20 mmHg the real carrier falls from 74.7% to 31.2% saturation, 43.5 points; the one-site carrier from 59.9% to 42.7%, 17.1 points; the ratio is 2.5.",
       "support": "derivation",
-      "source": "sat(p,n) = 100 / (1 + (26.8/p)^n) in Demo.tsx, node: 74.67, 31.21, 43.46; 59.88, 42.74, 17.15; ratio 2.535. Question, readouts and reveal all use this function.",
-      "status": "unverified"
+      "source": "sat(p,n) = 100 / (1 + (26.8/p)^n) in Demo.tsx, node: 74.67, 31.21, 43.46; 59.88, 42.74, 17.15; ratio 2.535. Question, readouts and reveal all use this function. | FACT-CHECK 2026-10-13 (pass 9): node with the same formula: 74.67, 31.21, drop 43.46; 59.88, 42.74, drop 17.15; ratio 2.535. Stage f1() gives 74.7, 31.2, 43.5, 17.1, 2.5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.hemoglobin-s-curve.c4",
       "text": "Resting tissue is about 40 mmHg of oxygen and working muscle can fall to about 20 mmHg; the lungs are about 100 mmHg.",
       "support": "source",
-      "source": "Typical venous (about 40) and alveolar (about 100) oxygen pressures; exercising muscle near 20 mmHg (standard physiology texts; verify).",
-      "status": "unverified"
+      "source": "Typical venous (about 40) and alveolar (about 100) oxygen pressures; exercising muscle near 20 mmHg (standard physiology texts; verify). | FACT-CHECK 2026-10-13 (pass 9): Resting mixed venous PO2 about 40 mmHg and alveolar about 100 mmHg (oxygen-cascade values); femoral venous PO2 at maximal exercise 22 mmHg (Richardson et al. 1995, J Clin Invest 96: 1916-1926), so 'can fall to about 20' holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.hemoglobin-s-curve.c5",
       "text": "Each site that lets go makes the others let go more easily, so the carrier gives up most oxygen where tissue oxygen is scarce.",
       "support": "derivation",
-      "source": "Cooperative binding (Monod-Wyman-Changeux / Adair models); result of the steep part of the Hill curve between 20 and 40 mmHg.",
-      "status": "unverified"
+      "source": "Cooperative binding (Monod-Wyman-Changeux / Adair models); result of the steep part of the Hill curve between 20 and 40 mmHg. | FACT-CHECK 2026-10-13 (pass 9): Cooperative binding: affinity of remaining sites depends on occupancy (MWC 1965 / Adair). The steep part of the n = 2.7 curve lies between 20 and 40 mmHg (node: 31% to 75%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -62,6 +79,11 @@
     "answer": 0,
     "why": "Cooperation makes the saturation curve S-shaped, steepest at tissue oxygen pressures, so a small fall in oxygen releases a lot."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

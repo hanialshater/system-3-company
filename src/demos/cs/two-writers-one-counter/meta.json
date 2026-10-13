@@ -25,36 +25,46 @@
       "id": "cs.two-writers-one-counter.c1",
       "text": "If A reads, B reads, then A adds and writes, then B adds and writes, both read 0 and both write 1, so the counter ends at 1.",
       "support": "simulation",
-      "source": "Node script running the six steps in that order with a private register per thread: counter = 1. Demo.tsx runs the same function it draws.",
-      "status": "unverified"
+      "source": "Node script running the six steps in that order with a private register per thread: counter = 1. Demo.tsx runs the same function it draws. | FACT-CHECK 2026-10-13 (pass 9): node, own interpreter with a private register per thread: order A,B,A,A,B,B ends at 1 (both read 0, both write 1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-writers-one-counter.c2",
       "text": "If one thread finishes before the other starts, the counter ends at 2.",
       "support": "simulation",
-      "source": "Node script: order A,A,A,B,B,B gives 2. Of all 20 interleavings of the two three-step threads, 2 end at 2 and 18 end at 1.",
-      "status": "unverified"
+      "source": "Node script: order A,A,A,B,B,B gives 2. Of all 20 interleavings of the two three-step threads, 2 end at 2 and 18 end at 1. | FACT-CHECK 2026-10-13 (pass 9): node: A,A,A,B,B,B ends at 2; of all 20 interleavings 2 end at 2 and 18 at 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-writers-one-counter.c3",
       "text": "Adding 1 to a counter is three steps for each thread: read, add 1, write.",
       "support": "source",
-      "source": "Silberschatz, Galvin, Gagne, Operating System Concepts, chapter on process synchronization (race condition on count++, compiled to load, increment, store).",
-      "status": "unverified"
+      "source": "Silberschatz, Galvin, Gagne, Operating System Concepts, chapter on process synchronization (race condition on count++, compiled to load, increment, store). | FACT-CHECK 2026-10-13 (pass 9): Silberschatz, Galvin, Gagne, Operating System Concepts, process synchronization chapter: count++ as load, increment, store (race condition example).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-writers-one-counter.c4",
       "text": "A lock keeps another thread from stepping in the middle of the three steps, which is why locks exist.",
       "support": "source",
-      "source": "Silberschatz et al., Operating System Concepts: mutual exclusion locks protect a critical section. Wording kept narrow: a lock prevents this interleaving, it is not the only reason locks exist.",
-      "status": "unverified"
+      "source": "Silberschatz et al., Operating System Concepts: mutual exclusion locks protect a critical section. Wording kept narrow: a lock prevents this interleaving, it is not the only reason locks exist. | FACT-CHECK 2026-10-13 (pass 9): Mutual-exclusion lock around the critical section prevents the A,B interleaving (Silberschatz et al.). The stage's 'which is why locks exist' reads as a reason, not the only one.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.two-writers-one-counter.c5",
       "text": "Each thread keeps its own copy of the value it read (shown as 'holds').",
       "support": "derivation",
-      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model.",
-      "status": "unverified"
+      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx run(): reg[t] is per thread; stage shows 'holds' from st.reg[t].",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

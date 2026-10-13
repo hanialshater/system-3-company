@@ -90,8 +90,10 @@
       "id": "chemistry.salt-water-hides-silver.c8",
       "text": "Reveal: 'Pile in chloride and silver has to drop out as crystals ... Solubility is not one fixed number; it shifts when the water already holds one of the ions.'",
       "support": "source",
-      "source": "CONCERN from the fact-checker: the 7,500-fold drop is for free [Ag+] only. Using stability constants log beta1 = 3.04 (AgCl aq) and log beta2 = 5.04 (AgCl2-), total dissolved silver is about 1.4e-5 mol/L in pure water and only about 2.2e-6 mol/L at 0.10 mol/L NaCl, a drop of roughly 6 times, and it rises again near 1 mol/L (about 2e-5). The word 'solubility' in the reveal therefore overstates what the model shows. Suggest 'the free silver ion concentration shifts', or state that AgCl2- is ignored (the Demo.tsx header and c4 source already say so). Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "CONCERN from the fact-checker: the 7,500-fold drop is for free [Ag+] only. Using stability constants log beta1 = 3.04 (AgCl aq) and log beta2 = 5.04 (AgCl2-), total dissolved silver is about 1.4e-5 mol/L in pure water and only about 2.2e-6 mol/L at 0.10 mol/L NaCl, a drop of roughly 6 times, and it rises again near 1 mol/L (about 2e-5). The word 'solubility' in the reveal therefore overstates what the model shows. Suggest 'the free silver ion concentration shifts', or state that AgCl2- is ignored (the Demo.tsx header and c4 source already say so). Added by fact-checker 2026-10-13; needs an independent check. | FACT-CHECK 2026-10-13 (pass 9): Independent check of the pass-8 concern. node: free [Ag+] = Ksp/[Cl-] is 1.8e-9 at 0.10 mol/L (c4 holds even with complexes). With log beta1 3.04, log beta2 5.04, total dissolved silver is 1.35e-5 (pure) vs 2.1e-6 mol/L (0.10 mol/L), so real AgCl solubility still falls about 6x and silver does precipitate; 'solubility shifts' is literally true (it falls, then rises above about 0.5 mol/L). The 7,500x figure in the reveal is attached to [Ag+], not to solubility. Verified as written. Non-blocking suggestion for the builder: add 'ignores AgCl2- complexes' to the stage note.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

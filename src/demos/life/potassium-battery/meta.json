@@ -6,10 +6,17 @@
   "concept": "membrane-potential",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["diffusion moves particles from high to low concentration"],
-    "doesNotKnow": ["that an ion gradient across a membrane builds a voltage that stops the net flow"]
+    "knows": [
+      "diffusion moves particles from high to low concentration"
+    ],
+    "doesNotKnow": [
+      "that an ion gradient across a membrane builds a voltage that stops the net flow"
+    ]
   },
   "misconception": "Charged particles stop moving when concentrations are equal.",
   "objective": "The learner can explain that leaking potassium leaves the inside negative; the electrical pull back balances the concentration push at about -89 mV for 140 mM inside and 5 mM outside, and with equal concentrations the balance voltage is zero.",
@@ -19,43 +26,55 @@
       "id": "life.potassium-battery.c1",
       "text": "Toy model: only potassium ions (K+) can cross the membrane, at 37 C (body temperature). One dot is 5 mM; one + and - pair is 10 mV of voltage.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; stated on the stage before the prediction ('Toy: only K+ leaks, at 37 C. 1 dot = 5 mM.'). Real cells also have sodium, chloride and pumps.",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; stated on the stage before the prediction ('Toy: only K+ leaks, at 37 C. 1 dot = 5 mM.'). Real cells also have sodium, chloride and pumps. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: DOT = 5 mM, MARK = 10 mV, KT at 310.15 K; stage label 'Toy: only K+ leaks, at 37 C. 1 dot = 5 mM.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.potassium-battery.c2",
       "text": "A cell holds about 140 mM potassium inside and about 5 mM outside.",
       "support": "source",
-      "source": "Typical mammalian cell concentrations (Alberts et al., Molecular Biology of the Cell; verify).",
-      "status": "unverified"
+      "source": "Typical mammalian cell concentrations (Alberts et al., Molecular Biology of the Cell; verify). | FACT-CHECK 2026-10-13 (pass 9): Alberts et al., MBoC, Table 11-1 (typical mammalian cell, K+ 140 mM inside, 5 mM outside; BioNumbers 106428 indexes this table). Other tables give 139/4; 'about' holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.potassium-battery.c3",
       "text": "With only potassium leaking, the balance voltage is E = (RT/F) ln(outside/inside); RT/F is 26.7 mV at 37 C, so 140 mM inside and 5 mM outside give about -89 mV.",
       "support": "derivation",
-      "source": "Nernst equation (Hille, Ion Channels of Excitable Membranes). node: RT/F = 26.727 mV at 310.15 K; 26.727 x ln(5/140) = -89.06 mV. Options -9 / -89 / -890 mV are E/10, E, E x 10 from the same function. The brief's -90 mV is the rounded value.",
-      "status": "unverified"
+      "source": "Nernst equation (Hille, Ion Channels of Excitable Membranes). node: RT/F = 26.727 mV at 310.15 K; 26.727 x ln(5/140) = -89.06 mV. Options -9 / -89 / -890 mV are E/10, E, E x 10 from the same function. The brief's -90 mV is the rounded value. | FACT-CHECK 2026-10-13 (pass 9): node with CODATA R, F: RT/F = 26.727 mV at 310.15 K; 26.727 ln(5/140) = -89.06 mV; stage MV() shows -89 mV; options -9 / -89 / -890.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.potassium-battery.c4",
       "text": "Potassium leaving the cell leaves the inside negative; the negative inside pulls potassium back, and leaking stops when the pull equals the concentration push. Nothing moves net.",
       "support": "derivation",
-      "source": "Electrochemical equilibrium (Nernst); same sources as c3.",
-      "status": "unverified"
+      "source": "Electrochemical equilibrium (Nernst); same sources as c3. | FACT-CHECK 2026-10-13 (pass 9): Electrochemical equilibrium at the Nernst potential: zero net flux (Hille, Ion Channels of Excitable Membranes, ch. 1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.potassium-battery.c5",
       "text": "With 140 mM on both sides the balance voltage is 0 mV, because there is no concentration push to balance.",
       "support": "derivation",
-      "source": "ln(140/140) = 0, so E = 0 (node).",
-      "status": "unverified"
+      "source": "ln(140/140) = 0, so E = 0 (node). | FACT-CHECK 2026-10-13 (pass 9): ln(1) = 0 (node); reveal prints MV(nernst(140)) = 0 mV.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.potassium-battery.c6",
       "text": "Each leak press moves the voltage half of the remaining way to the balance voltage; real leaking takes milliseconds and moves a tiny fraction of the ions, so concentrations barely change.",
       "support": "convention",
-      "source": "Toy dynamics in Demo.tsx (v + (E - v)/2). The statement about a tiny fraction of ions is a standard physiology fact (verify); the dot counts are not redrawn as the voltage builds.",
-      "status": "unverified"
+      "source": "Toy dynamics in Demo.tsx (v + (E - v)/2). The statement about a tiny fraction of ions is a standard physiology fact (verify); the dot counts are not redrawn as the voltage builds. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx leak(): v + (e - v)/2. Derivation of 'tiny fraction': a 10 um cell, 1 uF/cm2, 90 mV moves Q = CV = 2.8e-13 C = 2.9e-18 mol, vs 7.3e-14 mol K+ inside (0.14 M x 5.2e-13 L): about 4e-5. Membrane time constant RC is milliseconds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -69,6 +88,11 @@
     "answer": 1,
     "why": "Each potassium ion that leaves makes the inside more negative. At about -89 mV the pull back equals the push out, so net flow stops while the concentrations are still very different."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

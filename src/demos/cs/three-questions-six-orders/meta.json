@@ -25,36 +25,46 @@
       "id": "cs.three-questions-six-orders.c1",
       "text": "Three different cards can be in 6 possible orders.",
       "support": "derivation",
-      "source": "3! = 6; Demo.tsx generates the six tiles by permutation. Node: permutations of 3 = 6.",
-      "status": "unverified"
+      "source": "3! = 6; Demo.tsx generates the six tiles by permutation. Node: permutations of 3 = 6. | FACT-CHECK 2026-10-13 (pass 9): 3! = 6; node permutations of [A,B,C] = 6, same as Demo ORDERS.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.three-questions-six-orders.c2",
       "text": "After two questions, in the worst case, two orders are still possible; the third question leaves one.",
       "support": "simulation",
-      "source": "Node script: for every asking order of A>B, A>C, B>C, answering to keep more orders gives 6 -> 3 -> 2 -> 1. Stage answers are the worst-case answers, disclosed on stage as the unluckiest ones.",
-      "status": "unverified"
+      "source": "Node script: for every asking order of A>B, A>C, B>C, answering to keep more orders gives 6 -> 3 -> 2 -> 1. Stage answers are the worst-case answers, disclosed on stage as the unluckiest ones. | FACT-CHECK 2026-10-13 (pass 9): node, greedy keep-more answers for all 6 asking orders: 6 -> 3 -> 2 -> 1 every time. Reveal uses narrow([0,1]) = 2 and final 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.three-questions-six-orders.c3",
       "text": "Each answer can at most halve the possible orders; two questions tell apart at most 4 and three tell apart 8.",
       "support": "derivation",
-      "source": "A yes/no answer splits a set in two, so q answers distinguish at most 2^q cases: 4 and 8. Decision-tree argument, CLRS 3rd ed. section 8.1.",
-      "status": "unverified"
+      "source": "A yes/no answer splits a set in two, so q answers distinguish at most 2^q cases: 4 and 8. Decision-tree argument, CLRS 3rd ed. section 8.1. | FACT-CHECK 2026-10-13 (pass 9): q yes/no answers give at most 2^q leaves: 4 < 6 <= 8 (decision-tree bound, CLRS 3e s.8.1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.three-questions-six-orders.c4",
       "text": "So 3 is the fewest comparisons that always suffice to order 3 cards.",
       "support": "simulation",
-      "source": "Node: exhaustive search over all question strategies gives optimal worst-case depth 3 for n=3 (5 for n=4, 7 for n=5); ceil(log2 6) = 3.",
-      "status": "unverified"
+      "source": "Node: exhaustive search over all question strategies gives optimal worst-case depth 3 for n=3 (5 for n=4, 7 for n=5); ceil(log2 6) = 3. | FACT-CHECK 2026-10-13 (pass 9): node exhaustive minimax over comparison strategies: optimal worst-case depth 3 for n=3 (also 5 for n=4, 7 for n=5).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.three-questions-six-orders.c5",
       "text": "For n cards you need about log2(n!) questions, which grows like n log n.",
       "support": "source",
-      "source": "CLRS 3rd ed. section 8.1: any comparison sort needs Omega(n lg n) comparisons in the worst case; lg(n!) = Theta(n lg n).",
-      "status": "unverified"
+      "source": "CLRS 3rd ed. section 8.1: any comparison sort needs Omega(n lg n) comparisons in the worst case; lg(n!) = Theta(n lg n). | FACT-CHECK 2026-10-13 (pass 9): CLRS 3e Theorem 8.1: worst case Omega(n lg n); lg(n!) = Theta(n lg n) by Stirling.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

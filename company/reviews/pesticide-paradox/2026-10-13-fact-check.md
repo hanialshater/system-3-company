@@ -17,3 +17,11 @@ The reveal's "the spray hurts [predators] more" is the qualitative reading of th
 Checker: fact-checker (did not write these claims; builder-revised claims checked as rewritten). Claims set to verified: c2, c3.
 
 RK4 rerun (dt 0.01, 600 months, start 1.5,1): averages 1.000/1.000 (e=0), 1.199/0.800 (0.2), 1.399/0.600 (0.4); equilibrium (1+e, 1-e).
+
+## Pass 9 (2026-10-13)
+
+Checker: fact-checker (did not write these claims; c-claims added by an earlier fact-checker pass are quotes of the builder's stage text). Method: read Demo.tsx as rendered text first, then re-derived every number in my own node script (own copies of the sims and mulberry32; scratchpad fc9/check.mjs), and searched sources on the web. Egress to population.un.org, royalsocietypublishing.org, Wikipedia and BioNumbers is blocked (403/DNS).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | withdrawn | Confirmed withdrawn: no Volterra/Adriatic/1926 text in the stage or reveal (only a code comment). |

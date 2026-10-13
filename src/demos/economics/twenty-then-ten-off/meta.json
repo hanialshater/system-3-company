@@ -25,36 +25,46 @@
       "id": "economics.twenty-then-ten-off.c1",
       "text": "20% off a $100 coat takes $20, leaving $80; a further 10% off the $80 sale price takes $8, leaving $72.",
       "support": "derivation",
-      "source": "100 x 0.8 = 80; 80 x 0.1 = 8; 80 - 8 = 72. Demo.tsx run().",
-      "status": "unverified"
+      "source": "100 x 0.8 = 80; 80 x 0.1 = 8; 80 - 8 = 72. Demo.tsx run(). | FACT-CHECK 2026-10-13 (pass 9): 100 x 20/100 = 20, 80 x 10/100 = 8, 72 (node: exact in floating point). Reveal prints $20, $80, $8.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-then-ten-off.c2",
       "text": "The total discount is 28% (100 - 72 = 28 on $100).",
       "support": "derivation",
-      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT.",
-      "status": "unverified"
+      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT. | FACT-CHECK 2026-10-13 (pass 9): The arithmetic is right (0.8 x 0.9 = 0.72, 28%), but the stage does not show 28%: TOTAL_PCT = ((100 - 72)/100) x 100 = 28.000000000000004 in JS (node), and that string is printed in the question option and the reveal ('28.000000000000004% off'). The stage makes a different claim from c2. Fix (builder): round TOTAL_PCT, e.g. Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10, as the readout already does. Re-check after the fix.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-then-ten-off.c3",
       "text": "Taken in the other order, 10% off takes $10 (leaving $90) and 20% off the $90 takes $18; the price is again $72.",
       "support": "derivation",
-      "source": "100 x 0.1 = 10; 90 x 0.2 = 18; 90 - 18 = 72. Demo.tsx SWAPPED.",
-      "status": "unverified"
+      "source": "100 x 0.1 = 10; 90 x 0.2 = 18; 90 - 18 = 72. Demo.tsx SWAPPED. | FACT-CHECK 2026-10-13 (pass 9): 100 x 10/100 = 10, 90 x 20/100 = 18, 72 (node). Reveal SWAPPED cuts $10 then $18, price $72.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-then-ten-off.c4",
       "text": "Percent changes multiply, so stacked discounts are less than their sum and the order does not matter.",
       "support": "derivation",
-      "source": "0.8 x 0.9 = 0.9 x 0.8 = 0.72 (multiplication commutes); 28% < 20% + 10%.",
-      "status": "unverified"
+      "source": "0.8 x 0.9 = 0.9 x 0.8 = 0.72 (multiplication commutes); 28% < 20% + 10%. | FACT-CHECK 2026-10-13 (pass 9): 0.8 x 0.9 = 0.9 x 0.8 = 0.72 (commutative); 28 < 30. Multiplication of factors (1 - p).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "economics.twenty-then-ten-off.c5",
       "text": "The lesson uses illustrative numbers for one item with two percentage discounts.",
       "support": "convention",
-      "source": "Assumptions of Demo.tsx; stage chip 'Model: two % discounts on one $100 coat'.",
-      "status": "unverified"
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: two % discounts on one $100 coat'. | FACT-CHECK 2026-10-13 (pass 9): Stage chip 'Model: two % discounts on one $100 coat' and reveal 'Illustrative numbers: one item, two percentage discounts.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

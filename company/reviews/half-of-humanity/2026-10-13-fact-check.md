@@ -47,3 +47,11 @@ Checker: fact-checker. c1 left unverified. population.un.org is still unreachabl
 ## Pass 6
 
 c1 left unverified: population.un.org unreachable again (HTTPS CONNECT 403). Corroboration from earlier passes stands; every country value still needs a direct compare with the WPP 2024 table.
+
+## Pass 9 (2026-10-13)
+
+Checker: fact-checker (did not write these claims; c-claims added by an earlier fact-checker pass are quotes of the builder's stage text). Method: read Demo.tsx as rendered text first, then re-derived every number in my own node script (own copies of the sims and mulberry32; scratchpad fc9/check.mjs), and searched sources on the web. Egress to population.un.org, royalsocietypublishing.org, Wikipedia and BioNumbers is blocked (403/DNS).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | unverified | Pass 9: population.un.org still unreachable (proxy CONNECT 403). No direct compare with the WPP 2024 table possible; left unverified. Needs a human source check (founder or anyone with access). |

@@ -13,3 +13,11 @@ Checker: fact-checker. Method: transcript + Demo.tsx; the rotation re-done with 
 | c7 | verified | Interpretive but hedged: the reveal says 'evidence', not proof, and the paper presents the fit as evidence for drift. |
 
 Stage check: 'near Nigeria and Cameroon' - landing point 7.27 E, 4.98 N is on the Niger Delta coast, about 1.3 degrees west of the Cameroon border (8.5 E); fine. Unrecorded claims: none.
+
+## Pass 9 (2026-10-13)
+
+Checker: fact-checker (did not write these claims; c-claims added by an earlier fact-checker pass are quotes of the builder's stage text). Method: read Demo.tsx as rendered text first, then re-derived every number in my own node script (own copies of the sims and mulberry32; scratchpad fc9/check.mjs), and searched sources on the web. Egress to population.un.org, royalsocietypublishing.org, Wikipedia and BioNumbers is blocked (403/DNS).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | unverified | RE-OPENED in pass 9: this was marked verified but its source says the parameters came from builder recall and the paper was not opened. Bullard, Everett and Smith (1965), Phil. Trans. R. Soc. A 258: 41-51, is unreachable (royalsocietypublishing.org 403); a web search found no secondary source quoting 44.0 N, 30.6 W, 57.0 degrees. Needs a human source check of the paper's table. Note: c4 (500-fathom contour) rests on the same unopened paper. |

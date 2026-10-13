@@ -6,10 +6,17 @@
   "concept": "anscombes-quartet",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-probability", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["mean and correlation"],
-    "doesNotKnow": ["that summary numbers can hide the shape of the data"]
+    "knows": [
+      "mean and correlation"
+    ],
+    "doesNotKnow": [
+      "that summary numbers can hide the shape of the data"
+    ]
   },
   "misconception": "Two datasets with the same mean, spread and correlation look alike.",
   "objective": "The learner can explain that the same means, spread, correlation and best-fit line can come from very different pictures (a cloud, a curve, an outlier, one extreme point), so the data should always be drawn.",
@@ -19,29 +26,37 @@
       "id": "probability.same-line-four-pictures.c1",
       "text": "The four datasets are Anscombe's quartet: 11 points each, from a 1973 paper that made them up to show that summary numbers can hide the shape.",
       "support": "source",
-      "source": "Anscombe (1973), 'Graphs in Statistical Analysis', American Statistician 27(1): 17-21. Values typed from the published table (also widely reproduced); verify against the paper.",
-      "status": "unverified"
+      "source": "Anscombe (1973), 'Graphs in Statistical Analysis', American Statistician 27(1): 17-21. Values typed from the published table (also widely reproduced); verify against the paper. | FACT-CHECK 2026-10-13 (pass 9): Anscombe (1973), 'Graphs in Statistical Analysis', The American Statistician 27(1): 17-21. All 44 x,y values in Demo.tsx match the published quartet as I know it (also the R datasets::anscombe table); not re-opened from the paper here.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.same-line-four-pictures.c2",
       "text": "All four sets have mean x 9.0, mean y 7.5, correlation r = 0.82 (0.816) and the best-fit line y = 3.00 + 0.50x.",
       "support": "derivation",
-      "source": "stats() in Demo.tsx on the plotted points, node: slope 0.5001 / 0.5000 / 0.4997 / 0.4999; intercept 3.000 / 3.001 / 3.003 / 3.002; r 0.8164 / 0.8162 / 0.8163 / 0.8165; means 9.0 and 7.50. Readouts are computed per set; the question's r and the reveal's line come from set I.",
-      "status": "unverified"
+      "source": "stats() in Demo.tsx on the plotted points, node: slope 0.5001 / 0.5000 / 0.4997 / 0.4999; intercept 3.000 / 3.001 / 3.003 / 3.002; r 0.8164 / 0.8162 / 0.8163 / 0.8165; means 9.0 and 7.50. Readouts are computed per set; the question's r and the reveal's line come from set I. | FACT-CHECK 2026-10-13 (pass 9): node: means 9 and 7.50; slopes 0.5001/0.5000/0.4997/0.4999; intercepts 3.000-3.002; r 0.8162-0.8165; also var x 11.0, var y 4.12-4.13 for the stage's 'same spread'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.same-line-four-pictures.c3",
       "text": "Set I is a loose cloud, set II a smooth curve, set III a tight line with one outlier, set IV ten points at x = 8 and one far to the right that alone sets the slope.",
       "support": "convention",
-      "source": "A reading of the plots (stated as the stage notes); set IV: x values 8 x 10 and 19 (node). Not a statistical test.",
-      "status": "unverified"
+      "source": "A reading of the plots (stated as the stage notes); set IV: x values 8 x 10 and 19 (node). Not a statistical test. | FACT-CHECK 2026-10-13 (pass 9): Reading of the plots, labelled as such on the stage; set IV x = 8 (x10) and 19.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.same-line-four-pictures.c4",
       "text": "Means, spread and correlation cannot tell these sets apart; always draw the data.",
       "support": "derivation",
-      "source": "Follows from c2 and c3: identical summaries, different pictures.",
-      "status": "unverified"
+      "source": "Follows from c2 and c3: identical summaries, different pictures. | FACT-CHECK 2026-10-13 (pass 9): Follows from c2 and c3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
@@ -55,6 +70,11 @@
     "answer": 1,
     "why": "Summary numbers drop information. Anscombe's four sets share one fitted line yet are a cloud, a curve, an outlier and a single extreme point."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }
