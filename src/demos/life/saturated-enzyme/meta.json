@@ -1,7 +1,7 @@
 {
   "slug": "saturated-enzyme",
-  "title": "Twice the substrate, twice as fast?",
-  "hook": "Give an enzyme twice as much to work on. Does it work twice as fast?",
+  "title": "Double the substrate, then what?",
+  "hook": "Give an enzyme twice as much to work on. How much faster does it get?",
   "domain": "life",
   "concept": "enzyme-saturation",
   "status": "review",
@@ -25,30 +25,24 @@
   "claims": [
     {
       "id": "life.saturated-enzyme.c1",
-      "text": "For a simple single-substrate enzyme, reaction speed is v = Vmax x S / (Km + S), where Km is the substrate concentration that gives half the top speed (Michaelis-Menten).",
+      "text": "For a simple single-substrate enzyme, the half-way concentration (Km) is the substrate level at which half the enzymes are busy, and the busy share is S / (Km + S); speed is that share times the top speed (Michaelis-Menten).",
       "support": "source",
       "source": "Nelson D.L. & Cox M.M., Lehninger Principles of Biochemistry, chapter on enzyme kinetics (Michaelis-Menten equation).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.saturated-enzyme.c2",
-      "text": "At S = 10 Km the speed is 10/11 = 91% of the top speed; at 20 Km it is 20/21 = 95%, so doubling from 10 to 20 speeds it up by about 5% (1.048 times).",
+      "text": "At S = 10 Km, 10/11 = 91 of 100 enzymes are busy; at 20 Km, 20/21 = 95 of 100, so doubling from 10 to 20 speeds the reaction up by about 5% (1.048 times).",
       "support": "derivation",
       "source": "(20/21)/(10/11) = 1.0476, recomputed in node (artifacts/scratch/w2life/check.mjs).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.saturated-enzyme.c3",
-      "text": "From S = 1 Km to 2 Km, speed goes from 50% to 67% of the top: about 33% faster.",
+      "text": "From S = 1 Km to 2 Km, busy enzymes go from 50 to 67 of 100: about 33% faster.",
       "support": "derivation",
       "source": "(2/3)/(1/2) = 1.333 (artifacts/scratch/w2life/check.mjs).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.saturated-enzyme.c4",
@@ -82,5 +76,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
