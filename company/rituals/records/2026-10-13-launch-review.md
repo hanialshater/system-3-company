@@ -28,3 +28,15 @@ No learner traffic exists until deploy (local only), so these predictions cannot
 
 ## Decision
 **Go with conditions.** An accessibility review of all 5 within the next cycle (board). Signed: chief-of-staff, acting for head-of-product.
+
+## Second batch (same day): 12 probability lessons
+
+armour-where-no-holes, at-least-one-boy, collect-all-six-faces, five-heads-then-what, one-in-a-million-daily, one-in-a-million-match, praise-then-slump, same-average-different-ride, small-hospital-big-swings, twenty-harmless-tests, which-coin-is-it, why-seven-wins.
+
+- `company publish` passed for all of them: claims verified (fact-checks of 2026-10-12 and 2026-10-13), QA record from the integrated 426/426 run, learner review linked as evidence.
+- Learner verdict is **launch** and names the current version (v1) for each, checked by hand (AMD-001 part d is still proposed).
+- **Held back:** friends-have-more-friends. Its review said launch, but fact-check pass 2 found that verified claim c3 ("wherever friend counts differ") is false for disconnected networks. A lesson with a known-false sentence is not published, whatever the gate says (W-060).
+- **Caveat on the evidence:** the reviewer's screenshot spot-check was partial (all three phases for 2 lessons, one or two images each for the rest). The transcripts were read in full. The objections travel with the launch: at-least-one-boy's grid counts look unequal next to "equally common", and twenty-harmless-tests leaves its tiles tappable after the batch run. Neither blocks; both are on the revision list.
+- Accessibility review condition as above (W-057 now covers 17 lessons).
+
+Decision: **go with conditions.** Signed: chief-of-staff, acting for head-of-product.
