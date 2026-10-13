@@ -1,0 +1,80 @@
+{
+  "slug": "waves-return",
+  "title": "When immunity fades, waves return",
+  "hook": "A big wave passes. If immunity fades, is the disease gone, or does it come back?",
+  "domain": "life",
+  "concept": "waning-immunity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the SIR picture: susceptible, sick, recovered",
+      "an epidemic peaks when the susceptible share falls to 1/R0"
+    ],
+    "doesNotKnow": [
+      "that when immunity fades, the infection settles into recurring, shrinking waves around an endemic level",
+      "that the susceptible share settles at 1/R0"
+    ]
+  },
+  "misconception": "After a big wave the disease is gone for good.",
+  "objective": "The learner can explain that fading immunity refills the susceptible pool, so waves return, and that the infection holds the susceptible share at 1/R0 (half when R0 = 2) whatever the immunity length.",
+  "claims": [
+    {
+      "id": "life.waves-return.c1",
+      "text": "In the SIRS model the endemic equilibrium has susceptible share S* = 1/R0; with R0 = 2 that is 50%.",
+      "support": "source",
+      "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans, Oxford UP, ch. 6; Keeling M.J. & Rohani P. (2008) Modeling Infectious Diseases in Humans and Animals, Princeton UP, ch. 2. dI/dt = 0 with I > 0 requires beta S = gamma.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.waves-return.c2",
+      "text": "On the stage (infection 0.4/day, recovery 0.2/day, immunity fading at 1/100 per day, 0.1% sick on day 0), waves peak on days 34, 185, 329, 473, 617 and 761 with 50% susceptible at each peak; by day 900 the town is at 50.0% susceptible and 2.4% sick.",
+      "support": "simulation",
+      "source": "Euler step 0.01 day, deterministic, no seed; replicated in artifacts/scratch/w3life/sirs.mjs: peak S 49.96%, 49.99%, then 50.00%; day 900 S 50.00%, I 2.38%. Parameters are the brief's, made up.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.waves-return.c3",
+      "text": "Every wave peaks when the susceptible share is exactly 1/R0: above it cases grow, below it they shrink.",
+      "support": "derivation",
+      "source": "dI/dt = (beta S - gamma) I changes sign at S = gamma/beta = 1/R0.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.waves-return.c4",
+      "text": "The immunity length changes how many are sick at the endemic level and how far apart the waves are, not the 50% susceptible share: with immunity of about 50 days, 4.5% are sick at day 900; with about 200 days, 1.3%.",
+      "support": "simulation",
+      "source": "artifacts/scratch/w3life/sirs.mjs: L = 50 gives S 50.00%, I 4.55% at day 900, waves about 104 days apart; L = 200 gives S 49.77% (still oscillating, 48.9-50.7% over days 700-900), I 1.29%, waves about 200 days apart.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.waves-return.c5",
+      "text": "The model is a made-up infection with random mixing and no births, deaths, seasons or vaccines; 'about 100 days' is an average (immunity fades at a constant rate).",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: R0 2, immunity fades after about 100 days') and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A made-up infection with R0 = 4 gives immunity that slowly fades. After the waves settle in a simple well-mixed model, roughly what share of people are susceptible?",
+    "options": [
+      "Almost none",
+      "About a quarter",
+      "About three quarters"
+    ],
+    "answer": 1,
+    "why": "The infection holds the susceptible share at 1/R0 = 1/4: more and cases grow and drain it, fewer and cases shrink while fading immunity refills it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

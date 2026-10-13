@@ -1,0 +1,72 @@
+{
+  "slug": "leaky-vaccine-threshold",
+  "title": "A weaker shield needs more people",
+  "hook": "A perfect vaccine needs 75% covered here. What about one that works 80% as well?",
+  "domain": "life",
+  "concept": "vaccine-coverage-limits",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the herd-immunity threshold is 1 - 1/R0 for a perfect vaccine"
+    ],
+    "doesNotKnow": [
+      "that with an imperfect vaccine the coverage needed is (1 - 1/R0) / efficacy",
+      "that below a certain efficacy no coverage is enough on its own"
+    ]
+  },
+  "misconception": "The vaccine coverage needed depends only on R0.",
+  "objective": "The learner can explain that a vaccine that cuts infection chance by 80% needs 0.75 / 0.8, about 94%, coverage when R0 = 4, and that below 75% efficacy even full coverage leaves R above 1.",
+  "claims": [
+    {
+      "id": "life.leaky-vaccine-threshold.c1",
+      "text": "With R0 = 4, a perfect vaccine needs 1 - 1/4 = 75% coverage; a vaccine of efficacy e needs (1 - 1/R0) / e, so 80% efficacy needs 0.75 / 0.8 = 93.75%, about 94%.",
+      "support": "source",
+      "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans, Oxford UP, ch. 5 (critical coverage with imperfect vaccines). Arithmetic in Demo.tsx (needed).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.leaky-vaccine-threshold.c2",
+      "text": "At 70% efficacy the needed coverage would be 107%, impossible; even 100% coverage leaves R = 4 x (1 - 0.7) = 1.2. Any efficacy below 75% gives a needed coverage above 100% when R0 = 4.",
+      "support": "derivation",
+      "source": "0.75 / 0.7 = 1.071; R = R0 x (1 - c x e) at c = 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.leaky-vaccine-threshold.c3",
+      "text": "At the start of an outbreak in a well-mixed population, R = R0 x (1 - coverage x efficacy), whether the vaccine is leaky (cuts everyone's chance by e) or all-or-nothing (fully protects a share e).",
+      "support": "derivation",
+      "source": "Susceptibility of the vaccinated is 1 - e in either case on average; the two types differ later in an outbreak, not in initial R (Halloran, Longini & Struchiner 2010, Design and Analysis of Vaccine Studies, ch. 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.leaky-vaccine-threshold.c4",
+      "text": "The model is a made-up disease and vaccine with random mixing; it is not a statement about any real vaccine.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated in the question ('Made-up disease'), on the stage ('Toy town') and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A made-up disease has R0 = 5, so a perfect vaccine would need 80% coverage. A vaccine cuts infection chance by 90%. Roughly what coverage is needed?",
+    "options": [
+      "80%",
+      "About 89%",
+      "More than 100%"
+    ],
+    "answer": 1,
+    "why": "Coverage needed = (1 - 1/R0) / efficacy = 0.8 / 0.9, about 89%: a weaker shield needs more people under it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.svg { max-height: 24dvh; flex-shrink: 0; }
+.sus { fill: none; stroke: var(--muted); stroke-width: 1; stroke-opacity: 0.7; }
+.vaxRing { fill: none; stroke: var(--domain); stroke-width: 1.2; }
+.shield { fill: color-mix(in srgb, var(--domain) 80%, var(--bg-2)); }
+.need { fill: none; stroke: var(--fg); stroke-width: 2; stroke-dasharray: 5 3; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.flag { margin: 0; align-self: center; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--bad); color: var(--bad); font-size: 0.8rem; font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.legend i.keyVax { border: 1.5px solid var(--domain); background: radial-gradient(circle, color-mix(in srgb, var(--domain) 80%, var(--bg-2)) 55%, transparent 58%); }
+.legend i.keySus { border: 1.5px solid var(--muted); }
+.legend i.keyDash { width: 14px; height: 0; border-radius: 0; border-top: 2px dashed var(--fg); }
