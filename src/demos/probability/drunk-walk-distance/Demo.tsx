@@ -15,6 +15,7 @@ import s from "./styles.module.css";
 const MILESTONES = ["n100", "n1000"] as const;
 const Q_STEPS = 100;
 const Q_DIST = Math.round(exactMeanDist(Q_STEPS)); // 8
+const ALL = walkers(0); // seed 1921, untuned; one fixed batch so the reveal quotes what the stage drew
 const fmt = (n: number) => n.toLocaleString("en-US");
 
 const W = 340;
@@ -25,17 +26,16 @@ const BASE = 150;
 const BIN = 6;
 const sx = (x: number) => L + ((x + SPAN) / (2 * SPAN)) * (W - L - R);
 
-function Stage({ locked, interact, n, setN, batch, setBatch }: {
+function Stage({ locked, interact, n, setN }: {
   locked: boolean;
   interact: () => void;
   n: number;
   setN: (n: number) => void;
-  batch: number;
-  setBatch: (b: number) => void;
 }) {
   const { reach } = useMilestones(interact, MILESTONES);
-  const all = useMemo(() => walkers(batch), [batch]);
+  const all = ALL;
   const sp = spread(all, n);
+  const base = spread(all, STEPS[0]).meanDist;
   const dots = useMemo(() => {
     const h: Record<number, number> = {};
     // bins [6k, 6k+6) hold the even positions 6k, 6k+2, 6k+4; draw at their middle, 6k+2
@@ -46,7 +46,7 @@ function Stage({ locked, interact, n, setN, batch, setBatch }: {
     const tallest = Math.max(...Object.values(h));
     const gap = Math.min(9.5, 118 / Math.max(1, tallest - 1)); // a tall pile squeezes to fit
     return placed.map((d) => ({ x: d.x, cx: sx(d.b), cy: BASE - 6 - d.level * gap }));
-  }, [all, n]);
+  }, [n]);
 
   return (
     <div className={s.wrap}>
@@ -73,7 +73,7 @@ function Stage({ locked, interact, n, setN, batch, setBatch }: {
         ))}
       </svg>
       <p className={s.msg} aria-live="polite">
-        {locked ? "Make a prediction to start." : "Bar: the average distance either side."}
+        {locked ? "Make a prediction to start." : "Bar: average distance from the start, either direction."}
       </p>
       <Row>
         {STEPS.map((k) => (
@@ -91,13 +91,11 @@ function Stage({ locked, interact, n, setN, batch, setBatch }: {
             {fmt(k)} steps
           </Control>
         ))}
-        <Control disabled={locked} onClick={() => setBatch(batch + 1)}>
-          New walkers
-        </Control>
       </Row>
       <Row>
         <Readout label="Average distance" value={locked ? "?" : `${sp.meanDist.toFixed(1)} m`} />
         <Readout label="Farthest" value={locked ? "?" : `${sp.max} m`} />
+        <Readout label="vs 10 steps" value={locked ? "?" : `${n / STEPS[0]}x steps, ${(sp.meanDist / base).toFixed(1)}x distance`} />
       </Row>
     </div>
   );
@@ -105,9 +103,8 @@ function Stage({ locked, interact, n, setN, batch, setBatch }: {
 
 export default function DrunkWalk({ slug }: { slug: string }) {
   const [n, setN] = useState(10);
-  const [batch, setBatch] = useState(0);
-  const sp = spread(walkers(batch), Q_STEPS);
-  const sp1k = spread(walkers(batch), 1000);
+  const sp = spread(ALL, Q_STEPS);
+  const sp1k = spread(ALL, 1000);
 
   return (
     <Lesson
@@ -133,7 +130,7 @@ export default function DrunkWalk({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} n={n} setN={setN} batch={batch} setBatch={setBatch} />}
+      {({ locked, interact }) => <Stage locked={locked} interact={interact} n={n} setN={setN} />}
     </Lesson>
   );
 }

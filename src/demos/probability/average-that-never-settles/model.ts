@@ -1,44 +1,56 @@
-// Heavy tails: running averages of fair die rolls settle near 3.5; running averages of
-// standard Cauchy draws never settle (the mean of n Cauchy draws is itself standard Cauchy).
+// Heavy tails: averages of fair die rolls settle near 3.5; averages of standard Cauchy draws
+// never narrow (the mean of n Cauchy draws is itself standard Cauchy).
 // Pure functions so the numbers in meta.json can be re-run in node.
 
 import { mulberry32 } from "@/kit/random";
 
-export const MAX = 20_000;
-export const EVERY = 50; // running average sampled every 50 draws for drawing
+export const SEED = 1853; // untuned: the first seed tried
+export const RUNS = 30; // dots per row
+export const CHECK = [1, 10, 100, 1000, 10000] as const;
 
 /** Standard Cauchy draw by inverse CDF: tan(pi (u - 1/2)). */
 export const cauchy = (u: number) => Math.tan(Math.PI * (u - 0.5));
 
-/** Running averages (every EVERY draws) of die rolls and Cauchy draws for one seeded batch. */
-export function runs(batch = 0, seed = 1853) {
-  const rnd = mulberry32(seed + batch * 92821);
-  const die: number[] = [];
-  const cau: number[] = [];
-  let sd = 0;
-  let sc = 0;
-  let biggest = 0;
-  for (let i = 1; i <= MAX; i++) {
-    sd += 1 + Math.floor(rnd() * 6);
-    const c = cauchy(rnd());
-    sc += c;
-    biggest = Math.max(biggest, Math.abs(c));
-    if (i % EVERY === 0) {
-      die.push(sd / i);
-      cau.push(sc / i);
-    }
-  }
-  return { die, cau, biggest };
+export interface Dots {
+  /** die[k][r]: average of the first CHECK[k] die rolls of run r */
+  die: number[][];
+  /** cau[k][r]: average of the first CHECK[k] Cauchy draws of run r */
+  cau: number[][];
+  /** biggest absolute single Cauchy draw among the first 10,000 of run r */
+  big: number[];
 }
 
-export const PER_BATCH = 5;
+let cache: Dots | null = null;
 
-/** Five independent runs per batch, so one calm run never stands alone. */
-export const batchRuns = (batch = 0, seed = 1853) =>
-  Array.from({ length: PER_BATCH }, (_, i) => runs(batch * PER_BATCH + i, seed));
-
-/** running average after n draws (n a multiple of EVERY) */
-export const at = (series: number[], n: number) => series[n / EVERY - 1];
+/** RUNS independent runs; each dot is a running average read off at 1, 10, 100, 1,000 and 10,000 draws. */
+export function dots(seed = SEED): Dots {
+  if (seed === SEED && cache) return cache;
+  const die = CHECK.map(() => [] as number[]);
+  const cau = CHECK.map(() => [] as number[]);
+  const big: number[] = [];
+  for (let r = 0; r < RUNS; r++) {
+    const rnd = mulberry32(seed + r * 92821);
+    let sd = 0;
+    let sc = 0;
+    let b = 0;
+    let k = 0;
+    for (let i = 1; i <= CHECK[CHECK.length - 1]; i++) {
+      sd += 1 + Math.floor(rnd() * 6);
+      const c = cauchy(rnd());
+      sc += c;
+      b = Math.max(b, Math.abs(c));
+      if (i === CHECK[k]) {
+        die[k].push(sd / i);
+        cau[k].push(sc / i);
+        k++;
+      }
+    }
+    big.push(b);
+  }
+  const out = { die, cau, big };
+  if (seed === SEED) cache = out;
+  return out;
+}
 
 /** P(|mean of n standard Cauchy draws| > x) = 1 - (2/pi) atan(x), for every n. */
 export const cauchyTail = (x: number) => 1 - (2 / Math.PI) * Math.atan(x);

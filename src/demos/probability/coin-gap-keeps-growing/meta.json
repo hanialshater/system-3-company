@@ -1,7 +1,7 @@
 {
   "slug": "coin-gap-keeps-growing",
   "title": "10,000 flips: do heads and tails meet?",
-  "hook": "Flip long enough and heads and tails even out. So the gap between them shrinks. Right?",
+  "hook": "Flip long enough and heads and tails even out. What happens to the gap between them?",
   "domain": "probability",
   "concept": "law-of-large-numbers",
   "status": "review",
@@ -52,12 +52,10 @@
     },
     {
       "id": "probability.coin-gap-keeps-growing.c4",
-      "text": "The 20 runs on the stage are seeded fair flips; after 10,000 flips their gaps averaged 86 (largest 204) and every heads share was between 49.0% and 50.9%.",
+      "text": "The 20 runs on the stage are seeded fair flips; their gaps averaged 2.5, 8.3, 16.3 and 86.1 after 10, 100, 1,000 and 10,000 flips (typical values 2.5, 8, 25 and 80), and after 10,000 flips their heads shares were between 49.0% and 50.9%.",
       "support": "simulation",
-      "source": "src/demos/probability/coin-gap-keeps-growing/model.ts, seed 1713. Re-run: mean |gap| 2.5 / 8.3 / 16.3 / 86.1 at 10 / 100 / 1,000 / 10,000 flips; share range at 10,000: 0.4898-0.5089.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "src/demos/probability/coin-gap-keeps-growing/model.ts, seed 1713 (the builder did not record whether the seed was tuned; treat as an illustration, not evidence). Re-run: mean |gap| 2.5 / 8.3 / 16.3 / 86.1 at 10 / 100 / 1,000 / 10,000 flips; share range at 10,000: 0.4898-0.5089. The fact-checker found over 300 other seeds a 95% range 57-107 for the 10,000-flip average (median 79), so the 16.3 at 1,000 flips is a low draw (about 2 SE below 25). The typical values are sqrt(2n/pi), claim c2. | CLAIM FIX 2026-10-13 (revision v2): Was 'The 20 runs on the stage are seeded fair flips; after 10,000 flips their gaps averaged 86 (largest 204) and every heads share was between 49.0% and 50.9%.' (reveal now quotes the stage's own readouts beside the typical values; 'every run' narrowed to 'these 20 runs')",
+      "status": "unverified"
     },
     {
       "id": "probability.coin-gap-keeps-growing.c5",
@@ -91,5 +89,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

@@ -30,6 +30,30 @@ export function hostLeaves(round: number, doors: number, pick: number): number {
   return k >= pick ? k + 1 : k;
 }
 
+/**
+ * A host who opens doors-2 doors AT RANDOM (he does not know where the car is). Rounds in which he
+ * happens to open the car are thrown away; of the kept rounds, count stay wins and switch wins.
+ * If your pick is the car he cannot hit it; otherwise he spares the car only with chance 1/(doors-1).
+ */
+export function guessingBatch(start: number, count: number, doors: number): { kept: number; stay: number; swap: number } {
+  let kept = 0;
+  let stay = 0;
+  let swap = 0;
+  for (let r = start; r < start + count; r++) {
+    const rnd = mulberry32(555557 + r * 13 + doors);
+    const pick = Math.floor(rnd() * doors);
+    const car = carFor(r, doors);
+    if (pick === car) {
+      kept++;
+      stay++;
+    } else if (rnd() < 1 / (doors - 1)) {
+      kept++;
+      swap++;
+    }
+  }
+  return { kept, stay, swap };
+}
+
 /** A batch of rounds played both ways: a random first pick, then count stay wins and switch wins. */
 export function batch(start: number, count: number, doors: number): { stay: number; swap: number } {
   let stay = 0;

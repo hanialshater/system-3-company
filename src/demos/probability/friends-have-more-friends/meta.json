@@ -42,12 +42,10 @@
     },
     {
       "id": "probability.friends-have-more-friends.c3",
-      "text": "Wherever friend counts differ, a randomly chosen friend has more friends on average than a randomly chosen person.",
+      "text": "In any connected network where friend counts differ, a friend picked as a random person's random friend has more friends on average than a randomly chosen person.",
       "support": "source",
-      "source": "S. L. Feld (1991), Why your friends have more friends than you do, American Journal of Sociology 96(6): 1464-1477. Feld's statement is for the mean over friendship links (sum of d^2 / sum of d >= mean d, equality only when all counts are equal); the pick-a-person-then-a-friend average used here is also at least the mean, by a pairing argument: each friendship contributes d_i/d_j + d_j/d_i >= 2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "S. L. Feld (1991), Why your friends have more friends than you do, American Journal of Sociology 96(6): 1464-1477. Feld's statement is for the mean over friendship links (sum of d^2 / sum of d >= mean d, equality only when all counts are equal); the pick-a-person-then-a-friend average used here is also at least the mean, by a pairing argument: each friendship contributes d_i/d_j + d_j/d_i >= 2. | CLAIM FIX 2026-10-13 (revision v2): Was 'Wherever friend counts differ, a randomly chosen friend has more friends on average than a randomly chosen person.' (disputed by the fact-checker: 'wherever friend counts differ' is false for disconnected networks such as a separate triangle plus a separate four-person group (2.571 vs 2.571))",
+      "status": "unverified"
     },
     {
       "id": "probability.friends-have-more-friends.c4",
@@ -60,12 +58,10 @@
     },
     {
       "id": "probability.friends-have-more-friends.c5",
-      "text": "With the stage's way of picking (a random person, then one of their friends at random), the friend has at least as many friends on average as a random person, with equality only if every pair of friends has the same friend count; so the reveal's \"wherever friend counts differ\" is strictly true in any connected network but not in, for example, a separate triangle and a separate four-person group where everyone knows all the others.",
+      "text": "With the stage's way of picking (a random person, then one of their friends at random), the friend has at least as many friends on average as a random person, with equality only if every pair of friends has the same friend count; so in any connected network where friend counts differ it is strictly more, but not in, for example, a separate triangle and a separate four-person group where everyone knows all the others.",
       "support": "derivation",
-      "source": "Average = (1/n) x sum over friendships of (d_i/d_j + d_j/d_i) >= (1/n) x 2m = mean friend count, equality iff d_i = d_j on every friendship. Counterexample re-computed in artifacts/scratch/fc-problife/a10b.mjs: triangle + K4 gives 2.571 for both. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Average = (1/n) x sum over friendships of (d_i/d_j + d_j/d_i) >= (1/n) x 2m = mean friend count, equality iff d_i = d_j on every friendship. Counterexample re-computed in artifacts/scratch/fc-problife/a10b.mjs: triangle + K4 gives 2.571 for both. Added by fact-checker 2026-10-13; needs an independent check. | CLAIM FIX 2026-10-13 (revision v2): Was 'With the stage's way of picking (a random person, then one of their friends at random), the friend has at least as many friends on average as a random person, with equality only if every pair of friends has the same friend count; so the reveal's \"wherever friend counts differ\" is strictly true in any connected network but not in, for example, a separate triangle and a separate four-person group where everyone knows all the others.' (reveal now says 'in any connected network where friend counts differ')",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,5 +85,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

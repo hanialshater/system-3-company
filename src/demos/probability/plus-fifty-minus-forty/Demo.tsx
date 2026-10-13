@@ -12,7 +12,7 @@ import { Control, Readout, Row } from "@/kit/controls";
 import { DOWN, PLAYERS, ROUNDS, START, UP, expected, headsToGain, meanFactor, pAtLeast, paths, stats, typicalFactor } from "./model";
 import s from "./styles.module.css";
 
-const MILESTONES = ["round-100", "lines"] as const;
+const MILESTONES = ["round-100", "lines", "pair"] as const;
 const K_GAIN = headsToGain(); // 56
 const P_GAIN = pAtLeast(K_GAIN); // 13.6%
 const GAIN_PCT = Math.round((meanFactor - 1) * 100); // 5
@@ -44,6 +44,7 @@ interface State {
   t: number;
   batch: number;
   lines: boolean;
+  pair: boolean;
 }
 
 function Stage({ locked, interact, st, set }: { locked: boolean; interact: () => void; st: State; set: (s: State) => void }) {
@@ -63,7 +64,7 @@ function Stage({ locked, interact, st, set }: { locked: boolean; interact: () =>
   return (
     <div className={s.wrap}>
       <p className={s.chip}>
-        Toy bet: fair coin, ×{UP} or ×{DOWN} each round
+        Fair coin each round: ×{UP} or ×{DOWN}. Each gridline is 100× the one below.
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${PLAYERS} players after ${st.t} rounds; typical ${dollars(now.median)}`}>
         {TICKS.map(([v, lab]) => (
@@ -117,8 +118,26 @@ function Stage({ locked, interact, st, set }: { locked: boolean; interact: () =>
         </Control>
       </Row>
       <Row>
+        <Control
+          disabled={locked}
+          className={st.pair ? "active" : ""}
+          onClick={() => {
+            set({ ...st, pair: !st.pair });
+            if (!st.pair) reach("pair");
+          }}
+        >
+          {st.pair ? "Hide heads then tails" : "Try heads then tails"}
+        </Control>
+      </Row>
+      {st.pair && (
+        <p className={s.chip}>
+          ${START} → ×{UP} → ${START * UP} → ×{DOWN} → ${Math.round(START * UP * DOWN)}: a loss, though heads and tails
+          are equally likely.
+        </p>
+      )}
+      <Row>
         <Readout label="Round" value={st.t} />
-        <Readout label="Typical player" value={locked ? "?" : dollars(now.median)} />
+        <Readout label="Typical (median) player" value={locked ? "?" : dollars(now.median)} />
         <Readout label={`Above $${START}`} value={locked ? "?" : `${now.above} of ${PLAYERS}`} />
       </Row>
     </div>
@@ -126,7 +145,7 @@ function Stage({ locked, interact, st, set }: { locked: boolean; interact: () =>
 }
 
 export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
-  const [st, set] = useState<State>({ t: 0, batch: 0, lines: false });
+  const [st, set] = useState<State>({ t: 0, batch: 0, lines: false, pair: false });
   const end = stats(paths(st.batch), ROUNDS);
 
   return (
@@ -137,12 +156,12 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
         options: [`Grows about ${GAIN_PCT}% per round`, "Shrinks", "Roughly breaks even"],
         answer: 1,
       }}
-      exploreHint="Play to round 100, then show the average and the typical player."
+      exploreHint="Play to round 100, show the average and typical player, and try heads then tails."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            Your typical player <strong>shrank</strong> from ${START} to {dollars(end.median)}, and only {end.above} of {PLAYERS}{" "}
+            Your typical player (the median: half the players ended below) <strong>shrank</strong> from ${START} to {dollars(end.median)}, and only {end.above} of {PLAYERS}{" "}
             ended above the start. Yet the average of the {PLAYERS} was {dollars(end.mean)}: a few lucky players carried it.
           </p>
           <p>
@@ -151,8 +170,8 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
             up ahead; only {Math.round(P_GAIN * 100)}% of players get them.
           </p>
           <p className="muted">
-            Over every possible player the average is ${Math.round(expected(ROUNDS)).toLocaleString("en-US")}, but almost
-            nobody lives on the average.
+            Averaged over every possible player the result would be ${Math.round(expected(ROUNDS)).toLocaleString("en-US")}, far
+            above any {PLAYERS} you drew: it rests on rare, huge winners. Almost nobody lives on that average.
           </p>
         </>
       )}

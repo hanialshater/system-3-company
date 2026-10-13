@@ -79,7 +79,7 @@ function Stage({ locked, interact, n, setN }: { locked: boolean; interact: () =>
         </Control>
       </Row>
       <Row>
-        <Readout label="Everyone's average" value={`${MEAN.toFixed(1)} friends`} />
+        <Readout label="Everyone's average" value={locked ? "?" : `${MEAN.toFixed(1)} friends`} />
         <Readout label={`Friend picked (${n})`} value={locked || !n ? "?" : `${average(shown).toFixed(2)} friends`} />
         <Readout label="Friend was the hub" value={locked || !n ? "?" : `${toHub} of ${n}`} />
       </Row>
@@ -114,7 +114,10 @@ export default function FriendsHaveMoreFriends({ slug }: { slug: string }) {
             {n} picked friends were the hub: 0.2 × 1 + 0.8 × 4 = 3.4. Popular people sit on many friend lists, so a friend
             you pick tends to be a popular one.
           </p>
-          <p className="muted">Real networks are less extreme, but wherever friend counts differ, your friends have more friends than you, on average.</p>
+          <p className="muted">
+            This is a five-person toy. Real networks are less extreme, but in any connected network where friend counts
+            differ, a friend picked this way has more friends than a person picked at random, on average.
+          </p>
         </>
       )}
     >

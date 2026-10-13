@@ -8,11 +8,19 @@
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import { meanAbsGap, runs, share } from "./model";
 import s from "./styles.module.css";
 
 const RUN = runs();
 const STEPS = [10, 100, 1000, 10000];
+const MILESTONES = ["gap-100", "gap-1000", "gap-10000", "share-10000"] as const;
+const fmt = (k: number) => k.toLocaleString("en-US");
+/** typical (theory) average |heads - tails| after k fair flips: sqrt(2k/pi) */
+const typical = (k: number) => {
+  const v = Math.sqrt((2 * k) / Math.PI);
+  return v < 10 ? v.toFixed(1) : String(Math.round(v));
+};
 const W = 340;
 const H = 220;
 const L = 40;
@@ -48,7 +56,6 @@ export default function CoinGap({ slug }: { slug: string }) {
   const lo = Math.min(...shares);
   const hi = Math.max(...shares);
   const ticks = view === "gap" ? [-200, -100, 0, 100, 200] : [0, 0.25, 0.5, 0.75, 1];
-  const fmt = (k: number) => k.toLocaleString("en-US");
 
   return (
     <Lesson
@@ -59,18 +66,19 @@ export default function CoinGap({ slug }: { slug: string }) {
         options: ["Under 5", "About 80", "About 1,000"],
         answer: 1,
       }}
-      exploreHint="Go up to 10,000 flips, then switch to the heads share."
-      minInteractions={2}
+      exploreHint="Step up through 100, 1,000 and 10,000 flips, then switch to the heads share."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            After 10,000 flips your 20 runs were on average <strong>{meanAbsGap(RUN, 10000).toFixed(0)}</strong> apart
-            (the exact average is about 80). The gap does not shrink: it typically grows like the square root of the
-            number of flips, from about 2.5 at 10 flips to 8 at 100, 25 at 1,000 and 80 at 10,000.
+            Your 20 runs were on average {STEPS.map((k) => meanAbsGap(RUN, k).toFixed(1)).join(", ")} apart after{" "}
+            {STEPS.map(fmt).join(", ")} flips: <strong>the gap did not shrink</strong>. Across many runs it typically
+            grows like the square root of the flips: about {STEPS.map(typical).join(", ")}. (Twenty runs wobble around
+            that.)
           </p>
           <p>
-            But 80 out of 10,000 is tiny. The heads share squeezes toward 50%: every run ended between{" "}
-            {(Math.min(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}% and{" "}
+            But {typical(10000)} out of 10,000 is tiny. The heads share squeezes toward 50%: in these 20 runs it ended
+            between {(Math.min(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}% and{" "}
             {(Math.max(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}%. The law of large numbers is about the
             share, not the count.
           </p>
@@ -78,6 +86,8 @@ export default function CoinGap({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => (
         <div className={s.wrap}>
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${view === "gap" ? "Heads minus tails" : "Heads share"} for 20 runs of ${n} flips`}>
             {ticks.map((t) => (
@@ -110,7 +120,10 @@ export default function CoinGap({ slug }: { slug: string }) {
                 disabled={locked || k === n}
                 onClick={() => {
                   setN(k);
-                  if (k === 10000) interact();
+                  if (view === "gap" && k === 100) reach("gap-100");
+                  if (view === "gap" && k === 1000) reach("gap-1000");
+                  if (view === "gap" && k === 10000) reach("gap-10000");
+                  if (view === "share" && k === 10000) reach("share-10000");
                 }}
               >
                 {fmt(k)}
@@ -119,18 +132,22 @@ export default function CoinGap({ slug }: { slug: string }) {
             <Control
               disabled={locked}
               onClick={() => {
-                setView((v) => (v === "gap" ? "share" : "gap"));
-                if (n === 10000) interact();
+                const next = view === "gap" ? "share" : "gap";
+                setView(next);
+                if (next === "share" && n === 10000) reach("share-10000");
               }}
             >
               {view === "gap" ? "Show heads share" : "Show the gap"}
             </Control>
           </Row>
+          <p className={s.key}>Gap = heads minus tails. Share = heads ÷ flips.</p>
           <Row>
-            <Readout label="Average gap" value={locked ? "?" : avgGap.toFixed(0)} />
+            <Readout label="Average gap" value={locked ? "?" : avgGap.toFixed(1)} />
             <Readout label="Heads share, all runs" value={locked ? "?" : `${(lo * 100).toFixed(1)}–${(hi * 100).toFixed(1)}%`} />
           </Row>
         </div>
+          )}
+        </Milestones>
       )}
     </Lesson>
   );
