@@ -1,0 +1,65 @@
+{
+  "slug": "one-bad-label-knn",
+  "title": "One wrong label, five neighbours",
+  "hook": "The closest example is labelled wrong. Should you trust it, or ask around?",
+  "domain": "ai",
+  "concept": "nearest-neighbours",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "classifying something by what it most resembles"
+    ],
+    "doesNotKnow": [
+      "how k-nearest neighbours votes",
+      "how the choice of k handles a mislabelled neighbour"
+    ]
+  },
+  "misconception": "Looking at only the single closest example is the most accurate way to classify.",
+  "objective": "The learner can explain that voting among several nearest neighbours outvotes a single bad label, and that too large a k gives every point the overall majority.",
+  "claims": [
+    {
+      "id": "ai.one-bad-label-knn.c1",
+      "text": "At the new dot, the single nearest dot is the mislabelled orange one, so k = 1 gives orange; its 5 nearest dots are 4 blue and 1 orange, so k = 5 gives blue (k = 3: 2 blue, 1 orange; k = 7: 6 blue, 1 orange).",
+      "support": "derivation",
+      "source": "Fixed layout in Demo.tsx (DOTS, QUERIES[0] = (3.2, 3.0)); Euclidean distances 0.28, 0.72, 1.00, 1.13, 1.17, 1.60, 1.81 to the seven nearest. Reproduced by vote() in Demo.tsx. The layout is invented for the toy.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-bad-label-knn.c2",
+      "text": "With k = 13 every dot votes (6 blue, 7 orange), so every new dot is labelled orange wherever it sits.",
+      "support": "derivation",
+      "source": "When k equals the number of training points the vote is the same for every query: the overall majority class. Toy counts from DOTS in Demo.tsx (the bad label counts as orange).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-bad-label-knn.c3",
+      "text": "Small k follows noise in the labels; larger k smooths the boundary, and too large a k blurs real boundaries.",
+      "support": "source",
+      "source": "About real methods: Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, §2.3.2 and §13.3 (k-nearest-neighbour classifiers, effect of k).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A photo classifier labels a new photo by its single most similar training photo, and a few training photos are mislabelled. What change makes one bad label matter less?",
+    "options": [
+      "Let the 5 or so most similar photos vote",
+      "Use only the most similar photo, but measure similarity more carefully",
+      "Let every training photo vote"
+    ],
+    "answer": 0,
+    "why": "A handful of neighbours outvotes one bad label. Letting every photo vote gives every new photo the most common label, which erases the real differences."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
