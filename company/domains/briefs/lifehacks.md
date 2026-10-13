@@ -12,6 +12,7 @@ Ranked briefs for `tools/claim.mjs next lifehacks`, in the same format as the ot
 Backlog concepts with no brief yet (all need safety review): salt-lowers-freezing, resting-meat, two-minute-rule (evidence is weak; may be retired as a concept), standby-power-cost, lever-opens-jars, packing-rolling-vs-folding, unit-price-shopping, viral-hack-debunk, sleep-caffeine-half-life, boil-less-water.
 
 ### 1. towel-spread-dries-first · concept: surface-area-drying · intro · demand 3
+Safety: pass (company/reviews/towel-spread-dries-first/2026-10-13-safety.md)
 - Learner knows: wet things dry in air; a breeze helps. / does not know: that water leaves only from a surface that touches air, so drying time follows exposed area, not the amount of cloth.
 - Misconception: It is the same towel and the same water, so folded or spread it dries in about the same time.
 - Prediction: "Two identical wet bath towels hang in the same room. One is spread flat; it dries in about 3 hours. The other hangs folded in quarters. How long does it take?" options: About 3 hours: same water, same air / About 6 hours / About 12 hours (answer: C). Check (node): a 0.7 x 1.4 m towel spread has two faces, 1.96 m^2 of exposed area. Folded in quarters the stack shows 2 x 0.245 = 0.49 m^2 plus about 0.03 m^2 of edges, so about 3.8 times less area. In the constant-rate drying model the time scales with water mass / exposed area: 3 h x 3.8 ≈ 11.4 h, "about 12 hours". The real folded towel is slower still, because the inner layers must wick water to the outside.
@@ -24,6 +25,7 @@ Backlog concepts with no brief yet (all need safety review): salt-lowers-freezin
 - Illustrations: hero 1:1 (request `towel-spread-dries-first`); before/after pair 4:3 (request `towel-spread-dries-first-pair`).
 
 ### 2. spaced-beats-cram · concept: spaced-repetition-study · intro · demand 3
+Safety: pass (company/reviews/spaced-beats-cram/2026-10-13-safety.md)
 - Learner knows: you forget things over time; reviewing helps. / does not know: the spacing effect, which says that the same study time split across days is remembered much longer than one block.
 - Misconception: Cramming works: it got me through tomorrow's test, so it must be the efficient way to learn.
 - Prediction: "Same 3 hours of study. Plan A: all 3 hours the night before. Plan B: one hour on three different days. A month later, which plan remembers more?" options: Plan A / Plan B / About the same: same 3 hours (answer: B). Check: across hundreds of experiments, spaced practice beats massed practice at long retention intervals for the same total time (Cepeda et al. 2006). The twist the stage shows: on the morning after, Plan A can look as good or better.
@@ -36,6 +38,7 @@ Backlog concepts with no brief yet (all need safety review): salt-lowers-freezin
 - Illustrations: hero 1:1 (request `spaced-beats-cram`).
 
 ### 3. wobbly-table-quarter-turn · concept: wobbly-table-turn · core · demand 2
+Safety: pass with changes (company/reviews/wobbly-table-quarter-turn/2026-10-13-safety.md)
 - Learner knows: a four-legged table rocks on an uneven floor; people fold a napkin under a leg. / does not know: that rotating a table with four equal legs on a continuous floor always finds a position where all four feet touch, within a quarter turn (an intermediate value argument).
 - Misconception: A rocking table needs a wedge or a new spot; turning it in place just moves the wobble around.
 - Prediction: "A square café table with four equal legs rocks on bumpy paving. Without a wedge or moving it, what fixes it?" options: Nothing: it needs a wedge / Turn it in place, less than a quarter turn / Only a full half turn can help (answer: B). Check: put three feet on the ground and measure the fourth foot's height above (+) or below (−) the ground. A 90° turn swaps the roles of the diagonals, so the sign flips; with a continuous floor the gap passes through zero somewhere between 0° and 90°.
@@ -48,6 +51,7 @@ Backlog concepts with no brief yet (all need safety review): salt-lowers-freezin
 - Illustrations: hero 1:1 (request `wobbly-table-quarter-turn`).
 
 ### 4. square-bow-stays-tied · concept: shoelace-square-bow · intro · demand 2
+Safety: pass (company/reviews/square-bow-stays-tied/2026-10-13-safety.md)
 - Learner knows: how to tie a bow; bows come undone when you walk or run. / does not know: that a shoelace bow is either a square (reef) knot or a granny knot depending on the direction of the second wrap, that the two look alike, and that the granny version fails much sooner.
 - Misconception: Laces come undone because the bow was not pulled tight enough, or the laces are slippery; the fix is a double knot.
 - Prediction: "Two bows, same laces, pulled equally tight. Bow A sits across the shoe. Bow B twists so its loops point toe to heel. After a run, which is more likely still tied?" options: Bow A / Bow B / No difference: same laces, same tension (answer: A). Check: a bow that sits along the shoe is the tell-tale sign of the granny-knot version; the square-knot version sits across (Fieggen's shoelace guide; Daily-Diamond et al. 2017 tested both and found the square-based bow the stronger).
@@ -60,6 +64,7 @@ Backlog concepts with no brief yet (all need safety review): salt-lowers-freezin
 - Illustrations: hero 1:1 (request `square-bow-stays-tied`); comparison pair 4:3, square bow vs granny bow (request `square-bow-stays-tied-pair`). The knot geometry is accuracy-critical.
 
 ### 5. long-cord-knots-itself · concept: cord-tangle-length · intro · demand 2
+Safety: pass (company/reviews/long-cord-knots-itself/2026-10-13-safety.md)
 - Learner knows: cords and cables tangle in bags and drawers. / does not know: that the chance of a real knot rises steeply with length and then levels off, and that a knot needs a free end to pass through a loop.
 - Misconception: Tangling is bad luck; a longer cord is about as likely to knot as a short one, or always knots.
 - Prediction: "A string is tumbled in a box for 10 seconds, then taken out. Shorter than half a metre, it almost never comes out knotted. What about a 3 m string?" options: Still rarely, about 1 time in 20 / About half the time / Nearly every time (answer: B). Check: in Raymer & Smith's 3,415 tumbling trials, knots almost never formed below about 0.46 m, the probability rose steeply with length, and for long strings it levelled off at about 50% (to be confirmed against the paper's figure by the fact-checker).
