@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 90px; }
+.bar { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.half { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.third { fill: color-mix(in srgb, var(--good) 50%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.cut { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 4 2; }
+.wrong { stroke: var(--bad); stroke-width: 3; }
+.wrongLab { fill: var(--bad); font-size: 12px; font-weight: 800; text-anchor: middle; }
+.sumLab { fill: var(--good); font-size: 13px; font-weight: 900; text-anchor: middle; }
+.lab { fill: var(--fg); font-size: 13px; font-weight: 800; text-anchor: middle; }
+.end { fill: var(--muted); font-size: 11px; font-weight: 700; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.chips :global(.control) { padding: 9px 2px; min-width: 0; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }

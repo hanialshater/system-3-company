@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 38dvh; }
+.grid { stroke: var(--line); stroke-width: 0.6; }
+.tick { fill: var(--muted); font-size: 10px; font-weight: 700; text-anchor: middle; }
+.sq { fill: color-mix(in srgb, var(--domain) 45%, transparent); stroke: var(--fg); stroke-width: 2; }
+.over { fill: color-mix(in srgb, var(--bad) 30%, transparent); stroke: var(--fg); stroke-width: 2; }
+.target { fill: none; stroke: var(--good); stroke-width: 2.4; stroke-dasharray: 5 3; }
+.targetLab { fill: var(--good); font-size: 12px; font-weight: 800; text-anchor: end; }
+.inside { fill: var(--fg); font-size: 16px; font-weight: 800; text-anchor: middle; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.4em; font-variant-numeric: tabular-nums; }
+.chips { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+.chips :global(.control) { padding: 8px 0; min-width: 0; font-size: 0.78rem; white-space: nowrap; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
