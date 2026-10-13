@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.grid {
+  display: grid; grid-template-columns: 30px repeat(8, minmax(24px, 34px)) 44px; max-width: 100%; gap: 3px; align-items: center;
+  justify-items: center; font-variant-numeric: tabular-nums;
+}
+.lab { font-size: 0.72rem; color: var(--muted); font-weight: 700; justify-self: end; }
+.w { font-size: 0.66rem; color: var(--muted); }
+.top { color: var(--bad); font-weight: 800; }
+.fixed {
+  width: 100%; text-align: center; font-family: ui-monospace, monospace; font-weight: 700; font-size: 1.05rem;
+  padding: 3px 0; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line);
+}
+.grid :global(.control).bit { width: 100%; min-height: 32px; padding: 0; font-family: ui-monospace, monospace; font-size: 1.05rem; }
+.grid :global(.control).on { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 25%, var(--bg-2)); }
+.val { font-weight: 800; font-size: 0.9rem; justify-self: start; white-space: nowrap; }
+.good { color: var(--good); }
+.carry { margin: 0; font-size: 0.78rem; color: var(--muted); }

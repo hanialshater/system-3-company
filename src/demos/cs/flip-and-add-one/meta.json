@@ -1,0 +1,73 @@
+{
+  "slug": "flip-and-add-one",
+  "title": "Make −5 out of 5",
+  "hook": "Is a negative number just the positive one with a minus-sign bit stuck on the front?",
+  "domain": "cs",
+  "concept": "twos-complement",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading 8-bit signed numbers with the top bit worth −128 (wheel-of-negatives)",
+      "binary addition with carries"
+    ],
+    "doesNotKnow": [
+      "how to get the pattern for −5 from the pattern for 5",
+      "why that lets a machine subtract by adding"
+    ]
+  },
+  "misconception": "Negative numbers are stored as the positive pattern with a minus-sign bit.",
+  "objective": "The learner can explain that flipping every bit of 5 (00000101 → 11111010) and adding 1 gives 11111011, which reads −5, and that adding it to 5 gives 1 00000000, so the carry drops and the result is 0: subtraction becomes addition.",
+  "claims": [
+    {
+      "id": "cs.flip-and-add-one.c1",
+      "text": "Flipping every bit of 00000101 gives 11111010 (−6); adding 1 gives 11111011, which reads −128 + 123 = −5.",
+      "support": "derivation",
+      "source": "−128 + 64 + 32 + 16 + 8 + 2 + 1 = −5; 11111010 = −128 + 122 = −6. Builder checked in Node: (~5 + 1) & 0xff = 251, 251 − 256 = −5. Demo.tsx flip(), NEG, signed().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.flip-and-add-one.c2",
+      "text": "00000101 + 11111011 = 1 00000000: the carry falls off the end of 8 bits and leaves 0.",
+      "support": "derivation",
+      "source": "5 + 251 = 256 = 1 00000000 in binary; keeping 8 bits gives 0 (builder computed in Node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.flip-and-add-one.c3",
+      "text": "So a machine can subtract by adding: a − b is a + (flip b, add 1), using the same adder.",
+      "support": "source",
+      "source": "Patterson and Hennessy, Computer Organization and Design, 2.4 (negation shortcut: invert and add 1) and 3.2 (subtraction via addition of the two's complement).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.flip-and-add-one.c4",
+      "text": "A minus-sign bit would not work here: 10000101 reads −123 in two's complement, and adding it to 5 does not give 0.",
+      "support": "derivation",
+      "source": "−128 + 4 + 1 = −123; 5 + 133 = 138 = 10001010 ≠ 0 (builder computed in Node).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In 8 bits, 12 is 00001100. Which pattern is −12?",
+    "options": [
+      "10001100",
+      "11110011",
+      "11110100"
+    ],
+    "answer": 2,
+    "why": "Flip every bit (11110011) and add 1: 11110100. Check: 00001100 + 11110100 = 1 00000000, and dropping the carry leaves 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

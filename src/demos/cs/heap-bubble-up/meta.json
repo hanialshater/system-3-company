@@ -1,0 +1,73 @@
+{
+  "slug": "heap-bubble-up",
+  "title": "A new smallest item arrives",
+  "hook": "The smallest item must always sit on top. Must you re-sort everything to keep it there?",
+  "domain": "cs",
+  "concept": "heap-priority-queue",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a tree as parents and children",
+      "an array with numbered positions"
+    ],
+    "doesNotKnow": [
+      "how a min-heap keeps its smallest item on top cheaply",
+      "that a heap can be stored as an array"
+    ]
+  },
+  "misconception": "To keep the smallest item on top after each insert you must re-sort everything.",
+  "objective": "The learner can explain that inserting into a min-heap puts the item at the end and swaps it with its parent while smaller, so [2, 5, 3, 9, 6] plus 1 becomes [1, 5, 2, 9, 6, 3] after 2 swaps, and an insert costs at most the tree's height, about log2 n swaps.",
+  "claims": [
+    {
+      "id": "cs.heap-bubble-up.c1",
+      "text": "In a min-heap every parent is smaller than (or equal to) its children, so the smallest item is on top.",
+      "support": "source",
+      "source": "Cormen et al., Introduction to Algorithms (3rd ed.), 6.1 (min-heap property A[PARENT(i)] <= A[i]). The stage says 'smaller'; all values here are distinct.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.heap-bubble-up.c2",
+      "text": "Inserting 1 into [2, 5, 3, 9, 6]: 1 swaps with 3 (index 5 to 2), then with 2 (index 2 to 0), giving [1, 5, 2, 9, 6, 3]. 5, 9 and 6 never move.",
+      "support": "simulation",
+      "source": "Demo.tsx FINAL, computed with the same bubble() the stage uses (parent of i = floor((i - 1) / 2)); builder re-ran the swaps in Node.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.heap-bubble-up.c3",
+      "text": "Each swap climbs one level, so an insert costs at most the tree's height, about log2 n swaps: 2 for 6 items, at most 19 for a million.",
+      "support": "source",
+      "source": "CLRS 6.1 (height of an n-element heap is floor(log2 n)) and 6.5 (MIN-HEAP-INSERT / HEAP-DECREASE-KEY run in O(log n)). floor(log2 6) = 2, floor(log2 1,000,000) = 19 (computed in Node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.heap-bubble-up.c4",
+      "text": "A heap can be stored as an array where the parent of index i is (i − 1)/2 rounded down.",
+      "support": "convention",
+      "source": "Zero-based layout; CLRS 6.1 uses one-based PARENT(i) = floor(i / 2), equivalent after shifting indices.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A min-heap holds 1,000 items. You insert a new item smaller than all of them. About how many swaps does it take to reach the top?",
+    "options": [
+      "About 9",
+      "About 500",
+      "About 1,000"
+    ],
+    "answer": 0,
+    "why": "It climbs one level per swap, and a 1,001-item heap is floor(log2 1,001) = 9 levels tall, so at most 9 swaps."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
