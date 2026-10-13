@@ -1,0 +1,73 @@
+{
+  "slug": "ten-test-cases",
+  "title": "Ten test cases, one noisy score",
+  "hook": "A model scores 6 out of 10 on fresh cases. Is it a 60% model?",
+  "domain": "ai",
+  "concept": "train-test-split",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model should be tested on held-out data",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "that a small test set gives a noisy score",
+      "that the noise shrinks only with more test cases"
+    ]
+  },
+  "misconception": "A good (or bad) score on a handful of held-out cases proves how good the model is.",
+  "objective": "The learner can explain that a test score is itself a random measurement, that on 10 cases an 80% model often scores far from 80%, and that more held-out cases are what make the score trustworthy.",
+  "claims": [
+    {
+      "id": "ai.ten-test-cases.c1",
+      "text": "The toy model is right on each fresh case with probability 0.8, independently; one test draws 10 (or 100, or 1,000) cases and counts how many it gets right.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (TRUE_ACC, runTest). Draws use mulberry32 seed 1, untuned, restarted when the test size changes (the learner's 10-case runs are kept and the stream continues after them); the counts on stage depend on how many tests the learner runs.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ten-test-cases.c2",
+      "text": "For a model truly right 80% of the time, a test of 10 cases gives 6 or fewer right with probability 12.1%, about 1 in 8.",
+      "support": "derivation",
+      "source": "Binomial(10, 0.8): P(X ≤ 6) = 0.1209 (exact sum; computed by binomCdf(10, 0.8, 6) in Demo.tsx and by an independent script by the category manager).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ten-test-cases.c3",
+      "text": "The score's typical spread is about 12.6 points either way at 10 cases and about 1.3 points at 1,000 cases.",
+      "support": "derivation",
+      "source": "Standard deviation of a proportion: 100 × √(0.8 × 0.2 / n) = 12.65 at n = 10 and 1.26 at n = 1,000 (spreadPts in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.ten-test-cases.c4",
+      "text": "Only more held-out cases shrink the noise in a test score.",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.2 (test error estimation needs enough held-out data). Within the toy the spread depends only on n (derivation above); 'only' is about the score of a fixed model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two chatbots are each tried on 10 questions. Bot A gets 9 right, bot B gets 7. What can you conclude?",
+    "options": [
+      "Not much: on 10 questions scores that far apart happen by chance",
+      "A is clearly the better bot",
+      "B is broken"
+    ],
+    "answer": 0,
+    "why": "A score on 10 cases is a noisy measurement: an 80% model lands anywhere from 6 to 10 quite often. To tell two models apart you need many more test cases."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "penalty-on-wiggle",
+  "title": "Fit worse on purpose",
+  "hook": "A curve hits every training dot. Why would you make it miss?",
+  "domain": "ai",
+  "concept": "regularisation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a too-flexible curve can overfit its training points",
+      "that held-out points check a model"
+    ],
+    "doesNotKnow": [
+      "the standard cure of penalising large coefficients (ridge)",
+      "that the cure makes the training fit worse"
+    ]
+  },
+  "misconception": "A model that fits its training data worse must be a worse model.",
+  "objective": "The learner can explain that a penalty on coefficient size gives up some training fit for a calmer curve, that held-out error usually improves at a moderate penalty, and that too strong a penalty loses again.",
+  "claims": [
+    {
+      "id": "ai.penalty-on-wiggle.c1",
+      "text": "The toy fits a degree-7 polynomial to 8 training dots drawn from sin(0.8πx) plus noise (sd 0.3) at evenly spaced x in [-1, 1]; 40 held-out dots come from the same noisy curve. 'Miss' is the root-mean-square vertical distance from dots to curve.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (makeData, rms). Data set 1 is mulberry32 seed 1, the first seed, untuned; 'New data' steps through seeds 2, 3, ...",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.penalty-on-wiggle.c2",
+      "text": "Ridge chooses the curve that minimises the sum of squared misses plus λ times the sum of squared coefficients (the toy leaves the intercept unpenalised).",
+      "support": "source",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §3.4.1 (ridge regression, intercept not penalised). Implemented by fit() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.penalty-on-wiggle.c3",
+      "text": "With no penalty the degree-7 curve passes through all 8 training dots (miss 0); any penalty above 0 moves it off them, and the training miss never falls as λ grows.",
+      "support": "derivation",
+      "source": "8 points, 8 coefficients: the interpolating polynomial has zero training error. Ridge training error is non-decreasing in λ (standard result; the penalised solution trades residual for coefficient size). Checked in the toy: training miss non-decreasing across the 7 λ values in all seeds 1-500 (script reproducing Demo.tsx). Data set 1: 0, 0.084, 0.128, 0.177, 0.260, 0.363, 0.502.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.penalty-on-wiggle.c4",
+      "text": "In 490 of 500 toy data sets a moderate penalty (0.0001 to 1) beat no penalty on the held-out dots; the strongest penalty (10) did worse than the best moderate one in all 500.",
+      "support": "simulation",
+      "source": "Seeds 1-500 of the toy, computed in the reveal by the same makeData/fit/rms that draw the stage, and by a separate node script (builder's; the fact-checker should re-run independently). Data set 1 held-out miss: 0.444 at λ = 0, 0.377 at λ = 0.01, 0.725 at λ = 10.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Model A fits its training data perfectly. Model B, trained with a penalty on complexity, misses some training points. Which is likely better on new data?",
+    "options": [
+      "B, if the penalty is moderate",
+      "A, because it has zero training error",
+      "They will always tie"
+    ],
+    "answer": 0,
+    "why": "A perfect training fit often bends to fit noise. A moderate penalty trades a little training accuracy for a calmer model that usually does better on held-out data; too strong a penalty underfits."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

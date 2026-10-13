@@ -1,0 +1,87 @@
+{
+  "slug": "pixel-nudges-add-up",
+  "title": "Invisible nudges, new label",
+  "hook": "Change every pixel by 1%, too little to see. Can the model's answer change?",
+  "domain": "ai",
+  "concept": "adversarial-examples",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a classifier turns an input into a label",
+      "that a decision has a threshold or boundary"
+    ],
+    "doesNotKnow": [
+      "why a barely changed input can flip a label",
+      "that many tiny changes add up across many inputs"
+    ]
+  },
+  "misconception": "Changes too small to see cannot change a model's answer.",
+  "objective": "The learner can explain that a model that adds up many inputs can be pushed across its threshold by a tiny change to each one, and that the more inputs there are, the smaller each change needs to be.",
+  "claims": [
+    {
+      "id": "ai.pixel-nudges-add-up.c1",
+      "text": "The toy classifier adds 100 pixel values (each weight 1) and says 'cat' if the sum is above 50. The toy image sums to 50.5.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (N, START_SUM, THRESHOLD, makeImage). The grey pattern comes from mulberry32 seed 7 (untuned; it only sets the shades, the sum is fixed to 50.5 by construction).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.pixel-nudges-add-up.c2",
+      "text": "Darkening all 100 pixels by 0.01 lowers the sum by 100 × 0.01 = 1.0, twice the 0.5 margin, to 49.5, which is not above 50, so the label flips to 'not cat'.",
+      "support": "derivation",
+      "source": "Arithmetic; reproduced by sumAfter(100, 10) = 49500 thousandths in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.pixel-nudges-add-up.c3",
+      "text": "With all 100 pixels a nudge of 0.005 (0.5%) each is already enough (sum exactly 50.0, not above 50); with 50 pixels it takes 0.01 (1%) each.",
+      "support": "derivation",
+      "source": "The flip needs count × eps ≥ 0.5: eps = 0.5 / 100 = 0.005 and 0.5 / 50 = 0.01. Reproduced by sumAfter(100, 5) = 50000 and sumAfter(50, 10) = 50000 in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.pixel-nudges-add-up.c4",
+      "text": "A 1% change is about 2.5 grey levels out of 255, hard to spot by eye.",
+      "support": "source",
+      "source": "0.01 × 255 = 2.55 (arithmetic). On visibility: Goodfellow, Shlens & Szegedy 2015 (ICLR, arXiv:1412.6572) describe a perturbation of 0.007, the size of the smallest bit of an 8-bit image, as imperceptible. The perceptual claim is about humans in general, not measured here.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.pixel-nudges-add-up.c5",
+      "text": "A 224 × 224 colour image has 150,528 inputs; a margin of 0.5 spread over them needs about 0.000003 per input.",
+      "support": "derivation",
+      "source": "224 × 224 × 3 = 150,528; 0.5 / 150,528 = 3.3 × 10⁻⁶. Applies to the toy's weight-1 adding rule, not to any particular real model.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.pixel-nudges-add-up.c6",
+      "text": "Real image classifiers have been fooled by changes too small to see, and the adding-up of many small changes across many inputs is one explanation offered.",
+      "support": "source",
+      "source": "About real systems, from papers: Szegedy et al. 2014, 'Intriguing properties of neural networks' (ICLR, arXiv:1312.6199); Goodfellow, Shlens & Szegedy 2015, 'Explaining and harnessing adversarial examples' (ICLR, arXiv:1412.6572), the linear explanation.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A spam filter adds up small scores for hundreds of words. A spammer swaps many words for near-synonyms, each worth a tiny bit less. Can this get the email through?",
+    "options": [
+      "Yes: many tiny drops can add up past the threshold",
+      "No: each change is too small to matter",
+      "Only if one swapped word is a strong spam signal"
+    ],
+    "answer": 0,
+    "why": "A model that sums many inputs responds to the total change. Small changes in many places add up, so no single change needs to be noticeable."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "momentum-sweet-spot",
+  "title": "More momentum, faster descent?",
+  "hook": "Letting the ball keep its speed gets it downhill faster. Can you have too much?",
+  "domain": "ai",
+  "concept": "momentum",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that gradient descent steps downhill on a loss surface",
+      "that the step size matters"
+    ],
+    "doesNotKnow": [
+      "that remembering previous steps (momentum) speeds descent along a valley",
+      "that too much momentum overshoots and slows it down again"
+    ]
+  },
+  "misconception": "More momentum is always faster.",
+  "objective": "The learner can explain that momentum smooths the zigzag and speeds progress along a long valley, but that too much carries the ball past the bottom repeatedly, so there is a sweet spot.",
+  "claims": [
+    {
+      "id": "ai.momentum-sweet-spot.c1",
+      "text": "The toy valley is f = ½(x² + 25y²), started at (4, 1) with step size 0.07; each step sets velocity = momentum × previous velocity − 0.07 × slope, then moves by the velocity, until within 0.1 of the bottom.",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (descend). The valley is invented; real loss surfaces are not this shape.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.momentum-sweet-spot.c2",
+      "text": "Steps to get within 0.1 of the bottom: 51 with no momentum, 21 at 0.5, 19 at 0.8, 30 at 0.9.",
+      "support": "simulation",
+      "source": "Deterministic iteration (no randomness): stepsFor() in Demo.tsx, and the category manager's script; reproduced by the builder in node with the same rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.momentum-sweet-spot.c3",
+      "text": "At momentum 0.9 the ball overshoots the bottom along the valley three times (furthest to x = -2.17) before settling.",
+      "support": "simulation",
+      "source": "Sign changes of x along descend(0.9) in Demo.tsx (builder's node script): 3 crossings, minimum x -2.17. At 0.8 there is 1 crossing (to -1.03); at 0 and 0.5 none.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.momentum-sweet-spot.c4",
+      "text": "This velocity rule is heavy-ball momentum, widely used to train neural networks.",
+      "support": "source",
+      "source": "Polyak 1964, 'Some methods of speeding up the convergence of iteration methods', USSR Computational Mathematics and Mathematical Physics 4(5); Goodfellow, Bengio & Courville 2016, Deep Learning, §8.3.2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Training is slow, so someone raises momentum from 0.8 to 0.99. Training gets slower and the loss swings up and down. Why?",
+    "options": [
+      "Too much momentum keeps carrying the model past the minimum",
+      "Momentum has no effect, so it must be the data",
+      "Higher momentum always means smaller steps"
+    ],
+    "answer": 0,
+    "why": "Momentum keeps part of the previous step's velocity. A little smooths zigzags and speeds descent; too much carries the parameters past the bottom again and again, so progress slows and the loss oscillates."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
