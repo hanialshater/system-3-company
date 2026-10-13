@@ -1,0 +1,62 @@
+{
+  "slug": "bond-seesaw",
+  "title": "A fixed payment, a moving rate",
+  "hook": "A bond promises $1,000. Why might it sell for less?",
+  "domain": "economics",
+  "concept": "bond-price-yield",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that money later is worth less than money now (present value)"],
+    "doesNotKnow": ["why a rise in market rates cuts the price of an existing bond with fixed payments"]
+  },
+  "misconception": "A bond that promises $1,000 is always worth $1,000.",
+  "objective": "The learner can say that a bond's price is its fixed payments discounted at the current market rate, so the price falls when rates rise (about $926 at 6%) and rises when they fall (about $1,081 at 4%).",
+  "claims": [
+    {
+      "id": "economics.bond-seesaw.c1",
+      "text": "A bond paying $50 a year for 10 years and then $1,000 is worth about $926.40 when the market rate is 6% a year.",
+      "support": "derivation",
+      "source": "sum over t=1..10 of 50 / 1.06^t + 1,000 / 1.06^10 = 368.00 + 558.39 = 926.40 (node; Demo.tsx price()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bond-seesaw.c2",
+      "text": "At a market rate of 4% the same bond is worth about $1,081.11.",
+      "support": "derivation",
+      "source": "Same sum at r = 0.04 = 1,081.11 (node; Demo.tsx price()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bond-seesaw.c3",
+      "text": "At a market rate of 5%, equal to the bond's own $50-on-$1,000 payment rate, the bond is worth exactly $1,000.",
+      "support": "derivation",
+      "source": "Same sum at r = 0.05 = 1,000.00 (node). Option C ($1,060) is a distractor, not a computed value.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bond-seesaw.c4",
+      "text": "A fixed payment stream is worth what it would cost today to buy the same stream at the going rate, so bond prices and market rates move in opposite directions.",
+      "support": "source",
+      "source": "Present-value pricing of fixed-income securities (Bodie, Kane and Marcus, Investments, bond pricing chapter).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.bond-seesaw.c5",
+      "text": "The lesson is a model: annual payments, no default, one constant market rate for all years. It is not advice about buying or selling bonds.",
+      "support": "convention",
+      "source": "Stage chip 'Model: yearly payments, no default, one steady rate'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Market interest rates rise. What happens to the price of a bond that already exists and pays fixed amounts?",
+    "options": ["It falls", "It rises", "It stays the same"],
+    "answer": 0,
+    "why": "Its fixed payments are worth less when new bonds pay more, so buyers pay less for it. Prices and rates move opposite ways."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
