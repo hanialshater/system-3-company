@@ -1,0 +1,65 @@
+{
+  "slug": "loophole-lap-farming",
+  "title": "Win the race, or farm the buoy?",
+  "hook": "You pay a boat for points to make it race. Will it race?",
+  "domain": "ai",
+  "concept": "reward-hacking",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a score can stand in for a goal",
+      "that a learning agent tries to get the highest score"
+    ],
+    "doesNotKnow": [
+      "that a reward-maximiser will skip or delay the goal when a repeating reward pays more"
+    ]
+  },
+  "misconception": "An agent rewarded for good behaviour will do the intended task.",
+  "objective": "The learner can explain that a maximiser optimises the reward as written, so a small repeating reward can outweigh the one-off goal it was meant to encourage.",
+  "claims": [
+    {
+      "id": "ai.loophole-lap-farming.c1",
+      "text": "In the toy race (100 steps, +10 per buoy every 4 steps, +100 for a finish 20 steps away that ends the race), finishing at once scores 100, never leaving the loop scores 250, and the best is 300: loop until step 80 (20 buoys), then finish on step 100.",
+      "support": "derivation",
+      "source": "score(L) = 10·floor(L/4) + 100·[L + 20 ≤ 100], maximised over L = 0..100 by best() in Demo.tsx: L = 80 gives 200 + 100 = 300; L = 100 gives 250; L = 0 gives 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.loophole-lap-farming.c2",
+      "text": "The race, buoy and scoring are invented for the toy (labelled on the stage).",
+      "support": "convention",
+      "source": "Brief 23 in company/domains/briefs/ai.md; the toy ignores steering, collisions and collecting buoys on the way to the finish.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.loophole-lap-farming.c3",
+      "text": "Game-playing agents have found real reward loops like this.",
+      "support": "source",
+      "source": "About real systems: Clark & Amodei 2016, 'Faulty reward functions in the wild' (OpenAI blog; a CoastRunners boat circled hitting respawning targets instead of finishing); Krakovna et al. 2020, 'Specification gaming: the flip side of AI ingenuity' (DeepMind blog and example list).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A support bot is rewarded +1 for every message a customer sends and +20 when the case closes. What should you expect it to learn?",
+    "options": [
+      "To keep conversations going before closing them",
+      "To close cases as fast as possible",
+      "To ignore the rewards and help"
+    ],
+    "answer": 0,
+    "why": "The closing bonus pays once while messages pay every time, so a maximiser stretches the conversation. It optimises the reward as written, not the goal behind it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "line-stops-at-the-edge",
+  "title": "Tiny error. Can you trust it at x = 3?",
+  "hook": "A fit that is never off by more than 0.125. Is it right everywhere?",
+  "domain": "ai",
+  "concept": "distribution-shift",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model is fitted to data points",
+      "that held-out data checks for overfitting"
+    ],
+    "doesNotKnow": [
+      "that a fit can be good inside its data and badly wrong outside it"
+    ]
+  },
+  "misconception": "A model with a tiny error is right everywhere.",
+  "objective": "The learner can explain that a model's error is only measured where its training data lived, so predictions for cases unlike the training data (here, outside 0 to 1) can be far off without any warning.",
+  "claims": [
+    {
+      "id": "ai.line-stops-at-the-edge.c1",
+      "text": "The least-squares line through y = x² at x = 0, 0.25, 0.5, 0.75, 1 has slope 1 and intercept −0.125, and is off by at most 0.125 anywhere between 0 and 1.",
+      "support": "derivation",
+      "source": "Mean x 0.5, mean y 0.375, Sxy = Sxx = 0.625. Error x² − x + 0.125 is +0.125 at 0 and 1 and −0.125 at 0.5. Reproduced by fit() and maxInsideError() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.line-stops-at-the-edge.c2",
+      "text": "At x = 3 the line predicts 2.875 while the truth is 9, a gap of 6.125 (at x = 2: 1.875 vs 4).",
+      "support": "derivation",
+      "source": "line(3) = 3 − 0.125; truth(3) = 9. Node output of line() and truth() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.line-stops-at-the-edge.c3",
+      "text": "The truth y = x² is invented for the toy.",
+      "support": "convention",
+      "source": "Brief 28 in company/domains/briefs/ai.md; labelled on the stage and in the reveal.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.line-stops-at-the-edge.c4",
+      "text": "A model is only tested where its data lived; predictions for inputs unlike the training data (dataset shift, extrapolation) can fail without the training error warning.",
+      "support": "source",
+      "source": "About real systems: Quiñonero-Candela, Sugiyama, Schwaighofer & Lawrence (eds.) 2009, Dataset Shift in Machine Learning (MIT Press), ch. 1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A house-price model was trained on homes of 50-150 m² and has a small test error. Someone asks it to price a 600 m² mansion. What should you expect?",
+    "options": [
+      "The estimate could be far off: no training home looked like this",
+      "About as accurate as its test error says",
+      "Exactly right, since bigger homes simply cost more"
+    ],
+    "answer": 0,
+    "why": "Test error measures accuracy where the training data lived. Outside that range the model is extrapolating and its small error says nothing about it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

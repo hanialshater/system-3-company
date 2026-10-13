@@ -1,0 +1,73 @@
+{
+  "slug": "flagged-means-what",
+  "title": "Flagged by a good test. Ill?",
+  "hook": "The test catches 80% of cases and is 96% accurate. What does a flag mean?",
+  "domain": "ai",
+  "concept": "confusion-matrix",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "percentages",
+      "that accuracy can mislead when one class is rare"
+    ],
+    "doesNotKnow": [
+      "how to read what a positive flag means",
+      "the difference between precision and recall"
+    ]
+  },
+  "misconception": "A test that catches 80% of cases and is 96% accurate means a flagged person has about an 80% (or 96%) chance of being ill.",
+  "objective": "The learner can explain that 'of those flagged, how many are ill' (precision) differs from 'of the ill, how many are flagged' (recall), and that a rare condition makes precision low even for an accurate test.",
+  "claims": [
+    {
+      "id": "ai.flagged-means-what.c1",
+      "text": "Of 1,000 scans with 10 ill, a test that flags 8 of the ill and 40 of the 990 healthy flags 48 people, of whom 8 are ill: 16.7%.",
+      "support": "derivation",
+      "source": "8 / (8 + 40) = 0.1667. Reproduced by tally() in Demo.tsx (counts fixed by construction).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.flagged-means-what.c2",
+      "text": "The same test catches 80% of the ill (recall) and is right on 95.8% of scans (accuracy); flagging all 1,000 catches every ill person while a flag means ill 1% of the time.",
+      "support": "derivation",
+      "source": "Recall 8 / 10; accuracy (8 + 950) / 1000; flag-all precision 10 / 1000. Reproduced by tally(PEOPLE, true/false) in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.flagged-means-what.c3",
+      "text": "The counts are invented for the toy; where the dots sit in the grid is a seeded shuffle.",
+      "support": "convention",
+      "source": "Brief 25 in company/domains/briefs/ai.md. Seed 7 into mulberry32 in population(); arbitrary, not tuned, and it changes no count (only dot positions).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.flagged-means-what.c4",
+      "text": "Precision is the share of flagged cases that are truly positive; recall is the share of truly positive cases that are flagged.",
+      "support": "source",
+      "source": "Manning, Raghavan & Schütze 2008, Introduction to Information Retrieval, §8.3 (precision, recall, accuracy).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fraud model catches 90% of fraud, but fraud is 1 in 1,000 payments and the model also flags 2% of honest ones. A payment is flagged. Is it probably fraud?",
+    "options": [
+      "No: most flags are honest payments",
+      "Yes: about 90%",
+      "Yes: about 98%"
+    ],
+    "answer": 0,
+    "why": "Per 1,000 payments it flags about 0.9 frauds and about 20 honest ones, so under 5% of flags are fraud. Catching most fraud (recall) says little about what a flag means (precision) when fraud is rare."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
