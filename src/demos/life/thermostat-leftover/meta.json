@@ -1,0 +1,48 @@
+{
+  "slug": "thermostat-leftover",
+  "title": "Where does the incubator settle?",
+  "hook": "A heater pushes harder the colder it gets. Does it reach the target?",
+  "domain": "life",
+  "concept": "negative-feedback",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["a heater makes warmth", "heat leaks to a cooler room"],
+    "doesNotKnow": ["that a heater whose power is proportional to the shortfall leaves a steady shortfall"]
+  },
+  "misconception": "A control system returns exactly to the target.",
+  "objective": "The learner can explain that with heater power = gain x shortfall, heat leaking to a room 5 colder balances heater power at a shortfall of 5 / (1 + gain): 1 at gain 4, shrinking with gain but never zero.",
+  "claims": [
+    {
+      "id": "life.thermostat-leftover.c1",
+      "text": "A controller whose output is proportional to the error leaves a steady error of d / (1 + g) when a constant disturbance d acts; raising the gain g shrinks it but never to zero.",
+      "support": "source",
+      "source": "Astrom & Murray, Feedback Systems, ch. 1 and 3 (proportional control and steady-state error).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.thermostat-leftover.c2",
+      "text": "Toy incubator set to 37, room 32, heater power = gain x (37 - temperature), heat leak rate 1 x (temperature - 32): steady temperature is 36 at gain 4 (a gap of 1), 36.5 at gain 9 (0.5), 36.75 at gain 19 (0.25), and 32 with no heater.",
+      "support": "derivation",
+      "source": "Steady state: (32 - T) + g (37 - T) = 0 gives T = (32 + 37g) / (1 + g). Demo.tsx draws the Euler run (dt 0.02, 250 steps) and the node check agrees: 32.000, 36.000, 36.500, 36.750.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.thermostat-leftover.c3",
+      "text": "Model (stated on the stage and in the reveal): a toy incubator with one loop and no delay, starting at room temperature.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #45. Real body temperature control uses more than proportional control (integral-like and feed-forward elements).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A heater adds power in proportion to how far the temperature is below the target. The room is colder than the target. Where does it settle?",
+    "options": ["Exactly at the target", "A little below the target", "At room temperature"],
+    "answer": 1,
+    "why": "The heater only works while there is a gap, so a gap remains. A higher gain makes it smaller but not zero."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
