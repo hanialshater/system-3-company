@@ -1,0 +1,87 @@
+{
+  "slug": "a-birthday-like-mine",
+  "title": "How many people to match my birthday?",
+  "hook": "23 people make a shared birthday a coin flip. What about one that matches yours?",
+  "domain": "probability",
+  "concept": "specific-vs-any-match",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "in a room of 23 some two people share a birthday about half the time (birthday-paradox)"
+    ],
+    "doesNotKnow": [
+      "that matching one specific date is a different, slower problem",
+      "that the paradox comes from counting pairs"
+    ]
+  },
+  "misconception": "If 23 people give 50% for some pair to match, 23 people also give about 50% that someone shares my birthday.",
+  "objective": "The learner can say that 23 people make 253 pairs but only 23 comparisons with you, so matching you needs about 253 people.",
+  "keyState": "Crowd of 23 (any-match bar 50.7%, your bar 6.1%), 183 (39.5%) and 253 (50.0%).",
+  "claims": [
+    {
+      "id": "probability.a-birthday-like-mine.c1",
+      "text": "The model uses 365 equally likely birthdays and ignores leap days and uneven birth rates.",
+      "support": "convention",
+      "source": "Stated assumption; DAYS = 365 in model.ts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c2",
+      "text": "With 23 other people, some two of them share a birthday 50.7% of the time, but someone shares yours only 6.1% of the time.",
+      "support": "derivation",
+      "source": "1 - prod_{i<23}(1 - i/365) = 0.5073; 1 - (364/365)^23 = 0.0612 (pAny, pMe in model.ts; recomputed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c3",
+      "text": "With 183 other people, someone shares your birthday 39.5% of the time.",
+      "support": "derivation",
+      "source": "1 - (364/365)^183 = 0.3947 (pMe).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c4",
+      "text": "With 253 other people, someone shares your birthday 50.0% of the time; 252 gives 49.9%, so 253 is the smallest crowd with even odds.",
+      "support": "derivation",
+      "source": "1 - (364/365)^253 = 0.5005; 1 - (364/365)^252 = 0.4991 (evenOdds() returns 253).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c5",
+      "text": "23 people make 253 pairs, but you are in only 23 of them; each comparison matches with chance 1 in 365.",
+      "support": "derivation",
+      "source": "23 x 22 / 2 = 253 pairs; you versus 23 others = 23 comparisons; each other person matches you with probability 1/365.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c6",
+      "text": "It takes about 253 comparisons with you to reach even odds.",
+      "support": "derivation",
+      "source": "n = 253 gives 1 - (364/365)^n = 0.5005 (claim 4).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A class has 30 students. Which is more likely: some two students share a birthday, or someone shares YOUR birthday?",
+    "options": [
+      "Someone shares mine",
+      "Some two share a birthday",
+      "They are equally likely"
+    ],
+    "answer": 1,
+    "why": "30 people make 435 pairs, but only 30 comparisons involve you. Some pair matching is about 71%; someone matching you is about 8%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

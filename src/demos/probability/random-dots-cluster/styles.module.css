@@ -1,0 +1,7 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 21dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.cell { fill: var(--bg-2); stroke: var(--line); stroke-width: 0.5; }
+.ring { fill: color-mix(in srgb, var(--bad) 25%, transparent); stroke: var(--bad); stroke-width: 2; }
+.dot { fill: var(--fg); }
