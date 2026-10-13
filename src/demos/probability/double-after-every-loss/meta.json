@@ -29,28 +29,36 @@
       "text": "With a $1 start and doubling after each loss, six losses in a row lose $1 + $2 + $4 + $8 + $16 + $32 = $63; any earlier win ends the round $1 up.",
       "support": "derivation",
       "source": "Sum of 2^0..2^5 = 2^6 - 1 = 63; a win at bet 2^k recovers 2^k - 1 and gains $1 (BUST in src/demos/probability/double-after-every-loss/model.ts).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.double-after-every-loss.c2",
       "text": "On a fair coin a round wins $1 with chance 63/64 and loses $63 with chance 1/64, so the average profit per round is exactly $0.",
       "support": "derivation",
       "source": "P(6 losses) = (1/2)^6 = 1/64; 63/64 x 1 - 1/64 x 63 = 0 (expected() in model.ts). Option '+$0.98' is 63/64 rounded.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.double-after-every-loss.c3",
       "text": "The stage's rounds are one seeded run: 32 wins of $1, then a bust at round 33 (total -$31); playing on to the next bust gives round 120 (total -$8).",
       "support": "simulation",
       "source": "rounds() in model.ts, mulberry32 seed 777, untuned (the first seed tried). The QA path (1 + 10 rounds, then until a bust) reaches round 33. Over seeds 1-1000 the first bust after round 11 came at round 13-251 (middle 95%, median 57): a run's total after one bust can be well up or down; it is not evidence about the average.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "probability.double-after-every-loss.c4",
       "text": "Doubling turns many small wins into rare big losses; it cannot move the average of a fair game.",
       "support": "derivation",
       "source": "Optional stopping / martingale property: any bounded staking rule on a fair game has expected profit 0 (c2 is the concrete case). Any textbook on martingales, e.g. Grimmett and Stirzaker, Probability and Random Processes, ch. 12.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
