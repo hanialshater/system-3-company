@@ -43,12 +43,10 @@
     },
     {
       "id": "physics.ambulance-pitch-drop.c3",
-      "text": "Standing 3 m from the road, you hear about 755 Hz with the ambulance 20 m before you, about 704 Hz as it is beside you (that sound left a moment earlier), and about 653 Hz 20 m past you.",
+      "text": "Standing 3 m from the road, you hear about 754 Hz with the ambulance 20 m before you, about 704 Hz as it is beside you (that sound left a moment earlier, while still approaching), and about 653 Hz 20 m past you.",
       "support": "derivation",
       "source": "Computed in Demo.tsx with retarded emission time tau from (x - v tau)^2 + 3^2 = (c tau)^2 and f' = f c / (c - v cos phi). Values at slider stops x = -80, -60, -40, -20, 0, 20, 40, 60, 80 m: 755.0, 755.0, 754.9, 754.5, 703.7, 653.0, 652.6, 652.5, 652.5 Hz.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.ambulance-pitch-drop.c4",
@@ -70,12 +68,17 @@
     },
     {
       "id": "physics.ambulance-pitch-drop.c6",
-      "text": "Model: still air, sound at 343 m/s; the closer you stand to the road, the quicker the drop.",
+      "text": "Model: still air, sound at 343 m/s.",
       "support": "convention",
-      "source": "Stated in the reveal. Sound speed in dry air at 20 C. The drop happens over a distance comparable to your distance from the road line (geometry of cos phi).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Stated in the reveal. Sound speed in dry air at 20 C. (v2 removed the learner-visible sentence about standing close making the drop quick: no control showed it.)",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ambulance-pitch-drop.c7",
+      "text": "Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m apart; from the ambulance at 25 m/s they are 31.8 m apart ahead and 36.8 m behind, so ahead crests arrive 34.3 / 31.8 = 1.08 times as often, up to 755 Hz.",
+      "support": "derivation",
+      "source": "Hz = cycles per second (SI). Parked spacing c x 0.1 = 34.3 m; ahead (c - v) x 0.1 = 31.8 m; behind (c + v) x 0.1 = 36.8 m. 34.3 / 31.8 = 1.079; 700 x 1.079 = 755 Hz (same as c2, 700 x 343 / 318). Computed from the same constants in Demo.tsx.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,5 +102,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

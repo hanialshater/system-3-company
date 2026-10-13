@@ -10,6 +10,9 @@
 // and the line to you at emission. Far ahead this tends to 700 x 343 / 318 = 755 Hz,
 // far behind to 700 x 343 / 368 = 652 Hz. c = 343 m/s (20 C), still air.
 // The reveal unlocks once the learner has heard the ambulance going away.
+// v2: options are qualitative (no numbers to derive); the caption defines ring = crest and
+// Hz = crests per second and compares the gaps with a parked siren's 34.3 m, and the reveal
+// turns that ratio into the pitch (34.3 / 31.8 x 700 = 755).
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -34,6 +37,10 @@ function heard(x: number) {
 }
 const LIMIT_UP = (F0 * C) / (C - V);
 const LIMIT_DOWN = (F0 * C) / (C + V);
+const DT = 0.1; // s between drawn rings
+const GAP0 = C * DT; // parked: 34.3 m
+const GAP_AHEAD = (C - V) * DT; // 31.8 m
+const GAP_BEHIND = (C + V) * DT; // 36.8 m
 
 const W = 320;
 const H = 170;
@@ -56,7 +63,11 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
       predict={{
         question:
           "An ambulance siren sounds 700 Hz to its driver. As it drives past you at 25 m/s, the pitch you hear…",
-        options: ["stays 700 Hz", "drops from about 755 Hz to about 652 Hz", "drops from 700 Hz to 600 Hz"],
+        options: [
+          "stays 700 Hz the whole way",
+          "starts above 700 Hz, ends below it",
+          "starts at 700 Hz, then drops below it",
+        ],
         answer: 1,
       }}
       exploreHint="Drive the ambulance past you. Watch the rings and the pitch you hear."
@@ -64,24 +75,25 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Coming toward you it sounded <strong>{Math.round(heardHi)} Hz</strong>; going away,{" "}
-            <strong>{Math.round(heardLo ?? heard(20))} Hz</strong>. The driver heard 700 Hz the whole time: the siren never
-            changed.
+            Coming toward you, you heard <strong>{Math.round(heardHi)} Hz</strong>; going away,{" "}
+            <strong>{Math.round(heardLo ?? heard(20))} Hz</strong>. The siren itself stayed 700 Hz.
           </p>
           <p>
-            Each crest leaves from a spot a little further along the road, so ahead of the ambulance they bunch up and
-            arrive more often (higher pitch); behind, they spread out (lower). Head-on the limits are{" "}
-            {Math.round(LIMIT_UP)} and {Math.round(LIMIT_DOWN)} Hz.
+            Each crest leaves from a spot further along the road. Ahead, the rings were {GAP_AHEAD.toFixed(1)} m apart
+            instead of a parked siren&apos;s {GAP0.toFixed(1)} m, so crests reach you {(GAP0 / GAP_AHEAD).toFixed(2)} times
+            as often: up to {Math.round(LIMIT_UP)} Hz. Behind, {GAP_BEHIND.toFixed(1)} m apart: down to{" "}
+            {Math.round(LIMIT_DOWN)} Hz. Beside you it read {Math.round(heard(0))} Hz, because that sound left a moment
+            earlier, still approaching.
           </p>
-          <p className="muted">Still air, sound at 343 m/s. The drop is quick because you stand close to the road.</p>
+          <p className="muted">Still air, sound at 343 m/s.</p>
         </>
       )}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
         const caption = locked
-          ? "Make a prediction to start."
-          : "Rings: sound sent 0.1 s apart, from where the ambulance was. 25 m/s, siren 700 Hz.";
+          ? "Each ring is a crest, sent 0.1 s apart. Hz = crests per second."
+          : `Gaps: ${GAP_AHEAD.toFixed(1)} m ahead, ${GAP_BEHIND.toFixed(1)} m behind. Parked, they'd be ${GAP0.toFixed(1)} m.`;
         const rings = Array.from({ length: 6 }, (_, i) => {
           const tau = (i + 1) * 0.1;
           return { cx: px(x - V * tau), r: C * tau * K };
