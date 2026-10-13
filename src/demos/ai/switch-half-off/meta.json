@@ -1,0 +1,79 @@
+{
+  "slug": "switch-half-off",
+  "title": "Half the units off: what happens on average?",
+  "hook": "Training randomly switches half the units off. Does the output shrink?",
+  "domain": "ai",
+  "concept": "dropout",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a model can overfit its training data"
+    ],
+    "doesNotKnow": [
+      "that a model can be trained with random units switched off",
+      "that scaling the survivors keeps the average output unchanged"
+    ]
+  },
+  "misconception": "Switching parts off during training can only hurt.",
+  "objective": "The learner can say that switching units off at random and doubling the survivors leaves the average output equal to the all-on output, so the model is not simply weakened.",
+  "claims": [
+    {
+      "id": "ai.switch-half-off.c1",
+      "text": "Toy setup: four units each output 1; in each pass each unit is switched off with chance 50% and the survivors are doubled, so a pass total is 0, 2, 4, 6 or 8. The stage is labelled 'Toy: 4 units, each outputs 1'.",
+      "support": "convention",
+      "source": "Brief 54 in company/domains/briefs/ai.md; makePasses(), totalOf() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.switch-half-off.c2",
+      "text": "Each unit's average output is 0.5 x 2 = 1, so the four units average 4, the same as all on.",
+      "support": "derivation",
+      "source": "Expectation: 4 x (0.5 x 2 + 0.5 x 0) = 4. The brief's script (100,000 passes) gave a mean of 3.994.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.switch-half-off.c3",
+      "text": "In this toy, after 221 passes (1 + 20 + 200) the average total is 3.96, and single passes ran from 0 to 8.",
+      "support": "derivation",
+      "source": "Node re-run of makePasses() with seed 3 (one of three seeds looked at, 3, 5 and 21, none tuned for the result): mean of 221 passes 3.964, min 0, max 8; after 21 passes 4.48. The reveal quotes the average at the learner's own pass count.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.switch-half-off.c4",
+      "text": "Over 2000 seeds the average of 221 passes ran from 3.78 to 4.23 (5th to 95th percentile; median 4.00).",
+      "support": "derivation",
+      "source": "Node re-run over seeds 1 to 2000 with the same generator: p5 3.783, median 4.000, p95 4.226.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.switch-half-off.c5",
+      "text": "Dropout switches units off at random during training; the authors report that it reduces units' reliance on particular partners (co-adaptation) and helps against overfitting.",
+      "support": "source",
+      "source": "Srivastava, Hinton, Krizhevsky, Sutskever & Salakhutdinov 2014, 'Dropout: A Simple Way to Prevent Neural Networks from Overfitting', JMLR 15. About real systems; the effect is the authors' claim and this toy does not demonstrate it, only the unchanged average.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "During training each unit is switched off with chance 50% and the survivors' outputs are doubled. Compared with all units on, the average total output is:",
+    "options": [
+      "Half as large",
+      "The same",
+      "Twice as large"
+    ],
+    "answer": 1,
+    "why": "Each unit is on half the time at double strength, so its average output is unchanged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
