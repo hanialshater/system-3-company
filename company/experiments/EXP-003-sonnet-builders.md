@@ -22,3 +22,12 @@ would_be_wrong_if: Sonnet build tokens per lesson > 80% of Opus, or a first-revi
 
 ## Decision rule
 If Sonnet comes within the bounds, new lessons default to Sonnet builders and Opus is kept for new interaction types and hard domains. Otherwise Opus stays the builder default and Sonnet keeps revisions.
+
+## Interim data (not a result yet)
+- **economics w5 (Sonnet):** 135k tokens for 10 lessons, about 13.5k per lesson. Today's Opus builders used 199k–231k for 10, about 20–23k per lesson, so Sonnet ran at about 60–68%. That is at the edge of the ≤ 60% prediction.
+- **Process slips not seen in Opus builds:**
+  - it committed once instead of every 2 lessons;
+  - it looked at 4 of 10 phone screenshots.
+
+  QA was 20/20 and 0 brief errors were found.
+- **Still to come:** chemistry w5 (Sonnet), then first-review launch rates and disputed-claim counts for both waves.
