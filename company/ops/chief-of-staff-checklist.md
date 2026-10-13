@@ -27,4 +27,5 @@ Run `npm run company -- status`, `npm run company -- rituals` and `npm run metri
 2. `node tools/publish-ready.mjs`. It links learner reviews as evidence and lists the lessons whose latest review says launch for the current version. Holds go in `company/ops/publish-holds.json`, each with a reason.
 3. `node tools/publish-ready.mjs --publish`. The gates in `company publish` still run.
 4. Append the batch to that day's launch-review record.
-5. Kill servers by port or PID, never `pkill -f <pattern>`: the pattern matches the shell that runs it.
+5. Before QA or a walkthrough, confirm the build is fresh: `ls <distDir>/server/app/d/*.html | wc -l` must equal the lesson count. A stale build makes new lessons 404 and records false failures (2026-10-13).
+6. Kill servers by port or PID, never `pkill -f <pattern>`: the pattern matches the shell that runs it.

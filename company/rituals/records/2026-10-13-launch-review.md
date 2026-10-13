@@ -51,3 +51,9 @@ drunkards-reach, lower-the-hill, same-heat-different-rise, squeeze-the-brown-gas
 - **Objection that travels:** the reviewer says the first rounds of screenshot reads failed, so several early verdicts rest mainly on the transcript. It also reports reveal text clipped at the card bottom in three lessons, none of which is in this batch. Platform-engineer board item.
 
 Decision: **go with conditions** (accessibility review, W-057). Signed: chief-of-staff, acting for head-of-product.
+
+## Fourth batch (same day): 4 chemistry lessons
+
+heat-in-no-rise, most-collisions-bounce, one-ml-of-steam and steel-wool-gains-weight were published through `tools/publish-ready.mjs --publish`. Each has a launch verdict on the current version and passed every gate. Their QA records come from the 80-lesson QA run, on a build that contained them.
+
+**Incident, recorded here because it touched launch evidence:** that run went against a stale build (268 lessons, from 06:23). My rebuild had been killed by my own `pkill -f`. The 20 newest math and economics lessons therefore 404'd and were recorded as QA "fail". Those 20 records are false and were deleted, not committed. The lessons are being re-run on a fresh 298-lesson build. Mechanism: before any QA or walkthrough run, the checklist now checks that the build contains every lesson (count the HTML pages under `.next-*/server/app/d/` and compare with the lesson count).
