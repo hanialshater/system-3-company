@@ -1,0 +1,76 @@
+{
+  "slug": "two-genes-one-in-sixteen",
+  "title": "Two hidden traits in one seed",
+  "hook": "Each hidden form shows in some seeds. How often do both show at once?",
+  "domain": "life",
+  "concept": "genetic-inheritance",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "offspring get one copy of a gene from each parent",
+      "a hidden (recessive) form shows only with two copies; two carriers give it 1 in 4 of the time"
+    ],
+    "doesNotKnow": [
+      "that two independently inherited genes combine by multiplying chances",
+      "how to read a two-gene grid of egg x pollen pairings"
+    ]
+  },
+  "misconception": "Showing both recessive traits has the same 1 in 4 chance as showing one.",
+  "objective": "The learner can explain that with two separately inherited genes, each recessive form shows in 4 of 16 equally likely seeds but both together in only 1 of 16 (1/4 x 1/4).",
+  "claims": [
+    {
+      "id": "life.two-genes-one-in-sixteen.c1",
+      "text": "A parent carrying one dominant and one hidden copy of each of two separately inherited genes makes four equally likely egg or pollen types, so a cross of two such parents has 16 equally likely pairings.",
+      "support": "derivation",
+      "source": "Mendel's law of independent assortment (Griffiths et al., Introduction to Genetic Analysis, ch. 3); enumeration in Demo.tsx (GAMETES x GAMETES).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-genes-one-in-sixteen.c2",
+      "text": "In that cross, white flowers show in 4 of 16 seeds, wrinkled seeds in 4 of 16, and both together in 1 of 16.",
+      "support": "derivation",
+      "source": "Demo.tsx COUNT (white 4, wrinkled 4, both 1), counted from the grid it draws; 1/4 x 1/4 = 1/16 (the 9:3:3:1 dihybrid ratio).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-genes-one-in-sixteen.c3",
+      "text": "Because the genes are inherited separately, a quarter of the white seeds are also wrinkled; independent chances multiply.",
+      "support": "derivation",
+      "source": "Of the 4 white squares in the grid, exactly 1 is wrinkled (Demo.tsx). Product rule for independent events.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-genes-one-in-sixteen.c4",
+      "text": "Genes that sit close together on the same chromosome tend to be inherited together and break the 1-in-16 rule.",
+      "support": "source",
+      "source": "Genetic linkage (Griffiths et al., Introduction to Genetic Analysis, ch. 4). Independent assortment holds for genes on different chromosomes or far apart on one.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-genes-one-in-sixteen.c5",
+      "text": "The plant is made up; purple over white and round over wrinkled are complete dominance, and every pairing is equally likely. Stated on the stage before the prediction.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #34. (Mendel's peas had these traits, but the lesson does not claim so.)",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two genes are inherited separately. A child has a 1 in 4 chance of one recessive trait and a 1 in 4 chance of the other. Chance of both?",
+    "options": ["1 in 4", "1 in 8", "1 in 16", "1 in 2"],
+    "answer": 2,
+    "why": "Separately inherited chances multiply: a quarter of a quarter is one sixteenth."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
