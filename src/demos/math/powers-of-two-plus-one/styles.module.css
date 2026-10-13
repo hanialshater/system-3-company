@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 36dvh; }
+.frame { fill: none; stroke: var(--line); stroke-width: 1; }
+.block { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; transition: all 0.3s; }
+.next { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.hole { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 3 2; }
+.pile { fill: color-mix(in srgb, var(--good) 60%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; transition: all 0.3s; }
+.label { fill: var(--fg); font-weight: 800; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 2.6em; }
+.chips { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; }
+.chips .chip { padding: 6px 0; min-width: 0; font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }
