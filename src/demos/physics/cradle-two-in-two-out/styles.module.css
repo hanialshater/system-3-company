@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 160px; max-height: 42dvh; }
+.frame { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.string { stroke: var(--muted); stroke-width: 1; }
+.ball { fill: var(--domain); stroke: var(--fg); stroke-width: 1.2; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 2; }
+.chip { fill: var(--muted); font-size: 9px; }
+.chipR { text-anchor: end; }
+.rowLab { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.before { fill: color-mix(in srgb, var(--muted) 70%, var(--bg-2)); }
+.same { fill: var(--good); }
+.differs { fill: var(--bad); }
+.val { fill: var(--muted); font-size: 10px; }
+.valOk { fill: var(--good); font-size: 10px; font-weight: 700; }
+.valBad { fill: var(--bad); font-size: 10px; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 1.4em; }
+.picks { display: grid; grid-template-columns: 1fr; gap: 5px; }
+.picks :global(.control) { padding: 8px 10px; font-size: 0.85rem; text-align: left; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; }

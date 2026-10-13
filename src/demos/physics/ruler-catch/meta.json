@@ -1,0 +1,33 @@
+{
+  "slug": "ruler-catch",
+  "title": "How fast is your reflex?",
+  "hook": "A falling ruler can time a blink-quick reaction. How long does a catch really take?",
+  "domain": "physics",
+  "concept": "reaction-time-ruler",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-physics", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["reflexes take some time", "things speed up as they fall"],
+    "doesNotKnow": ["how to turn a fall distance into a time with d = 1/2 g t²"]
+  },
+  "misconception": "Reaction time is negligible, or about a second.",
+  "objective": "The learner can explain that a ruler caught after a fall of about 20 cm shows a reaction time of about 0.2 s, because fall distance grows with the square of time.",
+  "claims": [
+    { "id": "physics.ruler-catch.c1", "text": "A ruler falling from rest drops a distance d = 1/2 g t² in time t, so a catch at distance d shows a reaction time t = √(2d / g).", "support": "derivation", "source": "Constant-acceleration kinematics from rest; g = 9.81 m/s². No air drag (negligible for a ruler over 20 cm).", "status": "unverified" },
+    { "id": "physics.ruler-catch.c2", "text": "A catch at 20 cm means t = √(2 × 0.20 / 9.81) = 0.20 s.", "support": "derivation", "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor).", "status": "unverified" },
+    { "id": "physics.ruler-catch.c3", "text": "Typical human visual reaction time is about 0.2 to 0.25 s.", "support": "source", "source": "TO CITE: a measured-reaction-time reference (for example a physiology or ruler-drop practical text). Not in the reveal text; informs the simulated catcher's mean of 0.20 s.", "status": "unverified" },
+    { "id": "physics.ruler-catch.c4", "text": "The catcher is simulated: reaction times are drawn from a seeded random spread (seed 1) around 0.20 s, and the stage does not time the learner's own reflex.", "support": "convention", "source": "Demo.tsx: MEAN_T 0.20 s, SPREAD 0.05 s as the sum of three uniforms minus 1.5, SEED 1. Seed 1 was the first tried; seeds 2 and 3 give similar means (about 20 cm). Stated on stage ('Simulated catcher').", "status": "unverified" },
+    { "id": "physics.ruler-catch.c5", "text": "Near a 20 cm catch, each extra centimetre of fall is about 5 thousandths of a second (so a ruler resolves hundredths of a second).", "support": "derivation", "source": "Node: timeFor(21 cm) - timeFor(20 cm) = 0.2069 - 0.2019 = 0.0050 s.", "status": "unverified" },
+    { "id": "physics.ruler-catch.c6", "text": "The learner's own catches (between the smallest and largest distances shown) convert to times on the scale by the same formula.", "support": "derivation", "source": "Reveal computes min, max of the learner's catches from TRIALS and converts each with timeFor.", "status": "unverified" }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ruler is caught after falling 45 cm. Compared with a 20 cm catch, that reaction was...",
+    "options": ["About the same", "Slower, roughly 0.3 s", "Much faster"],
+    "answer": 1,
+    "why": "t = √(2 × 0.45 / 9.81) = 0.30 s, against 0.20 s for 20 cm. More fall means a longer wait, but distance grows with time squared."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

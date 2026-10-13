@@ -1,0 +1,32 @@
+{
+  "slug": "three-pizzas-four-people",
+  "title": "Pizzas to plates",
+  "hook": "Three pizzas, four hungry people, no leftovers. How much does each person get?",
+  "domain": "math",
+  "concept": "fractions-as-division",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-math", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["sharing equally", "a quarter is one of four equal parts"],
+    "doesNotKnow": ["that 3/4 is also 3 divided by 4"]
+  },
+  "misconception": "3/4 and 3 ÷ 4 are different kinds of things.",
+  "objective": "The learner can explain that sharing 3 things equally among 4 gives 3/4 of a thing each, so a fraction is a division.",
+  "claims": [
+    { "id": "math.three-pizzas-four-people.c1", "text": "Sharing 3 pizzas equally among 4 people is the division 3 ÷ 4, and that is the fraction 3/4.", "support": "convention", "source": "Definition: a/b means a ÷ b (the quotient of a by b). Equal slices assumed on stage.", "status": "unverified" },
+    { "id": "math.three-pizzas-four-people.c2", "text": "3 ÷ 4 = 0.75, and 4 people each getting 0.75 of a pizza use 4 × 0.75 = 3 pizzas.", "support": "derivation", "source": "Recomputed in node: 3/4 = 0.75; 4 × 0.75 = 3.", "status": "unverified" },
+    { "id": "math.three-pizzas-four-people.c3", "text": "Cutting each of 3 pizzas into 4 equal quarters makes 12 quarters, and dealing one quarter of each pizza to each person gives every person 3 quarters, which is 3/4 of a pizza.", "support": "derivation", "source": "3 x 4 = 12 quarters; 12 / 4 people = 3 each; 3 quarters = 3/4 of a pizza. Stage deals pizza by pizza (Demo.tsx PIZZAS, PEOPLE, PARTS).", "status": "unverified" },
+    { "id": "math.three-pizzas-four-people.c4", "text": "4/3 of a pizza is more than a whole pizza, so 4 people could not each get 4/3 from only 3 pizzas.", "support": "derivation", "source": "4 x 4/3 = 5 1/3 pizzas needed, more than 3. Quoted only if the learner chose that option.", "status": "unverified" },
+    { "id": "math.three-pizzas-four-people.c5", "text": "1/4 of a pizza is one slice when a pizza is cut into 4 equal slices.", "support": "convention", "source": "Definition of the unit fraction 1/4. Quoted only if the learner chose that option.", "status": "unverified" }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "5 chocolate bars are shared equally among 8 children. Each child gets...",
+    "options": ["5/8 of a bar", "8/5 of a bar", "1/8 of a bar"],
+    "answer": 0,
+    "why": "Sharing 5 among 8 is 5 ÷ 8, which is the fraction 5/8. 8/5 would be more than a whole bar each."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

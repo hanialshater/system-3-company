@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 40dvh; }
+.slice { stroke: var(--bg-2); stroke-width: 1.5; }
+.p0 { fill: color-mix(in srgb, var(--domain) 85%, var(--bg-2)); }
+.p1 { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.p2 { fill: color-mix(in srgb, var(--good) 60%, var(--bg-2)); }
+.gone { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.plate { fill: var(--bg-2); stroke: var(--line); stroke-width: 1.5; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.5em; }
+.wrap :global(.readout) { flex: 1 1 0; }

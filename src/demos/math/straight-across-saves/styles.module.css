@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 36dvh; }
+.field { fill: color-mix(in srgb, var(--good) 12%, var(--bg-2)); stroke: var(--line); }
+.grid { stroke: var(--line); stroke-width: 0.6; }
+.lroute { fill: none; stroke: var(--muted); stroke-width: 3; stroke-dasharray: 6 4; }
+.diag { stroke: var(--domain); stroke-width: 3.5; stroke-linecap: round; }
+.start { fill: var(--fg); }
+.dest { fill: var(--bad); stroke: var(--bg-2); stroke-width: 1.5; }
+.axis { fill: var(--muted); font-size: 9.5px; text-anchor: middle; }
+.barL { fill: color-mix(in srgb, var(--muted) 70%, var(--bg-2)); }
+.barS { fill: var(--domain); }
+.val { fill: var(--fg); font-size: 11px; font-weight: 800; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.4em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }

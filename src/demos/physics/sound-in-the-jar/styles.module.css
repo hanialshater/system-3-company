@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 150px; max-height: 40dvh; }
+.jar { fill: color-mix(in srgb, var(--domain) 8%, var(--bg-2)); stroke: var(--fg); stroke-width: 2; }
+.lid { fill: var(--muted); stroke: var(--fg); stroke-width: 1; }
+.dot { fill: var(--domain); opacity: 0.8; }
+.hang { stroke: var(--fg); stroke-width: 1.2; }
+.bell { fill: #e0a526; stroke: var(--fg); stroke-width: 1.2; }
+.clapper { transform-box: fill-box; transform-origin: 50% 0%; animation: swing 0.45s ease-in-out infinite alternate; }
+.stick { stroke: var(--fg); stroke-width: 1.5; }
+.knob { fill: var(--fg); }
+.wave { fill: none; stroke: var(--bad); stroke-width: 2.5; stroke-linecap: round; transition: opacity 0.2s; }
+.cap { fill: var(--muted); font-size: 10px; text-anchor: middle; }
+.track { fill: var(--bg-2); stroke: var(--line); }
+.fill { fill: var(--bad); transition: width 0.2s; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.5em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; }
+@keyframes swing { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+@media (prefers-reduced-motion: reduce) { .clapper { animation: none; } }
