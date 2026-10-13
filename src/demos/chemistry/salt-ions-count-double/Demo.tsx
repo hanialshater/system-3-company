@@ -92,7 +92,7 @@ export default function SaltIonsCountDouble({ slug }: { slug: string }) {
                   <path d={`M ${BX} ${BY} V ${BY + BH} H ${BX + BW} V ${BY}`} className={s.beaker} />
                   <rect x={BX + 2} y={BY + 20} width={BW - 4} height={BH - 22} className={s.water} />
                   <text x={BX + BW / 2} y={BY + 12} textAnchor="middle" className={s.small}>
-                    1.0 kg water · 1 dot = {PER_DOT} mol of particles
+                    1 kg water · 1 dot = {PER_DOT} mol
                   </text>
                   {dots.map((d, i) => (
                     <g key={i}>
