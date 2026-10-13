@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.axisLine { stroke: var(--line); stroke-width: 1; }
+.bar { fill: var(--muted); opacity: 0.55; }
+.barTail { fill: var(--domain); }
+.marker { stroke: var(--bad); stroke-width: 2; stroke-dasharray: 4 3; }
+.markLabel { fill: var(--bad); font-size: 11px; font-weight: 700; }
+.tick { fill: var(--muted); font-size: 10px; }

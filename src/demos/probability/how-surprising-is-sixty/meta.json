@@ -1,0 +1,74 @@
+{
+  "slug": "how-surprising-is-sixty",
+  "title": "How surprising is 60 heads?",
+  "hook": "60 heads in 100 flips. Is that luck, or a rigged coin? First: how often does luck do it?",
+  "domain": "probability",
+  "concept": "p-values",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a fair coin lands heads half the time",
+      "small samples wobble (sample-size noise)"
+    ],
+    "doesNotKnow": [
+      "what a p-value measures",
+      "that a p-value is not the chance the coin is fair"
+    ]
+  },
+  "misconception": "\"p = 0.03\" means a 3% chance the coin is fair (that the result is a fluke).",
+  "objective": "The learner can say that a p-value is how often pure luck (a fair coin) gives a result at least as extreme, here about 3% for 60+ heads in 100, and that it is not the chance the coin is fair.",
+  "keyState": "At least 250 seeded batches shown with the marker at 60 and some batches shaded past it.",
+  "claims": [
+    {
+      "id": "probability.how-surprising-is-sixty.c1",
+      "text": "For a fair coin flipped 100 times, the chance of 60 or more heads is 2.8% (about 3%).",
+      "support": "derivation",
+      "source": "Exact binomial sum P(X >= 60), X ~ Bin(100, 1/2) = 0.02844 (exactTail() in src/demos/probability/how-surprising-is-sixty/model.ts). For reference P(X >= 62) = 0.0105, P(X >= 58) = 0.0666.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.how-surprising-is-sixty.c2",
+      "text": "The stage's batches are seeded fair-coin runs: after 250 batches, 5 had 60+ heads (2.0%); after 500, 16; after 750, 23; after 1,000, 38 (3.8%).",
+      "support": "simulation",
+      "source": "batches() in model.ts, mulberry32 seed 100, untuned (the first seed tried). Over seeds 1-500, the number of 250-batch runs with 60+ heads had middle 95% 2-13 (median 7); 2 of 500 seeds gave 0. The reveal quotes only the counts the learner saw at marker 60.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.how-surprising-is-sixty.c3",
+      "text": "A p-value is how often luck alone, with a coin known to be fair, gives a result at least as extreme as the one seen.",
+      "support": "source",
+      "source": "Wasserstein & Lazar (2016), The ASA Statement on p-Values, The American Statistician 70(2): 129-133 (principle 2 and the informal definition). The lesson uses the one-sided version (60 or more heads).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.how-surprising-is-sixty.c4",
+      "text": "A p-value is not the chance that the coin is fair; working that out would also need to know how common unfair coins are.",
+      "support": "source",
+      "source": "Wasserstein & Lazar (2016), principle 2: p-values do not measure the probability that the studied hypothesis is true. The prior-dependence follows from Bayes' rule.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A study reports p = 0.04 for a new drug. Which statement is right?",
+    "options": [
+      "There is a 4% chance the drug does nothing",
+      "If the drug did nothing, results this extreme would turn up about 4% of the time",
+      "The drug works in 96% of patients"
+    ],
+    "answer": 1,
+    "why": "A p-value assumes the boring explanation (no effect, a fair coin) and asks how often luck alone goes this far. It says nothing directly about how likely the boring explanation is."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

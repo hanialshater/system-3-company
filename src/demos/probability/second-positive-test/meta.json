@@ -1,0 +1,81 @@
+{
+  "slug": "second-positive-test",
+  "title": "A second positive test",
+  "hook": "With this test, one positive means about a 9% chance you are sick. What does a second do?",
+  "domain": "probability",
+  "concept": "repeat-testing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting people in a group to find a share",
+      "that a positive test for a rare condition is often a false alarm (base rates)"
+    ],
+    "doesNotKnow": [
+      "how a second independent result changes the chance",
+      "that each positive multiplies the sick-to-healthy ratio by the same factor"
+    ]
+  },
+  "misconception": "After one positive the chance is set, so a second positive adds little; or a second positive makes it near-certain (90% x 90% = 81%).",
+  "objective": "The learner can explain that retesting the 98 positives leaves 16, of whom 8 are sick (50%), because each positive multiplies the sick-to-healthy ratio by about 10 (90% / 9%).",
+  "keyState": "Second round reached: the twice-flagged group is 8 sick and 8 healthy.",
+  "claims": [
+    {
+      "id": "probability.second-positive-test.c1",
+      "text": "Of 1,000 people with a 1% condition, 10 are sick and 990 healthy; a test that flags 90% of the sick and 9% of the healthy flags 9 sick and 89 healthy people: 9 of 98, about 9%.",
+      "support": "derivation",
+      "source": "Expected counts rounded to whole people: 10 x 0.9 = 9; 990 x 0.09 = 89.1 -> 89 (counts() in src/demos/probability/second-positive-test/model.ts). Exact Bayes: 0.009 / 0.0981 = 9.2%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.second-positive-test.c2",
+      "text": "Testing those 98 again flags 8 sick and 8 healthy people: 8 of 16, 50%.",
+      "support": "derivation",
+      "source": "9 x 0.9 = 8.1 -> 8; 89 x 0.09 = 8.01 -> 8. Exact: 0.01 x 0.9^2 / (0.01 x 0.9^2 + 0.99 x 0.09^2) = 0.0081 / 0.016119 = 50.25% (exactAfter(2)). The stage uses rounded expected counts, not a random sample.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.second-positive-test.c3",
+      "text": "Each positive multiplies the sick-to-healthy ratio by about 10 (90% divided by 9%): 10 : 990, then 9 : 89, then 8 : 8.",
+      "support": "derivation",
+      "source": "Likelihood ratio of a positive = sensitivity / false-positive rate = 0.9 / 0.09 = 10 (Bayes' rule in odds form). Rounding makes the stage's ratios approximate.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.second-positive-test.c4",
+      "text": "This assumes the two tests err independently; a test fooled the same way twice by the same person helps less.",
+      "support": "derivation",
+      "source": "The multiplication in c3 requires conditional independence of the two results given disease status; correlated errors (e.g. the same cross-reacting antibody) shrink the second test's likelihood ratio.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.second-positive-test.c5",
+      "text": "The condition and the test are illustrative, not a named disease.",
+      "support": "convention",
+      "source": "Hypothetical numbers from the brief. Dot positions are a seeded shuffle (LAYOUT_SEED 9, layout only; counts do not depend on it).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A test multiplies the sick-to-healthy ratio by 10 each time it is positive. Someone starts at 1 to 99 and tests positive twice, independently. Roughly what is their chance of being sick?",
+    "options": [
+      "About 10%",
+      "About 50%",
+      "About 99%"
+    ],
+    "answer": 1,
+    "why": "1 : 99 becomes about 10 : 99 (1 to 10) after one positive and about 100 : 99 (1 to 1) after two: roughly 50%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
