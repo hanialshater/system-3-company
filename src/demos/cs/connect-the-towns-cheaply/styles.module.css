@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.92rem; font-weight: 700; }
+.possible { stroke: var(--line); stroke-width: 2; stroke-dasharray: 2 4; }
+.laid { stroke: var(--domain); stroke-width: 5; }
+.refused { stroke: var(--bad); stroke-width: 2.5; stroke-dasharray: 6 4; }
+.tagBox { fill: var(--bg-3); stroke: var(--line); }
+.tag { font-size: 13px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.town { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.joined { stroke: var(--good); fill: color-mix(in srgb, var(--good) 22%, var(--bg-2)); }
+.townLabel { font-size: 16px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.list { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.cable { min-width: 64px; font-variant-numeric: tabular-nums; }
+.cableRefused { border-color: var(--bad); color: var(--bad); text-decoration: line-through; }
+.reset { order: 5; align-self: center; }
