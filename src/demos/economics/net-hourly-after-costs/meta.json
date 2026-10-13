@@ -1,0 +1,73 @@
+{
+  "slug": "net-hourly-after-costs",
+  "title": "What does a $22 hour really pay?",
+  "hook": "The app says $22 an hour. Is that what the hour is worth to you?",
+  "domain": "economics",
+  "concept": "net-hourly-earnings",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "hourly pay",
+      "that driving a car costs money"
+    ],
+    "doesNotKnow": [
+      "that the costs of earning shrink what an hour pays",
+      "how to turn a per-mile cost into a per-hour cost"
+    ]
+  },
+  "misconception": "$22 an hour is what a driving job pays me.",
+  "objective": "The learner can subtract per-hour costs (miles × cost per mile) from hourly pay and explain why pay after the costs of earning it is the number to compare.",
+  "claims": [
+    {
+      "id": "economics.net-hourly-after-costs.c1",
+      "text": "At $22 an hour, 15 miles an hour and $0.50 a mile, driving costs $7.50 an hour and $14.50 is left.",
+      "support": "derivation",
+      "source": "15 × 0.50 = 7.50; 22 − 7.50 = 14.50. Demo.tsx kept(15, 50) in cents.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.net-hourly-after-costs.c2",
+      "text": "At 15 miles an hour, $0.25 a mile leaves $18.25 and $0.70 a mile leaves $11.50.",
+      "support": "derivation",
+      "source": "22 − 15 × 0.25 = 18.25; 22 − 15 × 0.70 = 11.50.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.net-hourly-after-costs.c3",
+      "text": "A car's fuel and wear are costs that grow with every mile driven.",
+      "support": "source",
+      "source": "Per-mile operating costs (fuel, maintenance, tyres, mileage-driven depreciation): AAA, 'Your Driving Costs' (annual). The lesson's $0.25 / $0.50 / $0.70 are illustrative, not AAA's or an official rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.net-hourly-after-costs.c4",
+      "text": "The lesson is a model that ignores tax and tips; the per-mile costs are examples, not an official rate.",
+      "support": "convention",
+      "source": "Stage chip 'Model: no tax, no tips'; reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A job pays $30 an hour. You drive 20 miles each hour, at $0.60 a mile in car costs. What does an hour leave you, before tax?",
+    "options": [
+      "$30",
+      "$18",
+      "$12"
+    ],
+    "answer": 1,
+    "why": "20 × $0.60 = $12 of driving costs each hour, so $30 − $12 = $18 is left. Earnings are what remains after the costs of earning them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
