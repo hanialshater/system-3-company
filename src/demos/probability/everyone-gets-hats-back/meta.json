@@ -1,0 +1,56 @@
+{
+  "slug": "everyone-gets-hats-back",
+  "title": "Hats handed back at random",
+  "hook": "Does a bigger crowd make it less likely that anyone gets their own hat?",
+  "domain": "probability",
+  "concept": "hat-check",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-probability", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["how to find the chance of at least one event"],
+    "doesNotKnow": ["that the chance of at least one match barely depends on the number of people"]
+  },
+  "misconception": "With more people it is less likely that anyone gets their own hat back.",
+  "objective": "The learner can explain that more people means more chances for a match but a smaller chance each, so the chance of at least one match stays near 63% from 10 people to 1,000.",
+  "keyState": "Runs at 3, 10, 100 and 1,000 people, each showing a matched share near 66.7%, 63.2%, 63.2%, 63.2%.",
+  "claims": [
+    {
+      "id": "probability.everyone-gets-hats-back.c1",
+      "text": "Model: the hats come back in a uniformly random order, and each shuffle gives every hat to one person; each run is 1,000 shuffles. Stated on the stage.",
+      "support": "convention",
+      "source": "Hat-check (derangement) problem; stage text 'Toy: each shuffle hands every hat to a random person.'",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.everyone-gets-hats-back.c2",
+      "text": "The chance that at least one of n people gets their own hat is 1 - (1 - 1 + 1/2! - 1/3! ...): 66.7% for 3 people, 63.2% for 10, 63.2% for 100 and 63.2% for 1,000.",
+      "support": "derivation",
+      "source": "1 - sum_{k=0..n} (-1)^k/k! (node): 0.666667, 0.632121, 0.632121, 0.632121. For n = 10 checked by the derangement recurrence D(n) = (n-1)(D(n-1)+D(n-2)): 1 - D10/10! = 0.6321205. The question's 'about 63%' is exact(10) rounded.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.everyone-gets-hats-back.c3",
+      "text": "As the crowd grows the chance approaches 1 - 1/e, about 63.2%: more people give more chances for a match, but each is a smaller chance (1 in n), and the two cancel.",
+      "support": "derivation",
+      "source": "limit of the series is 1 - 1/e = 0.632121 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.everyone-gets-hats-back.c4",
+      "text": "The learner's first runs of 1,000 shuffles at 3 / 10 / 100 / 1,000 people (shown in the reveal) were 66.9% / 63.5% / 62.0% / 62.1%; runs of 1,000 shuffles scatter by about a point or two.",
+      "support": "simulation",
+      "source": "mulberry32(size * 7919 + batch), batch 0, first seeds tried, untuned (node, same run() as Demo.tsx). Batch 1: 67.8 / 61.6 / 63.5 / 62.9. Binomial noise of 1,000 trials at 63%: standard deviation 1.5 points.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "100 people check hats and get them back in random order. Compared with 10 people, the chance that at least one gets their own hat is:",
+    "options": ["Much lower", "About the same, near 63%", "Much higher, near 100%"],
+    "answer": 1,
+    "why": "More people means more chances for a match, but each chance shrinks to 1 in n. They cancel, so the chance stays near 1 - 1/e, about 63%."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
