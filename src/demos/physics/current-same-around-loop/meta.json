@@ -38,8 +38,10 @@
       "id": "physics.current-same-around-loop.c2",
       "text": "With a 6 V battery and two 6 ohm bulbs the current is 0.50 A; the battery slider gives I = V / 12 ohm (0.17 A at 2 V up to 1.00 A at 12 V, in 2 V steps).",
       "support": "derivation",
-      "source": "Ohm's law for two 6 ohm resistors in series: I = V / 12. 2, 4, 6, 8, 10, 12 V give 0.167, 0.333, 0.50, 0.667, 0.833, 1.00 A (shown to 2 d.p.). Each bulb drops I x 6 = V / 2: 1, 2, 3, 4, 5, 6 V.",
-      "status": "unverified"
+      "source": "Ohm's law for two 6 ohm resistors in series: I = V / 12. 2, 4, 6, 8, 10, 12 V give 0.167, 0.333, 0.50, 0.667, 0.833, 1.00 A (shown to 2 d.p.). Each bulb drops I x 6 = V / 2: 1, 2, 3, 4, 5, 6 V. | FACT-CHECK 2026-10-13 (pass 4): Node: I = V/12 at 2,4,6,8,10,12 V = 0.17, 0.33, 0.50, 0.67, 0.83, 1.00 A; per-bulb drop V/2 = 1..6 V; matches Demo.tsx amps() and drop.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.current-same-around-loop.c3",
@@ -63,8 +65,10 @@
       "id": "physics.current-same-around-loop.c5",
       "text": "The moving dots show the direction of conventional current (out of the battery's + end); the same number pass every spot, their speed is a picture of the current's size (not the real drift speed of electrons, which move the other way), and their brightness fading after each bulb is a picture of the energy handed over.",
       "support": "convention",
-      "source": "Conventional current direction is defined from + to -; electrons drift opposite, at speeds of order 0.1 mm/s in typical wires (Halliday, Resnick and Walker, ch. 26, drift speed).",
-      "status": "unverified"
+      "source": "Conventional current direction is defined from + to -; electrons drift opposite, at speeds of order 0.1 mm/s in typical wires (Halliday, Resnick and Walker, ch. 26, drift speed). | FACT-CHECK 2026-10-13 (pass 4): Checked against the stage: battery drawn with long plate and '+' on top, dots path runs up from it (conventional current); dot speed scales with I/0.5; dot opacity steps 1, 0.5, 0.12 after each bulb (qualitative picture); electron drift in ordinary wires is of order 0.1 mm/s (Halliday-Resnick-Walker ch. 26).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.current-same-around-loop.c6",
@@ -79,8 +83,10 @@
       "id": "physics.current-same-around-loop.c7",
       "text": "Amps measure charge passing per second; volts measure the energy each charge carries (or hands over).",
       "support": "convention",
-      "source": "SI definitions: 1 A = 1 C/s; 1 V = 1 J/C (BIPM SI Brochure, 9th ed.).",
-      "status": "unverified"
+      "source": "SI definitions: 1 A = 1 C/s; 1 V = 1 J/C (BIPM SI Brochure, 9th ed.). | FACT-CHECK 2026-10-13 (pass 4): SI: ampere = coulomb per second, volt = joule per coulomb (BIPM SI Brochure 9th ed.). 'Energy each charge carries' is read as energy per unit charge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
