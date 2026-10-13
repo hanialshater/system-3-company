@@ -79,9 +79,16 @@
     },
     {
       "id": "chemistry.half-life.c7",
-      "text": "Each half-life, roughly half of whatever was left decays, even the long survivors.",
+      "text": "Survivors that have already lasted 3 half-lives still decay at about the same rate: roughly half of whatever is left decays in each half-life.",
       "support": "simulation",
-      "source": "Holds on average: across 2,000 seeded runs the mean share decaying is 49.6-50.5% at every one of the 8 steps, and the pooled chance of decay given alive at the start is 0.499-0.502 for half-lives 1-5. A single run is noisier: the share's standard deviation is 3.5 points at step 1, 10 at step 4, 15 at step 5, and 33-41 at steps 7-8 (when about 3 or 2 atoms are left, the share is often 0% or 100%; 51% and 67% of runs fall outside 33-67% at steps 7 and 8). The lesson allows 8 waits. Reveal sentence. Added by fact-checker 2026-10-12; needs an independent check (see the fact-check record, fix F1).",
+      "source": "Reveal v2: \"They had already lasted 3 half-lives and still went at about the same rate.\" Follows from c2 (memoryless decay). Fact-checker's runs: the share is about half on average at every step; single small runs wobble (c4), which is why v2 caps the stage at 4 half-lives (about 12 atoms left).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.half-life.c8",
+      "text": "A half-life is the time in which about half of a large number of atoms of a radioactive isotope decays.",
+      "support": "convention",
+      "source": "Standard definition (e.g. IUPAC Gold Book, 'half life, t1/2': the time for a quantity to fall to half its initial value; for radioactive decay, the time for half the nuclei to decay). Shown in the v2 predict question (learner finding 1).",
       "status": "unverified"
     }
   ],
@@ -106,5 +113,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

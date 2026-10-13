@@ -17,3 +17,11 @@
    Let the lesson body shrink and scroll from its top instead. */
 .wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .svg { flex-shrink: 0; }
+/* v2: the share-over-generations strip under the bark, the model label and the edge chips. */
+.strip { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.mark { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 2; }
+.stripText { fill: var(--muted); font-size: 9.5px; }
+.curve { fill: none; stroke: var(--domain); stroke-width: 2; }
+.dot { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.model { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
+.edges { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px; }

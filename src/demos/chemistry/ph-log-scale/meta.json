@@ -1,7 +1,7 @@
 {
   "slug": "ph-log-scale",
   "title": "Three pH steps apart",
-  "hook": "Black coffee is about pH 5, lemon juice about pH 2. How much more acid is that?",
+  "hook": "Coffee is about pH 5, lemon juice about pH 2. How many times the hydrogen ions is that?",
   "domain": "chemistry",
   "concept": "ph-log-scale",
   "status": "review",
@@ -74,16 +74,21 @@
       "id": "chemistry.ph-log-scale.c6",
       "text": "From pH 0 to pH 14 the hydrogen-ion concentration changes by a factor of 10^14, one hundred trillion.",
       "support": "derivation",
-      "source": "10^(14) = 100,000,000,000,000 (arithmetic from the definition of pH).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "source": "10^(14) = 100,000,000,000,000 (arithmetic from the definition of pH). v2: the sentence was removed from the reveal (learner finding 4: pH 0 and 14 never appear on the stage); no learner-visible text depends on this claim now.",
+      "status": "withdrawn"
     },
     {
       "id": "chemistry.ph-log-scale.c7",
-      "text": "Same-sized cups of black coffee (about pH 5) and lemon juice (about pH 2): the lemon juice has about 1,000 times as many hydrogen ions.",
+      "text": "If black coffee is taken as pH 5 and lemon juice as pH 2 (round values), same-sized cups differ by exactly 1,000 times in hydrogen ions; for real coffees and lemon juices the ratio varies, roughly 200 to 1,300 times.",
       "support": "derivation",
-      "source": "From c2 with the stated round values: 10^(5-2) = 1,000. With the measured ranges in c3 and c4 the ratio runs from 10^(4.85-2.6) = 178 to 10^(5.13-2.0) = 1,349 (about 500 at the midpoints 2.3 and 5.0; artifacts/scratch/fc2-ph-log-scale.mjs), so 1,000 is the answer for pH exactly 5 and 2, not a measured ratio for real products. Seen in the predict question and reveal. Added by fact-checker 2026-10-12; needs an independent check (see the fact-check record, fix F1).",
+      "source": "From c2 with the round values: 10^(5-2) = 1,000. With the measured ranges in c3 and c4 the ratio runs from 10^(4.85-2.6) = 178 to 10^(5.13-2.0) = 1,349 (fact-checker, artifacts/scratch/fc2-ph-log-scale.mjs). v2 frames the predict question and reveal as round values (fact-check F1).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-log-scale.c8",
+      "text": "A lower pH means more hydrogen ions in the same volume, and a more acidic solution.",
+      "support": "derivation",
+      "source": "From c1: pH = -log10[H+], so [H+] = 10^(-pH) rises as pH falls; acidity in the pH sense is the hydrogen-ion activity (IUPAC Gold Book, 'pH'). Stage caption v2 \"Lower pH, more ions.\" and slider label \"slide right for more acid\" (learner finding 3).",
       "status": "unverified"
     }
   ],
@@ -108,5 +113,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
