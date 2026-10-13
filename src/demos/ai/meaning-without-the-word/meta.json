@@ -1,0 +1,72 @@
+{
+  "slug": "meaning-without-the-word",
+  "title": "The answer was there. Did it get found?",
+  "hook": "The knowledge base holds the answer. Does the model ever get to read it?",
+  "domain": "ai",
+  "concept": "retrieval-top-k",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a chatbot can look things up in documents before answering"
+    ],
+    "doesNotKnow": [
+      "that only the top few retrieved passages reach the model",
+      "that keyword matching can rank the right passage below the cut"
+    ]
+  },
+  "misconception": "If the answer is in the knowledge base, the system will find it.",
+  "objective": "The learner can explain that a retrieval-fed model answers only from the passages ranked above the cut, so a right passage that shares no words with the question can be invisible to it.",
+  "claims": [
+    {
+      "id": "ai.meaning-without-the-word.c1",
+      "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each, so with ties in knowledge-base order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
+      "support": "derivation",
+      "source": "wordScore() and ranking('words') in Demo.tsx (node output: scores 0,1,1,1,1; order 1,2,3,4,0). The tie-break rule is the toy's.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.meaning-without-the-word.c2",
+      "text": "The meaning scores are hand-set for the toy, not computed by an embedding model.",
+      "support": "convention",
+      "source": "CHUNKS[].meaning in Demo.tsx, chosen by the builder so that the Paris chunk ranks first; labelled in the reveal.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.meaning-without-the-word.c3",
+      "text": "Paris is the seat of the French government (the capital of France).",
+      "support": "source",
+      "source": "Constitution of the French Republic / any standard reference (e.g. Encyclopaedia Britannica, 'Paris').",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.meaning-without-the-word.c4",
+      "text": "Retrieval-augmented systems pass the top-k retrieved passages to the model, and real systems use learned embeddings to match by meaning.",
+      "support": "source",
+      "source": "About real systems: Lewis et al. 2020, 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks' (NeurIPS); Karpukhin et al. 2020, 'Dense Passage Retrieval for Open-Domain Question Answering' (EMNLP).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A company chatbot answers from its help pages, but says it can't find the refund policy, which is on a page titled 'Returns'. What is the most likely cause?",
+    "options": [
+      "The returns page was ranked below the passages handed to the model",
+      "The model refused to answer about money",
+      "The model forgot the page after reading it"
+    ],
+    "answer": 0,
+    "why": "The model only reads the top few retrieved passages. A page that does not use the question's words can rank below the cut, and then the model never sees it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
