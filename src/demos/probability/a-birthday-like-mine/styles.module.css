@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.svg { flex-shrink: 0; max-height: 26dvh; }
+.track { fill: var(--bg-2); stroke: var(--line); }
+.me { fill: var(--domain); }
+.any { fill: var(--bad); opacity: 0.85; }
+.half { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.lab { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.sub { fill: var(--muted); font-size: 9px; }

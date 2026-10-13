@@ -1,0 +1,87 @@
+{
+  "slug": "capped-doubling-game",
+  "title": "A fair price for a coin game?",
+  "hook": "Flip until tails; the payout doubles with each flip. What should entry cost?",
+  "domain": "probability",
+  "concept": "expected-value",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "an average payout is total winnings divided by plays"
+    ],
+    "doesNotKnow": [
+      "that an average can be made mostly of rare big payouts",
+      "that a typical player may never see it"
+    ]
+  },
+  "misconception": "A game with typical payouts of a few dollars cannot have a high fair price.",
+  "objective": "The learner can say that the fair price is the long-run average payout ($20 here), that it comes from rare big wins, and that most plays pay $4 or less.",
+  "keyState": "A price chosen and at least 200 games played; on the click path 550 games with average $25.79, median $4 and biggest $8,192 (58% of all winnings).",
+  "claims": [
+    {
+      "id": "probability.capped-doubling-game.c1",
+      "text": "The game: flip a fair coin until the first tails, at most 20 flips; first tails on flip k pays $2^k, and 20 heads pays $0.",
+      "support": "convention",
+      "source": "Rules shown on the stage and in the question; payout() in model.ts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c2",
+      "text": "The exact fair price is $20: each k from 1 to 20 adds 2^k x (1/2)^k = $1 to the average payout.",
+      "support": "derivation",
+      "source": "Sum over k = 1..20 of 2^k (1/2)^k = 20 (fairPrice() in model.ts, recomputed in node). The probability of first tails on flip k is (1/2)^k.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c3",
+      "text": "75% of plays pay $4 or less.",
+      "support": "derivation",
+      "source": "P(first tails on flip 1) + P(flip 2) = 1/2 + 1/4 = 3/4; payouts $2 and $4.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c4",
+      "text": "In the stage's seeded run, the average payout after 550 games is $25.79, the median payout is $4 and the biggest payout is $8,192, which is 58% of all money paid out.",
+      "support": "simulation",
+      "source": "Game g uses mulberry32(2500 + g), untuned (first seed tried). One early $8,192 payout lifts this run above the typical case: over 400 other seed sets of 550 games the average had median $11.6, 10th to 90th percentile $8.1 to $25.7 (min $6.2, max $969), and only 13.5% reached $20 or more.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c5",
+      "text": "The running average can sit well below $20 for many games because the big payouts are rare, so a run is not a reliable guide to the fair price.",
+      "support": "simulation",
+      "source": "Spread across seeds in claim 4: the median 550-game average is $11.6, below $20; the variance of one payout is the sum of 4^k (1/2)^k = about 2.1 million.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c6",
+      "text": "The profit readout is total payouts minus price times games played.",
+      "support": "convention",
+      "source": "profit = summary(n).total - price x n in Demo.tsx.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A game pays $1 million with chance 1 in 1,000 and nothing otherwise. Is $1,000 a fair entry price?",
+    "options": [
+      "Yes, the average payout is $1,000",
+      "No, most plays pay nothing",
+      "No, it must cost less than $1"
+    ],
+    "answer": 0,
+    "why": "Fair price equals the average payout: 1/1000 x $1,000,000 = $1,000. Most plays pay nothing, but the rare big wins carry the average."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

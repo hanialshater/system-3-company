@@ -1,0 +1,80 @@
+{
+  "slug": "stop-when-it-looks-significant",
+  "title": "Test a fair coin after every flip",
+  "hook": "A 5% test flags a fair coin 1 time in 20. Does checking after every flip change that?",
+  "domain": "probability",
+  "concept": "peeking-at-results",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a result outside the 5% level happens by chance about 1 time in 20 (p-values)"
+    ],
+    "doesNotKnow": [
+      "that repeated looks give noise many chances to cross the line",
+      "that a fixed-sample test assumes a single look"
+    ]
+  },
+  "misconception": "If the test is run at the 5% level, stopping early when it first looks significant is still at the 5% level.",
+  "objective": "The learner can say that testing after every flip and stopping at the first significant result wrongly flags a fair coin about 29% of the time, against about 6% for a single look at the end.",
+  "keyState": "Look-every-flip and look-only-at-the-end both shown on 20 lines, then all 100 seeded fair coins counted: 23 flagged by peeking, 5 by the end-only look.",
+  "claims": [
+    {
+      "id": "probability.stop-when-it-looks-significant.c1",
+      "text": "The test calls a coin biased when |heads - tails| / sqrt(flips) is above 1.96 (the 5% level under the normal approximation).",
+      "support": "convention",
+      "source": "Standard z-test with the normal approximation; BAND = 1.96 in model.ts. It is an approximation for small flip counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.stop-when-it-looks-significant.c2",
+      "text": "Testing after every flip from flip 10 to flip 100 and stopping at the first significant result wrongly flags a fair coin 28.5% of the time.",
+      "support": "derivation",
+      "source": "Exact dynamic programme over the +-1 walk (exact().peek = 0.2854), removing mass at the first n in 10..100 with |d|/sqrt(n) > 1.96; recomputed in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.stop-when-it-looks-significant.c3",
+      "text": "A single look at flip 100 wrongly flags a fair coin 5.7% of the time.",
+      "support": "derivation",
+      "source": "P(|2H - 100| / 10 > 1.96) = P(H >= 60) + P(H <= 40) = 0.0569 (exact().end). Not 5% because the walk only takes steps of 2 at n = 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.stop-when-it-looks-significant.c4",
+      "text": "In the 100 seeded fair coins on the stage, 23 left the band at some look from flip 10, and 5 were outside it at flip 100.",
+      "support": "simulation",
+      "source": "Experiment i uses mulberry32(6000 + i), untuned (first seed tried). Over 300 other seed sets of 100 coins, peeking flagged 28.3 on average (range 15 to 40) and the end-only look 5.8 (range 0 to 13). The first 20 lines shown flag 6 (every look) and 0 (end only).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.stop-when-it-looks-significant.c5",
+      "text": "Each extra look gives noise another chance to cross the line, so the more often you look, the more often a fair coin is wrongly flagged.",
+      "support": "derivation",
+      "source": "Follows from claims 2 and 3: 28.5% against 5.7%. The 1.96 rule assumes a single planned look (see Armitage, McPherson & Rowe (1969), J. Royal Statistical Society A 132: 235-244, to be checked).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You check a fair coin's test result after every flip and stop the first time it looks biased at the 5% level. Compared with checking once at the end, wrong 'biased' calls are",
+    "options": [
+      "Much more frequent",
+      "About the same",
+      "Less frequent"
+    ],
+    "answer": 0,
+    "why": "Every look is another chance for noise to cross the line: about 29% of fair coins get flagged with checks at flips 10 to 100, against about 6% for one look."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

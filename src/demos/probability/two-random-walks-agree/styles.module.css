@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 30dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.82rem; font-weight: 600; }
+.la { stroke: var(--domain); stroke-width: 1.8; }
+.lb { stroke: var(--bad); stroke-width: 1.8; }
+.edge { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.lab { fill: var(--muted); font-size: 8px; }
+.big { fill: var(--fg); font-size: 13px; font-weight: 800; }
+.weak { fill: var(--muted); opacity: 0.7; }
+.strong { fill: var(--bad); opacity: 0.85; }
+.cur { fill: var(--fg); stroke: var(--domain); stroke-width: 2; }

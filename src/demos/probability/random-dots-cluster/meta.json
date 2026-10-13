@@ -1,0 +1,79 @@
+{
+  "slug": "random-dots-cluster",
+  "title": "40 random dots. Any crowded squares?",
+  "hook": "Scatter 40 dots over 100 squares at random. Will every square stay almost empty?",
+  "domain": "probability",
+  "concept": "clustering-illusion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "random means no pattern, in their head: evenly spread"
+    ],
+    "doesNotKnow": [
+      "how often pure chance makes lumps"
+    ]
+  },
+  "misconception": "If dots land at random, no spot gets more than a couple; a cluster means something is attracting them.",
+  "objective": "The learner can say that about half of random scatters of 40 dots on 100 squares have a square with 3 or more, so lumps alone are not evidence of a cause.",
+  "keyState": "At least 11 seeded batches dropped, with about half having a ringed (3 or more dots) square; on the click path 60 of 111.",
+  "claims": [
+    {
+      "id": "probability.random-dots-cluster.c1",
+      "text": "Each dot lands at a uniformly random place on the grid, independently of the others.",
+      "support": "convention",
+      "source": "Stage text and model.ts batch(): two mulberry32 uniform draws per dot.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.random-dots-cluster.c2",
+      "text": "The chance that some square among 100 holds 3 or more of 40 random dots is 55.5%.",
+      "support": "derivation",
+      "source": "Exact count of placements with every square holding at most 2 dots, via the polynomial (1 + x + x^2/2)^100: P = 1 - 40! [x^40](...) / 100^40 = 0.5550 (pCrowded() in model.ts; recomputed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.random-dots-cluster.c3",
+      "text": "With 25 dots the chance is 18.2%, and with 30 dots 29.3%.",
+      "support": "derivation",
+      "source": "pCrowded(25) = 0.1823, pCrowded(30) = 0.2931 (same method). Not shown on the stage; recorded for checking the brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.random-dots-cluster.c4",
+      "text": "The tally of batches with a ringed square is a seeded run of batches, shown on the stage as k of m; it varies around the exact 55.5%.",
+      "support": "simulation",
+      "source": "Batch i uses mulberry32(9000 + i), untuned. The first 111 batches give 60 of 111 (54%). Over 300 other seed sets of 111 batches the count averaged 61.4 (55.3%) with SD 5.0 (range 47 to 74), so it is near 55% but not equal to it.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.random-dots-cluster.c5",
+      "text": "An evenly spread pattern of dots is the unusual outcome; lumps are what random scatter looks like.",
+      "support": "derivation",
+      "source": "Follows from claim 2: more than half of random scatters contain a crowded square. No claim is made about real-world clusters.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "30 raindrops land at random on 100 paving stones. Is it surprising if one stone catches 3 or more?",
+    "options": [
+      "Yes, rain spreads evenly",
+      "No, it happens in roughly 3 scatters out of 10",
+      "No, it always happens"
+    ],
+    "answer": 1,
+    "why": "For 30 random drops on 100 stones the chance that some stone gets 3 or more is about 29%. Lumps are ordinary."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

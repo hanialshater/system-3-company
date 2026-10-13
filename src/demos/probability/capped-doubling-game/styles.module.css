@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.wrap :global(.readout) { min-width: 0; flex: 1 1 56px; padding: 4px 6px; }
+.svg { flex-shrink: 0; max-height: 22dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.axis { stroke: var(--muted); stroke-width: 1; }
+.avg { stroke: var(--domain); stroke-width: 2; }
+.price { stroke: var(--bad); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.lab { fill: var(--muted); font-size: 8px; }
+.wrap :global(.readout-value) { font-size: 0.8rem; white-space: nowrap; }
+.wrap :global(.readout-label) { font-size: 0.6rem; }
