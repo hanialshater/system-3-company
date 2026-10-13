@@ -116,7 +116,7 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
           <p>
             Independent bets partly cancel. As you split further, the bars bunch around {ret(AVG)} and the worst case,
             every bet falling, gets rarer: 50%, 25%, 12.5%… The chance of some loss does not fall at every step (with 4
-            bets it is {pct(lossChance(4))}), but the losses left are small ones.
+            bets it is {pct(lossChance(4))}), but the worst case, every bet falling, gets rarer at every step.
           </p>
           <p className="muted">A model: truly independent bets, made-up numbers. Real investments often fall together. Not advice.</p>
         </>

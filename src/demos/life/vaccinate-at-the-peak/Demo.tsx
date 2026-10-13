@@ -121,8 +121,8 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
             {days.length ? ` You also tried ${days.map((d) => `day ${d} (${pct(RUNS[d].ever)})`).join(", ")}.` : ""}
           </p>
           <p>
-            The peak is the middle of the epidemic, not the end: on day {PEAK_DAY}, {pct(DP.sAtV)} had never been infected, and most infections
-            were still to come. Protecting people then still removes a lot of the tail; by day 40 little is left to stop.
+            The peak is not the end of the epidemic: on day {PEAK_DAY}, {pct(DP.sAtV)} of the town had never been infected.
+            Protecting people then still removes a lot of the tail; by day 40 little is left to stop.
           </p>
           <p className="muted">
             Model, not guidance: instant, perfect protection, and doses only to people not yet infected. Given to random people instead, the

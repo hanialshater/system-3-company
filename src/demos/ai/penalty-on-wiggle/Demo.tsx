@@ -139,8 +139,8 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             </p>
             <p>
               The held-out dots tell the other story: {none.heldMiss.toFixed(2)} with no penalty, {now.heldMiss.toFixed(2)} now. In{" "}
-              {wins} of 500 data sets a moderate penalty beat none on held-out dots. Push to 10 and the curve goes nearly flat
-              and loses again. A worse fit to training can be a better model.
+              {wins} of 500 data sets some moderate penalty (the best of five, 0.0001 to 1) beat none on held-out dots. Push
+              to 10 and the curve goes much flatter and usually loses again to no penalty. A worse fit to training can be a better model.
             </p>
           </>
         );

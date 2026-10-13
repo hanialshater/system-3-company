@@ -176,8 +176,8 @@ export default function HerdImmunity({ slug }: { slug: string }) {
         <>
           <p>
             You saw {seen.map((x) => `${x.caught} of ${x.of} catch it at ${x.p}% immune`).join("; ")}. Each case meets
-            R0 = 4 people; at 80% immune only 20% of them can catch it: 4 &times; 0.2 = 0.8 new cases per case. The
-            chain usually shrinks and dies: on average about 4 of the 80.
+            R0 = 4 people; at 80% immune only 20% of them can catch it: 4 &times; 0.2 = 0.8 new cases per case. Outbreaks
+            usually fizzle out: on average about 4 of the 80.
           </p>
           <p>
             Below the <strong>{THRESHOLD}% threshold</strong> (1 &minus; 1/R0) a case more than replaces itself.

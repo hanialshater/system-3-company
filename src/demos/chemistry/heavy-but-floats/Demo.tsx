@@ -40,7 +40,7 @@ export default function HeavyButFloats({ slug }: { slug: string }) {
   const r = radiusCm(vol) * PX_PER_CM;
   const state = rho > RHO_W + 1e-9 ? "sinks" : rho < RHO_W - 1e-9 ? "floats" : "hovers";
   const cy =
-    state === "sinks" ? BOTTOM - r : state === "hovers" ? (SURF + BOTTOM) / 2 : SURF + r - capDepth(rho / RHO_W) * r;
+    state === "sinks" ? BOTTOM - r : state === "hovers" ? (SURF + BOTTOM) / 2 : SURF + (capDepth(rho / RHO_W) - 1) * r;
   const cx = W / 2;
 
   return (

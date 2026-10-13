@@ -83,7 +83,7 @@ export default function TemperatureReshapes({ slug }: { slug: string }) {
           </p>
           <p>
             The menu never changed: mat, sofa, moon, at every temperature. Temperature only sets how strongly the model
-            favours its top choice. A hot model is not more inventive; it just picks unlikely words more often.
+            favours its top choice. A hot model does not learn anything new; it only spreads its choices, picking unlikely words more often.
           </p>
           <p className="muted">
             The rule: chance ∝ e^(score ÷ temperature). Real language models use the same setting when they sample text.

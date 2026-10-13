@@ -23,3 +23,7 @@ Key states: one finished outbreak above the 75% threshold (`over-above`), and on
 Claims: c5, c9 ("mostly") and c10 ("usually") reworded and unverified. c12 added (R0 = 4 contacts, 4 × unprotected share).
 
 QA-path trade-off: the DOM order is Next step, Run to end, the share chips, New outbreak. CSS `order` puts New outbreak on the first line visually. The contract finishes the outbreak at 80%, then presses 50% (seed 1 takes off: 168 of 200) and the other shares, then New outbreak. Both milestones are met. The slider is gone: chips are coarser (5% steps are lost) but make the threshold comparison one tap.
+
+## v3 (claim fix 2026-10-13)
+
+Claim c10 disputed (per-step shrinkage is false). Reveal now says 'Outbreaks usually fizzle out' instead of 'The chain usually shrinks and dies'; claim rewritten to the 0.8 new cases per case average and the 97-in-100 figure the checker supplied; unverified. c5 was already verified in the second check and is untouched.

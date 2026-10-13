@@ -4,3 +4,7 @@
 - Buttons instead of a slider so the question's T = 0.5 is an exact stop; the reveal unlocks only after the learner reaches 0.5.
 - Changed the question's "67%" to "66.5%" so it matches the stage exactly; tiny shares show "<0.1%" rather than "0.0%" (the word never vanishes).
 - After screenshots: layout read cleanly; no change beyond the number match.
+
+## v2 (claim fix 2026-10-13)
+
+Claim c8 disputed ('not more inventive' too strong for real models). Reveal now: 'A hot model does not learn anything new; it only spreads its choices, picking unlikely words more often.' Claim rewritten; unverified.

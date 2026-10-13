@@ -100,7 +100,7 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
             blues holds that midpoint, and so does any side that holds both oranges.
           </p>
           <p>
-            Two lines did it: orange where exactly one line says &quot;on&quot;, a band between them. Combining two simple cuts makes a
+            Two lines did it: orange where exactly one line says &quot;on&quot;, for example a band between them when the lines are parallel. Combining two simple cuts makes a
             shape no single cut can. That combining step is what a hidden layer adds: here, two hidden units, each one line.
           </p>
         </>

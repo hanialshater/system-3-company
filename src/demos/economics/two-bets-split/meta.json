@@ -79,12 +79,10 @@
     },
     {
       "id": "economics.two-bets-split.c7",
-      "text": "As you split across more bets, the chance of some loss does not fall at every step, but the losses left are small ones.",
+      "text": "As you split across more bets, the chance of some loss does not fall at every step, but the worst case, every bet falling, gets rarer at every step.",
       "support": "derivation",
-      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: node: exact loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6; the average loss when there is a loss is -10% for n=1,2,3 and only -4.0, -5.0, -5.7% for n=4,5,6. So 'the losses left are small ones' is false at 2-3 bets (the loss is the full -10%) and 'small' is unanchored. Fix: restrict to 4+ bets or say 'and the big loss gets rarer: 50%, 25%, 12.5%'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: node: exact loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6; the average loss when there is a loss is -10% for n=1,2,3 and only -4.0, -5.0, -5.7% for n=4,5,6. So 'the losses left are small ones' is false at 2-3 bets (the loss is the full -10%) and 'small' is unanchored. Fix: restrict to 4+ bets or say 'and the big loss gets rarer: 50%, 25%, 12.5%'. | CLAIM FIX 2026-10-13: Was '... but the losses left are small ones' (disputed: at 2-3 bets the loss is the full -10%; 'small' unanchored). Worst-case chance is 0.5^n, true at every step.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -106,5 +104,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

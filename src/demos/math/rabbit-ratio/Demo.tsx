@@ -62,7 +62,7 @@ export default function RabbitRatio({ slug }: { slug: string }) {
             landing place.
           </p>
           <p>
-            Each ratio overshoots, then undershoots, by less each time. If the ratio settles at x, then next ÷ this = 1 + previous ÷
+            Each ratio overshoots, then undershoots, and after the first step or two the gap shrinks each time. If the ratio settles at x, then next ÷ this = 1 + previous ÷
             this, so x = 1 + 1/x. Its positive solution is (1 + √5) ÷ 2 = {PHI.toFixed(4)}.
           </p>
           <p>The rule, not the start, sets the ratio: any two positive starting numbers end up there.</p>

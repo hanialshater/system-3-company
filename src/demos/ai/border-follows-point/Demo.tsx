@@ -89,8 +89,8 @@ export default function BorderFollowsPoint({ slug }: { slug: string }) {
           </p>
           <p>
             Lift A off the axis and the border tilts, staying at right angles to the line joining the two points, through their
-            midpoint. With many points, a nearest-neighbour border is stitched from such pieces, and moving any training point near
-            it moves the decision for every spot around it.
+            midpoint. With many points, a nearest-neighbour border is stitched from such pieces, and moving a training point near
+            it moves the border there, so the spots between its old and new border change class.
           </p>
         </>
       )}
