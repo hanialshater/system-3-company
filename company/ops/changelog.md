@@ -43,3 +43,4 @@
   - Watercolor house style guide and request template; the first request is `_reference` (5 style anchors).
   - Inbox, provenance format and `tools/illustrations.mjs` (list/check/accept, which requires all reviews), plus the kit `<Illustration>` with an "AI-generated" note.
   - `snapshot.sh` now also commits `public/`.
+- 2026-10-13 design-engineer: HQ Design inspector at /hq/design (+ /api/hq/sheet, /api/hq/design/concept). Tier 1; diff review by platform-engineer pending (W-board).

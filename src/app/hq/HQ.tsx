@@ -155,6 +155,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           <button role="tab" aria-selected={view === "people"} className={view === "people" ? s.tabOn : s.tab} onClick={() => setView("people")}>
             People
           </button>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/design">
+            Design
+          </Link>
         </div>
         <Link className="brand-link" href="/catalog">
           Map
