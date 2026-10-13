@@ -1,0 +1,74 @@
+{
+  "slug": "where-the-dew-forms",
+  "title": "When does the dew appear?",
+  "hook": "An evening cools; the air keeps its water. When does the grass get wet?",
+  "domain": "chemistry",
+  "concept": "vapor-pressure-humidity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that humid air feels sticky",
+      "that dew forms on cool mornings",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "that relative humidity compares the water in the air with a maximum that depends on temperature",
+      "that cooling lowers that maximum until it meets the water already there (the dew point)"
+    ]
+  },
+  "misconception": "Relative humidity measures how much water is in the air, whatever the temperature, so cooling does not change it.",
+  "objective": "The learner can explain that air at 30 °C and 50% relative humidity holds 2.12 kPa of water vapour, which is the full maximum at about 18 °C, so cooling it to about 18 °C brings it to 100% and dew forms.",
+  "claims": [
+    {
+      "id": "chemistry.where-the-dew-forms.c1",
+      "text": "The most water vapour that can stay vapour rises steeply with temperature; at 30 °C it is about 4.24 kPa.",
+      "support": "source",
+      "source": "Magnus formula es(T) = 0.61094 exp(17.625 T / (T + 243.04)) kPa (Alduchov & Eskridge 1996, J. Appl. Meteor. 35: 601-609); es(30) = 4.237 kPa (node). CRC Handbook 'Vapor pressure of water': 4.247 kPa at 30 °C.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.where-the-dew-forms.c2",
+      "text": "Relative humidity is the water vapour in the air as a share of the most that can stay vapour at that temperature.",
+      "support": "convention",
+      "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.where-the-dew-forms.c3",
+      "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour, which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point).",
+      "support": "derivation",
+      "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.where-the-dew-forms.c4",
+      "text": "Below the dew point the extra water condenses as dew.",
+      "support": "source",
+      "source": "Definition of dew point (WMO-No. 8; American Meteorological Society Glossary, 'dew point'). The stage keeps the air's total water fixed and ignores pressure changes on cooling (small).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A cold drink from the fridge gets wet on the outside on a humid day. Why?",
+    "options": [
+      "air touching the glass cools below its dew point, so its water vapour condenses",
+      "water seeps through the glass",
+      "the cold makes new water from the air's oxygen"
+    ],
+    "answer": 0,
+    "why": "Cooling the air next to the glass lowers the most vapour it can keep; below the dew point the extra water condenses on the glass."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

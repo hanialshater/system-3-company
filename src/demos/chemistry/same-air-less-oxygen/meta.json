@@ -1,0 +1,95 @@
+{
+  "slug": "same-air-less-oxygen",
+  "title": "What runs short on Everest?",
+  "hook": "Climbers on Everest gasp for oxygen. What has actually changed about the air up there?",
+  "domain": "chemistry",
+  "concept": "partial-pressure",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that air is about 21% oxygen",
+      "that air gets thinner higher up",
+      "that pressure is how hard a gas pushes"
+    ],
+    "doesNotKnow": [
+      "that each gas in a mix pushes its share of the total pressure (its partial pressure)",
+      "that oxygen's share stays about 21% at altitude while its pressure falls"
+    ]
+  },
+  "misconception": "At altitude the air holds a lower percentage of oxygen.",
+  "objective": "The learner can explain that on Everest's summit air is still about 21% oxygen, but the total pressure is about 31 kPa, so oxygen pushes only about 6.6 kPa against about 21 kPa at sea level: each breath holds about a third as much oxygen.",
+  "claims": [
+    {
+      "id": "chemistry.same-air-less-oxygen.c1",
+      "text": "Dry air is about 21% oxygen, and this share stays the same up to well above Everest's height.",
+      "support": "source",
+      "source": "O2 mole fraction 0.2095 in dry air (US Standard Atmosphere 1976, table 3); the atmosphere is well mixed below about 80-100 km (homosphere). Demo.tsx O2 = 0.2095.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c2",
+      "text": "In a standard-atmosphere model, air pressure on Everest's summit (8,849 m) is about 31 kPa, against about 101 kPa at sea level.",
+      "support": "derivation",
+      "source": "ISA troposphere p = 101.325 × (1 − 2.25577e-5 h)^5.25588 kPa (ICAO Doc 7488); at h = 8849 m p = 31.44 kPa (node; Demo.tsx press). Summit height 8,848.86 m (China-Nepal survey, 2020).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c3",
+      "text": "Each gas in a mixture pushes its share of the total pressure: oxygen's pressure is its fraction times the total.",
+      "support": "source",
+      "source": "Dalton's law of partial pressures (Atkins, Physical Chemistry, ch. 1).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c4",
+      "text": "On the summit oxygen pushes about 6.6 kPa, against about 21.2 kPa at sea level, so each breath holds about a third as much oxygen.",
+      "support": "derivation",
+      "source": "0.2095 × 31.44 = 6.59 kPa; 0.2095 × 101.325 = 21.23 kPa; ratio 0.31 (node; Demo.tsx SUMMIT_O2). 'A third as much' per breath of the same volume at the same temperature (ideal gas).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c5",
+      "text": "Measured summit pressure is a little higher than the model, about 34 kPa.",
+      "support": "source",
+      "source": "West et al. 1983, J Appl Physiol 55: 678-687, barometric pressure 253 mmHg (33.7 kPa) on the summit; West 1996/2006 on why Everest pressure exceeds the standard atmosphere (latitude, season).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c6",
+      "text": "The stage box is a toy: each dot stands for 0.5 kPa of air pressure, rounded to whole dots.",
+      "support": "convention",
+      "source": "Demo.tsx PER_DOT = 0.5: 203 dots at sea level, 63 at the summit; oxygen dots round(0.2095 × p / 0.5): 42 and 13. Readouts show the unrounded kPa.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.same-air-less-oxygen.c7",
+      "text": "(Recall) Airliner cabins are kept at about 75 kPa.",
+      "support": "source",
+      "source": "14 CFR 25.841: cabin pressure altitude not above 8,000 ft (2,438 m) in normal operation; ISA at 2,438 m = 75.3 kPa.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A plane cabin is kept at about 75 kPa. Compared with sea level, the cabin air's oxygen percentage is…",
+    "options": [
+      "the same, about 21%, but its pressure is lower",
+      "lower than 21%",
+      "higher than 21%"
+    ],
+    "answer": 0,
+    "why": "Thinning the air does not change the mix. Oxygen stays about 21%; its pressure is 21% of the lower total."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

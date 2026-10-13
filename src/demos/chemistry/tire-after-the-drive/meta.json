@@ -1,0 +1,81 @@
+{
+  "slug": "tire-after-the-drive",
+  "title": "The tyre after a hot drive",
+  "hook": "A tyre reads 220 kPa when parked. Drive until the air inside is 30 °C warmer. Now what?",
+  "domain": "chemistry",
+  "concept": "ideal-gas-law",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that heating a sealed gas raises its pressure",
+      "degrees Celsius",
+      "that tyres are checked with a pressure gauge"
+    ],
+    "doesNotKnow": [
+      "that gas pressure is proportional to temperature counted from absolute zero (kelvin)",
+      "that a tyre gauge leaves out the outside air's pressure"
+    ]
+  },
+  "misconception": "Pressure scales with the Celsius number, so 20 °C to 50 °C makes the gauge 2.5 times higher.",
+  "objective": "The learner can explain that warming a rigid tyre from 20 °C (293 K) to 50 °C (323 K) raises the total pressure about 10%, from about 321 to 354 kPa, so the gauge goes from 220 to about 253 kPa: a modest 15%, because pressure follows kelvin and the gauge omits the outside 101 kPa.",
+  "claims": [
+    {
+      "id": "chemistry.tire-after-the-drive.c1",
+      "text": "For a fixed amount of gas in a fixed volume, pressure is proportional to temperature in kelvin.",
+      "support": "source",
+      "source": "Ideal gas law pV = nRT at constant n, V (Gay-Lussac's law); Atkins, Physical Chemistry, ch. 1. Demo.tsx abs(c) = P_ABS0 × (c + 273.15) / 293.15.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.tire-after-the-drive.c2",
+      "text": "Kelvin counts from absolute zero: K = °C + 273; 20 °C is 293 K and 50 °C is 323 K.",
+      "support": "convention",
+      "source": "SI: T/K = t/°C + 273.15 (BIPM SI Brochure, 9th ed.). 293.15 and 323.15 rounded.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.tire-after-the-drive.c3",
+      "text": "A tyre gauge shows pressure above the outside air; the outside air at sea level pushes about 101 kPa.",
+      "support": "source",
+      "source": "Gauge pressure = absolute − atmospheric (NIST SP 811 / any physics text); standard atmosphere 101.325 kPa.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.tire-after-the-drive.c4",
+      "text": "Warming the tyre from 20 °C to 50 °C raises the total pressure about 10%, from about 321 to 354 kPa, so the gauge reads about 253 kPa: up about 33 kPa, or 15%.",
+      "support": "derivation",
+      "source": "(220 + 101.325) × 323.15 / 293.15 = 354.21 kPa absolute; − 101.325 = 252.88 kPa gauge; 354.21 / 321.325 = 1.102; 252.88 / 220 = 1.149 (node; Demo.tsx HOT_GAUGE). Wrong options: 220 × 50/20 = 550 (Celsius ratio); 354 (forgets to subtract the outside air).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.tire-after-the-drive.c5",
+      "text": "The tyre is modelled as an ideal gas in a fixed volume.",
+      "support": "source",
+      "source": "Model label on the stage ('ideal gas, fixed volume'). Real tyres stretch slightly when warm, so the real rise is a little smaller; air at 3 bar is close to ideal (compressibility factor about 1.00; NIST REFPROP air). Atmospheric pressure assumed 101.325 kPa.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sealed, rigid can of gas at 27 °C (300 K) is heated to 54 °C. Its absolute pressure becomes about…",
+    "options": [
+      "twice as high",
+      "about 9% higher",
+      "unchanged"
+    ],
+    "answer": 1,
+    "why": "Pressure follows kelvin: 300 K to 327 K is about 9% warmer, so the pressure rises about 9%, not double."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

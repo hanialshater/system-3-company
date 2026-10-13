@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.small { fill: var(--muted); font-size: 10px; }
+.label { fill: var(--fg); font-size: 13px; font-weight: 800; }
+.cuIon { fill: color-mix(in srgb, #2f7fd6 35%, transparent); stroke: var(--fg); stroke-width: 1; }
+.cu { fill: #c46a33; stroke: var(--fg); stroke-width: 1; }
+.electron { fill: var(--domain); stroke: var(--fg); stroke-width: 0.6; }
+.strip {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+  padding: 6px; border-radius: 10px; background: color-mix(in srgb, var(--muted) 25%, transparent);
+}
+.zn { min-height: 44px; font-weight: 800; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.left { display: inline-flex; gap: 3px; min-height: 8px; }
+.eDot { width: 8px; height: 8px; border-radius: 50%; background: var(--domain); border: 1px solid var(--fg); }
