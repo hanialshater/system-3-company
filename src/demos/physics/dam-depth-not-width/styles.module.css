@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 40dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 8px; font-variant-numeric: tabular-nums; }
+.water { fill: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); }
+.wall { fill: none; stroke: var(--fg); stroke-width: 1.6; }
+.surface { stroke: var(--domain); stroke-width: 1.2; }
+.gauge { fill: var(--fg); }
+.reading { fill: var(--fg); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.chip { fill: var(--muted); font-size: 8.5px; }
