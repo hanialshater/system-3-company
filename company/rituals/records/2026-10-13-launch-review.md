@@ -40,3 +40,14 @@ armour-where-no-holes, at-least-one-boy, collect-all-six-faces, five-heads-then-
 - Accessibility review condition as above (W-057 now covers 17 lessons).
 
 Decision: **go with conditions.** Signed: chief-of-staff, acting for head-of-product.
+
+## Third batch (same day): 8 chemistry lessons
+
+drunkards-reach, lower-the-hill, same-heat-different-rise, squeeze-the-brown-gas, the-two-drop-cliff, water-follows-the-crowd, who-runs-out-first, why-gas-spreads.
+
+- `company publish` passed for all eight. Their learner verdict is **launch** on the current version (v1), checked by hand.
+- **Held back as stale:** summit-kettle and the-tagged-molecule. Their launch verdicts were written for v1, but the claim-fix builder has since revised them to v2, so their changed claims are unverified and they need re-review.
+- **Waiting on a QA record:** heat-in-no-rise, most-collisions-bounce, one-ml-of-steam and steel-wool-gains-weight. They are wave 3 lessons, built after the integrated run, and are in the current QA batch.
+- **Objection that travels:** the reviewer says the first rounds of screenshot reads failed, so several early verdicts rest mainly on the transcript. It also reports reveal text clipped at the card bottom in three lessons, none of which is in this batch. Platform-engineer board item.
+
+Decision: **go with conditions** (accessibility review, W-057). Signed: chief-of-staff, acting for head-of-product.
