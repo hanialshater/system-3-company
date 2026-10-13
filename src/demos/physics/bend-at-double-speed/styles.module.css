@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 36dvh; }
+.road { fill: none; stroke: color-mix(in srgb, var(--fg) 45%, var(--bg-2)); stroke-width: 9; }
+.limit { fill: none; stroke: var(--domain); stroke-width: 2.5; stroke-dasharray: 6 4; }
+.slide { stroke: var(--bad); stroke-width: 2.5; stroke-dasharray: 3 3; }
+.carOk { fill: var(--good); stroke: var(--fg); stroke-width: 1; }
+.carBad { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.chip { fill: var(--muted); font-size: 9px; text-anchor: end; }
+.ok { fill: var(--good); font-size: 14px; font-weight: 800; text-anchor: end; }
+.bad { fill: var(--bad); font-size: 14px; font-weight: 800; text-anchor: end; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 2.5em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
