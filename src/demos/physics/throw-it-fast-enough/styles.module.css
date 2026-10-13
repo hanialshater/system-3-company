@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.wrap > label { flex: 0 0 auto; }
+.planet { fill: color-mix(in srgb, var(--domain) 14%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.peak { fill: var(--fg); }
+.arc { fill: none; stroke: var(--domain); stroke-width: 2.4; stroke-linecap: round; }
+.orbit { fill: none; stroke: var(--good); stroke-width: 2.4; }
+.land { fill: var(--bad); }
+.ball { fill: var(--good); }
+.chip { fill: var(--muted); font-size: 9px; }

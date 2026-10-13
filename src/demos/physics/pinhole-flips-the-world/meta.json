@@ -1,0 +1,81 @@
+{
+  "slug": "pinhole-flips-the-world",
+  "title": "A hole, no lens: what does it show?",
+  "hook": "Poke a tiny hole in a card and a candle's picture appears behind it. Which way up?",
+  "domain": "physics",
+  "concept": "pinhole-images",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "light travels in straight lines",
+      "a screen shows a picture when light lands on it",
+      "centimetres"
+    ],
+    "doesNotKnow": [
+      "how an image forms without a lens",
+      "similar triangles as a tool for optics"
+    ]
+  },
+  "misconception": "A tiny hole just lets less light through, so the picture behind it is a dimmer, upright copy.",
+  "objective": "The learner can explain that straight rays cross at the hole, so the top of the object lands at the bottom of the image, and that the image size is the object size times screen distance over object distance.",
+  "claims": [
+    {
+      "id": "physics.pinhole-flips-the-world.c1",
+      "text": "Light travels in straight lines through air, so each ray from the flame passes straight through the hole.",
+      "support": "source",
+      "source": "Rectilinear propagation in a uniform medium (geometric optics). Hecht, Optics, 5th ed., ch. 4 and 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pinhole-flips-the-world.c2",
+      "text": "The image is upside down at every candle and screen distance: rays from the top cross the axis at the hole and land below it.",
+      "support": "derivation",
+      "source": "A point at height y a distance d_o in front of the hole lands at -y d_s / d_o on a screen d_s behind it; the sign flips for any d_o, d_s > 0. Hecht, Optics, sec. 5.7.6 (pinhole camera).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pinhole-flips-the-world.c3",
+      "text": "Image height = object height x screen distance / candle distance: a 10 cm candle 30 cm from the hole with the screen 15 cm behind gives a 5.0 cm image.",
+      "support": "derivation",
+      "source": "Similar triangles: 10 x 15 / 30 = 5.0 cm. The stage computes 10 d_s / d_o for d_o 10-40 cm and d_s 5-30 cm (1.25 to 30 cm); checked in node. Candle height 10 cm is illustrative (brief used 6 cm; enlarged to read on a phone).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pinhole-flips-the-world.c4",
+      "text": "A wider hole blurs the image: each point of the flame spreads into a patch about the hole width x (d_o + d_s) / d_o across.",
+      "support": "derivation",
+      "source": "Geometric shadow of an aperture of width a from a point source: patch width a (d_o + d_s) / d_o. Hecht, Optics, sec. 5.7.6. On the stage, blur sets the outline thickness of the image.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.pinhole-flips-the-world.c5",
+      "text": "The lesson ignores diffraction, which blurs the image again when the hole is made very small.",
+      "support": "convention",
+      "source": "Stated idealisation (stage chip 'No lens. Straight rays.' and reveal). Optimum pinhole diameter about sqrt(2.44 lambda d_s) balances geometric blur and diffraction (Hecht, Optics, sec. 10.2).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a pinhole camera, you move the screen twice as far behind the hole. The image becomes…",
+    "options": [
+      "twice as tall and still upside down",
+      "half as tall and upright",
+      "the same size, just dimmer"
+    ],
+    "answer": 0,
+    "why": "Rays travel straight and cross at the hole, so the image is inverted; its height grows in proportion to the screen distance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

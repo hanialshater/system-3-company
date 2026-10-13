@@ -1,0 +1,73 @@
+{
+  "slug": "fall-distance-squares",
+  "title": "Fall for 3 seconds: how far?",
+  "hook": "A stone drops 4.9 m in its first second. Three seconds means three times as far. Right?",
+  "domain": "physics",
+  "concept": "distance-grows-t-squared",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "things speed up as they fall",
+      "metres and seconds"
+    ],
+    "doesNotKnow": [
+      "that distance fallen from rest is g t^2 / 2",
+      "that each second of a fall covers more distance than the last"
+    ]
+  },
+  "misconception": "Falling for twice (or three times) as long means falling twice (or three times) as far.",
+  "objective": "The learner can explain that a falling stone covers more ground each second because it keeps speeding up, so the distance grows as time squared: 3 s gives 9 x 4.9 = 44.1 m.",
+  "claims": [
+    {
+      "id": "physics.fall-distance-squares.c1",
+      "text": "Dropped from rest with no air, a stone falls d = g t² / 2: 4.9 m after 1 s, 19.6 m after 2 s, 44.1 m after 3 s and 78.5 m after 4 s.",
+      "support": "derivation",
+      "source": "Integrate a = g twice from rest: d = 9.81 t^2 / 2 = 4.905, 19.62, 44.145, 78.48 m. Checked by numerical integration (dt = 1e-5 s): 4.905, 19.620, 44.145 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.fall-distance-squares.c2",
+      "text": "The distances covered in the 1st, 2nd, 3rd and 4th seconds are 4.9, 14.7, 24.5 and 34.3 m, in the ratio 1 : 3 : 5 : 7.",
+      "support": "derivation",
+      "source": "g/2 (n^2 - (n-1)^2) = 4.905 (2n - 1): 4.905, 14.715, 24.525, 34.335 m (Galileo's odd-number rule, Two New Sciences, 1638).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.fall-distance-squares.c3",
+      "text": "A falling stone gains 9.81 m/s of speed every second.",
+      "support": "derivation",
+      "source": "v = g t with g = 9.81 m/s^2 near Earth's surface (standard gravity 9.80665 m/s^2, CGPM 1901).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.fall-distance-squares.c4",
+      "text": "The lesson ignores air resistance; a real stone falls a little less than 44.1 m in 3 s.",
+      "support": "convention",
+      "source": "Stated on stage ('No air.') and in the reveal. With quadratic drag the fall distance is always less than g t^2 / 2; for a dense stone the shortfall at 3 s is small (terminal speed far above the 29 m/s reached).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ball dropped from rest falls 5 m in the first second. Ignoring air, roughly how far has it fallen after 2 seconds?",
+    "options": [
+      "10 m",
+      "15 m",
+      "20 m"
+    ],
+    "answer": 2,
+    "why": "Distance grows with time squared: twice the time gives 2² = 4 times the distance, about 20 m (19.6 m)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

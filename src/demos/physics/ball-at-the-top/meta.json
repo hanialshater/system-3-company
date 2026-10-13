@@ -1,0 +1,81 @@
+{
+  "slug": "ball-at-the-top",
+  "title": "Stopped at the top: is it still pulled?",
+  "hook": "At the top of its flight the ball stops for an instant. Has gravity stopped too?",
+  "domain": "physics",
+  "concept": "acceleration-at-the-top",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a ball thrown up slows, stops and falls back",
+      "speed in m/s",
+      "gravity pulls things down"
+    ],
+    "doesNotKnow": [
+      "that acceleration is the rate of change of velocity, a different thing from velocity",
+      "that the acceleration of a thrown ball is g downward throughout its flight"
+    ]
+  },
+  "misconception": "At the top, where the speed is zero, the acceleration is zero too.",
+  "objective": "The learner can explain that at the top the velocity is zero but still changing, from up to down, so the acceleration is 9.81 m/s^2 downward at every instant, including the top.",
+  "claims": [
+    {
+      "id": "physics.ball-at-the-top.c1",
+      "text": "With no air resistance, a thrown ball's acceleration is 9.81 m/s² downward at every point of its flight, including the top.",
+      "support": "derivation",
+      "source": "The only force is weight m g, so a = -g throughout (Newton's second law). Halliday, Resnick and Walker, Fundamentals of Physics, ch. 2.9 (free-fall acceleration).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ball-at-the-top.c2",
+      "text": "Thrown up at 14.7 m/s, the ball reaches the top after 1.50 s, 11.0 m up.",
+      "support": "derivation",
+      "source": "t = v0 / g = 14.7 / 9.81 = 1.498 s; h = v0^2 / (2 g) = 11.01 m. Checked by numerical integration (dt = 1e-5 s): peak 1.4985 s, 11.01 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ball-at-the-top.c3",
+      "text": "Its velocity is +0.97 m/s (up) at 1.4 s and -1.00 m/s (down) at 1.6 s: it changes by 9.81 m/s every second, straight through zero.",
+      "support": "derivation",
+      "source": "v = 14.7 - 9.81 t: 14.7 - 13.734 = 0.966 m/s; 14.7 - 15.696 = -0.996 m/s. The stage computes v(t) at 0.1 s steps from 0 to 2.9 s; checked in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ball-at-the-top.c4",
+      "text": "If the acceleration were zero at the top, the ball would stay there, because its velocity would stop changing.",
+      "support": "derivation",
+      "source": "a = dv/dt; with v = 0 and a = 0 the velocity stays 0 (Newton's first law).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.ball-at-the-top.c5",
+      "text": "The lesson ignores air resistance; with air, the acceleration at the top is still 9.81 m/s² down, because drag is zero when the ball is at rest.",
+      "support": "derivation",
+      "source": "Stated on stage ('No air.') and in the reveal. Drag depends on speed (F = 1/2 rho C_d A v^2) and vanishes at v = 0, leaving only m g at the top.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A juggler's ball hangs motionless for an instant at the top of its arc. At that instant, the ball's acceleration is…",
+    "options": [
+      "zero",
+      "9.81 m/s² downward",
+      "9.81 m/s² upward"
+    ],
+    "answer": 1,
+    "why": "Zero velocity is not zero acceleration: the velocity is changing from up to down at 9.81 m/s every second, so gravity's acceleration never pauses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

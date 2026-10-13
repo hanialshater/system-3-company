@@ -1,0 +1,81 @@
+{
+  "slug": "brick-on-its-side",
+  "title": "Stand the brick on end: less friction?",
+  "hook": "Less of the brick touches the table. Does it get easier to drag?",
+  "domain": "physics",
+  "concept": "friction-area",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "rough surfaces grip more than smooth ones",
+      "a brick has wide and narrow faces",
+      "force in newtons, read off a spring scale"
+    ],
+    "doesNotKnow": [
+      "that sliding friction depends on the normal force and the surface pair, not the contact area",
+      "the friction coefficient mu"
+    ]
+  },
+  "misconception": "More contact area means more friction, so a brick on its narrow face slides more easily.",
+  "objective": "The learner can explain that for hard dry surfaces the steady pull equals mu x m x g whichever face is down, because friction depends on how hard the surfaces are pressed together, not on how much surface touches.",
+  "claims": [
+    {
+      "id": "physics.brick-on-its-side.c1",
+      "text": "For hard, dry surfaces, sliding friction is f = mu x N, where N is how hard the surfaces press together; it does not depend on the contact area.",
+      "support": "source",
+      "source": "Amontons' laws of friction (1699); Halliday, Resnick and Walker, Fundamentals of Physics, ch. 6.1. Explanation: real contact area grows with load, not apparent area (Bowden and Tabor, The Friction and Lubrication of Solids, 1950).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.brick-on-its-side.c2",
+      "text": "A 2 kg brick on a table with mu = 0.40 needs a steady pull of 7.8 N on any face; 1, 3 and 4 kg need 3.9, 11.8 and 15.7 N.",
+      "support": "derivation",
+      "source": "0.40 x 2 x 9.81 = 7.85 N (shown to one decimal as 7.8 N); 0.40 x 9.81 x 1, 3, 4 = 3.92, 11.77, 15.70 N. Checked in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.brick-on-its-side.c3",
+      "text": "The brick is 24 x 12 x 4 cm, so its faces touch 288, 96 and 48 cm² of table; the long side has one third of the wide face's area.",
+      "support": "convention",
+      "source": "Illustrative dimensions chosen so the narrow face is one third of the wide one (brief #24); 24 x 12 = 288, 24 x 4 = 96, 12 x 4 = 48.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.brick-on-its-side.c4",
+      "text": "A pull at steady speed equals the friction force, because the net force on the brick is zero.",
+      "support": "derivation",
+      "source": "Newton's first law: constant velocity means zero net force, so the scale force balances kinetic friction.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.brick-on-its-side.c5",
+      "text": "The rule holds for hard, dry surfaces; soft or sticky materials such as racing tyres do grip more with more area.",
+      "support": "source",
+      "source": "Stated limitation (reveal). Rubber friction includes adhesion and hysteresis that depend on contact area and pressure (Persson, Sliding Friction, Springer 2000, ch. 13).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A wooden crate slides across a concrete floor. You turn it onto a face with twice the area. The force to keep it sliding at steady speed…",
+    "options": [
+      "doubles",
+      "halves",
+      "stays about the same"
+    ],
+    "answer": 2,
+    "why": "Sliding friction is mu x weight for hard dry surfaces; more area spreads the same weight thinner, so the force stays about the same."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

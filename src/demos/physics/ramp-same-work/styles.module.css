@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 110px; max-height: 38dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.wrap :global(.row) { gap: 6px; }
+.ground { stroke: var(--fg); stroke-width: 1.5; opacity: 0.6; }
+.ramp { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.ledge { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); }
+.dim { fill: var(--fg); font-size: 9px; font-weight: 700; }
+.crate { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.push { stroke: var(--domain); stroke-width: 3; }
+.head { fill: var(--domain); }
+.chip { fill: var(--muted); font-size: 9px; }

@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 44dvh; }
+.wrap > label { flex: 0 0 auto; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 9px; }
+.kettle { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.bulb { fill: color-mix(in srgb, var(--good) 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.slice { stroke: var(--bg-2); stroke-width: 1; opacity: 0.9; }
+.name { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.value { fill: var(--fg); font-size: 10px; font-weight: 800; font-variant-numeric: tabular-nums; }
