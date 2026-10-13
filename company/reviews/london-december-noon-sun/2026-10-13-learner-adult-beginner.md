@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: london-december-noon-sun
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) hook nudges to the lowest option; (2) latitude's role never shown, formula taken on trust; (3) only the December state shown, so June/equinox numbers are told; (4) light spreading and air told; (5) "tilt" and "equinox" unexplained.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief expects the learner to know the Sun is lower in winter; the 90-51.5-23.4 formula on screen delivers the December case. June and equinox numbers (objective) were not shown in my walk, and why subtracting latitude works is not shown.
+- Brief misconception: The winter Sun in a mid-latitude city is only a little lower than at the equinox.
+
+Verdict: revise

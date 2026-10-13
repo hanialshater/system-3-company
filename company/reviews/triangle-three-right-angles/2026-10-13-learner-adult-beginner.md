@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: triangle-three-right-angles
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the question gives the answer away by its own geometry; (2) locked stage shows 60°E and an area before the question's 90°E case; (3) "EXCESS (RAD) × R²" unreadable; (4) rule, 510 M km², small triangles told.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (every triangle sums to 180) is hit by the hook. The question describes the geometry so 270 is deducible, the locked stage shows a different triangle (60E), and the excess-times-R2 rule is told with an unreadable tile.
+- Brief misconception: Every triangle has angles summing to 180 degrees.
+
+Verdict: revise

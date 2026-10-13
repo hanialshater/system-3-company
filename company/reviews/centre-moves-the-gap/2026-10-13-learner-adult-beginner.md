@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: centre-moves-the-gap
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) hook and title lean to "not far", weak first option; (2) 258° the long way round unexplained; (3) 8,810 km told, not shown; (4) map shown small before locking.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief expects longitude in degrees; the 258 versus 102 contrast is shown and matches the objective. Hook and title lean to the answer, and 8,810 km is not shown to be real.
+- Brief misconception: Distances between places on a world map are simply what they are; where the map is cut is neutral.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: midnight-sun-line
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -17,3 +17,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) tilt and the 90-23.4 rule told, not shown; (2) latitude, solstice, orthographic undefined; (3) time slider barely used so "never sets all day" is asserted; (4) 23.4°N trap not addressed.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief expects the learner to know the tilt is 23.4 and days are long in summer; the stage never shows the tilt or the night edge stopping short of the pole, which is the objective's mechanism. The threshold itself is seen.
+- Brief misconception: The Sun stays up all day only at the poles, or only well past the Arctic Circle.
+
+Verdict: revise

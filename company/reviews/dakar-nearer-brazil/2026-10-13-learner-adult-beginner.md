@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: dakar-nearer-brazil
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) answer visible from the locked map; (2) "beyond your widest ring" is relative to my stopping point; Paris/Rome distances never shown; (3) projection and "stretched elsewhere" told; (4) label overlaps ring.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief says over 4,000 km for Paris/Rome; the stage never shows those distances, only 'outside my ring'. The answer is visible on the locked map, so the prediction is weak. Projection point is told only.
+- Brief misconception: West Africa is far from Brazil and close to Europe.
+
+Verdict: revise

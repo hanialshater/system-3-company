@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: fifty-hour-monday
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -17,3 +17,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - I did not open an intermediate slider state in the screenshots (only the final-state shots), so I cannot comment on how the blue Monday band looks mid-sweep.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (one date is a single wall of midnight) is real, and the stage's endpoints plus the 50 h counter address it. But the brief assumes the learner already knows zone offsets; the stage never explains UTC or why UTC+14/UTC-12 exist, and the hook leaks 'longer than 24'. Claims not re-checked by me.
+- Brief misconception: Every calendar day exists everywhere for exactly 24 hours, as a single wall of midnight.
+
+Verdict: revise

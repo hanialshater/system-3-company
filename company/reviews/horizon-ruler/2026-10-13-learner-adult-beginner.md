@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: horizon-ruler
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) formula and "tangent" told; (2) overlapping labels at tall heights; (3) "refraction" undefined.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (horizon is the limit of eyesight) and the 100x height / 10x distance point are both shown by the buttons. The sqrt formula in the reveal goes beyond what the stage shows but is not needed for the idea.
+- Brief misconception: The horizon is the limit of eyesight, not of the Earth's curve.
+
+Verdict: launch

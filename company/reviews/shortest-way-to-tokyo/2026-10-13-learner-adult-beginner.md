@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: shortest-way-to-tokyo
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -17,3 +17,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) no globe, so "why" is told; (2) "straight line on a map" measured over the globe is subtle; (3) 70°N and 18% told; (4) Mercator and compass bearing undefined.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (the straight map line is shortest) is hit by the hook. The objective, that the shortest path is a great circle, is told; the stage has no globe and only shows 'shortest you tried'.
+- Brief misconception: The shortest route is the straight line you draw on the map.
+
+Verdict: revise

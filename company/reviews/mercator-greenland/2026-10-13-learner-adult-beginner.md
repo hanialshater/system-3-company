@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: mercator-greenland
-lesson version: v?
+lesson version: v3
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) Mercator and Equal Earth never defined on the stage; (2) angles/sailors/"no map keeps both" told, not shown; (3) the 1/cos² formula is jargon; (4) the slide is short in my walk.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's boundary matches mine (no projection knowledge). The core idea (Greenland did not change, the map did; about the size of DR Congo) is shown by the slider and map toggle. Mercator's purpose and the no-map-keeps-both point are told only.
+- Brief misconception: The sizes of countries on a world map are their real sizes.
+
+Verdict: launch

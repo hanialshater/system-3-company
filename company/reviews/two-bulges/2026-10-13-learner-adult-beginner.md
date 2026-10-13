@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: two-bulges
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -17,3 +17,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) hook and title give away the answer; (2) why the far bulge exists is told, not shown; (3) no low tide ever shown; (4) "lunar day" undefined; (5) the claim of one tide on some coasts is unsupported on the stage.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (one bulge, so one tide) is the right target, but the title and hook give away the count and the stage draws both bulges from the start. The objective's mechanism (differing pull) is told only.
+- Brief misconception: The Moon pulls water into one bulge facing it, so there should be one high tide a day.
+
+Verdict: revise

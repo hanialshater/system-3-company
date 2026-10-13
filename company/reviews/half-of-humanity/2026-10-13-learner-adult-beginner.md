@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: half-of-humanity
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -15,3 +15,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the question says "rank", but the ranking is handed over (minor); (2) "Equal Earth" jargon; (3) "outside Antarctica" appears only in the reveal.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's two goals (seven countries hold half; area map is not a people map) are both carried by the paired people/land tiles. Intent and experience match.
+- Brief misconception: People are spread roughly evenly across the countries, so "half the world" means dozens of countries.
+
+Verdict: launch

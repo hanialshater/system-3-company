@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: shrinking-degree
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) "longitude" and "latitude" never defined (the reveal assumes both); (2) 10 degree box versus 1 degree readout; (3) pole and cosine told; (4) projection jargon.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief assumes the learner knows degrees of latitude/longitude; the stage does not define them, but the narrowing box and fixed 111 km latitude tile deliver the objective. Pole and cosine are told only.
+- Brief misconception: A degree is a fixed distance everywhere.
+
+Verdict: launch

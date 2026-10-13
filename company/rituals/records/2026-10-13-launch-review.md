@@ -77,3 +77,5 @@ call-stack-depth, lopsided-tree, pivot-lands-home, quadratic-wall, runs-that-gro
 **Held back:** lru-eviction-order. Its reviewer's verdict was launch, but the same review says the reveal claims LRU "keeps more hits" while the stage showed identical hits and misses under both rules. That is a sentence the stage contradicts, so the lesson was put back to review and added to `publish-holds.json`.
 
 Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
+
+**Correction to batch 6 (same evening):** eratosthenes-shadow is unpublished. The geography reviewer reported afterwards that 21 of its first image reads failed, so 17 verdicts, including this launch, were written from transcripts without seeing the screenshots. A launch needs the artifact itself. eratosthenes-shadow and the other 7 launch verdicts from that group are held in `publish-holds.json` until a reviewer looks at the screenshots. china-one-clock and coastline-ruler stay published, because their screenshots were re-read.

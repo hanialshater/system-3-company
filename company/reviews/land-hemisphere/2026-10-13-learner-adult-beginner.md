@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: land-hemisphere
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the preset gives the maximum immediately; (2) 29% and 11% told; (3) latitude/longitude/orthographic jargon.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (a mostly-land half exists) is hit by the 90% option. The preset hands over the maximum at once, so the 'search and fail' the brief implies does not happen; 29% whole-planet figure is told.
+- Brief misconception: Somewhere there is a half of the Earth that is mostly land.
+
+Verdict: revise

@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: light-in-the-cylinder
-lesson version: v?
+lesson version: v2
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) "globe radii" unit and the unusual set-up; (2) the free 60°N example shows ALONG THE GLOBE but not the paper reading; (3) tan and the pole told; (4) never connected to an actual map.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief says the learner knows projections exist; the light-and-paper model is a good bridge and the 5.67 vs 1.40 readout shows the stretch. The tan formula and the link to a real map are told only; 'radii' unit is unexplained.
+- Brief misconception: Projections are arbitrary redrawings, with no geometry behind them.
+
+Verdict: revise

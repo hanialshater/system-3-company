@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: ruler-on-mercator
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) Mercator/projection undefined; (2) 70° and 1/cos told; (3) north-south = east-west told with a horizontal bar only; (4) locked map crop is odd and the bar is tiny.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (scale bar is the same everywhere) is hit directly; the yellow/green bar pair shows half at 60 degrees. The north-south = east-west remark goes beyond what a horizontal bar shows.
+- Brief misconception: A map's scale bar measures distance the same way everywhere.
+
+Verdict: launch

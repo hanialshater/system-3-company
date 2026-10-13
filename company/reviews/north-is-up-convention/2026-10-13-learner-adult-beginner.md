@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: north-is-up-convention
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) answer deducible from the question text; (2) arrow-only buttons and a tiny compass; (3) al-Idrisi/south told, not shown; (4) globe vs flat map blur.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (north always up) is hit, and the globe match is satisfying. The answer is deducible from the question text, the south case is told, and the controls are arrow-only.
+- Brief misconception: North has always been up because that is the natural way to draw the world.
+
+Verdict: revise

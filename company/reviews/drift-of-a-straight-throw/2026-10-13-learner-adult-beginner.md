@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: drift-of-a-straight-throw
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the setup cannot be held without prior physics; (2) autoscaled scale bar hides the size differences; (3) square law, equator, poles, winds told; (4) "Coriolis" appears undefined; (5) travel time never stated.
 - Fatal? No false statement found, but the lesson is hard to follow for this beginner. Not FATAL; strongly revise.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (large effect, sink draining) is not touched on the stage. The objective needs square-of-time and zero at the equator; neither is shown (no equator run, auto-scaled bar hides sizes). Setup needs more physics than the boundary has.
+- Brief misconception: The Coriolis effect is what makes a sink drain one way, and it is large for anything that moves.
+
+Verdict: revise

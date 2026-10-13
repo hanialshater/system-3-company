@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: london-la-over-greenland
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the gnomonic map is unreadable for a beginner and unlabelled; (2) the route is not drawn at lock time; (3) the 8,760 vs 9,730 comparison appears only in the reveal; (4) gnomonic, great circle and compass bearing undefined.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (Mercator straight line) is hit by the Mercator toggle. The gnomonic map is unreadable for a beginner and unlabelled; the objective's 'every great circle is straight' is a caption, not an experience.
+- Brief misconception: A flight from London to Los Angeles crosses open Atlantic and then Canada, because the straight line on a Mercator map does.
+
+Verdict: revise

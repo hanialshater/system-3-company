@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: tissot-circles
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) locked stage shows both circles at the equator; which circle moves is unlabelled; (2) 2 x 2 and 69°N told; (3) "theorem about spheres" told; (4) Mercator and Equal Earth named, not defined.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief expects the learner to know Mercator inflates high latitudes; the round-vs-oval contrast is strong. But the locked stage does not show two circles at different latitudes as the question describes, and the 'theorem' claim is told.
+- Brief misconception: An accurate map would simply show everything at the right size and shape.
+
+Verdict: revise

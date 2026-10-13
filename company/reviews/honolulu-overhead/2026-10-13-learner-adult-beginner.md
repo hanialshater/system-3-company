@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: honolulu-overhead
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) hook leans toward "no"; (2) latitude used before tied to the map; (3) 27 May / 16 Jul and tilt told, not shown; (4) unlabelled tropic lines; (5) "drag through June" does not match the controls.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (Sun overhead in Florida/Texas) is hit by the Miami option. The objective's 'because of the tilt' is told, not shown; the stage never displays the tilt.
+- Brief misconception: The Sun is directly overhead in summer in places like Florida or Texas.
+
+Verdict: revise

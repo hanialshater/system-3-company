@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: equinox-twelve-everywhere
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -17,3 +17,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) title/hook give away 12; (2) locked stage starts at 40°N in December, not the asked case, with no readout; (3) "line lit" undefined; (4) reveal says 50°N tried; (5) other dates not shown; (6) tilt and Sun-overhead reason told.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief assumes latitude is known; the 12.0 h / 50% readouts deliver the objective's first half. The title gives away 12, the locked stage is on 21 Dec at 40N, and the tilt half of the objective is told only.
+- Brief misconception: Even at the equinox, places far from the equator get longer or shorter days than the tropics.
+
+Verdict: revise

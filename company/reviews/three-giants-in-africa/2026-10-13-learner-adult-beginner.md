@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: three-giants-in-africa
-lesson version: v?
+lesson version: v2
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) "the three largest" is false (US, China, India are not the three largest countries); (2) overlap and rotation reduce trust, flagged only in tiny print; (3) Mercator inflation told, not shown; (4) "without stretching" claimed about a flat map.
 - Not FATAL on the main idea (the 73% result is shown and true), but one reveal sentence states something false and must be fixed before launch.
 
+
+## 2. After reading the brief
+
+- Brief's objective (about 22 of 30 million km2, equal-area shows it) is delivered on the stage. The reveal sentence 'bigger than the three largest you moved put together' is false: the US, China and India are not the three largest countries. The brief's learner boundary includes 'US, China and India are large countries', not that they are the largest, so the lesson plants a wrong belief. Must be corrected before any launch; the rest is sound.
+- Brief misconception: Africa is about as big as one big country.
+
+Verdict: fatal

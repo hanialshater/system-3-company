@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: null-island-lat-lon
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) "prime meridian" used before defined; (2) the "?" marker over Africa nudges toward land; (3) projection jargon; (4) used buttons look disabled.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief's misconception (something must be at 0,0) is hit by the Sahara option; the objective (grid of angles, open ocean) is shown by the pin and the reveal definitions. Intent and experience match well.
+- Brief misconception: Where the equator and prime meridian cross there must be something there, probably land.
+
+Verdict: launch

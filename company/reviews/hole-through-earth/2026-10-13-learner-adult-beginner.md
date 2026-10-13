@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: hole-through-earth
-lesson version: v?
+lesson version: v1
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) the locked stage shows New York, not Madrid; (2) the other end's coordinates are not visible, so the "flip" rule is told; (3) 13% and China fractions told; (4) latitude/longitude undefined.
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief says the learner knows latitude/longitude; the stage shows them without defining them, which is probably fine. The objective's rule (flip hemisphere, move 180 degrees) is told only; the other end's coordinates are not displayed, and the locked stage shows New York not Madrid.
+- Brief misconception: Digging straight down from anywhere in the Americas or Europe comes out in China or Asia.
+
+Verdict: revise

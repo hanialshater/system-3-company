@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: fingernail-ocean
-lesson version: v?
+lesson version: v2
 boundary: an adult who has used maps and a globe and knows the continents; has never studied geography or map projections.
 
 ## 1. From the artifact
@@ -16,3 +16,10 @@ boundary: an adult who has used maps and a globe and knows the continents; has n
 - Problems: (1) 25 km per million years and 2 m per lifetime are told; (2) "plates" and "Equal Earth" undefined; (3) the toy moves only South America, which a beginner may take as the real mechanism (the reveal does flag it).
 - No FATAL.
 
+
+## 2. After reading the brief
+
+- Brief expects the learner to know continents drift but not the scale; the stage gives exactly the computation (100 + 20 million years = 3,000 km). Objective met on the stage; undefined 'plates' and 'Equal Earth' are minor.
+- Brief misconception: Continents move fast enough to notice, or not at all in human terms; both miss the scale.
+
+Verdict: launch
