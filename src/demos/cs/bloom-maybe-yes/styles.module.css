@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+.no { color: var(--bad); }
+
+.strip { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.bit {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 4px;
+  border-radius: 8px; border: 2px solid var(--line); background: var(--bg-2); min-height: 92px;
+}
+.on { background: color-mix(in srgb, var(--domain) 35%, var(--bg-2)); }
+.hit { border-color: var(--domain); border-width: 3px; }
+.miss { border-color: var(--bad); border-width: 3px; }
+.val { font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
+.idx { font-size: 0.66rem; color: var(--muted); }
+.who { display: flex; flex-direction: column; align-items: center; font-size: 0.62rem; color: var(--fg); line-height: 1.15; }
