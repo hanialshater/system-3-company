@@ -1,0 +1,65 @@
+{
+  "slug": "halving-powers",
+  "title": "Two to the power zero",
+  "hook": "2 to the power 0 means no 2s multiplied together. So is it nothing?",
+  "domain": "math",
+  "concept": "zero-exponent",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "repeated doubling: 2, 4, 8, 16",
+      "that 2³ means 2 × 2 × 2"
+    ],
+    "doesNotKnow": [
+      "why 2⁰ = 1"
+    ]
+  },
+  "misconception": "Anything to the power zero is zero, or nothing.",
+  "objective": "The learner can explain that each step down in the power divides by 2, so 2⁰ = 2 ÷ 2 = 1, and the pattern continues to 1/2 and 1/4.",
+  "claims": [
+    {
+      "id": "math.halving-powers.c1",
+      "text": "2³ = 2 × 2 × 2 = 8, 2² = 4, 2¹ = 2, and each step down in the power divides by 2.",
+      "support": "derivation",
+      "source": "2^n / 2 = 2^(n-1) for whole n ≥ 1; values from 2 ** n in Demo.tsx (recomputed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.halving-powers.c2",
+      "text": "Continuing the pattern, 2⁰ = 2 ÷ 2 = 1, 2⁻¹ = 1/2 and 2⁻² = 1/4.",
+      "support": "convention",
+      "source": "Standard definitions a^0 = 1 and a^-n = 1/a^n (a ≠ 0), chosen so the halving pattern and the rules of powers keep working. 2 ** 0 = 1, 2 ** -1 = 0.5, 2 ** -2 = 0.25 in node.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.halving-powers.c3",
+      "text": "2⁰ × 2³ must be 2⁰⁺³ = 2³, so 2⁰ has to be 1; the same holds for any number other than 0 to the power 0.",
+      "support": "derivation",
+      "source": "From a^m × a^n = a^(m+n): a^0 × a^n = a^n, divide by a^n ≠ 0 to get a^0 = 1. 0^0 is excluded (left undefined or set to 1 by convention depending on context), so the sentence says 'other than 0'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "10³ = 1000, 10² = 100, 10¹ = 10. What is 10⁰?",
+    "options": [
+      "0",
+      "1",
+      "10"
+    ],
+    "answer": 1,
+    "why": "Each step down divides by 10: 10 ÷ 10 = 1. Then 10⁻¹ is 1/10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
