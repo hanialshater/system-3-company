@@ -1,0 +1,72 @@
+{
+  "slug": "which-answer-wins",
+  "title": "How does 'people liked A' become a number?",
+  "hook": "People prefer answer A three times out of four. How big is A's reward lead?",
+  "domain": "ai",
+  "concept": "preference-ranking",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that models can be trained with rewards",
+      "that people can compare two answers and pick one"
+    ],
+    "doesNotKnow": [
+      "how pairwise human preferences become reward numbers"
+    ]
+  },
+  "misconception": "A reward model stores a score each human gave.",
+  "objective": "The learner can explain that a reward model is fitted so that the gap between two answers' rewards reproduces how often people preferred one, so 3-to-1 odds mean a gap of ln 3 ≈ 1.1, and that it learns only from who won, not why.",
+  "claims": [
+    {
+      "id": "ai.which-answer-wins.c1",
+      "text": "If P(A preferred) = 1 / (1 + e^−gap) and people pick A 75% of the time, the gap is ln 3 = 1.10 (odds 3 to 1); a gap of 1 predicts 73.1%, 0.75 predicts 67.9%, and 3 predicts 95.3%.",
+      "support": "derivation",
+      "source": "Solve sigmoid(g) = 0.75: e^g = 0.75/0.25 = 3, g = ln 3 = 1.0986. Node output of sigmoid() and fittedGap() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-answer-wins.c2",
+      "text": "This rule (the chance one item beats another depends only on the difference of their scores through a logistic curve) is the Bradley-Terry model.",
+      "support": "source",
+      "source": "Bradley & Terry 1952, 'Rank analysis of incomplete block designs: I. The method of paired comparisons', Biometrika 39(3/4).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-answer-wins.c3",
+      "text": "Reward models used to train language models are fitted to human comparisons of answer pairs with this rule; they see who won each comparison, not the reasons.",
+      "support": "source",
+      "source": "About real systems: Christiano et al. 2017, 'Deep reinforcement learning from human preferences' (NeurIPS); Ouyang et al. 2022, 'Training language models to follow instructions with human feedback' (InstructGPT, NeurIPS), §3.5 reward-model loss.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.which-answer-wins.c4",
+      "text": "The single pair of answers and the 75% rate are invented for the toy.",
+      "support": "convention",
+      "source": "Brief 29 in company/domains/briefs/ai.md; labelled on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Raters prefer answer X over answer Y about half the time. What reward gap will a fitted reward model give them?",
+    "options": [
+      "About 0: they get nearly the same reward",
+      "About 0.5",
+      "It depends on the scores the raters wrote down"
+    ],
+    "answer": 0,
+    "why": "The reward model only reproduces win rates. A 50% win rate means even odds, and the logistic curve gives 50% at a gap of 0. Raters give no scores, only picks."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
