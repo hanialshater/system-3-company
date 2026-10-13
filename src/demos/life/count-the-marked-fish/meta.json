@@ -1,0 +1,55 @@
+{
+  "slug": "count-the-marked-fish",
+  "title": "Counting fish you can't all see",
+  "hook": "How do you count a lake's fish without catching every one?",
+  "domain": "life",
+  "concept": "mark-recapture",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["ratios and proportions"],
+    "doesNotKnow": ["how to count animals nobody can see all of", "that the marked share of a catch estimates the marked share of the whole lake"]
+  },
+  "misconception": "The number you catch is roughly the population.",
+  "objective": "The learner can explain that if 100 marked fish are mixed into a lake and 5 of a 50-fish net are marked, the lake holds about 100 x 50 / 5 = 1,000 fish, and that single nets wobble around that estimate.",
+  "claims": [
+    {
+      "id": "life.count-the-marked-fish.c1",
+      "text": "If marked fish are mixed evenly into a lake, the marked share of a netted sample is about the marked share of the lake, so the lake holds about (marked x caught) / (marked in the catch) fish (Lincoln-Petersen estimate).",
+      "support": "derivation",
+      "source": "Seber, The Estimation of Animal Abundance, 1982 (Lincoln-Petersen). Ratio argument: R / C ~ M / N.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.count-the-marked-fish.c2",
+      "text": "100 marked, 50 caught, 5 marked in the catch gives 100 x 50 / 5 = 1,000 fish.",
+      "support": "derivation",
+      "source": "Arithmetic; Demo.tsx computes it from M, C and MARKED[0].",
+      "status": "unverified"
+    },
+    {
+      "id": "life.count-the-marked-fish.c3",
+      "text": "Model (stated on the stage): a toy lake of 1,000 fish, 100 already marked and mixed in; each net takes 50 fish. The method assumes a closed population, even mixing and marks that are not lost.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #42. Closed population, random mixing, no mark loss (Seber 1982).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.count-the-marked-fish.c4",
+      "text": "In the five seeded nets, 5, 4, 7, 9 and 3 of 50 fish are marked, giving estimates of 1,000, 1,250, 714, 556 and 1,667; single estimates scatter around the true 1,000.",
+      "support": "simulation",
+      "source": "Demo.tsx, mulberry32 seeds 11, 4, 15, 2, 20 (sample without replacement from 1,000 fish). Seed 11 was chosen so sample 1 matches the question's 5 marked; the other four were picked from a short list of seeds, not tuned for the spread. Values in artifacts/scratch/w5life/fish.mjs.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To estimate a lake's fish, 200 are marked and released. A later net of 40 fish has 8 marked. About how many fish are in the lake?",
+    "options": ["About 1,000", "About 5,000", "About 40"],
+    "answer": 0,
+    "why": "8 of 40 is 1 in 5 marked, so the 200 marked fish are about a fifth of the lake: 200 x 5 = 1,000."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
