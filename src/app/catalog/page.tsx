@@ -1,7 +1,7 @@
 import Link from "next/link";
 import fs from "node:fs";
 import path from "node:path";
-import { allDemos, domains } from "@/lib/catalog";
+import { domains, visibleDemos } from "@/lib/catalog";
 
 interface Concept {
   id: string;
@@ -37,7 +37,7 @@ export default function Catalog() {
       <div className="catalog-inner">
         {domains.map((d) => {
           const concepts = curriculum(d.id);
-          const lessons = allDemos.filter((x) => x.domain === d.id && x.status !== "retired" && x.status !== "draft");
+          const lessons = visibleDemos().filter((x) => x.domain === d.id);
           return (
             <section key={d.id} className="domain-block" style={{ ["--domain" as string]: d.color }}>
               <h2>

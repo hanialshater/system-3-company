@@ -13,8 +13,10 @@
     "check": "node tools/company.mjs check",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
-    "verify": "npm run check && npm run typecheck && npm run build && npm run qa",
-    "metrics": "node tools/metrics.mjs"
+    "verify": "npm run test:deploy && npm run check && npm run typecheck && npm run build && npm run qa",
+    "metrics": "node tools/metrics.mjs",
+    "deploy": "node tools/deploy.mjs",
+    "test:deploy": "node --test tests/deploy/*.test.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",
@@ -31,6 +33,7 @@
     "@types/react-dom": "^19.2.2",
     "@types/topojson-client": "^3.1.5",
     "typescript": "5.9.2",
+    "vercel": "63.1.2",
     "world-atlas": "^2.0.2"
   },
   "engines": {

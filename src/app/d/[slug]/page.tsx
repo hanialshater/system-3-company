@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DemoCard } from "@/components/DemoCard";
-import { allDemos, domains, findDemo } from "@/lib/catalog";
+import { domains, findDemo, visibleDemos } from "@/lib/catalog";
 
 export function generateStaticParams() {
-  return allDemos.filter((d) => d.status !== "retired").map((d) => ({ slug: d.slug }));
+  return visibleDemos({ includeDrafts: true }).map((d) => ({ slug: d.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

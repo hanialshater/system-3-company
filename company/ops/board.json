@@ -101,7 +101,7 @@
     },
     {
       "id": "W-012",
-      "title": "merge-sort-payoff: second fact-check of c4–c8 (written by fact-checker, needs another verifier)",
+      "title": "merge-sort-payoff: second fact-check of c4\u2013c8 (written by fact-checker, needs another verifier)",
       "owner": "fact-checker",
       "state": "next",
       "domain": "cs",
@@ -110,7 +110,7 @@
     },
     {
       "id": "W-013",
-      "title": "merge-sort-payoff F1–F3: align c2 source with 2s/4s/8s order; review c4–c8 wording; confirm Knuth citation",
+      "title": "merge-sort-payoff F1\u2013F3: align c2 source with 2s/4s/8s order; review c4\u2013c8 wording; confirm Knuth citation",
       "owner": "demo-builder",
       "state": "next",
       "domain": "cs",
@@ -119,7 +119,7 @@
     },
     {
       "id": "W-014",
-      "title": "merge-sort-payoff v2: reveal only after the merge completes; show a split round on the stage (learner review findings 1–2, 4–5)",
+      "title": "merge-sort-payoff v2: reveal only after the merge completes; show a split round on the stage (learner review findings 1\u20132, 4\u20135)",
       "owner": "demo-builder",
       "state": "next",
       "domain": "cs",
@@ -155,7 +155,7 @@
     },
     {
       "id": "W-018",
-      "title": "binary-search: reveal after 0–1 guesses (FATAL candidate); gate on finishing a search",
+      "title": "binary-search: reveal after 0\u20131 guesses (FATAL candidate); gate on finishing a search",
       "owner": "demo-builder",
       "state": "next",
       "domain": "cs",
@@ -191,7 +191,7 @@
     },
     {
       "id": "W-022",
-      "title": "mercator-greenland v2: re-check c3, verify c8–c12 (fact-checker wrote them)",
+      "title": "mercator-greenland v2: re-check c3, verify c8\u2013c12 (fact-checker wrote them)",
       "owner": "fact-checker",
       "state": "next",
       "domain": "geography",
@@ -299,7 +299,7 @@
     },
     {
       "id": "W-034",
-      "title": "Geo data (ADR needed): climate grid, ocean currents, rivers/basins, plate boundaries, populated places — cm-geography requests",
+      "title": "Geo data (ADR needed): climate grid, ocean currents, rivers/basins, plate boundaries, populated places \u2014 cm-geography requests",
       "owner": "principal-engineer",
       "state": "next",
       "domain": null,
@@ -407,7 +407,7 @@
     },
     {
       "id": "W-046",
-      "title": "Chosen-seed reveals: coin-gap-keeps-growing (49.0–50.9% only seed 1713), one-in-a-million-match (show 2–9 spread), disclose seeds armour c2 & coin-gap c4",
+      "title": "Chosen-seed reveals: coin-gap-keeps-growing (49.0\u201350.9% only seed 1713), one-in-a-million-match (show 2\u20139 spread), disclose seeds armour c2 & coin-gap c4",
       "owner": "demo-builder",
       "state": "next",
       "domain": null,
@@ -593,6 +593,34 @@
       "domain": null,
       "created": "2026-10-13",
       "links": []
+    },
+    {
+      "id": "W-067",
+      "title": "Implement release-manager Vercel deployment command, staged production, smoke checks and release records",
+      "owner": "release-manager",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-13",
+      "updated": "2026-10-13",
+      "links": [
+        "company/engineering/edd/EDD-002-vercel-deploy-command.md",
+        "company/ops/runbook-deploy.md",
+        "company/rituals/records/2026-10-13-eng-review-vercel-deploy.md"
+      ]
+    },
+    {
+      "id": "W-068",
+      "title": "Create GitHub Actions Vercel deployment pipeline with automatic default-branch previews and manual production",
+      "owner": "release-manager",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-13",
+      "updated": "2026-10-13",
+      "links": [
+        "company/engineering/edd/EDD-002-vercel-deploy-command.md",
+        ".github/workflows/deploy.yml",
+        "company/ops/runbook-deploy.md"
+      ]
     }
   ]
 }
