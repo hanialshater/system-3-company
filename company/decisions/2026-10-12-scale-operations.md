@@ -2,7 +2,7 @@
 
 owner: chief-of-staff
 date: 2026-10-12
-status: decided · revisit after wave 2
+status: superseded in part by 2026-10-13-work-queue.md (fixed "next 10 per domain" waves replaced by the locked work queue)
 
 ## Context (what the first run showed)
 - Building cost about 43k tokens per lesson (4 per builder). Checking one lesson cost about 155k (fact-check 70k + learner review 85k), so checking was the bottleneck. This is the book's Thesis 1, observed.
