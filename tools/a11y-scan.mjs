@@ -209,7 +209,8 @@ const PAGE_HELPERS = `(() => {
       const need = large ? 3 : 4.5;
       const key = sel(owner) + '|' + txt.slice(0, 20);
       if (seen.has(key)) continue; seen.add(key);
-      out.push({ text: txt.slice(0, 40), sel: sel(owner), origin: origin(owner), ratio: Math.round(cr * 100) / 100, need, large, fg: hex(comp), bg: hex(bg), unsure: !!b.unsure, size: Math.round(size * 10) / 10, svg: isSvg });
+      if (b.unsure && cr < 1.2) continue; // gradient-clipped text (brand mark): cannot be computed, skip
+      out.push({ locked: !!owner.closest('[data-testid=stage][aria-disabled=true]'), text: txt.slice(0, 40), sel: sel(owner), origin: origin(owner), ratio: Math.round(cr * 100) / 100, need, large, fg: hex(comp), bg: hex(bg), unsure: !!b.unsure, size: Math.round(size * 10) / 10, svg: isSvg });
     }
     style.remove();
     window.scrollTo(0, 0);
@@ -500,6 +501,7 @@ async function scanLesson(browser, slug) {
           if (c.size < 9 && c.text.length > 1) add("fix", c.origin, "text-size", `Text rendered at ${c.size}px (< 9px) in ${theme}/${phase}: "${c.text}" ${c.sel}`);
           sum.min = Math.min(sum.min, c.ratio);
           if (c.ratio >= c.need) continue;
+          if (c.locked) { sum.locked = (sum.locked || 0) + 1; continue; } // dimmed on purpose while the stage is locked (one aggregate finding below)
           sum[theme]++;
           const sev = c.unsure ? "manual" : c.ratio < 3 && !c.large ? "fail" : "fix";
           add(sev, c.origin, "contrast", `${c.ratio}:1 (needs ${c.need}) ${theme}/${phase}: "${c.text}" ${c.fg} on ${c.bg} ${c.sel}${c.svg ? " [svg]" : ""}${c.unsure ? " [background is image/gradient, unsure]" : ""}`);
@@ -507,6 +509,7 @@ async function scanLesson(browser, slug) {
       }
     }
     result.meta.contrast = sum;
+    if (sum.locked) add("fix", "kit", "contrast-locked-stage", `While the stage is locked (predict phase) its text is dimmed below AA (${sum.locked} text items in dark+light). Learners must read the stage to predict; WCAG exempts inactive controls but not the figure's text.`);
   } finally { await A.ctx.close(); }
 
   // ---- Context C: reduced motion.
@@ -567,7 +570,10 @@ async function scanLesson(browser, slug) {
   for (const f of result.findings) sev[f.severity]++;
   const lessonOnly = (s) => result.findings.filter((f) => f.severity === s && f.origin !== "kit" && f.origin !== "app").length;
   result.counts = { ...sev, lessonFail: lessonOnly("fail"), lessonFix: lessonOnly("fix") };
-  result.verdictAuto = sev.fail ? "fail" : sev.fix ? "pass with fixes" : "pass";
+  const lf = result.findings.filter((f) => f.origin === "lesson");
+  // Verdict is about the lesson's own stage. Kit/app findings are reported once, in the summary, and apply to every lesson.
+  result.verdictAuto = lf.some((f) => f.severity === "fail") ? "fail" : lf.some((f) => f.severity === "fix") ? "pass with fixes" : "pass";
+  result.verdictWithKit = sev.fail ? "fail" : sev.fix ? "pass with fixes" : "pass";
   return result;
 }
 
