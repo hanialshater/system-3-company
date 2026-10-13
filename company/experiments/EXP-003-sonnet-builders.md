@@ -30,4 +30,5 @@ If Sonnet comes within the bounds, new lessons default to Sonnet builders and Op
   - it looked at 4 of 10 phone screenshots.
 
   QA was 20/20 and 0 brief errors were found.
-- **Still to come:** chemistry w5 (Sonnet), then first-review launch rates and disputed-claim counts for both waves.
+- **chemistry w5 (Sonnet):** 152k tokens for 10, about 15k per lesson (about 70% of Opus). It committed twice (not every 2 lessons) and viewed the explore screenshot of all 10; one display bug caught (60.000000000000014). QA 20/20.
+- **Still to come:** first-review launch rates and disputed-claim counts for both waves.
