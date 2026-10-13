@@ -36,12 +36,10 @@
     },
     {
       "id": "physics.flour-on-the-moon.c2",
-      "text": "Surface gravity: Earth 9.81, Moon 1.62, Mars 3.71 and Jupiter 24.79 m/s^2 (Jupiter has no solid surface; its value is at the 1 bar pressure level).",
+      "text": "Surface gravity: Earth 9.81, Moon 1.62, Mars 3.73 and Jupiter 23.12 m/s^2 (Jupiter has no solid surface; its value is at the 1 bar pressure level, at the equator).",
       "support": "source",
-      "source": "NASA Goddard Planetary Fact Sheet (nssdc.gsfc.nasa.gov/planetary/factsheet/): gravity Earth 9.8, Moon 1.62, Mars 3.71, Jupiter 24.79 m/s^2. Earth's standard value 9.81 m/s^2 (9.80665 standard gravity, BIPM).",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "NASA Goddard fact sheets (nssdc.gsfc.nasa.gov/planetary/factsheet/): Moon gravity 1.62; Mars fact sheet mean surface gravity 3.73 (equatorial 3.69); Jupiter fact sheet equatorial gravity at 1 bar 23.12 (mean 25.92 without rotation, polar 27.01). Earth: standard gravity 9.80665, shown as 9.81 (BIPM). v2 changed from 3.71 / 24.79 after the 2026-10-13 fact-check found the cited source did not contain those figures.",
+      "status": "unverified"
     },
     {
       "id": "physics.flour-on-the-moon.c3",
@@ -63,12 +61,10 @@
     },
     {
       "id": "physics.flour-on-the-moon.c5",
-      "text": "A bathroom scale is a spring scale: on the Moon it would read about a sixth of its Earth reading.",
+      "text": "A bathroom scale is a spring scale marked in kg for Earth: on the Moon it shows about a sixth of its Earth reading.",
       "support": "derivation",
       "source": "Bathroom scales measure force through a spring or strain gauge and display it as kg assuming Earth gravity; 1.62 / 9.81 = 0.165, about one sixth.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.flour-on-the-moon.c6",
@@ -78,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.flour-on-the-moon.c7",
+      "text": "A spring scale marked in kg for Earth's gravity shows a 1 kg bag as 0.17 kg on the Moon, 0.38 kg on Mars and 2.36 kg on Jupiter; the pull there is 17%, 38% and 236% of Earth's.",
+      "support": "derivation",
+      "source": "Shown kg = m g / 9.81 (a spring reading divided by Earth's g): 1.62/9.81 = 0.165, 3.73/9.81 = 0.380, 23.12/9.81 = 2.357. Gravity values from c2. Computed in Demo.tsx from the same WORLDS table that draws the spring.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -102,5 +105,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

@@ -5,22 +5,29 @@
 // (which compares masses). Change the world: the spring scale reading changes,
 // the balance stays level.
 //
-// Physics: weight W = m g. Surface gravity (NASA planetary fact sheets): Earth
-// 9.81, Moon 1.62, Mars 3.71, Jupiter 24.79 m/s^2 (Jupiter's at the 1 bar level;
-// it has no solid surface). Ideal linear spring: stretch proportional to force.
-// A balance compares two weights in the same gravity, so g cancels.
+// Physics: weight W = m g. Surface gravity: Earth 9.81 (standard), Moon 1.62,
+// Mars 3.73 (NASA Mars fact sheet, mean), Jupiter 23.12 m/s^2 (NASA Jupiter fact
+// sheet, equatorial at the 1 bar level; it has no solid surface). Ideal linear spring:
+// stretch proportional to force. A balance compares two weights in the same gravity,
+// so g cancels.
+// v2: the spring scale is marked in kg for Earth, like a kitchen or bathroom scale, so
+// the learner sees a "kg" reading that is really a pull. Pull arrows on both balance pans
+// grow and shrink together. Question asks which instrument changes (no definitions needed).
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
 
 const WORLDS = [
   { name: "Earth", g: 9.81 },
   { name: "Moon", g: 1.62 },
-  { name: "Mars", g: 3.71 },
-  { name: "Jupiter", g: 24.79 },
+  { name: "Mars", g: 3.73 },
+  { name: "Jupiter", g: 23.12 },
 ];
+const G_EARTH = WORLDS[0].g;
+const PULL_PX = 1.6; // balance pull arrows, px per N
 const M = 1; // kg
 
 const W = 300;
@@ -46,64 +53,73 @@ function springPath(x: number, y0: number, len: number) {
 export default function FlourOnTheMoon({ slug }: { slug: string }) {
   const [world, setWorld] = useState(0);
   const [wobble, setWobble] = useState(0);
-  const [seenMoon, setSeenMoon] = useState(false);
   const w = WORLDS[world];
   const weight = M * w.g;
   const len = SPRING0 + weight * PX_PER_N;
   const bagY = S_TOP + len;
+  const shownKg = weight / G_EARTH; // what a spring scale marked in Earth-kg shows
+  const pct = Math.round((100 * w.g) / G_EARTH);
+  const moonKg = (M * WORLDS[1].g) / G_EARTH;
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "You take a 1 kg bag of flour from Earth to the Moon, where gravity is weaker. What changes?",
-        options: ["Its mass", "Its weight", "Both its mass and its weight"],
+        question:
+          "A 1 kg bag of flour goes to the Moon, where gravity is weaker. Which reading changes?",
+        options: [
+          "The balance (flour vs a 1 kg block) tips",
+          "The hanging spring scale reads less",
+          "Both change",
+        ],
         answer: 1,
       }}
-      exploreHint="Take the flour to the Moon, then to the other worlds. Watch both instruments."
+      exploreHint="Take the flour to the Moon, then the other worlds. Watch the spring and the arrows."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            The spring scale fell from <strong>9.81 N</strong> on Earth to <strong>1.62 N</strong> on the Moon: that is
-            weight, how hard a world pulls on the flour. The balance stayed level everywhere, because it compares the
-            flour with a 1 kg mass and gravity pulls both equally.
+            On the Moon the pull fell from <strong>{(M * G_EARTH).toFixed(2)} N</strong> to{" "}
+            <strong>{(M * WORLDS[1].g).toFixed(2)} N</strong>, so the spring, marked in kg for Earth, showed{" "}
+            <strong>{moonKg.toFixed(2)} kg</strong>. The balance stayed level: its two pull arrows shrank together, because
+            gravity pulls the flour and the 1 kg block equally.
           </p>
           <p>
-            So the mass, how much flour there is, stays 1 kg anywhere. Weight is mass times the local gravity: W = m g.
+            In everyday talk, &ldquo;weight&rdquo; is the kg a scale shows. Physics splits it in two: mass, how much flour
+            there is, stays 1 kg anywhere; weight, the pull, is mass times the local gravity (W = m g).
           </p>
-          <p className="muted">A bathroom scale is a spring scale: on the Moon it would read about a sixth.</p>
+          <p className="muted">A bathroom scale is a spring scale marked in kg for Earth: on the Moon it shows about a sixth.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["moon"]}>
+          {(reach) => {
         const go = (i: number) => {
           if (locked || i === world) return;
           setWorld(i);
           setWobble((n) => n + 1);
-          if (seenMoon || i === 1) {
-            setSeenMoon(true);
-            interact(); // the reveal needs the Moon reading to have been seen
-          }
+          if (i === 1) reach("moon"); // the reveal quotes the Moon reading
         };
         const caption = locked
-          ? "Make a prediction to start."
+          ? "Spring scale marked in kg. Balance: flour vs a 1 kg block. Predict first."
           : world === 0
-            ? "Spring scale: measures the pull. Balance: compares masses."
-            : `On ${w.name}: the spring changed. The balance did not.`;
+            ? "Earth: gravity pulls 1 kg with 9.81 N (newtons, a unit of pull)."
+            : `${w.name}: pull is ${pct}% of Earth's. Spring shows ${shownKg.toFixed(2)} kg. Balance still level.`;
 
         return (
           <div className={s.wrap}>
-            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`On ${w.name}, the spring scale reads ${weight.toFixed(2)} newtons and the balance is level`}>
+            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`On ${w.name}, the pull is ${weight.toFixed(2)} newtons, the spring scale shows ${shownKg.toFixed(2)} kg and the balance is level`}>
               {/* spring scale */}
               <line x1={SX - 24} y1={S_TOP} x2={SX + 24} y2={S_TOP} className={s.beam} />
               <path d={springPath(SX, S_TOP, len)} className={s.spring} />
               {/* newton scale beside the spring */}
-              <line x1={SX + 22} y1={S_TOP + SPRING0} x2={SX + 22} y2={S_TOP + SPRING0 + 25 * PX_PER_N} className={s.scale} />
-              {[0, 5, 10, 15, 20, 25].map((n) => (
-                <g key={n}>
-                  <line x1={SX + 18} y1={S_TOP + SPRING0 + n * PX_PER_N} x2={SX + 26} y2={S_TOP + SPRING0 + n * PX_PER_N} className={s.scale} />
-                  <text x={SX + 30} y={S_TOP + SPRING0 + n * PX_PER_N + 3} className={s.tick}>
-                    {n} N
+              <line x1={SX + 22} y1={S_TOP + SPRING0} x2={SX + 22} y2={S_TOP + SPRING0 + 2.5 * G_EARTH * PX_PER_N} className={s.scale} />
+              {[0, 0.5, 1, 1.5, 2, 2.5].map((kg) => (
+                <g key={kg}>
+                  <line x1={SX + 18} y1={S_TOP + SPRING0 + kg * G_EARTH * PX_PER_N} x2={SX + 26} y2={S_TOP + SPRING0 + kg * G_EARTH * PX_PER_N} className={s.scale} />
+                  <text x={SX + 30} y={S_TOP + SPRING0 + kg * G_EARTH * PX_PER_N + 3} className={s.tick}>
+                    {kg} kg
                   </text>
                 </g>
               ))}
@@ -128,6 +144,15 @@ export default function FlourOnTheMoon({ slug }: { slug: string }) {
                   1 kg
                 </text>
               </g>
+              {[-48, 48].map((dx) => (
+                <g key={dx}>
+                  <line x1={BX + dx} y1={BY + 24} x2={BX + dx} y2={BY + 24 + weight * PULL_PX} className={s.arrow} />
+                  <path d={`M ${BX + dx - 4} ${BY + 20 + weight * PULL_PX} L ${BX + dx} ${BY + 26 + weight * PULL_PX} L ${BX + dx + 4} ${BY + 20 + weight * PULL_PX} Z`} className={s.arrowHead} />
+                </g>
+              ))}
+              <text x={BX - 70} y={BY + 34} textAnchor="end" className={s.tick}>
+                pull
+              </text>
               <path d={`M ${BX} ${BY} L ${BX - 9} ${BY + 60} L ${BX + 9} ${BY + 60} Z`} className={s.stand} />
               <line x1={BX - 30} y1={BY + 60} x2={BX + 30} y2={BY + 60} className={s.beam} />
               <text x={BX} y={BY + 76} textAnchor="middle" className={s.level}>
@@ -150,12 +175,15 @@ export default function FlourOnTheMoon({ slug }: { slug: string }) {
               ))}
             </Row>
             <Row>
-              <Readout label="Spring scale" value={`${weight.toFixed(2)} N`} />
-              <Readout label="Gravity" value={`${w.g} m/s²`} />
+              <Readout label="Pull on bag" value={`${weight.toFixed(2)} N`} />
+              <Readout label="Spring shows" value={`${shownKg.toFixed(2)} kg`} />
+              <Readout label="Balance" value="level" />
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }
