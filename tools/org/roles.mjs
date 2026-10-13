@@ -627,7 +627,7 @@ const cm = (id, domain, name, focus, checkable) => ({
     may: ["Set demand and order inside the category", "Propose new concepts and prerequisites"],
     mayNot: ["Publish", "Count simulated reviews as learning evidence"],
   },
-  inputs: ["Coverage and unmet demand (`npm run company -- coverage " + domain + "`)", "Revisit recall rates for the category", "Learner requests", "Reviews of the category's lessons"],
+  inputs: ["Coverage and unmet demand (`npm run company -- coverage " + domain + "`)", "Possible overlaps (`node tools/overlap.mjs`): a signal, not a gate. Prefer briefs that add a distinct insight, and say in the brief how it differs from its nearest lesson (including other categories').", "Revisit recall rates for the category", "Learner requests", "Reviews of the category's lessons"],
   outputs: ["Curriculum updates", "Briefs on the board", "Category OP narrative", "Charter"],
   rituals: ["op-planning (writes category narrative)", "cycle-planning (brings 1–3 briefs)", "wbr (reports category)", "retirement"],
   failureModes: [

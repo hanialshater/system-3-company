@@ -40,6 +40,7 @@ May not:
 ## Inputs
 
 - Coverage and unmet demand (`npm run company -- coverage probability`)
+- Possible overlaps (`node tools/overlap.mjs`): a signal, not a gate. Prefer briefs that add a distinct insight, and say in the brief how it differs from its nearest lesson (including other categories').
 - Revisit recall rates for the category
 - Learner requests
 - Reviews of the category's lessons
