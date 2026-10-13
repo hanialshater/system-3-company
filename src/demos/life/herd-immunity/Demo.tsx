@@ -4,10 +4,17 @@
 // meets 4 people chosen at random from the whole town (homogeneous mixing).
 // Immune people can't catch it or pass it on. The learner sets the immune
 // share and steps an outbreak forward generation by generation.
+//
+// v2 (revision): R0 is named on the stage, with the model label. The immune share is a row of
+// chips (50-90%) placed after the run controls; once an outbreak is over, changing the share shows
+// the same seeded outbreak's end at the new share, so a learner can compare across the threshold.
+// The reveal is gated on two finished outbreaks: one above the 75% threshold and one below it that
+// took off. The reveal quotes the runs the learner finished.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
+import { Control, Readout, Row } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const N = 400;
@@ -15,6 +22,12 @@ const COLS = 20;
 const CELL = 15;
 const R0 = 4;
 const RUNS = 200;
+const THRESHOLD = Math.round((1 - 1 / R0) * 100); // 75
+const SHARES = [50, 60, 70, 80, 90];
+const START = 80;
+/** A finished outbreak "took off" if it reached more than a fifth of the unprotected. */
+const TOOK_OFF = 0.2;
+const MILESTONES = ["over-above", "took-off-below"] as const;
 
 function rng(seed: number) {
   let a = seed >>> 0;
@@ -89,18 +102,36 @@ function typical(immunePct: number) {
 
 const xy = (i: number) => ({ x: (i % COLS) * CELL + CELL / 2, y: Math.floor(i / COLS) * CELL + CELL / 2 });
 
+type Result = { caught: number; of: number };
+
+function Gate({ interact, tried }: { interact: () => void; tried: Record<number, Result> }) {
+  const { reach } = useMilestones(interact, MILESTONES);
+  useEffect(() => {
+    for (const [p, r] of Object.entries(tried)) {
+      if (Number(p) > THRESHOLD) reach("over-above");
+      if (Number(p) < THRESHOLD && r.caught > TOOK_OFF * r.of) reach("took-off-below");
+    }
+  });
+  return null;
+}
+
 export default function HerdImmunity({ slug }: { slug: string }) {
-  const [immunePct, setImmunePct] = useState(80);
+  const [immunePct, setImmunePct] = useState(START);
   const [seed, setSeed] = useState(1);
   const [t, setT] = useState(0);
-  const [tried, setTried] = useState<Record<number, number>>({});
+  const [tried, setTried] = useState<Record<number, Result>>({});
 
   const ob = useMemo(() => simulate(seed, immunePct), [seed, immunePct]);
   const avg = useMemo(() => typical(immunePct), [immunePct]);
-  const last = ob.gens.length; // t === last means the outbreak is over
+  const last = ob.gens.length; // t >= last means the outbreak is over
   const done = t >= last;
   const caught = ob.gens.slice(0, Math.min(t + 1, last)).reduce((a, g) => a + g.length, 0);
   const totalCaught = ob.gens.reduce((a, g) => a + g.length, 0);
+
+  // Record every outbreak the learner sees to its end, at the share it ran at.
+  useEffect(() => {
+    if (done) setTried((m) => ({ ...m, [immunePct]: { caught: totalCaught, of: ob.unprotected } }));
+  }, [done, immunePct, totalCaught, ob.unprotected]);
 
   const status = useMemo(() => {
     const st: ("immune" | "open" | "sick" | "had")[] = ob.immune.map((im) => (im ? "immune" : "open"));
@@ -111,55 +142,66 @@ export default function HerdImmunity({ slug }: { slug: string }) {
     return st;
   }, [ob, t]);
 
-  const reff = R0 * (1 - immunePct / 100);
-  const finish = (to: number) => {
-    setT(to);
-    if (to >= last) setTried((m) => ({ ...m, [immunePct]: totalCaught }));
-  };
+  const unprotectedShare = 100 - immunePct;
+  const reff = R0 * (unprotectedShare / 100);
+  const below = immunePct < THRESHOLD;
 
   const message = done
-    ? `Over. ${totalCaught} of ${ob.unprotected} unprotected caught it.`
+    ? below && totalCaught <= TOOK_OFF * ob.unprotected
+      ? `Over: ${totalCaught} of ${ob.unprotected}. It fizzled by luck. Try a new outbreak.`
+      : `Over. ${totalCaught} of ${ob.unprotected} unprotected caught it.`
     : t === 0
       ? "One unprotected person falls sick."
       : `Step ${t}: ${ob.gens[t].length} new case${ob.gens[t].length === 1 ? "" : "s"}.`;
 
-  const seen = Object.entries(tried)
-    .map(([p, c]) => ({ p: Number(p), c }))
-    .sort((a, b) => b.p - a.p);
+  // The reveal quotes two of the learner's finished runs: one above the threshold (nearest 80%)
+  // and the lowest-share run below it that took off.
+  const all = Object.entries(tried).map(([p, r]) => ({ p: Number(p), ...r }));
+  const above = all.filter((x) => x.p > THRESHOLD).sort((a, b) => Math.abs(a.p - START) - Math.abs(b.p - START))[0];
+  const belowRun = all.filter((x) => x.p < THRESHOLD && x.caught > TOOK_OFF * x.of).sort((a, b) => a.p - b.p)[0];
+  const seen = [above, belowRun].filter((x): x is (typeof all)[number] => Boolean(x));
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "In a town of 400 with no immunity, each case infects about 4 others. Here 80% are immune, leaving 80 unprotected. One of them falls sick. Usually, how many of the 80 catch it?",
+          "Toy town of 400. With no immunity, each case infects about 4 others. Here 80% are immune, leaving 80 unprotected. One falls sick. Usually, how many of the 80 catch it?",
         options: ["Nearly all 80", "About 20", "Just a handful"],
         answer: 2,
       }}
-      exploreHint="Step the outbreak forward. Then drop immunity to 50% and run it again."
-      minInteractions={2}
+      exploreHint="Run the outbreak at 80% to the end. Then pick 50% and compare."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            {seen.length > 0 && `You saw ${seen.map((x) => `${x.c} caught it at ${x.p}% immune`).join("; ")}. `}
-            Each case meets 4 people, but at 80% immune only about 0.8 of them can catch it. Every step tends to be
-            smaller than the last, so the chain dies: typically about 4 of the 80, counting the first.
+            You saw {seen.map((x) => `${x.caught} of ${x.of} catch it at ${x.p}% immune`).join("; ")}. Each case meets
+            R0 = 4 people; at 80% immune only 20% of them can catch it: 4 &times; 0.2 = 0.8 new cases per case. The
+            chain usually shrinks and dies: on average about 4 of the 80.
           </p>
           <p>
-            At 50% each case makes about 2 more, and most of the unprotected catch it. The tipping point is where a case
-            replaces itself exactly once: immune share 1 &minus; 1/R0 = <strong>75%</strong> here. Above it, the immune
-            shield people who have no immunity at all.
+            Below the <strong>{THRESHOLD}% threshold</strong> (1 &minus; 1/R0) a case more than replaces itself.
+            Outbreaks can still fizzle, but one that takes off reaches a share that grows with distance from the
+            threshold: small just under it, most of the unprotected at 50%. Above it, the immune mostly shield people
+            with no immunity.
           </p>
           <p className="muted">
-            This is a simple model: everyone mixes at random and immunity is perfect. In real towns, unprotected people
-            who cluster together can keep an outbreak going even above the threshold.
+            Toy model: made-up disease, random mixing, perfect immunity (real vaccines are not). Unprotected people who
+            cluster together can keep outbreaks going even above the threshold.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
         <div className={s.wrap}>
-          <svg viewBox={`0 0 ${COLS * CELL} ${(N / COLS) * CELL}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`Town of 400: ${immunePct}% immune, ${caught} caught it so far`}>
+          <Gate interact={interact} tried={tried} />
+          <p className={s.model}>Toy disease, R0 = 4: each case meets 4 random people.</p>
+          <svg
+            viewBox={`0 0 ${COLS * CELL} ${(N / COLS) * CELL}`}
+            className={`stage-svg ${s.svg}`}
+            role="img"
+            aria-label={`Town of 400: ${immunePct}% immune, ${caught} caught it so far`}
+          >
             {!done &&
               ob.links[t].map(([a, b], k) => {
                 const p = xy(a);
@@ -181,55 +223,48 @@ export default function HerdImmunity({ slug }: { slug: string }) {
 
           <p className={s.msg} aria-live="polite">{locked ? "Make a prediction to start." : message}</p>
 
-          <Row>
-            <Slider
-              label="Immune"
-              value={immunePct}
-              min={0}
-              max={95}
-              step={5}
-              format={(v) => `${v}%`}
-              disabled={locked}
-              onChange={(v) => {
-                setImmunePct(v);
-                setT(0);
-                interact();
-              }}
-            />
-          </Row>
-          <Row>
-            <Control
-              disabled={locked || done}
-              onClick={() => {
-                finish(t + 1);
-                interact();
-              }}
-            >
+          {/* DOM order is Next, Run, shares, New outbreak (so each control pressed once in order
+              compares a finished outbreak across shares); CSS order puts New outbreak on the first line. */}
+          <div className={s.controls}>
+            <Control disabled={locked || done} onClick={() => setT(t + 1)}>
               Next step
             </Control>
-            <Control
-              disabled={locked || done}
-              onClick={() => {
-                finish(last);
-                interact();
-              }}
-            >
+            <Control disabled={locked || done} onClick={() => setT(last)}>
               Run to end
             </Control>
+            <div className={s.shares} role="group" aria-label="Immune share, percent">
+              <span className="muted small">Immune %:</span>
+              {SHARES.map((p) => (
+                <Control
+                  key={p}
+                  className={p === immunePct ? "active" : ""}
+                  disabled={locked || p === immunePct}
+                  aria-pressed={p === immunePct}
+                  aria-label={`${p}% immune`}
+                  onClick={() => {
+                    setImmunePct(p);
+                    // An outbreak that was over stays over: show how the same outbreak ends at the new share.
+                    setT(done ? Number.MAX_SAFE_INTEGER : 0);
+                  }}
+                >
+                  {p}
+                </Control>
+              ))}
+            </div>
             <Control
+              className={s.newRun}
               disabled={locked}
               onClick={() => {
                 setSeed((x) => x + 1);
                 setT(0);
-                interact();
               }}
             >
               New outbreak
             </Control>
-          </Row>
+          </div>
           <Row>
-            <Readout label="Each case infects" value={`≈ ${reff.toFixed(1)}`} />
-            <Readout label={`Typical, ${RUNS} runs`} value={locked ? "?" : `${Math.round(avg.mean)} of ${avg.unprotected}`} />
+            <Readout label="Each case infects" value={`4 × ${unprotectedShare}% = ${reff.toFixed(1)}`} />
+            <Readout label={`Average, ${RUNS} runs`} value={locked ? "?" : `${Math.round(avg.mean)} of ${avg.unprotected}`} />
           </Row>
         </div>
       )}

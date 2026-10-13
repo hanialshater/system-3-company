@@ -63,12 +63,10 @@
     },
     {
       "id": "life.herd-immunity.c5",
-      "text": "Below the threshold an outbreak can still die out early by chance, but when it takes off it reaches a large share of the unprotected.",
+      "text": "Below the threshold an outbreak can still die out early by chance; one that takes off reaches a share of the unprotected that grows with the distance below the threshold: small just under it, most of the unprotected well below it (about 80% at 50% immune when R0 = 4).",
       "support": "source",
-      "source": "Branching-process extinction probability; Diekmann, Heesterbeek & Britton (2013), Mathematical Tools for Understanding Infectious Disease Dynamics, Princeton University Press, ch. 1 and 3.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "source": "Reworded in v2 after the fact-check DISPUTED the old text (\"a large share\") as false near the threshold. Fact-checker's own runs (2026-10-12 fact-check): share of unprotected infected in take-offs 34% at 70% immune, 49% at 65%, 64% at 60%, 80% at 50%; final-size equation 1 - z = exp(-R z) gives 7.6% at R = 1.04 and 80% at R = 2. Diekmann, Heesterbeek & Britton (2013), Mathematical Tools for Understanding Infectious Disease Dynamics, final-size chapters (not opened).",
+      "status": "unverified"
     },
     {
       "id": "life.herd-immunity.c6",
@@ -99,16 +97,16 @@
     },
     {
       "id": "life.herd-immunity.c9",
-      "text": "In the stage model, above the threshold the immune people also protect the people who have no immunity: at 80% immune, on average only about 4 of the 80 unprotected (about 5%) catch it, against about 73% of the unprotected at 50% immune.",
+      "text": "In the stage model, above the threshold the immune people mostly protect the people who have no immunity: at 80% immune, on average only about 4 of the 80 unprotected (about 5%) catch it, against about 73% of the unprotected at 50% immune.",
       "support": "simulation",
-      "source": "Reveal: \"Above it, the immune shield people who have no immunity at all.\" Recomputed by the fact-checker with the lesson's own seeds (mean 4.2 of 80 at 80%; 145.9 of 200 at 50%) and 20,000 independent runs (3.9 and 145.4). Protection is partial, not total: 3.3% of runs at 80% still took off. Added by fact-checker 2026-10-12; needs an independent check.",
+      "source": "Reveal v2: \"Above it, the immune mostly shield people with no immunity.\" Fact-checker: 4.2 of 80 at 80% vs 145.9 of 200 at 50% (lesson seeds); 3.3% of runs still take off at 80%, hence \"mostly\" (fact-check F4).",
       "status": "unverified"
     },
     {
       "id": "life.herd-immunity.c10",
-      "text": "At 80% immune, each step of the outbreak tends to be smaller than the one before, so the chain dies out.",
+      "text": "At 80% immune, each step of the outbreak usually is smaller than the one before, so the chain usually shrinks and dies out.",
       "support": "derivation",
-      "source": "Reveal: \"Every step tends to be smaller than the last, so the chain dies\". Expected new cases per step shrink by the factor R0(1 - p) = 0.8 each step (simulated model: 4 x 79/399 = 0.79). Only true on average: a given step can be larger by chance. Added by fact-checker 2026-10-12; needs an independent check.",
+      "source": "Reveal v2: \"The chain usually shrinks and dies.\" Expected new cases per case 4 x 0.2 = 0.8 (model 4 x 79/399 = 0.79); true on average, not in every run.",
       "status": "unverified"
     },
     {
@@ -116,6 +114,13 @@
       "text": "For R0 = 5 in a simple well-mixed model, outbreaks die out when more than 80% are immune: each case infects 5 x (unprotected share), which falls below 1 when fewer than 1 in 5 are unprotected.",
       "support": "derivation",
       "source": "Recall card in meta.json. 1 - 1/5 = 0.8 (c3 with R0 = 5). Added by fact-checker 2026-10-12; needs an independent check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.herd-immunity.c12",
+      "text": "On the stage, each case meets R0 = 4 random people, and the number each case infects is 4 x the unprotected share (0.8 at 80% immune, 2.0 at 50%).",
+      "support": "derivation",
+      "source": "Demo.tsx: R0 = 4 contacts per case chosen uniformly from the other 399; readout '4 x unprotected% = R0 x (1 - p)'. Instance of c2. Stage label added in v2 (label-the-model-on-the-stage).",
       "status": "unverified"
     }
   ],
@@ -141,5 +146,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

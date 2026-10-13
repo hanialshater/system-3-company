@@ -21,3 +21,7 @@
 .wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .legend i.missed { background: color-mix(in srgb, var(--bad) 35%, transparent); }
 .svg { flex-shrink: 0; }
+/* v2: the single true positive at 1 in 1,000 must not be lost among 1,000 cells. */
+.ring { fill: none; stroke: var(--bad); stroke-width: 1.6; }
+.missed { fill: color-mix(in srgb, var(--bad) 60%, transparent); stroke: var(--bad); stroke-dasharray: 2 1.5; stroke-width: 1; }
+.legend i.missed { background: color-mix(in srgb, var(--bad) 60%, transparent); outline: 1px dashed var(--bad); }

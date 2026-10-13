@@ -101,21 +101,28 @@
       "id": "probability.birthday-paradox.c9",
       "text": "For most people the first guess at the chance of a shared birthday among 23 people is far below the true 50.7%.",
       "support": "source",
-      "source": "Shown in the reveal as \"far more than most people guess\" (only to learners who answered wrongly). Needs a cited survey or study of people's estimates; the fact-checker found none yet, so this may need rewording or removal. Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "source": "v2: the sentence \"far more than most people guess\" was removed from the reveal (fact-check F2: no source for what people guess). Nothing learner-visible depends on this claim now.",
+      "status": "withdrawn"
     },
     {
       "id": "probability.birthday-paradox.c10",
-      "text": "Going from n to n + 1 people adds n new pairs, so the number of pairs grows by the whole room each time a person joins.",
+      "text": "Each new person makes a pair with everyone already in the room: going from n to n + 1 people adds n new pairs.",
       "support": "derivation",
-      "source": "n(n+1)/2 - n(n-1)/2 = n; e.g. 22 -> 23 people adds 22 pairs (231 -> 253). Reveal: \"People grow by one; pairs grow by the whole room.\" Added by fact-checker 2026-10-12; needs an independent check.",
+      "source": "n(n+1)/2 - n(n-1)/2 = n; e.g. 22 -> 23 people adds 22 pairs (231 -> 253). Reveal v2: \"Each new person makes a pair with everyone already there.\"",
       "status": "unverified"
     },
     {
       "id": "probability.birthday-paradox.c11",
       "text": "People tend to answer a different question, \"does anyone share my birthday?\", whose answer is only about 6%, when asked about a shared birthday in a group.",
       "support": "source",
-      "source": "Reveal: \"The trap is asking 'does anyone share my birthday?'\". The 6% is c4. The claim that this is what people do is a statement about human reasoning and has no source in the ledger; may be the lesson's teaching hypothesis rather than a fact. Added by fact-checker 2026-10-12; needs an independent check.",
+      "source": "v2: \"The trap is asking...\" (a claim about how people reason) was replaced by \"Compare a different question: does anyone share my birthday? Only about 6%\", which asserts only c4.",
+      "status": "withdrawn"
+    },
+    {
+      "id": "probability.birthday-paradox.c12",
+      "text": "If each of the 253 pairs in a group of 23 is treated as a separate 1-in-365 chance of a match, the chance that every pair misses is about 50%.",
+      "support": "derivation",
+      "source": "(364/365)^253 = 0.4995. This is an approximation (pairs are not independent); the exact chance of no match is 49.3% (c1). Demo.tsx computes ALL_MISS from the same constants that draw the ring.",
       "status": "unverified"
     }
   ],
@@ -140,5 +147,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

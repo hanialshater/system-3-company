@@ -19,3 +19,11 @@
    Let the lesson body shrink and scroll from its top instead. */
 .wrap { flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .svg { flex-shrink: 0; }
+.shares { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px; }
+.model { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+/* v2: "had it" must read differently from "sick now" (learner finding 5). */
+.had { fill: color-mix(in srgb, var(--bad) 18%, var(--bg-2)); stroke: var(--bad); stroke-width: 1; stroke-dasharray: 2 1.5; }
+.legend i.had { background: color-mix(in srgb, var(--bad) 18%, var(--bg-2)); border: 1px dashed var(--bad); }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.controls > .shares { order: 2; flex-basis: 100%; }
+.controls > .newRun { order: 1; }
