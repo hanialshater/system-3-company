@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.fit { max-height: 40dvh; }
+.water { fill: color-mix(in srgb, var(--domain) 14%, transparent); }
+.glass { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }
+.na { fill: var(--domain); }
+.cl { fill: var(--muted); }
+.crystal { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1; }
+.arrow { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linecap: round; }
+.swap { animation: pulse 1.6s ease-in-out infinite; }
+.small { fill: var(--muted); font-size: 10px; }
+@keyframes pulse { 50% { opacity: 0.45; } }
+@media (prefers-reduced-motion: reduce) { .swap { animation: none; } }

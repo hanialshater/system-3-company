@@ -1,0 +1,79 @@
+{
+  "slug": "lower-the-hill",
+  "title": "Lower the hill",
+  "hook": "Shave a third off the barrier. A third faster?",
+  "domain": "chemistry",
+  "concept": "catalysts",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that reactions need enough energy to get over a barrier (activation energy)",
+      "kJ/mol"
+    ],
+    "doesNotKnow": [
+      "that the rate depends exponentially on the barrier, so a modest lowering gives an enormous speed-up"
+    ]
+  },
+  "misconception": "A catalyst gives a modest boost in proportion to the barrier change, is consumed, or changes where the reaction ends up.",
+  "objective": "The learner can explain that lowering a barrier from 75 to 50 kJ/mol at 298 K speeds a reaction about 24,000 times, because the share of collisions with enough energy goes as e^(−Ea/RT), and that a catalyst is not used up and does not change the end point.",
+  "claims": [
+    {
+      "id": "chemistry.lower-the-hill.c1",
+      "text": "The share of collisions with at least the barrier energy goes as e^(−Ea/RT) (Arrhenius).",
+      "support": "source",
+      "source": "Arrhenius equation k = A e^(−Ea/RT) (IUPAC Gold Book, 'Arrhenius equation'; Atkins, Physical Chemistry).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.lower-the-hill.c2",
+      "text": "Lowering the barrier from 75 to 50 kJ/mol at 298 K raises the rate about 24,000 times, assuming the same pre-factor.",
+      "support": "derivation",
+      "source": "exp(25,000 / (8.314 × 298)) = exp(10.09) = 24,113, rounded to 24,000. R = 8.314 J/(mol K) (CODATA). Node script; Demo.tsx GAIN.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.lower-the-hill.c3",
+      "text": "At 298 K, 25 kJ/mol is about 10 times RT, and e¹⁰ is about 22,000.",
+      "support": "derivation",
+      "source": "RT = 2,478 J/mol; 25,000/2,478 = 10.09; e¹⁰ = 22,026.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.lower-the-hill.c4",
+      "text": "A catalyst is not used up and does not change where the reaction ends up (the equilibrium).",
+      "support": "source",
+      "source": "IUPAC Gold Book, 'catalyst': increases the rate without modifying the overall standard Gibbs energy change; recovered unchanged.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.lower-the-hill.c5",
+      "text": "Stage: the counter is scaled to 1 crossing per second at 75 kJ/mol; the products' level (−20 kJ/mol) is illustrative.",
+      "support": "convention",
+      "source": "Demo.tsx rate(ea) = exp((75 − Ea) kJ/mol / RT).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An enzyme lowers a barrier by about 12 kJ/mol at body temperature (RT ≈ 2.6 kJ/mol). The rate goes up about…",
+    "options": [
+      "100 times",
+      "1.2 times",
+      "5 times"
+    ],
+    "answer": 0,
+    "why": "Rate goes as e^(−Ea/RT): e^(12/2.6) = e^4.6 ≈ 100."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

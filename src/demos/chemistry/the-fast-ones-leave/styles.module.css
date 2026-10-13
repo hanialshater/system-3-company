@@ -1,0 +1,28 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.chart { display: flex; gap: 6px; align-items: stretch; height: min(190px, 36dvh); }
+.hist {
+  position: relative; flex: 1; display: flex; align-items: stretch; gap: 2px;
+  border-bottom: 2px solid var(--muted); padding-top: 18px;
+}
+.hist .col {
+  flex: 1 1 0; min-width: 24px; padding: 2px 0; border-radius: 6px; border: 1px dashed transparent;
+  background: transparent; display: flex; flex-direction: column-reverse; align-items: center; gap: 1px;
+  overflow: hidden;
+}
+.hist .col:not(:disabled):hover { border-color: var(--line); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+.fast { background: var(--domain); }
+.avg0, .avg { position: absolute; top: 14px; bottom: 0; width: 0; pointer-events: none; }
+.avg0 { border-left: 1px dashed var(--muted); }
+.avg { border-left: 2px solid var(--bad); transition: left 0.3s; }
+.avgLabel {
+  position: absolute; top: -14px; left: 0; transform: translateX(-50%); white-space: nowrap;
+  font-size: 10px; font-weight: 700; color: var(--fg);
+}
+.thermo { width: 30px; height: 100%; flex: none; }
+.tube { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1; }
+.mercury { fill: var(--bad); transition: y 0.3s, height 0.3s; }
+.bulb { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.mark { stroke: var(--muted); stroke-width: 1; }
+.axis { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); padding-right: 36px; }
+.reset { display: flex; justify-content: flex-end; }

@@ -1,0 +1,79 @@
+{
+  "slug": "water-follows-the-crowd",
+  "title": "Water follows the crowd",
+  "hook": "The sugar cannot cross. So nothing moves?",
+  "domain": "chemistry",
+  "concept": "osmosis",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that dissolved things spread out",
+      "that concentration is amount per litre"
+    ],
+    "doesNotKnow": [
+      "that when a membrane blocks the solute, water itself moves toward the more concentrated side"
+    ]
+  },
+  "misconception": "Sugar flows to the water, or nothing moves across a membrane that blocks sugar.",
+  "objective": "The learner can explain that across a membrane that passes only water, the net flow of water is toward the higher sugar concentration (0.1 to 0.3 mol/L side), until the concentrations even out or pressure stops it.",
+  "claims": [
+    {
+      "id": "chemistry.water-follows-the-crowd.c1",
+      "text": "Osmosis is the net flow of water (solvent) through a membrane that passes the solvent but not the solute, toward the more concentrated solution.",
+      "support": "source",
+      "source": "IUPAC Gold Book, 'osmosis'; Atkins, Physical Chemistry, 'osmosis'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.water-follows-the-crowd.c2",
+      "text": "With 0.1 mol/L sugar on the left and 0.3 mol/L on the right, net water flow is left to right.",
+      "support": "derivation",
+      "source": "Water moves toward higher solute concentration (c1); 0.3 > 0.1 mol/L.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.water-follows-the-crowd.c3",
+      "text": "Starting from 1 L each, the water ends about 0.50 L on the left and 1.50 L on the right, both about 0.20 mol/L.",
+      "support": "derivation",
+      "source": "Equal final concentrations: V_L = 2 L × 0.1/(0.1 + 0.3) = 0.5 L; 0.05 mol/0.5 L = 0.15 mol/1.5 L = 0.20 mol/L. Node script; Demo.tsx settled().",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.water-follows-the-crowd.c4",
+      "text": "In a real tube the raised level pushes back a little; the stage ignores it.",
+      "support": "derivation",
+      "source": "Osmotic pressure of the 0.2 mol/L difference at 298 K is about 0.2 × 0.08314 × 298 = 5 bar, about 50 m of water, so a level difference of centimetres barely slows the flow (van 't Hoff, Π = cRT; Atkins). Ideal dilute solutions assumed.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.water-follows-the-crowd.c5",
+      "text": "Stage: each dot is 0.01 mol of sugar; the membrane starts shut so the start can be seen; dots placed by seed 9 (untuned, positions only).",
+      "support": "convention",
+      "source": "Demo.tsx. Schematic.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A red blood cell is put in very salty water. Water moves…",
+    "options": [
+      "Out of the cell, and it shrinks",
+      "Into the cell, and it swells",
+      "Nowhere"
+    ],
+    "answer": 0,
+    "why": "Water flows toward the more concentrated side, which is outside the cell here, so the cell loses water."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

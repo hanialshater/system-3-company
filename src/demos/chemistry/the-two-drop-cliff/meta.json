@@ -1,0 +1,79 @@
+{
+  "slug": "the-two-drop-cliff",
+  "title": "The two-drop cliff",
+  "hook": "Add base drop by drop. Does the pH climb steadily?",
+  "domain": "chemistry",
+  "concept": "titration-curve",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that pH is a log scale: each unit is 10 times the H⁺",
+      "millilitres and mol/L"
+    ],
+    "doesNotKnow": [
+      "that near the equivalence point a few drops swing the pH by many units"
+    ]
+  },
+  "misconception": "pH changes in proportion to the base added.",
+  "objective": "The learner can explain that titrating 25.0 mL of 0.100 mol/L HCl with 0.100 mol/L NaOH barely moves the pH for 24.9 mL, then 4 drops (24.9 to 25.1 mL) jump it from about 3.7 to 10.3, because pH counts powers of ten and the acid runs out exactly at 25.0 mL.",
+  "claims": [
+    {
+      "id": "chemistry.the-two-drop-cliff.c1",
+      "text": "At 24.90 mL of base the pH is about 3.7, and at 25.10 mL about 10.3: a jump of about 6.6 units.",
+      "support": "derivation",
+      "source": "Strong acid/strong base, 25 °C, pKw 14.00. 24.90 mL: (2.500 − 2.490) × 10⁻³ mol H⁺ in 49.90 mL = 2.00 × 10⁻⁴ mol/L → pH 3.70. 25.10 mL: 1.0 × 10⁻⁵ mol OH⁻ in 50.10 mL → pOH 3.70, pH 10.30. Node script; Demo.tsx pH().",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-two-drop-cliff.c2",
+      "text": "0.2 mL is about 4 drops (one drop about 0.05 mL).",
+      "support": "source",
+      "source": "A standard drop from a burette is about 0.05 mL (Harris, Quantitative Chemical Analysis, ch. on titration; European Pharmacopoeia 2.1.1 normalised dropper: 20 drops of water ≈ 1.0 g).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-two-drop-cliff.c3",
+      "text": "The first 24.90 mL of base moves the pH only about 2.7 units (from 1.0).",
+      "support": "derivation",
+      "source": "pH(0) = −log 0.100 = 1.00; pH(24.90) = 3.70. Same model.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-two-drop-cliff.c4",
+      "text": "At 24.90 mL only 1 part in 250 of the acid is left, still about 2 × 10⁻⁴ mol/L of H⁺.",
+      "support": "derivation",
+      "source": "1.0 × 10⁻⁵ / 2.5 × 10⁻³ = 1/250; concentration as in c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-two-drop-cliff.c5",
+      "text": "The steep rise sits at the equivalence point, where acid and base match, which is why titrations find it so sharply.",
+      "support": "source",
+      "source": "Harris, Quantitative Chemical Analysis, 'titration curves'; Skoog et al., Fundamentals of Analytical Chemistry.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Halfway through titrating a strong acid with a strong base, you have added half the base needed. Is the pH near 7?",
+    "options": [
+      "No, still low",
+      "Yes, about 7",
+      "Above 7"
+    ],
+    "answer": 0,
+    "why": "Half the acid is still there; on a log scale that is barely a change. The pH only shoots up in the last drops at the match."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

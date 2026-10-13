@@ -1,0 +1,94 @@
+{
+  "slug": "when-the-water-is-full",
+  "title": "When the water is full",
+  "hook": "Stir harder and the last of the salt will go. Will it?",
+  "domain": "chemistry",
+  "concept": "solubility-saturation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that salt dissolves in water",
+      "grams"
+    ],
+    "doesNotKnow": [
+      "that dissolving has a ceiling for a given amount of water and temperature",
+      "that at the ceiling dissolving keeps running both ways"
+    ]
+  },
+  "misconception": "With enough stirring everything dissolves; undissolved salt is just 'not yet'.",
+  "objective": "The learner can explain that 100 g of water at 20 °C holds about 36 g of salt, so 50 g leaves about 14 g as crystals however long you stir, because at saturation ions leave and rejoin the crystals at the same rate.",
+  "claims": [
+    {
+      "id": "chemistry.when-the-water-is-full.c1",
+      "text": "About 36 g of table salt (NaCl) dissolves in 100 g of water at 20 °C.",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Aqueous solubility of inorganic compounds': NaCl 26.4 mass % at 20 °C, i.e. 35.9 g per 100 g water; rounded to 36 in Demo.tsx (SOL).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c2",
+      "text": "Stirring 50 g of salt into 100 g of water at 20 °C leaves about 14 g undissolved.",
+      "support": "derivation",
+      "source": "50 g − 36 g = 14 g (with 35.9 g: 14.1 g). Node script; computed in Demo.tsx as ASK − SOL.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c3",
+      "text": "More stirring does not dissolve more salt once the water is saturated.",
+      "support": "source",
+      "source": "Definition of a saturated solution: solid and solution in equilibrium (IUPAC Gold Book, 'saturated solution'; Atkins & Jones, Chemical Principles, ch. on solubility). Stirring changes the speed of reaching equilibrium, not the limit.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c4",
+      "text": "At saturation ions still leave the crystals, and just as many land back on them, so the pile stays the same size.",
+      "support": "source",
+      "source": "Dynamic equilibrium of dissolution and crystallisation (Atkins & Jones, Chemical Principles; Brown et al., Chemistry: The Central Science, 'saturated solutions and solubility'). The stage's arrows are schematic.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c5",
+      "text": "A solution in this state is called saturated.",
+      "support": "convention",
+      "source": "IUPAC Gold Book, 'saturated solution'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c6",
+      "text": "Warmer water holds a little more salt.",
+      "support": "source",
+      "source": "CRC Handbook: NaCl solubility rises from about 35.7 g/100 g water at 0 °C to about 39 g at 100 °C.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.when-the-water-is-full.c7",
+      "text": "Stage: each dot is half a gram of dissolved salt and each cube a gram of crystals; dots are placed by a seeded generator (seed 11, untuned, positions only).",
+      "support": "convention",
+      "source": "Demo.tsx: dots(n, stir) and pile(g). Illustrative scale, not a count of ions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A jar holds 100 g of water at 20 °C with 40 g of salt in it, stirred for an hour. About how much salt is still solid?",
+    "options": [
+      "About 4 g",
+      "None",
+      "About 40 g"
+    ],
+    "answer": 0,
+    "why": "100 g of water at 20 °C holds about 36 g; the other 4 g stays solid however long you stir."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
