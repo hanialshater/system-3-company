@@ -26,18 +26,18 @@
   "claims": [
     {
       "id": "geography.mercator-greenland.c1",
-      "text": "Greenland's area is about 2.17 million km\u00b2.",
+      "text": "Greenland's area is about 2.17 million km².",
       "support": "source",
-      "source": "CIA World Factbook, Greenland: total area 2,166,086 km\u00b2. The lesson's own 1:110m data gives about 2.19M km\u00b2 on a sphere of radius 6,371 km. Fact-check 2026-10-12: Factbook figure confirmed (2021/2022 archives); lesson data recomputed as 2,189,757 km2 (+1.1%).",
+      "source": "CIA World Factbook, Greenland: total area 2,166,086 km². The lesson's own 1:110m data gives about 2.19M km² on a sphere of radius 6,371 km. Fact-check 2026-10-12: Factbook figure confirmed (2021/2022 archives); lesson data recomputed as 2,189,757 km2 (+1.1%).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-12"
     },
     {
       "id": "geography.mercator-greenland.c2",
-      "text": "DR Congo's area is about 2.34 million km\u00b2.",
+      "text": "DR Congo's area is about 2.34 million km².",
       "support": "source",
-      "source": "CIA World Factbook, Congo, Democratic Republic of the: total area 2,344,858 km\u00b2. Lesson data gives about 2.33M km\u00b2. Fact-check 2026-10-12: Factbook figure confirmed; lesson data recomputed as 2,333,678 km2 (-0.5%).",
+      "source": "CIA World Factbook, Congo, Democratic Republic of the: total area 2,344,858 km². Lesson data gives about 2.33M km². Fact-check 2026-10-12: Factbook figure confirmed; lesson data recomputed as 2,333,678 km2 (-0.5%).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-12"
@@ -46,14 +46,14 @@
       "id": "geography.mercator-greenland.c3",
       "text": "On the Mercator map in this lesson, Greenland at its real position is drawn about 15 times the area of DR Congo.",
       "support": "simulation",
-      "source": "v2: map extent now reaches about 85\u00b0N, so Greenland is drawn whole (bounds y 18.8\u201398.9 inside 0\u2013236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 (artifacts/scratch/mg2.mjs). The question text is computed from the same map, so they cannot disagree.",
+      "source": "v2: map extent now reaches about 85°N, so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 (artifacts/scratch/mg2.mjs). The question text is computed from the same map, so they cannot disagree.",
       "status": "unverified"
     },
     {
       "id": "geography.mercator-greenland.c4",
-      "text": "Mercator scales areas by about 1/cos\u00b2(latitude); at Greenland's latitude that is more than ten times.",
+      "text": "Mercator scales areas by about 1/cos²(latitude); at Greenland's latitude that is more than ten times.",
       "support": "derivation",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Mercator scale factor k = sec \u03c6, so area factor sec\u00b2 \u03c6. At 73\u00b0, sec\u00b2 \u2248 11.7. Fact-check 2026-10-12: sec^2(73)=11.70 confirmed; the lesson's own readout 10.73x is still more than ten.",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Mercator scale factor k = sec φ, so area factor sec² φ. At 73°, sec² ≈ 11.7. Fact-check 2026-10-12: sec^2(73)=11.70 confirmed; the lesson's own readout 10.73x is still more than ten.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-12"
@@ -71,7 +71,7 @@
       "id": "geography.mercator-greenland.c6",
       "text": "Equal Earth is an equal-area projection.",
       "support": "source",
-      "source": "\u0160avri\u010d, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3).",
+      "source": "Šavrič, Patterson & Jenny (2018), The Equal Earth map projection, IJGIS 33(3).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-12"
@@ -123,10 +123,12 @@
       "They are all inflated equally"
     ],
     "answer": 1,
-    "why": "Mercator stretches area by about 1/cos\u00b2(latitude), so the farther from the equator, the bigger it looks."
+    "why": "Mercator stretches area by about 1/cos²(latitude), so the farther from the equator, the bigger it looks."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/mercator-greenland/2026-10-12-qa.md"
+    ],
     "simulatedLearner": [
       "company/reviews/mercator-greenland/2026-10-12-learner-adult-beginner.md"
     ],
