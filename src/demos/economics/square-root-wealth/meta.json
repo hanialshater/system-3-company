@@ -1,0 +1,78 @@
+{
+  "slug": "square-root-wealth",
+  "title": "A sure amount versus a coin",
+  "hook": "A coin pays $0 or $100. What sure amount would feel just as good?",
+  "domain": "economics",
+  "concept": "risk-aversion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an average (expected value) is"
+    ],
+    "doesNotKnow": [
+      "that when each extra dollar matters less, a sure amount below the average can feel as good as a gamble"
+    ]
+  },
+  "misconception": "Someone indifferent to a 50-50 gamble over $0 or $100 must value it at $50.",
+  "objective": "The learner can explain that with a felt value that rises more slowly as wealth grows, a sure $25 equals a 50-50 gamble between $0 and $100 even though its average is $50.",
+  "claims": [
+    {
+      "id": "economics.square-root-wealth.c1",
+      "text": "In the model, the felt value of a 50-50 coin paying $0 or $100 is 0.5 x sqrt(0) + 0.5 x sqrt(100) = 5.",
+      "support": "derivation",
+      "source": "0.5 x 0 + 0.5 x 10 = 5. Demo.tsx COIN.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.square-root-wealth.c2",
+      "text": "The felt value of a sure $25 is sqrt(25) = 5, equal to the coin's, although the coin pays $50 on average.",
+      "support": "derivation",
+      "source": "sqrt(25) = 5; 0.5 x 0 + 0.5 x 100 = 50. Demo.tsx SURE.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.square-root-wealth.c3",
+      "text": "A sure $50 has felt value sqrt(50) = 7.07, above the coin's 5.",
+      "support": "derivation",
+      "source": "sqrt(50) = 7.071. Demo.tsx felt(50).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.square-root-wealth.c4",
+      "text": "When each extra dollar adds less felt value than the one before, a sure amount below the average payoff can equal a gamble.",
+      "support": "derivation",
+      "source": "The square-root curve is concave: the chord between (0,0) and (100,10) lies below the curve, so the curve reaches the coin's height at 25, left of 50.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.square-root-wealth.c5",
+      "text": "Square-root felt value is one textbook choice, not a measure of any person, and the lesson gives no advice about choices.",
+      "support": "convention",
+      "source": "Concave utility functions such as sqrt(W) are standard textbook examples (e.g. Bernoulli 1738 used a logarithm); stage chip 'Model: felt value = square root of wealth'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the same square-root model, a 50-50 coin pays $0 or $64. What sure amount feels as good as the coin?",
+    "options": [
+      "$32",
+      "$16",
+      "$8"
+    ],
+    "answer": 1,
+    "why": "Felt value of the coin is 0.5 x 0 + 0.5 x sqrt(64) = 4, and sqrt(16) = 4, so a sure $16 matches it, well under the $32 average."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

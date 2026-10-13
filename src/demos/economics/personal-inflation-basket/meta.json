@@ -1,0 +1,79 @@
+{
+  "slug": "personal-inflation-basket",
+  "title": "Whose inflation is it?",
+  "hook": "Three prices rose by different amounts. How much did this household's costs rise?",
+  "domain": "economics",
+  "concept": "price-index",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that prices rise over time (inflation)"
+    ],
+    "doesNotKnow": [
+      "that a headline rate is a weighted average",
+      "that a household's own rate depends on its own mix of spending"
+    ]
+  },
+  "misconception": "Inflation is the average of how much each price rose.",
+  "objective": "The learner can explain that an index weights each price rise by its share of spending, so a household that spends half its budget on the item that rose most sees 3.6%, not the plain average 2.7%.",
+  "claims": [
+    {
+      "id": "economics.personal-inflation-basket.c1",
+      "text": "A household spending 50% on rent (up 6%), 30% on food (up 2%) and 20% on fun (up 0%) sees its total cost of living rise by 3.6%.",
+      "support": "derivation",
+      "source": "0.5 x 6 + 0.3 x 2 + 0.2 x 0 = 3.0 + 0.6 + 0 = 3.6. Demo.tsx total(50).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.personal-inflation-basket.c2",
+      "text": "The plain average of the three rises 6, 2 and 0 is 2.7% (2.67).",
+      "support": "derivation",
+      "source": "(6 + 2 + 0) / 3 = 2.667. Demo.tsx PLAIN.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.personal-inflation-basket.c3",
+      "text": "Rent adds 3.0 percentage points to the overall rise, food 0.6 and fun 0.0 (share x rise).",
+      "support": "derivation",
+      "source": "0.5 x 6 = 3.0; 0.3 x 2 = 0.6; 0.2 x 0 = 0. Demo.tsx contrib().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.personal-inflation-basket.c4",
+      "text": "A price index weights each price by its share of spending, so a household's own inflation depends on its own mix.",
+      "support": "convention",
+      "source": "Definition of a fixed-basket (Laspeyres-type) price index, e.g. standard macroeconomics texts on the consumer price index; the weighted average is the calculation on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.personal-inflation-basket.c5",
+      "text": "The lesson is a model: the shares and rises are invented, the basket is fixed, and households do not switch goods.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: fixed basket, invented numbers'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Rent is 60% of a budget and rises 5%; everything else (40%) is flat. How much did total costs rise?",
+    "options": [
+      "2.5%",
+      "3%",
+      "5%"
+    ],
+    "answer": 1,
+    "why": "Weight each rise by its share of spending: 0.6 x 5 + 0.4 x 0 = 3%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

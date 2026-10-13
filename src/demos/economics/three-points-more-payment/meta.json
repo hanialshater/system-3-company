@@ -1,0 +1,85 @@
+{
+  "slug": "three-points-more-payment",
+  "title": "Three points, a bigger payment",
+  "hook": "A mortgage rate moves from 4% to 7%. Does the monthly payment move by about 3%?",
+  "domain": "economics",
+  "concept": "loan-rate-sensitivity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a loan has a monthly payment"
+    ],
+    "doesNotKnow": [
+      "that a few points of rate change the payment by far more than a few percent"
+    ]
+  },
+  "misconception": "Rates up from 4% to 7% add about 3% to the payment.",
+  "objective": "The learner can explain that three points of rate on a 30-year loan raise the payment by about 39%, because interest is charged on every dollar owed for decades.",
+  "claims": [
+    {
+      "id": "economics.three-points-more-payment.c1",
+      "text": "A $300,000 loan over 30 years (360 level monthly payments) at 4% a year has a payment of $1,432.25.",
+      "support": "derivation",
+      "source": "P r / (1 - (1 + r)^-360) with r = 0.04 / 12: 300,000 x 0.003333 / (1 - 1.003333^-360) = 1,432.25. Demo.tsx payment(4).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.three-points-more-payment.c2",
+      "text": "At 7% a year the same loan has a payment of $1,995.91.",
+      "support": "derivation",
+      "source": "r = 0.07 / 12: 300,000 x 0.005833 / (1 - 1.005833^-360) = 1,995.91. Demo.tsx payment(7).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.three-points-more-payment.c3",
+      "text": "The payment at 7% is 39% higher than at 4% (1,995.91 / 1,432.25 = 1.394).",
+      "support": "derivation",
+      "source": "1,995.91 / 1,432.25 = 1.3935. Demo.tsx RISE_Q.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.three-points-more-payment.c4",
+      "text": "The rate rising from 4% to 7% is a 75% rise as a ratio (7 / 4 - 1), which is not the rise in the payment.",
+      "support": "derivation",
+      "source": "7 / 4 = 1.75. Demo.tsx RATE_RATIO.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.three-points-more-payment.c5",
+      "text": "The first month's interest on $300,000 is $1,000 at 4% and $1,750 at 7%.",
+      "support": "derivation",
+      "source": "300,000 x 0.04 / 12 = 1,000; 300,000 x 0.07 / 12 = 1,750. Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.three-points-more-payment.c6",
+      "text": "The lesson is a model: fixed rate, fixed 30-year term, level payments, illustrative rates, not a forecast and not advice.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: $300,000, 30 years, fixed rate'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A $200,000 loan over 30 years has a payment of $1,074 at 5%. At 8%, the payment rises by closest to which?",
+    "options": [
+      "About 3%",
+      "About 37%",
+      "About 60%"
+    ],
+    "answer": 1,
+    "why": "At 8% the payment is $1,468, 37% more (1,467.53 / 1,073.64). Interest is charged on every dollar owed for decades, so three points lift the payment far more than 3%, though less than the 60% rise of the rate as a ratio (8 / 5)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "loaf-with-smoke",
+  "title": "Bread with a side of smoke",
+  "hook": "Bakers sell exactly what buyers want. Who pays for the smoke?",
+  "domain": "economics",
+  "concept": "externality",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a market price balances what buyers will pay with what sellers must receive"
+    ],
+    "doesNotKnow": [
+      "that when a cost falls on others the market makes more than the true cost justifies"
+    ]
+  },
+  "misconception": "The market quantity is the best quantity.",
+  "objective": "The learner can explain that a cost left out of the price makes the market quantity too high: with $1 of smoke per loaf in the model, the true-cost quantity is 35 loaves, not 40.",
+  "claims": [
+    {
+      "id": "economics.loaf-with-smoke.c1",
+      "text": "In the model (buyers' price (100 - q) / 10, bakers' cost (q + 20) / 10), the market makes 40 loaves, at a price of $6.",
+      "support": "derivation",
+      "source": "(100 - q) / 10 = (q + 20) / 10 gives q = 40; price = 6.00. Demo.tsx MARKET.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.loaf-with-smoke.c2",
+      "text": "With $1 of smoke harm per loaf added to the bakers' cost, the buyers' price equals the true cost at 35 loaves.",
+      "support": "derivation",
+      "source": "(100 - q) / 10 = (q + 20) / 10 + 1 gives 100 - q = q + 30, q = 35. Demo.tsx TRUE_Q.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.loaf-with-smoke.c3",
+      "text": "Loaves 36 to 40 are worth less to buyers than they truly cost (bakers' cost plus $1 of smoke).",
+      "support": "derivation",
+      "source": "For q above 35, (100 - q) / 10 < (q + 20) / 10 + 1, since the lines cross at q = 35. E.g. q = 40: buyers 6.00 against 7.00.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.loaf-with-smoke.c4",
+      "text": "In the model, a $1 per-loaf cost put on the bakers moves the market quantity to 35 loaves.",
+      "support": "derivation",
+      "source": "Bakers' cost + 1: (100 - q) / 10 = (q + 20) / 10 + 1 gives q = 35. Illustrates the model only; not a claim about any policy.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.loaf-with-smoke.c5",
+      "text": "A cost that falls on others is left out of the price, so more is made than the true cost justifies.",
+      "support": "convention",
+      "source": "Textbook definition of a negative externality (e.g. Pigou, The Economics of Welfare, 1920); the model's 40 versus 35 is the instance.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.loaf-with-smoke.c6",
+      "text": "The lesson is a model: straight lines, harm valued at $1 per loaf for illustration, no claim about any policy.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: straight lines, invented numbers'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the same bread model, each loaf puts $2 of smoke on neighbours. How many loaves match the true total cost?",
+    "options": [
+      "40",
+      "30",
+      "20"
+    ],
+    "answer": 1,
+    "why": "(100 - q) / 10 = (q + 20) / 10 + 2 gives 100 - q = q + 40, so q = 30, five fewer loaves for each extra dollar of harm."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
