@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 40dvh; }
+.old { stroke: var(--muted); stroke-width: 1.2; stroke-opacity: 0.7; }
+.fresh { stroke: var(--domain); stroke-width: 2.5; }
+.person { fill: var(--domain); stroke: var(--fg); stroke-width: 1.5; }
+.empty { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.num { fill: var(--bg); font-size: 11px; font-weight: 800; text-anchor: middle; }
+.numEmpty { fill: var(--muted); font-size: 11px; font-weight: 600; text-anchor: middle; }
+.ends { fill: var(--good); font-size: 13px; font-weight: 800; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.chips { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 3px; }
+.chips :global(.control) { padding: 8px 0; min-width: 0; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
