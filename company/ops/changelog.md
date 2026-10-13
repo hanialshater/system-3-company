@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-13: platform-engineer SPIKE-001 (scratch, never merged)
+- `spike/` tooling and the `/spike` host route: 3 lessons as content-hashed ES module bundles against a shared kit, served from a second origin into `sandbox="allow-scripts"` frames with a postMessage bridge. No feed, lesson page, kit, gate, tests/qa or lesson source changed; no new dependency. Results: company/engineering/spikes/SPIKE-001-frontend-sandbox.md.
+
 ## 2026-10-13: release-manager deployment workflow
 - `npm run deploy -- preview|production` and `/deploy`: linked-project validation, full verification,
   staged production, hosted smoke checks and durable deployment records. CLI pinned at 63.1.2.
