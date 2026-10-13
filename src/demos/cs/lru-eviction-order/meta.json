@@ -1,0 +1,80 @@
+{
+  "slug": "lru-eviction-order",
+  "title": "Who gets thrown out of the cache?",
+  "hook": "The cache is full and a new item arrives. Does the oldest arrival go, or someone else?",
+  "domain": "cs",
+  "concept": "lru-cache",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that fetching from far away is slow",
+      "keeping a few things close at hand"
+    ],
+    "doesNotKnow": [
+      "what a cache is and that it has a fixed number of slots",
+      "that caches usually evict by recent use, not by arrival"
+    ]
+  },
+  "misconception": "A full cache drops whatever arrived first.",
+  "objective": "The learner can trace a least-recently-used cache: on A, B, C, A, D with 3 slots, the repeat request for A refreshes it, so D evicts B, while a first-in rule would evict A.",
+  "claims": [
+    {
+      "id": "cs.lru-eviction-order.c1",
+      "text": "With 3 slots and requests A, B, C, A, D, the least-recently-used rule evicts B when D arrives.",
+      "support": "simulation",
+      "source": "Demo.tsx simulate(5, 'lru'): last uses B = 2, C = 3, A = 4; B has the oldest last use. Builder also ran an independent LRU in Node: evicted [B], 4 misses.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.lru-eviction-order.c2",
+      "text": "On the same stream a first-in, first-out rule evicts A, the oldest arrival, even though A was just requested.",
+      "support": "simulation",
+      "source": "Demo.tsx simulate(5, 'fifo'): arrivals A = 1, B = 2, C = 3; A evicted. Builder ran an independent FIFO in Node: evicted [A].",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.lru-eviction-order.c3",
+      "text": "Asking for an item that is already in the cache is a hit and makes it the most recently used.",
+      "support": "convention",
+      "source": "Definition of LRU replacement: Silberschatz, Galvin and Gagne, Operating System Concepts, 10th ed., 10.4.4 'LRU Page Replacement'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.lru-eviction-order.c4",
+      "text": "Things used recently tend to be used again soon, so evicting the least recently used item usually keeps more hits.",
+      "support": "source",
+      "source": "Principle of temporal locality: Denning, 'The locality principle', CACM 48(7), 2005; Silberschatz et al. 10.4.4 (LRU approximates the optimal policy by using the recent past to predict the near future). 'Usually' is a tendency for workloads with locality, not a guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.lru-eviction-order.c5",
+      "text": "Operating systems and web caches use the least-recently-used rule or cheap approximations of it.",
+      "support": "source",
+      "source": "Silberschatz et al. 10.4.5 'LRU-Approximation Page Replacement' (reference bits, second-chance/clock); Redis documentation 'Key eviction' (allkeys-lru, an approximated LRU).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A cache holds 2 items and uses least recently used. Requests: X, Y, X, Z. Which item is evicted when Z arrives?",
+    "options": [
+      "X, because it arrived first",
+      "Y, because it was used longest ago",
+      "Nothing, the cache grows"
+    ],
+    "answer": 1,
+    "why": "The second request for X refreshed it, so Y has gone longest without use and is the one evicted."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "route-explosion",
+  "title": "One more city, how many more routes?",
+  "hook": "A computer is fast. Can it just try every order of 9 cities, or 19?",
+  "domain": "cs",
+  "concept": "combinatorial-explosion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a trip visits places in some order",
+      "multiplication"
+    ],
+    "doesNotKnow": [
+      "that the number of orders is a factorial",
+      "how fast the number of orders grows with each added city"
+    ]
+  },
+  "misconception": "Adding one more city adds a few more routes to check, so a computer just checks them all.",
+  "objective": "The learner can explain that with home fixed, k cities can be visited in k × (k-1) × ... × 1 orders, so each added city multiplies the count (6, 24, 120 ... 362,880 for 9) and checking every order soon becomes impossible.",
+  "claims": [
+    {
+      "id": "cs.route-explosion.c1",
+      "text": "Starting from a fixed home, 3 cities can be visited in 3 × 2 × 1 = 6 orders and 4 cities in 24.",
+      "support": "simulation",
+      "source": "Demo.tsx perms(k) lists every order and draws it; perms(3).length = 6, perms(4).length = 24 (builder ran in Node). Arithmetic: 3! = 6, 4! = 24.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.route-explosion.c2",
+      "text": "Visiting 9 other cities once each from a fixed home gives 9 × 8 × ... × 1 = 362,880 orders; counting home as a 10th free choice would give 3,628,800.",
+      "support": "derivation",
+      "source": "Arithmetic: 9! = 362,880, 10! = 3,628,800 (builder computed with BigInt in Node). Demo.tsx fact().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.route-explosion.c3",
+      "text": "Adding city k multiplies the count by k, because the new city can go in k places in every old order.",
+      "support": "derivation",
+      "source": "Insertion argument: an order of k-1 cities has k gaps (before the first, between, after the last), so k! = k × (k-1)!.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.route-explosion.c4",
+      "text": "With home plus 19 cities there are 121,645,100,408,832,000 orders: about 3.9 years at a billion checks a second.",
+      "support": "derivation",
+      "source": "19! = 121,645,100,408,832,000 (BigInt in Node). 19! / 10^9 / 31,557,600 s per Julian year = 3.85 years.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.route-explosion.c5",
+      "text": "Real route planners use cleverer methods than checking every order.",
+      "support": "source",
+      "source": "Applegate, Bixby, Chvatal and Cook, The Traveling Salesman Problem: A Computational Study (2006): branch-and-cut (Concorde) solves instances with thousands of cities exactly; heuristics such as Lin-Kernighan give near-optimal tours. TSP is NP-hard (Karp 1972), so no method is known to be fast on every instance; the lesson does not claim one is.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A delivery van already has 10 stops and you add an 11th. Roughly what happens to the number of possible stop orders?",
+    "options": [
+      "It goes up by 11",
+      "It is multiplied by 11",
+      "It doubles"
+    ],
+    "answer": 1,
+    "why": "The new stop can go into any of 11 places in every existing order, so the number of orders is multiplied by 11 (10! becomes 11!)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

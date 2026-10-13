@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 10px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.top { display: flex; justify-content: center; gap: 6px; flex-wrap: nowrap; }
+.card {
+  width: 40px; min-width: 40px; height: 48px; padding: 0; border-radius: 8px; display: inline-flex;
+  align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.pivot { border: 2px solid var(--domain); background: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); }
+.gone { border-style: dashed; background: transparent; opacity: 0.4; }
+
+.row { display: flex; justify-content: center; gap: 6px; }
+.cell { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.slot {
+  width: 40px; height: 48px; border-radius: 8px; border: 2px dashed var(--line); display: flex;
+  align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.filled { border-style: solid; background: var(--bg-2); }
+.alt { border-color: var(--muted); }
+.home { border-style: solid; border-color: var(--good); background: color-mix(in srgb, var(--good) 28%, var(--bg-2)); }
+.idx { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }

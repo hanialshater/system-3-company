@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.wrap > svg { max-height: 16dvh; }
+.light { fill: var(--bg); font-size: 15px; font-weight: 900; letter-spacing: 0.04em; }
+
+.bits { display: flex; justify-content: center; gap: 5px; }
+.bit {
+  width: 34px; min-width: 34px; height: 48px; padding: 0; font-size: 1.3rem; font-weight: 800;
+  font-variant-numeric: tabular-nums; border-radius: 8px;
+}
+.flip { border: 2px solid var(--bad); color: var(--bad); text-decoration: underline; }
+.check { margin-left: 8px; border-style: dashed; }
+.legend { margin: -4px 0 0; display: flex; justify-content: center; gap: 5px; font-size: 0.72rem; color: var(--muted); }
+.legend span:first-child { width: 268px; text-align: center; border-top: 1px solid var(--line); }
+.legend span:last-child { width: 42px; text-align: right; }

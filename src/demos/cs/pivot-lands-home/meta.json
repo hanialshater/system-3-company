@@ -1,0 +1,81 @@
+{
+  "slug": "pivot-lands-home",
+  "title": "One pass, one card home for good",
+  "hook": "Can a single card be in its final sorted place before anything else is sorted?",
+  "domain": "cs",
+  "concept": "quicksort-partition",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what sorted order means",
+      "splitting a problem into halves (merge-sort-payoff)"
+    ],
+    "doesNotKnow": [
+      "partitioning around a pivot",
+      "that one partition pass fixes the pivot's final position",
+      "that quicksort is partitioning repeated on each pile"
+    ]
+  },
+  "misconception": "Sorting must compare everything before anything is in its final place.",
+  "objective": "The learner can explain that after one partition the pivot sits at the position equal to the number of smaller items (5 lands at position 3 in [5, 2, 8, 1, 9, 3, 7]) and never moves again, leaving two independent smaller piles.",
+  "claims": [
+    {
+      "id": "cs.pivot-lands-home.c1",
+      "text": "Partitioning [5, 2, 8, 1, 9, 3, 7] around 5 puts 5 at position 3, counting from 0.",
+      "support": "simulation",
+      "source": "Demo.tsx: smaller cards fill from the left, larger from the right, pivot drops into the gap; SMALLER = 3 (2, 1, 3). Builder recomputed in Node: count of values below 5 = 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pivot-lands-home.c2",
+      "text": "After partitioning, the pivot's position equals the number of smaller items, which is also its position in the fully sorted row, so it never moves again.",
+      "support": "derivation",
+      "source": "In sorted order (distinct values) exactly the smaller items precede the pivot; partition places all of them, and only them, before it. CLRS 3rd ed., 7.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pivot-lands-home.c3",
+      "text": "Nothing in the left pile ever needs to cross the pivot, so each pile is a separate smaller problem; repeating the partition on each pile is quicksort.",
+      "support": "source",
+      "source": "Hoare, 'Quicksort', The Computer Journal 5(1), 1962; CLRS 3rd ed., 7.1 (QUICKSORT recurses on the two subarrays).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pivot-lands-home.c4",
+      "text": "On already sorted input, always picking the first card as pivot leaves one pile empty every time, and quicksort slows to about n²/2 comparisons.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 7.2 (worst-case partitioning, Theta(n^2)); with first-element pivot on sorted input the comparisons are (n-1) + (n-2) + ... + 1 = n(n-1)/2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pivot-lands-home.c5",
+      "text": "A pivot that splits the piles evenly makes quicksort fast.",
+      "support": "source",
+      "source": "CLRS 3rd ed., 7.2 (best-case and balanced partitioning give O(n lg n)); Knuth TAOCP Vol. 3, 5.2.2 (average about 1.39 n lg n comparisons with random pivots).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You partition a list of 20 distinct numbers around a pivot, and 12 of them are larger than the pivot. Where does the pivot end up, counting from 0?",
+    "options": [
+      "Position 7",
+      "Position 12",
+      "Position 10, the middle"
+    ],
+    "answer": 0,
+    "why": "19 other numbers, 12 larger, so 7 are smaller. Exactly those 7 come before the pivot, so it sits at position 7, its final sorted place."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
