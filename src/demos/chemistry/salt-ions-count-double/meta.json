@@ -1,0 +1,89 @@
+{
+  "slug": "salt-ions-count-double",
+  "title": "How far below 0 °C does salt go?",
+  "hook": "Road salt keeps water liquid below 0 °C. How far below for 58 g in a litre?",
+  "domain": "chemistry",
+  "concept": "freezing-point-depression",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that salt is spread on icy roads",
+      "that pure water freezes at 0 °C",
+      "that salt and sugar dissolve in water"
+    ],
+    "doesNotKnow": [
+      "that a mole is a fixed count of particles",
+      "that the freezing point falls with the number of dissolved particles, not their kind",
+      "that each unit of salt splits into two ions"
+    ]
+  },
+  "misconception": "Salt melts ice by heating it, or one mole of anything lowers the freezing point by the same amount.",
+  "objective": "The learner can explain that 1.0 mol of NaCl in 1.0 kg of water makes 2.0 mol of ions, so the freezing point falls by about 3.7 °C (ideal), twice the 1.9 °C of 1.0 mol of sugar, because the drop depends on the count of particles.",
+  "claims": [
+    {
+      "id": "chemistry.salt-ions-count-double.c1",
+      "text": "58 g of table salt is about 1.0 mol of NaCl units, and 342 g of sugar (sucrose) is about 1.0 mol of molecules; 1 mol is about 6.0 × 10²³ units.",
+      "support": "derivation",
+      "source": "Molar masses: NaCl 22.990 + 35.453 = 58.44 g/mol; sucrose C12H22O11 342.30 g/mol (IUPAC 2021 atomic weights). Avogadro constant 6.02214076e23 /mol (SI, exact).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-ions-count-double.c2",
+      "text": "In water each NaCl unit splits into a sodium ion (Na⁺) and a chloride ion (Cl⁻); sugar molecules stay whole.",
+      "support": "source",
+      "source": "NaCl is a strong electrolyte, fully dissociated in dilute solution; sucrose is a non-electrolyte (Atkins & Jones, Chemical Principles, ch. on solutions).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-ions-count-double.c3",
+      "text": "In the ideal model, the freezing point of water falls by 1.86 °C for each mole of dissolved particles per kilogram of water, whatever the particles are.",
+      "support": "source",
+      "source": "Colligative property ΔTf = i Kf m; Kf(water) = 1.86 K kg/mol (CRC Handbook, 'Cryoscopic constants': 1.853). Demo.tsx KF = 1.86.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-ions-count-double.c4",
+      "text": "1.0 mol of salt in 1.0 kg of water lowers the freezing point by about 3.7 °C in the ideal model, twice the 1.9 °C of 1.0 mol of sugar.",
+      "support": "derivation",
+      "source": "2 × 1.86 × 1.0 = 3.72 °C; 1 × 1.86 × 1.0 = 1.86 °C (node; Demo.tsx SALT_DROP, ONE_PARTICLE). Distractor 0.5 °C is arbitrary.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-ions-count-double.c5",
+      "text": "Real salt water at this strength freezes a little less low, about 3.5 °C below zero, because the ions attract each other.",
+      "support": "derivation",
+      "source": "Osmotic coefficient of 1 mol/kg NaCl about 0.93 (Robinson & Stokes, Electrolyte Solutions, appendix 8.10, 25 °C): 3.72 × 0.93 = 3.46 °C. Fact-checker: compare the CRC 'Concentrative properties of aqueous solutions' table for 5.5 wt% NaCl; if it gives about 3.3 °C, change 'about 3.5' to 'about 3.4'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.salt-ions-count-double.c6",
+      "text": "The stage is a toy: 1 dot stands for 0.1 mol of dissolved particles.",
+      "support": "convention",
+      "source": "Demo.tsx PER_DOT = 0.1: 10 sugar dots, 20 ion dots for salt. The stage labels it.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Calcium chloride, CaCl₂, splits into one Ca²⁺ and two Cl⁻ ions. Mole for mole, compared with table salt it lowers the freezing point…",
+    "options": [
+      "more: three particles per unit instead of two",
+      "the same",
+      "less, because calcium is heavier"
+    ],
+    "answer": 0,
+    "why": "Freezing point falls with the count of dissolved particles. CaCl₂ gives three per unit, NaCl two."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
