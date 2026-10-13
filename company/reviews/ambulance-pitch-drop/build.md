@@ -19,3 +19,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 - "The drop is quick because you stand close" was asserted, not shown: removed. c6 text shortened to the still-air model, reset to unverified.
 - Explore path only visited "past you": not changed. The ambulance starts 20 m before you, so the 754 Hz approach reading is on screen from the moment the stage unlocks; the QA path then visits beside (704) and 20 m past (653). Gate stays 'going-away'.
 - Hook tension ("the siren never changes"): answered by the crest-spacing ratio above; not reworded.
+
+## v3 (claim fix 2026-10-13)
+
+Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.

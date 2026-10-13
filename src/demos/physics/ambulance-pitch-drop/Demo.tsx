@@ -92,7 +92,7 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
       {({ locked, interact }) => {
         interactRef.current = interact;
         const caption = locked
-          ? "Each ring is a crest, sent 0.1 s apart. Hz = crests per second."
+          ? "Each ring marks every 70th crest, 0.1 s apart. Hz = crests per second."
           : `Gaps: ${GAP_AHEAD.toFixed(1)} m ahead, ${GAP_BEHIND.toFixed(1)} m behind. Parked, they'd be ${GAP0.toFixed(1)} m.`;
         const rings = Array.from({ length: 6 }, (_, i) => {
           const tau = (i + 1) * 0.1;

@@ -6,3 +6,7 @@
 - Honesty note: past 2^53, + 1 does not always do nothing: from …994 it jumps to …996 (round half to even). The reveal and claim c4 say "either does nothing or jumps by 2".
 - Locked: dots hidden; only plain ticks and labels.
 - After screenshots: the reveal ran past the card; cut one sentence to keep it near 120 words.
+
+## v2 (claim fix 2026-10-13)
+
+Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.

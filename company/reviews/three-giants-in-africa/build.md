@@ -8,3 +8,7 @@
 - Key state: all three placed (milestones us, china, india; minInteractions 3). The buttons come first in DOM order and disable once used.
 - Locked: the share bar, the share and the room readouts are hidden.
 - The reveal's Mercator sentence (c5) is told, not shown: there is no Mercator view, to keep one representation. Reviewers may object.
+
+## v2 (claim fix 2026-10-13)
+
+Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.

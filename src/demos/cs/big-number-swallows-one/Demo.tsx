@@ -55,7 +55,7 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
             </p>
             <p>
               A JavaScript number is a double with 53 bits of precision. Every whole number up to 2^53 = {big(P)} fits exactly
-              (which is why Number.MAX_SAFE_INTEGER is 2^53 − 1), but beyond it only every second whole number exists. Adding 1
+              (which is why Number.MAX_SAFE_INTEGER is 2^53 − 1), but just beyond it (up to 2^54) only every second whole number exists. Adding 1
               lands exactly halfway between two of them and is rounded to the even one, so it either does nothing or jumps by
               2. For exact big integers, JavaScript has BigInt.
             </p>

@@ -19,3 +19,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 - "Illustrative numbers" undercut the figures vaguely: replaced with what is idealised ("Steady-force model. Real crash forces rise and fall, and real cars crush less and stop faster."). c5 text rewritten, reset to unverified.
 - Fact-check route 1 (0.10 s read as a no-crumple car): the question now says "A short crush stops it in 0.10 s; a longer crush takes 0.20 s", and the dashed comparison bar is labelled "0.10 s stop", not "stiff".
 - Misconception (a stiff car is safer) addressed only at the end: not changed beyond the above; the learner manipulates stopping time, and the crush readout now shows the cost of that time.
+
+## v3 (claim fix 2026-10-13)
+
+Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.
