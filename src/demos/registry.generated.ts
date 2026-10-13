@@ -72,66 +72,76 @@ import m66 from "./geography/ruler-on-mercator/meta.json";
 import m67 from "./geography/shortest-way-to-tokyo/meta.json";
 import m68 from "./geography/shrinking-degree/meta.json";
 import m69 from "./geography/tissot-circles/meta.json";
-import m70 from "./life/cell-too-big/meta.json";
-import m71 from "./life/dish-runs-out/meta.json";
-import m72 from "./life/fastest-at-the-bend/meta.json";
-import m73 from "./life/herd-immunity/meta.json";
-import m74 from "./life/most-cases-vaccinated/meta.json";
-import m75 from "./life/natural-selection/meta.json";
-import m76 from "./life/one-in-four-sprouts/meta.json";
-import m77 from "./life/pesticide-paradox/meta.json";
-import m78 from "./life/same-genes-different-drift/meta.json";
-import m79 from "./life/slow-across-a-room/meta.json";
-import m80 from "./life/ten-percent-up/meta.json";
-import m81 from "./life/three-day-doubling/meta.json";
-import m82 from "./math/circle-slices-to-rectangle/meta.json";
-import m83 from "./math/digits-are-logs/meta.json";
-import m84 from "./math/distance-is-area/meta.json";
-import m85 from "./math/double-the-size/meta.json";
-import m86 from "./math/exponential-growth/meta.json";
-import m87 from "./math/fifty-up-fifty-down/meta.json";
-import m88 from "./math/gauss-staircase/meta.json";
-import m89 from "./math/minus-times-minus/meta.json";
-import m90 from "./math/nines-without-end/meta.json";
-import m91 from "./math/no-fraction-fits/meta.json";
-import m92 from "./math/odd-numbers-make-squares/meta.json";
-import m93 from "./math/one-boss-moves-the-mean/meta.json";
-import m94 from "./math/one-recipe-for-sixty/meta.json";
-import m95 from "./math/paths-by-adding/meta.json";
-import m96 from "./math/plus-and-minus-chips/meta.json";
-import m97 from "./math/product-plus-one/meta.json";
-import m98 from "./math/scoops-in-three-cups/meta.json";
-import m99 from "./math/seventy-two-doubling/meta.json";
-import m100 from "./math/steeper-is-not-taller/meta.json";
-import m101 from "./math/tear-the-corners/meta.json";
-import m102 from "./math/thirteen-pigeons/meta.json";
-import m103 from "./math/two-squares-become-one/meta.json";
-import m104 from "./physics/coaster-track-shape/meta.json";
-import m105 from "./physics/current-same-around-loop/meta.json";
-import m106 from "./physics/doubling-speed-braking/meta.json";
-import m107 from "./physics/dropped-vs-fired-ball/meta.json";
-import m108 from "./physics/flour-on-the-moon/meta.json";
-import m109 from "./physics/light-at-double-distance/meta.json";
-import m110 from "./physics/moon-hammer-feather/meta.json";
-import m111 from "./physics/pendulum-period/meta.json";
-import m112 from "./physics/projectile-angle/meta.json";
-import m113 from "./physics/puck-on-ice-no-push/meta.json";
-import m114 from "./physics/same-push-twice-the-mass/meta.json";
-import m115 from "./physics/truck-hits-car-force/meta.json";
-import m116 from "./probability/armour-where-no-holes/meta.json";
-import m117 from "./probability/base-rates/meta.json";
-import m118 from "./probability/better-in-every-group-worse-overall/meta.json";
-import m119 from "./probability/birthday-paradox/meta.json";
-import m120 from "./probability/coin-gap-keeps-growing/meta.json";
-import m121 from "./probability/five-heads-then-what/meta.json";
-import m122 from "./probability/hidden-third-cause/meta.json";
-import m123 from "./probability/monty-hall-100-doors/meta.json";
-import m124 from "./probability/one-in-a-million-match/meta.json";
-import m125 from "./probability/praise-then-slump/meta.json";
-import m126 from "./probability/small-hospital-big-swings/meta.json";
-import m127 from "./probability/twenty-harmless-tests/meta.json";
+import m70 from "./life/antibiotic-already-there/meta.json";
+import m71 from "./life/cell-too-big/meta.json";
+import m72 from "./life/cut-the-island/meta.json";
+import m73 from "./life/dish-runs-out/meta.json";
+import m74 from "./life/epidemic-overshoot/meta.json";
+import m75 from "./life/fastest-at-the-bend/meta.json";
+import m76 from "./life/herd-immunity/meta.json";
+import m77 from "./life/hidden-carriers/meta.json";
+import m78 from "./life/keeping-the-bad-gene/meta.json";
+import m79 from "./life/most-cases-vaccinated/meta.json";
+import m80 from "./life/mouse-vs-elephant/meta.json";
+import m81 from "./life/natural-selection/meta.json";
+import m82 from "./life/one-in-four-sprouts/meta.json";
+import m83 from "./life/pesticide-paradox/meta.json";
+import m84 from "./life/same-genes-different-drift/meta.json";
+import m85 from "./life/saturated-enzyme/meta.json";
+import m86 from "./life/slow-across-a-room/meta.json";
+import m87 from "./life/spreaders-are-rare/meta.json";
+import m88 from "./life/strategy-builder/meta.json";
+import m89 from "./life/ten-percent-up/meta.json";
+import m90 from "./life/three-day-doubling/meta.json";
+import m91 from "./life/who-has-grandchildren/meta.json";
+import m92 from "./math/circle-slices-to-rectangle/meta.json";
+import m93 from "./math/digits-are-logs/meta.json";
+import m94 from "./math/distance-is-area/meta.json";
+import m95 from "./math/double-the-size/meta.json";
+import m96 from "./math/exponential-growth/meta.json";
+import m97 from "./math/fifty-up-fifty-down/meta.json";
+import m98 from "./math/gauss-staircase/meta.json";
+import m99 from "./math/minus-times-minus/meta.json";
+import m100 from "./math/nines-without-end/meta.json";
+import m101 from "./math/no-fraction-fits/meta.json";
+import m102 from "./math/odd-numbers-make-squares/meta.json";
+import m103 from "./math/one-boss-moves-the-mean/meta.json";
+import m104 from "./math/one-recipe-for-sixty/meta.json";
+import m105 from "./math/paths-by-adding/meta.json";
+import m106 from "./math/plus-and-minus-chips/meta.json";
+import m107 from "./math/product-plus-one/meta.json";
+import m108 from "./math/scoops-in-three-cups/meta.json";
+import m109 from "./math/seventy-two-doubling/meta.json";
+import m110 from "./math/steeper-is-not-taller/meta.json";
+import m111 from "./math/tear-the-corners/meta.json";
+import m112 from "./math/thirteen-pigeons/meta.json";
+import m113 from "./math/two-squares-become-one/meta.json";
+import m114 from "./physics/coaster-track-shape/meta.json";
+import m115 from "./physics/current-same-around-loop/meta.json";
+import m116 from "./physics/doubling-speed-braking/meta.json";
+import m117 from "./physics/dropped-vs-fired-ball/meta.json";
+import m118 from "./physics/flour-on-the-moon/meta.json";
+import m119 from "./physics/light-at-double-distance/meta.json";
+import m120 from "./physics/moon-hammer-feather/meta.json";
+import m121 from "./physics/pendulum-period/meta.json";
+import m122 from "./physics/projectile-angle/meta.json";
+import m123 from "./physics/puck-on-ice-no-push/meta.json";
+import m124 from "./physics/same-push-twice-the-mass/meta.json";
+import m125 from "./physics/truck-hits-car-force/meta.json";
+import m126 from "./probability/armour-where-no-holes/meta.json";
+import m127 from "./probability/base-rates/meta.json";
+import m128 from "./probability/better-in-every-group-worse-overall/meta.json";
+import m129 from "./probability/birthday-paradox/meta.json";
+import m130 from "./probability/coin-gap-keeps-growing/meta.json";
+import m131 from "./probability/five-heads-then-what/meta.json";
+import m132 from "./probability/hidden-third-cause/meta.json";
+import m133 from "./probability/monty-hall-100-doors/meta.json";
+import m134 from "./probability/one-in-a-million-match/meta.json";
+import m135 from "./probability/praise-then-slump/meta.json";
+import m136 from "./probability/small-hospital-big-swings/meta.json";
+import m137 from "./probability/twenty-harmless-tests/meta.json";
 
-export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta, m88 as DemoMeta, m89 as DemoMeta, m90 as DemoMeta, m91 as DemoMeta, m92 as DemoMeta, m93 as DemoMeta, m94 as DemoMeta, m95 as DemoMeta, m96 as DemoMeta, m97 as DemoMeta, m98 as DemoMeta, m99 as DemoMeta, m100 as DemoMeta, m101 as DemoMeta, m102 as DemoMeta, m103 as DemoMeta, m104 as DemoMeta, m105 as DemoMeta, m106 as DemoMeta, m107 as DemoMeta, m108 as DemoMeta, m109 as DemoMeta, m110 as DemoMeta, m111 as DemoMeta, m112 as DemoMeta, m113 as DemoMeta, m114 as DemoMeta, m115 as DemoMeta, m116 as DemoMeta, m117 as DemoMeta, m118 as DemoMeta, m119 as DemoMeta, m120 as DemoMeta, m121 as DemoMeta, m122 as DemoMeta, m123 as DemoMeta, m124 as DemoMeta, m125 as DemoMeta, m126 as DemoMeta, m127 as DemoMeta];
+export const demos: DemoMeta[] = [m0 as DemoMeta, m1 as DemoMeta, m2 as DemoMeta, m3 as DemoMeta, m4 as DemoMeta, m5 as DemoMeta, m6 as DemoMeta, m7 as DemoMeta, m8 as DemoMeta, m9 as DemoMeta, m10 as DemoMeta, m11 as DemoMeta, m12 as DemoMeta, m13 as DemoMeta, m14 as DemoMeta, m15 as DemoMeta, m16 as DemoMeta, m17 as DemoMeta, m18 as DemoMeta, m19 as DemoMeta, m20 as DemoMeta, m21 as DemoMeta, m22 as DemoMeta, m23 as DemoMeta, m24 as DemoMeta, m25 as DemoMeta, m26 as DemoMeta, m27 as DemoMeta, m28 as DemoMeta, m29 as DemoMeta, m30 as DemoMeta, m31 as DemoMeta, m32 as DemoMeta, m33 as DemoMeta, m34 as DemoMeta, m35 as DemoMeta, m36 as DemoMeta, m37 as DemoMeta, m38 as DemoMeta, m39 as DemoMeta, m40 as DemoMeta, m41 as DemoMeta, m42 as DemoMeta, m43 as DemoMeta, m44 as DemoMeta, m45 as DemoMeta, m46 as DemoMeta, m47 as DemoMeta, m48 as DemoMeta, m49 as DemoMeta, m50 as DemoMeta, m51 as DemoMeta, m52 as DemoMeta, m53 as DemoMeta, m54 as DemoMeta, m55 as DemoMeta, m56 as DemoMeta, m57 as DemoMeta, m58 as DemoMeta, m59 as DemoMeta, m60 as DemoMeta, m61 as DemoMeta, m62 as DemoMeta, m63 as DemoMeta, m64 as DemoMeta, m65 as DemoMeta, m66 as DemoMeta, m67 as DemoMeta, m68 as DemoMeta, m69 as DemoMeta, m70 as DemoMeta, m71 as DemoMeta, m72 as DemoMeta, m73 as DemoMeta, m74 as DemoMeta, m75 as DemoMeta, m76 as DemoMeta, m77 as DemoMeta, m78 as DemoMeta, m79 as DemoMeta, m80 as DemoMeta, m81 as DemoMeta, m82 as DemoMeta, m83 as DemoMeta, m84 as DemoMeta, m85 as DemoMeta, m86 as DemoMeta, m87 as DemoMeta, m88 as DemoMeta, m89 as DemoMeta, m90 as DemoMeta, m91 as DemoMeta, m92 as DemoMeta, m93 as DemoMeta, m94 as DemoMeta, m95 as DemoMeta, m96 as DemoMeta, m97 as DemoMeta, m98 as DemoMeta, m99 as DemoMeta, m100 as DemoMeta, m101 as DemoMeta, m102 as DemoMeta, m103 as DemoMeta, m104 as DemoMeta, m105 as DemoMeta, m106 as DemoMeta, m107 as DemoMeta, m108 as DemoMeta, m109 as DemoMeta, m110 as DemoMeta, m111 as DemoMeta, m112 as DemoMeta, m113 as DemoMeta, m114 as DemoMeta, m115 as DemoMeta, m116 as DemoMeta, m117 as DemoMeta, m118 as DemoMeta, m119 as DemoMeta, m120 as DemoMeta, m121 as DemoMeta, m122 as DemoMeta, m123 as DemoMeta, m124 as DemoMeta, m125 as DemoMeta, m126 as DemoMeta, m127 as DemoMeta, m128 as DemoMeta, m129 as DemoMeta, m130 as DemoMeta, m131 as DemoMeta, m132 as DemoMeta, m133 as DemoMeta, m134 as DemoMeta, m135 as DemoMeta, m136 as DemoMeta, m137 as DemoMeta];
 
 export const loaders: Record<string, () => Promise<{ default: ComponentType<{ slug: string }> }>> = {
   "attention-shares-one": () => import("./ai/attention-shares-one/Demo"),
@@ -204,18 +214,28 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "shortest-way-to-tokyo": () => import("./geography/shortest-way-to-tokyo/Demo"),
   "shrinking-degree": () => import("./geography/shrinking-degree/Demo"),
   "tissot-circles": () => import("./geography/tissot-circles/Demo"),
+  "antibiotic-already-there": () => import("./life/antibiotic-already-there/Demo"),
   "cell-too-big": () => import("./life/cell-too-big/Demo"),
+  "cut-the-island": () => import("./life/cut-the-island/Demo"),
   "dish-runs-out": () => import("./life/dish-runs-out/Demo"),
+  "epidemic-overshoot": () => import("./life/epidemic-overshoot/Demo"),
   "fastest-at-the-bend": () => import("./life/fastest-at-the-bend/Demo"),
   "herd-immunity": () => import("./life/herd-immunity/Demo"),
+  "hidden-carriers": () => import("./life/hidden-carriers/Demo"),
+  "keeping-the-bad-gene": () => import("./life/keeping-the-bad-gene/Demo"),
   "most-cases-vaccinated": () => import("./life/most-cases-vaccinated/Demo"),
+  "mouse-vs-elephant": () => import("./life/mouse-vs-elephant/Demo"),
   "natural-selection": () => import("./life/natural-selection/Demo"),
   "one-in-four-sprouts": () => import("./life/one-in-four-sprouts/Demo"),
   "pesticide-paradox": () => import("./life/pesticide-paradox/Demo"),
   "same-genes-different-drift": () => import("./life/same-genes-different-drift/Demo"),
+  "saturated-enzyme": () => import("./life/saturated-enzyme/Demo"),
   "slow-across-a-room": () => import("./life/slow-across-a-room/Demo"),
+  "spreaders-are-rare": () => import("./life/spreaders-are-rare/Demo"),
+  "strategy-builder": () => import("./life/strategy-builder/Demo"),
   "ten-percent-up": () => import("./life/ten-percent-up/Demo"),
   "three-day-doubling": () => import("./life/three-day-doubling/Demo"),
+  "who-has-grandchildren": () => import("./life/who-has-grandchildren/Demo"),
   "circle-slices-to-rectangle": () => import("./math/circle-slices-to-rectangle/Demo"),
   "digits-are-logs": () => import("./math/digits-are-logs/Demo"),
   "distance-is-area": () => import("./math/distance-is-area/Demo"),

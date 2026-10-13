@@ -1,0 +1,81 @@
+{
+  "slug": "keeping-the-bad-gene",
+  "title": "A gene that kills in pairs",
+  "hook": "Two copies of this gene kill. One copy helps. What does selection do with it?",
+  "domain": "life",
+  "concept": "heterozygote-advantage",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "each individual carries two copies of a gene",
+      "natural selection favours variants that help survival"
+    ],
+    "doesNotKnow": [
+      "that selection can hold a harmful allele at a stable share",
+      "that this happens when carrying one copy beats carrying none"
+    ]
+  },
+  "misconception": "Selection always removes a harmful allele.",
+  "objective": "The learner can explain that when one copy of w helps (100% vs 85% survival) and two copies kill, w rises when rare and falls when common, settling where the two balance: 0.15/1.15, about 13% of copies.",
+  "claims": [
+    {
+      "id": "life.keeping-the-bad-gene.c1",
+      "text": "With survival AA = 1 - s, Aw = 1 and ww = 1 - t, selection holds w at a stable share q = s/(s + t); with s = 0.15 and t = 1 that is 0.15/1.15, about 13% of gene copies.",
+      "support": "source",
+      "source": "Hartl D.L. & Clark A.G. (2007) Principles of Population Genetics, 4th ed., ch. 5 (overdominance). 0.15/1.15 = 0.1304, recomputed in node (artifacts/scratch/w2life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c2",
+      "text": "On the stage, starting from 1% w and from 50% w, the share reaches 13 of 100 copies by generation 50 and stays there; with no-copy survival at 95% it settles near 5%, at 70% near 23%.",
+      "support": "simulation",
+      "source": "Deterministic recursion q' = pq / (p^2(1-s) + 2pq), replicated in artifacts/scratch/w2life/check.mjs: from 0.01, 13.0% at gen 50; from 0.5, 13.0% at gen 50; s = 0.05 gives 4.8%, s = 0.3 gives 23.1%. No random seed (ring positions only, untuned mulberry32(5)).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c3",
+      "text": "When w is rare it is found almost only in carriers, who survive best, so it rises; when it is common more young get two copies and die, so it falls.",
+      "support": "derivation",
+      "source": "Rare w: almost all w copies are in Aw (fitness 1 > mean fitness), so q rises; common w: the ww share q^2 grows, mean fitness of w copies falls below the mean (Hartl & Clark 2007 ch. 5).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c4",
+      "text": "A real example of this balance is the sickle-cell haemoglobin allele where malaria is common: one copy protects against severe malaria; its numbers differ from the lesson's.",
+      "support": "source",
+      "source": "Allison A.C. (1954) Br. Med. J. 1:290-294; Aidoo M. et al. (2002) Lancet 359:1311-1312.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c5",
+      "text": "The species and survival numbers are made up; the model assumes random mating and a very large population (no drift).",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx, stated on the stage before the prediction (survival numbers) and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An allele kills in two copies but gives carriers of one copy an edge. Over many generations, selection usually…",
+    "options": [
+      "removes it completely",
+      "keeps it at a steady share",
+      "makes everyone carry two copies",
+      "has no effect on it"
+    ],
+    "answer": 1,
+    "why": "Rare, it is mostly in carriers who do best, so it rises; common, more two-copy young die, so it falls. It settles in between."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

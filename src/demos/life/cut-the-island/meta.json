@@ -1,0 +1,81 @@
+{
+  "slug": "cut-the-island",
+  "title": "Lose 90% of a forest, 90% of species?",
+  "hook": "A forest is cut to a tenth of its size. Does it keep a tenth of its species?",
+  "domain": "life",
+  "concept": "species-area",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "habitats hold many species",
+      "losing habitat threatens species"
+    ],
+    "doesNotKnow": [
+      "the species-area rule S = cA^z with z about 0.25",
+      "that species fall much less steeply than area, but still fall"
+    ]
+  },
+  "misconception": "Losing 90% of the area loses 90% of the species.",
+  "objective": "The learner can explain that with species proportional to area^0.25, keeping 10% of a forest eventually keeps about 56% of its species: far more than 10%, but still a loss of almost half.",
+  "claims": [
+    {
+      "id": "life.cut-the-island.c1",
+      "text": "Species number tends to rise with habitat area as S = cA^z, with z typically about 0.15 to 0.35; 0.25 is a common textbook value.",
+      "support": "source",
+      "source": "MacArthur R.H. & Wilson E.O. (1967) The Theory of Island Biogeography, Princeton; Rosenzweig M.L. (1995) Species Diversity in Space and Time, Cambridge, ch. 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cut-the-island.c2",
+      "text": "With z = 0.25, keeping 10% of the area keeps 0.1^0.25 = 56% of species, and keeping 50% keeps 84%.",
+      "support": "derivation",
+      "source": "0.1^0.25 = 0.5623; 0.5^0.25 = 0.8409 (artifacts/scratch/w2life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cut-the-island.c3",
+      "text": "A small piece of habitat still holds many species because many species are spread across much of the original area.",
+      "support": "source",
+      "source": "Rosenzweig (1995) ch. 2 (sampling explanation of the species-area relation).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cut-the-island.c4",
+      "text": "The species-area rule is an empirical regularity, not a law, and losses after habitat is cut take years to decades to arrive (extinction debt).",
+      "support": "source",
+      "source": "Tilman D., May R.M., Lehman C.L. & Nowak M.A. (1994) Habitat destruction and the extinction debt, Nature 371:65-66; Rosenzweig (1995).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.cut-the-island.c5",
+      "text": "The forest of 100 patches and 100 species is made up; which species disappear follows an untuned shuffled order and only their number comes from the rule.",
+      "support": "convention",
+      "source": "Drawing choice in Demo.tsx (mulberry32(4)).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With species proportional to area^0.25, a reserve keeps 1% of an old forest. Roughly what share of species does it eventually keep?",
+    "options": [
+      "About 1%",
+      "About 10%",
+      "About 30%",
+      "About 90%"
+    ],
+    "answer": 2,
+    "why": "0.01^0.25 = 0.32. Species fall much less steeply than area, but losing 99% of the area still loses about two thirds of them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

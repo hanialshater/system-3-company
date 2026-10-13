@@ -1,0 +1,74 @@
+{
+  "slug": "epidemic-overshoot",
+  "title": "The epidemic that sails past the line",
+  "hook": "Herd immunity at R0 = 3 needs 67% immune. Does the epidemic stop when it gets there?",
+  "domain": "life",
+  "concept": "final-size-overshoot",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "R0 is the average number infected by one case in a fully susceptible population",
+      "the herd-immunity threshold is 1 - 1/R0"
+    ],
+    "doesNotKnow": [
+      "that an unchecked epidemic keeps going after the peak",
+      "that the final share infected ends well beyond the threshold"
+    ]
+  },
+  "misconception": "Once the herd-immunity threshold is passed, the epidemic stops there.",
+  "objective": "The learner can explain that the threshold marks where cases start to fall (the peak), not where infection stops; people sick at the peak keep infecting others, so with R0 = 3 about 94% are eventually infected in a simple model, not 67%.",
+  "claims": [
+    {
+      "id": "life.epidemic-overshoot.c1",
+      "text": "In the simple well-mixed SIR model, the final share ever infected z solves z = 1 - e^(-R0 z); for R0 = 3 that is about 94% (z = 0.9405), above the 67% threshold 1 - 1/3.",
+      "support": "source",
+      "source": "Kermack W.O. & McKendrick A.G. (1927) Proc. R. Soc. A 115:700-721; Diekmann, Heesterbeek & Britton (2013) Mathematical Tools for Understanding Infectious Disease Dynamics. Fixed-point iteration in node gives 0.9405 (artifacts/scratch/w2life/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.epidemic-overshoot.c2",
+      "text": "On the stage (R0 = 3, 5 days infectious, 0.1% infected on day 0): the peak is on day 19, when 65% have had it and 30% are sick; by day 100, 94% have been infected. For R0 = 2 and 4 the final shares are 80% and 98%.",
+      "support": "simulation",
+      "source": "Deterministic SIR, Euler step 0.01 day, replicated in artifacts/scratch/w2life/sir.mjs: peak day 19.2 (rounded to 19), ever infected 0.6545 at day 19, 0.9407 at day 100; R0 2 gives 0.7972, R0 4 gives 0.9803. No random seed.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.epidemic-overshoot.c3",
+      "text": "In the SIR model, new cases peak exactly when the susceptible share falls to 1/R0, that is when the herd-immunity threshold is crossed; after that each case infects fewer than one other, but those already sick still infect more.",
+      "support": "derivation",
+      "source": "dI/dt = (beta S - gamma) I is zero when S = gamma/beta = 1/R0 (Diekmann et al. 2013).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.epidemic-overshoot.c4",
+      "text": "The model is a made-up disease with random mixing, lasting immunity and no behaviour change, vaccines or treatment; real epidemics differ.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; stated on the stage before the prediction and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a simple well-mixed model with no interventions, what happens to new infections right after the herd-immunity threshold is crossed?",
+    "options": [
+      "They stop at once",
+      "They start to fall, but many more people still get infected",
+      "They keep rising as fast as before",
+      "They start to fall and no one else is infected"
+    ],
+    "answer": 1,
+    "why": "The threshold is the peak: each case now infects fewer than one, but the many people sick at that moment still pass it on, so the total overshoots the threshold."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
