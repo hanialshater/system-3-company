@@ -1,0 +1,72 @@
+{
+  "slug": "one-nudge-per-mistake",
+  "title": "How does a line learn?",
+  "hook": "No formula, no maths homework: just a line that is told when it is wrong.",
+  "domain": "ai",
+  "concept": "perceptron-learning",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a straight line can separate two groups of points"
+    ],
+    "doesNotKnow": [
+      "how a separating line can be learned by small corrections",
+      "that the perceptron changes only when it gets a point wrong"
+    ]
+  },
+  "misconception": "A line is fitted by one calculation; it cannot improve in small steps.",
+  "objective": "The learner can explain that a perceptron checks points one at a time, changes its line only on a mistake, and each nudge moves the line toward putting the missed point on the right side.",
+  "claims": [
+    {
+      "id": "ai.one-nudge-per-mistake.c1",
+      "text": "Starting from zero weights and sweeping (1,1)+, (−1,0)−, (2,−1)+, (−1,−2)−, (0,2)+ in order, the perceptron nudges at (1,1) (weights 1,1, offset 1) and at (−1,0) (weights 2,1, offset 0); the second sweep has no mistakes: 2 nudges in all.",
+      "support": "derivation",
+      "source": "checkOne() / untilClean() in Demo.tsx with the rule w ← w + label·(x, y, 1) when label·score ≤ 0. Node: nudge at (1,1) → [1,1,1]; nudge at (−1,0) → [2,1,0]; sweep 1 mistakes 2, sweep 2 mistakes 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-nudge-per-mistake.c2",
+      "text": "In this toy a zero score counts as a mistake, which is why the very first point is nudged when there is no line yet.",
+      "support": "convention",
+      "source": "Toy convention stated on the stage (locked caption) and in Demo.tsx; brief 33 in company/domains/briefs/ai.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-nudge-per-mistake.c3",
+      "text": "A perceptron changes its weights only when it misclassifies a point, by adding or subtracting that point.",
+      "support": "source",
+      "source": "Rosenblatt 1958, 'The perceptron: a probabilistic model for information storage and organization in the brain', Psychological Review 65(6); the error-correction rule in modern form: Bishop 2006, Pattern Recognition and Machine Learning, §4.1.7.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-nudge-per-mistake.c4",
+      "text": "Each nudge moves the line toward putting the missed point on the right side: the missed point's score rises by |point|² + 1 (for a + point) or falls by as much (for a − point).",
+      "support": "derivation",
+      "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A perceptron's line already puts a point on the correct side. What does that point do to the line on the next sweep?",
+    "options": [
+      "Nothing: only mistakes change the line",
+      "Pulls the line a little closer to it",
+      "Pushes the line a little further away"
+    ],
+    "answer": 0,
+    "why": "The perceptron updates only when it gets a point wrong (or scores it exactly 0). Correct points leave the weights alone."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
