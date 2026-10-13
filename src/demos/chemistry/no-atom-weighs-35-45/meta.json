@@ -1,0 +1,88 @@
+{
+  "slug": "no-atom-weighs-35-45",
+  "title": "What does one chlorine atom weigh?",
+  "hook": "The periodic table says chlorine weighs 35.45 u. Weigh the atoms one at a time.",
+  "domain": "chemistry",
+  "concept": "isotopes",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the periodic table lists a mass for each element",
+      "that atoms contain protons and neutrons",
+      "what an average is"
+    ],
+    "doesNotKnow": [
+      "that atoms of one element can carry different numbers of neutrons (isotopes)",
+      "that the table's mass is an average over the isotopes found in nature"
+    ]
+  },
+  "misconception": "Every atom of an element has exactly the mass printed in the periodic table.",
+  "objective": "The learner can explain that chlorine atoms weigh about 35 u or about 37 u, never 35.45 u, and that 35.45 u is the average over nature's mix of about 76% chlorine-35 and 24% chlorine-37.",
+  "claims": [
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c1",
+      "text": "The periodic table gives chlorine's atomic mass as about 35.45 u.",
+      "support": "source",
+      "source": "IUPAC CIAAW standard atomic weight of chlorine [35.446, 35.457], conventional value 35.45 (Prohaska et al., Pure Appl. Chem. 2022).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c2",
+      "text": "Chlorine-35 atoms weigh about 34.97 u and chlorine-37 atoms about 36.97 u; natural chlorine is about 76% chlorine-35 and 24% chlorine-37.",
+      "support": "source",
+      "source": "NIST Atomic Weights and Isotopic Compositions: Cl-35 34.96885 u, 75.76%; Cl-37 36.96590 u, 24.24%. Weighted mean 0.7576 x 34.96885 + 0.2424 x 36.96590 = 35.453 u (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c3",
+      "text": "Every chlorine atom has 17 protons; chlorine-35 has 18 neutrons and chlorine-37 has 20.",
+      "support": "derivation",
+      "source": "Z(Cl) = 17 (IUPAC); neutrons = mass number − Z: 35 − 17 = 18, 37 − 17 = 20.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c4",
+      "text": "The stage's bag is a toy: 1,000 atoms (758 chlorine-35, 242 chlorine-37) shuffled with a fixed seed; its first 100 atoms hold 24 chlorine-37 and average 35.45 u.",
+      "support": "simulation",
+      "source": "Demo.tsx makeBag(): Fisher-Yates shuffle with mulberry32(SEED = 5). Seed CHOSEN so the first 100 draws hold exactly 24 chlorine-37 (nature's share); average 35.448 u (node). Other seeds give 100-atom averages that wander by a few hundredths. A chosen seed is an illustration, not evidence (pattern disclose-chosen-seeds).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c5",
+      "text": "The unit u (atomic mass unit) is about the mass of one proton.",
+      "support": "source",
+      "source": "u = 1/12 of the mass of a carbon-12 atom (IUPAC Gold Book, 'atomic mass constant'); proton mass 1.00728 u (CODATA 2018).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.no-atom-weighs-35-45.c6",
+      "text": "(Recall) Copper's table mass is about 63.55 u; natural copper is copper-63 and copper-65, mostly copper-63.",
+      "support": "source",
+      "source": "IUPAC standard atomic weight Cu 63.546(3); NIST: Cu-63 62.9296 u, 69.15%; Cu-65 64.9278 u, 30.85%.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Copper's table mass is about 63.55 u. Natural copper is copper-63 and copper-65. A single copper atom most likely weighs…",
+    "options": [
+      "about 63 u or about 65 u",
+      "63.55 u",
+      "64 u"
+    ],
+    "answer": 0,
+    "why": "Each atom is one isotope with its own mass. 63.55 u is the average over the mix found in nature, mostly copper-63."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "which-particle-names-it",
+  "title": "Which particle makes it nitrogen?",
+  "hook": "Every atom is protons, neutrons and electrons. Add one to carbon. Which one renames it?",
+  "domain": "chemistry",
+  "concept": "atomic-number-identity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that atoms contain protons, neutrons and electrons",
+      "the names carbon, nitrogen and oxygen"
+    ],
+    "doesNotKnow": [
+      "that only the proton count decides which element an atom is",
+      "that extra neutrons make a heavier version of the same element and extra electrons make it charged"
+    ]
+  },
+  "misconception": "Adding any particle, or more electrons, changes which element an atom is.",
+  "objective": "The learner can say that a carbon atom (6 protons) becomes nitrogen only when a 7th proton is added; an extra neutron gives carbon-13 and an extra electron gives a charged carbon ion.",
+  "claims": [
+    {
+      "id": "chemistry.which-particle-names-it.c1",
+      "text": "The number of protons in an atom's nucleus (its atomic number) decides which element it is.",
+      "support": "source",
+      "source": "IUPAC Gold Book, 'atomic number' and 'chemical element' (a species of atoms all with the same number of protons).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-particle-names-it.c2",
+      "text": "Carbon has 6 protons, nitrogen 7 and oxygen 8.",
+      "support": "source",
+      "source": "IUPAC periodic table: C Z = 6, N Z = 7, O Z = 8. Demo.tsx ELEMENTS table.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-particle-names-it.c3",
+      "text": "A carbon atom with 6 protons and 6 neutrons is carbon-12; one more neutron makes carbon-13, heavier but still carbon. The number after the name is protons plus neutrons.",
+      "support": "source",
+      "source": "IUPAC Gold Book, 'mass number' (A = Z + N) and 'isotopes'. C-12 and C-13 are both stable isotopes of carbon (NIST isotopic compositions). Demo.tsx computes mass = p + n.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-particle-names-it.c4",
+      "text": "An extra electron leaves the element unchanged but gives the atom a charge of −1, making it an ion.",
+      "support": "source",
+      "source": "IUPAC Gold Book, 'ion'. Demo.tsx charge = protons − electrons.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-particle-names-it.c5",
+      "text": "Adding a proton to a nucleus is a nuclear change, made in stars and particle accelerators, not by ordinary chemistry.",
+      "support": "source",
+      "source": "Nuclear reactions change Z (e.g. proton capture in stellar nucleosynthesis, C-12 + p -> N-13; Krane, Introductory Nuclear Physics, ch. 11 and 19). Chemical reactions change only electrons.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-particle-names-it.c6",
+      "text": "The picture is not to scale: the nucleus is about 100,000 times smaller across than the atom, and electrons are not dots on rings.",
+      "support": "source",
+      "source": "Nuclear radius about 1e-15 m vs atomic radius about 1e-10 m (Krane, ch. 3). The ring picture is the Bohr-style cartoon; the stage labels it 'not to scale'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An atom has 8 protons, 9 neutrons and 10 electrons. Which element is it?",
+    "options": [
+      "oxygen",
+      "fluorine",
+      "neon"
+    ],
+    "answer": 0,
+    "why": "The proton count names the element: 8 protons is oxygen. The extra neutron makes it heavier and the extra electrons make it charged, but it is still oxygen."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
