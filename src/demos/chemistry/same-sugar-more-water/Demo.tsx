@@ -2,7 +2,7 @@
 
 // Dilution as 20 sugar dots that never change in number. Pouring in water raises the
 // level; the same 20 dots spread over more room. A dashed band marks "one 100 mL
-// share" at the bottom, so the learner can count how crowded each share is: 20, 10, about 7, 5, 4.
+// share" at the bottom, so the learner can count how crowded each share is: 20, 10, 6 or 7, 5, 4.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";

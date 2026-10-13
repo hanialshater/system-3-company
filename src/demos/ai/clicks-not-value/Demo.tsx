@@ -67,13 +67,12 @@ export default function ClicksNotValue({ slug }: { slug: string }) {
         <>
           <p>
             Chasing clicks moved every unit of effort into hype: <strong>{clicks(EFFORT)} clicks</strong>, reader value{" "}
-            <strong>{value(EFFORT)}</strong>. Clicks do reward substance, one per unit, so clicks and value look related.
-            But hype earns two per unit, so each step trades one unit of value for one more click, until no substance is
-            left.
+            <strong>{value(EFFORT)}</strong>. Substance earns one click per unit, but hype earns two, so each step trades one unit of value for one more
+            click, until no substance is left.
           </p>
           <p>
-            Aim the optimiser at value and it ends at {value(0)} value and {clicks(0)} clicks. A measure that tracks the
-            goal while nobody pushes on it can stop tracking it once something optimises it.
+            Aim the optimiser at value and it ends at {value(0)} value and {clicks(0)} clicks. A measure can stop
+            tracking its goal once something optimises it.
           </p>
           <p className="muted">
             The formula is invented. The pattern is Goodhart&apos;s law: “when a measure becomes a target, it ceases to

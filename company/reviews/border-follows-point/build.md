@@ -4,3 +4,7 @@
 - Key state: A at (-2, 0) (milestone "a-at-minus-2"). The x slider starts at its maximum (0), so QA's two left presses land exactly on -2.
 - One point per class, not the brief's "handful of dots", so the stage matches the question exactly; the reveal names the many-point case (Voronoi pieces) in words only.
 - After screenshots: A's region was drawn over B's and blended to grey; each region is now its own clipped polygon.
+
+## v2 (claim fix 2026-10-13)
+
+Claim c5 disputed (overstated 'every spot'). Reveal wording narrowed to the border moving near the point; claim rewritten to match; unverified. Objective wording narrowed likewise.

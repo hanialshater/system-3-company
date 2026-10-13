@@ -4,3 +4,7 @@
 - Key state: the word search run, Paris sinking to the bottom with 0 (milestone "word-search-run"), first control on the QA path. Before searching the list is in knowledge-base order with no scores.
 - Word scores computed by wordScore() (lowercase, punctuation stripped, stop words what/is/the/of/a/an/and); node: keywords capital, france; scores 0,1,1,1,1; word order 1,2,3,4,0. Meaning scores are hand-set (claim c2), not an embedding.
 - Stage text: the five chunk sentences are the data being ranked; they push stage words past 25. I judged them content rather than instruction; flag if evaluators disagree.
+
+## v2 (claim fix 2026-10-13)
+
+Claim c5 disputed (flat 'only' read as about real systems). Reveal now says 'in this setup the model answers only from what retrieval hands it'; claim rewritten; unverified. c3 source changed to Britannica / Government of France (status untouched).

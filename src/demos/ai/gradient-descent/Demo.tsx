@@ -85,7 +85,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
     if (factor === 0) return "Landed on the bottom in one hop.";
     if (dist < 0.05) return "Now within 0.05 of the bottom.";
     if (factor < 0) return "Overshooting: it zigzags across the valley.";
-    if (factor > 0.6) return "Crawling: the hops are tiny.";
+    if (factor > 0.6) return "Slow: each hop covers under 40% of the distance left.";
     return "Heading down; each hop is shorter than the last.";
   };
 

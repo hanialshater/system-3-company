@@ -81,8 +81,8 @@ export default function MeaningWithoutTheWord({ slug }: { slug: string }) {
             answer.
           </p>
           <p>
-            Matching by meaning (scores hand-set here; real systems use learned embeddings) put Paris first. Either way, the
-            model answers only from what retrieval hands it: a right passage below the cut does not exist for it.
+            Matching by meaning (scores hand-set here; real systems use learned embeddings) put Paris first. Either way, in this
+            setup the model answers only from what retrieval hands it: a right passage below the cut does not exist for it.
           </p>
         </>
       )}

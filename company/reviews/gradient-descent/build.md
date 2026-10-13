@@ -20,3 +20,7 @@ Key states (milestones, `minInteractions` = 2): `tiny-run` (a finished 10-hop ru
 The reveal is written from the runs the learner finished: it quotes their tiny and big step sizes and distances, and says "exactly as far as 0.05" only when both 0.05 and 0.95 were run.
 
 Trade-off for the QA contract: the default step is 0.25 so that every preset button changes the stage. The contract presses the slider (0.25 → 0.35), then the presets 0.05 (tiny-run), 0.45, 0.95 (big-run), 1.05, then Reset, so the gate opens on its path. Step and Run 10 no longer count as interactions unless they finish a run that reaches a milestone.
+
+## v3 (claim fix 2026-10-13)
+
+Claim c11 disputed ('hops are tiny' at eta 0.15-0.19). Message changed to 'Slow: each hop covers under 40% of the distance left.' (true: hop = 2*eta*distance, eta<0.2); claim rewritten; unverified.

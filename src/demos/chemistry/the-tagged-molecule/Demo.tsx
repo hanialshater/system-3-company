@@ -74,6 +74,9 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
   const countB = N - countA;
   const flipsOf = (h: boolean[]) => h.slice(1).filter((v, k) => v !== h[k]).length;
   const tagFlips = tags.reduce((n, t) => n + flipsOf(t.hist), 0);
+  // Ticks each tagged molecule was actually followed (a tag added later has a shorter history).
+  const followed = tags.reduce((n, t) => n + t.hist.length - 1, 0);
+  const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 
   const advance = (k: number) => {
     let cur = isA;
@@ -118,8 +121,10 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {tags.length > 0 && ticks > 0
-              ? `Your tagged molecule${tags.length === 1 ? "" : "s"} changed type ${tagFlips} time${tagFlips === 1 ? "" : "s"} in ${ticks} ticks, `
+            {tags.length > 0 && followed > 0
+              ? tags.length === 1
+                ? `Your tagged molecule changed type ${plural(tagFlips, "time")} in the ${plural(followed, "tick")} you followed it, `
+                : `Your ${tags.length} tagged molecules changed type ${plural(tagFlips, "time")} in total while you followed them, `
               : `In ${ticks} ticks, `}
             while the two bars never moved. Every tick, 12 A became B and 12 B became A: about a quarter of the mix
             changed, and the counts held at 50 and 50.
