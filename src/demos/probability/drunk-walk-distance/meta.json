@@ -1,0 +1,72 @@
+{
+  "slug": "drunk-walk-distance",
+  "title": "How far does a random walker get?",
+  "hook": "Left or right on every coin flip. After 100 steps, does the walker go nowhere, or far?",
+  "domain": "probability",
+  "concept": "random-walk",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "coin flips are 50/50 and independent",
+      "averages"
+    ],
+    "doesNotKnow": [
+      "that a random walk's distance from the start grows like the square root of the number of steps"
+    ]
+  },
+  "misconception": "A walker who goes left or right at random stays near where they started, or else drifts in proportion to the number of steps.",
+  "objective": "The learner can explain that random steps partly but not fully cancel, so the typical distance grows like the square root of the steps: about 8 m after 100 steps, about 25 m after 1,000.",
+  "claims": [
+    {
+      "id": "probability.drunk-walk-distance.c1",
+      "text": "After 100 random 1 m steps, a walker ends on average about 8 m from the start.",
+      "support": "derivation",
+      "source": "Exact E|S_100| from the binomial distribution = 7.96 (exactMeanDist() in src/demos/probability/drunk-walk-distance/model.ts); approximation sqrt(2n/pi) = 7.98.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.drunk-walk-distance.c2",
+      "text": "After 1,000 steps the average distance is about 25 m: ten times the steps gives only about three times the distance.",
+      "support": "derivation",
+      "source": "Exact E|S_1000| = 25.2; ratio 25.2 / 7.96 = 3.17 = sqrt(10).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.drunk-walk-distance.c3",
+      "text": "Spread grows like the square root of the number of steps, so 100 times the steps gives 10 times the distance.",
+      "support": "derivation",
+      "source": "Position is a sum of n independent +1/-1 steps with variance 1 each: SD = sqrt(n); E|S_n| ~ sqrt(2n/pi). Both scale with sqrt(n).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.drunk-walk-distance.c4",
+      "text": "The stage's first 30 walkers averaged 2.8 m, 7.3 m and 24.9 m from the start after 10, 100 and 1,000 steps.",
+      "support": "simulation",
+      "source": "walkers() in model.ts, seed 1921, untuned (the first seed tried). Over 500 other batches of 30 walkers the average distance at 100 steps had middle 95% 5.9-10.4 m (median 7.9); at 1,000 steps 19.2-32.7 m (median 25.4).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A random walker is on average about 10 m from the start after some number of steps. Roughly how far after 100 times as many steps?",
+    "options": [
+      "About 10 m",
+      "About 100 m",
+      "About 1,000 m"
+    ],
+    "answer": 1,
+    "why": "Distance grows like the square root of the steps: 100 times the steps gives sqrt(100) = 10 times the distance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

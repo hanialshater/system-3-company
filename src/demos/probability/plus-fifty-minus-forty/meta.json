@@ -1,0 +1,87 @@
+{
+  "slug": "plus-fifty-minus-forty",
+  "title": "+50% or -40%: a winning bet?",
+  "hook": "Each round averages a 5% gain. Play 100 rounds and you should get rich. Do you?",
+  "domain": "probability",
+  "concept": "multiplicative-bets",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "expected value of a simple bet",
+      "percentage gains and losses"
+    ],
+    "doesNotKnow": [
+      "that compounding bets are judged by the typical (geometric) outcome, not the average",
+      "that a mean can be carried by a few lucky players"
+    ]
+  },
+  "misconception": "A bet with a positive expected return per round makes you richer over time.",
+  "objective": "The learner can explain that with multiplying bets the typical player is governed by the product of factors (1.5 x 0.6 = 0.9 per head-tail pair), so most players shrink even though the average across players grows, carried by a few.",
+  "claims": [
+    {
+      "id": "probability.plus-fifty-minus-forty.c1",
+      "text": "The average round multiplies money by 1.05, a 5% gain: (1.5 + 0.6) / 2.",
+      "support": "derivation",
+      "source": "Arithmetic mean of the two equally likely factors; meanFactor in src/demos/probability/plus-fifty-minus-forty/model.ts. Over 100 rounds the expected wealth is 1.05^100 = 131.5 times the start ($13,150 from $100).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c2",
+      "text": "A head followed by a tail multiplies money by 0.9, so the typical round multiplies it by the square root of 0.9, about 0.949.",
+      "support": "derivation",
+      "source": "1.5 x 0.6 = 0.9; geometric mean sqrt(0.9) = 0.9487 (typicalFactor in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c3",
+      "text": "A player needs at least 56 heads in 100 rounds to end above the start, and only about 14% of players get them.",
+      "support": "derivation",
+      "source": "1.5^k x 0.6^(100-k) > 1 iff k > 55.75; P(Bin(100, 0.5) >= 56) = 0.1356 (headsToGain(), pAtLeast() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c4",
+      "text": "The median player after 100 rounds holds about 0.5% of the start ($0.52 of $100).",
+      "support": "derivation",
+      "source": "Median outcome has 50 heads and 50 tails: 0.9^50 = 0.00515 (medianAt() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c5",
+      "text": "On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and their average was $430.",
+      "support": "simulation",
+      "source": "paths() in model.ts, seed 1505, untuned (the first seed tried). Over 500 other batches of 50: players above start ranged 1-14 (median 7), the batch median $0.08-$3.22 (middle 95%), and the batch average exceeded $100 in 82% of batches.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c6",
+      "text": "This is a toy bet chosen to separate the average from the typical outcome.",
+      "support": "source",
+      "source": "O. Peters (2019), The ergodicity problem in economics, Nature Physics 15: 1216-1221 (uses this coin game).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fund gains 60% in good years and loses 50% in bad years, equally often. Its average year is +5%. What happens to a typical investor over 20 years?",
+    "options": [
+      "They grow about 5% a year",
+      "They shrink",
+      "They break even"
+    ],
+    "answer": 1,
+    "why": "A good year and a bad year multiply money by 1.6 x 0.5 = 0.8. The typical path has as many good as bad years, so it shrinks, even though the average over all investors grows."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

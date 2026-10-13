@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.wrap :global(.control) { min-width: 44px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.base { stroke: var(--muted); stroke-width: 1.2; }
+.total { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.totalKey { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.tileText { fill: #0d0f14; font-size: 8.5px; font-weight: 700; pointer-events: none; }
+.tileTextLight { fill: #ffffff; font-size: 8.5px; font-weight: 700; pointer-events: none; }
+.d1 { fill: color-mix(in srgb, var(--domain) 45%, #ffffff); }
+.d2 { fill: color-mix(in srgb, var(--domain) 60%, #ffffff); }
+.d3 { fill: color-mix(in srgb, var(--domain) 75%, #ffffff); }
+.d4 { fill: color-mix(in srgb, var(--domain) 90%, #ffffff); }
+.d5 { fill: color-mix(in srgb, var(--domain) 85%, #000000); }
+.d6 { fill: color-mix(in srgb, var(--domain) 72%, #000000); }
+.roll { stroke: var(--bad); stroke-width: 3; stroke-linecap: round; }
+.legend { fill: var(--muted); font-size: 10px; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 600; }

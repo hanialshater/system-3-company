@@ -1,0 +1,80 @@
+{
+  "slug": "average-that-never-settles",
+  "title": "The average that never settles",
+  "hook": "Average enough data and it settles on a number. Always? Here is one that won't.",
+  "domain": "probability",
+  "concept": "heavy-tails",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that running averages of die rolls settle (law of large numbers)",
+      "reading a line chart"
+    ],
+    "doesNotKnow": [
+      "that the law of large numbers needs a finite mean",
+      "heavy-tailed distributions whose rare giant values dominate"
+    ]
+  },
+  "misconception": "Averaging more data always settles on a stable number.",
+  "objective": "The learner can explain that when rare giant values are common enough (a heavy tail such as the Cauchy), one draw can outweigh thousands, so the running average never settles: the mean of n Cauchy draws is as spread out as one draw.",
+  "claims": [
+    {
+      "id": "probability.average-that-never-settles.c1",
+      "text": "The running average of fair die rolls settles toward 3.5.",
+      "support": "derivation",
+      "source": "Strong law of large numbers; the die mean is (1+2+...+6)/6 = 3.5 and its SD 1.71, so the SD of a 10,000-roll average is 0.017.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.average-that-never-settles.c2",
+      "text": "The average of n draws from a standard Cauchy distribution has exactly the same distribution as a single draw, so it never narrows.",
+      "support": "source",
+      "source": "Characteristic function of the standard Cauchy is exp(-|t|); for the mean of n draws it is exp(-|t|/n)^n = exp(-|t|). W. Feller, An Introduction to Probability Theory and Its Applications, Vol. 2, 2nd ed. (1971), the Cauchy distribution as a stable law; chapter not checked by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.average-that-never-settles.c3",
+      "text": "At any number of draws, the Cauchy average lands more than 1 away from 0 half the time.",
+      "support": "derivation",
+      "source": "For standard Cauchy, P(|X| > 1) = 1 - (2/pi) atan(1) = 0.5, and the mean of n draws is standard Cauchy (c2). cauchyTail() in src/demos/probability/average-that-never-settles/model.ts. Re-run: in 400 seeds, |mean at 10,000| > 1 in 49.75%; die average more than 0.05 from 3.5 in 0.75%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.average-that-never-settles.c4",
+      "text": "The stage draws five seeded runs at a time. In the first five, after 11,000 draws the die averages are between 3.455 and 3.534 and the Cauchy averages between -0.09 and 2.57; in the next five, die 3.487 to 3.503 and Cauchy -1.94 to 1.68.",
+      "support": "simulation",
+      "source": "batchRuns() / runs() in model.ts, seed 1853, untuned (the first seed tried); draws by inverse CDF tan(pi(u - 1/2)). Run 0 alone: a giant draw (about 33,000) just after 1,050 draws throws its average from 1.4 to about 24. Five runs per batch because a single run can look calm (run 1 stays within -2.1 to 2.8 and is at 0.12 after 5,000 draws and -0.19 after 10,000); in 200 other batches all five Cauchy averages were within 1 of 0 at 11,000 draws in only 4 (theory 0.5^5 = 3.1%). The claim about all runs is c2-c3.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.average-that-never-settles.c5",
+      "text": "The Cauchy is a toy heavy-tailed distribution chosen because its mean does not exist.",
+      "support": "convention",
+      "source": "E|X| is infinite for the Cauchy, so the law of large numbers does not apply. Stated on the stage chip.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You average more and more samples from a distribution with rare but enormous values (no finite mean). What happens to the average?",
+    "options": [
+      "It settles, just more slowly",
+      "It can keep being knocked around by single huge values",
+      "It drifts toward zero"
+    ],
+    "answer": 1,
+    "why": "The law of large numbers needs a finite mean. When one rare draw can be bigger than all the rest combined, adding data does not tame the average."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

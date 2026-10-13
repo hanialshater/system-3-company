@@ -1,0 +1,72 @@
+{
+  "slug": "friends-have-more-friends",
+  "title": "Why your friends have more friends",
+  "hook": "Pick anyone's friend at random. Surely they are about as popular as anyone else?",
+  "domain": "probability",
+  "concept": "friendship-paradox",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "averages",
+      "picking at random"
+    ],
+    "doesNotKnow": [
+      "size-biased sampling: picking through links favours well-connected people"
+    ]
+  },
+  "misconception": "The average person's friends are about as popular as the average person.",
+  "objective": "The learner can explain that a person with many friends appears on many friend lists, so a friend picked at random is likely to be well connected: on the five-person star a random friend has 3.4 friends on average against 1.6 for a random person.",
+  "claims": [
+    {
+      "id": "probability.friends-have-more-friends.c1",
+      "text": "In the five-person star, the average person has 1.6 friends.",
+      "support": "derivation",
+      "source": "Friend counts 4, 1, 1, 1, 1; total 8 / 5 = 1.6 (meanDegree() in src/demos/probability/friends-have-more-friends/model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.friends-have-more-friends.c2",
+      "text": "Picking a random person and then one of their friends at random, the friend has 3.4 friends on average.",
+      "support": "derivation",
+      "source": "With chance 1/5 you pick the hub and land on a leaf (1 friend); with chance 4/5 you pick a leaf and land on the hub (4 friends): 0.2 x 1 + 0.8 x 4 = 3.4 (meanFriendDegree() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.friends-have-more-friends.c3",
+      "text": "Wherever friend counts differ, a randomly chosen friend has more friends on average than a randomly chosen person.",
+      "support": "source",
+      "source": "S. L. Feld (1991), Why your friends have more friends than you do, American Journal of Sociology 96(6): 1464-1477. Feld's statement is for the mean over friendship links (sum of d^2 / sum of d >= mean d, equality only when all counts are equal); the pick-a-person-then-a-friend average used here is also at least the mean, by a pairing argument: each friendship contributes d_i/d_j + d_j/d_i >= 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.friends-have-more-friends.c4",
+      "text": "The stage's picks are a seeded sequence; after 101 picks the friend average was 3.32.",
+      "support": "simulation",
+      "source": "picks() in model.ts, seed 1991, untuned (the first seed tried). Over seeds 1-500, the average of 101 picks had middle 95% 3.17-3.64 (median 3.41); the minimum was 3.05, always far above 1.6.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A survey asks random students how big their classes are, and separately asks the school for its average class size. Whose number is bigger?",
+    "options": [
+      "The school's average",
+      "The students' average",
+      "They match"
+    ],
+    "answer": 1,
+    "why": "Big classes hold many students, so a random student is more likely to be in a big class: the same bias that makes a random friend more popular than a random person."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

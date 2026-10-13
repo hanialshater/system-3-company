@@ -1,0 +1,87 @@
+{
+  "slug": "one-in-a-million-daily",
+  "title": "One in a million, every day?",
+  "hook": "A one-in-a-million event should almost never happen. In a big city, how often does it?",
+  "domain": "probability",
+  "concept": "truly-large-numbers",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "'1 in a million' means very rare for one person",
+      "multiplying a chance by a number of tries"
+    ],
+    "doesNotKnow": [
+      "that expected counts scale with the number of chances",
+      "that rare events become routine across a population"
+    ]
+  },
+  "misconception": "A one-in-a-million event essentially never happens.",
+  "objective": "The learner can explain that the expected number of events is population x chance (8 million x 1 in a million = 8 a day), so an event rare for each person is routine for a city.",
+  "claims": [
+    {
+      "id": "probability.one-in-a-million-daily.c1",
+      "text": "With 8 million people each facing a 1-in-a-million chance per day, the event happens about 8 times a day on average.",
+      "support": "derivation",
+      "source": "Expected count = N x p = 8,000,000 x 0.000001 = 8 (linearity of expectation; expectedPerDay() in src/demos/probability/one-in-a-million-daily/model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-in-a-million-daily.c2",
+      "text": "The chance that a day in that city passes with no event at all is about 0.03%.",
+      "support": "derivation",
+      "source": "(1 - 1e-6)^8,000,000 = e^(-8.000004) = 0.000335 (pNone() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-in-a-million-daily.c3",
+      "text": "At 10,000 people the same chance gives about 0.01 events a day: roughly one every 100 days.",
+      "support": "derivation",
+      "source": "10,000 x 1e-6 = 0.01 per day; 3.65 expected per 365 days.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-in-a-million-daily.c4",
+      "text": "The stage's year at 8 million had 2,946 events (8.1 a day) and no day without one; at 10,000 people the year had 6 events and 359 empty days.",
+      "support": "simulation",
+      "source": "year() in model.ts: seeded Poisson draws with mean N x 1e-6 per day, seed 808 (untuned: the first seed tried). Across seeds 1-500 at 8 million the yearly mean ranged 7.55-8.44 and no year had more than 2 empty days; at 10,000 the yearly total ranged 0-11 (median 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-in-a-million-daily.c5",
+      "text": "Daily counts are drawn as Poisson with mean population x chance, which matches the exact binomial count to within rounding at these sizes.",
+      "support": "derivation",
+      "source": "Poisson limit of Bin(N, p) for large N and small p; Le Cam's inequality bounds the total variation distance by N p^2 = 8e-6 at 8 million.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-in-a-million-daily.c6",
+      "text": "The model assumes every person faces the same chance, independently, every day.",
+      "support": "convention",
+      "source": "Model assumption, stated on the stage chip and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A coincidence has a 1-in-10-million chance per person per year. In a country of 50 million, about how many people experience it each year?",
+    "options": [
+      "Probably nobody",
+      "About 5",
+      "About 50"
+    ],
+    "answer": 1,
+    "why": "Expected count = people x chance = 50,000,000 / 10,000,000 = 5. Rare for each person, routine for a country."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

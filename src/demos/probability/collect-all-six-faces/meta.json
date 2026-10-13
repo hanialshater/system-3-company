@@ -1,0 +1,73 @@
+{
+  "slug": "collect-all-six-faces",
+  "title": "How long to see every face?",
+  "hook": "A die has six faces. So six rolls, give or take, should show you all of them. Right?",
+  "domain": "probability",
+  "concept": "coupon-collector",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a fair die shows each face with chance 1/6",
+      "averages"
+    ],
+    "doesNotKnow": [
+      "that the wait for a new face grows as fewer faces are missing",
+      "the coupon collector total of about 14.7 rolls"
+    ]
+  },
+  "misconception": "Rolling a die six times shows each face about once, so seeing all six takes about 6 rolls.",
+  "objective": "The learner can explain that each new face gets harder to find (with k faces missing, only k rolls in 6 help), so the waits are 1, 1.2, 1.5, 2, 3 and 6 rolls on average, 14.7 in all, and the last face is the expensive one.",
+  "claims": [
+    {
+      "id": "probability.collect-all-six-faces.c1",
+      "text": "On average it takes 14.7 rolls of a fair die to see all six faces.",
+      "support": "derivation",
+      "source": "Sum of geometric waits: 6/6 + 6/5 + 6/4 + 6/3 + 6/2 + 6/1 = 6 x H_6 = 6 x 2.45 = 14.7 (expectedTotal in src/demos/probability/collect-all-six-faces/model.ts). Reference: W. Feller, An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd ed. (1968), waiting times in sampling (the coupon collector's problem); chapter not checked by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.collect-all-six-faces.c2",
+      "text": "With one face missing, only 1 roll in 6 helps, so the last face alone takes 6 rolls on average; the waits for each new face are 1, 1.2, 1.5, 2, 3 and 6 rolls.",
+      "support": "derivation",
+      "source": "With k faces still missing a roll succeeds with chance k/6; a geometric wait with success chance p has mean 1/p = 6/k (expectedWaits in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.collect-all-six-faces.c3",
+      "text": "Over the stage's 1,000 simulated collections the average was 14.9 rolls, with average waits 1, 1.23, 1.50, 2.04, 2.85 and 6.25.",
+      "support": "simulation",
+      "source": "many() in model.ts, seed 6000, untuned (the first seed tried). Over 200 other seeds the 1,000-collection average ranged 14.18-15.26 (median 14.74). The first stage collection (seed 600) takes 12 rolls.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.collect-all-six-faces.c4",
+      "text": "Only 13 of the 1,000 collections finished in six rolls; the exact chance is about 1.5%.",
+      "support": "derivation",
+      "source": "Six rolls showing six different faces: 6!/6^6 = 720/46,656 = 0.0154. The 13 is from many() (within6).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You are collecting 10 different stickers, each pack has one at random. You have 9. On average, how many more packs until the last one?",
+    "options": [
+      "About 1",
+      "About 5",
+      "About 10"
+    ],
+    "answer": 2,
+    "why": "Only 1 sticker in 10 is new, so the wait averages 10 packs. The last item of a collection is the expensive one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

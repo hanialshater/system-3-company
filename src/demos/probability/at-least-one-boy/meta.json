@@ -1,0 +1,80 @@
+{
+  "slug": "at-least-one-boy",
+  "title": "At least one boy: both boys?",
+  "hook": "Two children, and at least one is a boy. Surely the other is 50/50?",
+  "domain": "probability",
+  "concept": "two-children-problem",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "each child is a boy or a girl with chance about 1/2, independently",
+      "counting equally likely cases"
+    ],
+    "doesNotKnow": [
+      "how a piece of information narrows the set of possible cases",
+      "that differently worded clues remove different cases"
+    ]
+  },
+  "misconception": "Knowing one child is a boy leaves the other as 50/50, so both being boys has chance 1/2.",
+  "objective": "The learner can explain that 'at least one is a boy' removes only the girl-girl family, leaving three equally likely families of which one is boy-boy (1/3), while 'the older is a boy' removes two and gives 1/2.",
+  "claims": [
+    {
+      "id": "probability.at-least-one-boy.c1",
+      "text": "Two-child families come in four equally likely kinds by older and younger child: boy-boy, boy-girl, girl-boy, girl-girl.",
+      "support": "convention",
+      "source": "Model assumption: each child independently a boy or girl with chance 1/2 (real birth ratios are about 105 boys to 100 girls, which shifts the answers only slightly).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.at-least-one-boy.c2",
+      "text": "If you learn only that at least one child is a boy, the chance both are boys is 1/3.",
+      "support": "derivation",
+      "source": "Enumeration: the clue removes GG, leaving BB, BG, GB; 1 of 3 (exact() in src/demos/probability/at-least-one-boy/model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.at-least-one-boy.c3",
+      "text": "If you learn that the older child is a boy, the chance both are boys is 1/2.",
+      "support": "derivation",
+      "source": "Enumeration: the clue leaves BB, BG; 1 of 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.at-least-one-boy.c4",
+      "text": "The answer depends on how the information was obtained; the lesson uses the rule that you learn only the clue itself.",
+      "support": "source",
+      "source": "M. Gardner (1959), Mathematical Games, Scientific American, May and October 1959; see also Bar-Hillel & Falk (1982), Cognition 11: 109-122.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.at-least-one-boy.c5",
+      "text": "Of the stage's 1,000 families, 744 have at least one boy and 240 of those are boy-boy (32%); 504 have an older boy and 240 of those are boy-boy (48%).",
+      "support": "simulation",
+      "source": "families() in model.ts, seed 1959, untuned (the first seed tried). Over seeds 1-500 the at-least-one share had middle 95% 29.9%-36.7% (median 33.3%) and the older-boy share 45.9%-54.6% (median 50.1%).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You learn only that a two-child family has at least one girl. What is the chance both children are girls?",
+    "options": [
+      "1/2",
+      "1/3",
+      "1/4"
+    ],
+    "answer": 1,
+    "why": "The clue removes only boy-boy. Girl-girl, girl-boy and boy-girl remain, equally likely, and one of the three is girl-girl."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
