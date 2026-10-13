@@ -1,0 +1,72 @@
+{
+  "slug": "shadow-height",
+  "title": "Measure a tree with a stick",
+  "hook": "A stick and a tree stand in the same sunlight. Can the stick measure the tree?",
+  "domain": "math",
+  "concept": "similar-triangles",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ratios and multiplying by a whole number",
+      "that a shadow gets longer when the sun is lower"
+    ],
+    "doesNotKnow": [
+      "that triangles with the same angles have proportional sides"
+    ]
+  },
+  "misconception": "A longer shadow means adding the extra length to the height (additive), not multiplying.",
+  "objective": "The learner can explain that the stick and the tree make the same angle with the sun's rays, so height and shadow grow by the same factor: a shadow 7 times longer means a tree 7 times taller.",
+  "claims": [
+    {
+      "id": "math.shadow-height.c1",
+      "text": "The sun's rays arrive almost parallel, so a stick and a tree at the same moment make the same angle with the ground.",
+      "support": "source",
+      "source": "The Sun is about 150 million km away, so rays reaching two points metres apart differ in direction by a negligible angle; this is the standard assumption in shadow-measurement problems. The reveal says 'almost'.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.shadow-height.c2",
+      "text": "Triangles with the same angles have the same shape, so height and shadow grow by the same factor: every 3 m of shadow climbs 2 m.",
+      "support": "source",
+      "source": "AA similarity: equiangular triangles have proportional sides (Euclid, Elements VI.4). The stage draws the staircase of 3-across, 2-up steps under the ray from STICK_S and STICK_H.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.shadow-height.c3",
+      "text": "A 21 m shadow is 7 stick shadows of 3 m, so the tree is 7 × 2 m = 14 m tall.",
+      "support": "derivation",
+      "source": "21 / 3 = 7; 7 × 2 = 14 (recomputed in node; TREE_H in Demo.tsx = (21/3) × 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.shadow-height.c4",
+      "text": "Adding the extra 18 m of shadow to the stick's 2 m gives 20 m, the wrong answer; the inverted ratio gives 31.5 m.",
+      "support": "derivation",
+      "source": "21 - 3 = 18, 18 + 2 = 20; (3/2) × 21 = 31.5 (recomputed in node). Distractors computed in Demo.tsx from the same constants.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 1.5 m child casts a 2 m shadow. At the same moment a pole casts an 8 m shadow. How tall is the pole?",
+    "options": [
+      "6 m",
+      "7.5 m",
+      "about 10.7 m"
+    ],
+    "answer": 0,
+    "why": "8 m is 4 times the child's 2 m shadow, so the pole is 4 times the child's height: 4 × 1.5 = 6 m. Adding the extra 6 m gives the wrong 7.5 m."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "handshakes-halve",
+  "title": "A room full of handshakes",
+  "hook": "Everyone at a party shakes everyone's hand once. How fast does that pile up?",
+  "domain": "math",
+  "concept": "handshake-counting",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adding a run of numbers like 1 + 2 + ... + 9",
+      "multiplying small whole numbers"
+    ],
+    "doesNotKnow": [
+      "why the number of pairs among n people is n × (n − 1) ÷ 2"
+    ]
+  },
+  "misconception": "n people shake hands n × n times, or n × (n − 1) times.",
+  "objective": "The learner can explain that each of 10 people shakes 9 hands, giving 10 × 9 = 90, but every handshake was counted at both hands, so there are 45.",
+  "claims": [
+    {
+      "id": "math.handshakes-halve.c1",
+      "text": "When person k arrives they shake k − 1 hands, so 10 people make 1 + 2 + ... + 9 = 45 handshakes.",
+      "support": "derivation",
+      "source": "Each newcomer pairs with everyone already present; sum 1..9 = 45 (recomputed in node). The stage draws one line per pair.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.handshakes-halve.c2",
+      "text": "Each of the 10 people has 9 lines, so 10 × 9 = 90 line ends; every handshake has two ends, so there are 90 ÷ 2 = 45.",
+      "support": "derivation",
+      "source": "Double counting (handshake lemma): the degrees sum to twice the number of edges. 10 × 9 / 2 = 45 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.handshakes-halve.c3",
+      "text": "10 × 10 = 100 also counts people shaking their own hand.",
+      "support": "derivation",
+      "source": "n × n counts every ordered pair (a, b) including a = b; removing the 10 self-pairs gives 90 ordered pairs, halved to 45.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a league of 6 teams, every team plays every other team once. How many games?",
+    "options": [
+      "36",
+      "30",
+      "15"
+    ],
+    "answer": 2,
+    "why": "Each team plays 5 games, 6 × 5 = 30, but each game was counted for both teams, so 30 ÷ 2 = 15."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

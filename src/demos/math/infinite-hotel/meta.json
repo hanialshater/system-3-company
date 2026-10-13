@@ -1,0 +1,65 @@
+{
+  "slug": "infinite-hotel",
+  "title": "A full hotel, one more guest",
+  "hook": "Every room is taken, and the rooms never run out. Where does the new guest sleep?",
+  "domain": "math",
+  "concept": "countable-infinity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that with more people than boxes, two must share (pigeonhole)",
+      "counting 1, 2, 3, ... without end"
+    ],
+    "doesNotKnow": [
+      "that an infinite collection can make room for one more without losing anyone"
+    ]
+  },
+  "misconception": "A full hotel is full, even if it has infinitely many rooms.",
+  "objective": "The learner can explain that moving the guest in room n to room n + 1 frees room 1 and leaves nobody out, because every room has a next room; in a 12-room hotel the same move leaves someone without a room.",
+  "claims": [
+    {
+      "id": "math.infinite-hotel.c1",
+      "text": "If the guest in room n moves to room n + 1 for every n, every guest still has a room, no two share, and room 1 is empty.",
+      "support": "derivation",
+      "source": "The map n -> n + 1 on the positive whole numbers is one-to-one and every value is a room (there is always a room n + 1); no n maps to 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.infinite-hotel.c2",
+      "text": "In a hotel with 12 rooms the same move leaves guest 12 with no room 13.",
+      "support": "derivation",
+      "source": "Rooms 1..12 only; n -> n + 1 sends 12 to 13, which does not exist. More guests (13) than rooms (12) forces someone out (pigeonhole).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.infinite-hotel.c3",
+      "text": "With infinitely many rooms, 'full' does not mean 'no space': this is Hilbert's hotel, a thought experiment about infinite sets, not a real building.",
+      "support": "source",
+      "source": "Attributed to David Hilbert's 1924 lectures, popularised by George Gamow, 'One Two Three... Infinity' (1947).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An endless row of seats, numbered 1, 2, 3, ..., is completely full. Two more people arrive. Can they sit without anyone leaving?",
+    "options": [
+      "No",
+      "Yes: everyone moves up two seats",
+      "Only one of them can"
+    ],
+    "answer": 1,
+    "why": "Moving the person in seat n to seat n + 2 frees seats 1 and 2, and everyone still has a seat because there is always a seat n + 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

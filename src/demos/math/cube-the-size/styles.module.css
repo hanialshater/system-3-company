@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 40dvh; }
+.cube polygon, .mark polygon { stroke: var(--fg); stroke-width: 1; stroke-linejoin: round; }
+.cube .top { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); }
+.cube .right { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.cube .left { fill: color-mix(in srgb, var(--domain) 75%, var(--bg-2)); }
+.mark .top { fill: color-mix(in srgb, var(--good) 35%, var(--bg-2)); }
+.mark .right { fill: color-mix(in srgb, var(--good) 60%, var(--bg-2)); }
+.mark .left { fill: color-mix(in srgb, var(--good) 80%, var(--bg-2)); }
+.label { fill: var(--fg); font-size: 13px; font-weight: 800; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 1.4em; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 8px; margin-top: 2px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }

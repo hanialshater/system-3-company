@@ -1,0 +1,65 @@
+{
+  "slug": "thales-corner",
+  "title": "The corner that rides a circle",
+  "hook": "Slide a point round a circle. Does the corner it makes get sharper?",
+  "domain": "math",
+  "concept": "thales-right-angle",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the angles of a triangle add up to 180 degrees",
+      "what a circle's centre and radius are"
+    ],
+    "doesNotKnow": [
+      "that every triangle drawn on a diameter has a right angle at the circle"
+    ]
+  },
+  "misconception": "The angle at P changes as P moves, so it is sharper in some places than others.",
+  "objective": "The learner can explain that the angle at P is always 90 degrees: the radius OP splits the triangle into two triangles with two equal sides, so 2x + 2y = 180 and x + y = 90.",
+  "claims": [
+    {
+      "id": "math.thales-corner.c1",
+      "text": "For any point P on a circle other than A and B, where AB is a line through the centre (a diameter), the angle APB is 90°.",
+      "support": "source",
+      "source": "Thales' theorem; Euclid, Elements III.31. The stage measures the angle from the drawn coordinates at 17 positions (10° to 170° round from B); node gives 90.000000 at each.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.thales-corner.c2",
+      "text": "OA, OP and OB are all radii, so triangles OPA and OPB each have two equal sides and therefore two equal angles: x and x, y and y.",
+      "support": "source",
+      "source": "Base angles of an isosceles triangle are equal (Euclid, Elements I.5). Stage readout measures x and y at P; node confirms they match the angles at A and B (e.g. 15° and 75° at place 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.thales-corner.c3",
+      "text": "The big triangle's angles are x, x + y and y, which add to 180°, so 2x + 2y = 180° and the angle at P, x + y, is 90°.",
+      "support": "derivation",
+      "source": "Angle sum of triangle APB: x + (x + y) + y = 180, so x + y = 90.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A triangle is drawn inside a circle with one side running straight through the centre and the third corner on the circle. What is the angle at that corner?",
+    "options": [
+      "It depends on the triangle",
+      "90°",
+      "60°"
+    ],
+    "answer": 1,
+    "why": "The radius to the corner splits the triangle into two with two equal sides each, so the corner's two parts add to half of 180°: always 90°."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.grid {
+  display: grid; grid-template-columns: 2.4em repeat(8, minmax(26px, 34px)) 1.2em; gap: 3px;
+  justify-content: center; align-items: center; font-variant-numeric: tabular-nums;
+}
+.rowWrap { display: contents; }
+.corner, .head { font-size: 0.68rem; color: var(--muted); text-align: center; text-transform: uppercase; }
+.rowNo { font-size: 0.75rem; color: var(--muted); font-weight: 700; text-align: center; }
+.rowDiff { color: var(--good); }
+.cell {
+  display: flex; align-items: center; justify-content: center; height: 28px; border-radius: 6px;
+  background: var(--bg); border: 1px solid var(--line); font-weight: 700; font-size: 0.9rem;
+}
+.wrap .diag { padding: 0; min-width: 0; height: 28px; border: 2px solid var(--warn); }
+.wrap .hit { border-color: var(--good); text-decoration: line-through; text-decoration-color: var(--bad); }
+.mine .rowNo { color: var(--fg); }
+.mineCell { background: color-mix(in srgb, var(--good) 35%, var(--bg-2)); border-color: var(--good); margin-top: 6px; }
+.blank { color: var(--muted); margin-top: 6px; }
+.more { color: var(--muted); text-align: center; }
+.moreRows { grid-column: 1 / -1; text-align: center; color: var(--muted); font-size: 0.8rem; line-height: 1.1; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }

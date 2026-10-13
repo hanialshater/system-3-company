@@ -1,0 +1,65 @@
+{
+  "slug": "diagonal-escapes-the-list",
+  "title": "The string the list forgot",
+  "hook": "A list claims to hold every endless string of 0s and 1s. Can you catch it out?",
+  "domain": "math",
+  "concept": "cantor-diagonal",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that an endless hotel can always fit one more guest (listing things one per room)",
+      "what a string of 0s and 1s is"
+    ],
+    "doesNotKnow": [
+      "that some endless collections cannot be put in a list at all"
+    ]
+  },
+  "misconception": "Any endless collection can be listed, so a long enough list of 0-1 strings could hold them all.",
+  "objective": "The learner can explain that flipping the k-th digit of the k-th string builds a string that differs from every row of any list somewhere, so no list holds every endless 0-1 string.",
+  "claims": [
+    {
+      "id": "math.diagonal-escapes-the-list.c1",
+      "text": "A string whose place k is the opposite of row k's place k differs from row k, for every k.",
+      "support": "derivation",
+      "source": "By construction: new[k] = 1 - row_k[k] ≠ row_k[k]. Node check on the stage's 8 rows: the new string 01000110 differs from each row at its diagonal place.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.diagonal-escapes-the-list.c2",
+      "text": "The stage shows only the first 8 rows and 8 places; the argument is for the whole endless list, where row n differs at place n.",
+      "support": "derivation",
+      "source": "The same rule applies to every n; the grid is an illustration. Rows come from mulberry32(1891), an arbitrary seed not chosen for the result (any list gives the same outcome).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.diagonal-escapes-the-list.c3",
+      "text": "No list of endless 0-1 strings can hold them all; this is Cantor's diagonal argument.",
+      "support": "source",
+      "source": "G. Cantor, 'Über eine elementare Frage der Mannigfaltigkeitslehre' (1891). The lesson does not claim more than this about sizes of infinity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To build a 0-1 string missing from a list, which digits do you change?",
+    "options": [
+      "The first digit of every row",
+      "Place 1 of row 1, place 2 of row 2, and so on, each flipped",
+      "The last digit of the last row"
+    ],
+    "answer": 1,
+    "why": "Flipping place n of row n makes the new string differ from every row n somewhere, so it cannot be on the list."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

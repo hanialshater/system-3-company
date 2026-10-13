@@ -1,0 +1,65 @@
+{
+  "slug": "exterior-turns",
+  "title": "How much do you turn?",
+  "hook": "Walk round a triangle, then a 12-sided shape. Which makes you turn more?",
+  "domain": "math",
+  "concept": "polygon-angle-sum",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a full turn is 360 degrees",
+      "that a triangle's angles add up to 180 degrees"
+    ],
+    "doesNotKnow": [
+      "that the turns at the corners of any shape that bulges outward add up to 360 degrees"
+    ]
+  },
+  "misconception": "More sides means more total turning.",
+  "objective": "The learner can explain that walking once round a shape that bulges outward turns you through one full turn, 360 degrees, however many corners share it.",
+  "claims": [
+    {
+      "id": "math.exterior-turns.c1",
+      "text": "At each corner of an equal-sided shape with n sides you turn 360° ÷ n: 120° for 3 sides, 90° for 4, 72° for 5, down to 30° for 12.",
+      "support": "derivation",
+      "source": "Regular n-gon exterior angle = 360/n. Recomputed in node for n = 3..12; n × 360/n = 360 each (readout rounds the total, turn shown to 0.1°).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exterior-turns.c2",
+      "text": "Walking once round a shape that only bulges outward and facing forward again is one full turn, so the turns at the corners add up to 360°.",
+      "support": "source",
+      "source": "Exterior angle sum of a convex polygon is 360° (e.g. any school geometry text; follows from interior sum (n - 2) × 180 since each exterior = 180 - interior). The reveal states it for all convex shapes, beyond the regular ones on stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.exterior-turns.c3",
+      "text": "Gathered at one point, the n turns close into exactly one circle.",
+      "support": "derivation",
+      "source": "n wedges of 360/n placed side by side span 360°. The stage draws them from the same corner angles it draws at the vertices.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A robot drives round a six-sided field (any shape that bulges outward) and ends facing the way it started. How far has it turned in total?",
+    "options": [
+      "720°",
+      "360°",
+      "It depends on the field's shape"
+    ],
+    "answer": 1,
+    "why": "Going round once and facing forward again is one full spin, 360°, however the turning is shared out between the corners."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.map { position: relative; width: min(100%, calc(40dvh * 1.5)); aspect-ratio: 3 / 2; margin: 0 auto; }
+.svg { display: block; width: 100%; height: 100%; }
+.water { fill: color-mix(in srgb, #3b9be0 28%, var(--bg-2)); }
+.land { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+.bridge { stroke: color-mix(in srgb, var(--fg) 60%, var(--bg-2)); stroke-width: 9; }
+.bridgeUsed { stroke: var(--domain); stroke-width: 9; stroke-opacity: 0.55; }
+.gone { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 3 4; }
+.trail { fill: none; stroke: var(--warn); stroke-width: 2.5; stroke-dasharray: 5 4; stroke-linejoin: round; }
+.place { fill: var(--muted); font-size: 11px; font-weight: 700; text-anchor: middle; }
+.you { fill: var(--warn); stroke: var(--fg); stroke-width: 1.5; }
+.odd { fill: var(--warn); stroke: var(--fg); stroke-width: 1; }
+.even { fill: var(--good); stroke: var(--fg); stroke-width: 1; }
+.deg { fill: #111; font-size: 12px; font-weight: 800; text-anchor: middle; }
+.wrap .bridgeBtn {
+  position: absolute; transform: translate(-50%, -50%); width: 32px; height: 32px; min-width: 0;
+  padding: 0; border-radius: 50%; font-size: 0.8rem; font-variant-numeric: tabular-nums;
+}
+.wrap .can { border: 2px solid var(--warn); background: var(--bg); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; min-height: 2.6em; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 0; }
+.wrap :global(.row .control) { padding: 8px 10px; }
