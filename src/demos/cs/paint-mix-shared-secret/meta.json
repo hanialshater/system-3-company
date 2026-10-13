@@ -1,0 +1,80 @@
+{
+  "slug": "paint-mix-shared-secret",
+  "title": "Where do Alice and Bob land?",
+  "hook": "Eve overhears every number Alice and Bob send. Follow their moves round a 23-hour clock.",
+  "domain": "cs",
+  "concept": "public-key-crypto",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["multiplication", "how a clock wraps from the last hour back to the first"],
+    "doesNotKnow": ["that two people can agree on a secret number while someone hears everything they send"]
+  },
+  "misconception": "Two strangers cannot agree on a secret over a channel an eavesdropper hears completely.",
+  "objective": "The learner can explain why Bob (8 multiplied 15 times) and Alice (19 multiplied 6 times) land on the same mark of the 23-clock: both are 5 multiplied 90 times, while Eve heard only 8 and 19.",
+  "claims": [
+    {
+      "id": "cs.paint-mix-shared-secret.c1",
+      "text": "On a 23-hour clock, starting at 1 and multiplying by 5 six times stops on 8; multiplying by 5 fifteen times stops on 19.",
+      "support": "derivation",
+      "source": "5^6 mod 23 = 8 and 5^15 mod 23 = 19. Demo.tsx walk(5, 6) and walk(5, 15); builder re-ran in Node with BigInt: 8n, 19n.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c2",
+      "text": "From 1, multiplying by 8 fifteen times and multiplying by 19 six times both stop on 2.",
+      "support": "derivation",
+      "source": "8^15 mod 23 = 2 = 19^6 mod 23. Demo.tsx BOB[15] and ALICE[6]; builder re-ran in Node: 2 and 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c3",
+      "text": "Multiplying by 5 ninety times (6 × 15) from 1 on the 23-clock also stops on 2, because each side multiplied 5 by itself 90 times.",
+      "support": "derivation",
+      "source": "(5^6)^15 = (5^15)^6 = 5^90; 5^90 mod 23 = 2 (Demo.tsx DIRECT; Node check). Wrapping after each multiply gives the same result as wrapping at the end (arithmetic modulo n).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c4",
+      "text": "Multiply, then wrap around the clock, is the same as keeping the remainder after dividing by 23.",
+      "support": "convention",
+      "source": "Definition of multiplication modulo n (e.g. Hardy and Wright, An Introduction to the Theory of Numbers, ch. 5, congruences).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c5",
+      "text": "Eve hears only 8 and 19, never the secrets 6 or 15, yet on a 23-clock she could find a secret by trying every one.",
+      "support": "derivation",
+      "source": "Exhaustive search over exponents 1..22 in Node: 5^6 = 8 and 5^15 = 19 are found in 22 tries. The public messages in the protocol are only the clock, base and the two public numbers (Diffie and Hellman 1976).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c6",
+      "text": "Real systems use enormous clocks where trying every secret is hopeless.",
+      "support": "source",
+      "source": "Diffie-Hellman security rests on the discrete-logarithm problem being infeasible for large moduli (Diffie and Hellman, 'New Directions in Cryptography', IEEE Trans. Inf. Theory 22(6), 1976). No key size is stated in the lesson.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.paint-mix-shared-secret.c7",
+      "text": "This scheme is the Diffie-Hellman key exchange.",
+      "support": "source",
+      "source": "Diffie and Hellman, 'New Directions in Cryptography', IEEE Transactions on Information Theory 22(6), 1976.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Alice and Bob each keep a secret number and send only a public result. Why do they end up with the same shared number?",
+    "options": [
+      "Both have multiplied the base by itself (secret A × secret B) times",
+      "They both send their secrets, but scrambled",
+      "Eve's numbers are averaged in"
+    ],
+    "answer": 0,
+    "why": "Each multiplies the other's public number by their own secret count, so both reach the base multiplied (A × B) times; the secrets never travel."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
