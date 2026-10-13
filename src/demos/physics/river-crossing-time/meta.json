@@ -1,0 +1,80 @@
+{
+  "slug": "river-crossing-time",
+  "title": "Current faster than the boat?",
+  "hook": "The river runs faster than your boat can go. Will you ever reach the other side?",
+  "domain": "physics",
+  "concept": "relative-velocity-river",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "rivers flow and boats move through the water",
+      "time = distance / speed"
+    ],
+    "doesNotKnow": [
+      "relative velocity: the boat's velocity over the ground is its velocity in the water plus the current's",
+      "that motion across the river and along it are independent"
+    ]
+  },
+  "misconception": "A current faster than the boat stops it crossing, or at least makes the crossing take longer.",
+  "objective": "The learner can explain that a boat pointed straight across crosses at its own speed whatever the current, so a 90 m river at 3 m/s takes 30 s; the current only sets how far downstream it lands.",
+  "claims": [
+    {
+      "id": "physics.river-crossing-time.c1",
+      "text": "A boat pointed straight across a 90 m river at 3 m/s relative to the water reaches the far bank in 30 s, whatever the speed of the current.",
+      "support": "derivation",
+      "source": "Ground velocity = boat velocity in the water + current velocity (Galilean addition). The current is along the river, so the across component stays 3 m/s: 90 / 3 = 30 s. Re-integrated in artifacts/scratch/w4phys/check.mjs (dt = 1e-4 s) for currents 0-6 m/s: 30.000 s each.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.river-crossing-time.c2",
+      "text": "In those 30 s a current of u m/s carries the boat 30 u metres downstream: 60 m at 2 m/s, 120 m at 4 m/s, 180 m at 6 m/s.",
+      "support": "derivation",
+      "source": "x = u t at t = 30 s; same integration gives 0, 30, 60, 90, 120, 150, 180 m for u = 0..6 m/s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.river-crossing-time.c3",
+      "text": "Every 10 s the boat is another 30 m across, at the same across-distance as a boat in still water.",
+      "support": "derivation",
+      "source": "y = 3 t, independent of u: 30, 60, 90 m at 10, 20, 30 s. The stage draws these as dots on shared across-lines.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.river-crossing-time.c4",
+      "text": "The current pushes along the river, never across it, so it decides where the boat lands, not when.",
+      "support": "derivation",
+      "source": "Independence of perpendicular velocity components (any introductory mechanics text, e.g. OpenStax University Physics Vol. 1, section 4.5 Relative Motion in One and Two Dimensions).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.river-crossing-time.c5",
+      "text": "Model: the current is the same everywhere and the boat always points straight across at 3 m/s; real rivers run slower near the banks.",
+      "support": "convention",
+      "source": "Stated on stage ('Uniform current') and in the reveal. Velocity in a real channel falls towards the banks and bed because of friction (no-slip boundary); with a non-uniform current the crossing time is still 90 / 3 s if the boat keeps pointing straight across, but the landing point changes.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A swimmer swims straight across a 40 m river at 1 m/s through the water. The current is 2 m/s. How long does the crossing take?",
+    "options": [
+      "20 s",
+      "40 s",
+      "They never get across"
+    ],
+    "answer": 1,
+    "why": "The current only carries the swimmer downstream; across the river they still move at 1 m/s, so 40 m takes 40 s."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
