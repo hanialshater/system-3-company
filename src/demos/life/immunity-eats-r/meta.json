@@ -27,28 +27,36 @@
       "text": "In a well-mixed population with perfect immunity, the number a new case infects is R = R0 x the susceptible share; with R0 = 4 and 60% immune, R = 4 x 0.4 = 1.6.",
       "support": "source",
       "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans, Oxford UP, ch. 4 (effective reproduction number). Arithmetic in Demo.tsx (rEff).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.immunity-eats-r.c2",
       "text": "With R0 = 4 the herd-immunity threshold is 1 - 1/4 = 75%, the immune share at which R reaches 1.",
       "support": "derivation",
       "source": "R0 x (1 - p) = 1 gives p = 1 - 1/R0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.immunity-eats-r.c3",
       "text": "On the stage, 10 cases each meet 4 people they could infect (40 contacts); at 60% immune 24 contacts are immune and 16 are infected, and at 75% 30 are immune and 10 infected. Who is immune follows a fixed random order (seed 24, layout only, not chosen for a result) in which the 40 contacts hold evenly spaced places, so the immune share of contacts equals the town's at every 5% step: the picture shows the average case, not one random draw.",
       "support": "derivation",
       "source": "Demo.tsx LAYOUT: each case's contacts are the cells 2 steps away; contact ranks floor((j + 0.5) x 390 / 40) for j = 0..39, other people shuffled into the remaining ranks, against an immune cut of 390 x share; for share 5k% exactly 2k contacts fall below the cut.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.immunity-eats-r.c4",
       "text": "The model is a made-up disease with random mixing and perfect, lasting immunity; real contacts are not evenly spread.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question ('well-mixed'), on the stage ('Toy town') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

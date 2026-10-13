@@ -27,28 +27,36 @@
       "text": "If a case with R0 = 3 is infectious for 6 days and spreads evenly across them, isolating at the end of day d (and stopping all later spread) gives R = 3 x d / 6: day 3 gives 1.5, day 2 gives 1.0, day 1 gives 0.5.",
       "support": "derivation",
       "source": "Even spread: 0.5 infections per day; R = 0.5 x d. Computed in Demo.tsx (rAt) and node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.isolate-by-day-three.c2",
       "text": "On the stage, 10 cases make 30 would-be infections, 5 per day; isolating after day 3 leaves 15 of them, after day 2 leaves 10.",
       "support": "derivation",
       "source": "Arithmetic; same constants draw the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.isolate-by-day-three.c3",
       "text": "The model is a made-up infection with even spread across the infectious days and perfect isolation.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... spread evenly over 6 infectious days') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.isolate-by-day-three.c4",
       "text": "Real infectiousness is not even across the infectious period, and some spread can happen before symptoms.",
       "support": "source",
       "source": "Ferretti L. et al. (2020) Quantifying SARS-CoV-2 transmission suggests epidemic control with digital contact tracing. Science 368: eabb6936 (brief flagged: verify before use).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

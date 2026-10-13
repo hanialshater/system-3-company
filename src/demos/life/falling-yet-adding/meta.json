@@ -27,28 +27,36 @@
       "text": "If 1,000 new cases today fall by 10% every day, the cases from tomorrow on are 900 + 810 + 729 + ..., which sums to 900 / 0.1 = 9,000.",
       "support": "derivation",
       "source": "Geometric series a r / (1 - r) with a = 1,000, r = 0.9. Summed in node over 2,000 days: 9,000 (artifacts/scratch/w3life/check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.falling-yet-adding.c2",
       "text": "On the stage at 10% a day, the total from tomorrow on is about 5,862 by day 10 and 8,999 by day 90.",
       "support": "derivation",
       "source": "Partial sums 9,000 x (1 - 0.9^n): n = 10 gives 5,862, n = 90 gives 8,999. Same function (totalTo) draws the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.falling-yet-adding.c3",
       "text": "At a 5% daily fall the tail sums to 19,000; at 30% it sums to about 2,333.",
       "support": "derivation",
       "source": "950 / 0.05 = 19,000; 700 / 0.3 = 2,333.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.falling-yet-adding.c4",
       "text": "The model is a made-up outbreak whose daily fall never changes; real case curves do not fall this steadily.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... steady daily fall') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

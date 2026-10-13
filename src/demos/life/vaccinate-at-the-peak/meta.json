@@ -28,35 +28,45 @@
       "text": "In the stage's toy SIR model (R0 = 3, 0.1% sick on day 0), with no vaccination 94% are eventually infected and new cases peak on day 19.",
       "support": "simulation",
       "source": "Deterministic SIR, Euler step 0.01 day to day 200 (infection 0.6/day, recovery 0.2/day), replicated in artifacts/scratch/w3life/vacc.mjs: ever infected 0.9407, peak at day 19.19. No random seed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.vaccinate-at-the-peak.c2",
       "text": "Vaccinating 20% of the town at once, all people not yet infected, brings the final infected share to 70% on day 0 and 76% at the peak (day 19): the peak saves 18.4 of the 23.8 points that day 0 saves, 77.5% of the benefit (shown as 78%). On day 40 the final share is 94%.",
       "support": "simulation",
       "source": "artifacts/scratch/w3life/vacc.mjs (mode 'sus'): day 0 0.7031, day 19 0.7566, day 40 0.9359, none 0.9407; fraction 0.775. The brief's check (50%, 56%, 87%) did not reproduce in this model; see company/reviews/vaccinate-at-the-peak/build.md.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.vaccinate-at-the-peak.c3",
       "text": "On day 19 about 35% of the town has never been infected; the peak comes when the susceptible share falls to 1/R0, so most of the epidemic's remaining infections are still to come.",
       "support": "derivation",
-      "source": "dI/dt = (beta S - gamma) I = 0 at S = 1/3 (peak at day 19.19); S at day 19 = 0.3455 in the same run.",
-      "status": "unverified"
+      "source": "dI/dt = (beta S - gamma) I = 0 at S = 1/3 (peak at day 19.19); S at day 19 = 0.3455 in the same run. DISPUTED 2026-10-13: Numbers right (S at day 19 = 34.5%; peak at S=1/R0) but the reveal says 'most infections were still to come' at the peak. node: at day 19, 65.5% of the town has already been infected; only 28.6 points remain, 30% of the eventual 94%. So most infections have already happened. Fix: 'about a third of the town had never been infected' or 'nearly a third of the town was still to be infected', and drop 'most' and 'the middle of the epidemic'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.vaccinate-at-the-peak.c4",
       "text": "If the 20% of doses went to random people (some already infected or recovered) instead of only to people not yet infected, vaccinating at the peak would keep only about 29% of the day-0 benefit.",
       "support": "simulation",
       "source": "artifacts/scratch/w3life/vacc.mjs (mode 'random', doses = 0.2 x S): day 0 0.7034, day 19 0.8727, fraction 0.286. Disclosed in the reveal because the lesson's headline depends on the targeting assumption.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.vaccinate-at-the-peak.c5",
       "text": "The model is a made-up disease with random mixing, instant and perfect protection, and doses only to people not yet infected; it is a model result, not guidance.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... all not yet infected') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -28,35 +28,45 @@
       "text": "If 10 survivors carry 20 gene copies drawn at random, a variant on 1% of copies is missing from all 20 with probability 0.99^20, about 82% (81.6% when the 20 are drawn without replacement from a jar of 1,000 with 10 rare copies, as on the stage).",
       "support": "derivation",
       "source": "Independent draws: 0.99^20 = 0.8179. Without replacement: product over k = 0..19 of (990 - k)/(1000 - k) = 0.8163. Computed in node (artifacts/scratch/w3life/check.mjs) and in Demo.tsx (P_LOST, P_REPL).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.few-survivors.c2",
       "text": "On the stage, jar n is drawn with seed n (1, 2, 3 ...); the seeds were not chosen. Over the first 21 jars red is lost in 16; over 100,000 jars drawn the same way it is lost in 81.7%.",
       "support": "simulation",
       "source": "mulberry32(n) partial Fisher-Yates draw of 20 from 1,000, replicated in artifacts/scratch/w3life/check2.mjs: lost 16 of 21, 82 of 101, 81,658 of 100,000. Seeds untuned (jar number).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.few-survivors.c3",
       "text": "Regrowth copies the survivors' gene copies, so a variant missing from all survivors cannot return without new mutation or migration; a variant that survives at 1 or 2 of 20 copies comes back at 5% or 10%, a change by chance (drift), not by fitness.",
       "support": "derivation",
       "source": "Follows from the model (each of 20 copies founds 50 of the 1,000 regrown copies); bottleneck and founder effects, e.g. Hartl & Clark (2007) Principles of Population Genetics, ch. 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.few-survivors.c4",
       "text": "The model is a toy: survivors are random with respect to the gene, and there is no selection, mutation or migration.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question ('Toy model'), on the stage ('Toy jar') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.few-survivors.c5",
       "text": "Recall: 15 survivors carry 30 copies; a 1% variant is missed by all 30 with probability 0.99^30, about 74%.",
       "support": "derivation",
       "source": "0.99^30 = 0.7397 (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

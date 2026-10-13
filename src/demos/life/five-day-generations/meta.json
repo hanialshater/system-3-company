@@ -28,28 +28,36 @@
       "text": "Starting from 20 new cases with R = 1.5 per generation, the generations have about 20, 30, 45, 68, 101, 152 and 228 new cases; 20 x 1.5^6 = 227.8.",
       "support": "derivation",
       "source": "Arithmetic; computed in Demo.tsx (cases) and in node (artifacts/scratch/w3life/check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.five-day-generations.c2",
       "text": "On the stage, R = 0.8 gives 20 x 0.8^6 = 5.2 new cases in generation 6, R = 1.2 gives 59.7, and R = 2 gives 1,280; below 1 each generation is smaller than the last.",
       "support": "derivation",
       "source": "Arithmetic (node); same function draws the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.five-day-generations.c3",
       "text": "The model is a made-up infection with R fixed, generations exactly 5 days apart and no overlap between generations.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question and on the stage ('Toy: R fixed, generations 5 days apart').",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.five-day-generations.c4",
       "text": "In real outbreaks R changes as behaviour and immunity change.",
       "support": "source",
       "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans: Dynamics and Control, Oxford UP, ch. 2 and 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

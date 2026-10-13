@@ -28,35 +28,45 @@
       "text": "A boat pointed straight across a 90 m river at 3 m/s relative to the water reaches the far bank in 30 s, whatever the speed of the current.",
       "support": "derivation",
       "source": "Ground velocity = boat velocity in the water + current velocity (Galilean addition). The current is along the river, so the across component stays 3 m/s: 90 / 3 = 30 s. Re-integrated in artifacts/scratch/w4phys/check.mjs (dt = 1e-4 s) for currents 0-6 m/s: 30.000 s each.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.river-crossing-time.c2",
       "text": "In those 30 s a current of u m/s carries the boat 30 u metres downstream: 60 m at 2 m/s, 120 m at 4 m/s, 180 m at 6 m/s.",
       "support": "derivation",
       "source": "x = u t at t = 30 s; same integration gives 0, 30, 60, 90, 120, 150, 180 m for u = 0..6 m/s.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.river-crossing-time.c3",
       "text": "Every 10 s the boat is another 30 m across, at the same across-distance as a boat in still water.",
       "support": "derivation",
       "source": "y = 3 t, independent of u: 30, 60, 90 m at 10, 20, 30 s. The stage draws these as dots on shared across-lines.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.river-crossing-time.c4",
       "text": "The current pushes along the river, never across it, so it decides where the boat lands, not when.",
       "support": "derivation",
       "source": "Independence of perpendicular velocity components (any introductory mechanics text, e.g. OpenStax University Physics Vol. 1, section 4.5 Relative Motion in One and Two Dimensions).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.river-crossing-time.c5",
       "text": "Model: the current is the same everywhere and the boat always points straight across at 3 m/s; real rivers run slower near the banks.",
       "support": "convention",
       "source": "Stated on stage ('Uniform current') and in the reveal. Velocity in a real channel falls towards the banks and bed because of friction (no-slip boundary); with a non-uniform current the crossing time is still 90 / 3 s if the boat keeps pointing straight across, but the landing point changes.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

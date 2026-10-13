@@ -27,28 +27,36 @@
       "text": "With R0 = 4, a perfect vaccine needs 1 - 1/4 = 75% coverage; a vaccine of efficacy e needs (1 - 1/R0) / e, so 80% efficacy needs 0.75 / 0.8 = 93.75%, about 94%.",
       "support": "source",
       "source": "Anderson R.M. & May R.M. (1991) Infectious Diseases of Humans, Oxford UP, ch. 5 (critical coverage with imperfect vaccines). Arithmetic in Demo.tsx (needed).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.leaky-vaccine-threshold.c2",
       "text": "At 70% efficacy the needed coverage would be 107%, impossible; even 100% coverage leaves R = 4 x (1 - 0.7) = 1.2. Any efficacy below 75% gives a needed coverage above 100% when R0 = 4.",
       "support": "derivation",
       "source": "0.75 / 0.7 = 1.071; R = R0 x (1 - c x e) at c = 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.leaky-vaccine-threshold.c3",
       "text": "At the start of an outbreak in a well-mixed population, R = R0 x (1 - coverage x efficacy), whether the vaccine is leaky (cuts everyone's chance by e) or all-or-nothing (fully protects a share e).",
       "support": "derivation",
       "source": "Susceptibility of the vaccinated is 1 - e in either case on average; the two types differ later in an outbreak, not in initial R (Halloran, Longini & Struchiner 2010, Design and Analysis of Vaccine Studies, ch. 2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.leaky-vaccine-threshold.c4",
       "text": "The model is a made-up disease and vaccine with random mixing; it is not a statement about any real vaccine.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; stated in the question ('Made-up disease'), on the stage ('Toy town') and in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

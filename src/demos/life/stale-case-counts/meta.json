@@ -28,28 +28,36 @@
       "text": "If infections double every 3 days and everyone is reported 9 days after infection, today's report counts the infections of 9 days ago; 9 days is 3 doublings, so 100 reported today means about 100 x 2^3 = 800 infected today.",
       "support": "derivation",
       "source": "Arithmetic: infected(today) = reported(today) x 2^(delay / doubling time). Computed in Demo.tsx (mult) and node.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.stale-case-counts.c2",
       "text": "On the stage, a 3-day delay gives about 200 infected today, a 12-day delay about 1,600; other delays give 100 x 2^(delay/3).",
       "support": "derivation",
       "source": "Same function draws the infection curve; arithmetic.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.stale-case-counts.c3",
       "text": "On a growing curve any delay hides more of the present the longer it is; on a flat curve a delay hides almost nothing.",
       "support": "derivation",
       "source": "infected(today) / reported(today) = growth factor over the delay, which is 1 when the curve is flat.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.stale-case-counts.c4",
       "text": "The model is a made-up outbreak with steady doubling and the same reporting delay for everyone; real reporting delays vary.",
       "support": "source",
       "source": "Model choice in Demo.tsx, stated on the stage before the prediction and in the reveal. Variable reporting delays: Gostic K.M. et al. (2020) Practical considerations for measuring the effective reproductive number, Rt. PLOS Computational Biology 16(12): e1008409 (verify before publishing).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
