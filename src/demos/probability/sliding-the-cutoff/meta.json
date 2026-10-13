@@ -1,0 +1,87 @@
+{
+  "slug": "sliding-the-cutoff",
+  "title": "Raise the cutoff. Who slips through?",
+  "hook": "A test scores everyone, then draws a line. The line decides which mistake you make.",
+  "domain": "probability",
+  "concept": "sensitivity-specificity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "false positives matter when a condition is rare (base-rates)"
+    ],
+    "doesNotKnow": [
+      "that moving a cutoff trades false alarms for misses",
+      "that only a better test shrinks both"
+    ]
+  },
+  "misconception": "A stricter cutoff makes a test better: it can have no false alarms and no missed cases at once.",
+  "objective": "The learner can say that raising the cutoff cuts false alarms but misses more sick people (and the reverse), and that only separating the two score curves shrinks both errors.",
+  "keyState": "Cutoff raised to 1.5 (31% missed, 6.7% false alarms) and lowered to 0.5 (6.7% missed, 31% false alarms), then the better test shown.",
+  "claims": [
+    {
+      "id": "probability.sliding-the-cutoff.c1",
+      "text": "In the toy model healthy people score about 0 and sick people about 2, both with spread 1 (a normal curve).",
+      "support": "convention",
+      "source": "Toy model stated on the stage and in the question; it is not a real clinical test. Constants SICK, BETTER in src/demos/probability/sliding-the-cutoff/model.ts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sliding-the-cutoff.c2",
+      "text": "With the cutoff at 1, 15.9% of sick people are missed and 15.9% of healthy people are falsely flagged.",
+      "support": "derivation",
+      "source": "missed = Phi(1 - 2) = Phi(-1) = 0.1587; false alarms = 1 - Phi(1) = 0.1587 (normal table; errors() in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sliding-the-cutoff.c3",
+      "text": "Raising the cutoff to 1.5 misses 30.9% of sick people and falsely flags 6.7% of healthy people.",
+      "support": "derivation",
+      "source": "Phi(-0.5) = 0.3085; 1 - Phi(1.5) = 0.0668 (normal table; recomputed in node from errors()).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sliding-the-cutoff.c4",
+      "text": "Lowering the cutoff to 0.5 misses 6.7% of sick people and falsely flags 30.9% of healthy people.",
+      "support": "derivation",
+      "source": "Phi(0.5 - 2) = Phi(-1.5) = 0.0668; 1 - Phi(0.5) = 0.3085 (normal table).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sliding-the-cutoff.c5",
+      "text": "A better test, with the sick scores centred at 3 instead of 2, misses fewer sick people at the same cutoff with the same false alarms; at 1.5 both errors are 6.7%.",
+      "support": "derivation",
+      "source": "Phi(c - 3) < Phi(c - 2) for every cutoff c, while false alarms depend only on the healthy curve and c; at c = 1.5 both errors are 1 - Phi(1.5) = 6.7% (computed from errors(1.5, 3)).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sliding-the-cutoff.c6",
+      "text": "Moving the cutoff trades one mistake for the other: missed rises as false alarms fall.",
+      "support": "derivation",
+      "source": "missed = Phi(c - 2) increases in c; false alarms = 1 - Phi(c) decreases in c.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A screening test flags everyone whose score is above a line. You move the line so fewer healthy people are flagged. What happens to the sick people the test misses?",
+    "options": [
+      "More of them are missed",
+      "Fewer of them are missed",
+      "No change, the test is the same"
+    ],
+    "answer": 0,
+    "why": "The curves overlap, so a higher line cuts false alarms but leaves more sick scores below it. Only a test whose curves overlap less improves both."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

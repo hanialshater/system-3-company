@@ -1,0 +1,94 @@
+{
+  "slug": "real-effect-missed",
+  "title": "A rigged coin, 50 flips: caught?",
+  "hook": "The coin really is rigged toward heads. Will a standard 5% test on 50 flips spot it?",
+  "domain": "probability",
+  "concept": "statistical-power",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a test at the 5% level rarely flags a fair coin (p-values)"
+    ],
+    "doesNotKnow": [
+      "that a real effect can be missed most of the time",
+      "that more flips raise the chance of catching it"
+    ]
+  },
+  "misconception": "If a real effect exists, a standard 5% test will find it.",
+  "objective": "The learner can say that a 5% test only controls false alarms; with few flips it misses a real 60% bias about two times in three, and more flips raise the catch rate.",
+  "keyState": "100 seeded 50-flip experiments run (28 of 100 reach the bar of 32), then the same 100 experiments extended to 200 flips (80 of 100 reach the bar of 113).",
+  "claims": [
+    {
+      "id": "probability.real-effect-missed.c1",
+      "text": "The coin is secretly 60% heads; each experiment flips it 50 times and calls it biased only if heads reaches 32 or more.",
+      "support": "convention",
+      "source": "Set-up shown on the stage. 32 is the smallest c with P(Bin(50, 0.5) >= c) <= 0.05 (bar(50) in model.ts).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c2",
+      "text": "A fair coin reaches 32 heads in 50 flips 3.2% of the time.",
+      "support": "derivation",
+      "source": "P(Bin(50, 0.5) >= 32) = 0.03245 (exact binomial sum; falseAlarm(50), recomputed in node). P(>= 31) is 0.0595, which is why the bar is 32.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c3",
+      "text": "A 60% coin reaches 32 heads in 50 flips about 34% of the time, so the test catches the bias about one time in three.",
+      "support": "derivation",
+      "source": "P(Bin(50, 0.6) >= 32) = 0.3356 (exact binomial sum; power(50)).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c4",
+      "text": "In the 100 experiments on the stage, 28 of 100 reached the bar of 32 heads with 50 flips.",
+      "support": "simulation",
+      "source": "Seeds mulberry32(7000 + i), i = 0..99, 60% heads per flip; 7000 was the first seed tried (untuned). Over 400 other sets of 100 experiments the count averaged 33.2 with SD 4.7 (range 20 to 47), so 28 is a typical-low draw, not the rule; the exact rate is 33.6%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c5",
+      "text": "With 200 flips and a bar of 113 heads, a fair coin reaches the bar 3.8% of the time and the 60% coin reaches it 86.0% of the time.",
+      "support": "derivation",
+      "source": "bar(200) = 113 is the smallest c with P(Bin(200, 0.5) >= c) <= 0.05; P(Bin(200, 0.5) >= 113) = 0.0384; P(Bin(200, 0.6) >= 113) = 0.8603 (exact; power(200), recomputed in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c6",
+      "text": "In the same 100 experiments extended to 200 flips, 80 of 100 reached the bar of 113 heads.",
+      "support": "simulation",
+      "source": "Same seeds, first 50 flips of each stream unchanged. Over 400 other sets the count averaged 85.8 with SD 3.5 (range 74 to 95); the exact rate is 86.0%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.real-effect-missed.c7",
+      "text": "Not finding a significant result from a small test does not show there is no effect.",
+      "support": "convention",
+      "source": "Standard interpretation of statistical power: with a 34% catch rate, a null result is the usual outcome even though the effect is real (claims 3 and 4).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A drug truly works, but a small trial finds 'no significant effect'. What is the sensible reading?",
+    "options": [
+      "The drug does nothing",
+      "The trial may simply have been too small to catch a real effect",
+      "The p-value must be wrong"
+    ],
+    "answer": 1,
+    "why": "A small test misses a real effect most of the time (a 60% coin in 50 flips is caught only about a third of the time). More data raises the catch rate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
