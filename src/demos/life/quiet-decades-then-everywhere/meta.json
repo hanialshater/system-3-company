@@ -1,0 +1,69 @@
+{
+  "slug": "quiet-decades-then-everywhere",
+  "title": "Halfway in time, how far along?",
+  "hook": "An invasive plant grows 20% a year until it fills the region. What does halfway look like?",
+  "domain": "life",
+  "concept": "invasion-lag",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "exponential growth: a steady percentage increase each year",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "that most of the time to fill a region is spent with the species nearly invisible",
+      "that the last few doublings do almost all of the filling"
+    ]
+  },
+  "misconception": "Halfway through the time, an exponentially spreading species covers about half of its eventual range.",
+  "objective": "The learner can explain that in the toy region, at year 25 of a roughly 50-year climb, the plants are only about 1% of their final number, because each doubling adds as much as everything before it.",
+  "claims": [
+    {
+      "id": "life.quiet-decades-then-everywhere.c1",
+      "text": "100 plants growing 20% a year reach 1,000,000 after about 50.5 years.",
+      "support": "derivation",
+      "source": "ln(10,000) / ln(1.2) = 50.52 (Demo.tsx FULL_AT; artifacts/scratch/w4life/nums.mjs). Matches the brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.quiet-decades-then-everywhere.c2",
+      "text": "At year 25 there are 9,540 plants, 0.95% of the final 1,000,000; at year 40, 146,977 (15%); at year 45, 365,726 (37%).",
+      "support": "derivation",
+      "source": "100 x 1.2^y rounded (Demo.tsx plants()); node re-run. The stage shows 0.95% with two decimals; the reveal uses the same function.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.quiet-decades-then-everywhere.c3",
+      "text": "Growing 20% a year doubles the count about every 3.8 years, and each doubling adds as many plants as all the years before it together.",
+      "support": "derivation",
+      "source": "ln 2 / ln 1.2 = 3.80; for doubling from N to 2N the increase N equals the whole amount accumulated so far.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.quiet-decades-then-everywhere.c4",
+      "text": "The region is a model: steady 20% growth until a fixed cap of 1,000,000, no slowing as space runs out, numbers made up. Labelled 'Toy region' in the question and on the stage. Real invasions also show lags for other reasons.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #41. Lag phases in real invasions: Crooks 2005, Ecoscience 12:316 (the reveal does not claim this; recorded for the fact-checker in case it is added).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A weed doubles its area every 2 days and will cover a whole lake on day 40. Roughly how much of the lake is covered on day 20?",
+    "options": ["About half", "About a quarter", "Very little, around 1% or less"],
+    "answer": 2,
+    "why": "Exponential growth does almost all of its filling in the last few doublings, so halfway in time is a tiny fraction of the final size."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
