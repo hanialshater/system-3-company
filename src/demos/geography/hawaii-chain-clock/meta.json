@@ -1,0 +1,95 @@
+{
+  "slug": "hawaii-chain-clock",
+  "title": "A line of islands that tells time",
+  "hook": "Hawaii's islands get older with distance from the active volcano. What does that measure?",
+  "domain": "geography",
+  "concept": "hotspot-chain-speed",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that the Earth's surface is made of moving plates",
+      "speed = distance ÷ time"
+    ],
+    "doesNotKnow": [
+      "how a chain of volcanic islands records a plate's speed",
+      "that the Pacific plate moves about 10 cm a year"
+    ]
+  },
+  "misconception": "Plate speeds cannot be measured directly; they are only theory.",
+  "objective": "The learner can explain that islands formed over a fixed hot spot and carried away by the plate give its average speed as distance ÷ age, about 10 cm a year for Kauaʻi and about 9 for Midway.",
+  "keyState": "Rulers from Kīlauea to both Kauaʻi and Midway laid, with their speeds (10.4 and 8.7 cm/yr) shown.",
+  "claims": [
+    {
+      "id": "geography.hawaii-chain-clock.c1",
+      "text": "Kauaʻi's volcano is about 5.1 million years old.",
+      "support": "source",
+      "source": "USGS Hawaiian Volcano Observatory, Hawaiian-Emperor chain age pages: Kauaʻi shield about 5.1 Ma (cited by the cm-geography brief; from memory, not re-checked by the builder). Brief instruction: unverified until a checker confirms the table.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c2",
+      "text": "Midway is about 28 million years old.",
+      "support": "source",
+      "source": "USGS / published K-Ar ages for Midway Atoll, about 27.7 Ma (from memory; cm-geography brief uses about 28 Ma). Needs a checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c3",
+      "text": "Kīlauea is an active volcano today.",
+      "support": "source",
+      "source": "USGS HVO: Kīlauea is one of the most active volcanoes on Earth, with frequent eruptions in recent years (from memory). Wording softened from the brief's 'erupting now', which is time-sensitive.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c4",
+      "text": "Kauaʻi is about 530 km from Kīlauea and Midway about 2,440 km.",
+      "support": "derivation",
+      "source": "Great-circle distances on R = 6,371.0088 km between gazetteer points Kīlauea 19.42N 155.29W, Kauaʻi 22.05N 159.53W, Midway 28.21N 177.37W (cm-geography brief; coordinates from memory): 529.0 and 2,444.3 km (Demo.tsx km; builder node run).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c5",
+      "text": "Distance over age gives about 10.4 cm a year for Kauaʻi and 8.7 for Midway.",
+      "support": "derivation",
+      "source": "529.0 km / 5.1 Myr = 10.37 cm/yr; 2,444.3 km / 28 Myr = 8.73 cm/yr (Demo.tsx cmPerYr). The brief says 8.8 for Midway; its distance or age was rounded differently.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c6",
+      "text": "The volcanoes form over a hot spot that stays roughly put, and the Pacific plate carries each one off to the northwest.",
+      "support": "source",
+      "source": "Hot-spot model (Wilson 1963; Morgan 1971; USGS 'This Dynamic Earth', Hotspots; from memory). The stage labels the fixed-hot-spot assumption. Some studies find the Hawaiian hot spot drifted, notably in the Emperor-chain era; the lesson says 'roughly'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.hawaii-chain-clock.c7",
+      "text": "Hawaii's islands get older the farther they are from the active volcano.",
+      "support": "source",
+      "source": "Age progression along the Hawaiian chain (USGS HVO; Clague & Dalrymple 1987; from memory).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A volcanic island is 1,000 km along a hot-spot chain from the active volcano and is 10 million years old. About how fast has the plate moved?",
+    "options": [
+      "About 1 cm a year",
+      "About 10 cm a year",
+      "About 100 cm a year"
+    ],
+    "answer": 1,
+    "why": "1,000 km is 100,000,000 cm; over 10,000,000 years that is 10 cm a year: distance along the chain divided by age."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
