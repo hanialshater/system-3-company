@@ -1,0 +1,75 @@
+{
+  "slug": "hanoi-tower-doubles",
+  "title": "One more disk, twice the work",
+  "hook": "3 disks take 7 moves. Does each new disk add a few more, or something worse?",
+  "domain": "cs",
+  "concept": "recursion",
+  "status": "review",
+  "durationSec": 90,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "moving one thing at a time",
+      "the rule that a bigger disk never sits on a smaller one",
+      "doubling a number"
+    ],
+    "doesNotKnow": [
+      "that moving n disks means solving the n-1 disk puzzle twice",
+      "recurrences",
+      "powers of two minus one as a pattern"
+    ]
+  },
+  "misconception": "Each added disk adds a few more moves, so 6 disks need roughly twice the moves of 3.",
+  "objective": "The learner can explain that moving n disks means moving the top n-1 aside, moving the biggest, and moving n-1 back, so each extra disk doubles the work plus one: 7, 15, 31, 63.",
+  "claims": [
+    {
+      "id": "cs.hanoi-tower-doubles.c1",
+      "text": "To move a tower, everything above the biggest disk must first be moved off it and onto a third peg, the biggest disk moves once, then the rest is moved back on top.",
+      "support": "derivation",
+      "source": "The biggest disk can only move when it has nothing on top and the target peg is empty (every other disk is smaller), so all n-1 others must be on the third peg; afterwards they must all come back onto it. Standard argument, e.g. Graham, Knuth and Patashnik, Concrete Mathematics, 2nd ed., 1.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hanoi-tower-doubles.c2",
+      "text": "The fewest moves for n disks is 2^n - 1: 3 disks take 7, 4 take 15, 5 take 31 and 6 take 63.",
+      "support": "derivation",
+      "source": "T(n) = 2T(n-1) + 1, T(1) = 1, so T(n) = 2^n - 1 by induction (Concrete Mathematics, 1.1, eq. 1.1-1.3). Builder computed 2^n - 1 for n = 3..6: 7, 15, 31, 63.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hanoi-tower-doubles.c3",
+      "text": "10 disks need 1,023 moves and 64 disks need 18,446,744,073,709,551,615 moves (over 18 quintillion).",
+      "support": "derivation",
+      "source": "2^10 - 1 = 1,023; 2^64 - 1 = 18,446,744,073,709,551,615 (builder computed with BigInt in Node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hanoi-tower-doubles.c4",
+      "text": "The stage shortcut moves the top n-1 disks as one block and charges 2^(n-1) - 1 moves, the fewest that smaller puzzle needs.",
+      "support": "convention",
+      "source": "Demo.tsx carry(): adds cost(n-1) = 2^(n-1) - 1 to the move counter, per claim c2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A Tower of Hanoi with 7 disks needs 127 moves at best. About how many does 8 disks need?",
+    "options": [
+      "135",
+      "255",
+      "1,016"
+    ],
+    "answer": 1,
+    "why": "Move the top 7 aside (127), the big disk (1), the top 7 back (127): 127 x 2 + 1 = 255. Each disk doubles the work, plus one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
