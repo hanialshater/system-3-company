@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.95rem; font-weight: 700; }
+
+.floor { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.sq { fill: color-mix(in srgb, var(--domain) 22%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.last { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); }
+.side { font-size: 14px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.tile { fill: none; stroke: var(--domain); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.dim { font-size: 12px; fill: var(--muted); text-anchor: middle; }

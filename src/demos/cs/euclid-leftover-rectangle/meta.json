@@ -1,0 +1,69 @@
+{
+  "slug": "euclid-leftover-rectangle",
+  "title": "The biggest tile for a 48 by 18 floor",
+  "hook": "Identical square tiles, no cutting. How big can they be? Try sizes, or try scissors.",
+  "domain": "cs",
+  "concept": "euclid-gcd",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["division with remainder", "what a square and a rectangle are"],
+    "doesNotKnow": ["that the greatest common divisor survives cutting off squares (gcd(a, b) = gcd(b, a mod b))"]
+  },
+  "misconception": "Finding the greatest common divisor means testing every smaller number.",
+  "objective": "The learner can find the largest square tile for a 48 by 18 floor by cutting off the biggest squares (18, 18, 12, 6, 6) and explain why the last square, 6, is the answer.",
+  "claims": [
+    {
+      "id": "cs.euclid-leftover-rectangle.c1",
+      "text": "The largest identical square that tiles a 48 by 18 floor exactly is 6 by 6.",
+      "support": "derivation",
+      "source": "gcd(48, 18) = 6: 48 = 2 × 18 + 12, 18 = 1 × 12 + 6, 12 = 2 × 6. Builder ran Euclid in Node: 6. 3 also divides both but is smaller; 9 does not divide 48.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.euclid-leftover-rectangle.c2",
+      "text": "Cutting the biggest square that fits from 48 by 18, again and again, cuts squares of 18, 18, 12, 6 and 6, and the last strip, 12 by 6, splits into exactly two 6-squares.",
+      "support": "simulation",
+      "source": "Demo.tsx cuts(): sides [18, 18, 12, 6, 6]; rectangle after the third cut is 12 × 6. Builder re-ran the loop in Node.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.euclid-leftover-rectangle.c3",
+      "text": "A 6-square tiles the whole 48 by 18 floor: 8 across, 3 down, 24 tiles.",
+      "support": "derivation",
+      "source": "48 / 6 = 8, 18 / 6 = 3, 8 × 3 = 24.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.euclid-leftover-rectangle.c4",
+      "text": "Cutting off a square never changes which tiles fit: a tile that fits the floor and the square also fits what is left.",
+      "support": "derivation",
+      "source": "If t divides a and b then t divides a − b, and conversely if t divides b and a − b it divides a; so the common divisors of (a, b) and (a − b, b) are the same (Euclid, Elements VII.2; Hardy and Wright, Theorem 4 ff.).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.euclid-leftover-rectangle.c5",
+      "text": "The method took 5 cuts here, instead of testing every size up to 18.",
+      "support": "simulation",
+      "source": "Demo.tsx CUTS.length = 5. Testing every candidate side from 18 down to 1 is up to 18 tries; 18 here is the shorter side.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.euclid-leftover-rectangle.c6",
+      "text": "This is Euclid's algorithm.",
+      "support": "source",
+      "source": "Euclid, Elements, Book VII, Propositions 1 and 2 (repeated subtraction to find the greatest common measure); Knuth, TAOCP Vol. 2, 4.5.2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You cut the biggest squares from a 30 by 12 rectangle: 12, 12, then 6, 6. What is the largest square tile for 30 by 12?",
+    "options": ["6", "12", "3"],
+    "answer": 0,
+    "why": "The last square that fits exactly is 6, and cutting squares never changes which tiles fit, so 6 is the largest common tile (gcd(30, 12) = 6)."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

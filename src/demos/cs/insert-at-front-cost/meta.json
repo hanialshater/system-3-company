@@ -1,0 +1,62 @@
+{
+  "slug": "insert-at-front-cost",
+  "title": "Room at the front of the line",
+  "hook": "Six items fill a row of slots. One more must go first. What does it cost?",
+  "domain": "cs",
+  "concept": "linked-list-vs-array",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["a row of items", "counting"],
+    "doesNotKnow": ["that a row of slots (an array) must shift everything to insert at the front", "that a chain (a linked list) is cheap to insert into but slow to walk"]
+  },
+  "misconception": "Inserting is equally cheap in any structure.",
+  "objective": "The learner can explain that inserting at the front of a 6-item array moves all 6 items, while a linked list moves none but needs 3 hops to reach item 4.",
+  "claims": [
+    {
+      "id": "cs.insert-at-front-cost.c1",
+      "text": "Inserting a new item at the front of a row of 6 items in numbered slots moves all 6 existing items one slot right.",
+      "support": "derivation",
+      "source": "Each item i must go from slot i to slot i + 1 to free slot 1: n = 6 moves (CLRS, Introduction to Algorithms, 3rd ed., ch. 10 intro: arrays store elements contiguously). Demo.tsx ROW_MOVES = ITEMS.length.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insert-at-front-cost.c2",
+      "text": "Inserting at the front of a chain moves no items: the new box's arrow and the start arrow are set, 2 arrows in all.",
+      "support": "derivation",
+      "source": "LIST-INSERT in CLRS 3rd ed., 10.2 (singly linked case: x.next = L.head; L.head = x). Demo.tsx CHAIN_MOVES = 0, CHAIN_ARROWS = 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insert-at-front-cost.c3",
+      "text": "Reaching item 4 of a chain takes 3 hops along the arrows; in general item k takes k − 1 hops.",
+      "support": "derivation",
+      "source": "Starting at the first box, each hop follows one next-arrow, so item k is k − 1 hops away (CLRS 10.2, LIST-SEARCH walks from the head). Demo.tsx HOPS = TARGET − 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insert-at-front-cost.c4",
+      "text": "In a row of numbered slots, any slot is reached in a single jump.",
+      "support": "source",
+      "source": "Array indexing computes the address from the index in constant time (CLRS 3rd ed., 10.3 and Appendix on memory as an array of words).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.insert-at-front-cost.c5",
+      "text": "A row of slots is called an array and a chain of boxes joined by arrows is called a linked list.",
+      "support": "convention",
+      "source": "CLRS 3rd ed., ch. 10 (arrays; 10.2 Linked lists).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You keep a list where you constantly add items at the front and rarely look up the 500th item. Which structure suits it?",
+    "options": ["A linked list (chain)", "An array (row of slots)", "They cost the same"],
+    "answer": 0,
+    "why": "A chain inserts at the front by setting two arrows; a row would shift every item each time. The chain's slow walk barely matters if lookups are rare."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
