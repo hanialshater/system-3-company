@@ -1,0 +1,69 @@
+{
+  "slug": "cafe-is-five-bytes",
+  "title": "How many bytes is café?",
+  "hook": "Text is stored as numbers. Does every character get the same amount of room?",
+  "domain": "cs",
+  "concept": "utf8-variable-width",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-cs", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["ASCII maps characters to numbers", "a byte holds one small number"],
+    "doesNotKnow": ["that UTF-8 uses 1 to 4 bytes per character, so length in bytes is not length in characters"]
+  },
+  "misconception": "One character is always one byte.",
+  "objective": "The learner can say that café is 4 characters but 5 bytes in UTF-8, because é takes two bytes while c, a and f take one, and that other characters take three or four.",
+  "claims": [
+    {
+      "id": "cs.cafe-is-five-bytes.c1",
+      "text": "Stored as UTF-8, café (4 characters) takes 5 bytes.",
+      "support": "simulation",
+      "source": "Node: Buffer.byteLength('café') = 5, [...'café'].length = 4 (é as the single code point U+00E9, NFC). Demo.tsx computes with TextEncoder. Builder re-ran in Node 2026-10-13.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cafe-is-five-bytes.c2",
+      "text": "In UTF-8, é is two bytes, C3 A9.",
+      "support": "simulation",
+      "source": "Node: Buffer.from('é') = <c3 a9>. RFC 3629 section 3: U+0080 to U+07FF encode as 2 bytes (110xxxxx 10xxxxxx); U+00E9 -> C3 A9.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cafe-is-five-bytes.c3",
+      "text": "c, a and f take one byte each in UTF-8, the same codes as ASCII (63, 61, 66 in hex).",
+      "support": "source",
+      "source": "RFC 3629 section 1/3: U+0000 to U+007F are encoded as one byte identical to US-ASCII. Node: Buffer.from('caf') = <63 61 66>.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cafe-is-five-bytes.c4",
+      "text": "世 takes three bytes in UTF-8 (E4 B8 96) and 😀 takes four (F0 9F 98 80).",
+      "support": "simulation",
+      "source": "Node: Buffer.from('世') = <e4 b8 96> (U+4E16), Buffer.from('😀') = <f0 9f 98 80> (U+1F600). RFC 3629 section 3 table.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cafe-is-five-bytes.c5",
+      "text": "UTF-8 gives plain English letters one byte and other characters two, three or four, so counting bytes and counting characters give different answers.",
+      "support": "source",
+      "source": "RFC 3629 (Yergeau 2003), section 3: each code point is encoded in 1 to 4 octets. 'Characters' here means Unicode code points; the stage shows only precomposed characters.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cafe-is-five-bytes.c6",
+      "text": "UTF-8 is a common way to save text.",
+      "support": "source",
+      "source": "WHATWG Encoding Standard requires UTF-8 for new content; W3Techs usage survey reports UTF-8 on about 98% of websites (2024). Learner-visible wording kept to 'a common way'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Stored as UTF-8, the word naïve has 5 characters. How many bytes does it take?",
+    "options": ["5", "6", "10"],
+    "answer": 1,
+    "why": "n, a, v, e take one byte each; ï, like é, takes two (C3 AF). 4 + 2 = 6 bytes for 5 characters."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
