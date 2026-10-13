@@ -1,0 +1,72 @@
+{
+  "slug": "point-one-is-26-percent",
+  "title": "Point one is 26 percent",
+  "hook": "Ocean pH went from 8.2 to 8.1. Is that a 1% change?",
+  "domain": "chemistry",
+  "concept": "ocean-acidification",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that pH is a log scale (ph-log-scale)",
+      "that lower pH means more acidic"
+    ],
+    "doesNotKnow": [
+      "that a fall of 0.1 in seawater pH is a rise of about 26% in hydrogen ion concentration"
+    ]
+  },
+  "misconception": "pH 8.2 to 8.1 is a trivial change of about 1%.",
+  "objective": "The learner can explain that each 0.1 fall in pH multiplies the hydrogen ion concentration by 10^0.1, about 1.26, so the ocean's fall from about 8.2 to 8.1 is a rise of about 26%, and a fall of 0.3 is about a doubling.",
+  "claims": [
+    {
+      "id": "chemistry.point-one-is-26-percent.c1",
+      "text": "Surface seawater pH fell from about 8.2 to about 8.1 since pre-industrial times.",
+      "support": "source",
+      "source": "IPCC AR6 WG1 (2021), ch. 2 and ch. 5: open-ocean surface pH has declined by about 0.1 since the industrial era began (virtually certain); NOAA PMEL 'Ocean acidification' (pre-industrial about 8.2, today about 8.1). Values are global means, rounded.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.point-one-is-26-percent.c2",
+      "text": "A fall of 0.1 in pH raises the hydrogen ion concentration by about 26% (10^0.1 = 1.26).",
+      "support": "derivation",
+      "source": "pH = −log10[H+], so [H+] ratio = 10^(8.2 − 8.1) = 1.259 (node; Demo.tsx ratio()). The stage's 100 dots become 126.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.point-one-is-26-percent.c3",
+      "text": "A fall of 0.3 in pH is about a doubling of hydrogen ions (10^0.3 = 2.0).",
+      "support": "derivation",
+      "source": "10^0.3 = 1.995 (node); stage shows about 200 dots at pH 7.9.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.point-one-is-26-percent.c4",
+      "text": "pH counts powers of ten of hydrogen ion concentration.",
+      "support": "source",
+      "source": "pH = −log10 a(H+) (IUPAC Gold Book, 'pH'); concentration used in place of activity, as is usual at this level.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A lake's pH falls from 7.0 to 6.7. Its hydrogen ion concentration has roughly…",
+    "options": [
+      "doubled",
+      "risen by 3%",
+      "risen tenfold"
+    ],
+    "answer": 0,
+    "why": "Each 0.1 down multiplies [H+] by about 1.26; 0.3 down is 10^0.3, about 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

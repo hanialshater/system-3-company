@@ -1,0 +1,79 @@
+{
+  "slug": "one-ml-of-steam",
+  "title": "One millilitre of steam",
+  "hook": "Boil a single millilitre of water. How much room does the steam need?",
+  "domain": "chemistry",
+  "concept": "states-of-matter",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that water boils to steam at 100 °C",
+      "millilitres"
+    ],
+    "doesNotKnow": [
+      "that boiling spreads the same molecules into about 1,600 times the space"
+    ]
+  },
+  "misconception": "Gas molecules are bigger, or steam is just hot water taking about the same room.",
+  "objective": "The learner can explain that 1 mL of water at 100 °C and 1 atm becomes about 1,630 mL of steam (ideal gas), because the same molecules move far apart, not because they grow.",
+  "claims": [
+    {
+      "id": "chemistry.one-ml-of-steam.c1",
+      "text": "1 mL of liquid water at 100 °C boils to about 1,630 mL of steam at 1 atm, treating steam as an ideal gas: about 1,600 times the room.",
+      "support": "derivation",
+      "source": "n = 0.9584 g / 18.015 g/mol = 0.05320 mol; V = nRT/p = 0.05320 x 0.082057 x 373.15 / 1 = 1.629 L (node; Demo.tsx STEAM_ML). Liquid density at 100 °C 0.9584 g/mL (CRC Handbook, 'Properties of water').",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-ml-of-steam.c2",
+      "text": "Real steam at 100 °C and 1 atm takes about 2% less room than the ideal-gas value.",
+      "support": "source",
+      "source": "Steam tables (IAPWS-IF97): saturated vapour at 100 °C, 101.4 kPa, specific volume 1.672 m3/kg, so 0.9584 g gives about 1,603 mL, 1.6% below 1,629 mL. Published expansion ratios about 1,600 to 1,700.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-ml-of-steam.c3",
+      "text": "Boiling does not make molecules bigger or change them; in the liquid they touch their neighbours, and in steam each has on average about 1,600 times as much space, so the gas is mostly empty.",
+      "support": "source",
+      "source": "Kinetic-molecular picture of liquids and gases (Atkins & Jones, Chemical Principles, ch. on gases and liquids). The H2O molecule is the same in both phases.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-ml-of-steam.c4",
+      "text": "Steam is invisible until it cools into droplets.",
+      "support": "source",
+      "source": "Water vapour is a transparent gas; the visible 'steam' above a kettle is condensed droplets (Atkins & Jones; any meteorology text on condensation).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-ml-of-steam.c5",
+      "text": "The stage is a drawing: 30 molecules stand for the whole millilitre, volume is on a log scale, and gas positions are a fixed scatter (mulberry32 seed 7, layout only, not evidence).",
+      "support": "derivation",
+      "source": "Demo.tsx N_MOL, Y(), SPOTS. A free piston at 1 atm means the volume at each boiled share is (1 - f) x 1 mL + f x 1,629 mL.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sealed 1 L bottle holds a few drops of water. You heat it until all the water is steam. Why does the bottle risk bursting?",
+    "options": [
+      "the steam needs far more room than the liquid did",
+      "the water molecules get bigger",
+      "steam is heavier than water"
+    ],
+    "answer": 0,
+    "why": "The same molecules spread out: at 1 atm a millilitre of water needs about 1,600 mL as steam, so in a fixed bottle the pressure climbs instead."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

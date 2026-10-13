@@ -1,0 +1,175 @@
+"use client";
+
+// One chart: reactant concentration against time, starting at 80 mmol/L. The learner waits for
+// it to halve, again and again, for a second-order reaction (rate ∝ [A]², needs two A to meet)
+// and for a first-order one with the same first half. Brackets under the curve show each wait:
+// second order 10, 20, 40 min; first order 10, 10, 10 min.
+
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import s from "./styles.module.css";
+
+type Order = 1 | 2;
+const A0 = 80; // mmol/L
+const T_HALF1 = 10; // min, the first halving for both
+const K2 = 1 / (A0 * T_HALF1); // L/(mmol min): 1/[A] = 1/A0 + k t
+const K1 = Math.LN2 / T_HALF1; // 1/min
+const conc = (o: Order, t: number) => (o === 2 ? 1 / (1 / A0 + K2 * t) : A0 * Math.exp(-K1 * t));
+// Time to reach A0 / 2^n
+const timeTo = (o: Order, n: number) => Math.round((o === 2 ? (Math.pow(2, n) / A0 - 1 / A0) / K2 : n * T_HALF1) * 1000) / 1000;
+const wait = (o: Order, n: number) => timeTo(o, n) - timeTo(o, n - 1);
+const MAXN = 3;
+const WAIT2 = wait(2, 2); // 20 min
+const NAMES = ["second-twice", "first-twice"] as const;
+
+const W = 320;
+const H = 210;
+const L = 44;
+const R = 12;
+const TOP = 12;
+const BASE = 150;
+const TMAX = timeTo(2, MAXN); // 70 min
+const X = (t: number) => L + (t / TMAX) * (W - L - R);
+const Y = (c: number) => BASE - (c / A0) * (BASE - TOP);
+const path = (o: Order, n: number) => {
+  const end = timeTo(o, n);
+  return Array.from({ length: 61 }, (_, i) => {
+    const t = (i / 60) * end;
+    return `${i ? "L" : "M"} ${X(t).toFixed(1)} ${Y(conc(o, t)).toFixed(1)}`;
+  }).join(" ");
+};
+const name = (o: Order) => (o === 2 ? "2nd order" : "1st order");
+
+export default function TheSlowingHalfLife({ slug }: { slug: string }) {
+  const [order, setOrder] = useState<Order>(2);
+  const [n, setN] = useState(0);
+  const [seen, setSeen] = useState<Record<Order, number>>({ 1: 0, 2: 0 });
+
+  const other: Order = order === 2 ? 1 : 2;
+  const brackets = Array.from({ length: n }, (_, i) => i + 1);
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question: `A second-order reaction takes ${wait(2, 1)} min to go from ${A0} to ${A0 / 2} mmol/L. From ${A0 / 2} to ${A0 / 4} mmol/L it takes about…`,
+        options: [`${wait(2, 1) / 2} min`, `${wait(2, 1)} min`, `${WAIT2} min`],
+        answer: 2,
+      }}
+      exploreHint="Wait for two halvings in 2nd order, then switch to 1st order."
+      minInteractions={NAMES.length}
+      reveal={() => (
+        <>
+          <p>
+            {seen[2] >= 2 ? "You saw" : "Halve it twice and you see"} the second-order waits grow:{" "}
+            <strong>
+              {Array.from({ length: Math.max(2, seen[2]) }, (_, i) => wait(2, i + 1)).join(", ")} min
+            </strong>
+            . Each half takes twice as long as the last.{" "}
+            {seen[1] >= 2 ? "The first-order run kept" : "A first-order run keeps"} the same {T_HALF1} min every time.
+          </p>
+          <p>
+            A second-order reaction needs two reactant molecules to meet, so its rate goes with the concentration
+            squared. Halve the crowd and meetings become four times rarer while half as many molecules are left to react, so the next half takes twice as long. Its
+            half-life is 1/(k[A]), growing as [A] falls. A first-order reaction (like radioactive decay) has one fixed
+            half-life.
+          </p>
+        </>
+      )}
+    >
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={NAMES}>
+          {(reach) => {
+            const check = (o: Order, k: number) => {
+              setSeen((p) => ({ ...p, [o]: Math.max(p[o], k) }));
+              if (k >= 2) reach(o === 2 ? "second-twice" : "first-twice");
+            };
+            return (
+              <div className={s.wrap}>
+                <svg
+                  viewBox={`0 0 ${W} ${H}`}
+                  className={`stage-svg ${s.fit}`}
+                  role="img"
+                  aria-label={`${name(order)}: after ${n} halvings, ${timeTo(order, n)} minutes`}
+                >
+                  {[0, 20, 40, 80].map((c) => (
+                    <g key={c}>
+                      <line x1={L} x2={W - R} y1={Y(c)} y2={Y(c)} className={s.grid} />
+                      <text x={L - 4} y={Y(c) + 3} textAnchor="end" className={s.small}>
+                        {c}
+                      </text>
+                    </g>
+                  ))}
+                  <text x={L - 4} y={TOP + 15} textAnchor="end" className={s.small}>
+                    mmol/L
+                  </text>
+                  {Array.from({ length: MAXN + 1 }, (_, k) => timeTo(order, k)).map((t) => (
+                    <text key={t} x={X(t)} y={BASE + 13} textAnchor="middle" className={s.small}>
+                      {t}
+                    </text>
+                  ))}
+                  <text x={W - R} y={BASE + 26} textAnchor="end" className={s.small}>
+                    time, min
+                  </text>
+                  {seen[other] > 0 && <path d={path(other, seen[other])} className={s.ghost} />}
+                  {n > 0 && <path d={path(order, n)} className={s.curve} />}
+                  {brackets.map((k) => {
+                    const x0 = X(timeTo(order, k - 1));
+                    const x1 = X(timeTo(order, k));
+                    const y = BASE + 40;
+                    return (
+                      <g key={k}>
+                        <line x1={x0 + 5} x2={x1 - 5} y1={y} y2={y} className={k % 2 ? s.bar : s.bar2} />
+                        <line x1={x1} x2={x1} y1={Y(conc(order, timeTo(order, k)))} y2={y} className={s.tick} />
+                        <text x={(x0 + x1) / 2} y={y + 13} textAnchor="middle" className={s.label}>
+                          {wait(order, k)}
+                        </text>
+                      </g>
+                    );
+                  })}
+                  <circle cx={X(timeTo(order, n))} cy={Y(A0 / Math.pow(2, n))} r={5} className={s.dot} />
+                  <text x={W - R} y={TOP + 12} textAnchor="end" className={s.label}>
+                    {name(order)}
+                  </text>
+                </svg>
+                <Slider
+                  label="Halvings waited"
+                  value={n}
+                  min={0}
+                  max={MAXN}
+                  disabled={locked}
+                  format={(v) => `${v} (${A0 / Math.pow(2, v)} mmol/L)`}
+                  onChange={(v) => {
+                    setN(v);
+                    check(order, v);
+                  }}
+                />
+                <Row>
+                  {([2, 1] as Order[]).map((o) => (
+                    <Control
+                      key={o}
+                      className={order === o ? "active" : ""}
+                      disabled={locked || order === o}
+                      onClick={() => {
+                        setOrder(o);
+                        check(o, n);
+                      }}
+                    >
+                      {name(o)}
+                    </Control>
+                  ))}
+                </Row>
+                <Row>
+                  <Readout label="Last wait" value={n ? `${wait(order, n)} min` : "none yet"} />
+                  <Readout label="Total" value={`${timeTo(order, n)} min`} />
+                </Row>
+              </div>
+            );
+          }}
+        </Milestones>
+      )}
+    </Lesson>
+  );
+}

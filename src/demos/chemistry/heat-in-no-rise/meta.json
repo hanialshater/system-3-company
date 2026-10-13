@@ -1,0 +1,80 @@
+{
+  "slug": "heat-in-no-rise",
+  "title": "Heat in, no rise",
+  "hook": "Keep heating a bowl of ice. Why does the thermometer refuse to move?",
+  "domain": "chemistry",
+  "concept": "heating-curve-plateau",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that heat usually raises temperature",
+      "kilojoules as a unit of energy",
+      "that ice melts at 0 °C"
+    ],
+    "doesNotKnow": [
+      "that during melting, heat goes into freeing molecules from the solid, with no temperature rise"
+    ]
+  },
+  "misconception": "Temperature always climbs while heat is added.",
+  "objective": "The learner can explain that 200 kJ added to 1.0 kg of ice at 0 °C melts about 0.60 kg and leaves ice and water at 0 °C, because melting needs about 334 kJ/kg, and that only after all the ice has melted does the temperature rise (about 1 °C per 4.18 kJ).",
+  "claims": [
+    {
+      "id": "chemistry.heat-in-no-rise.c1",
+      "text": "Melting ice needs about 334 kJ per kg.",
+      "support": "source",
+      "source": "Enthalpy of fusion of water 333.6 kJ/kg (6.01 kJ/mol) at 0 °C (CRC Handbook, 'Properties of ice and supercooled water').",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-in-no-rise.c2",
+      "text": "200 kJ added to 1.0 kg of ice at 0 °C melts about 0.60 kg and leaves about 0.40 kg of ice, all at 0 °C.",
+      "support": "derivation",
+      "source": "200 / 334 = 0.599 kg melted; none left over to warm the water (node; Demo.tsx iceLeft(), temp()). Assumes no heat lost to the surroundings and the mixture kept stirred.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-in-no-rise.c3",
+      "text": "Once all the ice has melted, 1 kg of water warms by about 1 °C per 4.18 kJ; the same 200 kJ given to 1 kg of liquid water at 0 °C would warm it to about 48 °C.",
+      "support": "derivation",
+      "source": "Specific heat of liquid water about 4.18 kJ/(kg K) (CRC Handbook); 200 / 4.18 = 47.8 °C (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-in-no-rise.c4",
+      "text": "During melting, heat breaks molecules free of the ice's rigid structure without making them move faster, so the temperature holds.",
+      "support": "source",
+      "source": "Latent heat and phase-change plateaus (Atkins & Jones, Chemical Principles, ch. on phase changes); temperature tracks the average kinetic energy of the molecules, which melting at fixed pressure does not raise.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-in-no-rise.c5",
+      "text": "(Recall) Water boiling at 1 atm stays at about 100 °C when heated harder; the extra heat boils it away faster.",
+      "support": "source",
+      "source": "Boiling plateau at the normal boiling point, 99.97 °C at 101.325 kPa (CRC Handbook); enthalpy of vaporisation 2,257 kJ/kg (CRC Handbook).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A pot of water is boiling hard at 100 °C. You turn the burner up. The water's temperature…",
+    "options": [
+      "stays at about 100 °C; it boils away faster",
+      "climbs steadily above 100 °C",
+      "drops"
+    ],
+    "answer": 0,
+    "why": "Like melting, boiling uses the extra heat to free molecules (into steam), not to speed them up, so the temperature holds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

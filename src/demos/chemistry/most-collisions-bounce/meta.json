@@ -1,0 +1,72 @@
+{
+  "slug": "most-collisions-bounce",
+  "title": "Most collisions bounce",
+  "hook": "Molecules collide billions of times a second. Why isn't every reaction instant?",
+  "domain": "chemistry",
+  "concept": "collision-theory",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that particles in a gas or liquid collide constantly",
+      "that a reaction needs particles to meet"
+    ],
+    "doesNotKnow": [
+      "that a collision reacts only if the molecules meet in the right orientation"
+    ]
+  },
+  "misconception": "Every collision with enough energy makes a reaction.",
+  "objective": "The learner can explain that if each molecule can react from only a quarter of its surface, only about 1 in 16 random collisions react (1/4 x 1/4), so reaction rates are far below collision rates.",
+  "claims": [
+    {
+      "id": "chemistry.most-collisions-bounce.c1",
+      "text": "In the toy model (each reactive face a quarter of the surface), about 1 in 16 random collisions react: 1/4 x 1/4 = 1/16.",
+      "support": "derivation",
+      "source": "Independent uniform orientations: P(A's face toward B) = 90/360, P(B's face toward A) = 90/360; product 1/16 = 6.25% (Demo.tsx SHARE). Over 500 seeds, mean hits in 111 shots = 6.78 vs 6.94 expected (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.most-collisions-bounce.c2",
+      "text": "The stage's run is one seeded run (mulberry32 seed 1), not chosen: seed 1 was the first tried. It gives 5 reactions in the first 100 collisions (6 in 111); in 95% of seeds a run of 100 gives between 2 and 11.",
+      "support": "derivation",
+      "source": "Node: seed 1 gives 5 hits in 100 shots, 6 in 111; over seeds 1 to 500, 100 shots give 2 to 11 hits at the 2.5th and 97.5th percentiles (min 0, max 15), matching Binomial(100, 1/16). Untuned seed (pattern disclose-chosen-seeds).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.most-collisions-bounce.c3",
+      "text": "Real molecules must also meet in a suitable orientation to react, so the reaction rate is far lower than the collision rate.",
+      "support": "source",
+      "source": "Steric factor P in collision theory (Atkins & de Paula, Physical Chemistry, ch. on reaction dynamics; IUPAC Gold Book, 'steric factor').",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.most-collisions-bounce.c4",
+      "text": "How strict the orientation requirement is varies from reaction to reaction; the quarter faces here are a toy.",
+      "support": "source",
+      "source": "Measured steric factors range from about 1 down to 1e-6 or less (Atkins & de Paula, table of steric factors). The 90° faces and the collisions all having enough energy are assumptions of the toy, labelled on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy model, each molecule can react from only half of its surface. About what share of random, energetic collisions react?",
+    "options": [
+      "1 in 4",
+      "1 in 2",
+      "all of them"
+    ],
+    "answer": 0,
+    "why": "Both faces must point the right way: 1/2 x 1/2 = 1/4. Orientation filters collisions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
