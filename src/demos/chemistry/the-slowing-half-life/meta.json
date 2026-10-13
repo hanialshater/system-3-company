@@ -1,0 +1,72 @@
+{
+  "slug": "the-slowing-half-life",
+  "title": "The half-life that slows down",
+  "hook": "Half gone in 10 minutes. Is the next half gone in 10 more?",
+  "domain": "chemistry",
+  "concept": "reaction-order",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a half-life is the time for half of something to go (half-life lesson)",
+      "mmol/L as a concentration"
+    ],
+    "doesNotKnow": [
+      "that for some reactions the half-life is not fixed: it lengthens as the reactant thins"
+    ]
+  },
+  "misconception": "Every reaction has one fixed half-life.",
+  "objective": "The learner can explain that a second-order reaction that halves from 80 to 40 mmol/L in 10 min takes 20 min to halve again (then 40 min), because two molecules must meet and meetings get rarer as the reactant thins, while a first-order reaction keeps one half-life.",
+  "claims": [
+    {
+      "id": "chemistry.the-slowing-half-life.c1",
+      "text": "A second-order reaction that takes 10 min to go from 80 to 40 mmol/L takes about 20 min to go from 40 to 20 mmol/L, and about 40 min more to reach 10 mmol/L.",
+      "support": "derivation",
+      "source": "Integrated rate law 1/[A] = 1/[A]0 + kt: k = (1/40 - 1/80)/10 = 1/800 L/(mmol min); t(20) - t(40) = (1/20 - 1/40) x 800 = 20 min; t(10) - t(20) = 40 min (node; Demo.tsx timeTo()).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-slowing-half-life.c2",
+      "text": "A second-order reaction's half-life is 1/(k[A]), so it grows as [A] falls; each half takes twice as long as the last.",
+      "support": "source",
+      "source": "t1/2 = 1/(k[A]0) for rate = k[A]^2 (Atkins & de Paula, Physical Chemistry, ch. on chemical kinetics, table of integrated rate laws).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-slowing-half-life.c3",
+      "text": "A first-order reaction has one fixed half-life (here 10 min each time), like radioactive decay.",
+      "support": "source",
+      "source": "t1/2 = ln 2 / k, independent of concentration (Atkins & de Paula, ch. on kinetics). Radioactive decay is first order (IUPAC Gold Book, 'half life').",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-slowing-half-life.c4",
+      "text": "In a second-order reaction of this kind, two reactant molecules must meet, so the rate goes with the concentration squared; halving the concentration makes meetings four times rarer.",
+      "support": "source",
+      "source": "Rate = k[A]^2 for an elementary bimolecular step 2A -> products (Atkins & de Paula, ch. on kinetics). Order is measured, not always from the equation; the lesson's reaction is stated to be second order.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A second-order reaction takes 5 min to fall from 100 to 50 mmol/L. About how long does the next fall, from 50 to 25 mmol/L, take?",
+    "options": [
+      "10 min",
+      "5 min",
+      "2.5 min"
+    ],
+    "answer": 0,
+    "why": "For a second-order reaction the half-life is 1/(k[A]); halving [A] doubles it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
