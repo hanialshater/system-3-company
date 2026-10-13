@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap p { margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.note { font-size: 0.75rem; color: var(--muted); }
+.ringA { fill: var(--domain); fill-opacity: 0.08; stroke: var(--domain); stroke-width: 1.6; }
+.ringB { fill: var(--bad); fill-opacity: 0.08; stroke: var(--bad); stroke-width: 1.6; }
+.ringC { fill: var(--good); fill-opacity: 0.08; stroke: var(--good); stroke-width: 1.6; }
+.hit { fill: var(--fg); stroke: var(--bg-2); stroke-width: 1.2; }
+.keep { fill: var(--good); stroke: var(--fg); stroke-width: 1.4; }
+.drop { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.2; }
+.city { fill: var(--fg); stroke: var(--bg-2); stroke-width: 1; }
+.name { font-size: 9px; font-weight: 800; fill: var(--fg); paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }

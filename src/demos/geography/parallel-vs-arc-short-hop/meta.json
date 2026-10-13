@@ -1,0 +1,86 @@
+{
+  "slug": "parallel-vs-arc-short-hop",
+  "title": "When does the shortcut pay?",
+  "hook": "Straight along a parallel versus the shortest route: how big is the gap?",
+  "domain": "geography",
+  "concept": "rhumb-lines",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "great circles are shorter than constant-heading routes"
+    ],
+    "doesNotKnow": [
+      "how large the saving is",
+      "when the difference starts to matter"
+    ]
+  },
+  "misconception": "The great-circle saving is large even on a short east-west trip.",
+  "objective": "The learner can say that the great-circle saving is tiny over short east-west distances and grows quickly with distance and with latitude.",
+  "claims": [
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c1",
+      "text": "Two places 1,000 km apart along 40 N: the great circle is about 0.7 km shorter than the parallel.",
+      "support": "derivation",
+      "source": "Sphere R = 6,371.0088 km. Points at +/- (d / (R cos lat)) / 2 of longitude about 10 E; great-circle length d3-geo geoDistance x R. Node (builder's scratch script; nothing precomputed ships, all values are computed at runtime from the same formula): 1,000 km spans 11.7 degrees of longitude, great circle 999.28 km, saving 0.72 km (0.07%). The stage readout uses the same function.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c2",
+      "text": "At 5,000 km along 40 N the saving is 96 km: five times the distance, over 130 times the saving.",
+      "support": "derivation",
+      "source": "Node: 95.61 km at 5,000 km (1.91%), 0.72 km at 1,000 km; ratio 132.6. Other values computed for the stage: 2,000 km 5.83 km; 8,000 km 428 km (5.35%). The brief's figures of 1.95% (5,000 km) and 5.7% (8,000 km) are not what d3-geo gives; the stage shows the computed ones.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c3",
+      "text": "At 60 N the same 5,000 km saves 398 km.",
+      "support": "derivation",
+      "source": "Node: 398.31 km (7.97%) at 60 N; 18.09 km (0.36%) at 20 N. At 60 N and 8,000 km the great circle peaks at 79.9 N, inside the map.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c4",
+      "text": "Following a parallel is a constant due-east heading (a rhumb line of bearing 90 degrees).",
+      "support": "source",
+      "source": "Snyder (1987), Map Projections: A Working Manual, ch. 7 (cited from memory): a parallel is a loxodrome of bearing 90 degrees. Used for the stage caption 'Red: due east along the parallel'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c5",
+      "text": "The parallel curves away from the shortest path more the longer it is and the nearer the pole, so short hops gain almost nothing.",
+      "support": "derivation",
+      "source": "Follows from the node table: at 5,000 km the saving is 18 km at 20 N, 96 km at 40 N, 398 km at 60 N; at 40 N it is 0.72 km at 1,000 km and 95.6 km at 5,000 km. Not a claim about flights.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.parallel-vs-arc-short-hop.c6",
+      "text": "Sphere model, not a flight time.",
+      "support": "derivation",
+      "source": "Model label: sphere of R = 6,371.0088 km (IUGG mean radius); no winds, airspace or fuel stops are modelled and the lesson makes no flight claim.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does a great-circle route save almost nothing on a 1,000 km east-west trip at 40 N?",
+    "options": [
+      "At that distance the parallel is almost the same line as the shortest route",
+      "Great circles are not really shorter",
+      "The Earth is flat over short distances in every direction, so there is never a saving"
+    ],
+    "answer": 0,
+    "why": "The saving grows much faster than distance (0.7 km at 1,000 km, 96 km at 5,000 km), so over a short hop the two routes nearly coincide."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
