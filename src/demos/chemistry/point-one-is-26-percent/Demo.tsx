@@ -5,7 +5,7 @@
 // 126 at 8.1, about 200 at 7.9, about 250 at 7.8. A box marks the 100 at pH 8.2 for comparison.
 
 import { useState } from "react";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
@@ -31,22 +31,31 @@ const ph1 = (v: number) => v.toFixed(1);
 export default function PointOneIs26Percent({ slug }: { slug: string }) {
   const [p, setP] = useState(REF_PH);
   const [lowest, setLowest] = useState(REF_PH);
+  const [sawNow, setSawNow] = useState(false);
   const n = Math.round(REF_DOTS * ratio(p));
+  const move = (r: number, reach: (name: string) => void) => {
+    setP(r);
+    setLowest((x) => Math.min(x, r));
+    if (Math.abs(r - NOW_PH) < 1e-9) {
+      setSawNow(true);
+      reach("down-0.1"); // key state: the stage has shown pH 8.1 (126 dots, +26%)
+    }
+  };
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `Surface seawater pH fell from about ${ph1(REF_PH)} to about ${ph1(NOW_PH)} since pre-industrial times. Its hydrogen ion concentration rose by about…`,
+        question: `Lower pH means more hydrogen ions (H⁺). Surface seawater pH fell from about ${ph1(REF_PH)} to about ${ph1(NOW_PH)} since pre-industrial times. Its hydrogen ion concentration rose by about…`,
         options: ["1%", `${RISE}%`, "100%"],
         answer: 1,
       }}
-      exploreHint={`Slide the pH down to ${ph1(NOW_PH)} and count the dots.`}
+      exploreHint={`Press "Today: pH ${ph1(NOW_PH)}" and count the dots, then slide lower.`}
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
-            {lowest <= NOW_PH + 1e-9 ? "You saw" : "Slide it and you see"} the {REF_DOTS} hydrogen ions at pH{" "}
+            {sawNow ? "You saw" : "Slide it and you see"} the {REF_DOTS} hydrogen ions at pH{" "}
             {ph1(REF_PH)} become <strong>{Math.round(REF_DOTS * ratio(NOW_PH))}</strong> at pH {ph1(NOW_PH)}: a rise of
             about {RISE}%.
             {lowest <= REF_PH - 0.3 + 1e-9 ? ` At ${ph1(REF_PH - 0.3)} you saw about ${Math.round(REF_DOTS * ratio(REF_PH - 0.3))}: double.` : ""}
@@ -90,6 +99,14 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
                   one dot = same tiny amount of H⁺ · box = pH {ph1(REF_PH)}
                 </text>
               </svg>
+              <Row>
+                <Control disabled={locked || p === NOW_PH} onClick={() => move(NOW_PH, reach)}>
+                  {`Today: pH ${ph1(NOW_PH)}`}
+                </Control>
+                <Control disabled={locked || p === REF_PH} onClick={() => move(REF_PH, reach)}>
+                  {`Back to ${ph1(REF_PH)}`}
+                </Control>
+              </Row>
               <Slider
                 label="Seawater pH"
                 value={p}
@@ -98,16 +115,12 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
                 step={0.1}
                 disabled={locked}
                 format={ph1}
-                onChange={(v) => {
-                  const r = Math.round(v * 10) / 10;
-                  setP(r);
-                  setLowest((x) => Math.min(x, r));
-                  if (r <= NOW_PH + 1e-9) reach("down-0.1");
-                }}
+                onChange={(v) => move(Math.round(v * 10) / 10, reach)}
               />
               <Row>
                 <Readout label="H⁺ dots" value={n} />
                 <Readout label={`vs pH ${ph1(REF_PH)}`} value={`+${pct(p)}%`} />
+                {sawNow && <Readout label={`At pH ${ph1(NOW_PH)}`} value={`${Math.round(REF_DOTS * ratio(NOW_PH))} dots, +${RISE}%`} />}
               </Row>
             </div>
           )}

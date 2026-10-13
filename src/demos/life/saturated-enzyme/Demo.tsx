@@ -16,7 +16,9 @@ import s from "./styles.module.css";
 const MAX_S = 20;
 const MILESTONES = ["high-double", "low-double"] as const;
 const busy = (S: number) => S / (1 + S);
-const gain = (S: number) => busy(S) / busy(S / 2) - 1; // speed-up from doubling S/2 -> S
+const count = (S: number) => Math.round(100 * busy(S));
+// speed-up from doubling S/2 -> S, from the same busy counts the stage shows (95 / 91 - 1)
+const gain = (S: number) => count(S) / count(S / 2) - 1;
 const pct = (x: number) => `${Math.round(100 * x)}%`;
 
 const POOL = (() => {
@@ -25,9 +27,8 @@ const POOL = (() => {
 })();
 
 // Numbers in the question and reveal come from the same functions as the stage.
-const HI = pct(gain(20)); // "5%"
-const LO = pct(gain(2)); // "33%"
-const count = (S: number) => Math.round(100 * busy(S));
+const HI = pct(gain(20)); // "4%" (95 / 91)
+const LO = pct(gain(2)); // "34%" (67 / 50)
 const half = (S: number) => (S / 2 === Math.round(S / 2) ? String(S / 2) : (S / 2).toFixed(1));
 
 function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
@@ -76,7 +77,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       </Row>
       <Slider label="Substrate (× half-way)" value={S} min={1} max={MAX_S} disabled={locked} onChange={go} />
       <Row>
-        <Readout label="Speed (share of top)" value={locked ? "?" : pct(busy(S))} />
+        <Readout label="Speed (% of max)" value={locked ? "?" : pct(busy(S))} />
         <Readout label="Gain from doubling" value={locked ? "?" : `+${pct(gain(S))}`} />
       </Row>
     </div>

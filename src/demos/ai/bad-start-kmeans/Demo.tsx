@@ -54,24 +54,35 @@ export default function BadStartKmeans({ slug }: { slug: string }) {
   const [steps, setSteps] = useState(0);
   const [best, setBest] = useState<number | null>(null);
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["stuck-from-question-start"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["stuck-from-question-start", "better-from-other-start"]);
+  const [seen, setSeen] = useState<string[]>([]);
 
   const c = centresAfter(start, steps);
   const done = settled(start, steps);
   const g = assign(c);
 
-  const goSteps = (n: number) => {
+  const goSteps = (n: number, from: [number, number] = start) => {
     setSteps(n);
-    if (settled(start, n)) {
-      const cc = cost(centresAfter(start, n));
+    if (settled(from, n)) {
+      const end = centresAfter(from, n);
+      const cc = cost(end);
       setBest((b) => (b === null ? cc : Math.min(b, cc)));
-      if (start[0] === QUESTION_START[0] && start[1] === QUESTION_START[1]) reach("stuck-from-question-start");
+      const line = `from ${from[0]} and ${from[1]}: ${groupsText(end)}, ${cc.toFixed(1)}`;
+      setSeen((a) => (a.includes(line) ? a : [...a, line]));
+      if (from[0] === QUESTION_START[0] && from[1] === QUESTION_START[1]) reach("stuck-from-question-start");
+      else if (cc < 17) reach("better-from-other-start");
     }
   };
   const runToEnd = () => {
     let n = steps;
     while (!settled(start, n) && n < 20) n++;
     goSteps(n);
+  };
+  const tryStart = (from: [number, number]) => {
+    setStart(from);
+    let n = 0;
+    while (!settled(from, n) && n < 20) n++;
+    goSteps(n, from);
   };
   const moveStart = (j: 0 | 1, d: number) => {
     const next: [number, number] = [...start];
@@ -89,8 +100,8 @@ export default function BadStartKmeans({ slug }: { slug: string }) {
         options: ["{0, 4} and {6, 10}", "{0} and {4, 6, 10}", "{0, 4, 6} and {10}"],
         answer: 1,
       }}
-      exploreHint="Step until nothing changes. Then move the starting centres and try again."
-      minInteractions={1}
+      exploreHint={'Step until nothing changes. Then press "Start at 2 and 8" and compare where each start ended.'}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -99,7 +110,7 @@ export default function BadStartKmeans({ slug }: { slug: string }) {
             total squared distance {cost(centresAfter(QUESTION_START, 5)).toFixed(1)}. Every later step changes nothing.
           </p>
           <p>
-            Yet {"{0, 4}"} and {"{6, 10}"} costs only 16.{best !== null && best < 17 ? " You found it from a different start." : " A start like 2 and 8 finds it."}{" "}
+            Yet from 2 and 8 you saw {"{0, 4}"} and {"{6, 10}"}, total squared distance {cost(centresAfter([2, 8], 3)).toFixed(0)}: lower is a tighter grouping, so that one is better.{" "}
             The algorithm only improves the guess it has, so where you start can decide where you end. That is why k-means is
             usually run from several starts.
           </p>
@@ -143,9 +154,20 @@ export default function BadStartKmeans({ slug }: { slug: string }) {
               <Control disabled={locked || done} onClick={runToEnd}>
                 Run until settled
               </Control>
+              <Control disabled={locked} onClick={() => tryStart([2, 8])}>
+                Start at 2 and 8
+              </Control>
+              <Control disabled={locked} onClick={() => tryStart(QUESTION_START)}>
+                Start at 0 and 4
+              </Control>
               <Readout label="Groups" value={locked ? "–" : groupsText(c)} />
-              <Readout label="Total sq. distance" value={locked ? "–" : cost(c).toFixed(1)} />
+              <Readout label="Squared distance (lower = tighter)" value={locked ? "–" : cost(c).toFixed(1)} />
             </Row>
+            {seen.length > 0 && (
+              <p className={s.small}>
+                Ends so far: {seen.map((l, i) => <span key={i}>{i ? " | " : ""}{l}</span>)}
+              </p>
+            )}
             <Row>
               <span className={s.small}>Start ▲1 at {start[0]}</span>
               <Control aria-label="Move centre 1 start left" disabled={locked || start[0] === 0} onClick={() => moveStart(0, -1)}>

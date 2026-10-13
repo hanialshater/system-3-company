@@ -23,3 +23,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 ## v3 (claim fix 2026-10-13)
 
 Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.
+
+## v4 (revision 2026-10-13)
+
+- Review: reveal enabled after one nudge and 754/704 Hz never shown. Fix: readout 'Heard at -20 / 0 / +20 m' fills as visited; two milestones (approach reading seen, going-away reached) gate the reveal; hook no longer states the answer; reveal readings come from the same heard() calls.

@@ -8,3 +8,7 @@
 ## v2 (claim fix 2026-10-13)
 
 Claim c5 disputed ('band' only true for parallel lines). Reveal now says 'for example a band between them when the lines are parallel'; claim rewritten; unverified.
+
+## v3 (revision 2026-10-13)
+
+- Review: hook gave the answer; reveal 'best 1 of 4' contradicted opening 2 of 4. Fix: hook is now a neutral question; best-with-one-line starts at the opening 2 of 4 and the reveal says 'you began at 2'; the shared middle point is drawn on the stage; hidden units glossed.

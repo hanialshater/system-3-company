@@ -12,3 +12,7 @@
 - "Versus half as much" -> "Doubling 10 -> 20". Tiles renamed "Speed (share of top)" and "Gain from doubling" so the two percentages read as different things.
 - Formula "Speed ~ S / (half-way + S)" and the word Michaelis-Menten removed from the reveal; the reveal is about 70 words.
 - Claims c1, c2, c3 reworded to match the learner-visible text, unverified.
+
+## v3 (revision 2026-10-13)
+
+- Review: displayed +5% did not match 91 to 95 busy (+4.4%). Fix: gain computed from the same rounded busy counts as the stage (95/91 = +4%, 67/50 = +34%); claims c2 and c3 reworded and set unverified; 'share of top' relabelled '% of max'.
