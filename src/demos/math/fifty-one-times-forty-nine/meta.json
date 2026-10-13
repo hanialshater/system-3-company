@@ -1,0 +1,72 @@
+{
+  "slug": "fifty-one-times-forty-nine",
+  "title": "Fifty-one times forty-nine",
+  "hook": "51 x 49 looks like long multiplication. Move one strip of a square and it is one step.",
+  "domain": "math",
+  "concept": "difference-of-squares",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "area of a rectangle is width times height",
+      "50 x 50 = 2500"
+    ],
+    "doesNotKnow": [
+      "that (a + d)(a - d) = a² - d²"
+    ]
+  },
+  "misconception": "Nearby products like 51 x 49 need long multiplication and have no simple relation to 50 x 50.",
+  "objective": "The learner can explain, by moving a strip of a square, that (a + d)(a - d) is the square a² minus a small square d², and use it for 51 x 49.",
+  "claims": [
+    {
+      "id": "math.fifty-one-times-forty-nine.c1",
+      "text": "51 x 49 = 2499, exactly 1 less than 50 x 50 = 2500.",
+      "support": "derivation",
+      "source": "Recomputed with node; the question, caption and reveal compute from A = 50 and d.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-one-times-forty-nine.c2",
+      "text": "Moving a d-wide strip from the bottom of an a by a square to its side makes an (a + d) by (a - d) block with a d by d piece left over.",
+      "support": "derivation",
+      "source": "The strip is a by d; standing it up beside the remaining a by (a - d) block covers a height of a - d and leaves d x d hanging. The stage turns the strip a quarter turn about the square's corner, which places it exactly there.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-one-times-forty-nine.c3",
+      "text": "(a + d)(a - d) = a² - d² for any a and d.",
+      "support": "derivation",
+      "source": "Expand: a² - ad + ad - d².",
+      "status": "unverified"
+    },
+    {
+      "id": "math.fifty-one-times-forty-nine.c4",
+      "text": "For strip widths 1 to 10 the stage's products are 2500 minus 1, 4, 9 ... 100 (for example 53 x 47 = 2491).",
+      "support": "derivation",
+      "source": "Recomputed with node for d = 1..10.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What is 31 x 29?",
+    "options": [
+      "899",
+      "900",
+      "901"
+    ],
+    "answer": 0,
+    "why": "31 x 29 = (30 + 1)(30 - 1) = 900 - 1 = 899: moving the strip leaves a 1 x 1 square that does not fit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
