@@ -1,0 +1,79 @@
+{
+  "slug": "drunkards-reach",
+  "title": "The drunkard's reach",
+  "hook": "Walk randomly 4 times longer. Do you get 4 times farther?",
+  "domain": "chemistry",
+  "concept": "diffusion-random-walk",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that molecules in a gas or liquid move randomly",
+      "square roots"
+    ],
+    "doesNotKnow": [
+      "that typical distance in a random walk grows as the square root of the number of steps, so spreading slows"
+    ]
+  },
+  "misconception": "Diffusion is steady travel, so 4 times longer means 4 times farther.",
+  "objective": "The learner can explain that random steps partly cancel, so the typical distance grows as √N: 4 times as many steps reach about 2 times as far, which is why diffusion is fast at short range and slow at long range.",
+  "claims": [
+    {
+      "id": "chemistry.drunkards-reach.c1",
+      "text": "For a random walk, the typical (root-mean-square) distance from the start grows as the square root of the number of steps.",
+      "support": "source",
+      "source": "RMS displacement = step × √N (Berg, Random Walks in Biology, ch. 1).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.drunkards-reach.c2",
+      "text": "4 times as many steps gives about 2 times the typical distance: √100 ÷ √25 = 10 ÷ 5 = 2.",
+      "support": "derivation",
+      "source": "Arithmetic from c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.drunkards-reach.c3",
+      "text": "In the stage's cloud of 40 walkers the typical distance goes from about 4.9 step lengths at 25 steps to about 9.5 at 100 steps, about 1.9 times.",
+      "support": "simulation",
+      "source": "mulberry32 seed 1, untuned (the first seed tried); unit steps in a uniform random direction. Node script: rms(25) = 4.93, rms(100) = 9.54, ratio 1.93. Across seeds 1–500 with 40 walkers the ratio has median 2.01 and 90% range 1.70–2.36.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.drunkards-reach.c4",
+      "text": "To go twice as far by random motion takes about four times as long; this is how molecules diffuse.",
+      "support": "source",
+      "source": "Diffusion distance ∝ √(Dt) (Atkins, Physical Chemistry, 'diffusion'; Berg, Random Walks in Biology).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.drunkards-reach.c5",
+      "text": "Stage: the ring is the root-mean-square distance of the 40 walkers; each step is 1 unit in a random direction.",
+      "support": "convention",
+      "source": "Demo.tsx rms(n).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A smell spreads 1 m through still air in about 1 minute by diffusion alone. To spread 3 m it takes about…",
+    "options": [
+      "9 minutes",
+      "3 minutes",
+      "1.7 minutes"
+    ],
+    "answer": 0,
+    "why": "Distance grows as the square root of time, so 3 times as far takes 3² = 9 times as long."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

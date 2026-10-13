@@ -1,0 +1,86 @@
+{
+  "slug": "squeeze-the-brown-gas",
+  "title": "Squeeze the brown gas",
+  "hook": "Squeeze a brown gas and it goes darker. Then it fights back.",
+  "domain": "chemistry",
+  "concept": "le-chatelier",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that an equilibrium runs both ways at once",
+      "that squeezing a gas raises its pressure"
+    ],
+    "doesNotKnow": [
+      "that a squeeze shifts an equilibrium toward the side with fewer gas molecules"
+    ]
+  },
+  "misconception": "When you disturb an equilibrium nothing sensible happens, or it always shifts toward products.",
+  "objective": "The learner can explain that halving the volume of an N₂O₄/NO₂ mixture lowers the share of NO₂ (about 31% to 24% here), because two NO₂ pair into one N₂O₄ and fewer molecules partly undo the squeeze.",
+  "claims": [
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c1",
+      "text": "N₂O₄ is colourless and NO₂ is brown, and the two are in equilibrium: N₂O₄ ⇌ 2 NO₂.",
+      "support": "source",
+      "source": "Brown et al., Chemistry: The Central Science, ch. 15 (the N₂O₄/NO₂ equilibrium); Greenwood & Earnshaw, Chemistry of the Elements, ch. 11.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c2",
+      "text": "At 25 °C the equilibrium constant Kp is about 0.15 bar.",
+      "support": "derivation",
+      "source": "Kp = exp(−ΔG°/RT), ΔG° = 2 ΔfG°(NO₂) − ΔfG°(N₂O₄) = 2(51.31) − 97.89 = 4.73 kJ/mol (NBS/NIST tables via Atkins, Physical Chemistry, data section) → Kp = 0.148 at 298 K. Kc = Kp/RT = 0.00597 mol/L.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c3",
+      "text": "Halving the volume lowers the NO₂ share of molecules from about 31% to about 24%.",
+      "support": "derivation",
+      "source": "Ideal gas, 298 K, starting at about 1 bar total (0.0340 mol/L N₂O₄ before splitting). Solve Kc = 4a²c/(1 − a): a = 0.189 at c, 0.138 at 2c; share 2a/(1+a) = 32% → 24%. Stage rounds to 60 N₂O₄ units: 22 NO₂ + 49 N₂O₄ (31%) → 16 + 52 (24%). Node script.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c4",
+      "text": "Right after the squeeze the gas is darker at once, then fades part way back but stays darker than at the start.",
+      "support": "derivation",
+      "source": "Brownness follows NO₂ per volume: 22/V before, 44/V the instant after halving, 32/V at the new equilibrium (same model as c3).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c5",
+      "text": "Squeezed, the mixture shifts toward the side with fewer gas molecules and only partly undoes the squeeze.",
+      "support": "source",
+      "source": "Le Chatelier's principle for pressure changes (Atkins, Physical Chemistry, 'response of equilibria to pressure'; Brown et al. ch. 15).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.squeeze-the-brown-gas.c6",
+      "text": "Stage: the plunger halves the volume at constant 25 °C; dot positions come from a seeded generator (seed 4, untuned, positions only).",
+      "support": "convention",
+      "source": "Demo.tsx. Real compression warms a gas; the model holds temperature fixed.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For N₂ + 3 H₂ ⇌ 2 NH₃, you halve the volume. The share of NH₃ at the new equilibrium is…",
+    "options": [
+      "Higher",
+      "Lower",
+      "The same"
+    ],
+    "answer": 0,
+    "why": "Four gas molecules become two, so a squeeze shifts toward NH₃, the side with fewer molecules."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

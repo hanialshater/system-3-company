@@ -1,0 +1,65 @@
+{
+  "slug": "who-runs-out-first",
+  "title": "Who runs out first?",
+  "hook": "There are fewer O₂ molecules. So O₂ runs out first?",
+  "domain": "chemistry",
+  "concept": "limiting-reagent",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a chemical equation is a recipe of molecule counts",
+      "that molecules are counted in whole numbers"
+    ],
+    "doesNotKnow": [
+      "that the recipe's ratio, not the smaller pile, decides which reactant limits"
+    ]
+  },
+  "misconception": "The reactant you have fewer of limits the reaction.",
+  "objective": "The learner can explain that with 6 H₂ and 4 O₂, the 2:1 recipe uses up the H₂ after 3 O₂, making 6 H₂O and leaving 1 O₂, so the limiting reactant is found by matching at the ratio.",
+  "claims": [
+    {
+      "id": "chemistry.who-runs-out-first.c1",
+      "text": "Hydrogen and oxygen react as 2 H₂ + O₂ → 2 H₂O.",
+      "support": "source",
+      "source": "Standard balanced equation (Brown et al., Chemistry: The Central Science, ch. 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-runs-out-first.c2",
+      "text": "From 6 H₂ and 4 O₂ the most H₂O you can make is 6, with 1 O₂ left over.",
+      "support": "derivation",
+      "source": "Sets of (2 H₂ + 1 O₂): min(floor(6/2), 4) = 3 sets → 6 H₂O; O₂ left = 4 − 3 = 1; H₂ left = 0. Node script; Demo.tsx computes MOST = min(H0, 2·O0).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.who-runs-out-first.c3",
+      "text": "6 H₂ need only 3 O₂, so the H₂ runs out first even though there is more of it.",
+      "support": "derivation",
+      "source": "Ratio 2:1 → 6/2 = 3 O₂ needed; 4 on hand.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "N₂ + 3 H₂ → 2 NH₃. You have 2 N₂ and 9 H₂. Which runs out first?",
+    "options": [
+      "N₂",
+      "H₂",
+      "Both at once"
+    ],
+    "answer": 0,
+    "why": "2 N₂ need 6 H₂ and 9 are on hand, so the N₂ runs out first. Match the piles at the 1:3 ratio; the smaller pile is not what decides."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
