@@ -1,0 +1,7 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; gap: 5px; }
+.info { margin: 0; min-height: 2.4em; text-align: center; font-size: 0.85rem; font-weight: 700; }
+.name { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.str { fill: var(--muted); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.second { fill: var(--bad); }
+.wrap :global(.control).player { min-width: 34px; padding: 6px 0; }

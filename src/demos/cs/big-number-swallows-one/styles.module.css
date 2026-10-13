@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.value {
+  text-align: center; font-family: ui-monospace, monospace; font-size: 1.35rem; font-weight: 700;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em; overflow-wrap: anywhere;
+}
+.value b { color: var(--domain); }
+.tick { fill: var(--muted); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.edge { fill: var(--fg); font-size: 11px; font-weight: 900; }
+.key { margin: 0; text-align: center; font-size: 0.75rem; color: var(--muted); }
+.tape {
+  min-height: 4.8em; display: flex; flex-direction: column; align-items: center; font-family: ui-monospace, monospace;
+  font-size: 0.85rem; font-variant-numeric: tabular-nums;
+}
+.same { color: var(--bad); font-weight: 800; }

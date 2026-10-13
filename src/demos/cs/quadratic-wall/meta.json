@@ -1,0 +1,72 @@
+{
+  "slug": "quadratic-wall",
+  "title": "Compare every file with every file",
+  "hook": "10 files take 45 checks. What happens when the folder holds 1,000?",
+  "domain": "cs",
+  "concept": "big-o-growth",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting steps for small inputs",
+      "multiplication"
+    ],
+    "doesNotKnow": [
+      "that comparing every pair makes work grow with the square of the number of items"
+    ]
+  },
+  "misconception": "100 times more items means about 100 times more work.",
+  "objective": "The learner can explain that checking every pair of n items takes n(n-1)/2 comparisons, so doubling the items roughly quadruples the work and 1,000 files need 499,500 comparisons, about 11,100 times the work for 10 files.",
+  "claims": [
+    {
+      "id": "cs.quadratic-wall.c1",
+      "text": "Checking every pair among n files takes n × (n − 1) ÷ 2 comparisons: 5 files → 10, 10 → 45, 20 → 190.",
+      "support": "derivation",
+      "source": "Each of n files pairs with n - 1 others, and each pair is counted twice. Demo.tsx pairs(); builder ran it in Node: 10, 45, 190. The stage draws exactly that many lines.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.quadratic-wall.c2",
+      "text": "1,000 files need 1,000 × 999 ÷ 2 = 499,500 comparisons.",
+      "support": "derivation",
+      "source": "Arithmetic (Demo.tsx pairs(1000); builder ran it in Node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.quadratic-wall.c3",
+      "text": "Doubling from 10 to 20 files multiplies the pairs by 4.2, not 2; 100 times the files gives 11,100 times the work.",
+      "support": "derivation",
+      "source": "190 / 45 = 4.22; 499,500 / 45 = 11,100 (arithmetic, computed in Demo.tsx). The ratio tends to the square of the growth (10,000x for 100x) as n grows.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.quadratic-wall.c4",
+      "text": "Work that grows with the square of the input hits a wall long before the input looks big.",
+      "support": "derivation",
+      "source": "Follows from c1-c3: n(n-1)/2 is Theta(n^2) (CLRS 3.1 asymptotic notation). Stated qualitatively.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A program that compares every pair of photos takes 1 second for 1,000 photos. About how long for 10,000 photos?",
+    "options": [
+      "About 10 seconds",
+      "About 100 seconds",
+      "About 1,000 seconds"
+    ],
+    "answer": 1,
+    "why": "Pairs grow with the square: 10 times the photos means about 100 times the pairs, so about 100 seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

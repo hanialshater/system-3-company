@@ -1,0 +1,72 @@
+{
+  "slug": "bad-hash-one-bucket",
+  "title": "Ten slots, ten keys, one pile",
+  "hook": "The table has room for every key. So why does it turn into one long queue?",
+  "domain": "cs",
+  "concept": "hashing-collisions",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a hash table picks a slot for each key (hash-bucket-pileup)",
+      "division with remainder"
+    ],
+    "doesNotKnow": [
+      "that the hash rule itself can cause pileups when keys share a pattern"
+    ]
+  },
+  "misconception": "Any hash function spreads keys evenly; only the table size matters.",
+  "objective": "The learner can explain that with slot = key mod 10 the keys 10, 20, ..., 100 all land in slot 0 because they share a pattern, that the same keys spread over 7 slots under mod 7, and that a pileup makes lookups walk one long list.",
+  "claims": [
+    {
+      "id": "cs.bad-hash-one-bucket.c1",
+      "text": "Every multiple of 10 leaves remainder 0 when divided by 10, so with slot = key mod 10 the keys 10, 20, ..., 100 all land in slot 0 and 9 slots stay empty.",
+      "support": "derivation",
+      "source": "Arithmetic; Demo.tsx usedSlots(KEYS, 10) = 1, builder checked in Node (remainders all 0).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bad-hash-one-bucket.c2",
+      "text": "Under slot = key mod 7 the same 10 keys use 7 slots.",
+      "support": "derivation",
+      "source": "Remainders 3, 6, 2, 5, 1, 4, 0, 3, 6, 2 (builder ran in Node): 7 distinct. Slots 7-9 can never be used under mod 7 (drawn faded).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bad-hash-one-bucket.c3",
+      "text": "Keys that land in the same slot are kept as a list in that slot, and finding one means walking that list.",
+      "support": "source",
+      "source": "Collision resolution by chaining: Cormen et al., Introduction to Algorithms (3rd ed.), 11.2; search time is proportional to the chain length.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.bad-hash-one-bucket.c4",
+      "text": "A good hash breaks up the patterns real keys have, such as all ending in 0; the table size was not the problem here.",
+      "support": "source",
+      "source": "CLRS 11.3 (a good hash function should not depend on patterns in the keys; the division method avoids moduli like powers of 10 for decimal keys). The 'not the size' part follows from c1: 10 slots for 10 keys.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shop's prices are all whole dollars ending in 5 or 0 (5, 10, 15, ...). It hashes them with slot = price mod 10 into 10 slots. What goes wrong?",
+    "options": [
+      "Nothing: 10 slots spread them evenly",
+      "They all land in just 2 slots",
+      "Every price gets its own slot"
+    ],
+    "answer": 1,
+    "why": "Prices ending in 5 or 0 leave remainder 5 or 0, so the rule uses only 2 of 10 slots: the pattern in the keys survives a weak hash."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

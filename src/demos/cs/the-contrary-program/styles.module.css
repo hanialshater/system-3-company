@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: stretch; max-width: 380px; margin: 0 auto; width: 100%; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.lead { margin: 0; text-align: center; font-size: 0.88rem; color: var(--muted); }
+.card {
+  font-family: ui-monospace, monospace; font-size: 0.9rem; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--bg-2); padding: 6px 10px; display: flex; flex-direction: column; gap: 2px;
+}
+.name { font-family: inherit; font-weight: 800; color: var(--domain); }
+.line { padding: 3px 6px; border-radius: 6px; white-space: pre; }
+.taken { background: color-mix(in srgb, var(--domain) 30%, transparent); font-weight: 700; }
+.outcome { text-align: center; font-weight: 800; padding: 6px; border-radius: 10px; border: 1px dashed var(--line); }
+.right { color: var(--good); border-color: var(--good); border-style: solid; }
+.wrong { color: var(--bad); border-color: var(--bad); border-style: solid; }
+.tally { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.verdicts { display: flex; flex-direction: column; gap: 4px; }
+.vrow { display: grid; grid-template-columns: 22px 1fr 1fr; gap: 6px; align-items: center; }
+.vname { font-weight: 800; color: var(--domain); text-align: center; font-family: ui-monospace, monospace; }
+.vrow :global(.control) { padding: 6px 8px; }

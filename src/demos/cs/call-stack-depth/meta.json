@@ -1,0 +1,80 @@
+{
+  "slug": "call-stack-depth",
+  "title": "How many calls are open at once?",
+  "hook": "A function calls itself. Does the new call replace the old one, or wait on top of it?",
+  "domain": "cs",
+  "concept": "recursion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "calling a function and getting a value back",
+      "factorial as 3 × 2 × 1"
+    ],
+    "doesNotKnow": [
+      "that each unfinished call waits with its own copy of its variables",
+      "why a recursive function needs a base case"
+    ]
+  },
+  "misconception": "A recursive call replaces the earlier one, so only one call exists at a time.",
+  "objective": "The learner can explain that factorial(3) has 4 calls open at its deepest moment (for 3, 2, 1 and 0), each with its own n and waiting for the one above, and that the base case factorial(0) = 1 lets the answers 1, 1, 2, 6 return back up.",
+  "claims": [
+    {
+      "id": "cs.call-stack-depth.c1",
+      "text": "At the deepest moment of factorial(3), 4 calls are open: factorial(3), factorial(2), factorial(1) and factorial(0).",
+      "support": "simulation",
+      "source": "Builder instrumented a depth counter around a recursive factorial in Node: max depth 4. Demo.tsx MAX_DEPTH = TOP + 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.call-stack-depth.c2",
+      "text": "A new call does not replace the old one: each call keeps its own n and waits for the call it made.",
+      "support": "source",
+      "source": "Activation records / stack frames: Patterson and Hennessy, Computer Organization and Design, 2.8 'Supporting Procedures in Computer Hardware' (procedure frames on the stack; recursive fact example).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.call-stack-depth.c3",
+      "text": "The answers come back as 1, 1, 2, 6: factorial(0) = 1, factorial(1) = 1 × 1, factorial(2) = 2 × 1, factorial(3) = 3 × 2.",
+      "support": "simulation",
+      "source": "Builder logged return values in Node: ret 0 → 1, 1 → 1, 2 → 2, 3 → 6. Demo.tsx fact().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.call-stack-depth.c4",
+      "text": "factorial(0) = 1 is the base case: the one call that answers without calling again.",
+      "support": "convention",
+      "source": "Definition given in the question; 0! = 1 by convention (empty product).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.call-stack-depth.c5",
+      "text": "Without a base case the calls never stop, the stack runs out of room and the program crashes with a stack overflow.",
+      "support": "simulation",
+      "source": "Builder ran const g = n => n * g(n - 1); g(3) in Node 22: RangeError 'Maximum call stack size exceeded'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "sum(n) = n + sum(n − 1), with sum(0) = 0. While sum(0) is running inside sum(5), how many calls of sum are open?",
+    "options": [
+      "1",
+      "5",
+      "6"
+    ],
+    "answer": 2,
+    "why": "Each call waits for the one it made, so sum(5), sum(4), sum(3), sum(2), sum(1) and sum(0) are all open: 6."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

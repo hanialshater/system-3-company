@@ -1,0 +1,72 @@
+{
+  "slug": "tournament-second-best",
+  "title": "Who really came second?",
+  "hook": "The champion is crowned after 7 matches. Do you need a whole new contest for second place?",
+  "domain": "cs",
+  "concept": "divide-and-conquer",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "finding the biggest by comparing two at a time",
+      "how a knockout bracket works"
+    ],
+    "doesNotKnow": [
+      "that a knockout bracket leaves a short list of candidates for second place"
+    ]
+  },
+  "misconception": "After finding the champion of 8 you must search the other 7 again to find the second best.",
+  "objective": "The learner can explain that the second best can only have lost to the champion, so it is one of the 3 players the champion beat; 2 more matches find it, 9 in all rather than 13.",
+  "claims": [
+    {
+      "id": "cs.tournament-second-best.c1",
+      "text": "With 8 players in knockout rounds, the champion is found in 7 matches and plays 3 of them.",
+      "support": "derivation",
+      "source": "Each match knocks out one player and 7 must go (8 - 1); there are log2 8 = 3 rounds and the champion plays one match per round. Demo.tsx playAll().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tournament-second-best.c2",
+      "text": "The second best can only lose to the best, so it must be one of the players the champion beat; anyone who lost to someone else lost to a stronger player who is not the champion.",
+      "support": "derivation",
+      "source": "Proof by contradiction: if the second best lost to X and X is not the champion, X is stronger than the second best and weaker than the champion, impossible. Builder checked over 3,000 random brackets (seeded): always exactly 3 candidates, true second always among them.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tournament-second-best.c3",
+      "text": "On this bracket the true second best, F, was knocked out in round 1, not D, the final's loser.",
+      "support": "simulation",
+      "source": "Demo.tsx STRENGTH = [3, 5, 1, 6, 8, 7, 2, 4] for A-H, chosen (not random) so that the runner-up meets the champion in round 1. In a random bracket the second best reaches the final only when seeded in the other half from the champion (4 of the 7 other positions).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tournament-second-best.c4",
+      "text": "2 more matches among the 3 candidates find the runner-up: 9 matches in all, instead of 7 + 6 = 13 by searching the other 7 again.",
+      "support": "derivation",
+      "source": "Largest of 3 needs 2 comparisons; largest of 7 needs 6 (arithmetic). Knuth, The Art of Computer Programming Vol. 3, 5.3.3 treats selecting the second largest (n + ceil(log2 n) - 2 comparisons; 9 for n = 8). Not claimed as optimal on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 16-team knockout cup has just crowned its champion. To find the true second-best team fairly, which teams need to play again?",
+    "options": [
+      "All 15 other teams",
+      "Only the 4 teams the champion beat",
+      "Only the losing finalist"
+    ],
+    "answer": 1,
+    "why": "The second best can only have lost to the champion, and the champion played 4 matches (log2 16), so only those 4 teams are candidates."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

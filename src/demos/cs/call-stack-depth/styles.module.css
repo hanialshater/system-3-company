@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; max-width: 400px; width: 100%; margin: 0 auto; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.stack {
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: repeat(4, minmax(52px, auto));
+  gap: 6px 8px; align-items: center;
+}
+.box {
+  grid-column: 1; height: 100%; border-radius: 10px; padding: 6px 10px; display: flex; flex-direction: column;
+  justify-content: center; border: 1px solid transparent; font-variant-numeric: tabular-nums;
+}
+.box b { font-family: ui-monospace, monospace; font-size: 0.95rem; }
+.box span { font-size: 0.8rem; color: var(--muted); }
+.running { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 24%, var(--bg-2)); }
+.running span { color: var(--fg); font-weight: 700; }
+.waiting { border-color: var(--line); background: var(--bg-2); }
+.empty { border-color: transparent; opacity: 0.6; }
+.gone { font-style: italic; }
+.btn { grid-column: 2; white-space: nowrap; }
