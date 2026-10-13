@@ -27,36 +27,46 @@
       "id": "life.one-resource-one-winner.c1",
       "text": "In the stage's toy pond, with A breaking even at 2 units of nutrient and B at 5, and B starting eight times as common, by day 400 A has 80 dots, B has 0, and the nutrient sits at 2.0.",
       "support": "simulation",
-      "source": "Chemostat-style model in Demo.tsx simulate(): supply 10, dilution and death 0.1/day, growth 0.5 R/(K+R), Euler 0.01 day; day 400: A = 8.000, B = 6.4e-9, R = 2.000 (dt 0.05 agrees). artifacts/scratch/w4life/chemo2.mjs. No random seed. The brief's numbers (A = 18.0) came from a different supply level; the outcome (R = A's break-even) matches.",
-      "status": "unverified"
+      "source": "Chemostat-style model in Demo.tsx simulate(): supply 10, dilution and death 0.1/day, growth 0.5 R/(K+R), Euler 0.01 day; day 400: A = 8.000, B = 6.4e-9, R = 2.000 (dt 0.05 agrees). artifacts/scratch/w4life/chemo2.mjs. No random seed. The brief's numbers (A = 18.0) came from a different supply level; the outcome (R = A's break-even) matches. | FACT-CHECK 2026-10-13 (pass 6): Node Euler at dt 0.01 and 0.05, 400 days: A = 8.000, B = 6.4e-9, R = 2.000; stage rounds to 80 dots and 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-resource-one-winner.c2",
       "text": "If B instead breaks even at 1 unit, B wins: by day 400 B has 90 dots, A 0, and the nutrient sits at 1.0.",
       "support": "simulation",
-      "source": "Same model with B's break-even 1: day 400 A = 1.7e-8 (rounds to 0 dots), B = 9.000, R = 1.000 (chemo2.mjs). With B at 3, A still wins (A 8.0, B 3.8e-4 at day 400).",
-      "status": "unverified"
+      "source": "Same model with B's break-even 1: day 400 A = 1.7e-8 (rounds to 0 dots), B = 9.000, R = 1.000 (chemo2.mjs). With B at 3, A still wins (A 8.0, B 3.8e-4 at day 400). | FACT-CHECK 2026-10-13 (pass 6): Node: B break-even 1: B = 9.000, A = 1.7e-8, R = 1.000.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-resource-one-winner.c3",
       "text": "With one limiting resource, the species with the lowest break-even level (R*) drives the resource down to that level and excludes the others.",
       "support": "source",
-      "source": "Tilman 1982, Resource Competition and Community Structure (R* rule); Gause 1934, The Struggle for Existence (competitive exclusion).",
-      "status": "unverified"
+      "source": "Tilman 1982, Resource Competition and Community Structure (R* rule); Gause 1934, The Struggle for Existence (competitive exclusion). | FACT-CHECK 2026-10-13 (pass 6): Tilman 1982 R* rule; Gause competitive exclusion.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-resource-one-winner.c4",
       "text": "Several limiting nutrients (or a changing environment) can let competing species coexist.",
       "support": "source",
-      "source": "Tilman 1982 (two-resource coexistence); stated in the reveal so the lesson does not imply competitors can never coexist.",
-      "status": "unverified"
+      "source": "Tilman 1982 (two-resource coexistence); stated in the reveal so the lesson does not imply competitors can never coexist. | FACT-CHECK 2026-10-13 (pass 6): Tilman 1982 two-resource coexistence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-resource-one-winner.c5",
       "text": "The pond is a model: one nutrient, constant supply, equal death rates, no randomness; 1 dot = 0.1 unit of plant. Labelled 'Toy pond' on the stage before the prediction.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; brief life #40.",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; brief life #40. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

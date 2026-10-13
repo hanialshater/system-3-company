@@ -18,36 +18,46 @@
       "id": "cs.mask-the-flags.c1",
       "text": "10110 AND 00110 gives 00110: only the places the mask marks keep their setting, and the 1 at the far left is dropped.",
       "support": "derivation",
-      "source": "Bitwise AND place by place. Node: (0b10110 & 0b00110).toString(2) = '110' = 00110. Demo.tsx START_RESULT.",
-      "status": "unverified"
+      "source": "Bitwise AND place by place. Node: (0b10110 & 0b00110).toString(2) = '110' = 00110. Demo.tsx START_RESULT. | FACT-CHECK 2026-10-13 (pass 6): Node: 0b10110 & 0b00110 = 00110.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.mask-the-flags.c2",
       "text": "AND gives 1 only where both are 1; OR gives 1 where either is 1; XOR gives 1 where they differ.",
       "support": "convention",
-      "source": "Truth tables of AND, OR, exclusive OR (e.g. Harris and Harris, Digital Design and Computer Architecture, 1.5).",
-      "status": "unverified"
+      "source": "Truth tables of AND, OR, exclusive OR (e.g. Harris and Harris, Digital Design and Computer Architecture, 1.5). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.mask-the-flags.c3",
       "text": "OR with a mask turns every marked place on, and XOR with a mask flips every marked place; unmarked places keep their setting.",
       "support": "derivation",
-      "source": "x OR 1 = 1, x OR 0 = x; x XOR 1 = not x, x XOR 0 = x. Stage QA path: 10110 OR 11001 = 11111, 10110 XOR 11001 = 01111 (Node check).",
-      "status": "unverified"
+      "source": "x OR 1 = 1, x OR 0 = x; x XOR 1 = not x, x XOR 0 = x. Stage QA path: 10110 OR 11001 = 11111, 10110 XOR 11001 = 01111 (Node check). | FACT-CHECK 2026-10-13 (pass 6): Node: 10110 OR 11001 = 11111; XOR = 01111.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.mask-the-flags.c4",
       "text": "One mask works on all five places in one step.",
       "support": "source",
-      "source": "Bitwise operators act on every bit of a machine word in a single instruction (Kernighan and Ritchie, The C Programming Language, 2nd ed., 2.9 Bitwise Operators).",
-      "status": "unverified"
+      "source": "Bitwise operators act on every bit of a machine word in a single instruction (Kernighan and Ritchie, The C Programming Language, 2nd ed., 2.9 Bitwise Operators). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.mask-the-flags.c5",
       "text": "File permissions on Unix are stored and changed this way.",
       "support": "source",
-      "source": "chmod(1) and chmod(2) man pages: permission bits form a mode word (e.g. 0755) combined with bit masks; POSIX sys/stat.h defines S_IRUSR, S_IWUSR etc. as mask constants.",
-      "status": "unverified"
+      "source": "chmod(1) and chmod(2) man pages: permission bits form a mode word (e.g. 0755) combined with bit masks; POSIX sys/stat.h defines S_IRUSR, S_IWUSR etc. as mask constants. | FACT-CHECK 2026-10-13 (pass 6): Unix mode bits are masked with chmod/umask; correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

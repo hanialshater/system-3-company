@@ -18,43 +18,55 @@
       "id": "cs.sieve-stops-at-five.c1",
       "text": "After crossing out the multiples of 2, 3 and 5 on a 2-to-30 grid, no non-prime is left uncrossed.",
       "support": "simulation",
-      "source": "Demo.tsx: COMPOSITES all in crossed after taps 2, 3, 5. Builder re-ran in Node: survivors [2,3,5,7,11,13,17,19,23,29].",
-      "status": "unverified"
+      "source": "Demo.tsx: COMPOSITES all in crossed after taps 2, 3, 5. Builder re-ran in Node: survivors [2,3,5,7,11,13,17,19,23,29]. | FACT-CHECK 2026-10-13 (pass 6): Node: after crossing multiples of 2, 3, 5 on 2..30, exactly the 10 primes remain.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sieve-stops-at-five.c2",
       "text": "Tapping 7 after that crosses out nothing new: 14, 21 and 28 were already crossed.",
       "support": "derivation",
-      "source": "Multiples of 7 up to 30 are 14 = 2 × 7, 21 = 3 × 7, 28 = 4 × 7, crossed by 2 and 3. Demo.tsx multiples(7).",
-      "status": "unverified"
+      "source": "Multiples of 7 up to 30 are 14 = 2 × 7, 21 = 3 × 7, 28 = 4 × 7, crossed by 2 and 3. Demo.tsx multiples(7). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sieve-stops-at-five.c3",
       "text": "Every non-prime up to 30 has a factor of 5 or less: if both factors were 6 or more, it would be at least 6 × 6 = 36.",
       "support": "derivation",
-      "source": "If n = ab with a ≤ b then a² ≤ n, so a ≤ √n; √30 ≈ 5.48, so a ≤ 5 (Hardy and Wright, An Introduction to the Theory of Numbers, §1.2).",
-      "status": "unverified"
+      "source": "If n = ab with a ≤ b then a² ≤ n, so a ≤ √n; √30 ≈ 5.48, so a ≤ 5 (Hardy and Wright, An Introduction to the Theory of Numbers, §1.2). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sieve-stops-at-five.c4",
       "text": "So you only sieve up to the number that, times itself, reaches 30 (its square root).",
       "support": "derivation",
-      "source": "Generalises c3: every composite n has a prime factor ≤ √n.",
-      "status": "unverified"
+      "source": "Generalises c3: every composite n has a prime factor ≤ √n. | FACT-CHECK 2026-10-13 (pass 6): The stage says 'times itself, reaches 30'; strictly the square root is 5.48, so the largest tap is 5. Wording is loose but not wrong.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sieve-stops-at-five.c5",
       "text": "The 10 numbers left are the primes up to 30: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29.",
       "support": "simulation",
-      "source": "Demo.tsx PRIMES (trial division); Node check gives the same 10.",
-      "status": "unverified"
+      "source": "Demo.tsx PRIMES (trial division); Node check gives the same 10. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.sieve-stops-at-five.c6",
       "text": "This is the sieve of Eratosthenes, an ancient method.",
       "support": "source",
-      "source": "Attributed to Eratosthenes of Cyrene by Nicomachus, Introduction to Arithmetic I.13. No date is given in the lesson.",
-      "status": "unverified"
+      "source": "Attributed to Eratosthenes of Cyrene by Nicomachus, Introduction to Arithmetic I.13. No date is given in the lesson. | FACT-CHECK 2026-10-13 (pass 6): Nicomachus, Introduction to Arithmetic I.13 attributes the method to Eratosthenes.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -34,7 +34,7 @@ May not:
 
 ## Inputs
 
-- Walkthrough artifacts
+- Walkthrough artifacts: read transcript.md, then sheet.png (every frame in one image; open single frames only when a detail needs it). If no image can be seen, say "screenshots not seen" and give at most revise
 - A knowledge boundary (from meta.json learner field, or a different one on purpose)
 
 ## Outputs

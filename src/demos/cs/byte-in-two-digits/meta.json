@@ -18,36 +18,46 @@
       "id": "cs.byte-in-two-digits.c1",
       "text": "1101 is 8 + 4 + 1 = 13, written D; 0110 is 4 + 2 = 6; so 11010110 is D6 in hex.",
       "support": "derivation",
-      "source": "Place values 8, 4, 2, 1. Node: parseInt('11010110', 2).toString(16) = 'd6'. Demo.tsx START_HEX.",
-      "status": "unverified"
+      "source": "Place values 8, 4, 2, 1. Node: parseInt('11010110', 2).toString(16) = 'd6'. Demo.tsx START_HEX. | FACT-CHECK 2026-10-13 (pass 6): Node: parseInt('11010110',2).toString(16) = d6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.byte-in-two-digits.c2",
       "text": "Hex symbols are 0 to 9, then A to F for 10 to 15.",
       "support": "convention",
-      "source": "Standard hexadecimal digits (e.g. Knuth, TAOCP Vol. 2, 4.1; ISO/IEC 9899 C standard, hexadecimal constants 6.4.4.1).",
-      "status": "unverified"
+      "source": "Standard hexadecimal digits (e.g. Knuth, TAOCP Vol. 2, 4.1; ISO/IEC 9899 C standard, hexadecimal constants 6.4.4.1). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.byte-in-two-digits.c3",
       "text": "Four switches have exactly 16 settings, one per hex symbol.",
       "support": "derivation",
-      "source": "2^4 = 16 = number of hex digits.",
-      "status": "unverified"
+      "source": "2^4 = 16 = number of hex digits. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.byte-in-two-digits.c4",
       "text": "Flipping a switch in one group of four changes only that group's hex symbol.",
       "support": "derivation",
-      "source": "Value = 16 × high + low with 0 ≤ low ≤ 15, so the two hex digits are exactly the two 4-bit groups; a change in one group leaves the other's digit unchanged. Stage: QA path D6 → 56 (left), 26 → 2E (right).",
-      "status": "unverified"
+      "source": "Value = 16 × high + low with 0 ≤ low ≤ 15, so the two hex digits are exactly the two 4-bit groups; a change in one group leaves the other's digit unchanged. Stage: QA path D6 → 56 (left), 26 → 2E (right). | FACT-CHECK 2026-10-13 (pass 6): Checked D6 to 56 (left switch) and D6 to D2 / 26 to 2E on the right in the model: only the touched group's symbol changes.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.byte-in-two-digits.c5",
       "text": "Every byte (8 switches) is exactly two hex symbols.",
       "support": "derivation",
-      "source": "8 bits = two groups of 4; values 0..255 = 00..FF.",
-      "status": "unverified"
+      "source": "8 bits = two groups of 4; values 0..255 = 00..FF. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

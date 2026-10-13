@@ -27,29 +27,37 @@
       "id": "life.offspring-regress.c1",
       "text": "On the stage, 40 made-up plants averaging 100 cm are kept or not by height; the tallest 15 average 110 cm.",
       "support": "derivation",
-      "source": "Heights at 40 evenly spaced quantiles of a normal curve (mean 100, spread 10) in Demo.tsx; top-15 mean 110.04 cm (artifacts/scratch/w4life/breed.mjs). No random seed.",
-      "status": "unverified"
+      "source": "Heights at 40 evenly spaced quantiles of a normal curve (mean 100, spread 10) in Demo.tsx; top-15 mean 110.04 cm (artifacts/scratch/w4life/breed.mjs). No random seed. | FACT-CHECK 2026-10-13 (pass 6): Node: 40 quantiles of a normal(100, 10); top 15 mean 110.04.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.offspring-regress.c2",
       "text": "With 40% of height differences inherited, offspring of parents 10 cm above average are expected to be 4 cm above average: about 104 cm. At 0% they average 100 cm; at 100%, 110 cm.",
       "support": "derivation",
-      "source": "Breeder's equation R = h2 S (Falconer & Mackay, Introduction to Quantitative Genetics, 1996, ch. 11): 0.4 x 10.04 = 4.02. Demo.tsx offMean. The brief's 400,000-plant simulation (4.6 for S = 11.6, predicted 4.64) agrees.",
-      "status": "unverified"
+      "source": "Breeder's equation R = h2 S (Falconer & Mackay, Introduction to Quantitative Genetics, 1996, ch. 11): 0.4 x 10.04 = 4.02. Demo.tsx offMean. The brief's 400,000-plant simulation (4.6 for S = 11.6, predicted 4.64) agrees. | FACT-CHECK 2026-10-13 (pass 6): Node: 100 + 0.4 x 10.04 = 104.02.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.offspring-regress.c3",
       "text": "Part of a selected parent's extra height comes from conditions such as soil and luck, which offspring do not inherit; that is why offspring move only part of the way.",
       "support": "source",
-      "source": "Falconer & Mackay 1996: narrow-sense heritability is the share of phenotypic variance due to additive genetic effects; the non-heritable deviations of selected parents average zero in their offspring.",
-      "status": "unverified"
+      "source": "Falconer & Mackay 1996: narrow-sense heritability is the share of phenotypic variance due to additive genetic effects; the non-heritable deviations of selected parents average zero in their offspring. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.offspring-regress.c4",
       "text": "Model: made-up plants, additive genes, random crossing among the kept plants, offspring drawn with the same spread as the parents for illustration. Stated on the stage ('Toy plants') before the prediction.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; brief life #37. The offspring spread is not modelled; only the offspring mean comes from the equation.",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; brief life #37. The offspring spread is not modelled; only the offspring mean comes from the equation. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

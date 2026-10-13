@@ -27,29 +27,37 @@
       "id": "life.costly-resistance.c1",
       "text": "In the toy dish with no drug, if 10% of cells are resistant and they leave 5% fewer offspring each generation, the resistant share is 3.8% after 20 generations and 0.51% after 60.",
       "support": "derivation",
-      "source": "r_g = 0.1 x 0.95^g / (0.9 + 0.1 x 0.95^g): g = 20 gives 0.0383, g = 60 gives 0.0051 (Demo.tsx share(); node). Matches the brief's check (3.8%).",
-      "status": "unverified"
+      "source": "r_g = 0.1 x 0.95^g / (0.9 + 0.1 x 0.95^g): g = 20 gives 0.0383, g = 60 gives 0.0051 (Demo.tsx share(); node). Matches the brief's check (3.8%). | FACT-CHECK 2026-10-13 (pass 6): Node: 3.83% at generation 20, 0.509% at 60.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.costly-resistance.c2",
       "text": "A 5% cost shrinks the ratio of resistant to normal cells by 5% each generation, so the resistant share falls slowly and never reaches exactly zero.",
       "support": "derivation",
-      "source": "Ratio r/(1-r) multiplies by (1 - cost) per generation in the same model.",
-      "status": "unverified"
+      "source": "Ratio r/(1-r) multiplies by (1 - cost) per generation in the same model. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.costly-resistance.c3",
       "text": "Resistance often carries a fitness cost, and bacteria often gain extra (compensating) mutations that reduce that cost, so resistance can persist without the drug.",
       "support": "source",
-      "source": "Andersson & Hughes 2010, Nature Reviews Microbiology 8:260 ('Antibiotic resistance and its cost: is it possible to reverse resistance?').",
-      "status": "unverified"
+      "source": "Andersson & Hughes 2010, Nature Reviews Microbiology 8:260 ('Antibiotic resistance and its cost: is it possible to reverse resistance?'). | FACT-CHECK 2026-10-13 (pass 6): Andersson and Hughes 2010, Nat Rev Microbiol 8:260-271: costs reduce growth rate; compensatory mutations are a main route to stable resistance after drug withdrawal. Abstract and secondary summaries confirm; full text not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.costly-resistance.c4",
       "text": "The dish is a model: a fixed 5% cost, no drug, no new mutations, no compensation, no randomness. It is a model, not treatment advice; stated on the stage ('Toy dish, no drug') and in the reveal.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; brief life #39 (the 5% cost is invented). The stage also offers 1% and 10% costs (8.3% and 1.3% at generation 20).",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; brief life #39 (the 5% cost is invented). The stage also offers 1% and 10% costs (8.3% and 1.3% at generation 20). | FACT-CHECK 2026-10-13 (pass 6): Node: 1% cost gives 8.3%, 10% cost 1.3% at generation 20.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

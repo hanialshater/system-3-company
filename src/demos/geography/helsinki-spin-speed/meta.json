@@ -28,50 +28,64 @@
       "id": "geography.helsinki-spin-speed.c1",
       "text": "Earth's spin carries someone on the equator at about 1,670 km/h.",
       "support": "derivation",
-      "source": "v = 2πR / T with R = 6,371.0088 km (mean radius) and T = 86,164.09 s (sidereal day): 1,672.5 km/h. Demo.tsx speed(0). On the WGS84 ellipsoid the equatorial radius 6,378.137 km gives 1,674.4 km/h (cm-geography brief), so 'about 1,670' holds either way. Speed is relative to Earth's axis (not to the Sun or the galaxy).",
-      "status": "unverified"
+      "source": "v = 2πR / T with R = 6,371.0088 km (mean radius) and T = 86,164.09 s (sidereal day): 1,672.5 km/h. Demo.tsx speed(0). On the WGS84 ellipsoid the equatorial radius 6,378.137 km gives 1,674.4 km/h (cm-geography brief), so 'about 1,670' holds either way. Speed is relative to Earth's axis (not to the Sun or the galaxy). | FACT-CHECK 2026-10-13 (pass 6): Node: 1,672.5 km/h on the sphere with a sidereal day; shown as 1,670.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c2",
       "text": "In Helsinki (60°N) the spin carries you at about 830 km/h, about half the equator's speed.",
       "support": "derivation",
-      "source": "speed(60.17) = 1,672.5 × cos 60.17° = 831.9 km/h (builder node run; Demo.tsx). Ratio 0.497.",
-      "status": "unverified"
+      "source": "speed(60.17) = 1,672.5 × cos 60.17° = 831.9 km/h (builder node run; Demo.tsx). Ratio 0.497. | FACT-CHECK 2026-10-13 (pass 6): Node: 831.9 km/h at 60.17 N; shown as 830.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c3",
       "text": "Everyone goes round once in the same time, 23 h 56 min (one sidereal day).",
       "support": "source",
-      "source": "Sidereal day 86,164.09 s = 23 h 56 min 4 s (IERS conventions; from memory). The solar day (24 h) is the turn relative to the Sun; speed relative to the axis uses the sidereal day.",
-      "status": "unverified"
+      "source": "Sidereal day 86,164.09 s = 23 h 56 min 4 s (IERS conventions; from memory). The solar day (24 h) is the turn relative to the Sun; speed relative to the axis uses the sidereal day. | FACT-CHECK 2026-10-13 (pass 6): Sidereal day 23 h 56 min 4 s.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c4",
       "text": "The circle of latitude at Helsinki is about 19,910 km round, against 40,030 km at the equator.",
       "support": "derivation",
-      "source": "2πR cos φ on the sphere R = 6,371.0088 km: 19,912 km at 60.17°N, 40,030 km at 0° (Demo.tsx circleKm). The real equator is 40,075 km on WGS84 (from memory).",
-      "status": "unverified"
+      "source": "2πR cos φ on the sphere R = 6,371.0088 km: 19,912 km at 60.17°N, 40,030 km at 0° (Demo.tsx circleKm). The real equator is 40,075 km on WGS84 (from memory). | FACT-CHECK 2026-10-13 (pass 6): Node: 19,912 and 40,030 km; shown as 19,910 and 40,030.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c5",
       "text": "A circle of latitude shrinks with the cosine of the latitude; cos 60° is one half.",
       "support": "derivation",
-      "source": "The radius of the parallel at latitude φ on a sphere is R cos φ (geometry).",
-      "status": "unverified"
+      "source": "The radius of the parallel at latitude φ on a sphere is R cos φ (geometry). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c6",
       "text": "At the North Pole you just turn on the spot.",
       "support": "derivation",
-      "source": "cos 90° = 0: the circle has zero radius. Quoted in the reveal only if the learner visited the pole.",
-      "status": "unverified"
+      "source": "cos 90° = 0: the circle has zero radius. Quoted in the reveal only if the learner visited the pole. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.helsinki-spin-speed.c7",
       "text": "Helsinki is at about 60°N; London at about 51.5°N.",
       "support": "source",
-      "source": "Gazetteer coordinates (from memory): Helsinki 60.17°N, London 51.51°N.",
-      "status": "unverified"
+      "source": "Gazetteer coordinates (from memory): Helsinki 60.17°N, London 51.51°N. | FACT-CHECK 2026-10-13 (pass 6): Helsinki 60.17 N, London 51.51 N.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

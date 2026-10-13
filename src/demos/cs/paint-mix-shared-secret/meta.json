@@ -18,50 +18,64 @@
       "id": "cs.paint-mix-shared-secret.c1",
       "text": "On a 23-hour clock, starting at 1 and multiplying by 5 six times stops on 8; multiplying by 5 fifteen times stops on 19.",
       "support": "derivation",
-      "source": "5^6 mod 23 = 8 and 5^15 mod 23 = 19. Demo.tsx walk(5, 6) and walk(5, 15); builder re-ran in Node with BigInt: 8n, 19n.",
-      "status": "unverified"
+      "source": "5^6 mod 23 = 8 and 5^15 mod 23 = 19. Demo.tsx walk(5, 6) and walk(5, 15); builder re-ran in Node with BigInt: 8n, 19n. | FACT-CHECK 2026-10-13 (pass 6): Node BigInt: 5^6 = 8, 5^15 = 19 (mod 23).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c2",
       "text": "From 1, multiplying by 8 fifteen times and multiplying by 19 six times both stop on 2.",
       "support": "derivation",
-      "source": "8^15 mod 23 = 2 = 19^6 mod 23. Demo.tsx BOB[15] and ALICE[6]; builder re-ran in Node: 2 and 2.",
-      "status": "unverified"
+      "source": "8^15 mod 23 = 2 = 19^6 mod 23. Demo.tsx BOB[15] and ALICE[6]; builder re-ran in Node: 2 and 2. | FACT-CHECK 2026-10-13 (pass 6): Node: 8^15 = 2, 19^6 = 2 (mod 23).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c3",
       "text": "Multiplying by 5 ninety times (6 × 15) from 1 on the 23-clock also stops on 2, because each side multiplied 5 by itself 90 times.",
       "support": "derivation",
-      "source": "(5^6)^15 = (5^15)^6 = 5^90; 5^90 mod 23 = 2 (Demo.tsx DIRECT; Node check). Wrapping after each multiply gives the same result as wrapping at the end (arithmetic modulo n).",
-      "status": "unverified"
+      "source": "(5^6)^15 = (5^15)^6 = 5^90; 5^90 mod 23 = 2 (Demo.tsx DIRECT; Node check). Wrapping after each multiply gives the same result as wrapping at the end (arithmetic modulo n). | FACT-CHECK 2026-10-13 (pass 6): Node: 5^90 mod 23 = 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c4",
       "text": "Multiply, then wrap around the clock, is the same as keeping the remainder after dividing by 23.",
       "support": "convention",
-      "source": "Definition of multiplication modulo n (e.g. Hardy and Wright, An Introduction to the Theory of Numbers, ch. 5, congruences).",
-      "status": "unverified"
+      "source": "Definition of multiplication modulo n (e.g. Hardy and Wright, An Introduction to the Theory of Numbers, ch. 5, congruences). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c5",
       "text": "Eve hears only 8 and 19, never the secrets 6 or 15, yet on a 23-clock she could find a secret by trying every one.",
       "support": "derivation",
-      "source": "Exhaustive search over exponents 1..22 in Node: 5^6 = 8 and 5^15 = 19 are found in 22 tries. The public messages in the protocol are only the clock, base and the two public numbers (Diffie and Hellman 1976).",
-      "status": "unverified"
+      "source": "Exhaustive search over exponents 1..22 in Node: 5^6 = 8 and 5^15 = 19 are found in 22 tries. The public messages in the protocol are only the clock, base and the two public numbers (Diffie and Hellman 1976). | FACT-CHECK 2026-10-13 (pass 6): Node: exhaustive search finds 8 at exponent 6 and 19 at exponent 15, within 22 tries.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c6",
       "text": "Real systems use enormous clocks where trying every secret is hopeless.",
       "support": "source",
-      "source": "Diffie-Hellman security rests on the discrete-logarithm problem being infeasible for large moduli (Diffie and Hellman, 'New Directions in Cryptography', IEEE Trans. Inf. Theory 22(6), 1976). No key size is stated in the lesson.",
-      "status": "unverified"
+      "source": "Diffie-Hellman security rests on the discrete-logarithm problem being infeasible for large moduli (Diffie and Hellman, 'New Directions in Cryptography', IEEE Trans. Inf. Theory 22(6), 1976). No key size is stated in the lesson. | FACT-CHECK 2026-10-13 (pass 6): Large-modulus hardness is the standard Diffie-Hellman security assumption; no key size claimed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.paint-mix-shared-secret.c7",
       "text": "This scheme is the Diffie-Hellman key exchange.",
       "support": "source",
-      "source": "Diffie and Hellman, 'New Directions in Cryptography', IEEE Transactions on Information Theory 22(6), 1976.",
-      "status": "unverified"
+      "source": "Diffie and Hellman, 'New Directions in Cryptography', IEEE Transactions on Information Theory 22(6), 1976. | FACT-CHECK 2026-10-13 (pass 6): Diffie and Hellman 1976, IEEE Trans. Inf. Theory 22(6):644-654, correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

@@ -18,43 +18,55 @@
       "id": "cs.euclid-leftover-rectangle.c1",
       "text": "The largest identical square that tiles a 48 by 18 floor exactly is 6 by 6.",
       "support": "derivation",
-      "source": "gcd(48, 18) = 6: 48 = 2 × 18 + 12, 18 = 1 × 12 + 6, 12 = 2 × 6. Builder ran Euclid in Node: 6. 3 also divides both but is smaller; 9 does not divide 48.",
-      "status": "unverified"
+      "source": "gcd(48, 18) = 6: 48 = 2 × 18 + 12, 18 = 1 × 12 + 6, 12 = 2 × 6. Builder ran Euclid in Node: 6. 3 also divides both but is smaller; 9 does not divide 48. | FACT-CHECK 2026-10-13 (pass 6): Node gcd(48,18) = 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.euclid-leftover-rectangle.c2",
       "text": "Cutting the biggest square that fits from 48 by 18, again and again, cuts squares of 18, 18, 12, 6 and 6, and the last strip, 12 by 6, splits into exactly two 6-squares.",
       "support": "simulation",
-      "source": "Demo.tsx cuts(): sides [18, 18, 12, 6, 6]; rectangle after the third cut is 12 × 6. Builder re-ran the loop in Node.",
-      "status": "unverified"
+      "source": "Demo.tsx cuts(): sides [18, 18, 12, 6, 6]; rectangle after the third cut is 12 × 6. Builder re-ran the loop in Node. | FACT-CHECK 2026-10-13 (pass 6): Re-ran the cut loop: sides 18,18,12,6,6; strip after the third cut is 12 x 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.euclid-leftover-rectangle.c3",
       "text": "A 6-square tiles the whole 48 by 18 floor: 8 across, 3 down, 24 tiles.",
       "support": "derivation",
-      "source": "48 / 6 = 8, 18 / 6 = 3, 8 × 3 = 24.",
-      "status": "unverified"
+      "source": "48 / 6 = 8, 18 / 6 = 3, 8 × 3 = 24. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.euclid-leftover-rectangle.c4",
       "text": "Cutting off a square never changes which tiles fit: a tile that fits the floor and the square also fits what is left.",
       "support": "derivation",
-      "source": "If t divides a and b then t divides a − b, and conversely if t divides b and a − b it divides a; so the common divisors of (a, b) and (a − b, b) are the same (Euclid, Elements VII.2; Hardy and Wright, Theorem 4 ff.).",
-      "status": "unverified"
+      "source": "If t divides a and b then t divides a − b, and conversely if t divides b and a − b it divides a; so the common divisors of (a, b) and (a − b, b) are the same (Euclid, Elements VII.2; Hardy and Wright, Theorem 4 ff.). | FACT-CHECK 2026-10-13 (pass 6): The divisor argument is sound. The Hardy-Wright pointer ('Theorem 4 ff.') is loose; Euclid VII.2 is the right anchor.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.euclid-leftover-rectangle.c5",
       "text": "The method took 5 cuts here, instead of testing every size up to 18.",
       "support": "simulation",
-      "source": "Demo.tsx CUTS.length = 5. Testing every candidate side from 18 down to 1 is up to 18 tries; 18 here is the shorter side.",
-      "status": "unverified"
+      "source": "Demo.tsx CUTS.length = 5. Testing every candidate side from 18 down to 1 is up to 18 tries; 18 here is the shorter side. | FACT-CHECK 2026-10-13 (pass 6): 5 cuts vs up to 18 candidate sizes; wording is a comparison of cut count, not a complexity claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.euclid-leftover-rectangle.c6",
       "text": "This is Euclid's algorithm.",
       "support": "source",
-      "source": "Euclid, Elements, Book VII, Propositions 1 and 2 (repeated subtraction to find the greatest common measure); Knuth, TAOCP Vol. 2, 4.5.2.",
-      "status": "unverified"
+      "source": "Euclid, Elements, Book VII, Propositions 1 and 2 (repeated subtraction to find the greatest common measure); Knuth, TAOCP Vol. 2, 4.5.2. | FACT-CHECK 2026-10-13 (pass 6): Euclid Elements VII.1-2 (anthyphairesis) and Knuth TAOCP 2, 4.5.2 are correct locations.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

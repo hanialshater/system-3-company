@@ -28,36 +28,46 @@
       "id": "geography.half-the-globe-30-band.c1",
       "text": "Half of the Earth's surface lies between 30°S and 30°N.",
       "support": "derivation",
-      "source": "Area of a spherical zone 2πRh (Archimedes' hat-box theorem; any geometry text, from memory) gives the share (sin n − sin s)/2 = (0.5 + 0.5)/2 = 0.5. Demo.tsx surfaceShare; the drawn band polygon's geoArea gives 0.5000 (builder node run). On the real ellipsoid the figure differs by under 0.2% (cm-geography brief).",
-      "status": "unverified"
+      "source": "Area of a spherical zone 2πRh (Archimedes' hat-box theorem; any geometry text, from memory) gives the share (sin n − sin s)/2 = (0.5 + 0.5)/2 = 0.5. Demo.tsx surfaceShare; the drawn band polygon's geoArea gives 0.5000 (builder node run). On the real ellipsoid the figure differs by under 0.2% (cm-geography brief). | FACT-CHECK 2026-10-13 (pass 6): Node: (sin30 - sin(-30))/2 = 0.5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.half-the-globe-30-band.c2",
       "text": "The band from 30°S to 30°N is a third of the latitude range (60° of 180°).",
       "support": "derivation",
-      "source": "Arithmetic: 60/180 = 33.3%. Demo.tsx rangeShare.",
-      "status": "unverified"
+      "source": "Arithmetic: 60/180 = 33.3%. Demo.tsx rangeShare. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.half-the-globe-30-band.c3",
       "text": "The cap from 60°N to the pole spans 30° of latitude but holds only about 6.7% of the surface.",
       "support": "derivation",
-      "source": "(sin 90° − sin 60°)/2 = (1 − 0.866)/2 = 0.0670; geoArea of the drawn cap 0.0670 (builder node run).",
-      "status": "unverified"
+      "source": "(sin 90° − sin 60°)/2 = (1 − 0.866)/2 = 0.0670; geoArea of the drawn cap 0.0670 (builder node run). | FACT-CHECK 2026-10-13 (pass 6): Node: (1 - sin 60)/2 = 0.0670.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.half-the-globe-30-band.c4",
       "text": "Area grows with the sine of latitude, not with the degrees: sin 30° is one half, so half of each hemisphere lies within 30° of the equator.",
       "support": "derivation",
-      "source": "From c1: the area from the equator to latitude φ is 2πR² sin φ, half of a hemisphere (2πR²) at φ = 30°.",
-      "status": "unverified"
+      "source": "From c1: the area from the equator to latitude φ is 2πR² sin φ, half of a hemisphere (2πR²) at φ = 30°. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.half-the-globe-30-band.c5",
       "text": "Other bands on the stage: 10°S–10°N holds 17.4% of the surface and 60°S–60°N holds 86.6%.",
       "support": "derivation",
-      "source": "sin 10° = 0.1736, sin 60° = 0.8660 (builder node run). Readout values only.",
-      "status": "unverified"
+      "source": "sin 10° = 0.1736, sin 60° = 0.8660 (builder node run). Readout values only. | FACT-CHECK 2026-10-13 (pass 6): Node: sin 10 = 0.1736; sin 60 = 0.8660.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

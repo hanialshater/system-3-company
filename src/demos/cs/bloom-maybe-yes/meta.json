@@ -18,36 +18,46 @@
       "id": "cs.bloom-maybe-yes.c1",
       "text": "After adding cat (bits 1, 4, 7) and dog (bits 2, 4, 8), bits 1, 2, 4, 7 and 8 are lit, so eel's bits 1, 2, 7 are all lit and the filter answers Maybe although eel was never added.",
       "support": "simulation",
-      "source": "Demo.tsx answer(['cat','dog'], 'eel') = 'Maybe'; builder re-ran the set union in Node: lit {1,2,4,7,8}, eel bits all in it.",
-      "status": "unverified"
+      "source": "Demo.tsx answer(['cat','dog'], 'eel') = 'Maybe'; builder re-ran the set union in Node: lit {1,2,4,7,8}, eel bits all in it. | FACT-CHECK 2026-10-13 (pass 6): Re-ran lit-bit union in Node: {1,2,4,7,8}; eel {1,2,7} all lit. Stage text matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bloom-maybe-yes.c2",
       "text": "Fox would use bits 0, 4, 9; bit 0 and bit 9 are dark after adding cat and dog, so the filter answers No.",
       "support": "simulation",
-      "source": "Demo.tsx answer(['cat','dog'], 'fox') = 'No'; FOX_DARK = [0, 9]. The bit table is chosen for the lesson (not a real hash), disclosed here.",
-      "status": "unverified"
+      "source": "Demo.tsx answer(['cat','dog'], 'fox') = 'No'; FOX_DARK = [0, 9]. The bit table is chosen for the lesson (not a real hash), disclosed here. | FACT-CHECK 2026-10-13 (pass 6): Fox bits 0,4,9: 0 and 9 dark; No. Stated as a made-up table.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bloom-maybe-yes.c3",
       "text": "Each word always points at the same 3 bits.",
       "support": "convention",
-      "source": "A Bloom filter uses k fixed hash functions, so a given item always maps to the same k positions (Bloom, 'Space/time trade-offs in hash coding with allowable errors', CACM 13(7), 1970). The stage uses a fixed table with k = 3 in place of hash functions.",
-      "status": "unverified"
+      "source": "A Bloom filter uses k fixed hash functions, so a given item always maps to the same k positions (Bloom, 'Space/time trade-offs in hash coding with allowable errors', CACM 13(7), 1970). The stage uses a fixed table with k = 3 in place of hash functions. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bloom-maybe-yes.c4",
       "text": "A dark bit means no added word ever lit it, so a No is always certain; a Maybe can be wrong.",
       "support": "derivation",
-      "source": "Bits are only ever turned on; an added word lights all its bits, so an added word can never find one of its bits dark (no false negatives). False positives arise when other words lit all its bits (Bloom 1970).",
-      "status": "unverified"
+      "source": "Bits are only ever turned on; an added word lights all its bits, so an added word can never find one of its bits dark (no false negatives). False positives arise when other words lit all its bits (Bloom 1970). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.bloom-maybe-yes.c5",
       "text": "That one-sided doubt is the price of remembering many words in a few bits; this structure is a Bloom filter.",
       "support": "source",
-      "source": "Bloom 1970 (the structure and its space/error trade-off); Broder and Mitzenmacher, 'Network Applications of Bloom Filters: A Survey', Internet Mathematics 1(4), 2004.",
-      "status": "unverified"
+      "source": "Bloom 1970 (the structure and its space/error trade-off); Broder and Mitzenmacher, 'Network Applications of Bloom Filters: A Survey', Internet Mathematics 1(4), 2004. | FACT-CHECK 2026-10-13 (pass 6): Bloom 1970 CACM 13(7):422-426 and Broder-Mitzenmacher 2004 Internet Math 1(4):485-509 are real and on point.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

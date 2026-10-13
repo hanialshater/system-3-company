@@ -27,36 +27,46 @@
       "id": "life.one-percent-edge.c1",
       "text": "In the stage's toy model, a type that starts at 1% and leaves 5% more offspring than the old type each generation first reaches half the population at generation 95.",
       "support": "derivation",
-      "source": "Iterated p' = p(1+s)/(1+sp), s = 0.05, p0 = 0.01, in Demo.tsx (HALF[5]) and artifacts/scratch/w4life/nums.mjs: generation 94 = 49.8%, generation 95 = 51.0%. Closed form: odds grow by 1.05 per generation, ln 99 / ln 1.05 = 94.2. Matches the brief's check (95).",
-      "status": "unverified"
+      "source": "Iterated p' = p(1+s)/(1+sp), s = 0.05, p0 = 0.01, in Demo.tsx (HALF[5]) and artifacts/scratch/w4life/nums.mjs: generation 94 = 49.8%, generation 95 = 51.0%. Closed form: odds grow by 1.05 per generation, ln 99 / ln 1.05 = 94.2. Matches the brief's check (95). | FACT-CHECK 2026-10-13 (pass 6): Node: first reaches half at generation 95 (94 = 49.8%, 95 = 51.0%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-percent-edge.c2",
       "text": "With the 5% edge, at generation 48 (about halfway to half) the new type is still only 9.5% of the population; at generation 10 it is 1.6%.",
       "support": "derivation",
-      "source": "Same recursion in Demo.tsx (TRAJ[5][48] = 0.0951, TRAJ[5][10] = 0.0162), re-run in node.",
-      "status": "unverified"
+      "source": "Same recursion in Demo.tsx (TRAJ[5][48] = 0.0951, TRAJ[5][10] = 0.0162), re-run in node. | FACT-CHECK 2026-10-13 (pass 6): Node: generation 10 = 1.62%, generation 48 = 9.51%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-percent-edge.c3",
       "text": "In the same model a 10% edge reaches half in 49 generations and a 1% edge in 462: doubling the edge roughly halves the time.",
       "support": "derivation",
-      "source": "Demo.tsx HALF[10] = 49, HALF[1] = 462; artifacts/scratch/w4life/nums.mjs also gives 2% = 233. ln 99 / ln(1+s) is about (ln 99)/s for small s.",
-      "status": "unverified"
+      "source": "Demo.tsx HALF[10] = 49, HALF[1] = 462; artifacts/scratch/w4life/nums.mjs also gives 2% = 233. ln 99 / ln(1+s) is about (ln 99)/s for small s. | FACT-CHECK 2026-10-13 (pass 6): Node: 10% edge 49, 2% edge 233, 1% edge 462.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-percent-edge.c4",
       "text": "Each generation multiplies the ratio of new type to old type by 1 + s (1.05 for a 5% edge); going from 1 : 99 to 1 : 1 needs that ratio to grow 99-fold, about 95 steps of 1.05.",
       "support": "derivation",
-      "source": "From p' = p(1+s)/(1+sp): p'/(1-p') = (1+s) p/(1-p). Standard haploid selection recursion (Gillespie, Population Genetics: A Concise Guide, 2004, ch. 3).",
-      "status": "unverified"
+      "source": "From p' = p(1+s)/(1+sp): p'/(1-p') = (1+s) p/(1-p). Standard haploid selection recursion (Gillespie, Population Genetics: A Concise Guide, 2004, ch. 3). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.one-percent-edge.c5",
       "text": "The model is a toy: a very large asexual population (no drift, no sex), a constant advantage, and no new mutations. It is labelled 'Toy: huge population, no sex' on the stage and in the question.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; brief life #32 (company/domains/briefs/life.md).",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; brief life #32 (company/domains/briefs/life.md). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

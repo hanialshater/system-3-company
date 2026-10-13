@@ -28,50 +28,64 @@
       "id": "geography.hawaii-chain-clock.c1",
       "text": "Kauaʻi's volcano is about 5.1 million years old.",
       "support": "source",
-      "source": "USGS Hawaiian Volcano Observatory, Hawaiian-Emperor chain age pages: Kauaʻi shield about 5.1 Ma (cited by the cm-geography brief; from memory, not re-checked by the builder). Brief instruction: unverified until a checker confirms the table.",
-      "status": "unverified"
+      "source": "USGS Hawaiian Volcano Observatory, Hawaiian-Emperor chain age pages: Kauaʻi shield about 5.1 Ma (cited by the cm-geography brief; from memory, not re-checked by the builder). Brief instruction: unverified until a checker confirms the table. | FACT-CHECK 2026-10-13 (pass 6): Clague and Dalrymple table value 5.10 +/- 0.20 Ma for Kauai; USGS Volcano Watch gives 5.0-5.5 Ma. 'About 5.1' is fine.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c2",
       "text": "Midway is about 28 million years old.",
       "support": "source",
-      "source": "USGS / published K-Ar ages for Midway Atoll, about 27.7 Ma (from memory; cm-geography brief uses about 28 Ma). Needs a checker.",
-      "status": "unverified"
+      "source": "USGS / published K-Ar ages for Midway Atoll, about 27.7 Ma (from memory; cm-geography brief uses about 28 Ma). Needs a checker. | FACT-CHECK 2026-10-13 (pass 6): Dalrymple et al. 1977 (EPSL 37:107) revised Midway to about 27.0 +/- 0.6 Ma (alkalic stage); 27.7 Ma is widely quoted for the shield; USGS rounds to about 28 Ma. 'About 28' sits inside 27-28.7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c3",
       "text": "Kīlauea is an active volcano today.",
       "support": "source",
-      "source": "USGS HVO: Kīlauea is one of the most active volcanoes on Earth, with frequent eruptions in recent years (from memory). Wording softened from the brief's 'erupting now', which is time-sensitive.",
-      "status": "unverified"
+      "source": "USGS HVO: Kīlauea is one of the most active volcanoes on Earth, with frequent eruptions in recent years (from memory). Wording softened from the brief's 'erupting now', which is time-sensitive. | FACT-CHECK 2026-10-13 (pass 6): Kilauea is an active volcano; the wording is not time-sensitive.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c4",
       "text": "Kauaʻi is about 530 km from Kīlauea and Midway about 2,440 km.",
       "support": "derivation",
-      "source": "Great-circle distances on R = 6,371.0088 km between gazetteer points Kīlauea 19.42N 155.29W, Kauaʻi 22.05N 159.53W, Midway 28.21N 177.37W (cm-geography brief; coordinates from memory): 529.0 and 2,444.3 km (Demo.tsx km; builder node run).",
-      "status": "unverified"
+      "source": "Great-circle distances on R = 6,371.0088 km between gazetteer points Kīlauea 19.42N 155.29W, Kauaʻi 22.05N 159.53W, Midway 28.21N 177.37W (cm-geography brief; coordinates from memory): 529.0 and 2,444.3 km (Demo.tsx km; builder node run). | FACT-CHECK 2026-10-13 (pass 6): Node, great-circle on R = 6371.0088: 529.0 km and 2,444.3 km from the stage's coordinates. A published table (Clague and Dalrymple) lists Kauai 519 km from Kilauea, about 2% shorter, so 'about 530' is fine.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c5",
       "text": "Distance over age gives about 10.4 cm a year for Kauaʻi and 8.7 for Midway.",
       "support": "derivation",
-      "source": "529.0 km / 5.1 Myr = 10.37 cm/yr; 2,444.3 km / 28 Myr = 8.73 cm/yr (Demo.tsx cmPerYr). The brief says 8.8 for Midway; its distance or age was rounded differently.",
-      "status": "unverified"
+      "source": "529.0 km / 5.1 Myr = 10.37 cm/yr; 2,444.3 km / 28 Myr = 8.73 cm/yr (Demo.tsx cmPerYr). The brief says 8.8 for Midway; its distance or age was rounded differently. | FACT-CHECK 2026-10-13 (pass 6): Node: 10.37 and 8.73 cm/yr (8.82 at 27.7 Ma). Dalrymple 1977 average propagation 8.0 cm/yr, so the stage's roughly 9-10 is in the published range.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c6",
       "text": "The volcanoes form over a hot spot that stays roughly put, and the Pacific plate carries each one off to the northwest.",
       "support": "source",
-      "source": "Hot-spot model (Wilson 1963; Morgan 1971; USGS 'This Dynamic Earth', Hotspots; from memory). The stage labels the fixed-hot-spot assumption. Some studies find the Hawaiian hot spot drifted, notably in the Emperor-chain era; the lesson says 'roughly'.",
-      "status": "unverified"
+      "source": "Hot-spot model (Wilson 1963; Morgan 1971; USGS 'This Dynamic Earth', Hotspots; from memory). The stage labels the fixed-hot-spot assumption. Some studies find the Hawaiian hot spot drifted, notably in the Emperor-chain era; the lesson says 'roughly'. | FACT-CHECK 2026-10-13 (pass 6): The hedge 'roughly' is needed: Tarduno et al. 2003 (Science) found Hawaiian hot spot motion in the Emperor era, and Bono et al. 2019 found it reached its present latitude by about 28 Ma. Not contradicted by the lesson's wording.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.hawaii-chain-clock.c7",
       "text": "Hawaii's islands get older the farther they are from the active volcano.",
       "support": "source",
-      "source": "Age progression along the Hawaiian chain (USGS HVO; Clague & Dalrymple 1987; from memory).",
-      "status": "unverified"
+      "source": "Age progression along the Hawaiian chain (USGS HVO; Clague & Dalrymple 1987; from memory). | FACT-CHECK 2026-10-13 (pass 6): Age progression along the chain is the basic observation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

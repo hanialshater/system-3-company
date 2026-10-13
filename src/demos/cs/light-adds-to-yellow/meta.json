@@ -18,50 +18,64 @@
       "id": "cs.light-adds-to-yellow.c1",
       "text": "A pixel set to red 255, green 255, blue 0 looks yellow.",
       "support": "convention",
-      "source": "CSS Color Module Level 4, named colours: yellow = #ffff00 = rgb(255, 255, 0). The stage paints the swatch with exactly that value.",
-      "status": "unverified"
+      "source": "CSS Color Module Level 4, named colours: yellow = #ffff00 = rgb(255, 255, 0). The stage paints the swatch with exactly that value. | FACT-CHECK 2026-10-13 (pass 6): CSS yellow = #ffff00.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c2",
       "text": "With all three lights at 255 the pixel is white; with all at 0 it is black.",
       "support": "convention",
-      "source": "CSS Color Module Level 4: white = #ffffff, black = #000000.",
-      "status": "unverified"
+      "source": "CSS Color Module Level 4: white = #ffffff, black = #000000. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c3",
       "text": "Each light runs from 0 (off) to 255 (full).",
       "support": "convention",
-      "source": "8 bits per channel in sRGB colour as used by CSS rgb() (CSS Color Module Level 4, 'The RGB functions'). 255 = 2^8 - 1.",
-      "status": "unverified"
+      "source": "8 bits per channel in sRGB colour as used by CSS rgb() (CSS Color Module Level 4, 'The RGB functions'). 255 = 2^8 - 1. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c4",
       "text": "The stage names the eight corner colours black, red, green, blue, yellow, cyan, magenta and white; CSS calls rgb(0,255,0) lime, rgb(0,255,255) aqua and rgb(255,0,255) fuchsia.",
       "support": "convention",
-      "source": "CSS Color Module Level 4 named colours (lime #00ff00, aqua/cyan #00ffff, fuchsia/magenta #ff00ff). 'green' and 'magenta' here are everyday names, disclosed.",
-      "status": "unverified"
+      "source": "CSS Color Module Level 4 named colours (lime #00ff00, aqua/cyan #00ffff, fuchsia/magenta #ff00ff). 'green' and 'magenta' here are everyday names, disclosed. | FACT-CHECK 2026-10-13 (pass 6): CSS Color 4: lime #00ff00, aqua = cyan #00ffff, fuchsia = magenta #ff00ff; CSS green is #008000, so the disclosure is needed and present.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c5",
       "text": "A screen pixel gives off light and its three lights add, so adding light only makes it brighter.",
       "support": "source",
-      "source": "Additive colour mixing: Hunt, The Reproduction of Colour, 6th ed., ch. 2 (additive and subtractive mixing); emissive displays combine red, green and blue primaries additively.",
-      "status": "unverified"
+      "source": "Additive colour mixing: Hunt, The Reproduction of Colour, 6th ed., ch. 2 (additive and subtractive mixing); emissive displays combine red, green and blue primaries additively. | FACT-CHECK 2026-10-13 (pass 6): Additive mixing of emitted light; correct. Hunt chapter number not confirmed, but the claim is standard colour science.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c6",
       "text": "Each pigment soaks up some light, so mixing paints leaves less light, which is why red and green paint make a dark brown.",
       "support": "source",
-      "source": "Subtractive mixing: Hunt, The Reproduction of Colour, ch. 2. 'Dark brown' is the typical result for red and green artists' paints, not an exact colour; stated narrowly.",
-      "status": "unverified"
+      "source": "Subtractive mixing: Hunt, The Reproduction of Colour, ch. 2. 'Dark brown' is the typical result for red and green artists' paints, not an exact colour; stated narrowly. | FACT-CHECK 2026-10-13 (pass 6): 'Dark brown' for red + green paint is the usual outcome and the claim is hedged; no exact colour is stated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.light-adds-to-yellow.c7",
       "text": "Raising blue on a yellow pixel makes it paler, and at blue 255 it is white.",
       "support": "convention",
-      "source": "rgb(255,255,128) and rgb(255,255,255) as painted by the stage; white per c2.",
-      "status": "unverified"
+      "source": "rgb(255,255,128) and rgb(255,255,255) as painted by the stage; white per c2. | FACT-CHECK 2026-10-13 (pass 6): The stage paints rgb(255,255,128) then white; paler is accurate.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

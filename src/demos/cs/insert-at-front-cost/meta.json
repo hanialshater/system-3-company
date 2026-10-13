@@ -18,36 +18,46 @@
       "id": "cs.insert-at-front-cost.c1",
       "text": "Inserting a new item at the front of a row of 6 items in numbered slots moves all 6 existing items one slot right.",
       "support": "derivation",
-      "source": "Each item i must go from slot i to slot i + 1 to free slot 1: n = 6 moves (CLRS, Introduction to Algorithms, 3rd ed., ch. 10 intro: arrays store elements contiguously). Demo.tsx ROW_MOVES = ITEMS.length.",
-      "status": "unverified"
+      "source": "Each item i must go from slot i to slot i + 1 to free slot 1: n = 6 moves (CLRS, Introduction to Algorithms, 3rd ed., ch. 10 intro: arrays store elements contiguously). Demo.tsx ROW_MOVES = ITEMS.length. | FACT-CHECK 2026-10-13 (pass 6): Assumes a full row with no spare room at the front, which the question states by 'side by side'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.insert-at-front-cost.c2",
       "text": "Inserting at the front of a chain moves no items: the new box's arrow and the start arrow are set, 2 arrows in all.",
       "support": "derivation",
-      "source": "LIST-INSERT in CLRS 3rd ed., 10.2 (singly linked case: x.next = L.head; L.head = x). Demo.tsx CHAIN_MOVES = 0, CHAIN_ARROWS = 2.",
-      "status": "unverified"
+      "source": "LIST-INSERT in CLRS 3rd ed., 10.2 (singly linked case: x.next = L.head; L.head = x). Demo.tsx CHAIN_MOVES = 0, CHAIN_ARROWS = 2. | FACT-CHECK 2026-10-13 (pass 6): Note for source tidy: CLRS 3rd ed. LIST-INSERT (10.2) is written for the doubly linked list; the singly linked two-pointer insert is the same idea but not the printed code. The claim itself (2 arrows set, 0 items moved) is right.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.insert-at-front-cost.c3",
       "text": "Reaching item 4 of a chain takes 3 hops along the arrows; in general item k takes k − 1 hops.",
       "support": "derivation",
-      "source": "Starting at the first box, each hop follows one next-arrow, so item k is k − 1 hops away (CLRS 10.2, LIST-SEARCH walks from the head). Demo.tsx HOPS = TARGET − 1.",
-      "status": "unverified"
+      "source": "Starting at the first box, each hop follows one next-arrow, so item k is k − 1 hops away (CLRS 10.2, LIST-SEARCH walks from the head). Demo.tsx HOPS = TARGET − 1. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.insert-at-front-cost.c4",
       "text": "In a row of numbered slots, any slot is reached in a single jump.",
       "support": "source",
-      "source": "Array indexing computes the address from the index in constant time (CLRS 3rd ed., 10.3 and Appendix on memory as an array of words).",
-      "status": "unverified"
+      "source": "Array indexing computes the address from the index in constant time (CLRS 3rd ed., 10.3 and Appendix on memory as an array of words). | FACT-CHECK 2026-10-13 (pass 6): CLRS cites are approximate (arrays appear in 10.1 and 10.3); the constant-time indexing claim is standard and correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.insert-at-front-cost.c5",
       "text": "A row of slots is called an array and a chain of boxes joined by arrows is called a linked list.",
       "support": "convention",
-      "source": "CLRS 3rd ed., ch. 10 (arrays; 10.2 Linked lists).",
-      "status": "unverified"
+      "source": "CLRS 3rd ed., ch. 10 (arrays; 10.2 Linked lists). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

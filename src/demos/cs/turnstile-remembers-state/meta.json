@@ -18,36 +18,46 @@
       "id": "cs.turnstile-remembers-state.c1",
       "text": "A turnstile that starts locked and receives coin, push, push, coin, coin, push lets 2 people through.",
       "support": "simulation",
-      "source": "Demo.tsx run(6): passed = 2. Builder re-ran the trace in Node with an independent loop: 2.",
-      "status": "unverified"
+      "source": "Demo.tsx run(6): passed = 2. Builder re-ran the trace in Node with an independent loop: 2. | FACT-CHECK 2026-10-13 (pass 6): Node: coin, push, push, coin, coin, push from Locked passes 2 people.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.turnstile-remembers-state.c2",
       "text": "In this turnstile a coin unlocks it, a push while unlocked lets one person through and locks it, a push while locked is blocked, and a coin while unlocked changes nothing.",
       "support": "convention",
-      "source": "The rules of the standard coin-operated turnstile example (Wikipedia, 'Finite-state machine', section 'Example: coin-operated turnstile', state-transition table).",
-      "status": "unverified"
+      "source": "The rules of the standard coin-operated turnstile example (Wikipedia, 'Finite-state machine', section 'Example: coin-operated turnstile', state-transition table). | FACT-CHECK 2026-10-13 (pass 6): Matches the standard coin-operated turnstile table.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.turnstile-remembers-state.c3",
       "text": "On this run the second coin in a row (event 5) found the turnstile already unlocked and changed nothing.",
       "support": "simulation",
-      "source": "Demo.tsx run(5).edge = 'coin-wasted'; WASTED_AT = 5.",
-      "status": "unverified"
+      "source": "Demo.tsx run(5).edge = 'coin-wasted'; WASTED_AT = 5. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.turnstile-remembers-state.c4",
       "text": "The turnstile counts nothing: its whole memory is which of its two states it is in.",
       "support": "derivation",
-      "source": "Follows from c2: the next state depends only on the current state and the event; the model stores no other value.",
-      "status": "unverified"
+      "source": "Follows from c2: the next state depends only on the current state and the event; the model stores no other value. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.turnstile-remembers-state.c5",
       "text": "A finite-state machine has fixed states and a rule for each event in each state.",
       "support": "convention",
-      "source": "Sipser, Introduction to the Theory of Computation, 3rd ed., Definition 1.5 (finite automaton: finite set of states, alphabet, transition function, start state, accept states). Lesson wording is the informal reading; accept states are omitted.",
-      "status": "unverified"
+      "source": "Sipser, Introduction to the Theory of Computation, 3rd ed., Definition 1.5 (finite automaton: finite set of states, alphabet, transition function, start state, accept states). Lesson wording is the informal reading; accept states are omitted. | FACT-CHECK 2026-10-13 (pass 6): Sipser 3rd ed. Definition 1.5 is the finite automaton definition; the lesson omits accept states and says so.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

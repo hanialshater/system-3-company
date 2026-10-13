@@ -28,36 +28,46 @@
       "id": "geography.web-map-cut-off-latitude.c1",
       "text": "Standard web map tiles (Web Mercator) draw the whole world as one square Mercator map.",
       "support": "source",
-      "source": "EPSG:3857 / the 'slippy map' tile scheme: zoom level 0 is one square tile covering the world in spherical Mercator (OpenStreetMap wiki, 'Slippy map tilenames'; from memory). The lesson names no product.",
-      "status": "unverified"
+      "source": "EPSG:3857 / the 'slippy map' tile scheme: zoom level 0 is one square tile covering the world in spherical Mercator (OpenStreetMap wiki, 'Slippy map tilenames'; from memory). The lesson names no product. | FACT-CHECK 2026-10-13 (pass 6): EPSG:3857 slippy-map tiles: zoom 0 is a single square tile.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.web-map-cut-off-latitude.c2",
       "text": "A square Mercator world map stops at about 85.05° north and south.",
       "support": "derivation",
-      "source": "Height equals width when ψ(L) = π, with ψ = ln tan(45° + L/2): L = atan(sinh π) = 85.0511° (builder node run; Demo.tsx SQUARE_LAT). Matches the EPSG:3857 latitude bound (OpenStreetMap wiki; from memory) and the cm-geography brief.",
-      "status": "unverified"
+      "source": "Height equals width when ψ(L) = π, with ψ = ln tan(45° + L/2): L = atan(sinh π) = 85.0511° (builder node run; Demo.tsx SQUARE_LAT). Matches the EPSG:3857 latitude bound (OpenStreetMap wiki; from memory) and the cm-geography brief. | FACT-CHECK 2026-10-13 (pass 6): Node: atan(sinh pi) = 85.0511 degrees.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.web-map-cut-off-latitude.c3",
       "text": "Mercator stretches north–south distances more and more toward the poles, so its height has no limit.",
       "support": "source",
-      "source": "Mercator ordinate y = R ln tan(45° + φ/2), which diverges as φ → 90° (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395, ch. 7; from memory).",
-      "status": "unverified"
+      "source": "Mercator ordinate y = R ln tan(45° + φ/2), which diverges as φ → 90° (Snyder 1987, Map Projections: A Working Manual, USGS PP 1395, ch. 7; from memory). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.web-map-cut-off-latitude.c4",
       "text": "Cut at 89°, a Mercator world map is about 1.51 times as tall as it is wide.",
       "support": "derivation",
-      "source": "ψ(89°)/π = 4.741/3.1416 = 1.509 (builder node run; Demo.tsx ratio). Quoted in the reveal only if the learner chose 89°. Other values on the stage: 75° 0.65, 80° 0.78.",
-      "status": "unverified"
+      "source": "ψ(89°)/π = 4.741/3.1416 = 1.509 (builder node run; Demo.tsx ratio). Quoted in the reveal only if the learner chose 89°. Other values on the stage: 75° 0.65, 80° 0.78. | FACT-CHECK 2026-10-13 (pass 6): Node: psi(89)/pi = 1.509; also 75 deg 0.645, 80 deg 0.775.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.web-map-cut-off-latitude.c5",
       "text": "Everything closer to the poles than 85.05° is left off a square web map.",
       "support": "derivation",
-      "source": "Follows from c1 and c2 for the zoom-0 square; tiles at every zoom subdivide the same square (OpenStreetMap wiki; from memory).",
-      "status": "unverified"
+      "source": "Follows from c1 and c2 for the zoom-0 square; tiles at every zoom subdivide the same square (OpenStreetMap wiki; from memory). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

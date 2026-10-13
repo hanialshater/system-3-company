@@ -5,7 +5,7 @@
 //   npm run walkthrough -- <slug> [<slug> ...] [--choose N] [--steps K] [--viewport phone|desktop]
 //   npm run walkthrough -- --domain <domain>      every non-retired lesson in a domain, one server
 //
-// Writes artifacts/walkthroughs/<slug>/transcript.md and step screenshots.
+// Writes artifacts/walkthroughs/<slug>/transcript.md, step screenshots and sheet.png (all frames in one image).
 // Uses a running server at WALKTHROUGH_URL if set; otherwise starts `next start` on port 3300
 // (run `npm run build` first).
 
@@ -57,11 +57,28 @@ if (!base) {
   await waitFor(base);
 }
 
+// One image per lesson (sheet.png): every frame in order, labelled, so a reviewer can see the whole
+// walkthrough in a single image read (per-image reads hit request limits on 2026-10-13).
+async function contactSheet(context, dir) {
+  const frames = fs.readdirSync(dir).filter((f) => /^\d\d-.*\.png$/.test(f)).sort();
+  if (!frames.length) return;
+  const cells = frames
+    .map((f) => `<figure><img src="data:image/png;base64,${fs.readFileSync(path.join(dir, f)).toString("base64")}"><figcaption>${f.replace(/\.png$/, "")}</figcaption></figure>`)
+    .join("");
+  const page = await context.newPage();
+  await page.setViewportSize({ width: 1600, height: 900 });
+  await page.setContent(`<style>body{margin:0;background:#111;font:14px system-ui;color:#eee}main{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:8px}figure{margin:0}img{width:100%;display:block;border:1px solid #333}figcaption{padding:2px 0}</style><main>${cells}</main>`);
+  await page.screenshot({ path: path.join(dir, "sheet.png"), fullPage: true });
+  await page.close();
+}
+
 const launchOpts = process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {};
 const browser = await chromium.launch(launchOpts);
 for (const slug of slugs) {
 const outDir = path.join("artifacts", "walkthroughs", slug);
 fs.mkdirSync(outDir, { recursive: true });
+// Stale frames from an earlier run would mislead a reviewer: clear them first.
+for (const f of fs.readdirSync(outDir)) if (f.endsWith(".png")) fs.rmSync(path.join(outDir, f));
 const context = await browser.newContext(viewport === "phone" ? devices["Pixel 7"] : { viewport: { width: 1280, height: 800 } });
 const page = await context.newPage();
 const log = [];
@@ -142,6 +159,7 @@ try {
   log.push("", `**Walkthrough aborted:** ${e.message.split("\n")[0]}`);
 } finally {
   fs.writeFileSync(path.join(outDir, "transcript.md"), log.join("\n") + "\n");
+  await contactSheet(context, outDir);
   await context.close();
 }
 console.log(`wrote ${path.join(outDir, "transcript.md")} and ${n} screenshots`);

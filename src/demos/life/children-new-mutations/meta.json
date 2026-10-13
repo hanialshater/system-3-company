@@ -27,36 +27,46 @@
       "id": "life.children-new-mutations.c1",
       "text": "A human genome copy has about 3.1 billion letters (DNA bases), and each person carries two copies, one from each parent.",
       "support": "source",
-      "source": "Human reference genome GRCh38 is about 3.1 Gb per haploid copy (Genome Reference Consortium; International Human Genome Sequencing Consortium 2004, Nature 431). Rounded to 3.1 billion in the question and stage (31 squares of 100 million per copy).",
-      "status": "unverified"
+      "source": "Human reference genome GRCh38 is about 3.1 Gb per haploid copy (Genome Reference Consortium; International Human Genome Sequencing Consortium 2004, Nature 431). Rounded to 3.1 billion in the question and stage (31 squares of 100 million per copy). | FACT-CHECK 2026-10-13 (pass 6): GRCh38 total length is about 3.1 Gb (3,099 Mb including unlocalised sequence).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.children-new-mutations.c2",
       "text": "The new-mutation rate in humans is about 1.2 per 100 million letters per generation.",
       "support": "source",
-      "source": "Kong et al. 2012, Nature 488:471 (about 1.20 x 10^-8 per nucleotide per generation, varying with the father's age). Brief life #33.",
-      "status": "unverified"
+      "source": "Kong et al. 2012, Nature 488:471 (about 1.20 x 10^-8 per nucleotide per generation, varying with the father's age). Brief life #33. | FACT-CHECK 2026-10-13 (pass 6): Kong et al. 2012, Nature 488:471-475: 1.20e-8 per nucleotide per generation at mean paternal age 29.7 (78 Icelandic trios). Later estimates run to 1.28e-8 (Rahbari 2016).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.children-new-mutations.c3",
       "text": "6.2 billion letters times 1.2 in 100 million gives about 74 new changes per child (the reveal rounds this to 'about 74'; the answer option says 'About 70').",
       "support": "derivation",
-      "source": "2 x 3.1e9 x 1.2e-8 = 74.4 (Demo.tsx EXPECTED; artifacts/scratch/w4life/nums.mjs).",
-      "status": "unverified"
+      "source": "2 x 3.1e9 x 1.2e-8 = 74.4 (Demo.tsx EXPECTED; artifacts/scratch/w4life/nums.mjs). | FACT-CHECK 2026-10-13 (pass 6): Node: 2 x 3.1e9 x 1.2e-8 = 74.4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.children-new-mutations.c4",
       "text": "On the stage, child 1 carries 67 new changes at the real rate, 35 at half the rate and 140 at double; the counts vary by chance from child to child around 74.",
       "support": "simulation",
-      "source": "Poisson placement in Demo.tsx with unit exponential gaps from mulberry32(child number); seeds are 1, 2, 3... in order, not chosen. Children 1-5 at 1.2: 67, 63, 76, 71, 72; mean of 2,000 children 74.4 (node re-run).",
-      "status": "unverified"
+      "source": "Poisson placement in Demo.tsx with unit exponential gaps from mulberry32(child number); seeds are 1, 2, 3... in order, not chosen. Children 1-5 at 1.2: 67, 63, 76, 71, 72; mean of 2,000 children 74.4 (node re-run). | FACT-CHECK 2026-10-13 (pass 6): Node, replaying the stage's mulberry32 gap code: children 1-5 at 1.2 = 67, 63, 76, 71, 72; child 1 at 0.6 = 35 and at 2.4 = 140; mean of 2,000 children 74.39.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.children-new-mutations.c5",
       "text": "Studies that sequence parents and their children find about 60 to 70 new changes per child.",
       "support": "source",
-      "source": "Kong et al. 2012, Nature 488 (average about 60 de novo point mutations, rising with paternal age); Acuna-Hidalgo, Veltman & Hoischen 2016, Genome Biology 17:241 (review, about 44-82 per genome). Wording to be checked by the fact-checker; no medical interpretation is made.",
-      "status": "unverified"
+      "source": "Kong et al. 2012, Nature 488 (average about 60 de novo point mutations, rising with paternal age); Acuna-Hidalgo, Veltman & Hoischen 2016, Genome Biology 17:241 (review, about 44-82 per genome). Wording to be checked by the fact-checker; no medical interpretation is made. | FACT-CHECK 2026-10-13 (pass 6): Kong 2012: about 60 per child (about 25 from a 20-year-old father, about 65 from a 40-year-old, about 15 from the mother); Jonsson 2017 about 70; Acuna-Hidalgo 2016 reviews 44-82. 'About 60 to 70' is a fair summary.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

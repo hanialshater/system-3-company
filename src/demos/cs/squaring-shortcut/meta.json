@@ -25,36 +25,46 @@
       "id": "cs.squaring-shortcut.c1",
       "text": "Squaring 3 four times gives 3^2, 3^4, 3^8, 3^16: 4 multiplications.",
       "support": "derivation",
-      "source": "3^a × 3^a = 3^(2a); 1 → 2 → 4 → 8 → 16. Demo.tsx SQ_STEPS = log2(16) = 4.",
-      "status": "unverified"
+      "source": "3^a × 3^a = 3^(2a); 1 → 2 → 4 → 8 → 16. Demo.tsx SQ_STEPS = log2(16) = 4. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.squaring-shortcut.c2",
       "text": "Multiplying by 3 one step at a time takes 15 multiplications to reach 3^16.",
       "support": "derivation",
-      "source": "Each step raises the exponent by 1, from 1 to 16: 15 steps. Demo.tsx ONE_STEPS = GOAL − 1.",
-      "status": "unverified"
+      "source": "Each step raises the exponent by 1, from 1 to 16: 15 steps. Demo.tsx ONE_STEPS = GOAL − 1. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.squaring-shortcut.c3",
       "text": "No multiplication can more than double the largest exponent you have, so 3 steps reach at most 3^8, and 4 is the fewest for 3^16.",
       "support": "derivation",
-      "source": "Multiplying 3^a × 3^b gives 3^(a+b) ≤ 3^(2 max). After k steps the largest exponent is ≤ 2^k; 2^3 = 8 < 16. Builder's exhaustive addition-chain search in Node: shortest chain for 16 has length 4.",
-      "status": "unverified"
+      "source": "Multiplying 3^a × 3^b gives 3^(a+b) ≤ 3^(2 max). After k steps the largest exponent is ≤ 2^k; 2^3 = 8 < 16. Builder's exhaustive addition-chain search in Node: shortest chain for 16 has length 4. | FACT-CHECK 2026-10-13 (pass 6): The shortest addition chain to 16 has length 4 (exponent at most doubles each step).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.squaring-shortcut.c4",
       "text": "3^16 = 43,046,721.",
       "support": "derivation",
-      "source": "Node: 3 ** 16 = 43046721.",
-      "status": "unverified"
+      "source": "Node: 3 ** 16 = 43046721. | FACT-CHECK 2026-10-13 (pass 6): Node: 3**16 = 43046721.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "cs.squaring-shortcut.c5",
       "text": "Reaching 3^n this way takes about as many squarings as times you can halve n (log₂ n), plus a few extra multiplies when n is not a power of 2; for a power in the millions that is a few dozen steps.",
       "support": "source",
-      "source": "Square-and-multiply (binary method) uses ⌊log₂ n⌋ squarings plus (number of 1 bits − 1) multiplications (Knuth, TAOCP Vol. 2, 4.6.3). For n = 1,000,000: 19 squarings + 6 multiplies = 25.",
-      "status": "unverified"
+      "source": "Square-and-multiply (binary method) uses ⌊log₂ n⌋ squarings plus (number of 1 bits − 1) multiplications (Knuth, TAOCP Vol. 2, 4.6.3). For n = 1,000,000: 19 squarings + 6 multiplies = 25. | FACT-CHECK 2026-10-13 (pass 6): Node: for n = 10^6, 19 squarings + 6 multiplies = 25. Across exponents up to about 16 million the count runs 22 to 46, which fits 'a few dozen'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

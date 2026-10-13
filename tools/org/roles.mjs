@@ -272,7 +272,7 @@ export const roles = [
     ],
     outOfScope: ["Reading build.md or the builder's reasoning before reporting", "Scoring 1–10", "Fixing the lesson"],
     authority: { may: ["Block launch with a specific finding"], mayNot: ["Claim a lesson teaches: only human learners can show that"] },
-    inputs: ["Walkthrough artifacts", "A knowledge boundary (from meta.json learner field, or a different one on purpose)"],
+    inputs: ["Walkthrough artifacts: read transcript.md, then sheet.png (every frame in one image; open single frames only when a detail needs it). If no image can be seen, say \"screenshots not seen\" and give at most revise", "A knowledge boundary (from meta.json learner field, or a different one on purpose)"],
     outputs: ["Learner review record"],
     rituals: ["demo-crit (reports first)", "launch-review"],
     failureModes: ["The theatrical beginner.", "Reading the builder's explanation first and agreeing with it."],

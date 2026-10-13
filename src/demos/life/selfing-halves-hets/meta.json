@@ -27,29 +27,37 @@
       "id": "life.selfing-halves-hets.c1",
       "text": "A hybrid (Aa) plant that pollinates itself gives seeds that are AA, Aa or aa in a 1 : 2 : 1 split, so half its seeds are hybrid.",
       "support": "derivation",
-      "source": "Mendelian segregation, Aa x Aa (Griffiths et al., Introduction to Genetic Analysis, ch. 2).",
-      "status": "unverified"
+      "source": "Mendelian segregation, Aa x Aa (Griffiths et al., Introduction to Genetic Analysis, ch. 2). | FACT-CHECK 2026-10-13 (pass 6): Aa x Aa gives 1 AA : 2 Aa : 1 aa.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.selfing-halves-hets.c2",
       "text": "Pure plants (AA or aa) that pollinate themselves only make pure seeds of the same kind.",
       "support": "derivation",
-      "source": "AA x AA gives only AA; aa x aa gives only aa.",
-      "status": "unverified"
+      "source": "AA x AA gives only AA; aa x aa gives only aa. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.selfing-halves-hets.c3",
       "text": "Starting from 32 hybrids, the expected number still hybrid is 16, 8, 4 and 2 after 1 to 4 generations of selfing: 12.5% after 3.",
       "support": "derivation",
-      "source": "Hybrid share halves per generation of complete selfing, H_t = H_0 / 2^t (Hartl & Clark, Principles of Population Genetics, 2007, inbreeding chapter). Demo.tsx HYB = [32, 16, 8, 4, 2], computed from the field it draws; artifacts/scratch/w4life/nums.mjs.",
-      "status": "unverified"
+      "source": "Hybrid share halves per generation of complete selfing, H_t = H_0 / 2^t (Hartl & Clark, Principles of Population Genetics, 2007, inbreeding chapter). Demo.tsx HYB = [32, 16, 8, 4, 2], computed from the field it draws; artifacts/scratch/w4life/nums.mjs. | FACT-CHECK 2026-10-13 (pass 6): Node: 32, 16, 8, 4, 2; 4/32 = 12.5% after 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "life.selfing-halves-hets.c4",
       "text": "Model: a made-up plant, complete selfing, one seed per plant, no selection; the field shows the average split, not one random run. Stated on the stage before the prediction.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; brief life #35. A random run would scatter around these counts.",
-      "status": "unverified"
+      "source": "Model choice in Demo.tsx; brief life #35. A random run would scatter around these counts. | FACT-CHECK 2026-10-13 (pass 6): Stage message: \"Toy: each plant pollinates itself and leaves one seed. Shown: the average split.\"",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
