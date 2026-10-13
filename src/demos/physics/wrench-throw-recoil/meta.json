@@ -6,27 +6,84 @@
   "concept": "rocket-recoil",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-physics", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["rockets work in space", "momentum is mass times velocity"],
-    "doesNotKnow": ["that momentum conservation applies to the thrown mass and the thrower together"]
+    "knows": [
+      "rockets work in space",
+      "momentum is mass times velocity"
+    ],
+    "doesNotKnow": [
+      "that momentum conservation applies to the thrown mass and the thrower together"
+    ]
   },
   "misconception": "A rocket needs air to push against, so an astronaut cannot move by throwing.",
   "objective": "The learner can explain that with no outside force the thrown mass and the thrower gain equal and opposite momentum, so throwing moves the thrower.",
   "claims": [
-    { "id": "physics.wrench-throw-recoil.c1", "text": "With no outside force, total momentum stays the same, so the astronaut and wrench gain equal and opposite momentum and the total stays 0.", "support": "derivation", "source": "Conservation of momentum for an isolated system (Newton's third law); any mechanics text, for example OpenStax University Physics Vol. 1, section 9.3.", "status": "unverified" },
-    { "id": "physics.wrench-throw-recoil.c2", "text": "An 80 kg astronaut throwing a 2 kg wrench at 10 m/s gives the wrench 20 kg·m/s, so the astronaut drifts the other way at 20 ÷ 80 = 0.25 m/s.", "support": "derivation", "source": "Node: 2 * 10 = 20; 20 / 80 = 0.25 m/s (Demo.tsx mom, drift).", "status": "unverified" },
-    { "id": "physics.wrench-throw-recoil.c3", "text": "Speeds are measured in the frame where the astronaut started. A throw speed measured relative to the astronaut would differ by the astronaut's own drift.", "support": "convention", "source": "Stated on stage ('Speeds from the start frame') and in the reveal. For 2 kg at 10 m/s the astronaut drifts 0.25 m/s, 2.5% of the throw speed; the stage takes the speed as the wrench's speed in the start frame.", "status": "unverified" },
-    { "id": "physics.wrench-throw-recoil.c4", "text": "The learner's own throws (mass, speed and the resulting drift) follow m v ÷ 80 for the astronaut, the same formula the stage draws.", "support": "derivation", "source": "Reveal quotes the first and last distinct throw from the throws list; drift = m v / 80 rounded to 3 places.", "status": "unverified" },
-    { "id": "physics.wrench-throw-recoil.c5", "text": "You do not need anything to push on, only something to push away: this is how rockets work in space.", "support": "derivation", "source": "A rocket expels exhaust mass backwards and gains forward momentum by the same conservation law (no air needed).", "status": "unverified" }
+    {
+      "id": "physics.wrench-throw-recoil.c1",
+      "text": "With no outside force, total momentum stays the same, so the astronaut and wrench gain equal and opposite momentum and the total stays 0.",
+      "support": "derivation",
+      "source": "Conservation of momentum for an isolated system (Newton's third law); any mechanics text, for example OpenStax University Physics Vol. 1, section 9.3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.wrench-throw-recoil.c2",
+      "text": "An 80 kg astronaut throwing a 2 kg wrench at 10 m/s gives the wrench 20 kg·m/s, so the astronaut drifts the other way at 20 ÷ 80 = 0.25 m/s.",
+      "support": "derivation",
+      "source": "Node: 2 * 10 = 20; 20 / 80 = 0.25 m/s (Demo.tsx mom, drift).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.wrench-throw-recoil.c3",
+      "text": "Speeds are measured in the frame where the astronaut started. A throw speed measured relative to the astronaut would differ by the astronaut's own drift.",
+      "support": "convention",
+      "source": "Stated on stage ('Speeds from the start frame') and in the reveal. For 2 kg at 10 m/s the astronaut drifts 0.25 m/s, 2.5% of the throw speed; the stage takes the speed as the wrench's speed in the start frame.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.wrench-throw-recoil.c4",
+      "text": "The learner's own throws (mass, speed and the resulting drift) follow m v ÷ 80 for the astronaut, the same formula the stage draws.",
+      "support": "derivation",
+      "source": "Reveal quotes the first and last distinct throw from the throws list; drift = m v / 80 rounded to 3 places.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.wrench-throw-recoil.c5",
+      "text": "You do not need anything to push on, only something to push away: this is how rockets work in space.",
+      "support": "derivation",
+      "source": "A rocket expels exhaust mass backwards and gains forward momentum by the same conservation law (no air needed).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "A 60 kg skater at rest on frictionless ice throws a 3 kg ball forward at 10 m/s. The skater then moves...",
-    "options": ["0.5 m/s backwards", "10 m/s backwards", "Not at all"],
+    "options": [
+      "0.5 m/s backwards",
+      "10 m/s backwards",
+      "Not at all"
+    ],
     "answer": 0,
     "why": "The ball carries 3 × 10 = 30 kg·m/s, so the skater gets 30 backwards: 30 ÷ 60 = 0.5 m/s."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

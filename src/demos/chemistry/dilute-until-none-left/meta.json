@@ -6,10 +6,17 @@
   "concept": "dilution",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that diluting lowers concentration"],
-    "doesNotKnow": ["that a molecule count runs out, so dilution has an end"]
+    "knows": [
+      "that diluting lowers concentration"
+    ],
+    "doesNotKnow": [
+      "that a molecule count runs out, so dilution has an end"
+    ]
   },
   "misconception": "You can dilute forever and still have the stuff, only weaker.",
   "objective": "The learner can say that 10 mL of 1.0 mol/L dye holds about 6.0 × 10²¹ molecules, so after about 22 tenfold steps the average tube holds fewer than 1.",
@@ -19,51 +26,72 @@
       "text": "The Avogadro constant is 6.02214076 × 10²³ per mole.",
       "support": "source",
       "source": "SI 2019 redefinition (BIPM SI Brochure, 9th ed.).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.dilute-until-none-left.c2",
       "text": "10 mL of 1.0 mol/L dye holds about 6.0 × 10²¹ molecules.",
       "support": "derivation",
       "source": "1.0 mol/L x 0.010 L x 6.02214e23 = 6.022e21 (node; Demo.tsx stock).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.dilute-until-none-left.c3",
       "text": "After k 1:10 steps the 10 mL tube holds on average 6.0 × 10²¹ × 10^-k molecules: about 6.0 at step 21 and about 0.60 at step 22.",
       "support": "derivation",
       "source": "6.022e21 x 10^-21 = 6.022; 6.022e21 x 10^-22 = 0.6022 (node; Demo.tsx average()). Each step moves 1 mL of the previous tube into 9 mL of water.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.dilute-until-none-left.c4",
       "text": "The number in any one tube is random: at an average of 0.60 about 55% of tubes hold none and the rest hold one or more.",
       "support": "derivation",
       "source": "Poisson distribution: P(0) = exp(-0.6022) = 0.547 (node). Assumes molecules are well mixed and independent.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.dilute-until-none-left.c5",
       "text": "The sample tube drawn from step 19 on uses a fixed seed (3000 + step), chosen from six tried because it shows 5 molecules at step 21 and 0 at step 22; it illustrates a typical outcome, not a guarantee.",
       "support": "derivation",
       "source": "Demo.tsx sample(); seed bases 1000 to 7000 gave 5 to 11 at step 21 and 0 or 1 at step 22 (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.dilute-until-none-left.c6",
       "text": "The model assumes ideal mixing and no loss of molecules to the walls; real tubes also adsorb some dye.",
       "support": "convention",
       "source": "Stage chip 'Each step: 1 mL into 9 mL water. Tube = 10 mL.' and this claim; adsorption is a standard caveat of serial dilution.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A tube holds 6 × 10⁶ molecules on average. You dilute it 1:10 repeatedly. After how many steps does the average first drop below 1?",
-    "options": ["7 steps", "6 steps", "60 steps"],
+    "options": [
+      "7 steps",
+      "6 steps",
+      "60 steps"
+    ],
     "answer": 0,
     "why": "6 × 10⁶ x 10^-6 = 6, which is still above 1; 6 × 10⁶ x 10^-7 = 0.6, which is below 1. So 7 steps."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

@@ -16,7 +16,7 @@ answer required from: chief-of-staff (Ada), in writing, on each finding in secti
 
 **The company is healthy at the edges and unhealthy in the middle.** The two independent checks that were wired in on day one are real: 2,141 of 2,141 verified claims were checked by the fact-checker, and there have been 17 learner-evaluator runs. Everything between brief and build (design, pedagogy, research, mockups) and everything between review and the learner (exploratory QA, accessibility, pairwise judgement, launch chairing, publishing, metrics) is done by the operator or by nobody. **54 of 70 agent roles have never been dispatched.** 61% of all events have the operator as actor (569 of 947). Ada publishes, files the QA records, chairs the launch review "acting for head-of-product", writes the analytics predictions "acting" for the analytics steward, and wrote the design docs that carry other roles' names. Ada's own role says Ada may not "Mark anything verified or published".
 
-## 2. Counts by verdict (72 roles)
+## 2. Counts by verdict (74 roles)
 
 | Verdict | Count | Roles |
 |---|---|---|
@@ -25,9 +25,9 @@ answer required from: chief-of-staff (Ada), in writing, on each finding in secti
 | re-scope | 4 | chief-of-staff, head-of-product, tools-lead, lifehacks-safety-reviewer |
 | merge | 2 | domain-scout → principal-pm-verticals; hq-engineer → tools-lead |
 | retire | 0 | (none yet; the 27 sub-area managers get a sunset date instead, see 2b) |
-| wait | 36 | principal-pm-verticals, visual-designer, backend-engineer, growth-designer, personalization-lead, learner-model-engineer, localization-lead, localizer, cultural-reviewer, 27 sub-area managers |
+| wait | 38 | principal-pm-verticals, visual-designer, illustrator, design-engineer, backend-engineer, growth-designer, personalization-lead, learner-model-engineer, localization-lead, localizer, cultural-reviewer, 27 sub-area managers |
 
-Half the roster (36 roles) has no work it can do today. That is the clearest sign of the failure mode in my own role doc: "adding roles to fix problems that are really about process". Three of the newest sets of roles have **no decision record**: the 27 sub-area managers and principal-pm-verticals (commit d2b09ae), and this office (commit c6638e3). The header of `tools/org/roles.mjs` asks for one ("record the change in company/decisions/").
+Half the roster (38 of 74 roles) has no work it can do today. That is the clearest sign of the failure mode in my own role doc: "adding roles to fix problems that are really about process". Five of the newest role changes have **no decision record**: the 27 sub-area managers and principal-pm-verticals (commit d2b09ae), this office (c6638e3), the illustrator (136e889) and the design engineer (63e7923). The last two were added while this evaluation was being written. The header of `tools/org/roles.mjs` asks for one ("record the change in company/decisions/").
 
 ## 2a. Every role except the sub-area managers
 
@@ -92,10 +92,17 @@ All 27 were created in commit d2b09ae (2026-10-13 22:55) with **no decision reco
 
 **Verdict: wait, with a sunset.** The strands have no work because every curriculum is at or near its cap and no OP has opened growth. Owner: founder (a decision record is missing) and head-of-product (OP). If no strand has a brief queue by the next op-planning, the CEO office will propose retiring them through offboarding, and the category leads keep the strands as sections of their files. Risk if they are kept active: 27 more agents competing for a usage budget that has already stopped the company three times.
 
+## 2c. Roles added during this evaluation (2026-10-13, after 23:00)
+
+| Role | Team → reports to | Runs | Overlaps | Missing connections | Verdict | Owner of change | Why |
+|---|---|---|---|---|---|---|---|
+| illustrator (external) | design → **visual-designer** | — | mockup-artist (pictures before build), visual-designer (style) | Reports to a role that has never run. Who checks an image for "false or unsafe"? The fact-checker reads claims, not pictures, and the safety reviewer covers Life Hacks only. The asset-budget question (15 KB lesson budget, CDN policy) from the three-more-orgs decision has no answer on record. | **wait** | founder (decision record), design-lead | Wait until the visual designer is active and an image check is named (fact-checker for depicted facts; safety reviewer for Life Hacks). Otherwise the illustrator delivers into an inbox no active role reads. |
+| design-engineer | design → design-lead | — | **platform-engineer** (kit components; the design-org decision gave `<Compare>` and `<Timeline>` to platform and principal engineer) | The kit boundary between design tooling and the shared kit is unwritten. "Change design tooling with a passing typecheck" puts a tier-1 kit change outside the principal engineer's tiering. | **wait** (define the boundary first) | principal-engineer | The 4th engineering-shaped role in Design and Platform, while the platform engineer has run once. Activate when the first format component has a spec. |
+
 ## 3. Where the operator checks Ada's own work (findings Ada must answer in writing)
 
 1. **Publishing.** All 13 publish/unpublish events and all 76 published lessons came from Ada's commits through `publish-ready.mjs --publish`. Ada's role: "may not … Mark anything verified or published" and "Publishing (only release-manager publishes)". Checklist step 9 tells Ada to do it anyway. Retro-2 owns two bad publishes ("both by me"). The fix Ada chose was a rule for Ada, not a handoff.
-2. **Launch review.** "chair: head-of-product (acting: chief-of-staff) · executes: release-manager · attests: qa-tester, fact-checker, learner-evaluator, analytics-steward". Of those five, only the fact-checker and learner-evaluator ever ran. Ada signed it "acting for head-of-product".
+2. **Launch review.** "chair: head-of-product (acting: chief-of-staff) · executes: release-manager · attests: qa-tester, fact-checker, learner-evaluator, analytics-steward". Of the six roles named, only the fact-checker and learner-evaluator took part. The head of product has run once, to draft the OP, and never for a launch. Ada signed it "acting for head-of-product".
 3. **QA records.** `company qa-record` (run by Ada, checklist step 4) stamps "recorded by: qa-tester". It is a harness result and honest about the browser, but it attributes the work to a role that never existed in the loop. The exploratory QA the role exists for has never happened.
 4. **Holds file is the de facto gate.** `publish-holds.json`: "held from publishing by the chief of staff despite passing gates". 130+ lessons show as "Ready to publish" in `status` because the gate does not read verdicts (AMD-001d is unratified). The operator's judgement is the gate.
 5. **Metrics and experiments.** WBR "metrics: analytics-steward (acting: chief-of-staff)". EXP-003 (are sonnet builders as good as opus?) is owned by the operator whose dispatch policy it evaluates. The COE on Ada's capacity planning was written by Ada, and its named reviewers (evaluation-steward, principal-engineer) did not review it.

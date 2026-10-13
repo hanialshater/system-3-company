@@ -6,7 +6,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { HqEvent, OrgRole, Room } from "@/lib/hq";
+import type { FounderItem, HqEvent, OrgRole, Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
 import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
@@ -35,7 +35,7 @@ const HOUR = 3_600_000;
 const fmt = (ms: number) => new Date(ms).toISOString().slice(5, 16).replace("T", " ") + " UTC";
 const roleOf = (e: HqEvent) => (e.actor === "chief-of-staff" && e.agent ? "chief-of-staff" : e.actor);
 
-export default function HQ({ events, rooms, founderQueue, due, org, now }: { events: HqEvent[]; rooms: Room[]; founderQueue: { id: string; title: string }[]; due: Due[]; org: OrgRole[]; now: number }) {
+export default function HQ({ events, rooms, founderQueue, due, org, now }: { events: HqEvent[]; rooms: Room[]; founderQueue: FounderItem[]; due: Due[]; org: OrgRole[]; now: number }) {
   const router = useRouter();
   const times = useMemo(() => events.map((e) => Date.parse(e.ts)), [events]);
   const t0 = times[0] ?? Date.now();
@@ -161,6 +161,16 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
         </Link>
       </nav>
 
+      {founderQueue.length > 0 && (
+        <button className={s.banner} onClick={() => pickRoom("lobby")}>
+          <b>{founderQueue.length} waiting for you</b>
+          <span>
+            {founderQueue.filter((q) => (q.priority ?? 9) <= 1).length} urgent · {founderQueue[0].title}
+          </span>
+          <span className={s.moreLink}>Open the Lobby ▸</span>
+        </button>
+      )}
+
       <section className={s.controls} aria-label="Replay">
         <button className={s.btn} onClick={() => (playing ? setPlaying(false) : (setLive(false), t >= t1 && setT(t0), setPlaying(true)))}>
           {playing ? "❚❚ Pause" : "▶ Replay"}
@@ -237,17 +247,45 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
               ) : (
                 <p className={s.muted}>None.</p>
               )}
-              <h3>Waiting on you</h3>
+              <h3>Waiting on you ({founderQueue.length})</h3>
               {founderQueue.length ? (
-                <ul>
+                <ol className={s.inbox}>
                   {founderQueue.map((q) => (
-                    <li key={q.id}>
-                      <code>{q.id}</code> {q.title}
+                    <li key={q.id} className={s.inboxItem}>
+                      <details>
+                        <summary>
+                          <span className={`${s.prio} ${(q.priority ?? 9) <= 1 ? s.prio1 : (q.priority ?? 9) <= 2 ? s.prio2 : ""}`}>P{q.priority ?? "–"}</span>
+                          <span className={s.inboxCat}>{q.category}</span> {q.title}
+                          {q.status && q.status !== "open" && <span className={s.muted}> · {q.status}</span>}
+                        </summary>
+                        {q.blocks && (
+                          <p>
+                            <b>Blocks:</b> {q.blocks}
+                          </p>
+                        )}
+                        {q.options && (
+                          <p>
+                            <b>Options:</b> {q.options}
+                          </p>
+                        )}
+                        {q.recommendation && (
+                          <p>
+                            <b>Recommendation:</b> {q.recommendation}
+                          </p>
+                        )}
+                        {q.links?.length ? (
+                          <p className={s.refs}>{q.links.join(" · ")}</p>
+                        ) : null}
+                        <p className={s.muted}>
+                          {q.id}
+                          {q.board ? ` · board ${q.board}` : ""} · answer in chat; the chief of staff records it
+                        </p>
+                      </details>
                     </li>
                   ))}
-                </ul>
+                </ol>
               ) : (
-                <p className={s.muted}>Nothing on the board is owned by the founder.</p>
+                <p className={s.muted}>Nothing is waiting on you.</p>
               )}
             </div>
           )}

@@ -6,10 +6,17 @@
   "concept": "atom-scale-size",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that a mole is a huge count"],
-    "doesNotKnow": ["how many molecules sit in one everyday drop"]
+    "knows": [
+      "that a mole is a huge count"
+    ],
+    "doesNotKnow": [
+      "how many molecules sit in one everyday drop"
+    ]
   },
   "misconception": "A drop holds millions or billions of molecules.",
   "objective": "The learner can say that a drop of water holds about 1.7 × 10²¹ molecules, about 200 billion times the number of people on Earth, and that grouping by thousands still leaves a billion tiles after four steps.",
@@ -19,51 +26,72 @@
       "text": "A drop of water is about 0.05 mL, which is about 0.05 g.",
       "support": "convention",
       "source": "Pharmacopoeia convention of about 20 drops per mL; density of water about 0.998 g/mL at 20 °C (CRC Handbook). Real drops vary with the dropper.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c2",
       "text": "The molar mass of water is about 18.015 g/mol and the Avogadro constant is 6.02214076 × 10²³ per mole.",
       "support": "source",
       "source": "IUPAC atomic weights (H 1.008, O 15.999); SI 2019 Avogadro constant.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c3",
       "text": "A 0.05 mL drop of water contains about 1.7 × 10²¹ H₂O molecules.",
       "support": "derivation",
       "source": "0.05 mL x 0.998 g/mL / 18.015 g/mol = 2.77e-3 mol; x 6.02214e23 = 1.668e21 (node; Demo.tsx MOLECULES).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c4",
       "text": "Grouping molecules into tiles of 10¹² still leaves about 1.7 × 10⁹ tiles; tiles of 10²¹ leave about 1.7.",
       "support": "derivation",
       "source": "1.668e21 / 1e12 = 1.668e9; 1.668e21 / 1e21 = 1.668 (node; Demo.tsx tiles()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c5",
       "text": "1.7 × 10²¹ molecules is about 2 × 10¹¹ (200 billion) times the number of people on Earth, taken as about 8 billion.",
       "support": "derivation",
       "source": "1.668e21 / 8e9 = 2.09e11 (node). World population about 8 × 10⁹ (UN World Population Prospects 2022: 8.0 billion in November 2022).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c6",
       "text": "Only the final two grouping steps draw tiles; earlier steps show a dotted texture because there are too many tiles to draw.",
       "support": "convention",
       "source": "Demo.tsx drawable = step >= 6; the texture is decoration, not a count.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "One drop of water holds about 1.7 × 10²¹ molecules. Roughly how does that compare with the number of people on Earth (about 8 billion)?",
-    "options": ["About 200 billion times as many", "About a thousand times as many", "About the same"],
+    "options": [
+      "About 200 billion times as many",
+      "About a thousand times as many",
+      "About the same"
+    ],
     "answer": 0,
     "why": "1.7 × 10²¹ / 8 × 10⁹ is about 2 × 10¹¹, or 200 billion times."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

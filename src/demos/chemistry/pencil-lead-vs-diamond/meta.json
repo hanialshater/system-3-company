@@ -6,9 +6,15 @@
   "concept": "allotropes",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-chemistry", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["that diamond and pencil lead are both made of carbon", "that density is mass per volume"],
+    "knows": [
+      "that diamond and pencil lead are both made of carbon",
+      "that density is mass per volume"
+    ],
     "doesNotKnow": [
       "that the packing, not the kind of atom, makes the materials different",
       "that diamond holds about 1.55 times as many carbon atoms per cm³ as graphite"
@@ -22,51 +28,72 @@
       "text": "Diamond has a density of about 3.51 g/cm³ and graphite about 2.26 g/cm³.",
       "support": "source",
       "source": "CRC Handbook of Chemistry and Physics (densities of the carbon allotropes).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.pencil-lead-vs-diamond.c2",
       "text": "The molar mass of carbon is about 12.011 g/mol and the Avogadro constant is 6.02214076 × 10²³ per mole.",
       "support": "source",
       "source": "IUPAC standard atomic weight of carbon (12.011); Avogadro constant exact in the 2019 SI.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.pencil-lead-vs-diamond.c3",
       "text": "1 cm³ of diamond holds about 1.76 × 10²³ carbon atoms and 1 cm³ of graphite about 1.13 × 10²³; the ratio is about 1.55.",
       "support": "derivation",
       "source": "3.51 / 12.011 x 6.02214e23 = 1.760e23; 2.26 / 12.011 x 6.02214e23 = 1.133e23; 3.51 / 2.26 = 1.553 (node; Demo.tsx perCm3()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.pencil-lead-vs-diamond.c4",
       "text": "The same eight atoms fill a volume about 1.55 times as large as graphite sheets than as a diamond net.",
       "support": "derivation",
       "source": "For a fixed number of atoms, volume is proportional to 1 / density: 3.51 / 2.26 = 1.553 (Demo.tsx VOL_RATIO). The box areas on the stage are drawn from this ratio.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.pencil-lead-vs-diamond.c5",
       "text": "Diamond and graphite are both pure carbon, differing in how the atoms are bonded and packed: a rigid 4-way net versus flat layers that slide over each other.",
       "support": "source",
       "source": "Allotropes of carbon (Atkins, Chemical Principles; Housecroft and Sharpe, Inorganic Chemistry).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.pencil-lead-vs-diamond.c6",
       "text": "The stage is a flat schematic, not to scale; real diamond and graphite are three-dimensional.",
       "support": "convention",
       "source": "Stage chip '8 carbon atoms, flat schematic, not to scale'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Diamond and graphite are both pure carbon but differ in density. What is the cause?",
-    "options": ["The atoms are packed differently", "They contain different elements", "Graphite atoms are heavier"],
+    "options": [
+      "The atoms are packed differently",
+      "They contain different elements",
+      "Graphite atoms are heavier"
+    ],
     "answer": 0,
     "why": "The atoms are identical; a 4-way net packs them more tightly than flat layers with gaps between them."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

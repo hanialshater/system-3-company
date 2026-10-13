@@ -1,0 +1,171 @@
+{
+  "note": "Everything waiting on the founder, in one place (founder, 2026-10-13: 'All tasks waiting for me should be visible in HQ and consolidated'). The chief of staff keeps this file; HQ's Lobby and banner read it, plus any open board item owned by 'founder'. Each item says why it matters, the options, a recommendation and where the evidence is. When the founder answers, the chief of staff sets status 'decided', records the answer, and writes the decision record.",
+  "items": [
+    {
+      "id": "F-01",
+      "title": "Backend: auth provider, database host, and whether learners may be under 13",
+      "category": "decision",
+      "priority": 1,
+      "blocks": "Backend, Personalization (learner model), real learning metrics",
+      "options": "Auth: Auth.js (email magic link) or Clerk. DB: Neon or Vercel Postgres. Age: 13+ only, or under-13 with COPPA/GDPR-K consent flows.",
+      "recommendation": "Auth.js + Neon, 13+ at launch (under-13 later with the privacy reviewer)",
+      "links": [
+        "company/decisions/2026-10-13-three-new-teams.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-02",
+      "title": "Usage budget, and its split between lessons and the new teams",
+      "category": "decision",
+      "priority": 1,
+      "blocks": "How many agents run in parallel; the usage limit stopped everything 3 times today",
+      "options": "A monthly token budget; a split, e.g. 50% lessons / 50% new teams, or lessons paused until the backend ships",
+      "recommendation": "Set a budget; 40% review and revision, 30% new lessons, 30% teams",
+      "links": [
+        "company/rituals/records/2026-10-13-retro-2.md",
+        "company/rituals/records/2026-10-13-wbr.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-03",
+      "title": "Ratify AMD-001 (a–d), especially (d): gates must read the learner verdict and the lesson version",
+      "category": "approval",
+      "priority": 2,
+      "blocks": "Removing the hand-checked publish loop workaround",
+      "options": "Ratify all, ratify some parts, or reject",
+      "recommendation": "Ratify (a) and (d) now; (b), (c1) and (c2) after the evaluation steward's review",
+      "links": [
+        "company/constitution/amendments/AMD-001-earn-the-reveal-and-tooling.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-04",
+      "title": "Deploy to Vercel: when, and connect your account",
+      "category": "action",
+      "priority": 2,
+      "blocks": "Real learners, recall data, every learning metric (all 'no data' today)",
+      "options": "Deploy now with the 76 published lessons, or wait for the backend",
+      "recommendation": "Deploy the published lessons now (HQ stays off in production)",
+      "links": [
+        "company/ops/runbook-deploy.md",
+        ".claude/commands/deploy.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-05",
+      "title": "EDD-003 lesson storage at scale: approve stage 1 after the engineering review, and answer Kenji's 7 questions",
+      "category": "approval",
+      "priority": 2,
+      "blocks": "Scaling past about 2k lessons; locales; image assets",
+      "options": "Approve stage 1 (browser sandbox, content-hashed bundles on a CDN), with the SPIKE-001 changes",
+      "recommendation": "Approve once the review record closes; the questions are in the EDD",
+      "links": [
+        "company/engineering/edd/EDD-003-lesson-storage-at-scale.md",
+        "company/engineering/spikes/SPIKE-001-frontend-sandbox.md"
+      ],
+      "status": "waiting on review"
+    },
+    {
+      "id": "F-06",
+      "title": "Design: design-review scope, and when multi-card lessons get kit support",
+      "category": "decision",
+      "priority": 3,
+      "blocks": "Design team priorities",
+      "options": "Scope: new and revised lessons only, or all ~430 unpublished lessons. Multi-card: now, or after EDD-003 stage 1",
+      "recommendation": "New and revised lessons plus lessons with layout findings; multi-card after stage 1",
+      "links": [
+        "company/decisions/2026-10-13-design-org.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-07",
+      "title": "Image tool: confirm its terms allow commercial use, and paste the illustrator handbook into it",
+      "category": "action",
+      "priority": 3,
+      "blocks": "Illustrations (first request: the 5 watercolor style anchors)",
+      "links": [
+        "company/design/illustrator-handbook.md",
+        "company/decisions/2026-10-13-illustration-pipeline.md"
+      ],
+      "status": "open",
+      "board": "W-122"
+    },
+    {
+      "id": "F-08",
+      "title": "Personalization brief (you said you'd explain the idea)",
+      "category": "brief",
+      "priority": 3,
+      "blocks": "The Personalization team (it collects questions only until then)",
+      "links": [
+        "company/personalization/README.md"
+      ],
+      "status": "open",
+      "board": "W-091"
+    },
+    {
+      "id": "F-09",
+      "title": "International: which locales first?",
+      "category": "decision",
+      "priority": 4,
+      "blocks": "Localization lead's plan",
+      "links": [
+        "company/international/README.md"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "F-10",
+      "title": "Human source checks the sandbox cannot do: UN WPP 2024 (half-of-humanity) and Bullard 1965 (continental-jigsaw)",
+      "category": "action",
+      "priority": 4,
+      "blocks": "Two claims stay unverified; those lessons cannot publish",
+      "links": [
+        "company/reviews/half-of-humanity/2026-10-13-fact-check.md"
+      ],
+      "status": "open",
+      "board": "W-048, W-049"
+    },
+    {
+      "id": "F-11",
+      "title": "Recruit 5 real learners for EXP-002 (the only real evidence of learning)",
+      "category": "action",
+      "priority": 4,
+      "links": [
+        "company/experiments/EXP-002-real-learner-recall.md"
+      ],
+      "status": "open",
+      "board": "W-007"
+    },
+    {
+      "id": "F-12",
+      "title": "Ratify the Operational Plan draft, and re-ratify AMD-000 at the first constitutional review",
+      "category": "approval",
+      "priority": 5,
+      "links": [
+        "company/rituals/records/"
+      ],
+      "status": "open",
+      "board": "W-011"
+    },
+    {
+      "id": "F-13",
+      "title": "Leonie: org health proposals P1–P9 (the operator does too much itself; 54 of 74 roles never ran)",
+      "category": "approval",
+      "priority": 1,
+      "blocks": "Independence of QA, publishing and launch review; the accessibility launch condition; honest attribution in HQ",
+      "links": [
+        "company/ceo-office/2026-10-13-proposals.md",
+        "company/ceo-office/2026-10-13-role-evaluation.md",
+        "company/ceo-office/handoff-map.md"
+      ],
+      "status": "open",
+      "options": "P1 Ada stops publishing, chairing launches and filing QA records (release-manager, qa-tester, head-of-product take them). P2 accessibility review of all 76 published lessons: unpublish failures, or waive in writing. P3 attribution from dispatches only, not commit keywords. P5 ratify AMD-001(d). P6 cultural and safety reviewers report to the evaluation steward. P7 cut head-of-product direct reports. P8 decision records for 4 role changes; merge domain-scout into principal-pm-verticals and hq-engineer into tools-lead. Also: should the 27 sub-area managers exist yet?",
+      "recommendation": "Approve P1, P2 (review, not waive), P3 and P8 now; P5 with F-03; P6 and P7 at OP planning"
+    }
+  ]
+}

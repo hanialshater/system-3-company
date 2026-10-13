@@ -6,27 +6,84 @@
   "concept": "sound-needs-medium",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-physics", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["a bell rings when struck", "air is made of molecules"],
-    "doesNotKnow": ["that sound is a pressure wave in a material"]
+    "knows": [
+      "a bell rings when struck",
+      "air is made of molecules"
+    ],
+    "doesNotKnow": [
+      "that sound is a pressure wave in a material"
+    ]
   },
   "misconception": "Sound travels through empty space like light.",
   "objective": "The learner can explain that sound is a push passed from molecule to molecule, so with the air pumped out the sound fades while the bell still moves.",
   "claims": [
-    { "id": "physics.sound-in-the-jar.c1", "text": "Sound travels as a push passed from molecule to molecule in a material, so it needs a material to travel through.", "support": "source", "source": "Standard acoustics: sound is a mechanical (pressure) wave and cannot cross a vacuum. Classic bell-jar demonstration; for example OpenStax University Physics Vol. 1, chapter 17 Sound.", "status": "unverified" },
-    { "id": "physics.sound-in-the-jar.c2", "text": "With the air pumped down to 1% of normal, the bell's sound fades to near silence while the clapper still swings.", "support": "source", "source": "Bell-jar demonstration (any acoustics or physics text). A faint sound can remain through the bell's mounting and the glass at low pressure. No numeric loudness is claimed.", "status": "unverified" },
-    { "id": "physics.sound-in-the-jar.c3", "text": "With 1% of the air there are 100 times fewer molecules to pass the push on.", "support": "derivation", "source": "At fixed volume and temperature the number of molecules is proportional to pressure: 100% / 1% = 100 (Demo.tsx LEVELS). The reveal quotes the lowest level the learner reached.", "status": "unverified" },
-    { "id": "physics.sound-in-the-jar.c4", "text": "The sound bar and arcs are schematic: they are drawn in proportion to the air left. Real loudness depends on the sound power the bell delivers into the air, which falls as the air thins (it scales with the air's density times the speed of sound).", "support": "source", "source": "Acoustic impedance of a medium Z = rho c; radiated power for a given surface motion scales with Z. Shown on stage as 'schematic'; readout uses words, not decibels.", "status": "unverified" },
-    { "id": "physics.sound-in-the-jar.c5", "text": "The dots show air molecules (120 drawn for the whole jar, seed 3); the number drawn is proportional to the air left.", "support": "convention", "source": "Demo.tsx DOTS = 120, shown = round(pct / 100 x 120); positions seeded with mulberry32(3). A picture, not a count of real molecules.", "status": "unverified" }
+    {
+      "id": "physics.sound-in-the-jar.c1",
+      "text": "Sound travels as a push passed from molecule to molecule in a material, so it needs a material to travel through.",
+      "support": "source",
+      "source": "Standard acoustics: sound is a mechanical (pressure) wave and cannot cross a vacuum. Classic bell-jar demonstration; for example OpenStax University Physics Vol. 1, chapter 17 Sound.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.sound-in-the-jar.c2",
+      "text": "With the air pumped down to 1% of normal, the bell's sound fades to near silence while the clapper still swings.",
+      "support": "source",
+      "source": "Bell-jar demonstration (any acoustics or physics text). A faint sound can remain through the bell's mounting and the glass at low pressure. No numeric loudness is claimed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.sound-in-the-jar.c3",
+      "text": "With 1% of the air there are 100 times fewer molecules to pass the push on.",
+      "support": "derivation",
+      "source": "At fixed volume and temperature the number of molecules is proportional to pressure: 100% / 1% = 100 (Demo.tsx LEVELS). The reveal quotes the lowest level the learner reached.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.sound-in-the-jar.c4",
+      "text": "The sound bar and arcs are schematic: they are drawn in proportion to the air left. Real loudness depends on the sound power the bell delivers into the air, which falls as the air thins (it scales with the air's density times the speed of sound).",
+      "support": "source",
+      "source": "Acoustic impedance of a medium Z = rho c; radiated power for a given surface motion scales with Z. Shown on stage as 'schematic'; readout uses words, not decibels.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.sound-in-the-jar.c5",
+      "text": "The dots show air molecules (120 drawn for the whole jar, seed 3); the number drawn is proportional to the air left.",
+      "support": "convention",
+      "source": "Demo.tsx DOTS = 120, shown = round(pct / 100 x 120); positions seeded with mulberry32(3). A picture, not a count of real molecules.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "An astronaut's helmet radio is dead. Her partner is 1 metre away in the vacuum of space, shouting. Can she hear it?",
-    "options": ["Yes, a little", "No: there is no air to carry the sound", "Yes, if he shouts loud enough"],
+    "options": [
+      "Yes, a little",
+      "No: there is no air to carry the sound",
+      "Yes, if he shouts loud enough"
+    ],
     "answer": 1,
     "why": "Sound is a push passed between molecules. In a vacuum there are none to pass it, so no shout can cross the gap; radio waves, like light, can."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

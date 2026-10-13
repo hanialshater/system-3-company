@@ -35,3 +35,8 @@ Run `npm run company -- status`, `npm run company -- rituals` and `npm run metri
 - Known-wrong briefs live in `company/ops/brief-skips.json` and are never handed out.
 - After merging a builder: `claim.mjs release <slug> --done` is optional, because a built lesson is never handed out again. `claim.mjs list` shows who holds what, and claims over 6 h old are treated as stale.
 - After a container restart, run `claim.mjs seed-worktrees` so lessons in progress in agent worktrees count as claimed.
+
+## The founder's inbox (single place, 2026-10-13)
+- Anything that needs the founder (a decision, an approval, an action, a brief) goes in `company/ops/founder-inbox.json`, with why it matters, what it blocks, the options, a recommendation and links. Board items owned by `founder` appear too.
+- HQ shows the inbox as a banner on every view and as a prioritised list in the Lobby. Don't leave founder asks only in chat, the progress log or a WBR.
+- When the founder answers: set `status: "decided"`, add the answer, write the decision record, and close the board item.

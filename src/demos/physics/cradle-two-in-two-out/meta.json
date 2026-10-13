@@ -6,27 +6,84 @@
   "concept": "elastic-collisions",
   "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-physics", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["Newton's cradle clicks", "momentum is mass times velocity"],
-    "doesNotKnow": ["that momentum and energy both being conserved fixes the outcome"]
+    "knows": [
+      "Newton's cradle clicks",
+      "momentum is mass times velocity"
+    ],
+    "doesNotKnow": [
+      "that momentum and energy both being conserved fixes the outcome"
+    ]
   },
   "misconception": "Any outcome that moves 'the same amount' is allowed, for example one ball swinging out twice as fast.",
   "objective": "The learner can explain that two balls out at the starting speed is the only outcome that keeps both momentum and kinetic energy, so it is the only one an ideal cradle allows.",
   "claims": [
-    { "id": "physics.cradle-two-in-two-out.c1", "text": "In an ideal elastic collision both momentum and kinetic energy are conserved.", "support": "source", "source": "Standard mechanics definition of an elastic collision, for example OpenStax University Physics Vol. 1, section 9.4 Types of Collisions.", "status": "unverified" },
-    { "id": "physics.cradle-two-in-two-out.c2", "text": "Two balls of mass m at speed v carry momentum 2mv and kinetic energy mv²; one ball at 2v has momentum 2mv but energy 2mv²; one ball at v has momentum mv and energy mv²/2.", "support": "derivation", "source": "Node: p = n m v and KE = (1/2) n m v² for (n, v) = (2, 1), (1, 2), (1, 1) give p = 2, 2, 1 and KE = 1, 2, 0.5 in units m v and m v² (Demo.tsx MOMENTUM, ENERGY).", "status": "unverified" },
-    { "id": "physics.cradle-two-in-two-out.c3", "text": "Only two balls at the starting speed keeps both momentum and energy, so it is the only outcome an ideal cradle allows.", "support": "derivation", "source": "Of the three outcomes tested, only (2, 1) matches both tallies; in general n v = 2 and n v² = 2 give n = 2, v = 1 uniquely.", "status": "unverified" },
-    { "id": "physics.cradle-two-in-two-out.c4", "text": "The balls are identical and ideal; a real cradle loses a little energy, so the swings slowly die away.", "support": "convention", "source": "Stated on stage ('Ideal identical balls, no losses'). Real-cradle loss is a general fact about non-ideal collisions, not quoted to the learner.", "status": "unverified" },
-    { "id": "physics.cradle-two-in-two-out.c5", "text": "A ball leaving at double speed would swing four times as high, drawn from 1 − cos θ = 4 (1 − cos 30°).", "support": "derivation", "source": "Energy: height = v² / (2g), so doubling v quadruples the rise; stage angle = acos(1 - 4 (1 - cos 30°)) = 62.3 degrees (node). Drawing only, not stated to the learner.", "status": "unverified" }
+    {
+      "id": "physics.cradle-two-in-two-out.c1",
+      "text": "In an ideal elastic collision both momentum and kinetic energy are conserved.",
+      "support": "source",
+      "source": "Standard mechanics definition of an elastic collision, for example OpenStax University Physics Vol. 1, section 9.4 Types of Collisions.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.cradle-two-in-two-out.c2",
+      "text": "Two balls of mass m at speed v carry momentum 2mv and kinetic energy mv²; one ball at 2v has momentum 2mv but energy 2mv²; one ball at v has momentum mv and energy mv²/2.",
+      "support": "derivation",
+      "source": "Node: p = n m v and KE = (1/2) n m v² for (n, v) = (2, 1), (1, 2), (1, 1) give p = 2, 2, 1 and KE = 1, 2, 0.5 in units m v and m v² (Demo.tsx MOMENTUM, ENERGY).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.cradle-two-in-two-out.c3",
+      "text": "Only two balls at the starting speed keeps both momentum and energy, so it is the only outcome an ideal cradle allows.",
+      "support": "derivation",
+      "source": "Of the three outcomes tested, only (2, 1) matches both tallies; in general n v = 2 and n v² = 2 give n = 2, v = 1 uniquely.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.cradle-two-in-two-out.c4",
+      "text": "The balls are identical and ideal; a real cradle loses a little energy, so the swings slowly die away.",
+      "support": "convention",
+      "source": "Stated on stage ('Ideal identical balls, no losses'). Real-cradle loss is a general fact about non-ideal collisions, not quoted to the learner.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.cradle-two-in-two-out.c5",
+      "text": "A ball leaving at double speed would swing four times as high, drawn from 1 − cos θ = 4 (1 − cos 30°).",
+      "support": "derivation",
+      "source": "Energy: height = v² / (2g), so doubling v quadruples the rise; stage angle = acos(1 - 4 (1 - cos 30°)) = 62.3 degrees (node). Drawing only, not stated to the learner.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
+    }
   ],
   "confidence": "",
   "recall": {
     "question": "A cradle with identical balls: you lift three and release them. Ideally, the far end swings out...",
-    "options": ["Three balls at the starting speed", "One ball at triple speed", "Two balls at the starting speed"],
+    "options": [
+      "Three balls at the starting speed",
+      "One ball at triple speed",
+      "Two balls at the starting speed"
+    ],
     "answer": 0,
     "why": "Three balls at v carry momentum 3mv and energy 3mv²/2. Only three balls at v keeps both; one ball at 3v keeps momentum but has 3 times the energy."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1
 }

@@ -111,14 +111,35 @@ export function loadEvent(id: string): (HqEvent & { body?: string }) | undefined
   return readAll().find((e) => e.id === id);
 }
 
-/** Founder-owned open board items: the Lobby's "waiting on you" list. */
-export function founderQueue(): { id: string; title: string }[] {
-  try {
-    const items = JSON.parse(fs.readFileSync(path.join(process.cwd(), "company/ops/board.json"), "utf8")).items as { id: string; title: string; owner: string; state: string }[];
-    return items.filter((i) => i.owner === "founder" && !["done", "dropped"].includes(i.state)).map(({ id, title }) => ({ id, title }));
-  } catch {
-    return [];
-  }
+export interface FounderItem {
+  id: string;
+  title: string;
+  category?: string;
+  priority?: number;
+  blocks?: string;
+  options?: string;
+  recommendation?: string;
+  links?: string[];
+  status?: string;
+  board?: string;
+}
+
+/** Everything waiting on the founder, consolidated: company/ops/founder-inbox.json plus any open
+ *  founder-owned board item the inbox does not already cover. Sorted by priority. */
+export function founderQueue(): FounderItem[] {
+  const read = (f: string) => {
+    try {
+      return JSON.parse(fs.readFileSync(path.join(process.cwd(), f), "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const inbox: FounderItem[] = (read("company/ops/founder-inbox.json")?.items ?? []).filter((i: FounderItem) => i.status !== "decided");
+  const covered = new Set(inbox.flatMap((i) => (i.board ?? "").split(/[ ,]+/)).filter(Boolean));
+  const board = ((read("company/ops/board.json")?.items ?? []) as { id: string; title: string; owner: string; state: string }[])
+    .filter((i) => i.owner === "founder" && !["done", "dropped"].includes(i.state) && !covered.has(i.id))
+    .map((i) => ({ id: i.id, title: i.title, category: "board", priority: 5, status: i.state }));
+  return [...inbox, ...board].sort((a, b) => (a.priority ?? 9) - (b.priority ?? 9));
 }
 
 /** HQ shows prompts and reports, so it stays off in production until it sits behind a login. */

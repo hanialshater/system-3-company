@@ -426,3 +426,64 @@
   gap: 6px;
   margin: 0 0 8px;
 }
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--line));
+  background: color-mix(in srgb, var(--warn) 14%, var(--bg));
+  color: var(--fg);
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 0 0 10px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.inbox {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  display: grid;
+  gap: 6px;
+}
+.inboxItem details {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 13.5px;
+}
+.inboxItem summary {
+  cursor: pointer;
+}
+.inboxItem p {
+  margin: 6px 0 0;
+}
+.prio {
+  display: inline-block;
+  min-width: 26px;
+  text-align: center;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 4px;
+  background: var(--line);
+  color: var(--fg);
+}
+.prio1 {
+  background: var(--bad);
+  color: #0d0f14;
+}
+.prio2 {
+  background: var(--warn);
+  color: #0d0f14;
+}
+.inboxCat {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}

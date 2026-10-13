@@ -28,42 +28,54 @@
       "text": "A cube with edge a has outside area 6a², so a 1 cm cube has 6 cm².",
       "support": "derivation",
       "source": "Six square faces of area a²; a = 1 cm gives 6 cm² (geometry).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c2",
       "text": "Cutting each edge into n equal parts gives n × n × n pieces (2 per edge: 8; 5: 125; 10: 1,000), each with edge 10/n mm.",
       "support": "derivation",
       "source": "n³ pieces; 1 cm = 10 mm so edge = 10/n mm (node; Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c3",
       "text": "The total outside area of the pieces is 6n cm²: 12 cm² for 8 pieces, 30 cm² for 125, 60 cm² for 1,000.",
       "support": "derivation",
       "source": "n³ × 6 × (1/n)² = 6n cm² (node; Demo.tsx area1(n)). Equals ten times the original at n = 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c4",
       "text": "Each 1 mm cube has outside area 6 × (0.1 cm)² = 0.06 cm², and 1,000 of them add up to 60 cm².",
       "support": "derivation",
       "source": "6 × 0.01 = 0.06; × 1,000 = 60 cm² (node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c5",
       "text": "Cutting does not change the total volume, 1 cm³.",
       "support": "derivation",
       "source": "n³ × (1/n)³ cm³ = 1 cm³ (geometry). Ignores material lost in the cuts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c6",
       "text": "A reaction between a solid and something around it can only happen at the solid's outside, so finer pieces react faster.",
       "support": "source",
       "source": "Surface-area effect on rate (Atkins, Physical Chemistry, heterogeneous reactions; Chemistry LibreTexts, Factors affecting reaction rates). Other things equal.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",
