@@ -77,7 +77,7 @@ export default function EightPercentShowing({ slug }: { slug: string }) {
                     half
                   </text>
                   <line x1={10} x2={W - 10} y1={SURF} y2={SURF} className={s.surface} />
-                  <text x={BX + BW + 10} y={Math.max(14, (top + SURF) / 2 + 5)} className={s.big}>
+                  <text x={BX + BW + 10} y={Math.max(14, Math.min((top + SURF) / 2 + 5, SURF - 8))} className={s.big}>
                     {pct(a)} above
                   </text>
                   <text x={16} y={H - 14} className={s.small}>
