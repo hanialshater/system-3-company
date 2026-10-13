@@ -48,15 +48,26 @@ that must see each other's output.
 Merge results, then run `npm run check` (and `npm run verify` if code changed). Update the board,
 and write the handoff at the top of `ops/progress.md`.
 
-## Scaling: waves (see decisions/2026-10-12-scale-operations.md)
+## Scaling: the work queue (see decisions/2026-10-13-work-queue.md; it replaces the 2026-10-12 waves)
 
-1. Category managers refresh `company/domains/briefs/<domain>.md` (ranked briefs).
-2. Platform proves any new kit feature with one lesson first.
-3. Wave: one builder per domain in a worktree, about 10 briefs each. Builders write only their lesson folders.
-4. Integrate: merge each branch, run `npm run registry`, then `npm run verify` once.
-5. Check: `npm run walkthrough -- --domain <d>`, then a fact-checker and a learner evaluator per domain, in parallel (sonnet).
-6. Wave launch review: publish every lesson whose gates pass; send findings back as briefs.
-7. The chief of staff alone writes the board, the progress log and the WBR.
+Work is pulled, not assigned. Any number of builders can work in one domain, because each brief is handed out once.
+
+1. **Briefs.** Category managers keep `company/domains/briefs/<domain>.md` ranked. Briefs known to be wrong go in `ops/brief-skips.json` with a reason, and are never handed out until fixed.
+2. **Claim.** A builder asks for work with `node tools/claim.mjs next <domain> --agent=<label>`. It gets the next unbuilt brief under an exclusive lock (`ops/claims/`, main checkout, created with O_EXCL so a race has exactly one winner), or `NONE` when the domain is done. An abandoned brief goes back with `claim.mjs release <slug>`. Locks older than 6 h are stale and can be taken again. After a restart, run `claim.mjs seed-worktrees`.
+3. **Build.** Each builder works in its own worktree, with its own `NEXT_DIST_DIR`, `QA_PORT` and `QA_OUT`. It commits every 2 lessons, looks at every phone screenshot, and writes only its lesson folders.
+4. **Integrate.** The chief of staff merges each branch as it reports, regenerates the registry, runs `check` and `tsc`, pushes, and removes the worktree.
+5. **QA.** Before any QA or walkthrough run, confirm the build has every lesson page (`tools/serve.sh` warns otherwise). Run QA for every lesson without a QA record, then `company qa-record`.
+6. **Check.** Fact-checkers (sonnet) take `claims --open`. Learner evaluators (sonnet) review from `transcript.md` plus `sheet.png`, the whole walkthrough in one image. No image seen means no "launch".
+7. **Publish.** After a review batch has fully reported, run `node tools/publish-ready.mjs --publish`. It publishes only lessons whose latest review says launch for the current version, and it respects `ops/publish-holds.json`. Append the batch to the day's launch-review record.
+8. **Revise.** Findings go to revision builders (sonnet). A revision bumps the version, so the lesson goes back through fact-check and review.
+9. **Rituals fire on events** (`rituals/triggers.json`, `node tools/rituals-due.mjs`): a retro every 5 merges or after an incident, a WBR every 10 merges or daily, a launch review after each check batch, and a founder digest every 12 h. HQ's Lobby shows what is due.
+10. **The chief of staff alone writes** the board, the progress log, the event log and the WBR.
+
+**Concurrency.** The limit is the usage budget, not the org. Hitting it stops every agent for hours.
+- Default: at most 3 Opus builders and about 8 agents in total.
+- Sonnet for checks, reviews and revisions, and for new lessons if EXP-003 holds.
+- Split long reviews into batches of 15 lessons or fewer, so a stop loses less work.
+- Servers start and stop through `tools/serve.sh`, never `pkill -f`.
 
 ## Attention tiers: what reaches the founder
 
