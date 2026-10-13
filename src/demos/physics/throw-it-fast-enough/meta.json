@@ -30,35 +30,45 @@
       "text": "With no air, a ball thrown sideways near Earth's surface at about 7.9 km/s circles the planet without landing: circular orbit speed is sqrt(g R) = 7.9 km/s for R = 6371 km.",
       "support": "derivation",
       "source": "Centripetal acceleration v^2/R equals g: v = sqrt(9.81 x 6.371e6) = 7906 m/s. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 13 (satellites). From the stage's 10 km peak the circular speed is sqrt(GM/(R+h)) = 7899 m/s, so the 7.9 km/s stop closes the loop.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.throw-it-fast-enough.c2",
       "text": "From a 10 km peak with no air, throws at 0.79, 4.0, 7.0, 7.6, 7.8 and 7.85 km/s land about 36, 212, 686, 1,269, 2,245 and 3,209 km away; 7.9 km/s comes back round after about 85 minutes.",
       "support": "simulation",
       "source": "src/demos/physics/throw-it-fast-enough/model.ts: velocity-Verlet integration of a = -GM r / |r|^3 with GM = g R^2, dt = 1 s, spherical non-rotating Earth. The stage draws these same flights. Loop time 5077 s.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.throw-it-fast-enough.c3",
       "text": "Earth's surface curves away about 5 m for every 8 km you travel, and a dropped ball falls about 5 m in its first second.",
       "support": "derivation",
       "source": "Sagitta 8000^2 / (2 x 6.371e6) = 5.02 m; free fall 1/2 x 9.81 x 1^2 = 4.9 m.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.throw-it-fast-enough.c4",
       "text": "The lesson ignores air and Earth's spin, treats Earth as a sphere, and exaggerates heights 40 times on the stage.",
       "support": "convention",
       "source": "Stated on stage ('No air. 10 km peak. Heights x40.') and in the reveal. Real air at 10 km would stop such a throw; the mountain follows Newton's thought experiment (Principia, A Treatise of the System of the World, 1728).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.throw-it-fast-enough.c5",
       "text": "The ISS orbits at about 7.7 km/s, about 400 km up; slower than 7.9 km/s because gravity is weaker at that height.",
       "support": "source",
       "source": "NASA, International Space Station facts and figures: altitude about 400 km, speed about 17,500 mph (7.8 km/s, rounded). Circular speed at 400 km: sqrt(GM / 6771 km) = 7.67 km/s with GM = g R^2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-13"
     }
   ],
   "confidence": "",

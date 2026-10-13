@@ -1,0 +1,28 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 42dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; padding-left: 4px; padding-right: 4px; }
+.car { fill: color-mix(in srgb, var(--muted) 12%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.4; }
+.cable { stroke: var(--fg); stroke-width: 1.4; }
+.scale { fill: var(--fg); opacity: 0.7; }
+.body { fill: color-mix(in srgb, var(--muted) 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.weight { stroke: var(--fg); stroke-width: 2.6; }
+.push { stroke: var(--domain); stroke-width: 2.6; }
+.acc { stroke: var(--muted); stroke-width: 2; }
+.headW { fill: var(--fg); }
+.headN { fill: var(--domain); }
+.headA { fill: var(--muted); }
+.labW { fill: var(--fg); font-size: 9px; font-weight: 700; }
+.labN { fill: var(--domain); font-size: 9px; font-weight: 800; }
+.labA { fill: var(--muted); font-size: 8px; font-weight: 700; }
+.dial { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.tick { stroke: var(--fg); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 7px; font-variant-numeric: tabular-nums; }
+.restMark { stroke: var(--bad); stroke-width: 2; }
+.labRest { fill: var(--bad); font-size: 8px; }
+.needle { stroke: var(--domain); stroke-width: 2.4; stroke-linecap: round; }
+.hub { fill: var(--fg); }
+.big { fill: var(--fg); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.chip { fill: var(--muted); font-size: 8px; }

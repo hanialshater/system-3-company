@@ -1,0 +1,80 @@
+{
+  "slug": "snowshoe-pressure",
+  "title": "Why snowshoes stop you sinking",
+  "hook": "Same hiker, same weight, bigger shoes. How can that keep you on top of the snow?",
+  "domain": "physics",
+  "concept": "pressure-force-area",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "heavy things press down on the ground",
+      "weight in newtons is mass x 9.81"
+    ],
+    "doesNotKnow": [
+      "pressure = force / area",
+      "that the same weight over more area presses less on each square metre"
+    ]
+  },
+  "misconception": "Only weight decides whether you sink; spreading it over a bigger area makes no difference.",
+  "objective": "The learner can explain that pressure is weight divided by contact area, so ten times the area (0.040 to 0.40 m^2) gives a tenth of the pressure (17.2 to 1.7 kPa), and the snow holds.",
+  "claims": [
+    {
+      "id": "physics.snowshoe-pressure.c1",
+      "text": "Pressure is force divided by the area it is spread over: P = F / A.",
+      "support": "source",
+      "source": "Definition of pressure (OpenStax University Physics Vol. 1, section 14.1 Fluids, Density, and Pressure; SI unit pascal = N/m^2).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snowshoe-pressure.c2",
+      "text": "A 70 kg hiker weighs about 687 N; on 0.040 m² of boot that is about 17 kPa (17.2), and on 0.40 m² of snowshoe 1.72 kPa.",
+      "support": "derivation",
+      "source": "70 x 9.81 = 686.7 N; 686.7 / 0.04 = 17168 Pa; 686.7 / 0.40 = 1717 Pa. Slider values 0.04-0.40 m^2 in 0.04 steps give 17.17, 8.58, 5.72, 4.29, 3.43, 2.86, 2.45, 2.15, 1.91, 1.72 kPa (artifacts/scratch/w4phys/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snowshoe-pressure.c3",
+      "text": "Ten times the contact area gives a tenth of the pressure for the same weight.",
+      "support": "derivation",
+      "source": "P = F / A with F fixed: P scales as 1/A.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snowshoe-pressure.c4",
+      "text": "Snow gives way where it is pressed too hard per square metre; spreading the weight keeps it below that.",
+      "support": "source",
+      "source": "Qualitative statement only: snow compacts and gives way when the pressure on it exceeds what it can bear, and that bearing strength varies widely with snow type, density and temperature. This is the principle behind snowshoes and skis (lower ground pressure for the same weight). No single figure is claimed, which is why the stage's limit is labelled toy (c5). Checker: please confirm or supply a citable source for the principle.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snowshoe-pressure.c5",
+      "text": "The snow's 3 kPa limit and the sinking depths on the stage are illustrative, made up for the picture.",
+      "support": "convention",
+      "source": "Stated on stage ('Toy snow') and in the reveal. Depth model: 40 cm x (1 - 3 kPa / P) above 3 kPa, none below; not a measured snow law. The weight is assumed spread evenly over the contact area of both feet.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 600 N person stands on 0.05 m² of shoe sole. They step onto a board with 0.5 m² of contact. The pressure under them is now…",
+    "options": [
+      "The same, 12 kPa",
+      "A tenth, 1.2 kPa",
+      "Ten times more, 120 kPa"
+    ],
+    "answer": 1,
+    "why": "Pressure is force divided by area: the same 600 N over ten times the area is a tenth of the pressure, 1.2 kPa instead of 12 kPa."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

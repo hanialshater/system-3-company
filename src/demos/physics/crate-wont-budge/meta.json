@@ -1,0 +1,73 @@
+{
+  "slug": "crate-wont-budge",
+  "title": "The crate that won't budge",
+  "hook": "You push a heavy crate and nothing moves. How hard is friction pushing back?",
+  "domain": "physics",
+  "concept": "static-friction",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "friction opposes sliding",
+      "forces in newtons; balanced forces mean no change in motion"
+    ],
+    "doesNotKnow": [
+      "that static friction adjusts to match the push, up to a limit mu_s N",
+      "that the limit is a ceiling, not the friction that always acts"
+    ]
+  },
+  "misconception": "Friction is always a fixed amount, mu N, even when the object is not sliding.",
+  "objective": "The learner can explain that a crate that stays still feels friction exactly equal to the push (50 N for a 50 N push), up to the grip limit mu_s m g = 98.1 N, beyond which it slips.",
+  "claims": [
+    {
+      "id": "physics.crate-wont-budge.c1",
+      "text": "While the crate does not move, the friction on it exactly equals your push.",
+      "support": "derivation",
+      "source": "Newton's first law: an object at rest has zero net force, so the horizontal static friction equals the applied push in size and opposes it.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.crate-wont-budge.c2",
+      "text": "Static friction can grow only up to a limit, μs × N; for a 20 kg crate with μs = 0.50 on a level floor that is 0.50 × 20 × 9.81 = 98.1 N.",
+      "support": "derivation",
+      "source": "Static friction f_s <= mu_s N (OpenStax University Physics Vol. 1, section 6.2 Friction); N = m g on a level floor; 0.5 x 20 x 9.81 = 98.10 N (artifacts/scratch/w4phys/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.crate-wont-budge.c3",
+      "text": "A push above the grip limit makes the crate slip; once it slides, a different (sliding) friction acts, which this lesson does not model.",
+      "support": "source",
+      "source": "Kinetic friction f_k = mu_k N with mu_k usually below mu_s (OpenStax University Physics Vol. 1, section 6.2). The stage shows 'slips!' and 'sliding' with no friction number.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.crate-wont-budge.c4",
+      "text": "μs = 0.50 is an illustrative value; real crates and floors vary.",
+      "support": "convention",
+      "source": "Stated on stage ('illustrative') and in the reveal. Tabulated static coefficients for wood on wood or concrete range roughly 0.25-0.6 (e.g. Engineering ToolBox, Friction and Friction Coefficients table), so 0.50 is plausible but not measured for any particular crate.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A box can grip the floor with at most 200 N of friction. You push it with 30 N and it stays still. How big is the friction on it?",
+    "options": [
+      "200 N",
+      "30 N",
+      "0 N"
+    ],
+    "answer": 1,
+    "why": "A box at rest has no net force, so friction exactly cancels the 30 N push. The 200 N is only the most friction can give before the box slips."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

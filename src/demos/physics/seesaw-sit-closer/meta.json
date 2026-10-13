@@ -1,0 +1,73 @@
+{
+  "slug": "seesaw-sit-closer",
+  "title": "Can the lighter child balance?",
+  "hook": "A 40 kg child on one side, a 20 kg child on the other. Can the lighter one ever win?",
+  "domain": "physics",
+  "concept": "torque-lever",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "seesaws balance with equal children at equal distances",
+      "weight in newtons is mass x 9.81"
+    ],
+    "doesNotKnow": [
+      "torque: turning effect = force x distance from the pivot",
+      "that balance needs equal torques, not equal weights"
+    ]
+  },
+  "misconception": "A seesaw balances only with equal weights, so a lighter child cannot balance a heavier one.",
+  "objective": "The learner can explain that a seesaw balances when weight x distance is equal on both sides, so 20 kg at 4.0 m balances 40 kg at 2.0 m.",
+  "claims": [
+    {
+      "id": "physics.seesaw-sit-closer.c1",
+      "text": "A 20 kg child 4.0 m from the pivot balances a 40 kg child 2.0 m from it: each side turns the plank with 785 N·m.",
+      "support": "derivation",
+      "source": "Torque = weight x perpendicular distance: 40 x 9.81 x 2.0 = 784.8 N m = 20 x 9.81 x 4.0 (artifacts/scratch/w4phys/check.mjs). Balance needs the torques about the pivot to cancel.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.seesaw-sit-closer.c2",
+      "text": "What turns a seesaw is weight times distance from the pivot (torque), not weight alone; half the weight at twice the distance has the same turning effect.",
+      "support": "source",
+      "source": "Rotational equilibrium: sum of torques about the pivot is zero (OpenStax University Physics Vol. 1, section 12.1 Conditions for Static Equilibrium). Archimedes' law of the lever.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.seesaw-sit-closer.c3",
+      "text": "With unequal turning effects, a light rigid plank tips until one end touches the ground; it rests level only when the two sides are equal.",
+      "support": "derivation",
+      "source": "A massless plank has no restoring torque of its own: any nonzero net torque rotates it until the ground stops it. Here pivot height 1.0 m and half-length 5 m give asin(1/5) = 11.5 degrees. The stage draws only level or fully tipped.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.seesaw-sit-closer.c4",
+      "text": "Model: a light rigid plank pivoted at its middle, with each child treated as a single weight at one point.",
+      "support": "convention",
+      "source": "Stated on stage ('Light plank, pivot in the middle') and in the reveal. A uniform plank pivoted at its middle adds equal torques on both sides, so it would not change the 4.0 m answer.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 30 kg child sits 1.0 m from a seesaw's pivot. How far out on the other side must a 10 kg child sit to balance?",
+    "options": [
+      "1.0 m",
+      "3.0 m",
+      "0.33 m"
+    ],
+    "answer": 1,
+    "why": "Balance needs equal weight x distance: 30 x 1.0 = 10 x 3.0. A third of the weight needs three times the distance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

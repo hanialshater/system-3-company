@@ -1,0 +1,80 @@
+{
+  "slug": "magnet-still-in-coil",
+  "title": "A magnet sits inside a coil",
+  "hook": "A strong magnet rests inside a coil of wire. Is it making electricity right now?",
+  "domain": "physics",
+  "concept": "induction",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "magnets and coils can make electricity (generators, bike dynamos)",
+      "a meter shows current or voltage"
+    ],
+    "doesNotKnow": [
+      "Faraday's law: the voltage depends on how fast the magnetic flux through the coil changes",
+      "Lenz's law: moving in and moving out push the current opposite ways"
+    ]
+  },
+  "misconception": "A strong magnet inside a coil produces a current just by being there.",
+  "objective": "The learner can explain that a coil responds only to a change in the magnetic flux through it, so a magnet held still inside gives exactly zero, and pushing in and pulling out give kicks of opposite sign.",
+  "claims": [
+    {
+      "id": "physics.magnet-still-in-coil.c1",
+      "text": "A coil's voltage is set by how fast the magnetic flux through it changes: voltage = number of turns × rate of change of flux (Faraday's law).",
+      "support": "source",
+      "source": "Faraday's law of induction, emf = -N dPhi/dt (OpenStax University Physics Vol. 2, section 13.1 Faraday's Law).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.magnet-still-in-coil.c2",
+      "text": "A magnet held still inside the coil gives a steady flux, so the meter reads zero, however strong the magnet.",
+      "support": "derivation",
+      "source": "dPhi/dt = 0 for a stationary magnet and coil, so emf = 0 exactly (artifacts/scratch/w4phys/check.mjs). Ideal coil and meter; ignores the Earth's field, which is also steady.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.magnet-still-in-coil.c3",
+      "text": "Pushing the magnet in and pulling it out make the needle kick in opposite directions.",
+      "support": "source",
+      "source": "Lenz's law: the induced emf opposes the change in flux; increasing and decreasing flux give opposite signs (OpenStax University Physics Vol. 2, section 13.2 Lenz's Law). In the model the two moves are mirror images in time, giving +/- the same peak.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.magnet-still-in-coil.c4",
+      "text": "In this illustrative set-up (100 turns, 0.1 mWb through the coil with the magnet inside, 0.3 s moves) each push or pull peaks at about 123 mV.",
+      "support": "simulation",
+      "source": "Flux model Phi(z) = 0.1 mWb / (1 + (z / 2 cm)^2)^1.5 (on-axis dipole through a short coil of radius 2 cm), z from -8 cm to 0 by smoothstep over 0.3 s; numerical differentiation (dt = 1e-5 s) in artifacts/scratch/w4phys/check.mjs: peak 0.1234 V at 0.226 s; the pulse's integral equals N x change of flux, 9.86 mV s. Parameters are illustrative, not a measured magnet.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.magnet-still-in-coil.c5",
+      "text": "The coil, magnet and meter values are illustrative; the zero while the magnet is still is not.",
+      "support": "convention",
+      "source": "Stated on stage ('Illustrative coil') and in the reveal. The zero follows from c2 for any magnet and coil.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bike dynamo has a magnet that spins inside a coil. When the bike stops, with the magnet still inside the coil, the dynamo's output is…",
+    "options": [
+      "Zero",
+      "Still at full strength",
+      "Half strength"
+    ],
+    "answer": 0,
+    "why": "A coil only produces a voltage while the magnetic flux through it is changing. A magnet that has stopped gives a steady flux, so no voltage."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

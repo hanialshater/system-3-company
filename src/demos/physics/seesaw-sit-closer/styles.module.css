@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 40dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; }
+.ground { stroke: var(--fg); stroke-width: 1.6; opacity: 0.6; }
+.pivot { fill: color-mix(in srgb, var(--muted) 50%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.plank { stroke: var(--fg); stroke-width: 4; stroke-linecap: round; }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 7px; }
+.heavy { fill: color-mix(in srgb, var(--fg) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.light { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.kid { fill: var(--fg); font-size: 8px; font-weight: 800; }
+.barHeavy { fill: color-mix(in srgb, var(--fg) 45%, var(--bg-2)); }
+.barLight { fill: var(--domain); }
+.barLabel { fill: var(--fg); font-size: 8px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mid { stroke: var(--fg); stroke-width: 1; }
+.chip { fill: var(--muted); font-size: 8px; }
