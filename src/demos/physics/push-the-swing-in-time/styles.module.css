@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 42dvh; }
+.beam { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.track { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 4; }
+.reach { fill: none; stroke: var(--domain); stroke-width: 3; opacity: 0.6; }
+.rope { stroke: var(--fg); stroke-width: 1.5; }
+.seat { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.small { fill: var(--muted); font-size: 9px; }
+.help { fill: var(--good); }
+.fight { fill: var(--bad); }
+.start { fill: var(--muted); }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
+.wrap :global(.readout) { flex: 1 1 0; }
+.wrap :global(.control) { flex: 1 1 0; }

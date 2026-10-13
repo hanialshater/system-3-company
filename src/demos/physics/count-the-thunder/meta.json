@@ -1,0 +1,80 @@
+{
+  "slug": "count-the-thunder",
+  "title": "How far away was that lightning?",
+  "hook": "Flash, six seconds of silence, then thunder. The gap is a ruler. How far away was it?",
+  "domain": "physics",
+  "concept": "sound-vs-light-delay",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "lightning makes both a flash and thunder",
+      "metres and kilometres"
+    ],
+    "doesNotKnow": [
+      "that light arrives almost instantly while sound travels about 343 m/s",
+      "that the delay measures the distance"
+    ]
+  },
+  "misconception": "Flash and thunder arrive together or the delay means nothing; the gap is not a measure of distance.",
+  "objective": "The learner can estimate a strike's distance from the flash-to-thunder delay: about 1 km for every 3 s.",
+  "claims": [
+    {
+      "id": "physics.count-the-thunder.c1",
+      "text": "Sound travels through air at about 343 m/s (dry air at 20 C).",
+      "support": "source",
+      "source": "Speed of sound in dry air at 20 C, 343 m/s; e.g. Halliday, Resnick and Walker, Fundamentals of Physics, ch. 17, table 17-1; NIST/CRC tables.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.count-the-thunder.c2",
+      "text": "Light travels at about 3.00 x 10^8 m/s, so a flash 2 km away arrives in about 7 millionths of a second.",
+      "support": "derivation",
+      "source": "c = 299,792,458 m/s (SI definition), rounded to 3.00 x 10^8. 2058 m / 3.00 x 10^8 m/s = 6.9 microseconds.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.count-the-thunder.c3",
+      "text": "Thunder heard 6 s after the flash means a strike about 2.06 km away.",
+      "support": "derivation",
+      "source": "343 m/s x 6 s = 2058 m. The light's travel time is negligible.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.count-the-thunder.c4",
+      "text": "Every 3 s of counting is about 1 km (1,029 m): divide the count by 3 for kilometres.",
+      "support": "derivation",
+      "source": "3 x 343 = 1029 m. The rule of thumb appears in weather-safety guidance (e.g. UK Met Office: count seconds and divide by three for km).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.count-the-thunder.c5",
+      "text": "The lesson ignores wind, temperature changes along the path and the height of the lightning channel.",
+      "support": "convention",
+      "source": "Stated idealisation (code comment and stage caption 'Sound in air at 20 C'). Sound speed varies by about 0.6 m/s per degree C.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At a fireworks show you see a burst and hear the bang 1.5 s later. About how far away is it?",
+    "options": [
+      "About 50 m",
+      "About 500 m",
+      "About 5 km"
+    ],
+    "answer": 1,
+    "why": "Sound covers about 343 m each second and the light arrives at once: 1.5 x 343 is about 515 m."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

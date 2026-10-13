@@ -1,0 +1,81 @@
+{
+  "slug": "lifeguard-fastest-path",
+  "title": "Is the straight line the fastest?",
+  "hook": "Running is fast, swimming is slow. Where should a lifeguard hit the water?",
+  "domain": "physics",
+  "concept": "refraction",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "lifeguards run on sand and swim in water",
+      "time = distance / speed",
+      "light bends going into water"
+    ],
+    "doesNotKnow": [
+      "least-time reasoning (Fermat's principle)",
+      "Snell's law"
+    ]
+  },
+  "misconception": "The fastest route is always the straight line.",
+  "objective": "The learner can explain that when speeds differ on two sides of a boundary, the quickest path bends there, and that light refracts for the same reason.",
+  "claims": [
+    {
+      "id": "physics.lifeguard-fastest-path.c1",
+      "text": "With the lifeguard 40 m up the beach, the swimmer 20 m out and 60 m along, the straight line crosses the shore at 40 m and takes 26.9 s at 7 m/s running and 1.5 m/s swimming.",
+      "support": "derivation",
+      "source": "Crossing point 60 x 40 / 60 = 40 m. t(40) = sqrt(1600 + 1600)/7 + sqrt(400 + 400)/1.5 = 8.08 + 18.86 = 26.94 s.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.lifeguard-fastest-path.c2",
+      "text": "Entering at 56 m takes 23.4 s, the fastest of the stage's 8 m steps; the true best entry is 56.4 m.",
+      "support": "derivation",
+      "source": "t(x) = sqrt(1600 + x^2)/7 + sqrt(400 + (60 - x)^2)/1.5; t(56) = 9.83 + 13.60 = 23.43 s; t(48) = 24.48, t(64) = 24.38, t(24) = 34.12 s. Numerical minimum at x = 56.45 m, t = 23.425 s (scan at 0.01 m, Demo.tsx and tools check).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.lifeguard-fastest-path.c3",
+      "text": "At the fastest entry point, sin(angle on sand)/7 equals sin(angle in water)/1.5.",
+      "support": "derivation",
+      "source": "dt/dx = 0 gives (x / r1)/v1 = ((60 - x)/r2)/v2, i.e. sin(a1)/v1 = sin(a2)/v2 with angles from the normal. At x = 56.45: 0.1166 vs 0.1165.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.lifeguard-fastest-path.c4",
+      "text": "Light takes the path of least time between two points (Fermat's principle), which bends toward the slower medium at a boundary: refraction, Snell's law.",
+      "support": "source",
+      "source": "Fermat's principle and its derivation of Snell's law; Feynman Lectures on Physics, vol. I, ch. 26; Hecht, Optics, ch. 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.lifeguard-fastest-path.c5",
+      "text": "Model: flat beach, straight shoreline, steady running and swimming speeds; drawn to scale.",
+      "support": "convention",
+      "source": "Stated on stage ('Drawn to scale') and in the reveal; speeds are illustrative (brief cm-physics #20).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ray of light goes from air into glass, where it is slower. At the surface it…",
+    "options": [
+      "Goes straight on: straight is fastest",
+      "Bends toward the slow side, like the lifeguard swimming less",
+      "Bends away so it spends longer in the glass"
+    ],
+    "answer": 1,
+    "why": "Light takes the least-time path; like the lifeguard, it shortens the slow part, so it bends at the boundary toward the perpendicular in the glass."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

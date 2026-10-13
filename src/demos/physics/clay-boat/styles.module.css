@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 42dvh; }
+.water { fill: color-mix(in srgb, var(--domain) 16%, var(--bg-2)); }
+.surface { stroke: var(--domain); stroke-width: 1.5; }
+.tank { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.clay { fill: color-mix(in srgb, #b5651d 75%, var(--fg) 10%); stroke: var(--fg); stroke-width: 0.8; }
+.flood { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); }
+.air { fill: var(--bg-2); }
+.dim { stroke: var(--muted); stroke-width: 1; }
+.small { fill: var(--muted); font-size: 9px; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 2.5em; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.readout) { flex: 1 1 0; }

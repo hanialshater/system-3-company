@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 42dvh; }
+.sand { fill: color-mix(in srgb, #d9b26a 22%, var(--bg-2)); }
+.water { fill: color-mix(in srgb, var(--domain) 18%, var(--bg-2)); }
+.shore { stroke: var(--fg); stroke-width: 1.2; opacity: 0.6; }
+.straight { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 4; }
+.run { stroke: var(--fg); stroke-width: 2.2; }
+.swim { stroke: var(--domain); stroke-width: 2.2; stroke-dasharray: 5 3; }
+.entry { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.guard { fill: var(--fg); }
+.swimmer { fill: var(--bad); }
+.best { fill: var(--good); }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.small { fill: var(--muted); font-size: 9px; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; padding: 4px 8px; }
+.wrap :global(.row) { gap: 6px; }

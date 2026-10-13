@@ -1,0 +1,80 @@
+{
+  "slug": "release-the-spinning-ball",
+  "title": "Cut the string: which way?",
+  "hook": "A ball whirls on a string. Cut it. Does it fly outward, or somewhere else?",
+  "domain": "physics",
+  "concept": "circular-motion-centripetal",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "things swing round on strings",
+      "compass directions"
+    ],
+    "doesNotKnow": [
+      "that circular motion needs an inward force",
+      "that with no force, motion continues in a straight line (Newton's first law)"
+    ]
+  },
+  "misconception": "A whirled object is flung straight outward, away from the centre, when the string is released.",
+  "objective": "The learner can explain that the string only pulls inward to bend the path, so when it is cut the ball moves straight on along the tangent, in the direction it was already going.",
+  "claims": [
+    {
+      "id": "physics.release-the-spinning-ball.c1",
+      "text": "Moving in a circle needs a force toward the centre (here the string's pull), of size m v^2 / r.",
+      "support": "source",
+      "source": "Centripetal force for uniform circular motion; Halliday, Resnick and Walker, Fundamentals of Physics, ch. 4 and 6.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.release-the-spinning-ball.c2",
+      "text": "Once the string is cut, no sideways force acts, so the ball keeps its speed and direction: a straight line along the circle's tangent.",
+      "support": "derivation",
+      "source": "Newton's first law with zero net horizontal force; on a frictionless horizontal table, gravity is balanced by the table's support.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.release-the-spinning-ball.c3",
+      "text": "Moving anticlockwise, the ball at the east point is moving north, so cut there it goes straight north.",
+      "support": "derivation",
+      "source": "Velocity of anticlockwise circular motion at angle a is v(-sin a, cos a); at a = 0 this is (0, v), due north.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.release-the-spinning-ball.c4",
+      "text": "Nothing flings the ball outward; there is no outward force on it.",
+      "support": "derivation",
+      "source": "In the table's (inertial) frame the only horizontal force is the string's inward tension; 'centrifugal force' appears only in the rotating frame.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.release-the-spinning-ball.c5",
+      "text": "The stage is a top view of a frictionless table with illustrative values (0.5 m string, 2 m/s); trail dots are 0.05 s apart.",
+      "support": "convention",
+      "source": "Stated on the stage caption ('Top view, frictionless table'); values in Demo.tsx constants.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A hammer thrower spins and lets go when the hammer is at the far side of the circle, moving toward the crowd's left. Which way does it fly?",
+    "options": [
+      "Straight away from the thrower",
+      "Toward the crowd's left, along the circle's edge",
+      "It keeps curving"
+    ],
+    "answer": 1,
+    "why": "Released, it keeps the direction it was moving at that instant, a straight line along the edge of the circle, not outward."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
