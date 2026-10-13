@@ -1,0 +1,41 @@
+{
+  "note": "Tier registry (company/engineering/operations/README.md). Owner: principal-engineer-ops. Each entry: id, tier, owner (role), status (ok | degraded | missing | at-risk), note. 'missing' means the thing is needed but does not exist yet.",
+  "pocs": {
+    "platform (app shell, kit, feed)": "platform-engineer",
+    "backend (auth, progress DB, event API)": "backend-engineer",
+    "personalization (learner model)": "learner-model-engineer",
+    "company tools (CLI, metrics, publish loop, work queue)": "tools-lead",
+    "HQ": "hq-engineer",
+    "design engineering (concept inspector, kit visuals)": "design-engineer",
+    "evaluation harness (QA contract, gates)": "evaluation-steward",
+    "release and deploy": "release-manager",
+    "privacy and data": "privacy-reviewer",
+    "accessibility (UX deficits)": "accessibility-reviewer",
+    "lesson quality (UX deficits from reviews)": "qa-tester"
+  },
+  "services": [
+    { "id": "feed-and-lesson-runtime", "tier": "T1", "owner": "platform-engineer", "status": "ok", "note": "Local only; not deployed (founder inbox F-04)" },
+    { "id": "lesson-kit", "tier": "T1", "owner": "platform-engineer", "status": "ok", "note": "src/kit; constitutional contract" },
+    { "id": "gates-and-qa-contract", "tier": "T1", "owner": "evaluation-steward", "status": "at-risk", "note": "AMD-001(d) unratified: the publish loop is hand-checked (founder inbox F-03)" },
+    { "id": "ci-and-deploy", "tier": "T1", "owner": "release-manager", "status": "degraded", "note": "CI runs on push; no production deploy yet" },
+    { "id": "auth-and-progress-db", "tier": "T1", "owner": "backend-engineer", "status": "missing", "note": "Waits on founder inbox F-01" },
+    { "id": "event-api", "tier": "T2", "owner": "backend-engineer", "status": "ok", "note": "Local file store only" },
+    { "id": "walkthrough-and-qa-tools", "tier": "T2", "owner": "tools-lead", "status": "ok", "note": "Stale-build risk; serve.sh freshness check" },
+    { "id": "publish-loop", "tier": "T2", "owner": "release-manager", "status": "at-risk", "note": "Run by the operating chief of staff, not the release manager (CEO office finding P1)" },
+    { "id": "work-queue", "tier": "T2", "owner": "tools-lead", "status": "ok", "note": "tools/claim.mjs" },
+    { "id": "lesson-storage-at-scale", "tier": "T2", "owner": "principal-engineer", "status": "missing", "note": "EDD-003 stage 1 awaiting approval (F-05)" },
+    { "id": "hq", "tier": "T3", "owner": "hq-engineer", "status": "ok", "note": "Gated in production" },
+    { "id": "metrics-and-ops-health", "tier": "T3", "owner": "tools-lead", "status": "ok", "note": "" }
+  ],
+  "data": [
+    { "id": "learner-accounts", "tier": "D1", "owner": "backend-engineer", "status": "missing", "note": "Not collected yet; age policy pending (F-01)" },
+    { "id": "learning-events-and-attempts", "tier": "D2", "owner": "backend-engineer", "status": "ok", "note": "Anonymous, local; retention policy needed before deploy" },
+    { "id": "lessons-claims-curriculum", "tier": "D3", "owner": "evaluation-steward", "status": "ok", "note": "In git" },
+    { "id": "company-records-and-event-log", "tier": "D3", "owner": "tools-lead", "status": "ok", "note": "Agent transcripts are summarised; check for pasted secrets before publishing HQ" }
+  ],
+  "security": [],
+  "ux_deficits": [
+    { "id": "accessibility-review-never-run", "tier": "U1", "owner": "accessibility-reviewer", "status": "at-risk", "note": "0 accessibility records; 76 lessons published; 49 learner reviews mention contrast, screen-reader or tap-size issues (CEO office P2)" },
+    { "id": "told-not-shown", "tier": "U2", "owner": "design-lead", "status": "at-risk", "note": "104 of 289 learner reviews" }
+  ]
+}

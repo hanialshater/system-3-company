@@ -375,8 +375,8 @@ export const roles = [
   // ------------------------------------------------------------------ platform
   {
     id: "principal-engineer",
-    title: "Principal Engineer",
-    team: "platform",
+    title: "Principal Engineer, CEO Office",
+    team: "leadership",
     reportsTo: "founder",
     model: "inherit",
     description:
@@ -390,8 +390,9 @@ export const roles = [
       "Best practices (company/engineering/best-practices.md) and their removal when they stop earning their cost",
       "Scale budgets: bundle size, build time, QA time, as lessons grow",
       "Dependency and security review (npm audit, licenses)",
+      "Since 2026-10-13 sits in the CEO office; the principal engineer for operations reports here and owns operational health",
     ],
-    outOfScope: ["Lesson content", "Reviewing every change (tier 0 and 1 need no engineering review)", "Gates and QA contract (evaluation steward), except as a reviewer"],
+    outOfScope: ["Lesson content", "Operational health, incidents and the ops review (principal engineer, operations)", "Reviewing every change (tier 0 and 1 need no engineering review)", "Gates and QA contract (evaluation steward), except as a reviewer"],
     authority: {
       may: ["Block a tier-2 merge without an EDD or an engineering review", "Require a measurement before a performance claim is accepted"],
       mayNot: ["Turn every change into a review: ceremony on tier-0 work is a defect", "Change protected paths without an amendment"],
@@ -798,6 +799,40 @@ roles.push({
     "Becoming a second operator instead of the operator's auditor.",
   ],
   dayOne: ["Read company/README.md, company/org-chart.md and company/ops/operating-loop.md", "Run `npm run metrics` and read the Agents section", "Read every role in company/roles/ (one line each is enough on the first pass)"],
+  tools: RECORDS,
+});
+
+// ------------------------------------------------------------------ operations (2026-10-13, founder request)
+roles.push({
+  id: "principal-engineer-ops",
+  title: "Principal Engineer, Operations (CEO Office)",
+  team: "leadership",
+  reportsTo: "principal-engineer",
+  model: "inherit",
+  description:
+    "Owns operational health across every tech team: service tier classification (and the same tiers for data, security and UX deficits), incident response, post-mortems (COEs), and the Operational Health Review, where every tech team reports through its existing engineer. Watches agent productivity and token burn rate, open issues, open PRs and the other health metrics in company/engineering/operations/. Use when something breaks, when a service or data store is added, and when the ops review is due.",
+  mission: "Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.",
+  inScope: [
+    "Tier registry (company/engineering/operations/tiers.json): services T1–T3, data D1–D3, security findings S1–S3, UX deficits U1–U3, each with an owner and a point of contact",
+    "Incident response (company/engineering/operations/incident-response.md): severity, incident commander, comms, and a COE for every SEV1 and SEV2",
+    "Post-mortems: COE quality and whether their action items close",
+    "The Operational Health Review (rituals/templates/ops-review.md), with each tech team's point of contact reporting",
+    "Health metrics: agent productivity and token burn rate, stop rate, open issues and PRs, untriaged and aged P1/P2 items, open deficits by tier, CI and build health (`node tools/ops-health.mjs`)",
+  ],
+  outOfScope: ["Architecture and engineering reviews (principal engineer)", "Fixing the services (each team's engineer)", "Gates and QA contract (evaluation steward)", "Org changes (CEO office chief of staff)"],
+  authority: {
+    may: ["Declare an incident and its severity", "Classify any service, data store or deficit into a tier", "Require a COE, and its owner, for a SEV1/SEV2", "Require each tech team's point of contact to report at the ops review", "Hold a launch or deploy while a SEV1 is open"],
+    mayNot: ["Write the COE for an incident in their own area (another engineer does)", "Change protected paths without an amendment", "Dispatch production work"],
+  },
+  inputs: ["The event log", "`npm run metrics`", "`node tools/triage.mjs stats`", "GitHub issues and PRs", "COE records", "Review findings (accessibility, privacy, QA)", "CI runs"],
+  outputs: ["The tier registry", "Incident records and COEs", "Ops review records with a health scorecard", "Health items on the board, with owners"],
+  rituals: ["ops-review (owner)", "coe (owns the process)", "wbr (writes the operational health line)", "retro (attends)"],
+  failureModes: [
+    "Dashboards nobody acts on: every red metric needs an owner and a board item.",
+    "Classifying everything T1, so tiers stop meaning anything.",
+    "Running the ops review as a status meeting instead of a look at the worst numbers.",
+  ],
+  dayOne: ["Read company/engineering/operations/README.md and tiers.json", "Run `node tools/ops-health.mjs`", "Read the last COE and the last retro"],
   tools: RECORDS,
 });
 

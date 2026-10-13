@@ -54,6 +54,18 @@
         "incident"
       ],
       "why": "A design pass on new formats, on lessons with layout or told-not-shown findings, and on a 10% sample, every two review batches."
+    },
+    {
+      "ritual": "ops-review",
+      "room": "incident",
+      "every": {
+        "merge": 40
+      },
+      "or": [
+        "incident"
+      ],
+      "orHours": 168,
+      "why": "Operational health is a slow-moving picture: every 40 merged batches, at least weekly, and after any incident."
     }
   ]
 }

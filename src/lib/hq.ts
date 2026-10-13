@@ -75,7 +75,7 @@ export const ROOMS: Room[] = [
   { id: "constitution", name: "Constitution", x: 598, y: 356, w: 216, h: 110, kind: "meeting" },
   { id: "chief-of-staff", name: "Chief of Staff", x: 186, y: 476, w: 190, h: 76, kind: "office" },
   { id: "studio", name: "Studio", x: 386, y: 476, w: 200, h: 76, kind: "office" },
-  { id: "incident", name: "Incident room", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
+  { id: "incident", name: "Incident & ops review", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
   { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 400, h: 76, kind: "lobby" },
   { id: "ceo-office", name: "CEO office · company health", x: 710, y: 568, w: 270, h: 76, kind: "office", color: "#ffd54f" },
   // Floor 2 (2026-10-13): Life Hacks, Personalization, International.

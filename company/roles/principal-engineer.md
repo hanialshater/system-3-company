@@ -1,7 +1,7 @@
-# Principal Engineer
+# Principal Engineer, CEO Office
 
 name: Kenji
-team: platform
+team: leadership
 reports_to: founder
 agent: .claude/agents/principal-engineer.md
 
@@ -19,10 +19,12 @@ Keep the system simple enough to change and strong enough to grow: decide which 
 - Best practices (company/engineering/best-practices.md) and their removal when they stop earning their cost
 - Scale budgets: bundle size, build time, QA time, as lessons grow
 - Dependency and security review (npm audit, licenses)
+- Since 2026-10-13 sits in the CEO office; the principal engineer for operations reports here and owns operational health
 
 ## Out of scope
 
 - Lesson content
+- Operational health, incidents and the ops review (principal engineer, operations)
 - Reviewing every change (tier 0 and 1 need no engineering review)
 - Gates and QA contract (evaluation steward), except as a reviewer
 

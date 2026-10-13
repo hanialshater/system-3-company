@@ -40,3 +40,7 @@ Run `npm run company -- status`, `npm run company -- rituals` and `npm run metri
 - Anything that needs the founder (a decision, an approval, an action, a brief) goes in `company/ops/founder-inbox.json`, with why it matters, what it blocks, the options, a recommendation and links. Board items owned by `founder` appear too.
 - HQ shows the inbox as a banner on every view and as a prioritised list in the Lobby. Don't leave founder asks only in chat, the progress log or a WBR.
 - When the founder answers: set `status: "decided"`, add the answer, write the decision record, and close the board item.
+
+## Operational health (2026-10-13)
+- An incident (see `company/engineering/operations/incident-response.md`): contain first, declare it as an `incident` event, and dispatch the principal-engineer-ops. A SEV1 goes in the founder inbox at once.
+- When `rituals-due` lists `ops-review`, run `/ops-review`. Every tech team reports through its point of contact.

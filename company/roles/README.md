@@ -10,7 +10,9 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Founder](founder.md) | nobody | Own the desire layer: what the company is for, what counts as a good lesson (Surface Value), and every change to the constitution. |
 | [Chief of Staff (operator, day-to-day loop)](chief-of-staff.md) | founder | Given everything we know, choose what to try next and send it to the narrowest role that can do it. |
+| [Principal Engineer, CEO Office](principal-engineer.md) | founder | Keep the system simple enough to change and strong enough to grow: decide which changes need a design and a review, and make sure those get one.. |
 | [Chief of Staff, CEO Office (company health)](chief-of-staff-ceo-office.md) | founder | The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.. |
+| [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
 | [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
 
 ## Product
@@ -55,7 +57,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Principal Engineer](principal-engineer.md) | founder | Keep the system simple enough to change and strong enough to grow: decide which changes need a design and a review, and make sure those get one.. |
 | [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
 | [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
 

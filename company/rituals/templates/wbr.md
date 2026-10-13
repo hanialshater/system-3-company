@@ -42,3 +42,7 @@ Read these before the anomalies. Each one is a question to answer, not just a nu
 
 | Decision | Objection | Status | Owner |
 |---|---|---|---|
+
+
+## Operational health (principal-engineer-ops)
+One line from `node tools/ops-health.mjs`: burn rate, stop rate, tier-1 red lines, open SEV1/SEV2. Point to the last ops review.
