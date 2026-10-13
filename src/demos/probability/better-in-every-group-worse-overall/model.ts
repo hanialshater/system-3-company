@@ -31,3 +31,14 @@ export function arms(k: number): { A: Arm; B: Arm } {
 }
 
 export const overall = (a: Arm) => (a.smallWins + a.largeWins) / (a.small + a.large);
+
+/** Largest k (large-stone patients given A) for which A's overall rate still beats B's. */
+export function flipK(): number {
+  let best = -1;
+  for (let k = 0; k <= TOTAL_LARGE; k++) {
+    const { A, B } = arms(k);
+    if (overall(A) > overall(B)) best = k;
+  }
+  return best;
+}
+export const EVEN_K = Math.round(TOTAL_LARGE / 2); // 172: A gets 172 of the 343 large stones

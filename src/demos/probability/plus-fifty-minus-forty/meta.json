@@ -1,7 +1,7 @@
 {
   "slug": "plus-fifty-minus-forty",
   "title": "+50% or -40%: a winning bet?",
-  "hook": "Each round averages a 5% gain. Play 100 rounds and you should get rich. Do you?",
+  "hook": "A bet that gains 5% on average each round, played 100 times. Where do you end up?",
   "domain": "probability",
   "concept": "multiplicative-bets",
   "status": "review",
@@ -61,12 +61,10 @@
     },
     {
       "id": "probability.plus-fifty-minus-forty.c5",
-      "text": "On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and their average was $430.",
+      "text": "On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and the average of all 50 was $430.",
       "support": "simulation",
-      "source": "paths() in model.ts, seed 1505, untuned (the first seed tried). Over 500 other batches of 50: players above start ranged 1-14 (median 7), the batch median $0.08-$3.22 (middle 95%), and the batch average exceeded $100 in 82% of batches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "paths() in model.ts, seed 1505, untuned (the first seed tried). Over 500 other batches of 50: players above start ranged 1-14 (median 7), the batch median $0.08-$3.22 (middle 95%), and the batch average exceeded $100 in 82% of batches. | CLAIM FIX 2026-10-13 (revision v2): Was 'On the stage's first 50 players, the typical player ended at $1.29, 8 of 50 ended above $100, and their average was $430.' (fact-checker wording note: 'their average' could be read as the average of the 8 winners)",
+      "status": "unverified"
     },
     {
       "id": "probability.plus-fifty-minus-forty.c6",
@@ -76,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "probability.plus-fifty-minus-forty.c7",
+      "text": "A head then a tail turns $100 into $150 and then $90, a loss though heads and tails are equally likely; 'typical player' means the median (half the players end with less); each gridline on the stage is 100 times the one below.",
+      "support": "derivation",
+      "source": "100 x 1.5 = 150; 150 x 0.6 = 90 (UP, DOWN in model.ts); median = the middle of the 50 players' wealth (stats() in model.ts); axis ticks 0.01, 1, 100, 10,000, 1,000,000. Added by the builder 2026-10-13 in revision v2; needs an independent check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,5 +104,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

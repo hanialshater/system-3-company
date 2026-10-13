@@ -3,15 +3,35 @@
 // Monty Hall with 100 doors. The payoff: your first pick was a 1-in-100 guess and the
 // host's opening cannot improve it. He knows where the car is, so the one door he
 // carefully avoids carries all the rest of the chance. With 100 doors you can feel it.
+// Key state: 100 rounds played at 100 doors (stay ~1, switch ~99). The reveal quotes the learner's
+// own tallies, kept separately per door count so the 100-door tally survives a visit to 3 doors.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
+import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
-import { batch, carFor, hostLeaves } from "./model";
+import { batch, carFor, guessingBatch, hostLeaves } from "./model";
 import s from "./styles.module.css";
 
 type Step = "pick" | "decide" | "done";
+interface Tally {
+  stayWins: number;
+  stayPlays: number;
+  swapWins: number;
+  swapPlays: number;
+  batches: number;
+}
+interface Guess {
+  rounds: number;
+  kept: number;
+  stay: number;
+  swap: number;
+}
 const SIZES = [100, 10, 3];
+const MILESTONES = ["hundred-rounds-at-100-doors"] as const;
+const EMPTY: Tally = { stayWins: 0, stayPlays: 0, swapWins: 0, swapPlays: 0, batches: 0 };
+const NOGUESS: Guess = { rounds: 0, kept: 0, stay: 0, swap: 0 };
+const rate = (w: number, p: number) => (p ? `${w}/${p}` : "—");
 
 export default function MontyHall100({ slug }: { slug: string }) {
   const [doors, setDoors] = useState(100);
@@ -19,9 +39,11 @@ export default function MontyHall100({ slug }: { slug: string }) {
   const [step, setStep] = useState<Step>("pick");
   const [pick, setPick] = useState<number | null>(null);
   const [final, setFinal] = useState<number | null>(null);
-  const [tally, setTally] = useState({ stayWins: 0, stayPlays: 0, swapWins: 0, swapPlays: 0 });
-  const [batches, setBatches] = useState(0);
+  const [tallies, setTallies] = useState<Record<number, Tally>>({});
+  const [guesses, setGuesses] = useState<Record<number, Guess>>({});
 
+  const tally = tallies[doors] ?? EMPTY;
+  const guess = guesses[doors] ?? NOGUESS;
   const car = carFor(round, doors);
   const other = pick === null ? null : hostLeaves(round, doors, pick);
 
@@ -31,11 +53,9 @@ export default function MontyHall100({ slug }: { slug: string }) {
     setStep("pick");
     setPick(null);
     setFinal(null);
-    setTally({ stayWins: 0, stayPlays: 0, swapWins: 0, swapPlays: 0 });
-    setBatches(0);
   };
 
-  const tap = (d: number, interact: () => void) => {
+  const tap = (d: number) => {
     if (step === "done") {
       setRound((r) => r + 1);
       setPick(d);
@@ -53,12 +73,15 @@ export default function MontyHall100({ slug }: { slug: string }) {
       const won = d === car;
       setFinal(d);
       setStep("done");
-      setTally((t) =>
-        switched
-          ? { ...t, swapPlays: t.swapPlays + 1, swapWins: t.swapWins + (won ? 1 : 0) }
-          : { ...t, stayPlays: t.stayPlays + 1, stayWins: t.stayWins + (won ? 1 : 0) },
-      );
-      interact();
+      setTallies((all) => {
+        const t = all[doors] ?? EMPTY;
+        return {
+          ...all,
+          [doors]: switched
+            ? { ...t, swapPlays: t.swapPlays + 1, swapWins: t.swapWins + (won ? 1 : 0) }
+            : { ...t, stayPlays: t.stayPlays + 1, stayWins: t.stayWins + (won ? 1 : 0) },
+        };
+      });
     }
   };
 
@@ -79,7 +102,8 @@ export default function MontyHall100({ slug }: { slug: string }) {
     return parts.join(" ");
   };
 
-  const rate = (w: number, p: number) => (p ? `${w}/${p}` : "—");
+  const mine = SIZES.filter((n) => (tallies[n]?.stayPlays ?? 0) + (tallies[n]?.swapPlays ?? 0) > 0);
+  const guessed = SIZES.filter((n) => (guesses[n]?.rounds ?? 0) > 0);
 
   return (
     <Lesson
@@ -90,14 +114,20 @@ export default function MontyHall100({ slug }: { slug: string }) {
         options: ["50%", "1%", "99%"],
         answer: 2,
       }}
-      exploreHint="Play a round with 100 doors, then play 100 rounds and compare staying with switching."
-      minInteractions={2}
+      exploreHint="Play 100 rounds with 100 doors and compare staying with switching. Then try the guessing host."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            {tally.swapPlays + tally.stayPlays > 0
-              ? `Your ${doors}-door rounds: staying won ${rate(tally.stayWins, tally.stayPlays)}, switching won ${rate(tally.swapWins, tally.swapPlays)}. `
-              : ""}
+            {mine.length > 0 ? (
+              <>
+                Your rounds, staying vs switching:{" "}
+                {mine
+                  .map((n) => `${n} doors ${rate(tallies[n].stayWins, tallies[n].stayPlays)} vs ${rate(tallies[n].swapWins, tallies[n].swapPlays)}`)
+                  .join("; ")}
+                .{" "}
+              </>
+            ) : null}
             With 100 doors, switching wins <strong>99 times in 100</strong>.
           </p>
           <p>
@@ -106,77 +136,115 @@ export default function MontyHall100({ slug }: { slug: string }) {
             car is, squeezed them all onto the one door he left shut.
           </p>
           <p className="muted">
-            His knowledge is the point. If he had opened 98 doors at random and simply happened to miss the car, it
-            would be 50/50. With 3 doors, switching wins 2 times in 3.
+            His knowledge is the point.{" "}
+            {guessed.length > 0
+              ? `Your guessing host (opening doors at random, rounds where he hit the car thrown away): ${guessed
+                  .map((n) => `${n} doors, kept ${guesses[n].kept} of ${fmtN(guesses[n].rounds)}, stay won ${guesses[n].stay}, switch won ${guesses[n].swap}`)
+                  .join("; ")}. Close to even (small counts wobble). `
+              : "If he had opened 98 doors at random and simply happened to miss the car, it would be 50/50. "}
+            With 3 doors, switching wins 2 times in 3.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <Row>
-            <span className="muted small">Doors</span>
-            {SIZES.map((n) => (
-              <Control
-                key={n}
-                className={n === doors ? "active" : ""}
-                aria-pressed={n === doors}
-                disabled={locked || n === doors}
-                aria-label={`${n} doors`}
-                onClick={() => reset(n)}
-              >
-                {n}
-              </Control>
-            ))}
-            <Control
-              disabled={locked}
-              onClick={() => {
-                const b = batch(100000 + batches * 100, 100, doors);
-                setBatches((k) => k + 1);
-                setTally((t) => ({
-                  stayWins: t.stayWins + b.stay,
-                  stayPlays: t.stayPlays + 100,
-                  swapWins: t.swapWins + b.swap,
-                  swapPlays: t.swapPlays + 100,
-                }));
-                interact();
-              }}
-            >
-              Play 100 rounds
-            </Control>
-          </Row>
-
-          <p className={s.msg} aria-live="polite">
-            {locked ? "Make a prediction to start." : message}
-          </p>
-
-          <div
-            className={s.grid}
-            style={{ gridTemplateColumns: `repeat(${doors === 100 ? 10 : doors === 10 ? 5 : 3}, 1fr)` }}
-            data-doors={doors}
-          >
-            {Array.from({ length: doors }, (_, d) => {
-              const enabled = !locked && (step !== "decide" || d === pick || d === other);
-              return (
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => (
+            <div className={s.wrap}>
+              <Row>
                 <Control
-                  key={`${doors}-${d}`}
-                  className={cls(d)}
-                  disabled={!enabled}
-                  aria-label={`Door ${d + 1}${d === pick ? ", your pick" : ""}`}
-                  onClick={() => tap(d, interact)}
+                  disabled={locked}
+                  onClick={() => {
+                    const t = tallies[doors] ?? EMPTY;
+                    const b = batch(100000 + t.batches * 100, 100, doors);
+                    setTallies({
+                      ...tallies,
+                      [doors]: {
+                        stayWins: t.stayWins + b.stay,
+                        stayPlays: t.stayPlays + 100,
+                        swapWins: t.swapWins + b.swap,
+                        swapPlays: t.swapPlays + 100,
+                        batches: t.batches + 1,
+                      },
+                    });
+                    if (doors === 100) reach("hundred-rounds-at-100-doors");
+                  }}
                 >
-                  {step === "done" && d === car ? "car" : d === pick ? "you" : step === "decide" && d === other ? "other" : ""}
+                  Play 100 rounds
                 </Control>
-              );
-            })}
-          </div>
+                <Control
+                  disabled={locked}
+                  onClick={() => {
+                    const g = guesses[doors] ?? NOGUESS;
+                    const b = guessingBatch(200000 + g.rounds, 1000, doors);
+                    setGuesses({
+                      ...guesses,
+                      [doors]: { rounds: g.rounds + 1000, kept: g.kept + b.kept, stay: g.stay + b.stay, swap: g.swap + b.swap },
+                    });
+                  }}
+                >
+                  Guessing host: 1,000 rounds
+                </Control>
+              </Row>
+              <Row>
+                <span className="muted small">Doors</span>
+                {SIZES.map((n) => (
+                  <Control
+                    key={n}
+                    className={n === doors ? "active" : ""}
+                    aria-pressed={n === doors}
+                    disabled={locked || n === doors}
+                    aria-label={`${n} doors`}
+                    onClick={() => reset(n)}
+                  >
+                    {n}
+                  </Control>
+                ))}
+              </Row>
 
-          <Row>
-            <Readout label="Stay won" value={rate(tally.stayWins, tally.stayPlays)} />
-            <Readout label="Switch won" value={rate(tally.swapWins, tally.swapPlays)} />
-          </Row>
-        </div>
+              <p className={s.msg} aria-live="polite">
+                {locked ? "Make a prediction to start." : message}
+              </p>
+
+              <div
+                className={s.grid}
+                style={{ gridTemplateColumns: `repeat(${doors === 100 ? 10 : doors === 10 ? 5 : 3}, 1fr)` }}
+                data-doors={doors}
+              >
+                {Array.from({ length: doors }, (_, d) => {
+                  const enabled = !locked && (step !== "decide" || d === pick || d === other);
+                  return (
+                    <Control
+                      key={`${doors}-${d}`}
+                      className={cls(d)}
+                      disabled={!enabled}
+                      aria-label={`Door ${d + 1}${d === pick ? ", your pick" : ""}`}
+                      onClick={() => tap(d)}
+                    >
+                      {step === "done" && d === car ? "car" : d === pick ? "you" : step === "decide" && d === other ? "other" : ""}
+                    </Control>
+                  );
+                })}
+              </div>
+
+              <Row>
+                <Readout label={`Stay won (${doors} doors)`} value={rate(tally.stayWins, tally.stayPlays)} />
+                <Readout label="Switch won" value={rate(tally.swapWins, tally.swapPlays)} />
+              </Row>
+              {guess.rounds > 0 && (
+                <Row>
+                  <Readout label="Guessing host kept" value={`${guess.kept} of ${fmtN(guess.rounds)}`} />
+                  <Readout label="Stay / switch won" value={`${guess.stay} / ${guess.swap}`} />
+                </Row>
+              )}
+            </div>
+          )}
+        </Milestones>
       )}
     </Lesson>
   );
+}
+
+function fmtN(n: number) {
+  return n.toLocaleString("en-US");
 }

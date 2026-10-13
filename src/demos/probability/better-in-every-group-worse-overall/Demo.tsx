@@ -8,8 +8,12 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
-import { REAL_K, TOTAL_LARGE, arms, overall, type Arm } from "./model";
+import { Milestones } from "@/kit/milestones";
+import { EVEN_K, REAL_K, TOTAL_LARGE, arms, flipK, overall, type Arm } from "./model";
 import s from "./styles.module.css";
+
+// Key state: groups combined AND A's overall rate above B's, reached by changing only who got the hard cases.
+const MILESTONES = ["combined", "a-ahead-overall"] as const;
 
 const X0 = 34;
 const BAR_H = 70;
@@ -63,11 +67,72 @@ function Bar({ arm, y, name, combined }: { arm: Arm; y: number; name: string; co
   );
 }
 
-export default function SimpsonsStones({ slug }: { slug: string }) {
+function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [k, setK] = useState(REAL_K);
   const [combined, setCombined] = useState(false);
   const { A, B } = arms(k);
-  const real = k === REAL_K;
+  const check = (kk: number, comb: boolean) => {
+    const x = arms(kk);
+    if (comb && overall(x.A) > overall(x.B)) reach("a-ahead-overall");
+  };
+
+  return (
+    <div className={s.wrap}>
+      <svg viewBox="0 0 390 210" className={`stage-svg ${s.svg}`} role="img" aria-label="Two bars of 350 patients each, split by stone size, filled by the share cured">
+        <Bar arm={A} y={0} name="A" combined={combined} />
+        <Bar arm={B} y={106} name="B" combined={combined} />
+      </svg>
+      <p className={s.key}>
+        Width: patients. Filled height: cured. A gets {k} of the {TOTAL_LARGE} large-stone patients, B gets{" "}
+        {TOTAL_LARGE - k}.
+      </p>
+      <Row>
+        <Control
+          className={combined ? "active" : ""}
+          disabled={locked}
+          onClick={() => {
+            const c = !combined;
+            setCombined(c);
+            reach("combined");
+            check(k, c);
+          }}
+        >
+          {combined ? "Split by stone size" : "Combine groups"}
+        </Control>
+        <Control
+          disabled={locked || k === EVEN_K}
+          onClick={() => {
+            setK(EVEN_K);
+            check(EVEN_K, combined);
+          }}
+        >
+          Share hard cases evenly
+        </Control>
+      </Row>
+      <Row>
+        <Readout label="A overall" value={locked ? "?" : pct1(overall(A))} />
+        <Readout label="B overall" value={locked ? "?" : pct1(overall(B))} />
+      </Row>
+      <Row>
+        <Slider
+          label="Large-stone patients given A"
+          value={k}
+          min={0}
+          max={TOTAL_LARGE}
+          disabled={locked}
+          format={(v) => `${v} of ${TOTAL_LARGE}`}
+          onChange={(v) => {
+            setK(v);
+            check(v, combined);
+          }}
+        />
+      </Row>
+    </div>
+  );
+}
+
+export default function SimpsonsStones({ slug }: { slug: string }) {
+  const flip = flipK();
 
   return (
     <Lesson
@@ -78,19 +143,19 @@ export default function SimpsonsStones({ slug }: { slug: string }) {
         options: ["A", "B", "They tie"],
         answer: 1,
       }}
-      exploreHint="Combine the groups. Then slide large-stone patients from A to B."
-      minInteractions={2}
+      exploreHint="Combine the groups, then share the hard cases evenly."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            Overall <strong>B</strong> cured {pct1(289 / 350)} and A {pct1(273 / 350)}, though A won inside both groups.
-            Look at the widths: 263 of A&rsquo;s 350 patients had large stones, the hard cases; B got mostly easy small
-            ones.
+            In the real data <strong>B</strong> cured {pct1(289 / 350)} overall and A {pct1(273 / 350)}, though A won
+            inside both groups. Look at the widths: {REAL_K} of A&rsquo;s 350 patients had large stones, the hard cases;
+            B got mostly easy small ones.
           </p>
           <p>
-            An overall rate is an average of the group rates, weighted by how many patients are in each group. Give A
-            220 or fewer of the 343 hard cases and A comes out ahead overall, with no change to how well either
-            treatment works.
+            An overall rate is a <em>weighted</em> average of the group rates: a bigger group counts for more. Give A{" "}
+            {flip} or fewer of the {TOTAL_LARGE} hard cases and A comes out ahead overall, with no change to how well
+            either treatment works.
           </p>
           <p className="muted">
             Real data (1986): A was open surgery, B keyhole surgery. Which is better in practice is a medical question;
@@ -100,44 +165,9 @@ export default function SimpsonsStones({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <svg viewBox="0 0 390 210" className={`stage-svg ${s.svg}`} role="img" aria-label="Two bars of 350 patients each, split by stone size, filled by the share cured">
-            <Bar arm={A} y={0} name="A" combined={combined} />
-            <Bar arm={B} y={106} name="B" combined={combined} />
-          </svg>
-          <p className={s.key}>
-            Width: patients. Filled height: cured. Red: not cured.{" "}
-            {real ? "Real numbers." : `What if A had ${k} large stones?`}
-          </p>
-          <Row>
-            <Control
-              className={combined ? "active" : ""}
-              disabled={locked}
-              onClick={() => {
-                setCombined((c) => !c);
-                interact();
-              }}
-            >
-              {combined ? "Split by stone size" : "Combine groups"}
-            </Control>
-            <Readout label="A overall" value={locked ? "?" : pct1(overall(A))} />
-            <Readout label="B overall" value={locked ? "?" : pct1(overall(B))} />
-          </Row>
-          <Row>
-            <Slider
-              label="Large-stone patients given A"
-              value={k}
-              min={0}
-              max={TOTAL_LARGE}
-              disabled={locked}
-              format={(v) => `${v} of ${TOTAL_LARGE}`}
-              onChange={(v) => {
-                setK(v);
-                if (combined) interact();
-              }}
-            />
-          </Row>
-        </div>
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => <Stage locked={locked} reach={reach} />}
+        </Milestones>
       )}
     </Lesson>
   );

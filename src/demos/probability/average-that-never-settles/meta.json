@@ -1,7 +1,7 @@
 {
   "slug": "average-that-never-settles",
   "title": "The average that never settles",
-  "hook": "Average enough data and it settles on a number. Always? Here is one that won't.",
+  "hook": "More data, steadier average. Does that always hold?",
   "domain": "probability",
   "concept": "heavy-tails",
   "status": "review",
@@ -52,12 +52,10 @@
     },
     {
       "id": "probability.average-that-never-settles.c4",
-      "text": "The stage draws five seeded runs at a time. In the first five, after 11,000 draws the die averages are between 3.455 and 3.534 and the Cauchy averages between -0.09 and 2.57; in the next five, die 3.487 to 3.503 and Cauchy -1.94 to 1.68.",
+      "text": "The stage draws 30 seeded runs of each kind. After 1 draw, 17 of 30 Cauchy dots are beyond +/-1 and the die dots span 5.00; after 10,000 draws, 18 of 30 Cauchy dots are beyond +/-1 and the die dots span 0.07. The farthest Cauchy dot at 10,000 draws (24.7) contains one draw of about 250,115, which alone moves that average by about 25.0.",
       "support": "simulation",
-      "source": "batchRuns() / runs() in model.ts, seed 1853, untuned (the first seed tried); draws by inverse CDF tan(pi(u - 1/2)). Run 0 alone: a giant draw (about 33,000) just after 1,050 draws throws its average from 1.4 to about 24. Five runs per batch because a single run can look calm (run 1 stays within -2.1 to 2.8 and is at 0.12 after 5,000 draws and -0.19 after 10,000); in 200 other batches all five Cauchy averages were within 1 of 0 at 11,000 draws in only 4 (theory 0.5^5 = 3.1%). The claim about all runs is c2-c3.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "dots() in src/demos/probability/average-that-never-settles/model.ts, seed 1853 (untuned: the first seed tried; run r uses seed + r x 92821); draws by inverse CDF tan(pi(u - 1/2)); die roll then Cauchy draw per step. Numbers re-run by the builder in node (strip-types) on 2026-10-13; every number in the reveal is computed from dots(), the function that draws the stage. The claim about all runs is c2-c3 (17 and 18 of 30 against 15 expected, 50%); needs an independent re-run and a spread check over other seeds. | CLAIM FIX 2026-10-13 (revision v2): Was 'The stage draws five seeded runs at a time. In the first five, after 11,000 draws the die averages are between 3.455 and 3.534 and the Cauchy averages between -0.09 and 2.57; in the next five, die 3.487 to 3.503 and Cauchy -1.94 to 1.68.' (reveal rebuilt on a dot strip of 30 runs at 1/10/100/1,000/10,000 draws)",
+      "status": "unverified"
     },
     {
       "id": "probability.average-that-never-settles.c5",
@@ -90,5 +88,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
