@@ -46,6 +46,26 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
 | [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
 
+## Backend
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Backend Engineer](backend-engineer.md) | principal-engineer | Make a learner's progress survive devices and sessions, and make the revisit recall rate measurable, while storing as little about a person as the product needs.. |
+| [Privacy & Safety Reviewer](privacy-reviewer.md) | principal-engineer | Every field we store has a reason, an owner and a deletion path; nothing social ships without moderation and a child-safety answer.. |
+
+## Growth
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Growth & Gamification Designer](growth-designer.md) | head-of-product | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+
+## Company-tools
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Company Tools Lead](tools-lead.md) | chief-of-staff | Anyone, the founder above all, can see what the company is doing now and what it did at any past moment, and no ritual depends on someone remembering it.. |
+| [HQ Engineer](hq-engineer.md) | tools-lead | Make the event log legible at a glance and replayable at any moment.. |
+
 ## Insight
 
 | Role | Reports to | Mission |

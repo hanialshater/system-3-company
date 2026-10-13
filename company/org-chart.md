@@ -19,7 +19,13 @@
               cm-economics
               cm-life              Insight
               cm-chemistry         Analytics & Experiment Steward
+              cm-geography
               Domain Scout
+
+   Company Tools (→ Chief of Staff)      Engineering (→ Principal Engineer)      Growth (→ Head of Product)
+   Tools Lead                            Principal Engineer                      Growth & Gamification Designer
+   └ HQ Engineer                         ├ Backend Engineer
+                                         └ Privacy & Safety Reviewer
 ```
 
 Quality reports to the Evaluation Steward, who reports to the founder, not to product. Builders cannot
