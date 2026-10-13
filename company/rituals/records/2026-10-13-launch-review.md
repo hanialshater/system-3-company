@@ -87,3 +87,9 @@ Two runs of the publish loop. The first published overfitting, half-life, supply
 - **Tool bug found and fixed:** publish-ready picked the "latest" review by filename, and `…-beginner-v2.md` sorts before `…-beginner.md`. So on the first run four same-day revised lessons (summit-kettle, the-tagged-molecule, lru-eviction-order, friends-have-more-friends) were judged on their old review. The bug was conservative: all four were held as stale, and nothing was published wrongly. It now picks the review for the highest lesson version.
 
 Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
+
+## Eighth batch (night): 12 lessons
+
+The publish loop published antibiotic-already-there, build-a-balanced-mobile and count-the-thunder; border-follows-point, clicks-not-value and flagged-means-what; then duplicates-in-the-test, five-weak-voters and greedy-word-trap, once the integrated QA run gave them QA records (200/200 passed for the 100 lessons that had none); plus the three re-reviewed physics/life lessons from batch 7b (most-cases-vaccinated, doubling-speed-braking, dropped-vs-fired-ball). Every verdict was written with screenshots seen, thanks to the walkthrough contact sheet (sheet.png).
+
+Decision: **go with conditions** (W-057 accessibility, W-061 clipping). Signed: chief-of-staff, acting for head-of-product.
