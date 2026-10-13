@@ -16,7 +16,7 @@
 }
 
 .deposit {
-  fill: color-mix(in srgb, var(--muted) 45%, transparent);
+  fill: color-mix(in srgb, var(--muted) 75%, transparent);
 }
 
 .simple {
@@ -50,7 +50,7 @@
 }
 
 .swDeposit {
-  background: color-mix(in srgb, var(--muted) 45%, transparent);
+  background: color-mix(in srgb, var(--muted) 75%, transparent);
 }
 
 .swSimple {
@@ -82,4 +82,55 @@
 /* The kit slider is flex: 1 1 160px, which in a column container means a 160px height. */
 .ci > :global(.slider) {
   flex: none;
+}
+
+/* v2: the "7% of $1,000" layer gets an outline so it reads apart from the grey deposit on a phone. */
+.simple {
+  stroke: color-mix(in srgb, var(--domain) 70%, var(--fg) 30%);
+  stroke-width: 0.8;
+}
+
+.swStraight {
+  background: none;
+  border-top: 2px dashed var(--fg);
+  border-radius: 0 !important;
+  height: 0 !important;
+}
+
+.model {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.decades {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.decade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 0;
+  border-radius: 8px;
+  background: var(--bg-2);
+}
+
+.decadeLabel {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.decadeValue {
+  font-weight: 800;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* v2: when the reveal panel takes room, scroll the controls instead of cutting them off. */
+.ci {
+  overflow-y: auto;
 }

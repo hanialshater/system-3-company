@@ -43,3 +43,36 @@
 .of > :global(.slider) {
   flex: none;
 }
+
+.bendsHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.bends {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.bend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.bend :global(.control) {
+  width: 100%;
+  min-width: 28px;
+  padding: 7px 0;
+}
+
+.bendMiss {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--bad);
+}
