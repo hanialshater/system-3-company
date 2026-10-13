@@ -1,0 +1,48 @@
+{
+  "slug": "below-the-threshold-crash",
+  "title": "Two groups, one species",
+  "hook": "Animals that need mates to breed. Do small groups always grow back?",
+  "domain": "life",
+  "concept": "allee-effect",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["populations level off when food runs out (logistic growth)"],
+    "doesNotKnow": ["that some populations shrink when too small"]
+  },
+  "misconception": "Any population, however small, will grow back if left alone.",
+  "objective": "The learner can explain that when animals need a minimum group size to find mates, a group below the threshold (40 of 50) shrinks to nothing while a group above it (60) grows to the limit of 1,000.",
+  "claims": [
+    {
+      "id": "life.below-the-threshold-crash.c1",
+      "text": "In a strong Allee effect, a population below a critical size has negative growth and dies out, while one above it grows.",
+      "support": "source",
+      "source": "Courchamp, Berec & Gascoigne, Allee Effects in Ecology and Conservation, Oxford University Press, 2008.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.below-the-threshold-crash.c2",
+      "text": "Toy model dN/dt = 0.1 N (N/50 - 1)(1 - N/1000): a group that starts at 40 falls below 1 animal by year 54 and one that starts at 60 reaches about 1,000 (also 20 dies out by year 35, 80 reaches about 1,000).",
+      "support": "simulation",
+      "source": "Demo.tsx Euler run, step 0.5 year, 60 years, drawn on the stage; node check in artifacts/scratch/w5life/allee2.mjs: 40 extinct year 54 (0.50 at year 60), 60 final 1000.00, 20 extinct year 35, 80 final 1000.00. Deterministic, no randomness.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.below-the-threshold-crash.c3",
+      "text": "Model (stated on the stage and in the reveal): the threshold of 50, the rate of 0.1 and the room for 1,000 are invented; the stage is on a log scale and a group under 1 animal counts as dead.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #51. Real thresholds vary by species and are hard to measure (Courchamp et al. 2008).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Animals need a minimum group size to find mates. Two groups of the same species start, one just below that size and one just above. What happens?",
+    "options": ["Both recover", "The smaller dies out, the larger grows", "Both die out"],
+    "answer": 1,
+    "why": "Below the threshold each animal finds fewer mates, so numbers fall; above it they grow. A threshold splits the same species into recover or vanish."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

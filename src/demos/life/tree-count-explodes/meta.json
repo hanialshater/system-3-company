@@ -1,0 +1,48 @@
+{
+  "slug": "tree-count-explodes",
+  "title": "Family trees of ten species",
+  "hook": "Ten species could be related in many ways. How many family trees are there?",
+  "domain": "life",
+  "concept": "phylogeny-tree-count",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["species can be related in a branching family tree"],
+    "doesNotKnow": ["that the number of possible trees explodes with the number of species"]
+  },
+  "misconception": "With 10 species, one can check all possible family trees.",
+  "objective": "The learner can explain that each added species can join any branch, 2k - 1 places for a tree of k species, so the count multiplies: 3 x 5 x 7 x ... x 17 = 34,459,425 trees for 10 species.",
+  "claims": [
+    {
+      "id": "life.tree-count-explodes.c1",
+      "text": "The number of rooted, binary (two branches at each fork) trees on n labelled species is (2n - 3)!! = 1 x 3 x 5 x ... x (2n - 3).",
+      "support": "source",
+      "source": "Felsenstein, Inferring Phylogenies, 2004, ch. 3 (number of possible trees); Schroeder 1870 (Schroder's first problem).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.tree-count-explodes.c2",
+      "text": "A rooted tree of k species has 2k - 1 branches (counting the stub above the root), so the next species can join in 2k - 1 places; this gives 1 tree for 2 species, 3 for 3, 15 for 4, 105 for 5 and 34,459,425 for 10.",
+      "support": "derivation",
+      "source": "trees(k+1) = trees(k) x (2k - 1); artifacts/scratch/w5life/trees.mjs gives 17!! = 34,459,425 for 10 species. Demo.tsx computes the count from places(k).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.tree-count-explodes.c3",
+      "text": "Model (stated on the stage and in the reveal): only rooted, branching trees with two branches at each fork are counted; which branch each species joins in the picture is a seeded illustration (mulberry32 seed 5) and does not change the count.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx; brief life #50.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tree of 5 species has 9 branches. In how many places can a 6th species join it?",
+    "options": ["5", "9", "11"],
+    "answer": 1,
+    "why": "A new species can join on any branch, and each choice gives a different tree; that is why the number of trees multiplies as species are added."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
