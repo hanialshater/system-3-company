@@ -1,0 +1,67 @@
+{
+  "slug": "overshoot-from-delay",
+  "title": "Food counted late: what happens?",
+  "hook": "A population reacts to food counted 4 years ago. Does it still settle at its limit?",
+  "domain": "life",
+  "concept": "logistic-growth",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-life", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["logistic growth is an S-curve that levels off at a limit"],
+    "doesNotKnow": ["that delayed feedback can make a stable system boom and bust"]
+  },
+  "misconception": "Logistic growth always settles smoothly at its limit.",
+  "objective": "The learner can explain that when growth responds to old information the population overshoots and swings, and that swings start once growth rate times delay passes about 1.6 (pi/2).",
+  "keyState": "Delay set to 4 years with growth 0.5 (swings between 2.90 and 0.07 times the limit), then growth lowered to 0.2 with the same delay (settles at the limit).",
+  "claims": [
+    {
+      "id": "life.overshoot-from-delay.c1",
+      "text": "Toy model: a population N, shown as a multiple of its food limit, grows at rate r N (1 - N delayed) where the delayed term is the population from the delay ago (the delayed logistic of Hutchinson). It starts at half the limit.",
+      "support": "convention",
+      "source": "Hutchinson (1948) delay logistic; stated on the stage before the prediction ('Toy: population as a share of its food limit, food counted late.'). Start 0.5 and constant history 0.5 are choices in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.overshoot-from-delay.c2",
+      "text": "With growth 0.5 a year and a 4-year delay, the population keeps swinging, reaching about 2.9 times the limit and falling to about 0.07 times the limit.",
+      "support": "simulation",
+      "source": "Euler integration dt = 0.01 yr, 60 years, window years 30-60 (node, same sim() as Demo.tsx): max 2.895, min 0.0722. Deterministic; no random seed. Brief figures 2.9 and 0.07 match.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.overshoot-from-delay.c3",
+      "text": "With growth 0.2 a year and the same 4-year delay, the population settles at the limit.",
+      "support": "simulation",
+      "source": "Same sim(): window years 30-60 max 1.0095, min 0.9973 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.overshoot-from-delay.c4",
+      "text": "The swings start once growth rate times delay passes about 1.6 (pi/2 = 1.571): 0.5 x 4 = 2 swings; 0.2 x 4 = 0.8 settles.",
+      "support": "source",
+      "source": "Linear stability of the delayed logistic, oscillations sustained when r x tau > pi/2 (Murray, Mathematical Biology I). Checked numerically: r 0.5 with tau 3 (1.5) still decays, tau 3.2 (1.6) is still near the threshold.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.overshoot-from-delay.c5",
+      "text": "The population reacts to old food, so it overshoots before the signal arrives. Real boom-and-bust cycles in animals such as lemmings have other causes too.",
+      "support": "derivation",
+      "source": "Mechanism of the delay equation; the caveat is from the brief (reindeer and lemming cycles have other causes). The lesson names only the delay model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can a population swing far above and below its limit if it responds to food counted years ago?",
+    "options": [
+      "It reacts to old information, so it keeps growing after food has run short",
+      "Its growth rate keeps changing at random",
+      "The limit itself moves up and down"
+    ],
+    "answer": 0,
+    "why": "The correction arrives late, so the population overshoots, then overcorrects. Slower growth or a shorter delay lets it settle."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

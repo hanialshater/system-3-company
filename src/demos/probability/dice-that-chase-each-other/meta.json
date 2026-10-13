@@ -1,0 +1,67 @@
+{
+  "slug": "dice-that-chase-each-other",
+  "title": "Four dice that beat each other",
+  "hook": "A usually beats B, B beats C, C beats D. Does A beat D?",
+  "domain": "probability",
+  "concept": "nontransitive-dice",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-probability", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["higher numbers beat lower ones"],
+    "doesNotKnow": ["that 'usually beats' need not chain from one die to the next"]
+  },
+  "misconception": "If A usually beats B and B usually beats C, then A beats C.",
+  "objective": "The learner can explain that 'beats more often than not' need not chain: four dice can each beat the next two times in three, round a loop, so winning is a property of a pair.",
+  "keyState": "All four matches played: A-B, B-C, C-D (first three seeded 100-roll matches) and the closing D-A, with D winning about two in three.",
+  "claims": [
+    {
+      "id": "probability.dice-that-chase-each-other.c1",
+      "text": "The four dice have faces A: 4,4,4,4,0,0; B: 3,3,3,3,3,3; C: 6,6,2,2,2,2; D: 5,5,5,1,1,1. A match is 100 rolls of both dice and the higher face wins. Stated on the stage as toy dice with no ties.",
+      "support": "convention",
+      "source": "Efron's dice as given in Gardner, Scientific American 223(5): 110-114 (1970); verify the exact faces. No two compared faces tie (enumerated in node).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.dice-that-chase-each-other.c2",
+      "text": "A beats B, B beats C, C beats D and D beats A, each in 24 of the 36 face pairs: two in three.",
+      "support": "derivation",
+      "source": "Enumeration of 36 face pairs in node, per pair: 24 wins, 0 ties (exactWins() in Demo.tsx; the reveal's '24 in 36' is computed from it).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.dice-that-chase-each-other.c3",
+      "text": "The dice averages are 2.67, 3, 3.33, 3, so A has a lower average than B yet beats it, and B beats C although C has the higher average. Averages do not predict who beats whom.",
+      "support": "derivation",
+      "source": "mean() in Demo.tsx: A 16/6 = 2.667, B 18/6 = 3, C 20/6 = 3.333, D 18/6 = 3 (node). A beats B 24/36; B beats C 24/36.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.dice-that-chase-each-other.c4",
+      "text": "In the learner's first four matches (shown in the reveal) A beat B 74, B beat C 64, C beat D 75 and D beat A 73 times of 100; rolls of 100 scatter by about five.",
+      "support": "simulation",
+      "source": "mulberry32(pair * 1000 + batch + 1), batch 0, pairs in order AB, BC, CD, DA; first seeds tried, untuned (node, same match() as Demo.tsx). Batch 1: 69 69 72 57; batch 2: 60 65 68 64. Binomial sd at p = 2/3, n = 100: 4.7.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.dice-that-chase-each-other.c5",
+      "text": "Winning is a relationship between a pair of dice, not a number a die carries.",
+      "support": "derivation",
+      "source": "Follows from c2: the 'beats' relation is a cycle, so no ranking of the dice is consistent with it.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Die X usually beats Y, and Y usually beats Z. What can you say about X against Z?",
+    "options": [
+      "X must usually beat Z",
+      "Nothing for sure: Z can usually beat X, as in a loop of dice",
+      "X and Z must tie"
+    ],
+    "answer": 1,
+    "why": "'Usually beats' is a relation between pairs and need not chain. Efron's dice beat each other in a loop, each two times in three."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}

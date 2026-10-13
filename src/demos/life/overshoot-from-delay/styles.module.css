@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 26dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.86rem; font-weight: 600; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.limit { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+.tick { fill: var(--muted); font-size: 9px; text-anchor: middle; }
+.tickR { fill: var(--muted); font-size: 9px; text-anchor: end; }
+.trace { fill: none; stroke: var(--domain); stroke-width: 2.2; stroke-linejoin: round; }

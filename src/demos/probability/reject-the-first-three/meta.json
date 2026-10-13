@@ -1,0 +1,67 @@
+{
+  "slug": "reject-the-first-three",
+  "title": "Pick the best of ten, no going back",
+  "hook": "Ten candidates, one look each. Is picking the best hopeless, or can a rule help?",
+  "domain": "probability",
+  "concept": "optimal-stopping",
+  "status": "review",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-probability", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["that choosing involves risk"],
+    "doesNotKnow": ["that there is a best 'look then leap' rule"]
+  },
+  "misconception": "Choosing the best of ten candidates one at a time with no going back is hopeless, about 10%, or any early pick is as good as another.",
+  "objective": "The learner can explain that rejecting the first few candidates and then taking the first one better than all before gives about a 40% chance of the very best out of ten, far above 10%.",
+  "keyState": "The learner has played 20 rounds with Reject 3 (7 wins in batch 0) and with Reject 0 (1 win), on the same candidates.",
+  "claims": [
+    {
+      "id": "probability.reject-the-first-three.c1",
+      "text": "Model: 10 candidates arrive in random order, each is ranked only against those already seen, a refusal is final, and the rule is 'reject the first k, then take the first candidate better than everyone before; if none, end with the last'. Stated on the stage.",
+      "support": "convention",
+      "source": "Secretary problem set-up (Ferguson 1989, Statistical Science 4(3): 282-289). Stage text 'Toy: 10 candidates in random order, no going back.'",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.reject-the-first-three.c2",
+      "text": "Rejecting the first 3 of 10 and then taking the first one better than all before wins the best candidate 39.9% of the time (0.3987); rejecting none (taking the first) wins 10%.",
+      "support": "derivation",
+      "source": "Exact: (k/n) sum_{j=k+1..n} 1/(j-1); node enumeration of all 10! = 3,628,800 orders: k=0 0.1000, 1 0.2829, 2 0.3658, 3 0.3987, 4 0.3983, 5 0.3728 (formula and enumeration agree). The question's options use exact(3) and 1/N from the same function.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.reject-the-first-three.c3",
+      "text": "Rejecting 4 does about as well as rejecting 3: 39.8%.",
+      "support": "derivation",
+      "source": "Same enumeration, k = 4: 0.39825.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.reject-the-first-three.c4",
+      "text": "In the first 20 rounds shown, Reject 3 won 7 and Reject 0 won 1 (the same 20 shuffled lists for both). This is one small run; the seeds are the first tried and were not tuned.",
+      "support": "simulation",
+      "source": "mulberry32(b * 1000 + r + 1), batch b = 0, rounds r = 0..19 (batchWins(0,3) = 7, batchWins(0,0) = 1; node). Other batches in node: reject 3 wins 10, 10, 5; reject 0 wins 3, 3, 4. Seeds untuned.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.reject-the-first-three.c5",
+      "text": "For long lists the best start is about 37% of the way through, and the chance of the very best is then about 37%.",
+      "support": "source",
+      "source": "Limit n/e (about 0.368) as n grows (Ferguson 1989, Statistical Science 4(3): 282-289; verify the page range).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You must pick the best of 10 candidates seen one by one, with no going back. What is a good rule?",
+    "options": [
+      "Take the first one: any pick is as good as another",
+      "Reject the first few, then take the first one better than all of them",
+      "Wait until the very last one"
+    ],
+    "answer": 1,
+    "why": "The rejected few set a yardstick. Rejecting about 3 or 4 of 10 wins the best about 40% of the time, against 10% for picking blindly."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1
+}
