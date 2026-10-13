@@ -60,7 +60,7 @@ first (learner boundary, misconception, objective, claims, recall). Build second
 - Pass `disabled={locked}` to every control. Call `interact()` on every meaningful action.
 - Draw with inline SVG (`viewBox`, `className="stage-svg"`) using CSS variables (`var(--domain)`, `var(--fg)`, `var(--muted)`, `var(--good)`, `var(--bad)`, `var(--line)`, `var(--bg-2)`). It must read in light and dark themes.
 - Randomness must be seeded (deterministic) so QA screenshots are reproducible. Use `mulberry32` from `@/kit/random`. A seed picked to show the expected result must be disclosed in the claim (pattern `disclose-chosen-seeds`).
-- QA presses up to the first 16 stage controls in DOM order: put the controls that reach the key state first.
+- QA presses up to the first 16 stage controls in DOM order, **once each, waiting about 450 ms after each press** (sliders get two arrow presses). Put the controls that reach the key state first. A milestone that needs an animation to finish must be reachable within that wait, or be reached by a step button.
 - No network, no storage, no new npm dependencies.
 
 ### The QA contract (constitutional)
