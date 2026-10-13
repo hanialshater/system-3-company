@@ -15,12 +15,14 @@ import s from "./styles.module.css";
 
 const RATE = 1e8; // 1 resistant cell in 100 million
 const SIZES = [1e10, 1e9, 1e8, 1e7];
-const MILESTONES = ["drug", "were-there"] as const;
+const MILESTONES = ["drug", "were-there", "small-dish"] as const;
 type View = "before" | "drug" | "regrown";
 
 const name = (n: number) =>
   n >= 1e9 ? `${n / 1e9} billion` : `${n / 1e6} million`;
 const expected = (n: number) => n / RATE;
+const fmt = (x: number) => (x >= 1 ? String(Math.round(x)) : String(x));
+const SMALL = SIZES[SIZES.length - 1]; // 10 million: 0.1 expected
 
 const SPOTS = (() => {
   const rng = mulberry32(3);
@@ -35,11 +37,13 @@ const SPOTS = (() => {
 // Numbers in the question and reveal come from the same function as the stage.
 const BIG = SIZES[0];
 const BIG_RES = Math.round(expected(BIG)); // 100
+const SMALL_EXP = expected(SMALL); // 0.1
 
 function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
   const [n, setN] = useState(BIG);
   const [view, setView] = useState<View>("before");
   const [seen, setSeen] = useState(false);
+  const [everDrug, setEverDrug] = useState(false); // drug added at the big dish at least once
   const { reach } = useMilestones(interact, MILESTONES);
   const res = Math.round(expected(n));
   const spots = SPOTS.slice(0, res);
@@ -47,7 +51,10 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const drug = () => {
     setView("drug");
     setSeen(true);
-    if (n === BIG) reach("drug");
+    if (n === BIG) {
+      setEverDrug(true);
+      reach("drug");
+    }
   };
   const before = () => {
     setView("before");
@@ -57,6 +64,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
     setN(v);
     setView("before");
     setSeen(false);
+    if (v === SMALL && everDrug) reach("small-dish");
   };
 
   let msg: string;
@@ -64,10 +72,12 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   else if (view === "before")
     msg = seen
       ? `Before the drug: ${res === 0 ? "no resistant cell was" : `the same ${res} ${res === 1 ? "was" : "were"}`} already here (ringed).`
-      : `${name(n)} cells, never met a drug. Resistant ones look like the rest.`;
+      : everDrug
+        ? `${name(n)} cells × 1 in 100 million = ${fmt(expected(n))} resistant expected${res === 0 ? ": usually none" : ""}.`
+        : `${name(n)} cells, never met a drug. Resistant ones look like the rest.`;
   else if (view === "drug")
-    msg = res === 0 ? `Drug added: no cell survives. ${expected(n)} resistant expected: usually none.` : `Drug added: ${res} ${res === 1 ? "cell survives" : "cells survive"}.`;
-  else msg = res === 0 ? "Nothing to regrow: the dish stays empty." : "The survivors regrow the dish. Now every cell is resistant.";
+    msg = res === 0 ? `Drug added: no cell survives. Only ${fmt(expected(n))} resistant expected, so usually none.` : `Drug added: ${res} ${res === 1 ? "cell survives" : "cells survive"}.`;
+  else msg = res === 0 ? "Nothing to regrow: the dish stays empty." : `The ${res} survivors regrow the dish: every cell now descends from a resistant one.`;
 
   return (
     <div className={s.wrap}>
@@ -121,7 +131,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       </Row>
       <Row>
         <Readout label="Cells" value={name(n)} />
-        <Readout label="Resistant" value={locked || !seen ? "?" : res} />
+        <Readout label="Resistant (expected)" value={locked || !(seen || everDrug) ? "?" : view === "regrown" ? "all" : fmt(expected(n))} />
       </Row>
     </div>
   );
@@ -132,7 +142,7 @@ export default function AntibioticAlreadyThere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A culture of ${name(BIG)} bacteria has never met a drug. If 1 in 100 million cells carries a resistance mutation, about how many resistant cells are already there?`,
+        question: `A dish holds ${name(BIG)} bacteria that have never met a drug. A resistance mutation is a random change that lets a cell survive it, and 1 in 100 million cells has one. About how many resistant cells are already in the dish?`,
         options: ["None", `About ${BIG_RES}`, "About 10 million"],
         answer: 1,
       }}
@@ -141,17 +151,14 @@ export default function AntibioticAlreadyThere({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {name(BIG)} &times; 1 in 100 million = <strong>{BIG_RES} resistant cells</strong>, there before any drug. The
-            drug killed the rest and the {BIG_RES} survived. Going back, the survivors were at the same spots all along.
+            {name(BIG)} &times; 1 in 100 million = <strong>{BIG_RES} resistant cells</strong>, ringed before any drug touched
+            the dish. The drug did not make them: it killed everything else, and the survivors regrew the dish.
           </p>
           <p>
-            The drug did not create resistance; it removed everything else, so the resistant cells took over the regrown
-            dish. Big populations almost always hold a few rare mutants. In a dish of 10 million, expecting 0.1, the drug would usually win.
+            Big populations almost always hold rare mutants. A dish of {name(SMALL)} expects only {SMALL_EXP} of a cell, so
+            there the drug usually wins.
           </p>
-          <p className="muted">
-            Model: 1 in 100 million is an illustration; real mutation frequencies vary widely. Counts are expected
-            values. Not medical advice.
-          </p>
+          <p className="muted">Toy numbers: real mutation rates vary widely. Counts are expected values.</p>
         </>
       )}
     >

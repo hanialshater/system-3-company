@@ -34,21 +34,17 @@
     },
     {
       "id": "life.keeping-the-bad-gene.c2",
-      "text": "On the stage, starting from 1% w and from 50% w, the share reaches 13 of 100 copies by generation 50 and stays there; with no-copy survival at 95% it settles near 5%, at 70% near 23%.",
+      "text": "On the stage, starting from 1% w and from 50% w, the share of w reaches about 13% by generation 60 and stays there. With no-copy survival at 95% the balance is 5% (the 1% start has only reached about 4% by generation 60); at 70% the balance is 23%.",
       "support": "simulation",
-      "source": "Deterministic recursion q' = pq / (p^2(1-s) + 2pq), replicated in artifacts/scratch/w2life/check.mjs: from 0.01, 13.0% at gen 50; from 0.5, 13.0% at gen 50; s = 0.05 gives 4.8%, s = 0.3 gives 23.1%. No random seed (ring positions only, untuned mulberry32(5)).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Deterministic recursion q' = pq / (p^2(1-s) + 2pq) (artifacts/scratch/w2life/check.mjs; fact-check 2026-10-13): from 0.01, 13.0% at gen 50; from 0.5, 13.0% at gen 50; at 95% survival the 1% start is 4.1% at gen 60 and the equilibrium 4.76%; 70% gives 23.1%. No random seed.",
+      "status": "unverified"
     },
     {
       "id": "life.keeping-the-bad-gene.c3",
-      "text": "When w is rare it is found almost only in carriers, who survive best, so it rises; when it is common more young get two copies and die, so it falls.",
+      "text": "When w is rare it sits mostly in carriers, who survive best, so it rises; when it is common more young get two copies and die, so it falls.",
       "support": "derivation",
       "source": "Rare w: almost all w copies are in Aw (fitness 1 > mean fitness), so q rises; common w: the ww share q^2 grows, mean fitness of w copies falls below the mean (Hartl & Clark 2007 ch. 5).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.keeping-the-bad-gene.c4",
@@ -67,6 +63,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c6",
+      "text": "The lower the survival of animals with no w, the bigger the edge of carrying one copy, and the higher the balance: s/(s + 1) is 5% at 95% survival, 13% at 85%, 23% at 70%.",
+      "support": "derivation",
+      "source": "q* = s/(s + t) with t = 1 and s = 1 - survival with no w (as c1).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,5 +94,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

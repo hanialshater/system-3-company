@@ -1,7 +1,7 @@
 {
   "slug": "spreaders-are-rare",
   "title": "Average 2. What does a typical case do?",
-  "hook": "Each case infects 2 on average. Does a typical case infect 2?",
+  "hook": "Each case infects 2 people on average. How many cases infect no one at all?",
   "domain": "life",
   "concept": "superspreading-dispersion",
   "status": "review",
@@ -43,30 +43,24 @@
     },
     {
       "id": "life.spreaders-are-rare.c3",
-      "text": "On the stage's 100 cases: very uneven spread gives 74 who infect no one and the top 10 causing 165 of 200 infections; even spread gives 14 who infect no one, a total of 199 and no case above 7; k = 1 gives 33 and a total of 201.",
+      "text": "On the stage's 100 cases: very uneven spread gives 74 who infect no one and the top 10 causing 165 of 200 infections; even spread gives 14 who infect no one, a total of 199 and no case above 7 in this picture; the in-between setting (k = 1) gives 33 and a total of 201. The counts are rounded.",
       "support": "derivation",
       "source": "Each case gets the mean of its 1% slice of the distribution, rounded (expected shape, no random draw), replicated in artifacts/scratch/w2life/check2.mjs. Grid positions use an untuned seed (mulberry32(11)) and carry no information.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.spreaders-are-rare.c4",
-      "text": "When a few cases cause most spread, most transmission chains die out on their own, so outbreaks often fizzle, and the rare large spreaders decide whether one takes off.",
+      "text": "When a few cases cause most spread, an average of 2 hides who drives an outbreak: the rare large spreaders can decide whether one takes off (most chains of transmission die out).",
       "support": "source",
       "source": "Lloyd-Smith et al. (2005) Nature 438:355-359 (higher extinction probability of introductions for small k).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.spreaders-are-rare.c5",
-      "text": "k = 0.1 is an illustration, not a measured value for any named disease.",
+      "text": "The 'very uneven' setting (negative binomial with k = 0.1) is an illustration, not a measured value for any named disease; the 100 cases are an expected shape, not one random outbreak.",
       "support": "convention",
       "source": "Brief choice (company/domains/briefs/life.md #15); stated in the reveal and the stage says toy model.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,5 +85,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }

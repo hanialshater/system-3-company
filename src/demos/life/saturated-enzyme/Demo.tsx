@@ -27,6 +27,8 @@ const POOL = (() => {
 // Numbers in the question and reveal come from the same functions as the stage.
 const HI = pct(gain(20)); // "5%"
 const LO = pct(gain(2)); // "33%"
+const count = (S: number) => Math.round(100 * busy(S));
+const half = (S: number) => (S / 2 === Math.round(S / 2) ? String(S / 2) : (S / 2).toFixed(1));
 
 function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
   const [S, setS] = useState(10);
@@ -36,7 +38,8 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
     if (v === 20) reach("high-double");
     if (v === 2) reach("low-double");
   };
-  const nBusy = Math.round(100 * busy(S));
+  const nBusy = count(S);
+  const nBefore = count(S / 2); // busy when the substrate was half as much
 
   return (
     <div className={s.wrap}>
@@ -50,7 +53,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
           const on = !locked && i < nBusy;
           return (
             <g key={i}>
-              <path d={`M${x},${y} h12 v16 h-3 a3,3 0 0 0 -6,0 h-3 z`} className={on ? s.busy : s.enz} />
+              <path d={`M${x},${y} h12 v16 h-3 a3,3 0 0 0 -6,0 h-3 z`} className={on ? (i < nBefore ? s.busy : s.fresh) : s.enz} />
               {on && <circle cx={x + 6} cy={y + 15} r={2.6} className={s.sub} />}
             </g>
           );
@@ -60,7 +63,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Make a prediction to start. 100 enzymes; each handles one molecule at a time."
-          : `Substrate ${S}× half-way: ${nBusy} of 100 busy. Versus half as much: +${pct(gain(S))} speed.`}
+          : `Doubling ${half(S)} → ${S} (× half-way): busy ${nBefore} → ${nBusy} of 100 (new ones brighter). Speed +${pct(gain(S))}.`}
       </p>
 
       <Row>
@@ -73,8 +76,8 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       </Row>
       <Slider label="Substrate (× half-way)" value={S} min={1} max={MAX_S} disabled={locked} onChange={go} />
       <Row>
-        <Readout label="Speed" value={locked ? "?" : `${pct(busy(S))} of top`} />
-        <Readout label="From doubling" value={locked ? "?" : `+${pct(gain(S))}`} />
+        <Readout label="Speed (share of top)" value={locked ? "?" : pct(busy(S))} />
+        <Readout label="Gain from doubling" value={locked ? "?" : `+${pct(gain(S))}`} />
       </Row>
     </div>
   );
@@ -86,23 +89,23 @@ export default function SaturatedEnzyme({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An enzyme works at 10 times its half-way concentration (where half the enzymes are busy). Doubling the substrate then speeds it up by about…",
+          "Enzymes are molecules that each work on one substrate molecule at a time. At the half-way concentration of substrate, half the enzymes are busy. At 10 times that, doubling the substrate speeds the reaction up by about…",
         options: ["2 times", "50%", HI],
         answer: 2,
       }}
-      exploreHint="Double the substrate from 10 to 20, then from 1 to 2, and watch the busy stations."
+      exploreHint="Double the substrate from 10 to 20, then from 1 to 2, and watch the new busy stations."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            From 10 to 20, busy enzymes went from 91 to 95 of 100: only <strong>{HI} faster</strong>. From 1 to 2 they went
-            from 50 to 67: {LO} faster. Twice the substrate never meant twice the speed.
+            From 10 to 20, busy enzymes went from {count(10)} to {count(20)} of 100: only <strong>{HI} faster</strong>. From 1
+            to 2 they went from {count(1)} to {count(2)}: {LO} faster. Twice the substrate never meant twice the speed.
           </p>
           <p>
-            Each enzyme handles one molecule at a time. When almost all are busy, extra substrate only waits its turn, so
-            the speed levels off at a top rate. Speed &prop; S &divide; (half-way + S).
+            Each enzyme handles one molecule at a time. When almost all are busy, extra substrate just waits its turn, so
+            the speed levels off at a top rate.
           </p>
-          <p className="muted">Model: Michaelis-Menten kinetics for one substrate; the stations are a simplification.</p>
+          <p className="muted">Model: one-substrate enzyme kinetics; the stations are a simplification.</p>
         </>
       )}
     >

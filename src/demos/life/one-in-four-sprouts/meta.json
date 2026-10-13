@@ -1,7 +1,7 @@
 {
   "slug": "one-in-four-sprouts",
-  "title": "One in four, but not one of four",
-  "hook": "Each seed has a 1 in 4 chance of a white flower. Must one of four seeds be white?",
+  "title": "Four seeds, one in four each",
+  "hook": "Each seed has a 1 in 4 chance of a white flower. How likely is a white one among four?",
   "domain": "life",
   "concept": "genetic-inheritance",
   "status": "review",
@@ -43,12 +43,10 @@
     },
     {
       "id": "life.one-in-four-sprouts.c3",
-      "text": "Exactly one white of four happens only about 42% of the time; about a third of families get none.",
+      "text": "Exactly one white of four happens in only about 42% of families; about a third get none (32%) and about a quarter get two or more (26%).",
       "support": "derivation",
-      "source": "Binomial: P(1) = 4 x (1/4) x (3/4)^3 = 108/256 = 0.42; P(0) = 81/256 = 0.32.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Binomial: P(1) = 4 x (1/4) x (3/4)^3 = 108/256 = 0.42; P(0) = 81/256 = 0.32; P(2 or more) = 1 - 0.32 - 0.42 = 0.26.",
+      "status": "unverified"
     },
     {
       "id": "life.one-in-four-sprouts.c4",
@@ -92,5 +90,5 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 2
 }
