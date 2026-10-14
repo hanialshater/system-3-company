@@ -56,6 +56,14 @@ sets only `SHOW_REVIEW` in the ignored pulled environment file, and runs `vercel
 uploads that output with `--prebuilt`. The local builder receives no Vercel authentication token.
 
 The release manager reports the URL, commits the release record and adds it to the handoff.
+
+### Release log (release manager, every deploy)
+
+The release manager owns `company/ops/releases.json` (versions `YYYY.MM.DD.n`, UTC, append-only).
+Before each production deploy: run `node tools/release-draft.mjs --commit=HEAD`, fill in the summary,
+features, fixes and known issues by hand, and set `approved_by` to the founder with a pointer to the
+approval (conversation date and words, or a commit message). Never invent an approval: write
+"not recorded" instead. Commit the entry with the release verification; `npm run test:hq` checks the file.
 Production still needs a launch review and green CI; the command does not decide which lessons
 deserve publication or override their gates. `NEXT_PUBLIC_EVENTS=off` can be configured in the
 Vercel project to disable the anonymous event beacon.
