@@ -1,0 +1,107 @@
+{
+  "slug": "who-pays-same-filter",
+  "title": "Who pays, same filter",
+  "hook": "The factory may pollute. Does the smoke have to stay?",
+  "domain": "economics",
+  "concept": "coase-theorem",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-coase"
+  },
+  "learner": {
+    "knows": [
+      "externalities (loaf-with-smoke)"
+    ],
+    "doesNotKnow": [
+      "that if bargaining is free, the efficient fix happens whoever holds the legal right; only who pays changes"
+    ]
+  },
+  "misconception": "If the factory has the right to pollute, the pollution continues.",
+  "objective": "The learner can explain that because the $100 filter saves $300 of smoke damage, the filter is fitted whoever holds the right (the laundry pays between $100 and $300 for it, or the liable factory fits it itself), so the total cost is $100 either way and the right decides only who pays, when bargaining is free.",
+  "claims": [
+    {
+      "id": "economics.who-pays-same-filter.c1",
+      "text": "If the factory is liable, it fits the $100-a-year filter rather than pay $300 a year of damages: factory −$100, laundry $0, total −$100 (paying damages would give factory −$300, laundry $0, total −$300).",
+      "support": "derivation",
+      "source": "Lesson numbers D = 300, F = 100 (Demo.tsx). min(F, D) = F; re-run in node by ncm-coase, 2026-10-14. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.who-pays-same-filter.c2",
+      "text": "If the factory has the right to pollute, the laundry gains by paying the factory between $100 and $300 a year to fit the filter: a $200 offer leaves the factory +$100 and the laundry −$200 (better than −$300 of smoke), total −$100; an offer of $50 leaves the factory −$50, so it refuses; an offer of $350 leaves the laundry worse than the $300 smoke, so it won't pay.",
+      "support": "derivation",
+      "source": "Deal test in Demo.tsx: offer − F > 0 and −offer > −D. Node re-run (ncm-coase, 2026-10-14): $50 → factory −50, refused; $200 → factory +100, laundry −200, deal; $350 → laundry −350, refused; strict gains on whole dollars from $101 to $299 (closed range $100–$300 with ties). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.who-pays-same-filter.c3",
+      "text": "Either way the filter is fitted and the total cost is $100; the legal right decides only who pays. This is the Coase theorem, which holds when bargaining is costless.",
+      "support": "source",
+      "source": "Coase, R. H. (1960), 'The Problem of Social Cost', Journal of Law and Economics 3; Easley and Kleinberg 2010, ch. 24. Stage: both Totals −$100. Brief claim 3; fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.who-pays-same-filter.c4",
+      "text": "With costly bargaining or many parties, the Coase result can fail.",
+      "support": "source",
+      "source": "Easley and Kleinberg 2010, ch. 24. Reveal's last sentence. Brief claim 4; fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.who-pays-same-filter.c5",
+      "text": "The lesson is a simplified model: two parties, costless bargaining and known costs; the $300 smoke damage and $100 filter (both a year) are made-up numbers.",
+      "support": "convention",
+      "source": "Lesson rule. Stage line 'Simplified: two sides, free bargaining, costs known.' (visible through the reveal); Demo.tsx constants D, F. Tied to c4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A farm's runoff costs a fishery $500 a year; a fence that stops it costs $200 a year. The farm may legally pollute and bargaining is free. What happens?",
+    "options": [
+      "The runoff continues: the farm has the right",
+      "The fishery pays the farm to build the fence",
+      "The farm builds the fence at its own cost"
+    ],
+    "answer": 1,
+    "why": "The fence saves the fishery $500 for $200, so any payment between $200 and $500 leaves both better off; the fence goes up, and the right only decides that the fishery pays."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:coase-theorem",
+    "also": [
+      "economics:externality"
+    ],
+    "prerequisites": [
+      "economics:externality"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 24
+      }
+    ],
+    "tags": [
+      "externalities",
+      "property rights"
+    ]
+  },
+  "format": "side-by-side",
+  "interactions": [
+    "choice-before-reveal",
+    "side-by-side",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
