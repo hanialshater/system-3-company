@@ -135,7 +135,12 @@ const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 const COLX = (k: number) => 33 + (k - 1) * 46;
-const LEVY = (d: number) => 22 + d * 40;
+// Both trees share one picture height: the rotating tree (4 levels drawn) at 40 units a level; the plain chain
+// (7 levels) packs its levels closer (20 units), which still reads as a diagonal chain because each key keeps its column.
+const SPAN = (LEVELS.rotating - 1) * 40;
+const PITCH: Record<Mode, number> = { rotating: 40, plain: SPAN / Math.max(1, LEVELS.plain - 1) };
+const levY = (mode: Mode) => (d: number) => 22 + d * PITCH[mode];
+const ROW_Y = 22 + SPAN + 26;
 const R = 16;
 
 // The tree, with a tween from the pre-rotation shape to the rotated one.
@@ -171,9 +176,9 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
       ? `${mode === "rotating" ? "Rotating" : "Plain"} tree: empty`
       : `${mode === "rotating" ? "Rotating" : "Plain"} tree: root ${keys.find((k) => snap.depth[k] === 0)}, height ${lv(snap.height)}, ${snap.rots} rotation${snap.rots === 1 ? "" : "s"}`;
 
-  // The key row sits under the deepest level this tree ever uses, so the rotating tree (4 levels) is drawn
-  // shorter than the plain chain (7 levels).
-  const rowY = LEVY(LEVELS[mode] - 1) + 26;
+  // The key row sits under the deepest level either tree uses.
+  const LEVY = levY(mode);
+  const rowY = ROW_Y;
   return (
     <svg viewBox={`0 0 342 ${rowY + 36}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-keys={i}>
       {snap.rot && (

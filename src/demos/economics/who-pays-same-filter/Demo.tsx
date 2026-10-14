@@ -10,6 +10,10 @@
 // Rule: a side keeps the best outcome it has seen, so no press order undoes a fitted filter.
 // Key states (milestones): the deal struck in panel 1, the filter fitted by the liable factory in panel 2.
 // Model (lesson rule): two sides, free bargaining, costs known.
+// v4 (phone fit, build 6 measured crop 229 px, 102 words): each panel is 340 x 125 instead of 190: the Total sits on
+// the title row, the nets read inside the blocks ("Factory +$100"), offer marks sit above the band, the ruler glyphs
+// are gone, labels are 13 units so the card can fit both panels at the 10 px floor; screen-reader ledgers moved out
+// of the panels (an absolute sibling blocks the fit). Reveal 89 words (two paragraphs). Measured crop 0 at 390x844.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";

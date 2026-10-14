@@ -12,6 +12,9 @@
 // ringed on 97's line and a stage line "97 meets 27's path at value 94 (its step 13)." appears once 97's
 // run passes it (and stays); the reveal quotes that line and prints the join only after it was shown.
 // v5 (W-245): the line ends ", ringed." only while the ring is drawn (97's line at or past step 13).
+// v6 (wave H r8): phone fit. Chart viewBox 266 -> 176 tall, ticks 11px; Step / Run to 1 / scrubber share one row;
+// the start chips are the table's header row (tap a column to run it); the '?' note hides at the reveal;
+// reveal trimmed to <= 90 words.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -46,10 +49,11 @@ const scaleFor = (v: number) => (v <= 100 ? 100 : v <= 1000 ? 1000 : 10000);
 const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// Chart layout (viewBox 342 x 266).
-const X0 = 40;
+// Chart layout (viewBox 342 x 176; v6 compacted from 266 so the stage fits with the reveal on a phone).
+const VIEW_H = 176;
+const X0 = 46;
 const X1 = 336;
-const Y0 = 230;
+const Y0 = 142;
 const Y1 = 10;
 const XMAX = 120;
 const xs = (step: number) => X0 + (step / XMAX) * (X1 - X0);
@@ -87,6 +91,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
       exploreHint="Step a few times, then run 27 to 1."
       minInteractions={2}
       reveal={() => {
+        const ringNow = (drawn[97] ?? 0) >= JOIN97_STEP;
         const has = (n: Start) => done.includes(n);
         const parts: string[] = [
           `27 took ${STEPS(27)} steps and climbed to ${fmt(peakOf(27))} before falling to 1.`,
@@ -95,23 +100,20 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
         else if (has(26)) parts.push(`Its neighbour 26 took only ${STEPS(26)} steps.`);
         else if (has(28)) parts.push(`Its neighbour 28 took only ${STEPS(28)} steps.`);
         if (has(97) && joinSeen)
-          parts.push(
-            `97 took ${STEPS(97)} steps: as your stage line says, at the value ${JOIN97} (its step ${JOIN97_STEP}) it lands on 27's path and follows it down.`,
-          );
+          parts.push(`97 took ${STEPS(97)}: at the value ${JOIN97} (its step ${JOIN97_STEP}${ringNow ? ", ringed" : ""}) it joins 27's path.`);
         else if (has(97)) parts.push(`97 took ${STEPS(97)} steps.`);
         return (
           <>
-            <p>{parts.join(" ")} The start number tells you almost nothing about the run.</p>
+            <p>{parts.join(" ")} The start tells you almost nothing about the run.</p>
             <p>
-              Each ? in your table stayed a ? until you ran that start: only running the rule filled it in. Every start
-              that computers have checked reaches 1. But nobody has proved that every start does: the Collatz
-              conjecture is still open.
+              Each ? stayed a ? until you ran that start. Every start checked so far reaches 1, but nobody has proved all
+              do: the Collatz conjecture is open.
             </p>
           </>
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["27-at-1", "another-start"]}>
           {(reach) => {
             const show = (n: Start, steps: number) => {
@@ -181,7 +183,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                 <p className={s.readout} aria-live="polite">
                   Start {cur} · step {Math.min(cursor, k)} · value {fmt(cv)}
                 </p>
-                <svg viewBox="0 0 342 266" className={`stage-svg ${s.chart}`} role="img" aria-label={aria}>
+                <svg viewBox={`0 0 342 ${VIEW_H}`} className={`stage-svg ${s.chart}`} role="img" aria-label={aria}>
                   {yTicks.map((v) => (
                     <g key={`y${v}`}>
                       <line x1={X0} x2={X1} y1={ys(v)} y2={ys(v)} stroke="var(--line)" strokeWidth={v === 0 ? 1 : 0.5} />
@@ -200,7 +202,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                         </text>
                       </g>
                     ))}
-                  <text x={(X0 + X1) / 2} y={262} textAnchor="middle" className={s.axis}>
+                  <text x={(X0 + X1) / 2} y={VIEW_H - 4} textAnchor="middle" className={s.axis}>
                     steps
                   </text>
                   {lines.map((n) => {
@@ -229,10 +231,10 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                     <circle
                       cx={xs(JOIN97_STEP)}
                       cy={ys(SEQ[97][JOIN97_STEP])}
-                      r={5}
+                      r={7}
                       fill="none"
                       stroke="var(--bad)"
-                      strokeWidth={2}
+                      strokeWidth={2.5}
                       data-join={JOIN97}
                     />
                   )}
@@ -246,12 +248,36 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                   />
                   <circle cx={xs(Math.min(cursor, k))} cy={ys(cv)} r={4} fill="none" stroke="var(--domain)" strokeWidth={2} />
                 </svg>
-                <div className={s.table} role="group" aria-label="Runs: steps and peak stay unknown until the run reaches 1">
+                <Row>
+                  <Control className="tap" disabled={locked || busy || atOne} onClick={step}>
+                    Step
+                  </Control>
+                  <Control className="tap" disabled={locked || busy || atOne} onClick={runToOne}>
+                    Run to 1
+                  </Control>
+                  <span className={s.scrub}>
+                    <Slider
+                      label="Step to show"
+                      value={Math.min(cursor, k)}
+                      min={0}
+                      max={Math.max(k, 0)}
+                      onChange={(v) => setCursor(v)}
+                      disabled={locked || busy || k === 0}
+                    />
+                  </span>
+                </Row>
+                <div className={s.table} role="group" aria-label="Runs: tap a start; steps and peak stay unknown until the run reaches 1">
                   <span className={s.th}>Start</span>
                   {STARTS.map((n) => (
-                    <span key={`s${n}`} className={s.th}>
+                    <Control
+                      key={`s${n}`}
+                      className={`tap ${cur === n ? "active" : ""}`}
+                      aria-pressed={cur === n}
+                      disabled={locked || busy || cur === n}
+                      onClick={() => pick(n)}
+                    >
                       {n}
-                    </span>
+                    </Control>
                   ))}
                   <span className={s.th}>Steps</span>
                   {STARTS.map((n) =>
@@ -278,48 +304,12 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                     ),
                   )}
                 </div>
-                <p className={s.note}>Only running a start fills its ?.</p>
+                {phase !== "reveal" && <p className={s.note}>Only running a start fills its ?.</p>}
                 {joinSeen && (
                   <p className={s.join}>
                     97 meets 27&apos;s path at value {JOIN97} (its step {JOIN97_STEP}){ringOn ? ", ringed." : "."}
                   </p>
                 )}
-                <Row>
-                  <Control className="tap" disabled={locked || busy || atOne} onClick={step}>
-                    Step
-                  </Control>
-                  <Control className="tap" disabled={locked || busy || atOne} onClick={runToOne}>
-                    Run to 1
-                  </Control>
-                </Row>
-                <div className={s.scrub}>
-                  <Slider
-                    label="Step to show"
-                    value={Math.min(cursor, k)}
-                    min={0}
-                    max={Math.max(k, 0)}
-                    onChange={(v) => setCursor(v)}
-                    disabled={locked || busy || k === 0}
-                  />
-                </div>
-                <Row>
-                  <span className={s.lab} id="start-label">
-                    Start
-                  </span>
-                  <span role="group" aria-labelledby="start-label" className={s.chips}>
-                    {STARTS.map((n) => (
-                      <Control
-                        key={n}
-                        className={`tap ${cur === n ? "active" : ""}`}
-                        aria-pressed={cur === n}
-                        disabled={locked || busy || cur === n}
-                        onClick={() => pick(n)}
-                      >
-                        {n}
-                      </Control>
-                    ))}
-                  </span>
-                </Row>
               </div>
             );
           }}
