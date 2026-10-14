@@ -31,29 +31,37 @@
       "id": "ai.gradient-fades-with-depth.c1",
       "text": "The sigmoid's slope s(x)(1 - s(x)) is at most 0.25, reached at x = 0 (question: 'Each multiplies it by the sigmoid's slope, 0.25'; reveal: 'Each sigmoid layer passed back at most a quarter of what it received').",
       "support": "derivation",
-      "source": "Calculus: s' = s(1 - s), maximised at s = 1/2, i.e. x = 0, where it is 1/4.",
-      "status": "unverified"
+      "source": "Calculus: s' = s(1 - s), maximised at s = 1/2, i.e. x = 0, where it is 1/4. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. s' = s(1 - s) with s in (0, 1) is maximised at s = 1/2 (x = 0), value 1/4. Question text ('the sigmoid's slope, 0.25') and reveal ('at most a quarter') match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-fades-with-depth.c2",
       "text": "In the toy (weights 1, every unit at input 0, stated on the stage tag), the gradient reaching layer 1 through 10 sigmoid layers is 0.25^10 = 0.0000954% of the original (shown as 'about 0.0001%' / '0.0001%'); through 3 layers it is 0.25^3 = 1.5625% (shown as 1.6%). Layer k of n receives 0.25^(n - k + 1); the bars on the log axis draw exactly these values.",
       "support": "derivation",
-      "source": "Arithmetic; share() in Demo.tsx (MODEL block). Values in the reveal are recorded when the learner presses each preset.",
-      "status": "unverified"
+      "source": "Arithmetic; share() in Demo.tsx (MODEL block). Values in the reveal are recorded when the learner presses each preset. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. share() = slope^(layers - layer + 1). Own node: 0.25^10 = 9.54e-7 = 0.0000954%, pct() gives toPrecision(1) -> '0.0001%'; 0.25^3 = 1.5625% -> toFixed(1) '1.6%'. Bars use y = TOP - log10(f) x 17 px per decade, so bar heights are these exact values (0.25^10 > 1e-7, the axis floor). Stage tag reads 'Toy: weights 1, every unit at its steepest' (steepest = input 0).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-fades-with-depth.c3",
       "text": "ReLU's slope is 1 for positive inputs ('wherever it is active'), so in the toy all 10 ReLU layers get 100% of the signal.",
       "support": "derivation",
-      "source": "Definition ReLU(x) = max(0, x), derivative 1 for x > 0; 1^10 = 1. The toy assumes every ReLU unit is on its active side.",
-      "status": "unverified"
+      "source": "Definition ReLU(x) = max(0, x), derivative 1 for x > 0; 1^10 = 1. The toy assumes every ReLU unit is on its active side. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. NETS relu10 has slope 1, so share = 1^k = 100% for every layer. The toy assumes every unit is on its active side; the reveal says 'wherever it is active'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-fades-with-depth.c4",
       "text": "Gradients that shrink through many layers made deep sigmoid networks hard to train ('That is why deep sigmoid networks were hard to train'), and its weights barely move when layer 1 gets so little of the signal; ReLU-type activations eased this.",
       "support": "source",
-      "source": "Bengio, Simard and Frasconi (1994), 'Learning long-term dependencies with gradient descent is difficult', IEEE Trans. Neural Networks 5(2): 157-166; Glorot, Bordes and Bengio (2011), 'Deep sparse rectifier neural networks', AISTATS 2011; Goodfellow, Bengio and Courville, Deep Learning (2016), sections 8.2.5 and 6.3.1. About real systems.",
-      "status": "unverified"
+      "source": "Bengio, Simard and Frasconi (1994), 'Learning long-term dependencies with gradient descent is difficult', IEEE Trans. Neural Networks 5(2): 157-166; Glorot, Bordes and Bengio (2011), 'Deep sparse rectifier neural networks', AISTATS 2011; Goodfellow, Bengio and Courville, Deep Learning (2016), sections 8.2.5 and 6.3.1. About real systems. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED on an opened source other than the ones cited: Zhang, Lipton, Li and Smola, Dive into Deep Learning, section 'Numerical Stability and Initialization' (raw GitHub d2l-ai/d2l-en, chapter_multilayer-perceptrons/numerical-stability-and-init.md, opened 2026-10-14). It says vanishing gradients leave parameters that 'hardly move on each update'; that through many sigmoid layers 'the gradients of the overall product may vanish ... this problem used to plague deep network training. Consequently, ReLUs ... have emerged as the default choice'; and in its summary that 'ReLU activation functions mitigate the vanishing gradient problem'. Bengio et al. 1994, Glorot et al. 2011 and Goodfellow et al. were not opened. Builder: add d2l to the source field.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

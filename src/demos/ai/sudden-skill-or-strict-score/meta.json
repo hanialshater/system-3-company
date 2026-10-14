@@ -32,22 +32,28 @@
       "id": "ai.sudden-skill-or-strict-score.c1",
       "text": "In the toy, a 10-token answer is fully right with probability p^10 when each token is right with probability p independently (stage caption under the chart: 'Toy: each token right or wrong independently'; reveal: 'ten tokens all right is p to the tenth power, which stays tiny until p is near 1').",
       "support": "derivation",
-      "source": "Product rule for independent events; independence is the toy's stated assumption. exact() in Demo.tsx.",
-      "status": "unverified"
+      "source": "Product rule for independent events; independence is the toy's stated assumption. exact() in Demo.tsx. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. exact(p, len) = p^len, the product rule under the stated independence. Caption 'Toy: each token right or wrong independently' is on the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.sudden-skill-or-strict-score.c2",
       "text": "For p = 50, 60, 70, 80, 90 and 95%, p^10 is 0.098%, 0.60%, 2.8%, 10.7%, 34.9% and 59.9% (stage and reveal round to one decimal: 0.1%, 0.6%, 2.8%, 10.7%, 34.9%, 59.9%); scored per token the same models read 50% to 95%; with 1-token answers the whole-answer score equals p.",
       "support": "derivation",
-      "source": "Arithmetic (node, 2026-10-14, cm-ai brief); WHOLE and ONE in Demo.tsx MODEL block. Values in the reveal are recorded when the learner presses each preset.",
-      "status": "unverified"
+      "source": "Arithmetic (node, 2026-10-14, cm-ai brief); WHOLE and ONE in Demo.tsx MODEL block. Values in the reveal are recorded when the learner presses each preset. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node: p^10 = 0.098, 0.605, 2.825, 10.737, 34.868, 59.874%; pct() (toFixed(1)) shows 0.1, 0.6, 2.8, 10.7, 34.9, 59.9%. Per-token values are P = 50 to 95%; ONE = p^1 = p. Non-blocking wording note: the reveal calls 0.1% to 10.7% 'near zero'; the numbers are right.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.sudden-skill-or-strict-score.c3",
       "text": "Some reported 'emergent abilities' of large language models look sudden under all-or-nothing metrics such as exact match and smooth under continuous or per-token metrics (reveal: 'Before calling an ability emergent, check whether a smoother score shows it growing all along').",
       "support": "source",
-      "source": "Schaeffer, Miranda and Koyejo (2023), 'Are emergent abilities of large language models a mirage?', NeurIPS 2023 (arXiv 2304.15004); original emergence reports: Wei et al. (2022), 'Emergent abilities of large language models', TMLR. About real systems; the lesson advises a check and does not claim every case is an artifact.",
-      "status": "unverified"
+      "source": "Schaeffer, Miranda and Koyejo (2023), 'Are emergent abilities of large language models a mirage?', NeurIPS 2023 (arXiv 2304.15004); original emergence reports: Wei et al. (2022), 'Emergent abilities of large language models', TMLR. About real systems; the lesson advises a check and does not claim every case is an artifact. | FC pass 38 (fact-checker, 2026-10-14): HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Schaeffer, Miranda and Koyejo 2023 (arXiv, NeurIPS) and Wei et al. 2022: only search-result summaries were seen, and they agree with the claim, but no text was opened.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

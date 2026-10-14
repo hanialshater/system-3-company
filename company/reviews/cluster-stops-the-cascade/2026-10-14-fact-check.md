@@ -58,3 +58,16 @@ Checker: fact-checker (did not write these claims). Method: read the current Dem
 Reveal check: para 1 rests on the two gated runs plus c6; para 2 on c4 (quoted only for a group member focused on the 0,1 final) and c5; para 3 is c7. No unbacked sentence.
 
 Result: 1 verified, 0 disputed. Lesson: no open claims.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED (v5). Own port of simulate() (synchronous rounds, adopt when 2k >= d) from {0,1}: 8 of 12 adopt, last round 6. At that final, 8 has 1 of 4 friends adopted; 9, 10 and 11 have 0 of 3. The focus line and pill print friends(i)/NB[i].length. The v5 reveal quotes no single person. |
+| c5 | verified | VERIFIED (v5). Inside counts from EDGES: 8 has 3 of 4 inside, 9-11 have 3 of 3; need = ceil(d/2) = 2. While no member has adopted, a member's adopted friends are all outside: at most 1 of 4 or 0 of 3. The sealed focus line prints e.g. '8: 1 of 4 friends adopted; 3 of 4 in the group, so at most 1 (needs 2).' The reveal text matches the claim. |
+| c6 | verified | VERIFIED (v5). Own simulate(): {0,1} -> 8 of 12; {0,1,2,3} -> 8; {0..7} -> 8; {8,9} -> 12. Over all 4,095 seed sets, no set without a member of 8-11 reaches 12, and in none does any of 8-11 ever join. So option 0 (0, 1, 2, 3) and option 1 ('no start reaches all 12') are false, and option 2 (two elsewhere, e.g. 8 and 9) is true. Answer index 2. |
+| c7 | verified | VERIFIED by proof plus brute force, not on the unopened E&K citation. Take a set S of non-starters in which each member has more than half its friends in S. In the round a first member would join, all of its adopted friends lie outside S, which is fewer than half; the rule needs 2k >= d, so no member can ever be first, on any graph. Brute force on this graph: for 585 seed sets crossed with every qualifying non-seed S, 0 violations. The E&K 19.3 attribution is in the source field only and was not opened. |
+
+**Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

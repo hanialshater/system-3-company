@@ -63,10 +63,10 @@
       "text": "Score that reaches E or F never comes back out, so round by round it drains in; a group of pages like this is called a rank sink.",
       "support": "source",
       "source": "Derivation for the first half: no link leaves E or F (c1), so under the basic rule their combined score never falls. Term 'rank sink': Page, Brin, Motwani and Winograd (1999), 'The PageRank citation ranking: bringing order to the web', Stanford InfoLab tech report; Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 unconfirmed). Fact-checker: confirm the term and the attribution.",
-      "status": "unverified",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14",
-      "note": "Held. First half verified by derivation: no link leaves E or F, so under s = 1 their combined score never falls (checked monotone in rounds 0-60). The name 'rank sink' is a terminology claim and needs a source: Page, Brin, Motwani and Winograd (1999) and Easley and Kleinberg ch. 14 could not be opened (ilpubs.stanford.edu does not resolve, cornell.edu 403, no GitHub raw copy found). Web-search snippets attribute the term to the 1999 report, but no verdict rests on them. Fix: an openable source, or drop 'That is a rank sink.'"
+      "note": "Held. First half verified by derivation: no link leaves E or F, so under s = 1 their combined score never falls (checked monotone in rounds 0-60). The name 'rank sink' is a terminology claim and needs a source: Page, Brin, Motwani and Winograd (1999) and Easley and Kleinberg ch. 14 could not be opened (ilpubs.stanford.edu does not resolve, cornell.edu 403, no GitHub raw copy found). Web-search snippets attribute the term to the 1999 report, but no verdict rests on them. Fix: an openable source, or drop 'That is a rank sink.' | FC pass 38 (fact-checker, 2026-10-14): VERIFIED on the primary source: Page, Brin, Motwani and Winograd, 'The PageRank Citation Ranking: Bringing Order to the Web' (PDF hosted in the papers-we-love GitHub repository, information_retrieval/, opened 2026-10-14 with pdftotext). Section 2.4: pages that point only to each other 'will accumulate rank but never distribute any rank ... The loop forms a sort of trap which we call a rank sink.' The first half follows from c1 (no link leaves E or F). E&K ch. 14 not opened."
     },
     {
       "id": "cs.two-pages-swallow-the-rank.c5",
@@ -76,7 +76,7 @@
       "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14",
-      "note": "Held. That 15% random jumps stop the drain is shown by c3 (derivation). That 'scaled PageRank' is the name and that jumps were added to fix this is a source claim: Easley and Kleinberg ch. 14 and Brin and Page (1998) could not be opened. networkx's pagerank docstring (GitHub raw, opened) confirms damping 0.85 and the Page et al. 1999 title, but says nothing about sinks or 'scaled PageRank'. Fix: an openable source, or reword to something derivable such as 'Random jumps fix sinks like this one.'"
+      "note": "Held. That 15% random jumps stop the drain is shown by c3 (derivation). That 'scaled PageRank' is the name and that jumps were added to fix this is a source claim: Easley and Kleinberg ch. 14 and Brin and Page (1998) could not be opened. networkx's pagerank docstring (GitHub raw, opened) confirms damping 0.85 and the Page et al. 1999 title, but says nothing about sinks or 'scaled PageRank'. Fix: an openable source, or reword to something derivable such as 'Random jumps fix sinks like this one.' | FC pass 38 (fact-checker, 2026-10-14): HELD, close. The mechanism is confirmed in the same opened Page et al. paper: section 6 says E 'is used as a source of rank to make up for the rank sinks', and with ||E|| = 0.15 'corresponds to a random surfer periodically jumping to a random web page' (the stage's 15%). The name 'Scaled PageRank' in the reveal is Easley and Kleinberg's term (ch. 14), and I could not open that book. To clear it: a checker opens E&K 14.3, or the builder rewords the reveal to 'PageRank adds these jumps to fix sinks', which the opened paper supports."
     }
   ],
   "confidence": "",

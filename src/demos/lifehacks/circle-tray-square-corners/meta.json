@@ -57,7 +57,7 @@
       "status": "disputed",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14",
-      "note": "FC W-740 (2026-10-14): Disputed. Outside the square grid, 5 discs of 10 cm fit a 28 cm tray (four in the corners plus one in the centre: centre spacing 18/√2 = 12.7 cm ≥ 10; this works for any side ≥ 10(1+√2) = 24.1 cm). The new question dropped the old \"in this grid\", so \"how many 10 cm discs fit\" keyed \"4\" is false as asked, and the distractor holds the true count (with a wrong reason). Fix (cm-lifehacks wording, demo-builder applies): put the grid in the question, e.g. \"how many 10 cm discs fit in this square grid once each is turned 45°?\". Rotation-changes-nothing (c1) stands."
+      "note": "FC W-740 (2026-10-14): Disputed. Outside the square grid, 5 discs of 10 cm fit a 28 cm tray (four in the corners plus one in the centre: centre spacing 18/√2 = 12.7 cm ≥ 10; this works for any side ≥ 10(1+√2) = 24.1 cm). The new question dropped the old \"in this grid\", so \"how many 10 cm discs fit\" keyed \"4\" is false as asked, and the distractor holds the true count (with a wrong reason). Fix (cm-lifehacks wording, demo-builder applies): put the grid in the question, e.g. \"how many 10 cm discs fit in this square grid once each is turned 45°?\". Rotation-changes-nothing (c1) stands. | FC pass 38 (fact-checker, 2026-10-14): STILL DISPUTED (unchanged since W-740; home-lessons.ts still asks 'At this 28 cm tray, how many 10 cm discs fit once each is turned 45°?'). Own check: 5 discs of 10 cm fit a 28 cm square (centres at (5,5), (23,5), (5,23), (23,23) and (14,14); corner-to-centre spacing 12.73 cm >= 10, and this works for any side >= 24.14 cm). So 'how many fit' keyed '4' is false as asked. Fix (cm-lifehacks wording, demo-builder applies): 'how many 10 cm discs fit in this square grid once each is turned 45°?'."
     },
     {
       "id": "lifehacks.circle-tray-square-corners.c5",
@@ -96,7 +96,7 @@
       "status": "disputed",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14",
-      "note": "FC W-740 (2026-10-14): Disputed. Numbers match the table at every side 22-34, but the row label \"Discs that fit\" makes the grid count a fit claim: at 25-29 cm 5 discs fit (grid shows 4), and at 34 cm about 10 fit (grid shows 9). Fix: resultLabel \"Discs in the grid\" (or keep the model's \"Grid count\"); then this verifies."
+      "note": "FC W-740 (2026-10-14): Disputed. Numbers match the table at every side 22-34, but the row label \"Discs that fit\" makes the grid count a fit claim: at 25-29 cm 5 discs fit (grid shows 4), and at 34 cm about 10 fit (grid shows 9). Fix: resultLabel \"Discs in the grid\" (or keep the model's \"Grid count\"); then this verifies. | FC pass 38 (fact-checker, 2026-10-14): STILL DISPUTED (spec unchanged: resultLabel 'Discs that fit'). The grid counts floor(W/10)² are right at every side from 22 to 34 cm. Labelled 'Discs that fit', though, they are false at 25 to 29 cm, where 5 fit (corners plus centre, side >= 24.14 cm) (W-740 also flags 34 cm, where 10 are said to fit; I did not re-prove that case, and the 25-29 cm counterexample is enough). Minimal fix: resultLabel 'Discs in the grid' (or 'Grid count'); then this verifies."
     }
   ],
   "confidence": "",

@@ -15,3 +15,14 @@ Checker: fact-checker. I did not write or build these claims. Scope: every claim
 | c7 | verified | Stage chip after any touch reads exactly 'Arrow: heat leaving the finger. Perfect contact, first seconds.' (before: 'Same room, all day.'). contact() and flux() use the semi-infinite, perfect-contact, no-perfusion idealisation. Reveal needs touch milestones, so the chip is on stage when it opens. |
 
 **Result:** 6 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED (v2). Own node with the Demo.tsx properties: e_skin 1,176, aluminium 23,998, steel 14,360, pine 310. Flux ratio [e/(e_s + e)] / [e_w/(e_s + e_w)] = 4.573 (aluminium) -> '4.6×', 4.433 (steel) -> '4.4×' by toFixed(1). The wood arrow is labelled '1×'. Arrow shaft width = 3 px × ratio. The reveal prints the recorded metal's ratio (4.4× on the QA path, which ends on steel). The real-world ratio depends on the skin effusivity, which is illustrative; the learner sentence is about the drawn arrow. |
+| c6 | verified | VERIFIED on an opened source: OpenStax Anatomy and Physiology 2e, section 14.1 'Sensory Perception' (raw GitHub openstax/osbooks-anatomy-physiology, module m46577, opened 2026-10-14): 'Temperature receptors are stimulated when local temperatures differ from body temperature'. The receptors sit in the skin and report its own temperature. Both blocks are 20 °C, yet the skin settles at about 21 °C on metal and 30 °C on pine (c3, verified) because heat leaves faster into metal. So what is sensed is the skin's cooling, not the object's temperature. |
+
+**Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

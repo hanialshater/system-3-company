@@ -27,43 +27,55 @@
       "id": "math.euclid-three-steps.c1",
       "text": "2 × 3 × 5 × 7 × 11 × 13 = 30030, and 30030 + 1 = 30031 = 59 × 509.",
       "support": "derivation",
-      "source": "Recomputed with node by trial division (Demo.tsx factor()); the stage uses the same trial division.",
-      "status": "unverified"
+      "source": "Recomputed with node by trial division (Demo.tsx factor()); the stage uses the same trial division. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node: 2·3·5·7·11·13 = 30030; 30031 = 59 × 509 by trial division (59 and 509 prime).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.euclid-three-steps.c2",
       "text": "For the lists 2, 3; 2, 3, 5; and 2 to 7, product + 1 is 7, 31 and 211, each prime and not on its list.",
       "support": "derivation",
-      "source": "Trial division up to the square root, recomputed with node (builder run 2026-10-14).",
-      "status": "unverified"
+      "source": "Trial division up to the square root, recomputed with node (builder run 2026-10-14). | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node: 6 + 1 = 7, 30 + 1 = 31, 210 + 1 = 211; each is prime by trial division, and none is on its list.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.euclid-three-steps.c3",
       "text": "Product + 1 leaves remainder 1 when divided by each prime on the list, so none of them divides it.",
       "support": "derivation",
-      "source": "The product is a multiple of each listed p, so product + 1 = q·p + 1 with 0 < 1 < p. Stage rows show (N − 1)/p × p and r 1; checked with node for the four lists offered.",
-      "status": "unverified"
+      "source": "The product is a multiple of each listed p, so product + 1 = q·p + 1 with 0 < 1 < p. Stage rows show (N − 1)/p × p and r 1; checked with node for the four lists offered. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. The product P is a multiple of each listed p, so P + 1 = qp + 1 with 0 < 1 < p, remainder 1. Own node: remainder 1 for every p on all four lists offered.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.euclid-three-steps.c4",
       "text": "Product + 1 is above 1, so it has a prime factor, and that prime is not on the list.",
       "support": "derivation",
-      "source": "Its smallest divisor above 1 is prime; by c3 it is not a listed prime. Shown on the stage by 'Find its primes'.",
-      "status": "unverified"
+      "source": "Its smallest divisor above 1 is prime; by c3 it is not a listed prime. Shown on the stage by 'Find its primes'. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. P + 1 >= 3 > 1, so its least divisor above 1 is prime (any smaller factor of it would divide P + 1 too), and by c3 it is not on the list. 'Find its primes' shows factor(N), which is trial division.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.euclid-three-steps.c5",
       "text": "Any finite list gets the same three steps, so no list holds every prime.",
       "support": "derivation",
-      "source": "c3 and c4 hold for any finite list of primes. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4.",
-      "status": "unverified"
+      "source": "c3 and c4 hold for any finite list of primes. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED by my own derivation (c3 and c4 use nothing about the list except that it is finite and made of primes). Hardy and Wright Theorem 4 not opened; not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.euclid-three-steps.c6",
       "text": "This is Euclid's proof in the Elements, Book IX, Proposition 20.",
       "support": "source",
-      "source": "Euclid, Elements IX.20 ('Prime numbers are more than any assigned multitude of prime numbers'), Heath translation; D. E. Joyce's online edition, Clark University, Book IX Proposition 20.",
-      "status": "unverified"
+      "source": "Euclid, Elements IX.20 ('Prime numbers are more than any assigned multitude of prime numbers'), Heath translation; D. E. Joyce's online edition, Clark University, Book IX Proposition 20. | FC pass 38 (fact-checker, 2026-10-14): HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Euclid, Elements IX.20 (Heath; Joyce's Clark University edition) was not on any reachable host. A search result names IX.20 (Heath vol. II p. 412), but I did not open it.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

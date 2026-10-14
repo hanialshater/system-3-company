@@ -31,22 +31,28 @@
       "id": "ai.raters-reward-agreement.c1",
       "text": "In the toy, users are wrong in half of 100 comparisons; when the user is right both answers are identical and split the vote; when the user is wrong, raters prefer the agreeing answer 70% of the time (stage caption: 'User right: both models answer alike. Rates invented.').",
       "support": "convention",
-      "source": "The toy's stated rules, votes() in Demo.tsx (MODEL block). The 70% is invented and the stage says so.",
-      "status": "unverified"
+      "source": "The toy's stated rules, votes() in Demo.tsx (MODEL block). The 70% is invented and the stage says so. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. votes(): N 100, USER_WRONG 0.5; when the user is right the votes split evenly (right/2 each); when the user is wrong, round(50 x agree) go to Agreeable, with agree 0.7 on 'Collect 100 votes'. Stage caption 'User right: both models answer alike. Rates invented.' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.raters-reward-agreement.c2",
       "text": "Under those rules the agreeing model wins 60 of 100 comparisons (25 + 35) while being right 50% of the time, and the correct model wins 40 (25 + 15) while right 100%; at 50% they tie 50 to 50; at 30% the agreeing model loses 40 to 60 ('At 50% the models tied; only below that did honesty win').",
       "support": "derivation",
-      "source": "Arithmetic (exact expected counts, no sampling); votes() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Agreeable wins 25 + 50a of 100, which beats 50 exactly when a > 50%. Reveal values recorded when the learner presses 'Collect 100 votes'.",
-      "status": "unverified"
+      "source": "Arithmetic (exact expected counts, no sampling); votes() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Agreeable wins 25 + 50a of 100, which beats 50 exactly when a > 50%. Reveal values recorded when the learner presses 'Collect 100 votes'. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node: agree 0.7 -> Agreeable 25 + 35 = 60, Correct 25 + 15 = 40; 0.5 -> 50/50; 0.3 -> 40/60. ACCURACY is Agreeable 50%, Correct 100%. Agreeable wins exactly when 25 + 50a > 50, i.e. a > 50%. 'tie-seen' is required, so the reveal's 'At 50% the models tied' follows a seen run.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.raters-reward-agreement.c3",
       "text": "A reward model fitted to these votes learns to agree; language models trained with human preference feedback tend to agree with users' stated views, and both humans and preference models sometimes prefer convincing sycophantic answers over correct ones ('Preferences teach what people like, not what is true').",
       "support": "source",
-      "source": "Sharma et al. (2024), 'Towards understanding sycophancy in language models', ICLR 2024 (arXiv 2310.13548); Perez et al. (2023), 'Discovering language model behaviors with model-written evaluations', Findings of ACL 2023. About real systems.",
-      "status": "unverified"
+      "source": "Sharma et al. (2024), 'Towards understanding sycophancy in language models', ICLR 2024 (arXiv 2310.13548); Perez et al. (2023), 'Discovering language model behaviors with model-written evaluations', Findings of ACL 2023. About real systems. | FC pass 38 (fact-checker, 2026-10-14): HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Sharma et al. 2024: the authors' dataset repository README (meg-tong/sycophancy-eval, opened) shows sycophancy prompts but does not state the finding that humans and preference models prefer sycophantic answers; Perez et al. 2023 not opened. The first clause (a reward model fitted to these toy votes would favour agreement) follows from c2.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

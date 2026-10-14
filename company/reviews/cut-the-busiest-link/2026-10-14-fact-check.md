@@ -15,3 +15,13 @@ Checker: fact-checker, a fresh instance that did not write these claims. Method:
 | c5 | verified | Convention matches the code: loads() loops a < t (each unordered pair once) and adds sg[a][u]·sg[t][v]/sg[a][t] per edge, i.e. the pair's 1 split evenly over its shortest paths. My independent path enumeration gives identical labels. Stage legend: 'Number on a link: shortest paths it carries.' The Brandes and Girvan–Newman names are in the source field only, not on stage. |
 
 **Result:** 4 verified, 0 disputed, 1 held unverified (no source could be opened; board W-511, evaluation-steward).
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED on an opened source: NetworkX girvan_newman() (raw GitHub networkx/networkx, networkx/algorithms/community/centrality.py, opened 2026-10-14). Its docstring says the Girvan–Newman method 'removes the ... edge with the highest betweenness centrality, at each step', and its default most_valuable_edge() calls edge_betweenness_centrality(G) again on the cut graph each time. So the method recounts after every cut. Demo.tsx defines a link's number as its edge betweenness (Brandes), so 'busiest link' means highest betweenness. Girvan and Newman 2002 (PNAS) and E&K 3.6 were not opened. |
+
+**Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

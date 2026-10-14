@@ -16,3 +16,15 @@ Method: I read the engine first (src/lib/lifehacks/engine-v2.ts; HomeLesson.tsx 
 **Result:** 3 verified, 0 disputed, 1 held (unverified).
 
 **Held:** .recall. It needs a reworded "why" with no empirical prediction claim (suggestion in the claim note), or an openable source. Owner: cm-lifehacks.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| recall | disputed | DISPUTED (was held in W-740; text unchanged). The first sentence is right for the stipulated scenario (steps 1, 2 and 4 match, so step 3 is the one to fix). The second, 'One attempt does not predict later recall', is a general empirical negative, labelled convention, with no source. It is broader than the lesson's own principle ('this single attempt cannot estimate future retention'), and as a general statement it runs against the usual finding that items recalled on a first test are more likely to be recalled later. I could not open a source to cite for that, so the dispute rests on the claim having no support and overreaching its fixture. Fix (cm-lifehacks wording, demo-builder applies): 'This one check is not a forecast of later recall, but it does show which step to fix.' |
+
+**Result:** 0 verified, 1 disputed, 0 held (unverified), 0 withdrawn.
+
+**Fix needed (blocks publishing):** recall. See each row for the fix; wording belongs to cm-lifehacks, applying it to demo-builder (interaction-designer for W-610), and then a fact-checker re-checks.

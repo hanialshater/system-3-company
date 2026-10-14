@@ -66,3 +66,14 @@ Checker: fact-checker. I did not write or build these claims. Scope: every claim
 | c7 | verified | Stage-only, re-read in v6: Steps and Peak cells render '?' unless done.includes(n); done grows only in show() when steps >= STEPS(n), called by Step, Run to 1 and runOut (a chip after a finished run starts runOut). Header chips only pick a start. Note 'Only running a start fills its ?.' renders when phase !== 'reveal'; reveal says 'Each ? stayed a ? until you ran that start.' |
 
 **Result:** 3 verified, 0 disputed, 2 held (unverified), 0 withdrawn.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | unverified | HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. The xbarin02/collatz repository README (raw GitHub, opened) confirms Barina 2021 (J Supercomput 77: 2681-2688) and Barina 2025 (J Supercomput 81: 810) by citation, but states no result or bound. Pass 22's note stands: the 2^68 in the source field is unconfirmed. |
+| c5 | unverified | HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Open-problem status needs an opened survey (Lagarias ed. 2010 or later). |
+
+**Result:** 0 verified, 0 disputed, 2 held (unverified), 0 withdrawn.

@@ -16,3 +16,13 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c6 | verified | Convention: idealisations, as stated; the arrows are 1 per about 22 px of bar, a picture rather than a count. |
 
 **Result:** no disputes. Held unverified: c2. All other claims verified. The fixes are in the notes; demo-builder owns them (board).
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | VERIFIED on an opened source: OpenStax University Physics Vol. 2, section 12.7 'Magnetism in Matter' (module m58467, raw GitHub, opened 2026-10-14). It says electron orbits and spins make each atom a magnetic dipole (moments around 10^-23 A·m²). A ferromagnet 'consists of tiny regions known as magnetic domains' of 10^17 to 10^21 atoms, in which 'the magnetic dipoles are rigidly aligned in the same direction', and aligned domains give a net (permanent) magnetisation. 'Tiny atomic magnets lined up head to tail' is a fair plain-words version. Griffiths ch. 6 not opened. |
+
+**Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

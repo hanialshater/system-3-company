@@ -59,3 +59,17 @@ Checker: fact-checker. I did not write or build these claims. Scope: every claim
 | c6 | verified | avg(100) = 60 is the only equilibrium (for any split below 100% B is faster than 60, so drivers switch); min avg 45; 60/45 = 4/3. Reveal prints fmt(A_MIN) / fmt(avg(BEST)). |
 
 **Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | VERIFIED (v6). timeB(x) = 60x/100 < 60 for every x < 100, equal at 100. The 100% note reads 'Everyone on B: both roads take 60 min. No driver gains by switching.' Reveal 'Selfish drivers all take B: 60 min.' prints fmt(A_MIN). |
+| c2 | verified | VERIFIED (v6). Own grid 0..100 step 5: avg(50) = 45 is the unique minimum (45.15 at 45 and 55); avg >= 45 everywhere, so 30 is out of reach. found-bottom (required) needs 50 and some split below 50, and 100 is always seen, so at the reveal best = 50 and roseBelow is true. Reveal reads 'Your Lowest seen reads 45 min at 50%, and the trace rises on both sides. 30 is out of reach: A takes 60.' The Lowest seen readout prints the same. |
+| c3 | verified | VERIFIED (v6). joinCost(50): after = timeB(55) = 33, savedEach 27, saved 135; lostEach = timeB(5) = 3, lost 50 x 3 = 150; 100 x (avg(55) - avg(50)) = 15 = 150 - 135. Stage line 'Lowest seen split, 50 of 100 on B: 5 more join, saving 135 min; the 50 on B lose 150.' and the reveal both read joinCost(best) with best = 50. |
+| c4 | verified | VERIFIED by my own derivation. The learner text names no paper. For latencies l(x) = ax + b (a, b >= 0), a Wardrop equilibrium f satisfies sum l(f)f <= sum l(f)f*, and a f f* <= a f*^2 + a f^2/4 (since a(f* - f/2)^2 >= 0). So C(f) <= C(f*) + C(f)/4, i.e. C(f) <= (4/3)C(f*), on any network. The bound is attained here: 60/45 = 4/3. Numerical check: 20,000 random affine parallel-link instances, worst ratio 1.3331. Roughgarden and Tardos 2002 not opened; the attribution is in the source field only. |
+| c6 | verified | VERIFIED (v6). avg(100) = 60 is the only equilibrium (c1); min avg(50) = 45 (c2); 60/45 = 4/3. Reveal prints fmt(A_MIN) / fmt(avg(BEST)) = '60 / 45 = 4/3 of the best, a third more'. |
+
+**Result:** 5 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

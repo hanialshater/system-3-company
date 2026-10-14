@@ -54,8 +54,10 @@
       "id": "geography.horizon-ruler.c4",
       "text": "Air bends light, so real horizons are a little farther.",
       "support": "source",
-      "source": "Standard atmospheric refraction (k about 0.13) gives d of about 3.86 sqrt(h) km instead of 3.57 sqrt(h), about 8% farther (e.g. Young, 'Distance to the horizon', SDSU; from memory, not checked online). The stage says 'No refraction'. | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence shortened from 'Air bends light a little, so real horizons are a few per cent farther.' Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): HELD. Atmospheric refraction lengthening the horizon (k ~ 0.13, ~8%) needs an opened source (Young, SDSU, not reachable; web blocked). Not derivable from the stage.",
-      "status": "unverified"
+      "source": "Standard atmospheric refraction (k about 0.13) gives d of about 3.86 sqrt(h) km instead of 3.57 sqrt(h), about 8% farther (e.g. Young, 'Distance to the horizon', SDSU; from memory, not checked online). The stage says 'No refraction'. | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence shortened from 'Air bends light a little, so real horizons are a few per cent farther.' Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): HELD. Atmospheric refraction lengthening the horizon (k ~ 0.13, ~8%) needs an opened source (Young, SDSU, not reachable; web blocked). Not derivable from the stage. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED: an opened source plus a derivation. GRASS GIS r.viewshed (raw GitHub OSGeo/grass, raster/r.viewshed/main.cpp and grass.cpp, opened 2026-10-14) models refraction as reducing the curvature drop d²/2R by the factor (1 − k), default k = 1/7 'for visual' (citing Yoeli 1985). Less drop means a farther horizon: d = sqrt(2Rh/(1 − k)) = 1.080 × the no-refraction distance at k = 1/7, i.e. 3.57√h -> 3.86√h km, 'a little farther'. Non-blocking for the builder: the source field says 'k about 0.13 gives 3.86'; k = 0.13 gives 3.83√h, and 3.86 is k ≈ 1/7. Young (SDSU) not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

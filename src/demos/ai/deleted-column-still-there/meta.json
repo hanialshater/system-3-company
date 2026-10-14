@@ -31,29 +31,37 @@
       "id": "ai.deleted-column-still-there.c1",
       "text": "In the toy, 50 applicants are in group A and 50 in group B, and past lenders approved 80% of group A and 40% of group B in both neighbourhoods (stage header: 'Past lenders approved ○ A 80%, ▢ B 40%'). The toy model approves a whole neighbourhood if more than half of its past applicants were approved (explore hint).",
       "support": "convention",
-      "source": "The toy's own data and rule, world() in Demo.tsx (MODEL block), stated on the stage and in the explore hint. Dot positions inside each box are shuffled with mulberry32 seed 1 (first seed, untuned; positions change no number).",
-      "status": "unverified"
+      "source": "The toy's own data and rule, world() in Demo.tsx (MODEL block), stated on the stage and in the explore hint. Dot positions inside each box are shuffled with mulberry32 seed 1 (first seed, untuned; positions change no number). | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. world() in Demo.tsx: PER_GROUP 50 per group; PAST A 0.8, B 0.4, the same in every neighbourhood; approve = past > 0.5. Stage header 'Past lenders approved ○ A 80%, ▢ B 40%' and explore hint ('approves a whole neighbourhood if most past applicants there were approved') match. layout() uses mulberry32(1) only to shuffle dot order.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.deleted-column-still-there.c2",
       "text": "With 80% of each group in its own neighbourhood (40 A + 10 B in N1, 10 A + 40 B in N2), N1's past approval rate is 72% and N2's 48%, so the toy model approves N1 and rejects N2: A 80%, B 20%, a wider gap than the lenders' 80% and 40%. With 90% together: N1 76%, N2 44%; A 90%, B 10%.",
       "support": "derivation",
-      "source": "Arithmetic: (32 + 4)/50 = 72%, (8 + 16)/50 = 48%; (36 + 2)/50 = 76%, (4 + 18)/50 = 44%. world() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Reveal values recorded when the learner presses 'Train without group'.",
-      "status": "unverified"
+      "source": "Arithmetic: (32 + 4)/50 = 72%, (8 + 16)/50 = 48%; (36 + 2)/50 = 76%, (4 + 18)/50 = 44%. world() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Reveal values recorded when the learner presses 'Train without group'. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own arithmetic in node: seg 0.8 -> N1 40 A + 10 B, past (32 + 4)/50 = 72% approve; N2 10 A + 40 B, (8 + 16)/50 = 48% reject; A 40/50 = 80%, B 10/50 = 20% (gap 60 points, wider than 40). seg 0.9 -> N1 76%, N2 44%; A 90%, B 10%. The reveal quotes rec.q, recorded on 'Train without group' (seg 0.8).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.deleted-column-still-there.c3",
       "text": "With mixed neighbourhoods (25 A + 25 B in each), both past rates are 60%, and the model approves everyone ('the same model approved both groups alike'; stage: A 100% · B 100%).",
       "support": "derivation",
-      "source": "(20 + 10)/50 = 60% > 50% in both neighbourhoods. world(0.5) in Demo.tsx.",
-      "status": "unverified"
+      "source": "(20 + 10)/50 = 60% > 50% in both neighbourhoods. world(0.5) in Demo.tsx. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. seg 0.5 -> 25 A + 25 B in each; past (20 + 10)/50 = 60% > 50% in both, so both approved: A 100%, B 100%. 'mixed-seen' is a required milestone, so the reveal's 'When you mixed the neighbourhoods' always follows a seen run.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.deleted-column-still-there.c4",
       "text": "Removing a protected attribute does not prevent discrimination when other features, such as where people live, are correlated with it ('Deleting the column deletes the label, not the pattern. Fairness has to be checked on outcomes by group, not on inputs').",
       "support": "source",
-      "source": "Barocas, Hardt and Narayanan, Fairness and Machine Learning: Limitations and Opportunities (MIT Press, 2023; fairmlbook.org), chapter 3 ('Classification'), on why removing the sensitive attribute fails (redundant encodings); Pedreshi, Ruggieri and Turini (2008), 'Discrimination-aware data mining', KDD 2008 (redlining). About real systems.",
-      "status": "unverified"
+      "source": "Barocas, Hardt and Narayanan, Fairness and Machine Learning: Limitations and Opportunities (MIT Press, 2023; fairmlbook.org), chapter 3 ('Classification'), on why removing the sensitive attribute fails (redundant encodings); Pedreshi, Ruggieri and Turini (2008), 'Discrimination-aware data mining', KDD 2008 (redlining). About real systems. | FC pass 38 (fact-checker, 2026-10-14): HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Barocas, Hardt and Narayanan (fairmlbook.org) and Pedreshi et al. 2008 could not be opened, and no GitHub source copy of the book was found. The toy shows the mechanism, but the claim is about real systems.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

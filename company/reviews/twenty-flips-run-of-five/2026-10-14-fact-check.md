@@ -22,3 +22,13 @@ Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this
 | Claim | Verdict | Basis |
 |---|---|---|
 | c5 | verified | Ran a copy of model.ts v2 (strip-types) against an independent mulberry32 + longest-run tally for n = 1000, 1001, 1002, 1005, 2000, 2001, 3001 (batches then steps): atMost(t, k) equals the true count of longest run <= k for every k = 1..20, 0 mismatches. n = 1,001: k = 7 94.6%, 8 97.5%, 9 99.0%, 12 99.9%, 14+ 100.0% (exact by brute force over 2^20: 94.56, 97.46, 98.83, 99.89). k = 1 (alternating taps) prints 0.0% via the myRun >= 2 guard; true share is also 0 (no seed in 1..3001 has longest run 1). Note for builder: the first source sentence still describes v1 ('atMost(t, k) = t.n - atLeast(t, k+1)'); update it, no effect on the claim. |
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | unverified | HELD (not learner-visible). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Bar-Hillel and Wagenaar 1991 not opened. |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.

@@ -32,29 +32,37 @@
       "id": "ai.secret-in-the-counts.c1",
       "text": "In the toy corpus (7 sentences, shown on the stage), the only word that follows 'pin is' is '4', and each later two-word context in the secret is unique, so greedy generation from 'my pin is' with 2-word context outputs '4 7 1 9' (reveal: 'After 'pin is', its counts held only one word, so the most common next word was the secret').",
       "support": "derivation",
-      "source": "The toy corpus and generate() in Demo.tsx (MODEL block: greedy, ties to first seen, back-off to shorter context when unseen, stop at sentence end). Builder ran the MODEL block in node 2026-10-14: 2-word -> 4 7 1 9; 1-word -> ready; secret deleted, 2-word -> ready (back-off to 'is').",
-      "status": "unverified"
+      "source": "The toy corpus and generate() in Demo.tsx (MODEL block: greedy, ties to first seen, back-off to shorter context when unseen, stop at sentence end). Builder ran the MODEL block in node 2026-10-14: 2-word -> 4 7 1 9; 1-word -> ready; secret deleted, 2-word -> ready (back-off to 'is'). | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node run of the MODEL block (generate, counts, back-off): 2-word context from 'my pin is' -> '4 7 1 9' then (end); the first tally at 'pin is' is [4: 1], its only entry. Each later context ('is 4', '4 7', '7 1', '1 9') occurs once in the corpus.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.secret-in-the-counts.c2",
       "text": "With 1-word context the commonest word after 'is' is 'ready' (3 of the 7 words that follow 'is'), so the output is 'my pin is ready' ('is' was followed by 'ready' three times, and the pin stayed hidden'); with the secret deleted, 'pin is' never occurred, the model backs off to 'is' and also outputs 'ready'.",
       "support": "derivation",
-      "source": "Counts after 'is' in the corpus: ready 3, at 1, sam 1, late 1, 4 1. generate() in Demo.tsx.",
-      "status": "unverified"
+      "source": "Counts after 'is' in the corpus: ready 3, at 1, sam 1, late 1, 4 1. generate() in Demo.tsx. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. Own node: 1-word tally after 'is' = ready 3, at 1, sam 1, late 1, 4 1 (7 words), output 'ready'. Secret deleted, 2-word: 'pin is' unseen, back-off to 'is' -> 'ready'. The reveal's count reads one.tally.row[0][1] = 3 -> 'three'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.secret-in-the-counts.c3",
       "text": "Large language models can emit verbatim sequences from their training data, including personal information such as phone numbers and addresses ('Real language models have repeated phone numbers and addresses from their training data the same way').",
       "support": "source",
-      "source": "Carlini et al. (2021), 'Extracting training data from large language models', USENIX Security 2021 (arXiv 2012.07805). About real systems. 'The same way' is the toy's analogy (a unique context makes rare text the most likely continuation); the fact-checker should confirm the paper supports memorised sequences being recovered by prompting with their prefix.",
-      "status": "unverified"
+      "source": "Carlini et al. (2021), 'Extracting training data from large language models', USENIX Security 2021 (arXiv 2012.07805). About real systems. 'The same way' is the toy's analogy (a unique context makes rare text the most likely continuation); the fact-checker should confirm the paper supports memorised sequences being recovered by prompting with their prefix. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED on the authors' own public repository for Carlini et al. 2021 (raw GitHub ftramer/LM_Memorization, README.md and Samples.md, opened 2026-10-14). The README says generated samples 'are likely to contain verbatim text from the GPT-2 training data' and that prompting with web snippets increased memorised output. Samples.md reports 604 memorised examples among 1,800 checked, including 'A phone number for a hotline', 'Memorized names' and 'Complete contact information for an individual' (a postal address, email and phone number). 'The same way' is the toy's analogy: a context seen once makes its rare continuation the likeliest one. The paper PDF (arXiv) was not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.secret-in-the-counts.c4",
       "text": "Longer contexts remember rarer text ('Longer contexts remember rarer text'): in the toy the 2-word context reproduced a sentence seen once, the 1-word context did not.",
       "support": "derivation",
-      "source": "Shown by the toy (c1, c2). The general version, memorisation growing with model size and duplication, is Carlini et al. (2023), 'Quantifying memorization across neural language models', ICLR 2023 (arXiv 2202.07646); the lesson does not state it.",
-      "status": "unverified"
+      "source": "Shown by the toy (c1, c2). The general version, memorisation growing with model size and duplication, is Carlini et al. (2023), 'Quantifying memorization across neural language models', ICLR 2023 (arXiv 2202.07646); the lesson does not state it. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED as a statement about the toy: the 2-word context reproduces the once-seen secret (c1), the 1-word context does not (c2). It is true of count models in general, because a longer context is at least as specific, so a unique context makes a once-seen continuation the maximum. The lesson does not claim the Carlini 2023 scaling result, and I did not check it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -27,3 +27,16 @@ Method: I read the engine first (src/lib/lifehacks/engine-v2.ts; HomeLesson.tsx 
 **Result:** 3 verified, 2 disputed, 0 held (unverified).
 
 **Fix needed (blocks publishing):** c4 and .seen. Put the square grid back in the question ("…fit in this square grid once each is turned 45°?") and relabel the result row "Discs in the grid" (or "Grid count"). Wording: cm-lifehacks; applying it: demo-builder. Then a fact-checker re-checks c4 and .seen.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | disputed | STILL DISPUTED (unchanged since W-740; home-lessons.ts still asks 'At this 28 cm tray, how many 10 cm discs fit once each is turned 45°?'). Own check: 5 discs of 10 cm fit a 28 cm square (centres at (5,5), (23,5), (5,23), (23,23) and (14,14); corner-to-centre spacing 12.73 cm >= 10, and this works for any side >= 24.14 cm). So 'how many fit' keyed '4' is false as asked. Fix (cm-lifehacks wording, demo-builder applies): 'how many 10 cm discs fit in this square grid once each is turned 45°?'. |
+| seen | disputed | STILL DISPUTED (spec unchanged: resultLabel 'Discs that fit'). The grid counts floor(W/10)² are right at every side from 22 to 34 cm. Labelled 'Discs that fit', though, they are false at 25 to 29 cm, where 5 fit (corners plus centre, side >= 24.14 cm) (W-740 also flags 34 cm, where 10 are said to fit; I did not re-prove that case, and the 25-29 cm counterexample is enough). Minimal fix: resultLabel 'Discs in the grid' (or 'Grid count'); then this verifies. |
+
+**Result:** 0 verified, 2 disputed, 0 held (unverified), 0 withdrawn.
+
+**Fix needed (blocks publishing):** c4, seen. See each row for the fix; wording belongs to cm-lifehacks, applying it to demo-builder (interaction-designer for W-610), and then a fact-checker re-checks.

@@ -16,3 +16,15 @@ Method: I read the engine first (src/lib/lifehacks/engine-v2.ts; HomeLesson.tsx 
 **Result:** 3 verified, 1 disputed, 0 held (unverified).
 
 **Fix needed (blocks publishing):** .seen. The Match row under "Kenya's capital?" reads 0/3 because the fixed attempt is wrong, which makes the stage look as if the specific cue fails. Either W-610 (files family, which shows 3 vs 1 directly) or drop the Match row for recall lessons that declare `candidates`. Owner: interaction-designer (W-610), then demo-builder.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| seen | disputed | STILL DISPUTED (studyCatalog and engine unchanged since W-740; the only later commit, 7171b38, touches another lesson's meta). The row 'Kenya's capital?: ... match 0/3' pins the fixed wrong attempt's 0/3 on the specific cue, against c2. Fix as in W-740: W-610 (files family), or drop the Match row for recall lessons that declare candidates. Owner: interaction-designer, then demo-builder. |
+
+**Result:** 0 verified, 1 disputed, 0 held (unverified), 0 withdrawn.
+
+**Fix needed (blocks publishing):** seen. See each row for the fix; wording belongs to cm-lifehacks, applying it to demo-builder (interaction-designer for W-610), and then a fact-checker re-checks.

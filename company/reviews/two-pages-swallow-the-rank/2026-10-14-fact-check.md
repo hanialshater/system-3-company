@@ -19,3 +19,14 @@ Sources: I could not open Page et al. (1999), Easley and Kleinberg ch. 14 (secti
 | c5 | held (unverified) | Held. That 15% random jumps stop the drain is shown by c3 (derivation). That 'scaled PageRank' is the name and that jumps were added to fix this is a source claim: Easley and Kleinberg ch. 14 and Brin and Page (1998) could not be opened. networkx's pagerank docstring (GitHub raw, opened) confirms damping 0.85 and the Page et al. 1999 title, but says nothing about sinks or 'scaled PageRank'. Fix: an openable source, or reword to something derivable such as 'Random jumps fix sinks like this one.' |
 
 **Result:** verified 3, unverified 2.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED on the primary source: Page, Brin, Motwani and Winograd, 'The PageRank Citation Ranking: Bringing Order to the Web' (PDF hosted in the papers-we-love GitHub repository, information_retrieval/, opened 2026-10-14 with pdftotext). Section 2.4: pages that point only to each other 'will accumulate rank but never distribute any rank ... The loop forms a sort of trap which we call a rank sink.' The first half follows from c1 (no link leaves E or F). E&K ch. 14 not opened. |
+| c5 | unverified | HELD, close. The mechanism is confirmed in the same opened Page et al. paper: section 6 says E 'is used as a source of rank to make up for the rank sinks', and with //E// = 0.15 'corresponds to a random surfer periodically jumping to a random web page' (the stage's 15%). The name 'Scaled PageRank' in the reveal is Easley and Kleinberg's term (ch. 14), and I could not open that book. To clear it: a checker opens E&K 14.3, or the builder rewords the reveal to 'PageRank adds these jumps to fix sinks', which the opened paper supports. |
+
+**Result:** 1 verified, 0 disputed, 1 held (unverified), 0 withdrawn.

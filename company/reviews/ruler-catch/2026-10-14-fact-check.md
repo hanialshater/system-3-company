@@ -21,3 +21,13 @@ Checker: fact-checker. I did not write or build these claims. Scope: every claim
 | c7 | verified | fallCm(t) = 50 g t^2 = 100 x g t^2/2, no drag term; caption after the commit reads exactly 'Simulated catcher, not your reflex. The ruler falls from rest, no air drag.' |
 
 **Result:** 1 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | unverified | HELD (not in learner text). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Woods et al. 2015 (Front. Hum. Neurosci.) and Kosinski 2008 (Clemson) were not opened. |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.

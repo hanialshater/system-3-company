@@ -16,3 +16,15 @@ Checker: fact-checker, a fresh instance that did not write these claims. Method:
 | c6 | verified | Derivation: both feet sit on the same conductor, so their difference at any instant is I(t) × (series impedance per metre) × L. With the model's 200 A and 0.2 ohm/km this is ≤ 0.002 × √2 V peak at 5 cm, i.e. tiny, while each foot swings with the line. The Demo.tsx header states the steady-voltage simplification. It is not on stage (no stage text), so it is a model note, not a learner sentence. |
 
 **Result:** 4 verified, 0 disputed, 2 held unverified (no source could be opened; board W-511, evaluation-steward).
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | VERIFIED on an opened source: OpenStax University Physics Vol. 2, section 9.4 'Ohm's Law' (raw GitHub openstax/osbooks-university-physics-bundle, module m58732, opened 2026-10-14): 'the current in a metal wire is directly proportional to the voltage applied ... voltage the cause and current the effect' (I = V/R). With about 0.002 V across the bird (c2), almost no current flows, which matches the reveal. |
+| c2 | verified | VERIFIED (v2). Own node acrossV(cm) = 200 × 0.0002 × cm/100: 5 cm 0.002 V; 2 cm 0.0008 V, shown '0.001 V' by toFixed(3); 7 cm 0.0028 V, shown '0.003 V'; 20 cm 0.008 V. Foot 2 reads 11,000 − 0.002, which fmtV rounds to '11,000 V'. Meter labels 'foot 1–ground' / 'foot 2–ground', seen line '{feet}–ground 11,000 V', and the reveal 'from each foot to the ground' match the code. The reveal quotes the stored across value (0.003 V on the QA path at 7 cm), which the claim allows. |
+| c5 | verified | VERIFIED as fact: OpenStax University Physics Vol. 2, section 7.6 'Equipotential Surfaces and Conductors' (module m58723, raw GitHub, opened) gives the dielectric strength of air as about 3.0 × 10^6 N/C, above which the air is ionised and conducts. So high voltage can jump an air gap. Not my call: the source field says this safety sentence needs approval by a reader other than its author (W-361), and there is no safety review on disk in company/reviews/bird-on-the-wire/. That gate is the safety reviewer's, not mine. |
+
+**Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

@@ -39,3 +39,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** paragraph 1 is computed from run() for the three agendas (C, A, B; c2), all milestone-gated; the reveal pins the stage to the asked agenda. Recall card: Q beats R (Ana, Ben), P beats Q (Ana, Cy), answer P: correct.
 
 **Result:** 3 verified, 0 disputed. Lesson now: 5 verified.
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | VERIFIED (v3). Own recount from RANK: A beats B (voters 1, 3), B beats C (1, 2), C beats A (2, 3), each 2-1, so no option beats both others. Agendas: A vs B then C -> C; B vs C then A -> A; A vs C then B -> B. The held-back option always wins, so the order picks the winner. The v3 reveal sentence says this. |
+| c4 | verified | VERIFIED (v3). votesFor() counts each voter for the option ranked higher: sincere voting. The reveal ends 'as long as everyone votes for the option they like better'. No learner text (title, hook, predict, reveal, recall) mentions elections or real cycles. |
+| c5 | verified | VERIFIED (v3). A>B>C, B>C>A and C>A>B are each a strict order; the loop exists only in the pairwise majorities. The reveal reads 'Each voter's ranking is consistent, yet the group's majorities loop: A beats B, B beats C, C beats A, each 2 to 1.' |
+
+**Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

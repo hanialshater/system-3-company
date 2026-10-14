@@ -15,3 +15,13 @@ Checker: fact-checker, a fresh instance that did not write these claims. Method:
 | c5 | verified | Stage tag text 'Toy models that only guess' (Demo.tsx span.tag) matches. The model: each question is right if r() < 0.5, for every model, on both tests. No skill parameter exists. |
 
 **Result:** 4 verified, 0 disputed, 1 held unverified (no source could be opened; board W-511, evaluation-steward).
+
+## Pass 38 (2026-10-14, set A)
+
+Checker: fact-checker. I wrote and built none of these claims. Scope: every open claim in this lesson (set A of pass 38: ai, cs, math, physics, probability, economics, geography, lifehacks). Method: I read Demo.tsx (or the Life Hacks spec and engine) first, every learner-visible string, then the claims. I re-ran every number in my own node scripts (scratchpad fc38/: cluster.mjs, enemy.mjs, secret.mjs, plus inline runs), not imported from the lesson. Web: arxiv, publisher, government, Wikipedia and help-centre hosts return proxy 403 or fail DNS. Only raw.githubusercontent.com, PyPI and npm are reachable, so the sources I opened are files on GitHub (OpenStax CNXML, MicrosoftDocs, NetworkX, d2l, GRASS, GNOME/KDE source, the authors' own repositories, a papers-we-love PDF), each named in its row. Search-result snippets were not used as evidence. A claim whose source I could not open stays unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | unverified | HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Dwork et al. 2015 (Science) and ESL 2nd ed. 7.2 were not found on any reachable mirror. The selection bias itself is shown on stage (c1-c3, verified). |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
