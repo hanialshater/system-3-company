@@ -1,7 +1,7 @@
 {
   "slug": "news-comes-from-acquaintances",
-  "title": "News comes from acquaintances",
-  "hook": "Your closest friends bring you the most news. Or do they?",
+  "title": "The one tie between two groups",
+  "hook": "News from another friend group has one way in. What kind of tie is it?",
   "domain": "math",
   "concept": "weak-ties-local-bridges",
   "status": "review",
@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "math.news-comes-from-acquaintances.c1",
-      "text": "Rule used in the lesson (strong triadic closure): if a person is close to two people, those two are linked. Stage: \"Rule: any two of your close friends are linked.\"",
+      "text": "Rule used in the lesson (strong triadic closure): if a person is close to two people, those two have a tie (close or acquaintance). Stage: \"Rule: two people you’re close to must have a tie.\" Question: \"Every tie is close or an acquaintance.\"",
       "support": "convention",
-      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law. | FACT-CHECK 2026-10-14 (pass NCM-1): Stage text matches; Demo.tsx marks the rule broken exactly when A-B is close. Convention of the lesson. E&K ch. 3 is \"Strong and weak ties\" (catalogue). Section: search results suggest strong triadic closure sits in section 3.2 (The Strength of Weak Ties), not 3.1 (Triadic Closure); not confirmed from the book, so the reference must stay section_unconfirmed (see review record).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law. | v2 (2026-10-14): stage and question wording changed (\"linked\" -> \"have a tie\"; the two kinds of tie named); earlier fact-check (pass NCM-1) applied to the v1 wording.",
+      "status": "unverified"
     },
     {
       "id": "math.news-comes-from-acquaintances.c2",
@@ -42,21 +40,17 @@
     },
     {
       "id": "math.news-comes-from-acquaintances.c3",
-      "text": "A–B could only be close if A and B had no other close friends. When people have close friends in their own group, the one link between two groups must be an acquaintance.",
+      "text": "The same break hits D and E, and on B’s side F, G and H. So while A or B has a close friend in their own group, the one tie between the groups must be an acquaintance.",
       "support": "derivation",
-      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text. | FACT-CHECK 2026-10-14 (pass NCM-1): Own enumeration of 8,192 labellings: 4,160 satisfy the rule; 64 have A-B close; in all 64 neither A nor B has another close tie. General result (a node with two strong ties cannot have a strong local bridge) corroborated by course slides based on E&K ch. 3 (search); section stays unconfirmed.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text. | v2 (2026-10-14): learner text reworded; \"the same break\" = the 6 broken triples of c2 (A: C-B, D-B, E-B; B: F-A, G-A, H-A), re-run in node.",
+      "status": "unverified"
     },
     {
       "id": "math.news-comes-from-acquaintances.c4",
-      "text": "So news from outside your group reaches you over a weak tie (in this model: on the stage, news from H reaches group 1 only across A–B).",
+      "text": "News from outside your group comes in over that tie (in this model: on the stage, news from H reaches A’s group only across A–B, shown as an acquaintance).",
       "support": "derivation",
-      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E. | FACT-CHECK 2026-10-14 (pass NCM-1): Within the model: A-B is the only cross-group link and must be weak when A and B have close in-group friends; Demo HOP sends H -> F,G,B -> A -> C,D,E. Reveal ties it to the stage (\"like H's ... you saw it cross A-B\").",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E. | v2 (2026-10-14): reworded; the hook no longer says acquaintances bring the most news, only that news from another group has one way in.",
+      "status": "unverified"
     },
     {
       "id": "math.news-comes-from-acquaintances.c5",
@@ -87,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:weak-ties-local-bridges",
     "also": [],
