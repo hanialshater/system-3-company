@@ -3,6 +3,26 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 25 re-check (W-238, 12 lessons after the pass 24 fixes)
+
+**What changed**
+- Re-checked the 9 open claims, plus each-element-pops-once c2 (asked to decide): 8 verified, 2 disputed. Statuses set in each meta.json, with checkedBy/checkedOn and a 'FC pass 25' note appended to each source.
+- Verified: wheel-needs-four-colours c4, iss-gravity-still-there c6, hailstone-27-climbs c7, only-the-needed-trader-profits c5, who-pays-same-filter c3 (the Coase naming judged as a naming convention, as the coordinator ruled), two-bets-split c6, patience-wins-the-split c2, pay-for-the-harm-you-do c1.
+- Disputed (board W-239, owner demo-builder): each-element-pops-once c2 (was verified; 'each new number is compared once' contradicts its own total of 8) and c6 (the claim says a replay empties the stack box by box, which is false under reduced motion; and the reveal's present-tense 'look at the 9's row' is false when the reveal opens on list 0 after 8..1 9 then the 9 8..1 chip).
+- Confirmed deletions: continental-jigsaw c4 and bridge-carries-news-not-habits c5 are gone from meta and stage. rotation-untangles-the-chain: the W-235 soft-lock is fixed in code (Plain-first path traced), and the reveal numbers are unchanged.
+- Appended a Pass 25 table to company/reviews/<slug>/2026-10-14-fact-check.md for all 12. Moved W-238 to done. Node ports are in the session scratchpad fc25/ (not kept). No code or claim text edited; no builds.
+
+**What I believe (and how sure)**
+- High on the 8 verified. Each was re-run in node against the lesson's own logic, on every branch I could reach, including reduced motion where it applies.
+- High that the pops c6 stage-pointer path is reachable (traced in a state-machine port, not in a browser). It is the same kind of stage-pointer problem that pass 24 disputed in patience c2 and pay-for-harm c1.
+
+**Next**
+- demo-builder: W-239 (text-only fixes, or put list 1 back on stage at the reveal), then a fact-checker re-checks pops c2 and c6.
+- QA owner: build and QA the 12 lessons (still not run).
+
+**Blocked**
+- Nothing new. External source hosts still unreachable.
+
 ## 2026-10-14, demo-builder: fact-check pass 24 fixes (W-231 to W-236, plus 3 held claims)
 
 **What changed**
