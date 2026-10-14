@@ -4,7 +4,7 @@
 // sign on any pair to flip it; unbalanced trios are shaded and counted, and the camps (if the friend
 // pairs split everyone cleanly) are named. Start: all enemies (five camps, 10 unbalanced).
 // Network stage built by hand to company/design/reviews/2026-10-14-design-lead-ncm-rulings.md §2.
-// QA path (edges in DOM order, then the two chips): AB → 4 camps (7), BC → mixed (6), AC → ABC|D|E (3),
+// QA path (edges in DOM order, then the two chips): AB → 4 camps (7), BC → not camps (6), AC → ABC|D|E (3),
 // DE → ABC|DE (0), six cross pairs → ABCDE (0), All enemies (10), 3 camps → ABC|D|E (3).
 
 import { useState } from "react";
@@ -63,7 +63,7 @@ function camps(sg: Signs): string[] | null {
   return [...m.values()];
 }
 
-const MILESTONES = ["zero", "three"] as const;
+const MILESTONES = ["zero", "three", "mixed"] as const;
 const mid = (k: number): [number, number] => {
   const [a, b] = EDGES[k];
   return [(POS[a][0] + POS[b][0]) / 2, (POS[a][1] + POS[b][1]) / 2];
@@ -72,6 +72,7 @@ const mid = (k: number): [number, number] => {
 interface Seen {
   zeros: string[]; // camp splits the learner reached with 0 unbalanced
   three: { split: string; n: number } | null; // fewest unbalanced seen with exactly 3 camps
+  mixed: number | null; // unbalanced count of the first "not camps" setting the learner reached by tapping
 }
 
 function Stage({
@@ -103,9 +104,13 @@ function Stage({
       setSeen((p) => (p.zeros.includes(split) ? p : { ...p, zeros: [...p.zeros, split] }));
       reach("zero");
     }
+    if (fromTap && !c) {
+      setSeen((p) => (p.mixed === null ? { ...p, mixed: n } : p));
+      reach("mixed");
+    }
     if (c && c.length === 3) {
       setSeen((p) => (p.three && p.three.n <= n ? p : { ...p, three: { split, n } }));
-      reach("three");
+      if (fromTap) reach("three"); // built by hand; the chip alone does not count
     }
   };
 
@@ -122,10 +127,10 @@ function Stage({
     apply(p, false);
   };
 
-  const campText = locked ? "?" : cs ? `${cs.length}: ${cs.join(" | ")}` : "mixed";
+  const campText = locked ? "?" : cs ? `${cs.length}: ${cs.join(" | ")}` : "not camps";
   const label = locked
     ? "Five people, all pairs enemies"
-    : `${bad.length} of 10 trios unbalanced; camps ${cs ? cs.join(", ") : "mixed"}`;
+    : `${bad.length} of 10 trios unbalanced; camps ${cs ? cs.join(", ") : "not camps"}`;
 
   return (
     <div className={s.wrap}>
@@ -220,37 +225,39 @@ const describe = (split: string) => {
 
 export default function EnemyOfMyEnemy({ slug }: { slug: string }) {
   const [signs, setSigns] = useState<Signs>(ALL_ENEMIES);
-  const [seen, setSeen] = useState<Seen>({ zeros: [], three: null });
+  const [seen, setSeen] = useState<Seen>({ zeros: [], three: null, mixed: null });
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Five people; each pair is friends (+) or enemies (−). A trio is balanced if it has three + pairs, or one + and two −. A camp: friends inside, enemies with everyone outside. If every trio is balanced, how many camps can there be?",
+          "Five people; each pair is friends (+) or enemies (−). A trio is balanced with three + pairs, or one + and two −. A camp: friends inside, enemies across. If every trio is balanced, how many camps can there be?",
         options: ["At most 2", "Up to 3", "Up to 5"],
         answer: 0,
       }}
-      exploreHint="Tap a + or − to flip that pair. Get Unbalanced to 0, and try 3 camps."
+      exploreHint={'Flip pairs. Find 0 unbalanced, build 3 camps by hand, and spot a "not camps" setting.'}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            You got 0 unbalanced trios with {seen.zeros.slice(0, 3).map(describe).join(" and ") || "no setting yet"}.
+            Unbalanced hit 0 only at {seen.zeros.slice(0, 3).map(describe).join(" and ") || "no setting yet"}, always with
+            clean camps.
+            {seen.mixed !== null && <> Your “not camps” setting had {seen.mixed} unbalanced.</>}
             {seen.three && (
               <>
                 {" "}
-                Your three camps ({nb(seen.three.split)}) left <strong>{seen.three.n}</strong> unbalanced.
+                Your three camps ({nb(seen.three.split)}) left <strong>{seen.three.n}</strong>.
               </>
             )}
           </p>
           <p>
-            Three camps never balance: one person from each camp makes a trio of three enemies, which is unbalanced.
-            With five people, three camps leave at least 3 such trios; all enemies leaves all 10.
+            For five people, all 16 balanced settings are camp splits. Three camps never balance: one person from each
+            makes three enemies, an unbalanced trio. Five people leave at least 3 such trios; all enemies leaves 10.
           </p>
           <p>
-            So if every trio is balanced, there is one camp or two: friends inside, enemies across. This is the balance
-            theorem (Cartwright and Harary, 1956), and it holds for any number of people.
+            So balanced means one camp or two. This is the balance theorem (Harary, 1953; Cartwright and Harary, 1956),
+            and it holds for any number of people.
           </p>
         </>
       )}

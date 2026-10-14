@@ -1,7 +1,7 @@
 {
   "slug": "enemy-of-my-enemy",
   "title": "The enemy of my enemy",
-  "hook": "The enemy of my enemy is my friend. How far does that saying go?",
+  "hook": "The enemy of my enemy is my friend. What does that force on a whole group?",
   "domain": "math",
   "concept": "structural-balance",
   "status": "review",
@@ -35,7 +35,7 @@
       "id": "math.enemy-of-my-enemy.c2",
       "text": "Among the 1,024 friend/enemy settings of five people (10 pairs), 16 have every trio balanced: 1 is one camp (all friends) and 15 are two camps; every one of the 16 is a clean camp split (friends inside, enemies across).",
       "support": "derivation",
-      "source": "Node enumeration of all 2^10 sign settings with the lesson's exact rule (builder script, session scratchpad eme-check.mjs; brief 2 check by cm-math-discrete gives the same 16 = 2^(5-1)). Output: balanced 16, one camp 1, two camps 15, balanced but not a camp split 0. Address: reveal paragraph 3 ('one camp or two') for five people.",
+      "source": "Node enumeration of all 2^10 sign settings with the lesson's exact rule (builder script, session scratchpad eme-check.mjs; brief 2 check by cm-math-discrete gives the same 16 = 2^(5-1)). Output: balanced 16, one camp 1, two camps 15, balanced but not a camp split 0. Address: reveal paragraphs 2 and 3 ('all 16 balanced settings are camp splits', 'one camp or two') for five people; stage readout 'not camps' never co-occurs with 0 unbalanced.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -69,12 +69,10 @@
     },
     {
       "id": "math.enemy-of-my-enemy.c6",
-      "text": "Balance theorem: if every trio of a complete friend/enemy network is balanced, then either everyone is friends or the people split into two groups, friends inside and enemies across; it holds for any number of people, and is due to Cartwright and Harary (1956).",
+      "text": "Balance theorem: if every trio of a complete friend/enemy network is balanced, then either everyone is friends or the people split into two groups, friends inside and enemies across; it holds for any number of people; Harary proved it (1953), and Cartwright and Harary (1956) applied it to groups of people.",
       "support": "source",
       "source": "Easley & Kleinberg (2010) ch. 5 §5.2 (§ unconfirmed), which attributes the result to Harary and to Cartwright and Harary (1956): D. Cartwright and F. Harary, 'Structural balance: a generalization of Heider's theory', Psychological Review 63(5), 277-293 (1956). Attribution and year unverified by the builder (could not open the source); the fact-checker confirms. Not empirical; the n = 5 case is checked by enumeration (c2). Address: reveal paragraph 3. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): The theorem statement is right (n = 5 re-enumerated: 16 balanced settings, all one or two camps) and the citation details are right: Cartwright D, Harary F (1956), \"Structural balance: a generalization of Heider's theory\", Psychological Review 63(5): 277-293, doi 10.1037/h0046049 (confirmed by search; full text not reachable through the proxy). But \"is due to Cartwright and Harary (1956)\" is a priority claim, and the two-group structure theorem for balanced signed graphs was first proved by Harary alone: F. Harary, \"On the notion of balance of a signed graph\", Michigan Mathematical Journal 2(2): 143-146 (1953); Cartwright and Harary (1956) carried it into social psychology. This lesson's own source line says E&K credits Harary as well as Cartwright and Harary. FIX (builder; this claim text and Demo.tsx reveal paragraph 3): claim \"... it holds for any number of people; Harary proved it (1953), and Cartwright and Harary (1956) applied it to groups of people.\" Reveal: \"This is the balance theorem (Harary, 1953; Cartwright and Harary, 1956), and it holds for any number of people.\" Then re-submit c6.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -96,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:structural-balance",
     "also": [],
