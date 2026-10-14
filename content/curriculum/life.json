@@ -149,7 +149,8 @@
       "demand": 2,
       "prerequisites": [
         "logistic-growth"
-      ]
+      ],
+      "subarea": "ecology-body"
     },
     {
       "id": "diffusion-distance",
@@ -236,7 +237,8 @@
       "name": "Mutations are not aimed at need",
       "level": "intro",
       "demand": 2,
-      "prerequisites": []
+      "prerequisites": [],
+      "subarea": "genetics-evolution"
     },
     {
       "id": "convergent-evolution",
@@ -540,6 +542,24 @@
       "prerequisites": [
         "herd-immunity"
       ],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "case-fatality-lag",
+      "name": "Early fatality ratios run low (deaths lag cases)",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "outbreak-doubling-time"
+      ],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "lead-time-survival",
+      "name": "Earlier diagnosis lengthens survival without delaying death (lead time)",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
       "subarea": "health-epidemiology"
     }
   ]

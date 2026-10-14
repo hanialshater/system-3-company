@@ -93,8 +93,8 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
   - Grid labels 12 → 16 viewBox units, so the card's picture fit can draw the grid at 193 px (labels at 10 px, the W-287 floor) instead of stopping at 252. Settle numbers are larger than before (r7 minor: "hard to read").
   - The tie-break moved from the rule line to the legend ("Numbers: settle order. Dashed: waiting. Ties: more steps taken first."); the rule line is one line. Stage gaps 5 → 3 px.
   - Reveal text unchanged (82 words on the QA path, at most 84).
-- Claims reopened: c1 (tie-break stage address), c6 (legend wording). Claim text unchanged. c2-c5 untouched.
-- Measuring note: `tools/reveal-fit.mjs` waits 120 ms between control presses; a replay still running disables Wall / Guess, so on the dev server about half the runs end "reveal never unlocked". Same before this change (first baseline run). The QA contract waits 450 ms. Not a learner problem; not fixed here.
+- Claims reopened: c1 (tie-break stage address; a run cut short by Wall/Guess now fills its cell and milestone), c6 (legend wording). Claim text unchanged. c2-c5 untouched.
+- Replays: Wall and Guess are no longer disabled while a replay runs. Pressed mid-replay, they finish that run at once (its table cell fills, its milestone fires) and then switch. Replays are paced by the clock (cell index from elapsed time), so a slow device still ends them within 400 ms. Before this, on the dev server under load the 46-cell replay took over 1 s, so the measuring tool and a 450 ms QA wait could open the reveal check before wall-both; about half the reveal-fit runs ended "reveal never unlocked". Now 3 of 3 runs measure.
 
 ## Pre-flight v7
 
@@ -102,6 +102,6 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
 2. Options: unchanged, "7" / "25" / "49".
 3. Locked stage: rule "Score = steps so far + guess of steps left.", empty grid with S and G beside a column of four controls, legend with the tie-break, table of "?", "Guess at S: 6. Real route with the wall: ?". Nothing equals 7 or highlights row 3.
 4. Reveal values: unchanged sources (table cells, GUESS_AT_S, filled("guess", true)).
-5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → Guess: on→off (no-guess wall, 46: plain-at-goal, wall-both). All three milestones reached.
+5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → Guess: on→off (no-guess wall, 46: plain-at-goal, wall-both). All three milestones reached, also when Wall or Guess is pressed before the previous replay ends.
 6. Reset: no reset. Reveal unchanged (79 words on the QA path; tool counts 82 with the verdict line).
-7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 a-star-heads-for-goal`, dev server): crop 0 px (was 165), hiddenBelow 0, phoneFit true. Named and visible: 46, 16, 10, open, wall, no guess, "7 cells route 6". Grid fitted 193/240 px (labels 10 px). Stage 367 px, reveal 226 px, 82 words.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 a-star-heads-for-goal`, dev server): crop 0 px (was 165), hiddenBelow 0, phoneFit true. Named and visible: 46, 16, 10, open, wall, no guess, "7 cells route 6". Grid fitted 193/240 px (labels 10 px). Stage 367 px, reveal 226 px, 82 words. Same result in 3 of 3 runs after the replay change.

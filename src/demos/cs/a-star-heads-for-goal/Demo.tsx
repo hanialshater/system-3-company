@@ -18,6 +18,8 @@
 // v7 (phone fit, build 6 measured crop 165 px): the controls stand in a column beside the grid, No guess / With guess
 // are one toggle "Guess: on/off", the tie-break moved from the rule line to the legend, and grid labels are 16 units
 // so the card can fit the grid down to the 10 px label floor. Measured crop 0 at 390x844; reveal unchanged.
+// Wall and Guess stay enabled during a replay: pressed mid-run they finish it at once, then switch. Replays are
+// paced by elapsed time, so they end within 400 ms on a slow device too.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";

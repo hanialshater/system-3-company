@@ -277,6 +277,7 @@ Round 2 takes the map to 55 concepts. Briefs 23 to 28 cover the six concepts rou
 - Claims to check: natural abundances Cl-35 75.76%, Cl-37 24.24% and masses 34.969 u, 36.966 u (IUPAC / NIST); arithmetic.
 
 ### 33. lighter-yet-boils-later · concept: hydrogen-bonding · core · demand 2
+- Superseded 2026-10-14 by `ethanol-and-its-twin` (`chemistry.matter-reactions.md` #1); skipped in brief-skips.json (W-069). Kept for the record.
 - Learner knows: that water boils at 100 C / does not know: that this is far higher than similar light molecules, because of hydrogen bonds.
 - Misconception: lighter molecules always boil at lower temperatures.
 - Prediction: "H2S (34 u) boils at about -60 C. H2O is lighter (18 u). Water boils at about..." options: A -100 C / B 100 C / C 0 C (answer: B). Check: boiling points H2S -60.3 C, H2O 100 C (CRC Handbook).

@@ -11,10 +11,14 @@
 // pre-drawn limit). Round buttons come first in the DOM so the QA path runs 400 rounds at 10% before switching.
 // v4 (learner r7): the 10% first-round step is kept in a "Seen" row under the records, so the reveal quotes a line that
 // is still on the stage; the step line names its second factor (the responder's share if they propose next).
+// v5 (learner r8, phone fit): reveal cut to <= 90 words; the model caveat moved onto the chart as its caption; the
+// readouts row is gone (the step line says what the proposer keeps, the chart footer says the rounds); the shrink
+// buttons read "Shrink 10%", "30%", "50%" so they fit one row; the "1 round" button is gone (bar 1 of the chart always
+// shows the one-round 100%); the chart is 48 units shorter.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -40,11 +44,11 @@ const whole = (v: number) => `${Math.round(v * 100)}%`;
 const stepText = (sh: number, nn: number) =>
   `offer ${(1 - sh).toFixed(1)} × ${pct(share(sh, nn - 1))} = ${pct((1 - sh) * share(sh, nn - 1))}; keep ${pct(share(sh, nn))}`;
 
-// Geometry (viewBox 340 × 196).
+// Geometry (viewBox 340 × 148).
 const X0 = 40;
 const X1 = 332;
-const Y0 = 12;
-const Y1 = 168;
+const Y0 = 24;
+const Y1 = 126;
 const SLOT = (X1 - X0) / SHOW;
 const y = (v: number) => Y1 - v * (Y1 - Y0);
 
@@ -68,20 +72,15 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With one round the proposer took 100%: the other can only accept or get nothing. Each round in front changes that:
-            the responder can say no and propose next round, worth {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share at
-            a {whole(START_SHRINK)} shrink, so the proposer must offer that much. Your Seen row keeps the step:{" "}
-            &quot;{stepText(START_SHRINK, q?.n ?? LONG)}.&quot;
+            With one round the proposer kept 100%. Each extra round lets the responder refuse and propose next, worth{" "}
+            {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share, so the proposer must offer that: your Seen row reads &quot;
+            {stepText(START_SHRINK, q?.n ?? LONG)}.&quot;
           </p>
           <p>
-            Your {q?.n ?? LONG}-round game at {whole(START_SHRINK)} left the first proposer <strong>{pct(q?.keep ?? limit(START_SHRINK))}</strong>,
-            close to 1 ÷ (1 + {(1 - START_SHRINK).toFixed(1)}) = {pct(limit(START_SHRINK))}. Going first is a small edge when waiting
-            is cheap.
-            {other
-              ? ` At ${whole(other.shrink)} shrink your ${other.n} rounds gave ${pct(other.keep)}: the costlier the delay, the more going first is worth.`
-              : ""}
+            At {whole(START_SHRINK)}, your {q?.n ?? LONG} rounds left the first proposer <strong>{pct(q?.keep ?? limit(START_SHRINK))}</strong>,
+            close to 1 ÷ (1 + {(1 - START_SHRINK).toFixed(1)}): a small edge when waiting is cheap.
+            {other ? ` At ${whole(other.shrink)} shrink you saw ${pct(other.keep)}: costlier delay, bigger edge.` : ""}
           </p>
-          <p className="muted">A simplified model: both players are rational and know the shrink rate.</p>
         </>
       )}
     >
@@ -115,7 +114,10 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                       ? "One round: the proposer offers nothing and keeps 100%."
                       : `First round: offer ${d.toFixed(1)} × ${pct(prev)} (their share proposing next) = ${pct(d * prev)}; keep ${pct(cur)}.`}
                 </p>
-                <svg viewBox="0 0 340 196" className="stage-svg" role="img" aria-label={`First proposer's share for games of 1 to ${bars} rounds`}>
+                <svg viewBox="0 0 340 148" className="stage-svg" role="img" aria-label={`First proposer's share for games of 1 to ${bars} rounds`}>
+                  <text x={X0} y={11} className={s.label}>
+                    Model: both rational, both know the shrink
+                  </text>
                   {[0, 0.5, 1].map((v) => (
                     <g key={v}>
                       <line x1={X0} y1={y(v)} x2={X1} y2={y(v)} className={s.grid} />
@@ -138,11 +140,11 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                       </text>
                     </>
                   )}
-                  <text x={X0} y={186} className={s.label}>
+                  <text x={X0} y={142} className={s.label}>
                     1 round
                   </text>
-                  <text x={X1} y={186} textAnchor="end" className={s.label}>
-                    {n > SHOW ? `bars 1–${SHOW} of ${n} · dark = this game` : `${SHOW} rounds · dark = this game`}
+                  <text x={X1} y={142} textAnchor="end" className={s.label}>
+                    {locked ? `${SHOW} rounds` : n > SHOW ? `bars 1–${SHOW} of ${n} · dark = this game` : `this game: ${n} round${n > 1 ? "s" : ""}, dark`}
                   </text>
                 </svg>
                 <Row>
@@ -163,23 +165,17 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                       className={shrink === sh ? "active" : ""}
                       disabled={locked || shrink === sh}
                       aria-pressed={shrink === sh}
+                      aria-label={`Shrink ${whole(sh)}`}
                       onClick={() => set(sh, n)}
                     >
-                      Shrink {whole(sh)}
+                      {sh === SHRINKS[0] ? `Shrink ${whole(sh)}` : whole(sh)}
                     </Control>
                   ))}
-                  <Control disabled={locked || n === 1} onClick={() => set(shrink, 1)}>
-                    1 round
-                  </Control>
-                </Row>
-                <Row>
-                  <Readout label="Rounds to deadline" value={locked ? "?" : n} />
-                  <Readout label="First proposer keeps" value={locked ? "?" : pct(cur)} />
                 </Row>
                 <p className={s.msg}>
                   {locked || recs.length === 0
                     ? ""
-                    : `Long games (stand-in for no deadline): ${recs.map((r) => `${whole(r.shrink)} shrink → ${pct(r.keep)}`).join(" · ")}`}
+                    : `Long games (stand-in for no deadline): ${recs.map((r, i) => `${i ? "" : "shrink "}${whole(r.shrink)} → ${pct(r.keep)}`).join(" · ")}`}
                 </p>
                 <p className={s.msg} data-testid="seen">
                   {locked || !q ? "" : `Seen at ${whole(START_SHRINK)}, ${q.n} rounds: ${stepText(START_SHRINK, q.n)}.`}
