@@ -1,9 +1,9 @@
 {
   "slug": "bird-on-the-wire",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "The bird on the 11,000 V line",
+  "hook": "Birds perch on bare power lines every day. What voltage is across one?",
   "domain": "physics",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "potential-difference",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +12,70 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "current flows round a loop (current-same-around-loop)",
+      "high voltage is dangerous"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that voltage is a difference between two points",
+      "that current flows through something only when its two ends sit at different voltages"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "A bird on an 11,000 V line has 11,000 V through it and survives only because birds are insulated or lucky.",
+  "objective": "The learner can explain that voltage is a difference between two points: a bird on one line has almost no voltage between its feet, so almost no current flows through it, but touching the grounded pole puts the full 11,000 V across it.",
   "claims": [
     {
       "id": "physics.bird-on-the-wire.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "Current through a conductor needs a potential difference across it (I = ΔV / R); reveal: 'Current needs a voltage difference to push it, so almost none goes through the bird.'",
+      "support": "source",
+      "source": "Ohm's law: any introductory electricity text (e.g. OpenStax University Physics Vol. 2, chapter 9, Current and Resistance; fact-checker picks the section). Brief: company/domains/briefs/physics.electricity.md round 3 #2, claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.bird-on-the-wire.c2",
+      "text": "On a line at 11,000 V to ground carrying 200 A, each foot reads 11,000 V against ground, and the wire between feet 5 cm apart drops 0.002 V (2 cm: 0.001 V; 20 cm: 0.008 V); stage: 'feet 11,000 V', 'across 5 cm 0.002 V'; reveal: 'only 0.002 V between them'.",
       "support": "derivation",
-      "source": "TODO",
+      "source": "ΔV = I R' L with I = 200 A, R' = 0.2 ohm/km: 200 x 0.0002 x 0.05 = 0.002 V (Demo.tsx `acrossV`, shown with toFixed(3); 7 cm gives 0.0028 -> '0.003 V'). Foot 2 reads 11,000 - 0.002 V, shown rounded as 11,000 V. Current and conductor resistance are illustrative (brief claim 2; check.mjs); real line currents and conductors vary.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.bird-on-the-wire.c3",
+      "text": "With feet on one line, the current through the bird is about 0.2 µA (stage: 'bird 0.2 µA'); with a wing on the grounded pole, 11,000 V is across it and about 1.1 A flows (stage: 'bird 1.1 A', 'to pole 11,000 V'; reveal: 'the difference jumped to 11,000 V').",
+      "support": "derivation",
+      "source": "I = ΔV / R with an illustrative bird resistance of 10 kilo-ohm (brief): 0.002 / 10,000 = 2e-7 A; 11,000 / 10,000 = 1.1 A. Arrow width grows with log10 of the current (Demo.tsx comment), so it is a picture of order of magnitude, not a linear scale. Electrocution of birds that bridge a conductor and a grounded pole or two conductors is documented in APLIC, Suggested Practices for Avian Protection on Power Lines (2006) (fact-checker confirms).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.bird-on-the-wire.c4",
+      "text": "The pole is drawn as grounded (0 V), with the line held off it by an insulator.",
+      "support": "convention",
+      "source": "Distribution poles carry grounded hardware (ground wires, bonded crossarm fittings) and the conductor sits on insulators; APLIC (2006) describes grounded hardware as the electrocution path for perching birds. Stage drawing only (no stage text). Fact-checker confirms the wording.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.bird-on-the-wire.c5",
+      "text": "Never approach real power lines: current can jump across air.",
+      "support": "source",
+      "source": "High voltages can arc across an air gap: the breakdown field of dry air is about 3 MV/m (any electrostatics text, e.g. OpenStax University Physics Vol. 2, section 7.5); utility safety guidance keeps people metres from lines. SAFETY WORDING: must be approved by a reader other than its author before publish (W-361 precedent; brief).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.bird-on-the-wire.c6",
+      "text": "Model: the line is drawn at a steady 11,000 V; on an AC line both feet rise and fall together, so the difference between them stays tiny.",
+      "support": "derivation",
+      "source": "Brief claim 5. On AC the line-to-ground voltage varies in time, but both feet sit on the same conductor a few cm apart, so their difference is still I(t) R' L, thousandths of a volt. Stated here and in the Demo.tsx header; not on the stage (text budget).",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "A squirrel sitting on one power line reaches over and touches a second line at a different voltage. Why is that dangerous when sitting on one line was not?",
     "options": [
-      "TODO",
-      "TODO"
+      "Now there is a voltage difference between the two points it touches",
+      "Two lines carry twice the current into it",
+      "It is no longer insulated by its feet"
     ],
     "answer": 0,
-    "why": "TODO"
+    "why": "Current flows through something only when its two ends are at different voltages. On one line both feet are at almost the same voltage; two different lines put a large difference across the animal."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +83,16 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:potential-difference",
+    "also": [],
+    "prerequisites": ["physics:current-not-used-up"],
+    "level": "core",
+    "strand": "electricity",
+    "references": [],
+    "tags": ["voltage", "circuits", "safety"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
 }

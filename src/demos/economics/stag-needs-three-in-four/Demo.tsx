@@ -62,15 +62,13 @@ export default function StagHunt({ slug }: { slug: string }) {
             lines crossed at <strong>{THRESH}%</strong>: below that, hare is the better bet.
           </p>
           <p>
-            At 0% your best reply was hare, and a partner just as sure of you replies hare too: both hare, {HARE} each. At 100%
-            it was both stag, {STAG} each. Both boxes are ticked: each outcome is the best reply to itself. Both hunters prefer
-            the stag, yet doubt alone can lock them into hare.
+            At 0% hare was the best reply for you both: {HARE} each. At 100%, both stag, {STAG} each. Both boxes are ticked:
+            each is the best reply to itself. Both prefer the stag, yet doubt alone can lock them into hare.
           </p>
-          <p className="muted">Invented payoffs in a simplified model. The game is called the stag hunt, after an example of Rousseau&apos;s.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const set = (v: number) => {
@@ -85,8 +83,8 @@ export default function StagHunt({ slug }: { slug: string }) {
               const now = !locked && bestAt(p) === (at === 0 ? "hare" : "stag");
               return (
                 <g>
-                  <rect x={x} y={190} width={128} height={24} rx={6} className={now ? s.boxOn : s.box} />
-                  <text x={x + 64} y={206} textAnchor="middle" className={s.small}>
+                  <rect x={x} y={190} width={140} height={24} rx={6} className={now ? s.boxOn : s.box} />
+                  <text x={x + 70} y={207} textAnchor="middle" className={s.small}>
                     {on ? "✓ " : ""}
                     {label}: {pay} each
                   </text>
@@ -95,7 +93,7 @@ export default function StagHunt({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: invented payoffs, one partner as sure of you as you are of them</p>
+                <p className={s.chip}>Model: invented payoffs; your partner is as sure of you as you are of them</p>
                 <svg
                   viewBox="0 0 320 220"
                   className="stage-svg"
@@ -141,20 +139,21 @@ export default function StagHunt({ slug }: { slug: string }) {
                       <circle cx={xp(p)} cy={yv(HARE)} r={5} className={s.mutedFill} stroke="var(--fg)" />
                     </g>
                   )}
-                  {box(24, "both hare", HARE, 0)}
-                  {box(168, "both stag", STAG, 100)}
+                  {box(14, "both hare", HARE, 0)}
+                  {box(166, "both stag", STAG, 100)}
                 </svg>
                 <Row>
-                  <Readout label="Stag is worth" value={locked ? "?" : fmt(stag)} />
-                  <Readout label="Hare is worth" value={locked ? "?" : HARE} />
+                  <Readout label="Stag worth" value={locked ? "?" : fmt(stag)} />
+                  <Readout label="Hare worth" value={locked ? "?" : HARE} />
                   <Readout label="Best reply" value={locked ? "?" : best} />
                 </Row>
-                {/* The presets name 75%, so they appear only after the commit (no answer before the commit). */}
-                {!locked && (
+                {/* The presets name 75%, so they appear only after the commit (no answer before the commit). At the reveal they
+                    give way to the reveal text (v4, phone fit); the slider stays, and the marks keep what they recorded. */}
+                {!locked && phase !== "reveal" && (
                 <Row>
                   {PRESETS.map((v) => (
                     <Control key={v} className={p === v ? "active" : ""} disabled={locked || p === v} onClick={() => set(v)}>
-                      {v}% sure
+                      {v}%
                     </Control>
                   ))}
                 </Row>

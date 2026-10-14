@@ -105,3 +105,23 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
 5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → Guess: on→off (no-guess wall, 46: plain-at-goal, wall-both). All three milestones reached, also when Wall or Guess is pressed before the previous replay ends.
 6. Reset: no reset. Reveal unchanged (79 words on the QA path; tool counts 82 with the verdict line).
 7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 a-star-heads-for-goal`, dev server): crop 0 px (was 165), hiddenBelow 0, phoneFit true. Named and visible: 46, 16, 10, open, wall, no guess, "7 cells route 6". Grid fitted 193/240 px (labels 10 px). Stage 367 px, reveal 226 px, 82 words. Same result in 3 of 3 runs after the replay change.
+
+## Revision v8 (W-448, design review 2026-10-14-design.md: approve with changes)
+
+- Problem (design-lead): the route polyline struck through the settle numbers on route cells, and the S/G order numbers ("1", "46") sat on the S and G markers.
+- Changes:
+  - Draw order is now cells → route → S/G markers → settle numbers. Every settle number has a halo (`paint-order: stroke; stroke: var(--bg-2); stroke-width: 4px`), so the line passes under it.
+  - S and G markers sit low in their cells (centre y + 29, r 10, was centre y + 22, r 11); the S and G settle numbers sit centred above them (baseline y + 15), clear of the marker. The route's ends go to the marker centres, and the markers are drawn over the route. G's ring is filled --bg-2 so the route does not show through it.
+  - Recommended item taken: Wall and Guess take the kit `active` class when aria-pressed is true ("Wall: on" is shaded; "Guess: off" is not).
+  - The grid is a fixed 234 px in every phase (`.grid { width: 234px; max-width: 234px; flex: none }`), so the kit's reveal rule no longer grows it from 218 to 240 px and 1 px past the stage (the reviewer's second recommended item; the kit fix is W-450).
+  - No text change: claims untouched (c6's source, "Numbers drawn from settleIdx + 1", still holds).
+
+## Pre-flight v8
+
+1. Title and hook: unchanged.
+2. Options: unchanged, "7" / "25" / "49".
+3. Locked stage: unchanged apart from the S/G markers sitting lower in their cells.
+4. Reveal values: unchanged sources.
+5. QA path: unchanged (Settle next → Settle to goal → Wall → Guess).
+6. Reset: no reset. Reveal unchanged.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 a-star-heads-for-goal`, dev server): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true in 3 of 4 runs; the 4th was a 30 s tap timeout on the loaded dev server, not a measurement. Named and visible: 10, 16, 46, open, wall, no guess, "7 cells route 6". Grid fitted 193/234 px at the reveal (labels 10.0 px). Stage 367 px, reveal 226 px, 82 words. DOM-measured (QA path): at 390×844 the svg box is 234 px wide in predict, explore and reveal; settle numbers 12.2 px in predict and explore, 10.0 px at the reveal after the card's fit; stage scrollWidth 340 = clientWidth 340, content x 27 to 363 inside 25 to 365. At 1280×900: 234 px, 12.2 px, 430 = 430. Screenshots at both widths show no route line through any number, and "1" and "46" clear of S and G.

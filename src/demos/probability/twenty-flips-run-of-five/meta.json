@@ -1,9 +1,16 @@
 {
   "slug": "twenty-flips-run-of-five",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "A run of five in twenty flips",
+  "hook": "Write 20 coin flips that look random. How streaky is a real coin?",
   "domain": "probability",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "streaks-in-randomness",
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button",
+    "tally-counters"
+  ],
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +19,70 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "a fair coin is 50/50",
+      "flips are independent (five-heads-then-what, sum-seven-ignores-first-die)"
     ],
     "doesNotKnow": [
-      "TODO"
+      "how long the longest run in a short random sequence usually is",
+      "that each flip repeats the previous face half the time"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "A random sequence alternates a lot; a run of 5 of the same face in 20 flips is rare and suggests something is off.",
+  "objective": "The learner can say that in 20 fair flips a run of 5 or more of the same face turns up about 46% of the time and the most common longest run is 4, because each flip repeats the last face half the time.",
   "claims": [
     {
       "id": "probability.twenty-flips-run-of-five.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "In 20 fair coin flips, the chance of a run of 5 or more of the same face somewhere is 45.8% (shown as 'the exact chance is 45.8%').",
       "support": "derivation",
-      "source": "TODO",
+      "source": "model.ts exactAtLeast(5): DP over the current run length, n = 20; node 2026-10-14 gives 0.4584 (k=3 0.9791, k=4 0.7684, k=6 0.2369, k=7 0.1151), matching the brief (company/domains/briefs/probability.chance.md Round 3 item 1). Cross-check: model.ts runMore over seeds 1..100,000 gives 45.85%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.twenty-flips-run-of-five.c2",
+      "text": "Real sequence k on the stage is 20 flips from mulberry32(k), for k = 1, 2, 3, ... in order (seeds not chosen; not shown to the learner); Run 1,000 real adds the next 1,000, Step one real adds one, and the stage draws the latest. The tally's share differs from 45.8% by sampling noise.",
+      "support": "simulation",
+      "source": "model.ts sequence() and runMore(); Demo.tsx run(). Node 2026-10-14: seeds 1..1,000 give 475 with a run of 5+ (47.5%), bins (<=2,3,4,5,6,7,8+) = 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6%); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest run 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.twenty-flips-run-of-five.c3",
+      "text": "The most likely longest run in 20 fair flips is 4 (31.0%); the reveal names the tallest bar of the learner's own tally.",
+      "support": "derivation",
+      "source": "Same DP: P(longest = 4) = 0.7684 - 0.4584 = 0.310; P(=3) = 0.211, P(=5) = 0.222. On the QA path the tallest bar is 4 (292 of 1,000).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.twenty-flips-run-of-five.c4",
+      "text": "Each flip of a fair coin repeats the previous face with probability 1/2, because the coin has no memory, so long runs build up.",
+      "support": "derivation",
+      "source": "Independence: P(flip i = flip i-1) = P(H)P(H) + P(T)P(T) = 1/2. Reveal: 'Each flip repeats the last face half the time, because the coin has no memory, so long runs pile up.'",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.twenty-flips-run-of-five.c5",
+      "text": "When the learner has tapped all 20 flips, the reveal gives their longest run k and the share of their real sequences with a longest run of k or less (computed from the tally, model.ts atMost).",
+      "support": "simulation",
+      "source": "Demo.tsx reveal; model.ts atMost(t, k) = t.n - atLeast(t, k+1). Node: seeds 1..1,001 give 14 / 233 / 525 / 743 with longest run <= 2 / 3 / 4 / 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.twenty-flips-run-of-five.c6",
+      "text": "(Not shown to the learner.) People asked to write down random sequences switch faces more often than chance and produce too few long runs.",
+      "support": "source",
+      "source": "Brief planned claim 5: Bar-Hillel and Wagenaar (1991), 'The perception of randomness', Advances in Applied Mathematics 12(4). NEEDS A HUMAN SOURCE CHECK by the fact-checker. Kept out of learner text (the brief's fallback); the reveal compares the learner's own taps with the tally instead.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "You flip a fair coin 20 times. Which is closer to the truth?",
     "options": [
-      "TODO",
-      "TODO"
+      "A run of 5 or more of the same face happens almost half the time",
+      "A run of 5 or more of the same face is a sign the coin is unfair",
+      "Runs longer than 3 almost never happen"
     ],
     "answer": 0,
-    "why": "TODO"
+    "why": "Each flip repeats the last face half the time, so runs build up: in 20 flips a run of 5 or more turns up about 46% of the time, and the most common longest run is 4."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +90,22 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:streaks-in-randomness",
+    "also": [
+      "probability:independence"
+    ],
+    "prerequisites": [
+      "probability:independence"
+    ],
+    "level": "intro",
+    "strand": "chance",
+    "references": [],
+    "tags": [
+      "runs",
+      "randomness",
+      "coin"
+    ]
+  }
 }

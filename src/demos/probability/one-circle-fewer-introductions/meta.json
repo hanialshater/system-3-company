@@ -1,9 +1,16 @@
 {
   "slug": "one-circle-fewer-introductions",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "Five friends, one circle",
+  "hook": "Mutual friends could introduce you. Does it matter if they all know each other?",
   "domain": "probability",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "triadic-closure-probability",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "locked-readouts"
+  ],
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +19,62 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "at-least-once: 1 - (1 - p)^k for independent tries (four-rolls-one-six)"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that the at-least-once rule needs independence",
+      "that friends from one circle rise and fall together"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "If each of 5 mutual friends has the same 10% chance of introducing you, the total chance is the same whether they all know each other or not.",
+  "objective": "The learner can explain that five independent 10% chances give 41%, but five friends in one circle that meets half the weeks give only 34%, because their chances rise and fall together; each friend's own chance is still 10%.",
   "claims": [
     {
       "id": "probability.one-circle-fewer-introductions.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "Five independent 10% chances give 1 - 0.9^5 = 41% of at least one success; you miss only if all five fail, and 0.9^5 = 59%.",
       "support": "derivation",
-      "source": "TODO",
+      "source": "Arithmetic: 0.9^5 = 0.59049; model.ts separate() = 0.40951. Stage tick '41%: 5 separate circles'.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-circle-fewer-introductions.c2",
+      "text": "Stage model (stated on the card): the five friends' one circle meets in a share q of weeks; only in a meeting week can a friend introduce you, each independently with chance 10%/q, so each friend alone is still 10% a week. The chance you are introduced in a week is q(1 - (1 - 0.1/q)^5): 41% at q = 100%, 34% at 50%, 23% at 25%, 10% at 10%.",
+      "support": "derivation",
+      "source": "model.ts oneCircle(); node 2026-10-14: 0.40951, 0.33616, 0.23056, 0.1. Seeded cross-check mulberry32(7), 10,000 weeks at q = 50%: 34.0%. Stage labels: 'Weeks the circle meets: n of 20 · then 20% each' (inMeetingWeek = 0.1/q).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-circle-fewer-introductions.c3",
+      "text": "When the circle meets in 10% of weeks, every friend introduces you in a meeting week (10%/10% = 100%), so the five act as one try: 10%.",
+      "support": "derivation",
+      "source": "Same formula at q = 0.1: 0.1 * (1 - 0^5) = 0.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-circle-fewer-introductions.c4",
+      "text": "Friends who share a circle are not independent tries: in the weeks the circle does not meet, all five fail at once, so counting them as separate tries overstates the chance.",
+      "support": "derivation",
+      "source": "Under the stage model, P(all five fail) = (1 - q) + q(1 - 0.1/q)^5 > 0.9^5 for q < 1 (node: 0.664 at q = 0.5 vs 0.590), while each friend's marginal stays 0.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.one-circle-fewer-introductions.c5",
+      "text": "The meeting-share model is a teaching model, not data about real friendships.",
+      "support": "convention",
+      "source": "Lesson rule (brief Round 3 item 2, planned claim 4). The card states the model in the question and the stage labels; no real-world rate appears in learner text.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "Four friends each have a 20% chance of recommending you for a job. They all work in the same team, which is hiring only some years. Compared with four friends at four unrelated firms, your chance is:",
     "options": [
-      "TODO",
-      "TODO"
+      "Lower",
+      "The same",
+      "Higher"
     ],
     "answer": 0,
-    "why": "TODO"
+    "why": "Friends in one team rise and fall together: in the years the team is not hiring, all four fail at once, so the at-least-once rule overstates the chance."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +82,29 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:triadic-closure-probability",
+    "also": [
+      "probability:at-least-once",
+      "probability:independence"
+    ],
+    "prerequisites": [
+      "probability:at-least-once"
+    ],
+    "level": "core",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4
+      }
+    ],
+    "tags": [
+      "networks",
+      "triadic closure",
+      "correlation",
+      "independence"
+    ]
+  }
 }

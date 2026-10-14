@@ -1,38 +1,144 @@
 "use client";
 
-// Lesson scaffold. Read company/product/demo-standard.md before building.
-// Fill meta.json first (learner boundary, misconception, objective, claims):
-// the brief decides what to build, not the other way round.
+// Tail ratios. Two exact bell curves (sd 10 cm; A mean 100, B mean 105), equal batch sizes. A cutoff
+// slider (100-140 cm) shades both tails; a count line gives plants above the cutoff per 100,000 in each
+// batch, and a bar splits the plants above the cutoff into B and A. Every cutoff visited leaves a tick
+// on that bar, so the reveal's 130 cm and 140 cm values stay on stage. Key state: cutoff 130 and 140.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import { Readout, Row, Slider } from "@/kit/controls";
+import { CUT, MEAN_A, MEAN_B, PER, density, ratio, shareB, tailA, tailB } from "./model";
+import s from "./styles.module.css";
 
-export default function NewLesson({ slug }: { slug: string }) {
-  const [value, setValue] = useState(1);
+const MILESTONES = ["at-130", "at-140"] as const;
+const LO = 60;
+const HI = 150;
+const XL = 15;
+const XW = 310;
+const BASE = 118;
+const PEAK = 96;
+const x = (cm: number) => XL + ((cm - LO) / (HI - LO)) * XW;
+const PMAX = density(0, 0);
+const y = (d: number) => BASE - (d / PMAX) * PEAK;
+const pct = (p: number) => `${Math.round(p * 100)}%`;
+const r1 = (v: number) => v.toFixed(1);
+const fmt = (v: number) => Math.round(v).toLocaleString("en-US");
+const BAR_Y = 156;
+const BAR_H = 18;
 
+function curve(mean: number, from = LO) {
+  const pts: string[] = [];
+  for (let cm = from; cm <= HI; cm += 0.5) pts.push(`${x(cm).toFixed(1)},${y(density(cm, mean)).toFixed(1)}`);
+  return pts;
+}
+const tailPath = (mean: number, c: number) => `M${x(c)},${BASE} L${curve(mean, c).join(" L")} L${x(HI)},${BASE} Z`;
+
+function Stage({ locked, reach, cut, setCut, seen, setSeen }: {
+  locked: boolean;
+  reach: (n: string) => void;
+  cut: number;
+  setCut: (v: number) => void;
+  seen: number[];
+  setSeen: (v: number[]) => void;
+}) {
+  const sb = shareB(cut);
+  const right = cut >= 130;
+  return (
+    <div className={s.wrap}>
+      <p className={s.msg}>{locked ? "Make a prediction to start." : "Slide the cutoff. Shaded: plants taller than it."}</p>
+      <svg viewBox="0 0 340 196" className={`stage-svg ${s.svg}`} role="img" aria-label={`cutoff ${cut} cm; B is ${pct(sb)} of plants above it`}>
+        <path d={tailPath(MEAN_A, cut)} className={s.tailA} />
+        <path d={tailPath(MEAN_B, cut)} className={s.tailB} />
+        <polyline points={curve(MEAN_A).join(" ")} className={s.curveA} />
+        <polyline points={curve(MEAN_B).join(" ")} className={s.curveB} />
+        <line x1={x(MEAN_A)} y1={BASE} x2={x(MEAN_A)} y2={BASE - PEAK} className={s.mean} />
+        <line x1={x(MEAN_B)} y1={BASE} x2={x(MEAN_B)} y2={BASE - PEAK} className={s.mean} />
+        <text x={x(MEAN_A) - 3} y={14} textAnchor="end" className={s.labelA}>A: {MEAN_A} cm</text>
+        <text x={x(MEAN_B) + 3} y={14} className={s.labelB}>B: {MEAN_B} cm</text>
+        <line x1={XL} y1={BASE} x2={XL + XW} y2={BASE} className={s.axis} />
+        <line x1={x(cut)} y1={30} x2={x(cut)} y2={BASE + 2} className={s.cut} />
+        <text x={right ? x(cut) - 3 : x(cut) + 3} y={40} textAnchor={right ? "end" : "start"} className={s.cutText}>
+          cutoff {cut} cm
+        </text>
+        {[60, 80, 100, 120, 140].map((t) => (
+          <text key={t} x={x(t)} y={BASE + 12} textAnchor="middle" className={s.tick}>{t}</text>
+        ))}
+        {!locked && (
+          <>
+            <text x={170} y={146} textAnchor="middle" className={s.count}>
+              Taller than {cut} cm, per 100,000: A {fmt(tailA(cut) * PER)}, B {fmt(tailB(cut) * PER)}
+            </text>
+            <rect x={XL} y={BAR_Y} width={XW * sb} height={BAR_H} className={s.barB} />
+            <rect x={XL + XW * sb} y={BAR_Y} width={XW * (1 - sb)} height={BAR_H} className={s.barA} />
+            <text x={XL + 5} y={BAR_Y + 13} className={s.barText}>B {pct(sb)}</text>
+            <text x={XL + XW - 5} y={BAR_Y + 13} textAnchor="end" className={s.barText}>A {pct(1 - sb)}</text>
+            {seen.map((c) => (
+              <g key={c}>
+                <line x1={XL + XW * shareB(c)} y1={BAR_Y - 2} x2={XL + XW * shareB(c)} y2={BAR_Y + BAR_H + 3} className={s.seenTick} />
+                <text x={XL + XW * shareB(c)} y={BAR_Y + BAR_H + 14} textAnchor="middle" className={s.tick}>{c}</text>
+              </g>
+            ))}
+          </>
+        )}
+      </svg>
+      <Row>
+        <Slider
+          label="Cutoff"
+          value={cut}
+          min={CUT.min}
+          max={CUT.max}
+          step={CUT.step}
+          disabled={locked}
+          format={(v) => `${v} cm`}
+          onChange={(v) => {
+            setCut(v);
+            if (!seen.includes(v)) setSeen([...seen, v].sort((a, b) => a - b));
+            if (v === 130) reach("at-130");
+            if (v === 140) reach("at-140");
+          }}
+        />
+      </Row>
+      <Row>
+        <Readout label="B's share above cutoff" value={locked ? "-" : `${pct(sb)} (${r1(ratio(cut))} to 1)`} />
+      </Row>
+    </div>
+  );
+}
+
+export default function SmallGapBigExtremes({ slug }: { slug: string }) {
+  const [cut, setCut] = useState(CUT.start);
+  const [seen, setSeen] = useState<number[]>([]);
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "TODO: a question the learner can answer with a guess before seeing anything",
-        options: ["TODO A", "TODO B", "TODO C"],
-        answer: 0,
+        question: "Two seed batches, same spread (10 cm). Batch B averages 5 cm taller. Of plants over 130 cm, what share are from B?",
+        options: ["About 50%", "About 65%", "About 80%"],
+        answer: 2,
       }}
-      exploreHint="TODO: one sentence telling the learner what to try."
-      reveal={() => <p>TODO: compare the prediction with what happened, then say why in two or three sentences.</p>}
+      exploreHint="Slide the cutoff to 130 cm, then to 140 cm."
+      minInteractions={MILESTONES.length}
+      reveal={() => (
+        <>
+          <p>
+            At the averages the two batches overlap almost completely: B is only 5 cm taller. But above 130 cm, B made up{" "}
+            {pct(shareB(130))} of the plants, about {r1(ratio(130))} to 1.
+          </p>
+          <p>
+            Further out, A&apos;s curve falls away faster than B&apos;s, so the ratio keeps growing: above 140 cm it was{" "}
+            {pct(shareB(140))}, about {r1(ratio(140))} to 1.
+            {cut < 130 && ` At your cutoff of ${cut} cm it is ${pct(shareB(cut))}.`}
+          </p>
+          <p>A small gap between averages says little about the middle and a lot about the extremes.</p>
+        </>
+      )}
     >
       {({ locked, interact }) => (
-        <div>
-          <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label="TODO describe the picture">
-            <circle cx={40 + value * 20} cy={100} r={16} fill="var(--accent)" />
-          </svg>
-          <Row>
-            <Slider label="TODO" value={value} min={1} max={12} disabled={locked} onChange={(v) => { setValue(v); interact(); }} />
-            <Readout label="TODO" value={value} />
-            <Control disabled={locked} onClick={() => { setValue(1); interact(); }}>Reset</Control>
-          </Row>
-        </div>
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => <Stage locked={locked} reach={reach} cut={cut} setCut={setCut} seen={seen} setSeen={setSeen} />}
+        </Milestones>
       )}
     </Lesson>
   );

@@ -1,38 +1,173 @@
 "use client";
 
-// Lesson scaffold. Read company/product/demo-standard.md before building.
-// Fill meta.json first (learner boundary, misconception, objective, claims):
-// the brief decides what to build, not the other way round.
+// Runs in 20 flips. The learner fakes 20 flips with H and T; real sequences (seeds 1, 2, 3, ... in
+// order, see model.ts) are run 1,000 at a time or stepped one at a time. The latest real sequence is
+// drawn above the learner's taps, each with its longest run bracketed, and a histogram of longest runs
+// builds below with the 5+ bars shaded. Key state: 1,000+ real sequences tallied and one stepped.
+// Clearing taps never touches the real tally, so the reveal's numbers survive it.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import { Control, Readout, Row } from "@/kit/controls";
+import { BATCH, BIN_LABELS, EMPTY, FLIPS, TARGET, atLeast, atMost, exactAtLeast, longestRun, runMore, sequence, type Tally } from "./model";
+import s from "./styles.module.css";
 
-export default function NewLesson({ slug }: { slug: string }) {
-  const [value, setValue] = useState(1);
+const MILESTONES = ["thousand", "stepped"] as const;
+const EXACT = exactAtLeast(TARGET);
+const fmt = (v: number) => v.toLocaleString("en-US");
+const pct1 = (p: number) => `${(p * 100).toFixed(1)}%`;
+const X0 = 10;
+const PITCH = 16;
+const CELL = 15;
+const HX0 = 14;
+const BW = 36;
+const BGAP = 10;
+const BASE = 168;
+const BH = 66;
+
+function Cells({ seq, y, ghost }: { seq: readonly boolean[]; y: number; ghost?: boolean }) {
+  const run = seq.length > 0 ? longestRun(seq) : null;
+  return (
+    <g>
+      {Array.from({ length: FLIPS }, (_, i) => {
+        const v = seq[i];
+        const x = X0 + i * PITCH;
+        return (
+          <g key={i}>
+            <rect x={x} y={y} width={CELL} height={CELL} rx={2} className={v === undefined ? s.slot : v ? s.heads : s.tails} />
+            {v !== undefined && (
+              <text x={x + CELL / 2} y={y + 11} textAnchor="middle" className={v ? s.hText : s.tText}>
+                {v ? "H" : "T"}
+              </text>
+            )}
+          </g>
+        );
+      })}
+      {run && !ghost && (
+        <path
+          d={`M${X0 + run.start * PITCH},${y - 2} v-4 h${run.len * PITCH - (PITCH - CELL)} v4`}
+          className={run.len >= TARGET ? s.bracketHot : s.bracket}
+        />
+      )}
+    </g>
+  );
+}
+
+function Stage({ locked, reach, tally, setTally, taps, setTaps }: {
+  locked: boolean;
+  reach: (n: string) => void;
+  tally: Tally;
+  setTally: (t: Tally) => void;
+  taps: boolean[];
+  setTaps: (t: boolean[]) => void;
+}) {
+  const real = tally.n > 0 ? sequence(tally.n) : [];
+  const realRun = tally.n > 0 ? longestRun(real).len : 0;
+  const myRun = taps.length > 0 ? longestRun(taps).len : 0;
+  const ymax = Math.max(10, ...tally.bins);
+  const hot = atLeast(tally, TARGET);
+
+  const run = (count: number) => {
+    const next = runMore(tally, count);
+    setTally(next);
+    if (next.n >= BATCH) reach("thousand");
+    if (count === 1) reach("stepped");
+  };
+  const tap = (h: boolean) => setTaps([...taps, h]);
+
+  return (
+    <div className={s.wrap}>
+      <p className={s.msg}>{locked ? "Make a prediction to start." : "Fake 20 flips with H and T. Then run real ones."}</p>
+      <svg viewBox="0 0 340 192" className={`stage-svg ${s.svg}`} role="img" aria-label={`${tally.n} real sequences; ${hot} with a run of ${TARGET} or more`}>
+        <text x={X0} y={11} className={s.label}>
+          {tally.n > 0 ? `Real #${fmt(tally.n)}: longest run ${realRun}` : "Real sequence: none yet"}
+        </text>
+        <Cells seq={real} y={22} />
+        <text x={X0} y={53} className={s.label}>
+          {taps.length > 0 ? `Your taps: longest run ${myRun}` : "Your taps: none yet"}
+        </text>
+        <Cells seq={taps} y={64} />
+        <line x1={HX0 - 4} y1={BASE} x2={HX0 + 7 * (BW + BGAP) - BGAP + 4} y2={BASE} className={s.axis} />
+        {tally.bins.map((c, i) => {
+          const h = (c / ymax) * BH;
+          const x = HX0 + i * (BW + BGAP);
+          return (
+            <g key={i}>
+              <rect x={x} y={BASE - h} width={BW} height={h} rx={2} className={i + 2 >= TARGET ? s.barHot : s.bar} />
+              {tally.n > 0 && (
+                <text x={x + BW / 2} y={BASE - h - 3} textAnchor="middle" className={s.count}>
+                  {fmt(c)}
+                </text>
+              )}
+              <text x={x + BW / 2} y={BASE + 12} textAnchor="middle" className={s.tick}>
+                {BIN_LABELS[i]}
+              </text>
+            </g>
+          );
+        })}
+        <text x={170} y={190} textAnchor="middle" className={s.tick}>
+          longest run in 20 flips (real sequences)
+        </text>
+      </svg>
+      <Row>
+        <Control disabled={locked} onClick={() => run(BATCH)}>Run {fmt(BATCH)} real</Control>
+        <Control disabled={locked} onClick={() => run(1)}>Step one real</Control>
+      </Row>
+      <Row>
+        <Control disabled={locked || taps.length >= FLIPS} onClick={() => tap(true)}>H</Control>
+        <Control disabled={locked || taps.length >= FLIPS} onClick={() => tap(false)}>T</Control>
+        <Control disabled={locked || taps.length === 0} onClick={() => setTaps([])}>Clear taps</Control>
+      </Row>
+      <Row>
+        <Readout label="Real sequences" value={fmt(tally.n)} />
+        <Readout label={`Run of ${TARGET} or more`} value={tally.n > 0 ? `${fmt(hot)} (${pct1(hot / tally.n)})` : "-"} />
+      </Row>
+    </div>
+  );
+}
+
+export default function TwentyFlipsRunOfFive({ slug }: { slug: string }) {
+  const [tally, setTally] = useState<Tally>(EMPTY);
+  const [taps, setTaps] = useState<boolean[]>([]);
+  const hot = atLeast(tally, TARGET);
+  let mode = 0;
+  tally.bins.forEach((c, i) => {
+    if (c > tally.bins[mode]) mode = i;
+  });
+  const realRun = tally.n > 0 ? longestRun(sequence(tally.n)).len : 0;
+  const myRun = taps.length === FLIPS ? longestRun(taps).len : 0;
+  const tame = myRun >= 2 ? atMost(tally, myRun) : 0;
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "TODO: a question the learner can answer with a guess before seeing anything",
-        options: ["TODO A", "TODO B", "TODO C"],
-        answer: 0,
+        question: `${FLIPS} fair coin flips. How likely is a run of ${TARGET} or more of the same face somewhere in them?`,
+        options: ["About 5%", "About 20%", "About 45%"],
+        answer: 2,
       }}
-      exploreHint="TODO: one sentence telling the learner what to try."
-      reveal={() => <p>TODO: compare the prediction with what happened, then say why in two or three sentences.</p>}
+      exploreHint="Fake 20 flips if you like, then run 1,000 real sequences and step one."
+      minInteractions={MILESTONES.length}
+      reveal={() => (
+        <>
+          <p>
+            In your {fmt(tally.n)} real sequences, {pct1(hot / Math.max(1, tally.n))} had a run of {TARGET} or more of the same
+            face; the exact chance is <strong>{pct1(EXACT)}</strong>. The tallest bar is a longest run of {BIN_LABELS[mode]}, and
+            real #{fmt(tally.n)} has a run of {realRun}.
+          </p>
+          <p>
+            Each flip repeats the last face half the time, because the coin has no memory, so long runs pile up.
+            {myRun > 0 &&
+              ` Your 20 taps ran at most ${myRun} in a row; ${pct1(tame / Math.max(1, tally.n))} of real sequences stayed that short.`}
+          </p>
+        </>
+      )}
     >
       {({ locked, interact }) => (
-        <div>
-          <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label="TODO describe the picture">
-            <circle cx={40 + value * 20} cy={100} r={16} fill="var(--accent)" />
-          </svg>
-          <Row>
-            <Slider label="TODO" value={value} min={1} max={12} disabled={locked} onChange={(v) => { setValue(v); interact(); }} />
-            <Readout label="TODO" value={value} />
-            <Control disabled={locked} onClick={() => { setValue(1); interact(); }}>Reset</Control>
-          </Row>
-        </div>
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => <Stage locked={locked} reach={reach} tally={tally} setTally={setTally} taps={taps} setTaps={setTaps} />}
+        </Milestones>
       )}
     </Lesson>
   );

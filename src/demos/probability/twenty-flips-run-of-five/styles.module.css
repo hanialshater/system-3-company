@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 30dvh; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.slot { fill: none; stroke: var(--line); stroke-width: 1; }
+.heads { fill: var(--domain); }
+.tails { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1; }
+.hText { fill: #0d0f14; font-size: 10px; font-weight: 800; }
+.tText { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.bracket { fill: none; stroke: var(--muted); stroke-width: 1.6; }
+.bracketHot { fill: none; stroke: var(--bad); stroke-width: 2; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.bar { fill: var(--muted); opacity: 0.55; }
+.barHot { fill: var(--domain); }
+.count { fill: var(--fg); font-size: 10px; font-variant-numeric: tabular-nums; }
+.tick { fill: var(--muted); font-size: 10px; }

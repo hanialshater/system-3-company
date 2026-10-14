@@ -20,6 +20,10 @@
 // so the card can fit the grid down to the 10 px label floor. Measured crop 0 at 390x844; reveal unchanged.
 // Wall and Guess stay enabled during a replay: pressed mid-run they finish it at once, then switch. Replays are
 // paced by elapsed time, so they end within 400 ms on a slow device too.
+// v8 (W-448, design review 2026-10-14): the route is drawn under the settle numbers, which carry a --bg-2 halo, so the
+// line never strikes through them; S and G sit low in their cells with their numbers (1 and the last count) above
+// them, and the route ends on the markers. Pressed toggles (Wall: on, Guess: on) take the kit's active style. The grid
+// is a fixed 234 px in every phase (lesson CSS), so the kit's reveal rule no longer grows it past the stage. Text unchanged.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -270,7 +274,6 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     const wallOn = v.wall && WALL.has(i);
                     const set = settledNow.has(i);
                     const fr = isFrontier(i);
-                    const special = i === START || i === GOAL;
                     return (
                       <g key={i}>
                         <rect

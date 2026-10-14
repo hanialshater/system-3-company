@@ -71,3 +71,22 @@
 5. QA path: unchanged (Remove next → Run to a power of 2 → Run to the end → scrubber → 7 → 10 → 41 people).
 6. Reset: unchanged. Reveal text unchanged.
 7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 every-second-seat-out`, dev server): crop 0 px (was 175), hiddenBelow 0, phoneFit true. Named and visible: 10, 16, 19, 32, 41, removals. Circle fitted 233/250 px (labels 10 px). Stage 408 px, reveal 205 px, 76 words.
+
+## Revision v5 (W-447, design review 2026-10-14-design.md: revise)
+
+- Problem (design-lead): seat labels 9.4 px at 390 px in predict and explore (svg 218 px wide); at the reveal the kit rule `.stage-svg { flex: none }` grew the svg to 250 px and the row spilled 6 px past each side of the stage.
+- Changes (lesson files only; globals.css untouched, the kit rule is W-450 for platform-engineer):
+  - The circle is a fixed 232 px in every phase: `.svg { width: 232px; max-width: 232px; flex: none }`. 232 + 6 gap + 96 column min = 334 of the 340 px stage.
+  - Seat labels 14 → 15.5 viewBox units (two-digit labels about 19 units wide on a 22.5-unit seat pitch at R_NUM 147; no collisions seen). The survivor star 14 → 16 units (it was the next-smallest glyph, 10.0 px).
+  - Replays are paced by elapsed time (like a-star v7), so a replay ends within 360 ms on a loaded server. Before this, 2 of 3 reveal-fit runs on the slow dev server ended "reveal never unlocked": "Run to the end" was still disabled (busy) when the tool reached it.
+  - No text change: claims untouched. Recommended item ("survivor: 19" large, drop "Left: 1") not taken; it changes stage text and claim addresses, so it is left for a later pass.
+
+## Pre-flight v5
+
+1. Title and hook: unchanged.
+2. Options: unchanged, "1" / "19" / "41".
+3. Locked stage: unchanged (full circle of 41, "Left: 41 / next skip: 1", step column, empty formula lines, scrubber, chips "→ ?").
+4. Reveal values: unchanged sources.
+5. QA path: unchanged (Remove next → Run to a power of 2 → Run to the end → scrubber → 7 → 10 → 41 people).
+6. Reset: unchanged. Reveal text unchanged.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 every-second-seat-out`, dev server, 3 of 3 runs after the replay change): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true. Named and visible: 10, 16, 19, 32, 41, removals. Stage 407 px, reveal 184 px (71 words on the tool's path), no picture shrink needed (fitted: none). DOM-measured (headless Chromium, QA path): at 390×844 the svg is 232×232 px in predict, explore and reveal; smallest meaning-carrying svg text 11.1 px in all three phases (was 9.4 in explore); stage scrollWidth 340 = clientWidth 340, content spans x 28 to 362 inside the stage's 25 to 365. At 1280×900: svg 232 px, 11.1 px, scrollWidth 430 = clientWidth 430.

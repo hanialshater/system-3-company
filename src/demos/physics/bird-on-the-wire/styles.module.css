@@ -1,0 +1,24 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 40dvh; }
+.wrap > label { flex: 0 0 auto; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.row) > :global(.control) { flex: 1 1 0; min-width: 0; white-space: nowrap; padding-left: 6px; padding-right: 6px; }
+.ground { stroke: var(--fg); stroke-width: 1.6; opacity: 0.6; }
+.pole { fill: color-mix(in srgb, #8a6a45 60%, var(--bg-2)); stroke: var(--fg); stroke-width: 0.8; }
+.arm { stroke: var(--fg); stroke-width: 3; opacity: 0.7; }
+.insulator { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1; }
+.wire { stroke: var(--fg); stroke-width: 2.4; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.leg { stroke: var(--fg); stroke-width: 1.4; }
+.bird { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.beak { fill: var(--fg); }
+.wingIn { fill: none; stroke: var(--fg); stroke-width: 1.4; }
+.wingOut { fill: none; stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.current { fill: none; stroke: var(--bad); stroke-linecap: round; stroke-linejoin: round; opacity: 0.8; }
+.currentLabel { fill: var(--bad); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.leadRed { fill: none; stroke: var(--bad); stroke-width: 1.4; }
+.leadBlack { fill: none; stroke: var(--fg); stroke-width: 1.4; }
+.meter { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.2; }
+.meterLabel { fill: var(--muted); font-size: 10.5px; font-weight: 600; }
+.meterValue { fill: var(--fg); font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.seen { fill: var(--fg); font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }

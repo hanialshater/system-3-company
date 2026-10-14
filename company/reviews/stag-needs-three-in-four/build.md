@@ -32,3 +32,13 @@ Fixes: (top) the preset row (0 / 50 / 75 / 100% sure) is no longer rendered whil
 5. QA path: after the commit the preset row appears in the same place in DOM order: 0%, 50%, 75%, 100%, then the slider (two presses). All four milestones; marks and ticks stay.
 6. Reset: no Reset; marks and ticks only accumulate. Reveal text as in Pre-flight v2 (unchanged code).
 - meta.json 2 -> 3; no claim text changed (options are not claims). Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v4 (demo-builder, 2026-10-14, answering 2026-10-14-learner-adult-beginner-r8.md, W-313)
+
+Changes: reveal 112 -> 80 words (tool count, verdict line included). Cut the grey told-context note "Invented payoffs in a simplified model. The game is called the stag hunt, after an example of Rousseau's." (the stage chip carries "invented payoffs"; c3 withdrawn; cm-economics may restore the name elsewhere if they want it). Second paragraph tightened: "At 0% hare was the best reply for you both: 3 each. At 100%, both stag, 4 each. Both boxes are ticked: each is the best reply to itself. Both prefer the stag, yet doubt alone can lock them into hare." First paragraph unchanged. Stage: chart labels 10/11 -> 12 viewBox units, so the card's fit can shrink the chart (to about 201/220 px) and labels stay at or above 10 px; outcome boxes widened to 140 for the bigger label. Presets read "0%"/"50%"/"75%"/"100%" and are not rendered at the reveal (the slider stays; the marks they left on the stag line stay). Readouts on one row ("Stag worth", "Hare worth", "Best reply"). Chip reworded to "Model: invented payoffs; your partner is as sure of you as you are of them". Column gap 6 -> 3 px.
+1-3. Title, hook, options, locked stage: unchanged (the presets were already hidden while locked).
+4. Reveal values: 2 at 50% (mark "2"), 75% (crossing, tinted region, bold axis tick), 3 each / 4 each (the two boxes), "Both boxes are ticked" (ticks). All on the stage at the reveal.
+5. QA path: unchanged.
+6. Reset: none.
+7. Phone fit: `node tools/reveal-fit.mjs --url http://localhost:3530 stag-needs-three-in-four` (dev server, 2026-10-14): before crop 276 px, 112 words, 6 named labels off screen; after **crop 0 px, hiddenBelow 0, namedHidden 0 (50%, 75%, 100%, hare 3, stag, both hare 3 each, both stag 4 each, best reply all visible), phoneFit 1, 80 words**. Chart fitted 201/220 px, so about 18 px of slack before the label floor.
+- meta.json 3 -> 4; c2, c4, c5 reopened; c3 withdrawn. Not run: build, QA, walkthrough. The label shrink the reviewer saw mid-explore (frame 04) is kit W-287, not touched here.

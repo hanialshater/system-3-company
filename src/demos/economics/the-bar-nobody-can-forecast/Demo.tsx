@@ -77,16 +77,15 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
           </p>
           {best && (
             <p>
-              When each person went 60% of the time (so on average 60 come), your {best.n} random nights averaged{" "}
-              <strong>{best.avg.toFixed(1)}</strong>, yet <strong>{best.pct}%</strong> were crowded. In the long run that share is 46.2%:
-              the average sits right at the limit, so nearly half the nights land above it.
+              When each went 60% of the time, your {best.n} random nights averaged <strong>{best.avg.toFixed(1)}</strong>, yet{" "}
+              <strong>{best.pct}%</strong> were crowded (46.2% in the long run): the average sits right at the limit, so nearly half
+              the nights land above it.
             </p>
           )}
-          <p className="muted">A model of Arthur&apos;s El Farol bar problem (1994): identical people, one shared forecast, no learning.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const forecast = (f: number) => {
@@ -116,7 +115,14 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
               setMixedUsed(0);
               setTotal(0);
             };
-            const shown = locked ? [] : nights.slice(-SHOWN);
+            // v4 (r8): if Reset emptied the chart, the reveal redraws the last nights of the longest run, so its
+            // sentence about the average and the crowded nights points at bars that are on screen.
+            const replay = phase === "reveal" && nights.length === 0 && best !== null;
+            const shown: Night[] = locked
+              ? []
+              : replay
+                ? MIXED.slice(Math.max(0, best.n - SHOWN), best.n).map((count) => ({ kind: "mixed" as const, count, label: "60% coin" }))
+                : nights.slice(-SHOWN);
             const full = mixedUsed >= MAX_MIXED;
             return (
               <div className={s.wrap}>
@@ -154,14 +160,19 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                   <text x={RIGHT} y={yy(OK) - 4} textAnchor="end" className={s.value}>
                     60: crowded above
                   </text>
-                  {!locked && last && (
+                  {replay && (
+                    <text x={RIGHT} y={BOT + 18} textAnchor="end" className={s.value}>
+                      your {best.n}-night run, last {shown.length} nights
+                    </text>
+                  )}
+                  {!locked && !replay && last && (
                     <text x={RIGHT} y={BOT + 18} textAnchor="end" className={s.value}>
                       night {total} ({last.label}): {last.count} came
                     </text>
                   )}
                 </svg>
 
-                <Row>
+                <Row foldAtReveal>
                   <Control disabled={locked} onClick={() => forecast(50)}>
                     Forecast says 50
                   </Control>
@@ -169,7 +180,7 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                     Forecast says 70
                   </Control>
                 </Row>
-                <Row>
+                <Row foldAtReveal>
                   <span className={s.rowLabel}>Each goes 60%:</span>
                   <Control disabled={locked || full} onClick={() => runMixed(1)}>
                     1 night
@@ -184,11 +195,14 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                     Reset
                   </Control>
                 </Row>
+                {/* At the reveal the record row below carries these numbers (v4, phone fit). */}
+                {phase !== "reveal" && (
                 <Row>
                   <Readout label="Random nights" value={locked ? "?" : mixedUsed} />
                   <Readout label="Average" value={locked || !mixedUsed ? "?" : avg.toFixed(1)} />
                   <Readout label="Crowded" value={locked || !mixedUsed ? "?" : `${Math.round((100 * crowded) / mixedUsed)}%`} />
                 </Row>
+                )}
                 <p className={s.rowLabel}>
                   {locked
                     ? ""

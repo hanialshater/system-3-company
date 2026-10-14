@@ -34,10 +34,8 @@
       "id": "geography.shrinking-degree.c2",
       "text": "On the lesson's globe, a sphere of radius 6,371 km, one degree of longitude at 60°N is 55.6 km, half the equator's 111.2 km; at 80°N it is 19.3 km.",
       "support": "derivation",
-      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The sphere arithmetic is right (node: pi*6371.0088/180*cos(lat) = 55.598 at 60 N, 19.309 at 80 N, 111.195 at the equator; readouts print 55.6, 19.3, 111.2 and the reveal quotes them). But the sentence states one-decimal values as the length on Earth, and on the WGS84 ellipsoid they are 55.80 km at 60 N, 19.39 km at 80 N and 111.32 km at the equator (pi*a*cos(lat)/(180*sqrt(1-e^2 sin^2 lat))); the lesson's own c4 tells learners the equator degree is 111.3 km, while c2 calls it 111.2. Nothing on the stage or in the reveal says the globe is a sphere (caption: 'A globe.'). Pass 9 verified the old 'about 56' / 'about 19', which hold for the real Earth. Fix (builder): either say the model on stage and in the claim (e.g. caption 'A globe, treated as a sphere of radius 6,371 km' and claim 'On a sphere of radius 6,371 km, ...'), or drop to the precision that holds for Earth ('about 56 km', 'about 19 km', 'about 111 km'). | Builder revision v3 (demo-builder, 2026-10-14, W-243): the stage now names its model. Caption 'A globe, treated as a sphere of radius 6,371 km.' and the reveal's 'Your Seen line, on this sphere of radius 6,371 km: ...' (R_LABEL = Math.round(EARTH_RADIUS_KM)). Readouts unchanged at one decimal. c2 now speaks only of the sphere; c4 speaks of the real Earth (111.3 km on WGS84), so the two no longer give the same quantity two values. Builder statement, not self-verified. | FC pass 27 (fact-checker, 2026-10-14): VERIFIED. Own node with R = 6371.0088 (kit EARTH_RADIUS_KM) and R = 6371: pi R cos(lat)/180 = 111.195 (equator), 55.598/55.597 (60 N), 19.309 (80 N), which print 111.2, 55.6, 19.3; 2 x 55.6 = 111.2, cos 60 = 0.5. R_LABEL = '6,371'. v3 stage names the model in the caption ('A globe, treated as a sphere of radius 6,371 km.') and the reveal ('Your Seen line, on this sphere of radius 6,371 km: ...'), so the one-decimal values are stated for the sphere; the reveal needs 60 N (seen[60] = '55.6'), and 19.3 is printed only after a stop at 80 N. No motion, no Reset.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The sphere arithmetic is right (node: pi*6371.0088/180*cos(lat) = 55.598 at 60 N, 19.309 at 80 N, 111.195 at the equator; readouts print 55.6, 19.3, 111.2 and the reveal quotes them). But the sentence states one-decimal values as the length on Earth, and on the WGS84 ellipsoid they are 55.80 km at 60 N, 19.39 km at 80 N and 111.32 km at the equator (pi*a*cos(lat)/(180*sqrt(1-e^2 sin^2 lat))); the lesson's own c4 tells learners the equator degree is 111.3 km, while c2 calls it 111.2. Nothing on the stage or in the reveal says the globe is a sphere (caption: 'A globe.'). Pass 9 verified the old 'about 56' / 'about 19', which hold for the real Earth. Fix (builder): either say the model on stage and in the claim (e.g. caption 'A globe, treated as a sphere of radius 6,371 km' and claim 'On a sphere of radius 6,371 km, ...'), or drop to the precision that holds for Earth ('about 56 km', 'about 19 km', 'about 111 km'). | Builder revision v3 (demo-builder, 2026-10-14, W-243): the stage now names its model. Caption 'A globe, treated as a sphere of radius 6,371 km.' and the reveal's 'Your Seen line, on this sphere of radius 6,371 km: ...' (R_LABEL = Math.round(EARTH_RADIUS_KM)). Readouts unchanged at one decimal. c2 now speaks only of the sphere; c4 speaks of the real Earth (111.3 km on WGS84), so the two no longer give the same quantity two values. Builder statement, not self-verified. | FC pass 27 (fact-checker, 2026-10-14): VERIFIED. Own node with R = 6371.0088 (kit EARTH_RADIUS_KM) and R = 6371: pi R cos(lat)/180 = 111.195 (equator), 55.598/55.597 (60 N), 19.309 (80 N), which print 111.2, 55.6, 19.3; 2 x 55.6 = 111.2, cos 60 = 0.5. R_LABEL = '6,371'. v3 stage names the model in the caption ('A globe, treated as a sphere of radius 6,371 km.') and the reveal ('Your Seen line, on this sphere of radius 6,371 km: ...'), so the one-decimal values are stated for the sphere; the reveal needs 60 N (seen[60] = '55.6'), and 19.3 is printed only after a stop at 80 N. No motion, no Reset. | Builder revision v4 (demo-builder, 2026-10-14, learner r8 / W-345): reveal reworded to fit the phone ('On this sphere your Seen line read 55.6 km at 60°N, half the 111.2 km at the equator ... you saw 19.3 km at 80°N'); the current-position clause is cut; readout labels shortened ('1° longitude', '1° latitude', 'Box, 10° wide'); the Equator/60°N/80°N buttons are hidden at the reveal; the Seen line joins with ';'. Sphere still named on the caption and in the reveal ('On this sphere'). Builder statement, not self-verified.",
+      "status": "unverified"
     },
     {
       "id": "geography.shrinking-degree.c3",
@@ -70,19 +68,15 @@
       "id": "geography.shrinking-degree.c6",
       "text": "Lines of longitude all meet at the poles.",
       "support": "convention",
-      "source": "Definition of meridians as half great circles from pole to pole.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Definition of meridians as half great circles from pole to pole. | Builder revision v4 (demo-builder, 2026-10-14, learner r8 / W-345): reveal reworded to fit the phone ('On this sphere your Seen line read 55.6 km at 60°N, half the 111.2 km at the equator ... you saw 19.3 km at 80°N'); the current-position clause is cut; readout labels shortened ('1° longitude', '1° latitude', 'Box, 10° wide'); the Equator/60°N/80°N buttons are hidden at the reveal; the Seen line joins with ';'. Sphere still named on the caption and in the reveal ('On this sphere'). Builder statement, not self-verified.",
+      "status": "unverified"
     },
     {
       "id": "geography.shrinking-degree.c7",
       "text": "The 10-degree box is ten times as wide as one degree of longitude at its middle latitude (for example about 556 km at 60°N).",
       "support": "derivation",
-      "source": "Demo.tsx: box width readout = 10 x pi R cos(lat) / 180 with R = 6,371.0088 km, measured along the box's middle parallel; 10 x 55.6 = 556 km at 60°N. The box's top and bottom parallels are slightly narrower and wider than its middle. | FC pass 26 (fact-checker, 2026-10-14): Readout = Math.round(10 x degLonKm(lat)): 556 at 60 N (10 x 55.598), 1,112 at 0, 193 at 80 N (node); labelled 'Box width, 10 deg of longitude', computed on the box's middle parallel. 'About 556 km' also holds on WGS84 (558 km).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx: box width readout = 10 x pi R cos(lat) / 180 with R = 6,371.0088 km, measured along the box's middle parallel; 10 x 55.6 = 556 km at 60°N. The box's top and bottom parallels are slightly narrower and wider than its middle. | FC pass 26 (fact-checker, 2026-10-14): Readout = Math.round(10 x degLonKm(lat)): 556 at 60 N (10 x 55.598), 1,112 at 0, 193 at 80 N (node); labelled 'Box width, 10 deg of longitude', computed on the box's middle parallel. 'About 556 km' also holds on WGS84 (558 km). | Builder revision v4 (demo-builder, 2026-10-14, learner r8 / W-345): reveal reworded to fit the phone ('On this sphere your Seen line read 55.6 km at 60°N, half the 111.2 km at the equator ... you saw 19.3 km at 80°N'); the current-position clause is cut; readout labels shortened ('1° longitude', '1° latitude', 'Box, 10° wide'); the Equator/60°N/80°N buttons are hidden at the reveal; the Seen line joins with ';'. Sphere still named on the caption and in the reveal ('On this sphere'). Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "geography:degree-length-by-latitude",
     "prerequisites": [

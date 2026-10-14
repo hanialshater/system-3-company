@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 38dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.row) > :global(.control) { flex: 1 1 0; min-width: 0; white-space: nowrap; padding-left: 6px; padding-right: 6px; }
+.metal { fill: color-mix(in srgb, var(--fg) 22%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.wood { fill: color-mix(in srgb, #b07a3c 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.grain { stroke: var(--fg); stroke-width: 0.8; opacity: 0.25; }
+.blockLabel { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.table { stroke: var(--fg); stroke-width: 2; opacity: 0.6; }
+.arrow { fill: var(--bad); opacity: 0.85; }
+.arrowTrace { fill: none; stroke: var(--bad); stroke-width: 1.4; stroke-dasharray: 3 2; }
+.probe { fill: var(--muted); stroke: var(--fg); stroke-width: 1; }
+.probeHead { fill: var(--bg-2); }
+.finger { fill: color-mix(in srgb, #e7a77c 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.read { fill: var(--fg); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.readNow { fill: var(--domain); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.chip { fill: var(--muted); font-size: 10.5px; }

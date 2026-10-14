@@ -14,6 +14,11 @@
 // the title row, the nets read inside the blocks ("Factory +$100"), offer marks sit above the band, the ruler glyphs
 // are gone, labels are 13 units so the card can fit both panels at the 10 px floor; screen-reader ledgers moved out
 // of the panels (an absolute sibling blocks the fit). Reveal 89 words (two paragraphs). Measured crop 0 at 390x844.
+// v5 (W-449, design review 2026-10-14): panel 2's "$100" filter-arrow label sits above the arrow, left of the chimney
+// (x 10, was right-aligned at x 26 and ran 7 to 9 px past the svg's left edge); the Total bar is filled --bad-fill (a
+// total is always a cost here), so it no longer reads as an empty input box. The ruler's tick labels sit 1.4 units
+// higher (tick marks 1 unit shorter), so their text boxes end inside the svg too (a taller viewBox cost 3 px of crop).
+// Text and viewBox unchanged.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -153,7 +158,7 @@ function Panel({
       {arrow?.kind === "to-filter" && (
         <g>
           <path d="M30 49 Q 32 34 50 34" className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={26} y={42} className={s.arrowText} textAnchor="end">
+          <text x={10} y={30} className={s.arrowText}>
             ${arrow.amount}
           </text>
         </g>
@@ -186,8 +191,8 @@ function Panel({
       <line x1={rx(0)} y1={109} x2={rx(375)} y2={109} className={s.rule} />
       {[0, 100, 200, 300].map((v) => (
         <g key={v}>
-          <line x1={rx(v)} y1={106} x2={rx(v)} y2={112} className={s.rule} />
-          <text x={rx(v)} y={123} className={s.tick} textAnchor="middle">
+          <line x1={rx(v)} y1={106} x2={rx(v)} y2={111} className={s.rule} />
+          <text x={rx(v)} y={121.6} className={s.tick} textAnchor="middle">
             ${v}
           </text>
         </g>

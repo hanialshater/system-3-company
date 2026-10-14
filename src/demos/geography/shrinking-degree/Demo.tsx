@@ -41,23 +41,35 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
   const [seen, setSeen] = useState<Record<number, string>>({});
   // The globe tilts to follow the box and is zoomed 1.4x (clipped), so the box stays near the centre.
   const projection = useMemo(() => {
-    const g = geoOrthographic().rotate([-15, -lat * 0.6]).fitExtent([[6, 6], [W - 6, H - 6]], { type: "Sphere" });
-    return g.scale(g.scale() * 1.4).clipExtent([[0, 0], [W, H]]);
+    const g = geoOrthographic()
+      .rotate([-15, -lat * 0.6])
+      .fitExtent(
+        [
+          [6, 6],
+          [W - 6, H - 6],
+        ],
+        { type: "Sphere" },
+      );
+    return g.scale(g.scale() * 1.4).clipExtent([
+      [0, 0],
+      [W, H],
+    ]);
   }, [lat]);
   const km = degLonKm(lat);
 
   const go = (v: number, interact: () => void) => {
     setLat(v);
-    if ((v === 60 || v === 80) && !(v in seen)) setSeen((a) => ({ ...a, [v]: degLonKm(v).toFixed(1) }));
+    if ((v === 60 || v === 80) && !(v in seen))
+      setSeen((a) => ({ ...a, [v]: degLonKm(v).toFixed(1) }));
     if (v === 60) interact();
   };
-  const fmtLat = (l: number) => (l === 0 ? "the equator" : `${l}°N`);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "One degree of longitude is about 111 km wide at the equator. How wide is it at 60°N, the latitude of Oslo and Helsinki?",
+        question:
+          "One degree of longitude is about 111 km wide at the equator. How wide is it at 60°N, the latitude of Oslo and Helsinki?",
         options: ["111 km", "56 km", "28 km"],
         answer: 1,
       }}
@@ -66,27 +78,41 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            About <strong>{Math.round(degLonKm(60))} km</strong>. Your Seen line, on this sphere of radius {R_LABEL} km: at 60°N one degree of longitude read{" "}
-            {seen[60] ?? degLonKm(60).toFixed(1)} km, half of the {degLonKm(0).toFixed(1)} km at the equator. The box
-            narrowed as it went north, while its north&ndash;south size on the ground stayed the same.
+            About <strong>{Math.round(degLonKm(60))} km</strong>. On this sphere
+            your Seen line read {seen[60] ?? degLonKm(60).toFixed(1)} km at
+            60°N, half the {degLonKm(0).toFixed(1)} km at the equator. The box
+            narrowed as it went north.
           </p>
           <p>
-            The thin lines running up the globe are lines of longitude, and they all meet at the poles, so the gap
-            between them shrinks with latitude
-            {seen[80] ? `: you saw ${seen[80]} km at 80°N` : ""}
-            {lat !== 60 && lat !== 80 ? `${seen[80] ? ", and" : ":"} ${km.toFixed(1)} km where the box is now, at ${fmtLat(lat)}` : ""}
-            . A degree of latitude stays {PER_DEG.toFixed(0)} km. So &ldquo;one degree&rdquo; east&ndash;west is not a
-            fixed distance.
+            The thin lines of longitude all meet at the poles, so the gap
+            between them shrinks
+            {seen[80] ? `: you saw ${seen[80]} km at 80°N` : ""}. A degree of
+            latitude stays {PER_DEG.toFixed(0)} km. So &ldquo;one degree&rdquo;
+            east&ndash;west is not a fixed distance.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <WorldMap projection={projection} width={W} height={H} label={`Globe, orthographic projection. A 10 by 10 degree box centred at ${lat}°N; one degree of longitude there is ${km.toFixed(1)} km.`}>
+      {({ locked, interact, phase }) => (
+        <div className={`${s.wrap} ${phase === "reveal" ? s.atReveal : ""}`}>
+          <WorldMap
+            projection={projection}
+            width={W}
+            height={H}
+            label={`Globe, orthographic projection. A 10 by 10 degree box centred at ${lat}°N; one degree of longitude there is ${km.toFixed(1)} km.`}
+          >
             {({ path }) => (
               <>
-                <path d={path({ type: "LineString", coordinates: Array.from({ length: 361 }, (_, i) => [i - 180, 0] as Pt) })} className={s.equator} />
+                <path
+                  d={path({
+                    type: "LineString",
+                    coordinates: Array.from(
+                      { length: 361 },
+                      (_, i) => [i - 180, 0] as Pt,
+                    ),
+                  })}
+                  className={s.equator}
+                />
                 {lat > 0 && <path d={path(box(0))} className={s.ghost} />}
                 <path d={path(box(lat))} className={s.box} />
                 {CITIES.map((c) => {
@@ -94,7 +120,12 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
                   return (
                     <g key={c.name}>
                       <circle cx={q[0]} cy={q[1]} r={2.2} className={s.city} />
-                      <text x={q[0] + (c.left ? -4 : 4)} y={q[1] - 3} className={s.label} textAnchor={c.left ? "end" : "start"}>
+                      <text
+                        x={q[0] + (c.left ? -4 : 4)}
+                        y={q[1] - 3}
+                        className={s.label}
+                        textAnchor={c.left ? "end" : "start"}
+                      >
                         {c.name}
                       </text>
                     </g>
@@ -103,28 +134,49 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">A globe, treated as a sphere of radius {R_LABEL} km. Box: 10° by 10°. Dashed: the same box at the equator. Thin lines: longitude, latitude.</p>
+          <p className="muted tiny">
+            A globe, treated as a sphere of radius {R_LABEL} km. Box 10° by 10°;
+            dashed at the equator.
+          </p>
           <Row>
-            <Slider label="Box latitude" value={lat} min={0} max={80} disabled={locked} format={(v) => (v === 0 ? "equator" : `${v}°N`)} onChange={(v) => go(v, interact)} />
+            <Slider
+              label="Box latitude"
+              value={lat}
+              min={0}
+              max={80}
+              disabled={locked}
+              format={(v) => (v === 0 ? "equator" : `${v}°N`)}
+              onChange={(v) => go(v, interact)}
+            />
           </Row>
-          <div className={s.chips}>
-            {[0, 60, 80].map((v) => (
-              <Control key={v} disabled={locked || lat === v} onClick={() => go(v, interact)}>
-                {v === 0 ? "Equator" : `${v}°N`}
-              </Control>
-            ))}
-          </div>
+          {phase !== "reveal" && (
+            <Row>
+              {[0, 60, 80].map((v) => (
+                <Control
+                  key={v}
+                  disabled={locked || lat === v}
+                  onClick={() => go(v, interact)}
+                >
+                  {v === 0 ? "Equator" : `${v}°N`}
+                </Control>
+              ))}
+            </Row>
+          )}
           <Row>
-            <Readout label="1° of longitude here" value={`${km.toFixed(1)} km`} />
-            <Readout label="1° of latitude" value={`${PER_DEG.toFixed(0)} km`} />
-          </Row>
-          <Row>
-            <Readout label="Box width, 10° of longitude" value={`${Math.round(10 * km).toLocaleString("en-US")} km`} />
+            <Readout label="1° longitude" value={`${km.toFixed(1)} km`} />
+            <Readout label="1° latitude" value={`${PER_DEG.toFixed(0)} km`} />
+            <Readout
+              label="Box, 10° wide"
+              value={`${Math.round(10 * km).toLocaleString("en-US")} km`}
+            />
           </Row>
           <p className="tiny" data-testid="seen">
             Seen:{" "}
             {Object.keys(seen).length
-              ? [60, 80].filter((v) => v in seen).map((v) => `1° of longitude at ${v}°N = ${seen[v]} km`).join(" · ")
+              ? [60, 80]
+                  .filter((v) => v in seen)
+                  .map((v) => `1° of longitude at ${v}°N = ${seen[v]} km`)
+                  .join("; ")
               : "nothing yet"}
           </p>
         </div>

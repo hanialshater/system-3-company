@@ -1,9 +1,9 @@
 {
   "slug": "head-on-is-a-wall",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "Two cars at 50, head-on",
+  "hook": "Two identical cars, both at 50 km/h, meet head-on. What is that crash like for car A?",
   "domain": "physics",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "head-on-equals-wall",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +12,64 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "crashes are worse at higher speed",
+      "crumple zones (crumple-zone-stopping-time)",
+      "momentum (sticky-cart-merge)"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that in a symmetric head-on crash the meeting point stays still, so each car stops from its own speed exactly as against a rigid wall",
+      "that crash damage scales with speed squared"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "Two cars each at 50 km/h colliding head-on is like one car hitting a wall at 100 km/h.",
+  "objective": "The learner can explain that a head-on crash between identical cars at 50 km/h is, for each car, like hitting a rigid wall at 50 km/h, because the meeting point does not move and each crumple zone absorbs its own car's energy; a 100 km/h wall puts four times the energy into one car.",
   "claims": [
     {
       "id": "physics.head-on-is-a-wall.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "In a head-on collision of identical cars at equal speeds, total momentum is zero, so both cars stop at the meeting point, which does not move (stage: dashed 'meeting point' line; reveal: 'The cars stopped at the meeting point, which never moved').",
       "support": "derivation",
-      "source": "TODO",
+      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.head-on-is-a-wall.c2",
+      "text": "Car A's crumple zone absorbs 1/2 m v^2 = 145 kJ at 50 km/h for a 1,500 kg car, the same in a head-on crash with an identical car as against a rigid immovable wall at 50 km/h (stage: 'car 50: 145 kJ', 'wall 50: 145 kJ'; reveal: 'filled car A's crush bar to 145 kJ, as high as the 50 km/h wall (145 kJ)').",
+      "support": "derivation",
+      "source": "0.5 x 1,500 x (50/3.6)^2 = 144,676 J, shown with toFixed(0) as 145 kJ (Demo.tsx `energy`). Head-on: the total 289 kJ is shared equally by symmetry; each car stops from 50 km/h against a contact plane that does not move, which is what a rigid wall does. check.mjs gives 144.7 kJ.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.head-on-is-a-wall.c3",
+      "text": "A wall crash at 100 km/h puts 579 kJ into car A, about 4 times as much as at 50 km/h, because kinetic energy grows with speed squared (stage: 'wall 100: 579 kJ'; reveal: 'filled it to 579 kJ, about 4 times higher'; 'Crush energy grows with speed squared').",
+      "support": "derivation",
+      "source": "0.5 x 1,500 x (100/3.6)^2 = 578,704 J -> '579 kJ'; ratio 578,704 / 144,676 = 4.00 (toFixed(0)). check.mjs gives 578.7 kJ. 25 km/h (also on stage if pressed) gives 36 kJ.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.head-on-is-a-wall.c4",
+      "text": "Doubling the closing speed doubles the total energy, but two cars share it.",
+      "support": "derivation",
+      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ, absorbed half by each car (symmetry). A single car at 100 km/h has 578.7 kJ, four times. check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.head-on-is-a-wall.c5",
+      "text": "Model: identical 1,500 kg cars and crumple zones, perfectly inelastic, a rigid immovable wall, no braking before impact (stage: '1,500 kg cars, rigid wall').",
+      "support": "convention",
+      "source": "Brief claim 4. Assumption only (not on stage, not in the reveal): with a heavier car the lighter car fares worse, because its speed change is larger (momentum conservation: the pair moves off in the heavier car's direction, so the lighter car's velocity changes by more than its own speed).",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "Two identical trains, each at 30 km/h, collide head-on. For each train, the crash is most like hitting a solid wall at...",
     "options": [
-      "TODO",
-      "TODO"
+      "15 km/h",
+      "30 km/h",
+      "60 km/h"
     ],
-    "answer": 0,
-    "why": "TODO"
+    "answer": 1,
+    "why": "The meeting point stays still, so each train stops from its own 30 km/h in its own crumple zone, exactly as against a wall at 30 km/h."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +77,16 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:head-on-equals-wall",
+    "also": ["physics:kinetic-energy-speed-squared"],
+    "prerequisites": ["physics:momentum-collisions"],
+    "level": "core",
+    "strand": "mechanics",
+    "references": [],
+    "tags": ["collisions", "momentum", "energy", "road safety"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "simulation-run"]
 }

@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 30dvh; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.friend { fill: var(--bg-2); stroke: var(--domain); stroke-width: 1.6; }
+.friendText { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.weekOn { fill: var(--domain); }
+.weekOff { fill: none; stroke: var(--line); stroke-width: 1; }
+.track { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.fill { fill: var(--domain); }
+.mark { stroke: var(--muted); stroke-width: 1.5; }
+.markText { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.now { fill: var(--fg); font-size: 11px; font-weight: 800; }
+.sep { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.sepText { fill: var(--fg); font-size: 10px; font-weight: 600; }
+.tick { fill: var(--muted); font-size: 10px; }

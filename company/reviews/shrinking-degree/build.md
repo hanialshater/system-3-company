@@ -31,3 +31,13 @@ Fix: the readouts print sphere values (55.6, 19.3, 111.2 km) but nothing on stag
 5. QA path: unchanged from v2.
 6. Reset: unchanged. QA-path reveal: "About 56 km. Your Seen line, on this sphere of radius 6,371 km: at 60°N one degree of longitude read 55.6 km, half of the 111.2 km at the equator. ..." (rest as v2; composed from the code, not from a run).
 - meta.json 2 -> 3. Not run: build, QA, walkthrough. Note: the Demo.tsx edit was swept into commit 2e26574 ("Fact-check pass 26 batch 2") by a concurrent session while I was working; the content is mine.
+
+## Pre-flight v4 (demo-builder, 2026-10-14, answering 2026-10-14-learner-degrees-knower-r8.md, W-345)
+
+Changes: reveal cut from 101 to 72 words (tool count, verdict line included). Cut: "on the ground stayed the same" (the latitude readout and the "A degree of latitude stays 111 km" sentence carry it), "running up the globe", and the clause quoting the box's current position. Kept: 56 km, the Seen-line values 55.6 / 111.2 / 19.3 km, "The box narrowed as it went north", the converging meridians, and the closing idea. The sphere is still named in the reveal ("On this sphere") and the caption. Stage at the reveal: the globe is held to 210 px tall (styles `.atReveal svg`), the Equator/60°N/80°N buttons are hidden (the slider stays; the box position shows on the globe), and the three readouts share one row with shorter labels. The caption is shorter. Oslo/Helsinki labels went from 9 to 15 viewBox units (about 16 px in explore and about 10 px at the reveal; they were about 4 px in the r8 frames).
+1-3. Title, hook, options, locked stage: unchanged.
+4. Reveal values: as in v3, minus the current-position clause.
+5. QA path: unchanged.
+6. Reset: unchanged.
+7. Phone fit: `node tools/reveal-fit.mjs --url http://localhost:3530 shrinking-degree` (dev server, 2026-10-14): before crop 298 px, 101 words; after **crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit 1, 72 words**. In the 390×844 screenshot the whole globe is on screen at the reveal: the narrow box at 80°N, Oslo and Helsinki, the converging meridians, the dashed equator box, and the readouts and Seen line.
+- meta.json 3 -> 4; c2, c6, c7 reopened (unverified). Not run: build, QA, walkthrough.

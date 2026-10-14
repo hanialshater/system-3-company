@@ -217,10 +217,10 @@
   fill: var(--bad);
 }
 
+/* A total here is always a cost: filled, so it does not read as an empty input box (W-449). */
 .totalBar {
-  fill: var(--bg-2);
-  stroke: var(--fg);
-  stroke-width: 1.2;
+  fill: var(--bad-fill);
+  stroke: none;
 }
 
 /* Decoration only: the mark a press leaves stays; this label fades. */

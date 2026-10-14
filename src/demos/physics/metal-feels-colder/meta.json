@@ -1,9 +1,9 @@
 {
   "slug": "metal-feels-colder",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "Which block is colder?",
+  "hook": "Metal feels cold and wood feels warm. So which block in the room is colder?",
   "domain": "physics",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "heat-flow-feels-cold",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +12,78 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "hot and cold",
+      "a thermometer reads temperature",
+      "metal feels cold to touch"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that objects left in one room reach the same temperature",
+      "that skin senses the rate heat leaves it (set by the material's conductivity and heat capacity), not the object's temperature"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "Metal in a room is colder than wood in the same room.",
+  "objective": "The learner can explain that metal and wood in one room are at the same temperature, and that metal feels colder because it draws heat out of the skin faster.",
   "claims": [
     {
       "id": "physics.metal-feels-colder.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "Objects left in the same room for a long time reach the same temperature, so a thermometer reads 20 °C on both blocks (stage: 'probe 20 °C' under each block; reveal: 'Your thermometer read 20 °C on both blocks').",
+      "support": "source",
+      "source": "Thermal equilibrium (zeroth law of thermodynamics): any introductory thermodynamics text, e.g. Halliday, Resnick and Walker, Fundamentals of Physics, chapter on temperature (fact-checker picks the edition). Brief: company/domains/briefs/physics.electricity.md round 3 #1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c2",
+      "text": "When two bodies touch, the contact temperature is Tc = (e1 T1 + e2 T2)/(e1 + e2) with effusivity e = sqrt(k rho c) (semi-infinite bodies, perfect contact).",
       "support": "derivation",
-      "source": "TODO",
+      "source": "Carslaw and Jaeger, Conduction of Heat in Solids (2nd ed., 1959), two semi-infinite solids in contact; re-derived and simulated by finite differences in artifacts/scratch/cm-physics-r3/check.mjs. Used in Demo.tsx `contact()`.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c3",
+      "text": "A 33 °C fingertip touching a 20 °C block settles at about 21 °C on aluminium (and on steel) and about 30 °C on pine (stage: 'skin 21 °C' / 'skin 30 °C'; reveal: 'its skin dropped to about 21 °C on the metal and only to about 30 °C on the wood').",
+      "support": "derivation",
+      "source": "c2 with e = sqrt(k rho c): skin (k 0.37, rho 1,100, c 3,400) e = 1,176; aluminium (237, 2,700, 900) e = 23,998; plain carbon steel (60.5, 7,854, 434) e = 14,360; pine (0.12, 500, 1,600) e = 310. Tc = 20.61 °C (Al), 20.98 °C (steel), 30.29 °C (pine), shown with toFixed(0) as 21 / 21 / 30. Property values from Incropera et al., Fundamentals of Heat and Mass Transfer, appendix A (steel row added by demo-builder; brief gave Al, pine, skin); skin and wood values vary and are illustrative. Node re-run by demo-builder 2026-10-14; brief's check.mjs gives the same 30.3 / 20.6.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c4",
+      "text": "At the same moment, heat flows out of the finger about 4.6 times as fast into aluminium as into pine (4.4 times for steel); the arrow widths are drawn in that ratio (reveal: 'the metal's heat-flow arrow was 4.6 times thicker').",
+      "support": "derivation",
+      "source": "Surface heat flux between two semi-infinite bodies at time t is q = (Ts - To) e_s e_o / ((e_s + e_o) sqrt(pi t)), so the ratio at equal t is [e_al/(e_s+e_al)] / [e_w/(e_s+e_w)] = 4.57 (steel 4.43), shown with toFixed(1). Demo.tsx `flux()`; arrow width = 3 px x ratio. Brief claim 4 (check.mjs: 4.6).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c5",
+      "text": "Metal conducts heat away from your skin fast, so the skin cools; wood barely takes any, so the skin stays warm.",
+      "support": "derivation",
+      "source": "Follows from c3 and c4: the metal's effusivity is about 75 times pine's, driven mainly by its thermal conductivity (237 vs 0.12 W/m K). Incropera et al., appendix A.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c6",
+      "text": "Your finger senses heat leaving it, not the object's temperature.",
+      "support": "source",
+      "source": "Skin thermoreceptors respond to skin temperature and its rate of change, so touch reports how fast the skin cools rather than the object's temperature: any physiology text on thermoreception (fact-checker picks the edition). The lesson does not name receptor types.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.metal-feels-colder.c7",
+      "text": "Model stated on stage: 'Arrow: heat leaving the finger. Perfect contact, first seconds.' (semi-infinite blocks, no blood flow over the first seconds).",
+      "support": "convention",
+      "source": "Idealisations of c2 (brief claim 6). Over longer contact blood flow rewarms the skin and a finite block warms up; neither changes the comparison in the first seconds.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "A tile floor and a wool rug have been in the same room overnight. Barefoot, the tile feels colder. Which one is at the lower temperature?",
     "options": [
-      "TODO",
-      "TODO"
+      "The tile",
+      "The rug",
+      "Neither: both are at room temperature"
     ],
-    "answer": 0,
-    "why": "TODO"
+    "answer": 2,
+    "why": "Both have reached room temperature. The tile feels colder because it conducts heat out of your foot faster, and your skin senses heat leaving it."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +91,16 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:heat-flow-feels-cold",
+    "also": ["chemistry:temperature-particle-motion"],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "electricity",
+    "references": [],
+    "tags": ["heat", "conduction", "temperature"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "locked-readouts"]
 }

@@ -66,3 +66,23 @@ Decision: ACCEPT the v4 reveal (89 words), no rewrite. Read old (102) and new ag
 - ", the laundry or the factory" and "idea": no teaching content; both panels' Totals show who paid.
 - Stage evidence kept: $200 in the shaded band, $100 vs $300, both Totals -$100. Coase payoff kept: "The right decided only who pays. Economists call this the Coase theorem". Failure condition (brief claim 4) kept, merged into that sentence.
 Condition: c2, c3, c4 were reopened by the builder and still need the fact-checker; this approval is of the wording, not of the claims.
+
+## Revision v5 (W-449, design review 2026-10-14-design.md: approve with changes)
+
+- Problem (design-lead): panel 2's "$100" filter-arrow label was right-aligned at x 26 and started 7 px (phone) / 9 px (desktop) left of the svg, showing as "ı100".
+- Changes:
+  - The label sits above the arrow, left of the chimney (x 10, y 30, start-anchored), clear of the arrowhead and the "filter $100 a year" tag.
+  - The ruler's tick labels ($0 to $300) sit 1.4 units higher (y 121.6, tick marks end at 111), so their font-descent boxes no longer run 1.1 to 1.6 px past the svg bottom. A first try with a taller viewBox (125 → 127) cost 3 px of crop and was reverted.
+  - Recommended item taken: the Total bar is filled --bad-fill with no stroke (a total here is always a cost), so it no longer reads as an empty input box.
+  - Recommended items not taken: the 6 to 8 px gap above panel 2's title, and the predict-frame cut at the bottom; both change the stage height the phone fit depends on, so they are left for a pass that re-measures for them.
+  - No text change: claims untouched.
+
+## Pre-flight v5
+
+1. Title and hook: unchanged.
+2. Options: unchanged.
+3. Locked stage: unchanged.
+4. Reveal values: unchanged sources.
+5. QA path: unchanged (Offer $50 → $200 → $350 → Pay $300 damages → Fit $100 filter).
+6. Reset: unchanged. Reveal text unchanged.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 who-pays-same-filter`, dev server): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true in 4 of 5 runs after the final change; the other was a 15 s page-load timeout on the loaded dev server. Named and visible: right to pollute, factory, 100, laundry, 200, 300. Stage 330 px (both panels fitted 96/118 px, labels 10 px), reveal 267 px, 89 words. DOM-measured (QA path): no svg `<text>` box extends past its svg at 390×844 or 1280×900, in predict, explore or reveal (was "$100" at −7 / −9 px). Smallest label 12.2 px in explore and 10 px at the phone reveal; 15.7 px on desktop.

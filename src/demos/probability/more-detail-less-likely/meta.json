@@ -1,9 +1,16 @@
 {
   "slug": "more-detail-less-likely",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "Sam, the quiet book-lover",
+  "hook": "Two stories about Sam. Which one is more likely to be true?",
   "domain": "probability",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "conjunction-fallacy",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-drives-live-chart",
+    "locked-readouts"
+  ],
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +19,54 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "probability as a share of cases"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that 'A and B' can never be more likely than 'A', however well B fits the description"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "A detail that fits the description makes the fuller story more likely (Sam, quiet and bookish, is more likely a librarian who runs a book club than just a librarian).",
+  "objective": "The learner can explain that 'librarian who runs a book club' is a subset of 'librarian', so it can never be more likely, however well the extra detail fits.",
   "claims": [
     {
       "id": "probability.more-detail-less-likely.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "Every librarian who runs a book club is a librarian, so the people who are both are a subset of the librarians: P(A and B) <= P(A), equal only if every librarian runs a club. Each added detail can only remove people, so a more specific story is never more likely.",
       "support": "derivation",
-      "source": "TODO",
+      "source": "P(A and B) = P(A) P(B | A) and P(B | A) <= 1. On the stage the inner ring is built from the first clubbers(lib, club) dots of the librarians (model.ts), so inner <= outer for every slider setting; the club slider stops at 90%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-detail-less-likely.c2",
+      "text": "The stage's town (1,000 people who fit Sam's description) and its shares are a model chosen for the card, not data about librarians.",
+      "support": "convention",
+      "source": "Lesson rule (brief Round 3 item 3, planned claim 2). model.ts: librarians = round(1000 * lib%), clubbers = round(librarians * club%); lib 5-50%, club 10-90%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-detail-less-likely.c3",
+      "text": "The reveal quotes the current club share and the dots in each ring, and the counts recorded when the club share reached 90% (e.g. 180 of 200 at 20% librarians on the QA path).",
+      "support": "derivation",
+      "source": "Demo.tsx reveal and note(); model.ts librarians(20) = 200, clubbers(20, 90) = 180; librarians(10) = 100, clubbers(10, 90) = 90 (the brief's check).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-detail-less-likely.c4",
+      "text": "(Not shown to the learner.) Ranking a conjunction above one of its parts is called the conjunction fallacy; in the 'Linda' problem most respondents made it.",
+      "support": "source",
+      "source": "Brief planned claim 3: Tversky and Kahneman (1983), 'Extensional versus intuitive reasoning: the conjunction fallacy in probability judgment', Psychological Review 90(4). NEEDS A HUMAN SOURCE CHECK. Neither the name nor any percentage is in learner text.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "Alex is outgoing and loves numbers. Which is more likely: Alex is an accountant, or Alex is an accountant who plays poker?",
     "options": [
-      "TODO",
-      "TODO"
+      "Alex is an accountant",
+      "Alex is an accountant who plays poker",
+      "They are equally likely"
     ],
     "answer": 0,
-    "why": "TODO"
+    "why": "Every accountant who plays poker is an accountant, so the fuller story is a subset: it can feel more fitting but can never be more likely."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +74,20 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:conjunction-fallacy",
+    "also": [
+      "probability:conditional-probability"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "chance",
+    "references": [],
+    "tags": [
+      "conjunction",
+      "heuristics",
+      "subsets"
+    ]
+  }
 }

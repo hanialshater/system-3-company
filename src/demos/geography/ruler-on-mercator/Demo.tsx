@@ -81,25 +81,29 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact, phase }) => (
+      {({ locked, interact, phase }) => {
+        const mapH = phase === "reveal" ? Math.ceil(eqY) + 4 : H;
+        const low = cy + 19 > mapH - 2; // too near the bottom edge: green bar and label go above
+        return (
         <div className={s.wrap}>
-          {/* v5: at the reveal, with the bar north of 10°N, the strip south of the equator is not drawn (the bar and
-              both labels stay; on the Equator-last path nothing is cut). */}
-          <WorldMap projection={projection} width={W} height={phase === "reveal" && lat >= 10 ? Math.ceil(eqY) + 2 : H} label={`Mercator map. A fixed-length bar at ${lat}°N spans ${fmt(groundKm)} on the ground.`}>
+          {/* v5: at the reveal the strip south of the equator is not drawn; near the equator the green bar and its
+              label move above the yellow bar so both stay on the map. */}
+          <WorldMap projection={projection} width={W} height={mapH} label={`Mercator map. A fixed-length bar at ${lat}°N spans ${fmt(groundKm)} on the ground.`}>
             {() => (
               <>
                 <line x1={0} x2={W} y1={eqY} y2={eqY} className={s.eq} />
                 <text x={4} y={eqY - 4} className={s.eqLabel}>
                   equator
                 </text>
-                <line x1={cx - trueHalf} x2={cx + trueHalf} y1={cy + 7} y2={cy + 7} className={s.truth} />
+                <line x1={cx - trueHalf} x2={cx + trueHalf} y1={low ? cy - 7 : cy + 7} y2={low ? cy - 7 : cy + 7} className={s.truth} />
+                <line x1={x0} x2={x1} y1={cy} y2={cy} className={s.barEdge} />
                 <line x1={x0} x2={x1} y1={cy} y2={cy} className={s.bar} />
                 <line x1={x0} x2={x0} y1={cy - 5} y2={cy + 5} className={s.tick} />
                 <line x1={x1} x2={x1} y1={cy - 5} y2={cy + 5} className={s.tick} />
                 <text x={x1 + 5} y={cy + 3} className={s.barLabel}>
                   same bar
                 </text>
-                <text x={cx} y={cy + 19 > H - 2 ? cy - 8 : cy + 19} className={s.truthLabel} textAnchor="middle">
+                <text x={cx} y={low ? cy - 13 : cy + 19} className={s.truthLabel} textAnchor="middle">
                   true {BAR_KM.toLocaleString("en-US")} km here
                 </text>
               </>
@@ -127,7 +131,8 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
             Seen: {seen ? `60°N → ${seen.ground} on the ground, stretch ${seen.stretch}` : "nothing yet"}
           </p>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

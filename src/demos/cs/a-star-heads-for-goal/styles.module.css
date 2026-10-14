@@ -3,9 +3,10 @@
 .wrap :global(.tap) { min-height: 44px; }
 .rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); line-height: 1.2; }
 .top { display: flex; gap: 6px; align-items: flex-start; justify-content: center; width: 100%; max-width: 360px; }
-.grid { width: 240px; flex: 0 1 240px; min-width: 0; height: auto; }
+/* v8 (W-448): one fixed width in every phase, so the kit's reveal rule (flex: none) cannot grow the grid past the stage. */
+.grid { width: 234px; max-width: 234px; flex: none; min-width: 0; height: auto; }
 .mark { font-size: 16px; font-weight: 800; }
-.num { font-size: 16px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.num { font-size: 16px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 4px; stroke-linejoin: round; }
 .lab { font-size: 0.75rem; color: var(--muted); }
 .table { display: grid; grid-template-columns: auto 1fr 1fr; gap: 2px 6px; width: 100%; max-width: 340px; font-size: 0.72rem; align-items: center; }
 .tr { display: contents; }

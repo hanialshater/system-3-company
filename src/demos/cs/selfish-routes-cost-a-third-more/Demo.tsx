@@ -41,10 +41,11 @@ type Join = ReturnType<typeof joinCost>;
 // chart geometry
 const X0 = 44;
 const X1 = 320;
-const Y0 = 176; // 30 min
+const Y0_FULL = 176; // 30 min
+const Y0_REVEAL = 150; // v5: the chart is 26 units shorter at the reveal (labels keep their size)
 const Y1 = 24; // 65 min
 const px = (pct: number) => X0 + ((X1 - X0) * pct) / 100;
-const py = (min: number) => Y0 - ((Y0 - Y1) * (min - 30)) / 35;
+const pyAt = (y0: number) => (min: number) => y0 - ((y0 - Y1) * (min - 30)) / 35;
 
 export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) {
   const [onB, setOnB] = useState(100);
@@ -80,26 +81,23 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
       reveal={() => (
         <>
           <p>
-            Selfish drivers all pile onto B, which is never slower than A: everyone takes 60 minutes. Your Lowest seen
-            readout reads {fmt(avg(best))} min at {best}% on B
-            {best === BEST ? ", where B takes 30" : ""}
-            {roseBelow ? ", and your trace rises on both sides" : ""}. 30 is out of reach: whoever stays on A still takes 60.
+            Selfish drivers all take B, never slower than A, so everyone takes 60 min. Your Lowest seen reads{" "}
+            {fmt(avg(best))} min at {best}% on B{roseBelow ? ", and your trace rises on both sides" : ""}. 30 is out of
+            reach: drivers on A still take 60.
           </p>
           {join && (
             <p>
-              The line under the chart is why. At {join.pct}% on B, the next {STEP} drivers to join each save {fmt(join.savedEach)}{" "}
-              minutes, {fmt(join.saved)} in all, and feel it. The {join.pct} already on B each lose {fmt(join.lostEach)}, {fmt(join.lost)}{" "}
-              in all, and nobody choosing feels that.
+              The line under the chart is why: {STEP} more drivers on B save {fmt(join.saved)} min between them and feel
+              it; the {join.pct} already there lose {fmt(join.lost)}, which nobody choosing feels.
             </p>
           )}
           <p>
-            Here selfish routing costs 60 / 45 = 4/3 of the best, a third more. With delays that are a fixed time plus a part
-            proportional to traffic, that is the worst it can ever be.
+            So selfish routing costs {fmt(A_MIN)} / {fmt(avg(BEST))} = 4/3 of the best: a third more.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["tried-a-split", "found-bottom"]}>
           {(hit) => {
             // visit a split; reads the ref, not render state, so the sweep's interval can call it
@@ -119,8 +117,15 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
               if (locked || busy) return;
               if (timer.current) clearInterval(timer.current);
               const all = Array.from({ length: 100 / STEP + 1 }, (_, i) => 100 - i * STEP);
+              // v5 (learner r8 minor): when the sweep ends, the marker parks on the lowest split it found, so the
+              // live readouts agree with Lowest seen instead of describing 0%.
+              const park = () => {
+                const low = seenRef.current.reduce((m, p) => (avg(p) < avg(m) ? p : m), seenRef.current[0]);
+                setOnB(low);
+              };
               if (reducedMotion()) {
                 all.forEach(visit);
+                park();
                 return;
               }
               setBusy(true);
@@ -130,6 +135,7 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                 i++;
                 if (i >= all.length) {
                   if (timer.current) clearInterval(timer.current);
+                  park();
                   setBusy(false);
                 }
               }, 16);
@@ -140,10 +146,14 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                 : onB === 0
                   ? "Everyone on A: B would take 0 min, so drivers want to switch."
                   : `B takes ${fmt(b)} min, A takes 60, so drivers on A want to switch.`;
+            const Y0 = phase === "reveal" ? Y0_REVEAL : Y0_FULL;
+            const py = pyAt(Y0);
             return (
               <div className={s.wrap}>
-                <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 340 220" className="stage-svg" role="img" aria-label={`${onB}% on road B, average trip ${fmt(a)} minutes`}>
+                {/* v5 (learner r8): the live note describes the current split, which the reveal does not discuss; it
+                    steps aside at the reveal. The Lowest seen readout and the cost line carry the quoted values. */}
+                {phase !== "reveal" && <p className={s.note}>{note}</p>}
+                <svg viewBox={`0 0 340 ${Y0 + 44}`} className="stage-svg" role="img" aria-label={`${onB}% on road B, average trip ${fmt(a)} minutes`}>
                   {[30, 40, 50, 60].map((m) => (
                     <g key={m}>
                       <line x1={X0} x2={X1} y1={py(m)} y2={py(m)} stroke="var(--line)" />
@@ -181,6 +191,9 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                     {fmt(a)} min
                   </text>
                 </svg>
+                {/* Fold opt-in (W-330): neither row holds a Readout, no reveal sentence reads the slider or these
+                    buttons, and the split they set stays drawn (marker, dashed line, trace). */}
+                <Row foldAtReveal>
                 <Slider
                   label="Drivers on road B"
                   value={onB}
@@ -191,7 +204,8 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                   disabled={locked || busy}
                   format={(v) => `${v}%`}
                 />
-                <Row>
+                </Row>
+                <Row foldAtReveal>
                   <Control disabled={locked || busy || onB === 100} onClick={() => set(100)}>
                     All on B (selfish)
                   </Control>
@@ -206,7 +220,7 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                 </Row>
                 <p className={s.note}>
                   {join
-                    ? `Of 100 drivers, at your lowest split, ${join.pct}% on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
+                    ? `Lowest split, ${join.pct} of 100 on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
                     : ""}
                 </p>
               </div>
