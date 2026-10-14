@@ -1,0 +1,114 @@
+{
+  "slug": "prices-sort-the-buyers",
+  "title": "Prices sort the buyers",
+  "hook": "Three buyers, three houses, nobody in charge. Can rising prices find the best match?",
+  "domain": "economics",
+  "concept": "market-clearing-prices",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a price is raised when too many people want an item",
+      "how supply and demand set one price in one market"
+    ],
+    "doesNotKnow": [
+      "that raising prices only on over-wanted houses, one dollar at a time, stops at prices where every buyer can take a house they like best",
+      "that the resulting assignment has the highest total value of all assignments"
+    ]
+  },
+  "misconception": "Someone must plan who gets which house to get the best match; prices just ration.",
+  "objective": "The learner can explain that prices raised only on the houses too many buyers want stop where each buyer can take a different favourite, and that this match has the highest total value of all six possible matches, without anyone assigning houses or knowing every value.",
+  "claims": [
+    {
+      "id": "economics.prices-sort-the-buyers.c1",
+      "text": "Buyer values (stated inputs): x values a 12, b 4, c 2; y values a 8, b 7, c 6; z values a 7, b 5, c 2. Prices start at $0.",
+      "support": "convention",
+      "source": "Stated inputs of the toy market, from the brief (company/domains/briefs/economics.markets.md, NCM batch 1 #4); constant V in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c2",
+      "text": "The rule on the card: a buyer wants every house with the largest value minus price (ties all count); each round, raise by $1 every house in the smallest group whose only-wanters (buyers who want only houses in the group) outnumber its houses.",
+      "support": "convention",
+      "source": "Stated rule; identical in Demo.tsx (wants, tooMany, raise), the brief and the spec company/design/specs/prices-sort-the-buyers.md. The smallest group is unique in every round of this run (builder's node check 2026-10-14). Other readings change the answer: largest group gives a stopping at $4; every qualifying group never stops (spec, brief).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c3",
+      "text": "Under that rule the prices go (0,0,0), (1,0,0), (2,0,0), (3,1,0) and stop: house a's price stops at $3 after three raises. Too many want {a} in rounds 0 and 1 and {a, b} in round 2; on the last raise b goes to $1.",
+      "support": "simulation",
+      "source": "Node run of the exact rule in Demo.tsx by the builder, 2026-10-14: round 0 wants x a, y a, z a, group {a}; round 1 (1,0,0) x a, y a|b, z a, group {a}; round 2 (2,0,0) x a, y b, z a|b, group {a,b}; round 3 (3,1,0) x a, y b|c, z a|b, no group. Matches the brief and spec tables. Deterministic, no seed.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c4",
+      "text": "At prices a $3, b $1, c $0 each buyer can take a different house it wants: x gets a, y gets c, z gets b, total value 12 + 6 + 5 = 23. This is the only such match. z ends on b although it values a at 7.",
+      "support": "simulation",
+      "source": "Node, 2026-10-14: of the 6 assignments only (x-a, y-c, z-b) lies inside the round-3 wants sets; total 23.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c5",
+      "text": "The six possible matches have totals 21 (xa yb zc), 23 (xa yc zb), 14 (xb ya zc), 17 (xb yc za), 15 (xc ya zb) and 16 (xc yb za); 23 is the highest and only one match reaches it.",
+      "support": "simulation",
+      "source": "Node enumeration of all 6 permutations with the values in c1, builder 2026-10-14. Matches the brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c6",
+      "text": "(3,1,0) are the lowest prices that clear this market: every whole-dollar price vector that clears it is at least $3, $1, $0 house by house. Clearing prices are not unique (20 whole-dollar vectors with lowest price 0 and prices up to $12 clear it).",
+      "support": "simulation",
+      "source": "Node, builder 2026-10-14: all whole-dollar vectors with prices 0..20 (284 clear, all >= (3,1,0) componentwise, all give the match x-a, y-c, z-b); 20 with min 0 and max <= 12, as in the brief. 'Clears' = no group wanted by too many and a perfect match inside the wants sets.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c7",
+      "text": "For any values, market-clearing prices exist, and the match they produce has the highest total value of all matches; rising prices on over-wanted groups find them.",
+      "support": "source",
+      "source": "Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 10 (existence and construction of market-clearing prices; optimality of the matching), sections 10.3-10.4 per the brief, section numbers UNCONFIRMED (no access to the PDF in this session).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c8",
+      "text": "These values are made up: the market is a teaching model, not data.",
+      "support": "convention",
+      "source": "Disclosure that the stage is a toy model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Prices rise by $1 only on houses that too many buyers want, until each buyer can take a different house it likes best. What can you say about the final match?",
+    "options": [
+      "Each house goes to the buyer who values it most",
+      "It has the highest total value of all possible matches",
+      "It is arbitrary; prices only ration who gets what"
+    ],
+    "answer": 1,
+    "why": "Market-clearing prices produce a match with the highest total value, although no one assigns the houses. A house need not go to its top valuer: y values b most, yet z gets b."
+  },
+  "evidence": {
+    "qa": ["company/reviews/prices-sort-the-buyers/2026-10-14-qa.md"],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:market-clearing-prices",
+    "prerequisites": ["economics:supply-demand"],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      { "work": "easley-kleinberg-2010", "chapter": 10, "section": "10.3", "note": "market-clearing prices and their construction; section unconfirmed (brief says 10.3-10.4)" }
+    ],
+    "also": [],
+    "tags": ["matching-market", "market-clearing-prices", "bipartite-graph", "auction"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate"]
+}
