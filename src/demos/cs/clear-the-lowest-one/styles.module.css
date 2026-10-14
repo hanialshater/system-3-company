@@ -1,0 +1,23 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.88rem; min-height: 2.6em; }
+.grid {
+  display: grid;
+  width: 100%;
+  max-width: 340px;
+  grid-template-columns: 2.6rem repeat(8, minmax(24px, 1fr)) 2rem;
+  gap: 4px 3px;
+  align-items: center;
+  font-family: ui-monospace, monospace;
+  font-weight: 800;
+}
+.rowLab { color: var(--muted); font-size: 0.75rem; text-align: right; padding-right: 4px; }
+.dec { color: var(--muted); font-size: 0.75rem; text-align: left; padding-left: 4px; font-variant-numeric: tabular-nums; }
+.bit { text-align: center; padding: 4px 0; border-radius: 6px; background: var(--bg-2); color: var(--fg); }
+.tog { min-width: 24px; min-height: 32px; padding: 0 !important; font-family: ui-monospace, monospace; font-weight: 800; }
+.one { border-color: var(--domain) !important; }
+.low { outline: 3px solid var(--domain); outline-offset: 1px; }
+.flipped { background: var(--domain); color: #0d0f14; }
+.cleared { background: var(--bad); color: #0d0f14; }
+.none { grid-column: span 8; color: var(--muted); font-size: 0.75rem; text-align: center; }
+.trail { margin: 0; font-family: ui-monospace, monospace; font-size: 0.8rem; text-align: center; min-height: 1.3em; overflow-wrap: anywhere; }

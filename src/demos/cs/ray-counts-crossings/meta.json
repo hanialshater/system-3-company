@@ -1,0 +1,84 @@
+{
+  "slug": "ray-counts-crossings",
+  "title": "Is the point in the U?",
+  "hook": "A point sits between the arms of a U, near its middle. Inside or out? Count, don't look.",
+  "domain": "cs",
+  "concept": "point-in-polygon",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a polygon boundary is"
+    ],
+    "doesNotKnow": [
+      "that a ray from the point crossing an odd number of edges means inside, even for a notched shape"
+    ]
+  },
+  "misconception": "A point between the arms of a U-shaped polygon is inside because it is near the middle.",
+  "objective": "The learner can explain that a ray from the point to the right flips inside/outside at every boundary crossing and ends outside, so an odd count means inside: (3,4) in the notch crosses 2 edges and is outside, (1,4) crosses 3 and is inside.",
+  "claims": [
+    {
+      "id": "cs.ray-counts-crossings.c1",
+      "text": "For the U with corners (0,0) (6,0) (6,6) (4,6) (4,2) (2,2) (2,6) (0,6), a ray to the right from (3,4) crosses 2 edges (x = 4 and x = 6), so the point is outside; from (1,4) it crosses 3, from (5,4) 1, from (3,1) 1 and from (7,4) 0.",
+      "support": "simulation",
+      "source": "Demo.tsx crossings() (half-open edge rule); builder re-ran in Node (2026-10-14): 2, 3, 1, 1, 0 for the five stage presets, matching the brief.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ray-counts-crossings.c2",
+      "text": "Far to the right is always outside, and every crossing flips inside and outside, so an odd count means inside and an even count means outside, for any simple polygon, notched or not.",
+      "support": "source",
+      "source": "Jordan curve theorem for polygons (derivation: the boundary separates the plane; a ray beyond the polygon's extent is in the outside region; each proper crossing switches region). Shimrat (1962), 'Algorithm 112: Position of point relative to polygon', Communications of the ACM 5(8); Haines (1994), 'Point in polygon strategies', Graphics Gems IV (citations from the brief: check before verifying).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ray-counts-crossings.c3",
+      "text": "A ray that passes exactly through a corner needs a tie rule; this stage keeps the point off corner heights.",
+      "support": "derivation",
+      "source": "At a vertex two edges meet the ray at one point; counting both or neither can be wrong. The half-open rule (count an edge only if exactly one endpoint lies above the ray's height) fixes it. The stage snaps dragged points to a half-unit grid, moves y off 0, 2 and 6 (the corner heights) and moves points off the boundary, so the drawn count never meets a tie.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ray from a point to the right crosses a maze-shaped polygon's boundary 6 times, never through a corner. Where is the point?",
+    "options": [
+      "Outside",
+      "Inside",
+      "It depends on the shape"
+    ],
+    "answer": 0,
+    "why": "Far along the ray is outside, and each crossing flips inside and outside. An even number of flips lands back where far away is: outside."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:point-in-polygon",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "geometry",
+      "ray-casting",
+      "parity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "drag-to-place",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

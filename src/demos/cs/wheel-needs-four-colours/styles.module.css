@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 2.6em; }
+.region { cursor: pointer; transition: fill 0.2s; }
+.flash { animation: flash 0.45s ease-in-out 2; }
+@keyframes flash { 50% { stroke-opacity: 0.2; } }
+.lab { fill: var(--fg); font-size: 15px; font-weight: 900; pointer-events: none; }
+.labOn { fill: #0d0f14; }
+.stuck { fill: var(--bad); font-size: 11px; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
