@@ -151,6 +151,17 @@ export function CardSequence({ label, phase, locked, interact, revealCard, child
     if (n < 2 || n > 4) console.warn(`CardSequence "${label}": ${n} sub-cards; the format allows 2-4 (EDD-006).`);
     const ids = cards.map((c) => c.props.id);
     if (new Set(ids).size !== ids.length) console.warn(`CardSequence "${label}": sub-card ids must be unique.`);
+    // EDD-006 review C2: misuse that the kit would otherwise ignore silently.
+    if (revealCard !== undefined && !ids.includes(revealCard))
+      console.warn(`CardSequence "${label}": revealCard "${revealCard}" is not a sub-card id (${ids.join(", ")}); the reveal will stay on whichever card is showing.`);
+    const dropped = Children.toArray(children).filter((c) => !(isValidElement(c) && c.type === SubCard));
+    if (dropped.length > 0)
+      console.warn(
+        `CardSequence "${label}": ${dropped.length} child${dropped.length === 1 ? " is" : "ren are"} not a direct <SubCard> and ${dropped.length === 1 ? "is" : "are"} not rendered. Put each <SubCard> directly inside <CardSequence> (no fragment, wrapper component or plain markup).`,
+      );
+    for (const c of cards)
+      if ((c.props.milestones ?? []).length === 0)
+        console.warn(`CardSequence "${label}": sub-card "${c.props.id}" has no milestones, so its trail step shows done as soon as it is visited. Give it at least one.`);
     const stage = rootRef.current?.closest('[data-testid="stage"]');
     const total = stage?.querySelectorAll('[data-qa="control"]').length ?? 0;
     if (total > 16) console.warn(`CardSequence "${label}": ${total} stage controls; QA presses only the first 16 (EDD-006 budget).`);

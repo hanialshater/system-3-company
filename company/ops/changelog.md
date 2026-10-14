@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-14: design-engineer W-604 / W-605 (EDD-006 review C1, C2) sequence probe and kit dev warnings
+- `tools/sequence-probe.mjs` (new; Playwright only, already a dependency): for each CardSequence lesson, at 390x844 (touch) and 1280x800, it walks the QA path and checks every sub-card while it is showing: overflow, crop, and tap targets (24 px floor; the kit's trail and Next must be 44). It also checks back navigation through the trail with state kept, the revealCard switch before first paint (on another card at the reveal), a 4-step trail at 390 (padded in place), page and console errors, and CardSequence dev warnings. Prints PASS or FAIL per check and exits 1 on a FAIL. Fails fast when another lesson breaks the dev bundle. euclid-three-steps: 16 PASS, 1 FAIL (four-cards: the trail wraps to 71 px with 4 steps).
+- `src/kit/sequence.tsx`: dev-only warnings for an unknown `revealCard`, dropped non-`<SubCard>` children, and sub-cards with no milestones. No API or behaviour change.
+
 ## 2026-10-14: platform-engineer W-477 (S1) /spike unreachable in production; cdn allow-list; event intake refuses frames
 - `src/lib/spike.ts` (new): `spikeEnabled` (NODE_ENV=development or server-side `SPIKE_ENABLED=1`; no NEXT_PUBLIC flag), `spikeCdnAllowlist` (`SPIKE_CDN_ORIGINS`, default http://localhost:3141), `resolveSpikeCdn` (a `?cdn=` value only selects an allow-listed origin; the returned string is always the allow-list entry), `frameUrlOn` (manifest frame paths may not leave the CDN origin; blocks `@host` userinfo and `//host`), `eventWriteAllowed`.
 - `src/app/spike/page.tsx`: `notFound()` unless enabled, `force-dynamic`, cdn resolved on the server and passed as a prop. `SpikeHost.tsx` no longer reads `?cdn=` or `NEXT_PUBLIC_SPIKE_CDN`, writes progress to `s3c:spike:progress:v1` (never the learner key `s3c:progress:v1`) and no longer forwards frame events to `/api/events`.
