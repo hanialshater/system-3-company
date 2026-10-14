@@ -1,7 +1,7 @@
 {
   "slug": "desk-supply-near-use",
-  "title": "Store it where the route ends",
-  "hook": "Which location reduces this repeated retrieval route?",
+  "title": "Six trips for the tape",
+  "hook": "You need the tape six times while you work.",
   "domain": "lifehacks",
   "concept": "store-at-point-of-use",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.desk-supply-near-use.c4",
-      "text": "Which location reduces this repeated retrieval route?",
-      "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: You need the tape six times while you work. The tape sits 4 m from your desk and you fetch it 6 times. How far do you walk? Correct option: 48 m (6 round trips of 8 m).",
+      "support": "derivation",
+      "source": "home-models.ts case 'distance-use'; values [6], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 5), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.desk-supply-near-use.c5",
@@ -74,6 +72,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.c6",
+      "text": "Round trip per fetch: 8 m across the room, 0 m with a copy at the desk. Walked over 6 fetches: 48 m and 0 m.",
+      "support": "derivation",
+      "source": "home-models.ts case 'distance-use'. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 5), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.seen",
+      "text": "Seen table and first reveal sentence at the starting distance of 4 m; recomputed live as the slider moves: Across the room: round trip per fetch 8 m; walked, 6 fetches 48 m. Copy at desk: round trip per fetch 0 m; walked, 6 fetches 0 m.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +109,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:store-at-point-of-use",
     "prerequisites": [],

@@ -1,7 +1,7 @@
 {
   "slug": "circle-tray-square-corners",
-  "title": "Rotating a circle changes nothing",
-  "hook": "Can rotation alone put more equal circles in this grid?",
+  "title": "Turn the discs, fit more?",
+  "hook": "Four discs leave empty corners. Will turning each one help?",
   "domain": "lifehacks",
   "concept": "round-in-square-wastes-corners",
   "status": "review",
@@ -32,12 +32,10 @@
     },
     {
       "id": "lifehacks.circle-tray-square-corners.c2",
-      "text": "This is not an optimal circle-packing solver; staggered rows can behave differently.",
+      "text": "This model keeps a square grid; it is not a best-packing solver.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Count=floor(W/10)² in both selected square grids, disc diameter10cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limit of this card (limit field). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 3), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.circle-tray-square-corners.c3",
@@ -50,12 +48,10 @@
     },
     {
       "id": "lifehacks.circle-tray-square-corners.c4",
-      "text": "Can rotation alone put more equal circles in this grid?",
-      "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: Four discs leave empty corners. Will turning each one help? At this 28 cm tray, how many 10 cm discs fit once each is turned 45°? Correct option: 4 discs, as before.",
+      "support": "derivation",
+      "source": "home-models.ts case 'circle-fit': floor(28/10)² = 4 in both modes. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 3), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.circle-tray-square-corners.c5",
@@ -68,24 +64,36 @@
     },
     {
       "id": "lifehacks.circle-tray-square-corners.recall",
-      "text": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can.",
+      "text": "32 ÷ 10 rounds down to 3 per row, so 3 × 3 = 9 either way: a turned circle takes the same space. 16 would need 8 cm discs.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Rotation and flipping leave a disc unchanged; only re-arrangement can change the count. Matches c1/c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; scenario values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 3), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.c6",
+      "text": "Discs per row: 2 in both arrangements at 28 cm (28 ÷ 10 rounded down); 2 × 2 = 4 discs either way.",
+      "support": "derivation",
+      "source": "home-models.ts case 'circle-fit'; values [10], initial 28. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 3), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.seen",
+      "text": "Seen table and first reveal sentence at the starting tray side of 28 cm; recomputed live as the slider moves: As placed: discs per row 2; discs that fit 4 discs. Each turned 45°: discs per row 2; discs that fit 4 discs.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Equal discs sit in a square grid on a tray. Which change could alter how many fit?",
+    "question": "A 32 cm square tray holds 10 cm discs in a square grid. Each disc is turned 45°. How many fit now?",
     "options": [
-      "Rotating each disc a quarter-turn",
-      "Switching to staggered rows",
-      "Turning every disc upside down"
+      "9 discs",
+      "10 discs",
+      "16 discs"
     ],
-    "answer": 1,
-    "why": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can."
+    "answer": 0,
+    "why": "32 ÷ 10 rounds down to 3 per row, so 3 × 3 = 9 either way: a turned circle takes the same space. 16 would need 8 cm discs."
   },
   "evidence": {
     "qa": [
@@ -97,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:round-in-square-wastes-corners",
     "prerequisites": [],

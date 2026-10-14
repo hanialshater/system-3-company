@@ -18,3 +18,12 @@
 .reveal p { margin: 0 0 9px; }
 /* W-560: meaning-carrying domain strokes use a darkened ink in light mode (5.8-7.9:1, company/design/system.md). */
 @media (prefers-color-scheme: light) { .stage { --lh-ink: color-mix(in srgb, var(--domain) 45%, #000); } }
+/* Engines v2 (W-608, spec section 7). Meaning-carrying SVG text is authored at 20 units, so it stays at or above the
+   10 px floor (company/design/system.md W-289) even when the card's reveal fit shrinks the picture to half its natural
+   height; the 15-unit minimum of the spec is met with room. A caption drawn in the picture uses the same 20 units. */
+/* Cap 200 px (not the spec's 170): at 170 the 300-unit viewBox is drawn at 66% of the stage width, which reveal-fit
+   flags as a thumbnail; at 200 it is 78% and the predict frame still keeps the Seen table on screen. */
+.sceneV2 { max-height: 200px; }
+.sceneV2 text { font-size: 20px; }
+.sceneV2 text.captionV2 { fill: var(--muted); }
+.overlap { fill: var(--bad); fill-opacity: .35; stroke: var(--bad); stroke-width: 2; }

@@ -1,18 +1,20 @@
 /** Pure, deterministic exercise rules. Fixtures are assumptions, never personal forecasts. */
+import type { StudyV2Fields } from "./engine-v2";
 export type StudyFamily = "spacing" | "recall" | "schedule" | "order" | "files" | "message" | "edit";
-interface Base {
+/** v2 fields (engine-v2.ts) are optional; a spec without `engine: 2` renders as v1. */
+interface Base extends StudyV2Fields {
   family: StudyFamily; slug: string; title: string; hook: string; objective: string;
   question: string; options: string[]; answer: number; principle: string;
   boundary: string; source: string; misconception: string;
 }
-export interface CalendarRow { label: string; start: number; duration: number }
+export interface CalendarRow { label: string; start: number; duration: number; parts?: Array<{ label: string; minutes: number }> }
 export interface FileItem { name: string; value: string; [key: string]: string | number | boolean }
 export interface SpacingSpec extends Base { family: "spacing"; days: number[] }
-export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string }
-export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button: string; deadline: number }
+export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string; candidates?: { a: number; b: number }; rowLabels?: [string, string]; hideTarget?: boolean }
+export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button?: string; deadline: number; event?: { row: number; minutes: number; label: string } }
 export interface OrderSpec extends Base { family: "order"; labels: string[]; durations: number[]; due: number[]; target: number[]; initial: number[]; metric: string; dependencies: Record<string, number>; tags: string[]; switchCost: number }
 export interface FilesSpec extends Base { family: "files"; items: FileItem[]; operation: string; button: string; button2: string; field?: string; field2?: string; value?: string | number; value2?: string }
-export interface MessageSpec extends Base { family: "message"; labels: string[]; words: string[]; fields: string[] }
+export interface MessageSpec extends Base { family: "message"; labels: string[]; words: string[]; fields: string[]; aFields?: number }
 export interface EditSpec extends Base { family: "edit"; before: string[]; step1: string[]; step2: string[]; button: string; button2: string }
 export type StudySpec = SpacingSpec | RecallSpec | ScheduleSpec | OrderSpec | FilesSpec | MessageSpec | EditSpec;
 

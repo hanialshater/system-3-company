@@ -207,7 +207,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "box-handle-clearance",
-    "title": "A box is wider with handles",
+    "title": "Will this box fit the shelf?",
     "model": "clearance",
     "view": "fit",
     "initial": 42,
@@ -222,7 +222,7 @@ export const homeLessons: HomeSpec[] = [
       "Body only",
       "Include handles"
     ],
-    "question": "Which measurement catches this shelf collision?",
+    "question": "Does this box, as drawn, fit the 42 cm opening?",
     "idea": "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same.",
     "limit": "Measure the real outermost points; soft handles may flex, which this rigid drawing does not model.",
     "formula": "Test width=40 or 40+2×3 cm. Shelf margin=opening−test width.",
@@ -232,7 +232,40 @@ export const homeLessons: HomeSpec[] = [
     "concept": "box-handle-clearance",
     "unit": "cm",
     "inputLabel": "Shelf opening",
-    "hook": "Which measurement catches this shelf collision?"
+    "hook": "The label says 40 cm wide. The shelf opening is 42 cm.",
+    "engine": 2,
+    "modeLabels": [
+      "Body only",
+      "Include handles"
+    ],
+    "options": [
+      "Yes, with room to spare",
+      "No, it is too wide",
+      "Only just: it touches"
+    ],
+    "amounts": [
+      {
+        "label": "Width tested",
+        "unit": "cm",
+        "a": "a",
+        "b": [
+          "+",
+          "a",
+          [
+            "*",
+            2,
+            "b"
+          ]
+        ]
+      }
+    ],
+    "resultLabel": "Clearance",
+    "verdict": {
+      "below": "too wide",
+      "above": "fits",
+      "zero": "exact fit"
+    },
+    "pictureMark": "dimension"
   },
   {
     "slug": "drawer-divider-cost",
@@ -584,7 +617,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "bag-weight-before-volume",
-    "title": "A half-empty bag can be overweight",
+    "title": "Will this bag pass the limit?",
     "model": "weight-limit",
     "view": "volume",
     "initial": 4,
@@ -599,17 +632,53 @@ export const homeLessons: HomeSpec[] = [
       "Ignore mass",
       "Check mass"
     ],
-    "question": "Which check notices the illustrated weight limit?",
+    "question": "This 2 kg bag holds 4 kg of things and is half empty. Does it pass a 5 kg limit?",
     "idea": "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total.",
     "limit": "The five-kilogram limit is chosen for this example, not an airline or manufacturer rule.",
-    "formula": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Volume not used in this calculation.",
+    "formula": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Space used is a fixed 10 of 20 L at every load; it does not enter the mass.",
     "recall": "Can empty space make a bag meet a weight limit?",
     "source": null,
     "answer": 1,
     "concept": "bag-weight-before-volume",
     "unit": "kg",
     "inputLabel": "Contents",
-    "hook": "Which check notices the illustrated weight limit?"
+    "hook": "Half its space is still free.",
+    "engine": 2,
+    "modeLabels": [
+      "Judge by space",
+      "Weigh it"
+    ],
+    "options": [
+      "Yes, half of it is empty",
+      "No, it is over the limit",
+      "Only just, at the limit"
+    ],
+    "amounts": [
+      {
+        "label": "Space used",
+        "unit": "L",
+        "a": "10 of 20",
+        "b": "10 of 20"
+      },
+      {
+        "label": "Total mass",
+        "unit": "kg",
+        "a": "not weighed",
+        "b": [
+          "+",
+          "p",
+          "a"
+        ]
+      }
+    ],
+    "resultLabel": "Against 5 kg limit",
+    "verdict": {
+      "above": "over",
+      "zero": "within limit"
+    },
+    "resultText": {
+      "a": "looks fine (not weighed)"
+    }
   },
   {
     "slug": "towel-over-two-bars",
@@ -1210,7 +1279,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "coiled-cord-bend-radius",
-    "title": "Tighter coils, more curvature",
+    "title": "How sharp is the bend?",
     "model": "coil-radius",
     "view": "cord",
     "initial": 10,
@@ -1224,7 +1293,7 @@ export const homeLessons: HomeSpec[] = [
       "Chosen radius",
       "Double radius"
     ],
-    "question": "Which coil bends the cord more gently?",
+    "question": "Against the base coil, how sharp is the bend with loops of twice the radius?",
     "idea": "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes.",
     "limit": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
     "formula": "Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r.",
@@ -1233,8 +1302,66 @@ export const homeLessons: HomeSpec[] = [
     "answer": 1,
     "concept": "coiled-cord-bend-radius",
     "unit": "cm",
-    "inputLabel": "Radius",
-    "hook": "Which coil bends the cord more gently?"
+    "inputLabel": "Base radius",
+    "hook": "Same 2 m cord, coiled in loops twice as wide.",
+    "engine": 2,
+    "modeLabels": [
+      "Base radius r",
+      "Double, 2 × r"
+    ],
+    "options": [
+      "Twice as sharp",
+      "Half as sharp",
+      "Just as sharp: same cord"
+    ],
+    "amounts": [
+      {
+        "label": "Cord per turn",
+        "unit": "cm",
+        "a": [
+          "*",
+          2,
+          3.14159,
+          "p"
+        ],
+        "b": [
+          "*",
+          4,
+          3.14159,
+          "p"
+        ]
+      },
+      {
+        "label": "Turns",
+        "unit": "",
+        "a": [
+          "/",
+          "a",
+          [
+            "*",
+            2,
+            3.14159,
+            "p"
+          ]
+        ],
+        "b": [
+          "/",
+          "a",
+          [
+            "*",
+            4,
+            3.14159,
+            "p"
+          ]
+        ]
+      }
+    ],
+    "resultLabel": "Bend (1 ÷ radius)",
+    "resultUnit": "per cm",
+    "verdictByMode": {
+      "a": "sharper",
+      "b": "gentler"
+    }
   },
   {
     "slug": "mug-handle-packing",
@@ -1267,7 +1394,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "circle-tray-square-corners",
-    "title": "Rotating a circle changes nothing",
+    "title": "Turn the discs, fit more?",
     "model": "circle-fit",
     "view": "grid",
     "initial": 28,
@@ -1281,17 +1408,51 @@ export const homeLessons: HomeSpec[] = [
       "First orientation",
       "Rotate circles"
     ],
-    "question": "Can rotation alone put more equal circles in this grid?",
+    "question": "At this 28 cm tray, how many 10 cm discs fit once each is turned 45°?",
     "idea": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment.",
-    "limit": "This is not an optimal circle-packing solver; staggered rows can behave differently.",
+    "limit": "This model keeps a square grid; it is not a best-packing solver.",
     "formula": "Count=floor(W/10)² in both selected square grids, disc diameter10cm.",
     "recall": "Which kind of packing change can matter for circles when rotation cannot?",
     "source": null,
-    "answer": 2,
+    "answer": 0,
     "concept": "circle-tray-square-corners",
     "unit": "cm",
     "inputLabel": "Tray side",
-    "hook": "Can rotation alone put more equal circles in this grid?"
+    "hook": "Four discs leave empty corners. Will turning each one help?",
+    "engine": 2,
+    "modeLabels": [
+      "As placed",
+      "Each turned 45°"
+    ],
+    "options": [
+      "4 discs, as before",
+      "5 discs: corners fill",
+      "9 discs: rows close up"
+    ],
+    "amounts": [
+      {
+        "label": "Discs per row",
+        "unit": "",
+        "a": [
+          "floor",
+          [
+            "/",
+            "p",
+            "a"
+          ]
+        ],
+        "b": [
+          "floor",
+          [
+            "/",
+            "p",
+            "a"
+          ]
+        ]
+      }
+    ],
+    "resultLabel": "Discs that fit",
+    "pictureMark": "radius-stripe"
   },
   {
     "slug": "round-box-leftover-gap",
@@ -1467,7 +1628,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "desk-supply-near-use",
-    "title": "Store it where the route ends",
+    "title": "Six trips for the tape",
     "model": "distance-use",
     "view": "route",
     "initial": 4,
@@ -1481,17 +1642,40 @@ export const homeLessons: HomeSpec[] = [
       "Across room",
       "At work point"
     ],
-    "question": "Which location reduces this repeated retrieval route?",
+    "question": "The tape sits 4 m from your desk and you fetch it 6 times. How far do you walk?",
     "idea": "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location.",
     "limit": "The model ignores setup and clutter; it is not a productivity measurement.",
     "formula": "Distance=2×input metres×6 uses or0m at use point.",
     "recall": "When can a second storage location remove repeated travel?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "desk-supply-near-use",
     "unit": "m",
     "inputLabel": "Distance",
-    "hook": "Which location reduces this repeated retrieval route?"
+    "hook": "You need the tape six times while you work.",
+    "engine": 2,
+    "modeLabels": [
+      "Across the room",
+      "Copy at desk"
+    ],
+    "options": [
+      "4 m",
+      "24 m",
+      "48 m"
+    ],
+    "amounts": [
+      {
+        "label": "Round trip per fetch",
+        "unit": "m",
+        "a": [
+          "*",
+          2,
+          "p"
+        ],
+        "b": 0
+      }
+    ],
+    "resultLabel": "Walked, 6 fetches"
   },
   {
     "slug": "keys-fixed-drop-zone",

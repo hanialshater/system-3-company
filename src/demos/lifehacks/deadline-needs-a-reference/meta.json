@@ -1,7 +1,7 @@
 {
   "slug": "deadline-needs-a-reference",
-  "title": "What does “Friday” mean?",
-  "hook": "A deadline needs a date and time reference, especially across locations.",
+  "title": "When is it due?",
+  "hook": "You work on UTC. Your colleague works on UTC+9.",
   "domain": "lifehacks",
   "concept": "office-deadline-reference",
   "status": "review",
@@ -22,22 +22,18 @@
   "objective": "Replace an ambiguous deadline with an explicit dated time zone.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A deadline needs a date and time reference, especially across locations. Which deadline is explicit in this fixture? Correct option: 14 Oct 15:00 UTC. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.deadline-needs-a-reference.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: You work on UTC. Your colleague works on UTC+9. Your colleague reads 'Due 16 Oct, 15:00' as their own time. When is that for you? Correct option: 06:00 UTC, 9 h early. Fixture zones and times are stipulated.",
+      "support": "derivation",
+      "source": "15:00 at UTC+9 = 06:00 UTC. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
-      "text": "The date, clock time and time-zone reference define the fixture deadline. Local conversion and daylight-saving rules remain outside this exercise.",
-      "support": "derivation",
-      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.deadline-needs-a-reference.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "A date, a clock time and a zone fix one moment. Without the zone, a reader on UTC+9 who assumes their own time aims 9 hours early. Daylight-saving rules are outside this exercise.",
+      "support": "derivation",
+      "source": "Principle field in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,24 +46,43 @@
     },
     {
       "id": "lifehacks.deadline-needs-a-reference.recall",
-      "text": "A date, a clock time and a time zone fix one moment; 'end of day' and bare times depend on where you read them.",
+      "text": "UTC is one shared reference, so 17:00 UTC is one moment everywhere. 'Local' and 'close of day' each mean a different moment in each city.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Only key 2 has date, time and zone; matches c2 (DST/conversion out of scope). Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Pointer corrected by demo-builder 2026-10-14 (W-391a).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.deadline-needs-a-reference.c4",
+      "text": "A UTC+9 reader who takes 'Due 16 Oct, 15:00' as local time aims for 06:00 UTC, 9 hours before 15:00 UTC.",
+      "support": "derivation",
+      "source": "15:00 − 9 h = 06:00; consequence field in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.deadline-needs-a-reference.c5",
+      "text": "16 October 2026 is a Friday.",
+      "support": "source",
+      "source": "Any 2026 calendar (needed because the recall says 'Fri 16 Oct'). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.deadline-needs-a-reference.seen",
+      "text": "Seen table and first reveal sentence: No zone: your colleague aims for 06:00 UTC, 9 h early; fields 2/3. With zone: your colleague aims for 15:00 UTC; fields 3/3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Your team works in London and Tokyo. Which deadline means the same moment for both?",
     "options": [
-      "Friday, end of day",
-      "Friday at 17:00",
-      "16 Oct, 17:00 UTC"
+      "Fri 16 Oct, 17:00 local",
+      "Fri 16 Oct, 17:00 UTC",
+      "Fri 16 Oct, close of day"
     ],
-    "answer": 2,
-    "why": "A date, a clock time and a time zone fix one moment; 'end of day' and bare times depend on where you read them."
+    "answer": 1,
+    "why": "UTC is one shared reference, so 17:00 UTC is one moment everywhere. 'Local' and 'close of day' each mean a different moment in each city."
   },
   "evidence": {
     "qa": [
@@ -79,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:office-deadline-reference",
     "prerequisites": [],

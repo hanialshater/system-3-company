@@ -15,3 +15,11 @@
 ## Pre-flight note (W-383, version unchanged)
 
 2026-10-14, demo-builder. From FC LH-2 Pass LH-2. The unrendered c5 transfer prompt is deleted (`.recall` replaces it). Nothing a learner sees changed, so the version stays 2.
+
+## Revision v3 (W-608, engines v2, 2026-10-14, demo-builder)
+
+- engine: 2. Content patch r9 batch D block 4 applied as written (company/reviews/lifehacks-200/content-patch-r9-batch-d.md). Engine changes and W-611 choices: company/reviews/lifehacks-200/engines-v2-build-W-608.md.
+- Claims now unverified: c4, c6, seen. New: lifehacks.coiled-cord-bend-radius.seen (the engine's first reveal sentence). Nothing marked verified.
+- **Phone fit fails:** crop 38 px. Reveal 81 measured words against the Home cap of 55; the picture is at its text floor. Which sentence goes, or the limit moving to the caption, is cm-lifehacks's call (board).
+- Reveal fit 390x844: crop 38 px, hiddenBelow 0 px, namedHidden 0, 81 measured words, phoneFit false (artifacts/reveal-fit/w608-v2*.json).
+- QA contract (dev :3530, --timeout=900000 --workers=1): phone and desktop passed (artifacts/qa-w608).

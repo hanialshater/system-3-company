@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import type { LessonProps, StageContext } from '@/kit/Lesson';
 import { Slider } from '@/kit/controls';
-import { StageControl, StageStatus } from './a11y';
+import { ModeControl, StageControl, StageStatus } from './a11y';
+import { SeenTable } from './SeenTable';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
 import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
+import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, type Mode } from '@/lib/lifehacks/engine-v2';
 import s from './HomeLesson.module.css';
 
-function Scene({ spec, p, after, result, locked }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean }) {
+/** v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none. */
+type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string };
+function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean; v2?:SceneV2Props }) {
   const n = Math.min(12,Math.max(2,Math.round(p)));
   const v=spec.values, model=spec.model;
   const rect=(x:number,y:number,w:number,h:number,key:string,target=false)=><rect key={key} x={x} y={y} width={Math.max(1,w)} height={Math.max(1,h)} rx={3} className={target?s.target:s.object}/>;
@@ -111,7 +115,71 @@ function Scene({ spec, p, after, result, locked }: { spec:HomeSpec; p:number; af
     else if(model==='reach') art=<><rect x="40" y="40" width="220" height="140" className={s.outline}/>{rect(after?50:165,after?155:95,75,45,'tray')}{rect(after?67:184,after?155:96,35,27,'item',true)}<path d={`M150,210L${after?80:200},${after?180:120}`} className={s.air}/></>;
     else art=<><path d="M60,70l45,-35h140v125l-45,35H60z" className={s.outline}/><path d="M60,70h140v125M200,70l45,-35" className={s.line}/>{after&&<path d={model==='ribbon'?'M130,40v153M62,132h137l45,-40':'M60,70l140,125M60,195l140,-125'} className={s.air}/>}</>;
   }
-  return <svg viewBox={model==='ruler-offset'?"0 0 350 240":"0 0 300 240"} className={s.scene} role="img" aria-label={locked?`${spec.title}: ${spec.choices[after?1:0]}; illustrative arrangement before prediction`:`${spec.title}: ${spec.choices[after?1:0]}; ${result.label} ${fmt(result.value)} ${result.unit}`}>{art}</svg>;
+  // v2: the stage caption is drawn inside the picture, under the drawing (demo-standard fit order: fold stage text into the picture).
+  const vbWidth=model==='ruler-offset'?350:300;
+  if(v2?.caption!==undefined) return <svg viewBox={`0 0 ${vbWidth} 266`} className={v2.className??s.scene} role="img" aria-label={v2.label}>{v2.override??art}{v2.extra}<text x={vbWidth/2} y="258" textAnchor="middle" className={s.captionV2}>{v2.caption}</text></svg>;
+  return <svg viewBox={model==='ruler-offset'?"0 0 350 240":"0 0 300 240"} className={v2?.className??s.scene} role="img" aria-label={v2?.label??(locked?`${spec.title}: ${spec.choices[after?1:0]}; illustrative arrangement before prediction`:`${spec.title}: ${spec.choices[after?1:0]}; ${result.label} ${fmt(result.value)} ${result.unit}`)}>{v2?.override??art}{v2?.extra}</svg>;
+}
+
+const caption=(spec:HomeSpec)=>spec.slug==='door-swing-clearance'?'Model; keep exits clear':spec.slug==='rug-chair-pullback'?'Model; keep paths clear':spec.view==='cord'?'Plain cord; storage only':spec.view==='mechanics'?'Model; no safe load limit':'Illustrative model';
+
+/** v2 picture marks (spec section 3): a to-scale fit drawing with a dimension line, or a radius stripe per disc. */
+function v2Marks(spec:HomeSpec,p:number,mode:Mode|null):SceneV2Props {
+  const v=spec.values;
+  if(spec.pictureMark==='dimension'&&spec.model==='clearance') {
+    // 4 px per cm, centred: opening, body and both handles share one scale, so the outermost points can be judged by eye.
+    const k=4,body=v[0]*k,h=v[1]*k,open=p*k,L=150-open/2,R=150+open/2,env=body+2*h;
+    const tested=mode==='b'?env:body,over=mode==='b'&&env>open;
+    return {override:<>
+      <path d={`M${L},35v155M${R},35v155M${L},35h${open}`} className={s.line}/>
+      <rect x={150-body/2} y={85} width={body} height={85} rx={3} className={s.object}/>
+      {[-1,1].map(side=><rect key={side} x={side<0?150-body/2-h:150+body/2} y={110} width={h} height={32} rx={2} className={s.object}/>)}
+      {over&&[-1,1].map(side=><rect key={`o${side}`} x={side<0?150-env/2:R} y={104} width={(env-open)/2} height={44} className={s.overlap}/>)}
+      {mode&&<><path d={`M${150-tested/2},70h${tested}M${150-tested/2},63v14M${150+tested/2},63v14`} className={s.line}/>
+        <text x="150" y="60" textAnchor="middle">{fmt(tested/k)} cm</text></>}
+      <line x1={L} x2={R} y1="205" y2="205" className={s.air}/><text x="150" y="228" textAnchor="middle">{fmt(p)} cm opening</text>
+    </>};
+  }
+  if(spec.pictureMark==='radius-stripe'&&spec.model==='circle-fit') {
+    const diameter=v[0],columns=Math.floor(p/diameter),scale=170/p,x=65,y=30,r=diameter*scale/2,turn=mode==='b'?-Math.PI/4:0;
+    return {extra:<g aria-hidden="true">{Array.from({length:columns*columns},(_,i)=>{
+      const cx=x+(i%columns+0.5)*diameter*scale,cy=y+(Math.floor(i/columns)+0.5)*diameter*scale;
+      return <line key={i} x1={cx} y1={cy} x2={cx+r*Math.cos(turn)} y2={cy+r*Math.sin(turn)} className={s.line}/>;
+    })}</g>};
+  }
+  return {};
+}
+
+/**
+ * Engines v2 Home stage (W-608): neutral start, mode buttons A then B (R1, R2, R8), a Seen table that keeps both
+ * columns and recomputes them live with the slider (R3, R4), and words on signed results (R5).
+ */
+function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:HomeSpec;p:number;setP:(p:number)=>void;mode:Mode|null;setMode:(m:Mode)=>void;seen:Record<Mode,boolean>;setSeen:(f:(s:Record<Mode,boolean>)=>Record<Mode,boolean>)=>void;locked:boolean;interact:()=>void}) {
+  const {reach}=useMilestones(interact,['tested-a','tested-b']);
+  const [A,B]=homeModeLabels(spec);
+  const press=(m:Mode)=>{setMode(m);setSeen(prev=>({...prev,[m]:true}));reach(m==='a'?'tested-a':'tested-b');};
+  const cols={a:homeColumn(spec,p,'a'),b:homeColumn(spec,p,'b')};
+  const shown=(m:Mode)=>!locked&&seen[m];
+  const resultLabel=homeResultLabel(spec,p);
+  const rows=[...(spec.amounts??[]).map((r,i)=>({label:r.label,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].amounts[i]:'?')})),
+    {label:resultLabel,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].result:'?')}];
+  const after=mode==='b',result=evaluateHome(spec,p,after);
+  // A picture that already carries labels gets the caption inside it (it shrinks with the picture, never below the text floor);
+  // a text-free picture keeps the HTML caption, so the card may still shrink that picture to its 40% floor.
+  const textInPicture=spec.pictureMark==='dimension'||['route','mechanics','ruler','cord','diagonal','fit'].includes(spec.view);
+  const label=locked||!mode?`${spec.title}: shared setup, drawn as ${A}; no result shown`:`${spec.title}: showing ${mode==='a'?A:B}; ${resultLabel} ${cols[mode].result}`;
+  const status=locked||!mode?'':`${mode==='a'?A:B}: ${rows.map(r=>`${r.label} ${r.cells[mode==='a'?0:1]}`).join('; ')}`;
+  return <div className={s.stage}>
+    <Scene spec={spec} p={p} after={after} result={result} locked={locked} v2={{className:`${s.scene} ${s.sceneV2}`,label,caption:textInPicture?caption(spec):undefined,...v2Marks(spec,p,locked?null:mode)}}/>
+    <SeenTable label="Seen results" columns={[{head:'A',current:!locked&&mode==='a'},{head:'B',current:!locked&&mode==='b'}]} rows={rows}/>
+    <div className={s.controls}>
+      <ModeControl locked={locked} pressed={!locked&&mode==='a'} letter="A" label={A} onPress={()=>press('a')}/>
+      <ModeControl locked={locked} pressed={!locked&&mode==='b'} letter="B" label={B} onPress={()=>press('b')}/>
+    </div>
+    <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)} ${spec.unit}`.trim()} disabled={locked} onChange={setP}/>
+    <StageStatus locked={locked} text={status}/>
+    {!textInPicture&&<p className={s.caption}>{caption(spec)}</p>}
+  </div>;
 }
 
 function Stage({spec,p,setP,after,setAfter,locked,interact}:{spec:HomeSpec;p:number;setP:(p:number)=>void;after:boolean;setAfter:(a:boolean)=>void;locked:boolean;interact:()=>void}) {
@@ -181,16 +249,27 @@ function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number
   </div>;
 }
 
-type HomeStageState = { spec: HomeSpec; p: number; setP: (n:number)=>void; after: boolean; setAfter: (v:boolean)=>void; runs: number; setRuns: (n:number)=>void };
-export function Controls({spec,p,setP,after,setAfter,runs,setRuns,locked,interact}:HomeStageState & StageContext) {
+type HomeStageState = { spec: HomeSpec; p: number; setP: (n:number)=>void; after: boolean; setAfter: (v:boolean)=>void; runs: number; setRuns: (n:number)=>void;
+  mode: Mode|null; setMode: (m:Mode)=>void; seen: Record<Mode,boolean>; setSeen: (f:(s:Record<Mode,boolean>)=>Record<Mode,boolean>)=>void };
+const isV2=(spec:HomeSpec)=>spec.engine===2&&!['wobble','bow','cord'].includes(spec.model);
+export function Controls({spec,p,setP,after,setAfter,runs,setRuns,mode,setMode,seen,setSeen,locked,interact}:HomeStageState & StageContext) {
+  if(isV2(spec)) return <StageV2 spec={spec} p={p} setP={setP} mode={mode} setMode={setMode} seen={seen} setSeen={setSeen} locked={locked} interact={interact}/>;
   return spec.model==='wobble'?<WobbleStage p={p} setP={setP} locked={locked} interact={interact}/>:spec.model==='bow'?<BowStage steps={p} setSteps={setP} after={after} setAfter={setAfter} locked={locked} interact={interact}/>:spec.model==='cord'?<CordStage runs={runs} setRuns={setRuns} locked={locked} interact={interact}/>:<Stage spec={spec} p={p} setP={setP} after={after} setAfter={setAfter} locked={locked} interact={interact}/>;
 }
 export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'children'>;stage:HomeStageState} {
   const spec=homeLessons.find(d=>d.slug===slug);
   const [p,setP]=useState(spec?.initial??0),[after,setAfter]=useState(false),[runs,setRuns]=useState(0);
+  const [mode,setMode]=useState<Mode|null>(null),[seen,setSeen]=useState<Record<Mode,boolean>>({a:false,b:false});
   if(!spec)throw new Error(`Missing household lesson: ${slug}`);
+  const stage={spec,p,setP,after,setAfter,runs,setRuns,mode,setMode,seen,setSeen};
+  if(isV2(spec)) return {stage,lessonProps:{
+    slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
+    exploreHint:'Press A, then B. Then move the slider.',minInteractions:2,
+    // R6: the first sentence quotes both Seen columns; the kit already prints the verdict line, so it is not repeated.
+    reveal:()=><div className={s.reveal}><p>{homeRevealLine(spec,p)}</p><p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}</div>
+  }};
   const result=evaluateHome(spec,p,after), special=spec.model==='cord'||spec.model==='bow';
-  return {stage:{spec,p,setP,after,setAfter,runs,setRuns},lessonProps:{
+  return {stage,lessonProps:{
     slug:spec.slug,predict:{question:spec.question,options:[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
     exploreHint:special?'Try both evidence controls, then compare.':'Try the second layout; vary the shown input.',minInteractions:special?2:1,
     reveal:({correct})=><div className={s.reveal}>

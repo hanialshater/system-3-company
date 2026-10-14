@@ -1,7 +1,7 @@
 {
   "slug": "apply-not-quote",
-  "title": "Apply the rule",
-  "hook": "Can you put the values in ascending order without quoting the rule?",
+  "title": "Does this order pass?",
+  "hook": "A checker passes 9, 2, 5 because all three numbers are there.",
   "domain": "lifehacks",
   "concept": "apply-not-recite",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Apply a stated sorting rule to visible values rather than repeat its wording.",
   "claims": [
     {
-      "text": "The prediction asks whether every arrangement of the three numbers is ascending. Only smallest-to-largest order satisfies that rule. Exercise values 2,5,9 are conventions, not measured learning data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.apply-not-quote.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: A checker passes 9, 2, 5 because all three numbers are there. Under the ascending rule, how many of 9, 2, 5 are already in the right place? Correct option: 0 of 3 (ascending is 2, 5, 9). Exercise values are conventions, not measured learning data.",
+      "support": "derivation",
+      "source": "reconstructionMatches on [2,0,1] against 2, 5, 9 (studyModels.ts). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 7), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
@@ -50,24 +48,29 @@
     },
     {
       "id": "lifehacks.apply-not-quote.recall",
-      "text": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it.",
+      "text": "Ascending means smallest to largest: 0.125 < 0.25 < 0.5. The last option only repeats the given order, which passes 'all three are there' but not the rule.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. 3 < 8 < 12, so '3, 8, 12' (index 2) is the only ascending option; the why matches the rendered principle.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 7), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.apply-not-quote.seen",
+      "text": "Seen table and first reveal sentence: Any order: match not checked. Rule: ascending: match 0/3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Apply the ascending rule to 12, 3 and 8. Which order is correct?",
+    "question": "Apply the ascending rule to 0.25, 0.5 and 0.125. Which order is correct?",
     "options": [
-      "12, 8, 3",
-      "12, 3, 8",
-      "3, 8, 12"
+      "0.5, 0.25, 0.125",
+      "0.125, 0.25, 0.5",
+      "0.25, 0.5, 0.125"
     ],
-    "answer": 2,
-    "why": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it."
+    "answer": 1,
+    "why": "Ascending means smallest to largest: 0.125 < 0.25 < 0.5. The last option only repeats the given order, which passes 'all three are there' but not the rule."
   },
   "evidence": {
     "qa": [
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:apply-not-recite",
     "prerequisites": [],

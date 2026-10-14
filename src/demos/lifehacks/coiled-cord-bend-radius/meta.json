@@ -1,7 +1,7 @@
 {
   "slug": "coiled-cord-bend-radius",
-  "title": "Tighter coils, more curvature",
-  "hook": "Which coil bends the cord more gently?",
+  "title": "How sharp is the bend?",
+  "hook": "Same 2 m cord, coiled in loops twice as wide.",
   "domain": "lifehacks",
   "concept": "cord-coil-bend-radius",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.c4",
-      "text": "Which coil bends the cord more gently?",
-      "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: rendered question; key = 1 \"Double radius\" (half the curvature).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: Same 2 m cord, coiled in loops twice as wide. Against the base coil, how sharp is the bend with loops of twice the radius? Correct option: Half as sharp (curvature 1 ÷ 2r is half of 1 ÷ r).",
+      "support": "derivation",
+      "source": "home-models.ts case 'coil-radius'. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 4), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.recall",
@@ -65,6 +63,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c6",
+      "text": "At a 10 cm base radius: cord per turn 62.8 cm and 126 cm; turns of the 200 cm cord 3.18 and 1.59; bend 0.100 per cm (sharper) and 0.050 per cm (gentler).",
+      "support": "derivation",
+      "source": "home-models.ts case 'coil-radius', values [200], initial 10; amounts in home-lessons.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 4), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.seen",
+      "text": "Seen table and first reveal sentence at the starting base radius of 10 cm; recomputed live as the slider moves: Base radius r: cord per turn 62.8 cm; bend (1 ÷ radius) 0.100 per cm (sharper). Double, 2 × r: cord per turn 126 cm; bend (1 ÷ radius) 0.050 per cm (gentler).",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -88,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:cord-coil-bend-radius",
     "prerequisites": [],

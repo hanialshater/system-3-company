@@ -1,7 +1,7 @@
 {
   "slug": "check-confidence-with-output",
-  "title": "Check confidence with output",
-  "hook": "“I know this” and a checked reconstruction are different evidence.",
+  "title": "Sure is not the same as right?",
+  "hook": "You studied map, key, route and feel sure of the order.",
   "domain": "lifehacks",
   "concept": "fluency-illusion",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Compare felt familiarity with a scored local reconstruction.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: “I know this” and a checked reconstruction are different evidence. Which provides an observable local check? Correct option: Checked reconstruction. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.check-confidence-with-output.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: You studied map, key, route and feel sure of the order. Your attempt feels familiar. Before checking it, how many places do you know are right? Correct option: Unknown until checked. All fixture words are stipulated exercise data.",
+      "support": "convention",
+      "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "The check counts matching positions. It can expose a mismatch, but this single attempt cannot estimate future retention or general ability.",
@@ -50,24 +48,36 @@
     },
     {
       "id": "lifehacks.check-confidence-with-output.recall",
-      "text": "A written attempt can be compared step by step; a feeling of familiarity cannot be checked against anything.",
+      "text": "The written check found the one step the feeling missed. One attempt does not predict later recall, but it does show which step to fix.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Only key 0 produces a checkable output. Matches c2; no retention claim. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Pointer corrected by demo-builder 2026-10-14 (W-391a).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.check-confidence-with-output.c4",
+      "text": "Checked against the studied order map, key, route, the familiar-feeling attempt route, map, key matches 0 of 3 places.",
+      "support": "derivation",
+      "source": "reconstructionMatches on [2,0,1] (studyModels.ts). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.check-confidence-with-output.seen",
+      "text": "Seen table and first reveal sentence: Feels familiar: match not checked. Check it: match 0/3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "You feel sure you know a four-step route. Which gives you evidence you can check?",
+    "question": "You felt sure of a 4-step route. Written from memory, steps 1, 2 and 4 match your notes. What do you now know?",
     "options": [
-      "Write the steps, then compare with notes",
-      "Rate your confidence out of ten",
-      "Skim it to see if it feels familiar"
+      "All 4: you felt sure",
+      "Step 3 is the one to fix",
+      "Nothing: one try proves little"
     ],
-    "answer": 0,
-    "why": "A written attempt can be compared step by step; a feeling of familiarity cannot be checked against anything."
+    "answer": 1,
+    "why": "The written check found the one step the feeling missed. One attempt does not predict later recall, but it does show which step to fix."
   },
   "evidence": {
     "qa": [
@@ -79,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:fluency-illusion",
     "prerequisites": [

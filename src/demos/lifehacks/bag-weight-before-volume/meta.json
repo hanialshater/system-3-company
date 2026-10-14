@@ -1,7 +1,7 @@
 {
   "slug": "bag-weight-before-volume",
-  "title": "A half-empty bag can be overweight",
-  "hook": "Which check notices the illustrated weight limit?",
+  "title": "Will this bag pass the limit?",
+  "hook": "Half its space is still free.",
   "domain": "lifehacks",
   "concept": "weight-limit-not-volume",
   "status": "review",
@@ -41,21 +41,17 @@
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c3",
-      "text": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Volume not used in this calculation.",
+      "text": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Space used is a fixed 10 of 20 L at every load; it does not enter the mass.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "home-models.ts case 'weight-limit' and the formula field in home-lessons.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c4",
-      "text": "Which check notices the illustrated weight limit?",
-      "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: Half its space is still free. This 2 kg bag holds 4 kg of things and is half empty. Does it pass a 5 kg limit? Correct option: No, it is over the limit (2 + 4 = 6 kg, 1 kg over).",
+      "support": "derivation",
+      "source": "home-models.ts case 'weight-limit'; values [2, 5], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c5",
@@ -68,24 +64,43 @@
     },
     {
       "id": "lifehacks.bag-weight-before-volume.recall",
-      "text": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule.",
+      "text": "How full a bag is says nothing about its mass, so fullness rules neither bag in nor out. Only the masses decide. The limit is an example, not a carrier's rule.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 2 + 6 = 8 kg, 1 kg over 7 (node). Matches c1/c3 (masses sum, volume unused); 7 kg labelled as example, like c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; scenario values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c6",
+      "text": "Example bag: 20 L of space, with the contents filling 10 L at every load shown. The space used does not change the total mass.",
+      "support": "convention",
+      "source": "Stipulated example; this patch. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c7",
+      "text": "Total mass: 2 kg bag + 4 kg contents = 6 kg, 1 kg over the example 5 kg limit.",
+      "support": "derivation",
+      "source": "home-models.ts case 'weight-limit'; values [2, 5], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.seen",
+      "text": "Seen table and first reveal sentence at the starting contents of 4 kg; recomputed live as the slider moves: Judge by space: space used 10 of 20 L; against 5 kg limit looks fine (not weighed). Weigh it: space used 10 of 20 L; against 5 kg limit 1 kg (over).",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A bag's limit is 7 kg. The empty bag weighs 2 kg, the contents 6 kg, and a third of its space is still empty. Does it meet the limit?",
+    "question": "Two 30 L bags face an 8 kg limit. One is full of pillows; one is half full of books. Which do you need to weigh?",
     "options": [
-      "Yes, because a third of it is empty",
-      "Yes, it is exactly 7 kg",
-      "No: at 8 kg it is 1 kg over"
+      "Only the full one",
+      "Only the half-full one",
+      "Both of them"
     ],
     "answer": 2,
-    "why": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule."
+    "why": "How full a bag is says nothing about its mass, so fullness rules neither bag in nor out. Only the masses decide. The limit is an example, not a carrier's rule."
   },
   "evidence": {
     "qa": [
@@ -97,7 +112,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:weight-limit-not-volume",
     "prerequisites": [],

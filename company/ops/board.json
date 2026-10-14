@@ -8458,11 +8458,20 @@
     {
       "id": "W-608",
       "title": "Life Hacks engines v2 (Home, Study, Resource, AlphabetSearch) per company/design/specs/lifehacks-engines-v2.md: neutral start, Seen table keeping both modes, amounts row, active mode shown pressed (never dimmed), DOM order A, B, slider; fields behind engine: 2; migrate batch D's 14 first. START ONLY AFTER W-557..W-561 (a11y) land: same lines.",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": []
+      "links": [
+        "company/reviews/lifehacks-200/engines-v2-build-W-608.md",
+        "company/design/specs/lifehacks-engines-v2.md"
+      ],
+      "updated": "2026-10-14",
+      "reviewers": [
+        "accessibility-reviewer",
+        "interaction-designer"
+      ],
+      "note": "Built behind engine: 2 (Home + Study; Resource/AlphabetSearch deferred, see new board item). 14 batch D lessons migrated (cue: fallback, W-610 open). W-611 shapes chosen and listed in company/reviews/lifehacks-200/engines-v2-build-W-608.md. a11y: check aria-pressed/aria-disabled mode buttons, the Seen table semantics and the status text. interaction-designer: check the W-611 choices and the departures (200 px cap, 20-unit text). phoneFit 13/14 (coil crops 38 px), QA 28/28 lesson runs."
     },
     {
       "id": "W-609",
@@ -9776,6 +9785,51 @@
       "owner": "qa-tester",
       "state": "backlog",
       "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-737",
+      "title": "W-608 follow-up: coiled-cord-bend-radius v3 crops 38 px at the reveal on a 390x844 phone (reveal 81 measured words vs the Home v2 cap of 55; picture already at its 10 px text floor). Decide which teaching sentence goes, or whether the limit moves to the stage caption. See company/reviews/coiled-cord-bend-radius/build.md",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-738",
+      "title": "W-608 remainder: engines v2 for Resource (section 5: engine-rendered A/B buttons, receipt lines, resultLabel/amounts, drop per-lesson buttons from 60 Demo.tsx), AlphabetSearch (section 6) and the Study order, edit and spacing families. Not built in W-608: no batch D lesson uses them. See company/reviews/lifehacks-200/engines-v2-build-W-608.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-739",
+      "title": "npm run check lints from the Life Hacks engines v2 spec section 8 (tools/company.mjs is protected): list v1 specs, v2 specs missing required fields (engine-v2.ts homeV2Problems/studyV2Problems already compute it), and flag \\d+EUR / EUR\\d+ in resource strings. Today test:lifehacks prints the 64 Home lessons on default options as a diagnostic",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-740",
+      "title": "Fact-check the 14 batch D Life Hacks lessons after W-608 (engines v2 + content patch r9 batch D): every reset or new claim is unverified, including each lifehacks.<slug>.seen (the engine's first reveal sentence). deadline c5 (16 Oct 2026 is a Friday) and cue c1 (three capitals) need a source; deleted c2/recall still rest on Google Drive Help 2375114",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-741",
+      "title": "Visual check of Life Hacks engines v2 (W-608): active mode style (tint, 2 px --fg border, check mark) in light and dark; Home v2 picture cap 200 px with 20-unit SVG text (spec said 170 px / 15 units: 170 is flagged as a thumbnail by reveal-fit); caption drawn inside labelled Home pictures; Seen table. See company/reviews/lifehacks-200/engines-v2-build-W-608.md",
+      "owner": "visual-designer",
+      "state": "backlog",
+      "domain": "lifehacks",
       "created": "2026-10-14",
       "links": []
     }

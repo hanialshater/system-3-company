@@ -40,6 +40,19 @@ export function StageStatus({ text, locked }: { text: string; locked: boolean })
   return <div className={a.statusWrap}><div role="status" aria-live="polite" aria-atomic="true" className={a.status}>{said}</div></div>;
 }
 
+/**
+ * Engines v2 R1 (W-608): a mode button puts one of the two compared cases on the stage. While in effect it is
+ * aria-pressed, aria-disabled (StageControl `inactive`, so focus stays per W-557) and drawn selected with a
+ * leading check mark; it is never dimmed. When the other mode is in effect it is outlined and pressable again.
+ */
+export function ModeControl({ locked, pressed, letter, label, onPress }:
+  { locked: boolean; pressed: boolean; letter: string; label: string; onPress: () => void }) {
+  return <StageControl locked={locked} inactive={pressed} aria-pressed={pressed}
+    className={`${a.mode}${pressed ? " active" : ""}`} onClick={onPress}>
+    {pressed && <span aria-hidden="true">✓ </span>}{letter} · {label}
+  </StageControl>;
+}
+
 /** Join visible result chips into the status sentence, skipping "?" placeholders. */
 export function resultText(items: Array<[string, string | number]>): string {
   return items.filter(([, value]) => value !== "?" && value !== "").map(([label, value]) => `${label} ${value}`).join("; ");

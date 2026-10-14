@@ -6,6 +6,7 @@ import { Slider } from "@/kit/controls";
 import { StageControl, StageStatus, resultText } from "./a11y";
 import { useMilestones } from "@/kit/milestones";
 import { calendarResult, queueResult, fileResult, editResult, illustrativeMemory, reconstructionMatches, swapPositions, type StudySpec, type FilesSpec } from "@/lib/lifehacks/studyModels";
+import { StudyLessonV2 } from "./StudyLessonV2";
 import s from "./StudyLesson.module.css";
 
 interface State {
@@ -65,7 +66,12 @@ function observation(spec: StudySpec,state: State): string {
   return `The local editor now contains ${v.tokens.join(" · ")}. ${v.highlight>=0?`The highlighted position is ${v.highlight+1}; finding did not rewrite the tokens.`:v.focus?`Focus is ${v.focus}; selection is ${v.selection}.`:v.scale!==1?`View scale is ${v.scale}; the stored words stay the same.`:"These are the displayed results of the two named commands."}`;
 }
 
+/** Engines v2 (W-608): a spec with `engine: 2` gets the v2 stage; every other lesson renders the v1 stage below, unchanged. */
 export function StudyLesson({slug,spec}:{slug:string;spec:StudySpec}) {
+  return spec.engine===2?<StudyLessonV2 slug={slug} spec={spec}/>:<StudyLessonV1 slug={slug} spec={spec}/>;
+}
+
+function StudyLessonV1({slug,spec}:{slug:string;spec:StudySpec}) {
   const [state,setState]=useState<State>(()=>initialState(spec));
   return <Lesson
     slug={slug}
@@ -188,14 +194,14 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
   if(spec.family==="recall") {
     const matches=reconstructionMatches(spec.words,state.order);
     const refinement: Record<string,string> = {
-      "one-question-one-card":"Split prompt", "cue-needs-a-boundary":"Add country", "reverse-the-flashcard":"Reverse",
+      "one-question-one-card":"Split prompt", "reverse-the-flashcard":"Reverse",
       "note-gap-check":"Remove field", "apply-not-quote":"Try values", "separate-confusable-pairs":"Add digits"
     };
     const needsRefinement=Boolean(refinement[spec.slug]);
     const reverse=spec.slug==="reverse-the-flashcard"&&!state.refined;
     const sourceWords=reverse?spec.labels:spec.words;
     const sourceLabels=reverse?spec.words:spec.labels;
-    const actualLabels=spec.slug==="cue-needs-a-boundary"&&!state.refined?["capital","capital","capital"]:spec.slug==="separate-confusable-pairs"&&!state.refined?["AX","AX","AX"]:sourceLabels;
+    const actualLabels=spec.slug==="separate-confusable-pairs"&&!state.refined?["AX","AX","AX"]:sourceLabels;
     const compound=spec.slug==="one-question-one-card"&&!state.refined;
     const isApplication=spec.slug==="apply-not-quote";
     const application=isApplication&&state.refined;

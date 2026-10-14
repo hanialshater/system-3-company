@@ -1,7 +1,7 @@
 {
   "slug": "agenda-needs-an-outcome",
-  "title": "Give the meeting an outcome",
-  "hook": "A topic alone does not name the decision needed.",
+  "title": "What will this meeting decide?",
+  "hook": "The agenda item reads 'Topic: plan'.",
   "domain": "lifehacks",
   "concept": "office-agenda-and-reasons",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Add a desired outcome and decision owner to an agenda.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A topic alone does not name the decision needed. Which agenda states the intended result? Correct option: Choose plan plus owner. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): The stage shows one topic (plan), not three; hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: fixture fields Topic/Outcome/Owner, words plan/choose/Bo; the opening note shows one topic (plan) and no outcome or owner, so the hook holds; \"Choose plan plus owner\" is the only option naming an outcome (answer 0). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.agenda-needs-an-outcome.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: The agenda item reads 'Topic: plan'. With only 'Topic: plan' on the agenda, who decides what? Correct option: The agenda doesn't say. All fixture labels, example words and names are stipulated exercise data.",
+      "support": "convention",
+      "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "The agenda’s checklist requires topic, outcome and decision owner. It records what the meeting is meant to produce, not whether the meeting will be effective.",
@@ -50,24 +48,36 @@
     },
     {
       "id": "lifehacks.agenda-needs-an-outcome.recall",
-      "text": "It names the outcome (a choice) and who decides; the others name only a topic.",
+      "text": "Only 'picks' names the choice the meeting must end with and who makes it. Presenting or discussing names a topic and a person, not a decision.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read StudyLesson.tsx (message family) and the spec first. The lesson's checklist is Topic, Outcome, Owner (spec.fields). Of the recall options, only 'Budget: Ravi picks option A or B' supplies an outcome (a choice) and a decision owner (Ravi). 'Discuss the options in depth' names an activity and 'update from the finance team' names a presenter; neither gives an outcome or a decision owner, so on the checklist each fills only the topic field. Non-blocking wording note for the owner: 'the others name only a topic' is loose (they add an activity or a presenter). 'the others name no outcome or decision owner' would be exact.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.agenda-needs-an-outcome.c4",
+      "text": "A topic-only agenda tells the room the topic only; with outcome and owner added, it names the choice and who decides (Bo).",
+      "support": "derivation",
+      "source": "The fixture's fields (consequence field in studyCatalog.ts); this reads what the page says, not how a real meeting goes. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.agenda-needs-an-outcome.seen",
+      "text": "Seen table and first reveal sentence: Topic only: the room knows the topic only; fields 1/3. All three fields: the room knows the topic, the choice, who decides (Bo); fields 3/3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which agenda item says what the meeting must produce?",
+    "question": "Which agenda item names a decision and who makes it?",
     "options": [
-      "'Budget: discuss the options in depth'",
-      "'Budget: Ravi picks option A or B'",
-      "'Budget update from the finance team'"
+      "'Budget: Ravi picks A or B'",
+      "'Budget: Ravi presents A and B'",
+      "'Budget: discuss A and B with Ravi'"
     ],
-    "answer": 1,
-    "why": "It names the outcome (a choice) and who decides; the others name only a topic."
+    "answer": 0,
+    "why": "Only 'picks' names the choice the meeting must end with and who makes it. Presenting or discussing names a topic and a person, not a decision."
   },
   "evidence": {
     "qa": [
@@ -79,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:office-agenda-and-reasons",
     "prerequisites": [],

@@ -1,5 +1,7 @@
 /** Pure, deterministic household models. No global state, network or rendering imports. */
-export interface HomeSpec {
+import type { HomeV2Fields } from './engine-v2';
+/** v2 fields (engine-v2.ts) are optional; a spec without `engine: 2` renders as v1. */
+export interface HomeSpec extends HomeV2Fields {
   slug: string; title: string; hook: string; concept: string; model: string; view: string;
   initial: number; min: number; max: number; step: number; values: number[];
   choices: string[]; question: string; idea: string; limit: string; formula: string;

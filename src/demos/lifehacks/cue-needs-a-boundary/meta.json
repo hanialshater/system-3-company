@@ -1,7 +1,7 @@
 {
   "slug": "cue-needs-a-boundary",
-  "title": "Give the cue a boundary",
-  "hook": "“Capital?” is too vague when your notes mention three countries.",
+  "title": "Which capital?",
+  "hook": "Your flashcard just says 'Capital?'.",
   "domain": "lifehacks",
   "concept": "one-cue-one-answer",
   "status": "review",
@@ -22,22 +22,18 @@
   "objective": "Attach context to an ambiguous retrieval cue.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: “Capital?” is too vague when your notes mention three countries. Which cue uniquely identifies the target in these notes? Correct option: Country plus capital. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.cue-needs-a-boundary.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: Your flashcard just says 'Capital?'. Your notes cover three countries. How many answers in them fit the card 'Capital?'? Correct option: 3: one per country. Fixture notes: Tokyo is the capital of Japan, Nairobi of Kenya, Lima of Peru.",
+      "support": "source",
+      "source": "Any atlas (fact-checker picks one) for the three capitals; convention for the rest. Fallback of block 12 applied: the files-family move waits for W-610. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
-      "text": "Each country cue identifies one answer in this fixture. A cue that could refer to several facts is under-specified.",
-      "support": "derivation",
-      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.cue-needs-a-boundary.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "'Capital?' fits all three notes, so it cannot tell you which one to recall. 'Kenya's capital?' fits one.",
+      "support": "derivation",
+      "source": "Principle field; candidates {a:3, b:1} in studyCatalog.ts (recall family kept: fallback, W-610 open). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,24 +46,29 @@
     },
     {
       "id": "lifehacks.cue-needs-a-boundary.recall",
-      "text": "A cue that names its context picks out one fact; 'Length?' could mean any of the three rivers.",
+      "text": "A cue that names its river fits one fact in these notes. 'The river' and 'a long river' could each be any of the three.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Only key 1 names its context; matches c2. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Pointer corrected by demo-builder 2026-10-14 (W-391a).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cue-needs-a-boundary.seen",
+      "text": "Seen table and first reveal sentence: Capital?: answers this cue fits 3; match not checked. Kenya's capital?: answers this cue fits 1; match 0/3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Your notes cover three rivers. Which flashcard cue has exactly one right answer?",
+    "question": "Your notes cover the Nile, the Amazon and the Danube. Which flashcard cue has exactly one right answer in them?",
     "options": [
-      "Length?",
-      "Length of the Nile?",
-      "Which river is long?"
+      "'Length of the river?'",
+      "'Length of a long river?'",
+      "'Length of the Nile?'"
     ],
-    "answer": 1,
-    "why": "A cue that names its context picks out one fact; 'Length?' could mean any of the three rivers."
+    "answer": 2,
+    "why": "A cue that names its river fits one fact in these notes. 'The river' and 'a long river' could each be any of the three."
   },
   "evidence": {
     "qa": [
@@ -79,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:one-cue-one-answer",
     "prerequisites": [],

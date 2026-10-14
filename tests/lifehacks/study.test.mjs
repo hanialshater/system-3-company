@@ -140,8 +140,9 @@ test('a smaller target keeps the left interval; scanning stops at the found labe
 });
 test('fresh recall transfer requires sorting and fixed travel arithmetic',()=> {
   const load=slug=>JSON.parse(readFileSync(new URL(`../../src/demos/lifehacks/${slug}/meta.json`,import.meta.url)));
-  const ordering=load('apply-not-quote').recall;assert.equal(ordering.options[ordering.answer],'3, 8, 12');
-  assert.deepEqual([12,3,8].sort((a,b)=>a-b),[3,8,12]);
+  // W-608: content patch r9 batch D block 7 replaced the apply-not-quote recall (0.25, 0.5, 0.125).
+  const ordering=load('apply-not-quote').recall;assert.equal(ordering.options[ordering.answer],'0.125, 0.25, 0.5');
+  assert.deepEqual([0.25,0.5,0.125].sort((a,b)=>a-b).join(', '),'0.125, 0.25, 0.5');
   const travel=load('calendar-needs-travel').recall;assert.equal(travel.options[travel.answer],'10:00–10:05');
   assert.equal(10*60+30-25,10*60+5);
   const labels=load('alphabet-sort-search').recall;assert.equal(labels.options[labels.answer],'Put labels in alphabetical order');

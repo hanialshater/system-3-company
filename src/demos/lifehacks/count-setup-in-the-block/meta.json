@@ -1,7 +1,7 @@
 {
   "slug": "count-setup-in-the-block",
-  "title": "Setup takes time too",
-  "hook": "Ten minutes of work plus five minutes of setup is a fifteen-minute booking.",
+  "title": "Will the call start on time?",
+  "hook": "You booked the task's ten minutes of work, then the call.",
   "domain": "lifehacks",
   "concept": "book-setup-and-prep",
   "status": "review",
@@ -22,22 +22,18 @@
   "objective": "Include setup duration rather than just execution time.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Ten minutes of work plus five minutes of setup is a fifteen-minute booking. How long is this combined setup-and-work block? Correct option: 15 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.count-setup-in-the-block.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: You booked the task's ten minutes of work, then the call. The call is booked for 10. What is happening at 10? Correct option: The task has 5 min left. All fixture labels and durations are stipulated exercise data.",
+      "support": "derivation",
+      "source": "Fixture rows in studyCatalog.ts: task 0–15 (setup 5, work 10), call at 10. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 11), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
-      "text": "The first block includes the visible five-minute setup and ten-minute execution. The calendar cannot fit fifteen minutes inside a ten-minute allowance.",
-      "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.count-setup-in-the-block.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "The task is five minutes of setup plus ten of work. Booking only the ten leaves the call starting while five minutes remain.",
+      "support": "derivation",
+      "source": "Principle field; fixture rows in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 11), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,24 +46,36 @@
     },
     {
       "id": "lifehacks.count-setup-in-the-block.recall",
-      "text": "The booking is setup plus work: 10 + 20 = 30 minutes, more than the 25-minute slot.",
+      "text": "The booking is warm-up plus printing: 10 + 20 = 30 min, 5 more than the slot. Counting only the printing gives the 5 min 'to spare'.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 10 + 20 = 30 > 25 (node). Matches c2 (setup is part of the booking). Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Pointer corrected by demo-builder 2026-10-14 (W-391a).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall why; values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 11), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.count-setup-in-the-block.c4",
+      "text": "Task bar: setup 5 min, work 10 min. Booked for the task: 10 min (call clashes for 5 min) or 15 min (no clash).",
+      "support": "derivation",
+      "source": "calendarResult on rows / target (studyModels.ts). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 11), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.count-setup-in-the-block.seen",
+      "text": "Seen table and first reveal sentence: Book 10 min: booked for the task 10 min; overlap 5 min (task × call). Book 15 min: booked for the task 15 min; overlap 0 min.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A print job takes 20 minutes plus 10 minutes of printer setup. You have a 25-minute slot. Does it fit?",
+    "question": "A print job prints for 20 min after a 10-min printer warm-up. Your slot is 25 min. Does it fit?",
     "options": [
-      "Yes; the job is 20 minutes",
-      "No; it needs 30 minutes",
-      "Yes, with 5 minutes left over"
+      "Too short by 5 min",
+      "Fits, with 5 min to spare",
+      "Fits exactly"
     ],
-    "answer": 1,
-    "why": "The booking is setup plus work: 10 + 20 = 30 minutes, more than the 25-minute slot."
+    "answer": 0,
+    "why": "The booking is warm-up plus printing: 10 + 20 = 30 min, 5 more than the slot. Counting only the printing gives the 5 min 'to spare'."
   },
   "evidence": {
     "qa": [
@@ -79,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:book-setup-and-prep",
     "prerequisites": [],

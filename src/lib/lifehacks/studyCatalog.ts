@@ -87,19 +87,20 @@ export const study_one_question_one_card = {
 export const study_cue_needs_a_boundary = {
   "family": "recall",
   "slug": "cue-needs-a-boundary",
-  "title": "Give the cue a boundary",
-  "hook": "“Capital?” is too vague when your notes mention three countries.",
+  "title": "Which capital?",
+  "hook": "Your flashcard just says 'Capital?'.",
   "objective": "Attach context to an ambiguous retrieval cue.",
-  "question": "Which cue uniquely identifies the target in these notes?",
+  "question": "Your notes cover three countries. How many answers in them fit the card 'Capital?'?",
   "options": [
-    "Country plus capital",
-    "Capital alone"
+    "1: the one you meant",
+    "3: one per country",
+    "0: no country named"
   ],
-  "answer": 0,
-  "principle": "Each country cue identifies one answer in this fixture. A cue that could refer to several facts is under-specified.",
+  "answer": 1,
+  "principle": "'Capital?' fits all three notes, so it cannot tell you which one to recall. 'Kenya's capital?' fits one.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
-  "misconception": "Capital alone",
+  "misconception": "A short cue points to the fact you had in mind.",
   "labels": [
     "Japan",
     "Kenya",
@@ -110,7 +111,21 @@ export const study_cue_needs_a_boundary = {
     "Nairobi",
     "Lima"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "engine": 2,
+  "modeLabels": [
+    "Capital?",
+    "Kenya's capital?"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ],
+  "candidates": {
+    "a": 3,
+    "b": 1
+  }
 } satisfies StudySpec;
 
 export const study_reverse_the_flashcard = {
@@ -232,13 +247,14 @@ export const study_explain_the_link = {
 export const study_apply_not_quote = {
   "family": "recall",
   "slug": "apply-not-quote",
-  "title": "Apply the rule",
-  "hook": "Can you put the values in ascending order without quoting the rule?",
+  "title": "Does this order pass?",
+  "hook": "A checker passes 9, 2, 5 because all three numbers are there.",
   "objective": "Apply a stated sorting rule to visible values rather than repeat its wording.",
-  "question": "If all three numbers appear, is every arrangement ascending?",
+  "question": "Under the ascending rule, how many of 9, 2, 5 are already in the right place?",
   "options": [
-    "Only smallest-to-largest",
-    "Any arrangement with all three"
+    "0 of 3",
+    "1 of 3",
+    "All 3: none missing"
   ],
   "answer": 0,
   "principle": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
@@ -255,7 +271,22 @@ export const study_apply_not_quote = {
     "5",
     "9"
   ],
-  "kind": "rule"
+  "kind": "rule",
+  "engine": 2,
+  "modeLabels": [
+    "Any order",
+    "Rule: ascending"
+  ],
+  "optionToMode": [
+    "b",
+    "b",
+    "a"
+  ],
+  "rowLabels": [
+    "rule's order",
+    "your attempt"
+  ],
+  "hideTarget": true
 } satisfies StudySpec;
 
 export const study_separate_confusable_pairs = {
@@ -290,15 +321,16 @@ export const study_separate_confusable_pairs = {
 export const study_check_confidence_with_output = {
   "family": "recall",
   "slug": "check-confidence-with-output",
-  "title": "Check confidence with output",
-  "hook": "“I know this” and a checked reconstruction are different evidence.",
+  "title": "Sure is not the same as right?",
+  "hook": "You studied map, key, route and feel sure of the order.",
   "objective": "Compare felt familiarity with a scored local reconstruction.",
-  "question": "Which provides an observable local check?",
+  "question": "Your attempt feels familiar. Before checking it, how many places do you know are right?",
   "options": [
-    "Checked reconstruction",
-    "Feeling familiar"
+    "All 3 of 3: you feel sure",
+    "Unknown until checked",
+    "At least 2 of 3"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The check counts matching positions. It can expose a mismatch, but this single attempt cannot estimate future retention or general ability.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
@@ -313,7 +345,21 @@ export const study_check_confidence_with_output = {
     "key",
     "route"
   ],
-  "kind": "sequence"
+  "kind": "sequence",
+  "engine": 2,
+  "modeLabels": [
+    "Feels familiar",
+    "Check it"
+  ],
+  "optionToMode": [
+    "a",
+    "b",
+    "a"
+  ],
+  "rowLabels": [
+    "studied order",
+    "your attempt"
+  ]
 } satisfies StudySpec;
 
 export const study_keep_the_error_feedback = {
@@ -348,19 +394,20 @@ export const study_keep_the_error_feedback = {
 export const study_calendar_needs_travel = {
   "family": "schedule",
   "slug": "calendar-needs-travel",
-  "title": "Travel occupies the calendar",
-  "hook": "The meeting fits. Does the journey fit too?",
+  "title": "Booked at 10, leaving at 0",
+  "hook": "The calendar shows the meeting slot free.",
   "objective": "Reserve travel as a separate time block.",
-  "question": "Which layout includes the journey?",
+  "question": "You leave at 0 and travel 15 minutes. The meeting is booked for 10. How do you arrive?",
   "options": [
-    "Travel before meeting",
-    "Meeting only"
+    "Late by 5 min",
+    "On time, 0 min",
+    "Early by 5 min"
   ],
   "answer": 0,
   "principle": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "Meeting only",
+  "misconception": "A free calendar slot means the meeting fits, travel aside.",
   "rows": [
     {
       "label": "travel",
@@ -385,25 +432,36 @@ export const study_calendar_needs_travel = {
   ],
   "movable": 1,
   "button": "Move meeting",
-  "deadline": 90
+  "deadline": 90,
+  "engine": 2,
+  "modeLabels": [
+    "Meeting at 10",
+    "Meeting at 15"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ]
 } satisfies StudySpec;
 
 export const study_buffer_for_a_late_finish = {
   "family": "schedule",
   "slug": "buffer-for-a-late-finish",
-  "title": "Leave a finish buffer",
-  "hook": "One task runs five minutes late. Which appointment absorbs it?",
+  "title": "When the draft runs late",
+  "hook": "The draft overruns by five minutes.",
   "objective": "Distinguish planned slack from overlapping bookings.",
-  "question": "What keeps five minutes of delay from overlapping the next task?",
+  "question": "The draft runs 5 minutes over. Which plan has no clash with the call?",
   "options": [
-    "A five-minute gap",
-    "Touching blocks"
+    "Both clash by 5 min",
+    "Touching, call at 20",
+    "Gap, call at 25"
   ],
-  "answer": 0,
+  "answer": 2,
   "principle": "A gap can absorb up to its length of delay in this schedule. It is a stated allowance, not a guarantee about real tasks.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "Touching blocks",
+  "misconception": "Back-to-back blocks are fine; a delay will be absorbed somewhere.",
   "rows": [
     {
       "label": "draft",
@@ -427,8 +485,22 @@ export const study_buffer_for_a_late_finish = {
     45
   ],
   "movable": 1,
-  "button": "Add buffer",
-  "deadline": 90
+  "deadline": 90,
+  "engine": 2,
+  "modeLabels": [
+    "Touching",
+    "5-min gap"
+  ],
+  "optionToMode": [
+    "b",
+    "a",
+    "b"
+  ],
+  "event": {
+    "row": 0,
+    "minutes": 5,
+    "label": "+5 late"
+  }
 } satisfies StudySpec;
 
 export const study_work_back_from_a_deadline = {
@@ -778,24 +850,35 @@ export const study_handoff_after_finish = {
 export const study_count_setup_in_the_block = {
   "family": "schedule",
   "slug": "count-setup-in-the-block",
-  "title": "Setup takes time too",
-  "hook": "Ten minutes of work plus five minutes of setup is a fifteen-minute booking.",
+  "title": "Will the call start on time?",
+  "hook": "You booked the task's ten minutes of work, then the call.",
   "objective": "Include setup duration rather than just execution time.",
-  "question": "How long is this combined setup-and-work block?",
+  "question": "The call is booked for 10. What is happening at 10?",
   "options": [
-    "15 minutes",
-    "10 minutes"
+    "The call starts on time",
+    "The task has 5 min left",
+    "The task has 10 min left"
   ],
-  "answer": 0,
-  "principle": "The first block includes the visible five-minute setup and ten-minute execution. The calendar cannot fit fifteen minutes inside a ten-minute allowance.",
+  "answer": 1,
+  "principle": "The task is five minutes of setup plus ten of work. Booking only the ten leaves the call starting while five minutes remain.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "10 minutes",
+  "misconception": "A task's booking only needs its work time.",
   "rows": [
     {
-      "label": "setup+work",
+      "label": "task",
       "start": 0,
-      "duration": 15
+      "duration": 15,
+      "parts": [
+        {
+          "label": "setup",
+          "minutes": 5
+        },
+        {
+          "label": "work",
+          "minutes": 10
+        }
+      ]
     },
     {
       "label": "call",
@@ -815,7 +898,24 @@ export const study_count_setup_in_the_block = {
   ],
   "movable": 1,
   "button": "Count setup",
-  "deadline": 90
+  "deadline": 90,
+  "engine": 2,
+  "modeLabels": [
+    "Book 10 min",
+    "Book 15 min"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ],
+  "amounts": [
+    {
+      "label": "Booked for the task",
+      "a": "10 min",
+      "b": "15 min"
+    }
+  ]
 } satisfies StudySpec;
 
 export const study_arrival_is_not_departure = {
@@ -1886,16 +1986,17 @@ export const study_size_is_not_recency = {
 export const study_deleted_is_a_search_state = {
   "family": "files",
   "slug": "deleted-is-a-search-state",
-  "title": "Search the missing-file state",
-  "hook": "A file absent from the active list may be in the exercise’s trash.",
+  "title": "Where did the note go?",
+  "hook": "You search for a note you deleted yesterday.",
   "objective": "Distinguish active-only search from including deleted items.",
-  "question": "Which search includes the trashed note?",
+  "question": "The search lists active files. Is 'notes' in the list?",
   "options": [
-    "Include trash",
-    "Active only"
+    "Yes, search lists every file",
+    "Yes, marked as deleted",
+    "No, it is left out"
   ],
-  "answer": 0,
-  "principle": "The note has a deleted-state flag. Including that state reveals it in this fixture; retention and recovery rules differ across real products.",
+  "answer": 2,
+  "principle": "The note is marked as deleted. A search of active files leaves it out; including deleted items brings it back here. Real products keep deleted files for different lengths of time.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
   "misconception": "Active only",
@@ -1918,7 +2019,17 @@ export const study_deleted_is_a_search_state = {
   ],
   "operation": "trash",
   "button": "Active only",
-  "button2": "Include trash"
+  "button2": "Include trash",
+  "engine": 2,
+  "modeLabels": [
+    "Active only",
+    "Include deleted"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ]
 } satisfies StudySpec;
 
 export const study_search_the_document_body = {
@@ -2077,26 +2188,27 @@ export const study_make_a_question_answerable = {
 export const study_deadline_needs_a_reference = {
   "family": "message",
   "slug": "deadline-needs-a-reference",
-  "title": "What does “Friday” mean?",
-  "hook": "A deadline needs a date and time reference, especially across locations.",
+  "title": "When is it due?",
+  "hook": "You work on UTC. Your colleague works on UTC+9.",
   "objective": "Replace an ambiguous deadline with an explicit dated time zone.",
-  "question": "Which deadline is explicit in this fixture?",
+  "question": "Your colleague reads 'Due 16 Oct, 15:00' as their own time. When is that for you?",
   "options": [
-    "14 Oct 15:00 UTC",
-    "Friday afternoon"
+    "06:00 UTC, 9 h early",
+    "15:00 UTC, as you meant",
+    "00:00 UTC, 9 h late"
   ],
   "answer": 0,
-  "principle": "The date, clock time and time-zone reference define the fixture deadline. Local conversion and daylight-saving rules remain outside this exercise.",
+  "principle": "A date, a clock time and a zone fix one moment. Without the zone, a reader on UTC+9 who assumes their own time aims 9 hours early. Daylight-saving rules are outside this exercise.",
   "boundary": "Exercise checklist; no promised communication outcome.",
   "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "Friday afternoon",
+  "misconception": "A date and clock time mean the same moment for every reader.",
   "labels": [
     "date",
     "time",
     "zone"
   ],
   "words": [
-    "14Oct",
+    "16 Oct",
     "15:00",
     "UTC"
   ],
@@ -2104,25 +2216,42 @@ export const study_deadline_needs_a_reference = {
     "Date",
     "Time",
     "Zone"
-  ]
+  ],
+  "engine": 2,
+  "modeLabels": [
+    "No zone",
+    "With zone"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ],
+  "aFields": 2,
+  "consequence": {
+    "label": "Your colleague aims for",
+    "a": "06:00 UTC, 9 h early",
+    "b": "15:00 UTC"
+  }
 } satisfies StudySpec;
 
 export const study_agenda_needs_an_outcome = {
   "family": "message",
   "slug": "agenda-needs-an-outcome",
-  "title": "Give the meeting an outcome",
-  "hook": "A topic alone does not name the decision needed.",
+  "title": "What will this meeting decide?",
+  "hook": "The agenda item reads 'Topic: plan'.",
   "objective": "Add a desired outcome and decision owner to an agenda.",
-  "question": "Which agenda states the intended result?",
+  "question": "With only 'Topic: plan' on the agenda, who decides what?",
   "options": [
-    "Choose plan plus owner",
-    "Discuss the plan"
+    "The group agrees a plan",
+    "The topic's owner picks",
+    "The agenda doesn't say"
   ],
-  "answer": 0,
+  "answer": 2,
   "principle": "The agenda’s checklist requires topic, outcome and decision owner. It records what the meeting is meant to produce, not whether the meeting will be effective.",
   "boundary": "Exercise checklist; no promised communication outcome.",
   "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "Discuss the plan",
+  "misconception": "A topic on the agenda implies a decision and a decider.",
   "labels": [
     "topic",
     "outcome",
@@ -2137,7 +2266,22 @@ export const study_agenda_needs_an_outcome = {
     "Topic",
     "Outcome",
     "Owner"
-  ]
+  ],
+  "engine": 2,
+  "modeLabels": [
+    "Topic only",
+    "All three fields"
+  ],
+  "optionToMode": [
+    "a",
+    "a",
+    "a"
+  ],
+  "consequence": {
+    "label": "The room knows",
+    "a": "the topic only",
+    "b": "the topic, the choice, who decides (Bo)"
+  }
 } satisfies StudySpec;
 
 export const study_record_the_reason = {

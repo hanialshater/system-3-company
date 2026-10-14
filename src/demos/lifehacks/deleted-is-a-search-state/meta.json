@@ -1,7 +1,7 @@
 {
   "slug": "deleted-is-a-search-state",
-  "title": "Search the missing-file state",
-  "hook": "A file absent from the active list may be in the exercise’s trash.",
+  "title": "Where did the note go?",
+  "hook": "You search for a note you deleted yesterday.",
   "domain": "lifehacks",
   "concept": "search-scope",
   "status": "review",
@@ -22,22 +22,18 @@
   "objective": "Distinguish active-only search from including deleted items.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A file absent from the active list may be in the exercise’s trash. Which search includes the trashed note? Correct option: Include trash. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
-      "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.deleted-is-a-search-state.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "Scenario and prediction: You search for a note you deleted yesterday. The search lists active files. Is 'notes' in the list? Correct option: No, it is left out. Fixture files are stipulated.",
+      "support": "convention",
+      "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
-      "text": "The note has a deleted-state flag. Including that state reveals it in this fixture; retention and recovery rules differ across real products.",
-      "support": "derivation",
-      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.deleted-is-a-search-state.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "The note is marked as deleted. A search of active files leaves it out; including deleted items brings it back here. Real products keep deleted files for different lengths of time.",
+      "support": "source",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Not opened from this host (FC LH-3A, FC pass 35). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,24 +46,29 @@
     },
     {
       "id": "lifehacks.deleted-is-a-search-state.recall",
-      "text": "Active-only search leaves trashed files out; including that state can reveal it, within the product's retention rules.",
+      "text": "If the file was deleted, a search of active files will keep missing it. Including deleted items can show it, within the product's own retention rules. Narrowing cannot find what the search leaves out.",
       "support": "source",
-      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Key 2 unique; matches c2 ('retention and recovery rules differ'). Source Google Drive Help 2375114 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Rests on Google Drive Help 2375114 (trash and search state, retention rules), which could not be opened from this host (DNS failure, proxy 403). Left unverified, as in LH-3A.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Not opened from this host (FC LH-3A, FC pass 35). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.deleted-is-a-search-state.seen",
+      "text": "Seen table and first reveal sentence: Active only: not in results 1; matches 2. Include deleted: not in results 0; matches 3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A search for 'lease' finds nothing, but you are sure the file existed last week. What should you widen?",
+    "question": "A search for 'lease' shows nothing, though you saved it last week. What should you try first?",
     "options": [
-      "Search for a longer word",
-      "Sort the results by size",
-      "Include deleted items (trash)"
+      "Repeat it on active files only",
+      "Widen it to deleted items",
+      "Narrow it with 'pdf'"
     ],
-    "answer": 2,
-    "why": "Active-only search leaves trashed files out; including that state can reveal it, within the product's retention rules."
+    "answer": 1,
+    "why": "If the file was deleted, a search of active files will keep missing it. Including deleted items can show it, within the product's own retention rules. Narrowing cannot find what the search leaves out."
   },
   "evidence": {
     "qa": [
@@ -79,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:search-scope",
     "prerequisites": [],
