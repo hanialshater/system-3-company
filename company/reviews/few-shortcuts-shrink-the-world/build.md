@@ -25,3 +25,11 @@ Findings addressed (learner review adult-beginner, fact-check NCM-1 advisories):
 - Muted line now says shortcut ends are random so can bunch up (learner noted the clump).
 - Stage text: legend line, chip label, two readout labels (about 25 words).
 QA: contract spec, QA_PORT 3671, own NEXT_DIST_DIR: phone and desktop passed. Walkthrough sheet (own server) looked at: route and labels readable, readouts not clipped; reveal frame crops the top of the ring as before. Unused CSS (.bar, .fill, .ghost*) left in styles.module.css.
+
+## Revision v4 (demo-builder, 2026-10-14, polish after NCM-2)
+
+- Clustering finding: chose the "drop" branch. Nothing on the stage stands for clustering (stage text stays at about 25 words), so it is removed from brief.objective and learner.doesNotKnow; the reveal sentence (0.500 to 0.435, random level 0.04) stays as claimed background (c3, c6), not a taught outcome.
+- c6 source no longer describes the removed ghost mark; it says the 0.04 appears once, in the reveal. Claim text unchanged, status unchanged (source-line edit only; fact-checker may re-confirm).
+- Removed unused CSS: .bar, .fill, .ghost, .ghostNote, .ghostSwatch (and unused .center, .centerSmall).
+- Version 3 to 4. Claims whose text changed: none.
+- QA: contract spec for the slug, QA_PORT 3811, own NEXT_DIST_DIR: phone and desktop passed. Walkthrough (own server) looked at: all five phone frames fine; reveal frame still crops the top of the ring, as before.
