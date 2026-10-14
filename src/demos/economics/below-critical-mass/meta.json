@@ -1,0 +1,105 @@
+{
+  "slug": "below-critical-mass",
+  "title": "A good product can still fail",
+  "hook": "Same product, same price: one launch dies, one takes off.",
+  "domain": "economics",
+  "concept": "network-effects-tipping",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a product is worth buying if its value exceeds its price"
+    ],
+    "doesNotKnow": [
+      "that when a product's value grows with the number of users, the same product and price can collapse to zero or reach most of the market depending on where it starts"
+    ]
+  },
+  "misconception": "A good product at a fair price will eventually find its users, whatever its starting share.",
+  "objective": "The learner can explain that with network effects there is a tipping point: a launch below critical mass shrinks to nothing, and one above it grows to a large stable share.",
+  "claims": [
+    {
+      "id": "economics.below-critical-mass.c1",
+      "text": "In this toy market, next round's share is 1 minus 0.16 divided by this round's share (and 0 when the share is 0.16 or less).",
+      "support": "derivation",
+      "source": "Person x (x from 0 to 1) has value (1 - x) * s and joins when (1 - x) * s > 0.16, i.e. x < 1 - 0.16 / s. The fraction of people with x below that is 1 - 0.16 / s when s > 0.16, else 0. Demo.tsx next(). Stated model, not an empirical claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c2",
+      "text": "The curve meets the diagonal at 0%, 20% and 80%, where a round changes nothing.",
+      "support": "derivation",
+      "source": "Solve z = 1 - 0.16 / z: z^2 - z + 0.16 = 0, roots (1 +- sqrt(1 - 0.64)) / 2 = 0.8 and 0.2; z = 0 is also fixed (share 0 gives 0). Re-run in node: roots 0.8, 0.2.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c3",
+      "text": "A launch at 18% falls to 11% and then to 0 (two rounds); a launch at 25% goes 25, 36, 56, 71, 78, 79, 80 percent and settles near 80% in six rounds (stopping when a round moves less than half a point).",
+      "support": "derivation",
+      "source": "Node run of next(): 0.18 -> 0.111 -> 0; 0.25 -> 0.360, 0.556, 0.712, 0.775, 0.794, 0.798 (stop: change 0.004 < 0.005). Displayed shares are rounded to whole percent. Starts 1..100% all classified: below 20 die, above 20 end at 80% (no misclassification).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c4",
+      "text": "With network effects a product has a tipping point, a critical mass: below it the share shrinks each round, above it the share grows (19% falls to 16% then 0; 21% rises to 24%, 33%, 51%, 69% and on to 80%).",
+      "support": "source",
+      "source": "Easley & Kleinberg 2010, ch. 17 (network effects and critical mass); section 17.2 to 17.4 unconfirmed (proxy fetch failed, human check against the free PDF). Numbers: node run 0.19 -> 0.158 -> 0; 0.21 -> 0.238, 0.328, 0.512, 0.688, 0.767, ... 0.799.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c5",
+      "text": "The 20% point is unstable (a start just off it moves away) and 0% and 80% are stable (a start near them moves toward them).",
+      "support": "derivation",
+      "source": "Slope of next(s) = 0.16 / s^2: 4 at s = 0.2 (greater than 1, errors grow), 0.25 at s = 0.8 (less than 1, errors shrink); 0 is stable because any share up to 0.16 gives 0 in one round. Node check of every whole-percent start 1..100 agrees.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c6",
+      "text": "The numbers ($0.16 price, value (1 - x) times the share, rounds) are made up for the toy model and are not a forecast for any real product.",
+      "support": "convention",
+      "source": "Stated modelling assumption; the card names no real product. The rounds are a story about how people react to others.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A product is worth its price to many people, but only 10% of the market uses it, and its value grows with the number of users. What usually happens?",
+    "options": [
+      "It can shrink to nothing, because it starts below its critical mass",
+      "It always climbs, because it is worth its price",
+      "Its share stays at 10% forever"
+    ],
+    "answer": 0,
+    "why": "With network effects, a launch below the tipping point loses users each round, because the product is worth less to later people. Only a start above critical mass grows."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:network-effects-tipping",
+    "prerequisites": [
+      "economics:supply-demand"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 17,
+        "section": "17.2",
+        "note": "network effects and critical mass; section unconfirmed, ask said 17.2-17.4"
+      }
+    ],
+    "also": [],
+    "tags": ["network-effects", "tipping-point", "critical-mass"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "slider-drives-live-chart", "step-run-button", "milestone-gate"]
+}
