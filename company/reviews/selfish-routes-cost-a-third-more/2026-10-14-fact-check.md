@@ -13,3 +13,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | Demo A_MIN = 60, timeB(pct) = 60*pct/100; predict question states the same. |
 
 **Result:** 1 disputed (c4: "grow in proportion to traffic" names the wrong class; the 4/3 bound is for affine delays, fixed plus proportional). Lesson blocked until the wording is fixed.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Reveal wording now 'a fixed time plus a part proportional to traffic' (affine). Bound re-derived: Wardrop equilibrium f satisfies sum l(f)f <= sum l(f)f*; for l = ax + b, l(f)f* <= l(f*)f* + a f^2/4 <= l(f*)f* + l(f)f/4, so C(f) <= (4/3) C(f*). Example: 60/45 = 4/3, so it attains the bound. Roughgarden-Tardos not opened; not relied on. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

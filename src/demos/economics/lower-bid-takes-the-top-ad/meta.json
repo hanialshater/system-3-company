@@ -26,36 +26,55 @@
       "id": "economics.lower-bid-takes-the-top-ad.c1",
       "text": "Ranked by bid alone, A's $2.00 beats B's $1.50 and takes the top slot.",
       "support": "derivation",
-      "source": "2.00 > 1.50; Demo.tsx key(…, 'bid').",
-      "status": "unverified"
+      "source": "2.00 > 1.50; Demo.tsx key(…, 'bid'). | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. In bid mode, key = round(bid x 1000): A 2000 > B 1500, so A is top. The Demo shows 'Ranked by bid alone.' and the Top slot readout 'Ad A'. The reveal's 'A's $2.00 took the top' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c2",
       "text": "Ranked by bid × quality, B scores $1.50 × 1.0 = 1.5 and A scores $2.00 × 0.5 = 1.0, so B takes the top slot with the lower bid.",
       "support": "derivation",
-      "source": "Arithmetic; Demo.tsx key(…, 'score'). Brief check in company/domains/briefs/economics.markets.md #22.",
-      "status": "unverified"
+      "source": "Arithmetic; Demo.tsx key(…, 'score'). Brief check in company/domains/briefs/economics.markets.md #22. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own copy of key() in score mode: B 1.5 x 1.0 = 1.5 (1500) > A 2.0 x 0.5 = 1.0 (1000), so B is top. The reveal prints '$1.50 x 1.0 = 1.5 against A's $2.00 x 0.5 = 1.0'; the predict key 'Ad B' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c3",
       "text": "Under the rule 'pay the least bid that keeps your slot', B pays 1.0 ÷ 1.0 = $1.00 a click, less than A bid.",
       "support": "derivation",
-      "source": "B stays on top for any bid above A's score ÷ B's quality = 1.0 ÷ 1.0 = $1.00 (equal at $1.00); price = next score ÷ own quality. Demo.tsx B_PRICE.",
-      "status": "unverified"
+      "source": "B stays on top for any bid above A's score ÷ B's quality = 1.0 ÷ 1.0 = $1.00 (equal at $1.00); price = next score ÷ own quality. Demo.tsx B_PRICE. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo pays = second.bid x second.quality / top.quality = 1.0 / 1.0 = $1.00, the same for B at $1.50 and at $1.20 (own node), and B_PRICE = A_SCORE / B_QUALITY = 1.00. $1.00 < A's $2.00 bid. 'Least bid that keeps your slot' is the usual GSP boundary: equal at $1.00, as the source says, and the chip states the rule.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c4",
       "text": "With B's bid at $0.80, B's score 0.8 falls below A's 1.0 and A takes the top slot (and pays 0.8 ÷ 0.5 = $1.60 a click); at $1.00 the two tie.",
       "support": "derivation",
-      "source": "0.80 × 1.0 = 0.8 < 1.0; 0.8 ÷ 0.5 = 1.60; 1.00 × 1.0 = 1.0 = 2.00 × 0.5. Demo.tsx readouts.",
-      "status": "unverified"
+      "source": "0.80 × 1.0 = 0.8 < 1.0; 0.8 ÷ 0.5 = 1.60; 1.00 × 1.0 = 1.0 = 2.00 × 0.5. Demo.tsx readouts. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own node with the Demo's integer keys. B $0.80: 800 < 1000, so A is top and pays 0.8 x 1.0 / 0.5 = $1.60. B $1.00: 1000 = 1000, so the readout says 'Tie' and pays shows a dash. The milestone a-retakes is reachable only at $0.80 in score mode, so the reveal's 'When you dropped B to $0.80' quotes a state the learner reached. (At a tie the stage draws A in the top row while the readout says Tie; that is cosmetic, not a claim.)",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c5",
       "text": "The ranking and payment rule are a simplified model with invented numbers, not a description of any real search engine.",
       "support": "convention",
-      "source": "Stage chip states the payment rule; reveal footnote. The brief's planned claim about real search engines (quality factor used, formulas not public; E&K ch. 15) needs a human source check and is kept out of learner text.",
-      "status": "unverified"
+      "source": "Stage chip states the payment rule; reveal footnote. The brief's planned claim about real search engines (quality factor used, formulas not public; E&K ch. 15) needs a human source check and is kept out of learner text. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Chip 'Model: the top ad pays the least bid that keeps its slot'; the reveal footnote is word for word this claim. The real-search-engine claim from the brief is kept out of learner text, as the source says; I checked every learner string in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c6",
+      "text": "A high bid cannot make up for low quality.",
+      "support": "derivation",
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 23, 2026-10-14); the sentence is the builder's, recorded here word for word. | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. Reveal para 2, last sentence (line 62). Under the lesson's own rule (rank by bid x quality) it is false: A, at quality 0.5, outranks B's 1.5 with any bid above $3.00 (e.g. $3.10 x 0.5 = 1.55). A higher bid compensates for lower quality at a rate of 1/quality; that is the point of the score. The stage only varies B's bid, so the learner never tests this, but the sentence is stated generally. Fix (builder): 'A high bid alone does not win: A would need more than $3.00, double B's $1.50, because its quality is half B's.' Or 'Quality multiplies the bid, so a low-quality ad has to bid much more to win.'",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

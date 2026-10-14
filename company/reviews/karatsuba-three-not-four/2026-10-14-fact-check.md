@@ -15,3 +15,13 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx (stage
 | c7 | verified | algebra re-derived: xy = ac*10^2h + (ad+bc)*10^h + bd; (a+b)(c+d) - ac - bd = ad + bc. Matches the kids lists in school() and kara() and the box labels. |
 
 **Result:** 1 claim disputed; the lesson cannot publish until the builder fixes the sentence and the claim is re-checked.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Reveal now says 'the ideal no-carry count is 59,049 products against 1,048,576 (3^10 against 4^10)': 1,024 = 2^10, T(n) = 3T(n/2) with T(1) = 1 gives 3^10 = 59,049, schoolbook 4^10 = 1,048,576. The pass-22 objection (real inputs carry) is met by 'ideal no-carry'. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

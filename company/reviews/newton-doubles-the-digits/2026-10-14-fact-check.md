@@ -13,3 +13,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | disputed | Newton = averaging rule: verified by derivation. The historical half is not checked: the learner sentence says the rule is 'the ancient Babylonian one', but the builder's own source says how YBC 7289 was computed is not recorded, and the Fowler & Robson (1998, Historia Math. 25:366-378) abstract, seen via web search only, reconstructs a geometric method rather than confirming this rule. Heron's Metrica not opened. Fix (builder): 'the rule known as the Babylonian (or Heron's) method', or cite an opened source for Babylonian use. |
 
 **Result:** 4 verified, 1 disputed, 0 withdrawn.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own run, sqrt(2) reference from my own BigInt Newton root: digits 1, 1, 3, 6, 12, 15, 15 for g0-g6; the reveal prints DIGITS[1..4] = 1, 3, 6, 12, matching the claim text. |
+| c5 | held (unverified) | HELD, not verified. Newton half re-derived: g - (g^2 - 2)/(2g) = (g + 2/g)/2. The naming half ('known as the Babylonian (or Heron's) method') is a historical-naming fact that only an outside source can establish, and every host was unreachable (wikipedia, mathpages, arxiv: DNS failure); only search-result summaries agree. Per the pass-23 rule I do not verify on a source I cannot open. To clear: a human opens any reference (e.g. Wikipedia 'Methods of computing square roots') or the builder drops the naming clause. |
+
+**Result:** 1 verified, 0 disputed, 1 held unverified, 0 withdrawn.

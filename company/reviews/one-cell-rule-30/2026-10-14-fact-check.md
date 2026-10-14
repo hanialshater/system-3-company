@@ -12,3 +12,13 @@ Checker: fact-checker. Method: read Demo.tsx (stage, question, reveal) against e
 | c4 | verified | Follows from c1 and c3 (counterexample). |
 | c5 | verified | Re-ran: centre columns 110111001 (Rule 30) and 100000000 (Rule 90), steps 0-8. |
 | c6 | verified | NKS p. 317 (ch. 7, 'The Intrinsic Generation of Randomness'): web-search extract of wolframscience.com/nks/p317 says Mathematica's Random[Integer] has long produced its bits from the Rule 30 centre column; Wikipedia (Rule 30) and a Wolfram Demonstration agree. Page reached only through the search index (host blocked to fetch); no conflicting source. |
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own re-run, 17-cell row: Rule 30 counts 1, 3, 3, 6, 4, 9, 5, 12, 7; Rule 90 row 8 = 2. 'with no pattern' is gone from the reveal and the claim. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

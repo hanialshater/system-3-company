@@ -15,3 +15,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c7 | disputed | DISPUTED. Own node check: counting all 320 coprime bases, 10 are strong liars: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560. Demo LIARS excludes base 1 (9) but divides by all 320, so '9 of the 320' is wrong. Fix (builder): either '10 of the 320' or '9 of the 319 bases from 2 to 560' (change LIARS or the denominator in the reveal). The quarter bound (Rabin 1980; Monier 1980) cited from memory, papers not opened; 10/320 is well under 1/4 here. |
 
 **Result:** 1 disputed (c7: strong-liar count is 10 of 320, or 9 of 319); lesson blocked until the builder fixes the count.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | disputed | Number fixed: own BigInt check gives 10 strong liars among the 320 coprime bases (1, 50, 101, 103, 256, 305, 458, 460, 511, 560), matching LIARS. DISPUTED on 'never more than a quarter': counted the lesson's way (of the coprime bases), n = 9 has 2 strong liars (1, 8) of 6 = 1/3; the Rabin-Monier bound is phi(n)/4 for odd composite n > 9 (own scan of odd composites below 4,000: max 1/4 apart from n = 9). The papers were not opened. Fix (builder): 'never more than a quarter for odd numbers above 9', or 'never more than a quarter of the bases from 1 to n - 1' (n = 9: 2 of 8). |
+
+**Result:** 0 verified, 1 disputed, 0 held unverified, 0 withdrawn.

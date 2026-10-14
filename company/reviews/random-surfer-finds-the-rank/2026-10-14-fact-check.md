@@ -13,3 +13,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | OUT has one target per page; SEED = 146 fixed and surf() restarts mulberry32(SEED), so totals depend only on the click count. |
 
 **Result:** all open claims verified; the lesson has no unverified or disputed claims.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own mulberry32 copy of surf(): seed 146, 100,000 clicks: A 31,211, C 33,220 (31.2%, 33.2%). The reveal prints FINAL = surf(MAX), as the parenthetical now says. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

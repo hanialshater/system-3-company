@@ -14,3 +14,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c6 (new) | unverified | Unrecorded reveal sentence "two distances against 257, about equal" recorded as a claim; left unverified because I recorded it. |
 
 **Result:** all open claims verified; one unrecorded reveal sentence recorded as c6 (unverified) for the next independent pass.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own sums, ring of 1,024 with 1/d: band 2-3 gets 12.2%, band 256-512 gets 10.2%; distances 2 vs 512 - 256 + 1 = 257. 'About equal' against a 128-fold difference in distances is fair. The sentence is the builder's; a pass-21 fact-checker session recorded it, and this is a separate session. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

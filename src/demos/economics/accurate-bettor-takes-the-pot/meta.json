@@ -26,43 +26,55 @@
       "id": "economics.accurate-bettor-takes-the-pot.c1",
       "text": "In all five seeded runs of 500 races, the 60% bettor ended with at least 98.8% of the money (98.8% to over 99.9%).",
       "support": "simulation",
-      "source": "Demo.tsx run(): mulberry32 seeds 2211 to 2215 (consecutive seeds fixed by the brief, not picked by the builder), one rng() per race, win if < 0.6. Share at race 500: 0.999905, 0.987766, 0.999678, 1.000000 (rounded), 0.991811. Matches the brief's check in company/domains/briefs/economics.markets.md #21.",
-      "status": "unverified"
+      "source": "Demo.tsx run(): mulberry32 seeds 2211 to 2215 (consecutive seeds fixed by the brief, not picked by the builder), one rng() per race, win if < 0.6. Share at race 500: 0.999905, 0.987766, 0.999678, 1.000000 (rounded), 0.991811. Matches the brief's check in company/domains/briefs/economics.markets.md #21. · Fact-check pass 23 2026-10-14: Own mulberry32 copy of run(): race-500 shares 0.999905, 0.987766, 0.999678, 1.000000, 0.991811; pct() gives 98.8% low, 'over 99.9%' high.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c2",
       "text": "In run 2 (seed 2212) the 50% bettor held 88.6% of the money at race 200.",
       "support": "simulation",
-      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200).",
-      "status": "unverified"
+      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c3",
       "text": "In this model each win multiplies the ratio of the 60% bettor's money to the 50% bettor's by 1.2, each loss by 0.8; three wins and two losses multiply it by 1.11.",
       "support": "derivation",
-      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X.",
-      "status": "unverified"
+      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X. · Fact-check pass 23 2026-10-14: Re-derived: winners split the pool by stake, so the money ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share (node check at a = 0.3 gives 1.2); 1.2^3 x 0.8^2 = 1.10592, shown as 1.11.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c4",
       "text": "The pool's win odds are the money-weighted average belief, so as money moves to the 60% bettor the odds move toward the true 60%.",
       "support": "derivation",
-      "source": "With everyone betting all their money, the share of the pool on 'win' is 0.6·a + 0.5·(1 − a), where a is the 60% bettor's share (Demo.tsx readout). As a → 1 this → 0.6.",
-      "status": "unverified"
+      "source": "With everyone betting all their money, the share of the pool on 'win' is 0.6·a + 0.5·(1 − a), where a is the 60% bettor's share (Demo.tsx readout). As a → 1 this → 0.6. · Fact-check pass 23 2026-10-14: Re-derived: everyone bets everything, so the share of the pool on 'win' is 0.6a + 0.5(1 - a), the readout's formula; it tends to 0.6 as a tends to 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c5",
       "text": "In such markets, wealth flows to the traders whose beliefs are closest to the truth.",
       "support": "source",
-      "source": "Market selection: Blume and Easley (2006), 'If you're so smart, why aren't you rich?', Econometrica 74(4); Easley and Kleinberg (2010) ch. 22 (advanced section). Not stated as a general sentence in learner text beyond this model; the reveal speaks of this model. Fact-checker confirms.",
-      "status": "unverified"
+      "source": "Market selection: Blume and Easley (2006), 'If you're so smart, why aren't you rich?', Econometrica 74(4); Easley and Kleinberg (2010) ch. 22 (advanced section). Not stated as a general sentence in learner text beyond this model; the reveal speaks of this model. Fact-checker confirms. · Fact-check pass 23 2026-10-14: DISPUTED. Not a learner sentence (the reveal speaks only of 60% vs 50%), and false as a general statement if 'closest' means nearest in percentage points: in this same model the long-run winner is the belief with the smaller relative entropy from the truth. Own counterexample with the lesson's run(): truth 80%, beliefs 99% (19 points off) vs 60% (20 points off): the 99% bettor ends behind in 100 of 100 seeded 500-race runs (median share 4e-72). Blume and Easley (2006) not opened. Fix (builder): withdraw c5 (no learner sentence depends on it), or reword to 'in this model, money flows on average to the belief with the smaller relative-entropy gap from the truth; here that is the 60% bettor'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c6",
       "text": "The market is a simplified model: two bettors, no fees, each bets all their money every race, split by belief.",
       "support": "convention",
-      "source": "Stage chip and reveal footnote; Demo.tsx run().",
-      "status": "unverified"
+      "source": "Stage chip and reveal footnote; Demo.tsx run(). · Fact-check pass 23 2026-10-14: Stage chip 'Model: each bets everything, split by belief' and reveal footnote 'two bettors, no fees, everyone bets everything each race' match run().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

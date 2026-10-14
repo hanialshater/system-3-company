@@ -26,43 +26,55 @@
       "id": "life.all-lines-meet-in-one-mother.c1",
       "text": "In 1,000 seeded runs with 50 women per generation, all maternal lines met in one ancestor, on average 96 generations back (median 84); the stage's family met 99 generations back.",
       "support": "simulation",
-      "source": "Builder's own code (meetTime/family in Demo.tsx), re-run in node 2026-10-14 via a transpile-only harness. Haploid Wright–Fisher, N = 50, each generation every distinct line draws mother = floor(rand × 50) from mulberry32(seed). 1,000 runs use seeds 7001–8000 as briefed: all met; mean 96.03, median 84, min 18, max 371, 10th–90th percentile 44–169. The stage's family uses seed 7004, chosen because its meeting time (99) is near the mean and fits the 0–120 axis; it is an illustration, not evidence. Seed 7004 lines: 50 today → 32 one generation back → 23 at 2 → 9 at 12 → 3 at 50 → 2 at 89 → 1 at 99.",
-      "status": "unverified"
+      "source": "Builder's own code (meetTime/family in Demo.tsx), re-run in node 2026-10-14 via a transpile-only harness. Haploid Wright–Fisher, N = 50, each generation every distinct line draws mother = floor(rand × 50) from mulberry32(seed). 1,000 runs use seeds 7001–8000 as briefed: all met; mean 96.03, median 84, min 18, max 371, 10th–90th percentile 44–169. The stage's family uses seed 7004, chosen because its meeting time (99) is near the mean and fits the 0–120 axis; it is an illustration, not evidence. Seed 7004 lines: 50 today → 32 one generation back → 23 at 2 → 9 at 12 → 3 at 50 → 2 at 89 → 1 at 99. · Fact-check pass 23 2026-10-14: Own mulberry32 copy of meetTime(): seeds 7001-8000 all met, mean 96.033 (reveal rounds to 96), median 84, min 18, max 371; seed 7004 meets at 99, with 32, 23, 9, 3, 2 lines at 1, 2, 12, 50, 89 back. The 'thousand' milestone forces the run, so the reveal always quotes the computed mean.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c2",
       "text": "Theory for this model expects about 97 generations; the formula 2N(1 − 1/N) = 98 is an approximation.",
       "support": "derivation",
-      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6).",
-      "status": "unverified"
+      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6). · Fact-check pass 23 2026-10-14: Own exact expectation by value iteration on the lines Markov chain (occupancy transitions, 20,000 sweeps): 96.971, rounds to 97; 2N(1 - 1/N) = 98 for N = 50.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c3",
       "text": "Every step back, some lines pick the same mother and join; joined lines never split, so with only 50 women to choose from, joins continue until one line is left.",
       "support": "derivation",
-      "source": "Each woman has exactly one mother, so two lines that share an ancestor share every earlier ancestor; with a finite population of 50 the number of lines can only fall, and falls with positive probability each generation while more than one line remains, so it reaches 1 with probability 1.",
-      "status": "unverified"
+      "source": "Each woman has exactly one mother, so two lines that share an ancestor share every earlier ancestor; with a finite population of 50 the number of lines can only fall, and falls with positive probability each generation while more than one line remains, so it reaches 1 with probability 1. · Fact-check pass 23 2026-10-14: Re-derived: one mother per woman, so joined lines share all earlier ancestors; line count is non-increasing and falls with positive probability whenever k > 1, so it reaches 1 almost surely (all 1,000 seeded runs did).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c4",
       "text": "The common mother was not alone: 49 other women lived beside her, but their maternal lines did not reach today.",
       "support": "derivation",
-      "source": "The model keeps 50 women in every generation; at the meeting generation only one of them is a maternal ancestor of all of today's 50 women, and by definition no other woman of that generation has a maternal line to today.",
-      "status": "unverified"
+      "source": "The model keeps 50 women in every generation; at the meeting generation only one of them is a maternal ancestor of all of today's 50 women, and by definition no other woman of that generation has a maternal line to today. · Fact-check pass 23 2026-10-14: Re-derived: N = 50 in every generation; at the meeting generation every present-day maternal line passes through the one mother, so none of the other 49 has a maternal line to today.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c5",
       "text": "It is the drift from 'Nobody wins, one colour takes over', run backward.",
       "support": "derivation",
-      "source": "Same haploid Wright–Fisher sampling (each generation a random draw of parents from the last), traced backward instead of forward. Source: the published lesson life/same-genes-different-drift, claim life.same-genes-different-drift.c1.",
-      "status": "unverified"
+      "source": "Same haploid Wright–Fisher sampling (each generation a random draw of parents from the last), traced backward instead of forward. Source: the published lesson life/same-genes-different-drift, claim life.same-genes-different-drift.c1. · Fact-check pass 23 2026-10-14: life/same-genes-different-drift (published, title 'Nobody wins, one colour takes over') is haploid Wright-Fisher: each new individual copies a parent drawn at random from the last generation; this lesson traces the same draw backward.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c6",
       "text": "Stage rule: 50 women per generation; each has a random mother from the one before.",
       "support": "convention",
-      "source": "The lesson's model (brief all-lines-meet-in-one-mother, company/courses/ncm/briefs.md, life.genetics-evolution #3); a toy model, not human data.",
-      "status": "unverified"
+      "source": "The lesson's model (brief all-lines-meet-in-one-mother, company/courses/ncm/briefs.md, life.genetics-evolution #3); a toy model, not human data. · Fact-check pass 23 2026-10-14: Stage rule text matches verbatim; N = 50, mother = floor(rng() x 50) per line.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -85,13 +97,32 @@
   "version": 1,
   "curriculum": {
     "primary": "life:coalescent-mrca",
-    "also": ["life:genetic-drift"],
-    "prerequisites": ["life:genetic-drift"],
+    "also": [
+      "life:genetic-drift"
+    ],
+    "prerequisites": [
+      "life:genetic-drift"
+    ],
     "level": "core",
     "strand": "genetics-evolution",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 21 }],
-    "tags": ["genealogy", "coalescent", "drift"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 21
+      }
+    ],
+    "tags": [
+      "genealogy",
+      "coalescent",
+      "drift"
+    ]
   },
   "format": "storyboard-scrub",
-  "interactions": ["choice-before-reveal", "scrubber-timeline", "step-run-button", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "scrubber-timeline",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

@@ -13,3 +13,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | disputed | The method is right but the wording is not: 'cheapest sub-chains first' reads as processing sub-chains in order of cost. MATRIX-CHAIN-ORDER (CLRS 4e 14.2, recalled, not opened) solves sub-chains in order of length, shortest first. Own check: bottom-up by length equals brute force over all bracketings on 2,000 random chains (fc21/mc.mjs). Fix (builder): 'shortest sub-chains first' in Demo.tsx reveal and claim text. |
 
 **Result:** 4 verified, 1 disputed, 0 withdrawn.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Reveal text matches. Re-derived optimal substructure (cost = left + right + p(i-1)p(k)p(j)); own bottom-up-by-length DP equals brute force over all bracketings on 2,000 chains of 2-7 matrices. CLRS not opened; not relied on. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

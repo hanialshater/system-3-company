@@ -22,3 +22,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | disputed | Formula and sums verified (own node: two-oven adds 10, 10, 8, 8, 6, 6, 4, 4; totals 36 at 4, 52 at 7, 56 at 8). DISPUTED: the reveal quotes the last two-oven state, and the learner can reach 1 worker with two ovens (Remove one down to 1, then Add a second oven), giving '1 workers made 10: fewer cooks per oven, so each added more.' With one worker the second oven adds nothing (10 either way), so the sentence is false there (and '1 workers'). Fix (builder): quote the second-oven sentence only when totalOf(n, 2) > totalOf(n, 1) (n >= 2), or quote the n >= 2 state. |
 
 **Result:** 2 disputed; the lesson cannot publish until the builder fixes and the claim is re-checked.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (did not write these claims; sentences recorded by an earlier fact-checker session were reworded by the builder or are the builder's own reveal text). Method: read Demo.tsx (predict, stage strings, reveal and every reachable branch) against each open claim, then re-ran every number in my own node copies of the lesson logic (own mulberry32, BigInt roots and modpow, exact Markov chain, union-find). Every external host failed to resolve or was refused, so no source was opened; a claim whose learner content rests only on an outside source is held unverified.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node: one-oven adds 10, 8, 6, 4, 2, 0, 0, 0, totals peak 30 at 5. v4 look() stores max(seen.zero, k) for one-oven k > 5 (also on 'Back to one oven'), so set 8 then 6 names 8. |
+| c5 | verified | Own node: two-oven totals 10, 20, 28, 36, 42, 48, 52, 56 vs one-oven 10, 18, 24, 28, 30, 30, 30, 30; k-th add 10 - 2(ceil(k/2) - 1). v4 records a two-oven state only if totalOf(k, 2) > totalOf(k, 1), which excludes k = 1, and the reveal re-checks it and prints the one-oven total beside it. |
+
+**Result:** 2 verified, 0 disputed, 0 held unverified, 0 withdrawn.
