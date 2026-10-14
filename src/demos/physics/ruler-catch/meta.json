@@ -35,10 +35,10 @@
       "id": "physics.ruler-catch.c2",
       "text": "A catch at 20 cm means t = √(2 × 0.20 / 9.81) = 0.20 s. (Reveal: 'for 20 cm, t = √(2 × 0.200 m ÷ 9.81) = 0.20 s', the stage's working-line format.)",
       "support": "derivation",
-      "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor). | Builder revision v3 (demo-builder, 2026-10-14): (r7) The time scale is now drawn only after the commit (it put 0.20 s beside 20 cm on the locked stage), and the reveal writes out the conversion in the same form as the new stage working line. Builder statement, not self-verified.",
-      "status": "unverified",
+      "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor). | Builder revision v3 (demo-builder, 2026-10-14): (r7) The time scale is now drawn only after the commit (it put 0.20 s beside 20 cm on the locked stage), and the reveal writes out the conversion in the same form as the new stage working line. Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): working(20) = 't = sqrt(2 x 0.200 m / 9.81) = 0.20 s' (node; timeFor(20) = 0.20193). Inverse check: 0.5 x 9.81 x t^2 x 100 = 20 cm exactly. Time scale is drawn only when unlocked; reveal string is the same function as the stage working line.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.ruler-catch.c3",
@@ -71,10 +71,10 @@
       "id": "physics.ruler-catch.c6",
       "text": "The learner's own catches (between the smallest and largest distances caught so far) convert to times by the same formula. (Stage: a working line 'x cm: t = √(2 × d m ÷ 9.81) = t s' for the latest catch, and a 'Seen: N catches, lo to hi cm = t_lo to t_hi s' row that Clear does not erase.)",
       "support": "derivation",
-      "source": "Reveal computes min, max of the learner's catches from TRIALS and converts each with timeFor. | Builder revision v3 (demo-builder, 2026-10-14): (r7) Added the working line (working(cm) = 't = √(2 × cm/100 m ÷ 9.81) = timeFor(cm) s', two decimals as on the readout) and the persistent Seen row; the reveal quotes the Seen row. Title and hook no longer say 'your reflex' or 'blink-quick' (the catcher is simulated; 'blink-quick' pointed at a short time). Builder statement, not self-verified.",
-      "status": "unverified",
+      "source": "Reveal computes min, max of the learner's catches from TRIALS and converts each with timeFor. | Builder revision v3 (demo-builder, 2026-10-14): (r7) Added the working line (working(cm) = 't = √(2 × cm/100 m ÷ 9.81) = timeFor(cm) s', two decimals as on the readout) and the persistent Seen row; the reveal quotes the Seen row. Title and hook no longer say 'your reflex' or 'blink-quick' (the catcher is simulated; 'blink-quick' pointed at a short time). Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): Own mulberry32 port, seed 1 (fc26-b0/ruler.mjs): TRIALS 16.4, 27.4, 22.2, 24.2, 13.3, 12.6, ...; every catch converts with timeFor (inverse exact). Seen row after 5 drops 'Seen: 5 catches, 13.3 to 27.4 cm = 0.16 to 0.24 s', after 6 '12.6 to 27.4 cm = 0.16 to 0.24 s'. seen is max catches on the ruler at once and Clear only sets n = 0, so the row survives Clear; drops after Clear replay the same TRIALS, so lo/hi stay the learner's catches. The working line uses lastCm = TRIALS[next - 1], the latest catch. The reveal needs milestone five, so seen >= 5.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -35,3 +35,17 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c4 | verified | Halves 1111 each; 2,468,642 both ways (4,937,284 - 1,234,321 - 1,234,321). Identity holds on 10,000 random quadruples. Stage lines and reveal print the same values. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims left unverified or disputed by the wave G revision (build.md Pre-flight, latest). Method: read Demo.tsx (stem, stage strings, every control path, Reset or its absence, reduced-motion branches, reveal) against each claim, then re-ran the numbers in my own node ports of the lesson logic (scratchpad fc26-b0/). No outside source was opened; no claim below rests only on one.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node BigInt port of split/school/kara (scratchpad fc26-b0/kara.mjs) on 11141313 x 13111224: schoolbook 64 leaves, Karatsuba 27, all leaves 1-digit, both trees recombine to X*Y. Example choice checked against its stated criteria: every digit is 1-4, the top-split halves 1114, 1313, 1311, 1224 are four distinct values, no Karatsuba leaf exceeds 1 digit. The builder search script itself (g3a0cd_kar.py) was not re-run; the example is disclosed as chosen. Stem and reveal print COUNTS[DEPTH]; no Reset; reduced motion jumps Split down to 1 digit to depth 3, same counts. |
+| c2 | verified | Same script: nodes per depth 1/1, 4/3, 16/9, 64/27; largest factor length per depth 8, 4, 2, 1, so table rows read 4-digit, 2-digit, 1-digit with 4/3, 16/9, 64/27. |
+| c3 | verified | BigInt 11141313n * 13111224n = 146076250397112n; fmt gives 146,076,250,397,112; school() and kara() values both equal it; stage prints fmt(col.tree.value) under both columns at depth 3. |
+| c4 | verified | Own BigInt from split(X, Y), h = 4: a 1114, b 1313, c 1311, d 1224; a*d 1,363,536, b*c 1,721,343, sum 3,084,879; (a+b)(c+d) = 2427*2535 = 6,152,445, a*c 1,460,454, b*d 1,607,112, difference 3,084,879. Check lines print fmt(AD) + fmt(BC) = fmt(CROSS) and fmt(SUMS) - fmt(AC) - fmt(BD) = fmt(VIA); the reveal quotes the same constants; the Check button disables after one press, nothing clears it. |
+| c5 | verified | 1,024 = 2^10; with no half-sum carry every split gives 3 half-size products, T(n) = 3T(n/2), T(1) = 1, so 3^10 = 59,049; schoolbook 4^10 = 1,048,576 (node). Reveal wording 'if no half-sum like a+b gains a digit' states the same no-carry condition that pass 23 accepted. |
+
+**Result:** 5 verified, 0 disputed, 0 held unverified, 0 withdrawn.

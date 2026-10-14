@@ -25,3 +25,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | abaa: 1+0+2+0+1+1+1 = 6 (brute force 6); 3 fails; 9 distinct substrings tested, only 'abaa' untested; middle 'ba' fails. Reveal values equal these once all-centres fires. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | Own port of grow('abaa', k): per-centre 1, 0, 2, 0, 1, 1, 1 = 6 (brute force over 10 substrings: 6); fails at centres 1, 3, 4; tested set has 9 distinct substrings (each substring has one centre, so the per-centre sum 9 equals the distinct count); the only untested one is [0, 3] = "abaa"; middle centre k = 3 fails on [1, 2] = "ba". Readout label "abaa tested" with value '9 / 10, not "abaa"' appears only when done.length = 7, which the reveal requires (all-centres); taps only add. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

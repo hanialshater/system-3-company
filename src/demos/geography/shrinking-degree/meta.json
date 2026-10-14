@@ -34,8 +34,10 @@
       "id": "geography.shrinking-degree.c2",
       "text": "At 60°N one degree of longitude is 55.6 km, half the equator's 111.2 km; at 80°N it is 19.3 km.",
       "support": "derivation",
-      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there.",
-      "status": "unverified"
+      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The sphere arithmetic is right (node: pi*6371.0088/180*cos(lat) = 55.598 at 60 N, 19.309 at 80 N, 111.195 at the equator; readouts print 55.6, 19.3, 111.2 and the reveal quotes them). But the sentence states one-decimal values as the length on Earth, and on the WGS84 ellipsoid they are 55.80 km at 60 N, 19.39 km at 80 N and 111.32 km at the equator (pi*a*cos(lat)/(180*sqrt(1-e^2 sin^2 lat))); the lesson's own c4 tells learners the equator degree is 111.3 km, while c2 calls it 111.2. Nothing on the stage or in the reveal says the globe is a sphere (caption: 'A globe.'). Pass 9 verified the old 'about 56' / 'about 19', which hold for the real Earth. Fix (builder): either say the model on stage and in the claim (e.g. caption 'A globe, treated as a sphere of radius 6,371 km' and claim 'On a sphere of radius 6,371 km, ...'), or drop to the precision that holds for Earth ('about 56 km', 'about 19 km', 'about 111 km').",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.shrinking-degree.c3",
@@ -77,8 +79,10 @@
       "id": "geography.shrinking-degree.c7",
       "text": "The 10-degree box is ten times as wide as one degree of longitude at its middle latitude (for example about 556 km at 60°N).",
       "support": "derivation",
-      "source": "Demo.tsx: box width readout = 10 x pi R cos(lat) / 180 with R = 6,371.0088 km, measured along the box's middle parallel; 10 x 55.6 = 556 km at 60°N. The box's top and bottom parallels are slightly narrower and wider than its middle.",
-      "status": "unverified"
+      "source": "Demo.tsx: box width readout = 10 x pi R cos(lat) / 180 with R = 6,371.0088 km, measured along the box's middle parallel; 10 x 55.6 = 556 km at 60°N. The box's top and bottom parallels are slightly narrower and wider than its middle. | FC pass 26 (fact-checker, 2026-10-14): Readout = Math.round(10 x degLonKm(lat)): 556 at 60 N (10 x 55.598), 1,112 at 0, 193 at 80 N (node); labelled 'Box width, 10 deg of longitude', computed on the box's middle parallel. 'About 556 km' also holds on WGS84 (558 km).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -55,8 +55,10 @@
       "id": "geography.mercator-greenland.c4",
       "text": "Mercator stretches areas more the farther they are from the equator (by about 1/cos²(latitude)).",
       "support": "derivation",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Mercator scale factor k = sec φ, so area factor sec² φ. At 73°, sec² ≈ 11.7. Fact-check 2026-10-12: sec^2(73)=11.70 confirmed; the lesson's own readout 10.73x is still more than ten. v4: the reveal no longer quotes 'more than ten times'; it quotes the stage's own recorded ratios (Seen line) and states only the direction of the stretch.",
-      "status": "unverified"
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, Mercator scale factor k = sec φ, so area factor sec² φ. At 73°, sec² ≈ 11.7. Fact-check 2026-10-12: sec^2(73)=11.70 confirmed; the lesson's own readout 10.73x is still more than ten. v4: the reveal no longer quotes 'more than ten times'; it quotes the stage's own recorded ratios (Seen line) and states only the direction of the stretch. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED on derivation (Snyder not opened). Own d3-geo run with the lesson's geoMercator: projected area / true area of a small cell, relative to the equator, is 1.136, 1.717, 4.061, 12.04, 34.88 at 20, 40, 60, 73, 80°, matching 1/cos² of the cell centre to 3 decimals. The reveal states only the direction (\"more the farther from the equator\"), which holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.mercator-greenland.c5",
@@ -116,8 +118,10 @@
       "id": "geography.mercator-greenland.c13",
       "text": "A line of one constant compass bearing (a rhumb line) is straight on Mercator and drawn bent on an equal-area map such as Equal Earth.",
       "support": "simulation",
-      "source": "Demo.tsx RHUMB: points with longitude linear in the Mercator ordinate ln tan(45° + lat/2), from 50°W 45°S to 50°E 62°N, 121 samples; by construction a straight segment on Mercator (Snyder 1987, USGS PP 1395, Mercator: rhumb lines are straight). The same points drawn by geoEqualEarth form a curve because Equal Earth's y is not proportional to the Mercator ordinate. Not checked outside the page.",
-      "status": "unverified"
+      "source": "Demo.tsx RHUMB: points with longitude linear in the Mercator ordinate ln tan(45° + lat/2), from 50°W 45°S to 50°E 62°N, 121 samples; by construction a straight segment on Mercator (Snyder 1987, USGS PP 1395, Mercator: rhumb lines are straight). The same points drawn by geoEqualEarth form a curve because Equal Earth's y is not proportional to the Mercator ordinate. Not checked outside the page. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (advisory below). Construction: longitude linear in ln tan(45° + lat/2) is the definition of a rhumb line on Mercator; per-sample great-circle bearings stay 37.2-37.9° (one bearing up to the chord effect). Own d3-geo run on the lesson projections: rendered Mercator path deviates from its chord by at most 0.001 px (straight); on Equal Earth the same points bow 2.8 px off the chord of a 137 px line, so it is bent. Advisory, not a dispute: a 2.8 px (2%) bow on a dashed line may not read as \"bent\" on a phone; QA or a learner review should confirm it is visible.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -21,3 +21,13 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 | Claim | Verdict | Basis |
 |---|---|---|
 | c6 | verified | A = a + (100 - a)/2, so dA = da/2. Own node over every reachable option (0..80 step 10): 70 -> 85, 80 -> 90; all whole cents. Reveal computes from split(prev) and split(a). |
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | A = a + (100 - a)/2 = 50 + a/2 cents, so dA = da/2 for any pair; own node: 40 -> 70, 80 -> 90 (20 cents for 40). Every reachable option (0..80 step 10) gives whole cents. tried starts as [0] and gains each option set (sorted, no duplicates); the reveal needs "moved", so tried has >= 2 entries and hi > lo; it quotes tried[0] and tried[last] with split().A of each, the same entries as the Tried row. Note: lo is always $0.00 (the starting option), so the reveal always says "from $0.00". |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

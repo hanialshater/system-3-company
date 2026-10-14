@@ -13,3 +13,13 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c5 | verified | Rule text on stage and ballotPoints(): n-1 points for 1st down to 0 among candidates still running. |
 
 **Result:** 5 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own node port of ballotPoints/gapAB/leadSums: the row reads exactly "Lead sums with C: B 2 + 2 = 4, A 1 + 1 + 1 = 3. Without C: A 1 + 1 + 1 = 3, B 1 + 1 = 2."; totals with C A 6, B 7, C 2 (margin 1 = 4 - 3), without C A 3, B 2 (margin 1 = 3 - 2). The row is rendered whenever gaps is true, and gaps is never cleared. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

@@ -35,3 +35,14 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c2 | verified | The Rubinstein backward induction share(n) = 1 - 0.9·share(n-1) is correct. Own node: for n = 3, 50, 51, 60, 100, 399 and 400 the reveal's quote string is identical to the stage line's string ('First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' at 400; '0.9 × 52.9% = 47.6%; keep 52.4%' at 50). q is the 10% record with the largest n >= 50, and a record is written only by set() while that state is on stage, so 'That was the line above the chart at 10%' is true on every path that reaches long-10 (needed for the reveal), including a shrink chip at n >= 50. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node: share(n) = 1 - 0.9·share(n-1); for every n = 2..400 the offer 0.9·share(n-1) plus share(n) is 1, and their one-decimal percents add to 100.0, so "keeps the rest" holds as displayed. stepText(0.1, 400) = "offer 0.9 × 52.6% = 47.4%; keep 52.6%". q is the 10% record with the largest n >= 50 (set() replaces a record only with a larger n and writes it only while that state is on stage); the Seen row and the reveal call the same stepText(0.1, q.n), and the reveal needs long-10, so q exists. Live line string matches the claim's template, including "(their share proposing next)". |
+| c6 | verified | Own node: /share(0.1, n) - 1/1.9/ is largest at n = 50, 0.27 points (52.4% vs 52.6%), and shrinks by 0.9 each round (51: 52.9%, 400: 52.6%), so every recordable 10% game (n >= 50) is within 0.3 points. Records row string "Long games (stand-in for no deadline): ..." is on stage whenever a record exists, which the reveal requires. |
+
+**Result:** 2 verified, 0 disputed, 0 held unverified.

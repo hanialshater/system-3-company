@@ -32,3 +32,13 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c7 | verified | (stage only). Demo.tsx: a start's Steps and Peak cells render '?' unless done.includes(n); done is appended only in show() when steps >= STEPS(n), and show() is called only by Step, Run to 1 and runOut (a chip pressed after a finished run runs the new start on stage). No other control fills a cell. Stage note 'Only running a start fills its ?.' and reveal 'Each ? in your table stayed a ? until you ran that start: only running the rule filled it in' match. The claim no longer states 'no known formula'; Lagarias is background only. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims left unverified or disputed by the wave G revision (build.md Pre-flight, latest). Method: read Demo.tsx (stem, stage strings, every control path, Reset or its absence, reduced-motion branches, reveal) against each claim, then re-ran the numbers in my own node ports of the lesson logic (scratchpad fc26-b0/). No outside source was opened; no claim below rests only on one.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own node run: SEQ[97].findIndex(v in SEQ[27]) = 13, value 94, at 27's index 6; tails from 94 identical; 97 has 118 steps; 97's peak before 94 is 376, so its 9,232 peak is on 27's path. Stage line shows once show(97, steps >= 13) sets joinSeen (stepping, or runOut strides of 6: 6, 12, 18) and stays; reveal quotes it only if has(97) && joinSeen. Nit, not blocking: path chip 97 at the start, Step 13 times, chip 27, chip 97 (no run is finished, so no auto-run) leaves the line '..., ringed.' on stage while drawn[97] = 0 and no ring is drawn; the reveal cannot be open in that state with 97 done. Board item for demo-builder. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

@@ -80,8 +80,10 @@
       "id": "cs.range-min-in-four-nodes.c7",
       "text": "Once 3 to 12 is combined, the stage keeps a Seen row, '3 to 12 = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes, minimum 2' (the minimum recorded at that moment), and outlines those four blocks dashed whenever they are not lit. The first 'Change the value at 9' turns 2 into 8 and the message says so ('changed from 2 to 8').",
       "support": "simulation",
-      "source": "Demo.tsx: Q_LABELS from cover(3, 12); seenMin set in combine() when lo..hi is 3..12 (START values 5 7 9 4 8 6 2 7 5 3 at 3..12, min 2); prev records vals[9] before the change (START[9] = 2, EDIT_VALUES[1] = 8). Builder revision v3 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified.",
-      "status": "unverified"
+      "source": "Demo.tsx: Q_LABELS from cover(3, 12); seenMin set in combine() when lo..hi is 3..12 (START values 5 7 9 4 8 6 2 7 5 3 at 3..12, min 2); prev records vals[9] before the change (START[9] = 2, EDIT_VALUES[1] = 8). Builder revision v3 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED (two reachable mismatches). Own node port: cover(3, 12) = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes; START min over 3..12 = 2; first change: prev 2, EDIT_VALUES[1] = 8, message 'Position 9 changed from 2 to 8: ...' (that part holds). (1) 'minimum 2': seenMin is written on every combine of 3..12, and combine is allowed again after each edit. Path: Change the value at 9 (2 -> 8), Positions 3 to 12, Combine: the row reads 'minimum 3'; Combine first, then Change, re-select 3 to 12, Combine: the row is overwritten to 'minimum 3'. The row does not keep the first record. (2) 'outlined dashed whenever they are not lit' (reveal: 'dashed when not lit'): trace = !on && !onPath && ..., so after a change [8 to 11], which contains 9, is drawn with the solid green path stroke instead. Path: combine 3..12, drag To to 15 and From to 0 (root lit), Change the value at 9, open the reveal: [3], [4 to 7], [12] dashed, [8 to 11] solid green. Fix (builder): record seenMin only once (or say 'minimum at the time' in the row and drop the fixed 2 from the claim), and either keep the dashed outline on Q blocks that are on the change path or say 'dashed when not lit or highlighted'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

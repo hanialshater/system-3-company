@@ -37,3 +37,13 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c7 | verified | Own node with link (B, D): 3+3 -> 4 banned (ABD, BCD, BDE, BDF); 3+2+1 -> 3 (ABD, BCD, BDE); six camps -> 0 (caption 'nobody has two friends'). verdict(ABD) puts B in the middle: 'A and D are both B's friends but enemies. Banned.' The reveal's example is the first banned triangle, ABD, in both splits. |
 
 **Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims left unverified or disputed by the wave G revision (build.md Pre-flight, latest). Method: read Demo.tsx (stem, stage strings, every control path, Reset or its absence, reduced-motion branches, reveal) against each claim, then re-ran the numbers in my own node ports of the lesson logic (scratchpad fc26-b0/). No outside source was opened; no claim below rests only on one.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Re-derived, not resting on the unopened texts: brute force over all 2^15 friend/enemy assignments on 6 people: no two-friends-one-enemy triangle = 203 graphs, exactly the camp splits (Bell 6); adding the all-enemy ban leaves 32, exactly the splits into at most 2 camps, and an all-enemy triangle exists iff there are 3 or more camps. The all-enemy triangle breaks 'the enemy of my enemy is my friend'. Wording drift, not blocking: the reveal now says 'the strict rule forbids, and it is what forces two sides' without the parenthetical the claim text still carries; the claim text should be updated to the reveal string (builder). |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

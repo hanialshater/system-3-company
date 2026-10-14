@@ -32,3 +32,14 @@ Checker: fact-checker (did not write these claims). Wave E revision. Method: rea
 | c4 | verified | Derivation: second order in A means rate = k[A]^2 (mass action for a bimolecular step: meetings scale with [A]·[A]); halving gives (1/2)^2 = 1/4, then 1/16; first order 1/2, 1/4. Own node: waits 10, 20, 40 min (2nd) and 10, 10, 10 (1st). Rate rows rateRow() print '1/4 → 1/16' and '1/2 → 1/4'; gate guarantees seen[2] >= 2 and seen[1] >= 2 before reveal. Atkins not opened; not needed for the definition. |
 
 **Result:** all open claims verified; no disputes.
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | k = (1/40 - 1/80)/10 = 1/800; t(40) = 10, t(20) = 30, t(10) = 70 min, waits 10, 20, 40. Own Euler integration of dA/dt = -kA^2 from 80: reaches 40, 20, 10 at 10.00, 30.00, 70.00 min. waitRow(2) re-run in node: "10, 20 min" (seen 2) and "10, 20, 40 min" (seen 3); the reveal needs second-twice, so seen[2] >= 2 and the quoted row is never shorter than "10, 20 min". Rows persist across order switches (no reset control). |
+| c3 | held unverified | Stage half checked: waitRow(1) re-run gives "10, 10 min" / "10, 10, 10 min"; t1/2 = ln2/k has no concentration term; reveal needs first-twice so the row has >= 2 entries. "Radioactive decay is first order" rests only on sources (Atkins; IUPAC Gold Book) that I could not open this pass (goldbook.iupac.org, openstax.org, libretexts, wikipedia all fail DNS), and pass 22 rested it on search snippets. Needs a checker who can open a source, or a coordinator ruling. |
+
+**Result:** 1 verified, 0 disputed, 1 held unverified.

@@ -70,8 +70,10 @@
       "id": "math.the-loser-flips-the-winner.c6",
       "text": "Stage row after 'A vs B on each ballot': Lead sums with C: B 2 + 2 = 4, A 1 + 1 + 1 = 3. Without C: A 1 + 1 + 1 = 3, B 1 + 1 = 2.",
       "support": "derivation",
-      "source": "leadSums() in Demo.tsx adds the per-ballot A-minus-B point gaps (gapAB) from the same ballotPoints used for the totals; it matches the totals' margins (7 - 6 = 4 - 3; 3 - 2 = 3 - 2). Added v2 2026-10-14 (demo-builder, wave G) for the r7 finding that the reveal's '4 beats 3' was a sum the stage did not show.",
-      "status": "unverified"
+      "source": "leadSums() in Demo.tsx adds the per-ballot A-minus-B point gaps (gapAB) from the same ballotPoints used for the totals; it matches the totals' margins (7 - 6 = 4 - 3; 3 - 2 = 3 - 2). Added v2 2026-10-14 (demo-builder, wave G) for the r7 finding that the reveal's '4 beats 3' was a sum the stage did not show. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node port of ballotPoints/gapAB/leadSums: the row reads exactly \"Lead sums with C: B 2 + 2 = 4, A 1 + 1 + 1 = 3. Without C: A 1 + 1 + 1 = 3, B 1 + 1 = 2.\"; totals with C A 6, B 7, C 2 (margin 1 = 4 - 3), without C A 3, B 2 (margin 1 = 3 - 2). The row is rendered whenever gaps is true, and gaps is never cleared.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

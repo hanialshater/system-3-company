@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 26 batch 2 (12 wave G revisions)
+
+- Changed: re-checked the 20 open claims in cut-the-rod-for-more, one-road-cuts-the-map, the-slowing-half-life, patience-wins-the-split, mercator-greenland, vaccinate-at-the-peak, penalty-on-wiggle, fenwick-hops-by-lowest-bit, palindromes-grow-from-centres, outside-option-sets-the-split, ruler-on-mercator and the-loser-flips-the-winner. 18 verified, 1 disputed (one-road c6), 1 held unverified (half-life c3). Statuses, checkedBy and checkedOn are set in each meta.json, with an "FC pass 26" note in each source. A Pass 26 table was appended to each company/reviews/<slug>/2026-10-14-fact-check.md (new files for mercator-greenland and ruler-on-mercator). Board: W-246 (demo-builder, one-road c6) and W-247 (evaluation-steward, half-life c3). No code or claim text was edited, and nothing was built.
+- Belief: high confidence on the 18. Each was re-run in a node port of the lesson logic (d3-geo for the two Mercator lessons) on every reachable branch. None of the 12 has motion-dependent text. The Mercator and Fenwick claims rest on derivation, not on Snyder or Fenwick (neither was opened). The one-road c6 dispute is high confidence: the legend is the note text only while closed === null, and the natural path (chips, then Walk) never clears closed. Advisories that are not disputes: the Equal Earth rhumb bow in mercator c13 is only 2.8 px, and penalty c6 can print equal two-decimal values.
+- Next: demo-builder W-246, then a fact-checker re-checks one-road c6. W-247 needs an openable source or a ruling. The QA owner builds and QAs these 12 (not run).
+- Blocked: half-life c3 (external hosts fail DNS).
+
 ## 2026-10-14 demo-builder: W-239 (each-element-pops-once pass 25 fixes)
 
 - Changed: in c2, "each new number" became "each later number ... (the first meets an empty stack)". This was the claim text only, because no stage string used the old wording. In c6, "stepped, or replayed with motion on" (a reduced-motion replay jumps), and the reveal now says, in the past tense, "the 9's row showed 8 solid ticks". c2 and c6 are unverified and the lesson is at v4, with the Pre-flight v4 in build.md. Notes: the "-00" in who-pays-same-filter c3 is now "$100" (the checker's quoted nit was left alone). I found no "CT-CHECK" typo in wheel-needs-four-colours c1 (every match is "FACT-CHECK"), so that file is unchanged.

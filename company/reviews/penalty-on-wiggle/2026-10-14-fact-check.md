@@ -20,3 +20,13 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 | verified | Ran the MODEL block plus the reveal's fallback with node strip-types (fc23/pow.ts). Fallback output: seed 1 'the best moderate penalty, 0.01, gives 0.38 against 0.44 with none' (seed 2: 1, 0.42 vs 0.58; seed 3: 0.01, 0.32 vs 0.94), which matches the claim and the builder's run. The jump-to-10 path now quotes a moderate penalty, not penalty 10. The mod branch keeps the visit with the smallest held - none; re-checked. Advisory, not a dispute: the numbers are always true, but 'the other story' reads as 'held-out got better'. Two cases print a held-out miss worse than none. (a) The only moderate visit was a worse lambda, e.g. tapping the track at 1 on data set 1 gives 0.55 against 0.44. (b) The fallback lands on one of the 10/500 seeds where no moderate penalty wins (186, 200, 208, ...). |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Ran the MODEL block plus both reveal branches with node strip-types (fc26-b2/pow.ts). mod is overwritten on every visit to λ 0.0001..1 (slider, or New data at a moderate λ, always the state then on stage), so it is the last moderate stop; the Seen line prints the same mod and big values and survives New data. QA path: 0.0001 then 0.001 gives "at penalty 0.001 on data set 1 you saw 0.41 against 0.44 with none."; stopping last on 1 gives "0.55 against 0.44 with none (that one did not win)." Fallback (Penalty 10 first, mod null): seed 1 "the best moderate penalty, 0.01, gives 0.38 against 0.44", seed 2 "1, 0.42 vs 0.58", seed 3 "0.01, 0.32 vs 0.94". Advisory, not a dispute: the win test uses unrounded values, so in 61 of 2,500 seed/λ pairs (e.g. set 5 at 0.0001) the sentence prints equal two-decimal numbers with no suffix, and 65 equal-looking pairs carry "(that one did not win)"; the fallback adds no suffix on the 10/500 seeds where no moderate λ wins. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

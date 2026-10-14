@@ -81,8 +81,10 @@
       "id": "cs.fenwick-hops-by-lowest-bit.c7",
       "text": "Stage line after 'Change position 1': an update hops up by adding the lowest 1 bit: 1=00001 → 2=00010 → 4=00100 → 8=01000 → 16=10000.",
       "support": "derivation",
-      "source": "Standard Fenwick update rule i += i & -i (Fenwick 1994, 'A new data structure for cumulative frequency tables'); the line is computed by hopsUp(1) and bin5 in Demo.tsx. Added v3 2026-10-14 (demo-builder, wave G) for the r7 finding that the up hop was not shown in binary.",
-      "status": "unverified"
+      "source": "Standard Fenwick update rule i += i & -i (Fenwick 1994, 'A new data structure for cumulative frequency tables'); the line is computed by hopsUp(1) and bin5 in Demo.tsx. Added v3 2026-10-14 (demo-builder, wave G) for the r7 finding that the up hop was not shown in binary. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node: i += i & -i from 1 gives 1, 2, 4, 8, 16 (each step doubles, since a power of two is its own lowest bit); independently, position 1 lies in cell j = (j - lowbit(j), j] only when j is a power of two, so for N = 16 the cells are exactly 1, 2, 4, 8, 16 (Fenwick 1994 not opened; not needed). Generated line: \"Change position 1, hop up by adding the lowest 1 bit: 1=00001 → 2=00010 → 4=00100 → 8=01000 → 16=10000\". up is never cleared (button disabled once set), so the line stays.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

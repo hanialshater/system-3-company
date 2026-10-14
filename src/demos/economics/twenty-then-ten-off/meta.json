@@ -25,17 +25,17 @@
       "id": "economics.twenty-then-ten-off.c1",
       "text": "20% off a $100 coat takes $20, leaving $80; a further 10% off the $80 sale price takes $8, leaving $72.",
       "support": "derivation",
-      "source": "100 x 0.8 = 80; 80 x 0.1 = 8; 80 - 8 = 72. Demo.tsx run(). | FACT-CHECK 2026-10-13 (pass 9): 100 x 20/100 = 20, 80 x 10/100 = 8, 72 (node: exact in floating point). Reveal prints $20, $80, $8. | Builder revision v3 (demo-builder, 2026-10-14): (r7) Reset cleared the stage, so the reveal quoted numbers no longer shown. Each finished order is now recorded on a 'Seen' line that Reset keeps: 'Seen 20% then 10%: $20 off, then $8 of $80 → $72 (28% off)'. The reveal reads these values from the recorded run (seen['20>10']). Hook no longer asks 'Is that 30% off?' (it singled out the 30% option). Builder statement, not self-verified.",
-      "status": "unverified",
+      "source": "100 x 0.8 = 80; 80 x 0.1 = 8; 80 - 8 = 72. Demo.tsx run(). | FACT-CHECK 2026-10-13 (pass 9): 100 x 20/100 = 20, 80 x 10/100 = 8, 72 (node: exact in floating point). Reveal prints $20, $80, $8. | Builder revision v3 (demo-builder, 2026-10-14): (r7) Reset cleared the stage, so the reveal quoted numbers no longer shown. Each finished order is now recorded on a 'Seen' line that Reset keeps: 'Seen 20% then 10%: $20 off, then $8 of $80 → $72 (28% off)'. The reveal reads these values from the recorded run (seen['20>10']). Hook no longer asks 'Is that 30% off?' (it singled out the 30% option). Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): Own node port of run()/seenLine() (fc26-b0/disc.mjs): [20,10] gives cuts 20 of 100 and 8 of 80, price 72, exact in floating point; Seen line 'Seen 20% then 10%: $20 off, then $8 of $80 -> $72 (28% off)'. Reveal reads seen['20>10'] ?? run([20,10]); every path (20 first, 10 first then Swap, repeated Swap, Reset and redo) records the same deterministic run, and Reset does not clear seen.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.twenty-then-ten-off.c2",
       "text": "The total discount is 28% (100 - 72 = 28 on $100).",
       "support": "derivation",
-      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT. | FACT-CHECK 2026-10-13 (pass 9): The arithmetic is right (0.8 x 0.9 = 0.72, 28%), but the stage does not show 28%: TOTAL_PCT = ((100 - 72)/100) x 100 = 28.000000000000004 in JS (node), and that string is printed in the question option and the reveal ('28.000000000000004% off'). The stage makes a different claim from c2. Fix (builder): round TOTAL_PCT, e.g. Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10, as the readout already does. Re-check after the fix. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification. | FACT-CHECK 2026-10-14 (pass 10): Re-check of the pass-9 dispute: TOTAL_PCT is now Math.round(((PRICE - FINAL)/PRICE)*1000)/10 = 28 (node), printed as '28%' in the option and '28% off' in the reveal. Claim matches the stage. | Builder revision v3 (demo-builder, 2026-10-14): (r7) 28% is now also on the recorded Seen line(s), pctOff(72) = 28, the readout's rounding (one decimal, integer shown as 28). Builder statement, not self-verified.",
-      "status": "unverified",
+      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT. | FACT-CHECK 2026-10-13 (pass 9): The arithmetic is right (0.8 x 0.9 = 0.72, 28%), but the stage does not show 28%: TOTAL_PCT = ((100 - 72)/100) x 100 = 28.000000000000004 in JS (node), and that string is printed in the question option and the reveal ('28.000000000000004% off'). The stage makes a different claim from c2. Fix (builder): round TOTAL_PCT, e.g. Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10, as the readout already does. Re-check after the fix. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification. | FACT-CHECK 2026-10-14 (pass 10): Re-check of the pass-9 dispute: TOTAL_PCT is now Math.round(((PRICE - FINAL)/PRICE)*1000)/10 = 28 (node), printed as '28%' in the option and '28% off' in the reveal. Claim matches the stage. | Builder revision v3 (demo-builder, 2026-10-14): (r7) 28% is now also on the recorded Seen line(s), pctOff(72) = 28, the readout's rounding (one decimal, integer shown as 28). Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): pctOff(72) = Math.round(0.28*1000)/10 = 28 (node); shown as '28%' in the option, '28% off' on both Seen lines and in the reveal.",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -43,10 +43,10 @@
       "id": "economics.twenty-then-ten-off.c3",
       "text": "Taken in the other order, 10% off takes $10 (leaving $90) and 20% off the $90 takes $18; the price is again $72.",
       "support": "derivation",
-      "source": "100 x 0.1 = 10; 90 x 0.2 = 18; 90 - 18 = 72. Demo.tsx SWAPPED. | FACT-CHECK 2026-10-13 (pass 9): 100 x 10/100 = 10, 90 x 20/100 = 18, 72 (node). Reveal SWAPPED cuts $10 then $18, price $72. | Builder revision v3 (demo-builder, 2026-10-14): (r7) The swapped order is recorded on its own Seen line: 'Seen 10% then 20%: $10 off, then $18 of $90 → $72 (28% off)'; the reveal reads seen['10>20'], which the 'swapped' milestone guarantees. Builder statement, not self-verified.",
-      "status": "unverified",
+      "source": "100 x 0.1 = 10; 90 x 0.2 = 18; 90 - 18 = 72. Demo.tsx SWAPPED. | FACT-CHECK 2026-10-13 (pass 9): 100 x 10/100 = 10, 90 x 20/100 = 18, 72 (node). Reveal SWAPPED cuts $10 then $18, price $72. | Builder revision v3 (demo-builder, 2026-10-14): (r7) The swapped order is recorded on its own Seen line: 'Seen 10% then 20%: $10 off, then $18 of $90 → $72 (28% off)'; the reveal reads seen['10>20'], which the 'swapped' milestone guarantees. Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): run([10,20]): 10 of 100, then 18 of 90, price 72 (node). Seen line 'Seen 10% then 20%: $10 off, then $18 of $90 -> $72 (28% off)'. Swap order needs a finished order and records its reverse, so the swapped milestone guarantees both keys; the reveal fallback SWAPPED has the same values.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.twenty-then-ten-off.c4",

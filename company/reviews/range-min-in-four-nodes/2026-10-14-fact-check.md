@@ -24,3 +24,13 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 | c2 | verified | Own node of cover(): 5 to 14 -> [5], [6-7], [8-11], [12-13], [14] = 5; 5 to 12 -> 4; max over all 136 ranges = 6 (only 1 to 14). Reveal computes the learner's own range with the same cover(). |
 | c3 | verified | Re-derived (pass 21 still applies): at most 2 nodes per level, log2 n + 1 levels; observed max 6 <= 8 for n = 16. Gloss 'halvings from n down to 1 (4 for 16)' is correct. |
 | c4 | verified | Own node: 5 blocks contain position 9 (one per level, 16/8/4/2/1); milestone changed is required, so the learner pressed the change. |
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims left unverified or disputed by the wave G revision (build.md Pre-flight, latest). Method: read Demo.tsx (stem, stage strings, every control path, Reset or its absence, reduced-motion branches, reveal) against each claim, then re-ran the numbers in my own node ports of the lesson logic (scratchpad fc26-b0/). No outside source was opened; no claim below rests only on one.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | disputed | DISPUTED (two reachable mismatches). Own node port: cover(3, 12) = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes; START min over 3..12 = 2; first change: prev 2, EDIT_VALUES[1] = 8, message 'Position 9 changed from 2 to 8: ...' (that part holds). (1) 'minimum 2': seenMin is written on every combine of 3..12, and combine is allowed again after each edit. Path: Change the value at 9 (2 -> 8), Positions 3 to 12, Combine: the row reads 'minimum 3'; Combine first, then Change, re-select 3 to 12, Combine: the row is overwritten to 'minimum 3'. The row does not keep the first record. (2) 'outlined dashed whenever they are not lit' (reveal: 'dashed when not lit'): trace = !on && !onPath && ..., so after a change [8 to 11], which contains 9, is drawn with the solid green path stroke instead. Path: combine 3..12, drag To to 15 and From to 0 (root lit), Change the value at 9, open the reveal: [3], [4 to 7], [12] dashed, [8 to 11] solid green. Fix (builder): record seenMin only once (or say 'minimum at the time' in the row and drop the fixed 2 from the claim), and either keep the dashed outline on Q blocks that are on the change path or say 'dashed when not lit or highlighted'. |
+
+**Result:** 0 verified, 1 disputed, 0 held unverified, 0 withdrawn. The lesson cannot publish until the builder fixes the disputed claim and it is re-checked.

@@ -24,3 +24,13 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 | c4 | verified | Own node hopsUp(1) = 1, 2, 4, 8, 16 (5 cells); every running total 1..16 includes position 1, so all 16 change. Stage readouts 5 and 16 match. |
 | c5 | verified | Re-derived: down hops = popcount(i), up hops <= floor(log2 n) + 1. Own node over i = 1..16: max 4 down, max 5 up (from 1). 'About log2 n' accurate. Fenwick 1994 not opened; not needed. |
 | c6 | verified | Own node prefix sums of V = 3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3: 3, 4, 8, 9, 14, 23, 25, 31, 36, 39, 44, 52, 61, 68, 77, 80. |
+
+## Pass 26 (2026-10-14, batch 2, wave G revisions)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx first (every learner-visible string, every reachable branch, Reset/Start over where it exists, reduced motion where it applies; this lesson has no motion-dependent text), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc26-b2/). No builds. No sentence below is verified on an unopened source; external hosts failed DNS this pass.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | Own node: i += i & -i from 1 gives 1, 2, 4, 8, 16 (each step doubles, since a power of two is its own lowest bit); independently, position 1 lies in cell j = (j - lowbit(j), j] only when j is a power of two, so for N = 16 the cells are exactly 1, 2, 4, 8, 16 (Fenwick 1994 not opened; not needed). Generated line: "Change position 1, hop up by adding the lowest 1 bit: 1=00001 → 2=00010 → 4=00100 → 8=01000 → 16=10000". up is never cleared (button disabled once set), so the line stays. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

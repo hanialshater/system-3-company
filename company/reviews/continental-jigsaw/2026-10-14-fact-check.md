@@ -48,3 +48,14 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c4 (deleted) | n/a | Confirmed gone: meta.json has c1, c2, c3, c5, c6 (withdrawn), c7, and no shelf, fathom or slope sentence remains in Demo.tsx or the reveal. The new reveal clause 'The fit here is rough: these outlines are coarse.' is covered by c3 (verified). No open claims. |
 
 **Result:** 0 open claims; c4 deleted as the pass 24 fix asked. Nothing blocks on facts.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims left unverified or disputed by the wave G revision (build.md Pre-flight, latest). Method: read Demo.tsx (stem, stage strings, every control path, Reset or its absence, reduced-motion branches, reveal) against each claim, then re-ran the numbers in my own node ports of the lesson logic (scratchpad fc26-b0/). No outside source was opened; no claim below rests only on one.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node port (fc26-b0/jig.mjs, d3-geo + kit countries-110m, kit projection rotate [18,10] fitExtent): projection(POLE) = (129.2, -6.05), above the 270-px frame, so the branch pivot[1] < 8 draws the top-edge arrow labelled 'pivot just above (44 N)' (only when unlocked). The trail points rotation(POLE, 57k/100)(TIP) stay 51.241 deg from the pole at every k, so the trail is an arc of a circle about the pivot. deg(pct) = round(57*pct/100): slider format and Turned readout show 0..57 deg. Bulge ends at 7.27 E, 4.98 N (pass 24 fit check unchanged: POLE, ANGLE, TIP, outlines not edited). SyncOnReveal sets 100% on reveal after a fit. |
+| c8 | verified | Same script: geoArea x R^2 (R 6371.0088) of the 12 countries + French Guiana = 17.886 million km^2, '17.9' at every integer slider value 0..100 (min = max to float precision), as a rotation must give. Squash: orthographic radial scale = cos c (rho = R sin c, d rho/dc = R cos c; tangential scale 1), so drawn area scales by cos c; the piece centroid moves from 41.7 deg to 12.1 deg off the view centre, predicted ratio cos12.1/cos41.7 = 1.31, measured projected path area 9,264 -> 12,128 px^2 (x1.31). Re-derived, not resting on the unopened Snyder text. |
+
+**Result:** 2 verified, 0 disputed, 0 held unverified, 0 withdrawn.
