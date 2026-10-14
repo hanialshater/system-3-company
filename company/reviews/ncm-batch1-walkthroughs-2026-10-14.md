@@ -52,3 +52,24 @@ Build: NEXT_DIST_DIR=.next-wt3 (node_modules present), served by tools/serve.sh 
 
 ## Housekeeping
 No lessons or tests edited, nothing committed. tsconfig.json and AGENTS.md unchanged by the build. Pre-existing modified file company/rnd/evolution/knots.jsonl is not mine.
+
+# Batch 3 (revisions) (QA tester, 2026-10-14)
+
+Build: NEXT_DIST_DIR=.next-wt4, served by tools/serve.sh on 3801 (all 16 /d/<slug> pages HTTP 200), then stopped. `WALKTHROUGH_URL=http://localhost:3801 npm run walkthrough -- <slug>` exited 0 for all 16; I looked at every sheet.png (artifacts/walkthroughs/<slug>/, not committed). Walkthrough clicks option 0, so most reveals are "Not quite"; "Your prediction held" was seen for web-bow-tie-reach, two-said-blue, news-comes-from-acquaintances, enemy-of-my-enemy, contact-order-matters.
+
+## Findings from the sheets
+- No blank stage and no answer visible on any predict frame in the 16. "Show me why" appears only after the explore in all.
+- cluster-stops-the-cascade (REAL, repeats in 13 frames): the "Start 8,9 / Start 0,1" button row is cut off at the stage's bottom edge in every frame from step-1 to step-13. Controls are whole only after the first start button is used (steps 15-17). The learner cannot see them until the stage grows.
+- two-said-blue 01-predict: the stage is cut off mid-controls (the "Run 1 / Run 100 / Run 10,000" row is partly visible, "Pool the clues" hidden). Stage grows after step 1.
+- bid-what-its-worth 01-predict: the chart is tiny, with overlapping labels ("Pick a rival bid" text collides with "$50"). Cosmetic, before first interaction only.
+- Reveal frames in penalty-kick-mix, bid-what-its-worth, web-bow-tie-reach, one-good-link-beats-many, few-shortcuts, enemy-of-my-enemy, prices, same-songs, contact-order, new-road-slower-trip, news-comes-from-acquaintances: stage scrolled so its top is cut (same pattern as batches 1 and 2; the walkthrough's scroll-to-reveal).
+- Fixed since batch 2: same-songs-different-hits and new-road-slower-trip predict frames now show their control rows whole.
+- the-giant-appears 01-predict: stage already shows the 1.0 friends / 36 of 200 (18%) graph, which the question text states; not an answer leak. The explore starts from 0.5, so the first click changes the picture.
+- Footers read "n/m claims checked" (e.g. 7/9, 4/7, 10/11, 6/6): not mine to judge.
+
+## Contract QA (QA_ONLY=16 slugs, QA_PORT 3802, own QA_OUT)
+40 contract tests passed (16 lessons x phone and desktop, no retries, minus the feed specs). 2 feed.spec failures ("subject chips filter the feed", phone and desktop) at the assertion that every slug shown is in the allowed set. I believe these come from QA_ONLY narrowing the allowed set while the feed lists all lessons, not from a lesson fault, but I did not confirm this on a full run. Recorded with `company qa-record`: all 16 pass, files company/reviews/<slug>/2026-10-14-qa.md. Note that qa-record also appended the QA record path to meta.json evidence.qa for below-critical-mass and few-shortcuts-shrink-the-world (its normal behaviour).
+A pass means the contract held in a browser; it is not evidence of learning.
+
+## Housekeeping
+No lessons or tests edited, nothing committed. tsconfig.json and AGENTS.md unchanged by the build. Not mine: company/ops/inbox/session-2.md and company/reviews/schelling-on-new-york/ were already modified or untracked.
