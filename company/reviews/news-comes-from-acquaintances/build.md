@@ -62,3 +62,18 @@ Numbers re-run in node with the lesson's rule: 13 ties; local bridges = [A–B];
 Claims: c1, c3 and c4 have new text and are back to **unverified**. c2 is unchanged (verified). c5 is withdrawn.
 
 QA: contract passed on phone and desktop (QA_PORT 3683, own dist dir), recorded with `company qa-record`. In the same run, `feed.spec.ts › subject chips filter the feed` failed on both viewports. That test belongs to the feed, not this lesson, and I did not investigate it. Walkthrough (phone, option 1): I looked at all 6 frames. The caption "A–B is an acquaintance: the rule holds everywhere." wraps to two lines on a Pixel 7. That is acceptable, but it is the longest line.
+
+## Revision v3 (demo-builder, polish, 2026-10-14)
+
+Inputs: design review `company/design/reviews/2026-10-14-design-review-network-pair.md` N1-N8, reconciled constants table.
+
+- **N1** `.box` is now `min(100%, 340px)`: no viewport-height term, scale 1.0 whenever the card is 340 px wide or more (about 0.95 at the narrowest 390 px card inner width). On short phones the stage is taller than before and the platform's card scroll takes it (in the reveal frame the top of C and F is clipped by that scroll: platform behaviour, not changed here).
+- **N2** Handle centres to node centres (viewBox units, scale 1): C-E 51.5, F-H 51.5, A-B 52, all >= 48; at 0.95 they are >= 48.9 px.
+- **N3** All eight nodes are circles r 16 (were r 15 and 28 px squares). Label 15 px / 800.
+- **N4** The x mark ink is `#0d0f14`.
+- **N5** Tint strokes kept as emphasis only; no fourth added.
+- **N6** News fade step 60 ms (was 90): last node at 180 ms delay + 90 ms fade = 270 ms. Dashed edge `6 5` (was `8 5`). In-group edges stay `--muted` 3 px.
+- **N7** Check handles read "Check the rule on tie C-E, checked / not checked yet"; `aria-pressed` removed from the A-B handle.
+- **N8** Looked at all six phone frames (Pixel 7): the A-B pill touches neither node, the x dot is clear of the C-E handle, captions are at most two lines.
+
+No learner text changed, so no claim changed status (c1-c4 stay verified, c5 withdrawn). Version 3. QA: contract passes on phone and desktop (QA_PORT 3831, own dist `.next-news3`). In the full-suite run the phone contract failed once under parallel load and passed on two reruns; the feed specs (subject chips, home feed, spaced revisit) fail and belong to the feed, not this lesson.
