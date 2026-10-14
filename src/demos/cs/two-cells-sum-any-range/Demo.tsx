@@ -167,7 +167,7 @@ export default function TwoCellsSumAnyRange({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <p className={s.cap}>
-                  Running total{adds !== null && !locked ? ` · built with ${adds} additions` : ""}
+                  Running total{adds !== null && !locked ? ` · building it took ${adds} additions` : ""}
                 </p>
                 <div className={s.cells}>
                   {Array.from({ length: N }, (_, i) => {

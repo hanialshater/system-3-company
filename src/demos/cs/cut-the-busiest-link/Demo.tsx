@@ -271,6 +271,7 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
                   {!locked && first
                     ? `First cut ${name(first.cut)}: ${name(first.other)} ${fmt(first.before)} → ${fmt(first.after)}, ${name(first.inner)} ${fmt(first.innerBefore)} → ${fmt(first.innerAfter)}.`
                     : " "}
+                  {!locked && split && !P.isGroups ? ` Split: groups of ${split[0]} and ${split[1]}.` : ""}
                 </p>
               </div>
             );

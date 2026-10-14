@@ -77,16 +77,16 @@ const Y = (y: number) => 12 + (YMAX - y) * S;
 const fmt = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(1));
 
 export default function RayCountsCrossings({ slug }: { slug: string }) {
-  const [pt, setPt] = useState<Pt>([7, 4]);
+  const [ptLive, setPt] = useState<Pt>([7, 4]);
+  // v5 (learner r8): when the reveal opens, the stage draws the recorded odd point's ray again (labelled as a
+  // replay), so the numbered crossings the reveal points at are on screen. Any tap or drag after that wins.
+  const [movedInReveal, setMovedInReveal] = useState(false);
   // What the learner has seen: the last few points tried, and the first notch point and first odd point.
   const [log, setLog] = useState<Seen[]>([]);
   const [notch, setNotch] = useState<Seen | null>(null);
   const [odd, setOdd] = useState<Seen | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const dragging = useRef(false);
-  const hits = crossings(pt[0], pt[1]);
-  const n = hits.length;
-  const inside = n % 2 === 1;
 
   return (
     <Lesson
@@ -108,19 +108,25 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
             {odd ? `From (${fmt(odd.p[0])}, ${fmt(odd.p[1])}) it crossed ${odd.n}: odd, inside.` : ""}
           </p>
           <p>
-            Look at the ray: at each numbered crossing it switches between solid (inside) and dashed (outside), and past the
-            last crossing it is always outside. So counting back from the far end, an odd count means inside and an even
-            count means outside, however central the point looks. The shape can have any number of notches. A ray through a
-            corner exactly needs a tie rule; this stage keeps the point off corner heights.
+            Look at the ray{odd ? ` from (${fmt(odd.p[0])}, ${fmt(odd.p[1])}), drawn again above` : ""}: at each numbered
+            crossing it switches between solid (inside) and dashed (outside), and past the last crossing it is always
+            outside. So an odd count means inside and an even count means outside, however central the point looks, with
+            any number of notches.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["inside-odd", "notch"]}>
           {(reach) => {
+            const replay = phase === "reveal" && !movedInReveal && odd !== null;
+            const pt: Pt = replay ? odd.p : ptLive;
+            const hits = crossings(pt[0], pt[1]);
+            const n = hits.length;
+            const inside = n % 2 === 1;
             const go = (p: Pt) => {
               if (locked) return;
+              if (phase === "reveal") setMovedInReveal(true);
               setPt(p);
               const k = crossings(p[0], p[1]).length;
               const seen = { p, n: k };
@@ -174,7 +180,7 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                 <p className={s.note}>
                   {locked
                     ? "Ray to the right from the point. Count the edges it crosses."
-                    : `(${fmt(pt[0])}, ${fmt(pt[1])}): ${n} crossing${n === 1 ? "" : "s"}, ${n % 2 ? "odd" : "even"}, so ${inside ? "inside" : "outside"}.`}
+                    : `${replay ? "Again: " : ""}(${fmt(pt[0])}, ${fmt(pt[1])}): ${n} crossing${n === 1 ? "" : "s"}, ${n % 2 ? "odd" : "even"}, so ${inside ? "inside" : "outside"}.`}
                 </p>
                 <svg
                   ref={svgRef}
@@ -248,7 +254,9 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                   ))}
                   <circle cx={X(pt[0])} cy={Y(pt[1])} r={9} fill={locked ? "var(--fg)" : inside ? "var(--good)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={2} className={s.dot} />
                 </svg>
-                <Row>
+                {/* Fold opt-in (W-330): no Readout here; the reveal quotes the Seen line, not these buttons, and the
+                    point they set is drawn in the picture. */}
+                <Row foldAtReveal>
                   {PRESETS.map(({ p, label }) => (
                     <Control
                       key={label}
