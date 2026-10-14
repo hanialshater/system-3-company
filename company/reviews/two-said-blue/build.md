@@ -34,3 +34,12 @@ Inputs: learner review (adult beginner) and fact-check pass NCM-1.
 - Stage text now about 23 words (message 4, legend 9, readout labels 10), was about 30.
 - Claims: c4, c5, c7 texts changed, now unverified. c1 text unchanged (source note added, address moved to the question). c8 stays withdrawn. References untouched.
 - QA: contract passes phone and desktop (QA_PORT 3661, own dist .next-tsb); walkthrough phone frames viewed; npm run check and typecheck pass.
+
+## Revision v3 (demo-builder, 2026-10-14)
+Inputs: learner review r2 (2026-10-14-learner-adult-beginner-r2.md).
+- Reveal points at reached states: names the last crowd drawn, the ring, the count of people who picked against their own clue (new outline marker on the stage, picks view), and the Pool toggle contrast (62 of 100 clues blue vs 1 of 100 picks blue on crowd 10,101). Numbers computed from sequence() of the crowd on stage.
+- Title now "When 100 people pick the same colour"; hook "Is the crowd more reliable than one person?" (slug unchanged). Both no longer say the crowd goes wrong.
+- Anchor: reveal says one person alone is wrong 33.3% (1-p for the accuracy run most); new claim c9 (unverified).
+- Layout: while locked the empty grid is shrunk (7dvh) and the second legend line hidden so all controls incl. "Pool the clues" show on the phone predict frame; chips renamed "60% right / 80% right / 2 in 3 right" (one row). "exact: 20.0%" now "the exact chance is 20.0%".
+- Claims: c2 text changed (stage marker) -> unverified; c9 new, unverified; c3 source note only. meta version 3.
+- QA: contract passes phone and desktop (QA_PORT 3891, own dist .next-tsb2); all phone frames viewed; check and typecheck pass.

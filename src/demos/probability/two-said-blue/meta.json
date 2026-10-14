@@ -1,7 +1,7 @@
 {
   "slug": "two-said-blue",
-  "title": "A crowd copies its way wrong",
-  "hook": "100 people see each other's picks. Do their separate clues still add up?",
+  "title": "When 100 people pick the same colour",
+  "hook": "100 people see each other's picks. Is the crowd more reliable than one person?",
   "domain": "probability",
   "concept": "information-cascade",
   "format": "Simulation run",
@@ -36,18 +36,16 @@
     },
     {
       "id": "probability.two-said-blue.c2",
-      "text": "Once one colour leads the picks by 2, every later person (clue right 2 times in 3) copies it whatever their own clue says, so the crowd adds no new information.",
+      "text": "Once one colour leads the picks by 2, every later person (clue right 2 times in 3) copies it whatever their own clue says, so the crowd adds no new information. On the stage the first person to see a lead of 2 is ringed, and later people whose pick goes against their own clue are outlined; the reveal counts them for the last crowd shown.",
       "support": "derivation",
-      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000. | REVISION v3 (builder): stage marker and reveal pointer added; text changed, so unverified.",
+      "status": "unverified"
     },
     {
       "id": "probability.two-said-blue.c3",
       "text": "With clues right 2 times in 3, the chance the crowd locks onto the wrong colour is 1/5 = 20%. (Shown as 'exact: 20.0%' beside the learner's tally.)",
       "support": "derivation",
-      "source": "Until the lead reaches 2 every pick equals its clue, so the lead is a gambler's-ruin walk with step +1 at probability p = 2/3 and -1 at q = 1/3, absorbed at +-2: P(red) = q^2/(q^2+p^2) = (1/9)/(5/9) = 1/5. Node check 2026-10-14: seeds 1..10,000 give 1,991 wrong (19.9%), seeds 1..101 give 18 wrong, seeds 1..10,101 give 2,009 wrong; every one of 10,000 sequences reached a lead of 2 (latest at person 27). | FACT-CHECK 2026-10-14 (pass NCM-1): q^2/(q^2+p^2) = 1/5 re-derived (gambler's ruin absorbed at +-2). Lesson's runMore: seeds 1-10,000 give 1,991 wrong; QA path (1,100,10,000) gives 101 -> 18 and 10,101 -> 2,009 (19.9%); every sequence reached a lead of 2, latest at index 26 (person 27).",
+      "source": "Until the lead reaches 2 every pick equals its clue, so the lead is a gambler's-ruin walk with step +1 at probability p = 2/3 and -1 at q = 1/3, absorbed at +-2: P(red) = q^2/(q^2+p^2) = (1/9)/(5/9) = 1/5. Node check 2026-10-14: seeds 1..10,000 give 1,991 wrong (19.9%), seeds 1..101 give 18 wrong, seeds 1..10,101 give 2,009 wrong; every one of 10,000 sequences reached a lead of 2 (latest at person 27). | FACT-CHECK 2026-10-14 (pass NCM-1): q^2/(q^2+p^2) = 1/5 re-derived (gambler's ruin absorbed at +-2). Lesson's runMore: seeds 1-10,000 give 1,991 wrong; QA path (1,100,10,000) gives 101 -> 18 and 10,101 -> 2,009 (19.9%); every sequence reached a lead of 2, latest at index 26 (person 27). | REVISION v3 (builder): reveal wording only ('the exact chance is 20.0%'); claim text unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -89,6 +87,13 @@
       "checkedOn": "2026-10-14"
     },
     {
+      "id": "probability.two-said-blue.c9",
+      "text": "One person alone, with a clue right 2 times in 3, is wrong 1 time in 3 (33.3%; 40.0% at 60%, 20.0% at 80%), so a crowd wrong 1 time in 5 beats one person but is far worse than a plain vote. The reveal prints 1 minus the accuracy for the accuracy run most.",
+      "support": "derivation",
+      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p).",
+      "status": "unverified"
+    },
+    {
       "id": "probability.two-said-blue.c8",
       "text": "(Not shown to the learner; dropped.) In the classroom urn experiment of Anderson and Holt (1997) cascades formed in the lab.",
       "support": "source",
@@ -117,7 +122,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:information-cascade",
     "prerequisites": [

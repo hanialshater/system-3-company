@@ -59,7 +59,7 @@ function Stage({ locked, reach, tallies, setTallies, ai, setAi }: {
   return (
     <div className={s.wrap}>
       <p className={s.msg}>{locked ? "Make a prediction to start." : "The urn is blue."}</p>
-      <svg viewBox={`0 0 ${W} ${GRID_H + 14}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
+      <svg viewBox={`0 0 ${W} ${GRID_H + 24}`} className={`stage-svg ${s.svg} ${locked ? s.lockedSvg : ""}`} role="img" aria-label={label}>
         {Array.from({ length: N }, (_, i) => {
           if (!shown) return <circle key={i} cx={cx(i)} cy={cy(i)} r={3} className={s.empty} />;
           return shown[i] ? (
@@ -68,15 +68,19 @@ function Stage({ locked, reach, tallies, setTallies, ai, setAi }: {
             <rect key={i} x={cx(i) - 4.5} y={cy(i) - 4.5} width={9} height={9} className={s.red} />
           );
         })}
+        {shown && !pool && seq && Array.from({ length: N }, (_, i) => seq.picks[i] !== seq.clues[i] ? (
+          seq.picks[i] ? <circle key={`o${i}`} cx={cx(i)} cy={cy(i)} r={6.5} className={s.over} /> : <rect key={`o${i}`} x={cx(i) - 6} y={cy(i) - 6} width={12} height={12} className={s.over} />
+        ) : null)}
         {ring >= 0 && <circle cx={cx(ring)} cy={cy(ring)} r={8} className={s.ring} />}
         <text x={0} y={GRID_H + 11} className={s.legend}>
           {pool ? "Each person's clue, counted as a vote." : "● blue pick  ■ red pick  ◯ lead of 2 first seen"}
         </text>
+        {!pool && !locked && <text x={0} y={GRID_H + 22} className={s.legend}>outlined = pick against own clue</text>}
       </svg>
       <Row>
         {ORDER.map((i) => { const a = ACCS[i]; return (
           <Control key={a} className={i === ai ? "active" : ""} disabled={locked} aria-pressed={i === ai} onClick={() => { setAi(i); setPool(false); }}>
-            Clue right {i === 1 ? "2 in 3" : accLabel(a)}
+            {i === 1 ? "2 in 3" : accLabel(a)} right
           </Control>
         ); })}
       </Row>
@@ -104,6 +108,9 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
   let q = 1;
   for (let i = 0; i < tallies.length; i++) if (tallies[i].n > tallies[q].n) q = i;
   const t = tallies[q];
+  const v = tallies[ai].n > 0 ? ai : q; // the accuracy the stage is showing
+  const last = tallies[v].n > 0 ? sequence(tallies[v].n, ACCS[v]) : null;
+  const over = last ? last.picks.filter((p, i) => p !== last.clues[i]).length : 0;
   return (
     <Lesson
       slug={slug}
@@ -117,10 +124,18 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In your {fmt(t.n)} crowds (clue right {q === 1 ? "2 in 3" : accLabel(ACCS[q])}), {fmt(t.wrong)} ended on the wrong colour ({pct(t.wrong / Math.max(t.n, 1))}); exact: {pct(exactWrong(ACCS[q]))}. A plain vote of the same clues had a red majority in {fmt(t.poolWrong)} (ties not counted).
+            In your {fmt(t.n)} crowds (clue right {q === 1 ? "2 in 3" : accLabel(ACCS[q])}), {fmt(t.wrong)} ended on the wrong colour ({pct(t.wrong / Math.max(t.n, 1))}); the exact chance is {pct(exactWrong(ACCS[q]))}. A plain vote of the same clues had a red majority in {fmt(t.poolWrong)} (ties not counted).
           </p>
           <p>
-            Once two picks lead, one clue can no longer change the next pick, so the crowd adds no new information. Two wrong clues at the start ({pct((1 - ACCS[q]) ** 2)}) is only the quickest way in. Red can also reach a lead of 2 after a split start, so the total is higher.
+            Alone, one person is wrong {pct(1 - ACCS[q])} of the time, so the crowd does beat one person, but a plain vote would almost never be wrong.
+          </p>
+          {last && (
+            <p>
+              Look at crowd {fmt(tallies[v].n)} on the stage (clue right {v === 1 ? "2 in 3" : accLabel(ACCS[v])}): the ring marks where the picks first led by 2, and after it no clue changed a pick. {over} people picked against their own clue (outlined). Tap Pool the clues: {last.poolBlue} of {N} clues were blue, while the picks were {last.picks.filter(Boolean).length} blue out of {N}.
+            </p>
+          )}
+          <p>
+            Two wrong clues at the start ({pct((1 - ACCS[q]) ** 2)}) is only the quickest way in. Red can also reach a lead of 2 after a split start, so the total is higher.
           </p>
         </>
       )}
