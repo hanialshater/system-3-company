@@ -1,0 +1,36 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.rule { margin: 0; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.box { position: relative; width: min(100%, calc(28dvh * 340 / 250)); aspect-ratio: 340 / 250; margin: 0 auto; }
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.strong { stroke: var(--muted); stroke-width: 3; }
+.bridgeStrong { stroke: var(--fg); stroke-width: 3; }
+.weak { stroke: var(--fg); stroke-width: 2; stroke-dasharray: 8 5; }
+.unknown { stroke: var(--muted); stroke-width: 2; stroke-opacity: 0.6; }
+.okTint { stroke: var(--good-fill); stroke-width: 9; stroke-opacity: 0.45; stroke-linecap: round; }
+.badTint { stroke: var(--bad-fill); stroke-width: 9; stroke-opacity: 0.45; stroke-linecap: round; }
+.missing { stroke: var(--bad-fill); stroke-width: 2.5; stroke-dasharray: 0.1 6; stroke-linecap: round; }
+.xDot { fill: var(--bad-fill); }
+.xMark { fill: var(--bg); font-size: 14px; font-weight: 800; text-anchor: middle; }
+.lit { stroke: var(--accent); stroke-width: 9; stroke-opacity: 0.55; stroke-linecap: round; animation: fade 90ms ease-out both; }
+.node { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.heard { fill: var(--fg); stroke: var(--fg); stroke-width: 2; animation: fade 90ms ease-out both; }
+.name { fill: var(--fg); font-size: 14px; font-weight: 700; text-anchor: middle; }
+.nameOn { fill: var(--bg); font-size: 14px; font-weight: 800; text-anchor: middle; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.wrap :global(.control).handle {
+  position: absolute; width: 44px; height: 44px; padding: 0; margin: 0; transform: translate(-50%, -50%);
+  border: 0; background: transparent; border-radius: 50%; display: grid; place-items: center;
+}
+.pill {
+  min-width: 26px; height: 26px; border-radius: 13px; display: grid; place-items: center; font-size: 15px;
+  font-weight: 800; color: var(--fg); background: var(--bg-2); border: 2px solid var(--fg);
+}
+.pillOn { background: var(--fg); color: var(--bg); }
+.on .pill { border-color: var(--good-fill); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good-fill) 40%, transparent); }
+.ab .pill { border-color: var(--accent); }
+.handle:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.legend { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.sw { color: var(--fg); font-weight: 700; }
+.caption { margin: 0; text-align: center; font-size: 0.9rem; min-height: 1.4em; }
+.wrap :global(.row) { justify-content: center; margin-top: 2px; }
+.tap { min-height: 44px; min-width: 140px; }

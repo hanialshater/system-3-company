@@ -1,0 +1,115 @@
+{
+  "slug": "news-comes-from-acquaintances",
+  "title": "News comes from acquaintances",
+  "hook": "Your closest friends bring you the most news. Or do they?",
+  "domain": "math",
+  "concept": "weak-ties-local-bridges",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that people have friends",
+      "what a link between two people means"
+    ],
+    "doesNotKnow": [
+      "that if you are close to two people, strong triadic closure makes them know each other, so the only link between two groups cannot be a close one"
+    ]
+  },
+  "misconception": "News and job leads reach you through your closest friends, so the closer the tie, the more it brings you.",
+  "objective": "The learner can explain that when A is close to B and to a groupmate C, the rule needs a B–C link that does not exist, so the only link between two groups whose members have close friends inside must be an acquaintance, and news from outside the group crosses it.",
+  "claims": [
+    {
+      "id": "math.news-comes-from-acquaintances.c1",
+      "text": "Rule used in the lesson (strong triadic closure): if a person is close to two people, those two are linked. Stage: \"Rule: any two of your close friends are linked.\"",
+      "support": "convention",
+      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.news-comes-from-acquaintances.c2",
+      "text": "In the stage graph (two groups of four, every pair inside a group linked, plus the one link A–B; 13 links), A–B is the only link whose ends share no neighbour (the only local bridge), and with A–B close the rule breaks: B and C are both close to A but are not linked.",
+      "support": "derivation",
+      "source": "Node enumeration (builder, 2026-10-14; same rule as the code): local bridges = [A-B]. With all 12 in-group links close and A–B close there are 6 broken triples (A: C-B, D-B, E-B; B: F-A, G-A, H-A); the stage draws one (C–B). With A–B an acquaintance, 0 broken. C–E and F–H exist (the two check triangles).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.news-comes-from-acquaintances.c3",
+      "text": "A–B could only be close if A and B had no other close friends. When people have close friends in their own group, the one link between two groups must be an acquaintance.",
+      "support": "derivation",
+      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.news-comes-from-acquaintances.c4",
+      "text": "So news from outside your group reaches you over a weak tie (in this model: on the stage, news from H reaches group 1 only across A–B).",
+      "support": "derivation",
+      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.news-comes-from-acquaintances.c5",
+      "text": "NOT IN LEARNER TEXT. Granovetter (1973): of people who found a job through a contact, 16.7% saw the contact often, 55.6% occasionally, 27.8% rarely.",
+      "support": "source",
+      "source": "Granovetter, M. S. (1973), \"The Strength of Weak Ties\", American Journal of Sociology 78(6), as reported in Easley & Kleinberg (2010) ch. 3. Empirical: needs a human source check by the fact-checker (the brief's author could not open the paper). 9, 30 and 15 of 54 reproduce the percentages to 0.1 (node). Kept out of the hook, stage and reveal until checked.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two friend groups are joined by a single link, Sam–Lee. Sam has close friends in his group, and close friends of one person always know each other. What can the Sam–Lee link be?",
+    "options": [
+      "Any kind of tie",
+      "Only an acquaintance",
+      "Only a close friendship"
+    ],
+    "answer": 1,
+    "why": "If Sam were close to Lee and to a groupmate, that groupmate and Lee would have to be linked, but Sam–Lee is the only link between the groups. So it must be an acquaintance."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/news-comes-from-acquaintances/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:weak-ties-local-bridges",
+    "also": [],
+    "prerequisites": [
+      "math:handshake-counting"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 3,
+        "section": "3.1",
+        "note": "strong triadic closure; section number unconfirmed"
+      },
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 3,
+        "section": "3.2",
+        "note": "local bridges and weak ties; section number unconfirmed"
+      }
+    ],
+    "tags": [
+      "networks",
+      "weak ties",
+      "triadic closure",
+      "local bridge"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate"
+  ]
+}
