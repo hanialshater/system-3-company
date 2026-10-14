@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; width: 100%; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; min-width: 44px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); max-width: 354px; }
+.svg { width: 354px; max-width: 100%; height: auto; }
+.title { font-size: 11px; font-weight: 700; fill: var(--fg); }
+.letter { font-size: 10px; font-weight: 800; fill: var(--fg); }
+.tick { font-size: 9px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.pin { font-size: 9px; font-weight: 800; fill: var(--bg); font-variant-numeric: tabular-nums; }
+.waits { font-size: 11px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.results { margin: 0; font-size: 0.8rem; text-align: center; color: var(--muted); font-variant-numeric: tabular-nums; }
+.results strong { color: var(--fg); }
+.lab { font-size: 0.75rem; color: var(--muted); }
+.chips { display: inline-flex; gap: 8px; }

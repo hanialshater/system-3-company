@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; align-items: center; width: 100%; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; min-width: 44px; }
+.boards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; max-width: 348px; }
+.lane { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.title { display: flex; align-items: center; justify-content: space-between; gap: 4px; min-height: 36px; }
+.rule { font-size: 0.72rem; line-height: 1.2; color: var(--muted); }
+.glyph { width: 34px; height: 34px; flex: none; }
+.gk { font-size: 7px; fill: var(--fg); }
+.gn { font-size: 5.5px; font-weight: 700; fill: var(--fg); }
+.board { width: 100%; height: auto; max-height: none; }
+.num { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.numS { font-size: 10px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.badge { font-size: 9px; font-weight: 800; fill: var(--bg); font-variant-numeric: tabular-nums; }
+.knight { fill: var(--fg); }
+.visited { margin: 0; font-size: 0.78rem; text-align: center; font-variant-numeric: tabular-nums; }
+.stuck { color: var(--bad); font-weight: 700; }
+.table { display: grid; grid-template-columns: 3rem 1fr 1fr; gap: 3px 6px; width: 100%; max-width: 260px; font-size: 0.75rem; align-items: center; }
+.tr { display: contents; }
+.th { color: var(--muted); font-weight: 600; text-align: center; }
+.td { text-align: center; padding: 3px 2px; border-radius: 6px; background: var(--bg-2); color: var(--muted); font-variant-numeric: tabular-nums; }
+.on { color: var(--fg); font-weight: 700; }

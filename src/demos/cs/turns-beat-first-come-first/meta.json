@@ -1,0 +1,108 @@
+{
+  "slug": "turns-beat-first-come-first",
+  "title": "Does taking turns slow everyone down?",
+  "hook": "Three jobs, one processor. Does giving everyone a turn make the average wait longer?",
+  "domain": "cs",
+  "concept": "round-robin-scheduling",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sd"
+  },
+  "learner": {
+    "knows": [
+      "the order of jobs changes the average wait (shortest-job-first-wait)"
+    ],
+    "doesNotKnow": [
+      "that time slices help short jobs when job lengths are unknown"
+    ]
+  },
+  "misconception": "Fairness takes longer on average: giving each job a turn must make the average wait worse than first-come-first-served.",
+  "objective": "The learner can explain that taking turns lets short jobs finish early without knowing anyone's length: for jobs of 10, 1 and 1 the average wait drops from 7 (first come, first served) to about 1.67 with turns of 1, and longer turns drift back toward 7.",
+  "claims": [
+    {
+      "id": "cs.turns-beat-first-come-first.c1",
+      "text": "Jobs A, B, C need 10, 1 and 1 units and arrive together, served in order A, B, C. First come, first served finishes them at 10, 11 and 12, so they wait 0, 10 and 11: average 7.",
+      "support": "derivation",
+      "source": "Arithmetic: finish times 10, 10+1, 10+1+1; wait = finish - work = 0, 10, 11; (0+10+11)/3 = 7. Builder's node script (algo2-sd, 2026-10-14) agrees.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turns-beat-first-come-first.c2",
+      "text": "Taking turns of 1 unit (A, B, C, then back to A; a finished job leaves the cycle), B finishes at 2, C at 3 and A at 12, only 2 later than if it ran alone. The waits are 2, 1 and 2: average about 1.67.",
+      "support": "simulation",
+      "source": "Builder's node script, same round-robin as Demo.tsx: timeline A B C A A A A A A A A A; finishes A 12, B 2, C 3; waits 2, 1, 2; average 5/3 = 1.67 (shown to two decimals). Matches the brief and company/design/specs/turns-beat-first-come-first.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turns-beat-first-come-first.c3",
+      "text": "Longer turns creep back toward 7: turns of 2 give an average wait of 2.33, and turns of 5 give 4.33.",
+      "support": "simulation",
+      "source": "Builder's node script: turns of 2, timeline A A B C A..., waits 2, 2, 3, average 2.33; turns of 5, timeline A A A A A B C A..., waits 2, 5, 6, average 4.33; a turn of 10 or more equals first come, first served (7).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turns-beat-first-come-first.c4",
+      "text": "Here a job's wait is its finish time minus its work, with every job arriving at time 0.",
+      "support": "convention",
+      "source": "Definition used by the lesson (stage rule line and question). With arrival 0 this is the standard waiting time = turnaround - burst (Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turns-beat-first-come-first.c5",
+      "text": "Taking turns helps short jobs finish early without the scheduler knowing anyone's length.",
+      "support": "derivation",
+      "source": "Round robin only uses the arrival order and a fixed turn length; a job of length L finishes within its first ceil(L/q) cycles, so short jobs leave early whatever the long ones need. Seen on the stage: B's pin appears at time 2 while the first-come lane is still running A.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.turns-beat-first-come-first.c6",
+      "text": "Real systems pay a little for each switch between jobs, which this model leaves out.",
+      "support": "source",
+      "source": "Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter, round-robin section: context-switch overhead and the choice of time quantum. Edition and section not checked by the builder (check before verifying).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Several jobs of unknown length share one processor. Which schedule tends to let the short ones finish early?",
+    "options": [
+      "Short turns in rotation",
+      "First come, first served",
+      "Longest job first"
+    ],
+    "answer": 0,
+    "why": "Turns let a short job slip out after a few slices instead of waiting behind a long one, and the scheduler does not need to know any lengths."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:round-robin-scheduling",
+    "also": [],
+    "prerequisites": [
+      "cs:shortest-job-first"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "scheduling",
+      "round-robin",
+      "waiting-time"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
