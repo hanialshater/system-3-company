@@ -1,0 +1,106 @@
+{
+  "slug": "italy-poorer-in-1800",
+  "title": "Richer by 1800?",
+  "hook": "Before industry, did people at least get slowly richer? Test north and central Italy.",
+  "domain": "history",
+  "concept": "italy-long-decline",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-1"
+  },
+  "learner": {
+    "knows": [
+      "income per person rises over time"
+    ],
+    "doesNotKnow": [
+      "that on the best reconstruction, north and central Italy were poorer per person in 1800 than in 1450"
+    ]
+  },
+  "misconception": "Income per person only ever rose, even if slowly, before industry.",
+  "objective": "The learner can say that on Maddison's series, income per person in north and central Italy fell to an index of about 75 in 1800 (1450 = 100), about 0.08% a year for 350 years, so income per person can shrink for centuries.",
+  "claims": [
+    {
+      "id": "history.italy-poorer-in-1800.c1",
+      "text": "Maddison's series of income per person for north and central Italy, each year from 1310 to 1871, shown as an index with 1450 = 100.",
+      "support": "source",
+      "source": "history-data.mjs: maddison, maddison2020.csv, Entity 'Italy', column 'GDP per capita', 1310-1871 (562 values, none missing; copied into Demo.tsx unchanged). Maddison README (opened by cm-history): Italy 1310-1871 (North Italy), Malanima (2010). history-cycle2-check.mjs section 18.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c2",
+      "text": "In 1800 the index was about 75: a person in north and central Italy had about 75% of the income of one in 1450.",
+      "support": "derivation",
+      "source": "100 x 2,404 / 3,218 = 74.7, rounded to 75. history-cycle2-check.mjs section 18 '18 1450 and 1800'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c3",
+      "text": "That is a fall of about 0.08% a year for 350 years.",
+      "support": "derivation",
+      "source": "100 x ((2,404 / 3,218)^(1/350) - 1) = -0.083%. history-cycle2-check.mjs section 18 '18 per year'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c4",
+      "text": "The whole line: 1310 index 89, 1871 index 87.",
+      "support": "derivation",
+      "source": "100 x g / g(1450) for 1310 and 1871, rounded (1310 89 is in the script's output; 1871 computed the same way in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c5",
+      "text": "Income per person can shrink for centuries, not only grow.",
+      "support": "derivation",
+      "source": "Follows from c2 and c3 on this series (one reconstruction; see c6).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c6",
+      "text": "Where it stops: this is one reconstruction, it covers only the north and centre before 1871, and the copy we opened states no unit, so it is read as an index.",
+      "support": "source",
+      "source": "Maddison README (opened by cm-history): one source named for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871; the OWID copy's columns state no currency unit (history-data.mjs: maddison 'what'). history-cycle2-check.mjs section 18 '18 north and centre only before 1871'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town's income per person falls 0.1% a year for 300 years. About how much poorer is it at the end?",
+    "options": [
+      "About 3%",
+      "About 26%",
+      "About 70%"
+    ],
+    "answer": 1,
+    "why": "0.999 to the power 300 is about 0.74: a fall too slow to notice in a lifetime adds up to about a quarter over centuries."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:italy-long-decline",
+    "also": [],
+    "prerequisites": [
+      "history:long-run-income-growth"
+    ],
+    "level": "core",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "income per person",
+      "Maddison",
+      "decline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

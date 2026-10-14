@@ -1,0 +1,110 @@
+{
+  "slug": "wages-bought-more-wheat",
+  "title": "Dearer bread, poorer workers?",
+  "hook": "Wheat got much dearer over 250 years. Did that make a working man poorer?",
+  "domain": "history",
+  "concept": "real-wages-playfair",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-1"
+  },
+  "learner": {
+    "knows": [
+      "prices rose over the centuries"
+    ],
+    "doesNotKnow": [
+      "that a price rise says nothing about hardship until it is divided by pay",
+      "that a two-axis chart hides that division"
+    ]
+  },
+  "misconception": "When the price of bread rises over the centuries, people become poorer.",
+  "objective": "The learner can say that from 1565 to 1810 wheat rose about 2.4 times but a mechanic's weekly wage rose 6 times, so a week's pay bought about 2.5 times as much wheat, and that dividing wage by price shows what a two-axis chart hides.",
+  "claims": [
+    {
+      "id": "history.wages-bought-more-wheat.c1",
+      "text": "The price of wheat (shillings per quarter) and the weekly wage of a good mechanic (shillings), every 5 years from 1565; wages stop at 1810.",
+      "support": "source",
+      "source": "history-data.mjs: wheat, Wheat.csv, columns Year, Wheat, Wages (Playfair 1821 via HistData; 'a good mechanic' per the HistData doc). The 53 rows are copied into Demo.tsx unchanged; check section 7 of company/domains/briefs/checks/history-cycle1-check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.wages-bought-more-wheat.c2",
+      "text": "From 1565 to 1810 the price of wheat rose about 2.4 times (41 to 99 shillings) and wages rose 6 times (5 to 30 shillings).",
+      "support": "derivation",
+      "source": "99 / 41 = 2.41; 30 / 5 = 6. Computed in Demo.tsx; history-cycle1-check.mjs section 7 '7 price and wage'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.wages-bought-more-wheat.c3",
+      "text": "A week's pay bought 2.5 times as much wheat in 1810 as in 1565 (0.12 to 0.30 quarters).",
+      "support": "derivation",
+      "source": "5/41 = 0.122; 30/99 = 0.303; ratio 2.48, shown as 2.5. history-cycle1-check.mjs section 7 '7 wheat per week's wage'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.wages-bought-more-wheat.c4",
+      "text": "On his own figures the best year for wages in wheat was 1785 (0.55 quarters a week), not the last one; the worst was 1595 (0.09).",
+      "support": "derivation",
+      "source": "Max and min of Wages / Wheat over the rows with a wage: 1785, 23/42 = 0.548; 1595, 5.54/64 = 0.087. history-cycle1-check.mjs section 7 '7 best and worst'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.wages-bought-more-wheat.c5",
+      "text": "Playfair drew price and wages on two different scales, which hides this ratio; dividing one by the other shows it as one line.",
+      "support": "source",
+      "source": "HELD (the reveal's one held source sentence). Playfair (1821), A Letter on our Agricultural Distresses (public domain; not opened); the HistData Wheat doc (opened by cm-history) describes the chart. Fallback if not checkable: 'Drawn on two scales, price and wages hide this ratio' (no name). The stage's two-axis view is our re-draw from the data, not a trace of the original.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.wages-bought-more-wheat.c6",
+      "text": "Where it stops: this is one trade's wage and one food, not a cost of living.",
+      "support": "convention",
+      "source": "Brief 7 limit sentence: the file has one wage series ('a good mechanic') and one price (wheat), so it cannot be a cost-of-living index.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Your pay doubles while rent triples. Can you afford more rent or less?",
+    "options": [
+      "More: about 1.5 times as much",
+      "The same",
+      "Less: about two-thirds as much"
+    ],
+    "answer": 2,
+    "why": "What pay buys is pay divided by price: 2 / 3, about two-thirds as much rent."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:real-wages-playfair",
+    "also": [],
+    "prerequisites": [
+      "economics:inflation",
+      "probability:dual-axis-charts"
+    ],
+    "level": "core",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "real wages",
+      "Playfair",
+      "old charts",
+      "prices"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

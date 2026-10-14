@@ -1,0 +1,107 @@
+{
+  "slug": "doubling-stopped-speeding-up",
+  "title": "The next doubling",
+  "hook": "World population doubled faster and faster. Did the latest doubling keep up the pace?",
+  "domain": "history",
+  "concept": "world-population-doubling",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-1"
+  },
+  "learner": {
+    "knows": [
+      "world population grew fast and passed 8 billion"
+    ],
+    "doesNotKnow": [
+      "that the last doubling (4 to 8 billion) took no less time than the one before",
+      "that the yearly growth rate peaked in 1963"
+    ]
+  },
+  "misconception": "World population keeps doubling faster and faster.",
+  "objective": "The learner can say that world population's doublings took 122, 48 and 47 years, so the last was no faster than the one before, and that growth per year peaked in 1963 (2.25%) and has fallen since (0.87% in 2023).",
+  "claims": [
+    {
+      "id": "history.doubling-stopped-speeding-up.c1",
+      "text": "World population by year, 1800 to 2023, in billions.",
+      "support": "source",
+      "source": "history-data.mjs: gmpop, gapminder-pop-global.csv, column pop (Gapminder Fast Track; estimates before 1950). The values for 1800-2024 are copied into Demo.tsx unchanged; the stage draws to 2023 only. history-cycle2-check.mjs section 15.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c2",
+      "text": "World population first reached 1 billion in 1805, 2 billion in 1927, 4 billion in 1975 and 8 billion in 2022: the doublings took 122 years, then 48, then 47.",
+      "support": "derivation",
+      "source": "First year with pop >= 1e9, 2e9, 4e9, 8e9 in the column. Computed in Demo.tsx; history-cycle2-check.mjs section 15 '15 doubling years'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c3",
+      "text": "Growth per year peaked at 2.25% in 1963 and was 0.87% in 2023.",
+      "support": "derivation",
+      "source": "Growth in year y = 100 x (pop[y+1] / pop[y] - 1), the check script's formula; peak over 1900-2023. Disclosure: the 2023 rate uses the file's 2024 value, which Gapminder marks as after its estimates (it may be a projection); the stage shows no year after 2023. history-cycle2-check.mjs section 15 '15 growth peak'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c4",
+      "text": "A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.",
+      "support": "derivation",
+      "source": "Doubling time is set by the yearly rate (math:exponential-growth); 47 >= 48 - 1 and the rate falls after 1963 (c2, c3).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c5",
+      "text": "Where it stops: early totals are the least certain, and the chart stops at the present; any later number is a projection, not a record.",
+      "support": "convention",
+      "source": "Brief 15 limit sentence. The pin's description says the series is estimates before 1950 and projections after the present. 'Early totals are the least certain' is a convention about reconstructed counts: cut it if the fact-checker wants a source.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c6",
+      "text": "World population doubled faster and faster (hook): 1 to 2 billion took 122 years, 2 to 4 billion took 48.",
+      "support": "derivation",
+      "source": "c2: 1927 - 1805 = 122; 1975 - 1927 = 48 (history-cycle2-check.mjs section 15). The hook states only the first two doublings; the third is the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town grows from 10,000 to 20,000 in 30 years, then to 40,000 in the next 30. Is its growth speeding up?",
+    "options": [
+      "No: the same doubling time is the same rate",
+      "Yes: it added more people",
+      "It is slowing"
+    ],
+    "answer": 0,
+    "why": "Adding more people each period is what steady percentage growth looks like; only a shorter doubling time would mean speeding up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:world-population-doubling",
+    "also": [],
+    "prerequisites": [
+      "math:exponential-growth"
+    ],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "population",
+      "doubling time",
+      "Gapminder"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
