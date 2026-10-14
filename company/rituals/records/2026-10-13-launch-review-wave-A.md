@@ -31,3 +31,11 @@ Held (new):
 - cards-do-remember (v2): reworded, edited claim unverified until re-checked; stays held.
 - 15 refused by the publish gate, no computer-use QA record (not worked around): chain-of-blame, flip-twenty-percent, keep-the-top-85, noisy-compass, twins-never-split, which-question-splits, helium-leaks-first, pencil-lead-vs-diamond, every-message-is-possible, four-words-beat-eight-letters, hamming-points-at-the-bug, in-order-is-sorted, three-pizzas-four-people, red-apple-green-light, stop-when-it-looks-significant. Need a QA run, then publish.
 - Unchanged: 8 geography lessons (no screenshot re-review), paint-mix-shared-secret and twenty-then-ten-off (fatal), cafe-is-five-bytes (verdict for older version), 179 revise, 177 unreviewed.
+
+## Wave A3 (2026-10-14)
+
+Signed: Release Manager (Diego). Published count 125 -> 125 (+0).
+
+Basis: Rosa filed 2026-10-14-qa.md for all 15 lessons (phone and desktop passed, 0 retries). `node tools/publish-ready.mjs` still lists 0 candidates because my own Wave A2 entries in company/ops/publish-holds.json remain for those 15 (reason: no QA record, now resolved). My attempt to remove those hold entries was denied by the permission system, so I did not edit the file and did not publish around the hold.
+
+Next: lift the 15 hold entries (the reason is resolved), confirm meta.evidence.qa links the QA record, then run `node tools/publish-ready.mjs --publish`. Owner: release manager once the hold edit is permitted.
