@@ -35,15 +35,19 @@
       "id": "cs.tortoise-meets-hare.c2",
       "text": "Your green arc, the boxes fast still had to run to reach slow, was 3, then 2, then 1, then they shared box 6 at tick 5.",
       "support": "simulation",
-      "source": "Builder's node trace: gap = (slow - fast) mod 5 over loop boxes 3 to 7 gives 3, 2, 1, 0 at ticks 2 to 5. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Same numbers (ticks 2-5: 3, 2, 1, 0), now phrased as the forward distance from fast to slow that the stage draws as an arc; r5 found 'behind' contradicted the picture (fast looked 2-3 boxes ahead).",
-      "status": "unverified"
+      "source": "Builder's node trace: gap = (slow - fast) mod 5 over loop boxes 3 to 7 gives 3, 2, 1, 0 at ticks 2 to 5. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Same numbers (ticks 2-5: 3, 2, 1, 0), now phrased as the forward distance from fast to slow that the stage draws as an arc; r5 found 'behind' contradicted the picture (fast looked 2-3 boxes ahead). | FC pass 22 (fact-checker, 2026-10-14): own trace (scratchpad fc22/tort.mjs): gapOf() 3, 2, 1, 0 at ticks 2-5, equal to a forward walk count along the arrows from fast to slow; meet on box 6 at tick 5. Arc drawn only for gap > 0, so the arcs are 3, 2, 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tortoise-meets-hare.c3",
       "text": "In a loop the fast one gains exactly one box per tick, so the arc shrinks by one box and cannot step over 0.",
       "support": "derivation",
-      "source": "Per tick fast moves 2 and slow moves 1, so the distance fast is behind along the loop changes by exactly 1. A gap that falls by 1 from a whole number reaches 0. | REVISED v3 2026-10-14 (demo-builder, wave D r5): 'gap counts down' became 'the arc shrinks by one box' to point at the stage; the duplicated closing line 'The gap shrinks by one each tick, so it must hit zero' was removed.",
-      "status": "unverified"
+      "source": "Per tick fast moves 2 and slow moves 1, so the distance fast is behind along the loop changes by exactly 1. A gap that falls by 1 from a whole number reaches 0. | REVISED v3 2026-10-14 (demo-builder, wave D r5): 'gap counts down' became 'the arc shrinks by one box' to point at the stage; the duplicated closing line 'The gap shrinks by one each tick, so it must hit zero' was removed. | FC pass 22 (fact-checker, 2026-10-14): both in the ring: ((s+1) - (f+2)) mod 5 = gap - 1, so the forward gap falls by exactly 1 per tick and reaches 0 without skipping.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tortoise-meets-hare.c4",
@@ -76,8 +80,10 @@
       "id": "cs.tortoise-meets-hare.c7",
       "text": "Stage readout: 'Gap n boxes fast must run to reach slow (green arc)', drawn as a green arc inside the ring from fast forward to slow; 'Gap —: slow not in the loop yet' before slow reaches box 3, and 'Gap —: no loop here' when the last arrow points nowhere.",
       "support": "derivation",
-      "source": "gapOf() in Demo.tsx: (slow - fast) mod 5 on the ring of boxes 3-7, i.e. the arrows fast must follow to reach slow; GapArc draws that many 72-degree steps from fast's box. Tick 2: slow 3, fast 5, arc 5→6→7→3 = 3. | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text (r5 top finding: Gap was undefined on stage).",
-      "status": "unverified"
+      "source": "gapOf() in Demo.tsx: (slow - fast) mod 5 on the ring of boxes 3-7, i.e. the arrows fast must follow to reach slow; GapArc draws that many 72-degree steps from fast's box. Tick 2: slow 3, fast 5, arc 5→6→7→3 = 3. | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text (r5 top finding: Gap was undefined on stage). | FC pass 22 (fact-checker, 2026-10-14): Demo.tsx gapText/gapWhy render 'Gap n boxes fast must run to reach slow (green arc)', 'Gap —: slow not in the loop yet' (tick 1, slow on 2), 'Gap —: no loop here' when nowhere; GapArc steps 72° from fast's box in arrow order (angOf matches CENTRE).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

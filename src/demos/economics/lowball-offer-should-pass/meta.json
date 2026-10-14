@@ -25,36 +25,46 @@
       "id": "economics.lowball-offer-should-pass.c1",
       "text": "If you reject, you and the proposer both get $0; if you accept an offer of $X out of $10, you get $X and the proposer keeps $10 − X.",
       "support": "convention",
-      "source": "The rules of the ultimatum game as set on the card (whole dollars, $10 pot).",
-      "status": "unverified"
+      "source": "The rules of the ultimatum game as set on the card (whole dollars, $10 pot). | FACT-CHECK 2026-10-14 (pass 22): Rules as coded (POT 10, whole dollars; Accept cell (X, 10 - X), Reject (0, 0)).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lowball-offer-should-pass.c2",
       "text": "A responder who cares only about money prefers $1 to $0, so accepts any positive offer; the smallest offer worth accepting is $1, and at $0 accepting and rejecting come out the same.",
       "support": "derivation",
-      "source": "Compare accept ($X) with reject ($0): X > 0 for X ≥ 1; X = 0 is a tie. Demo.tsx accepts() and SMALLEST; re-run in node by the builder (ncm-e02).",
-      "status": "unverified"
+      "source": "Compare accept ($X) with reject ($0): X > 0 for X ≥ 1; X = 0 is a tie. Demo.tsx accepts() and SMALLEST; re-run in node by the builder (ncm-e02). | FACT-CHECK 2026-10-14 (pass 22): accepts(offer) = offer > 0; SMALLEST = 1; offer 0 shows the tie ring and '$0 either way'. Predict answer index resolves to '$1'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lowball-offer-should-pass.c3",
       "text": "Rejecting a $1 offer costs the proposer $9 but costs you the $1 too, so for a money-only responder it is a pure loss.",
       "support": "derivation",
-      "source": "From c1 at X = 1: accept gives (1, 9), reject gives (0, 0).",
-      "status": "unverified"
+      "source": "From c1 at X = 1: accept gives (1, 9), reject gives (0, 0). | FACT-CHECK 2026-10-14 (pass 22): X = 1: accept (1, 9), reject (0, 0). Reveal quotes POT - SMALLEST = 9.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lowball-offer-should-pass.c4",
       "text": "A proposer who knows the responder counts only money offers $1 and keeps $9.",
       "support": "derivation",
-      "source": "Backward induction: every offer of $1 or more is accepted (c2), so the proposer's best accepted offer is the smallest unit, $1 of $10, keeping $9. (Offering $0 leaves the responder indifferent, so it is not a sure acceptance.)",
-      "status": "unverified"
+      "source": "Backward induction: every offer of $1 or more is accepted (c2), so the proposer's best accepted offer is the smallest unit, $1 of $10, keeping $9. (Offering $0 leaves the responder indifferent, so it is not a sure acceptance.) | FACT-CHECK 2026-10-14 (pass 22): Backward induction with a sure-acceptance proposer. Note: in the discrete game an equilibrium where $0 is offered and accepted also exists; the sentence does not say 'only', and the source states the tie. Easley-Kleinberg ch. 12 (bargaining, ultimatum game) placement matches my knowledge; book not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.lowball-offer-should-pass.c5",
       "text": "This is a model that counts only money; if a responder also cares about fairness, saying no can make sense, and that is a different model.",
       "support": "convention",
-      "source": "Lesson framing; stage chip 'Model: you care only about money · whole dollars'. Experimental offer and rejection rates (brief claim 3: Güth, Schmittberger and Schwarze 1982; Camerer 2003) need a human source check and are kept out of learner text.",
-      "status": "unverified"
+      "source": "Lesson framing; stage chip 'Model: you care only about money · whole dollars'. Experimental offer and rejection rates (brief claim 3: Güth, Schmittberger and Schwarze 1982; Camerer 2003) need a human source check and are kept out of learner text. | FACT-CHECK 2026-10-14 (pass 22): Framing; stage chip and reveal muted line match. Experimental rates correctly kept out of learner text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -78,12 +88,27 @@
   "curriculum": {
     "primary": "economics:ultimatum-game",
     "also": [],
-    "prerequisites": ["economics:prisoners-dilemma"],
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
     "level": "intro",
     "strand": "markets",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 12 }],
-    "tags": ["bargaining", "fairness", "game theory"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 12
+      }
+    ],
+    "tags": [
+      "bargaining",
+      "fairness",
+      "game theory"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

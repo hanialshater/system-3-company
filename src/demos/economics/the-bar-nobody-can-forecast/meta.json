@@ -25,43 +25,55 @@
       "id": "economics.the-bar-nobody-can-forecast.c1",
       "text": "If all 100 people act on the same forecast, all 100 come when it says 60 or fewer and nobody comes when it says more.",
       "support": "derivation",
-      "source": "The lesson's rule (each goes only if they expect 60 or fewer) applied to one shared forecast; Demo.tsx attendanceFor(): 50 → 100, 70 → 0.",
-      "status": "unverified"
+      "source": "The lesson's rule (each goes only if they expect 60 or fewer) applied to one shared forecast; Demo.tsx attendanceFor(): 50 → 100, 70 → 0. | FC pass 22 (fact-checker, 2026-10-14): attendanceFor(): f <= 60 -> 100, else 0; reveal prints attendanceFor(50) = 100 and attendanceFor(70) = 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c2",
       "text": "Any forecast everyone believes makes itself wrong.",
       "support": "derivation",
-      "source": "From c1: a believed forecast of 60 or fewer produces 100; a believed forecast above 60 produces 0; neither outcome matches the forecast.",
-      "status": "unverified"
+      "source": "From c1: a believed forecast of 60 or fewer produces 100; a believed forecast above 60 produces 0; neither outcome matches the forecast. | FC pass 22 (fact-checker, 2026-10-14): within the lesson's model every believed forecast f gives 100 (f <= 60) or 0 (f > 60), so outcome = forecast would need f = 100 with f <= 60 or f = 0 with f > 60: impossible.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c3",
       "text": "If each person goes independently with probability 0.6, attendance averages 60 and is above 60 on 46.2% of nights in the long run.",
       "support": "derivation",
-      "source": "Binomial(100, 0.6): mean 60; P(X > 60) = sum over k = 61..100 = 0.4621. Re-run in node by the builder (ncm-e02); matches the brief.",
-      "status": "unverified"
+      "source": "Binomial(100, 0.6): mean 60; P(X > 60) = sum over k = 61..100 = 0.4621. Re-run in node by the builder (ncm-e02); matches the brief. | FC pass 22 (fact-checker, 2026-10-14): own log-space binomial sum (scratchpad fc22/bar.mjs): P(X > 60) = 0.46208 for Binomial(100, 0.6); mean 60.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c4",
       "text": "The learner's own random nights show an average near 60 with a crowded share near half.",
       "support": "simulation",
-      "source": "Demo.tsx: mulberry32(1), 100 draws per night, each goes if r() < 0.6. Seed 1 was the first seed tried, not chosen for the result. Seed 1: 100 nights average 60.2, 48 crowded; 200 nights 60.3, 96 crowded. Seeds 2 and 3 at 100 nights: 38 and 44 crowded. The reveal quotes the learner's run.",
-      "status": "unverified"
+      "source": "Demo.tsx: mulberry32(1), 100 draws per night, each goes if r() < 0.6. Seed 1 was the first seed tried, not chosen for the result. Seed 1: 100 nights average 60.2, 48 crowded; 200 nights 60.3, 96 crowded. Seeds 2 and 3 at 100 nights: 38 and 44 crowded. The reveal quotes the learner's run. | FC pass 22 (fact-checker, 2026-10-14): own mulberry32 re-implementation: seed 1 at 100 nights avg 60.2, 48 crowded; 111 nights (QA path) 60.1, 54; 200 nights 60.3, 96; every run length from 100 to 500 gives crowded share 44.4-51.6% and average 59.9-60.5. Seeds 2 and 3: 38 and 44 crowded at 100. Non-blocking note: Reset after the milestone lets the reveal quote a run under 100 nights (e.g. 1 night: 100% crowded); the numbers quoted are still the learner's own.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c5",
       "text": "The average sits right at the limit, so nearly half the nights land above it.",
       "support": "derivation",
-      "source": "Mean 60 equals the limit; P(X > 60) = 0.462, P(X = 60) = 0.081, P(X < 60) = 0.457 for Binomial(100, 0.6).",
-      "status": "unverified"
+      "source": "Mean 60 equals the limit; P(X > 60) = 0.462, P(X = 60) = 0.081, P(X < 60) = 0.457 for Binomial(100, 0.6). | FC pass 22 (fact-checker, 2026-10-14): P(X > 60) = 0.4621, P(X = 60) = 0.0812, P(X < 60) = 0.4567 (own script).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c6",
       "text": "This is a model of Arthur's El Farol bar problem (1994): identical people, one shared forecast, no learning.",
       "support": "source",
-      "source": "W. B. Arthur, 'Inductive reasoning and bounded rationality', American Economic Review 84(2), 406-411 (1994; title and pages from memory). Model simplifications are the lesson's. The book chapter placement (Easley and Kleinberg 2010 ch. 17) is not cited to learners until the fact-checker confirms it. Fact-checker confirms attribution.",
-      "status": "unverified"
+      "source": "W. B. Arthur, 'Inductive reasoning and bounded rationality', American Economic Review 84(2), 406-411 (1994; title and pages from memory). Model simplifications are the lesson's. The book chapter placement (Easley and Kleinberg 2010 ch. 17) is not cited to learners until the fact-checker confirms it. Fact-checker confirms attribution. | FC pass 22 (fact-checker, 2026-10-14): Arthur, 'Inductive Reasoning and Bounded Rationality', AER 84(2) Papers and Proceedings, 406-411 (May 1994): confirmed bibliographically via search (JSTOR/IDEAS listings); full text host blocked, not opened. The 100-person, 60-seat setup is the well-known El Farol framing (from knowledge, consistent with secondary sources in search). 'Identical people, one shared forecast, no learning' is presented as the lesson's simplification, which is accurate. E&K placement: ch. 17 is 'Network Effects' (library catalogue TOC via search); El Farol as its closing advanced section on negative externalities is from memory (fairly sure, section number 17.7 not confirmed). Not shown to learners.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,13 +96,32 @@
   "version": 1,
   "curriculum": {
     "primary": "economics:el-farol-minority",
-    "also": ["probability:expected-value"],
-    "prerequisites": ["economics:supply-demand"],
+    "also": [
+      "probability:expected-value"
+    ],
+    "prerequisites": [
+      "economics:supply-demand"
+    ],
     "level": "core",
     "strand": "markets",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 17 }],
-    "tags": ["externalities", "forecasting", "game theory"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 17
+      }
+    ],
+    "tags": [
+      "externalities",
+      "forecasting",
+      "game theory"
+    ]
   },
   "format": "simulation-run",
-  "interactions": ["choice-before-reveal", "preset-buttons", "step-run-button", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

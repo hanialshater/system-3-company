@@ -62,8 +62,10 @@
       "id": "cs.flaw-to-lawn.c5",
       "text": "Every cell compared two beginnings. The corner said \"FLAW → LAWN = 2: insert N (+1), after FLAW → LAW (1)\": the whole-word distance was built from a beginning you had already filled, as every cell was, by the cheapest of three neighbours. A small grid replaces trying every sequence of edits.",
       "support": "source",
-      "source": "Same recurrence as c3: cell (i, j) is the distance between the first i letters of FLAW and the first j letters of LAWN. Unverified. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal now points at the corner cell's caption (seen by every learner, since the gate requires a full grid) instead of telling 'built from beginnings' with nothing on stage. Corner caption is computed by caption(R, C) from the same table the grid shows.",
-      "status": "unverified"
+      "source": "Same recurrence as c3: cell (i, j) is the distance between the first i letters of FLAW and the first j letters of LAWN. Unverified. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal now points at the corner cell's caption (seen by every learner, since the gate requires a full grid) instead of telling 'built from beginnings' with nothing on stage. Corner caption is computed by caption(R, C) from the same table the grid shows. | FC pass 22 (fact-checker, 2026-10-14): own copy of the D/FROM table and caption() (scratchpad fc22/flaw.mjs): corner caption 'FLAW → LAWN = 2: insert N (+1), after FLAW → LAW (1)', matching the reveal (CORNER strips the final period). Every one of the 25 cells equals an independent Levenshtein distance of the two prefixes.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.flaw-to-lawn.c6",
@@ -87,15 +89,19 @@
       "id": "cs.flaw-to-lawn.c8",
       "text": "Stage legend: ↓ delete · → insert · ↘ replace (free if letters match).",
       "support": "convention",
-      "source": "Standard Wagner-Fischer reading with the first word down the side: a step down consumes a letter of FLAW (delete), right adds a letter of LAWN (insert), diagonal replaces one with the other at cost 1, or costs 0 when they match. Wagner & Fischer 1974, J. ACM 21(1); Jurafsky & Martin, Speech and Language Processing, 3rd ed. draft, ch. 2 (minimum edit distance). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Added for r5 top finding: grid directions had no edit meaning on stage.",
-      "status": "unverified"
+      "source": "Standard Wagner-Fischer reading with the first word down the side: a step down consumes a letter of FLAW (delete), right adds a letter of LAWN (insert), diagonal replaces one with the other at cost 1, or costs 0 when they match. Wagner & Fischer 1974, J. ACM 21(1); Jurafsky & Martin, Speech and Language Processing, 3rd ed. draft, ch. 2 (minimum edit distance). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Added for r5 top finding: grid directions had no edit meaning on stage. | FC pass 22 (fact-checker, 2026-10-14): rows are FLAW, columns LAWN: down = consume a FLAW letter (delete), right = add a LAWN letter (insert), diagonal = replace or free match; legend text in the SVG matches. Wagner & Fischer not opened (memory); reading confirmed by derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.flaw-to-lawn.c9",
       "text": "Each cell's caption reads '<beginning of FLAW> → <beginning of LAWN> = n: <edit> (+1 or +0), after <smaller pair> (n')', e.g. 'FL → L = 1: L = L, keep it free (+0), after F → · (1)'. A cell's number is the fewest edits from that beginning of FLAW to that beginning of LAWN.",
       "support": "derivation",
-      "source": "caption() in Demo.tsx; D[i][j] = fewest edits from the first i letters of FLAW to the first j of LAWN (the table comment). All 16 captions printed by a builder node script reproducing Demo.tsx; e.g. FLA → LAW = 2: insert W, after FLA → LA (1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Replaces the per-cell 'cheapest neighbour is diagonal (0 + 1 = 1)' caption.",
-      "status": "unverified"
+      "source": "caption() in Demo.tsx; D[i][j] = fewest edits from the first i letters of FLAW to the first j of LAWN (the table comment). All 16 captions printed by a builder node script reproducing Demo.tsx; e.g. FLA → LAW = 2: insert W, after FLA → LA (1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Replaces the per-cell 'cheapest neighbour is diagonal (0 + 1 = 1)' caption. | FC pass 22 (fact-checker, 2026-10-14): all 16 captions printed by my script; format matches; 'FL → L = 1: L = L, keep it free (+0), after F → · (1)' and 'FLA → LAW = 2: insert W (+1), after FLA → LA (1)' reproduced.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

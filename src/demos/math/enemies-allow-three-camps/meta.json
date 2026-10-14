@@ -25,36 +25,46 @@
       "id": "math.enemies-allow-three-camps.c1",
       "text": "Under the weaker rule the only banned triangle has two friendly links and one hostile link (someone with two friends who are enemies); all-enemy triangles are allowed.",
       "support": "convention",
-      "source": "Definition of weak structural balance, Easley and Kleinberg (2010) ch. 5; J. A. Davis, 'Clustering and Structural Balance in Graphs', Human Relations 20 (1967). Brief 7 edit: the banned triangle is two friendly links and one hostile link.",
-      "status": "unverified"
+      "source": "Definition of weak structural balance, Easley and Kleinberg (2010) ch. 5; J. A. Davis, 'Clustering and Structural Balance in Graphs', Human Relations 20 (1967). Brief 7 edit: the banned triangle is two friendly links and one hostile link. | FACT-CHECK 2026-10-14 (pass 22): VERDICT/kindOf: exactly two friendly links = banned; all-enemy allowed. Matches weak balance (Davis 1967, Human Relations 20; secondary search-result text: a complete signed graph is weakly balanced iff no triangle has exactly one negative edge). Davis not opened. Easley-Kleinberg ch. 5 (positive and negative relationships; weaker form of structural balance) placement matches my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.enemies-allow-three-camps.c2",
       "text": "Six people split into three pairs form 20 triangles: 0 banned, 12 with one friendly pair, and 8 all-enemy triangles (one person from each camp).",
       "support": "derivation",
-      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2).",
-      "status": "unverified"
+      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2). | FACT-CHECK 2026-10-14 (pass 22): Own node over 20 triangles, split [0,0,1,1,2,2]: banned 0, one-friend 12, all-enemy 8.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.enemies-allow-three-camps.c3",
       "text": "With 2 camps of 3 or 6 camps of 1 there are also 0 banned triangles (with 0 and 20 all-enemy triangles respectively).",
       "support": "derivation",
-      "source": "tally(2), tally(6) in Demo.tsx; builder re-run in node 2026-10-14: 2 camps: banned 0, all-enemy 0, one friendly 18, all-friend 2; 6 camps: banned 0, all-enemy 20.",
-      "status": "unverified"
+      "source": "tally(2), tally(6) in Demo.tsx; builder re-run in node 2026-10-14: 2 camps: banned 0, all-enemy 0, one friendly 18, all-friend 2; 6 camps: banned 0, all-enemy 20. | FACT-CHECK 2026-10-14 (pass 22): Own node: 2 camps: banned 0, all-enemy 0, one-friend 18, all-friend 2; 6 camps: banned 0, all-enemy 20.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.enemies-allow-three-camps.c4",
       "text": "When friends are exactly the people in your camp, any two friends of yours are friends too, so no split into camps has a banned triangle, whatever the number of camps.",
       "support": "derivation",
-      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links.",
-      "status": "unverified"
+      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links. | FACT-CHECK 2026-10-14 (pass 22): Same-camp is an equivalence relation, so no triangle has exactly two friendly links.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.enemies-allow-three-camps.c5",
       "text": "The strict rule (the enemy of my enemy is my friend) also bans all-enemy triangles, and that ban is what limits a network to two sides.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 5 (structural balance: at most two camps); weak balance relaxes exactly the all-enemy triangle (Davis 1967). Attribution: fact-checker confirms (flag carried from the brief).",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010) ch. 5 (structural balance: at most two camps); weak balance relaxes exactly the all-enemy triangle (Davis 1967). Attribution: fact-checker confirms (flag carried from the brief). | FACT-CHECK 2026-10-14 (pass 22): Strong balance bans triangles with one or three hostile links; complete strongly balanced graphs split into at most two groups (balance theorem, Easley-Kleinberg ch. 5, not opened); weak balance allows k clusters (Davis 1967, search-result text).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -78,12 +88,27 @@
   "curriculum": {
     "primary": "math:weak-balance",
     "also": [],
-    "prerequisites": ["math:parity-rules"],
+    "prerequisites": [
+      "math:parity-rules"
+    ],
     "level": "stretch",
     "strand": "discrete",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 5 }],
-    "tags": ["signed networks", "balance"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 5
+      }
+    ],
+    "tags": [
+      "signed networks",
+      "balance"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

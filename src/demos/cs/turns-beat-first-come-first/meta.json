@@ -26,43 +26,55 @@
       "id": "cs.turns-beat-first-come-first.c1",
       "text": "Jobs A, B, C need 10, 1 and 1 units and arrive together, served in order A, B, C. First come, first served finishes them at 10, 11 and 12, so they wait 0, 10 and 11: average 7.",
       "support": "derivation",
-      "source": "Arithmetic: finish times 10, 10+1, 10+1+1; wait = finish - work = 0, 10, 11; (0+10+11)/3 = 7. Builder's node script (algo2-sd, 2026-10-14) agrees.",
-      "status": "unverified"
+      "source": "Arithmetic: finish times 10, 10+1, 10+1+1; wait = finish - work = 0, 10, 11; (0+10+11)/3 = 7. Builder's node script (algo2-sd, 2026-10-14) agrees. | FACT-CHECK 2026-10-14 (pass 22): Own node: FCFS finishes 10, 11, 12; waits 0, 10, 11; average 7. Stage and reveal compute it from FCFS.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.turns-beat-first-come-first.c2",
       "text": "Taking turns of 1 unit (A, B, C, then back to A; a finished job leaves the cycle), B finishes at 2, C at 3 and A at 12, only 2 later than if it ran alone. The waits are 2, 1 and 2: average about 1.67.",
       "support": "simulation",
-      "source": "Builder's node script, same round-robin as Demo.tsx: timeline A B C A A A A A A A A A; finishes A 12, B 2, C 3; waits 2, 1, 2; average 5/3 = 1.67 (shown to two decimals). Matches the brief and company/design/specs/turns-beat-first-come-first.md.",
-      "status": "unverified"
+      "source": "Builder's node script, same round-robin as Demo.tsx: timeline A B C A A A A A A A A A; finishes A 12, B 2, C 3; waits 2, 1, 2; average 5/3 = 1.67 (shown to two decimals). Matches the brief and company/design/specs/turns-beat-first-come-first.md. | FACT-CHECK 2026-10-14 (pass 22): Own node of Demo.tsx roundRobin(1): ABCAAAAAAAAA; finishes A 12, B 2, C 3; waits 2, 1, 2; 5/3 shown as 1.67; A 12 - 10 = 2 later.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.turns-beat-first-come-first.c3",
       "text": "Longer turns creep back toward 7: turns of 2 give an average wait of 2.33, and turns of 5 give 4.33.",
       "support": "simulation",
-      "source": "Builder's node script: turns of 2, timeline A A B C A..., waits 2, 2, 3, average 2.33; turns of 5, timeline A A A A A B C A..., waits 2, 5, 6, average 4.33; a turn of 10 or more equals first come, first served (7).",
-      "status": "unverified"
+      "source": "Builder's node script: turns of 2, timeline A A B C A..., waits 2, 2, 3, average 2.33; turns of 5, timeline A A A A A B C A..., waits 2, 5, 6, average 4.33; a turn of 10 or more equals first come, first served (7). | FACT-CHECK 2026-10-14 (pass 22): Own node: q=2 AABCAAAAAAAA waits 2, 2, 3 = 2.33; q=5 AAAAABCAAAAA waits 2, 5, 6 = 4.33; q=10 and 100 give 7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.turns-beat-first-come-first.c4",
       "text": "Here a job's wait is its finish time minus its work, with every job arriving at time 0.",
       "support": "convention",
-      "source": "Definition used by the lesson (stage rule line and question). With arrival 0 this is the standard waiting time = turnaround - burst (Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter).",
-      "status": "unverified"
+      "source": "Definition used by the lesson (stage rule line and question). With arrival 0 this is the standard waiting time = turnaround - burst (Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter). | FACT-CHECK 2026-10-14 (pass 22): Lesson's own definition (stage rule 'Wait = finish - work', question text). Equals waiting time = turnaround - burst with arrival 0. Silberschatz not opened (os-book.com blocked); the definition does not depend on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.turns-beat-first-come-first.c5",
       "text": "Taking turns helps short jobs finish early without the scheduler knowing anyone's length.",
       "support": "derivation",
-      "source": "Round robin only uses the arrival order and a fixed turn length; a job of length L finishes within its first ceil(L/q) cycles, so short jobs leave early whatever the long ones need. Seen on the stage: B's pin appears at time 2 while the first-come lane is still running A.",
-      "status": "unverified"
+      "source": "Round robin only uses the arrival order and a fixed turn length; a job of length L finishes within its first ceil(L/q) cycles, so short jobs leave early whatever the long ones need. Seen on the stage: B's pin appears at time 2 while the first-come lane is still running A. | FACT-CHECK 2026-10-14 (pass 22): roundRobin() uses only queue order and q, never WORK lengths for ordering; B's pin at time 2 while the FCFS lane runs A.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.turns-beat-first-come-first.c6",
       "text": "Real systems pay a little for each switch between jobs, which this model leaves out.",
       "support": "source",
-      "source": "Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter, round-robin section: context-switch overhead and the choice of time quantum. Edition and section not checked by the builder (check before verifying).",
-      "status": "unverified"
+      "source": "Silberschatz, Galvin & Gagne, Operating System Concepts, CPU scheduling chapter, round-robin section: context-switch overhead and the choice of time quantum. Edition and section not checked by the builder (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Medium confidence. Silberschatz, Galvin & Gagne not opened (os-book.com and university hosts blocked by proxy). Search-result text from several Silberschatz-based course slides (UCalgary CPSC457 ch5, UCI ch05, Colorado State CS370) states RR quantum must be large relative to context-switch time or overhead is too high. Builder should pin edition and section (CPU Scheduling, Round-Robin).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

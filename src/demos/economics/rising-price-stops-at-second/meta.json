@@ -33,29 +33,37 @@
       "id": "economics.rising-price-stops-at-second.c1",
       "text": "With values $70, $55 and $40, a price rising $1 at a time and each bidder quitting once it passes their value, the $40 bidder quits at $41, the $55 bidder quits at $56, and the $70 bidder wins at $56, keeping $14.",
       "support": "derivation",
-      "source": "Lesson rule (bidder in while price <= value). Builder's node script (scratchpad ncm-e01-checks/check.mjs) and Demo.tsx FINAL: raising from $30 by $1, two bidders remain until $56, when only the $70 bidder is left. 70 - 56 = 14.",
-      "status": "unverified"
+      "source": "Lesson rule (bidder in while price <= value). Builder's node script (scratchpad ncm-e01-checks/check.mjs) and Demo.tsx FINAL: raising from $30 by $1, two bidders remain until $56, when only the $70 bidder is left. 70 - 56 = 14. | FC pass 22 (fact-checker, 2026-10-14): node re-run of inAt()/over(): from $30 by $1, 2 bidders in through $55, 1 at $56; Cal out at $41, Ben out at $56; 70 - 56 = 14. Stage 'quit at $value+1'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.rising-price-stops-at-second.c2",
       "text": "For one item, any price above $55 and up to $70 leaves exactly one willing buyer, and the rising price stops at the first such price.",
       "support": "derivation",
-      "source": "Count of bidders with value >= price: 2 at $55, 1 for $56..$70, 0 above $70; a $1 rising procedure from below stops at the first price with one bidder left ($56). E&K ch. 10 (market-clearing prices; chapter only, section unconfirmed).",
-      "status": "unverified"
+      "source": "Count of bidders with value >= price: 2 at $55, 1 for $56..$70, 0 above $70; a $1 rising procedure from below stops at the first price with one bidder left ($56). E&K ch. 10 (market-clearing prices; chapter only, section unconfirmed). | FC pass 22 (fact-checker, 2026-10-14): count of values >= p: 2 at 55, 1 for 56..70, 0 above 70 (node). E&K ch. 10 (matching markets, market-clearing prices) placement matches my knowledge; section not confirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.rising-price-stops-at-second.c3",
       "text": "A sealed second-price auction with the same values would charge $55, nearly the same as the rising auction.",
       "support": "source",
-      "source": "Second-price rule: winner pays the second-highest bid; with truthful bids that is $55. Equivalence of the ascending (English) auction and the sealed second-price auction for private values: W. Vickrey, 'Counterspeculation, auctions, and competitive sealed tenders', Journal of Finance 16(1), 8-37 (1961); E&K ch. 9. Citation from memory; fact-checker confirms.",
-      "status": "unverified"
+      "source": "Second-price rule: winner pays the second-highest bid; with truthful bids that is $55. Equivalence of the ascending (English) auction and the sealed second-price auction for private values: W. Vickrey, 'Counterspeculation, auctions, and competitive sealed tenders', Journal of Finance 16(1), 8-37 (1961); E&K ch. 9. Citation from memory; fact-checker confirms. | FC pass 22 (fact-checker, 2026-10-14): second-highest value 55 vs 56 rising. Vickrey, J. Finance 16(1):8-37 (1961) confirmed bibliographically via search; not opened. E&K ch. 9 has a section 'Relationships between different auction formats' (TOC via search) covering ascending vs second-price.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.rising-price-stops-at-second.c4",
       "text": "The stage is a model: each bidder knows their own value and quits the moment the price passes it.",
       "support": "convention",
-      "source": "Modelling choice stated on the card (private values, no bidding above value, $1 steps).",
-      "status": "unverified"
+      "source": "Modelling choice stated on the card (private values, no bidding above value, $1 steps). | FC pass 22 (fact-checker, 2026-10-14): Demo.tsx rules and muted line match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "recall": {

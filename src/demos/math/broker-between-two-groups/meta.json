@@ -26,29 +26,37 @@
       "id": "math.broker-between-two-groups.c1",
       "text": "On the stage Hana has 5 friends who all know each other (0 pairs of strangers); Bo has 4 friends, and 4 pairs of them are strangers.",
       "support": "derivation",
-      "source": "Stage graph from brief 6 (company/domains/briefs/math.discrete.md, Course: NCM): complete group of 6 (Hana and 5 friends), complete group of 4, Bo linked to 2 of Hana's friends and 2 of the other group. strangerPairs() in Demo.tsx; builder re-run in node 2026-10-14.",
-      "status": "unverified"
+      "source": "Stage graph from brief 6 (company/domains/briefs/math.discrete.md, Course: NCM): complete group of 6 (Hana and 5 friends), complete group of 4, Bo linked to 2 of Hana's friends and 2 of the other group. strangerPairs() in Demo.tsx; builder re-run in node 2026-10-14. | FC pass 22 (fact-checker, 2026-10-14): own adjacency (scratchpad fc22/broker.mjs): degrees 5,6,6,5,5,5,4,4,3,3,4; stranger pairs Hana 0, Bo 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.broker-between-two-groups.c2",
       "text": "Every shortest path between someone in Hana's group and someone in the other group runs through Bo: all 24 such pairs. Hana lies on the shortest paths of 0 pairs.",
       "support": "derivation",
-      "source": "BFS shortest-path counts in Demo.tsx (CROSS_VIA_BO = 24; BETWEENNESS[Hana] = 0); builder re-run in node 2026-10-14: betweenness 0,10,10,0,0,0,7,7,0,0,24 for Hana, her friends 1-5, the other group 6-9, Bo.",
-      "status": "unverified"
+      "source": "BFS shortest-path counts in Demo.tsx (CROSS_VIA_BO = 24; BETWEENNESS[Hana] = 0); builder re-run in node 2026-10-14: betweenness 0,10,10,0,0,0,7,7,0,0,24 for Hana, her friends 1-5, the other group 6-9, Bo. | FC pass 22 (fact-checker, 2026-10-14): independent betweenness by enumerating all shortest paths (not Brandes): 0,10,10,0,0,0,7,7,0,0,24; all 24 cross pairs have every shortest path through Bo; Hana 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.broker-between-two-groups.c3",
       "text": "The two people with the most friends on the stage (6 each, Bo's friends in Hana's group) score 10 on the same count, because each carries half the shortest paths that the other could also carry.",
       "support": "derivation",
-      "source": "Betweenness (sum over pairs of the share of shortest paths through the person) in Demo.tsx: 4 group members x 5 people beyond = 20 pairs, each with two equal shortest paths, half each = 10. Degrees 5,6,6,5,5,5,4,4,3,3,4.",
-      "status": "unverified"
+      "source": "Betweenness (sum over pairs of the share of shortest paths through the person) in Demo.tsx: 4 group members x 5 people beyond = 20 pairs, each with two equal shortest paths, half each = 10. Degrees 5,6,6,5,5,5,4,4,3,3,4. | FC pass 22 (fact-checker, 2026-10-14): same script: nodes 1 and 2 (degree 6) score 10 = 20 pairs x 1/2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.broker-between-two-groups.c4",
       "text": "A person whose friends are not linked to each other spans a gap called a structural hole, and sitting in one can matter more than having the most friends.",
       "support": "source",
-      "source": "R. S. Burt, Structural Holes: The Social Structure of Competition, Harvard University Press (1992); Easley and Kleinberg (2010) ch. 3. Attribution: fact-checker confirms (flag carried from the brief).",
-      "status": "unverified"
+      "source": "R. S. Burt, Structural Holes: The Social Structure of Competition, Harvard University Press (1992); Easley and Kleinberg (2010) ch. 3. Attribution: fact-checker confirms (flag carried from the brief). | FC pass 22 (fact-checker, 2026-10-14): Burt, Structural Holes, Harvard UP (1992) confirmed bibliographically via search (SSRN listing); not opened. E&K ch. 3 section 3.5 'Closure, structural holes, and social capital' from memory (confident). The stage shows Bo out-brokering the two best-connected people, which supports 'can matter more'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -71,13 +79,28 @@
   "version": 1,
   "curriculum": {
     "primary": "math:structural-holes",
-    "also": ["math:handshake-counting"],
+    "also": [
+      "math:handshake-counting"
+    ],
     "prerequisites": [],
     "level": "core",
     "strand": "discrete",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 3 }],
-    "tags": ["networks", "brokerage", "structural holes"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 3
+      }
+    ],
+    "tags": [
+      "networks",
+      "brokerage",
+      "structural holes"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }
