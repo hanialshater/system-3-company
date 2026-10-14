@@ -1,0 +1,90 @@
+{
+  "slug": "random-surfer-finds-the-rank",
+  "title": "One link, almost three links' worth",
+  "hook": "A random clicker roams five pages. Does the page with 3 in-links get 3 times the visits?",
+  "domain": "cs",
+  "concept": "pagerank-random-walk",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "ncm-c"
+  },
+  "learner": {
+    "knows": [
+      "PageRank passes rank along links (one-good-link-beats-many)",
+      "a random walk moves from place to place by chance"
+    ],
+    "doesNotKnow": [
+      "that PageRank equals the share of time a random clicker (who sometimes jumps anywhere) spends on each page"
+    ]
+  },
+  "misconception": "A page with one in-link gets about a third of the visits of a page with three.",
+  "objective": "The learner can explain that a random surfer who follows links and jumps anywhere 15% of the time spends about 31% of its time on A (1 in-link, from C) and about 33% on C (3 in-links), because a link from a busy page brings many visits, and that these long-run shares are PageRank.",
+  "claims": [
+    {
+      "id": "cs.random-surfer-finds-the-rank.c1",
+      "text": "In the stage's seeded run of 100,000 clicks the surfer spends 31.2% of its time on A and 33.2% on C (the reveal quotes the learner's own count at whatever point they stop).",
+      "support": "simulation",
+      "source": "Demo.tsx surf(): mulberry32 seed 146, two draws per click (jump test, then jump target), start on A, count the page reached after each click. Builder's run of the same loop in node (scratchpad ncmc/check.mjs), 2026-10-14: after 100,000 clicks A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (shares 0.3121, 0.2964, 0.3322, 0.0295, 0.0298); after 1,000 clicks A 31.9%, C 32.5%. Seed 146 is the one the brief's author used; it was the first seed tried and not picked for its result (seeds 7, 2026 and 14 give A 0.3122-0.3126 and C 0.3322-0.3326 at 100,000). All five shares are within 0.005 of claim c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.random-surfer-finds-the-rank.c2",
+      "text": "Computed directly, PageRank with a 15% jump gives A 0.312 and C 0.332.",
+      "support": "derivation",
+      "source": "Power iteration (200 rounds) of PR(p) = 0.15/5 + 0.85 × sum of PR(q) over pages q linking to p, links A->B, B->C, C->A, D->C, E->C: A 0.3123, B 0.2955, C 0.3322, D 0.0300, E 0.0300 (builder's node run, scratchpad ncmc/check.mjs, 2026-10-14). Matches brief cs.algorithms NCM #1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.random-surfer-finds-the-rank.c3",
+      "text": "PageRank is the long-run fraction of time a random surfer who follows links and sometimes jumps to a random page spends on each page.",
+      "support": "source",
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (random-walk interpretation of scaled PageRank); Brin S. & Page L. (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30. Attribution for the fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.random-surfer-finds-the-rank.c4",
+      "text": "A's one link comes from C, so every visit to C is followed by a trip to A unless the surfer jumps; D and E have no in-links, so the surfer reaches them only by jumping.",
+      "support": "derivation",
+      "source": "Read off the stage's link list (Demo.tsx OUT): C's only out-link is to A; no page links to D or E. D and E each get 0.15/5 = 0.03 of the time (claim c2), so their links pass little to C.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.random-surfer-finds-the-rank.c5",
+      "text": "Each page links to one other page; the run is seeded, so it gives the same clicks every time.",
+      "support": "convention",
+      "source": "Stage set-up in Demo.tsx (OUT, SEED = 146).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Page P has one in-link, from the most visited page on a small web. Page Q has three in-links, from pages nobody links to. Which does a random surfer visit more?",
+    "options": [
+      "P: one link from a busy page brings many visits",
+      "Q: three links always beat one",
+      "They tie, since every link counts the same"
+    ],
+    "answer": 0,
+    "why": "A random surfer arrives through links in proportion to how often it is on the linking page. A link from a busy page carries more visits than several links from pages the surfer rarely reaches; those long-run shares are PageRank."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:pagerank-random-walk",
+    "also": ["probability:random-walk"],
+    "prerequisites": ["probability:random-walk"],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 14 }],
+    "tags": ["web", "random walk", "PageRank"]
+  },
+  "format": "simulation-run",
+  "interactions": ["choice-before-reveal", "step-run-button", "tally-counters", "milestone-gate"]
+}
