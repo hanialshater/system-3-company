@@ -37,22 +37,28 @@
       "id": "cs.back-button-stack.c2",
       "text": "After going back, the later pages stay in the pile, marked ahead, until you visit a new page, which throws them away.",
       "support": "source",
-      "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry.",
-      "status": "unverified"
+      "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry. | FACT-CHECK 2026-10-14 (pass 12): Matches observable browser behaviour and the WHATWG session-history model (navigating after traversal clears forward entries); spec page not opened (network blocked). Stage visit() truncates pages above the index and lists them as thrown away; pages above stay tagged 'ahead' after Back.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c3",
       "text": "A pile where the last page added is the first one you get back is called a stack (last in, first out).",
       "support": "source",
-      "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out.",
-      "status": "unverified"
+      "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out. | FACT-CHECK 2026-10-14 (pass 12): Definition: a stack is last-in, first-out (CLRS 3rd ed. 10.1, first paragraph; not opened, network blocked). Reveal wording matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c4",
       "text": "The stage models history as one pile and has no Forward button; it marks pages above the current page as ahead and the page just below it as where Back goes.",
       "support": "convention",
-      "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2).",
-      "status": "unverified"
+      "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2). | FACT-CHECK 2026-10-14 (pass 12): Demo.tsx: only Back / Visit / Start over controls (no Forward); tags 'ahead' for i > at and 'Back goes here' for i = at - 1 (after prediction).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

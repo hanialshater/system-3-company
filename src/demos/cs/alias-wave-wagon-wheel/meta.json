@@ -34,8 +34,10 @@
       "id": "cs.alias-wave-wagon-wheel.c2",
       "text": "At or below 2.5 Hz (half the sample rate) no slower wave fits the dots; above it, a slower wave does (3 Hz looks like 2 Hz, 3.5 Hz like 1.5 Hz, 4 Hz like 1 Hz).",
       "support": "source",
-      "source": "Nyquist-Shannon sampling theorem (Shannon 1949, 'Communication in the presence of noise'): frequencies above half the sampling rate alias to lower frequencies. Stage alias = |f - 5 round(f/5)|, node-checked for f = 3 (2 Hz) and 3.5 (1.5 Hz). | FACT-CHECK 2026-10-13 (pass 9): node over every slider value 0.5..4: alias(f) = f for f <= 2.5 and 2, 1.5, 1 Hz for f = 3, 3.5, 4, each passing through the same 6 dots (< 1e-9). Nyquist-Shannon: Shannon (1949), Proc. IRE 37(1): 10-21.",
-      "status": "unverified"
+      "source": "Nyquist-Shannon sampling theorem (Shannon 1949, 'Communication in the presence of noise'): frequencies above half the sampling rate alias to lower frequencies. Stage alias = |f - 5 round(f/5)|, node-checked for f = 3 (2 Hz) and 3.5 (1.5 Hz). | FACT-CHECK 2026-10-13 (pass 9): node over every slider value 0.5..4: alias(f) = f for f <= 2.5 and 2, 1.5, 1 Hz for f = 3, 3.5, 4, each passing through the same 6 dots (< 1e-9). Nyquist-Shannon: Shannon (1949), Proc. IRE 37(1): 10-21. | FACT-CHECK 2026-10-14 (pass 12): node (fc12/check.mjs): for every slider value 0.5..2.5 no cosine below f (0.01 Hz grid) matches all 6 dots; 3, 3.5, 4 Hz match 2, 1.5, 1 Hz (< 1e-6). Phase-free argument: samples of A cos(wn+p) obey x[n+1]+x[n-1]=2cos(w)x[n], so w in [0, pi] is fixed by the dots; below half the sample rate no slower sinusoid of any phase fits. Stage message text matches. Shannon (1949), Proc. IRE 37(1): 10-21 (not opened; network blocked).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.alias-wave-wagon-wheel.c3",
@@ -50,15 +52,19 @@
       "id": "cs.alias-wave-wagon-wheel.c4",
       "text": "The stage samples 5 times a second (one dot per sample), names half the sample rate as 2.5 Hz, and shows waves from 0.5 to 4 Hz: an idealised cosine wave, not a real recording.",
       "support": "derivation",
-      "source": "Stage constants FS = 5 and the slider range 0.5 to 4 Hz in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: FS = 5, Slider min 0.5 max 4 step 0.5, curves from Math.cos (idealised).",
-      "status": "unverified"
+      "source": "Stage constants FS = 5 and the slider range 0.5 to 4 Hz in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: FS = 5, Slider min 0.5 max 4 step 0.5, curves from Math.cos (idealised). | FACT-CHECK 2026-10-14 (pass 12): Demo.tsx: FS = 5, dots n/5 for n = 0..5, NYQ = FS/2 shown as 2.5 Hz in the message and reveal, Slider 0.5..4 step 0.5, curves from Math.cos (idealised; no recording).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.alias-wave-wagon-wheel.c5",
       "support": "source",
       "text": "Hz means full ups and downs of a wave per second.",
-      "source": "Definition of hertz (SI): one cycle per second.",
-      "status": "unverified"
+      "source": "Definition of hertz (SI): one cycle per second. | FACT-CHECK 2026-10-14 (pass 12): SI Brochure (9th ed., 2019), Table 4: hertz = s^-1, used for frequency of periodic phenomena (cycles per second). Stage predict text '4 full ups and downs a second' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

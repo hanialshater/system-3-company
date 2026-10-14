@@ -38,15 +38,19 @@
       "id": "cs.hanoi-tower-doubles.c2",
       "text": "The fewest moves is 7 for 3 disks, 15 for 4, 31 for 5 and 63 for 6: each extra disk doubles the work and adds one.",
       "support": "derivation",
-      "source": "T(n) = 2T(n-1) + 1, T(1) = 1, so T(n) = 2^n - 1 by induction (Concrete Mathematics, 1.1, eq. 1.1-1.3). Builder computed 2^n - 1 for n = 3..6: 7, 15, 31, 63.",
-      "status": "unverified"
+      "source": "T(n) = 2T(n-1) + 1, T(1) = 1, so T(n) = 2^n - 1 by induction (Concrete Mathematics, 1.1, eq. 1.1-1.3). Builder computed 2^n - 1 for n = 3..6: 7, 15, 31, 63. | FACT-CHECK 2026-10-14 (pass 12): node T(n) = 2T(n-1)+1 gives 7, 15, 31, 63 for n = 3..6; independent BFS over all legal states gives minima 7 (n=3) and 15 (n=4). Optimality proof: Concrete Mathematics 1.1 (not opened).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.hanoi-tower-doubles.c4",
       "text": "The stage shortcut moves the top n-1 disks as one block and charges 2^(n-1) - 1 moves, the fewest that smaller puzzle needs; adding a disk shows the sum: the smaller puzzle, the big disk (1), the smaller puzzle again.",
       "support": "convention",
-      "source": "Demo.tsx carry(): adds cost(n-1) = 2^(n-1) - 1 to the move counter, per claim c2.",
-      "status": "unverified"
+      "source": "Demo.tsx carry(): adds cost(n-1) = 2^(n-1) - 1 to the move counter, per claim c2. | FACT-CHECK 2026-10-14 (pass 12): Demo.tsx carry(): moves += cost(n-1) = 2^(n-1) - 1 and note '+X: n-1 disks take X moves at best'; addDisk() note '(cost(n)) + big disk (1) + (cost(n)) = cost(n+1)'; matches T(n) = 2T(n-1) + 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

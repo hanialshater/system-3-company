@@ -37,15 +37,19 @@
       "id": "cs.coin-greedy-trap.c2",
       "text": "Taking the biggest coin that fits each time (greedy) makes 6 as 4 + 1 + 1, which is 3 coins.",
       "support": "simulation",
-      "source": "Greedy: 6 - 4 = 2, then 1, then 1. Builder ran it in Node.",
-      "status": "unverified"
+      "source": "Greedy: 6 - 4 = 2, then 1, then 1. Builder ran it in Node. | FACT-CHECK 2026-10-14 (pass 12): node greedy(6) = [4,1,1], 3 coins; fewest(6) = 2 (3+3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.coin-greedy-trap.c3",
       "text": "If the learner looks at 8 and 10: for 8, greedy takes 4 + 4, the best possible; for 10 it takes 4 + 4 + 1 + 1 (4 coins) where 4 + 3 + 3 needs 3.",
       "support": "simulation",
-      "source": "Builder ran greedy and exhaustive search for targets 1..12 with coins {1, 3, 4}: greedy is worse only at 6 (3 vs 2) and 10 (4 vs 3).",
-      "status": "unverified"
+      "source": "Builder ran greedy and exhaustive search for targets 1..12 with coins {1, 3, 4}: greedy is worse only at 6 (3 vs 2) and 10 (4 vs 3). | FACT-CHECK 2026-10-14 (pass 12): node: greedy(8) = [4,4] = fewest 2; greedy(10) = [4,4,1,1] vs fewest 3 (4+3+3); over targets 1..12 greedy loses only at 6 and 10.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.coin-greedy-trap.c5",

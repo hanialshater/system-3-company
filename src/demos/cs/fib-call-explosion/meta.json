@@ -29,8 +29,10 @@
       "id": "cs.fib-call-explosion.c1",
       "text": "If each time the recipe is used counts as one call, with fib(0) = fib(1) = 1, naive fib(5) makes 15 calls in total (fib(2): 3, fib(3): 5, fib(4): 9).",
       "support": "simulation",
-      "source": "Recurrence C(n) = C(n-1) + C(n-2) + 1, C(0) = C(1) = 1 gives 3, 5, 9, 15. Builder ran a call counter on a naive fib in Node: C(2)=3, C(3)=5, C(4)=9, C(5)=15.",
-      "status": "unverified"
+      "source": "Recurrence C(n) = C(n-1) + C(n-2) + 1, C(0) = C(1) = 1 gives 3, 5, 9, 15. Builder ran a call counter on a naive fib in Node: C(2)=3, C(3)=5, C(4)=9, C(5)=15. | FACT-CHECK 2026-10-14 (pass 12): node naive call counter with fib(0)=fib(1)=1 base: C(2..5) = 3, 5, 9, 15; stage tree has 15 nodes (8 leaves, 7 internal).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.fib-call-explosion.c2",

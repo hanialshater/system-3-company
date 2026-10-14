@@ -26,22 +26,28 @@
       "id": "cs.connect-the-towns-cheaply.c1",
       "text": "With cables AB 1, BC 2, AC 2, CD 3, BD 4 and AD 5, the lowest total cost that connects all four towns is 6 (AB, BC, CD).",
       "support": "simulation",
-      "source": "Brute force over every 3-cable set in Demo.tsx (bruteMin), and Kruskal by hand: AB 1, BC 2, CD 3.",
-      "status": "unverified"
+      "source": "Brute force over every 3-cable set in Demo.tsx (bruteMin), and Kruskal by hand: AB 1, BC 2, CD 3. | FACT-CHECK 2026-10-14 (pass 12): node brute force over all 20 three-cable sets: min 6, achieved by AB+BC+CD and also AB+AC+CD (BC and AC tie at 2). The value 6 is right; '(AB, BC, CD)' is one of two cheapest networks.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c2",
       "text": "AC would close a loop with AB and BC, so it is refused mid-build; once AB, BC and CD are laid, BD and AD would also each close a loop.",
       "support": "derivation",
-      "source": "Demo.tsx joined(): AC joins A and C, already connected through B.",
-      "status": "unverified"
+      "source": "Demo.tsx joined(): AC joins A and C, already connected through B. | FACT-CHECK 2026-10-14 (pass 12): True in list order (BC listed and tapped before AC): AC then joins A and C already joined via B; with AB, BC, CD laid, B-D and A-D are joined, so BD and AD close loops. Note: the stage accepts a tap on AC before BC (same cost, check is cost > cheapest), and then BC is the one refused; the stage text is dynamic and stays correct either way.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c3",
       "text": "Joining four towns takes 3 cables. The three cheapest here cost 1 + 2 + 2 = 5, but they form a loop of A, B and C and leave D out, so 5 cannot join everyone; the cheapest network that does costs 6.",
       "support": "derivation",
-      "source": "Arithmetic on the cable list; bruteMin in Demo.tsx.",
-      "status": "unverified"
+      "source": "Arithmetic on the cable list; bruteMin in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 12): Spanning tree on 4 towns has 3 edges; three cheapest AB 1, BC 2, AC 2 = 5 form triangle A-B-C, D isolated; node min over connected sets = 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c4",
@@ -56,8 +62,10 @@
       "id": "cs.connect-the-towns-cheaply.c5",
       "text": "A skipped loop never blocks a better choice later.",
       "support": "derivation",
-      "source": "Cut property / exchange argument (CLRS 23.1, Theorem 23.1): the cheapest cable across any cut is in some cheapest network, so a greedy choice can always be extended to an optimum. A refused cable joins already-joined towns, so it can never be needed. Contrast: coins 1, 5, 6 making 10 (coin-greedy-trap: greedy 6+1+1+1+1 vs 5+5).",
-      "status": "unverified"
+      "source": "Cut property / exchange argument (CLRS 23.1, Theorem 23.1): the cheapest cable across any cut is in some cheapest network, so a greedy choice can always be extended to an optimum. A refused cable joins already-joined towns, so it can never be needed. Contrast: coins 1, 5, 6 making 10 (coin-greedy-trap: greedy 6+1+1+1+1 vs 5+5). | FACT-CHECK 2026-10-14 (pass 12): A refused cable joins towns already joined, so dropping it never changes which towns are connected; Kruskal optimality by the cut property (CLRS 3rd ed. 23.1, Thm 23.1; not opened). Housekeeping: Demo.tsx header comment still lists old costs (CD 1, min 4); not learner-facing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
