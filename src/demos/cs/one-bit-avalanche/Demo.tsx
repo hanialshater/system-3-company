@@ -35,7 +35,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `SHA-256 turns a message into ${OUT_BITS} bits. You flip one bit of the message. About how many of the ${OUT_BITS} output bits change?`,
+        question: `A hash is a fixed-size fingerprint of a message, used to check it was not altered. SHA-256 makes ${OUT_BITS} bits. You flip one bit of the message. About how many of the ${OUT_BITS} output bits change?`,
         options: ["About 1", `About ${OUT_BITS / 2}`, "About 10"],
         answer: 1,
       }}
@@ -51,8 +51,8 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
           </p>
           <p>
             A good hash is built so that each output bit flips with a chance of about one half, like a coin toss, whenever
-            anything in the message changes. So similar messages do not get similar hashes, and you cannot nudge a message
-            toward a chosen hash bit by bit: every nudge throws the whole picture again.
+            anything in the message changes. So similar messages do not get similar hashes. Each of your taps re-rolled about half the picture,
+            which is why you cannot tweak a message to fix just a few bits of its hash.
           </p>
         </>
       )}
@@ -75,7 +75,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.label}>Message (tap one bit)</p>
+                <p className={s.label}>Message (tap one bit; · is a non-letter symbol)</p>
                 <div className={s.msg}>
                   {msg.map((byte, i) => (
                     <div key={i} className={s.byte}>
@@ -127,6 +127,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
                 <p className={s.key}>
                   <span className={s.swatch} /> changed by your last tap
                 </p>
+                {log.length > 0 && <p className={s.key}>Changed per tap: {log.join(", ")}</p>}
               </div>
             );
           }}

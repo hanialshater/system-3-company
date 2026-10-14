@@ -7,7 +7,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const R_GAS = 8.314; // J/(mol K)
@@ -44,7 +44,6 @@ function path(e0: number, e1: number, x: (e: number) => number, h: (e: number) =
 
 export default function TheTailThatReacts({ slug }: { slug: string }) {
   const [temp, setTemp] = useState(T0);
-  const [hottest, setHottest] = useState(T0);
 
   const ratio = overBarrier(temp) / overBarrier(T0);
   const perBillion = overBarrier(temp) * 1e9;
@@ -54,22 +53,22 @@ export default function TheTailThatReacts({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A reaction needs about 50 kJ/mol to get over its barrier. Warm it from 298 K to 308 K (about 3% hotter in kelvin). The rate becomes about…",
+          "Two molecules react only if they collide with enough energy, a barrier of about 50 kJ/mol (kilojoules per mole of molecules). Warm the mixture from 298 K to 308 K, about 3% hotter in kelvin. The rate (reactions per second) becomes about…",
         options: ["1.03 times", "1.9 times", "10 times"],
         answer: 1,
       }}
-      exploreHint="Warm it to 308 K. Compare the crowd on the left with the shaded tail on the right."
-      minInteractions={2}
+      exploreHint="Press Warm to 308 K. Compare the crowd on the left with the shaded tail on the right."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {hottest >= 308 ? "At 308 K you saw" : "At 308 K you would see"} the crowd on the left barely change, while
+            At 308 K you saw the crowd on the left barely change, while
             the shaded tail past the barrier nearly doubled: from 1.7 to 3.3 collisions per billion. The rate goes with
             that tail, so it is about <strong>1.9 times</strong> faster.
           </p>
           <p>
-            The share of collisions with at least the barrier energy is e<sup>−Ea/RT</sup>. Ea/RT is about 20 here, so
-            a 3% change in T is a 0.65 change in the exponent, and e<sup>0.65</sup> ≈ 1.9.
+            Only a tiny share of collisions reach the barrier, because the barrier is about 20 times the typical
+            thermal energy. That share is so steep in temperature that a 3% rise compounds to a factor of about 1.9.
           </p>
           <p className="muted">
             &ldquo;About double per 10 K&rdquo; is a rule of thumb that fits barriers near 50 kJ/mol, not a law.
@@ -77,7 +76,12 @@ export default function TheTailThatReacts({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const warm = (t: number) => {
+          setTemp(t);
+          if (t >= 308) interact();
+        };
+        return (
         <div className={s.wrap}>
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`At ${temp} K, ${perBillion.toFixed(1)} collisions per billion clear the barrier`}>
             {/* crowd */}
@@ -94,7 +98,7 @@ export default function TheTailThatReacts({ slug }: { slug: string }) {
               barrier
             </text>
             <text x={BX1} y={TOP + 6} textAnchor="end" className={s.small}>
-              tail × 250 million
+              tail zoomed 250 million ×
             </text>
             {/* axis with a break */}
             <line x1={AX0} x2={AX1} y1={BASE} y2={BASE} className={s.axis} />
@@ -114,6 +118,9 @@ export default function TheTailThatReacts({ slug }: { slug: string }) {
               collision energy, kJ/mol
             </text>
           </svg>
+          <Control disabled={locked || temp >= 308} onClick={() => warm(308)}>
+            Warm to 308 K
+          </Control>
           <Slider
             label="Temperature"
             value={temp}
@@ -121,18 +128,15 @@ export default function TheTailThatReacts({ slug }: { slug: string }) {
             max={308}
             disabled={locked}
             format={(t) => `${t} K`}
-            onChange={(t) => {
-              setTemp(t);
-              setHottest((h) => Math.max(h, t));
-              interact();
-            }}
+            onChange={warm}
           />
           <Row>
             <Readout label="Over the barrier" value={`${perBillion.toFixed(1)} per billion`} />
             <Readout label="Rate vs 298 K" value={`×${ratio.toFixed(2)}`} />
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

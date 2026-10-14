@@ -51,7 +51,7 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The true value is ${MU}. Each estimate averages ${N_READ} noisy readings (noise sd ${SIGMA}). A reports the average. B reports half the average (deliberately biased). Which has the lower average squared error?`,
+        question: `The true value is ${MU}. Each estimate averages ${N_READ} noisy readings (noise sd ${SIGMA}). A reports the average. B reports half the average (deliberately biased). Which has the lower average squared error (the miss, squared, averaged over many tries)?`,
         options: ["A, the honest average", "B, the shrunk one", "They are equal"],
         answer: 1,
       }}
@@ -126,7 +126,7 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
                     </text>
                   )}
                 </svg>
-                <p className={s.caption}>Bias: centre minus truth. Spread: how scattered the estimates are.</p>
+                <p className={s.caption}>Bias: centre minus truth. Spread: how scattered. A (×1) starts here: bias 0.00, spread 0.50, error 0.250.</p>
                 <Row>
                   {FACTORS.map((f) => (
                     <Control key={f} className={c === f ? "active" : ""} disabled={locked || c === f} onClick={() => set(f)}>
@@ -136,9 +136,9 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
                 </Row>
                 <Slider label="Shrink factor" value={c} min={0} max={1} step={0.05} disabled={locked} format={(v) => `×${v.toFixed(2)}`} onChange={set} />
                 <Row>
-                  <Readout label="Bias" value={locked ? "–" : f2(bias(c))} />
-                  <Readout label="Spread" value={locked ? "–" : f2(spread(c))} />
-                  <Readout label="Long-run sq. error" value={locked ? "–" : f3(mse(c))} />
+                  <Readout label="Bias" value={f2(bias(c))} />
+                  <Readout label="Spread" value={f2(spread(c))} />
+                  <Readout label="Long-run sq. error" value={f3(mse(c))} />
                 </Row>
               </div>
             );

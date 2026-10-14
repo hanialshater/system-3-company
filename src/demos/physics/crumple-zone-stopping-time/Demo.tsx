@@ -49,7 +49,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1000 kg car hits a wall at 15 m/s. A short crush stops it in 0.10 s; a longer crush takes 0.20 s. In the longer stop, the average force is…",
+          "A 1000 kg car hits a wall at 15 m/s. A short crush stops it in 0.10 s; a longer crush takes 0.20 s. In the longer stop, the average force (in kN, thousands of newtons; the car's own weight is about 10 kN) is…",
         options: ["the same", "half as big", "twice as big"],
         answer: 1,
       }}
@@ -64,10 +64,9 @@ export default function CrumpleZone({ slug }: { slug: string }) {
           </p>
           <p>
             Mass times speed is the car&apos;s momentum. Stopping means removing all of it, however long it takes, so
-            spreading the stop over more time shrinks the force. The people inside stop in the same time, so the push on
-            them halves too. The price is distance: {crush(100).toFixed(2)} m of crush became {crush(200).toFixed(2)} m.
+            spreading the stop over more time shrinks the force. The price is distance: {crush(100).toFixed(2)} m of crush became {crush(200).toFixed(2)} m.
           </p>
-          <p className="muted">Steady-force model. Real crash forces rise and fall; real 56 km/h tests crush about 0.5 to 0.9 m and last roughly 0.1 s, close to the shorter case.</p>
+          <p className="muted">Steady-force model; real crash forces rise and fall.</p>
         </>
       )}
     >
@@ -75,7 +74,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
         interactRef.current = interact;
         const caption = locked
           ? "Make a prediction to start."
-          : `Bar area = force × time. It always equals mass × speed: 1000 kg × 15 m/s.`;
+          : `Momentum = mass × speed = 1000 kg × 15 m/s. Force × time must equal it, so the bar's area never changes.`;
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Stopping in ${ms / 1000} s takes an average force of ${kN(F)}`}>
@@ -110,9 +109,11 @@ export default function CrumpleZone({ slug }: { slug: string }) {
                   0.10 s stop
                 </text>
               )}
-              <text x={xOf(ms / 2)} y={GY0 - 6} textAnchor="middle" className={s.area}>
-                {ms >= 150 ? "1000 kg × 15 m/s" : "1000 × 15"}
-              </text>
+              {!locked && (
+                <text x={xOf(ms / 2)} y={GY0 - 6} textAnchor="middle" className={s.area}>
+                  {ms >= 150 ? "1000 kg × 15 m/s" : "1000 × 15"}
+                </text>
+              )}
             </svg>
 
             <p className={s.caption} aria-live="polite">

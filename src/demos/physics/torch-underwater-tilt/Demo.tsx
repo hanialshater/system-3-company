@@ -11,7 +11,7 @@
 // "edge" (theta_c) and "sixty". QA path: start 45 deg -> 48.6 deg -> 60 deg.
 
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -62,7 +62,7 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
         options: ["Mostly leaves into the air, at a wide angle", "Is all reflected back down", "Stops, absorbed by the surface"],
         answer: 1,
       }}
-      exploreHint="Tilt the beam further and watch the ray that leaves the water."
+      exploreHint="Tilt one step at a time. Watch the ray that leaves the water, and the percentages."
       minInteractions={2}
       reveal={() => (
         <>
@@ -81,7 +81,7 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["edge", "sixty"]}>
+        <Milestones interact={interact} names={["edge", "past"]}>
           {(reach) => {
             const torch = { x: HX - RAY * Math.sin(a * D2R), y: SY + RAY * Math.cos(a * D2R) };
             const refl = { x: HX + RAY * Math.sin(a * D2R), y: SY + RAY * Math.cos(a * D2R) };
@@ -93,6 +93,11 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                 : b > 89.9
                   ? `At ${deg(a)} the exit ray skims flat along the surface.`
                   : `Tilted ${deg(a)} in water, the light leaves at ${deg(b)}.`;
+            const go = (i: number) => {
+              setIdx(i);
+              if (i === EDGE) reach("edge");
+              if (i >= SIXTY) reach("past");
+            };
             return (
               <div className={s.wrap}>
                 <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
@@ -133,6 +138,11 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                 </p>
 
                 <Row>
+                  <Control disabled={locked || idx >= ANGLES.length - 1} onClick={() => go(idx + 1)}>
+                    Tilt one step more
+                  </Control>
+                </Row>
+                <Row>
                   <Slider
                     label="Beam tilt"
                     value={idx}
@@ -142,9 +152,7 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                     format={(i) => deg(ANGLES[i])}
                     disabled={locked}
                     onChange={(i) => {
-                      setIdx(i);
-                      if (i === EDGE) reach("edge");
-                      if (i === SIXTY) reach("sixty");
+                      go(i);
                     }}
                   />
                 </Row>

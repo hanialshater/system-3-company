@@ -19,7 +19,7 @@ const H = 220;
 const DEC = 23.44;
 const rad = Math.PI / 180;
 const LINE = 90 - DEC; // where the night circle stops reaching at midnight
-const CHIPS = [66.6, 65, 80];
+const CHIPS = [65, 70, 80];
 const START_LAT = 60;
 
 const dayHours = (lat: number) => {
@@ -45,16 +45,17 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
   const lit = geoDistance(town, [sunLon, DEC]) < Math.PI / 2;
   const hours = dayHours(lat);
   const p = projection(town);
+  const strip = Array.from({ length: 24 }, (_, h) => geoDistance(town, [(12 - h) * 15, DEC]) < Math.PI / 2);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "On the June solstice, from what latitude northward does the Sun not set at all?",
+        question: "June 21 is the longest day in the north. A town's latitude is how far north of the equator it is. From what latitude northward does the Sun not set at all that day?",
         options: ["66.6°N", "23.4°N", "80°N"],
         answer: 0,
       }}
-      exploreHint="Move the town north until its day reaches 24 hours. Spin the Earth to check."
+      exploreHint="Move the town north and watch its day strip. Find where the dark ends."
       minInteractions={2}
       reveal={() => (
         <>
@@ -65,19 +66,19 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
           <p>
             In June the north pole leans {DEC.toFixed(1)}° toward the Sun, so the night side&rsquo;s edge stops{" "}
             {DEC.toFixed(1)}° short of the pole. Any place closer to the pole than that stays in the light all the way
-            round. This line is the Arctic Circle. This model has no air: in reality, air bends sunlight and the Sun is a
+            round. This line is the Arctic Circle. 23.4°N is the Tropic of Cancer, where the Sun is overhead at noon, not where it stops setting. This model has no air: in reality, air bends sunlight and the Sun is a
             disc, so the midnight Sun can be seen a little south of the line.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["edge", "south"]}>
+        <Milestones interact={interact} names={["sets", "never"]}>
           {(reach) => {
             const moveLat = (v: number) => {
               setLat(v);
-              if (v >= LINE && v <= LINE + 0.15) reach("edge");
-              if (v < LINE - 0.5) reach("south");
+              if (dayHours(v) >= 24) reach("never");
+              else reach("sets");
             };
             return (
               <div className={s.wrap}>
@@ -95,7 +96,15 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
                     </>
                   )}
                 </WorldMap>
-                <p className="muted tiny">Orthographic, June solstice. Toy: geometric Sun, no air. Shade: night. Dot: the town.</p>
+                <p className="muted tiny">Shaded: night. Dot: the town; the clock spins it round the blue circle. Toy: no air.</p>
+                <svg viewBox="0 0 320 30" className="stage-svg" role="img" aria-label={locked ? "Day strip" : `Town's 24 hours: ${strip.filter(Boolean).length} lit`} style={{ flex: "0 0 auto", height: 30 }}>
+                  {strip.map((on, h) => (
+                    <rect key={h} x={8 + h * 12.9} y={4} width={12} height={14} fill={on && !locked ? "#f5c542" : "var(--bg-2)"} stroke="var(--line)" strokeWidth={0.5} />
+                  ))}
+                  <text x={8} y={28} className="muted" fontSize={8} fill="var(--muted)">midnight</text>
+                  <text x={164} y={28} textAnchor="middle" fontSize={8} fill="var(--muted)">noon</text>
+                  <text x={312} y={28} textAnchor="end" fontSize={8} fill="var(--muted)">midnight · yellow = Sun up</text>
+                </svg>
                 <div className={s.chips} role="group" aria-label="Move the town">
                   {CHIPS.map((c) => (
                     <Control key={c} disabled={locked || lat === c} className={lat === c ? "active" : ""} onClick={() => moveLat(c)}>

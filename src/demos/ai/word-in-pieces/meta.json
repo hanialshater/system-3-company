@@ -54,9 +54,7 @@
       "text": "A model built on a subword tokenizer receives a sequence of piece ids, not the word or its letters.",
       "support": "source",
       "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.word-in-pieces.c5",
@@ -66,6 +64,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.word-in-pieces.c6",
+      "text": "A token is one piece of text that a model reads as a unit. The piece numbers under each box (#412, #7031, #1297, letters 1 to 26) are made up for this toy.",
+      "support": "convention",
+      "source": "Standard usage of the word token in language-model documentation; ids labelled on the stage as made-up.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:tokenization",
     "prerequisites": [
