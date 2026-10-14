@@ -53,14 +53,14 @@ owner: cm-course-ncm (Jonah) · refreshed 2026-10-14 (first map) · map `content
 | | **Total** | **156** | **106** | **16** | **31** | **59** | **15.1% → 44.3% → 100%** |
 
 ## Briefs per strand
-- **math.discrete** (cm-math-discrete): 9 briefs, 1 need a spec
-- **cs.algorithms** (cm-cs-algorithms): 3 briefs, 0 need a spec
-- **cs.systems** (cm-cs-systems): 1 briefs, 0 need a spec
-- **probability.chance** (cm-probability-chance): 7 briefs, 1 need a spec
-- **probability.statistics** (cm-probability-statistics): 3 briefs, 1 need a spec
-- **economics.markets** (cm-economics-markets): 23 briefs, 1 need a spec
-- **life.genetics-evolution** (cm-life-genetics-evolution): 4 briefs, 1 need a spec
-- **life.health-epidemiology** (cm-life-health-epidemiology): 1 briefs, 0 need a spec
+- **math.discrete** (cm-math-discrete): 9 briefs, 1 needing a spec
+- **cs.algorithms** (cm-cs-algorithms): 3 briefs, 0 needing a spec
+- **cs.systems** (cm-cs-systems): 1 brief, 0 needing a spec
+- **probability.chance** (cm-probability-chance): 7 briefs, 1 needing a spec
+- **probability.statistics** (cm-probability-statistics): 3 briefs, 1 needing a spec
+- **economics.markets** (cm-economics-markets): 23 briefs, 1 needing a spec
+- **life.genetics-evolution** (cm-life-genetics-evolution): 4 briefs, 1 needing a spec
+- **life.health-epidemiology** (cm-life-health-epidemiology): 1 brief, 0 needing a spec
 - **Total:** 51 briefs, 5 needing a spec. economics.markets carries 23 of them, because chapters 9–12, 15 and 22 are all markets. That is a load question for the portfolio manager at cycle planning (see "Where I differ" below).
 
 ## Gap list, ranked by teaching value
@@ -129,9 +129,9 @@ The "advanced material" sections mostly rank low: they are real demos, but for a
 ### Where I differ from the vertical doc (Selin's doc decides order)
 1. **Gate.** The doc says do not grow beyond batch 1 until real-learner data exists. I agree, and I have not changed it. I wrote the briefs now because the founder asked for the map and the briefs, and a brief costs little to hold. The board items below are "ready to build when slotted". Head-of-product allocates the slots at cycle planning, and course briefs get no lane of their own.
 2. **Winner's curse (doc: ch. 9b "later").** I propose a reference row on the existing `probability/best-of-twenty-identical` (concept `winners-curse`, published) instead of a new lesson. It teaches the same selection-on-noise mechanism and already cites the auction origin.
-3. **Chapter 11 (doc: "hard to fit 60 s").** I brief only the two results that fit one prediction (11.3 and 11.6). Three sections (11.4 ripple effects, 11.5 welfare, 11.2 model) are marked not demo-able, with reasons.
+3. **Chapter 11 (doc: "hard to fit 60 s").** I brief only the two results that fit one prediction (11.3 and 11.6). The other five (11.1 survey, 11.2 model definition, 11.4 ripple effects, 11.5 welfare theorem, 11.7 reflections) are marked not demo-able, with reasons.
 4. **Order inside batch 2.** The doc lists chapters, not an order. Mine is the rank above: hawk-dove ESS, decentralised search, VCG, median voter, bargaining power, signalling, Coase, betting odds and trader competition first.
-5. **Beyond the doc's batch 2.** I brief 42 more sections the doc does not name: advanced material, 3.3–3.6, 4.1, 4.4, 5.4–5.5, 6.4–6.10, 8.3, 9.3–9.7, 10.1, 14.2 and 14.6, 16.6–16.7, 17.7, 18.2–18.7, 19.4–19.7, 20.7, 21.7–21.8, and 23.4 and 23.8–23.9. They rank after hers. If Selin disagrees, her doc wins, and I will re-rank.
+5. **Beyond the doc's batch 2.** I brief 36 more sections that the doc's batch 2 does not name: 3.3, 3.5, 3.6, 4.1, 4.4, 5.4, 5.5, 6.4, 6.5, 6.6, 6.10, 7.2, 7.4, 8.3, 9.3, 9.5, 9.7, 10.1, 10.5, 14.2, 14.6, 16.6, 16.7, 17.7, 18.2, 18.5, 18.7, 19.4, 19.5, 19.7, 20.7, 21.7, 21.8, 23.4, 23.8 and 23.9.3–3.6, 4.1, 4.4, 5.4–5.5, 6.4–6.10, 8.3, 9.3–9.7, 10.1, 14.2 and 14.6, 16.6–16.7, 17.7, 18.2–18.7, 19.4–19.7, 20.7, 21.7–21.8, and 23.4 and 23.8–23.9. They rank after hers. If Selin disagrees, her doc wins, and I will re-rank.
 
 ## S2-18: proposed reference rows for existing lessons (chapter only)
 A builder applies these as metadata, with no learner text. Each row cites the chapter only and keeps the section as `section_unconfirmed` (head-of-product rule). The first 18 rows are session 2's §0 table (14 rows covering 18 lessons). The rows marked "new" are my additions from the dedupe.

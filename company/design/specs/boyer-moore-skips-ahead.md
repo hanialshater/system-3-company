@@ -33,7 +33,7 @@ QA path (each control once, DOM order): Compare (plain: H vs E miss, slides 1; H
 - **Predict:** both lanes show the text with EXAMPLE under positions 0–6. The comparison counters read 0, no read-dots, and no ghost. The slide table is visible: it is part of the question's rule. The Horspool lane's compare cursor is not drawn while locked, so nothing shows where the first comparison lands.
 - **On unlock:** nothing moves until a press. Exploration hint: "Compare one letter at a time and watch the bottom lane jump."
 - **After press 1:** plain lane has 1 dot (H) and sits at placement 2. Horspool has 1 dot (under S, position 6), the dashed ghost at 0–6, and the pattern now at 7–13: the first seven letters, except S, were never read.
-- **Horspool at 9:** E matches E, then L, P, M; A vs space misses. Five dots in a row, slide 6 on E.
+- **Horspool at 9 (text " SIMPLE"):** E, L, P and M match from the end; I against A misses. Five dots in a row (position 13 is read a second time), then slide 6 on E.
 - **Horspool at the match:** seven ticks under 17–23, "Comparisons: 15", "Placements: 5", "Never read: 11". The undotted letters are visible as gaps in the dot row.
 - **Plain at the match:** a dot under every letter, "Comparisons: 27", "Placements: 18".
 - **Reveal:** the stage stays as left. The reveal: "Reading from the pattern's end, the first check met S. S is not in EXAMPLE, so no placement covering it could match, and the pattern jumped 7. Your search made 15 comparisons in 5 placements and never read 11 of the 24 letters. The plain method read every letter: 27 comparisons, 18 placements. A search can skip text, as long as each skip is justified by a letter it did read. Longer patterns can skip further."
