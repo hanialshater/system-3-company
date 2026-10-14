@@ -89,7 +89,9 @@ export default function RandomDotsCluster({ slug }: { slug: string }) {
             {(EXACT * 100).toFixed(1)}%, so about half of all random scatters have a crowded square.
           </p>
           <p>
-            An evenly spread pattern is the unusual one. A lump on its own is weak evidence that something attracts the dots.
+            A scatter with no crowded square ({((1 - EXACT) * 100).toFixed(1)}% of batches) is about as common as one with a
+            crowded square, so lumps are an ordinary part of random scatter. A lump on its own is weak evidence that
+            something attracts the dots.
           </p>
         </>
       )}

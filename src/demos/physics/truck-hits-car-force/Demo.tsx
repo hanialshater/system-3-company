@@ -110,8 +110,15 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
           </p>
           <p>
             What differed was the effect. By the end the car&rsquo;s speed had changed by{" "}
-            <strong>{dvCar(end).toFixed(1)} m/s</strong> and the truck&rsquo;s by <strong>{dvTruck(end).toFixed(1)} m/s</strong>: the
-            same push changes the lighter vehicle much more. That is why the car comes off worse.
+            <strong>{dvCar(end).toFixed(1)} m/s</strong> and the truck&rsquo;s by <strong>{dvTruck(end).toFixed(1)} m/s</strong>
+            {truckKg > M_CAR ? (
+              <>
+                : the same push changes the lighter car&rsquo;s speed {truckKg / M_CAR} times as much, because the truck is{" "}
+                {truckKg / M_CAR} times as heavy. That is why the car comes off worse.
+              </>
+            ) : (
+              <>: with equal masses the same push changes both speeds by the same amount, so neither comes off worse.</>
+            )}
           </p>
           <p className="muted">Newton&rsquo;s third law, with a = F / m for each vehicle. 1 kN is about the weight of a 100 kg person.</p>
         </>
