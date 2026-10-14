@@ -1,6 +1,6 @@
 # SPIKE-001: lessons as content-hashed bundles in a sandboxed cross-origin iframe
 
-owner: platform-engineer (Noor) · for: [EDD-003](../edd/EDD-003-lesson-storage-at-scale.md) stage 1 · board: W-074 · date: 2026-10-13 · status: done (scratch branch, never merged)
+owner: platform-engineer (Noor) · for: [EDD-003](../edd/EDD-003-lesson-storage-at-scale.md) stage 1 · board: W-074 · date: 2026-10-13 · status: done; accepted 2026-10-14 (go with changes). Note: the spike code was merged in f6c710c and its route ships to production (W-477)
 Founder decision (2026-10-13): lesson code runs in the browser, in a sandbox, not on the server.
 Raw numbers: [SPIKE-001-results.json](SPIKE-001-results.json). Review: [2026-10-13-eng-review-lesson-storage.md](../../rituals/records/2026-10-13-eng-review-lesson-storage.md).
 

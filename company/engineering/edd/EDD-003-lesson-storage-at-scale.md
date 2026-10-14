@@ -1,8 +1,10 @@
 # EDD-003: Lesson storage and loading at 10k, 100k and 1M lessons
 
-author: principal-engineer (Kenji) · reviewers: platform-engineer, evaluation-steward, backend-engineer, privacy-reviewer, tools-lead · tier: 2 · status: proposed · date: 2026-10-13
+author: principal-engineer (Kenji) · reviewers: platform-engineer, evaluation-steward, backend-engineer, privacy-reviewer, tools-lead · tier: 2 · status: **approved with changes** (review closed 2026-10-14) · date: 2026-10-13
 
 Review record: [2026-10-13-eng-review-lesson-storage.md](../../rituals/records/2026-10-13-eng-review-lesson-storage.md)
+
+> **Update 2026-10-14 (review closed: approve with changes).** At 879 lessons build 7 takes about 7.1 min (0.48 s per lesson, more than twice the 0.21 s assumed below) with 1.2 GB of output, and full QA is about 2.6 h, so the **QA trigger for stage 1 has fired** and the build trigger is projected near 1,250 lessons. SPIKE-001 is accepted: go with changes. ADR-003 to ADR-007 are proposed in `../adr/`. ADR-008 waits for W-089. The warm budget is redefined: after-snap interactive ≤ 300 ms with the active ±1 frames pre-created, measured on a device. Stage-1 tooling may start after the founder's bundler decision ([decision record](../../decisions/2026-10-14-lesson-bundler-and-memory.md)). No lesson migrates and no gate changes until W-085, W-086, the W-087 amendment and founder question 6 are done. Answers to every open question are in the review record.
 
 ## Problem and why now
 
