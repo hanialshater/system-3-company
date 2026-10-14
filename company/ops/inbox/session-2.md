@@ -67,6 +67,15 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on cluster-stops-the-cascade, enemy-of-my-enemy, prices-sort-the-buyers
+
+- **What changed.** Set status, checkedBy and checkedOn on all 23 claims. Appended a FACT-CHECK note to the source of enemy c6. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all three. Not committed. Demo.tsx, board, progress and events not touched.
+- **Counts.** cascade 9/0/0 (verified/disputed/withdrawn). enemy 5/1/0. prices 8/0/0.
+- **Dispute (blocks enemy-of-my-enemy).** c6 says the balance theorem "is due to Cartwright and Harary (1956)". Harary proved it first (Michigan Math. J. 2: 143-146, 1953). The C&H 1956 citation details are correct. Fix: reveal paragraph 3 -> "(Harary, 1953; Cartwright and Harary, 1956)", and the claim text to match. Owner: demo-builder. Then fact-checker re-checks c6.
+- **Advisory (prices, not blocking).** The recall "why" line "y values b most" is not recorded in any claim; suggest adding it to c4 (demo-builder).
+- **Sources.** The E&K ch. 19 cluster theorem and the ch. 10 existence/optimality/auction results were confirmed via search-quoted secondary sources. The book PDF, the mirrors and the primary papers are 403 through the proxy. E&K sections stay `section_unconfirmed`.
+- **Belief.** High on all simulation and enumeration claims: I re-ran code copied from each Demo.tsx, ran an exhaustive cluster-theorem check on all 4,095 seed sets, and proved that (3,1,0) is the lowest clearing price. Medium-high on the source attributions.
+
 ### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on same-songs-different-hits, contact-order-matters, new-road-slower-trip
 
 - **What changed.** Set status, checkedBy and checkedOn on every claim in the three meta.json files. Appended a "FACT-CHECK ... (pass NCM-1, session 2)" note to each source. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all three. Not committed. Demo.tsx, board, progress and events not touched.
