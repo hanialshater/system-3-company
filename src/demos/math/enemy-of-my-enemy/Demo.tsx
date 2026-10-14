@@ -75,6 +75,21 @@ interface Seen {
   mixed: number | null; // unbalanced count of the first "not camps" setting the learner reached by tapping
 }
 
+// Legend swatches: the stage's own handle and trio classes, drawn in small inline SVG.
+const Sw = ({ on }: { on?: boolean }) => (
+  <svg viewBox="0 0 28 28" width={14} height={14} className={s.sw} aria-hidden="true">
+    <circle cx={14} cy={14} r={13} className={on ? s.handleOn : s.handleOff} />
+    <text x={14} y={19.5} textAnchor="middle" className={on ? s.glyphOn : s.glyphOff}>
+      {on ? "+" : "\u2212"}
+    </text>
+  </svg>
+);
+const Tri = () => (
+  <svg viewBox="0 0 28 24" width={14} height={12} className={s.sw} aria-hidden="true">
+    <polygon points="14,1 27,23 1,23" className={s.trio} />
+  </svg>
+);
+
 function Stage({
   locked,
   interact,
@@ -92,6 +107,7 @@ function Stage({
 }) {
   const { reach } = useMilestones(interact, MILESTONES);
   const [last, setLast] = useState<number | null>(null);
+  const [said, setSaid] = useState(""); // polite live line, set only after a flip or preset
   const bad = unbalancedTrios(signs);
   const cs = camps(signs);
 
@@ -99,6 +115,7 @@ function Stage({
     setSigns(next);
     const n = unbalancedTrios(next).length;
     const c = camps(next);
+    setSaid(`${n} of 10 trios unbalanced; camps ${c ? c.join(", ") : "not camps"}`);
     const split = c ? c.join(" | ") : "";
     if (fromTap && n === 0 && c) {
       setSeen((p) => (p.zeros.includes(split) ? p : { ...p, zeros: [...p.zeros, split] }));
@@ -160,8 +177,8 @@ function Stage({
             const f = signs[k] > 0;
             return (
               <g key={`h${k}`}>
-                {last === k && <circle cx={x} cy={y} r={16} className={s.ring} />}
-                <circle cx={x} cy={y} r={12} className={f ? s.handleOn : s.handleOff} />
+                {last === k && <circle cx={x} cy={y} r={17} className={s.ring} />}
+                <circle cx={x} cy={y} r={13} className={f ? s.handleOn : s.handleOff} />
                 <text x={x} y={y + 5.5} textAnchor="middle" className={f ? s.glyphOn : s.glyphOff}>
                   {f ? "+" : "−"}
                 </text>
@@ -196,8 +213,10 @@ function Stage({
         })}
       </div>
       <p className={s.legend}>
-        <span className={s.keyFriend}>+</span> friends <span className={s.keyEnemy}>−</span> enemies{" "}
-        <span className={s.keyTrio} /> unbalanced
+        <Sw on /> friends <Sw /> enemies <Tri /> unbalanced
+      </p>
+      <p className={s.sr} aria-live="polite">
+        {said}
       </p>
       <Row>
         <Readout label="Unbalanced" value={locked ? "?" : `${bad.length} of 10`} />

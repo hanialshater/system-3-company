@@ -29,8 +29,10 @@
 
 .trio {
   fill: var(--bad-fill);
-  fill-opacity: 0.16;
-  stroke: none;
+  fill-opacity: 0.12;
+  stroke: var(--bad-fill);
+  stroke-opacity: 0.5;
+  stroke-width: 1;
 }
 
 .friend {
@@ -47,18 +49,18 @@
 .handleOn {
   fill: var(--good-fill);
   stroke: var(--fg);
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 
 .handleOff {
   fill: var(--bg-2);
   stroke: var(--fg);
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 
 .glyphOn,
 .glyphOff {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
   pointer-events: none;
 }
@@ -118,36 +120,21 @@
   color: var(--muted);
 }
 
-.keyFriend,
-.keyEnemy {
+.sw {
   display: inline-block;
-  width: 18px;
-  height: 18px;
-  line-height: 16px;
-  border-radius: 50%;
-  border: 1.5px solid var(--fg);
-  font-weight: 800;
-  color: var(--fg);
-  margin-left: 6px;
+  vertical-align: -2px;
+  margin-left: 4px;
+  overflow: visible;
 }
 
-.keyFriend {
-  background: var(--good-fill);
-  color: #0d0f14;
-}
-
-.keyEnemy {
-  background: var(--bg-2);
-}
-
-.keyTrio {
-  display: inline-block;
-  width: 14px;
-  height: 12px;
-  margin-left: 6px;
-  vertical-align: -1px;
-  background: color-mix(in srgb, var(--bad-fill) 30%, transparent);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .tap {
