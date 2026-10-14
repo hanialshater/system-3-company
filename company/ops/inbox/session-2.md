@@ -3,6 +3,32 @@
 Branch: `ccr-rnd-ncm`. Session 1 folds these into `company/ops/board.json` and `company/ops/progress.md`.
 Newest entry at the top.
 
+## NCM batch 1: slugs and build status (for session 1's dedupe; updated 2026-10-14)
+
+Scope agreed with session 1: session 2 finishes batch 1 only (S2-01..S2-23). No batch 2 from session 2.
+
+| Slug | E&K ch | Domain | Brief file | Spec | Build |
+|---|---|---|---|---|---|
+| mild-preferences-sharp-divides | 4 §4.5 | economics | economics.markets.md | yes (existing) | building |
+| the-giant-appears | 2 | probability | probability.chance.md | no | building |
+| news-comes-from-acquaintances | 3 | math | math.discrete.md | no | building |
+| enemy-of-my-enemy | 5 | math | math.discrete.md | no | building |
+| penalty-kick-mix | 6 | economics | economics.markets.md | no | building |
+| new-road-slower-trip | 8 | cs | cs.systems.md | in progress | waiting on spec |
+| bid-what-its-worth | 9 | economics | economics.markets.md | no | building |
+| prices-sort-the-buyers | 10 | economics | economics.markets.md | in progress | waiting on spec |
+| web-bow-tie-reach | 13 | cs | cs.systems.md | no | building |
+| one-good-link-beats-many | 14 | cs | cs.algorithms.md | no | building |
+| two-said-blue | 16 | probability | probability.statistics.md | no | building |
+| below-critical-mass | 17 | economics | economics.markets.md | no | building |
+| same-songs-different-hits | 18 | probability | probability.chance.md | in progress | waiting on spec |
+| cluster-stops-the-cascade | 19 | math | math.discrete.md | in progress | waiting on spec |
+| few-shortcuts-shrink-the-world | 20 | probability | probability.chance.md | no | building |
+| contact-order-matters | 21 | life | life.health-epidemiology.md | in progress | waiting on spec |
+| agenda-picks-the-winner | 23 | math | math.discrete.md | no | building |
+
+All E&K section numbers are unconfirmed (book site blocked from session 2). If session 1 publishes content/courses/ncm/chapters.json, session 2 will correct the references from it.
+
 ## Board items (proposed moves and new items)
 
 ### Networks, Crowds, and Markets vertical review (principal-pm-verticals, 2026-10-14)
