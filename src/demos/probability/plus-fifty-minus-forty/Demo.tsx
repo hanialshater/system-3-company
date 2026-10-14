@@ -9,7 +9,7 @@ import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
-import { DOWN, PLAYERS, ROUNDS, START, UP, expected, headsToGain, meanFactor, pAtLeast, paths, stats, typicalFactor } from "./model";
+import { DOWN, PLAYERS, ROUNDS, START, UP, headsToGain, meanFactor, pAtLeast, paths, stats } from "./model";
 import s from "./styles.module.css";
 
 const MILESTONES = ["round-100", "lines", "pair"] as const;
@@ -64,7 +64,7 @@ function Stage({ locked, interact, st, set }: { locked: boolean; interact: () =>
   return (
     <div className={s.wrap}>
       <p className={s.chip}>
-        Fair coin each round: ×{UP} or ×{DOWN}. Each gridline is 100× the one below.
+        Fair coin each round: ×{UP} or ×{DOWN}. Log scale: each gridline is 100× the one below, so $100 to $1 is a 99% loss.
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${PLAYERS} players after ${st.t} rounds; typical ${dollars(now.median)}`}>
         {TICKS.map(([v, lab]) => (
@@ -165,13 +165,13 @@ export default function PlusFiftyMinusForty({ slug }: { slug: string }) {
             ended above the start. Yet the average of the {PLAYERS} was {dollars(end.mean)}: a few lucky players carried it.
           </p>
           <p>
-            A head then a tail is ×{UP} × {DOWN} = ×{(UP * DOWN).toFixed(1)}: a loss. So a typical round multiplies money
-            by √{(UP * DOWN).toFixed(1)} ≈ {typicalFactor.toFixed(3)}, a 5% shrink. You need {K_GAIN}+ heads in {ROUNDS} to end
-            up ahead; only {Math.round(P_GAIN * 100)}% of players get them.
+            A head then a tail is ×{UP} × {DOWN} = ×{(UP * DOWN).toFixed(1)}: a loss. A typical player gets about {ROUNDS / 2} heads
+            and {ROUNDS / 2} tails, so about {ROUNDS / 2} such pairs: ×0.9 fifty times leaves about half a percent of the start.
+            You need {K_GAIN}+ heads in {ROUNDS} to end up ahead; only {Math.round(P_GAIN * 100)}% of players get them.
           </p>
           <p className="muted">
-            Averaged over every possible player the result would be ${Math.round(expected(ROUNDS)).toLocaleString("en-US")}, far
-            above any {PLAYERS} you drew: it rests on rare, huge winners. Almost nobody lives on that average.
+            Averaged over every possible player, the result would be far above the average of any {PLAYERS} you drew: it rests on
+            rare, huge winners. Almost nobody lives on that average.
           </p>
         </>
       )}

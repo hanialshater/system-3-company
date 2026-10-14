@@ -89,7 +89,8 @@ function Stage({ ctx, n, setN }: { ctx: StageContext; n: number; setN: (n: numbe
       <Row>
         <Readout label="Chance of a loss" value={locked ? "?" : pct(lossChance(n))} />
         <Readout label="Average" value={locked ? "?" : ret(average(n))} />
-        <Readout label="Worst case" value={locked ? "?" : `${ret(DOWN)}, ${pct(0.5 ** n)}`} />
+        <Readout label="Worst result" value={locked ? "?" : ret(DOWN)} />
+        <Readout label="Chance of it" value={locked ? "?" : pct(0.5 ** n)} />
       </Row>
     </div>
   );
@@ -97,6 +98,11 @@ function Stage({ ctx, n, setN }: { ctx: StageContext; n: number; setN: (n: numbe
 
 export default function TwoBetsSplit({ slug }: { slug: string }) {
   const [n, setN] = useState(1);
+  const [seen, setSeen] = useState<number[]>([]);
+  const visit = (v: number) => {
+    setN(v);
+    setSeen((x) => (x.includes(v) ? x : [...x, v]));
+  };
   return (
     <Lesson
       slug={slug}
@@ -115,14 +121,17 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
           </p>
           <p>
             Independent bets partly cancel. As you split further, the bars bunch around {ret(AVG)} and the worst case,
-            every bet falling, gets rarer: 50%, 25%, 12.5%… The chance of some loss does not fall at every step (with 4
-            bets it is {pct(lossChance(4))}), but the worst case, every bet falling, gets rarer at every step.
+            every bet falling, gets rarer: 50%, 25%, 12.5%… The chance of some loss does not fall at every step
+            {seen.includes(4)
+              ? ` (with 4 bets it is ${pct(lossChance(4))})`
+              : " (try 4 bets: it goes back up)"}
+            , but the worst case, every bet falling, gets rarer at every step.
           </p>
           <p className="muted">A model: truly independent bets, made-up numbers. Real investments often fall together. Not advice.</p>
         </>
       )}
     >
-      {(ctx) => <Stage ctx={ctx} n={n} setN={setN} />}
+      {(ctx) => <Stage ctx={ctx} n={n} setN={visit} />}
     </Lesson>
   );
 }

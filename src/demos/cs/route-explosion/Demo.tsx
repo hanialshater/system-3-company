@@ -43,6 +43,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
   const [k, setK] = useState(MIN_K);
   const [shown, setShown] = useState(0);
   const [maxK, setMaxK] = useState(MIN_K);
+  const [saw19, setSaw19] = useState(false);
   const [listed, setListed] = useState<number[]>([]); // city counts whose routes the learner listed in full
 
   const total = fact(k);
@@ -60,7 +61,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
         options: ["81", fmt(fact(ANSWER_K)), fmt(fact(ANSWER_K + 1))],
         answer: 1,
       }}
-      exploreHint="List every route for 3 cities. Then add cities and watch the count."
+      exploreHint="List every route for 3 cities. Then add cities and watch each count multiply."
       minInteractions={2}
       reveal={() => (
         <>
@@ -72,9 +73,9 @@ export default function RouteExplosion({ slug }: { slug: string }) {
             {fmt(fact(ANSWER_K + 1))} would count it too.
           </p>
           <p>
-            Each new city multiplies the count, because it can slot into every old order in several places. With home plus
-            19 cities there are {fmt(fact(19))} orders: about 3.9 years at a billion checks a second. Real route planners
-            use cleverer methods than checking them all.
+            Each new city multiplies the count: {fmt(fact(ANSWER_K - 1))} × {ANSWER_K} = {fmt(fact(ANSWER_K))}.{" "}
+            {saw19 ? "With 19 cities" : "With 19 cities to visit"} there are {fmt(fact(19))} orders: about 3.9 years at a
+            billion checks a second. Real route planners use cleverer methods than checking them all.
           </p>
         </>
       )}
@@ -104,6 +105,13 @@ export default function RouteExplosion({ slug }: { slug: string }) {
               setMaxK(Math.max(maxK, k + 1));
               reach("added-city");
             };
+            const try19 = () => {
+              if (locked) return;
+              setK(19);
+              setShown(0);
+              setSaw19(true);
+              reach("added-city");
+            };
             const restart = () => {
               if (locked) return;
               setK(MIN_K);
@@ -114,11 +122,15 @@ export default function RouteExplosion({ slug }: { slug: string }) {
               ? "Make a prediction to start."
               : drawable
                 ? shown === 0
-                  ? `${k} cities. Draw the routes one by one.`
+                  ? k === MIN_K
+                    ? `${k} cities. Draw the routes one by one.`
+                    : `${k} cities: ${fmt(fact(k - 1))} × ${k} = ${fmt(total)}. Draw them if you like.`
                   : shown < total
                     ? `${shown} route${shown === 1 ? "" : "s"} so far.`
                     : `That is every order: ${chain(k)} = ${fmt(total)}.`
-                : `City ${k} can go in ${k} places in every old order: ×${k}.`;
+                : k === 19
+                  ? "19 cities: about 3.9 years at a billion checks a second."
+                  : `${k} cities: ${fmt(fact(k - 1))} × ${k} = ${fmt(total)}.`;
 
             const drawMap = !drawable || shown === 0;
 
@@ -136,7 +148,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
                       })}
                       <rect x={150} y={90} width={20} height={20} rx={3} fill="var(--fg)" />
                       <text x={160} y={200} textAnchor="middle" className={s.big}>
-                        {locked ? `${k} cities + home` : drawable ? `${k} cities + home` : `${chain(k)} = ${fmt(total)}`}
+                        {locked ? `${k} cities + home` : drawable || k > MAX_K ? `${k} cities + home` : `${chain(k)} = ${fmt(total)}`}
                       </text>
                     </g>
                   ) : (
@@ -177,7 +189,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
 
                 <Row>
                   <Readout label="Cities" value={k} />
-                  <Readout label="Orders" value={locked || (drawable && shown < total) ? "?" : fmt(total)} />
+                  <Readout label="Orders" value={locked || (k === MIN_K && shown < total) ? "?" : k > MAX_K ? "1.2 × 10¹⁷" : fmt(total)} />
                   <Control className="active" disabled={locked || !drawable || shown >= total} onClick={next}>
                     Next route
                   </Control>
@@ -188,6 +200,9 @@ export default function RouteExplosion({ slug }: { slug: string }) {
                 <Row>
                   <Control disabled={locked || k >= MAX_K} onClick={add}>
                     Add a city
+                  </Control>
+                  <Control disabled={locked || k === 19} onClick={try19}>
+                    Try 19 cities
                   </Control>
                   <Control disabled={locked || (k === MIN_K && shown === 0)} onClick={restart}>
                     Start over

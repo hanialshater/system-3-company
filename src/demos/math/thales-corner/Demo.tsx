@@ -43,7 +43,8 @@ const fmt = (d: number) => `${Math.round(d)}°`;
 export default function ThalesCorner({ slug }: { slug: string }) {
   const [v, setV] = useState(START);
   const [radius, setRadius] = useState(false);
-  const visited = useRef(new Set<number>([START]));
+  const visited = useRef(new Set<number>([START])); // counted places: each at least GAP apart
+  const GAP = 4;
   const [readings, setReadings] = useState<string[]>([]);
 
   return (
@@ -54,14 +55,14 @@ export default function ThalesCorner({ slug }: { slug: string }) {
         options: ["60°", "90°", "It depends where P is"],
         answer: 1,
       }}
-      exploreHint={`Move P to at least ${NEED} places, then draw the radius OP.`}
+      exploreHint={`Put P near A, at the top and near B, then draw the radius OP.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             <strong>90°, wherever P is.</strong>{" "}
             {readings.length >= NEED
-              ? `You put P in ${readings.length} places and the angle read ${readings.join(", ")}.`
+              ? `You checked ${readings.length} well-separated places and the angle read ${readings.join(", ")}.`
               : "Every place P can go gives the same reading."}
           </p>
           <p>
@@ -81,11 +82,12 @@ export default function ThalesCorner({ slug }: { slug: string }) {
               radius={radius}
               onMove={(nv) => {
                 setV(nv);
-                visited.current.add(nv);
+                if ([...visited.current].every((c) => Math.abs(c - nv) >= GAP)) visited.current.add(nv);
                 const list = [...visited.current].sort((a, b) => a - b);
                 setReadings(list.map((x) => fmt(angleAt(P(x), A, B))));
                 if (visited.current.size >= NEED) reach("three-places");
               }}
+              seen={readings.length ? readings : [fmt(angleAt(P(START), A, B))]}
               onRadius={() => {
                 setRadius(!radius);
                 reach("radius-drawn");
@@ -104,12 +106,14 @@ function Stage({
   radius,
   onMove,
   onRadius,
+  seen,
 }: {
   locked: boolean;
   v: number;
   radius: boolean;
   onMove: (v: number) => void;
   onRadius: () => void;
+  seen: string[];
 }) {
   const p = P(v);
   const angP = angleAt(p, A, B);
@@ -164,12 +168,24 @@ function Stage({
         {caption}
       </p>
 
+      <Row>
+        <Control disabled={locked} onClick={() => onMove(15)}>
+          P near A
+        </Control>
+        <Control disabled={locked} onClick={() => onMove(9)}>
+          P at the top
+        </Control>
+        <Control disabled={locked} onClick={() => onMove(3)}>
+          P near B
+        </Control>
+      </Row>
       <Slider label="Where P is" value={v} min={1} max={PLACES} disabled={locked} format={(n) => `place ${n} of ${PLACES}`} onChange={onMove} />
+      {!locked && <p className={s.caption}>Angle at P in places checked: {seen.join(", ")}</p>}
       <Row>
         <Control disabled={locked} className={radius ? "active" : ""} aria-pressed={radius} onClick={onRadius}>
           {radius ? "Hide the radius OP" : "Draw the radius OP"}
         </Control>
-        <Readout label="Angle at P" value={locked ? "?" : radius ? `${fmt(x)} + ${fmt(y)} = ${fmt(angP)}` : fmt(angP)} />
+        <Readout label="Angle at P" value={locked ? "?" : radius ? `x = ${fmt(x)}, y = ${fmt(y)}: ${fmt(angP)}` : fmt(angP)} />
       </Row>
     </div>
   );

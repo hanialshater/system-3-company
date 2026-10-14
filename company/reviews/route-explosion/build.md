@@ -6,3 +6,12 @@
 - Numbers: the question's 9, 362,880 and 3,628,800, the stage counts and the reveal all come from fact()/perms() in Demo.tsx. Brief answer (B) re-computed in Node (BigInt) and held; 19! / 1e9 / 31,557,600 = 3.85 years.
 - Locked: orders readout shows "?" until every route for the current k is listed.
 - Open risk: a learner may reveal after adding one city (4) without climbing to 9; the reveal then states 362,880 rather than showing it.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Adding a city now shows the count as the previous count times the city count (6, 24, 120 ... 362,880) at once, with the drawing optional.
+- Reveal keeps one explanation (choices multiply) and drops the insertion argument; new "Try 19 cities" control shows 19 cities and the 3.9-year figure on the stage.
+- c3, c4 unverified.

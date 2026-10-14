@@ -5,3 +5,13 @@
 - Numbers: question's 16 and options (15, 30, 120) come from grows()/TARGET in Demo.tsx; the reveal's sum is the same grows(16). Brief answer (A, 15) re-computed in Node and held.
 - Deviation from brief claim list: dropped "Python lists double"; CPython over-allocates by about 1/8, Java ArrayList by 1.5x, so the reveal says "grow by a factor" and names ArrayList only.
 - After screenshots: the single starting slot sat at the far left and "Grow: copy 0 into 2" read oddly while disabled; the row is now centred and the button says "Grow" until the list is full.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Question defines list, append and the resize; hook no longer presupposes appending is fast.
+- "Append to 16" jump kept as "Run to 16"; new "Fill, then double" button steps one doubling per press so 1+2+4+8 appears as a process.
+- "Per append" is now "Copies per append"; Java ArrayList sentence dropped from the reveal (c4 no longer shown).
+- c3 unverified.

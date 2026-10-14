@@ -59,8 +59,9 @@ function pathOf(c: number[], tEnd: number) {
 export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
   const [t, setT] = useState(0);
   const [pose, setPose] = useState<Pose>("belly");
-  const [mass, setMass] = useState(80);
+  const mass = 80;
   const [ghost, setGhost] = useState<{ pose: Pose; mass: number } | null>(null);
+  const [sawHead, setSawHead] = useState(false);
   const [seen, setSeen] = useState<{ pose: Pose; mass: number; v: number; t: number } | null>(null);
   const interactRef = useRef<() => void>(() => {});
   const { reach } = useMilestones(() => interactRef.current(), ["levelled"]);
@@ -75,6 +76,7 @@ export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
     const vv = at(curve(mm, pp), tt);
     if (vv >= 0.97 * vTerm(mm, pp)) {
       if (!seen) setSeen({ pose: pp, mass: mm, v: vv, t: tt });
+      if (pp === "head") setSawHead(true);
       reach("levelled");
     }
   };
@@ -85,25 +87,26 @@ export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
       predict={{
         question:
           "A belly-down skydiver (80 kg, drag area about 0.7 m²) jumps from a plane. After a long fall, her speed…",
-        options: ["keeps climbing without limit", "levels off near 43 m/s (155 km/h)", "levels off near 5 m/s"],
+        options: ["keeps climbing without limit", "levels off near 43 m/s (155 km/h)", "levels off near 150 m/s (540 km/h)"],
         answer: 1,
       }}
-      exploreHint="Move time forward and watch the speed and the two forces."
+      exploreHint="Move time forward and watch the speed and the two forces. Then switch pose."
       minInteractions={1}
       reveal={() => {
         const sv = seen ?? { pose: "belly" as Pose, mass: 80, v: at(curve(80, "belly"), 10), t: 10 };
         return (
           <>
             <p>
-              At {sv.t} s you saw her at <strong>{sv.v.toFixed(1)} m/s</strong>, already within 3% of her limit of{" "}
-              {vTerm(sv.mass, sv.pose).toFixed(1)} m/s ({sv.pose === "belly" ? "belly-down" : "head-down"}, {sv.mass}{" "}
-              kg). Belly-down at 80 kg the limit is {vTerm(80, "belly").toFixed(1)} m/s, about{" "}
-              {Math.round(vTerm(80, "belly") * 3.6)} km/h.
+              At {sv.t} s you saw her at <strong>{sv.v.toFixed(1)} m/s</strong>, close to her limit of{" "}
+              {vTerm(sv.mass, sv.pose).toFixed(1)} m/s ({sv.pose === "belly" ? "belly-down" : "head-down"}). In this model, belly-down
+              at 80 kg, the limit is {vTerm(80, "belly").toFixed(1)} m/s, about {Math.round(vTerm(80, "belly") * 3.6)} km/h.
             </p>
             <p>
-              Air pushes back harder the faster she goes (as speed squared). Once that push equals her weight, the forces
-              cancel and her speed stops growing. Head-down she meets less air, so the limit is higher:{" "}
-              {vTerm(80, "head").toFixed(0)} m/s.
+              Air pushes back harder the faster she goes: twice the speed, four times the push. Once that push equals her
+              weight, the forces cancel and her speed stops growing.{" "}
+              {sawHead
+                ? `Head-down she meets less air, so the limit is higher: ${vTerm(80, "head").toFixed(0)} m/s.`
+                : "Try the pose button: head-down she meets less air, so the limit is higher."}
             </p>
             <p className="muted">Model: steady sea-level air, typical drag areas.</p>
           </>
@@ -144,6 +147,11 @@ export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
                 m/s
               </text>
               {gc && <path d={pathOf(gc, t)} className={s.ghost} />}
+              {gc && (
+                <text x={GX1 - 4} y={GY1 + 8} textAnchor="end" className={s.small}>
+                  dashed: previous pose
+                </text>
+              )}
               {levelled && <line x1={GX0} y1={yOf(vt)} x2={GX1} y2={yOf(vt)} className={s.limit} />}
               <path d={pathOf(c, t)} className={s.curve} />
               <circle cx={xOf(t)} cy={yOf(v)} r={4} className={s.dot} />
@@ -204,20 +212,6 @@ export default function SkydiverSpeedLimit({ slug }: { slug: string }) {
               </Control>
               <Readout label="Speed" value={locked ? "?" : `${v.toFixed(1)} m/s`} />
             </Row>
-            <Slider
-              label="Body mass"
-              value={mass}
-              min={50}
-              max={120}
-              step={10}
-              disabled={locked}
-              format={(x) => `${x} kg`}
-              onChange={(x) => {
-                setGhost({ pose, mass });
-                setMass(x);
-                check(t, pose, x);
-              }}
-            />
           </div>
         );
       }}

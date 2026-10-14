@@ -56,6 +56,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       </Row>
       <Row>
         <Readout label="Matches you" value={val(me)} />
+        <Readout label="Nobody matches you" value={val(1 - me)} />
         <Readout label="Any two match" value={val(any)} />
       </Row>
     </div>
@@ -80,7 +81,7 @@ export default function ABirthdayLikeMine({ slug }: { slug: string }) {
             {pct1(pMe(MID))}; at {ANSWER} you reached {pct1(pMe(ANSWER))}.
           </p>
           <p>
-            {SMALL} people make {pairs(SMALL)} pairs, but you are in only {SMALL} of them. Each comparison hits with chance 1 in 365, so it takes about 253 comparisons with you to reach even odds.
+            {SMALL} people make {pairs(SMALL)} pairs, but you are in only {SMALL} of them. Each person misses your birthday with chance 364/365, and these misses multiply: after {ANSWER} people the chance that nobody matches you is {pct1(1 - pMe(ANSWER))}, so a match is even odds. (That {ANSWER} is also the number of pairs among {SMALL} people, but only by coincidence.)
           </p>
         </>
       )}

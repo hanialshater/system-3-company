@@ -73,7 +73,8 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
   const [u, setU] = useState<UF>(fresh);
   const [sel, setSel] = useState<number | null>(null);
   const [note, setNote] = useState("");
-  const [tallest, setTallest] = useState(0);
+  const [tallest, setTallest] = useState(0); // tallest tree built by hand
+  const [auto, setAuto] = useState<number | null>(null); // height after "Merge the rest"
   const [batch, setBatch] = useState<number | null>(null);
 
   const pos = layout(u);
@@ -96,7 +97,12 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your tallest tree had <strong>{tallest}</strong> hop{tallest === 1 ? "" : "s"} from the bottom to the leader.
+            {auto !== null ? (
+              <>
+                Merging the smallest groups first made a tree <strong>{auto}</strong> hops from the bottom to the leader.{" "}
+              </>
+            ) : null}
+            {tallest > 0 ? `By hand you built up to ${tallest} hop${tallest === 1 ? "" : "s"}.` : ""}
             {batch !== null ? ` In 1,000 random merge orders the worst was ${batch}.` : ""} With the smaller group hung
             under the bigger, nobody gets past 3.
           </p>
@@ -110,9 +116,9 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => {
-        const commit = (next: UF, msg: string) => {
+        const commit = (next: UF, msg: string, byHand = true) => {
           setU(next);
-          setTallest((t) => Math.max(t, height(next)));
+          if (byHand) setTallest((t) => Math.max(t, height(next)));
           setNote(msg);
           if (groups(next).length === 1) interact();
         };
@@ -133,7 +139,7 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
           }
           const next = union(u, sel, i);
           const top = root(next, i).r;
-          commit(next, `Merged: leader ${NAMES[top]}, group of ${next.size[top]}. Tallest: ${height(next)} hops.`);
+          commit(next, `Merged: leader ${NAMES[top]}, group of ${next.size[top]}. Tallest: ${height(next)} hop${height(next) === 1 ? "" : "s"}. Tap two leaders (filled circles) to merge more.`);
         };
         const pairUp = () => {
           if (locked || g.length === 1) return;
@@ -144,7 +150,8 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
             next = union(next, rs[1], rs[0]);
           }
           setSel(null);
-          commit(next, `Everyone merged, smallest groups first. Tallest: ${height(next)} hops.`);
+          setAuto(height(next));
+          commit(next, `Everyone merged, smallest groups first. Tallest: ${height(next)} hops.`, false);
         };
         const runBatch = () => {
           if (locked || batch !== null) return;
@@ -190,7 +197,7 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
                   </g>
                 );
               })}
-              {[0, 1, 2, 3].map((d) => (
+              {[0, 1, 2, 3].filter((d) => !locked && d <= h).map((d) => (
                 <text key={d} x={316} y={Y(d) + 4} textAnchor="end" className={s.axis}>
                   {d === 0 ? "leader" : `${d} hop${d === 1 ? "" : "s"}`}
                 </text>
@@ -215,7 +222,7 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
               </Control>
             </Row>
             <p className={s.count}>
-              Groups {g.length} · tallest now {h} · tallest you built {tallest}
+              Groups {g.length} · tallest now {h} · tallest you built by hand {tallest}
             </p>
           </div>
         );

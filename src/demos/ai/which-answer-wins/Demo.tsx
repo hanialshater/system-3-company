@@ -97,7 +97,7 @@ export default function WhichAnswerWins({ slug }: { slug: string }) {
                   <text x={X(-2.9)} y={Y(OBSERVED) - 5} className={s.small} fill="var(--good)">
                     people: A wins 75%
                   </text>
-                  <path d={curve} fill="none" stroke="var(--domain)" strokeWidth={2.5} />
+                  {!locked && <path d={curve} fill="none" stroke="var(--domain)" strokeWidth={2.5} />}
                   {!locked && (
                     <g>
                       <line x1={X(gap)} y1={Y(0)} x2={X(gap)} y2={Y(p)} stroke="var(--muted)" strokeDasharray="3 3" />
