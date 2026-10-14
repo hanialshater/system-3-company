@@ -32,3 +32,7 @@ Inputs: learner review r2 (company/reviews/below-critical-mass/2026-10-14-learne
 - Options balanced to similar length; the correct one (second, index unchanged) is no longer the only one naming both launches or the longest. Distractors: holds at 18%, both grow (18% slower), both fade (25% slower).
 - Claims: new c10 (80% not 100%) and c11 (diagonal and shaded regions), both unverified. c1-c9 untouched, still verified; references untouched. Version 3.
 - Build used `next build --webpack` (turbopack OOM-killed by other builders). tsconfig.json change reverted.
+
+## Revision (v4, 2026-10-14, fact-check NCM-3)
+
+Reveal paragraph 2 bounded: "Between it and 80% the curve is above the line and the share grows. Above 80% it dips below again, so the share falls back to 80%." c11 reset to unverified for re-check. meta version 4.

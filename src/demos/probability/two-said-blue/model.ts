@@ -60,3 +60,16 @@ export function runMore(t: Tally, count: number, acc: number): Tally {
 export const exactWrong = (acc: number) => (1 - acc) ** 2 / ((1 - acc) ** 2 + acc ** 2);
 
 export const pct = (x: number, d = 1) => `${(x * 100).toFixed(d)}%`;
+
+// Chance a plain vote of N independent clues has a red majority (ties excluded): exact binomial, P(blue clues < N/2).
+export function plainWrong(acc: number): number {
+  let total = 0;
+  for (let k = 0; k < N / 2; k++) {
+    let lg = 0; // log C(N, k)
+    for (let i = 1; i <= k; i++) lg += Math.log((N - k + i) / i);
+    total += Math.exp(lg + k * Math.log(acc) + (N - k) * Math.log(1 - acc));
+  }
+  return total;
+}
+
+export const pctSmall = (x: number) => (x < 0.0001 ? "under 0.01%" : pct(x, x < 0.01 ? 3 : 1));

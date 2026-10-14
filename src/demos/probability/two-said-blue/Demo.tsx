@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
-import { ACCS, EMPTY, N, exactWrong, pct, runMore, sequence, type Tally } from "./model";
+import { ACCS, EMPTY, N, exactWrong, pct, pctSmall, plainWrong, runMore, sequence, type Tally } from "./model";
 import s from "./styles.module.css";
 
 const MILESTONES = ["ran", "hundred", "pooled"] as const;
@@ -108,8 +108,8 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
   let q = 1;
   for (let i = 0; i < tallies.length; i++) if (tallies[i].n > tallies[q].n) q = i;
   const t = tallies[q];
-  const v = tallies[ai].n > 0 ? ai : q; // the accuracy the stage is showing
-  const last = tallies[v].n > 0 ? sequence(tallies[v].n, ACCS[v]) : null;
+  const v = ai; // the accuracy the stage is showing
+  const last = tallies[v].n > 0 ? sequence(tallies[v].n, ACCS[v]) : null; // null when the stage is empty: no pointer to it
   const over = last ? last.picks.filter((p, i) => p !== last.clues[i]).length : 0;
   return (
     <Lesson
@@ -127,7 +127,7 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
             In your {fmt(t.n)} crowds (clue right {q === 1 ? "2 in 3" : accLabel(ACCS[q])}), {fmt(t.wrong)} ended on the wrong colour ({pct(t.wrong / Math.max(t.n, 1))}); the exact chance is {pct(exactWrong(ACCS[q]))}. A plain vote of the same clues had a red majority in {fmt(t.poolWrong)} (ties not counted).
           </p>
           <p>
-            Alone, one person is wrong {pct(1 - ACCS[q])} of the time, so the crowd does beat one person, but a plain vote would almost never be wrong.
+            Alone, one person is wrong {pct(1 - ACCS[q])} of the time, so the crowd does beat one person, but a plain vote of 100 such clues is wrong only {pctSmall(plainWrong(ACCS[q]))} of the time (ties not counted).
           </p>
           {last && (
             <p>

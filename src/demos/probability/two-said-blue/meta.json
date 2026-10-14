@@ -90,12 +90,10 @@
     },
     {
       "id": "probability.two-said-blue.c9",
-      "text": "One person alone, with a clue right 2 times in 3, is wrong 1 time in 3 (33.3%; 40.0% at 60%, 20.0% at 80%), so a crowd wrong 1 time in 5 beats one person but is far worse than a plain vote. The reveal prints 1 minus the accuracy for the accuracy run most.",
+      "text": "One person alone, with a clue right 2 times in 3, is wrong 1 time in 3 (33.3%; 40.0% at 60%, 20.0% at 80%), so a crowd wrong 1 time in 5 beats one person but is far worse than a plain vote. The reveal prints 1 minus the accuracy for the accuracy run most. The reveal also prints the plain-vote wrong chance for that accuracy (binomial, ties excluded: 0.020% at 2 in 3, 1.7% at 60%, under 0.01% at 80%).",
       "support": "derivation",
-      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. 1 - p = 33.3%, 40.0%, 20.0%; exactWrong = 20.0%, 30.8%, 5.9% (each below 1 - p); plain vote of 100 clues wrong (binomial, ties excluded) 0.020%, 1.68%, ~0%. So the crowd beats one person and is far worse than a plain vote at every accuracy. Reveal paragraph 2 prints pct(1 - ACCS[q]). Advisory in the fact-check record: at 60% the reveal's 'a plain vote would almost never be wrong' (1.7%) exceeds the predict option's own 'under 1 time in 100'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. 1 - p = 33.3%, 40.0%, 20.0%; exactWrong = 20.0%, 30.8%, 5.9% (each below 1 - p); plain vote of 100 clues wrong (binomial, ties excluded) 0.020%, 1.68%, ~0%. So the crowd beats one person and is far worse than a plain vote at every accuracy. Reveal paragraph 2 prints pct(1 - ACCS[q]). Advisory in the fact-check record: at 60% the reveal's 'a plain vote would almost never be wrong' (1.7%) exceeds the predict option's own 'under 1 time in 100'. | REVISION v4 (builder, 2026-10-14): reveal paragraph 2 now prints the plain-vote wrong chance for the accuracy run most (plainWrong in model.ts, exact binomial, ties excluded) instead of \"almost never\"; paragraph 3 pointer is shown only when the selected accuracy has a run. Text extended; unverified.",
+      "status": "unverified"
     },
     {
       "id": "probability.two-said-blue.c8",
@@ -126,7 +124,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "probability:information-cascade",
     "prerequisites": [

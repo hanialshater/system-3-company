@@ -41,3 +41,7 @@ Polish after learner review r2 (static-diagram learner). Version 2 -> 3. spread(
 - **Tap E:** a "tap E" cue under the E disc (shown while E is not the first case) and hint "then tap the E circle to start from E".
 - Claims: no claim text changed, so none reset to unverified. The reveal sentences for c3/c4 are reworded; fact-checker may want to re-read them. 
 - QA: QA_ONLY=contact-order-matters port 3921, dist .next-ncm3: lesson specs pass on phone and desktop (10 passed); the same 2 feed-spec failures ("subject chips filter the feed") as v2, unrelated. check passes; tsc --noEmit clean (npm run typecheck was OOM-killed by shared memory; ran tsc directly). Phone frames 01, 03, 08 viewed.
+
+## Revision (v4, 2026-10-14, fact-check NCM-3)
+
+Footer now "In models of real populations, partnerships that overlap..." to match c6 (claim text unchanged, stays verified). meta version 4.
