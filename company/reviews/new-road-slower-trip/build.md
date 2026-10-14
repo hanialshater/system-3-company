@@ -47,3 +47,13 @@ Inputs: learner review division-only (revise), fact-check NCM-1 (10 verified, no
 - **Stage text:** rule line cut to "Solid: cars ÷ 100 min. Dashed: 45 min." (the "4,000 drivers" sentence is in the question); with two car labels and three readout labels the stage stays at or under 25 words.
 - Not changed: hero and reveal pair still unbuilt (visual-designer). Reveal on a phone scrolls the card (kit behaviour).
 - Node check re-run with the exact rule: s=0 40/65, 2000 60/75, 4000 80/85, busy roads 4,000 cars at the end.
+
+## Revision v3 (demo-builder, 2026-10-14)
+
+Inputs: learner review r2 (2026-10-14-learner-division-only-r2.md).
+- **Triangle marker:** defined on stage under the readout: "▲: the quicker trip"; it now marks whichever of New route / Switch back is lower (aria label "quicker"). New claim c12 (unverified).
+- **"Switch back":** defined on stage: "Switch back: one driver leaving the new route."
+- **65 beside 80:** a fourth readout cell "Before link 65" appears once the link is open, so the reveal frame shows 65, 80, 85 together.
+- **Reveal crop:** the controls row (all disabled in the reveal) and the legend line are hidden in the reveal and the drawing is capped at 25dvh, so node A and the top of S to A are visible on the phone. Trade-off: the drawing is smaller in the reveal.
+- Not changed: Run still jumps to 4,000 (not in this round's findings).
+- QA: contract spec passed phone and desktop (QA_PORT 3931). Feed chip spec failure is unrelated. Walkthrough frames looked at.
