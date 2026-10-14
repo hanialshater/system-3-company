@@ -41,6 +41,12 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: cm-life-health-epidemiology (Umar), brief for S2-16
+
+- **What changed.** Appended brief `contact-order-matters` (storyboard/scrub, answer B: reversed order reaches 1 person) to `company/domains/briefs/life.health-epidemiology.md`. Added concept `contact-timing-concurrency` to `content/curriculum/life.json` and tagged `network-clustering-spread` with subarea health-epidemiology.
+- **Proposed board moves.** S2-16 -> done (brief written, numbers re-run in node). S2-20 stays open for interaction-designer on this brief. S2-18 note: the six life references (herd-immunity, immunity-eats-r, spreaders-are-rare, epidemic-overshoot, waves-return; vaccinate-at-the-peak later) are confirmed on fit by me, § still unconfirmed. Fact-checker: Morris and Kretzschmar 1997 needs a human source check.
+- **Belief.** High on the arithmetic; medium on §21.6 (book fetch blocked, 403).
+
 ### 2026-10-14: principal-pm-verticals (Selin), vertical review of Networks, Crowds, and Markets (W-137)
 
 - **What changed.**
@@ -99,3 +105,8 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
   - **NEW, owner rnd-lead:** "Write knots-gen2-brief.md per decision 2026-10-14-evolution-stop-rule §4, then dispatch gen 2 (3 rnd-engineers, worktrees) and write knots-gen2.md with the stop-rule table."
   - **W-162** stays with rnd-lead, re-titled in effect: draft the EDD now, but send it to the principal engineer only after gen-2 selection, or with gen1-force if gen 2 slips more than 2 days past dispatch.
 
+
+### 2026-10-14: cm-probability-statistics (Hugo), batch 1 brief for S2-08
+
+- **Done.** Appended brief `two-said-blue` (information-cascade, simulation run, answer B: about 1 in 5) to `company/domains/briefs/probability.statistics.md`. Added concept `information-cascade` (core, demand 2, prerequisite `bayesian-updating`) to `content/curriculum/probability.json`. Re-ran in node: exact 20.0%, seeded 1,991 of 10,000, pooled-vote contrast 0.0199%.
+- **Proposed board moves.** S2-08 → ready (brief written, answer checked). No S2-20 spec needed for this lesson. Fact-checker: confirm the book § numbers (unconfirmed, fetch blocked) and the Anderson and Holt 1997 claim, or drop it.
