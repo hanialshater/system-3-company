@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #24 · wireframe: `tic-tac-toe-is-a-draw.svg`
 
+Brief updated 2026-10-14: first option taken: the question stands, and one reveal sentence is told, not shown (the empty board is a draw). It is now claim (4) in the brief, simulation support: memoized full search, 5,478 positions, value 0, 255,168 games (131,184 X wins, 77,904 O wins, 46,080 draws), every first move worth 0. Endgame table re-run and matches this spec. The learner-facing sentence must say it comes from a computer search, not from the tree on the stage.
+
 **Brief check (node, 2026-10-14): the answer is correct.** Memoized minimax from the empty board gives 0 (draw). Every first move for X (corner, edge, centre) is also worth 0. There are 255,168 complete games.
 
 ## Brief problem (route to the learning designer and cm-cs)

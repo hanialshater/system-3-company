@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #40 · wireframe: `rubber-band-hull.svg`
 
+Brief updated 2026-10-14: pin (6,0) moved to (6,1). Node: hull is still 6 pins, (-1,4) (0,0) (6,1) (8,3) (7,7) (2,8); same four pops with cross products -3, -5, -20, -13; angle order starts (6,1) (8,3) (5,2) ...; extremes are now 4 distinct pins and the misconception misses (6,1) and (7,7); the closest pair is still (2,2) and (3,3), 1.41 units (48 px), so the 44 px hit circles still fit. The reveal sentence becomes "only 4 of them".
+
 **Format: Storyboard (step-through).** The payoff is a process: one pass round the pins, where each new pin is a frame and a right turn is the moment something is thrown away. The learner's taps *are* the timeline: each tap is the next frame, and the frames stay on the board (kept pins on the band, popped pins crossed out with the turn that popped them). No slider: a scrubber would let QA's two arrow presses leave the stage mid-walk, and the reveal must show the closed band.
 
 ## Brief check (re-run in node, 2026-10-14)

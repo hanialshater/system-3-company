@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #30 · wireframe: `any-start-same-tree.svg`
 
+Brief updated 2026-10-14: option (b) taken: DE is now 3, so all eight costs are distinct and the uniqueness claim (CLRS 23.1-6) applies. Totals are 11 (was 10); the cables are unchanged (AC, BC, BD, DE); the next cheapest of the 40 spanning trees costs 12. Prim from A adds AC BC BD DE; from B, BC AC BD DE; from C, AC BC BD DE; from D and E, DE BD BC AC; all total 11. The DE chip, totals, aria-labels and QA path in this spec need 10 changed to 11 and "DE 2" to "DE 3".
+
 **Format: Side-by-side comparison.** The misconception is that starting in a different place gives a different network. Two networks grown at once, the learner's from A and a friend's from E, on the same towns and cables, keep "same map, different start" true on the stage. The difference the learner sees is the order (the numbers on the cables). The set of cables is the same.
 
 ## Brief check (node, 2026-10-14)

@@ -4,6 +4,8 @@ Ranked briefs for this strand, in the same format as `cs.md` (`### N. slug · co
 
 Written by cm-cs, 2026-10-13, after the founder asked for "much more on algorithms". TheAlgorithms/Python (MIT) was a source of topic ideas and a reference for checking how an algorithm runs. It is never a source of lesson content: no code listings, no copied code. Concepts are chosen and ordered by learner value and prerequisites, not by that repository's folders. Ranking: demand first, then prerequisite order (a brief comes after any brief it depends on), then a spread of formats. Every answer below was recomputed in node on 2026-10-13 (script kept in the cm-cs session scratchpad; builders must re-run their own check, per `cs.md` practice). Each brief says how it differs from its nearest existing lesson. No simulated review counts as learning evidence for any of these.
 
+Revised 2026-10-14 by cm-cs-algorithms after interaction-design spec review: #3 (stack order), #13 (1-based position), #17 (graph), #24 (told sentence), #30 (DE = 3), #35 (5-letter pattern), #36 (unlock at first miss), #40 (pin moved). Each changed answer was re-run in node the same day.
+
 Support types: **derivation** (worked by hand or proof), **simulation** (a script the verifier re-runs), **citation** (CLRS = Cormen, Leiserson, Rivest, Stein, *Introduction to Algorithms*, 3rd ed.; or the original paper).
 
 ### 1. ties-keep-their-order · concept: sort-stability · intro · demand 3
@@ -32,11 +34,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 3. queue-or-stack-same-search · concept: bfs-vs-dfs-frontier · core · demand 3
 - Learner knows: BFS spreads in waves (wave-from-the-corner) and DFS goes deep (maze-depth-first); stacks vs queues (back-button-stack) / does not know: that these are one algorithm with one line changed
 - Misconception: Breadth-first and depth-first search are two different algorithms that must be learned separately.
-- Prediction: "A search keeps a to-do list of places to visit. You swap the list from a queue (first in, first out) to a stack (last in, first out). What changes?" options: A) Nothing / B) The order places are visited / C) It no longer reaches every place (answer: B). Check: on the graph A-B, A-C, B-D, B-E, C-F, E-F from A, the queue visits A B C D E F and the stack visits A C F B E D; both reach all six (script).
+- Prediction: "A search keeps a to-do list of places to visit. You swap the list from a queue (first in, first out) to a stack (last in, first out). What changes?" options: A) Nothing / B) The order places are visited / C) It no longer reaches every place (answer: B). Check: on the graph A-B, A-C, B-D, B-E, C-F, E-F from A, the queue visits A B C D E F and the stack visits A C F E B D (neighbours added in alphabetical order, a place marked when it joins the to-do list; marking when taken gives the same order here); both reach all six (script, re-run 2026-10-14). The earlier order A C F B E D only arises if edges are one-way.
 - Key state: the learner has run the same graph twice, once with each to-do list, and sees two visit orders over the same six nodes; the reveal unlocks when both runs reach all nodes.
 - Interaction: one graph; a to-do strip under it. Tap "take next" to pull from the front (queue) or the top (stack); a toggle switches the strip type and resets the run.
 - Payoff: the search is the same; only which waiting place you take next changes. A queue finishes each ring before the next, which is why BFS finds fewest-hop routes and DFS does not.
-- Claims to check: (1) both visit orders (simulation). (2) BFS with a queue visits in nondecreasing distance from the start and finds shortest paths in unweighted graphs (CLRS 22.2, Theorem 22.5). (3) Both visit every node reachable from the start (CLRS 22.2, 22.3).
+- Claims to check: (1) queue order A B C D E F and stack order A C F E B D, with the neighbour-order and marking rule stated in the claim (simulation). Wording says the stack search "goes deep first", not "is exactly recursive DFS" (on this graph recursive DFS gives A B D E F C). (2) BFS with a queue visits in nondecreasing distance from the start and finds shortest paths in unweighted graphs (CLRS 22.2, Theorem 22.5). (3) Both visit every node reachable from the start (CLRS 22.2, 22.3).
 - Format: Before / after toggle
 - Differs from: wave-from-the-corner and maze-depth-first (each teaches one search). This lesson shows they are one algorithm.
 
@@ -149,11 +151,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 13. interpolation-guesses-the-page · concept: interpolation-search · core · demand 2
 - Learner knows: binary search opens the middle (binary-search) / does not know: that you can aim by value, and that it backfires on uneven data
 - Misconception: Opening the middle is always the fastest way to search a sorted list.
-- Prediction: "100 sorted values 10, 20, ..., 1000. You look for 730 by guessing its position from its value. How many looks?" options: A) 1 / B) 7 / C) 10 (answer: A). Check: (730 - 10) / (1000 - 10) x 99 = 72, and position 72 holds 730; binary search needs 6 looks for 730 and at most 7 (script).
+- Prediction: "100 sorted values 10, 20, ..., 1000. You look for 730 by guessing its position from its value. How many looks?" options: A) 1 / B) 7 / C) 10 (answer: A). Check: (730 - 10) / (1000 - 10) x 99 = 72, which is index 72 counting from 0, the 73rd value (10 x 73 = 730); binary search (mid = floor((lo + hi) / 2)) needs 6 looks for 730 and at most 7 (script, re-run 2026-10-14). Learner-facing text says "the 73rd value".
 - Key state: the learner has found 730 in one look on the even list, then switched to the uneven list (cubes 1, 8, ..., 1,000,000) and watched some searches need many more looks; the reveal unlocks after both.
 - Interaction: tap "guess" to probe; a toggle switches the list from evenly spread to cubes; a look counter.
 - Payoff: aiming by value is like opening a dictionary near the back for "W": brilliant when values are spread evenly, and worse than halving when they are not (up to 21 looks on the cube list, against 7 for binary search).
-- Claims to check: (1) 1 look; binary 6, max 7; cubes up to 21 looks (simulation). (2) Expected O(log log n) on uniform data (Perl, Itai, Avni 1978, "Interpolation search: a log log N search", CACM). (3) Worst case O(n) (derivation).
+- Claims to check: (1) 1 look, at the 73rd value; binary 6, max 7 (floor midpoint, state the convention); cubes up to 21 looks, at 9,261 (simulation). (2) Expected O(log log n) on uniform data (Perl, Itai, Avni 1978, "Interpolation search: a log log N search", CACM). (3) Worst case O(n) (derivation).
 - Format: Before / after toggle
 - Differs from: binary-search and bisect-the-bad-commit (pure halving). This aims by value.
 - Reference: TheAlgorithms/Python searches/interpolation_search.py
@@ -196,11 +198,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 17. negative-edge-fools-dijkstra · concept: negative-edge-weights · core · demand 2
 - Learner knows: settling the cheapest node first (cheapest-is-not-shortest) / does not know: that "settled" is only final when no road has negative cost
 - Misconception: Dijkstra's cheapest-first rule always finds the cheapest route.
-- Prediction: "Roads: S to A costs 2, S to B costs 3, B to A is a refund of 2 (cost -2). Settling the cheapest node first locks A at 2. What is the true cheapest cost to A?" options: A) 2 / B) 1 / C) 3 (answer: B). Check: S to B to A is 3 - 2 = 1; Dijkstra reports 2; Bellman-Ford reports 1 (script).
-- Key state: the learner has settled A at 2, then relaxed the B to A road and seen 1 arrive too late; then re-run "relax every road, twice" and seen A at 1.
-- Interaction: tap the unsettled node with the smallest label; then a "relax all roads" button for the second method; labels update.
-- Payoff: cheapest-first assumes nothing later can make a settled node cheaper, which fails when some road subtracts. Relaxing every road n - 1 times (Bellman-Ford) is slower but makes no such assumption.
-- Claims to check: (1) labels 2 and 1 (simulation). (2) Dijkstra is correct only for non-negative weights (CLRS 24.3). (3) Bellman-Ford handles negative weights and detects negative cycles (CLRS 24.1; Bellman 1958).
+- Prediction: "Roads: S to A costs 2, S to B costs 3, A to C costs 2, and B to A is a refund of 2 (cost -2). Settling the cheapest town first locks A at 2 and goes on to C. What is the true cheapest cost to C?" options: A) 4 / B) 3 / C) 2 (answer: B). Check: S to B to A to C is 3 - 2 + 2 = 3. Cheapest-first reports C = 4 in every standard version: a version that never updates a settled town ends A = 2, C = 4; CLRS DIJKSTRA (relaxes every road out of each extracted node, no settled check) ends A = 1 but C = 4, because A was already extracted and its road to C is not revisited. Settling order is S, A, B, C with no ties. Bellman-Ford with roads checked B-A, A-C, S-A, S-B gives A 2, B 3, C 4 after pass 1 and A 1, B 3, C 3 after pass 2 (script, re-run 2026-10-14; graph changed from the first draft, which had no road out of A and so depended on the implementation).
+- Key state: the learner has settled A at 2 and C at 4, then relaxed the B to A road and seen 1 arrive too late to reach C; then re-run "relax every road, twice" and seen C at 3.
+- Interaction: tap the unsettled town with the smallest label; then "pass 1" and "pass 2" buttons for the second method; labels update.
+- Payoff: cheapest-first assumes nothing later can make a settled town cheaper, which fails when some road subtracts. Relaxing every road n - 1 times (Bellman-Ford) is slower but makes no such assumption.
+- Claims to check: (1) Cheapest-first labels S 0, A 2 or 1 (by version), B 3, C 4; Bellman-Ford C 3 (simulation, both Dijkstra versions run). (2) Dijkstra is correct only for non-negative weights (CLRS 24.3). (3) Bellman-Ford handles negative weights and detects negative cycles (CLRS 24.1; Bellman 1958). Wording: "cheapest-first reports 4 for C" holds for every standard version; do not claim a particular label for A.
 - Format: Side-by-side comparison
 - Differs from: cheapest-is-not-shortest, which mentions negative weights in one claim only. This makes the failure the lesson.
 - Reference: TheAlgorithms/Python graphs/bellman_ford.py
@@ -279,11 +281,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 24. tic-tac-toe-is-a-draw · concept: minimax · core · demand 2
 - Learner knows: a function that calls itself (hanoi-tower-doubles) / does not know: how a game can be solved by working back from the end
 - Misconception: In noughts and crosses the first player, playing perfectly, wins.
-- Prediction: "If both players play perfectly from an empty board, who wins?" options: A) X, who moves first / B) O / C) Nobody, it is a draw (answer: C). Check: full minimax over all positions gives value 0 (script).
+- Prediction: "If both players play perfectly from an empty board, who wins?" options: A) X, who moves first / B) O / C) Nobody, it is a draw (answer: C). Check: full memoized minimax over all 5,478 reachable positions gives value 0, and each first move (corner, edge, centre) is worth 0; there are 255,168 complete games (131,184 X wins, 77,904 O wins, 46,080 draws) (script, re-run 2026-10-14).
 - Key state: the learner has scored a 3-empty-square endgame tree by hand (leaves win/lose/draw, then X takes the max and O the min up the tree) and seen the root value; the reveal unlocks there.
 - Interaction: a small game tree from one endgame; tap a node to fill its value from its children; the board preview shows each move.
-- Payoff: scoring every ending and letting each player pick their best move upward solves the game. It is a draw; chess is too big to finish this way.
-- Claims to check: (1) value 0 (simulation, memoized full search). (2) Minimax (von Neumann 1928, "Zur Theorie der Gesellschaftsspiele", Math. Annalen; Russell and Norvig, *AIMA*, 5.2). (3) The endgame tree values (simulation).
+- Payoff: scoring every ending and letting each player pick their best move upward solves the game. It is a draw; chess is too big to finish this way. Stage limit, accepted: the stage can show only the endgame scoring, so one reveal sentence is told, not shown ("the same two rules, run by computer over all 255,168 games from the empty board, give a draw at the top too"). It is recorded as claim (4) below with simulation support, not as a demonstrated step.
+- Claims to check: (1) value 0 (simulation, memoized full search). (2) Minimax (von Neumann 1928, "Zur Theorie der Gesellschaftsspiele", Math. Annalen; Russell and Norvig, *AIMA*, 5.2). (3) The endgame tree values: for X O X / O O . / . X . with X to move, X plays 5 gives draw, plays 6 gives O win, plays 8 gives O win, top value draw (simulation). (4) Told, not shown: the empty board has value 0 over 255,168 games (simulation, full memoized search; builder re-runs it).
 - Format: Storyboard / scrub
 - Differs from: maze-depth-first (one searcher). Here two players alternate max and min.
 - Reference: TheAlgorithms/Python backtracking/minimax.py
@@ -351,11 +353,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 30. any-start-same-tree · concept: prim-mst · core · demand 1
 - Learner knows: cheapest-first cables without loops (connect-the-towns-cheaply) / does not know: that growing from one town also works, from any town
 - Misconception: Grow the network from a different town and you end up with a different total cost.
-- Prediction: "Cables: AB 4, AC 1, BC 2, BD 5, CD 8, CE 10, DE 2, BE 6. Grow from town A, always adding the cheapest cable to a new town. A friend starts from E. Whose network is cheaper?" options: A) Yours / B) Your friend's / C) The same (answer: C). Check: both get AC, BC, BD, DE, total 10 (script).
+- Prediction: "Cables: AB 4, AC 1, BC 2, BD 5, CD 8, CE 10, DE 3, BE 6. Grow from town A, always adding the cheapest cable to a new town. A friend starts from E. Whose network is cheaper?" options: A) Yours / B) Your friend's / C) The same (answer: C). Check: both get AC, BC, BD, DE, total 11; starts B, C, D give the same four cables; all eight costs are distinct, and of the 40 spanning trees the next cheapest costs 12 (script, re-run 2026-10-14; DE changed from 2 to 3 because BC = DE = 2 broke the distinct-costs claim).
 - Key state: the learner has grown both networks and sees identical cables; the reveal unlocks when both are complete.
 - Interaction: tap "start here" on a town, then tap the cheapest cable leaving the grown part (wrong ones refused); a second panel for the friend.
 - Payoff: the cheapest cable across any split is always safe (the cut property), so it does not matter where you start. With distinct costs the cheapest network is unique.
-- Claims to check: (1) both trees and total 10 (simulation). (2) Cut property and Prim's algorithm (CLRS 23.1 Theorem 23.1, 23.2; Prim 1957, Bell System Tech. J.). (3) Uniqueness with distinct weights (CLRS exercise 23.1-6).
+- Claims to check: (1) both trees and total 11 (simulation). (2) Cut property and Prim's algorithm (CLRS 23.1 Theorem 23.1, 23.2; Prim 1957, Bell System Tech. J.). (3) Uniqueness with distinct weights (CLRS exercise 23.1-6).
 - Format: Side-by-side comparison
 - Differs from: connect-the-towns-cheaply (Kruskal, global cheapest-first). This grows one tree.
 - Reference: TheAlgorithms/Python graphs/minimum_spanning_tree_prims.py
@@ -411,11 +413,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 35. rolling-hash-window · concept: rolling-hash · core · demand 1
 - Learner knows: hashing (hash-bucket-pileup) / does not know: that a hash of a sliding window can be updated instead of recomputed
 - Misconception: Comparing a pattern against every window of a text means re-reading every letter of every window.
-- Prediction: "Window hash = sum of letter values (A = 1, B = 2 ...). Sliding the window one letter along, how many letters must you add up again?" options: A) All letters in the window / B) None: subtract the one that left, add the one that arrived / C) Half of them (answer: B). Check: in CBADAB, the window sums update by one subtraction and one addition; searching for AB (sum 3) flags BA at 1 and AB at 4 (script).
-- Key state: the learner has slid the window across the text and seen two flags, one false (BA), checked letter by letter; the reveal unlocks after the false flag is checked.
-- Interaction: tap "slide" to move the window; the old letter leaves the sum and the new one joins; a flagged window can be checked letter by letter.
-- Payoff: an updatable hash makes each slide cost the same however long the pattern is. Equal hashes still need a check, and a better hash (letters weighted by position) makes false flags rare.
-- Claims to check: (1) the flags (simulation). (2) Karp and Rabin 1987, "Efficient randomized pattern-matching algorithms", IBM J. Res. Dev.; CLRS 32.2. (3) The sum hash cannot tell AB from BA (derivation).
+- Prediction: "Window hash = sum of letter values (A = 1, B = 2 ...). The window is 5 letters long. Sliding it one letter along, how many letters must you add up again?" options: A) All 5 letters in the window / B) None: subtract the one that left, add the one that arrived / C) Half of them (answer: B). Check: text EBCDAFFABCDE, pattern ABCDE (sum 15): 8 windows with sums 15 16 20 18 16 18 16 15; flags at window 1 (EBCDA, false) and window 8 (ABCDE, true). Re-adding every window reads 8 x 5 = 40 letters; sliding reads 5 + 7 x 2 = 19 (script, re-run 2026-10-14). The first draft used a 2-letter pattern, where re-adding and "subtract one, add one" both read 2 letters and the saving was invisible.
+- Key state: the learner has slid the window across the text and seen two flags, one false (EBCDA), checked letter by letter; the reveal unlocks after the false flag is checked.
+- Interaction: tap "slide" to move the window; the old letter leaves the sum and the new one joins; a "letters read" counter runs for sliding against re-adding; a flagged window can be checked letter by letter.
+- Payoff: an updatable hash makes each slide cost 2 whatever the pattern length (5 here, against 5 per window by re-adding). Equal hashes still need a check, and a better hash (letters weighted by position) makes false flags rare.
+- Claims to check: (1) the flags, 40 and 19 (simulation). (2) Karp and Rabin 1987, "Efficient randomized pattern-matching algorithms", IBM J. Res. Dev.; CLRS 32.2. (3) The sum hash cannot tell EBCDA from ABCDE, since any reordering of the same letters has the same sum (derivation).
 - Format: Storyboard / scrub
 - Differs from: hash-bucket-pileup and bad-hash-one-bucket (hash tables). This hashes moving windows of text.
 - Reference: TheAlgorithms/Python strings/rabin_karp.py
@@ -423,11 +425,11 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 36. kmp-never-steps-back · concept: kmp-string-search · stretch · demand 1
 - Learner knows: searching a text for a word by sliding (rolling-hash-window, #35) / does not know: that a mismatch already tells you where the next match could start
 - Misconception: After a mismatch you have to move one letter on and re-read from there.
-- Prediction: "Search for AAAB in AAAAAAAAB, letter by letter. Restarting one letter on after each mismatch takes 24 comparisons. Never moving backwards in the text, reusing what matched, takes about:" options: A) 24 / B) 14 / C) 4 (answer: B). Check: naive 24, KMP 14 (script, comparison counting disclosed in the claim).
-- Key state: the learner has run both pointers and seen the text pointer in KMP only move right; the reveal unlocks at the match.
+- Prediction: "Search for AAAB in AAAAAAAAB, letter by letter. Restarting one letter on after each mismatch takes 24 comparisons. Never moving backwards in the text, reusing what matched, takes about:" options: A) 24 / B) 14 / C) 4 (answer: B). Check: naive 24, KMP 14 (script, re-run 2026-10-14; counting rule: every letter comparison counts, including the re-compare after a fallback; the restart method stops an alignment at its first mismatch). The first miss is comparison 4; comparison 5 is the first re-compare.
+- Key state: the learner has run both panels past the first mismatch (comparison 5) and seen the text pointer in KMP not move left while the restart pointer does; the reveal unlocks there, not at the match (comparison 14), because a one-press jump to 14 would land on the answer. The reveal quotes 14 and 24 only if the learner got that far; otherwise they are told, as claims.
 - Interaction: a text strip and a pattern strip; tap "compare"; on a mismatch the pattern jumps by the amount in its "fallback" table, shown under the pattern.
 - Payoff: the part that matched is known text, so the pattern can slide straight to its longest self-overlap. Every text letter is read a bounded number of times: linear time.
-- Claims to check: (1) 24 and 14 (simulation; state the counting rule). (2) KMP is O(n + m) (Knuth, Morris, Pratt 1977, SIAM J. Comput.; CLRS 32.4). (3) The fallback table for AAAB is 0 1 2 0 (simulation).
+- Claims to check: (1) 24 and 14 (simulation; state the counting rule). (2) KMP is O(n + m) (Knuth, Morris, Pratt 1977, SIAM J. Comput.; CLRS 32.4). (3) The fallback table for AAAB is 0 1 2 0 (simulation). Wording: KMP never moves the text pointer left, but it reads text letters 4 to 8 twice; do not say "reads each letter once".
 - Format: Side-by-side comparison
 - Differs from: rolling-hash-window (#35), which hashes; this never re-reads text.
 - Reference: TheAlgorithms/Python strings/knuth_morris_pratt.py
@@ -471,7 +473,7 @@ Support types: **derivation** (worked by hand or proof), **simulation** (a scrip
 ### 40. rubber-band-hull · concept: convex-hull · core · demand 1 [exploration]
 - Learner knows: left and right turns (assumed, shown on stage) / does not know: how a program finds the outline around a set of points
 - Misconception: The outline of a cloud of points is just its leftmost, rightmost, top and bottom points.
-- Prediction: "10 pins on a board. A rubber band is stretched around them all. How many pins does it touch?" (pins at (0,0) (6,0) (8,3) (7,7) (2,8) (-1,4) (3,3) (4,5) (2,2) (5,2)) options: A) 4 / B) 6 / C) 10 (answer: B). Check: monotone chain gives 6 hull points; the four extremes are only 4 of them (script).
+- Prediction: "10 pins on a board. A rubber band is stretched around them all. How many pins does it touch?" (pins at (0,0) (6,1) (8,3) (7,7) (2,8) (-1,4) (3,3) (4,5) (2,2) (5,2)) options: A) 4 / B) 6 / C) 10 (answer: B). Check: monotone chain and a Graham walk from (0,0) both give 6 hull points: (-1,4) (0,0) (6,1) (8,3) (7,7) (2,8). The leftmost, rightmost, lowest and top pins are 4 distinct pins, so the extremes alone miss (6,1) and (7,7). With the old pin (6,0) the lowest tied, giving 5 extremes and no option to match (script, re-run 2026-10-14; pin moved from (6,0) to (6,1)).
 - Key state: the learner has walked round the pins from the lowest-left one, keeping only left turns and popping any pin that makes a right turn, and the band closes on 6 pins; the reveal unlocks there.
 - Interaction: tap "next pin" in sorted order; a right turn flashes and the last pin pops; drag a pin to change the band.
 - Payoff: a corner of the band is wherever the boundary turns, and checking "left or right turn" for three points is all the geometry needed. Sorting once, then one pass, finds it.

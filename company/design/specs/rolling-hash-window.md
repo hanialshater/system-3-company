@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #35 · wireframe: `rolling-hash-window.svg`
 
+Brief updated 2026-10-14: pattern is now 5 letters, text EBCDAFFABCDE, pattern ABCDE (sum 15). Windows sums 15 16 20 18 16 18 16 15; flags at window 1 (EBCDA, false) and 8 (ABCDE, true). Letters read: re-adding 8 x 5 = 40, sliding 5 + 7 x 2 = 19. Option (b) taken: one example, no chip. The model line, strip (12 tiles), history row and QA path in this spec still describe CBADAB and need redrawing by the interaction designer.
+
 **Format: Storyboard / scrub** (as briefed), with a step button as the scrubber. The process is a window moving through time. The payoff sits at two named moments, the false flag (BA) and the true one (AB), and a history row of window sums is the timeline the learner fills in.
 
 ## Brief check (designer's node run, 2026-10-14)

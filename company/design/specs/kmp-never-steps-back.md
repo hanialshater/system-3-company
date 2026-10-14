@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #36 · wireframe: `kmp-never-steps-back.svg`
 
+Brief updated 2026-10-14: confirmed: the reveal unlocks at the first miss (both panels at comparison 5), not at the match (comparison 14). Brief key state rewritten to match; 14 and 24 are quoted in the reveal only if the learner reaches them, otherwise told as claims. Counting rule and the "reads letters 4 to 8 twice" precision are in the brief. Re-run: naive 24, KMP 14, table 0 1 2 0.
+
 **Format: Side-by-side comparison** (as briefed). Two methods on the same text, sharing one control, so the work is like for like. On a 390 px phone a 9-letter strip needs the full width, so the "sides" are **stacked panels**: "Restart one on" above "Reuse the match". The shared control steps both by the **same number of comparisons**. Equal work, and the learner sees whose text arrow is further right.
 
 ## Brief check (designer's node run, 2026-10-14)

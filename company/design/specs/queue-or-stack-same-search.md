@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #3 · wireframe: `queue-or-stack-same-search.svg`
 
+Brief updated 2026-10-14: claim 1 corrected to queue A B C D E F, stack A C F E B D (neighbours alphabetical, marked when added; re-run in node). Brief now says the stack search "goes deep first", not "is exactly DFS". Answer B and payoff unchanged. Format change to side-by-side is the designer's call; the brief still says Before / after toggle.
+
 ## Brief problem (route to cm-cs before build)
 **The brief's stack order is wrong for the graph as drawn.** On the undirected graph A-B, A-C, B-D, B-E, C-F, E-F from A, with neighbours added in alphabetical order, the stack visits **A C F E B D**, not A C F B E D. The brief's order is what you get if the edges are one-way (A→B, …, E→F), so F has no way on to E. The queue order A B C D E F is right. Designer's node check (2026-10-14, both "mark when added" and "mark when taken" give the same stack order here):
 

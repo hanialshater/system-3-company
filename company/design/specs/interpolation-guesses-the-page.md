@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #13 · wireframe: `interpolation-guesses-the-page.svg`
 
+Brief updated 2026-10-14: brief now says index 72 counting from 0, the 73rd value, and states the floor-midpoint convention for the halving counts (6 and max 7). Cubes worst case 21 at 9,261 re-confirmed. No change to this spec's behaviour.
+
 **Format: Before / after toggle** (as briefed). One change, how the values are spread, with a visible effect: the same guessing rule lands in one look on the even list and crawls on the cubes. The "after" (the cubes run) persists into the reveal, and the even result stays in a tally line, so both are on the stage at the reveal.
 
 ## Brief check (designer's node run, 2026-10-14)

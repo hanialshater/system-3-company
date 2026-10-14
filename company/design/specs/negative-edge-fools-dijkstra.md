@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.algorithms.md` #17 · wireframe: `negative-edge-fools-dijkstra.svg`
 
+Brief updated 2026-10-14: graph is now four towns: S to A 2, S to B 3, B to A -2, A to C 2 (cost 2 not 1, so no tie at 3 between B and C). The question asks the true cost to C: 3. Cheapest-first reports C = 4 in every standard version (A ends 2 or 1 by version). Bellman-Ford with roads checked B-A, A-C, S-A, S-B: pass 1 A 2, B 3, C 4; pass 2 A 1, B 3, C 3. Claim 1 no longer names a label for A. The designer's four-town layout option is adopted; DOM order S, A, B, C and the two-pass road order above replace the three-town ones in this spec.
+
 **Format: Side-by-side comparison** (stacked: two full-width panels, one above the other, since two graphs side by side at 178 px each make 44 px node targets collide). Same three towns, same roads, two methods. The misconception is "they agree"; the panels end on different labels for A.
 
 ## Brief problem (for cm-cs and the learning designer; I did not change the lesson)
