@@ -1,0 +1,107 @@
+{
+  "slug": "survive-childhood-live-to-sixty",
+  "title": "When life expectancy was 28",
+  "hook": "A newborn in late-1600s Breslau could expect about 28 years. What about a 30-year-old?",
+  "domain": "history",
+  "concept": "life-expectancy-vs-lifespan",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-2"
+  },
+  "learner": {
+    "knows": [
+      "life expectancy is \"how long people live\""
+    ],
+    "doesNotKnow": [
+      "that life expectancy is an average from birth, so infant and child deaths pull it far below the age most adults reached"
+    ]
+  },
+  "misconception": "In the past, when life expectancy was about 30, people usually died around 30.",
+  "objective": "The learner can explain that a low life expectancy at birth comes from many infant and child deaths, and that in Halley's Breslau table those who reached 30 died, on average, at about 58.",
+  "claims": [
+    {
+      "id": "history.survive-childhood-live-to-sixty.c1",
+      "text": "Halley's table gives the people alive at each age, out of one year's births: 1,000 at 1, 732 at 5, 531 at 30, 346 at 50, 142 at 70, 41 at 80 (the stage draws every age from 0 to 84).",
+      "support": "source",
+      "source": "history-data.mjs: halley, HalleyLifeTable.csv, column number (ages 1-84). Copied into Demo.tsx as SURVIVORS; history-cycle1-check.mjs section 1, 'survivors readout'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.survive-childhood-live-to-sixty.c2",
+      "text": "Halley took 1,238 births a year as the starting cohort (\"of 1,238 born\", age 0 on the chart).",
+      "support": "source",
+      "source": "history-data.mjs: halley, HistData documentation for HalleyLifeTable (opened); Halley 1693 itself not opened. history-cycle1-check.mjs section 1 uses P[0] = 1238.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.survive-childhood-live-to-sixty.c3",
+      "text": "The table is Halley's 1693 table for Breslau (question: \"Halley's 1693 Breslau table\"; hook: \"late-1600s Breslau\").",
+      "support": "source",
+      "source": "history-data.mjs: halley (what: 'Halley's 1693 Breslau life table'), HistData documentation for HalleyLifeTable (opened). Primary: Halley, E. (1693), Phil. Trans. 17: 596-610, not opened. Breslau data years 1687-1691 per the Breslau doc (c6).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.survive-childhood-live-to-sixty.c4",
+      "text": "From this table, life expectancy at birth is about 28 years; about 41% of those born died before age 5 (506 of 1,238); those alive at 30 died, on average, at about 58; those alive at 60 at about 72.",
+      "support": "derivation",
+      "source": "history-cycle1-check.mjs section 1: e0 = 27.87 (trapezoid between whole ages), 30 + e30 = 57.7 (at most 58.3 if the 20 people alive at 84 lived 16 more years each), 60 + e60 = 72.1, died before 5 = 40.9%. Demo.tsx computes the same values live from SURVIVORS with the same trapezoid rule (avgDeath) and rounds to whole numbers.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.survive-childhood-live-to-sixty.c5",
+      "text": "Life expectancy at birth averages over everyone born, infants included, so a low number does not mean adults died young; people who got through childhood usually lived much longer.",
+      "support": "derivation",
+      "source": "Follows from c4: the average from birth (28) is below the average from 30 (58) because 41% of deaths came before age 5. Cross-check on separate records, not shown to the learner: Bellhouse's Breslau deaths 1687-91 give a mean age at death of 57.4 for those dying over 30 (history-data.mjs: breslau; history-cycle1-check.mjs section 1).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.survive-childhood-live-to-sixty.c6",
+      "text": "Where it stops: this is one city's records over five years.",
+      "support": "source",
+      "source": "history-data.mjs: breslau, HistData documentation for Breslau (data years 1687-1691, one city). Brief #1 lists no held source sentence in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A country's life expectancy at birth rises from 50 to 70, mostly because fewer babies die. Must adults now live 20 years longer?",
+    "options": [
+      "No: most of the rise can come from infants surviving",
+      "Yes",
+      "Only if births rise"
+    ],
+    "answer": 0,
+    "why": "Life expectancy at birth averages over everyone born, so fewer infant deaths raise it even if adults live no longer than before."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:life-expectancy-vs-lifespan",
+    "also": [],
+    "prerequisites": [
+      "math:mean-vs-median"
+    ],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "life tables",
+      "averages",
+      "demography"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
