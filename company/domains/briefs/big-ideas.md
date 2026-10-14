@@ -119,7 +119,7 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Prediction: "100 people with colds take a pill that does nothing. A week later, how many feel better?" options: About 5 / About 30 / Most of them (answer: C). Check (node, seed 3; the lesson's model, about 80% recover within a week): 78 of 100 in the pill group and 82 of 100 in a control group.
 - Interaction: "Run the trial" (seeded, seed disclosed), an "add a control group" toggle, and a "true effect of the pill" control (0 / +10 points). Two tile grids (pill, no pill) with recovered tiles filled in. Milestones: (1) run without a control; (2) add the control; (3) set a +10 effect and see the gap appear.
 - Reveal (≤ 90): {k} of 100 felt better on a pill that did nothing, because colds clear up anyway. Only the control group showed that the pill added {d} points. A comparison group is how medicine learned to tell treatments from time. James Lind's scurvy trial in 1747 is an early example. Where it stops: a control group is not enough on its own. The groups must also be alike, which is why trials assign people at random.
-- Claims: (1) Most colds clear within 7–10 days (Heikkinen & Järvinen, 2003, "The common cold", *Lancet* 361(9351); or a CDC page; to confirm). (2) Lind's 1747 comparison of scurvy treatments (Lind, 1753, *A Treatise of the Scurvy*; public domain; to confirm). (3) The recovery rate and the seed are the lesson's model (stated; seed disclosed). (4) Limit: randomisation is needed so the groups are comparable (any trials text; link to `randomised-assignment`).
+- Claims: (1) Most colds clear within 7–10 days (Heikkinen & Järvinen, 2003, "The common cold", *Lancet* 361(9351); or a CDC page; to confirm). (2) Lind's 1747 comparison of scurvy treatments (Lind, 1753, *A Treatise of the Scurvy*; public domain; to confirm). (3) The recovery rate and the seed are the lesson's model (stated; seed disclosed). (4) Limit: randomisation is needed so the groups are comparable (any trials text; link to `probability:random-assignment`, lesson probability/the-doctor-picks-the-patients).
 - Nearest lessons: probability/praise-then-slump (regression to the mean) and probability lessons on confounding. This lesson adds the control group. Prerequisite: `probability:regression-to-mean`.
 - Format: Simulation run (seeded).
 - Curriculum: primary `big-ideas:controlled-experiment`; also `probability:regression-to-mean`.
@@ -163,4 +163,285 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Tone: no claims about autism or any group of children. The Sally–Anne paper is cited only for the task.
 
 ## Next in line (cycle 2, no brief yet)
+
+*Superseded 2026-10-14 by `company/domains/big-ideas-strategy.md` section 2 (the ranked list) and "## Strategy wave 1" below. `path-dependence-lock-in` was removed from the map (probability/same-songs-different-hits teaches it); `cumulative-selection` is brief 13.*
 Demand 3 with no brief: `cumulative-selection` (a target-phrase demo of cumulative vs single-step selection; use our own phrase). Demand 2 candidates by strand: science `germ-theory-pump`, `entropy-arrow-of-time`, `fermi-estimation`; society `ostrom-commons-governed`, `path-dependence-lock-in` (Pólya urn; the QWERTY story is contested, so cite Liebowitz & Margolis), `perverse-incentives`; mind `extraordinary-evidence`, `change-blindness`, `veil-of-ignorance` (the prediction must be about the argument, not an opinion).
+
+## Strategy wave 1
+
+owner: cm-big-ideas (Dmitri) · written 2026-10-14 from `company/domains/big-ideas-strategy.md` (sections 2 and 4; ranks 13-24 of its list) · numbers: `node company/domains/briefs/checks/big-ideas-strategy-wave1-check.mjs` (all pass, 2026-10-14) · reveal drafts counted by script (each ≤ 90 words)
+
+**Gate.** These are Wave K briefs under `company/decisions/2026-10-14-w556-wave-gate.md`. Each has a line in `company/ops/brief-skips.json` ("Wave K gate (W-556)"), so `tools/claim.mjs` will not hand them out until the chief of staff records the gate as open **and** Big Ideas has 5 lessons through Domain Launch Review (strategy section 4). Do not `take` them by name before then.
+
+**Rules every brief below follows** (strategy sections 3 and 5):
+- **Preset buttons, in DOM order.** Every milestone, including the question's own case, is reached by pressing each listed preset once, in the order given. Sliders are not used for milestones. Reset is always last.
+- **Labels ≥ 10 px** at 390 px wide for every meaning-carrying label at predict and every element the reveal points at (decoration only may be 8 px and `aria-hidden`).
+- **Claims are split by support**: *derivation* (checked in the script above), *model* (a choice we made, labelled on the stage), *citation, held* (a source this host cannot open, W-583: the fact-checker confirms it or the sentence is cut). The reveal carries **at most one** held citation; every other held sentence is marked "cut if not checkable", and the lesson still teaches without it.
+- **Where it stops** is a claim, and where possible a preset shows it on the stage rather than telling it.
+- **Stage text.** Word counts cover the question and any caption at predict, plus preset labels where they carry meaning; the builder confirms the total is ≤ 25 in pre-flight.
+- **Transfer recall.** The recall question uses a different case from the stage, so it tests the idea, not the picture. Its answer is in the check script.
+- **Review route** is named per brief (strategy section 6).
+
+### 13. typing-keeps-the-best · concept: cumulative-selection · intro · demand 3
+- Format: Simulation run
+- Strand: science (cm-big-ideas-science)
+- Audience and knowledge boundary: learner knows: natural selection keeps what works (life/natural-selection) / does not know: that keeping each small improvement turns an impossible one-shot jump into a short climb, so a many-part result does not need one huge stroke of luck.
+- Misconception: Something with many parts that fit together can only arise by one enormous stroke of luck, because the chance of it all appearing at once is tiny.
+- Prediction (stage text, 25 words): "Random typing hits this 18-letter phrase once in about 6×10^25 tries. Instead, keep the best of 100 slightly mistyped copies each round. Rounds to match?" options: A) Fewer than 1,000 / B) About a million / C) More than a trillion trillion (answer: A). The locked stage shows the target row "SMALL STEPS ADD UP" and an empty row of 18 tiles; no counts.
+- Check (node): 27^18 = 5.81e25. Seed 7: best of 1,000 random strings matches 4 of 18; keep-the-best (100 copies, 5% miscopy per letter) matches in 77 rounds; keep-a-random-copy for the same 77 rounds ends at 0 of 18. Seeds 1-200: median 44 rounds, maximum 100.
+- What the stage shows: the target row, the current row of 18 letter tiles (matching tiles filled), a small trace of letters matched per round (both runs, one chart), one readout "Round 77 · 18 of 18". Preset buttons in DOM order: "1,000 random tries", "Keep the best: run", "Keep a random copy: run", "Step 1 round", Reset (5). Runs compute first, then replay in ≤ 400 ms.
+- Labels: tiles 18 px wide with 12 px letters; readout 12 px; chart axis labels 10 px.
+- Key state (milestones): random-tried (best 4 recorded), best-kept (77 rounds recorded), random-kept (0 of 18 recorded). Reveal unlocks after random-tried and best-kept.
+- Reveal payoff (draft, 78 words): "A thousand random tries matched at best {b} of 18 letters. Keeping the best copy each round matched all 18 in {n} rounds, while keeping a random copy got nowhere. Each round only had to find one small improvement, and selection kept it. Richard Dawkins used a program like this in 1986 to show how cumulative selection builds complex results. Where it stops: nature has no target phrase. Each small step must help survival on its own, now."
+- Planned claims:
+  1. One random 18-character string over 27 symbols matches a given phrase with probability 1 in 27^18, about 5.8 × 10^25. support: derivation.
+  2. In the lesson's model (seed 7 disclosed; 100 copies a round; 5% miscopy per letter) keep-the-best matched in 77 rounds; over seeds 1-200 the median was 44 and the maximum 100; keep-a-random-copy ended at 0 of 18. support: derivation (simulation in the check). Model labelled on the stage.
+  3. Dawkins described a cumulative-selection program with a target phrase, and said the target is unlike real evolution. support: citation, held; source: Dawkins (1986), *The Blind Watchmaker*, ch. 3 (to confirm). Cut if not checkable; the reveal then says "A program like this shows…".
+  4. Limit: natural selection has no long-term target; each change must be favoured in its own generation. support: citation, held; source: the same chapter, or a textbook (Futuyma & Kirkpatrick, *Evolution*, 4th ed., ch. on adaptation; to confirm). Fallback wording if not checkable: "Our target phrase is the model's device" (support: model).
+- Curriculum: primary `big-ideas:cumulative-selection`; also `life:natural-selection`; references none; tags evolution, search, improbability.
+- Differs from nearest: life/natural-selection and life/one-percent-edge show a heritable edge compounding in one trait's share. This shows why step-by-step keeping beats one-shot chance for a result with many parts. No population genetics.
+- Transfer and recall: also applies to engineering by iteration and to training a model step by step. Recall: "A faulty lock clicks whenever any one of its 6 dials (10 digits each) is right. About how many tries to open it?" (answer: at most 60, against a million blind).
+- Review route: standard (fact-checker, learner-evaluator). Cultural reviewer for wording only: the lesson makes no claim about religion or design in general.
+- Multi-card later: card 1 random typing, card 2 keep the best, card 3 keep a random copy.
+
+### 14. mars-loops-backwards · concept: heliocentric-retrograde · core · demand 2
+- Format: Storyboard / scrub
+- Strand: science (cm-big-ideas-science)
+- Audience and knowledge boundary: learner knows: planets orbit the Sun, and outer ones are slower (physics/higher-orbit-slower) / does not know: that Mars's backward loop in our sky comes from Earth overtaking it on the inside track, so a change of viewpoint turns a complicated path into a simple one.
+- Misconception: When a planet appears to reverse in the sky, it really changes direction, or needs extra machinery to explain.
+- Prediction (stage text, 23 words): "Night by night, Mars drifts east against the stars. Next month it is opposite the Sun in our sky. Over six months, Mars:" options: A) keeps drifting east the whole time / B) goes west for about 2 months, then east again / C) goes west for about 6 months (answer: B). The locked stage shows the orbit diagram with Earth and Mars placed, and an empty sky band.
+- Check (node): circular, coplanar model orbits (Earth 1 AU, 365.25 d; Mars 1.5237 AU, 686.98 d): Mars moves west for 73 days around opposition; the loop recurs every 780 days; from the Sun, Mars's angle only increases.
+- What the stage shows: a top-down diagram (Sun, two orbit circles, Earth, Mars) with the Earth-to-Mars sightline extended to an outer sky band, where Mars leaves a dot every 10 days. Preset buttons in DOM order: "Next 6 months from Earth" (dots run east, back west, then east; records 73 days), "Same 6 months from the Sun" (sightline from the Sun; dots march east), "Step 10 days", Reset (4). The Earth-view dots stay as outlines when the Sun view is drawn.
+- Labels: "Sun", "Earth", "Mars", "east →" and the readout "west for 73 days" at ≥ 10 px; dots 6 px (decoration plus one labelled turn-around point).
+- Key state (milestones): earth-view (73 days recorded), sun-view (no reversal recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 77 words): "From Earth, Mars went west for {d} days, then east again. From the Sun, it never turned back. The loop is our own motion: Earth, on the faster inside track, overtook Mars, so Mars seemed to slide backwards, like a slower car you pass on a motorway. Earth-centred models needed circles on circles to draw this loop; a Sun-centred view needs none. Where it stops: our orbits are circles. Real orbits are ellipses, so real loops vary."
+- Planned claims:
+  1. In the lesson's circular model, Mars moves west for 73 days around opposition and the loop recurs every 780 days. support: derivation (check script); the model is labelled "circular orbits".
+  2. Mars's mean distance is 1.5237 AU and its orbital period 686.98 days. support: citation, held (standard constants; NASA Mars fact sheet; to confirm).
+  3. Ptolemy's Earth-centred model used epicycles to reproduce retrograde motion; a Sun-centred model explains it by Earth's own motion. support: citation, held; source: Kuhn (1957), *The Copernican Revolution*, ch. 2 and 5 (to confirm). The reveal names no single discoverer (charter: no "great man" history; Aristarchus proposed a Sun-centred system long before Copernicus).
+  4. Limit: planetary orbits are ellipses (Kepler, 1609, *Astronomia Nova*; public domain), so real retrograde loops differ in length and shape. support: citation, held. Cut if not checkable: "Our orbits are simplified circles" (support: model).
+- Curriculum: primary `big-ideas:heliocentric-retrograde`; prerequisite `physics:kepler-orbit-speed`; also none; tags astronomy, frames of reference.
+- Differs from nearest: physics/higher-orbit-slower explains why outer orbits are slower. This uses that to show that apparent motion depends on the viewpoint. geography/iss-never-over-moscow is about a ground track, not a sky track.
+- Transfer and recall: also applies to motion seen from a moving car or train, and to data shown against a moving baseline. Recall: "Jupiter is slower than Mars. Seen from Earth, does Jupiter also loop backwards sometimes?" (answer: yes, when Earth passes it; 121 days every 399 in the circular model).
+- Review route: standard.
+- Multi-card later: card 1 the Earth view, card 2 the Sun view.
+
+### 15. how-many-witnesses · concept: extraordinary-evidence · core · demand 2
+- Format: Single card
+- Strand: mind (cm-big-ideas-mind)
+- Audience and knowledge boundary: learner knows: a rare condition plus one accurate test can still mean "probably not" (probability/base-rates) / does not know: that the evidence a claim needs grows with how unlikely it was, that each independent piece multiplies the odds, and that pieces copied from one source count once.
+- Misconception: A reliable witness is enough to believe anything they report.
+- Prediction (stage text, 25 words): "Prior: 1 in a million. Each witness is 99% reliable; none spoke to another. How many must agree before it's more likely true than not?" options: A) 1 / B) 4 / C) 100 (answer: B). Stage caption at predict (counted in the 25): none beyond the question; "99% reliable" is defined on the stage after unlock: "says yes 99% of the time if true, 1% if false".
+- Check (node): likelihood ratio 99 per witness. Posterior after 1, 2, 3, 4 witnesses: 0.0099%, 0.97%, 49.2%, 99.0%. Four witnesses who copied one source: 0.0099%. An everyday 1-in-10 claim with one witness: 91.7%.
+- What the stage shows: a vertical log ladder (1 in a million, 1 in 1,000, 1 in 10, 50%, 99%) with a marker that leaves a tick per witness, and a row of witness icons (copied witnesses drawn joined to one source). Preset buttons in DOM order: "1 witness", "4 witnesses", "4 who copied one source", "Everyday claim: 1 in 10, 1 witness", Reset (5). One readout: "4 witnesses · 99.0% likely".
+- Labels: ladder labels and tick values 10 px; readout 12 px.
+- Key state (milestones): four-independent (ticks 0.0099 / 0.97 / 49.2 / 99.0 recorded), copied (0.0099 recorded), everyday (91.7 recorded). Reveal unlocks after four-independent and copied.
+- Reveal payoff (draft, 73 words): "Each independent witness multiplied the odds by 99. From one in a million, three left the claim at {p3}%, just short of even; the fourth took it to {p4}%. One witness made an everyday 1-in-10 claim {pe}% likely. David Hume made this argument about miracles: the rarer the claim, the more evidence it needs. Where it stops: four witnesses who copied one source counted as one. Evidence multiplies only when it is independent."
+- Planned claims:
+  1. With prior odds 1 : 999,999 and a likelihood ratio of 99 per witness, the claim reaches 0.0099%, 0.97%, 49.2% and 99.0% after 1 to 4 witnesses. support: derivation (Bayes' rule in odds form).
+  2. A witness who repeats another's source adds a likelihood ratio of 1, so four copies leave 0.0099%. support: derivation. The "copied" set-up is the lesson's model.
+  3. One 99% witness makes a 1-in-10 claim 91.7% likely. support: derivation.
+  4. Hume argued that testimony for a miracle must be weighed against the improbability of the event. support: citation, held; source: Hume (1748), *An Enquiry Concerning Human Understanding*, section 10 "Of Miracles" (public domain; to confirm the passage). Cut if not checkable; the reveal then says "the rarer the claim, the more evidence it needs" without a name.
+- Curriculum: primary `big-ideas:extraordinary-evidence` (existing prerequisites `probability:bayesian-updating`, `probability:base-rates`); also `probability:information-cascade`; tags evidence, Bayes, testimony.
+- Differs from nearest: probability/base-rates (one test, one rare disease), probability/which-coin-is-it (odds double per head) and probability/two-said-blue (copying in a cascade). This adds the claim-level idea: required evidence scales with the prior, and only independent evidence multiplies. It is a doorway to all three.
+- Transfer and recall: also applies to fraud alerts, surprising lab results and rumours. Recall: "Five news sites report a surprising story, all citing the same single post. How much evidence is that?" (answer: about as much as the one post).
+- Review route: research-lead (statement of Hume's argument) and cultural reviewer (religion: the lesson makes no claim that any miracle did or did not happen).
+- Multi-card later: card 1 independent witnesses, card 2 copied witnesses.
+
+### 16. top-fifth-of-the-top-fifth · concept: pareto-80-20 · intro · demand 2
+- Format: Single card
+- Strand: society (cm-big-ideas-society)
+- Audience and knowledge boundary: learner knows: the saying "20% of causes give 80% of effects" / does not know: that 80/20 is one setting of a heavy tail, that the same tail repeats inside the top (the top 4% take 64%), and that other tails give 45/20 or 20/20.
+- Misconception: 80/20 is a law that holds for most things, and the concentration stops at the top 20%.
+- Prediction (stage text, 22 words): "Across 1,000 books, the best-selling 20% take 80% of sales. Under the same rule, the top 4% of books take what share?" options: A) About 16% / B) About 32% / C) About 64% (answer: C). Stage caption after unlock: "Rule: a Pareto tail".
+- Check (node): the top fraction p of a Pareto tail with index α holds p^(1 − 1/α). 80/20 gives α = 1.161. Top 4%: 64.0%; top 0.8%: 51.2%. Gentler tail α = 2: top 20% hold 44.7%, top 4% hold 20.0%. Everyone equal: 20%.
+- What the stage shows: two 100% bars side by side, "books" and "sales", with the selected top slice shaded on both and joined by a band; readout "Top 4% of books → 64% of sales". Preset buttons in DOM order: "Top 20%", "Top 4%", "Gentler tail: top 20%", "Everyone equal: top 20%", Reset (5).
+- Labels: slice labels 11 px; bar titles 12 px.
+- Key state (milestones): top4 (64.0 recorded), other-tail (44.7 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 76 words): "Under the 80/20 rule, the top 4% of books took {s}% of sales: the top fifth of the top fifth repeated the pattern. That nesting is what a heavy tail does. But 80/20 is one setting. A gentler tail gave the top fifth only {g}%, and equal sales give 20%. The name comes from Vilfredo Pareto's lopsided land figures. Where it stops: many real distributions are not this kind of tail, so measure before assuming 80/20."
+- Planned claims:
+  1. For a Pareto tail with index α the top fraction p holds p^(1 − 1/α); α = 1.161 gives 80/20, 64.0% for the top 4% and 51.2% for the top 0.8%; α = 2 gives 44.7% for the top 20%. support: derivation.
+  2. The book sales follow the lesson's model tail (stated on the stage). support: model.
+  3. The name: Pareto reported highly unequal land and income distributions, and the quality engineer Joseph Juran later named the "Pareto principle". support: citation, held; sources: Pareto (1896-97), *Cours d'économie politique*; Juran (1951), *Quality Control Handbook* (to confirm). Cut if not checkable.
+  4. Limit: many claimed power laws in data do not pass statistical tests. support: citation, held; source: Clauset, Shalizi & Newman (2009), "Power-law distributions in empirical data", *SIAM Review* 51(4): 661-703. Fallback if not checkable: "80/20 is one setting of one model" (support: derivation).
+- Curriculum: primary `big-ideas:pareto-80-20` (existing prerequisite `probability:power-law-scaling`); also `probability:heavy-tails`; tags inequality of outcomes, heavy tails.
+- Differs from nearest: probability/ten-times-links-hundred-times-rarer (the slope on a log-log plot) and probability/average-that-never-settles (unstable means). This is about the share the top holds, its nesting and the rule's limits. Books money-tails-drive-everything and zero-power-law-returns teach those books' claims about investment returns; per the shared boundary (strategy section 8) this lesson uses no investment or wealth stage.
+- Transfer and recall: also applies to bugs and crashes, complaints, citations and city sizes. Recall: "Under the same 80/20 tail, what share of crashes do the top 4% of bugs cause?" (answer: about 64%).
+- Review route: standard. No income or wealth figures on the stage (sensitive; section 6).
+- Multi-card later: card 1 top 20%, card 2 top 4%, card 3 other tails.
+
+### 17. raisins-see-no-centre · concept: expanding-universe · core · demand 2
+- Format: Before / after toggle
+- Strand: science (cm-big-ideas-science)
+- Audience and knowledge boundary: learner knows: "the universe is expanding" / does not know: that uniform stretching makes every observer see the others recede at a speed proportional to distance, so seeing everything fly away does not put you at the centre.
+- Misconception: If every galaxy is flying away from us, we must be near the centre of the expansion.
+- Prediction (stage text, 24 words): "Every distance doubles in an hour. Seen from raisin A, B (1 cm away) moves off 1 cm per hour. C, 3 cm away?" options: A) 1 cm per hour / B) 3 cm per hour / C) 9 cm per hour (answer: B). The locked stage shows the raisin grid with A, B and C labelled and no arrows.
+- Check (node): on a 5 × 5 grid 1 cm apart, doubling every distance moves a raisin d cm away by d cm in the hour; from A, B recedes 1 cm/h and C 3 cm/h; seen from C (or any raisin) every raisin recedes at its distance in cm/h.
+- What the stage shows: a loaf outline with a 5 × 5 raisin grid; a ring marks the observer; after a rise, an arrow from each raisin (length proportional to its speed seen from the observer). Before/after: the 1 cm grid as outlines under the 2 cm grid. Preset buttons in DOM order: "Rise 1 hour, watch from A", "Watch from C", "Watch from a corner raisin", Reset (4).
+- Labels: raisin letters A, B, C 11 px; speeds on B and C only, 10 px.
+- Key state (milestones): from-A (1 and 3 cm/h recorded), from-other (C or corner: same pattern recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 76 words): "From A, B moved off {b} cm per hour and C {c}: speed grew with distance. From C the pattern was the same, every raisin rushing away, faster the farther. No raisin is the centre. Georges Lemaître and Edwin Hubble found this pattern for galaxies in 1927 and 1929. Where it stops: a loaf has an edge and a middle. As far as we can tell, the universe has neither, and galaxies themselves do not stretch."
+- Planned claims:
+  1. Doubling every distance in an hour moves a raisin d cm away by d cm, seen from any raisin. support: derivation.
+  2. The loaf and grid are the lesson's model. support: model.
+  3. Lemaître (1927) and Hubble (1929) reported that galaxies recede at speeds proportional to distance; the IAU recommended the name "Hubble-Lemaître law" in 2018. support: citation, held; sources: Lemaître (1927), *Annales de la Société Scientifique de Bruxelles* A47: 49-59; Hubble (1929), *PNAS* 15(3): 168-173; IAU Resolution B4 (2018) (to confirm). Naming both avoids single-discoverer credit. Cut if not checkable.
+  4. Limit: the standard cosmological model has no centre or edge, and gravitationally bound systems such as galaxies do not expand. support: citation, held; source: a cosmology text, e.g. Ryden, *Introduction to Cosmology*, 2nd ed., ch. 2 (to confirm). Fallback if not checkable: "a loaf has an edge and a middle; the model does not say whether the universe has" (support: model).
+- Curriculum: primary `big-ideas:expanding-universe`; also none; tags cosmology, proportional scaling.
+- Differs from nearest: no cosmology lesson exists (keyword search 2026-10-14). math/double-the-size is area scaling, not motion.
+- Transfer and recall: also applies to proportional growth anywhere (prices, maps zoomed in). Recall: "Every price rises 10% this year. A $5 item rises 50 cents. How much does a $50 item rise?" (answer: $5).
+- Review route: standard.
+- Multi-card later: card 1 from A, card 2 from C.
+
+### 18. cost-falls-per-doubling · concept: wrights-law · core · demand 2
+- Format: Single card
+- Strand: society (cm-big-ideas-society); history-and-technology tag (strategy section 2)
+- Audience and knowledge boundary: learner knows: technology gets cheaper over time / does not know: that for many products cost falls by a roughly fixed share each time the total ever made doubles, so cost tracks how much has been made, not the calendar.
+- Misconception: Technology gets cheaper mainly because time passes or a breakthrough arrives; making more of the same thing barely changes its cost.
+- Prediction (stage text, 22 words): "A product gets 20% cheaper each time the total ever made doubles. The total made grows 1,000-fold. Its cost is now about:" options: A) four-fifths / B) a half / C) a tenth / D) a thousandth (answer: C).
+- Check (node): 1,000-fold is 9.97 doublings; 0.8^9.97 = 10.8%. 10-fold: 47.7%. Learning rate 10%: 35.0%. With a materials floor of 15% that never falls: 24.2%.
+- What the stage shows: a log-log chart (x: total made, 1× to 1,000×; y: cost, 100% to 1%) with the cost line and a marker; readout "1,000× made · 10.8% of the start". Preset buttons in DOM order: "Make 10× as many", "Make 1,000× as many", "Learning rate 10%", "Add a materials floor", Reset (5). Each earlier line stays drawn faintly.
+- Labels: axis ticks (1×, 10×, 100×, 1,000×; 100%, 10%, 1%) at 10 px; readout 12 px.
+- Key state (milestones): thousand (10.8 recorded), floor (24.2 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 75 words): "Making 1,000 times as many meant almost ten doublings, and each cut the cost by a fifth: {c}% of the start. Cost followed how much had been made, not the calendar. Theodore Wright reported this pattern for aircraft in 1936, and similar curves fit many technologies. Where it stops: with a floor, such as materials that never get cheaper, the curve flattened at {f}%. The rule describes a pattern; it does not explain the cause."
+- Planned claims:
+  1. 1,000-fold growth is 9.97 doublings; at 20% per doubling cost falls to 10.8%; 10-fold gives 47.7%; a 10% rate gives 35.0%; a 15% floor gives 24.2%. support: derivation.
+  2. The rate and the floor are the lesson's model. support: model.
+  3. Wright reported that aircraft unit cost fell by a roughly constant share with each doubling of cumulative output. support: citation, held; source: Wright (1936), "Factors affecting the cost of airplanes", *Journal of the Aeronautical Sciences* 3(4): 122-128.
+  4. Limit and spread: across many technologies, cost-versus-cumulative-production curves fit historical data about as well as cost-versus-time curves; the fit does not identify a cause. support: citation, held; source: Nagy, Farmer, Bui & Trancik (2013), "Statistical basis for predicting technological progress", *PLOS ONE* 8(2): e52669. Cut "similar curves fit many technologies" if not checkable.
+- Curriculum (new concept): `{"id":"wrights-law","name":"Wright's law: cost falls with each doubling of what has been made","level":"core","demand":2,"prerequisites":["math:exponential-growth"],"subarea":"society"}`; also none; tags technology, learning curves, history-tech.
+- Differs from nearest: math/exponential-growth and math/seventy-two-doubling are growth per period; economics/widget-marginal-cost is the cost of one more unit at one moment. This is cost against cumulative output over years. No Books overlap.
+- Transfer and recall: also applies to solar panels, batteries and practice. Recall: "Batteries get 18% cheaper each time total production doubles. Production doubles three times. Cost now?" (answer: about half, 55%).
+- Review route: standard. No policy conclusion (no "subsidies work").
+- Multi-card later: card 1 the line, card 2 the floor.
+
+### 19. most-positives-could-be-false · concept: most-findings-false · core · demand 2
+- Format: Single card
+- Strand: mind (cm-big-ideas-mind)
+- Audience and knowledge boundary: learner knows: a positive test for a rare disease can still mean "probably not" (probability/base-rates) / does not know: that the share of a field's positive findings that are true depends on how many tested ideas were true to begin with and on the studies' power, so a 5% false-positive rate can still leave about half the findings false.
+- Misconception: A finding that passed a 5% significance test is about 95% likely to be true.
+- Prediction (stage text, 25 words): "1,000 ideas tested; 100 are true. Tests catch half of true effects and falsely flag 5% of false ones. What share of flagged is true?" options: A) About 95% / B) About 50% / C) About 5% (answer: B). The locked stage shows the empty tree (1,000 → true / false → flagged / not).
+- Check (node): 100 true × 50% = 50 flagged; 900 false × 5% = 45 flagged; 50 / 95 = 52.6%. Power 80%: 80 / 125 = 64.0%. 1 in 100 true (power 50%): 5 / 54.5 = 9.2%.
+- What the stage shows: a natural-frequency tree (1,000 → 100 true / 900 false → flagged and not flagged in each), with the two flagged boxes joined into one "flagged" box where the true part is shaded; readout "50 of 95 flagged are true: 52.6%". Preset buttons in DOM order: "1 in 10 true, power 50%", "Power 80%", "1 in 100 true", Reset (4).
+- Labels: tree counts 11 px; box titles 10 px.
+- Key state (milestones): question-case (52.6 recorded), power (64.0 recorded), rare (9.2 recorded). Reveal unlocks after question-case and one of the others.
+- Reveal payoff (draft, 78 words): "Of the {f} flagged ideas, only {t} were true: {p}%. The 5% error rate fell on 900 false ideas, so false alarms nearly matched real finds. With power at 80% the share rose to {p80}%; with true ideas rarer, 1 in 100, it fell to {pr}%. John Ioannidis argued in 2005 that by this arithmetic most published findings could be false. Where it stops: the real share depends on each field's base rate and power, and estimates disagree."
+- Planned claims:
+  1. Counts and shares: 50 and 45 flagged, 52.6%; power 80%: 64.0%; base rate 1 in 100: 9.2%. support: derivation.
+  2. The base rate and power are the lesson's model. support: model.
+  3. Ioannidis argued that, given typical priors, power and bias, most published research findings are false. support: citation, held; source: Ioannidis (2005), "Why most published research findings are false", *PLoS Medicine* 2(8): e124.
+  4. Limit: estimates of the false-discovery share in real literatures differ widely; one estimate for top medical journals was about 14%, and it was disputed. support: citation, held; source: Jager & Leek (2014), *Biostatistics* 15(1): 1-12, with the discussion papers in the same issue (to confirm). Cut "and estimates disagree" if not checkable, keeping "depends on each field's base rate and power" (support: derivation).
+- Curriculum (new concept): `{"id":"most-findings-false","name":"Why many published findings can be false: base rate and power","level":"core","demand":2,"prerequisites":["probability:base-rates","probability:multiple-comparisons"],"subarea":"mind"}`; also none; tags evidence, replication, science.
+- Differs from nearest: probability/base-rates (one patient, one test) and probability/twenty-harmless-tests (many tests on one data set). This applies base rates to a field's literature and adds power as the second dial.
+- Transfer and recall: also applies to screening programmes, fraud flags and hiring tests. Recall: "In a field where half the tested ideas are true, power is 80% and false flags 5%, what share of flagged ideas is true?" (answer: about 94%).
+- Review route: research-lead (claims about the reliability of science; no "science is broken" framing). Not a contested-topic reveal beyond the named estimate dispute.
+- Multi-card later: card 1 the tree, card 2 the two dials.
+
+### 20. five-rough-guesses · concept: fermi-estimation · intro · demand 2
+- Format: Simulation run
+- Strand: science (cm-big-ideas-science)
+- Audience and knowledge boundary: learner knows: guesses have errors / does not know: that when several rough, independent guesses are multiplied, the errors partly cancel, so the product is usually within about 2× even when each step could be 2× off, and that a shared bias does not cancel.
+- Misconception: Five guesses that could each be 2× off give a useless answer, up to 32× off.
+- Prediction (stage text, 25 words): "You estimate five numbers, each off by up to 2×, high or low at random, and multiply them. Typically, how far off is the answer?" options: A) About 2× / B) About 10× / C) About 32× (answer: A).
+- Check (node, seed 11): 1,000 products, each factor off by a random factor in [½, 2] (uniform on a log scale): median error ×1.91; 54.6% within 2×; worst ×13.7; normal approximation ×1.83; worst possible ×32. Every guess 1.5× high: median ×7.5 (1.5^5 = 7.59).
+- What the stage shows: five factor bars on a log scale (½ to 2) and a product bar (1/32 to 32), plus a histogram of the 1,000 errors on a log axis with the "within 2×" band shaded; readout "median ×1.91 · 54.6% within 2×". Preset buttons in DOM order: "Make 1 estimate", "Make 1,000 estimates", "Every guess leans 1.5× high", Reset (4). Seed 11 is shown on the stage.
+- Labels: axis ticks (½, 1, 2; ×1, ×2, ×10, ×32) 10 px; readout 12 px.
+- Key state (milestones): thousand (1.91 and 54.6 recorded), biased (7.5 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 73 words): "Across 1,000 estimates the typical answer was off by ×{m}, and {w}% landed within 2×. The worst case, ×32, needs all five errors to point the same way, which almost never happened: highs and lows cancelled. That is why rough step-by-step estimates, the kind Enrico Fermi was known for, work. Where it stops: when every guess leaned 1.5× high, nothing cancelled and the typical error grew to ×{b}. Cancelling needs independent, unbiased errors."
+- Planned claims:
+  1. Seed 11, 1,000 runs: median ×1.91, 54.6% within 2×, worst ×13.7; worst possible ×32; with a shared 1.5× bias the median is ×7.5. support: derivation (simulation in the check; seed disclosed on the stage and in meta.json).
+  2. Error model: each factor off by a factor uniform on a log scale between ½ and 2. support: model.
+  3. Fermi was known for quick order-of-magnitude estimates, for example of the Trinity test's yield from falling paper. support: citation, held; source: Fermi (1945), "My observations during the explosion at Trinity on July 16, 1945" (US National Archives; to confirm). Cut if not checkable; the reveal then says "That is why rough step-by-step estimates work."
+- Curriculum: primary `big-ideas:fermi-estimation`; also `probability:central-limit`; tags estimation, errors, logarithms.
+- Differs from nearest: probability/averages-turn-bell-shaped (the central limit for sums and averages) and probability/coin-gap-keeps-growing (the law of large numbers). This is about multiplying estimates, errors on a log scale, and the bias limit. lifehacks/estimate-a-range is about planning buffers, not products of guesses.
+- Transfer and recall: also applies to market sizing and carbon footprints, and it explains why a model with one shared bias goes wrong. Recall: "Ten guesses, each off by up to 2× at random, multiplied together. Is the typical error nearer 2.5× or 1,000×?" (answer: about 2.3×).
+- Review route: standard.
+- Multi-card later: card 1 one estimate, card 2 a thousand, card 3 bias.
+
+### 21. same-veil-two-choices · concept: veil-of-ignorance · intro · demand 2
+- Format: Single card
+- Strand: mind (cm-big-ideas-mind)
+- Audience and knowledge boundary: learner knows: "choose the rules as if you didn't know who you'd be" / does not know: that the veil alone does not settle the choice. The answer depends on the decision rule (Rawls: protect the worst place; Harsanyi: best average), and groups in experiments chose neither pure rule.
+- Misconception: Behind the veil of ignorance, any rational person would choose the most equal society.
+- Prediction (stage text, 17 words): "Rawls and Harsanyi choose behind the veil, landing in one of four places at random. Same society?" options: A) Yes: both pick A, the equal one / B) Yes: both pick B, the highest average / C) No: one picks A, the other B (answer: C). The rules are given by the preset labels, visible but disabled at predict: "Rawls: worst place", "Harsanyi: average", "Floor, then average" (8 words; 25 in total). The locked stage shows the three societies' bars with values; no outline marks a choice.
+- Check (node): A = 10, 10, 10, 10 (mean 10, worst 10); B = 4, 16, 16, 24 (mean 15, worst 4); C = 8, 12, 14, 18 (mean 13, worst 8). Best worst place: A. Best average: B. Floor of 8, then best average: C.
+- What the stage shows: three small panels (A, B, C), each with four income bars labelled with their values, the mean and the worst place. Preset buttons in DOM order: "Rawls: worst place" (best worst place), "Harsanyi: average" (best average), "Floor, then average" (floor of 8, then best average), Reset (4). The chosen panel gets a thick outline and a label naming the rule; earlier choices keep a thin outline.
+- Labels: bar values 10 px; panel titles 12 px; three panels of 110 px fit 390 px with gaps.
+- Key state (milestones): rawls (A recorded), harsanyi (B recorded), floor (C recorded). Reveal unlocks after rawls and harsanyi.
+- Reveal payoff (draft, 79 words): "From the same veil, Rawls's rule chose {r}, protecting the worst place, and Harsanyi's chose {h}, the best average. The veil makes the chooser impartial; it does not say how much risk to accept, and that is where they part. In laboratory experiments, most groups chose a third option: a floor for everyone, then the best average, like society C. Where it stops: this is an argument about how to choose rules, not proof of which society is fair."
+- Planned claims:
+  1. Applying "best worst place" to A, B, C picks A; "best average" picks B; "floor of 8, then best average" picks C. support: derivation.
+  2. The three societies are the lesson's model (no real countries). support: model.
+  3. Rawls argued that parties in the original position would use maximin reasoning; Harsanyi argued an impartial chooser would maximise average expected utility. support: citation, held; sources: Rawls (1971), *A Theory of Justice*, section 26; Harsanyi (1975), "Can the maximin principle serve as a basis for morality?", *American Political Science Review* 69(2): 594-606.
+  4. In laboratory experiments most groups chose a floor constraint with the highest average. support: citation, held; source: Frohlich, Oppenheimer & Eavey (1987), "Laboratory results on Rawls's distributive justice", *British Journal of Political Science* 17(1): 1-21 (to confirm title and venue). Cut if not checkable; the floor preset then stays as a third rule without the experiment sentence.
+- Curriculum: primary `big-ideas:veil-of-ignorance` (existing prerequisite `probability:expected-value`); also none; tags justice, decision under risk, named positions.
+- Differs from nearest: probability/capped-doubling-game (expected value of one game). This sets two decision rules against each other under the same uncertainty. No lesson on justice exists.
+- Transfer and recall: also applies to rules written before you know your position (drafts, cake-cutting, insurance). Recall: "Society D has places 9, 9, 30, 30. Which rule prefers D to A (10, 10, 10, 10)?" (answer: best average, Harsanyi; the worst-place rule keeps A).
+- Review route: **cultural reviewer and research-lead before build** (political philosophy, section 6). Refused: any sentence saying which society is fair, any real country, party or tax policy.
+- Multi-card later: card 1 Rawls, card 2 Harsanyi, card 3 the experiment's floor.
+
+### 22. network-value-not-squared · concept: metcalfe-oversold · core · demand 2
+- Format: Single card
+- Strand: society (cm-big-ideas-society); history-and-technology tag
+- Audience and knowledge boundary: learner knows: networks get more valuable as they grow (economics/below-critical-mass) / does not know: that "value grows with the square of users" counts every possible link as equally valuable, and that if contacts matter unequally, value grows much more slowly.
+- Misconception: A network ten times bigger is worth about a hundred times more, because possible connections grow with the square.
+- Prediction (stage text, 25 words): "A network grows from 100 to 1,000 members. Each member values their k-th most useful contact at 1/k of their best. Total value grows about:" options: A) 10× / B) 15× / C) 100× (answer: B).
+- Check (node): possible links n(n − 1)/2 grow ×100.9; total value n × H(n − 1) with 1/k contacts grows ×14.5; n log n gives ×15; equal value per member gives ×10.
+- What the stage shows: one member's contact values as a sorted bar row (1, ½, ⅓, …; past 20 bars drawn as texture), a running "value per member" readout, and two bars comparing growth: "possible links ×100.9" and "value ×14.5". Preset buttons in DOM order: "100 members", "1,000 members", "Every contact worth the same", "Only your best contact counts", Reset (5).
+- Labels: comparison bar labels 11 px; first five contact bars labelled 1, ½, ⅓, ¼, ⅕ at 10 px; the rest are `aria-hidden` texture.
+- Key state (milestones): thousand (14.5 recorded), equal-contacts (100.9 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 75 words): "Going from 100 to 1,000 members multiplied possible links by {l} but value by only {v}, because each extra contact was worth less than the last. Counting every link as equal, Metcalfe's law, gave the hundredfold. Network effects are real; how fast they grow is contested. Andrew Odlyzko and colleagues argued for about this slower rate, while Robert Metcalfe fitted the square to Facebook's data. Where it stops: both are rules of thumb, not laws."
+- Planned claims:
+  1. 100 → 1,000 members: possible links ×100.9; value with 1/k contacts ×14.5; n log n ×15; equal value per member ×10. support: derivation.
+  2. The 1/k contact values are the lesson's model. support: model.
+  3. Briscoe, Odlyzko and Tilly argued network value grows about as n log n, not n². support: citation, held; source: Briscoe, Odlyzko & Tilly (2006), "Metcalfe's law is wrong", *IEEE Spectrum* 43(7): 34-39.
+  4. Metcalfe fitted n² to Facebook's revenue and users. support: citation, held; source: Metcalfe (2013), "Metcalfe's law after 40 years of Ethernet", *IEEE Computer* 46(12): 26-31. Contested: the reveal names both sides with a source each (charter). If only one can be checked, cut both names and keep "how fast is contested" with the checked source.
+- Curriculum (new concept): `{"id":"metcalfe-oversold","name":"Metcalfe's law: why network value rarely grows with the square","level":"core","demand":2,"prerequisites":["economics:network-effects-tipping"],"subarea":"society"}`; also none; tags networks, technology, contested, history-tech.
+- Differs from nearest: economics/below-critical-mass shows whether a network survives (a tipping point). This shows how value scales once it does. No Books overlap.
+- Transfer and recall: also applies to marketplaces, phone networks and citation networks. Recall: "A chat app grows from 1,000 to 10,000 users and contacts are worth 1/k. Does value grow nearer 13× or 100×?" (answer: about 13×).
+- Review route: research-lead (contested claim, both sides).
+- Multi-card later: card 1 one member's contacts, card 2 the comparison.
+
+### 23. old-books-outlast-new · concept: lindy-effect · core · demand 2
+- Format: Single card
+- Strand: society (cm-big-ideas-society); history-and-technology tag
+- Audience and knowledge boundary: learner knows: old things wear out (and, from chemistry/half-life, that some things have no memory of age) / does not know: that when lifetimes are heavy-tailed, the longer something has lasted the longer it is expected to last, while things that age, like people, show the reverse.
+- Misconception: Something that has been around a long time is nearer its end than something new.
+- Prediction (stage text, 21 words): "Book lifetimes follow a heavy-tailed rule. One book has lasted 10 years, another 100. Expected years left: old book versus new?" options: A) Fewer: it is older / B) About the same / C) About 10 times more (answer: C).
+- Check (node): Pareto lifetimes, α = 2, minimum 1 year: expected years left = age, so 10 and 100. Constant risk (mean life 10): 10 years left at any age. People, lifespans normal with mean 80 and s.d. 10 (the lesson's model): 70.0 years left at 10, 8.0 at 80.
+- What the stage shows: a survival curve (share still going against years, log axis 1 to 1,000) with markers at the chosen ages and a "years left" bracket; the curve shape changes per preset. Preset buttons in DOM order: "Book, 10 years in print", "Book, 100 years in print", "Atoms: constant risk", "People: age 10 and age 80", Reset (5).
+- Labels: axis ticks 10 px; bracket labels 11 px.
+- Key state (milestones): hundred (10 and 100 recorded), people (70.0 and 8.0 recorded); atoms optional. Reveal unlocks after hundred and people.
+- Reveal payoff (draft, 78 words): "In this model the 10-year book had {a} years left and the 100-year book {b}: having lasted was evidence of staying power. This is the Lindy effect, which Benoit Mandelbrot gave a mathematical form. Atoms with a constant risk had the same time left at any age. Where it stops: it holds only for heavy-tailed lifetimes. People age, so a 10-year-old had {p10} years left and an 80-year-old {p80}. Whether real books follow the rule is largely untested."
+- Planned claims:
+  1. For Pareto lifetimes with α = 2 the expected time left equals the age (10 → 10, 100 → 100); constant risk gives the same time left at every age; the normal lifespan model gives 70.0 and 8.0. support: derivation.
+  2. All three lifetime shapes are the lesson's models; the lifespan model is not a life table. support: model.
+  3. Mandelbrot gave the idea (named after Lindy's delicatessen) a power-law form. support: citation, held; sources: Mandelbrot (1982), *The Fractal Geometry of Nature* (chapter to confirm); the name from Goldman (1964), "Lindy's law", *The New Republic* (to confirm). Cut if not checkable.
+  4. Verdict "largely untested": no systematic test of the Lindy effect for books or technologies is known to us. support: citation, held (verdict "untested", charter). The fact-checker confirms that none is found, or cites the one that is and the sentence changes.
+- Curriculum: primary `big-ideas:lindy-effect` (existing prerequisite `probability:heavy-tails`); demand raised 1 → 2 on 2026-10-14 (strategy section 2); also `chemistry:half-life`; tags survival, heavy tails, history-tech.
+- Differs from nearest: probability/average-that-never-settles (heavy-tailed averages) and chemistry/half-life (survivors have no memory). This is the time left given the age, set against both of those. Books swan-turkey (Taleb) is a different idea (induction), so there is no overlap.
+- Transfer and recall: also applies to programming languages, institutions and ideas. Recall: "One programming language has been in use for 40 years, another for 4. Under a Lindy rule, which has more expected years left?" (answer: the 40-year one, about 40 against 4).
+- Review route: standard.
+- Multi-card later: card 1 books, card 2 atoms, card 3 people.
+
+### 24. one-box-or-two · concept: newcombs-problem · core · demand 2
+- Format: Single card
+- Strand: mind (cm-big-ideas-mind)
+- Audience and knowledge boundary: learner knows: pick the option that pays more (probability/capped-doubling-game, economics/two-suspects-payoff) / does not know: that two standard rules, maximise expected payoff and never take an option that is worse in every case (dominance), give opposite answers here, and that the switch needs a predictor only just better than chance.
+- Misconception: In a clearly stated choice, careful reasoning always gives one right answer.
+- Prediction (stage text, 23 words): caption "A: $1,000. B: $1M if the predictor foresaw 'only B'." plus the question "How accurate must it be for 'only B' to pay more on average?" options: A) Over 99% / B) Over 90% / C) Just over 50% (answer: C).
+- Check (node): one box pays p × $1,000,000 on average; both pay (1 − p) × $1,000,000 + $1,000. Break-even p = 50.05%. At 90%: $900,000 against $101,000. At 50%: $500,000 against $501,000. Whatever is already in B, both boxes pay $1,000 more.
+- What the stage shows: two boxes with their amounts, two expected-payoff bars ("only B", "both") and a "break-even 50.05%" readout; the dominance preset adds a 2 × 2 table (B full / B empty × only B / both) with the $1,000 difference shaded in both rows. Preset buttons in DOM order: "Predictor 90% right", "Predictor 50% right", "What's already in B?", Reset (4).
+- Labels: table cells 11 px; bar values 10 px.
+- Key state (milestones): ninety (both payoffs recorded), fifty (both recorded), dominance (table shown). Reveal unlocks after all three (the break-even, the question's case, is on the readout from the first preset).
+- Reveal payoff (draft, 76 words): "On average, taking only B paid more once the predictor beat {be}%: at 90% it paid {e1} against {e2}. Yet the table shows that whatever is already in B, taking both adds $1,000. Both rules are standard: maximise expected payoff, and never pick an option worse in every case. Here they disagree, and philosophers still split. Robert Nozick published the puzzle in 1969. Where it stops: the clash needs a predictor whose guess tracks your choice."
+- Planned claims:
+  1. Expected payoffs and the break-even of 50.05%; at 90%, $900,000 against $101,000; at 50%, $500,000 against $501,000. support: derivation.
+  2. Dominance: for either content of box B, both boxes pay $1,000 more. support: derivation.
+  3. The predictor's symmetric accuracy is the lesson's model. support: model.
+  4. Nozick published the problem in 1969 and attributed it to the physicist William Newcomb. support: citation, held; source: Nozick (1969), "Newcomb's problem and two principles of choice", in Rescher (ed.), *Essays in Honor of Carl G. Hempel*, 114-146.
+  5. Philosophers remain divided between one box and two. support: citation, held; source: Bourget & Chalmers (2023), "Philosophers on philosophy: the 2020 PhilPapers Survey", *Philosophers' Imprint* 23 (figures to confirm). Cut "and philosophers still split" if not checkable; the derivations carry the lesson.
+- Curriculum: primary `big-ideas:newcombs-problem`; level stretch → core and demand 1 → 2 on 2026-10-14 (strategy section 2); also `economics:prisoners-dilemma`; tags decision theory, named positions.
+- Differs from nearest: probability/capped-doubling-game (expected value) and economics/two-suspects-payoff (dominance in the prisoner's dilemma). This sets the two rules against each other. Taught as an argument with named positions; no "right answer" (charter).
+- Transfer and recall: also applies to "my one vote changes nothing" arguments and to commitments. Recall: "Box A has $10; box B has $100 if the predictor foresaw 'only B'. What accuracy makes 'only B' pay more on average?" (answer: over 55%).
+- Review route: research-lead (named positions fairly stated).
+- Multi-card later: card 1 expected payoff, card 2 dominance.

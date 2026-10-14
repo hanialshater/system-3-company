@@ -1,7 +1,7 @@
 {
   "domain": "big-ideas",
   "owner": "cm-big-ideas",
-  "note": "Owned by the category manager (cm-big-ideas); strands in subarea (science, society, mind), owned by cm-big-ideas-<strand>. Prerequisites name the subject concept that already teaches the mechanism; a Big Ideas lesson teaches the change in view, not the subject lesson again. demand: 1 low, 3 high. level: intro | core | stretch. Drafted 2026-10-14 by chief-of-staff-ceo-office at the founder's request (company/decisions/2026-10-14-books-and-big-ideas.md); demand ratings are a first estimate for cm-big-ideas to confirm, not learner data.",
+  "note": "Owned by the category manager (cm-big-ideas); strands in subarea (science, society, mind), owned by cm-big-ideas-<strand>. Prerequisites name the subject concept that already teaches the mechanism; a Big Ideas lesson teaches the change in view, not the subject lesson again. demand: 1 low, 3 high. level: intro | core | stretch. Drafted 2026-10-14 by chief-of-staff-ceo-office at the founder's request (company/decisions/2026-10-14-books-and-big-ideas.md); demand ratings are a first estimate for cm-big-ideas to confirm, not learner data. 2026-10-14 cm-big-ideas (strategy, company/domains/big-ideas-strategy.md section 2): removed threshold-collective-action (math/one-shy-rioter-stops-the-riot teaches it), randomised-assignment (probability/the-doctor-picks-the-patients), path-dependence-lock-in (probability/same-songs-different-hits) and occams-razor (ai/overfitting plus probability/which-coin-is-it); added wrights-law, metcalfe-oversold, most-findings-false; lindy-effect and newcombs-problem raised to demand 2 (newcombs-problem to core). Demand is still an estimate, not learner data.",
   "concepts": [
     {
       "id": "deep-time",
@@ -65,7 +65,9 @@
       "name": "A Sun-centred view explains why planets loop backwards",
       "level": "core",
       "demand": 2,
-      "prerequisites": [],
+      "prerequisites": [
+        "physics:kepler-orbit-speed"
+      ],
       "subarea": "science"
     },
     {
@@ -175,17 +177,6 @@
       "subarea": "science"
     },
     {
-      "id": "randomised-assignment",
-      "name": "Randomise who gets the treatment, or the groups differ",
-      "level": "core",
-      "demand": 2,
-      "prerequisites": [
-        "controlled-experiment",
-        "probability:confounding"
-      ],
-      "subarea": "science"
-    },
-    {
       "id": "jevons-paradox",
       "name": "The Jevons paradox: efficiency can raise total use",
       "level": "intro",
@@ -266,16 +257,6 @@
       "subarea": "society"
     },
     {
-      "id": "path-dependence-lock-in",
-      "name": "Path dependence: early luck locks in a winner",
-      "level": "core",
-      "demand": 2,
-      "prerequisites": [
-        "probability:rich-get-richer"
-      ],
-      "subarea": "society"
-    },
-    {
       "id": "costly-signalling",
       "name": "Costly signals: why credentials and peacock tails work",
       "level": "core",
@@ -340,16 +321,6 @@
       "subarea": "society"
     },
     {
-      "id": "threshold-collective-action",
-      "name": "Thresholds: one person's riot depends on how many have joined",
-      "level": "core",
-      "demand": 1,
-      "prerequisites": [
-        "probability:information-cascade"
-      ],
-      "subarea": "society"
-    },
-    {
       "id": "positional-arms-race",
       "name": "Positional goods: when everyone stands up, nobody sees better",
       "level": "intro",
@@ -361,7 +332,7 @@
       "id": "lindy-effect",
       "name": "The Lindy effect: what has lasted tends to last",
       "level": "core",
-      "demand": 1,
+      "demand": 2,
       "prerequisites": [
         "probability:heavy-tails"
       ],
@@ -373,6 +344,26 @@
       "level": "core",
       "demand": 1,
       "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "wrights-law",
+      "name": "Wright's law: cost falls with each doubling of what has been made",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "math:exponential-growth"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "metcalfe-oversold",
+      "name": "Metcalfe's law: why network value rarely grows with the square",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:network-effects-tipping"
+      ],
       "subarea": "society"
     },
     {
@@ -435,16 +426,6 @@
       "prerequisites": [
         "probability:bayesian-updating",
         "probability:base-rates"
-      ],
-      "subarea": "mind"
-    },
-    {
-      "id": "occams-razor",
-      "name": "Occam's razor: the simpler fit often predicts better",
-      "level": "core",
-      "demand": 2,
-      "prerequisites": [
-        "ai:overfitting"
       ],
       "subarea": "mind"
     },
@@ -517,8 +498,8 @@
     {
       "id": "newcombs-problem",
       "name": "Newcomb's problem: one box or two?",
-      "level": "stretch",
-      "demand": 1,
+      "level": "core",
+      "demand": 2,
       "prerequisites": [
         "probability:expected-value"
       ],
@@ -546,6 +527,17 @@
       "level": "core",
       "demand": 1,
       "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "most-findings-false",
+      "name": "Why many published findings can be false: base rate and power",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:base-rates",
+        "probability:multiple-comparisons"
+      ],
       "subarea": "mind"
     }
   ]
