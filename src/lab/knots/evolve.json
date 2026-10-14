@@ -1,1 +1,14 @@
-{"entry":"index.mjs","budgetGzBytes":10240,"weights":{"tests":100,"size":-0.002,"bench":1}}
+{
+  "entry": "index.mjs",
+  "budgetGzBytes": 16384,
+  "sizeEntries": ["test/lessons/draw-a-table-knot.mjs", "test/lessons/tricolour-check.mjs", "test/lessons/unknot-game.mjs", "test/lessons/random-knot.mjs"],
+  "sizeBudgetGzBytes": 12288,
+  "weights": { "tests": 100, "size": -0.002, "bench": 1 },
+  "benchWeights": {
+    "layoutExtraCrossings": 2, "layoutPlanarShare": 1, "layoutSpacing": 5, "layoutCrossingSpread": 1, "layoutAspect": 0.5, "layoutSlowPenalty": 1,
+    "hardUnknotShare": 0.5, "hardUnknotReduction": 0.5, "falseUnknotPenalty": 1, "gordianReduction": 0.5,
+    "jonesWrongPenalty": 1, "jonesSpeed": 0.2
+  },
+  "mutable": ["draw.mjs", "layout*.mjs", "index.d.ts"],
+  "parents": { "gen0-baseline": [] }
+}
