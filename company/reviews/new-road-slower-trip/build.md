@@ -35,3 +35,15 @@ before 65; s = 0/1,000/2,000/3,000/4,000 → 40/65, 50/70, 60/75, 70/80, 80/85; 
 - Lesson code 11.5 KB (Demo.tsx 9.8 KB + CSS 1.6 KB), under the 15 KB budget. No new dependencies.
 - Recall question written by the builder (claim c10).
 - Game framing check by cm-economics-markets (brief note, review record objection 4) has not happened.
+
+## Revision v2 (demo-builder, 2026-10-14)
+
+Inputs: learner review division-only (revise), fact-check NCM-1 (10 verified, none disputed).
+
+- **Answer visible before predicting (finding 1).** Title "One free link, two busy routes", hook "A free link opens between two routes and every driver takes the fastest one. How long is a trip then?" (no "slower", no "worse"). Options now 40, 65, 75, 80 (answer 80): two are worse than 65, so "worse" alone does not pick the answer.
+- **Why 80 (finding 2).** Each busy road carries an "N cars" label on stage (2,000 before; 4,000 at the end), next to its pill. The reveal quotes it: both busy roads, S to A and B to E, carry 4,000 cars, each takes 40, the new route is 40 + 0 + 40 = 80. New claim c11 (unverified). Objective extended with the why.
+- **"Old route" readout (finding 3)** relabelled "Switch back" (what one driver leaving would face). **"Switch 1,000" (finding 5)**: the explore hint now says "Switch 1,000 drivers onto the new route".
+- **Control row clipped at predict:** svg min-height 170 -> 120 px; the whole row is visible on a phone (checked in the walkthrough).
+- **Stage text:** rule line cut to "Solid: cars ÷ 100 min. Dashed: 45 min." (the "4,000 drivers" sentence is in the question); with two car labels and three readout labels the stage stays at or under 25 words.
+- Not changed: hero and reveal pair still unbuilt (visual-designer). Reveal on a phone scrolls the card (kit behaviour).
+- Node check re-run with the exact rule: s=0 40/65, 2000 60/75, 4000 80/85, busy roads 4,000 cars at the end.

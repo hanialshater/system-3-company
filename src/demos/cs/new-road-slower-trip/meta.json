@@ -1,7 +1,7 @@
 {
   "slug": "new-road-slower-trip",
-  "title": "A new road, a slower trip",
-  "hook": "A free new road opens between two routes. What could it possibly make worse?",
+  "title": "One free link, two busy routes",
+  "hook": "A free link joins two routes and each driver takes the fastest. How long is a trip?",
   "domain": "cs",
   "concept": "braess-paradox",
   "status": "review",
@@ -21,7 +21,7 @@
     ]
   },
   "misconception": "Adding a road never makes things worse. At worst nobody uses it.",
-  "objective": "The learner can explain that when each driver picks the fastest route for themselves, a free new link can draw every driver onto it and leave every trip slower than before (65 to 80 minutes here), and that nobody can fix it alone because switching back is slower still (85).",
+  "objective": "The learner can explain that when each driver picks the fastest route for themselves, a free new link can draw every driver onto it and leave every trip slower than before (65 to 80 minutes here), and why (both busy roads now carry all 4,000 cars, so each takes 40), and that nobody can fix it alone because switching back is slower still (85).",
   "claims": [
     {
       "id": "cs.new-road-slower-trip.c1",
@@ -112,6 +112,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-road-slower-trip.c11",
+      "text": "With all 4,000 drivers on the new route, roads S to A and B to E each carry all 4,000 cars, so each takes 4,000 / 100 = 40 minutes and the new route takes 40 + 0 + 40 = 80 minutes.",
+      "support": "derivation",
+      "source": "Arithmetic from c1 and c3 (s = 4,000: busyCars = 2,000 + 4,000/2 = 4,000; newRoute = 2 x 4,000/100 = 80). Shown on the stage as '4,000 cars' labels and pills 40, 40, and quoted in the reveal. Added in revision v2 (learner finding 2).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -133,7 +140,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:braess-paradox",
     "prerequisites": [

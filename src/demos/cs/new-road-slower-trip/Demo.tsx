@@ -128,8 +128,7 @@ function Stage({ locked, phase, interact, onSeen }: {
   return (
     <div className={s.wrap}>
       <p className={s.rule}>
-        4,000 drivers, each on the fastest route. <Swatch cls={s.busy} /> Solid roads: cars ÷ 100 min.{" "}
-        <Swatch cls={s.fixed} /> Dashed: 45 min.
+        <Swatch cls={s.busy} /> Solid: cars ÷ 100 min. <Swatch cls={s.fixed} /> Dashed: 45 min.
       </p>
       <svg viewBox="0 44 340 250" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
         <Road from="S" to="A" cls={s.busy} w={busyW} ink={ink} />
@@ -145,6 +144,12 @@ function Stage({ locked, phase, interact, onSeen }: {
             </text>
           </g>
         ))}
+        <text x={88} y={104} className={s.cars}>
+          {fmt(cars)} cars
+        </text>
+        <text x={252} y={252} className={s.cars} style={{ textAnchor: "start" }}>
+          {fmt(cars)} cars
+        </text>
         <Pill at={[105, 120]} text={String(cars / 100)} ring={ring} />
         <Pill at={[235, 220]} text={String(cars / 100)} ring={ring} />
         <Pill at={[235, 120]} text="45" ring={false} />
@@ -165,7 +170,7 @@ function Stage({ locked, phase, interact, onSeen }: {
           </b>
         </span>
         <span className={linkOn && od < nw ? s.win : ""}>
-          <small>Old route</small>
+          <small>Switch back</small>
           <b>{od}</b>
         </span>
       </div>
@@ -221,22 +226,24 @@ export default function NewRoadSlowerTrip({ slug }: { slug: string }) {
       predict={{
         question:
           "4,000 drivers go from S to E. Each route has one busy road (cars ÷ 100 minutes) and one fixed 45-minute road, so today every trip takes 65 minutes. A free link from A to B opens, and every driver takes the fastest route for them. How long does a trip take then?",
-        options: ["About 40 min", "65 min, unchanged", "80 min"],
-        answer: 2,
+        options: ["About 40 min", "65 min, unchanged", "75 min", "80 min"],
+        answer: 3,
       }}
-      exploreHint="Press After to open the link. Then move drivers with Switch 1,000, and Run to the end."
+      exploreHint="Press After to open the link. Then Switch 1,000 drivers onto the new route, and Run to the end."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             With nobody on it, the new route took {newRoute(0)} against {oldRoute(0)}, so drivers moved to it.
             {seen.includes(2000) && ` At 2,000 it was still faster: ${newRoute(2000)} against ${oldRoute(2000)}.`}{" "}
-            At {fmt(furthest)} it takes <strong>{newRoute(furthest)}</strong>, and switching back would take{" "}
-            {oldRoute(furthest)}, so nobody leaves. Before the link every trip took {BEFORE}.
+            At {fmt(furthest)} on it, both busy roads, S to A and B to E, carry {fmt(busyCars(furthest))} cars, so each takes{" "}
+            {busyCars(furthest) / 100} and the new route takes {busyCars(furthest) / 100} + 0 + {busyCars(furthest) / 100} ={" "}
+            <strong>{newRoute(furthest)}</strong>. Switching back would take {oldRoute(furthest)}, so nobody leaves.
           </p>
           <p>
-            Each driver made the best choice for themselves, and every one of them lost{" "}
-            {newRoute(furthest) - BEFORE} minutes. A free road made every trip slower. This is Braess&apos;s paradox.
+            Before the link every trip took {BEFORE}. Each driver made the best choice for themselves, and every one of
+            them lost {newRoute(furthest) - BEFORE} minutes. A free road made every trip slower. This is
+            Braess&apos;s paradox.
           </p>
           <p className="muted">
             A model with these numbers. A new road does not slow every network, but it can.
