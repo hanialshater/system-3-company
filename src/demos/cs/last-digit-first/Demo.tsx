@@ -3,7 +3,8 @@
 // Radix sort by hand. Seven three-digit numbers; each pass deals them into buckets 0-9 by ONE digit (in the
 // current list order, so ties keep it) and collects buckets 0 to 9. One button per pass, one row per order
 // (last digit first, first digit first); each row keeps its own run and what it ended with.
-// The reveal quotes only runs the learner finished.
+// The reveal quotes only runs the learner finished, and names the tie bucket and an out-of-order pair
+// from the run state (v4), so it is true whichever run the stage shows last.
 // v3: two rows of pass buttons, one per order, each with its own run; the stage shows the run last
 // touched. The gate needs both runs finished, so the learner sees first-digit-first fail before the
 // reveal. On a third pass the first bucket holding two cards is ringed and captioned: the tie kept
@@ -63,21 +64,27 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
       reveal={() => {
         const l = ended.last;
         const f = ended.first;
+        // Name the tie and the out-of-order pair from the learner's own runs, so the text holds whichever run is on stage.
+        const lb = runs.last.passes === 3 ? runs.last.buckets : null;
+        const lt = lb ? lb.findIndex((b) => b.length >= 2) : -1;
+        const fBad = f ? f.findIndex((v, i) => i < f.length - 1 && v > f[i + 1]) : -1;
         return (
           <>
             {l && (
               <p>
-                Your last-digit-first run ended <strong>{fmt(l)}</strong>: every neighbour in order. Look at the ringed
-                bucket on pass 3: those cards tied on the first digit, and they kept the order the earlier passes had
-                given them. So the earlier digits settle ties, and the first digit, dealt last, has the last word.
+                Your last-digit-first run ended <strong>{fmt(l)}</strong>: every neighbour in order.
+                {lt >= 0 && lb
+                  ? ` On its pass 3, bucket ${lt} held ${lb[lt].join(" then ")}: they tied on the first digit, and they kept the order the earlier passes had given them.`
+                  : ""}{" "}
+                So the earlier digits settle ties, and the first digit, dealt last, has the last word.
               </p>
             )}
             {f && (
               <p>
                 Your first-digit-first run ended <strong>{fmt(f)}</strong>
-                {fmt(f) === fmt([...START].sort((a, b) => a - b))
+                {fBad < 0
                   ? "."
-                  : ": ordered by the last digit only, with red > marks. The first digit went first, so the later passes overwrote its work."}
+                  : `: ordered by the last digit only (${f[fBad]} comes before ${f[fBad + 1]}). The first digit went first, so the later passes overwrote its work.`}
               </p>
             )}
             <p className="muted">Three passes sort three-digit numbers, however many there are.</p>

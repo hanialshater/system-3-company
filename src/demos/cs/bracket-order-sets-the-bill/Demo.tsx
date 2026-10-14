@@ -124,7 +124,7 @@ export default function BracketOrderSetsTheBill({ slug }: { slug: string }) {
           </p>
           <p>
             Matrix multiplication is associative, so every bracketing gives the same matrix, but the sizes in the middle
-            differ, and so does the price. For a longer chain, trying every split point of every sub-chain, cheapest
+            differ, and so does the price. For a longer chain, trying every split point of every sub-chain, shortest
             sub-chains first, finds the cheapest order.
           </p>
         </>

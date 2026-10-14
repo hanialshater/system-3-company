@@ -73,7 +73,8 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
           <p>
             A search treats an empty slot as <strong>the run ends here</strong>, because an insert always takes the first
             free slot: a stored key never sits past a gap, so without that stop a missing key would mean checking every
-            slot. Emptying B&apos;s slot made a gap with C past it. A marker says <strong>keep looking</strong>.
+            slot. Emptying B&apos;s slot made a gap that breaks the search for C (and any key whose probe path from its home slot
+            crosses the gap). A marker says <strong>keep looking</strong>.
           </p>
           <p className="muted">Markers pile up and slow searches, so tables get rebuilt now and then.</p>
         </>

@@ -60,12 +60,10 @@
     },
     {
       "id": "cs.bracket-order-sets-the-bill.c5",
-      "text": "For a longer chain, trying every split point of every sub-chain, cheapest sub-chains first, finds the cheapest order.",
+      "text": "For a longer chain, trying every split point of every sub-chain, shortest sub-chains first, finds the cheapest order.",
       "support": "source",
-      "source": "CLRS 4e section 14.2: optimal substructure over split points k and the bottom-up MATRIX-CHAIN-ORDER, which fills the table by increasing chain length (O(n^3) time). 3e section 15.2. · Fact-check pass 21 2026-10-14: The method is right but the wording is not: 'cheapest sub-chains first' reads as processing sub-chains in order of cost. MATRIX-CHAIN-ORDER (CLRS 4e 14.2, recalled, not opened) solves sub-chains in order of length, shortest first. Own check: bottom-up by length equals brute force over all bracketings on 2,000 random chains (fc21/mc.mjs). Fix (builder): 'shortest sub-chains first' in Demo.tsx reveal and claim text.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "CLRS 4e section 14.2: optimal substructure over split points k and the bottom-up MATRIX-CHAIN-ORDER, which fills the table by increasing chain length (O(n^3) time). 3e section 15.2. · Fact-check pass 21 2026-10-14: The method is right but the wording is not: 'cheapest sub-chains first' reads as processing sub-chains in order of cost. MATRIX-CHAIN-ORDER (CLRS 4e 14.2, recalled, not opened) solves sub-chains in order of length, shortest first. Own check: bottom-up by length equals brute force over all bracketings on 2,000 random chains (fc21/mc.mjs). Fix (builder): 'shortest sub-chains first' in Demo.tsx reveal and claim text. · Builder 2026-10-14 (W-196): reworded per pass 21; awaiting re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:matrix-chain-order",
     "also": [],

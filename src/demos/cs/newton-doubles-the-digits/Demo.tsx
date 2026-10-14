@@ -94,7 +94,7 @@ export default function NewtonDoublesTheDigits({ slug }: { slug: string }) {
             {count >= RUNGS
               ? `The fifth update reached ${DIGITS[LAST_CHANGE]} digits, the limit of the computer's numbers, and the sixth changed nothing. `
               : ""}
-            This is Newton&apos;s method for g² = 2, the same rule as the ancient Babylonian one.
+            This is Newton&apos;s method for g² = 2, the rule known as the Babylonian (or Heron&apos;s) method.
           </p>
         </>
       )}

@@ -51,11 +51,12 @@ function Stage({ ctx, onSeen }: { ctx: StageContext; onSeen: (f: (s: Seen) => Se
     setOvens(o);
     if (o === 1 && k === Q_N) reach("four-workers");
     if (o === 1 && k > PEAK_AT) {
-      onSeen((x) => ({ ...x, zero: k }));
+      onSeen((x) => ({ ...x, zero: Math.max(x.zero, k) })); // highest such worker set
       reach("tops-out");
     }
     if (o === 2) {
-      onSeen((x) => ({ ...x, two: { n: k, total: totalOf(k, 2) } }));
+      // Quote a two-oven state only when the second oven actually helps (2 or more workers).
+      if (totalOf(k, 2) > totalOf(k, 1)) onSeen((x) => ({ ...x, two: { n: k, total: totalOf(k, 2) } }));
       reach("second-oven");
     }
   };
@@ -181,8 +182,8 @@ export default function KitchenCrowding({ slug }: { slug: string }) {
           </p>
           <p>
             Each new cook crowds the same oven, so in this model each adds 2 fewer than the one before.
-            {seen.two
-              ? ` When you added a second oven, ${seen.two.n} workers made ${seen.two.total}: fewer cooks per oven, so each added more.`
+            {seen.two && seen.two.total > totalOf(seen.two.n, 1)
+              ? ` When you added a second oven, ${seen.two.n} workers made ${seen.two.total} (one oven: ${totalOf(seen.two.n, 1)}): fewer cooks per oven, so each added more.`
               : ""}{" "}
             That is diminishing returns: when one input is fixed, adding more of another helps less and less.
           </p>
