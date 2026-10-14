@@ -111,6 +111,8 @@ What I checked, against the tree and not the account: `content/curriculum/lifeha
 - **Owed by cm-lifehacks:** the file's `note` line still reads "Founder-requested 200-lesson review collection … Each concept requires safety review before first publication". The collection file does not exist. Safety review applies to the classes in "How claims get checked here", not to every concept. Rewrite the note to match this charter.
 - W-393 (demo-builder: re-derive level, prerequisites and strand in the 200 meta.json) still stands.
 
+**Ruling 2026-10-14 (W-570, head-of-product).** Decision `company/decisions/2026-10-14-w570-lifehacks-wave-state.md`. (1) Wave 2 is not open: the wave-1 exit gate (Domain Launch Review passing 5 lessons, `spaced-beats-cram` published) is unmet, and A1 is an exception to strand closure, not to wave order. (2) A3's tripwire has not fired. Its second bullet is restated: at the next OP planning, if wave 2 is still not open, or the Domain Launch Review is not scheduled with 5 named candidates, the head of product takes the wave order to the founder. Cleaning briefs and its pattern note are prepared during wave 3. (3) W-556's Wave K gate does not apply to the Wave J briefs (ranks 6-14). Those briefs are held by their own gates, including W-569 (formats).
+
 **This co-sign would be wrong if:**
 - slot allocation turns out not to read the uncovered demand-3 list (checked at the next OP planning);
 - or the study gaps get briefs but no lesson because the 200's pipeline is holding the builders. In that case A2 has only moved the queue, and I take the capacity question to the founder.

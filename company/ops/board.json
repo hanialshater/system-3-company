@@ -6934,7 +6934,7 @@
       "id": "W-497",
       "title": "FC pass 35 DISPUTE zebra-sorts-before-apple c5: reveal 'Real apps sort with language rules, not raw codes' is false as worded (GNU sort LC_ALL=C, Python sorted() and JS default sort all order by code: Banana Zebra apple). Qualify it (e.g. apps sorting words for people usually use language rules) and give an openable source; then fact-check. See company/reviews/zebra-sorts-before-apple/2026-10-14-fact-check.md Pass 35",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "cs",
       "created": "2026-10-14",
       "links": [],
@@ -6943,13 +6943,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute on a lesson in review; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-498",
       "title": "FC pass 35 DISPUTE twenty-flips-run-of-five c5: reveal 'X% of real sequences stayed that short' is wrong for a learner run of 8+ (bins cap at 8+, so atMost returns n: run 8 shows 100.0%, true 97.5% at n=1,001). Keep exact longest runs (or bins to 20), or word the 8+ case; then fact-check. See company/reviews/twenty-flips-run-of-five/2026-10-14-fact-check.md Pass 35",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "probability",
       "created": "2026-10-14",
       "links": [],
@@ -6958,13 +6959,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-499",
       "title": "FC pass 35 DISPUTE two-cells-sum-any-range c3: 'any range costs two reads and one subtraction' (claim) / 'Any range costs one subtraction' (reveal) contradicts the stage's own opening state: days 1-6 reads 1 total and subtracts nothing (8 of 36 ranges). Say 'at most', or show P0 = 0 so day-1 ranges read two cells; then fact-check. See company/reviews/two-cells-sum-any-range/2026-10-14-fact-check.md Pass 35",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "cs",
       "created": "2026-10-14",
       "links": [],
@@ -6973,13 +6975,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-500",
       "title": "FC pass 35 DISPUTE tax-now-or-tax-later c3: reveal quotes the recorded later rate but not the growth, so a record made at x2 (the stage opens at x2) reads 'B ended at $13,000 against A's $15,000' right after 'Both ended at $30,000 ... x 4'. Print x{rec.g} in the reveal or record the rate milestone only at x4; then fact-check. See company/reviews/tax-now-or-tax-later/2026-10-14-fact-check.md Pass 35",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "economics",
       "created": "2026-10-14",
       "links": [],
@@ -6988,13 +6991,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-501",
       "title": "FC pass 35 DISPUTE small-gap-big-extremes c3: 'At the averages the two batches overlap almost completely' overstates it: curves 0.5 sd apart share 2*Phi(-0.25) = 80% of their area. Reword in claim and reveal (e.g. 'overlap mostly, about 80% shared'); then fact-check. See company/reviews/small-gap-big-extremes/2026-10-14-fact-check.md Pass 35",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "probability",
       "created": "2026-10-14",
       "links": [],
@@ -7003,7 +7007,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-502",
@@ -7114,7 +7119,7 @@
       "id": "W-509",
       "title": "FC pass 35 dispute, vaccinate-at-the-peak c1: 'new cases peak on day 19' is false in the model. PEAK_DAY is the peak of people sick at once (I max, day 19.19); new cases per day (beta·S·I) peak at day 15.97. The recall card repeats it ('when new cases peak' / why 'susceptible share falls to 1/R0'; at the new-case peak S = 57%, not 33%). Fix: say 'the number sick at once peaks on day 19' in c1 and in the recall question/why, or redefine the peak as new cases and recompute everything that quotes it (c2, c3, predict). See company/reviews/vaccinate-at-the-peak/2026-10-14-fact-check.md, Pass 35.",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7123,7 +7128,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-510",
@@ -7159,7 +7165,7 @@
       "id": "W-512",
       "title": "asthma-looks-safe c2 DISPUTED (FC pass 35, company/reviews/asthma-looks-safe/2026-10-14-fact-check.md): the claim text quotes a stage line that does not exist ('Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.'); Demo.tsx v1 prints \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" Substance is right. Fix: make the claim's quote match the stage (or drop the quote), then a fresh fact-checker re-checks. Also new c6 (recorded, unverified): the hook 'Records say asthma patients with pneumonia die less.' reads as a real-world claim with no openable source; either cite an opened source or mark it as the toy ('In these toy records...').",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7168,13 +7174,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "FC dispute; blocks publish."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-513",
       "title": "Demo crit 2026-10-14: decide the six pairs (keep / revise / kill / merge) from the pairwise witness record; answer each objection in the record. See company/rituals/records/2026-10-14-demo-crit.md",
       "owner": "head-of-product",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7183,7 +7190,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Real but not top: head-of-product rules on six pairs; no learner harm meanwhile."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-514",
@@ -7816,7 +7824,7 @@
       "id": "W-556",
       "title": "plan-to-2000 (company/product/verticals/plan-to-2000.md): decide wave gating (no Wave K builder claims until non-lifehacks review queue <=1 wave; J >=60% published) and take to founder: exam-prep pilot vertical, web-capable fact-check session per wave, first deploy for EXP-002",
       "owner": "head-of-product",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7825,7 +7833,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Approved: wave gating (no Wave K claims until the review queue is under 1 wave) is the planning decision every build item below waits on."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-557",
@@ -8015,10 +8024,11 @@
       "id": "W-570",
       "title": "Life Hacks: rule on three things from Wave J briefs (company/domains/briefs/lifehacks.md 'Wave J' preamble): (1) wave 2 is not open on the record (0 published, Domain Launch Review not held), so may A1 digital briefs 8-9 be built now? (2) A3 tripwire: kitchen briefs 11-14 now exist (held), cleaning has none (wave 4, no prep rule; A2 bars every other brief, so the wave is 9 not 10); (3) does W-556 Wave K gating apply to these (W-401 triage says Wave K)",
       "owner": "head-of-product",
-      "state": "next",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-571",
@@ -8105,6 +8115,159 @@
       "id": "W-580",
       "title": "Add refuse item 6 to the charter worded as 'instructions for charging damaged or swollen batteries, and charging workarounds'; ruling for top-ups-count-the-same in the Wave J safety record",
       "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-581",
+      "title": "duck-rides-the-wave: brief #58 has the buoy 100 m away start to bob at 16 s (crest speed 6.25 m/s), but a deep-water wave train's front and energy travel at the group speed c/2 = 3.1 m/s, so about 32 s. Built as briefed; claim c4 carries the objection. Rule on the number before fact-check.",
+      "owner": "cm-physics",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-582",
+      "title": "Founder ask 1 (W-556): approve an exam-prep pilot vertical (intro physics + intro statistics; AP Physics 1 / AP Statistics candidates, unconfirmed)? Yes = CMs map syllabi to existing lessons now, Wave K takes 36 gap lessons; No = those 36 slots go to unmet demand-3 concepts. HoP recommends yes to mapping now, build slots after. Framed in company/decisions/2026-10-14-w556-wave-gate.md",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-583",
+      "title": "Founder ask 2 (W-556): one web-capable fact-check session per wave: who runs it (you / a connected session you approve / a fact-check host allow-list)? Clears ~19 held claims per wave (W-571, W-420, W-541, F-10) and spaced-beats-cram's recall claim, which alone holds the Life Hacks wave-1 exit gate. Framed in company/decisions/2026-10-14-w556-wave-gate.md",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-584",
+      "title": "Founder ask 3 (W-556): approve a first deploy (a specific one, per runbook, after W-477/W-534 clear and with drafts unreachable W-480) so EXP-002 and metrics part B start; it is Wave M's entry gate and the only data for re-allocating waves N-Q. Links F-04 and F-11/W-007, does not replace them. Framed in company/decisions/2026-10-14-w556-wave-gate.md",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-585",
+      "title": "W-556 gate (decided, company/decisions/2026-10-14-w556-wave-gate.md): record the Wave J slug list (144 from '## Wave J' headings) in company/ops/waves.json; at each operating loop write a dated gate line under '## Gate checks' (queue draft+review incl. unparked Life Hacks <=160; Wave J published %; disputes older than 1 wave; Wave K briefs without a skip line); tell CMs Wave K briefs carry a 'Wave K gate (W-556)' skip line",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-586",
+      "title": "Life Hacks Domain Launch Review (W-570 ruling 1, company/decisions/2026-10-14-w570-lifehacks-wave-state.md): name 5 candidate Life Hacks lessons once they clear every gate but safety attestation, schedule the review (head-of-product chairs, lifehacks-safety-reviewer attests); with spaced-beats-cram published this opens wave 2",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-587",
+      "title": "Demo crit W-513 holds (company/decisions/2026-10-14-w513-demo-crit-pairs.md): hold penalty-kick-mix and who-pays-same-filter until a CURRENT-version 390x844 frame shows the predict table (penalty) / the reveal's panel and band (who-pays) at >=10 px and no reveal-frame crop of what the reveal names; do not publish lh-sequential-discounts (merged), lh-discount-round-trip (killed), sock-pairs-not-all-combinations (revise/merge W-517)",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-588",
+      "title": "Demo crit W-513 revisions (company/decisions/2026-10-14-w513-demo-crit-pairs.md): penalty-kick-mix predict table legible >=10 px + reveal frame shows 'Scoring' line and headers; who-pays-same-filter reveal panel/band legible; supply-demand (published) chart top cropped at the reveal, trim the ~115-word reveal to <=90 in the same version. Fix order per demo-standard fit rule; never by shrinking",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-589",
+      "title": "Demo crit W-513 path order: two-suspects-payoff before penalty-kick-mix, wave-from-the-corner before a-star-heads-for-goal, supply-demand before who-pays-same-filter on any NCM/course path (company/decisions/2026-10-14-w513-demo-crit-pairs.md)",
+      "owner": "cm-course-ncm",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-590",
+      "title": "Legibility as a QA test? HoP ruled 'on screen' in the fit rule includes legible (meaning labels >=10 px at 390; company/decisions/2026-10-14-w513-demo-crit-pairs.md, demo-standard craft rule). Decide whether QA tests it; tests/qa/** is protected, so any change is an amendment",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-591",
+      "title": "who-pays-same-filter frames show a 'DRAFT' badge while meta.json says review (demo crit 2026-10-14 pair 6): check and fix the badge source",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-592",
+      "title": "Demo crit W-513 minors for next version, not blocking: handshakes-halve nine near-identical taps strain 60 s; fifty-up-fifty-down if trimmed keep the corner sentence; answer W-516 transfer of lh-discount-round-trip (HoP decision: kill unless you want something from it). company/decisions/2026-10-14-w513-demo-crit-pairs.md",
+      "owner": "cm-math",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-593",
+      "title": "Demo crit W-513 minors, not blocking publish: a-star-heads-for-goal 46-word question, 'Open / No guess' cell stays '?' on the path, admissibility sentence told not shown. company/decisions/2026-10-14-w513-demo-crit-pairs.md",
+      "owner": "cm-cs",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-594",
+      "title": "Demo crit W-513: two-suspects-payoff question restates the whole table in prose (minor, next version only; not reopened for this). With W-515 carry lh-sequential-discounts' 'which offer is cheaper' framing into twenty-then-ten-off or answer why not. company/decisions/2026-10-14-w513-demo-crit-pairs.md",
+      "owner": "cm-economics",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-595",
+      "title": "penalty-kick-mix v4 learner r9 revise: reveal crop 46px hides Dives left/right headers, 95 words; reveal quotes best-mix 44.4/55.6/0.722 but stage at reveal shows keep-50 state only (company/reviews/penalty-kick-mix/2026-10-14-learner-no-mixed-strategy-r9.md)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-596",
+      "title": "mercator-greenland v5 learner r9 revise: reveal says the compass-bearing line is bent on the equal-area map, but at 390px it is within ~3-4px of straight; dashed true-place Greenland clipped at oval top (company/reviews/mercator-greenland/2026-10-14-learner-no-projections-r9.md)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-597",
+      "title": "Design question from learner r9: who-pays-same-filter top panel drawn at the 10px floor (bottom panel ~13px) at the reveal while the reveal compares the two Totals; does 'on screen' mean more than 'at the floor'? (company/reviews/who-pays-same-filter/2026-10-14-learner-knows-externalities-r9.md)",
+      "owner": "design-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
