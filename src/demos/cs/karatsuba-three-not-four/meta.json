@@ -1,0 +1,105 @@
+{
+  "slug": "karatsuba-three-not-four",
+  "title": "Three products where four seemed needed",
+  "hook": "Can two numbers be multiplied with fewer digit products than n × n?",
+  "domain": "cs",
+  "concept": "karatsuba",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sc"
+  },
+  "format": "side-by-side",
+  "learner": {
+    "knows": [
+      "splitting a problem and combining (merge-sort-payoff)"
+    ],
+    "doesNotKnow": [
+      "that two-digit halves can be multiplied with 3 products instead of 4"
+    ]
+  },
+  "misconception": "Multiplying two n-digit numbers needs n x n single-digit multiplications and nothing can beat it.",
+  "objective": "The learner can explain that (a+b)(c+d) - ac - bd gives the cross terms, so each split needs 3 half-size products instead of 4, which compounds to 27 one-digit products against 64 for 11111111 x 11111111 and about n^1.58 against n^2 in general.",
+  "claims": [
+    {
+      "id": "cs.karatsuba-three-not-four.c1",
+      "text": "Multiplying 11111111 by 11111111 down to 1-digit pieces takes 64 one-digit products the schoolbook way and 27 with Karatsuba.",
+      "support": "simulation",
+      "source": "Builder's node script (2026-10-14, algo2-sc) and school()/kara() in Demo.tsx: real BigInt recursion, split at half the longer length, base case when either factor < 10; counted base-case calls: schoolbook 64, Karatsuba 27; both results equal BigInt 11111111 x 11111111. No half-sum carries (1111 + 1111 = 2222, 11 + 11 = 22, 2 + 2 = 4), so all 27 leaves are truly 1-digit. The same code needs 33 for 12345678 x 87654321 (8765 + 4321 carries), which is why the brief switched numbers (W-179). Stage counts are the trees' real leaves, not constants.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c2",
+      "text": "Level by level, schoolbook makes 4, 16 and 64 products and Karatsuba 3, 9 and 27 (4-digit, 2-digit and 1-digit).",
+      "support": "simulation",
+      "source": "Builder's node script and COUNTS/DIGITS in Demo.tsx: nodes per depth 4|3, 16|9, 64|27; largest factor length per depth 4, 2, 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c3",
+      "text": "11111111 x 11111111 = 123,456,787,654,321.",
+      "support": "derivation",
+      "source": "BigInt check in node; both trees in Demo.tsx recombine to this value and the stage prints the computed value.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c4",
+      "text": "a·d + b·c = (a+b)(c+d) - a·c - b·d; for the halves 1111 and 1111 both sides are 2,468,642.",
+      "support": "derivation",
+      "source": "Algebra: (a+b)(c+d) = ac + ad + bc + bd. With a = b = c = d = 1111: 2 x 1,234,321 = 2,468,642 and 2222^2 - 2 x 1,234,321 = 4,937,284 - 2,468,642 = 2,468,642. Computed live on the stage (CROSS and VIA).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c5",
+      "text": "For 1,024-digit numbers the size model gives 59,049 products against 1,048,576.",
+      "support": "derivation",
+      "source": "1,024 = 2^10 digits, 10 levels of halving: 3^10 = 59,049 and 4^10 = 1,048,576 (node). Size model: assumes no half-sum carries, as for the stage's numbers; with carries real counts are somewhat higher.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c6",
+      "text": "Karatsuba's cost grows about as n^1.58 for n digits, against n^2 for schoolbook.",
+      "support": "source",
+      "source": "Karatsuba and Ofman 1962 (Doklady Akad. Nauk SSSR); T(n) = 3T(n/2) + O(n) gives Theta(n^log2 3), log2 3 = 1.585. CLRS 4e ch. 4 (problems; chapter only). Citations from memory, not opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.karatsuba-three-not-four.c7",
+      "text": "Schoolbook splits each product into 4 half-size products (a·c, a·d, b·c, b·d); Karatsuba uses 3 (a·c, b·d, (a+b)(c+d)).",
+      "support": "derivation",
+      "source": "x = a·10^h + b, y = c·10^h + d, so xy = ac·10^2h + (ad + bc)·10^h + bd; Karatsuba gets ad + bc from (a+b)(c+d) - ac - bd.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Karatsuba multiplies the halves with 3 products instead of 4. Where does the saving come from?",
+    "options": [
+      "(a+b)(c+d) minus a·c and b·d gives both cross terms",
+      "It skips the product of the two low halves",
+      "It rounds the numbers before multiplying"
+    ],
+    "answer": 0,
+    "why": "One product of the sums, minus the two products already made, equals a·d + b·c; saving one of four at every level compounds to about n^1.58."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "cs:karatsuba",
+    "also": [],
+    "prerequisites": ["cs:divide-and-conquer", "cs:big-o-growth"],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      { "work": "clrs-4e", "chapter": 4, "note": "Divide-and-conquer (chapter only)" }
+    ],
+    "tags": ["multiplication", "karatsuba", "divide-and-conquer", "recursion"]
+  },
+  "interactions": ["choice-before-reveal", "two-panel-shared-control", "step-run-button", "milestone-gate"]
+}

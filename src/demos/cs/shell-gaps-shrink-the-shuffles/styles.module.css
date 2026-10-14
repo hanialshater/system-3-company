@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.rule { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.title { font-size: 10px; font-weight: 700; fill: var(--fg); }
+.read { font-size: 9px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.card { font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tally { font-size: 9.5px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.tallyDone { font-size: 9.5px; fill: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
+.tap { min-height: 44px; }
