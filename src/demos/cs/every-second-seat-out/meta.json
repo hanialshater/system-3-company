@@ -1,0 +1,102 @@
+{
+  "slug": "every-second-seat-out",
+  "title": "Every second seat out",
+  "hook": "41 in a circle, every second one out. Who is left?",
+  "domain": "cs",
+  "concept": "josephus-problem",
+  "format": "storyboard-scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "recursion simplifies to a smaller case (hanoi-tower-doubles)"
+    ],
+    "doesNotKnow": [
+      "that a counting-out game has a closed form based on the binary of n"
+    ]
+  },
+  "misconception": "The survivor of a circle where every second person is removed is somewhere unpredictable; you have to simulate.",
+  "objective": "The learner can explain that once the circle is down to a power of two the person the count starts on survives, so for 41 = 32 + 9 the survivor is 2·9 + 1 = 19, which is 41 in binary (101001) with its leading 1 moved to the end (010011).",
+  "claims": [
+    {
+      "id": "cs.every-second-seat-out.c1",
+      "text": "With 41 people and every second person removed, starting by skipping 1 (so 2, 4, ... go first), the survivor is 19.",
+      "support": "simulation",
+      "source": "Demo.tsx play(41).survivor, which the stage and reveal print. Builder's node script (2026-10-14): removal order 2, 4, ..., 40, 1, 5, ...; survivor 19; after 38 removals 3, 19 and 35 remain. Recurrence J(1) = 1, J(2m) = 2J(m) - 1, J(2m + 1) = 2J(m) + 1 also gives 19.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-second-seat-out.c2",
+      "text": "After 9 removals 32 people are left and the count starts at 19 (reveal: 'Scrub to removal 9: 32 were left and the count started at 19'; key frame '32 left').",
+      "support": "simulation",
+      "source": "Demo.tsx play(41): powFrame = 9 (first removal count that leaves a power of two), frames[9].skip = 19 (removed 2, 4, ..., 18). Builder's node script (2026-10-14) agrees.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-second-seat-out.c3",
+      "text": "With a power of two left, the person the count starts on always survives: each lap removes exactly half and comes back to them.",
+      "support": "derivation",
+      "source": "With 2^m people and the count starting on person p (p is skipped), one lap removes every second person, 2^(m-1) of them, and the next count starts on p again; induct on m down to 1 person. Graham, Knuth and Patashnik, Concrete Mathematics (2nd ed.), section 1.3, J(2^m) = 1 (check before building: cited from the brief).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-second-seat-out.c4",
+      "text": "41 = 32 + 9, so the survivor is 2 × 9 + 1 = 19; in binary 41 is 101001, and moving the leading 1 to the end gives 010011 = 19.",
+      "support": "derivation",
+      "source": "Concrete Mathematics section 1.3: J(2^m + l) = 2l + 1 for 0 <= l < 2^m, and J((b_m b_(m-1) ... b_0)_2) = (b_(m-1) ... b_0 b_m)_2, a one-bit cyclic left shift (check before building: cited from the brief). Arithmetic: 41 = 0b101001, 0b010011 = 19 (node, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-second-seat-out.c5",
+      "text": "7 people leave 7 and 10 people leave 5 (table and reveal 'the same rule').",
+      "support": "simulation",
+      "source": "Demo.tsx play(7) and play(10); builder's node script (2026-10-14): 7 -> 7 (4 left after 3 removals, count on 7), 10 -> 5 (8 left after 2 removals, count on 5). Formula: 7 = 4 + 3 -> 7, 10 = 8 + 2 -> 5. The brief's n = 7, k = 3 -> 4 uses a different skip and is not shown.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "16 people stand in a circle numbered 1 to 16. Starting at 1, every second person is removed until one is left. Who survives?",
+    "options": [
+      "1",
+      "9",
+      "16"
+    ],
+    "answer": 0,
+    "why": "16 is a power of two, so each lap removes exactly half and the count comes back to person 1 every time: 1 survives."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:josephus-problem",
+    "also": [],
+    "prerequisites": [
+      "cs:recursion"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "josephus",
+      "recursion",
+      "binary"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "storyboard-scrub",
+    "scrubber-timeline",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

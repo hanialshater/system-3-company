@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 2.4em; }
+.svg { width: 360px; max-width: 100%; height: auto; }
+.panel { font-size: 14px; font-weight: 800; fill: var(--fg); }
+.size { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.cost { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.same { font-size: 12px; font-weight: 800; fill: var(--good); }
+.axisLab { font-size: 11px; font-weight: 700; fill: var(--muted); }
+.barLab { font-size: 9px; fill: var(--muted); }
+.tick { font-size: 8px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.total { font-size: 12px; font-weight: 800; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.totalIn { font-size: 12px; font-weight: 800; fill: #0d0f14; font-variant-numeric: tabular-nums; }
