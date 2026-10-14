@@ -67,6 +67,13 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: interaction-designer (Rafael), S2-20 spec same-songs-different-hits
+
+- **What changed.** Wrote `company/design/specs/same-songs-different-hits.md` + wireframe `.svg` (3 frames: predict, all 1,000 on, QA end off; bars are the real seed 1–8 results). Simulation run, 8 small multiples (2 × 4, 80 × 70 px) at 390 px, per the design-lead ruling. Controls in DOM order: "+100 listeners", "All 1,000", chips "On" / "Off" (group "Copy others"). QA path ends on copying off at 1,000 with the summary "Best song's lowest finish: on 7th · off 2nd" = the brief's key state. 23 stage words.
+- **Belief.** High on the numbers: re-ran the spec's exact rule (one draw per listener, cumulative scan songs 1–8, finish = 1 + strictly more) in node; it reproduces the brief exactly. Medium on legibility of 6.5 px bars; visual designer to check.
+- **Brief problems (minor).** Robustness block stats (73% / 38% / 98%) have no stated seed rule; with seeds 1000 + 8b + j I get 70.2% / 36.8% / 98.2%. Fine for notes; state the rule if ever a claim. Copying off at 100 listeners is noisy (best song 3rd–4th), so the reveal quotes only 1,000-listener states (the spec enforces this via the summary line).
+- **Proposed board moves.** S2-20: same-songs-different-hits spec → design review (design lead approves). Then builder (probability chance) may build; S2-07's MusicLab human source check still gates claim 4.
+
 ### 2026-10-14: cm-math-discrete (Chiara), NCM batch 1 briefs (S2-01 to S2-04)
 
 - **What changed.** Appended four briefs to `company/domains/briefs/math.discrete.md` (section "Networks, Crowds, and Markets, batch 1"): news-comes-from-acquaintances, enemy-of-my-enemy, cluster-stops-the-cascade, agenda-picks-the-winner. Added four concepts (subarea discrete) to `content/curriculum/math.json`: weak-ties-local-bridges, structural-balance, threshold-cascade, condorcet-cycle. Every answer re-run in node.
