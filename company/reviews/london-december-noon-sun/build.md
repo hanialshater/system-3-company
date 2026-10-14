@@ -6,3 +6,10 @@
 - Key state: "equinox" and "december". The slider starts at June, and QA's two presses visit the equinox and then December, so all three values the reveal names are on the QA path.
 - Locked: the protractor angle and the formula are hidden. The Sun is drawn at its June position.
 - Iteration after the phone screenshot: the tilt label said 23.44 while the formula said 23.4. Both now show 23.4.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Hook neutral and options reordered (38, 15, 62). The June height is shown from the moment the stage opens.
+- New latitude slider (0 to 60 N, "Back to London" button) so 90 minus latitude is seen; milestones count only at London.
+- A "one sunbeam covers 3.8x the ground" readout and a bar on the ground show the weak winter light; air-thickness sentence dropped. Equinox and tilt glossed. Claims c5 rewritten; c6, c7 added (unverified).

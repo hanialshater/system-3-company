@@ -17,7 +17,7 @@ const W = 320;
 const H = 300;
 const DAKAR: P = [-17.4677, 14.7167];
 const CITIES: { name: string; at: P; dx: number; dy: number }[] = [
-  { name: "Natal, Brazil", at: [-35.2, -5.79], dx: 6, dy: 4 },
+  { name: "Natal, Brazil", at: [-35.2, -5.79], dx: 4, dy: 15 },
   { name: "Paris", at: [2.3522, 48.8566], dx: -6, dy: -4 },
   { name: "Rome", at: [12.4964, 41.9028], dx: 6, dy: 4 },
 ];
@@ -37,10 +37,8 @@ const projection = geoAzimuthalEquidistant()
 
 export default function DakarNearerBrazil({ slug }: { slug: string }) {
   const [ring, setRing] = useState(START);
-  const [widest, setWidest] = useState(START);
   const ringShape = useMemo(() => geoCircle().center(DAKAR).radius((ring / EARTH_RADIUS_KM) * (180 / Math.PI)).precision(1)(), [ring]);
   const inside = CITIES.filter((_, i) => DIST[i] <= ring);
-  const sawEurope = widest >= Math.max(DIST[1], DIST[2]);
 
   return (
     <Lesson
@@ -56,14 +54,11 @@ export default function DakarNearerBrazil({ slug }: { slug: string }) {
         <>
           <p>
             <strong>Natal.</strong> It is {fmt(NATAL)} km from Dakar, across the Atlantic, and it came inside
-            your ring while Paris and Rome were still outside.{" "}
-            {sawEurope
-              ? `Rome is ${fmt(DIST[2])} km and Paris ${fmt(DIST[1])} km away.`
-              : `Paris and Rome lie beyond your widest ring, ${widest.toLocaleString("en-US")} km.`}
+            your ring while Paris and Rome were still outside. Rome is {fmt(DIST[2])} km and Paris {fmt(DIST[1])} km away, as
+            the labels said.
           </p>
           <p>
-            This map is an{" "}
-            <strong>azimuthal equidistant</strong> projection: it keeps true distance from its centre only, so a ring drawn round Dakar is a
+            This kind of map (an <strong>azimuthal equidistant</strong> projection) keeps true distance from its centre only, so a ring drawn round Dakar is a
             real circle on the ground. Distances between other pairs on it are stretched. Seen from Dakar, the far side of the Atlantic is nearer than Paris or Rome.
           </p>
         </>
@@ -89,7 +84,7 @@ export default function DakarNearerBrazil({ slug }: { slug: string }) {
                       <text x={d[0] + 6} y={d[1] + 4} className={s.name}>
                         Dakar
                       </text>
-                      {CITIES.map((c, i) => {
+                      {!locked && CITIES.map((c, i) => {
                         const q = projection(c.at)!;
                         const lit = !locked && DIST[i] <= ring;
                         return (
@@ -97,13 +92,13 @@ export default function DakarNearerBrazil({ slug }: { slug: string }) {
                             <circle cx={q[0]} cy={q[1]} r={4} className={lit ? s.lit : s.city} />
                             <text x={q[0] + c.dx} y={q[1] + c.dy} className={s.name} textAnchor={c.dx < 0 ? "end" : "start"}>
                               {c.name}
-                              {lit ? ` ${fmt(DIST[i])} km` : ""}
+                              {` ${fmt(DIST[i])} km`}
                             </text>
                           </g>
                         );
                       })}
                       <text x={6} y={H - 6} className={s.small}>
-                        Azimuthal equidistant map: true distances from Dakar only.
+                        {locked ? "Dakar is at the centre. The three cities appear once you commit." : "Distances from Dakar are true on this map; elsewhere they are stretched."}
                       </text>
                     </>
                   );
@@ -120,7 +115,6 @@ export default function DakarNearerBrazil({ slug }: { slug: string }) {
                   format={(v) => `${v.toLocaleString("en-US")} km`}
                   onChange={(v) => {
                     setRing(v);
-                    setWidest((w) => Math.max(w, v));
                     if (v >= NATAL && v < NEAREST_EUROPE) reach("natal-only");
                   }}
                 />

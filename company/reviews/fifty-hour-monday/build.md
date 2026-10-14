@@ -8,3 +8,9 @@
 - Key state: the clock at "last Monday ends", with the readout showing 50 h. Milestones: "begins" (Monday exists somewhere) and "ends" (t >= Tue 12:00 UTC). The two jump chips come first in DOM order, so QA reaches both.
 - Locked: the clock starts at Sun 00:00 UTC; both readouts show "?".
 - Iteration: the UTC-12 label was clipped off the left edge of the map, so I moved it to the right of its dot. Added an "other" swatch to the legend for Sat/Wed bands.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Hook no longer says "longer than 24"; neutral question. UTC defined on the stage (new claim c5).
+- "Forward 6 hours" step button so the wave of dates is watched; bands carry S/M/T letters and stronger colours; islands are named on the map. "Clocks spread over 26 h (UTC-12 to UTC+14)" readout lets the learner build 24 + 26.

@@ -18,7 +18,6 @@ const H = 300;
 const RAD = Math.PI / 180;
 const KEY = 80;
 const HEADINGS = [10, 45, KEY];
-const NEAR_POLE = 89.9;
 const psi = (latDeg: number) => Math.log(Math.tan(Math.PI / 4 + (latDeg * RAD) / 2));
 
 /** Length from the equator to the pole along a constant heading, km. */
@@ -27,9 +26,14 @@ const lengthKm = (h: number) => (EARTH_RADIUS_KM * (Math.PI / 2)) / Math.cos(h *
 const turnsBy = (h: number, lat: number) => (Math.tan(h * RAD) * psi(lat)) / (2 * Math.PI);
 const POLE_KM = (EARTH_RADIUS_KM * Math.PI) / 2;
 
-function spiral(h: number) {
+const LEVELS = [89, 89.9, 89.99, 90]; // how close to the pole the learner follows the path; 90 = all the way
+/** Distance travelled by the time the path reaches `lat`, km (each km gains cos(heading) km of northing). */
+const lengthTo = (h: number, lat: number) => (EARTH_RADIUS_KM * lat * RAD) / Math.cos(h * RAD);
+const levelName = (lat: number) => (lat >= 90 ? "the pole" : `${lat}°N`);
+
+function spiral(h: number, upTo = 90) {
   const t = Math.tan(h * RAD);
-  const endLon = t * psi(89.99) / RAD; // degrees of longitude travelled
+  const endLon = t * psi(Math.min(upTo, 89.99)) / RAD; // degrees of longitude travelled
   const pts: [number, number][] = [];
   const step = Math.max(0.5, Math.min(4, endLon / 1500));
   for (let lon = 0; lon <= endLon; lon += step) {
@@ -45,7 +49,9 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
   const [heading, setHeading] = useState(45);
   const [zoom, setZoom] = useState(false);
   const [saw80, setSaw80] = useState(false);
-  const path = useMemo(() => spiral(heading), [heading]);
+  const [level, setLevel] = useState(3); // index into LEVELS
+  const lat = LEVELS[level];
+  const path = useMemo(() => spiral(heading, lat), [heading, lat]);
   const projection = useMemo(() => {
     const p = geoOrthographic().rotate([0, -90]).clipAngle(90).fitExtent([[6, 6], [W - 6, H - 6]], { type: "Sphere" });
     if (zoom) p.scale(p.scale() * 8);
@@ -61,24 +67,25 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
         options: ["About 10,000 km, the equator-to-pole distance", "About 58,000 km", "You never get there: the path is endless"],
         answer: 1,
       }}
-      exploreHint="Choose 80°, read the length and turns, then zoom in on the pole."
-      minInteractions={2}
+      exploreHint="Choose 80°, zoom in on the pole, then follow the path closer and closer."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            <strong>About {fmtKm(lengthKm(KEY))}.</strong> At 80° your path circled the pole {turnsBy(KEY, NEAR_POLE).toFixed(1)} times by{" "}
-            {NEAR_POLE}°N, and closer in it keeps circling, tighter and tighter, without end. Yet the length is finite,
-            because each turn is shorter than the last.
+            <strong>About {fmtKm(lengthKm(KEY))}.</strong> At 80° you had gone {fmtKm(lengthTo(KEY, 89))} by 89°N. The last degree to the pole adds only{" "}
+            {fmtKm(lengthKm(KEY) - lengthTo(KEY, 89))}, though it holds endless turns. The length is finite because each turn is
+            shorter than the last.
           </p>
           <p>
-            Every kilometre gains the same bit of northing, so the length is the straight-north distance ({fmtKm(POLE_KM)}) divided by
-            cos 80°. A constant heading is called a rhumb line: straight on a Mercator map, a spiral on the globe.
+            At 80° you head mostly east, so each kilometre gains only about 0.17 km of northing, the same at every turn. The pole is{" "}
+            {fmtKm(POLE_KM)} due north, so you travel about 5.8 times that. A constant heading is called a rhumb line: straight on a
+            Mercator map, a spiral on the globe.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["heading-80", "zoomed"]}>
+        <Milestones interact={interact} names={["heading-80", "zoomed", "closer"]}>
           {(reach) => (
             <div className={s.wrap}>
               <WorldMap
@@ -96,7 +103,7 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
                       {start && <circle cx={start[0]} cy={start[1]} r={4} className={s.start} />}
                       <circle cx={pole[0]} cy={pole[1]} r={2.5} className={s.pole} />
                       <text x={6} y={12} className={s.lab}>
-                        {zoom ? "Zoomed ×8 on the North Pole." : "Seen from above the North Pole. Rim: the equator."}
+                        {zoom ? "Zoomed ×8 on the North Pole." : "Seen from above the pole. Rim: the equator."}
                       </text>
                       {start && (
                         <text x={start[0] - 30} y={start[1] - 6} className={s.lab}>
@@ -107,6 +114,7 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
                   );
                 }}
               </WorldMap>
+              <p className={s.note}>Heading (compass angle, 90° is due east):</p>
               <Row>
                 {HEADINGS.map((h) => (
                   <Control
@@ -121,7 +129,7 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
                       }
                     }}
                   >
-                    Heading {h}°
+                    {h}°
                   </Control>
                 ))}
                 <Control
@@ -132,13 +140,22 @@ export default function BearingSpiralToThePole({ slug }: { slug: string }) {
                     if (!zoom) reach("zoomed");
                   }}
                 >
-                  {zoom ? "Whole hemisphere" : "Zoom on the pole"}
+                  {zoom ? "Zoom out" : "Zoom in"}
+                </Control>
+                <Control
+                  disabled={locked}
+                  onClick={() => {
+                    setLevel((level + 1) % LEVELS.length);
+                    if (heading === KEY) reach("closer");
+                  }}
+                >
+                  Closer: {level === 3 ? "89°N" : level === 2 ? "pole" : `${LEVELS[level + 1]}°N`}
                 </Control>
               </Row>
-              <Row>
-                <Readout label="Length to the pole" value={locked ? "?" : fmtKm(lengthKm(heading))} />
-                <Readout label={`Turns by ${NEAR_POLE}°N`} value={locked ? "?" : turnsBy(heading, NEAR_POLE).toFixed(1)} />
-              </Row>
+              {!locked && <Row>
+                <Readout label={`Distance to ${levelName(lat)}`} value={locked ? "?" : fmtKm(lengthTo(heading, lat))} />
+                <Readout label="Turns round the pole" value={locked ? "?" : lat >= 90 ? "endless" : turnsBy(heading, lat).toFixed(1)} />
+              </Row>}
               {!locked && saw80 && <p className={s.note}>Straight north from the equator: {fmtKm(POLE_KM)}.</p>}
             </div>
           )}

@@ -52,12 +52,10 @@
     },
     {
       "id": "geography.drift-of-a-straight-throw.c4",
-      "text": "The Coriolis effect is zero at the equator and strongest at the poles.",
+      "text": "The Coriolis effect is zero at the equator and grows toward the poles.",
       "support": "derivation",
-      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory). | FACT-CHECK 2026-10-13 (pass 4): f = 2 Omega sin(lat) is 0 at the equator and largest at the poles (Holton, Intro to Dynamic Meteorology, ch. 1/2). Node: latitude 0 gives 0 m east; slider shows it.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory). | FACT-CHECK 2026-10-13 (pass 4): f = 2 Omega sin(lat) is 0 at the equator and largest at the poles (Holton, Intro to Dynamic Meteorology, ch. 1/2). Node: latitude 0 gives 0 m east; slider shows it. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c5",
@@ -70,12 +68,17 @@
     },
     {
       "id": "geography.drift-of-a-straight-throw.c6",
-      "text": "100 m/s is 360 km/h.",
+      "text": "100 m/s is 360 km/h, so 1,000 km takes about 3 hours.",
       "support": "derivation",
-      "source": "100 x 3.6 = 360. | FACT-CHECK 2026-10-13 (pass 4): 100 m/s x 3.6 = 360 km/h (node).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "100 x 3.6 = 360. | FACT-CHECK 2026-10-13 (pass 4): 100 m/s x 3.6 = 360 km/h (node). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.drift-of-a-straight-throw.c7",
+      "text": "The sideways drift of a moving object caused by the turning ground is called the Coriolis effect.",
+      "support": "convention",
+      "source": "Standard definition (any physical-oceanography or meteorology text, e.g. Holton, An Introduction to Dynamic Meteorology, ch. 1).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:coriolis-effect",
     "prerequisites": [
@@ -108,5 +111,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "slider-live-chart"
+  ]
 }

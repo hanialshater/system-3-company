@@ -1,7 +1,7 @@
 {
   "slug": "closer-in-winter",
   "title": "When is the Sun closest?",
-  "hook": "Summer feels like being nearer the Sun. Drag the Earth around its orbit and check.",
+  "hook": "Summer feels like being nearer the Sun. Scrub through the year and check.",
   "domain": "geography",
   "concept": "seasons-axial-tilt",
   "status": "review",
@@ -79,12 +79,17 @@
     },
     {
       "id": "geography.closer-in-winter.c7",
-      "text": "In June the north leans toward the Sun, so northern days are long and sunlight is steep.",
+      "text": "In June the north pole leans toward the Sun; in December the south pole does.",
       "support": "source",
-      "source": "Standard seasons explanation; NASA Space Place 'What causes the seasons?'. Not checked by the builder.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Standard seasons explanation; NASA Space Place 'What causes the seasons?'. Not checked by the builder. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.closer-in-winter.c8",
+      "text": "The stage names seasons by whole months: March to May is spring, June to August summer, September to November autumn, December to February winter (reversed in the south).",
+      "support": "convention",
+      "source": "Meteorological seasons, the everyday month-based convention (e.g. UK Met Office, NOAA). Implemented in season() in Demo.tsx.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -108,12 +113,19 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:seasons-axial-tilt",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "slider-live-chart"
+  ]
 }

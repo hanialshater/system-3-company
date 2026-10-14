@@ -53,12 +53,10 @@
     },
     {
       "id": "geography.lap-at-89-north.c4",
-      "text": "A circle of latitude has radius R × cos(latitude); cos 89° is about 0.017.",
+      "text": "Circles of latitude get smaller toward the pole: a circle's radius is R × cos(latitude), so at 89°N it is about 1.7% as wide as at the equator.",
       "support": "derivation",
-      "source": "Geometry of the sphere; cos 89° = 0.01745. | FACT-CHECK 2026-10-13 (pass 6): cos 89 = 0.01745.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Geometry of the sphere; cos 89° = 0.01745. | FACT-CHECK 2026-10-13 (pass 6): cos 89 = 0.01745. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.lap-at-89-north.c5",
@@ -73,10 +71,8 @@
       "id": "geography.lap-at-89-north.c6",
       "text": "89°N lies on the drifting sea ice of the Arctic Ocean.",
       "support": "source",
-      "source": "The North Pole region is ocean about 4 km deep, covered by drifting sea ice (NSIDC, 'Arctic sea ice' pages; from memory). Seasonal open water is possible; the reveal says 'if you could walk it'. | FACT-CHECK 2026-10-13 (pass 6): Hedged by 'if you could walk it'; open water in leads is possible.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "The North Pole region is ocean about 4 km deep, covered by drifting sea ice (NSIDC, 'Arctic sea ice' pages; from memory). Seasonal open water is possible; the reveal says 'if you could walk it'. | FACT-CHECK 2026-10-13 (pass 6): Hedged by 'if you could walk it'; open water in leads is possible. | v2: sentence no longer shown to learners; withdrawn.",
+      "status": "withdrawn"
     },
     {
       "id": "geography.lap-at-89-north.c7",
@@ -86,6 +82,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.lap-at-89-north.c8",
+      "text": "Driving from London to Edinburgh is about 650 km by road.",
+      "support": "source",
+      "source": "Approximate road distance (about 400 miles) from common route planners (AA, Google Maps); builder recall, not opened. Used only as a familiar comparison for the 700 km lap.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +112,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:polar-circle-geometry",
     "prerequisites": [
@@ -118,5 +121,13 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart",
+    "preset-buttons",
+    "map-explorer"
+  ]
 }

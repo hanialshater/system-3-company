@@ -1,7 +1,7 @@
 {
   "slug": "london-la-over-greenland",
   "title": "London to LA: what's underneath?",
-  "hook": "On a wall map, London to LA looks like a hop over the Atlantic. Fly it and look down.",
+  "hook": "London to Los Angeles is a long flight. What land is under the shortest route?",
   "domain": "geography",
   "concept": "gnomonic-great-circles",
   "status": "review",
@@ -61,12 +61,17 @@
     },
     {
       "id": "geography.london-la-over-greenland.c5",
-      "text": "The line that looks straight on Mercator is a constant compass bearing; from London to Los Angeles it crosses open Atlantic far south of Greenland and is about 9,730 km, longer than the shortest route.",
+      "text": "The line that looks straight on a Mercator map keeps one compass direction all the way; from London to Los Angeles it crosses open Atlantic far south of Greenland and is about 9,730 km, longer than the shortest route.",
       "support": "derivation",
-      "source": "Rhumb-line length d = sqrt(Δφ² + q² Δλ²) R with q = Δφ / Δψ, Δψ = ln(tan(π/4 + φ2/2) / tan(π/4 + φ1/2)) (Snyder 1987, ch. 7; from memory). Computed in Demo.tsx rhumbKm: 9,733 km. Mercator rhumb lines are straight: Snyder ch. 7. | FACT-CHECK 2026-10-13 (pass 4): Node: rhumb-line length 9,733.3 km (formula with Delta-psi); Mercator rhumb lat at 43W = 45.7N, about 16 deg south of Greenland's southern coast, so 'far south of Greenland' holds; 9,733 vs 8,756 km makes it longer. A rhumb line is a constant-bearing line and is straight on Mercator (Snyder ch. 7).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Rhumb-line length d = sqrt(Δφ² + q² Δλ²) R with q = Δφ / Δψ, Δψ = ln(tan(π/4 + φ2/2) / tan(π/4 + φ1/2)) (Snyder 1987, ch. 7; from memory). Computed in Demo.tsx rhumbKm: 9,733 km. Mercator rhumb lines are straight: Snyder ch. 7. | FACT-CHECK 2026-10-13 (pass 4): Node: rhumb-line length 9,733.3 km (formula with Delta-psi); Mercator rhumb lat at 43W = 45.7N, about 16 deg south of Greenland's southern coast, so 'far south of Greenland' holds; 9,733 vs 8,756 km makes it longer. A rhumb line is a constant-bearing line and is straight on Mercator (Snyder ch. 7). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-la-over-greenland.c6",
+      "text": "The shortest path between two points on a ball is called a great circle.",
+      "support": "convention",
+      "source": "Standard definition of a great circle / geodesic on a sphere (e.g. Snyder, Map Projections: A Working Manual; any navigation text).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:gnomonic-great-circles",
     "prerequisites": [
@@ -100,5 +105,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "map-projection-switch",
+    "slider-live-chart"
+  ]
 }

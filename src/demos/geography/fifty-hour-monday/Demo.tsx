@@ -55,7 +55,7 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
         options: ["24", "50", "38"],
         answer: 1,
       }}
-      exploreHint="Find when Monday first starts, then when the last Monday ends."
+      exploreHint="Step the time forward, or jump to when Monday first starts and when the last Monday ends."
       minInteractions={2}
       reveal={() => (
         <>
@@ -97,13 +97,23 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                         const x1 = x(Math.min(180, o * 15 + 7.5));
                         return <rect key={o} x={x0} y={top} width={x1 - x0} height={bottom - top} className={cls(dayAt(t, o))} />;
                       })}
+                      {NOMINAL.map((o) => {
+                        const d = dayAt(t, o);
+                        const x0 = x(Math.max(-180, o * 15 - 7.5));
+                        const x1 = x(Math.min(180, o * 15 + 7.5));
+                        return d >= 0 && d <= 2 ? (
+                          <text key={`l${o}`} x={(x0 + x1) / 2} y={top + 10} className={s.bandLabel} textAnchor="middle">
+                            {["S", "M", "T"][d]}
+                          </text>
+                        ) : null;
+                      })}
                       {DOTS.map((d) => {
                         const [px, py] = projection([d.lon, d.lat])!;
                         return (
                           <g key={d.name}>
                             <circle cx={px} cy={py} r={4.5} className={`${s.dot} ${cls(dayAt(t, d.off))}`} />
-                            <text x={px + (d.off > 0 ? 6 : 1)} y={py + (d.off > 0 ? -6 : 14)} className={s.dotLabel} textAnchor="start">
-                              {fmtOff(d.off)}
+                            <text x={px + 7} y={py + (d.off > 0 ? -5 : 13)} className={s.dotLabel} textAnchor="start">
+                              {d.name} {fmtOff(d.off)}
                             </text>
                           </g>
                         );
@@ -112,12 +122,16 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">
-                  Equirectangular. Bands: nominal 15° zones. Dots: real island clocks.{" "}
+                  UTC is the clock at Greenwich; UTC+14 runs 14 hours ahead of it. Bands: 15° strips of the world. Dots: islands with the
+                  extreme clocks.{" "}
                   <span className={s.key}>
-                    <i className={s.sun} /> Sun <i className={s.mon} /> Mon <i className={s.tue} /> Tue <i className={s.other} /> other
+                    <i className={s.sun} /> S Sun <i className={s.mon} /> M Mon <i className={s.tue} /> T Tue
                   </span>
                 </p>
-                <div className={s.chips} role="group" aria-label="Jump to a moment">
+                <div className={s.chips} role="group" aria-label="Move through time">
+                  <Control disabled={locked || t >= 72} onClick={() => go(Math.min(72, t + 6))}>
+                    Forward 6 hours
+                  </Control>
                   <Control disabled={locked || t === MON_START} className={t === MON_START ? "active" : ""} onClick={() => go(MON_START)}>
                     First Monday starts
                   </Control>
@@ -128,10 +142,13 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                 <Row>
                   <Slider label="Time" value={t} min={0} max={72} step={0.5} disabled={locked} format={fmtT} onChange={go} />
                 </Row>
-                <Row>
+                {!locked && <Row>
                   <Readout label="Monday somewhere?" value={locked ? "?" : mondayNow ? "Yes" : "No"} />
                   <Readout label="Monday has lasted" value={locked ? "?" : `${mondaySoFar} h`} />
-                </Row>
+                </Row>}
+                {!locked && <Row>
+                  <Readout label="Clocks spread over" value={`${MAX_OFF - MIN_OFF} h (${fmtOff(MIN_OFF)} to ${fmtOff(MAX_OFF)})`} />
+                </Row>}
               </div>
             );
           }}
