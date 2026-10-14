@@ -40,3 +40,18 @@ if (process.argv[2]==='check'){
  console.log('\nthreshold sweep, equal shares, mean D over seeds 1-5 at k=1,2,4,8');
  for(const pct of [0,10,20,30,40,50,60]){const o=[];for(const k of [1,2,4,8]){let t=0;for(let s=1;s<=5;s++)t+=D(sim(s,pct,m,0.5).end,k);o.push((t/5).toFixed(2));}console.log(pct,o.join(' '));}
 }
+// ---- equal groups, seeds 1-50: answer range, settling, and borough-uniformity (edge-artefact) check
+if (process.argv[2]==='equal50'){
+ const {m,lab}=mask();const names=['SI','BK','QN','MN','BX'];
+ const st=(a)=>({min:Math.min(...a),max:Math.max(...a),mean:a.reduce((x,y)=>x+y,0)/a.length});
+ const f=(o)=>`${o.min.toFixed(2)}-${o.max.toFixed(2)} (mean ${o.mean.toFixed(2)})`;
+ const d0=[],d1=[],tk=[],l0=[],l1=[];let unsettled=0;const uni={};const uni0={};names.forEach(n=>{uni[n]=0;uni0[n]=0;});
+ const frac=(c,n)=>{let a=0,b=0;for(let i=0;i<c.length;i++){if(lab[i]!==n)continue;if(c[i]===1)a++;else if(c[i]===2)b++;}const t=a+b;return t?Math.max(a,b)/t:0;};
+ for(let s=1;s<=50;s++){const r=sim(s,30,m,0.5);d0.push(D(r.start,2));d1.push(D(r.end,2));tk.push(r.ticks);l0.push(r.like0);l1.push(r.like);if(!r.settled)unsettled++;
+  for(const n of names){if(frac(r.end,n)>0.9)uni[n]++;if(frac(r.start,n)>0.9)uni0[n]++;}}
+ console.log('equal 50/50, threshold 30, seeds 1-50, 2x2 blocks');
+ console.log('D start',f(st(d0)),'| D settled',f(st(d1)));
+ console.log('like share start',f(st(l0)),'| settled',f(st(l1)));
+ console.log('ticks',st(tk).min,'-',st(tk).max,'unsettled at cap',unsettled,'of 50');
+ console.log('seeds (of 50) where borough-sized region ends >90% one group (settled):',JSON.stringify(uni),' at random start:',JSON.stringify(uni0));
+}
