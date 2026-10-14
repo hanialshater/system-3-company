@@ -12,6 +12,8 @@
 // mark when odd). A legend is always shown; the best-try caption names the two camps and the thick broken link.
 // The enemy position is two buttons ("Enemy on D-E" / "Enemy on C-D"), not one that relabels itself. Loop counts
 // and split results are recorded per layout in a row the reveal quotes.
+// v3 (W-265, phone fit): "Try all 64 splits" shares one three-column row with the two enemy buttons (DOM order
+// unchanged), and the reveal is trimmed from 95 to 81 words, so the ring stays on screen at 390x844 at the reveal.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -113,15 +115,15 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your big ring had {ringG} enemy links, an even number, but the cross link A-D makes two smaller loops
-            {oddG.length ? ` (${oddG.map((l) => `${LOOPS[l].label.toLowerCase()}: ${g.loops[l]}`).join(", ")})` : ""} with an odd
-            count. On those walks every red link switched camp, so the walk came back to A in the other camp. That is why{" "}
-            {g.working ?? tryAll(ENEMIES_AS_GIVEN).working} of the 64 splits worked.
+            Your big ring had {ringG} enemy links, even, but the cross link A-D makes two smaller loops
+            {oddG.length ? ` (${oddG.map((l) => `${LOOPS[l].label.toLowerCase()}: ${g.loops[l]}`).join(", ")})` : ""}, each
+            odd. Every red link switched camp, so those walks came back to A in the other camp: {g.working ?? tryAll(ENEMIES_AS_GIVEN).working}{" "}
+            of 64 splits worked.
           </p>
           <p>
             {m.working !== undefined
-              ? `With the enemy on C-D every loop was even and ${m.working} of 64 worked: one split, with the camp names swapped.`
-              : `Put the enemy on C-D instead and every loop is even: then ${tryAll(ENEMIES_MOVED).working} of 64 work, one split with the camp names swapped.`}{" "}
+              ? `With the enemy on C-D every loop was even and ${m.working} of 64 worked (one split, names swapped).`
+              : `With the enemy on C-D every loop is even: ${tryAll(ENEMIES_MOVED).working} of 64 work (one split, names swapped).`}{" "}
             A network splits into two camps exactly when every loop has an even number of enemy links.
           </p>
         </>
@@ -258,12 +260,10 @@ function Stage({
           </Control>
         ))}
       </div>
-      <div className={s.actions1}>
+      <div className={s.actions}>
         <Control className={s.tap} disabled={locked || tried} onClick={onTry}>
           Try all 64 splits
         </Control>
-      </div>
-      <div className={s.actions}>
         <Control className={`${s.tap} ${!moved ? "active" : ""}`} disabled={locked || !moved} onClick={() => onMove(false)}>
           Enemy on D-E
         </Control>

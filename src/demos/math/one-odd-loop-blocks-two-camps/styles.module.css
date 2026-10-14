@@ -10,10 +10,9 @@
 .name { font-size: 13px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.4em; }
 .loops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-.actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-.tap { min-height: 44px; }
+.actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.tap { min-height: 44px; line-height: 1.15; }
 .wrap :global(.row) { justify-content: center; margin-top: 0; }
-.actions1 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
 .legend { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); min-height: 1.2em; }
 .backA { stroke: var(--domain); stroke-width: 3; }
 .backB { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 3 2; }

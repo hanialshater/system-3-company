@@ -9,10 +9,14 @@
 // v2 (r6): "Run to a power of two left" is a required step (milestone pow-41) and leaves a formula line on stage
 // (41 = 32 + 9 → 2 × 9 + 1 = 19); after the run the stage lists who the count starts on at 32, 16, 8, 4, 2 left,
 // and the binary rotation. Readouts carry n = 2^m + L. The reveal quotes the readouts and the current circle.
+// v3 (W-267, phone fit at 390x844): compact stage. The three step buttons share one three-column row ("Run to a
+// power of 2"), the size chips are one three-column row with each circle's result on a line right under its chip
+// (no separate readout boxes, no "People" label), the scrubber label sits beside the track, the rule line is one
+// line, the tick labels tuck under the track, and the reveal is 81 words (was 88). The circle, both formula lines, the ticks and the results stay.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -101,15 +105,19 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
         const g = GAMES.get(n) as Game;
         const cur = table[n] !== undefined ? g : G41;
         const cn = table[n] !== undefined ? n : QUESTION_N;
+        const lefts = (x: Game) => x.laps.map((l) => l.left).join(", ");
+        const start41 = G41.frames[G41.powFrame].skip;
         return (
           <>
             <p>
-              {G41.survivor} survived. {QUESTION_N} = {G41.pow} + {G41.powFrame}: {G41.powFrame} removals left {G41.pow}, and the
-              count started on 2 × {G41.powFrame} + 1 = {G41.frames[G41.powFrame].skip}.
+              {G41.survivor} survived. {QUESTION_N} = {G41.pow} + {G41.powFrame}: after {G41.powFrame} removals the count started on 2 ×{" "}
+              {G41.powFrame} + 1 = {start41}
+              {cn === QUESTION_N
+                ? ` and stayed on ${start41} at ${lefts(G41)} left.`
+                : `. On your ${cn} circle it started on ${cur.laps[0].skip} at ${lefts(cur)} left.`}
             </p>
             <p>
-              On your {cn} circle the count started on {cur.laps[0].skip} at {cur.laps.map((l) => l.left).join(", ")} left. A
-              power of two halves each lap and comes back to the starter, so the starter survives. In binary,{" "}
+              A power of two halves each lap and comes back to the starter, so the starter survives. In binary,{" "}
               {bin(cn)} with its leading 1 moved to the end is {rotated(cn)} = {cur.survivor}.
               {others.length ? ` ${others.map((x) => `${x} = ${(GAMES.get(x) as Game).pow} + ${(GAMES.get(x) as Game).powFrame} gave ${table[x]}`).join(", ")}: the same rule.` : ""}
             </p>
@@ -191,7 +199,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.rule}>Skip one, remove the next, round and round until one is left.</p>
+                <p className={s.rule}>Skip one, remove the next, until one is left.</p>
                 <svg viewBox="0 0 340 340" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-view={view}>
                   <circle cx={C} cy={C} r={R_DOT} fill="none" stroke="var(--line)" strokeWidth={1} />
                   {Array.from({ length: n }, (_, i) => i + 1).map((seat) => {
@@ -251,17 +259,17 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                   </text>
                 </svg>
 
-                <Row>
+                <div className={s.grid3}>
                   <Control className="tap" disabled={locked || busy || finished} onClick={removeNext}>
                     Remove next
                   </Control>
                   <Control className="tap" disabled={locked || busy || made >= game.powFrame} onClick={runToPow}>
-                    Run to a power of two left
+                    Run to a power of 2
                   </Control>
                   <Control className="tap" disabled={locked || busy || finished} onClick={runToEnd}>
                     Run to the end
                   </Control>
-                </Row>
+                </div>
                 <p className={s.formula} aria-live="polite">
                   {!locked && made >= game.powFrame
                     ? `${n} = ${game.pow} + ${game.powFrame} → start 2 × ${game.powFrame} + 1 = ${game.frames[game.powFrame].skip}`
@@ -303,8 +311,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                   </div>
                 </div>
 
-                <Row>
-                  <span className={s.group}>People</span>
+                <div className={s.grid3} role="group" aria-label="People in the circle">
                   {SIZES.map((x) => (
                     <Control
                       key={x}
@@ -316,12 +323,12 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                       {x} people
                     </Control>
                   ))}
-                </Row>
-                <Row>
                   {SIZES.map((x) => (
-                    <Readout key={x} label={`${x} people`} value={table[x] !== undefined ? `→ ${table[x]} (${(GAMES.get(x) as Game).pow} + ${(GAMES.get(x) as Game).powFrame})` : "→ ?"} />
+                    <span key={`r${x}`} className={s.result} data-qa="readout" aria-label={`${x} people result`}>
+                      {table[x] !== undefined ? `→ ${table[x]} (${(GAMES.get(x) as Game).pow} + ${(GAMES.get(x) as Game).powFrame})` : "→ ?"}
+                    </span>
                   ))}
-                </Row>
+                </div>
               </div>
             );
           }}

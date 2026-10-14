@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "josephus-problem",
   "format": "storyboard-scrub",
-  "status": "published",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -33,39 +33,31 @@
     },
     {
       "id": "cs.every-second-seat-out.c2",
-      "text": "With 41 people, 41 = 32 + 9: after 9 removals 32 people are left and the count starts on 2 × 9 + 1 = 19 (stage line after 'Run to a power of two left').",
+      "text": "With 41 people, 41 = 32 + 9: after 9 removals 32 people are left and the count starts on 2 × 9 + 1 = 19 (stage line after 'Run to a power of 2').",
       "support": "simulation",
-      "source": "Demo.tsx play(41): powFrame = 9 (first removal count that leaves a power of two), frames[9].skip = 19 (removed 2, 4, ..., 18). Builder's node script (2026-10-14) agrees. | FACT-CHECK 2026-10-14 (pass 21): play(41): powFrame 9, 32 left, frames[9].skip = 19; reveal and key-frame label '32 left' match. | v2: Demo.tsx play(41): powFrame 9, frames[9].skip 19. Node re-run 2026-10-14: same. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own copy of play(41): powFrame 9, 32 left, skip seat 19; formula line '41 = 32 + 9 → start 2 × 9 + 1 = 19' shown once made >= powFrame (either button path).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx play(41): powFrame = 9 (first removal count that leaves a power of two), frames[9].skip = 19 (removed 2, 4, ..., 18). Builder's node script (2026-10-14) agrees. | FACT-CHECK 2026-10-14 (pass 21): play(41): powFrame 9, 32 left, frames[9].skip = 19; reveal and key-frame label '32 left' match. | v2: Demo.tsx play(41): powFrame 9, frames[9].skip 19. Node re-run 2026-10-14: same. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own copy of play(41): powFrame 9, 32 left, skip seat 19; formula line '41 = 32 + 9 → start 2 × 9 + 1 = 19' shown once made >= powFrame (either button path). | REOPENED 2026-10-14 (v3, W-267 compact stage, demo-builder): reveal reworded and/or stage address changed for the 390x844 fit (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.every-second-seat-out.c3",
-      "text": "With a power of two left, the person the count starts on survives: each lap halves the circle and comes back to them. On stage the count starts on 19 at 32, 16, 8, 4 and 2 left.",
+      "text": "With a power of two left, the person the count starts on survives: each lap halves the circle and comes back to them. On stage the count starts on 19 at 32, 16, 8, 4 and 2 left, and the reveal says it stayed on 19 at each.",
       "support": "simulation",
-      "source": "With 2^m people and the count starting on person p (p is skipped), one lap removes every second person, 2^(m-1) of them, and the next count starts on p again; induct on m down to 1 person. Graham, Knuth and Patashnik, Concrete Mathematics (2nd ed.), section 1.3, J(2^m) = 1 (check before building: cited from the brief). | FACT-CHECK 2026-10-14 (pass 21): Simulation: play(2^m) survivor 1 for m = 1..5, i.e. the starter. Induction argument holds. Concrete Mathematics 2e section 1.3 (Josephus problem, J(2^m) = 1) not opened; placement matches my knowledge. | v2: Demo.tsx play(41).laps: [32,19],[16,19],[8,19],[4,19],[2,19] (Node re-run 2026-10-14). General statement: Graham, Knuth, Patashnik, Concrete Mathematics, 2nd ed., section 1.3 (J(2^m) = 1). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: laps for 41 = 32/16/8/4/2 left, skip 19 each time; independent Josephus recurrence J(41) = 19. Derivation: with an even count each lap removes every second seat and returns the count to the starter.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "With 2^m people and the count starting on person p (p is skipped), one lap removes every second person, 2^(m-1) of them, and the next count starts on p again; induct on m down to 1 person. Graham, Knuth and Patashnik, Concrete Mathematics (2nd ed.), section 1.3, J(2^m) = 1 (check before building: cited from the brief). | FACT-CHECK 2026-10-14 (pass 21): Simulation: play(2^m) survivor 1 for m = 1..5, i.e. the starter. Induction argument holds. Concrete Mathematics 2e section 1.3 (Josephus problem, J(2^m) = 1) not opened; placement matches my knowledge. | v2: Demo.tsx play(41).laps: [32,19],[16,19],[8,19],[4,19],[2,19] (Node re-run 2026-10-14). General statement: Graham, Knuth, Patashnik, Concrete Mathematics, 2nd ed., section 1.3 (J(2^m) = 1). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: laps for 41 = 32/16/8/4/2 left, skip 19 each time; independent Josephus recurrence J(41) = 19. Derivation: with an even count each lap removes every second seat and returns the count to the starter. | REOPENED 2026-10-14 (v3, W-267 compact stage, demo-builder): reveal reworded and/or stage address changed for the 390x844 fit (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.every-second-seat-out.c4",
       "text": "41 = 32 + 9, so the survivor is 2 × 9 + 1 = 19; in binary 41 is 101001, and moving the leading 1 to the end gives 010011 = 19. The same rotation holds for 7 (111 → 111 = 7) and 10 (1010 → 0101 = 5).",
       "support": "source",
-      "source": "Concrete Mathematics section 1.3: J(2^m + l) = 2l + 1 for 0 <= l < 2^m, and J((b_m b_(m-1) ... b_0)_2) = (b_(m-1) ... b_0 b_m)_2, a one-bit cyclic left shift (check before building: cited from the brief). Arithmetic: 41 = 0b101001, 0b010011 = 19 (node, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): node: 41 = 0b101001, rotated 0b010011 = 19; 2 x 9 + 1 = 19; formula J(2^m + l) = 2l + 1 checked against play(n) for every n < 200. GKP section 1.3 not opened (own knowledge agrees). | v2: Concrete Mathematics, 2nd ed., section 1.3 (J(2^m + l) = 2l + 1; the binary cyclic shift). Demo.tsx bin()/rotated() and play() agree for 7, 10, 41. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. 41 = 101001b, rotated 010011b = 19; 7 = 111b -> 111b = 7; 10 = 1010b -> 0101b = 5. Matches rotated() and survivors J(7) = 7, J(10) = 5 (own recurrence).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Concrete Mathematics section 1.3: J(2^m + l) = 2l + 1 for 0 <= l < 2^m, and J((b_m b_(m-1) ... b_0)_2) = (b_(m-1) ... b_0 b_m)_2, a one-bit cyclic left shift (check before building: cited from the brief). Arithmetic: 41 = 0b101001, 0b010011 = 19 (node, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): node: 41 = 0b101001, rotated 0b010011 = 19; 2 x 9 + 1 = 19; formula J(2^m + l) = 2l + 1 checked against play(n) for every n < 200. GKP section 1.3 not opened (own knowledge agrees). | v2: Concrete Mathematics, 2nd ed., section 1.3 (J(2^m + l) = 2l + 1; the binary cyclic shift). Demo.tsx bin()/rotated() and play() agree for 7, 10, 41. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. 41 = 101001b, rotated 010011b = 19; 7 = 111b -> 111b = 7; 10 = 1010b -> 0101b = 5. Matches rotated() and survivors J(7) = 7, J(10) = 5 (own recurrence). | REOPENED 2026-10-14 (v3, W-267 compact stage, demo-builder): reveal reworded and/or stage address changed for the 390x844 fit (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.every-second-seat-out.c5",
-      "text": "7 = 4 + 3 people leave 7 and 10 = 8 + 2 people leave 5 (readouts '→ 7 (4 + 3)' and '→ 5 (8 + 2)').",
+      "text": "7 = 4 + 3 people leave 7 and 10 = 8 + 2 people leave 5 (result line under the chips: '→ 7 (4 + 3)' and '→ 5 (8 + 2)').",
       "support": "simulation",
-      "source": "Demo.tsx play(7) and play(10); builder's node script (2026-10-14): 7 -> 7 (4 left after 3 removals, count on 7), 10 -> 5 (8 left after 2 removals, count on 5). Formula: 7 = 4 + 3 -> 7, 10 = 8 + 2 -> 5. The brief's n = 7, k = 3 -> 4 uses a different skip and is not shown. | FACT-CHECK 2026-10-14 (pass 21): play(7) -> 7 (4 left after 3 removals, starter 7); play(10) -> 5 (8 left after 2, starter 5); both match 2l + 1. | v2: Demo.tsx play(7): powFrame 3, survivor 7; play(10): powFrame 2, survivor 5. Node re-run 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own play(): 7 -> powFrame 3, pow 4, survivor 7; 10 -> powFrame 2, pow 8, survivor 5. Readout template '→ {survivor} ({pow} + {powFrame})' gives '→ 7 (4 + 3)' and '→ 5 (8 + 2)'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx play(7) and play(10); builder's node script (2026-10-14): 7 -> 7 (4 left after 3 removals, count on 7), 10 -> 5 (8 left after 2 removals, count on 5). Formula: 7 = 4 + 3 -> 7, 10 = 8 + 2 -> 5. The brief's n = 7, k = 3 -> 4 uses a different skip and is not shown. | FACT-CHECK 2026-10-14 (pass 21): play(7) -> 7 (4 left after 3 removals, starter 7); play(10) -> 5 (8 left after 2, starter 5); both match 2l + 1. | v2: Demo.tsx play(7): powFrame 3, survivor 7; play(10): powFrame 2, survivor 5. Node re-run 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own play(): 7 -> powFrame 3, pow 4, survivor 7; 10 -> powFrame 2, pow 8, survivor 5. Readout template '→ {survivor} ({pow} + {powFrame})' gives '→ 7 (4 + 3)' and '→ 5 (8 + 2)'. | REOPENED 2026-10-14 (v3, W-267 compact stage, demo-builder): reveal reworded and/or stage address changed for the 390x844 fit (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:josephus-problem",
     "also": [],

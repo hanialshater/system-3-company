@@ -56,3 +56,13 @@ Checker: fact-checker. I wrote none of these claims: the c1 and c5 wording is th
 | c6 | verified | The hook is a question. It names no source, date or person, and no option number (7/50/360). The stage computes circ = 360/angle x distance from those two inputs alone (node: 250,000 stadia; 42,684 km). The conditions (parallel rays c2, the stipulated zero-shadow reference c5, north-south cross-section) are all supplied by the stage. It also covers the reveal's "The method needed only a shadow and a distance." Non-blocking nit: neither the question nor the reveal says the places lie north-south (the recall question does). |
 
 **Result:** 2 verified, 1 disputed. No claim among c1, c5 and c6 now asserts what a historical source says. The one remaining unframed sentence is the stage's distance line, which is c1's address. c4 (Eratosthenes in km, verified 2026-10-13 from memory) is still the only learner-visible sentence that leans on history. It was not in scope here (cm-geography, per W-258).
+
+## Pass 29 (2026-10-14, re-check of c1 after the v5 distance-line fix, W-273)
+
+Checker: fact-checker. I did not write c1 (wording by the evaluation-steward, W-258; the v5 line by the demo-builder, W-272, using the pass 28 fix text). Method: I read Demo.tsx v5 on every path: predict (locked), the opening state (angle 20, story mode, no chip active), the story chip, the slider in story mode, the modern chip, the slider in modern mode, and the reveal (both milestones are needed). I re-ran the numbers in node (session scratchpad `fact-checker-w269-w273/check.mjs`). No build was run. The walkthrough transcript is still v3. No historical source was needed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | In story mode (`modern` false), on every path including predict and the opening state, the line renders `Distance Syene to Alexandria, in the story: 5,000 stadia.` (I rendered the template in node). Modern mode renders `Distance Syene to Alexandria: 843 km.` (c3). Node results: 360/7.2 = 50, 50 x 5,000 = 250,000, and SEEN_ACCOUNT is "7.2° → 50 arcs, 250,000 stadia". Of the slider values 2.00 to 30.00, only 7.20 fires the account milestone. The question, the Syene label, the chip, the distance line and the reveal all frame the numbers as the story's, which matches c1. The pass 28 dispute is resolved. |
+
+**Result:** 1 verified, 0 disputed. Non-blocking nits for the demo-builder: the Demo.tsx header comment has no v5 line, and the line may wrap at 360 px (that is QA's to measure). Still outside this pass: c4 (Eratosthenes in km, verified 2026-10-13 from memory, with a source that was not opened). It is with cm-geography per W-258.

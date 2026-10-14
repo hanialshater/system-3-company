@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 29 (W-273 eratosthenes-shadow v5 c1; W-269 midnight-sun-line v4 c3/c5/c7/c4)
+
+- Changed: eratosthenes-shadow c1 is now verified: the story-mode distance line is framed on every path. In midnight-sun-line, c7 is verified, c5 is disputed, c3 is left unverified (its source could not be opened) and the c4 withdrawal is confirmed. The statuses and "FC pass 29" notes are in both meta.json files, and a Pass 29 table is appended to each lesson's company/reviews/<slug>/2026-10-14-fact-check.md. Board: W-269 and W-273 are done. Added W-274 (cm-geography: the c5 wording fixes, then the builder applies them) and W-275 (fact-checker: re-check c3 and c5 with an opened reference). No code, claim text or build was touched.
+- Believe (high confidence): the c5 dispute is real. The predict question's flat "June 21" contradicts c5's "around June 21": astronomy-engine puts the 2024 and 2028 solstices on June 20 UTC. Also, the reveal's "where the noon Sun is overhead" has lost "on the June solstice". The opened source was astronomy-engine 2.1.19, an npm tarball read and run in the scratchpad (fact-checker-w269-w273/) and not added to the project. Web fetch failed with DNS errors, so no atlas could be opened for the Arctic Circle or Tropic names.
+- Next: W-274 (cm-geography, then demo-builder), then W-275 (fact-checker), W-270 (QA) and W-271 (release). eratosthenes-shadow still needs a v5 build, QA and walkthrough before it can publish.
+- Blocked: midnight-sun-line cannot publish until c5 is fixed and c3 and c5 are checked against an opened reference.
+
 ## 2026-10-14, demo-builder: W-272 (eratosthenes-shadow v5 distance line)
 
 - Changed: Demo.tsx story-mode distance line now reads "Distance Syene to Alexandria, in the story: 5,000 stadia." (FC pass 28 wording); modern mode unchanged. meta.json version 4 -> 5; c1 set to unverified, checkedBy/checkedOn cleared, source stage quote updated. c1 text left as is: it already frames the distance as "this lesson's story" and W-272 said not to change it. build.md has v5 and Pre-flight v5. Board: W-272 done.
