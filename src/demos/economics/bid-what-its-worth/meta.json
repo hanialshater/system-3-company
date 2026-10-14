@@ -1,7 +1,7 @@
 {
   "slug": "bid-what-its-worth",
-  "title": "Shade your bid, or bid your value?",
-  "hook": "The winner pays the runner-up's bid, not their own. So how low should you bid?",
+  "title": "What should you bid for a $70 painting?",
+  "hook": "The winner pays the runner-up's bid, not their own. What does that do to your best bid?",
   "domain": "economics",
   "concept": "second-price-auction",
   "format": "single-card",
@@ -71,12 +71,10 @@
     },
     {
       "id": "economics.bid-what-its-worth.c6",
-      "text": "A bid only decides whether you win; the price is the rival's bid, so a bid below $70 only gives up wins that pay and a bid above $70 only adds wins that lose.",
+      "text": "A bid only decides whether you win; the price is the rival's bid, so a bid below $70 only gives up wins that pay and a bid above $70 only adds wins that lose money or break even.",
       "support": "derivation",
-      "source": "Address: reveal para 2. From the rule: a bid above 70 changes the outcome only when the rival is between 70 and the bid, where profit is negative; a bid below 70 changes it only when the rival is between the bid and 70, where profit is positive. Same node check as c2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Address: reveal para 2. From the rule: a bid above 70 changes the outcome only when the rival is between 70 and the bid, where profit is negative or, at a rival bid of exactly $70, zero; a bid below 70 changes it only when the rival is between the bid and 70, where profit is positive. Same node check as c2.",
+      "status": "unverified"
     },
     {
       "id": "economics.bid-what-its-worth.c7",
@@ -93,10 +91,10 @@
     "question": "In a sealed auction the winner pays the second-highest bid. An item is worth $100 to you. Which bid is never worse than any other?",
     "options": [
       "Less than $100, to keep a margin",
-      "Exactly $100",
-      "More than $100, to be safe"
+      "More than $100, to be safe",
+      "Exactly $100"
     ],
-    "answer": 1,
+    "answer": 2,
     "why": "Your bid only decides whether you win; the price is the rival's bid. Bidding below $100 gives up wins that pay, and above $100 adds wins that lose."
   },
   "evidence": {
@@ -107,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:second-price-auction",
     "prerequisites": [

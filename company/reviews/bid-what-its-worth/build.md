@@ -11,3 +11,13 @@ builder: demo-builder · 2026-10-14 · session 2 (NCM batch 1), single card, no 
 - Rival chips wrap to two rows at 390 px (4th chip alone); left as is.
 - Pre-existing, not from this lesson: the feed spec "subject chips filter the feed" failed on both viewports in this worktree; the contract spec for this slug passed on phone and desktop.
 - Network-stage rules do not apply (no node-link graph).
+
+## Revision v2 (2026-10-14, session 2 revise)
+
+Findings (simulated learner review, fact-check NCM-1), each answered:
+- Answer given away: title now "What should you bid for a $70 painting?", hook "What does that do to your best bid?". Predict options reordered to $50 / $90 / $70 (correct last, answer index 2); recall options reordered too (correct last).
+- "Never worse" told from four rivals: added a sweep chart under the bars: profit of a $70 bid (solid) and the learner slider bid (dashed) against every rival bid $0 to $120, with a marker at the picked rival. Shown only after a rival is picked (hidden while the prediction is locked, so it does not give the answer away). Same profit() drives bars and chart.
+- Price rule visible only when sliding above the rival: every bar now shows wins/loses and "pays $X", so Rival $60 shows the $70 bar paying $60 with no slider needed. Old single "You pay" line removed.
+- Fact-check advisory c6: text now "...adds wins that lose money or break even"; reveal para 2 matches. c6 is back to unverified. Other claims unchanged.
+- Milestones unchanged (Rival $60, Rival $75). Version 2. curriculum.references untouched. No new factual sentences added.
+- Pre-existing: feed spec "subject chips filter the feed" fails on both viewports; contract spec for this slug passed on phone and desktop.

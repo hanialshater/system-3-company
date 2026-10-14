@@ -22,10 +22,15 @@ const profit = (bid: number, rival: number) => (wins(bid, rival) ? VALUE - rival
 const money = (n: number) => (n < 0 ? `−$${-n}` : `$${n}`);
 const signed = (n: number) => (n > 0 ? `+$${n}` : n < 0 ? `−$${-n}` : "$0");
 
-// Geometry (viewBox 340 × 200): zero line at Y0, 3 px per dollar of profit.
-const Y0 = 112;
+// Geometry (viewBox 340 × 298): zero line at Y0, 3 px per dollar of profit.
+const Y0 = 108;
 const K = 3;
 const XS = [55, 125, 195, 265];
+// Sweep chart: profit of a bid against every rival bid $0 to $120 (x: 2.5 px per $, y: 0.6 px per $ of profit).
+const CZ = 250;
+const cx = (r: number) => 20 + r * 2.5;
+const cy = (p: number) => CZ - p * 0.6;
+const sweep = (b: number) => Array.from({ length: 121 }, (_, r) => `${cx(r)},${cy(profit(b, r))}`).join(" ");
 
 export default function BidWhatItsWorth({ slug }: { slug: string }) {
   const [rival, setRival] = useState<number | null>(null);
@@ -36,10 +41,10 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `You value a painting at $${VALUE}. Sealed bids: the highest bidder wins and pays the SECOND-highest bid. You do not know the other bids. Which bid is never worse than any other, whatever the others bid?`,
-        options: ["$50", "$70", "$90"],
-        answer: 1,
+        options: ["$50", "$90", "$70"],
+        answer: 2,
       }}
-      exploreHint="Pick each rival bid, then slide your own bid and watch the profit bars."
+      exploreHint="Pick a rival bid and read what each bid earns and pays. Slide your bid and watch the lower chart: it shows every rival bid at once."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -50,7 +55,7 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
           </p>
           <p>
             Your bid only decides whether you win. The price is the rival&apos;s bid, so shading below $70 only throws away wins
-            that pay, and bidding above $70 only adds wins that lose. A bid of $70 is never worse than any other bid.
+            that pay, and bidding above $70 only adds wins that lose or break even. A bid of $70 is never worse than any other bid.
           </p>
           <p className="muted">A model with invented numbers; ties go to the rival here. It is why this format invites honest bids.</p>
         </>
@@ -66,14 +71,13 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
             };
             const bids = [mine, ...FIXED];
             const known = rival !== null;
-            const pay = known && wins(mine, rival) ? rival : 0;
-            return (
+                        return (
               <div className={s.wrap}>
                 <p className={s.chip}>
                   Highest bid wins and pays the second-highest. Ties go to the rival. Worth ${VALUE} to you.
                 </p>
                 <svg
-                  viewBox="0 0 340 204"
+                  viewBox="0 0 340 303"
                   className="stage-svg"
                   role="img"
                   aria-label={
@@ -95,19 +99,38 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
                         <text x={x} y={p < 0 ? Y0 + h + 14 : Y0 - h - 6} textAnchor="middle" className={s.value}>
                           {known ? signed(p) : "?"}
                         </text>
-                        <text x={x} y={162} textAnchor="middle" className={i === 0 ? s.mine : s.axis}>
+                        <text x={x} y={150} textAnchor="middle" className={i === 0 ? s.mine : s.axis}>
                           {i === 0 ? `you $${b}` : `$${b}`}
                         </text>
-                        <text x={x} y={177} textAnchor="middle" className={s.axis}>
+                        <text x={x} y={164} textAnchor="middle" className={s.axis}>
                           {known ? (w ? "wins" : "loses") : ""}
                         </text>
-                        {i === 0 && <rect x={x - 30} y={148} width={60} height={36} rx={6} className={s.ring} />}
+                        <text x={x} y={178} textAnchor="middle" className={s.axis}>
+                          {known ? (w ? `pays $${rival}` : "pays $0") : ""}
+                        </text>
+                        {i === 0 && <rect x={x - 32} y={136} width={64} height={48} rx={6} className={s.ring} />}
                       </g>
                     );
                   })}
+                  {!known && (
+                    <text x={170} y={Y0 + 40} textAnchor="middle" className={s.axis}>
+                      Pick a rival bid
+                    </text>
+                  )}
+                  {known && (
+                    <>
                   <text x={170} y={197} textAnchor="middle" className={s.axis}>
-                    {known ? `You pay ${money(pay)}` : "Pick a rival bid"}
-                  </text>
+                        Profit against every rival bid, $0 to $120
+                      </text>
+                      <line x1={cx(0)} x2={cx(120)} y1={CZ} y2={CZ} className={s.zero} />
+                      <polyline points={sweep(70)} className={s.line70} />
+                      <polyline points={sweep(mine)} className={s.lineMine} />
+                      {known && <line x1={cx(rival)} x2={cx(rival)} y1={210} y2={288} className={s.zero} />}
+                      <text x={cx(0) + 2} y={299} className={s.axis}>
+                        solid: $70 bid · dashed: your ${mine}
+                      </text>
+                    </>
+                  )}
                 </svg>
 
                 <Row>
