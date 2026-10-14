@@ -70,7 +70,7 @@ export default function FourToOneSettles({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `For A ⇌ B at equilibrium, K = [B]/[A] = ${K}. Starting from ${N} A molecules and no B, the settled mix holds about…`,
+        question: `A and B are two forms of one molecule, and each can turn into the other. Once the mix stops changing overall, there are ${K} times as many B as A (a ratio called K = ${K}). Start with ${N} A molecules and no B: the settled mix holds about…`,
         options: [`${B_EQ} B`, `${N / 2} B`, `${N / 4} B`],
         answer: 0,
       }}
@@ -82,15 +82,15 @@ export default function FourToOneSettles({ slug }: { slug: string }) {
           <>
             <p>
               {done.length
-                ? `You ran ${done.map((st) => `${st.label.toLowerCase()} (averaging about ${Math.round(avg(runs[st.id], seen[st.id]))} B once settled)`).join(" and ")}.`
+                ? `You ran ${done.map((st) => `${st.label === "Half and half" ? "half and half" : `all ${st.label.slice(4)}`} (averaging about ${Math.round(avg(runs[st.id], seen[st.id]))} B once settled)`).join(" and ")}.`
                 : "Run it from any start."}{" "}
               Every start settles near <strong>{B_EQ} B and {N - B_EQ} A</strong>, where {B_EQ} ÷ {N - B_EQ} = {K}. The count
               wobbles by a few because each run is chance with only {N} molecules.
             </p>
             <p>
-              At equilibrium both reactions keep going, at equal rates: {Math.round(P_FWD * 100)}% of the {N - B_EQ} A turn
+              When the mix has settled both reactions keep going, at equal rates: {Math.round(P_FWD * 100)}% of the {N - B_EQ} A turn
               to B each step while {Math.round(P_BACK * 100)}% of the {B_EQ} B turn back, {Math.round(P_FWD * (N - B_EQ))} each
-              way. K fixes where the mix ends up, not where it began. Change the temperature and K itself changes.
+              way, as the two "next step" readouts showed. K fixes where the mix ends up, not where it began. Change the temperature and K itself changes.
             </p>
           </>
         );
@@ -145,6 +145,9 @@ export default function FourToOneSettles({ slug }: { slug: string }) {
                   {t > 0 && <path d={line(pts, t)} className={s.trace} />}
                   <circle cx={X(t)} cy={Y(b)} r={5} className={s.dot} />
                 </svg>
+                <p className="muted" style={{ margin: 0 }}>
+                  Every step, {Math.round(P_FWD * 100)}% of the A turn into B and {Math.round(P_BACK * 100)}% of the B turn back into A.
+                </p>
                 <Slider
                   label="Time"
                   value={t}
@@ -176,6 +179,12 @@ export default function FourToOneSettles({ slug }: { slug: string }) {
                 <Row>
                   <Readout label="B now" value={b} />
                   <Readout label="A now" value={N - b} />
+                </Row>
+                <Row>
+                  <Readout label="A→B next step" value={+(P_FWD * (N - b)).toFixed(1)} />
+                  <Readout label="B→A next step" value={+(P_BACK * b).toFixed(1)} />
+                </Row>
+                <Row>
                   <Readout label={`Avg B, step ${SETTLED}+`} value={t >= SETTLED ? `about ${Math.round(avg(pts, t))}` : "not yet"} />
                 </Row>
               </div>

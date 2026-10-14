@@ -7,7 +7,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Row } from "@/kit/controls";
+import { Control, Readout, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -31,6 +31,11 @@ const X0 = 24;
 const W = 270;
 const wOf = (x: number) => ((Math.log10(x) - LO) / SPAN) * W;
 const RATIO = Math.round(ag(0) / ag(SALTY) / 100) * 100;
+const lower = (x: number) => {
+  const r = ag(0) / x;
+  return r >= 1000 ? Math.round(r / 100) * 100 : Math.round(r);
+};
+const backToCrystal = (x: number) => (1 - x / ag(0)) * 100; // % of the silver dissolved in pure water that returns to crystals
 
 export default function CommonIon({ slug }: { slug: string }) {
   const [c, setC] = useState(0);
@@ -41,7 +46,7 @@ export default function CommonIon({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Silver chloride crystals dissolve in pure water until [Ag⁺] is about ${sci(ag(0))} mol/L (brackets mean mol per litre). In water with ${SALTY.toFixed(2)} mol/L of dissolved salt (NaCl), [Ag⁺] is about…`,
+        question: `Silver chloride is a salt that barely dissolves. Crystals in pure water give a silver ion (Ag⁺) concentration [Ag⁺] of about ${sci(ag(0))} mol/L (brackets mean mol per litre). Now put the crystals in water that already holds ${SALTY.toFixed(2)} mol/L of dissolved NaCl, which supplies chloride (Cl⁻), the other ion in silver chloride. [Ag⁺] is then about…`,
         options: [`${sci(ag(0))} mol/L, the same`, `${sci(ag(SALTY))} mol/L`, `${SALTY.toFixed(2)} mol/L`],
         answer: 1,
       }}
@@ -53,8 +58,8 @@ export default function CommonIon({ slug }: { slug: string }) {
             At {SALTY.toFixed(2)} mol/L of chloride, [Ag⁺] fell to about <strong>{sci(ag(SALTY))} mol/L</strong>, about {RATIO.toLocaleString("en-US")} times lower than in pure water.
           </p>
           <p>
-            The two ions multiply to a ceiling of {sci(KSP)}. Pile in chloride and silver has to drop out as crystals to keep the product at the ceiling:{" "}
-            {sci(KSP)} ÷ {SALTY.toFixed(2)} = {sci(ag(SALTY))} mol/L. Solubility is not one fixed number; it shifts when the water already holds one of the ions.
+            The product readout stayed at {sci(KSP)}: while crystals remain, the two ion concentrations multiplied have a ceiling. Pile in chloride and silver has to drop out as crystals to keep the product at the ceiling:{" "}
+            {sci(KSP)} ÷ {SALTY.toFixed(2)} = {sci(ag(SALTY))} mol/L, so {backToCrystal(ag(SALTY)).toFixed(2)}% of the silver that dissolves in pure water returned to the crystals. Solubility is not one fixed number; it shifts when the water already holds one of the ions.
           </p>
         </>
       )}
@@ -68,9 +73,9 @@ export default function CommonIon({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <svg viewBox="0 0 320 170" className="stage-svg" role="img" aria-label={`added chloride ${c} mol/L, silver ${sci(a)} mol/L`}>
+                <svg viewBox="0 0 320 184" className="stage-svg" role="img" aria-label={`added chloride ${c} mol/L, silver ${sci(a)} mol/L`}>
                   <text x={X0} y={14} className={s.small}>
-                    Ion product [Ag⁺] × [Cl⁻] stays {sci(KSP)} over crystals.
+                    {locked ? "" : "Crystals stay in the water; silver that leaves the water joins them."}
                   </text>
                   <text x={X0} y={44} className={s.lab}>
                     Ag⁺ {sci(a)} mol/L
@@ -87,9 +92,17 @@ export default function CommonIon({ slug }: { slug: string }) {
                     </text>
                   ))}
                   <text x={X0 + W} y={164} textAnchor="end" className={s.small}>
-                    log scale, mol/L
+                    log scale, mol/L: each tick is 100 times the last
+                  </text>
+                  <text x={X0} y={178} className={s.small}>
+                    simple model: ignores AgCl₂⁻ complexes
                   </text>
                 </svg>
+                <Row>
+                  <Readout label="Ag⁺ × Cl⁻" value={locked ? "?" : sci(a * l)} />
+                  <Readout label="Ag⁺ lower than pure water" value={locked ? "?" : `${lower(a).toLocaleString("en-US")}×`} />
+                  <Readout label="Silver back in crystals" value={locked ? "?" : `${backToCrystal(a).toFixed(2)}%`} />
+                </Row>
                 <Row>
                   {LEVELS.map((v) => (
                     <Control key={v} onClick={() => set(v)} disabled={locked || c === v} className={c === v ? "active" : ""}>

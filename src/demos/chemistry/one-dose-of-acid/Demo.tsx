@@ -4,7 +4,7 @@
 // 1 L of pure water and to 1 L of acetic acid / acetate buffer (0.10 mol/L of each).
 // The water's pH line falls off a cliff on the first dose; the buffer's barely tilts.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
 import s from "./styles.module.css";
@@ -40,7 +40,16 @@ function trace(doses: number, f: (n: number) => number) {
 
 export default function OneDoseOfAcid({ slug }: { slug: string }) {
   const [doses, setDoses] = useState(0);
-  const [most, setMost] = useState(0);
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Add the rest" doses one at a time, so the learner watches each dose land.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 300);
+    return () => clearInterval(id);
+  }, [auto]);
 
   const n = doses * DOSE;
   const pw = waterPH(n);
@@ -51,29 +60,39 @@ export default function OneDoseOfAcid({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Add 0.010 mol of strong acid to 1 L of pure water, and to 1 L of acetic acid / acetate buffer (0.10 mol/L of each). The pH falls by about…",
+          "pH says how acidic a liquid is: lower is more acidic, and each unit is a factor of ten in hydrogen ions. A buffer is a mix that resists pH changes; this one is acetic acid with its partner acetate, 0.10 mol/L of each. Add 0.010 mol of strong acid to 1 L of pure water, and to 1 L of the buffer. The pH falls by about…",
         options: ["Water 5 units, buffer 0.1", "Water 5 units, buffer 5", "Water 0.1, buffer 5"],
         answer: 0,
       }}
-      exploreHint="Add the acid one dose at a time, all ten doses (0.010 mol)."
-      minInteractions={2}
+      exploreHint="Add the acid one dose at a time, all ten doses (0.010 mol). Watch the buffer's acetate count."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {most >= MAX_DOSES ? "After all ten doses" : `You added ${most} of 10 doses; after all ten`}, the water fell
+            After all ten doses, the water fell
             from pH 7 to <strong>2</strong>, five units, most of it on the very first dose. The buffer went from 4.76 to{" "}
             <strong>4.67</strong>, under 0.1.
           </p>
           <p>
             Pure water has nothing to catch the acid, so every hydrogen ion stays free. The buffer holds a stock of
-            acetate, a base: each added hydrogen ion turns an acetate into acetic acid. The ratio of the two moves from
+            acetate, a base: each added hydrogen ion turns an acetate into acetic acid, which is why the acetate count fell from 0.100 to 0.090 mol while acetic acid rose to 0.110. The ratio of the two moves from
             1 : 1 to 0.09 : 0.11, and pH follows that ratio, not the dose.
           </p>
           <p className="muted">Blood is buffered too, so it stays near pH 7.4.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const addDose = () => {
+          setDoses((d) => d + 1);
+          if (doses + 1 >= MAX_DOSES) interact(); // the reveal quotes all ten doses, so they must be added
+        };
+        autoStep.current = () => {
+          if (doses >= MAX_DOSES) return true;
+          addDose();
+          return doses + 1 >= MAX_DOSES;
+        };
+        return (
         <div className={s.wrap}>
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`After ${doses} doses: water pH ${pw.toFixed(2)}, buffer pH ${pb.toFixed(2)}`}>
             {[0, 2, 4, 6, 8, 10, 12, 14].map((p) => (
@@ -106,21 +125,16 @@ export default function OneDoseOfAcid({ slug }: { slug: string }) {
             </text>
           </svg>
           <Row>
-            <Control
-              disabled={locked || doses >= MAX_DOSES}
-              onClick={() => {
-                setDoses((d) => d + 1);
-                setMost((m) => Math.max(m, doses + 1));
-                interact();
-              }}
-            >
+            <Control disabled={locked || auto || doses >= MAX_DOSES} onClick={addDose}>
               Add 0.001 mol acid
             </Control>
+            <Control disabled={locked || auto || doses >= MAX_DOSES} onClick={() => setAuto(true)}>
+              Add the rest, dose by dose
+            </Control>
             <Control
-              disabled={locked || doses === 0}
+              disabled={locked || auto || doses === 0}
               onClick={() => {
                 setDoses(0);
-                interact();
               }}
             >
               Start over
@@ -131,8 +145,12 @@ export default function OneDoseOfAcid({ slug }: { slug: string }) {
             <Readout label="Buffer pH" value={pb.toFixed(2)} />
             <Readout label="Acid added" value={`${n.toFixed(3)} mol`} />
           </Row>
+          <Row>
+            <Readout label="Buffer: acetate : acetic acid (mol)" value={`${(BUF - n).toFixed(3)} : ${(BUF + n).toFixed(3)}`} />
+          </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

@@ -102,6 +102,9 @@ function Stage({
         <Readout label="Density (mass ÷ volume)" value={locked ? "?" : `${rho.toFixed(rho >= 1 ? 2 : 3).replace(/0$/, "")} g/cm³`} />
         <Readout label="Ball" value={locked ? "held" : state} />
       </Row>
+      <Row>
+        <Readout label="Under water" value={locked ? "?" : state === "floats" ? `${+((rho / RHO_W) * 100).toFixed(1)}%` : "all of it"} />
+      </Row>
     </div>
   );
 }

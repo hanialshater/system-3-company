@@ -4,3 +4,6 @@
 - Bag: 1,000 atoms (758 Cl-35, 242 Cl-37), Fisher-Yates shuffle with mulberry32(5). Seed CHOSEN so the first 100 hold exactly 24 Cl-37 (average 35.448 u, node); disclosed in claim c4. The reveal's numbers are computed from the same bag (first 100).
 - "u" is defined in the question ("about one proton's mass"). No answer readout before the first draw (average hidden, "At 35.45 u" shows "–").
 - After screenshots: removed an "Empty" button. As the last QA press, it emptied the tray just before the reveal quoted the 100 atoms.
+
+## Revision v2
+Fixes from the v1 learner review: the locked stage no longer names the isotopes (labels appear with the first draw, with live counts such as 'chlorine-35: 76' so the split is visible); option 2 no longer explains itself ('No, none does'); 'Draw 1' (invisible among 100) became 'Draw 10'; the reveal now says what an isotope is (c3 reworded, unverified). The first-100 average is still the chosen-seed illustration disclosed in c4.

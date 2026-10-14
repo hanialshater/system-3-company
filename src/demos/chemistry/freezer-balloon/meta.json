@@ -1,7 +1,7 @@
 {
   "slug": "freezer-balloon",
   "title": "The freezer balloon",
-  "hook": "27 °C down to −18 °C is below zero. Does the balloon shrink to nothing?",
+  "hook": "A balloon goes from room temperature into the freezer. How much does it shrink?",
   "domain": "chemistry",
   "concept": "gas-laws",
   "status": "review",
@@ -44,12 +44,10 @@
     },
     {
       "id": "chemistry.freezer-balloon.c3",
-      "text": "27 °C is 300 K and −18 °C is 255 K.",
+      "text": "Gas scientists add 273 to a Celsius temperature to get kelvin: 27 °C is 300 K and −18 °C is 255 K.",
       "support": "derivation",
       "source": "T(K) = T(°C) + 273.15 (BIPM SI Brochure, 9th ed., 2019): 300.15 and 255.15 K, rounded.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "chemistry.freezer-balloon.c4",
@@ -71,12 +69,10 @@
     },
     {
       "id": "chemistry.freezer-balloon.c6",
-      "text": "A real gas turns liquid long before it gets as cold as −273 °C.",
+      "text": "A real gas such as the air in the balloon turns liquid long before it gets as cold as −273 °C.",
       "support": "source",
       "source": "Nitrogen boils at 77 K (−196 °C) and oxygen at 90 K (−183 °C) at 1 atm (CRC Handbook, 'Physical constants of inorganic compounds'); even helium liquefies at 4.2 K.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,12 +97,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:gas-laws",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

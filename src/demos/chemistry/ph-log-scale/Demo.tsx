@@ -9,7 +9,7 @@
 // one step at a time (the QA contract presses each control once; sliders twice). The question and
 // reveal frame "1,000" as following from the round values pH 5 and pH 2.
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -73,19 +73,34 @@ function PhaseSync({ phase, onPhase }: { phase: string; onPhase: (p: string) => 
 export default function PhLogScale({ slug }: { slug: string }) {
   const [phSet, setPh] = useState(REF_PH);
   const [phaseNow, setPhaseNow] = useState("predict");
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Step down automatically" walks one pH step at a time, so every multiplication is seen.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 300);
+    return () => clearInterval(id);
+  }, [auto]);
   const ph = phaseNow === "reveal" ? TARGET_PH : phSet;
   const ratio = Math.pow(10, REF_PH - ph);
   const whole = ratio >= 1 ? Math.round(ratio) : 0;
   const zoomCells = ratio < 1 ? Math.round(ratio * 100) : 0; // 10 at pH 6, 1 at pH 7
   const steps = ph - REF_PH;
   const setTo = (v: number) => setPh(Math.max(MIN_PH, Math.min(MAX_PH, v)));
+  autoStep.current = () => {
+    if (phSet <= TARGET_PH) return true;
+    setTo(phSet - 1);
+    return phSet - 1 <= TARGET_PH;
+  };
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Say black coffee is pH 5 and lemon juice pH 2 (round values). Same-sized cups: how many times more hydrogen ions does the lemon juice have?",
+          "pH is a number for how acidic a liquid is: the lower the pH, the more hydrogen ions in it. Say black coffee is pH 5 and lemon juice pH 2 (round values). In same-sized cups, how many times more hydrogen ions does the lemon juice have?",
         options: ["About 2.5 times", "3 times", "About 30 times", "About 1,000 times"],
         answer: 3,
       }}
@@ -100,9 +115,9 @@ export default function PhLogScale({ slug }: { slug: string }) {
           </p>
           <p>
             pH numbers count tens, not amounts, so 3 steps apart is not 3 times. For the round values pH 5 and pH 2 it
-            is exactly 1,000; real coffees and lemon juices vary, from roughly 200 to 1,300 times.
+            is exactly 1,000.
           </p>
-          <p className="muted">Going up divides by 10: pure water at pH 7 has 1/100 of coffee&rsquo;s.</p>
+          <p className="muted">Going up divides by 10: pure water at pH 7 has 1/100 of coffee&rsquo;s (slide to pH 7 to see it).</p>
         </>
       )}
     >
@@ -176,26 +191,29 @@ export default function PhLogScale({ slug }: { slug: string }) {
           </svg>
 
           <Row>
-            <Control disabled={locked || ph <= MIN_PH} onClick={() => setTo(ph - 1)}>
-              pH down 1 (×10)
+            <Control disabled={locked || auto || ph <= MIN_PH} onClick={() => setAuto(true)}>
+              Step down automatically
+            </Control>
+            <Control disabled={locked || auto || ph <= MIN_PH} onClick={() => setTo(ph - 1)}>
+              pH down 1
             </Control>
           </Row>
           <Slider
-            label="pH (slide right for more acid)"
-            value={MAX_PH + MIN_PH - ph}
+            label="pH"
+            value={ph}
             min={MIN_PH}
             max={MAX_PH}
-            disabled={locked}
+            disabled={locked || auto}
             format={() => String(ph)}
-            onChange={(v) => setTo(MAX_PH + MIN_PH - v)}
+            onChange={setTo}
           />
           <div className={s.ends} aria-hidden>
+            <span>pH 2 lemon (more acid)</span>
             <span>pH 7 water</span>
-            <span>pH 2 lemon</span>
           </div>
           <Row>
-            <Control disabled={locked || ph >= MAX_PH} onClick={() => setTo(ph + 1)}>
-              pH up 1 (÷10)
+            <Control disabled={locked || auto || ph >= MAX_PH} onClick={() => setTo(ph + 1)}>
+              pH up 1
             </Control>
             <Readout label="Liquid" value={LABELS[ph] ?? "—"} />
             <Readout
