@@ -13,8 +13,8 @@
 // v4 (W-246, FC pass 26): the walk is computed on the full map, so "Walk depth-first" reopens every road and the
 // walk marks (badges, dotted roads, bridge) and their legend show exactly when walked and no road is closed; closing
 // a road afterwards hides the marks (the note says so) instead of drawing badges that belong to a different map.
-// v5 (r8): compact for the phone reveal. viewBox 360 x 186 (was 320 x 266), the tallies are a picture label
-// (top left) instead of a readout row, "Reopen all" is gone (tap the closed road again to reopen it), the road
+// v5 (r8): compact for the phone reveal. viewBox 360 x 214 (was 320 x 266), the tallies are picture labels
+// (top corners) instead of a readout row, "Reopen all" is gone (tap the closed road again to reopen it), the road
 // buttons and "Walk depth-first" share one wrapping row, and the Walk text row is gone (the badges it repeated
 // are on screen with the reveal now).
 // One representation: the map; reachable towns from town 1 in the domain colour, cut-off towns red.
@@ -37,10 +37,10 @@ const ROADS: [number, number][] = [
 ];
 // Circle layout, clockwise from the top: 1, 4, 2, 5, 6, 3 (2-3 and 4-6 are the diameters; 3-4 is a middle-length chord like 1-2 and 4-5).
 const VW = 360;
-const VH = 186;
+const VH = 214;
 const CX = 180;
-const CY = 92;
-const RAD = 62;
+const CY = 104;
+const RAD = 70;
 const RING = [1, 4, 2, 5, 6, 3];
 const POS: Record<number, [number, number]> = Object.fromEntries(
   RING.map((t, i) => {
@@ -209,8 +209,8 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                   {TOWNS.map((t) => {
                     const ok = reachable.has(t);
                     const [x, y] = POS[t];
-                    const ox = ((x - CX) / RAD) * 34;
-                    const oy = ((y - CY) / RAD) * 25;
+                    const ox = ((x - CX) / RAD) * 52;
+                    const oy = ((y - CY) / RAD) * 28;
                     return (
                       <g key={t}>
                         <circle cx={x} cy={y} r={15} fill={ok ? "var(--domain)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={1.5} />
@@ -231,7 +231,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                   <text x={2} y={30} className={s.label}>
                     Map stays whole: {whole}
                   </text>
-                  <text x={2} y={46} className={s.label}>
+                  <text x={VW - 2} y={14} textAnchor="end" className={s.label}>
                     Map splits: {split}
                   </text>
                   <text x={VW - 2} y={VH - 4} textAnchor="end" className={s.label}>

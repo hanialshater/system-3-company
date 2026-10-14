@@ -151,7 +151,8 @@ export function homeCordScene(spec: HomeSpec, p: number, after: boolean) {
     const scale = 3, start = 190, end = start + p * scale;
     const cord = after ? `M24,150H${end}` : `M24,150H110L170,100A30,30 0 1 0 130,100L190,150H${end}`;
     return { kind: 'loop-release' as const, cord, end, start, scale, travel: a * scale,
-      crossings: after ? [] : [{ x: 150, y: 125 }] };
+      // The two diagonals (110,150)-(170,100) and (130,100)-(190,150) meet at x=150, y=350/3 (about 116.7).
+      crossings: after ? [] : [{ x: 150, y: 350 / 3 }] };
   }
   if (spec.model === 'coil-radius') {
     const radius = after ? 2 * p : p, scale = 95 / 40, r = radius * scale;
