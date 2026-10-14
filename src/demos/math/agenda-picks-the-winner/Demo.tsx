@@ -68,18 +68,20 @@ export default function AgendaPicksTheWinner({ slug }: { slug: string }) {
               last vote won every time.
             </p>
             <p>
-              Each option beats one rival and loses to another, 2 to 1: A beats B, B beats C, C beats A. No option is the majority
-              favourite, so whoever sets the order of the votes picks the winner, when every voter backs the option they rank higher.
+              Each voter&apos;s own ranking is consistent, yet the group&apos;s majorities loop: A beats B, B beats C, C beats A, each 2 to 1.
+              No option is the majority favourite, so whoever sets the order of the votes picks the winner, as long as each voter
+              votes for the option they like better in every vote.
             </p>
           </>
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, phase, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => (
             <Stage
               locked={locked}
+              reveal={phase === "reveal"}
               ran={ran}
               cur={cur}
               onRun={(i) => {
@@ -95,7 +97,7 @@ export default function AgendaPicksTheWinner({ slug }: { slug: string }) {
   );
 }
 
-function Stage({ locked, ran, cur, onRun }: { locked: boolean; ran: number[]; cur: number | null; onRun: (i: number) => void }) {
+function Stage({ locked, reveal, ran, cur, onRun }: { locked: boolean; reveal: boolean; ran: number[]; cur: number | null; onRun: (i: number) => void }) {
   const seen = new Set<string>();
   const arrows: { win: Opt; lose: Opt }[] = [];
   for (const i of ran) {
@@ -107,7 +109,9 @@ function Stage({ locked, ran, cur, onRun }: { locked: boolean; ran: number[]; cu
       }
     }
   }
-  const ag = cur === null || locked ? null : AGENDAS[cur];
+  // the reveal pins the stage to the agenda the question asked about (agenda 0)
+  const shownIdx = reveal ? 0 : cur;
+  const ag = shownIdx === null || locked ? null : AGENDAS[shownIdx];
   const shown = ag ? run(ag) : null;
   const pairs: [Opt, Opt][] = [
     ["A", "B"],
@@ -136,13 +140,17 @@ function Stage({ locked, ran, cur, onRun }: { locked: boolean; ran: number[]; cu
         ))}
       </div>
 
-      <div className={s.chips} role="group" aria-label="Agenda">
-        {AGENDAS.map((a, i) => (
-          <Control key={i} disabled={locked} className={cur === i ? "active" : ""} aria-pressed={cur === i} onClick={() => onRun(i)}>
-            {label(a)}
-          </Control>
-        ))}
-      </div>
+      {reveal ? (
+        <p className={s.asked}>Your question: {label(AGENDAS[0])}</p>
+      ) : (
+        <div className={s.chips} role="group" aria-label="Agenda">
+          {AGENDAS.map((a, i) => (
+            <Control key={i} disabled={locked} className={cur === i ? "active" : ""} aria-pressed={cur === i} onClick={() => onRun(i)}>
+              {label(a)}
+            </Control>
+          ))}
+        </div>
+      )}
 
       <div className={s.lower}>
         <div className={s.votes} aria-live="polite">

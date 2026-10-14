@@ -48,19 +48,23 @@
       "support": "derivation",
       "source": "Follows from c1 and c2. A cycle of majority preferences is the topic of Easley & Kleinberg 2010, ch. 23 section 23.3 (section number unconfirmed; fact-checker to confirm against the book). No name or date is used in learner text.",
       "address": "reveal paragraph 2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.agenda-picks-the-winner.c4",
-      "text": "This holds when every voter backs the option they rank higher in each vote (sincere voting). The lesson does not claim that real elections have such cycles.",
+      "text": "This holds when every voter votes for the option they like better in each vote (sincere voting). The lesson does not claim that real elections have such cycles.",
       "support": "convention",
-      "source": "Modelling assumption stated in the reveal; the brief excludes any claim about real elections.",
+      "source": "Modelling assumption stated in the reveal in plain words ('as long as each voter votes for the option they like better in every vote'); the brief excludes any claim about real elections.",
       "address": "reveal paragraph 2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "id": "math.agenda-picks-the-winner.c5",
+      "text": "Each voter's own ranking is consistent (a straight order with no loop), even though the group's majorities loop: A beats B, B beats C, C beats A.",
+      "support": "derivation",
+      "source": "The rankings A>B>C, B>C>A, C>A>B are each a single order; the loop appears only in the pairwise majority counts of c1.",
+      "address": "reveal paragraph 2",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:condorcet-cycle",
     "prerequisites": [],
