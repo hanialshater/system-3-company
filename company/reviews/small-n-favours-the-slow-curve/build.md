@@ -15,4 +15,9 @@
 4. Reveal values: 3,200 and 5,532 (milestone n20), "won at 43, lost at 44" (milestones n43, n44), 80,000 and 42,521 (milestone n100). All in the trace when the reveal opens.
 5. QA path: n = 20, 43, 44, 100 reach all four milestones; Reset last clears the bars, the trace keeps all four.
 6. Reset: reveal after Reset: "At 20 items insertion sort cost 3,200 steps and merge sort 5,532. The 64 in front of merge sort's cost outweighs its slower growth while n is small. Insertion sort still won at 43 and lost at 44, and at 100 it cost 80,000 against 42,521. / Growth rate tells you who wins eventually, not who wins at your size. That is why fast merge sorts hand short pieces to insertion sort." Every number is in the trace.
-7. Phone fit: see the "Measurement" line below.
+7. Phone fit: crop 0 px, reveal 74 words with the verdict, phoneFit true, namedHidden 0 (Measurement v1 below).
+
+## Measurement v1 (2026-10-14, shared dev server :3530)
+
+- Phone fit (390x844, `tools/reveal-fit.mjs` logic, after the QA path including Reset): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, reveal 74 words including the verdict line. Source: artifacts/qa-wavej-cs/fit-small-n-favours-the-slow-curve.json; screenshot artifacts/reveal-fit/small-n-favours-the-slow-curve.png (looked at). Caveat: the shipped tool timed out on page load on the loaded host (load average 25-45), so I measured with a temporary copy that only raised its goto and render timeouts (deleted afterwards). Stage SVG text 11-16 px in the viewBox, drawn at about 1:1 on a 390 px phone; HTML text at least 0.72rem.
+- QA contract (`tests/qa/contract.spec.ts`, QA_ONLY the five wave J cs slugs, --workers=1, with the `--timeout=400000` CLI flag because pages took 45-115 s to load): phone passed, desktop passed. Log: artifacts/qa-wavej-cs-run2.log.

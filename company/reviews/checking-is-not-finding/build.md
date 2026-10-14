@@ -16,4 +16,9 @@
 4. Reveal values: 1 addition (milestone check), 21st (milestone find9), 64 (milestone none13), 128 (milestone seven). All in the trace when the reveal opens.
 5. QA path: Check, Search 9, Search 13, Add 7th reach all four; Reset last clears the stage to 64 empty squares (the grid stays once any button was pressed); the trace keeps all four.
 6. Reset: reveal after Reset: "Checking 4 + 5 took one addition. Finding a group meant trying them: the 21st group made 9, and proving that nothing makes 13 took all 64. One more number doubled the squares to 128. / For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that always finds one without a search that grows this fast. Whether such a method exists is the P versus NP question."
-7. Phone fit: see the "Measurement" line below.
+7. Phone fit: crop 0 px, reveal 80 words with the verdict, phoneFit true, namedHidden 0 (Measurement v1 below).
+
+## Measurement v1 (2026-10-14, shared dev server :3530)
+
+- Phone fit (390x844, `tools/reveal-fit.mjs` logic, after the QA path including Reset): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, reveal 80 words including the verdict line. Source: console output of the run (the JSON file was in artifacts/qa-wavej-cs/, which the later QA run cleared); screenshot artifacts/reveal-fit/checking-is-not-finding.png (looked at). Caveat: the shipped tool timed out on page load on the loaded host (load average 25-45), so I measured with a temporary copy that only raised its goto and render timeouts (deleted afterwards). Stage SVG text 11-16 px in the viewBox, drawn at about 1:1 on a 390 px phone; HTML text at least 0.72rem.
+- QA contract (`tests/qa/contract.spec.ts`, QA_ONLY the five wave J cs slugs, --workers=1, with the `--timeout=400000` CLI flag because pages took 45-115 s to load): phone passed, desktop passed. Log: artifacts/qa-wavej-cs-run2.log.

@@ -16,4 +16,9 @@
 4. Reveal values: 2, 5, 11, 23, 15 and 56 (milestone greedy); 46 (milestone sweep); "tied for the longest" (milestone all-orders, 46 to 56). All in the trace when the reveal opens.
 5. QA path: Nearest-first (greedy), Out to 8 first (sweep), Try all 24 (all-orders), Step (1 hop), Reset. All three milestones reached.
 6. Reset: reveal after Reset: "Nearest-first took cheap hops of 2, 5 and 11 km, then crossed the whole road, 23 km from 8 to −15, and came back 15: 56 km. Out to 8 first cost 46. Of all 24 orders, nearest-first tied for the longest. / Each greedy hop was cheapest at that moment, but the far towns it put off came due at the end. Route planners use such tours only as a start, then repair them." The arcs are cleared by Reset; the 23 is still on the stage in the trace.
-7. Phone fit: see the "Measurement" line below.
+7. Phone fit: crop 0 px, reveal 86 words with the verdict, phoneFit true, namedHidden 0 (Measurement v1 below).
+
+## Measurement v1 (2026-10-14, shared dev server :3530)
+
+- Phone fit (390x844, `tools/reveal-fit.mjs` logic, after the QA path including Reset): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, reveal 86 words including the verdict line. Source: console output of the run (the JSON file was in artifacts/qa-wavej-cs/, which the later QA run cleared); screenshot artifacts/reveal-fit/nearest-town-first-detours.png (looked at). Caveat: the shipped tool timed out on page load on the loaded host (load average 25-45), so I measured with a temporary copy that only raised its goto and render timeouts (deleted afterwards). Stage SVG text 11-16 px in the viewBox, drawn at about 1:1 on a 390 px phone; HTML text at least 0.72rem.
+- QA contract (`tests/qa/contract.spec.ts`, QA_ONLY the five wave J cs slugs, --workers=1, with the `--timeout=400000` CLI flag because pages took 45-115 s to load): phone passed, desktop passed. Log: artifacts/qa-wavej-cs-run2.log.

@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (demo-builder, builder-wavej-ai-1: 5 Wave J AI lessons built as drafts)
+
+- **Changed:** claimed one at a time with `claim.mjs next ai` and built Wave J briefs #60-#64 from company/domains/briefs/ai.md: src/demos/ai/{gradient-fades-with-depth, sudden-skill-or-strict-score, deleted-column-still-there, secret-in-the-counts, raters-reward-agreement}/ (Demo.tsx, styles.module.css, meta.json v2; status draft; 18 claims, all unverified). Build notes with Pre-flight v1, measurements and QA in company/reviews/<slug>/build.md. Board: W-680 (fact-checker), W-681 (qa-tester: official QA on a release build), W-682 (cm-ai: builder calls). Locks still held (built, not merged). Nothing committed.
+- **Believe:** high that the numbers match the briefs: the models compute them (share(), exact(), world(), a real n-gram counter generate(), votes()), and I ran the secret-in-the-counts model in node. All five: reveal-fit crop 0, hiddenBelow 0, namedHidden 0, phoneFit true at 390x844; tool word counts 84-89 with the verdict (bodies 77-79); smallest rendered stage label 10.35 px. Every Reset keeps a Seen line or dashed trace, so the reveal still matches the stage. Titles, hooks and recall questions are mine (the briefs gave none). Medium on the craft calls listed in W-682.
+- **How measured:** :3530 was overloaded (load 30-40). Stock reveal-fit timed out, so I used a copy that only raises its timeouts (artifacts/wavej-ai-tmp/reveal-fit-slow.mjs). Stock QA timed out on page.goto at 45 s twice; with `--timeout=240000` the final run passed 9/10. deleted-column-still-there desktop hit the dev-only React "hasn't mounted yet" overlay over "This page couldn't load", and a rerun passed 4/4. Around 16:50 another builder's syntax error (cs/nearest-town-first-detours) gave every page an HTTP 500 for a few minutes.
+- **Next:** qa-tester W-681, fact-checker W-680, cm-ai W-682, then evaluators; draft -> review once the QA record is official. The remaining Wave J ai briefs (#65 the-email-gives-orders, #66 ten-times-compute, then ranks 67-74 in the strand files) are still in the queue.
+- **Blocked:** nothing.
+
 ## 2026-10-14 (demo-builder, demo-builder-wavej-life: 5 Wave J life ecology-body lessons, v1 drafts)
 
 - **Changed:** claimed with `claim.mjs next life`, one at a time, and built src/demos/life/{bad-year-breaks-the-quota, empty-ponds-still-left, opposite-flows-swap-more, same-dose-levels-off, more-traps-more-species}/ (Demo.tsx, styles.module.css, meta.json v2) from company/domains/briefs/life.ecology-body.md #2 to #6. Status draft, every claim unverified. Build notes with Pre-flight v1 are in company/reviews/<slug>/build.md. Board: W-677 (fact-checker), W-678 (cm-life: builder departures).
