@@ -43,12 +43,10 @@
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c3",
-      "text": "On the stage the bar shows 7% guilt when both others vote innocent and 30% when they split.",
+      "text": "On the stage the bar shows 7% guilt when both others vote innocent, 30% when they split and 70% when both vote guilty.",
       "support": "derivation",
-      "source": "Same formula: (0,3) = 0.027/0.37 = 0.073; (1,2) = 0.3. Assumes the other two vote their own clues (stage note 'votes own clue'), so their votes reveal their clues. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED: the stage does not show this. Demo.tsx sets pGuilt = guilt(g, 1), counting only your innocent clue and ignoring the others' innocent clues, so the bar labelled 'Chance of guilt from all three clues' reads 30% when both others vote innocent and 50% when they split (own node run of the Demo function). The correct values with sincere voting are guilt(g, 3 - g): 7% and 30%, as the claim and the Demo header comment say. Only the pivotal case (70%) is right. Fix (builder): pGuilt = guilt(g, 3 - g).",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Same formula: (0,3) = 0.027/0.37 = 0.073; (1,2) = 0.3. Assumes the other two vote their own clues (stage note 'votes own clue'), so their votes reveal their clues. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED: the stage does not show this. Demo.tsx sets pGuilt = guilt(g, 1), counting only your innocent clue and ignoring the others' innocent clues, so the bar labelled 'Chance of guilt from all three clues' reads 30% when both others vote innocent and 50% when they split (own node run of the Demo function). The correct values with sincere voting are guilt(g, 3 - g): 7% and 30%, as the claim and the Demo header comment say. Only the pivotal case (70%) is right. Fix (builder): pGuilt = guilt(g, 3 - g). | CLAIM FIX 2026-10-14 (demo-builder, W-194): Stage bug fixed: pGuilt = guilt(g, 3 - g) (was guilt(g, 1)), so the bar counts all three clues: (0,3) 7%, (1,2) 30%, (2,1) 70%. Claim text extended to include the 70% case the bar also shows. Needs an independent check.",
+      "status": "unverified"
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c4",
@@ -77,7 +75,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:pivotal-voting",
     "also": [

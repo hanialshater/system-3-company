@@ -51,8 +51,8 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
           </p>
           <p>
             Each driver who joins B slows everyone already on it, a cost that driver never feels. Here selfish routing costs
-            60 / 45 = 4/3 of the best, a third more. With delays that grow in proportion to traffic, that is the worst it can
-            ever be.
+            60 / 45 = 4/3 of the best, a third more. With delays that are a fixed time plus a part proportional to traffic, that
+            is the worst it can ever be.
           </p>
         </>
       )}

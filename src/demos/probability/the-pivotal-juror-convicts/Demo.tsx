@@ -27,7 +27,7 @@ export default function ThePivotalJurorConvicts({ slug }: { slug: string }) {
 
   const g = others.filter(Boolean).length;
   const pivotal = g === 2;
-  const pGuilt = guilt(g, 1);
+  const pGuilt = guilt(g, 3 - g);
   const verdictGuilty = others[0] && others[1] && mine;
 
   return (

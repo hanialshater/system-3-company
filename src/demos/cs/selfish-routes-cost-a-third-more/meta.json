@@ -51,12 +51,10 @@
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c4",
-      "text": "With delays that grow in proportion to traffic, the selfish equilibrium's total travel time is at most 4/3 of the best possible, and this two-road example reaches that bound.",
+      "text": "With delays that are a fixed time plus a part proportional to traffic, the selfish equilibrium's total travel time is at most 4/3 of the best possible, and this two-road example reaches that bound.",
       "support": "source",
-      "source": "Roughgarden T. & Tardos É. (2002), 'How bad is selfish routing?', J. ACM 49(2): price of anarchy 4/3 for linear (affine) latency functions, attained by Pigou's two-link example (Pigou 1920, The Economics of Welfare). Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 8. Attribution for the fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED (wording of the class). Roughgarden & Tardos ('How bad is selfish routing?', FOCS 2000 / J. ACM 2002) prove the 4/3 bound for linear (affine) latencies a*x + b; confirmed by web search snippet only, paper PDF blocked. But the sentence says 'delays that grow in proportion to traffic', and road A (constant 60) is not proportional; with purely proportional delays a*x, equilibrium equals optimum (marginal cost 2ax is proportional to delay), so the example would not be in the stated class. Fix (builder, reveal and claim): 'With delays that are a fixed time plus a part proportional to traffic, that is the worst it can ever be.'",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Roughgarden T. & Tardos É. (2002), 'How bad is selfish routing?', J. ACM 49(2): price of anarchy 4/3 for linear (affine) latency functions, attained by Pigou's two-link example (Pigou 1920, The Economics of Welfare). Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 8. Attribution for the fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED (wording of the class). Roughgarden & Tardos ('How bad is selfish routing?', FOCS 2000 / J. ACM 2002) prove the 4/3 bound for linear (affine) latencies a*x + b; confirmed by web search snippet only, paper PDF blocked. But the sentence says 'delays that grow in proportion to traffic', and road A (constant 60) is not proportional; with purely proportional delays a*x, equilibrium equals optimum (marginal cost 2ax is proportional to delay), so the example would not be in the stated class. Fix (builder, reveal and claim): 'With delays that are a fixed time plus a part proportional to traffic, that is the worst it can ever be.' | CLAIM FIX 2026-10-14 (demo-builder, W-193): Was 'delays that grow in proportion to traffic'. Reveal and claim now name the affine class (fixed time plus a part proportional to traffic), per the fact-checker's fix. Needs an independent check.",
+      "status": "unverified"
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c5",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:price-of-anarchy",
     "also": [

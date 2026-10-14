@@ -14,3 +14,15 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c6 | verified | Shannon 1950 (Phil. Mag. ser. 7, 41(314)) estimates about 10^120 chess games (the Shannon number); 'far too many' is a safe reading. |
 
 **Result:** all claims in this pass verified; no disputes.
+
+## Pass 21 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including computed ones) before the claim sources, then re-ran the lesson's own logic in my own node scripts (scratchpad fc21/). Sources were opened where egress allowed, otherwise corroborated by web search or marked as not opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own plain minimax (fc21/ttt.mjs, no memo): empty board 0; all nine first moves 0, so corner, edge, centre each draw. Matches Demo.tsx solve() and the v3 bridge row. |
+| c2 | verified | Own exhaustive enumeration stopping at the first three-in-a-row or full board: 255,168 games. |
+| c4 | verified | Own minimax on START XOX/OO./.X.: right middle -> O bottom left gives X win, O bottom right draw (value draw); bottom left -> O right middle O wins, O bottom right draw (value O wins); bottom right -> O right middle O wins, O bottom left X win (value O wins). Two X moves have a struck X-win leaf. The stage also strikes the draw leaf under bottom left; the sentence does not contradict that. |
+
+**Result:** all open claims verified; the lesson has no unverified or disputed claims.
