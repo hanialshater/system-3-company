@@ -15,6 +15,9 @@ with these differences:
   run `node src/lab/knots/provenance/derive.mjs --write`, then copy the file again:
   `sed "s#'../core.mjs'#'./core.mjs'#" src/lab/knots/provenance/table.derived.mjs > src/kit/knots/table.mjs`.
 
+Prior art and licences: `src/lab/knots/PRIOR-ART.md`. No code was copied from any source. The test reference values in
+`test/published.mjs` were computed by GPL programs used only as offline oracles; they are mathematical facts, not copied files.
+
 ## How to import (enforced by typecheck)
 
 ```ts

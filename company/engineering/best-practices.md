@@ -12,3 +12,9 @@ owner: principal-engineer · review in Distillation Day; delete any line that ha
 8. **Small, revertible commits** with the reason in the message. Merges keep history; do not rewrite shared branches.
 9. **Tests judge behaviour, not code.** The QA contract uses the lesson through a browser, and so do reviewers.
 10. **Delete code the agents no longer need.** A framework that a capable agent can replace with a shell command is a liability.
+11. **Factual data in the kit needs a provenance we can state.** A short standard notation of one object is a fact (a DT code, a Conway notation, a braid word, a constant). For each one:
+    - type it in by hand and cite where it is published;
+    - derive anything bigger with our own code, and test that the result is the object the notation names;
+    - say in the source file if a value was read from, or checked against, a source whose licence we have not cleared.
+
+    Never copy a file, table or program output in bulk from such a source. Anything beyond individual facts needs a decision record. This is not legal advice. (EDD-004 review, W-145.)
