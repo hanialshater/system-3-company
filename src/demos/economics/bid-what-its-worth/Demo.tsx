@@ -2,10 +2,10 @@
 
 // Second-price auction. One picture: the profit of four bids (the learner's slider bid, then $50, $70, $90)
 // against the one rival bid the learner picks. Value $70, ties go to the rival, winner pays the rival's bid.
-// Key states: rival $60 seen (bid $50 misses $10 that $70 earns) and rival $75 seen (bid $90 wins, loses $5).
+// Key states (plus: the bid slider moved, so the sweep chart was used): rival $60 seen (bid $50 misses $10 that $70 earns) and rival $75 seen (bid $90 wins, loses $5).
 // Model: invented numbers, one rival bid at a time, sealed bids. First-price auctions are not covered here.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -14,7 +14,9 @@ import s from "./styles.module.css";
 const VALUE = 70;
 const RIVALS = [40, 60, 75, 90] as const;
 const FIXED = [50, 70, 90] as const;
-const MILESTONES = ["saw-low-bid-miss", "saw-high-bid-loss"] as const;
+const MILESTONES = ["saw-low-bid-miss", "saw-high-bid-loss", "slid-bid"] as const;
+// At the reveal the stage is pinned to the state the text quotes first: rival $60, your bid $50.
+const PIN = { rival: 60, mine: 50 };
 
 // The rule of the lesson: the highest bid wins and pays the second-highest bid. A tie goes to the rival.
 const wins = (bid: number, rival: number) => bid > rival;
@@ -44,24 +46,25 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
         options: ["$50", "$90", "$70"],
         answer: 2,
       }}
-      exploreHint="Pick a rival bid and read what each bid earns and pays. Slide your bid and watch the lower chart: it shows every rival bid at once."
+      exploreHint="Pick a rival bid and read what each bid earns and pays. Slide your bid and watch the lower chart: it shows every rival bid at once. Do all three to unlock."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            Against a rival at <strong>$60</strong>, a $50 bid lost and earned $0, while $70 won, paid $60 and kept{" "}
-            <strong>$10</strong>. Against a rival at <strong>$75</strong>, a $90 bid won, paid $75 for a $70 painting and lost{" "}
-            <strong>$5</strong>; $70 lost and kept $0.
+            The lower chart shows every rival bid at once; the stage is set to a rival at <strong>$60</strong>. There a $50
+            bid lost and earned $0, while $70 won, paid $60 and kept <strong>$10</strong>: the dashed $50 line sits under the
+            solid $70 line for every rival from $50 up to just under $70. Against a rival at <strong>$75</strong>, which you
+            tried, a $90 bid won, paid $75 for a $70 painting and lost <strong>$5</strong>; $70 lost and kept $0.
           </p>
           <p>
             Your bid only decides whether you win. The price is the rival&apos;s bid, so shading below $70 only throws away wins
             that pay, and bidding above $70 only adds wins that lose or break even. A bid of $70 is never worse than any other bid.
           </p>
-          <p className="muted">A model with invented numbers; ties go to the rival here. It is why this format invites honest bids.</p>
+          <p className="muted">A model with invented numbers; ties go to the rival here. This is why the second-price format invites honest bids.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const pick = (r: number) => {
@@ -69,10 +72,15 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
               if (r === 60) reach("saw-low-bid-miss");
               if (r === 75) reach("saw-high-bid-loss");
             };
+            const slide = (v: number) => {
+              setMine(v);
+              reach("slid-bid");
+            };
             const bids = [mine, ...FIXED];
             const known = rival !== null;
                         return (
               <div className={s.wrap}>
+                <PinAtReveal phase={phase} pin={() => { setRival(PIN.rival); setMine(PIN.mine); }} />
                 <p className={s.chip}>
                   Highest bid wins and pays the second-highest. Ties go to the rival. Worth ${VALUE} to you.
                 </p>
@@ -113,7 +121,7 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
                     );
                   })}
                   {!known && (
-                    <text x={170} y={Y0 + 40} textAnchor="middle" className={s.axis}>
+                    <text x={170} y={60} textAnchor="middle" className={s.axis}>
                       Pick a rival bid
                     </text>
                   )}
@@ -140,7 +148,7 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </Row>
-                <Slider label="Your bid" value={mine} min={0} max={120} step={5} onChange={setMine} disabled={locked} format={(v) => `$${v}`} />
+                <Slider label="Your bid" value={mine} min={0} max={120} step={5} onChange={slide} disabled={locked} format={(v) => `$${v}`} />
               </div>
             );
           }}
@@ -148,4 +156,15 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
       )}
     </Lesson>
   );
+}
+
+function PinAtReveal({ phase, pin }: { phase: string; pin: () => void }) {
+  const done = useRef(false);
+  useEffect(() => {
+    if (phase === "reveal" && !done.current) {
+      done.current = true;
+      pin();
+    }
+  });
+  return null;
 }

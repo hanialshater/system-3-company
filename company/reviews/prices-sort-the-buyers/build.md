@@ -26,3 +26,10 @@ Inputs: learner review one-market-only, fact-check Pass NCM-1 note 1.
 - c4 text now includes "y values b most (x 4, y 7, z 5)": status back to unverified. New claim c9 (caption text; node check of n: 3, 2, 3), unverified. Version 2.
 - Node check, exact rule: only-wanters at (0,0,0),(1,0,0),(2,0,0) give n 3, 2, 3 for groups {a},{a},{a,b}; price path unchanged.
 - QA (contract, QA_ONLY=prices-sort-the-buyers, NEXT_DIST_DIR=.next-psb2, QA_PORT 3731-3734): phone pass, desktop pass. The feed.spec "subject chips filter the feed" test fails on both viewports in this worktree; it is not about this lesson (not investigated).
+
+## Revision v3 (polish from the final learner review)
+
+- "Total value" is now defined in the predict question: it adds up what the three buyers value their houses (first number in each square, no prices).
+- Compare chips decoded: while Compare is open the rule line reads "Each chip: who gets which house (xa = x gets a), then that match's total value." (replaces the Raise rule line there, so stage word count is unchanged).
+- New claim c10 for both sentences, unverified. Other claims unchanged.
+- QA (own build, port 3981, QA_ONLY): contract spec fails only on 'tap targets at least 24px' (the in-progress kit stage-scale at reveal; not fixed here, kit is out of scope); every other contract step passed. Walkthrough frames read on phone. npm run check and typecheck pass.

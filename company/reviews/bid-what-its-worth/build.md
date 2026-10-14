@@ -21,3 +21,11 @@ Findings (simulated learner review, fact-check NCM-1), each answered:
 - Fact-check advisory c6: text now "...adds wins that lose money or break even"; reveal para 2 matches. c6 is back to unverified. Other claims unchanged.
 - Milestones unchanged (Rival $60, Rival $75). Version 2. curriculum.references untouched. No new factual sentences added.
 - Pre-existing: feed spec "subject chips filter the feed" fails on both viewports; contract spec for this slug passed on phone and desktop.
+
+## Revision v3 (polish from the final learner review)
+
+- Locked predict stage: "Pick a rival bid" moved above the zero line (y 60), no longer overprinting the $50/$70 labels.
+- Sweep chart gated: new milestone "slid-bid" (slider moved), so the gate is three actions; explore hint says "Do all three to unlock".
+- Reveal points at the lower chart, and the stage is pinned at the reveal to rival $60 with your bid $50, the state the text quotes first; the $75 case is described as one the learner tried. Reveal's last line now "This is why the second-price format invites honest bids." (matches c7).
+- Claim c4 extended (sweep range: $50 bid earns less than $70 for rivals $50 to $69, node-checked) and set to unverified.
+- QA (own build, port 3981, QA_ONLY): contract spec fails only on 'tap targets at least 24px' (the in-progress kit stage-scale at reveal; not fixed here, kit is out of scope); every other contract step passed. Walkthrough frames read on phone. npm run check and typecheck pass.

@@ -102,3 +102,9 @@ Input: `company/design/reviews/2026-10-14-design-review-network-pair.md` §3, M1
 **Open issues**
 - Accessibility reviewer: rule on the 6 px cells now that 390x844 sits at the floor, and on the 13 px stage scroll there. Also check the dark-mode frames (only light was in the sheet; I measured dark by script, not by eye).
 - Design lead: M1 removes the slow replay, so the open question from v2 is closed unless she writes an exception.
+
+## Revision v4 (polish from the final learner review)
+
+- "143 households" was a distinct-agent count the stage never showed. The stage line now reads "N unsettled now, M so far" (M = running sum of the red-ring counts; a household can be counted in more than one tick), and the reveal quotes that same total at the run's end (seed 2, 30%: 165 by tick 13). abm.ts untouched; the total is computed in Demo.tsx. The distinct 'cascade' count is no longer shown.
+- Claim c5 text reworded ("content before a tick become unsettled by others' moves") and set back to unverified.
+- QA (own build, port 3981, QA_ONLY): contract spec fails only on 'tap targets at least 24px' (the in-progress kit stage-scale at reveal; not fixed here, kit is out of scope); every other contract step passed. Walkthrough frames read on phone. npm run check and typecheck pass.

@@ -26,6 +26,8 @@ function getRun(seed: number, pct: number) {
 }
 const end = (r: Run) => r.frames.length - 1;
 const pc = (v: number) => Math.round(v * 100);
+/** Running total of the stage's red rings (one per unsettled household per tick) up to tick t. */
+const total = (r: Run, t: number) => r.unsettled.slice(0, t + 1).reduce((a, u) => a + u.length, 0);
 
 /** A run the learner took to its end (settled or capped). `n` orders them. */
 interface Done {
@@ -38,7 +40,7 @@ interface Done {
   sad: number;
   allStart: number;
   allEnd: number;
-  cascade: number;
+  rung: number;
   n: number;
 }
 const toDone = (r: Run, n: number): Done => ({
@@ -51,7 +53,7 @@ const toDone = (r: Run, n: number): Done => ({
   sad: pc(r.sad[end(r)] / r.agents),
   allStart: pc(r.allLike[0]),
   allEnd: pc(r.allLike[end(r)]),
-  cascade: r.cascade,
+  rung: total(r, end(r)),
   n,
 });
 
@@ -248,7 +250,7 @@ export default function MildPreferences({ slug }: { slug: string }) {
             Toy model: <G k="hollow" /> under {pct}% like neighbours, moves to a random empty home.
           </p>
           <p className={s.rule}>
-            <G k="ring" /> {rings.length} unsettled by a move · <G k="tint" /> {allLike}% all neighbours like
+            <G k="ring" /> {rings.length} unsettled now, {total(cur, tt)} so far · <G k="tint" /> {allLike}% all neighbours like
           </p>
           <div className={s.seedRow}>
             <span>40×40 · 8 nearby cells · 10% empty · seed {seed}</span>
@@ -359,7 +361,7 @@ function Reveal({ done, pinRun }: { done: Done[]; pinRun?: Done }) {
       <p>
         Nobody asked for a majority: at 30%, a household accepts a street up to 70% the other group. The red rings
         show the rest. Each move changed someone else&apos;s street
-        {pinRun ? `, and ${pinRun.cascade} households content at the start were unsettled and moved too` : ""}. Mild
+        {pinRun ? `: the stage's count of unsettled households reached ${pinRun.rung} by tick ${pinRun.ticks}, all of them content until a neighbour moved` : ""}. Mild
         preferences can add up to sharp divides.
       </p>
       <p className="muted">
