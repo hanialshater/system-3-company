@@ -1,0 +1,86 @@
+{
+  "slug": "deadline-needs-a-reference",
+  "title": "What does “Friday” mean?",
+  "hook": "A deadline needs a date and time reference, especially across locations.",
+  "domain": "lifehacks",
+  "concept": "deadline-needs-a-reference",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Replace an ambiguous deadline with an explicit dated time zone."
+    ]
+  },
+  "misconception": "Friday afternoon",
+  "objective": "Replace an ambiguous deadline with an explicit dated time zone.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A deadline needs a date and time reference, especially across locations. Which deadline is explicit in this fixture? Correct option: 14 Oct 15:00 UTC. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.deadline-needs-a-reference.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The date, clock time and time-zone reference define the fixture deadline. Local conversion and daylight-saving rules remain outside this exercise.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.deadline-needs-a-reference.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, deadline-needs-a-reference fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.deadline-needs-a-reference.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: 14 Oct 15:00 UTC. The date, clock time and time-zone reference define the fixture deadline. Local conversion and daylight-saving rules remain outside this exercise.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.deadline-needs-a-reference.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which deadline is explicit in this fixture?",
+    "options": [
+      "14 Oct 15:00 UTC",
+      "Friday afternoon"
+    ],
+    "answer": 0,
+    "why": "The date, clock time and time-zone reference define the fixture deadline. Local conversion and daylight-saving rules remain outside this exercise."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/deadline-needs-a-reference/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:deadline-needs-a-reference",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

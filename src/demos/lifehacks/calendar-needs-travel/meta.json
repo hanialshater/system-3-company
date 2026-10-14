@@ -1,0 +1,87 @@
+{
+  "slug": "calendar-needs-travel",
+  "title": "Travel occupies the calendar",
+  "hook": "The meeting fits. Does the journey fit too?",
+  "domain": "lifehacks",
+  "concept": "calendar-needs-travel",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Reserve travel as a separate time block."
+    ]
+  },
+  "misconception": "Meeting only",
+  "objective": "Reserve travel as a separate time block.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The meeting fits. Does the journey fit too? Which layout includes the journey? Correct option: Travel before meeting. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.calendar-needs-travel.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.calendar-needs-travel.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, calendar-needs-travel fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.calendar-needs-travel.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "For a 14:30 meeting and a fixed 20-minute trip with no delay, latest departure is 14:10.",
+      "support": "derivation",
+      "source": "Arithmetic:14:30−00:20=14:10. A stipulated duration and no-delay assumption, not a real travel-time recommendation.",
+      "id": "lifehacks.calendar-needs-travel.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A meeting starts at 14:30. The trip takes 20 minutes with no delay. What is the latest departure?",
+    "options": [
+      "14:10",
+      "14:30",
+      "14:50"
+    ],
+    "answer": 0,
+    "why": "Reserve the trip before arrival: 14:30 minus 20 minutes is 14:10. Real journey uncertainty is outside this fixed-duration exercise."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/calendar-needs-travel/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:calendar-needs-travel",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "do-not-starve-the-long-job",
+  "title": "The short-job trade-off",
+  "hook": "Clearing tiny tasks first can delay the long task’s own deadline.",
+  "domain": "lifehacks",
+  "concept": "do-not-starve-the-long-job",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Compare waiting and lateness when their objectives conflict."
+    ]
+  },
+  "misconception": "Small jobs first",
+  "objective": "Compare waiting and lateness when their objectives conflict.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Clearing tiny tasks first can delay the long task’s own deadline. For this long job due at minute 25, which order meets its deadline? Correct option: Long job first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.do-not-starve-the-long-job.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.do-not-starve-the-long-job.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, do-not-starve-the-long-job fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.do-not-starve-the-long-job.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Long job first. Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.do-not-starve-the-long-job.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For this long job due at minute 25, which order meets its deadline?",
+    "options": [
+      "Long job first",
+      "Small jobs first"
+    ],
+    "answer": 0,
+    "why": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/do-not-starve-the-long-job/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:do-not-starve-the-long-job",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

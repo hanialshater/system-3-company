@@ -1,0 +1,95 @@
+{
+  "slug": "lh-voucher-minimum",
+  "title": "The voucher has a minimum",
+  "hook": "A €5 voucher can leave a small basket unchanged.",
+  "domain": "lifehacks",
+  "concept": "lh-voucher-minimum",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Apply a discontinuous minimum-purchase rule accurately."
+    ]
+  },
+  "misconception": "Every basket gets the advertised voucher deduction.",
+  "objective": "Apply a discontinuous minimum-purchase rule accurately.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-voucher-minimum.c1",
+      "text": "A fictional voucher subtracts €5 only when the basket is at least €30. Scaled model; fictional rule; €30 qualifying minimum.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-voucher-minimum.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Basket=28€, A=€28 and B=€28. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-voucher-minimum.c3",
+      "text": "The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-voucher-minimum.c4",
+      "text": "A fictional voucher subtracts €5 only when the basket is at least €30. Change only Basket to 31€. What is B (Voucher) now? Correct: €26. Use B's stated rule with Basket=31€: it gives €26. The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fictional voucher subtracts €5 only when the basket is at least €30. Change only Basket to 31€. What is B (Voucher) now?",
+    "options": [
+      "€26",
+      "€31",
+      "€28"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Basket=31€: it gives €26. The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-voucher-minimum/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "A fictional voucher subtracts €5 only when the basket is at least €30.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-voucher-minimum",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

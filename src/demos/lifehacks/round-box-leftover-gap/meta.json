@@ -1,0 +1,95 @@
+{
+  "slug": "round-box-leftover-gap",
+  "title": "Round inside square leaves corners",
+  "hook": "Which shape leaves unused corners in this square space?",
+  "domain": "lifehacks",
+  "concept": "round-box-leftover-gap",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The inscribed circle touches all four sides yet occupies less area than the square. Corner gaps remain outside the circular footprint; touching the sides is not the same as filling the region."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The inscribed circle touches all four sides yet occupies less area than the square. Corner gaps remain outside the circular footprint; touching the sides is not the same as filling the region.",
+  "claims": [
+    {
+      "id": "lifehacks.round-box-leftover-gap.c1",
+      "text": "The inscribed circle touches all four sides yet occupies less area than the square. Corner gaps remain outside the circular footprint; touching the sides is not the same as filling the region.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Square=W²; circle=π(W/2)²; unused corner area=W²−πW²/4 cm².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.round-box-leftover-gap.c2",
+      "text": "This is two-dimensional area, not a complete storage-capacity estimate.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Square=W²; circle=π(W/2)²; unused corner area=W²−πW²/4 cm².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.round-box-leftover-gap.c3",
+      "text": "Square=W²; circle=π(W/2)²; unused corner area=W²−πW²/4 cm².",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.round-box-leftover-gap.c4",
+      "text": "Which shape leaves unused corners in this square space?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.round-box-leftover-gap.c5",
+      "text": "Why can a round tray touching four sides still leave unused area?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can a round tray touching four sides still leave unused area?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The inscribed circle touches all four sides yet occupies less area than the square. Corner gaps remain outside the circular footprint; touching the sides is not the same as filling the region. This is two-dimensional area, not a complete storage-capacity estimate."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/round-box-leftover-gap/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:round-box-leftover-gap",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

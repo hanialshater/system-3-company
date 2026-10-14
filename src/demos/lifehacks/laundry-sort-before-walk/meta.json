@@ -1,0 +1,95 @@
+{
+  "slug": "laundry-sort-before-walk",
+  "title": "Carry once, sort at the start",
+  "hook": "Which plan travels less in the pictured route?",
+  "domain": "lifehacks",
+  "concept": "laundry-sort-before-walk",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
+  "claims": [
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c1",
+      "text": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c2",
+      "text": "Capacity and urgency may rule out batching; the result is route arithmetic, not measured chore time.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c3",
+      "text": "Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c4",
+      "text": "Which plan travels less in the pictured route?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c5",
+      "text": "Recall: Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances? Correct answer: 36 m and 12 m. Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
+      "support": "derivation",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.laundry-sort-before-walk.c1–c3; Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances?",
+    "options": [
+      "36 m and 12 m",
+      "18 m and 6 m",
+      "36 m and 6 m"
+    ],
+    "answer": 0,
+    "why": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/laundry-sort-before-walk/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:laundry-sort-before-walk",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

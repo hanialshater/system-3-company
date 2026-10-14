@@ -1,0 +1,86 @@
+{
+  "slug": "fit-before-fixed-slot",
+  "title": "Fit around the fixed slot",
+  "hook": "A movable task fits only if it respects the fixed appointment.",
+  "domain": "lifehacks",
+  "concept": "fit-before-fixed-slot",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Place flexible work around a fixed calendar interval."
+    ]
+  },
+  "misconception": "Overlap the call",
+  "objective": "Place flexible work around a fixed calendar interval.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A movable task fits only if it respects the fixed appointment. Which placement avoids the fixed call? Correct option: Finish before the call. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fit-before-fixed-slot.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fit-before-fixed-slot.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, fit-before-fixed-slot fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.fit-before-fixed-slot.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Finish before the call. The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fit-before-fixed-slot.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which placement avoids the fixed call?",
+    "options": [
+      "Finish before the call",
+      "Overlap the call"
+    ],
+    "answer": 0,
+    "why": "The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/fit-before-fixed-slot/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:fit-before-fixed-slot",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

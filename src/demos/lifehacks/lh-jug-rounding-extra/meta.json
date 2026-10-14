@@ -1,0 +1,95 @@
+{
+  "slug": "lh-jug-rounding-extra",
+  "title": "The whole-litre rounding gap",
+  "hook": "250mL per cup can leave a whole-litre fill above the exact requirement.",
+  "domain": "lifehacks",
+  "concept": "lh-jug-rounding-extra",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compute excess created by rounding a volume to coarse increments."
+    ]
+  },
+  "misconception": "A rounded fill volume always equals the exact serving volume.",
+  "objective": "Compute excess created by rounding a volume to coarse increments.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-jug-rounding-extra.c1",
+      "text": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Scaled model; empty cups; volume only; no heating guidance.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-jug-rounding-extra.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Cups=5, A=1.25L and B=2L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-jug-rounding-extra.c3",
+      "text": "Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-jug-rounding-extra.c4",
+      "text": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Change only Cups to 8. What is B (Whole-litres) now? Correct: 2L. Use B's stated rule with Cups=8: it gives 2L. Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Change only Cups to 8. What is B (Whole-litres) now?",
+    "options": [
+      "2L",
+      "3L",
+      "4L"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Cups=8: it gives 2L. Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-jug-rounding-extra/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-jug-rounding-extra",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "drying-room-water-load",
+  "title": "The water goes somewhere",
+  "hook": "Which number describes water released by all items?",
+  "domain": "lifehacks",
+  "concept": "drying-room-water-load",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
+  "claims": [
+    {
+      "id": "lifehacks.drying-room-water-load.c1",
+      "text": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.c2",
+      "text": "Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.c3",
+      "text": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.c4",
+      "text": "Which number describes water released by all items?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.c5",
+      "text": "Why should you count the whole wet load rather than one garment?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why should you count the whole wet load rather than one garment?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity. Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/drying-room-water-load/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:drying-room-water-load",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

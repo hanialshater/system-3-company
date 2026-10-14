@@ -1,0 +1,95 @@
+{
+  "slug": "packing-cube-walls",
+  "title": "A cube has an inside and an outside",
+  "hook": "Which figure describes space available to contents?",
+  "domain": "lifehacks",
+  "concept": "packing-cube-walls",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity.",
+  "claims": [
+    {
+      "id": "lifehacks.packing-cube-walls.c1",
+      "text": "Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Outer V=W×20×10; inner V=(W−2)×18×8 cm³ for 1cm walls.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.packing-cube-walls.c2",
+      "text": "Real seams, zips and curved corners change usable space further.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Outer V=W×20×10; inner V=(W−2)×18×8 cm³ for 1cm walls.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.packing-cube-walls.c3",
+      "text": "Outer V=W×20×10; inner V=(W−2)×18×8 cm³ for 1cm walls.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.packing-cube-walls.c4",
+      "text": "Which figure describes space available to contents?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.packing-cube-walls.c5",
+      "text": "Which dimensions should you multiply to estimate the contents a box can hold?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which dimensions should you multiply to estimate the contents a box can hold?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity. Real seams, zips and curved corners change usable space further."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/packing-cube-walls/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:packing-cube-walls",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

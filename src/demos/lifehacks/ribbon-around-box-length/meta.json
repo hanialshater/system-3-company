@@ -1,0 +1,95 @@
+{
+  "slug": "ribbon-around-box-length",
+  "title": "Two loops share the same height",
+  "hook": "Which length includes both crossed ribbon loops?",
+  "domain": "lifehacks",
+  "concept": "ribbon-around-box-length",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Each rectangular loop travels around a width and the box height. Crossing two loops counts the height four times; then the chosen bow allowance is added separately."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Each rectangular loop travels around a width and the box height. Crossing two loops counts the height four times; then the chosen bow allowance is added separately.",
+  "claims": [
+    {
+      "id": "lifehacks.ribbon-around-box-length.c1",
+      "text": "Each rectangular loop travels around a width and the box height. Crossing two loops counts the height four times; then the chosen bow allowance is added separately.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; One loop=2(W+8)+20; crossed=2(W+8)+2(10+8)+20cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ribbon-around-box-length.c2",
+      "text": "Real knots and routing can need extra ribbon; the allowance is illustrative.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; One loop=2(W+8)+20; crossed=2(W+8)+2(10+8)+20cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ribbon-around-box-length.c3",
+      "text": "One loop=2(W+8)+20; crossed=2(W+8)+2(10+8)+20cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ribbon-around-box-length.c4",
+      "text": "Which length includes both crossed ribbon loops?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ribbon-around-box-length.c5",
+      "text": "Which box dimension appears in both crossed ribbon loops?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which box dimension appears in both crossed ribbon loops?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Each rectangular loop travels around a width and the box height. Crossing two loops counts the height four times; then the chosen bow allowance is added separately. Real knots and routing can need extra ribbon; the allowance is illustrative."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/ribbon-around-box-length/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:ribbon-around-box-length",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

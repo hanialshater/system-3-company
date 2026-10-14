@@ -1,0 +1,95 @@
+{
+  "slug": "circle-tray-square-corners",
+  "title": "Rotating a circle changes nothing",
+  "hook": "Can rotation alone put more equal circles in this grid?",
+  "domain": "lifehacks",
+  "concept": "circle-tray-square-corners",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment.",
+  "claims": [
+    {
+      "id": "lifehacks.circle-tray-square-corners.c1",
+      "text": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Count=floor(W/10)² in both selected square grids, disc diameter10cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.c2",
+      "text": "This is not an optimal circle-packing solver; staggered rows can behave differently.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Count=floor(W/10)² in both selected square grids, disc diameter10cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.c3",
+      "text": "Count=floor(W/10)² in both selected square grids, disc diameter10cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.c4",
+      "text": "Can rotation alone put more equal circles in this grid?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.c5",
+      "text": "Which kind of packing change can matter for circles when rotation cannot?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which kind of packing change can matter for circles when rotation cannot?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment. This is not an optimal circle-packing solver; staggered rows can behave differently."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/circle-tray-square-corners/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:circle-tray-square-corners",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

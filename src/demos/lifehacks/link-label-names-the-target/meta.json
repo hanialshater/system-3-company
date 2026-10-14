@@ -1,0 +1,86 @@
+{
+  "slug": "link-label-names-the-target",
+  "title": "Name the link destination",
+  "hook": "Three “click here” links hide which artifact each opens.",
+  "domain": "lifehacks",
+  "concept": "link-label-names-the-target",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Attach a descriptive target label to a fixture link."
+    ]
+  },
+  "misconception": "Click here",
+  "objective": "Attach a descriptive target label to a fixture link.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Three “click here” links hide which artifact each opens. Which label names the intended destination? Correct option: Report v3 sources. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.link-label-names-the-target.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The label states artifact, version and scope. This local example illustrates a descriptive label; it does not verify the real destination or link accessibility.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.link-label-names-the-target.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, link-label-names-the-target fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.link-label-names-the-target.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Report v3 sources. The label states artifact, version and scope. This local example illustrates a descriptive label; it does not verify the real destination or link accessibility.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.link-label-names-the-target.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which label names the intended destination?",
+    "options": [
+      "Report v3 sources",
+      "Click here"
+    ],
+    "answer": 0,
+    "why": "The label states artifact, version and scope. This local example illustrates a descriptive label; it does not verify the real destination or link accessibility."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/link-label-names-the-target/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:link-label-names-the-target",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "version-nine-and-ten",
+  "title": "Version 10 after version 9",
+  "hook": "Text order and numeric order disagree about 9 and 10.",
+  "domain": "lifehacks",
+  "concept": "version-nine-and-ten",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Pad numeric version fields before lexicographic sorting."
+    ]
+  },
+  "misconception": "v9 and v10",
+  "objective": "Pad numeric version fields before lexicographic sorting.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Text order and numeric order disagree about 9 and 10. Which names sort v9 before v10 alphabetically? Correct option: v09 and v10. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.version-nine-and-ten.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.version-nine-and-ten.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, version-nine-and-ten fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.version-nine-and-ten.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: v09 and v10. The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.version-nine-and-ten.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which names sort v9 before v10 alphabetically?",
+    "options": [
+      "v09 and v10",
+      "v9 and v10"
+    ],
+    "answer": 0,
+    "why": "The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/version-nine-and-ten/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:version-nine-and-ten",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

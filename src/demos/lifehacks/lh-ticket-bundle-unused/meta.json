@@ -1,0 +1,95 @@
+{
+  "slug": "lh-ticket-bundle-unused",
+  "title": "A bundle includes unused tickets",
+  "hook": "Five-ticket bundles can force a second bundle for the sixth trip.",
+  "domain": "lifehacks",
+  "concept": "lh-ticket-bundle-unused",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compare exact-demand tickets with indivisible ticket bundles."
+    ]
+  },
+  "misconception": "A discounted bundle is cheaper for every required trip count.",
+  "objective": "Compare exact-demand tickets with indivisible ticket bundles.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-ticket-bundle-unused.c1",
+      "text": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here. Scaled model; fictional fares; leftover value=0; no recommendation.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-ticket-bundle-unused.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Trips=6, A=€12 and B=€16. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,\"x\"]; B=[\"*\",8,[\"ceil\",[\"/\",\"x\",5]]]; x denotes Trips. At x=6, A=12, B=16; recall at x=9: B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-ticket-bundle-unused.c3",
+      "text": "A sixth required trip needs a second complete bundle under this rule. The checkout pays for unused tickets too. Effective use count and purchased count are different denominators.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,\"x\"]; B=[\"*\",8,[\"ceil\",[\"/\",\"x\",5]]]; x denotes Trips. At x=6, A=12, B=16; recall at x=9: B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-ticket-bundle-unused.c4",
+      "text": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here. Change only Trips to 9. What is B (Five-packs) now? Correct: €16. Use B's stated rule with Trips=9: it gives €16. A sixth required trip needs a second complete bundle under this rule. The checkout pays for unused tickets too. Effective use count and purchased count are different denominators.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,\"x\"]; B=[\"*\",8,[\"ceil\",[\"/\",\"x\",5]]]; x denotes Trips. At x=6, A=12, B=16; recall at x=9: B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here. Change only Trips to 9. What is B (Five-packs) now?",
+    "options": [
+      "€16",
+      "€17",
+      "€18"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Trips=9: it gives €16. A sixth required trip needs a second complete bundle under this rule. The checkout pays for unused tickets too. Effective use count and purchased count are different denominators."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-ticket-bundle-unused/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-ticket-bundle-unused",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

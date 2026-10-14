@@ -1,0 +1,95 @@
+{
+  "slug": "margin-before-cut",
+  "title": "Mark the allowance, not just the face",
+  "hook": "Which blank includes the two shown fold allowances?",
+  "domain": "lifehacks",
+  "concept": "margin-before-cut",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The finished face is narrower than the blank when two side folds consume material. Adding one allowance at each edge gives the required blank width in this ideal paper model."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The finished face is narrower than the blank when two side folds consume material. Adding one allowance at each edge gives the required blank width in this ideal paper model.",
+  "claims": [
+    {
+      "id": "lifehacks.margin-before-cut.c1",
+      "text": "The finished face is narrower than the blank when two side folds consume material. Adding one allowance at each edge gives the required blank width in this ideal paper model.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Blank width=finished+2×2cm; face-only width=finished.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.margin-before-cut.c2",
+      "text": "This card uses paper geometry only; cutting-tool safety and material stretch are outside scope.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Blank width=finished+2×2cm; face-only width=finished.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.margin-before-cut.c3",
+      "text": "Blank width=finished+2×2cm; face-only width=finished.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.margin-before-cut.c4",
+      "text": "Which blank includes the two shown fold allowances?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.margin-before-cut.c5",
+      "text": "Why is finished width not always the width of the unfolded blank?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is finished width not always the width of the unfolded blank?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The finished face is narrower than the blank when two side folds consume material. Adding one allowance at each edge gives the required blank width in this ideal paper model. This card uses paper geometry only; cutting-tool safety and material stretch are outside scope."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/margin-before-cut/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:margin-before-cut",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

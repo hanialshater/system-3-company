@@ -1,0 +1,95 @@
+{
+  "slug": "keys-fixed-drop-zone",
+  "title": "An address changes the search",
+  "hook": "Which search needs fewer possible box checks?",
+  "domain": "lifehacks",
+  "concept": "keys-fixed-drop-zone",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "In the stated worst-case search, an unknown location may require checking every box. A maintained address directs the search to one box; the benefit depends on returning the item to that address."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "In the stated worst-case search, an unknown location may require checking every box. A maintained address directs the search to one box; the benefit depends on returning the item to that address.",
+  "claims": [
+    {
+      "id": "lifehacks.keys-fixed-drop-zone.c1",
+      "text": "In the stated worst-case search, an unknown location may require checking every box. A maintained address directs the search to one box; the benefit depends on returning the item to that address.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Worst-case checks=N unknown boxes or1 maintained address.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.keys-fixed-drop-zone.c2",
+      "text": "This counts checks, not forgetfulness or memory performance.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Worst-case checks=N unknown boxes or1 maintained address.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.keys-fixed-drop-zone.c3",
+      "text": "Worst-case checks=N unknown boxes or1 maintained address.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.keys-fixed-drop-zone.c4",
+      "text": "Which search needs fewer possible box checks?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.keys-fixed-drop-zone.c5",
+      "text": "What ongoing action makes an assigned storage address reliable?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What ongoing action makes an assigned storage address reliable?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "In the stated worst-case search, an unknown location may require checking every box. A maintained address directs the search to one box; the benefit depends on returning the item to that address. This counts checks, not forgetfulness or memory performance."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/keys-fixed-drop-zone/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:keys-fixed-drop-zone",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

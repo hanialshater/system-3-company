@@ -1,0 +1,95 @@
+{
+  "slug": "lh-committed-stock",
+  "title": "On the shelf is not all free",
+  "hook": "Six units are promised. Can every unit on the shelf serve a new request?",
+  "domain": "lifehacks",
+  "concept": "lh-committed-stock",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Separate physical inventory from uncommitted availability."
+    ]
+  },
+  "misconception": "Every item physically present is available for a new request.",
+  "objective": "Separate physical inventory from uncommitted availability.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-committed-stock.c1",
+      "text": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Scaled model; six committed; no incoming stock.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-committed-stock.c2",
+      "text": "The stage's two results are computed by the printed expressions. At On-shelf=10, A=4items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-committed-stock.c3",
+      "text": "Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-committed-stock.c4",
+      "text": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Change only On-shelf to 13. What is B (Physical) now? Correct: 13items. Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Change only On-shelf to 13. What is B (Physical) now?",
+    "options": [
+      "13items",
+      "7items",
+      "15items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-committed-stock/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-committed-stock",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

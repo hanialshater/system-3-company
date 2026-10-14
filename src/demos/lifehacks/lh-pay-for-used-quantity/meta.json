@@ -1,0 +1,95 @@
+{
+  "slug": "lh-pay-for-used-quantity",
+  "title": "Price per item you actually use",
+  "hook": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+  "domain": "lifehacks",
+  "concept": "lh-pay-for-used-quantity",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Distinguish purchase unit price from cost per utilized unit."
+    ]
+  },
+  "misconception": "Lower cost per purchased piece guarantees lower cost per used piece.",
+  "objective": "Distinguish purchase unit price from cost per utilized unit.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-pay-for-used-quantity.c1",
+      "text": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Scaled model; unused pieces valued zero; fictional prices.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pay-for-used-quantity.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Used=5, A=0.5€/used and B=0.8€/used. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pay-for-used-quantity.c3",
+      "text": "Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pay-for-used-quantity.c4",
+      "text": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now? Correct: 0.5€/used. Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now?",
+    "options": [
+      "0.5€/used",
+      "1.5€/used",
+      "2.5€/used"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-pay-for-used-quantity/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-pay-for-used-quantity",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

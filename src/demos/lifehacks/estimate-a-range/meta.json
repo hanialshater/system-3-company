@@ -1,0 +1,86 @@
+{
+  "slug": "estimate-a-range",
+  "title": "Try the longer estimate",
+  "hook": "A task estimated at fifteen to twenty-five minutes needs more than one calendar test.",
+  "domain": "lifehacks",
+  "concept": "estimate-a-range",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Stress-test a schedule at the longer end of an explicit range."
+    ]
+  },
+  "misconception": "Use 15 minutes",
+  "objective": "Stress-test a schedule at the longer end of an explicit range.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A task estimated at fifteen to twenty-five minutes needs more than one calendar test. Which checks the stated worst duration? Correct option: Use 25 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.estimate-a-range.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.estimate-a-range.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, estimate-a-range fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.estimate-a-range.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Use 25 minutes. The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.estimate-a-range.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which checks the stated worst duration?",
+    "options": [
+      "Use 25 minutes",
+      "Use 15 minutes"
+    ],
+    "answer": 0,
+    "why": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/estimate-a-range/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:estimate-a-range",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

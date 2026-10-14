@@ -1,0 +1,86 @@
+{
+  "slug": "name-the-next-owner",
+  "title": "Who does the next action?",
+  "hook": "“Someone should check it” leaves ownership unresolved.",
+  "domain": "lifehacks",
+  "concept": "name-the-next-owner",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Add a named owner and next action to a fixture handoff."
+    ]
+  },
+  "misconception": "Someone should check",
+  "objective": "Add a named owner and next action to a fixture handoff.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: “Someone should check it” leaves ownership unresolved. Which note assigns the action? Correct option: Named owner and action. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.name-the-next-owner.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The note’s declared checklist asks for an owner, an action and an object. Filling those fields removes these specific gaps; it does not guarantee agreement.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.name-the-next-owner.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, name-the-next-owner fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.name-the-next-owner.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Named owner and action. The note’s declared checklist asks for an owner, an action and an object. Filling those fields removes these specific gaps; it does not guarantee agreement.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.name-the-next-owner.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which note assigns the action?",
+    "options": [
+      "Named owner and action",
+      "Someone should check"
+    ],
+    "answer": 0,
+    "why": "The note’s declared checklist asks for an owner, an action and an object. Filling those fields removes these specific gaps; it does not guarantee agreement."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/name-the-next-owner/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:name-the-next-owner",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

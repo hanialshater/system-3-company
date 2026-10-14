@@ -1,0 +1,95 @@
+{
+  "slug": "garment-overlap-hides-face",
+  "title": "Overlap can hide a drying face",
+  "hook": "Which layout exposes more cloth area?",
+  "domain": "lifehacks",
+  "concept": "garment-overlap-hides-face",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same.",
+  "claims": [
+    {
+      "id": "lifehacks.garment-overlap-hides-face.c1",
+      "text": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.c2",
+      "text": "Real draping and edge exposure differ; no universal time saving is claimed.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.c3",
+      "text": "Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.c4",
+      "text": "Which layout exposes more cloth area?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.c5",
+      "text": "Why does hanging two sheets in the same outline not expose both fully?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does hanging two sheets in the same outline not expose both fully?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same. Real draping and edge exposure differ; no universal time saving is claimed."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/garment-overlap-hides-face/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:garment-overlap-hides-face",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

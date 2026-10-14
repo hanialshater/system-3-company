@@ -1,0 +1,95 @@
+{
+  "slug": "lh-fixed-volume-fill",
+  "title": "Fill time is not water saved",
+  "hook": "A slower flow takes longer to fill the same bucket.",
+  "domain": "lifehacks",
+  "concept": "lh-fixed-volume-fill",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Distinguish fixed-volume filling from fixed-duration water use."
+    ]
+  },
+  "misconception": "A slower flow necessarily uses less water to fill a fixed container.",
+  "objective": "Distinguish fixed-volume filling from fixed-duration water use.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-fixed-volume-fill.c1",
+      "text": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Scaled model; illustrative rates; fixed volume; no spills.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-volume-fill.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Bucket=10L, A=2min and B=4min. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4; recall at x=13: B=5.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-volume-fill.c3",
+      "text": "Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4; recall at x=13: B=5.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-volume-fill.c4",
+      "text": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Change only Bucket to 13L. What is B (2.5L/min) now? Correct: 5.2min. Use B's stated rule with Bucket=13L: it gives 5.2min. Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4; recall at x=13: B=5.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Change only Bucket to 13L. What is B (2.5L/min) now?",
+    "options": [
+      "5.2min",
+      "2.6min",
+      "7.2min"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Bucket=13L: it gives 5.2min. Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-fixed-volume-fill/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-fixed-volume-fill",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

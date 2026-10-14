@@ -1,0 +1,102 @@
+{
+  "slug": "lh-align-price-units",
+  "title": "Align the shelf-label units",
+  "hook": "€0.80 per 100g or €7 per kg: which label is lower?",
+  "domain": "lifehacks",
+  "concept": "lh-align-price-units",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Convert prices quoted per 100g and per kilogram to a common unit."
+    ]
+  },
+  "misconception": "The smaller number on a price label is always cheaper.",
+  "objective": "Convert prices quoted per 100g and per kilogram to a common unit.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-align-price-units.c1",
+      "text": "A is €0.80 per 100g. B is €7 per kg. Scaled model; fictional prices; 1kg=1000g.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-align-price-units.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Kg-price=7€, A=8€/kg and B=7€/kg. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",0.8,10]; B=\"x\"; x denotes Kg-price. At x=7, A=8, B=7; recall at x=8.5: B=8.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-align-price-units.c3",
+      "text": "A kilogram contains ten 100g units. Multiply the 100g price by ten before comparing. A smaller printed price can describe a smaller amount rather than a cheaper product.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",0.8,10]; B=\"x\"; x denotes Kg-price. At x=7, A=8, B=7; recall at x=8.5: B=8.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-align-price-units.c4",
+      "text": "A is €0.80 per 100g. B is €7 per kg. Change only Kg-price to 8.5€. What is B (kg-label) now? Correct: 8.5€/kg. Use B's stated rule with Kg-price=8.5€: it gives 8.5€/kg. A kilogram contains ten 100g units. Multiply the 100g price by ten before comparing. A smaller printed price can describe a smaller amount rather than a cheaper product.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",0.8,10]; B=\"x\"; x denotes Kg-price. At x=7, A=8, B=7; recall at x=8.5: B=8.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-align-price-units.c5",
+      "text": "A unit price expresses cost per stated quantity; comparable unit-price labels use consistent units of measure.",
+      "support": "source",
+      "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1181e2025/NIST.SP.1181e2025.html NIST SP 1181-2025, Definitions / Unit Pricing and E-Commerce. Opened 2026-10-13. Dataset prices and package amounts are invented for the arithmetic demonstration.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A is €0.80 per 100g. B is €7 per kg. Change only Kg-price to 8.5€. What is B (kg-label) now?",
+    "options": [
+      "8.5€/kg",
+      "8€/kg",
+      "10.5€/kg"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Kg-price=8.5€: it gives 8.5€/kg. A kilogram contains ten 100g units. Multiply the 100g price by ten before comparing. A smaller printed price can describe a smaller amount rather than a cheaper product."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-align-price-units/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "A is €0.80 per 100g. B is €7 per kg.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-align-price-units",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}
