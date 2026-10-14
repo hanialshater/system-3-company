@@ -11,6 +11,17 @@ Newest entry at the top.
 
 ## Handoffs
 
+### 2026-10-14: rnd-lead (Bram), knots gen-2 brief written; ready to dispatch after one commit
+
+- **What changed.**
+  - New `company/rnd/evolution/knots-gen2-brief.md`, covering every item of decision 2026-10-14-evolution-stop-rule §4, with three verbatim engineer prompts ("Slot brief for gen2-<name>").
+  - `src/lab/knots/evolve.json`: registered `gen2-ortho-force` ← [gen1-ortho, gen1-force], `gen2-force-smooth` ← [gen1-force], `gen2-ortho-round` ← [gen1-ortho]. Weights, benchWeights, budgets, mutable and tests unchanged. `evolve.mjs selftest` ok.
+- **Before dispatch (session lead):** commit the brief and `evolve.json`, then create the three worktrees from that commit. The harness refuses unregistered candidates, so a worktree cut before the commit gates its engineer out.
+- **Facts checked today.** The evaluator has 102 tests (gen1-force 102/102, gen1-ortho 101/102 in a scratch-archive run, seed 1). The parents' frozen files are byte-identical. random-knot entry: force 12,095 B, ortho 10,825 B. So force-smooth must cut ≥ 319 B, and the ortho slots have 951 B to the 11,776 B condition, not the 1.4 KB in the gen-1 record. Self-checks use `EVOLVE_ARCHIVE=<scratch>` so the official `knots.jsonl` stays clean.
+- **One addition of mine, stated in the brief:** the internal-objective ban also covers the looks test's measure and constants, not only the bench's.
+- **Belief.** Confident that the brief is complete against §4 and the commands work as written. Less sure that force-smooth can both add its three ideas and cut 319 B. That is the slot most likely to miss the bundle condition.
+- **Next.** Owner: session lead or rnd-lead. Dispatch 3 rnd-engineers, then do the gate audit, ≥ 3 eval runs, the SVG looks sheet and `knots-gen2.md` with the stop-rule table.
+
 ### 2026-10-14: vp-rnd (Vera), W-161 evolution stop rule → done
 
 - **What changed.**
