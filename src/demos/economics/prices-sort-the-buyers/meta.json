@@ -1,7 +1,7 @@
 {
   "slug": "prices-sort-the-buyers",
   "title": "Prices sort the buyers",
-  "hook": "Three buyers, three houses, nobody in charge. Can rising prices find the best match?",
+  "hook": "Three buyers, three houses, nobody in charge. What do rising prices do?",
   "domain": "economics",
   "concept": "market-clearing-prices",
   "status": "review",
@@ -52,12 +52,10 @@
     },
     {
       "id": "economics.prices-sort-the-buyers.c4",
-      "text": "At prices a $3, b $1, c $0 each buyer can take a different house it wants: x gets a, y gets c, z gets b, total value 12 + 6 + 5 = 23. This is the only such match. z ends on b although it values a at 7.",
+      "text": "At prices a $3, b $1, c $0 each buyer can take a different house it wants: x gets a, y gets c, z gets b, total value 12 + 6 + 5 = 23. This is the only such match. z ends on b although it values a at 7, and y values b most (x 4, y 7, z 5).",
       "support": "simulation",
-      "source": "Node, 2026-10-14: of the 6 assignments only (x-a, y-c, z-b) lies inside the round-3 wants sets; total 23.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Node, 2026-10-14: of the 6 assignments only (x-a, y-c, z-b) lies inside the round-3 wants sets; total 23. b's values (x 4, y 7, z 5) are the stated inputs in c1; y is the top valuer of b.",
+      "status": "unverified"
     },
     {
       "id": "economics.prices-sort-the-buyers.c5",
@@ -94,6 +92,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.prices-sort-the-buyers.c9",
+      "text": "After each raise the stage says what was raised and how many buyers wanted only those houses: 'Raised a; 3 buyers wanted only a', 'Raised a; 2 buyers wanted only a', 'Raised a and b together; 3 buyers wanted only a or b'.",
+      "support": "simulation",
+      "source": "Node run of the exact rule in Demo.tsx, builder 2026-10-14 (revision v2): n = buyers whose wanted houses all lie inside the raised group, at the prices before the raise: (0,0,0) x a, y a, z a gives 3 on {a}; (1,0,0) x a, y a|b, z a gives 2 on {a}; (2,0,0) x a, y b, z a|b gives 3 on {a,b}.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -115,7 +120,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:market-clearing-prices",
     "prerequisites": [
