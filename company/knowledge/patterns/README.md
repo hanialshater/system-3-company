@@ -29,6 +29,11 @@ Added 2026-10-14, all unstarred (same-day cases, simulated readers; see the [rec
 |   | [preset-buttons](preset-buttons.md) | QA presses each control once, so milestones need presets |
 |   | [data-driven-engines](data-driven-engines.md) | Engine plus data scales lesson count, and its defects |
 |   | [allocate-shared-names](allocate-shared-names.md) | Concurrent agents need allocators for IDs and folders |
+|   | [shared-resource-needs-owner-and-allocator](shared-resource-needs-owner-and-allocator.md) | Owner, meter, allocator, then cleanup, for runners, quota, CPU and disk |
+|   | [a-rule-without-a-mechanism-is-a-wish](a-rule-without-a-mechanism-is-a-wish.md) | Write the mechanism beside the rule, or call it a wish |
+|   | [cap-from-the-wrong-constraint](cap-from-the-wrong-constraint.md) | A cap is the minimum across constraints; measure the one that binds |
+|   | [containment-needs-a-drain](containment-needs-a-drain.md) | A fix for new work needs a step that removes the old backlog |
+|   | [a-control-outside-the-pipeline-is-advisory](a-control-outside-the-pipeline-is-advisory.md) | If switching it off shows nowhere, it is not a gate |
 |   | [gate-expensive-actions](gate-expensive-actions.md) | Filter and approve deploys; a cost control, not a quality gate |
 
 Extended 2026-10-14 (confidence unchanged): earn-the-reveal, predict-before-reveal, pairwise-not-scores, numbers-from-the-stage, objection-travels, artifact-before-account. Retired: nothing (no pattern contradicted; superseded entries are annotated, not deleted).

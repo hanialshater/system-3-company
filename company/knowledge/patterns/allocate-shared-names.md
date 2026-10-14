@@ -13,8 +13,11 @@ documented_cases:
   - "Board IDs: concurrent adds took W-535..W-541 during the ops review; W-535 has an empty title (progress.md, principal-engineer-ops; W-528 amendment)."
   - "Scratch: fc35/ shared by two fact-check batches; both moved to own folders; disk filled twice (FC pass 35 batches 0 and 3)."
   - "A concurrent math session left empty lesson dirs that failed npm run check for an unrelated lifehacks session (progress.md, lifehacks entry)."
+  - "Capacity cases (runners, Vercel quota, host CPU and disk) are held in shared-resource-needs-owner-and-allocator and the three 2026-10-14 COEs; this pattern keeps names, IDs and folders."
   - "Operational Health Review: wrong-worktree writes, pkill self-kill, dying background loops, check red on WIP domains (SEV3s)."
 known_failure:
   - "Not yet tested: W-522..W-524 COEs and the W-528 amendment are open; the common cause is a hypothesis."
   - "Pattern is an incident list from one review by one chair; no allocator exists to show it works."
+  - "2026-10-14 pattern-librarian review: the three COEs (CI queue, deploy and quota, host) tested the common-cause hypothesis. It holds for capacity (runners, quota, CPU, disk) but those are capacity, not names. The pattern's fourth therefore-line already reaches there. Scope warning: names and capacity have different fixes (a counter vs a meter and a ceiling), so the capacity cases moved to shared-resource-needs-owner-and-allocator. Path A of the deploy COE is not a missing allocator."
+  - "The 'no allocator exists to show it works' gap is now partly closed in the other direction: dispatch-check (99573b8) is an allocator for the host, under a day old, untested."
 part_of: operating-loop

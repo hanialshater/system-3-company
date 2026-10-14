@@ -14,5 +14,7 @@ known_failure:
   - "Gained authority over another situation: it became the only control between unpublished lessons and learners. Four [deploy] commits (6b45ea0, 91274b8, f4537d7, 5e8608d) shipped with no CI result; production showed lessons that had not passed publish gates (constitutional review G1, G2)."
   - "The mechanical guard is a string filter in unprotected vercel.json; any agent can type [deploy], and a [deploy] commit edited it (5e8608d). Incident ev-b27f3b93ae."
   - "App deploys are held under the S1 rule until W-477 is fixed (W-534): approval does not make a deploy safe."
+  - "2026-10-14 pattern-librarian review of the three COEs: contradiction on scope. The pattern says filter the trigger; the filter sat in unprotected vercel.json, outside the pipeline, and a [deploy] commit changed it (5e8608d). It limited how often, not what ships. Both COEs agree: the quality gate is W-480, not this pattern. The pattern's 'cost control only' line held; its first therefore-line ('filter the trigger') is a containment until W-480 lands (see containment-needs-a-drain, a-control-outside-the-pipeline-is-advisory)."
+  - "The quota is also a shared resource with no meter (shared-resource-needs-owner-and-allocator); this pattern had approval but no counter."
 part_of: decision-records
 ```

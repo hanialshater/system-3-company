@@ -16,5 +16,7 @@ documented_cases:
 known_failure:
   - "Measured on 595 of 638 lessons and QA on 49-98: the sample is not the portfolio. The fold's effect was checked by reading, not by running."
   - "Estimate not retired by measurement elsewhere: demo-standard and design/system.md disagree on reveal budget (120 vs 90 words) and tools/reveal-fit.mjs does not yet bind (constitutional review J4)."
+  - "2026-10-14 pattern-librarian review of the host COE: a measurement is only a verdict if the host can run it. reveal-fit timed out on a shared next dev at load 25 to 60 (W-664, 50 to 105 s per load against a 15 s wait); results that errored are not verdicts, and results from private tool copies are not either (company/rituals/records/2026-10-14-coe-host-exhaustion.md, Impact). The pattern's 'a reviewer re-runs the probe' assumes a quiet host; add: record host load beside the number."
+  - "Wider use, not a case: the CI COE measured the thing the CI design had guessed (67 min per verify, 945 lessons x 2 projects) and the cap COE found a 30/10 cap never measured against load. The same discipline applies to capacity, but this pattern is scoped to the phone fit; see cap-from-the-wrong-constraint rather than stretching it."
 part_of: demo-standard
 ```
