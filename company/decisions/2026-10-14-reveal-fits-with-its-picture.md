@@ -2,7 +2,7 @@
 
 owner: design-lead
 date: 2026-10-14
-status: decided; craft rule adopted with changes by head-of-product (W-263, 2026-10-14)
+status: decided; craft rule adopted with changes by head-of-product (W-263, 2026-10-14); amended 2026-10-14 by design-lead (W-330): option (a) comes back in a restricted form, "fold at the reveal" (see the section of that name). Not built.
 
 ## Context
 Board W-259. At 390×844, once the reveal opens, the card body scrolls so the reveal's last line is on
@@ -75,13 +75,89 @@ Until the rule is adopted, the board items below cite this decision directly, so
 - **W-267, demo-builder (cm-cs for reveal content):** compact stages for every-second-seat-out (275 px) and a-star-heads-for-goal (200 px). After that, a design review by the design lead, then a learner re-review.
 - **W-259 is done** (the decision is made). W-242 stays with platform-engineer.
 
+## Amendment, W-330 (2026-10-14, design-lead): fold at the reveal
+
+**Trigger.** The W-264 sweep (`company/engineering/notes/2026-10-14-reveal-crop-sweep.md`, build 5, `/d`
+only) meets the revisit trigger: 217 of 624 measured lessons (35%) crop the stage top; control blocks are
+the tallest stage block in 121 of them (56%), and hiding control blocks alone would close the crop in 174
+(80%). Two things make the case stronger, not weaker, and one makes the 174 an upper bound:
+- **W-287 (in progress) raises crops.** The 10 px floor for picture labels (`company/design/system.md`,
+  W-289) means the fit stops shrinking most labelled pictures. That section estimates the fit fully resolves
+  about 44 shrunk lessons at 10 px against 261 today, so on the order of 200 more lessons may crop after
+  W-287. Folding unquoted control rows *before* any picture shrink also means pictures shrink less, so it
+  helps legibility as well as the crop.
+- **The 174 is an upper bound.** A sweep "controls block" is any non-picture block holding a control,
+  including the labels and readouts in it, which a lesson may quote. And the 174 was measured against
+  pictures shrunk below the new floor. The real number is known only after a re-sweep on a W-287 build.
+
+**Options weighed.** (a1) kit-wide: collapse every `Row` at the reveal into one "Show controls" toggle.
+(a2) per-lesson opt-in, kit-run: the builder marks which `Row`s may fold, and the kit folds them only when
+the card overflows. (a3) per-lesson compaction only (merge rows, today's W-326). **Chosen: (a2).** (a1)
+repeats the original problem: the kit cannot tell a row the reveal quotes ("your 41 circle", the active
+chip, a Seen readout) from one it does not, and it would hide quoted state in an unknown share of
+lessons. (a3) alone is about 120 to 174 hand redesigns, with no product-wide look. (a2) keeps the
+judgement with the person who knows what the reveal quotes, keeps one look and one mechanism, and costs
+one prop per lesson.
+
+**The design (spec for the platform engineer's EDD; also in `company/design/system.md`, "Fold at the reveal").**
+1. **Opt-in per row.** `Row` (src/kit/controls.tsx) gets a fold opt-in (name is the EDD's; e.g.
+   `foldAtReveal`). A builder may opt in a row only if the reveal does not quote anything in it (no control
+   state, readout, label or chip that the reveal names), checked against `tools/reveal-fit.mjs` `named`.
+   Rows inside the picture, and controls inside svgs, never fold.
+2. **Only when needed.** Folding happens only in the reveal phase, only when stage + reveal overflow the card
+   body (`over > 1`), and it is the first step of the fit: fold opted-in rows, then shrink pictures to the
+   W-287 floors, then scroll. A lesson that fits does not change. All opted-in rows of a lesson fold
+   together (no partial folds).
+3. **One toggle, in place.** The folded rows are replaced by one kit button, **"Show controls"**, at the
+   position of the first folded row (DOM order). One look everywhere: full stage width, text style, at least
+   44 px tall (system.md tap targets; the contract floor is 24 px), `aria-expanded`, `aria-controls` naming
+   the folded rows. It carries `data-qa="control"` (it is an interactive element on the stage).
+4. **Expanded means exactly as before.** Pressing it restores every folded row in its original DOM order, at
+   its natural size (never scaled), with its state kept: rows are hidden with the `hidden` attribute or
+   `display: none`, never unmounted, and never collapsed by height, opacity, transform or visibility. The
+   label becomes "Hide controls". The learner can keep exploring; live reveal text updates as today.
+   Expanding counts as learner intent: the fit does not re-run or scroll against it.
+5. **Reset.** Leaving the reveal phase (replay, a new prediction) unfolds everything and removes the toggle.
+6. **No contract change, no `Lesson.tsx` change.** The fold lives in `controls.tsx` and `DemoCard.tsx`
+   (`useRevealFit`). If the EDD finds it needs `src/kit/Lesson.tsx` (protected), that is an amendment and
+   goes to the evaluation steward first.
+
+**QA contract implications (`tests/qa/contract.spec.ts`, protected).** Read against the file, 2026-10-14:
+- Steps 2 and 3 (controls locked before the prediction; the first 16 enabled controls each pressed once and
+  must change the stage) run in the predict and explore phases. The fold never fires before the reveal, so
+  every control is still pressed once and the toggle does not exist yet. Unchanged.
+- Step 4 (reveal unlocks, visible, > 120 characters) is unchanged.
+- Step 5 runs after the reveal. The tap-target check filters `offsetParent !== null`, so controls hidden with
+  `display: none` are skipped, and the toggle (≥ 44 px) passes. This is why item 4 forbids height, scale or
+  visibility collapses: those would leave 0-height controls in the check and fail it, and would break
+  demo-standard's "never fix it by shrinking tap targets". Horizontal overflow: the toggle must not widen
+  the stage.
+- The desktop project does not overflow, so nothing folds there. The phone `3-reveal` screenshot shows the
+  folded state, so evaluators see what the learner sees.
+- **Conclusion: the design does not force an amendment.** It does open a coverage gap: the contract never
+  presses the toggle and never checks that controls come back, in order, at ≥ 24 px, and still work after the
+  reveal. Until the evaluation steward decides, `tools/reveal-fit.mjs` (not protected) carries that check.
+  Whether to close the gap in the contract is the steward's call (board item below); it is recommended,
+  not required.
+
+**Sequence.** W-287 lands -> platform engineer's EDD and build of the fold -> interaction-designer design
+review (the design lead may not approve their own design) and accessibility review of the toggle ->
+reveal-fit gains fold simulation and the expand check, and a re-sweep on that build -> head of product
+adds the fold step to demo-standard's fix order -> builders opt rows in (W-326, still held until then) and
+re-measure crop 0 -> learner re-review of a sample with a re-check task.
+
+**Revisit (a2) if:** learner reviews show learners do not find "Show controls", or need a folded row to
+check what the reveal says (then quoted-row opt-ins are wrong, or fold by default is wrong); or the re-sweep
+on a W-287 build shows fewer than about a third of control-cause lessons close with the fold (then the cost
+is not worth a kit mechanism, and W-326 compaction carries it alone).
+
 ## Rests on
 - `company/engineering/notes/2026-10-14-reveal-stage-crop.md`: the measurements after 1a879c6, and the statement that the remaining crop cannot be fixed in the kit.
 - `company/engineering/notes/2026-10-14-W-135-reveal-fit.md` and `company/rituals/records/2026-10-14-eng-review-W-135.md`: why an inner scroller is the W-135 defect.
 - A read of the five lessons' `Demo.tsx` reveals (2026-10-14): about 90 to 115 words, with the stage made up of a rule line, a picture, controls and, in two lessons, a table. Px-per-line is an estimate (about 23 px and 9 words per line at 390 px). I did not measure it in a build, because no builds were allowed in this session.
 
 ## Revisit if
-- The W-264 sweep finds more than about 15% of lessons cropped, *and* most of those crops are mainly control rows. Then a kit-level compact control row at the reveal (option a, restricted to `Row`s outside the picture) is worth an EDD from the platform engineer.
+- The W-264 sweep finds more than about 15% of lessons cropped, *and* most of those crops are mainly control rows. Then a kit-level compact control row at the reveal (option a, restricted to `Row`s outside the picture) is worth an EDD from the platform engineer. *Met 2026-10-14 (W-264); answered by the W-330 amendment above.*
 - Human learners scroll the stage back into view without trouble and recall no worse. Then the crop costs less than we assume, and the rule becomes guidance rather than a fix list.
 - The kit gets the focus-to-reveal amendment (W-135 follow-up 4) and `useRevealFit` is retired. Then check again that the replacement keeps the reveal's last line on screen.
 
@@ -93,10 +169,12 @@ Until the rule is adopted, the board items below cite this decision directly, so
   4. **"Names" is spelled out** as the stage element the reveal points at (a shape, line, row or readout). Two lines are added: no inner scroller (option c, rejected here), and the category manager, not the builder, chooses which teaching sentence goes (this record's second objection).
 - **Follow-on:** the Learning Designer's org data (`tools/org/roles.mjs`) still says "reveal script ≤ 120 words". That is on the board for the chief of staff to change to 90 and regenerate.
 
+- **W-330 revisit (2026-10-14, design-lead):** consulted through records only: the W-264 sweep note (platform engineer), `tests/qa/contract.spec.ts` (read for the contract implications), `company/design/system.md` W-289 floor and its cost estimate (accessibility reviewer), and `src/components/DemoCard.tsx` / `src/kit/controls.tsx` (where the fold can live without touching `Lesson.tsx`). Nobody was consulted live. The platform engineer, evaluation steward, interaction designer, accessibility reviewer, head of product and learner evaluator each own a board item below and can object in this table.
+
 ## Objections
 | Objection | Raised by | Kind | Status |
 |---|---|---|---|
-| Per-lesson fixes don't scale: about a third of 638 lessons could be cropped, and a kit fix (a) would fix them all at once. | platform-engineer (in effect: their note frames a/b/c as the remaining options) | purpose | **Rejected for now, with a revisit trigger.** The kit cannot tell which controls are safe to hide, and the two worst cases are picture and table height, not controls. The W-264 sweep measures the real share. If control rows dominate, (a) comes back as an EDD. |
+| Per-lesson fixes don't scale: about a third of 638 lessons could be cropped, and a kit fix (a) would fix them all at once. | platform-engineer (in effect: their note frames a/b/c as the remaining options) | purpose | **Rejected for now, with a revisit trigger.** The kit cannot tell which controls are safe to hide, and the two worst cases are picture and table height, not controls. The W-264 sweep measures the real share. If control rows dominate, (a) comes back as an EDD. *2026-10-14, W-330:* **partly accepted.** The trigger is met (35% crop, controls tallest in 56%). (a) comes back as a kit mechanism with a per-row opt-in (Amendment, W-330), not kit-wide, because the kit still cannot tell a quoted row. |
 | Cutting reveal sentences removes teaching. In midnight-sun-line, the Tropic of Cancer sentence answers a likely wrong option. | design-lead (anticipated for learning-designer and cm-geography) | purpose | **Accepted, routed.** The design lead does not choose which sentences go. W-266 gives that choice to cm-geography. The rule also allows moving context onto the stage caption instead of deleting it. |
 | A fit rule tied to one viewport (390×844) will be gamed or will drift on other phones. | design-lead (anticipated for qa-tester) | evidence | **Accepted as a limit.** 390×844 is the measured reference, and the same one W-135 uses. The rotation and landscape case stays with W-135 follow-up 2. If a second reference size is needed, it goes into reveal-fit, not into this rule. |
 | The rule is a design-lead proposal in a file the Head of Product owns. | design-lead (ownership in `demo-standard.md`) | purpose | **Accepted, closed by W-263.** The Head of Product adopted it with changes (see Consulted), and the rule is now in demo-standard.md. |
@@ -104,3 +182,8 @@ Until the rule is adopted, the board items below cite this decision directly, so
 | A 90-word cap could cut teaching from reveals that fit today, and could push sentences that answer wrong options out of the reveal. | head-of-product (anticipated for learning-designer) | purpose | **Accepted, limited.** Lessons that already fit are not reopened for word count. In new work, told context can move to the stage caption. Revisit the number if the W-264 sweep shows reveals of 90 words or fewer still cropping often (then 90 is too loose), or if learner reviews mark 90-word reveals as missing the why (then 90 is too tight). |
 | Nobody was consulted live. The views of the platform engineer and the principal engineer come from their written records. | design-lead | evidence | **Open.** The platform engineer, principal engineer and head of product are consulted through their records (the crop note, the W-135 review, the 2026-10-14 reveal decision). Each of them owns a board item above and can object in this table. *2026-10-14, head-of-product:* has now answered in writing (Consulted, W-263). The platform engineer is still open. *2026-10-14, principal-engineer:* answered in writing in the W-237 review (row below). |
 | The kit's picture fit (1a879c6) does what this rule forbids: at 390×844 it shrinks svg labels below 9 px in 347 of 433 shrunk lessons (median 4.9 px), so what the reveal names is on screen but unreadable. | principal-engineer (W-237 review, 2026-10-14) | evidence | **Open, routed.** W-237 is approved with changes: a legibility floor (W-287, blocks release, or revert 1a879c6). The minimum text size goes to the accessibility reviewer (W-289). The head of product decides whether 'never shrink text' allows any shrink of labelled pictures. See `company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md`. |
+| The learner may need the controls at the reveal to re-check what the reveal quotes; folding them hides exactly that. | caller of W-330 (caveat 2) and this record's original objection to (a) | purpose | **Accepted, designed around.** Only rows the reveal does not quote may opt in (checked against reveal-fit `named`); folding fires only when the card overflows; one tap restores every row in order, at full size, with state kept. The learner re-review after the build includes a re-check task. If it fails, (a2) is revisited (Amendment, Revisit). |
+| The sweep ran on build 5, before the W-287 10 px label floor; crops will grow, and "174 of 217 close with controls hidden" was measured against pictures shrunk below that floor. | caller of W-330 (caveat 1) | evidence | **Accepted.** The 174 is treated as an upper bound. The fold runs before any picture shrink, so it also reduces shrink. No builder opts rows in until a re-sweep on a W-287 build with the fold simulated (board, platform-engineer). |
+| A fold the contract cannot see: the contract never presses the toggle or checks that controls come back and still work after the reveal. | design-lead (anticipated for evaluation-steward, qa-tester) | evidence | **Open, routed.** The design does not force an amendment (Amendment, QA contract implications). reveal-fit carries the expand check meanwhile. The evaluation steward decides whether to propose a contract amendment (board). |
+| The design lead wrote this design and may not approve it in design review. | design-lead (role rule) | purpose | **Accepted, routed.** The interaction designer does the design review of the EDD and the built toggle; the accessibility reviewer reviews the toggle (aria, focus, 44 px). |
+| Opt-in still costs one edit per lesson, so it does not fix "all at once". | design-lead (anticipated for platform-engineer) | purpose | **Accepted as the price.** One prop per row plus a re-measure, against a redesign per lesson; reveal-fit lists candidate rows (control blocks with no quoted label) to make it mechanical. |

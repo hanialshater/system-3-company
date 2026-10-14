@@ -3367,19 +3367,21 @@
       "id": "W-287",
       "title": "W-237 change 1+2 (BLOCKS RELEASE; else revert 1a879c6 for that build): useRevealFit legibility floor per picture = max(0.4, 9px / smallest rendered svg <text> px), no shrink if >= 1; undo any shrink that frees < 1px; skip preserveAspectRatio=none and position absolute/fixed svgs (7 overlays distorted for 0px today). Probe: 347/433 shrunk lessons have svg text < 9px (median 4.9px). See company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-288",
       "title": "W-237 change 3+4: skip svgs holding [tabindex]/[role=button]/[role=slider]; hand-check the-tagged-molecule, wheel-needs-four-colours, three-students-two-rooms (untagged pointer targets in shrunk svgs; tag data-qa=control if live). Then re-measure with company/engineering/reviews/2026-10-14-W-237-probe.mjs (or W-242 reveal-fit) and replace the change note's 6-lesson table. See company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-289",
@@ -3723,7 +3725,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "note": "2026-10-14 design-lead (W-330): still HELD. Option (a) comes back as per-row opt-in fold (decision amendment W-330). After W-332 (build) and W-333 (re-sweep on a W-287 build), this becomes: opt in Rows the reveal does not quote, re-measure crop 0; merge rows only where folding does not close the crop.",
+      "updated": "2026-10-14"
     },
     {
       "id": "W-327",
@@ -3756,10 +3760,11 @@
       "id": "W-330",
       "title": "Option (a) revisit trigger met by W-264 (read literally): 217/624 lessons (35%) crop at the reveal; controls are the tallest stage block in 121/217 (56%) and hiding control blocks alone would close 174/217. Decide whether the platform engineer writes an EDD for a kit-level compact control row at the reveal; record it in company/decisions/2026-10-14-reveal-fits-with-its-picture.md. Data and caveats: company/engineering/notes/2026-10-14-reveal-crop-sweep.md",
       "owner": "design-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-331",
@@ -3767,6 +3772,141 @@
       "owner": "demo-builder",
       "state": "backlog",
       "domain": "physics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-332",
+      "title": "W-330 fold at the reveal: EDD then build (after W-287). Per-row opt-in on Row (src/kit/controls.tsx), fold only in reveal phase when stage+reveal overflow, fold BEFORE picture shrink, one 'Show controls' kit button (>=44px, aria-expanded, data-qa=control) at the first folded row; expand restores DOM order, natural size, state (display:none only, never height/scale/visibility). No src/kit/Lesson.tsx change; if the EDD needs one, stop and route to evaluation-steward. Spec: company/decisions/2026-10-14-reveal-fits-with-its-picture.md (Amendment, W-330)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-333",
+      "title": "W-330 reveal-fit + re-sweep: add fold simulation to tools/reveal-fit.mjs (crop with opted rows folded; candidate rows = control blocks with no quoted label), an expand check (toggle pressed -> all controls visible, same order, >=24px, still change the stage), then re-sweep 390x844 on a W-287 build. Replaces the build-5 upper bound (174/217). Decision: company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-334",
+      "title": "W-330 QA contract: the fold-at-reveal design does not force an amendment (tests/qa/contract.spec.ts presses controls before the reveal; step 5 skips display:none controls). Decide whether to propose an amendment that presses the 'Show controls' toggle at the reveal and checks controls return in order, >=24px, still live. Recommended, not required. Analysis: company/decisions/2026-10-14-reveal-fits-with-its-picture.md (QA contract implications)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-335",
+      "title": "W-330 design review of fold at the reveal (the design lead wrote it and may not approve it): review the platform engineer's EDD and the built toggle on 3 control-cause lessons; record in company/reviews/<slug>/<date>-design.md. Spec: company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-336",
+      "title": "W-330 accessibility review of the 'Show controls' toggle: aria-expanded/aria-controls, focus after expand, 44px target, screen-reader announcement of folded rows. Spec in company/design/system.md (Fold at the reveal)",
+      "owner": "accessibility-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-337",
+      "title": "W-330 demo-standard: after the fold ships, add 'fold rows the reveal does not quote' to the fix order of 'The reveal fits with its picture' (after cutting told context, before merging control rows?) and to Pre-flight 7. Decision: company/decisions/2026-10-14-reveal-fits-with-its-picture.md (Amendment, W-330)",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-338",
+      "title": "W-330 learner re-review after the fold ships: sample 8 to 10 control-cause lessons with folded rows at 390x844; include a re-check task (can the learner find 'Show controls' and use a folded control to check something the reveal says). Findings decide the Revisit clause in company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
+      "owner": "learner-evaluator",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-339",
+      "title": "Review f244779 (W-287/W-288 legibility floor in useRevealFit): 10px/8px floors, skips, undo no-gain shrinks; probe fit fully 398 -> 176, min label 10.0px; contract 98/98 on 49 lessons. Then paste into the W-237 review record",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-340",
+      "title": "fenwick-hops-by-lowest-bit v3 (learner r8): at 390x844 the whole bar picture (cell bars, the 16 numbers, the red Σ row) is off screen when the reveal opens, while the reveal says the ranges 13, 9–12, 1–8 'tile 1–13 with no gaps' and 'the running-total row under the numbers changed all 16'. Reveal is ~89 words, so fold stage text (caption, Seen line, four readouts, six buttons) so the picture top and the reveal's last line are both on screen; answer Pre-flight 7. Moderate: Sum 1–13/1–15/1–7 zero CELLS READ/SUM, which then read 0/0 beside a reveal quoting 3 reads and 61. See company/reviews/fenwick-hops-by-lowest-bit/2026-10-14-learner-knows-bitmasks-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-341",
+      "title": "selfish-routes-cost-a-third-more v4 (learner r8): reveal ~129 words on a new version (>90); the fit holds only because the kit shrinks the chart to a ~3-4 px strip (W-287 will undo it). Cut told context to <=90 (candidates: 4/3 'worst it can ever be' paragraph; cm-cs picks), then confirm stage-top crop 0 after W-287; answer Pre-flight 7. See company/reviews/selfish-routes-cost-a-third-more/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-342",
+      "title": "only-the-needed-trader-profits v2 (learner r8): reveal ~97 words on a new version (>90, counting the muted 'A simplified model with invented values.'); fit holds only via the kit shrinking the network to ~40% (W-287). Cut >=7 words with no claim meaning changed (candidate: 'Every trader had two links; what mattered was whether a trade needed it', which restates the hook; cm-economics picks); re-check crop 0 after W-287; answer Pre-flight 7. See company/reviews/only-the-needed-trader-profits/2026-10-14-learner-knows-competing-traders-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-343",
+      "title": "the-bar-nobody-can-forecast v3 (learner r8): at 390x844 the stage top is cut when the reveal opens (model chip 'Model: 100 people · fine up to 60 · seed 1', the 100 tick and 'attendance by night' off screen). Fold stage text/controls so crop is 0; answer Pre-flight 7. Moderate: after Reset the chart is empty, so 'nearly half the nights land above it' points at bars no longer drawn; keep the longest run's bars at the reveal. Label shrink (reveal and predict) is kit W-287. See company/reviews/the-bar-nobody-can-forecast/2026-10-14-learner-network-effects-graduate-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-344",
+      "title": "fingernail-ocean v3 (learner r8): (1) no answer before the commit: the locked caption 'South America slides west at 2.5 cm a year = 25 km per million years' does the unit conversion the question tests, so 3,000 / 25 = 120 is one division; show the km-per-million-years rate only after the commit. (2) reveal ~101 words on a new version (>90); cut told context (candidate: the 'Real spreading in the Atlantic varies… toy' sentence; cm-geography picks); confirm crop 0 after W-287; answer Pre-flight 7. See company/reviews/fingernail-ocean/2026-10-14-learner-drift-knower-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-345",
+      "title": "shrinking-degree v3 (learner r8): at 390x844 only the bottom strip of the globe is visible when the reveal opens; the box at 80°N and the meridians meeting at the pole are off screen while the reveal says 'The box narrowed as it went north' and 'The thin lines running up the globe … all meet at the poles'. Reveal ~95 words (>90). Cut told context (cm-geography picks) and fold the caption/readouts so the globe top and the reveal's last line are both on screen; answer Pre-flight 7. Minor (lesson, not kit): Oslo/Helsinki globe labels ~4 px during explore. See company/reviews/shrinking-degree/2026-10-14-learner-degrees-knower-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-346",
+      "title": "every-scale-equally-likely v3 (learner r8): at 390x844 the band chart (bars and dashed outlines) is off screen when the reveal opens, while the reveal says 'Every band from 2–3 out gets 10–12%' and '(the dashed outlines)'; reveal ~112 words on a new version (>90). Cut told context to <=90 (candidates: the 0.42/0.0027 restatement of the compare line; cm-probability picks), fold stage text so chart top and last reveal line are both on screen; answer Pre-flight 7. Minor: locked frame still crops BAND'S SHARE. See company/reviews/every-scale-equally-likely/2026-10-14-learner-knows-1-over-d-routing-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "probability",
       "created": "2026-10-14",
       "links": []
     }

@@ -60,3 +60,16 @@ Per picture, scale floor = `max(0.4, 10 / smallest meaning-carrying <text> px)`,
 - Limit: the 10 px number is a judgement, not a measurement. I did not test it with learners or on a device.
 
 Objection: the head of product may still decide that no labelled picture shrinks at all (floor 1). That is stricter than this ruling and compatible with it.
+
+## Fold at the reveal (W-330, 2026-10-14, design-lead; decided, not built)
+
+Decision: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`, "Amendment, W-330". Until the
+platform engineer ships it, builders do nothing new.
+- A lesson may opt a `Row` in to folding. Opt in only rows the reveal does not quote (no control state,
+  readout, label or chip the reveal names). Rows inside the picture never fold.
+- At the reveal, only if stage + reveal overflow the card, the kit folds all opted-in rows first (before any
+  picture shrink), and shows one **"Show controls"** button where the first folded row was: full stage
+  width, at least 44 px tall, `aria-expanded`. Pressed, the rows come back in DOM order, at full size,
+  state kept; the label becomes "Hide controls".
+- Rows are hidden with `display: none` only. Never collapse by height, scale, opacity or visibility (that
+  shrinks tap targets and fails the QA contract's 24 px check).
