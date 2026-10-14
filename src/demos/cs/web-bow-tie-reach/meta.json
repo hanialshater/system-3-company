@@ -85,7 +85,9 @@
     "why": "Links are one-way, so being joined is not the same as being reachable. Y has no link out that leads back to X."
   },
   "evidence": {
-    "qa": ["company/reviews/web-bow-tie-reach/2026-10-14-qa.md"],
+    "qa": [
+      "company/reviews/web-bow-tie-reach/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -93,15 +95,29 @@
   "version": 1,
   "curriculum": {
     "primary": "cs:web-bow-tie",
-    "prerequisites": ["cs:graph-shortest-path"],
+    "prerequisites": [
+      "cs:graph-shortest-path"
+    ],
     "level": "core",
     "strand": "systems",
     "references": [
-      { "work": "easley-kleinberg-2010", "chapter": 13, "section": "13.3", "note": "bow-tie structure of the web; section unconfirmed (brief says 13.3-13.4)" }
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 13,
+        "note": "bow-tie structure of the web; section unconfirmed (brief says 13.3-13.4)",
+        "section_unconfirmed": "13.3"
+      }
     ],
     "also": [],
-    "tags": ["directed-graph", "reachability", "web"]
+    "tags": [
+      "directed-graph",
+      "reachability",
+      "web"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate"
+  ]
 }

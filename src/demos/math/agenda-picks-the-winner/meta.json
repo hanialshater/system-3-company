@@ -58,7 +58,11 @@
   "confidence": "",
   "recall": {
     "question": "Three friends rank films: Ana P>Q>R, Ben Q>R>P, Cy R>P>Q. Everyone votes for the film they rank higher. They vote Q against R, then the winner against P. Which film wins?",
-    "options": ["P", "Q", "R"],
+    "options": [
+      "P",
+      "Q",
+      "R"
+    ],
     "answer": 0,
     "why": "Q beats R 2 to 1 (Ana, Ben), then P beats Q 2 to 1 (Ana, Cy). The film held to the last vote wins, because the rankings form a cycle."
   },
@@ -75,11 +79,25 @@
     "level": "core",
     "strand": "discrete",
     "references": [
-      { "work": "easley-kleinberg-2010", "chapter": 23, "section": "23.3", "note": "section unconfirmed; fact-checker to confirm" }
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 23,
+        "note": "section unconfirmed; fact-checker to confirm",
+        "section_unconfirmed": "23.3"
+      }
     ],
     "also": [],
-    "tags": ["voting", "majority", "cycle", "agenda"]
+    "tags": [
+      "voting",
+      "majority",
+      "cycle",
+      "agenda"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }
