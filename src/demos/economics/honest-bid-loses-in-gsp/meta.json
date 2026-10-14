@@ -1,0 +1,98 @@
+{
+  "slug": "honest-bid-loses-in-gsp",
+  "title": "When honesty costs you the ad slot",
+  "hook": "Each ad pays the next bid down. Sounds like a second-price auction. Is honesty still best?",
+  "domain": "economics",
+  "concept": "gsp-auction",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e01"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "learner": {
+    "knows": [
+      "second-price auctions and why honest bidding is best there",
+      "VCG: paying for the harm you do to the others"
+    ],
+    "doesNotKnow": [
+      "that the 'pay the next bid' rule for several ad slots (generalized second price) makes honest bidding not always best"
+    ]
+  },
+  "misconception": "Paying the next-highest bid per click is just a second-price auction, so bid honestly.",
+  "objective": "The learner can show that in a two-slot GSP auction (10 and 4 clicks, values $7, $6, $1) X keeps $10 bidding honestly but $24 by bidding $5 for the lower slot, and explain that the bid also picks the slot.",
+  "claims": [
+    {
+      "id": "economics.honest-bid-loses-in-gsp.c1",
+      "text": "With bids $7, $6 and $1 and slots of 10 and 4 clicks, honest X takes slot 1 at $6 a click and keeps 10 × ($7 − $6) = $10.",
+      "support": "derivation",
+      "source": "GSP rule as stated on the card: slot k to the k-th highest bid, price per click = next bid down. Builder's node script (scratchpad ncm-e01-checks/check.mjs) and Demo.tsx gsp(7): slot 1, price 6, profit 70 - 60 = 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.honest-bid-loses-in-gsp.c2",
+      "text": "Bidding $5, X drops to slot 2, pays Z's $1 a click and keeps 4 × ($7 − $1) = $24; bidding $8 gives the same slot and price as honest bidding ($10).",
+      "support": "derivation",
+      "source": "Builder's node script, bids 0..10 with ties going to the other bidder: bids 2-6 give slot 2 at $1 (profit 24); bids 7-10 give slot 1 at $6 (profit 10); bids 0-1 give no slot (0). With ties going to X instead, bid 1 gives 24 and bid 6 gives 10; neither $5 nor $8 nor $7 changes. Demo.tsx gsp().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.honest-bid-loses-in-gsp.c3",
+      "text": "Under the generalized second price rule an honest bid is not always best.",
+      "support": "source",
+      "source": "Shown by c1-c2 for this example. General result and equilibrium analysis: B. Edelman, M. Ostrovsky, M. Schwarz, 'Internet advertising and the generalized second-price auction', American Economic Review 97(1), 242-259 (2007); H. R. Varian, 'Position auctions', International Journal of Industrial Organization 25 (2007); E&K ch. 15 (section unconfirmed). Citations from memory; fact-checker confirms. Per the brief, no revenue range or VCG revenue comparison is claimed.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.honest-bid-loses-in-gsp.c4",
+      "text": "The stage is a model: fixed clicks per slot, the other bids held still, one round, ties going to the other bidder.",
+      "support": "convention",
+      "source": "Modelling choice stated on the card and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "recall": {
+    "question": "In a multi-slot ad auction where each slot pays the next bid down, why can bidding below your value pay off?",
+    "options": [
+      "It never can; the next-bid rule makes honesty best",
+      "Your bid also picks your slot, and a lower slot can be much cheaper per click",
+      "Lower bids get more clicks"
+    ],
+    "answer": 1,
+    "why": "Dropping a slot gives fewer clicks but can cut the price per click a lot, so profit can rise."
+  },
+  "curriculum": {
+    "primary": "economics:gsp-auction",
+    "also": [],
+    "prerequisites": [
+      "economics:vcg-mechanism"
+    ],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 15
+      }
+    ],
+    "tags": [
+      "auctions",
+      "advertising"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
