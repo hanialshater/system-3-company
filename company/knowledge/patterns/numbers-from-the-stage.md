@@ -15,7 +15,8 @@ documented_cases:
   - "natural-selection: '10% more young' while the stage is always 100 beetles; population size never stated."
   - "half-life: 'Your run, step by step: 48% decayed' shown on a stage reset to 200 fresh atoms, describing a run the learner did not have."
 excluded_cases: [projectile-angle recall ("25 degrees lands 30 m" implies a different speed from the lesson's 20 m/s, fact-check F4: not false, so a near-miss, not a case)]
-known_failure: none recorded
+known_failure:
+  - "2026-10-14: the failure kept occurring in lessons built after the pattern: four-in-a-row-two-thirds ($0.667 / $0.333 in text vs readout $0.666 / $0.334), patience-wins-the-split ('400 rounds gave 52.6%' vs the learner's 66.7%), ternary-asks-more ('after two questions: 249 vs 333'), range-min-in-four-nodes ('1 to 14 needs 6'). Derivation from one function is advice, not a gate; nothing mechanical enforces it. Source: decisions/2026-10-14-reveal-quotes-what-you-saw.md."
 part_of: demo-standard
 may_call: earn-the-reveal
 ```
