@@ -32,7 +32,7 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks). */
+  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks), 7 = Marketing. */
   floor?: Floor;
 }
 
@@ -96,6 +96,8 @@ export const ROOMS: Room[] = [
   { id: "incident", name: "Incident & ops review", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
   { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 400, h: 76, kind: "lobby" },
   { id: "ceo-office", name: "CEO office · company health", x: 710, y: 568, w: 270, h: 76, kind: "office", color: "#ffd54f" },
+  // Stairs to floor 7 (Marketing) sit beside the Lobby: the VP of Marketing reports to the founder.
+  { id: "to-floor-7", name: "↑ Floor 7 · Marketing", x: 20, y: 568, w: 270, h: 76, kind: "lobby" },
   // Floor 2 (2026-10-13): Life Hacks, Personalization, International.
   { id: "personalization", name: "Personalization", x: 20, y: 16, w: 300, h: 370, kind: "office", color: "#c792ea", floor: 2 },
   { id: "model-lab", name: "Learner model lab", x: 330, y: 16, w: 190, h: 370, kind: "floor", floor: 2 },
@@ -114,6 +116,12 @@ export const ROOMS: Room[] = [
   { id: "backend", name: "Data & privacy", x: 660, y: 16, w: 320, h: 330, kind: "office", color: "#4fc3f7", floor: 5 },
   { id: "engineering", name: "Engineering review room", x: 20, y: 366, w: 620, h: 150, kind: "meeting", floor: 5 },
   { id: "deploy", name: "Release & deploy", x: 660, y: 366, w: 320, h: 150, kind: "office", floor: 5 },
+  // Floor 7 (2026-10-14, founder: "a new floor for marketing. With VP of marketing reporting to me"; company/decisions/2026-10-14-marketing-org.md).
+  // One office for the VP and a meeting room; the open floor stays empty until a first report is justified.
+  { id: "marketing", name: "Marketing · VP of Marketing", x: 20, y: 16, w: 470, h: 236, kind: "office", color: "#ff7eb6", floor: 7 },
+  { id: "marketing-room", name: "Marketing room · positioning & claims", x: 510, y: 16, w: 470, h: 236, kind: "meeting", floor: 7 },
+  { id: "marketing-floor", name: "Open floor (no team yet)", x: 20, y: 272, w: 960, h: 200, kind: "floor", color: "#ff7eb6", floor: 7 },
+  { id: "to-floor-1-from-7", name: "↓ Floor 1 · Lobby", x: 20, y: 492, w: 380, h: 120, kind: "lobby", floor: 7 },
 ];
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");

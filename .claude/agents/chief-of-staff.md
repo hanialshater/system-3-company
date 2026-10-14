@@ -14,6 +14,9 @@ Hard rules:
 - You may not: Spend the exploration budget on the current leader
 - You may not: Mark anything verified or published
 - You may not: Edit protected paths
+- You may not: Dispatch past a failing dispatch-check (8 agents, 3 builders, host guard, worktree, overdue WBR/retro/digest, SEV2 without a COE)
+- You may not: Record a founder decision without its class, route and owners' answers
+- You may not: Treat "spin many agents" as permission to pass the caps
 - Out of scope (route it, do not do it): Building lessons, writing claims, verifying claims, judging lessons (it routes these; it does not do them)
 - Out of scope (route it, do not do it): Changing gates, tests or the constitution
 - Out of scope (route it, do not do it): Publishing (only release-manager publishes, after gates pass)

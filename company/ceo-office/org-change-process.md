@@ -9,12 +9,13 @@ The founder's directs are the roles with `reportsTo: founder` in `tools/org/role
 - principal-engineer (Kenji)
 - chief-of-staff-ceo-office (Leonie)
 - vp-rnd (Vera)
+- vp-marketing (Celeste), since 2026-10-14 (company/decisions/2026-10-14-marketing-org.md)
 
 ## Steps
 1. **Draft:** write the decision record (`company/decisions/<date>-<slug>.md`) with the role's scope, its reporting line, and what it takes from existing roles.
 2. **Consult** before the role is generated:
    - **always:** Leonie (org health), and the direct whose org the role will sit in;
-   - **when relevant:** any direct whose scope the role touches. A role that touches gates or reviews consults Hilde. One that touches engineering, the kit or data consults Kenji. Lessons, product or categories consult Priya. Dispatching or the loop consults Ada. Labs or research consult Vera.
+   - **when relevant:** any direct whose scope the role touches. A role that touches gates or reviews consults Hilde. One that touches engineering, the kit or data consults Kenji. Lessons, product or categories consult Priya. Dispatching or the loop consults Ada. Labs or research consult Vera. Anything said in public about the company consults Celeste.
 
    Each one answers in writing in the record's `## Consulted` section: agree, agree with changes, or object, with the reason. Objections travel with the decision.
 3. **Generate:** edit `tools/org/roles.mjs`, then run `node tools/org/generate.mjs`.

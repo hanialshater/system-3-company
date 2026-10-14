@@ -25,6 +25,7 @@ export const HOME: Record<string, string> = {
   "principal-engineer": "ceo-office",
   "principal-engineer-ops": "ceo-office",
   "vp-rnd": "ceo-office",
+  "vp-marketing": "marketing",
   "rnd-lead": "rnd-office",
   "research-lead": "research-office",
   "rnd-engineer": "rnd-lab",

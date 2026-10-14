@@ -39,6 +39,7 @@ export const TEAM_COLOR: Record<string, string> = {
   "visual-designer": "#f48fb1",
   "design-engineer": "#f48fb1",
   "mockup-artist": "#f48fb1",
+  "vp-marketing": "#ff7eb6",
 };
 
 export function teamColor(role: string): string {

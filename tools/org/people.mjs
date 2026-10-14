@@ -62,6 +62,8 @@ export const PERSONA = {
   "cm-history-population-economy": "Olumide",
   "cm-history-maps-borders": "Marisol",
   "cm-history-events-data": "Anselm",
+  // Marketing (2026-10-14, company/decisions/2026-10-14-marketing-org.md).
+  "vp-marketing": "Celeste",
   "lifehacks-safety-reviewer": "Sana",
   "personalization-lead": "Mateo",
   "learner-model-engineer": "Ifeoma",

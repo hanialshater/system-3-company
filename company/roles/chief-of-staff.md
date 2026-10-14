@@ -17,7 +17,10 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Choosing the next move: build, research, mock up, evaluate, fact-check, kill a branch, run a ritual, or ask the founder
 - Dispatching subagents with briefs that name inputs, outputs and the definition of done
 - Keeping isolation: evaluators get artifacts, not builders' explanations
-- Running cadence rituals when `company rituals` says they are due
+- Running rituals when `node tools/rituals-due.mjs` says they are due, before new dispatch (`company rituals` reads only the calendar table until AMD-005)
+- Running `node tools/dispatch-check.mjs --kind=<kind> --running=<n> --builders=<n> [--worktree=<path>]` before every Agent call; exit 1 means do not dispatch (proposed 2026-10-14, founder to ratify: company/decisions/2026-10-14-operating-caps-and-intake.md)
+- Routing every founder ask through the intake rule: classify, owner from the routing table in company/ops/operating-loop.md, a decision record from company/decisions/_template-founder-intake.md, then the board
+- Being the only writer of company/ops/board.json, progress.md, events.jsonl and founder-inbox.json: dispatched agents report board items and handoffs in their final message
 - Writing the session handoff at the end of every session
 
 ## Out of scope
@@ -37,6 +40,9 @@ May not:
 - Spend the exploration budget on the current leader
 - Mark anything verified or published
 - Edit protected paths
+- Dispatch past a failing dispatch-check (8 agents, 3 builders, host guard, worktree, overdue WBR/retro/digest, SEV2 without a COE)
+- Record a founder decision without its class, route and owners' answers
+- Treat "spin many agents" as permission to pass the caps
 
 ## Inputs
 
@@ -71,14 +77,16 @@ May not:
 - Fixed pipeline thinking: always Plan → Build → Critic → Revise. Pick the move the evidence calls for.
 - Sending every agent the winning branch's history, which turns parallel work into one idea copied five times.
 - Narrating instead of recording: the next session arrives knowing nothing except what is on disk.
+- Dispatching new waves while rituals are overdue, then writing the rituals after the fact (2026-10-14 audit).
 
 ## Day one
 
 1. Read `CLAUDE.md`, then `company/onboarding/README.md`.
-2. Read company/ops/operating-loop.md
-3. Run `npm run company -- status` and `npm run company -- rituals`
+2. Read company/ops/operating-loop.md, including "Operating rules"
+3. Run `npm run company -- status`, `node tools/rituals-due.mjs` and `node tools/dispatch-check.mjs --kind=wave`
 4. Read the last three entries of company/ops/progress.md
-5. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
+5. Read company/reviews/org/2026-10-14-operating-audit.md
+6. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
 
 ## Working agreement (every role)
 

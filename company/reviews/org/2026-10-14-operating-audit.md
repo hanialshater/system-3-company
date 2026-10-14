@@ -57,7 +57,7 @@ Exceptions: a status question is answered from `company status`, with no record.
 | Budget, usage plan | chief-of-staff with principal-engineer-ops (stop rate, host) | head-of-product for the split | none | yes |
 | External PRs | community-engineer | principal-engineer | none | merge go-ahead |
 | Safety or sensitive content | lifehacks-safety-reviewer, cultural-reviewer | the category manager | none | refusals that change scope |
-| Marketing, public copy, channels | vp-marketing (once created) | analytics-steward (any outcome number), fact-checker (any factual line), head-of-product (product promises) | none | anything public, every time |
+| Marketing, public copy, channels | vp-marketing | analytics-steward (any outcome number), fact-checker (any factual line), head-of-product (product promises) | none | anything public, every time |
 
 ## 3. Daily operating rhythm (proposed 2026-10-14, founder to ratify)
 
@@ -107,7 +107,7 @@ Never blocked: finishing in-flight agents, merges, the rituals themselves, incid
 | Founder intake | template; `dispatch-check` I1 blocks waves now; `check` lint later | company/decisions/_template-founder-intake.md; tools/dispatch-check.mjs; tools/company.mjs | I1 **built**; lint **AMD-005 (d), drafted** |
 | Ops review visible | ops-health reads both record locations | tools/ops-health.mjs | **built** (W-542) |
 | Every dispatch logged | find why logging stopped at ~16:00 and fix it | tools/events.mjs (tools-lead) | open, board |
-| The rules survive sessions | operating-loop.md (edited, proposed); CLAUDE.md text (proposed below, not applied); chief-of-staff role (tools/org/roles.mjs, after the History org commit lands) | | partly |
+| The rules survive sessions | operating-loop.md (edited, proposed); CLAUDE.md text (proposed below, not applied); chief-of-staff role (tools/org/roles.mjs: preflight, intake, single writer, rituals-due; regenerated) | | partly: CLAUDE.md and working agreement item 9 wait for W-712 |
 
 ## 5. Which changes need a constitutional amendment
 
@@ -122,5 +122,5 @@ Never blocked: finishing in-flight agents, merges, the rituals themselves, incid
 - CLAUDE.md (not protected, but it is every session's rules, so the founder ratifies). Proposed text, **not applied**:
   - Start of session, after step 1: "1b. `node tools/rituals-due.mjs`. If you are the chief of staff, run `node tools/dispatch-check.mjs` before every Agent call; exit 1 means do not dispatch."
   - Before you finish, replace the board and progress bullets with: "If you were dispatched, put board items and your handoff in your final report; only the chief of staff writes `board.json` and `progress.md`. If you are the chief of staff, update the board and add the handoff."
-- tools/org/roles.mjs: working agreement item 9 and the chief-of-staff role get the same text (needs this decision record; the CEO office edits after the History commit lands).
+- tools/org/roles.mjs: the chief-of-staff role now carries the preflight, intake and single-writer duties (applied, marked proposed, under the founder's durable-ops decision). Working agreement item 9 (every role) changes with the CLAUDE.md text, after W-712.
 - A decision record superseding the usage-upgrade caps: company/decisions/2026-10-14-operating-caps-and-intake.md (**proposed**).

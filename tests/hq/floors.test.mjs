@@ -66,3 +66,16 @@ test("every category lead and strand manager has a home room that exists (people
   for (const d of ["history", "books", "big-ideas"]) assert.ok(new RegExp(`"cm-${d}": "cm-${d}"`).test(src), `tools/events.mjs has no room for cm-${d}`);
   assert.ok(/"lifehacks-safety-reviewer": "lifehacks-safety"/.test(src) && byId.has("lifehacks-safety"));
 });
+
+test("Marketing has floor 7: the VP's office is there, floors 1 and 7 link both ways, and the event log and people.ts agree", () => {
+  assert.ok(FLOORS.includes(7));
+  assert.equal(floorOf(byId.get("marketing")), 7);
+  assert.equal(stairsTo("to-floor-7"), 7);
+  assert.equal(floorOf(byId.get("to-floor-7")), 1);
+  assert.equal(stairsTo("to-floor-1-from-7"), 1);
+  assert.equal(floorOf(byId.get("to-floor-1-from-7")), 7);
+  const src = fs.readFileSync(new URL("../../tools/events.mjs", import.meta.url), "utf8");
+  const people = fs.readFileSync(new URL("../../src/app/hq/people.ts", import.meta.url), "utf8");
+  assert.ok(/"vp-marketing": "marketing"/.test(src), "tools/events.mjs has no room for vp-marketing");
+  assert.ok(/"vp-marketing": "marketing"/.test(people), "people.ts has no home for vp-marketing");
+});
