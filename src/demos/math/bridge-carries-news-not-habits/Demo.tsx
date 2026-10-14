@@ -106,7 +106,7 @@ export default function BridgeCarriesNewsNotHabits({ slug }: { slug: string }) {
           </p>
           <p>
             A bridge gives you exactly one friend on the far side: enough for news, too little for a habit that needs
-            several friends. Researchers find the same split in real networks: weak ties spread information well but can block
+            several friends. Network researchers argue the same split holds in real networks: weak ties spread information well but can block
             behaviours that need reinforcement from several contacts.
           </p>
         </>

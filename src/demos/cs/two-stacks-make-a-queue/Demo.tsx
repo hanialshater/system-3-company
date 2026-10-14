@@ -243,7 +243,7 @@ export default function TwoStacksMakeAQueue({ slug }: { slug: string }) {
             and the items left in order {END.left.join(" ")}.
           </p>
           <p>
-            The second pour never touched 1 or 2: they were already in out. An item crosses from in to out once in its
+            The second pour never touched 1 or 2: they had already crossed to out and left. An item crosses from in to out once in its
             life, so a slow removal pays for the fast ones around it and the average cost per operation stays constant.
           </p>
           <p className="muted">The same accounting as list doubling.</p>

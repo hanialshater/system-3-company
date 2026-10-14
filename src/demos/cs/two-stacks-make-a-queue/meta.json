@@ -62,12 +62,10 @@
     },
     {
       "id": "cs.two-stacks-make-a-queue.c5",
-      "text": "The second pour never touches items 1 or 2, because they are already in the out-stack (1 has left, 2 is in out).",
+      "text": "The second pour never touched 1 or 2: they had already crossed to out and left.",
       "support": "derivation",
-      "source": "Trace of simulate() in Demo.tsx: after the first removal out holds [2]; the second removal pops 2 without a pour; the third removal finds out empty and pours in = [3, 4]. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own trace: at the second pour (the 3rd removal, tile 7) both 1 and 2 have already LEFT; out is empty, which is why it pours. So '(1 has left, 2 is in out)' is false at that moment, and the reveal's 'they were already in out' reads as if they sat in out during the pour. Fix (builder): 'The second pour never touched 1 or 2: they had already crossed to out and left.'",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Trace of simulate() in Demo.tsx: after the first removal out holds [2]; the second removal pops 2 without a pour; the third removal finds out empty and pours in = [3, 4]. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own trace: at the second pour (the 3rd removal, tile 7) both 1 and 2 have already LEFT; out is empty, which is why it pours. So '(1 has left, 2 is in out)' is false at that moment, and the reveal's 'they were already in out' reads as if they sat in out during the pour. Fix (builder): 'The second pour never touched 1 or 2: they had already crossed to out and left.' | Builder fix (demo-builder, 2026-10-14): W-213: reveal and claim now use the fact-checker's wording; at the second pour (3rd removal, tile 7) both 1 and 2 have already been removed and out is empty.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:queue-two-stacks",
     "also": [

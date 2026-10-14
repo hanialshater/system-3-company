@@ -168,7 +168,16 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
               The held-out dots tell the other story:{" "}
               {mod
                 ? `at penalty ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none.`
-                : `${none.heldMiss.toFixed(2)} with no penalty, ${now.heldMiss.toFixed(2)} now.`}{" "}
+                : (() => {
+                    // No moderate penalty visited (e.g. a jump straight to 10): quote the best moderate one on this data set.
+                    const d = makeData(seed);
+                    const h0 = rms(fit(d.train, 0), d.held);
+                    let bi = 1;
+                    for (let i = 2; i < LAMBDAS.length - 1; i++)
+                      if (rms(fit(d.train, LAMBDAS[i]), d.held) < rms(fit(d.train, LAMBDAS[bi]), d.held)) bi = i;
+                    const hb = rms(fit(d.train, LAMBDAS[bi]), d.held);
+                    return `on data set ${seed} the best moderate penalty, ${fmtL(bi)}, gives ${hb.toFixed(2)} against ${h0.toFixed(2)} with none.`;
+                  })()}{" "}
               In{" "}
               {wins} of 500 data sets some moderate penalty (the best of five, 0.0001 to 1) beat none on held-out dots. Push
               to 10 and the curve goes much flatter:{" "}

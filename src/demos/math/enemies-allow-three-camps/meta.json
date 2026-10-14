@@ -68,12 +68,10 @@
     },
     {
       "id": "math.enemies-allow-three-camps.c6",
-      "text": "Allow it, and any number of camps is stable: you saw 2, 3 and 6 camps each with 0 banned triangles.",
+      "text": "Allow it, and any number of camps is stable: you saw [the splits the learner viewed with all 20 triangles checked, e.g. 2 and 3] camps each with 0 banned triangles, and [the remaining of 2, 3, 6] camps give 0 too (the second clause only when some split was not seen this way).",
       "support": "derivation",
-      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'. | Builder fix (demo-builder, 2026-10-14): W-212: Demo.tsx now records a split as seen only when it is displayed with all 20 triangles checked (Check all / last Next in that split, or switching to it after all are checked), and the reveal quotes only those; unseen splits are stated without 'you saw' (counts from c3: 0 banned for 2, 3 and 6 camps). Fallback with nothing seen (unreachable, checked-all is required): '2, 3 and 6 camps each give 0 banned triangles.'",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -93,7 +91,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:weak-balance",
     "also": [],

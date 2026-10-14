@@ -5,7 +5,7 @@
 // strip of B's share by round. Each round every pair covers both fallbacks, then halves the rest;
 // B's fallback is what C would leave B (1 − C's share), and vice versa.
 // Round 0: no fallbacks yet, so each pair halves $1. Then 0.75, 0.625, 0.6875 … → 2/3.
-// Key state: settled (B within $0.001 of 2/3). Model, not a forecast of any real bargain.
+// Key state: settled (B within $0.0005 of 2/3, so the 3-decimal readout shows $0.667 / $0.333; round 9). Model, not a forecast of any real bargain.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -14,7 +14,7 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const MAX_ROUND = 14;
-const TOL = 0.001;
+const TOL = 0.0005; // half a tenth of a cent: the first round whose readout rounds to $0.667
 
 /** B's (= C's, by symmetry) share after each round, round 0 = no fallbacks. */
 function shares(): { inner: number; fallback: number }[] {
@@ -31,7 +31,7 @@ function shares(): { inner: number; fallback: number }[] {
   return out;
 }
 const ROUNDS = shares();
-const SETTLED_AT = ROUNDS.findIndex((r) => Math.abs(r.inner - 2 / 3) < TOL); // 9
+const SETTLED_AT = ROUNDS.findIndex((r) => Math.abs(r.inner - 2 / 3) < TOL); // 9 (round 8 is 0.66602, outside TOL)
 const MILESTONES = ["stepped", "settled"] as const;
 
 const usd = (v: number) => `$${v.toFixed(3)}`;

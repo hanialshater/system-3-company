@@ -26,10 +26,8 @@
       "id": "economics.four-in-a-row-two-thirds.c1",
       "text": "In the line A–B–C–D with deals A–B and C–D worth $1 each, the balanced outcome gives B and C $0.667 (two thirds) each and A and D $0.333.",
       "support": "derivation",
-      "source": "Balance: v_B = o_B + (1 − o_B)/2 with o_B = 1 − v_C (A's fallback is 0); by symmetry v = 1 − v/2, so v = 2/3. Fixed-point iteration in Demo.tsx shares() from 0.5: 0.75, 0.625, 0.6875, 0.6563 … within $0.001 of 2/3 at round 9. Re-run in node by the builder (ncm-e02). | FACT-CHECK 2026-10-14 (pass 22): Own node iteration v <- 1 - v/2 from 0.5: 0.75 0.625 0.6875 0.6563 0.6719 0.6641 0.6680 0.6660 0.6670 ... -> 2/3; A = 1/3. Correction to this source: within $0.001 of 2/3 at round 8 (|e8| = 1/1536), not 9, so SETTLED_AT = 8 (Demo comment '// 9' is stale; see c6).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Balance: v_B = o_B + (1 − o_B)/2 with o_B = 1 − v_C (A's fallback is 0); by symmetry v = 1 − v/2, so v = 2/3. Fixed-point iteration in Demo.tsx shares() from 0.5: 0.75, 0.625, 0.6875, 0.6563 … within $0.0005 of 2/3 at round 9 (0.66699; round 8 is 0.66602, within $0.001 but shown as $0.666), so with TOL = 0.0005 SETTLED_AT = 9. Re-run in node by the builder (ncm-e02; re-run demo-builder 2026-10-14). | FACT-CHECK 2026-10-14 (pass 22): Own node iteration v <- 1 - v/2 from 0.5: 0.75 0.625 0.6875 0.6563 0.6719 0.6641 0.6680 0.6660 0.6670 ... -> 2/3; A = 1/3. Correction to this source: within $0.001 of 2/3 at round 8 (|e8| = 1/1536), not 9, so SETTLED_AT = 8 (Demo comment '// 9' is stale; see c6). | Builder fix (demo-builder, 2026-10-14): W-214: TOL tightened to 0.0005, so 'settled' is round 9 and the source's round number is now right; Demo comment updated. Claim text unchanged.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c2",
@@ -69,12 +67,10 @@
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c6",
-      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round N. A kept $0.333.' (N = SETTLED_AT, renders 8.)",
+      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round N. A kept $0.333.' (N = SETTLED_AT, the first round within $0.0005 of 2/3, renders 9; the stage readout there shows B $0.667 and A $0.333.)",
       "support": "derivation",
-      "source": "Unrecorded claim found by fact-checker 2026-10-14 (pass 22). SETTLED_AT = first round within TOL = $0.001 of 2/3 = round 8 (B 0.66602), not 9 as the Demo comment says. At round 8 (where 'Run until settled' stops) the stage readout shows 'B gets $0.666' and A '$0.334', while the reveal says settled at $0.667 by round 8 and A kept $0.333. DISPUTED: the reveal contradicts what the learner just saw. Fix (builder): TOL = 0.0005 gives round 9 (B $0.667, A $0.333 on the readout), or reword to 'came within $0.001 of $0.667 by round 8'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Unrecorded claim found by fact-checker 2026-10-14 (pass 22). SETTLED_AT = first round within TOL = $0.001 of 2/3 = round 8 (B 0.66602), not 9 as the Demo comment says. At round 8 (where 'Run until settled' stops) the stage readout shows 'B gets $0.666' and A '$0.334', while the reveal says settled at $0.667 by round 8 and A kept $0.333. DISPUTED: the reveal contradicts what the learner just saw. Fix (builder): TOL = 0.0005 gives round 9 (B $0.667, A $0.333 on the readout), or reword to 'came within $0.001 of $0.667 by round 8'. | Builder fix (demo-builder, 2026-10-14): W-214: TOL = 0.0005 in Demo.tsx, so SETTLED_AT = 9 (B 0.66699 -> '$0.667', A '$0.333'; rounds 10-14 stay within 0.0005, node). 'Run until settled' now stops at round 9, matching the reveal.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:balanced-outcomes",
     "also": [],

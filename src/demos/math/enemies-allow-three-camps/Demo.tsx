@@ -54,11 +54,18 @@ const VERDICT: Record<Kind, string> = {
   "all-friend": "all friends. Allowed.",
 };
 
+const listOf = (cs: number[]) =>
+  cs.length < 2 ? cs.join("") : `${cs.slice(0, -1).join(", ")} and ${cs[cs.length - 1]}`;
+
 export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
   const [camps, setCamps] = useState<Camps>(3);
   const [checked, setChecked] = useState(0);
   const [cur, setCur] = useState(-1);
+  // Splits the learner has seen with all 20 triangles counted; the reveal quotes only these as seen.
+  const [seen, setSeen] = useState<Camps[]>([]);
+  const see = (c: Camps) => setSeen((v) => (v.includes(c) ? v : [...v, c].sort((a, b) => a - b)));
   const three = tally(3);
+  const unseen = [...CAMP_CHOICES].filter((c) => !seen.includes(c));
 
   return (
     <Lesson
@@ -80,7 +87,10 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
           </p>
           <p>
             The all-enemy triangle is what the strict rule (the enemy of my enemy is my friend) forbids, and it is what forces
-            two sides. Allow it, and any number of camps is stable: you saw 2, 3 and 6 camps each with 0 banned triangles.
+            two sides. Allow it, and any number of camps is stable:{" "}
+            {seen.length > 0
+              ? `you saw ${listOf(seen)} camps each with 0 banned triangles${unseen.length > 0 ? `, and ${listOf(unseen)} camps give 0 too` : ""}.`
+              : `${listOf([...CAMP_CHOICES])} camps each give 0 banned triangles.`}
           </p>
         </>
       )}
@@ -98,15 +108,20 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
                 const done = Math.max(checked, next + 1);
                 setCur(next);
                 setChecked(done);
-                if (done === TRIANGLES.length) reach("checked-all");
+                if (done === TRIANGLES.length) {
+                  see(camps);
+                  reach("checked-all");
+                }
               }}
               onAll={() => {
                 setChecked(TRIANGLES.length);
                 setCur(-1);
+                see(camps);
                 reach("checked-all");
               }}
               onCamps={(c) => {
                 setCamps(c);
+                if (checked === TRIANGLES.length) see(c);
                 if (c !== 3) reach("other-split");
               }}
             />
