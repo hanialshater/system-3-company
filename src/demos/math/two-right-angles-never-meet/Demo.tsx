@@ -149,7 +149,7 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                   {/* where the sides meet */}
                   {side.met ? (
                     <text x={side.x - 6} y={side.y + 4} className={s.lab} textAnchor="end">
-                      top {90 - b}°
+                      {locked ? "top ?" : `top ${90 - b}°`}
                     </text>
                   ) : (
                     <>
