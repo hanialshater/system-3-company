@@ -79,8 +79,10 @@
       "id": "chemistry.dilute-until-none-left.c7",
       "text": "From step 19 the stage also draws 20 seeded sample tubes (seeds 3000 + step + 977 x draw number, draws 1 to 20) and says how many hold none; the reveal quotes that count. This is one fixed illustration of the 55% figure, not a measurement.",
       "support": "derivation",
-      "source": "Poisson sampler in Demo.tsx emptyOf(k): count of zero results among 20 seeded draws (node). Chosen-seed disclosure as in c5.",
-      "status": "unverified"
+      "source": "Poisson sampler in Demo.tsx emptyOf(k): count of zero results among 20 seeded draws (node). Chosen-seed disclosure as in c5. | FACT-CHECK 2026-10-14 (pass 15): re-ran sample()/emptyOf() with kit mulberry32 (node). Seeds 3000 + k + 977d, d = 1..20, shown when k >= 19; reveal quotes emptyOf(22) = 15 of 20, the same count the stage shows at step 22. Sampler unbiased (100,000 draws at step 22: 55.1% empty, mean 0.598). Note, non-blocking: 15/20 = 75% is a high draw (P(X>=15) = 5.3% for Binomial(20, 0.548)); the claim's 'not a measurement' disclosure holds, but it sits beside 'about 55%' in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
