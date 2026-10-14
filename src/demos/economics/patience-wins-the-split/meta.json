@@ -33,12 +33,10 @@
     },
     {
       "id": "economics.patience-wins-the-split.c2",
-      "text": "Each added round in front, the proposer must offer the responder 0.9 (at a 10% shrink) of what the responder would keep as next round's proposer, and keeps the rest; the stage line reads 'offer 0.9 × next share = offer; keep rest' (for example 0.9 × 10.0% = 9.0% offered, 91.0% kept with three rounds).",
+      "text": "Each added round in front, the proposer must offer the responder 0.9 (at a 10% shrink) of what the responder would keep as next round's proposer, and keeps the rest. The reveal quotes the stage line as it read on the learner's longest 10% run, 'First round: offer 0.9 × (next share) = (offer); keep (rest)' (for example 0.9 × 10.0% = 9.0% offered, 91.0% kept with three rounds; 0.9 × 52.6% = 47.4%, 52.6% kept with 400).",
       "support": "derivation",
-      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'. | v2: reveal now says 'worth 0.9 of a proposer's share' and points at the stage line. | FC pass 24 (fact-checker, 2026-10-14): DISPUTED (stage pointer). Arithmetic holds: own node share(0.1, n) = 100.0, 10.0, 91.0, 18.1%; at n = 3 the line reads 'First round: offer 0.9 × 10.0% = 9.0%; keep 91.0%.' But the reveal says, in the present tense, 'That is the line above the chart: \"offer 0.9 × next share\"', and the stage stays visible beside the reveal. On the builder's own QA path (ends Shrink 50%, then 1 round) the line above the chart reads 'One round: the proposer offers nothing and keeps 100%.'; at 30% or 50% shrink with n > 1 it reads 'offer 0.7 × …' / 'offer 0.5 × …'. The learner saw the 0.9 line only earlier, at 10% (milestone long-10). Fix (builder): past tense tied to the record, e.g. 'That was the line above the chart at 10%: \"offer 0.9 × next share\"', or quote the recorded first-round offer from the long-10 record.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'. | v2: reveal now says 'worth 0.9 of a proposer's share' and points at the stage line. | FC pass 24 (fact-checker, 2026-10-14): DISPUTED (stage pointer). Arithmetic holds: own node share(0.1, n) = 100.0, 10.0, 91.0, 18.1%; at n = 3 the line reads 'First round: offer 0.9 × 10.0% = 9.0%; keep 91.0%.' But the reveal says, in the present tense, 'That is the line above the chart: \"offer 0.9 × next share\"', and the stage stays visible beside the reveal. On the builder's own QA path (ends Shrink 50%, then 1 round) the line above the chart reads 'One round: the proposer offers nothing and keeps 100%.'; at 30% or 50% shrink with n > 1 it reads 'offer 0.7 × …' / 'offer 0.5 × …'. The learner saw the 0.9 line only earlier, at 10% (milestone long-10). Fix (builder): past tense tied to the record, e.g. 'That was the line above the chart at 10%: \"offer 0.9 × next share\"', or quote the recorded first-round offer from the long-10 record. | Builder revision v3 (demo-builder, 2026-10-14, W-236): the reveal no longer says 'That is the line above the chart' (on the QA path the line then shows the 1-round state). It now says 'That was the line above the chart at 10%:' and quotes the line as it read at the recorded longest 10% run q.n (same formula as the stage line: offer 0.9 × share(0.1, q.n − 1), keep share(0.1, q.n)); at 400 rounds, 'First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' The record is set only when that state is on stage.",
+      "status": "unverified"
     },
     {
       "id": "economics.patience-wins-the-split.c3",
@@ -87,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:alternating-offers",
     "also": [],
