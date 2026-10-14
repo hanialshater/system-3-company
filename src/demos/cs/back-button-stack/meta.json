@@ -60,6 +60,14 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
+    ,
+    {
+      "id": "cs.back-button-stack.c5",
+      "text": "A list of every page you opened (A, B, C, D) would put C just before D, but pressing Back from D goes to B.",
+      "support": "derivation",
+      "source": "Opening order A, B, C, then D after Back; the list's entry before D is C. The history pile after visiting D from B is A, B, D (c1), so Back goes to B. Replaces the earlier closing line, which contrasted two rules that agree on this example (learner r3 N1).",
+      "status": "unverified"
+    }
   ],
   "confidence": "",
   "recall": {
@@ -84,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "cs:stack-and-queue",
     "prerequisites": [],

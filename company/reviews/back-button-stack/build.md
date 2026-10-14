@@ -19,3 +19,7 @@ All changed claims are unverified, awaiting a fact-checker.
 ## Revision v4
 
 r2: the question is shortened to A, B, C; Back once; visit D; Back once more, answer B, so one press of Back and of Visit reaches the exact sequence and the pile's 'Back goes here' tag shows B (QA presses each control once, so a gate on a second Back was unreachable). Copy bugs fixed ('was/were', 'Back from D'). c1 rewritten, c2 and c4 re-marked, unverified; hook and objective updated.
+
+## Revision v5
+
+r3 N1: the closing line contrasted "one step down the pile" with "the page you saw before this one", which agree here (both give B). It now contrasts the pile with a list of everything opened (A, B, C, D), which would give C, so the two rules differ on this very example. New claim c5 (unverified). A two-Back question would differ too, but QA presses Back once, so the stage cannot reach it; I kept the one-Back question. N2 stays: the last Back is labelled, not pressed.

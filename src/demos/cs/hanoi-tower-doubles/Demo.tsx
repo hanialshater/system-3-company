@@ -25,7 +25,7 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
   const [sel, setSel] = useState<number | null>(null);
   const [note, setNote] = useState("");
   const [solved, setSolved] = useState<Record<number, number>>({}); // disks -> moves used
-  const [milestones, setMilestones] = useState({ carry: false, big: false, added: false });
+  const [milestones, setMilestones] = useState({ carry: false, added: false });
 
   const top = (p: number) => pegs[p][pegs[p].length - 1];
   const small = n - 1;
@@ -43,8 +43,8 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
         options: ["12", "36", "63"],
         answer: 2,
       }}
-      exploreHint="Get the tower to peg C with the shortcut and single moves, then add a disk."
-      minInteractions={3}
+      exploreHint="Use a shortcut to move the top disks as a block, then add a disk. Add more to watch the best count."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -66,7 +66,7 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => {
-        const mark = (k: "carry" | "big" | "added") => {
+        const mark = (k: "carry" | "added") => {
           if (!milestones[k]) {
             setMilestones((m) => ({ ...m, [k]: true }));
             interact();
@@ -75,7 +75,6 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
         const finishIfSolved = (next: number[][], m: number) => {
           if (next[2].length === n && solved[n] === undefined) {
             setSolved((x) => ({ ...x, [n]: m }));
-            interact();
           }
         };
         const tapPeg = (p: number) => {
@@ -104,7 +103,6 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
           setMoves(moves + 1);
           setSel(null);
           setNote("");
-          if (d === n) mark("big");
           finishIfSolved(next, moves + 1);
         };
         const carry = (p: number) => {
@@ -186,6 +184,16 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
                 </Control>
               ))}
             </div>
+
+            <ul className={s.ladder} aria-label="Fewest moves for each tower size">
+              {Array.from({ length: n - MIN_N + 1 }, (_, i) => MIN_N + i).map((k) => (
+                <li key={k}>
+                  <span className={s.lk}>{k} disks</span>
+                  <span className={s.bar} style={{ width: `${(cost(k) / cost(MAX_N)) * 100}%` }} />
+                  <span className={s.lv}>{cost(k)}</span>
+                </li>
+              ))}
+            </ul>
 
             <Row>
               <Readout label="Moves" value={moves} />

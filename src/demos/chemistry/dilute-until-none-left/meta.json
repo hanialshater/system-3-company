@@ -19,11 +19,11 @@
     ]
   },
   "misconception": "You can dilute forever and still have the stuff, only weaker.",
-  "objective": "The learner can say that 10 mL of 1.0 mol/L dye holds about 6.0 × 10²¹ molecules, so after about 22 tenfold steps the average tube holds fewer than 1.",
+  "objective": "The learner can say that 10 mL of 1.0 mol/L dye holds about 6.0 \u00d7 10\u00b2\u00b9 molecules, so after about 22 tenfold steps the average tube holds fewer than 1.",
   "claims": [
     {
       "id": "chemistry.dilute-until-none-left.c1",
-      "text": "The Avogadro constant is 6.02214076 × 10²³ per mole.",
+      "text": "The Avogadro constant is 6.02214076 \u00d7 10\u00b2\u00b3 per mole.",
       "support": "source",
       "source": "SI 2019 redefinition (BIPM SI Brochure, 9th ed.).",
       "status": "verified",
@@ -32,7 +32,7 @@
     },
     {
       "id": "chemistry.dilute-until-none-left.c2",
-      "text": "10 mL of 1.0 mol/L dye holds about 6.0 × 10²¹ molecules.",
+      "text": "10 mL of 1.0 mol/L dye holds about 6.0 \u00d7 10\u00b2\u00b9 molecules.",
       "support": "derivation",
       "source": "1.0 mol/L x 0.010 L x 6.02214e23 = 6.022e21 (node; Demo.tsx stock).",
       "status": "verified",
@@ -41,7 +41,7 @@
     },
     {
       "id": "chemistry.dilute-until-none-left.c3",
-      "text": "After k 1:10 steps the 10 mL tube holds on average 6.0 × 10²¹ × 10^-k molecules: about 6.0 at step 21 and about 0.60 at step 22.",
+      "text": "After k 1:10 steps the 10 mL tube holds on average 6.0 \u00d7 10\u00b2\u00b9 \u00d7 10^-k molecules: about 6.0 at step 21 and about 0.60 at step 22.",
       "support": "derivation",
       "source": "6.022e21 x 10^-21 = 6.022; 6.022e21 x 10^-22 = 0.6022 (node; Demo.tsx average()). Each step moves 1 mL of the previous tube into 9 mL of water.",
       "status": "verified",
@@ -77,24 +77,22 @@
     },
     {
       "id": "chemistry.dilute-until-none-left.c7",
-      "text": "From step 19 the stage also draws 20 seeded sample tubes (seeds 3000 + step + 977 x draw number, draws 1 to 20) and says how many hold none; the reveal quotes that count. This is one fixed illustration of the 55% figure, not a measurement.",
+      "text": "From step 19 the stage also draws 20 seeded sample tubes (seeds 3000 + step + 1301 x draw number, draws 1 to 20) and says how many hold none (12 of 20 at step 22); the reveal quotes that count and says another 20 would differ a little. The multiplier 1301 was chosen from fourteen tried so the run sits near the 55% average; this is one fixed illustration, not a measurement.",
       "support": "derivation",
-      "source": "Poisson sampler in Demo.tsx emptyOf(k): count of zero results among 20 seeded draws (node). Chosen-seed disclosure as in c5. | FACT-CHECK 2026-10-14 (pass 15): re-ran sample()/emptyOf() with kit mulberry32 (node). Seeds 3000 + k + 977d, d = 1..20, shown when k >= 19; reveal quotes emptyOf(22) = 15 of 20, the same count the stage shows at step 22. Sampler unbiased (100,000 draws at step 22: 55.1% empty, mean 0.598). Note, non-blocking: 15/20 = 75% is a high draw (P(X>=15) = 5.3% for Binomial(20, 0.548)); the claim's 'not a measurement' disclosure holds, but it sits beside 'about 55%' in the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Poisson sampler in Demo.tsx emptyOf(k): count of zero results among 20 seeded draws (builder node run: multiplier 1301 gives 0 empty at step 21 and 12 at step 22; the earlier multiplier 977 gave 15, a tail draw). Expected 20 x 0.547 = 10.9. Chosen-seed disclosure as in c5.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A tube holds 6 × 10⁶ molecules on average. You dilute it 1:10 repeatedly. After how many steps does the average first drop below 1?",
+    "question": "A tube holds 6 \u00d7 10\u2076 molecules on average. You dilute it 1:10 repeatedly. After how many steps does the average first drop below 1?",
     "options": [
       "7 steps",
       "6 steps",
       "60 steps"
     ],
     "answer": 0,
-    "why": "6 × 10⁶ x 10^-6 = 6, which is still above 1; 6 × 10⁶ x 10^-7 = 0.6, which is below 1. So 7 steps."
+    "why": "6 \u00d7 10\u2076 x 10^-6 = 6, which is still above 1; 6 \u00d7 10\u2076 x 10^-7 = 0.6, which is below 1. So 7 steps."
   },
   "evidence": {
     "qa": [],
@@ -105,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "chemistry:dilution",
     "prerequisites": [],

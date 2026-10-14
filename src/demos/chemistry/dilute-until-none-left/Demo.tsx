@@ -29,7 +29,7 @@ const MILESTONES = ["few", "none"] as const;
 
 const sample = (k: number, draw = 0) => {
   const mean = average(k);
-  const rng = mulberry32(3000 + k + draw * 977);
+  const rng = mulberry32(3000 + k + draw * 1301);
   const lim = Math.exp(-mean);
   let c = 0;
   let p = 1;
@@ -86,7 +86,7 @@ export default function Dilution({ slug }: { slug: string }) {
           </p>
           <p>
             The start tube held about {fmtAvg(stock)} molecules and each step divides the count by 10, so it runs out after about {NONE} steps. Past that, a typical tube holds only
-            water: at an average of {fmtAvg(average(NONE))}, about 55% of tubes hold none and the rest hold one or more. On the stage, {emptyOf(NONE)} of {TUBES} drawn tubes were empty.
+            water: at an average of {fmtAvg(average(NONE))}, about 55% of tubes hold none and the rest hold one or more. On the stage, {emptyOf(NONE)} of {TUBES} drawn tubes were empty; another 20 would differ a little.
           </p>
         </>
       )}

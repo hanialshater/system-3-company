@@ -18,3 +18,7 @@ All changed claims are unverified, awaiting a fact-checker.
 ## Revision v3
 
 r2: when the move count reaches the best number without the tower on C, the stage says so ('7 moves, but the tower is not on C yet...'). I did not gate 'Add a disk' on solving: the QA presses each control once and cannot solve the puzzle that way.
+
+## Revision v4
+
+r3 N1: retitled "Six disks: how many moves?" (no rule in the title). N2/length: the reveal now needs two steps only (the block shortcut, then Add a disk), solving the tower is optional, and durationSec is 60. The doubling is visible without a solve: a ladder of bars beside the pegs grows one rung per disk added (7, 15, 31, 63 at best). No claim text changed; c4 (the shortcut and add-a-disk sum) is unchanged in meaning but its behaviour was touched, so re-check.
