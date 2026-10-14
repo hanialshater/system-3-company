@@ -27,8 +27,24 @@ only the container.
 - `*` **Prefer manipulation to animation.** Sliders and taps over play buttons; if there is a play button there is also a step button.
 - `*` **Earn the reveal** (pattern `earn-the-reveal`). Name the key state and gate the reveal on reaching it, by calling `interact()` only for steps toward it. Write the reveal from what the learner actually saw. Make the question's numbers match the stage exactly.
 - `*` **Show the why you promised.** If the brief lists a cause in doesNotKnow, or the objective asks the learner to explain it, something on the stage must stand for that cause and the reveal must point at it; a told sentence alone is a revise. Context outside the brief's gap may be told in one claimed sentence. (Decision `company/decisions/2026-10-14-told-vs-shown.md`.)
+- `*` **No answer before the commit.** The title, hook, question options and locked stage must not state or point to the answer, and the right option must not be the only one with an exact number. "Point to" includes phrases ("takes all", "far fewer"), labelled target lines or pre-drawn limits, and an option worded more precisely than the others. (Decision `company/decisions/2026-10-14-reveal-quotes-what-you-saw.md`.)
+- `*` **The reveal quotes what you saw.** Every number or state the reveal names is either computed from the learner's own current state, or gated by a milestone, and it survives Reset. The question's own case is a milestone. Record quoted values when the milestone fires, so Reset cannot turn them into "your 0 runs". The quoted state is still visible on the stage (a trace, a row or a readout) when the reveal opens, and it uses the stage's rounding. (Same decision.)
 - **Text budget.** Stage text ≤ 25 words at any moment. The reveal ≤ 120 words.
 - **No bluffing.** Every factual sentence in the hook, stage or reveal is a claim in `meta.json → claims` with its support and source.
+
+## Pre-flight (the builder answers in build.md)
+
+Before asking for review, add `## Pre-flight` to `company/reviews/<slug>/build.md` (one per
+version: `## Pre-flight v<n>`). Answer each question in one line, quoting the text or the state.
+A "no" means you fix the lesson first. Reviewers walk the artifact before they read this, and a
+wrong answer is a finding.
+
+1. **Title and hook.** Read them with the question hidden. Could a learner guess the right option from them alone? (Quote the title and hook.)
+2. **Options.** Are all options worded at the same precision, with every option numbered or none? (List them.)
+3. **Locked stage.** In the locked frame, is there any label, line, value or highlight that matches the right option? (Name what is drawn.)
+4. **Reveal values.** For each number or state the reveal names, where does it come from: (a) computed from the learner's current state, or (b) a milestone on the required path? (One line per value. "Hard-coded" is not an answer.)
+5. **QA path.** Pressing each control once in DOM order (sliders: two arrow presses), does the path reach every milestone in 4, including the question's own case? Is each quoted state still visible on the stage when the reveal opens?
+6. **Reset.** Press Reset last, then open the reveal. Does every sentence still match what the learner saw? (Paste the reveal text from that run.)
 
 ## The files
 
