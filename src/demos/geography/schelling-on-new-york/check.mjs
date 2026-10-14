@@ -285,6 +285,12 @@ const tr = [];
 for (const n of [1200, 4000]) for (const p of [0.5, 0.2, 0.1]) tr.push([n, p, tractD(n, p, 7)]);
 console.log(`  chance-only D at tract size: ${tr.map(([n, p, d]) => `${n} people, ${p * 100}% one group: ${f2(d)}`).join("; ")}`);
 ok(tr.every(([, , d]) => d < 0.05), "c19: a random mix scores under 0.05 in tracts of 1,200 or more people (one group 10-50%)");
+// c19 limit (fact-check pass 4): small groups get more from chance alone, so the claim holds only
+// when each group is at least about a tenth of the people. Mean of 5 seeded runs, as in the fact-check.
+// The exact binomial expectation at 1,200 people and 1% is 0.115, so 0.11 or 0.12 by rounding.
+const trSmall = [[1200, 0.05, "0.05"], [1200, 0.02, "0.08"], [1200, 0.01, "0.12"], [4000, 0.01, "0.06"]].map(([n, p, want]) => [n, p, want, [7, 8, 9, 10, 11].reduce((s, seed) => s + tractD(n, p, seed), 0) / 5]);
+console.log(`  chance-only D, small groups: ${trSmall.map(([n, p, , d]) => `${n} people, ${p * 100}% one group: ${f2(d)}`).join("; ")}`);
+ok(trSmall.every(([, , want, d]) => Math.abs(d - Number(want)) <= 0.01), "c19 limit: small groups score more by chance, within 0.01 of the fact-check (1,200 people: 0.05 at 5%, 0.08 at 2%, 0.12 at 1%; 4,000 people: 0.06 at 1%)");
 const boxN = [[2, 4], [4, 16], [8, 64]].map(([k]) => f2(byK.start[ks.indexOf(k)].reduce((x, y) => x + y, 0) / SEEDS.length));
 console.log(`  for scale, this grid's random start: 2x2 (<=4 households) ${boxN[0]}, 4x4 (<=16) ${boxN[1]}, 8x8 (<=64) ${boxN[2]}`);
 
