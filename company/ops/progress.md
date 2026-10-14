@@ -3,6 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14: principal-engineer: W-339 review of f244779 (W-287/W-288 legibility floor)
+- Changed: added "Follow-up: f244779" to company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md. Verdict: approve. Release-blocking changes 1 and 2 are met in code. The author's probe is now saved as company/engineering/reviews/2026-10-14-W-339-postfix-probe.mjs. W-339 is done. Added W-352 (platform-engineer: measure tspan, update the change note, re-probe) and W-353 (accessibility-reviewer: does a root aria-hidden make labels decorative?).
+- Believe (high confidence on the code, medium on the numbers): the floor is a provable lower bound for meet-scaled svgs, and the skips cover all 7 overlays and all 3 pointer lessons. Gap: <tspan> sizes are not measured. 5 lessons give tspan a class, so the "0 labels under 10 px" figure has a blind spot. This does not block release.
+- Next: paste build 6's verify summary (coordinator) into the review record, which closes its last open item. Blocked: none.
+
 ## 2026-10-14, learner-evaluator: round-8 learner reviews (r8, build 5 walkthroughs, batch r8-4, 9 lessons)
 
 - Changed: wrote company/reviews/<slug>/2026-10-14-learner-<boundary>-r8.md for fenwick-hops-by-lowest-bit (v3), palindromes-grow-from-centres (v3), selfish-routes-cost-a-third-more (v4), only-the-needed-trader-profits (v2), the-bar-nobody-can-forecast (v3), fingernail-ocean (v3), shrinking-degree (v3), fifty-up-fifty-down (v2), every-scale-equally-likely (v3). Verdicts: 7 revise, 1 launch with notes (palindromes), 1 launch (fifty-up-fifty-down). Board: W-340 to W-346 (demo-builder, state next, one per revise, exact defect). No lesson code touched.

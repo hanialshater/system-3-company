@@ -128,3 +128,51 @@ Objections that travel with it:
 ## Kudos (optional)
 
 - @platform-engineer: the change note gave a cause, a before/after table and a rollback plan. That made the review a measurement instead of an archaeology dig, and the probe could be checked against its numbers.
+
+## Follow-up: f244779 (W-339, 2026-10-14)
+
+Reviewed `git show f244779` (W-287 + W-288 change 3: `smallestTextPx`, `pictureFloor`, `canShrink` and the undo in
+`useRevealFit`, `src/components/DemoCard.tsx`) against changes 1-3 above and the W-289 ruling in `company/design/system.md`.
+No build (integrated build 6 is running on :3520). The author's probe is now on disk at
+`company/engineering/reviews/2026-10-14-W-339-postfix-probe.mjs`. It reads the app's own fit, not a copy, so it measures
+what ships. I read it but did not re-run it. Author's numbers (595 measured, 390×844): smallest meaning-carrying label
+2.6 → 10.0 px; overlay or `none` shrinks 7 → 0; pointer-like elements in shrunk svgs 3 → 0; fully fitting 398 → 176
+(shrunk and fitting 261 → 41); contract QA 98/98 (29 NCM + 20 random, phone + desktop).
+
+**Verdict: approve. The release-blocking condition (changes 1 and 2) is met in code.** This holds for any build that
+contains f244779; build 6 is cut from HEAD (7d21ab7), which descends from it. The record's last open item is unchanged:
+paste build 6's `npm run verify` summary here. If build 6 fails on this code, the rollback is the same as before, plus
+reverting f244779.
+
+Correctness (checked):
+- **The floor is a real lower bound.** Labels are measured after `unscale`, before any shrink, as font-size × √|det CTM|, which
+  is rendered px. With the default `meet`, scale = min(w/vbW, h/vbH). Capping the height at k·h gives min(a, k·b) ≥ k·min(a, b),
+  so no label drops below k × its natural size. k = max(0.4, 10/meaning, 8/decor) matches the ruling. A label already under the
+  floor gives k ≥ 1, so that picture is not shrunk (ruling: "never shrunk further"). A text-free picture keeps 0.4.
+- **Undo** compares `over` before and after each shrink, removes all three marks if less than 1 px was freed, and re-reads `over`
+  before the next picture. The loop is still deterministic from the natural layout, so the two-pass convergence argued above still holds.
+- **Skips** run before the sort: `none`, out-of-flow svg or ancestor up to the stage, out-of-flow sibling (the overlay pattern),
+  untagged interactive selectors, and any descendant with `cursor: pointer`. This covers all 7 overlays and all 3 pointer lessons named above.
+
+Edge cases (none blocks release; ranked):
+1. **`<tspan>` sizes are not measured.** Only `<text>` computed size is read. A `<tspan>` with its own smaller class can land under
+   the floor. 12 lessons use tspan; 5 give it a class (e.g. attention-shares-one `s.small`, digits-are-logs `s.sup`). The probe uses
+   the same `<text>`-only measure, so its "0 under 10 px" cannot see this. Fix: measure `text, tspan`. A one-line change on W-288.
+2. **An `aria-hidden` root makes every label decorative (8 px).** This matches the ruling's wording. Today only overlay or
+   sub-60 px svgs carry it (10 files, all skipped or text-free in practice), so it is latent. Accessibility reviewer: should a
+   picture's root `aria-hidden` count, or only `aria-hidden` groups inside it?
+3. **Cost.** `canShrink` calls `getComputedStyle` on every descendant on every fit, and a fit runs on each stage resize, so every
+   frame on an animating stage. Not measured. Run it once per svg (WeakMap) if a profile shows it.
+4. **Labels drawn after the fit** (late annotations that do not resize the stage) are not re-measured. Low risk.
+5. The sibling-overlay skip is broad: any absolutely positioned sibling, even a badge, blocks the shrink. It costs some fit, never legibility. That is acceptable.
+6. `slice` would crop rather than scale. 0 lessons use it today. Skip it with `none` if one appears.
+
+Not done from changes 3-4:
+- The before/after numbers went into `company/ops/changelog.md`, not the change note `company/engineering/notes/2026-10-14-reveal-stage-crop.md`. Copy them there.
+- The three named lessons were skipped, not hand-checked or tagged. Their untagged targets no longer shrink, so the fit side is closed.
+  Whether the QA contract should see `cursor: pointer` targets is the evaluation steward's question, not this review's.
+
+| Objection | Raised by | Status |
+|---|---|---|
+| Fully fitting falls 398 → 176. The cost is bigger than estimated (41 shrunk lessons fit vs ~60 at 9 px; the author's 10 px estimate was ~44). | principal-engineer | **Accepted as the cost** (same as above). The remaining crop goes to the per-lesson route (W-264 to W-267) and the fold design (W-330/W-332), which folds controls before any picture shrink. |
+| The "0 labels under 10 px" figure does not count `<tspan>`. | principal-engineer | **Open, routed** to platform-engineer (W-288 follow-on). It does not block: the main defect (median 4.9 px) is fixed. |

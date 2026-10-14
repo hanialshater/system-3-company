@@ -3806,10 +3806,11 @@
       "id": "W-335",
       "title": "W-330 design review of fold at the reveal (the design lead wrote it and may not approve it): review the platform engineer's EDD and the built toggle on 3 control-cause lessons; record in company/reviews/<slug>/<date>-design.md. Spec: company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
       "owner": "interaction-designer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-336",
@@ -3842,10 +3843,11 @@
       "id": "W-339",
       "title": "Review f244779 (W-287/W-288 legibility floor in useRevealFit): 10px/8px floors, skips, undo no-gain shrinks; probe fit fully 398 -> 176, min label 10.0px; contract 98/98 on 49 lessons. Then paste into the W-237 review record",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-340",
@@ -3907,6 +3909,69 @@
       "owner": "demo-builder",
       "state": "next",
       "domain": "probability",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-347",
+      "title": "W-335 changes to the fold-at-the-reveal spec (interaction-designer review, Consulted in company/decisions/2026-10-14-reveal-fits-with-its-picture.md): (1) opt-in test is evidence, not quote: a Row may opt in only if it holds no Readout and nothing a reveal sentence summarises or asks the learner to check, in EVERY reveal branch (read Demo.tsx; reveal-fit named is a floor), and its state shows in the picture; (2) toggle label is 'Show controls' only when no other stage control stays visible, else 'Show more controls' (Hide: 'Hide controls'); (3) fold is decided once, in the first fit, before the reveal paints; the 400 ms re-fit, ResizeObserver and growth re-fits never fold or unfold; (4) focus rules and scroll anchoring as written in the record; (5) fold only if net saving (folded rows minus toggle) is at least the toggle height. Update the Amendment spec and company/design/system.md 'Fold at the reveal'",
+      "owner": "design-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-348",
+      "title": "W-332 EDD constraints from the W-335 design review (company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted): net-saving gate (sum of folded row heights incl. margins minus toggle >= 44 px, else no fold); fold applied in the same layout pass that first shows the reveal (useLayoutEffect or before rAF paint), never from the 400 ms timer or resize; never fold a Row containing a Readout; label variant 'Show more controls' when any other [data-qa=control] on the stage stays visible; if document.activeElement is inside a folding row move focus to the toggle; on expand focus stays on the toggle and the toggle keeps its on-screen position (rows open below it, reveal moves down, no scroll jump); on hide, focus inside a hidden row returns to the toggle",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-349",
+      "title": "W-333 addition from the W-335 design review (company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted): the fold simulation must charge the toggle (>= 44 px + row margin) against the saving and exclude Rows holding a Readout; report net px closed per lesson. The build-5 'controls block' height overstates the fold: in gradient-descent the only Row the reveal does not quote saves about one row, roughly the toggle's own height",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-350",
+      "title": "Fold-at-the-reveal toggle look (W-330/W-335): it must read as a control, not as caption text (system.md says 'text style'): kit Control styling, a disclosure chevron that flips on expand, >= 44 px, full stage width. Learners skim muted text-style lines as captions, so a text-style toggle hides the folded rows a second time. Review: company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted (interaction-designer)",
+      "owner": "visual-designer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-351",
+      "title": "W-335 part 2: design review of the BUILT fold toggle after W-332 on midnight-sun-line, gradient-descent and one more control-cause lesson at 390x844 (walkthrough first): fold timing (no visible vanish), label variant, focus on expand/hide, re-check of one reveal sentence with folded rows. Record in company/reviews/<slug>/<date>-design.md. Spec review: company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-352",
+      "title": "W-339 follow-ons to f244779: measure <tspan> as well as <text> in smallestTextPx (5 lessons give tspan a smaller class); copy the before/after numbers into company/engineering/notes/2026-10-14-reveal-stage-crop.md; re-run company/engineering/reviews/2026-10-14-W-339-postfix-probe.mjs. See the review's Follow-up: f244779 section",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-353",
+      "title": "W-339 Q: should a root aria-hidden on a lesson picture make all of its labels decorative (8px floor) under W-289, or only aria-hidden groups inside it? See company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md (Follow-up: f244779, edge 2)",
+      "owner": "accessibility-reviewer",
+      "state": "backlog",
+      "domain": null,
       "created": "2026-10-14",
       "links": []
     }
