@@ -10,7 +10,7 @@ export const P_HEADS = 0.6;
 export const ROUNDS = 100;
 export const PLAYERS = 31;
 export const SEED = 2; // CHOSEN: the first seed whose middle player has 60 heads (the median over seeds); seed 60, tried first, gave 57
-export const STAKES: readonly number[] = [0.05, 0.1, 0.2, 0.4, 0.6];
+export const STAKES: readonly number[] = [0.05, 0.1, 0.2, 0.3, 0.4, 0.6];
 export const BEST = Math.round((2 * P_HEADS - 1) * 100) / 100; // 0.2 (rounded: 2 x 0.6 - 1 is 0.19999999999999996 in floats)
 
 /** Seeded coin outcomes: PLAYERS rows of ROUNDS booleans (true = heads). */

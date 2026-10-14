@@ -17,6 +17,15 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 const span = (v: number[]) => Math.max(...v) - Math.min(...v);
 const beyond = (v: number[]) => v.filter((x) => Math.abs(x) > 1).length;
 const LAST = CHECK.length - 1;
+/** Index of the Cauchy dot farthest from 0 at the largest draw count, and the biggest single draw inside it. */
+function farthest() {
+  const d = dots();
+  let far = 0;
+  d.cau[LAST].forEach((v, i) => {
+    if (Math.abs(v) > Math.abs(d.cau[LAST][far])) far = i;
+  });
+  return { val: d.cau[LAST][far], big: d.big[far] };
+}
 
 const W = 340;
 const H = 150;
@@ -53,6 +62,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
     if (i === LAST) reach("ten-thousand");
   };
   const show = !locked && k >= 0;
+  const far = farthest();
   return (
     <div className={s.wrap}>
       <svg
@@ -80,7 +90,9 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       </svg>
       <p className={s.chip}>
         {show
-          ? `Each dot averages ${fmt(CHECK[k])} draw${k === 0 ? "" : "s"}. Hollow: off the chart.`
+          ? k === LAST
+            ? `Same 30 runs, ${fmt(CHECK[k])} draws each. Hollow: off chart. Farthest Cauchy dot ${far.val.toFixed(1)} holds one draw of ${fmt(Math.round(far.big))}.`
+            : `Same 30 runs, ${fmt(CHECK[k])} draw${k === 0 ? "" : "s"} each. Hollow: off the chart.`
           : "Each dot: one run's average. Cauchy: rare, enormous draws."}
       </p>
       <Row>
@@ -91,8 +103,8 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
         ))}
       </Row>
       <Row>
-        <Readout label="Die dots span" value={show ? span(d.die[k]).toFixed(2) : "?"} />
-        <Readout label="Cauchy beyond ±1" value={show ? `${beyond(d.cau[k])} of ${RUNS}` : "?"} />
+        <Readout label="Die: highest minus lowest" value={show ? span(d.die[k]).toFixed(2) : "?"} />
+        <Readout label="Cauchy: more than 1 from 0" value={show ? `${beyond(d.cau[k])} of ${RUNS}` : "?"} />
       </Row>
     </div>
   );
@@ -100,23 +112,18 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
 
 export default function AverageNeverSettles({ slug }: { slug: string }) {
   const d = dots();
+  const { val: farVal, big: farBig } = farthest();
   const dieSpan1 = span(d.die[0]);
   const dieSpanBig = span(d.die[LAST]);
   const b1 = beyond(d.cau[0]);
   const bBig = beyond(d.cau[LAST]);
-  let far = 0;
-  d.cau[LAST].forEach((v, i) => {
-    if (Math.abs(v) > Math.abs(d.cau[LAST][far])) far = i;
-  });
-  const farVal = d.cau[LAST][far];
-  const farBig = d.big[far];
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Averaging more die rolls squeezes the average onto 3.5. Now average numbers where a rare draw can be enormous (a Cauchy distribution). With more draws, the average:",
+          "Averaging more die rolls squeezes the average onto 3.5. Now average numbers of a different kind, called Cauchy, where a rare draw can be enormous. With more draws, the average:",
         options: ["Squeezes in too, just more slowly", "Stays as spread out as one draw", "Drifts steadily to zero"],
         answer: 1,
       }}
@@ -130,7 +137,7 @@ export default function AverageNeverSettles({ slug }: { slug: string }) {
             <strong>not narrow</strong>.
           </p>
           <p>
-            Why: the farthest Cauchy dot ({farVal.toFixed(1)}) contains one draw of size {fmt(Math.round(farBig))}. Even
+            Why: the farthest Cauchy dot ({farVal.toFixed(1)}), which you saw, contains one draw of size {fmt(Math.round(farBig))}. Even
             divided by {fmt(CHECK[LAST])}, that single draw moves the average by {(farBig / CHECK[LAST]).toFixed(1)}.
           </p>
           <p className="muted">

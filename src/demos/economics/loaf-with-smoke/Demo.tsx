@@ -42,7 +42,7 @@ export default function LoafWithSmoke({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bread model: buyers' price for the q-th loaf is (100 - q) / 10 dollars, the bakers' cost is (q + 20) / 10, giving ${MARKET} loaves. Each loaf also puts $${Q_HARM} of smoke on neighbours. How many loaves match the true total cost?`,
+        question: `Buyers pay less for each extra loaf; bakers' cost per loaf rises. They meet at ${MARKET} loaves. But each loaf also puts $${Q_HARM} of smoke on neighbours. At how many loaves does the buyers' price equal the true cost (bakers' cost plus smoke)?`,
         options: [String(MARKET), String(TRUE_Q), "0"],
         answer: 1,
       }}
@@ -52,7 +52,7 @@ export default function LoafWithSmoke({ slug }: { slug: string }) {
         <>
           <p>
             The market stops at <strong>{MARKET}</strong> loaves, where buyers&apos; price equals the bakers&apos; cost. With ${Q_HARM} of
-            smoke per loaf, the true cost line meets the buyers&apos; line at <strong>{TRUE_Q}</strong>. Loaves {TRUE_Q + 1} to {MARKET} are worth less to buyers than they truly cost.
+            smoke per loaf, the true cost line meets the buyers&apos; line at <strong>{TRUE_Q}</strong>. Loaves past {TRUE_Q}, up to {MARKET}, are worth less to buyers than they truly cost: the shaded wedge.
           </p>
           <p>
             A cost that falls on others is left out of the price, so more is made than the true cost justifies.
@@ -89,13 +89,20 @@ export default function LoafWithSmoke({ slug }: { slug: string }) {
                     buyers
                   </text>
                   <line x1={px(0)} y1={py(bakers(0) + t)} x2={px(QMAX)} y2={py(bakers(QMAX) + t)} className={s.line2} />
-                  <text x={px(70)} y={py(bakers(70) + t) + 14} className={s.small}>
-                    bakers{tax ? " + $1 tax" : ""}
+                  <text x={px(72)} y={py(bakers(72) + t) + 14} className={s.small}>
+                    bakers{tax ? " + $1 cost" : ""}
                   </text>
                   {!locked && harm > 0 && (
                     <>
+                      {trueQ < MARKET && (
+                        <polygon
+                          points={`${px(trueQ)},${py(buyers(trueQ))} ${px(MARKET)},${py(buyers(MARKET))} ${px(MARKET)},${py(bakers(MARKET) + harm)}`}
+                          fill="var(--bad)"
+                          opacity={0.35}
+                        />
+                      )}
                       <line x1={px(0)} y1={py(bakers(0) + harm)} x2={px(QMAX)} y2={py(bakers(QMAX) + harm)} stroke="var(--bad)" strokeWidth={3} strokeDasharray="5 4" />
-                      <text x={px(52)} y={py(bakers(52) + harm) - 6} className={s.small}>
+                      <text x={px(6)} y={py(bakers(6) + harm) - 6} className={s.small}>
                         true cost
                       </text>
                       <line x1={px(trueQ)} y1={Y0} x2={px(trueQ)} y2={py(buyers(trueQ))} stroke="var(--bad)" strokeWidth={1.5} />
@@ -109,6 +116,9 @@ export default function LoafWithSmoke({ slug }: { slug: string }) {
                     {marketQ}
                   </text>
                 </svg>
+                <p className={s.msg} aria-live="polite">
+                  {!locked && harm > 0 ? `Shaded: loaves past ${trueQ} cost more than buyers pay.` : ""}
+                </p>
                 <Row>
                   <Readout label="Market makes" value={`${marketQ} loaves`} />
                   <Readout label="True cost says" value={locked ? "?" : `${trueQ} loaves`} />

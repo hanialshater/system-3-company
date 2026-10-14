@@ -3,7 +3,7 @@
 // Short-loan annualised rate. One bar: a 364-day year cut into loans of the chosen length, each
 // stamped with the same $15 fee per $100. The count of stamps and their total are the yearly rate.
 // Key state: 14-day loans: 26 fees of $15 = $390 per $100 a year (390%).
-// Model: simple annualisation (no compounding), fee only, no rollover, a 364-day year.
+// Model: simple annualisation (no compounding), fee only, the $100 borrowed again each time, a 364-day year.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -31,11 +31,11 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A lender charges $${FEE} to lend $100 for two weeks. Counting ${periods(Q_DAYS)} two-week periods in a year, what is the simple yearly rate?`,
+        question: `A lender charges $${FEE} to lend $100 for two weeks. Suppose you borrow $100 again each time, all year, paying the fee each time. As a share of the $100, what is that per year?`,
         options: [`${FEE}%`, pct(yearly(Q_DAYS)), "100%"],
         answer: 1,
       }}
-      exploreHint="Set the loan to 2 weeks and count the fees in a year."
+      exploreHint="Try the loan lengths and count the fees in a year."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -45,7 +45,7 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
             {FEE}% is the rate for two weeks only.
           </p>
           <p>The fee did not change as you moved the length; the number of times it repeats did. Compare rates over the same time.</p>
-          <p className="muted">A model: simple annualising, fee only, no rollover, no view on any lender.</p>
+          <p className="muted">A model: you borrow $100 again each time and pay only the fee; simple annualising, no view on any lender.</p>
         </>
       )}
     >
@@ -62,10 +62,10 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
             const stamps = Array.from({ length: Math.ceil(n) }, (_, i) => i);
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: simple yearly rate, fee only</p>
+                <p className={s.chip}>Model: borrow again each time, fee only</p>
                 <svg viewBox="0 0 320 120" className="stage-svg" role="img" aria-label={locked ? "A year bar" : `${fmt(n)} loans in a year`}>
                   <text x={L} y={16} className={s.value}>
-                    One year, loans of {days} days, ${FEE} fee per $100
+                    A year of {days}-day loans, ${FEE} fee each
                   </text>
                   <rect x={L} y={26} width={W} height={34} rx={3} className={s.ghostFill} />
                   {!locked &&

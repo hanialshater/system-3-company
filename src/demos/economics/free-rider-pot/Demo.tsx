@@ -3,7 +3,7 @@
 // Public goods and free riding. One picture: ten piles of money, "you" first. Each pile is what that
 // neighbour kept plus their equal share of the pot (every dollar given becomes $3, split ten ways).
 // Key state: you give $10 while the others give nothing (you $3, each of them $13, group $120), then
-// everyone gives $10 (everyone $30, group $300).
+// everyone gives $10 (everyone $30, group $300), then you keep your $10 while the others all give (you $37, group $280).
 // Model: one round, no talking, no punishment. The "mixed" neighbours are a seeded draw
 // (mulberry32 seed 7, untuned: the first seed tried), $0 to $10 each.
 
@@ -19,7 +19,7 @@ const HOLD = 10;
 const MULT = 3;
 const START_GIVE = 8;
 const SEED = 7;
-const MILESTONES = ["lone-giver", "all-give"] as const;
+const MILESTONES = ["lone-giver", "all-give", "hold-back"] as const;
 
 type Mode = "none" | "mixed" | "all";
 const MIXED = (() => {
@@ -38,6 +38,7 @@ const BACK_PER_DOLLAR = MULT / N; // 0.30 back to you for each $1 you give
 const q = payoffs([HOLD, ...othersFor("none")]);
 const ANSWER = q[0].total; // 3
 const ALL = payoffs(Array(N).fill(HOLD))[0].total; // 30
+const HOLD_BACK = payoffs([0, ...Array(N - 1).fill(HOLD)]); // you keep $10, the others give $10 each
 const sum = (xs: { total: number }[]) => xs.reduce((a, b) => a + b.total, 0);
 const money = (v: number) => `$${Number.isInteger(v) ? v : v.toFixed(2)}`;
 
@@ -61,13 +62,13 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
         options: [money(HOLD * MULT), money(ANSWER), money(HOLD + ANSWER)],
         answer: 1,
       }}
-      exploreHint={`Give all $${HOLD} while the others give nothing. Then let everyone give.`}
+      exploreHint={`Give all $${HOLD} while the others give nothing. Then let everyone give, then hold your money back.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             Giving ${HOLD} alone left you <strong>{money(ANSWER)}</strong> while each neighbour had {money(q[1].total)}; the group
-            went from ${N * HOLD} to {money(sum(q))}. When everyone gave ${HOLD}, everyone ended with <strong>{money(ALL)}</strong>.
+            went from ${N * HOLD} to {money(sum(q))}. When everyone gave ${HOLD}, everyone ended with <strong>{money(ALL)}</strong>. Then you kept your ${HOLD} while the nine gave: you rose to <strong>{money(HOLD_BACK[0].total)}</strong>, the group fell to {money(sum(HOLD_BACK))}.
           </p>
           <p>
             Each dollar you give becomes ${MULT}, but you get back only a tenth: {Math.round(BACK_PER_DOLLAR * 100)} cents. So whatever
@@ -88,6 +89,7 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
             const check = (g: number, m: Mode) => {
               if (g === HOLD && m === "none") reach("lone-giver");
               if (g === HOLD && m === "all") reach("all-give");
+              if (g === 0 && m === "all") reach("hold-back");
             };
             return (
               <div className={s.wrap}>
@@ -111,7 +113,7 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
                           <rect x={x} y={py(kept + share)} width={W - 2} height={py(kept) - py(kept + share)} className={s.goodFill} />
                         )}
                         <text x={x + (W - 2) / 2} y={py(kept + share) - 4} textAnchor="middle" className={s.small}>
-                          {locked ? `$${HOLD}` : money(Math.round(p.total * 10) / 10)}
+                          {locked ? `$${HOLD}` : `$${Math.round(p.total)}`}
                         </text>
                       </g>
                     );
@@ -163,6 +165,17 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
                       {label}
                     </Control>
                   ))}
+                </Row>
+                <Row>
+                  <Control
+                    disabled={locked || give === 0}
+                    onClick={() => {
+                      setGive(0);
+                      check(0, mode);
+                    }}
+                  >
+                    You keep all ${HOLD}
+                  </Control>
                 </Row>
               </div>
             );

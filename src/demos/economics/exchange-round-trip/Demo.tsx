@@ -15,7 +15,8 @@ import s from "./styles.module.css";
 const START = 1000;
 const OUT_RATE = 0.9; // euros per dollar
 const Q_PRICE = 1.05; // dollars per euro on the way back
-const MILESTONES = ["round-trip"] as const;
+const MILESTONES = ["round-trip", "near-even"] as const;
+const TOP_PRICE = 1.11;
 
 const euros = START * OUT_RATE;
 const back = (price: number) => euros * price;
@@ -36,11 +37,11 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A booth gives ${OUT_RATE.toFixed(2)} euro per dollar and sells dollars at ${price2(Q_PRICE)} per euro. You change ${usd(START)} into euros, then straight back, with no market move. How much do you hold?`,
+        question: `A booth gives you ${OUT_RATE.toFixed(2)} euro for each $1 you hand over, and gives you ${price2(Q_PRICE)} for each euro you hand back. You change ${usd(START)} into euros, then straight back, with no market move. How much do you hold?`,
         options: [usd(START), usd(back(Q_PRICE)), usd(START * OUT_RATE)],
         answer: 1,
       }}
-      exploreHint="Change the money to euros and back."
+      exploreHint="Change the money to euros and back, then try a better price on the way back."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -49,7 +50,7 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
             {price2(Q_PRICE)} per euro: {usd(START - back(Q_PRICE))} gone, with no market move at all.
           </p>
           <p>
-            The booth buys and sells at different rates, so each round trip pays that gap. Getting your {usd(START)} back would take 1 / {OUT_RATE.toFixed(2)} = {BREAK_EVEN.toFixed(4)} dollars per euro, which is no gap at all.
+            The booth buys and sells at different rates, so each round trip pays that gap. Getting your {usd(START)} back would take 1 / {OUT_RATE.toFixed(2)} = {BREAK_EVEN.toFixed(4)} dollars per euro, which is no gap at all. At {price2(TOP_PRICE)} you saw {usd(back(TOP_PRICE))}: still {usd(START - back(TOP_PRICE))} short.
           </p>
           <p className="muted">A model: one booth, invented rates, no fees. Not advice on where to change money.</p>
         </>
@@ -87,7 +88,9 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
                   <Readout label="Holding" value={leg === 1 ? eur(amount) : usd(amount)} />
                   <Readout label="Lost" value={locked || leg !== 2 ? "?" : usd(START - back(price))} />
                 </Row>
-                {leg === 2 && price !== Q_PRICE && <p className={s.msg}>The question used {price2(Q_PRICE)} per euro.</p>}
+                <p className={s.msg} aria-live="polite">
+                  {locked ? "" : `At ${price2(price)} per euro, ${eur(euros)} comes back as ${usd(back(price))}.`}
+                </p>
                 <Row>
                   <Control disabled={locked || leg !== 0} onClick={() => setLeg(1)}>
                     To euros
@@ -104,9 +107,18 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
                   <Control disabled={locked || leg === 0} onClick={() => setLeg(0)}>
                     Start over
                   </Control>
+                  <Control
+                    disabled={locked || price === TOP_PRICE}
+                    onClick={() => {
+                      setPrice(TOP_PRICE);
+                      reach("near-even");
+                    }}
+                  >
+                    Try {price2(TOP_PRICE)} per euro
+                  </Control>
                 </Row>
                 <Slider
-                  label="Booth price of 1 euro on the way back"
+                  label="Dollars you get per euro handed back"
                   value={price}
                   min={1}
                   max={1.11}
@@ -117,6 +129,7 @@ export default function ExchangeRoundTrip({ slug }: { slug: string }) {
                     const p = Math.round(v * 100) / 100;
                     setPrice(p);
                     if (leg === 2 && p === Q_PRICE) reach("round-trip");
+                    if (p === TOP_PRICE) reach("near-even");
                   }}
                 />
               </div>

@@ -23,12 +23,10 @@
   "claims": [
     {
       "id": "economics.square-root-wealth.c1",
-      "text": "In the model, the felt value of a 50-50 coin paying $0 or $100 is 0.5 x sqrt(0) + 0.5 x sqrt(100) = 5.",
+      "text": "In the model, the felt value of a 50-50 coin paying $0 or $100 is 0.5 x sqrt(0) + 0.5 x sqrt(100) = 0 + 5 = 5 (the stage shows this working).",
       "support": "derivation",
-      "source": "0.5 x 0 + 0.5 x 10 = 5. Demo.tsx COIN.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "0.5 x 0 + 0.5 x 10 = 5 (node; Demo.tsx COIN).",
+      "status": "unverified"
     },
     {
       "id": "economics.square-root-wealth.c2",
@@ -88,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:risk-aversion",
     "prerequisites": [
@@ -97,5 +95,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

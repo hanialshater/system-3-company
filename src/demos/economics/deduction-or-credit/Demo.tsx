@@ -3,7 +3,8 @@
 // Deduction vs credit in a made-up tax system. Income $10,000, tax rate 20% (slider 10-40%).
 // Deduction of $1,000: taxable income falls by 1,000, so tax falls by rate x 1,000.
 // Credit of $1,000: the tax bill falls by 1,000 directly.
-// Key states (milestones): deduction at 20% (tax cut $200) and credit at 20% (tax cut $1,000).
+// Stage: three bars (no relief, deduction, credit), each with its working. Key states (milestones): deduction shown at 20%
+// (cut $200), credit shown at 20% (cut $1,000), and the deduction shown at a higher rate (cut grows; the credit's does not).
 // Model: fictional system, no real country, no tax advice.
 
 import { useState } from "react";
@@ -15,20 +16,21 @@ import s from "./styles.module.css";
 const INCOME = 10000;
 const RELIEF = 1000;
 const Q_RATE = 20;
-const MILESTONES = ["deduction", "credit"] as const;
-type Mode = "none" | "deduction" | "credit";
+const MILESTONES = ["deduction", "credit", "higher"] as const;
 
 const baseTax = (r: number) => (INCOME * r) / 100;
-const bill = (mode: Mode, r: number) =>
-  mode === "deduction" ? ((INCOME - RELIEF) * r) / 100 : mode === "credit" ? Math.max(0, baseTax(r) - RELIEF) : baseTax(r);
+const dedBill = (r: number) => ((INCOME - RELIEF) * r) / 100;
+const credBill = (r: number) => Math.max(0, baseTax(r) - RELIEF);
 const usd = (v: number) => `$${v.toLocaleString("en-US")}`;
 
 const L = 12;
 const W = 296;
+const BAR_H = 20;
 const MAX_TAX = baseTax(40);
 
 export default function DeductionCredit({ slug }: { slug: string }) {
-  const [mode, setMode] = useState<Mode>("none");
+  const [ded, setDed] = useState(false);
+  const [cred, setCred] = useState(false);
   const [rate, setRate] = useState(Q_RATE);
 
   return (
@@ -39,62 +41,68 @@ export default function DeductionCredit({ slug }: { slug: string }) {
         options: [usd(RELIEF), usd((RELIEF * Q_RATE) / 100), "$0"],
         answer: 1,
       }}
-      exploreHint="Try the deduction, then the credit, both at 20%."
+      exploreHint="Show the deduction, then the credit, then raise the tax rate."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            At {Q_RATE}% the {usd(RELIEF)} deduction cut the bill from {usd(baseTax(Q_RATE))} to {usd(bill("deduction", Q_RATE))}, a cut of{" "}
-            <strong>{usd(baseTax(Q_RATE) - bill("deduction", Q_RATE))}</strong>. The {usd(RELIEF)} credit cut it to {usd(bill("credit", Q_RATE))}, a cut of{" "}
-            <strong>{usd(baseTax(Q_RATE) - bill("credit", Q_RATE))}</strong>.
+            At {Q_RATE}% the {usd(RELIEF)} deduction left {usd(INCOME - RELIEF)} to be taxed, so the bill fell from {usd(baseTax(Q_RATE))} to {usd(dedBill(Q_RATE))}: a cut of{" "}
+            <strong>{usd(baseTax(Q_RATE) - dedBill(Q_RATE))}</strong>, which is {Q_RATE}% of {usd(RELIEF)}. The {usd(RELIEF)} credit came off the bill itself, a cut of{" "}
+            <strong>{usd(baseTax(Q_RATE) - credBill(Q_RATE))}</strong>.
           </p>
-          <p>A credit subtracts from the bill; a deduction subtracts from the income the bill is taken from. A made-up system, not advice.</p>
+          <p>A deduction saves the rate times its size, so it was worth more at a higher rate, while the credit saved its full size at every rate. A made-up system, not advice.</p>
         </>
       )}
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
-            const update = (m: Mode, r: number) => {
-              setMode(m);
+            const update = (d: boolean, c: boolean, r: number) => {
+              setDed(d);
+              setCred(c);
               setRate(r);
-              if (r === Q_RATE && m === "deduction") reach("deduction");
-              if (r === Q_RATE && m === "credit") reach("credit");
+              if (d && r === Q_RATE) reach("deduction");
+              if (c && r === Q_RATE) reach("credit");
+              if (d && r > Q_RATE) reach("higher");
             };
-            const b = bill(mode, rate);
-            const cut = baseTax(rate) - b;
+            const base = baseTax(rate);
+            const rows = [
+              { key: "none", label: `No relief: ${rate}% of ${usd(INCOME)} = ${usd(base)}`, on: true, v: base, cls: s.ghostFill },
+              { key: "ded", label: `Deduction: ${rate}% of ${usd(INCOME - RELIEF)} = ${usd(dedBill(rate))}`, on: ded, v: dedBill(rate), cls: s.main },
+              { key: "cred", label: `Credit: ${usd(base)} - ${usd(RELIEF)} = ${usd(credBill(rate))}`, on: cred, v: credBill(rate), cls: s.goodFill },
+            ];
             return (
               <div className={s.wrap}>
                 <p className={s.chip}>Made-up system: income $10,000, one flat rate</p>
-                <p className={s.msg}>Deduction: taken off income first. Credit: taken off the bill.</p>
-                <svg viewBox="0 0 320 100" className="stage-svg" role="img" aria-label={locked ? "Tax bill bar" : `Tax bill ${usd(b)}`}>
-                  <text x={L} y={16} className={s.axis}>
-                    tax bill (dashed: no relief)
-                  </text>
-                  <rect x={L} y={24} width={(baseTax(rate) / MAX_TAX) * W} height={34} rx={3} className={s.ghostFill} />
-                  {!locked && <rect x={L} y={24} width={(b / MAX_TAX) * W} height={34} className={s.main} />}
-                  {!locked && (
-                    <text x={L + 4} y={46} className={s.small} style={{ fill: "#fff" }}>
-                      {usd(b)}
-                    </text>
-                  )}
-                  <text x={L} y={80} className={s.small}>
-                    {locked ? "" : `no relief: ${usd(baseTax(rate))}`}
-                  </text>
+                <svg viewBox="0 0 320 130" className="stage-svg" role="img" aria-label={locked ? "Tax bill bars" : `No relief ${usd(base)}`}>
+                  {rows.map((row, i) => {
+                    const y = 6 + i * 42;
+                    const shown = row.on && !locked;
+                    return (
+                      <g key={row.key}>
+                        <text x={L} y={y + 10} className={s.axis}>
+                          {shown ? row.label : row.key === "none" ? "" : row.key === "ded" ? "Deduction: ?" : "Credit: ?"}
+                        </text>
+                        <rect x={L} y={y + 15} width={W} height={BAR_H} rx={3} className={s.ghost} />
+                        {shown && <rect x={L} y={y + 15} width={Math.max(0, (row.v / MAX_TAX) * W)} height={BAR_H} className={row.cls} />}
+                      </g>
+                    );
+                  })}
                 </svg>
                 <Row>
                   <Readout label="Tax rate" value={`${rate}%`} />
-                  <Readout label="Bill cut by" value={locked || mode === "none" ? "?" : usd(cut)} />
+                  <Readout label="Deduction cuts" value={locked || !ded ? "?" : usd(base - dedBill(rate))} />
+                  <Readout label="Credit cuts" value={locked || !cred ? "?" : usd(base - credBill(rate))} />
                 </Row>
                 <Row>
-                  <Control className={mode === "deduction" ? "active" : ""} disabled={locked || mode === "deduction"} onClick={() => update("deduction", rate)}>
-                    {usd(RELIEF)} deduction
+                  <Control className={ded ? "active" : ""} disabled={locked || ded} onClick={() => update(true, cred, rate)}>
+                    Show {usd(RELIEF)} deduction
                   </Control>
-                  <Control className={mode === "credit" ? "active" : ""} disabled={locked || mode === "credit"} onClick={() => update("credit", rate)}>
-                    {usd(RELIEF)} credit
+                  <Control className={cred ? "active" : ""} disabled={locked || cred} onClick={() => update(ded, true, rate)}>
+                    Show {usd(RELIEF)} credit
                   </Control>
                 </Row>
-                <Slider label="Tax rate" value={rate} min={10} max={40} step={10} format={(v) => `${v}%`} disabled={locked} onChange={(v) => update(mode, v)} />
+                <Slider label="Tax rate" value={rate} min={10} max={40} step={10} format={(v) => `${v}%`} disabled={locked} onChange={(v) => update(ded, cred, v)} />
               </div>
             );
           }}

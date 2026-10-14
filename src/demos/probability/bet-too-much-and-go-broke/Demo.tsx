@@ -2,7 +2,7 @@
 
 // Kelly staking. 31 seeded players, same coin flips at every stake, drawn as money lines on a
 // x10-per-gridline chart over 100 rounds; the middle player (16th of 31 by heads) is bold. The learner
-// picks the stake: 5% (start), 10%, 20%, 40%, 60%. Key state: 20% and 60% both seen.
+// picks the stake: 5% (start), 10%, 20%, 30%, 40%, 60%. Key state: 20% and 60% both seen.
 // Stake buttons come first in DOM order, so QA visits every stake the question and reveal name.
 
 import { useState } from "react";
@@ -43,9 +43,10 @@ function Stage({ locked, interact, f, setF }: { locked: boolean; interact: () =>
   return (
     <div className={s.wrap}>
       <p className={s.msg}>
-        {locked
-          ? "Make a prediction to start."
-          : `${PLAYERS} players, same coin flips. Bold: the middle player (half end richer). Each gridline is 10 times the one below.`}
+        {locked ? "Make a prediction to start." : `${PLAYERS} players, same flips. Bold: the middle player. Each gridline is 10 times the one below.`}
+      </p>
+      <p className={s.msg} aria-live="polite">
+        {locked ? "" : `At ${pct(f)}: a win multiplies your money by ${(1 + f).toFixed(2)}, a loss by ${(1 - f).toFixed(2)}; one of each, by ${((1 + f) * (1 - f)).toFixed(2)}.`}
       </p>
       <svg viewBox="0 0 340 192" className={`stage-svg ${s.svg}`} role="img" aria-label={`Money of ${PLAYERS} players staking ${pct(f)} each round`}>
         {GRID.map((e) => (
@@ -109,7 +110,7 @@ export default function BetTooMuch({ slug }: { slug: string }) {
           </p>
           <p>
             A loss at a big stake costs more than a win gains back: at {pct(HIGH)}, one win then one loss leaves {win.toFixed(1)} ×{" "}
-            {lose.toFixed(1)} = {(win * lose).toFixed(2)}. The best share is 2 × {P_HEADS} − 1 = {pct(BEST)} (the Kelly rule).
+            {lose.toFixed(1)} = {(win * lose).toFixed(2)}. The best share is 2 × {P_HEADS} − 1 = {pct(BEST)} (the Kelly rule), for this model coin; real bets differ. Not advice.
           </p>
         </>
       )}
