@@ -5,16 +5,20 @@
 // distance between the bigon's two crossings). A "flattened" bigon is one whose width is small against its chord.
 // Also the minimum face width over all regions (definition at `bigons`), which catches squeezed non-bigons.
 //
-//   node measure-bigons.mjs [before] [--svg=outDir]
-// Measures this folder's library, or with `before` its parent gen2-force-smooth (imported statically from the sibling
-// folder, so this script only runs inside src/lab/knots/candidates/). --svg writes the renders 3_1, 4_1, 5_2, L2a1 and
-// random12 (randomKnot(20261014, {strands: 3, length: 12}), as in knots-gen2.md) as <outDir>/<lib>--<name>.svg.
+//   node company/rnd/evolution/knots-fix1/measure-bigons.mjs [before] [--table=kit] [--svg=outDir]
+// Measures candidate fix1-bigon's draw, or with `before` its parent gen2-force-smooth (both imported statically from
+// src/lab/knots/candidates/). Table diagrams come from the candidate's own (lab) table by default, or with
+// --table=kit from the kit's derived table (src/kit/knots, read only). --svg writes the renders 3_1, 4_1, 5_2, L2a1
+// and random12 (randomKnot(20261014, {strands: 3, length: 12}), as in knots-gen2.md) as <outDir>/<lib>--<name>.svg.
+// Moved here from the candidate folder by the rnd-lead on 2026-10-14 (frozen-file check; NOTES section 8); the
+// width definitions and the self-check are unchanged, only the import paths and the --table option are new.
 import fs from 'node:fs'
 import path from 'node:path'
-import * as Kafter from './index.mjs'
-import * as Cafter from './core.mjs'
-import * as Kbefore from '../gen2-force-smooth/index.mjs'
-import * as Cbefore from '../gen2-force-smooth/core.mjs'
+import * as Kafter from '../../../../src/lab/knots/candidates/fix1-bigon/index.mjs'
+import * as Cafter from '../../../../src/lab/knots/candidates/fix1-bigon/core.mjs'
+import * as Kbefore from '../../../../src/lab/knots/candidates/gen2-force-smooth/index.mjs'
+import * as Cbefore from '../../../../src/lab/knots/candidates/gen2-force-smooth/core.mjs'
+import * as Kit from '../../../../src/kit/knots/index.mjs'
 
 const args = process.argv.slice(2), flag = (k) => args.find((a) => a.startsWith(`--${k}=`))?.split('=')[1]
 const before = args.includes('before'), K = before ? Kbefore : Kafter, C = before ? Cbefore : Cafter, tag = before ? 'gen2-force-smooth' : 'fix1-bigon'
@@ -52,10 +56,12 @@ export function bigons(pd) {
   return out
 }
 
-const prime = Object.keys(K.KNOTS).filter((n) => /^\d+_\d+$/.test(n) && n != '0_1')
+const TABLE = flag('table') === 'kit' ? Kit.KNOTS : K.KNOTS
+console.log(`table ${flag('table') === 'kit' ? 'kit (src/kit/knots, derived)' : 'lab (candidate)'}`)
+const prime = Object.keys(TABLE).filter((n) => /^\d+_\d+$/.test(n) && n != '0_1')
 const row = (knot, B) => ({ knot, bigons: B.length, minWidth: +Math.min(...B.map((b) => b.width)).toFixed(1), minRatio: +Math.min(...B.map((b) => b.ratio)).toFixed(2), face: +B.face.toFixed(1) })
 const r12 = K.randomKnot(20261014, { strands: 3, length: 12 }).pd
-const rows = [...[...prime, 'L2a1'].map((n) => row(n, bigons(K.KNOTS[n].pd))), row('random12', bigons(r12))]
+const rows = [...[...prime, 'L2a1'].map((n) => row(n, bigons(TABLE[n].pd))), row('random12', bigons(r12))]
 console.log(`lib ${tag}`)
 console.log('knot     bigons  min bigon width (of 100)  min width/chord  min face width')
 for (const r of rows) console.log(`${r.knot.padEnd(9)}${String(r.bigons).padStart(6)}${String(r.minWidth).padStart(26)}${String(r.minRatio).padStart(17)}${String(r.face).padStart(16)}`)
@@ -71,7 +77,7 @@ console.log(`randomKnot(1..200): bigons ${rs.length}, bigon width min ${q(rs, 0)
 const svgDir = flag('svg')
 if (svgDir) {
   fs.mkdirSync(svgDir, { recursive: true })
-  const cases = { '3_1': K.KNOTS['3_1'].pd, '4_1': K.KNOTS['4_1'].pd, '5_2': K.KNOTS['5_2'].pd, L2a1: K.KNOTS.L2a1.pd, random12: r12 }
+  const cases = { '3_1': TABLE['3_1'].pd, '4_1': TABLE['4_1'].pd, '5_2': TABLE['5_2'].pd, L2a1: TABLE.L2a1.pd, random12: r12 }
   for (const [n, pd] of Object.entries(cases)) {
     const D = K.draw(pd)
     const body = D.edges.map((e) => `<path d="${e.d}" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round"/>`).join('')
