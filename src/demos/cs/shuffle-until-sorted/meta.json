@@ -26,43 +26,55 @@
       "id": "cs.shuffle-until-sorted.c1",
       "text": "Seeded runs on this stage: one 5-card run took 183 shuffles, and 100 runs averaged 113 (from 2 to 695). For 3 cards: one run 12, average 7; for 4 cards: one run 43, average 22.",
       "support": "simulation",
-      "source": "Demo.tsx perm() and average(); builder's node script (2026-10-14) with the same mulberry32 and Fisher-Yates of 1..n. Seeds: mulberry32(42 + n) for the single-run stream (hand shuffles and 'Shuffle until sorted' share it, so the run length does not depend on press order), mulberry32(4200 + n) for the 100 runs, mulberry32(7 + n) for the first deal. Seeds follow the spec's scheme and were not chosen for the result. Averages of 100: 6.64, 22.08, 112.76 (shown rounded); longest 5-card run 695. Across 200 other seeds the 5-card average of 100 ranged 89 to 160, so 113 is one example, not the mean. Single runs capped at 5,000 shuffles (never hit by these seeds).",
-      "status": "unverified"
+      "source": "Demo.tsx perm() and average(); builder's node script (2026-10-14) with the same mulberry32 and Fisher-Yates of 1..n. Seeds: mulberry32(42 + n) for the single-run stream (hand shuffles and 'Shuffle until sorted' share it, so the run length does not depend on press order), mulberry32(4200 + n) for the 100 runs, mulberry32(7 + n) for the first deal. Seeds follow the spec's scheme and were not chosen for the result. Averages of 100: 6.64, 22.08, 112.76 (shown rounded); longest 5-card run 695. Across 200 other seeds the 5-card average of 100 ranged 89 to 160, so 113 is one example, not the mean. Single runs capped at 5,000 shuffles (never hit by these seeds). · Fact-check pass 21 2026-10-14: VERIFIED: node shuf.mjs with kit mulberry32 + Demo fisherYates: first sorted 5-card deal on seed 47 at shuffle 183; seed 4205 100 runs mean 112.76 (113), min 2, max 695; n=3: 12, mean 6.64 (7); n=4: 43, mean 22.08 (22). Run length is counted from runStart = 0 whatever the press order. 200 other seeds: 5-card means 87-156, so 113 is one example (as the source says).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shuffle-until-sorted.c2",
       "text": "Five cards can be ordered 5! = 120 ways, and each shuffle is equally likely to give any of them, so one shuffle in 120 comes out sorted and you wait about 120 shuffles on average.",
       "support": "derivation",
-      "source": "A Fisher-Yates shuffle gives each of the n! orders of n distinct cards probability 1/n! (Knuth, TAOCP vol. 2, Algorithm 3.4.2P). Independent shuffles until the first success are a geometric waiting time with p = 1/n!, whose mean is 1/p = n!. 5! = 120.",
-      "status": "unverified"
+      "source": "A Fisher-Yates shuffle gives each of the n! orders of n distinct cards probability 1/n! (Knuth, TAOCP vol. 2, Algorithm 3.4.2P). Independent shuffles until the first success are a geometric waiting time with p = 1/n!, whose mean is 1/p = n!. 5! = 120. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation (geometric waiting time, mean 1/p = n!); Demo shuffles from 1..n every time. Knuth 3.4.2 Algorithm P cited from memory, not opened; the verdict does not rest on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shuffle-until-sorted.c3",
       "text": "3 cards average about 3! = 6 shuffles and 4 cards about 4! = 24.",
       "support": "derivation",
-      "source": "Same geometric argument as c2 with n = 3 and n = 4; 3! = 6, 4! = 24 (arithmetic).",
-      "status": "unverified"
+      "source": "Same geometric argument as c2 with n = 3 and n = 4; 3! = 6, 4! = 24 (arithmetic). · Fact-check pass 21 2026-10-14: VERIFIED: 3! = 6, 4! = 24; stage averages 7 and 22 are consistent with 'about'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shuffle-until-sorted.c4",
       "text": "Each extra card multiplies the wait. With 10 cards there are 3,628,800 orders, so about 3.6 million shuffles.",
       "support": "derivation",
-      "source": "n! = n x (n - 1)!, so adding the n-th card multiplies the expected wait by n. 10! = 3,628,800 (arithmetic); expected wait 10! by c2.",
-      "status": "unverified"
+      "source": "n! = n x (n - 1)!, so adding the n-th card multiplies the expected wait by n. 10! = 3,628,800 (arithmetic); expected wait 10! by c2. · Fact-check pass 21 2026-10-14: VERIFIED: node: 10! = 3,628,800; n! = n x (n-1)!.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shuffle-until-sorted.c5",
       "text": "Only one order of the cards counts as sorted; a row with two or three cards in their right place is no closer to done.",
       "support": "derivation",
-      "source": "With distinct cards exactly one of the n! orders is ascending. Each shuffle here reshuffles all the cards from scratch (Fisher-Yates of 1..n, independent of the previous row), so ticks on one row do not change the chance for the next.",
-      "status": "unverified"
+      "source": "With distinct cards exactly one of the n! orders is ascending. Each shuffle here reshuffles all the cards from scratch (Fisher-Yates of 1..n, independent of the previous row), so ticks on one row do not change the chance for the next. · Fact-check pass 21 2026-10-14: VERIFIED: Demo fisherYates(n) starts from base(n) each call, so successive rows are independent; exactly one of n! orders passes inOrder().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shuffle-until-sorted.c6",
       "text": "Shuffling and checking cannot beat n!.",
       "support": "derivation",
-      "source": "Any sort that only shuffles uniformly at random and checks has expected n! shuffles (c2); counting the n - 1 comparisons of each check, bogosort's expected time is Theta(n x n!). Gruber, Holzer and Ruepp, 'Sorting the slow way: an analysis of perversely awful randomized sorting algorithms', FUN 2007 (check before citing).",
-      "status": "unverified"
+      "source": "Any sort that only shuffles uniformly at random and checks has expected n! shuffles (c2); counting the n - 1 comparisons of each check, bogosort's expected time is Theta(n x n!). Gruber, Holzer and Ruepp, 'Sorting the slow way: an analysis of perversely awful randomized sorting algorithms', FUN 2007 (check before citing). · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: uniform shuffles until sorted have expected n! shuffles whatever the history. Gruber, Holzer, Ruepp, FUN 2007, LNCS 4475 pp. 183-197 confirmed bibliographically by web search; paper body not opened (host blocked), so the verdict rests on the derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

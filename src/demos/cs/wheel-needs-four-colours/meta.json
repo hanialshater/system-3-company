@@ -26,36 +26,46 @@
       "id": "cs.wheel-needs-four-colours.c1",
       "text": "A centre region touching five ring regions, each also touching its two ring neighbours, cannot be coloured with three colours so that touching regions differ; four colours suffice.",
       "support": "simulation",
-      "source": "Builder's Node brute-force backtracking colourer on the 5-wheel (hub + 5-cycle), 2026-10-14: k=2 and k=3 fail, k=4 succeeds (C, 1..5 = 1, 2, 3, 2, 3, 4). Same backtrack() as Demo.tsx (regions C, 1..5 in order, colours tried in order).",
-      "status": "unverified"
+      "source": "Builder's Node brute-force backtracking colourer on the 5-wheel (hub + 5-cycle), 2026-10-14: k=2 and k=3 fail, k=4 succeeds (C, 1..5 = 1, 2, 3, 2, 3, 4). Same backtrack() as Demo.tsx (regions C, 1..5 in order, colours tried in order). | FACT-CHECK 2026-10-14 (pass 21): Own backtracker (fc21/wh.mjs) and an order-free exhaustive search over all k^6 colourings: chromatic number of the 5-wheel is 4; backtrack(4) gives C,1..5 = 1,2,3,2,3,4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.wheel-needs-four-colours.c2",
       "text": "The centre takes one colour, so the ring regions have only two left; two colours must alternate round the ring, and with five (an odd number) the last region meets both.",
       "support": "derivation",
-      "source": "Every ring region touches the centre, so none can share its colour. A cycle 2-coloured must alternate; an odd cycle returns to its start on the same parity, so its last vertex is adjacent to both colours.",
-      "status": "unverified"
+      "source": "Every ring region touches the centre, so none can share its colour. A cycle 2-coloured must alternate; an odd cycle returns to its start on the same parity, so its last vertex is adjacent to both colours. | FACT-CHECK 2026-10-14 (pass 21): Odd-cycle argument checked; the same exhaustive search shows the 5-cycle has no 2-colouring.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.wheel-needs-four-colours.c3",
       "text": "Backtracking with three colours (regions C, 1 to 5 in order, colours in order) hits 6 dead ends and finds no colouring; its first dead end is region 5 after C, 1, 2, 3, 4 take red, blue, yellow, blue, yellow.",
       "support": "simulation",
-      "source": "Demo.tsx THREE = backtrack(3); builder re-ran the same search in Node (2026-10-14): 6 dead ends, 27 placements, first dead end at region 5 with colours [1,2,3,2,3]. The count depends on the region and colour order shown.",
-      "status": "unverified"
+      "source": "Demo.tsx THREE = backtrack(3); builder re-ran the same search in Node (2026-10-14): 6 dead ends, 27 placements, first dead end at region 5 with colours [1,2,3,2,3]. The count depends on the region and colour order shown. | FACT-CHECK 2026-10-14 (pass 21): Same search order as Demo.tsx: k = 3 -> 6 dead ends, 27 placements, first dead end region 5 with C..4 = red, blue, yellow, blue, yellow.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.wheel-needs-four-colours.c4",
       "text": "With four regions round the centre, three colours are enough.",
       "support": "simulation",
-      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours.",
-      "status": "unverified"
+      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours. | FACT-CHECK 2026-10-14 (pass 21): 4-wheel: backtrack(3) succeeds (1,2,3,2,3), exhaustive chromatic number 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.wheel-needs-four-colours.c5",
       "text": "For big maps no fast method is known for finding the fewest colours, so trying and undoing is often the tool.",
       "support": "source",
-      "source": "Deciding k-colourability (chromatic number) is NP-complete: Karp (1972), 'Reducibility among combinatorial problems' (chromatic number is one of the 21 problems); CLRS 4e ch. 34 (graph colouring as an NP-complete problem). Citations from the brief, check before verifying. 'Map' here means the regions-touching graph of the stage, not only planar maps; for planar maps 4 colours always suffice (four colour theorem), but finding the minimum (3-colourability of planar graphs) is still NP-complete (Garey, Johnson and Stockmeyer 1976; check).",
-      "status": "unverified"
+      "source": "Deciding k-colourability (chromatic number) is NP-complete: Karp (1972), 'Reducibility among combinatorial problems' (chromatic number is one of the 21 problems); CLRS 4e ch. 34 (graph colouring as an NP-complete problem). Citations from the brief, check before verifying. 'Map' here means the regions-touching graph of the stage, not only planar maps; for planar maps 4 colours always suffice (four colour theorem), but finding the minimum (3-colourability of planar graphs) is still NP-complete (Garey, Johnson and Stockmeyer 1976; check). | FACT-CHECK 2026-10-14 (pass 21): Karp 1972 (chromatic number among the 21) and CLRS ch. 34 not opened; both match my knowledge. Garey, Johnson and Stockmeyer, 'Some simplified NP-complete graph problems', Theoretical Computer Science 1 (1976) 237-267, planar 3-colourability NP-complete: corroborated by web search (Academia record, TAMU lecture notes). 'No fast method is known' is an accurate reading of NP-hardness.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

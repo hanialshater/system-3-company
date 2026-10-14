@@ -26,22 +26,28 @@
       "id": "probability.ten-times-links-hundred-times-rarer.c1",
       "text": "If the share of pages with k links is proportional to 1/k², pages with 1,000 links are 100 times rarer than pages with 100, and those are 100 times rarer than pages with 10.",
       "support": "derivation",
-      "source": "(1/100²)/(1/1,000²) = 100 and (1/10²)/(1/100²) = 100; in general (k/10)^-2 / k^-2 = 100 for every k. Matches the brief's check (ratio100vs1000 = 100).",
-      "status": "unverified"
+      "source": "(1/100²)/(1/1,000²) = 100 and (1/10²)/(1/100²) = 100; in general (k/10)^-2 / k^-2 = 100 for every k. Matches the brief's check (ratio100vs1000 = 100). | FACT-CHECK 2026-10-14 (pass 21): verified. (1/100^2)/(1/1000^2) = 100 and (1/10^2)/(1/100^2) = 100. Chapter placement easley-kleinberg-2010 ch. 18 ('Power Laws and Rich-Get-Richer Phenomena') is right from my knowledge of the book; not opened (host blocked).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.ten-times-links-hundred-times-rarer.c2",
       "text": "On log–log axes this is a straight line of slope −2: down two powers of ten for every power of ten across.",
       "support": "derivation",
-      "source": "log10(c·k^-2) = log10 c − 2·log10 k, linear in log10 k with slope −2.",
-      "status": "unverified"
+      "source": "log10(c·k^-2) = log10 c − 2·log10 k, linear in log10 k with slope −2. | FACT-CHECK 2026-10-14 (pass 21): verified. log10(c k^-2) = log10 c - 2 log10 k.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.ten-times-links-hundred-times-rarer.c3",
       "text": "On linear axes everything past about 10 links looks like zero, but there is no cliff: pages with 1,000 links are rare, not absent.",
       "support": "derivation",
-      "source": "Relative to k = 1 the share at k = 10 is 0.01 (about 1.6 px of the stage's 158 px chart height) and at k = 1,000 is 10^-6. A power-law share k^-2 stays positive and falls by the same factor per decade, whereas a bell-curve tail falls faster than any power of k.",
-      "status": "unverified"
+      "source": "Relative to k = 1 the share at k = 10 is 0.01 (about 1.6 px of the stage's 158 px chart height) and at k = 1,000 is 10^-6. A power-law share k^-2 stays positive and falls by the same factor per decade, whereas a bell-curve tail falls faster than any power of k. | FACT-CHECK 2026-10-14 (pass 21): verified. On the stage's linear axes (k 0..1000 over 258 px, share over 158 px), k = 10 is 2.6 px right of the axis and 1.6 px up; k^-2 > 0 for all k.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

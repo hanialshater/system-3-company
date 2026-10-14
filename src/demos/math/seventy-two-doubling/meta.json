@@ -54,15 +54,19 @@
       "id": "math.seventy-two-doubling.c4",
       "text": "72 / rate gives 9 at 8% and is within about 0.2 years of the exact doubling time for every whole-number rate from 5% to 20%; the reveal also quotes 72 / rate against the exact time (ln 2 / ln(1 + r)) at the other rate the learner set, e.g. 8.0 vs 8.0 years at 9%.",
       "support": "derivation",
-      "source": "Tabulated in node for whole rates 2..20%: abs(72/r - ln2/ln(1+r)) = 1.00 (2%), 0.55 (3%), 0.33 (4%), then at most 0.20 for 5% to 20% (0.19 at 5%, 0.20 at 20%).",
-      "status": "unverified"
+      "source": "Tabulated in node for whole rates 2..20%: abs(72/r - ln2/ln(1+r)) = 1.00 (2%), 0.55 (3%), 0.33 (4%), then at most 0.20 for 5% to 20% (0.19 at 5%, 0.20 at 20%). | FACT-CHECK 2026-10-14 (pass 21): node: |72/r - ln2/ln(1+r)| for r = 5..20 max 0.202 (20%), 0.193 (5%); 8% gives 9.0 vs 9.006; 9% prints 8.0 vs 8.0 (8.043). Reveal computes the other rate live.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.seventy-two-doubling.c5",
       "text": "72 divides evenly by many whole rates (2, 3, 4, 6, 8, 9, 12), which is one reason the rule uses 72.",
       "support": "derivation",
-      "source": "Divisors of 72: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72. The other reason (72 is close to 100 × ln 2 ≈ 69.3, nudged up for typical rates) was removed from the learner text in v3 as beyond the boundary; see Wikipedia 'Rule of 72' and Brealey, Myers & Allen, Principles of Corporate Finance.",
-      "status": "unverified"
+      "source": "Divisors of 72: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72. The other reason (72 is close to 100 × ln 2 ≈ 69.3, nudged up for typical rates) was removed from the learner text in v3 as beyond the boundary; see Wikipedia 'Rule of 72' and Brealey, Myers & Allen, Principles of Corporate Finance. | FACT-CHECK 2026-10-14 (pass 21): Divisors of 72 include 2, 3, 4, 6, 8, 9, 12 (node). 'One reason' corroborated by web-search copies of Wikipedia 'Rule of 72' ('a convenient choice of numerator, since it has many small divisors'); Wikipedia itself and Brealey, Myers & Allen not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

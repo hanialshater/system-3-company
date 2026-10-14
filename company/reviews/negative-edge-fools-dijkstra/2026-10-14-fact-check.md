@@ -14,3 +14,15 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c6 | verified | CLRS 4e 22.1: BELLMAN-FORD makes /V/-1 passes relaxing every edge, O(VE), vs Dijkstra O((V+E) lg V) with a binary heap; here 3 x 4 = 12 relaxations vs 4. Bellman 1958, 'On a routing problem', Quart. Appl. Math. 16(1): 87-90 (citation details recalled, not opened). |
 
 **Result:** 6 verified, 0 disputed, 0 withdrawn.
+
+## Pass 21
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predict, stage, reveal) against each open claim, then re-derived every number in my own node scripts (scratchpad fc21: own mulberry32, outbreak/Poisson and negative-binomial fixed points, shoelace, matrix-chain DP vs brute force, doubling search, Newton with a BigInt reference root, Kruskal plus spanning-tree enumeration, copying model, Snell/Fresnel, heterozygote-advantage recursion). Sources recalled and not opened are marked; nature.com, PubMed, OpenStax and the Easley & Kleinberg host were unreachable from this sandbox.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own trace of v3 runPass over PASS_ORDER [S>A, A>C, S>B, B>A]: pass 1 A 2, C 4, B 3, then A 1; pass 2 C 3; pass 3 no change. Reveal text matches. |
+| c4 | verified | Same trace: after pass 1 {A 1, B 3, C 4}, after pass 2 {A 1, B 3, C 3}. |
+| c5 | verified | Settled-label failure shown by c1-c2; the Dijkstra correctness proof needs non-negative weights. CLRS 4e 22.3 / Thm 22.6 (3e 24.3 / Thm 24.6) from my knowledge, not opened this pass; the sentence rests on the counterexample and the standard proof. |
+
+**Result:** 3 verified, 0 disputed, 0 withdrawn.

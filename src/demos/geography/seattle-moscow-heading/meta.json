@@ -91,8 +91,10 @@
       "id": "geography.seattle-moscow-heading.c8",
       "text": "The same shortest route from Seattle to Moscow is a straight line on the Seattle-centred map and, on an ordinary flat map, a curve that bends north.",
       "support": "derivation",
-      "source": "Great circles are not straight on equirectangular maps; Demo.tsx draws the same great-circle points with d3-geo geoEquirectangular. Needs a check. · Fact-check pass 19 2026-10-14: VERIFIED: own slerp of the great circle peaks at 82.3 N (lon 43.9 W) between endpoints at 47.6 N and 55.8 N, with no antimeridian crossing on the 42 W-centred equirectangular map, so it is drawn as an arch bending north. | v3 2026-10-14 (demo-builder): reveal reworded to 'You saw it both ways: a straight line on the Seattle-centred map, a curve bending north on the flat map'; the gate now requires viewing the on-target route on the flat map (milestone 'flat-hit'). The locked stage now shows the flat map, not the centred one. Reopened.",
-      "status": "unverified"
+      "source": "Great circles are not straight on equirectangular maps; Demo.tsx draws the same great-circle points with d3-geo geoEquirectangular. Needs a check. · Fact-check pass 19 2026-10-14: VERIFIED: own slerp of the great circle peaks at 82.3 N (lon 43.9 W) between endpoints at 47.6 N and 55.8 N, with no antimeridian crossing on the 42 W-centred equirectangular map, so it is drawn as an arch bending north. | v3 2026-10-14 (demo-builder): reveal reworded to 'You saw it both ways: a straight line on the Seattle-centred map, a curve bending north on the flat map'; the gate now requires viewing the on-target route on the flat map (milestone 'flat-hit'). The locked stage now shows the flat map, not the centred one. Reopened. · Fact-check pass 21 2026-10-14: VERIFIED: Own node: initial bearing 11.5 deg; for headings 10-13 deg the 9,500 km route peaks at 81-83 N near 34 W and stays within -80..+85 deg of the 42 W map centre (no wrap), so on the equirectangular map it is an arch bending north. On the azimuthal equidistant map centred on Seattle every great circle through the centre is a straight line. The 'flat-hit' gate shows the on-target route on the flat map.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

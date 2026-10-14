@@ -15,3 +15,14 @@ Checker: fact-checker (wrote none of these claims). Read Demo.tsx (and model.ts 
 Disputes: none.
 
 Result: 5 verified, 0 disputed, 0 withdrawn.
+
+## Pass 21 (2026-10-14)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx (predict, stage, readouts, reveal) against each claim, then re-ran the numbers in my own node scripts copying the lesson's logic (session scratchpad fc21/). Primary sources were unreachable (proxy blocks the hosts); rows say where a verdict rests on derivation or on web-search secondary text instead.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | disputed | The first part holds (Demo search() stops on null; own run: probes 1 A, 2 empty, not found). But 'breaks the search for every key stored past it' is false in general: a key whose home slot is past the gap (e.g. D hashed to 3, stored in 4) is still found. Only keys whose home slot is at or before the gap and stored past it are lost. The reveal itself says only 'a gap with C past it'. Fix: reword to 'breaks the search for C (and any key whose probe path from its home slot crosses the gap)'. |
+| c6 | verified | Derivation: an insert takes the first empty slot on its probe path, so every slot from the home slot to the key was full; with no deletes no slot is emptied, so no gap appears before a stored key. Without the stop, a miss has nothing to end on before checking every slot. Knuth 6.4 Algorithm L and CLRS 11.4 from memory, not opened. |
+
+**Result:** 1 verified, 1 disputed, 0 withdrawn. Disputed claims block publishing until the builder rewords them and they are re-checked.

@@ -26,36 +26,46 @@
       "id": "cs.random-surfer-finds-the-rank.c1",
       "text": "In the stage's seeded run of 100,000 clicks the surfer spends 31.2% of its time on A and 33.2% on C (the reveal quotes the learner's own count at whatever point they stop).",
       "support": "simulation",
-      "source": "Demo.tsx surf(): mulberry32 seed 146, two draws per click (jump test, then jump target), start on A, count the page reached after each click. Builder's run of the same loop in node (scratchpad ncmc/check.mjs), 2026-10-14: after 100,000 clicks A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (shares 0.3121, 0.2964, 0.3322, 0.0295, 0.0298); after 1,000 clicks A 31.9%, C 32.5%. Seed 146 is the one the brief's author used; it was the first seed tried and not picked for its result (seeds 7, 2026 and 14 give A 0.3122-0.3126 and C 0.3322-0.3326 at 100,000). All five shares are within 0.005 of claim c2.",
-      "status": "unverified"
+      "source": "Demo.tsx surf(): mulberry32 seed 146, two draws per click (jump test, then jump target), start on A, count the page reached after each click. Builder's run of the same loop in node (scratchpad ncmc/check.mjs), 2026-10-14: after 100,000 clicks A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (shares 0.3121, 0.2964, 0.3322, 0.0295, 0.0298); after 1,000 clicks A 31.9%, C 32.5%. Seed 146 is the one the brief's author used; it was the first seed tried and not picked for its result (seeds 7, 2026 and 14 give A 0.3122-0.3126 and C 0.3322-0.3326 at 100,000). All five shares are within 0.005 of claim c2. | FACT-CHECK 2026-10-14 (pass 21): Own copy of surf() with kit mulberry32: seed 146 at 100,000 -> A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (31.2%, 33.2%); 1,000 clicks A 31.9%, C 32.5%; seeds 7, 2026, 14 agree within 0.1 pt. Note for the builder: the claim's parenthetical is wrong: the reveal always quotes the fixed 100,000-click run (FINAL), not the learner's count at their stopping point. Harmless because the 'long-run' milestone forces 100,000, but fix the claim wording.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c2",
       "text": "Computed directly, PageRank with a 15% jump gives A 0.312 and C 0.332.",
       "support": "derivation",
-      "source": "Power iteration (200 rounds) of PR(p) = 0.15/5 + 0.85 × sum of PR(q) over pages q linking to p, links A->B, B->C, C->A, D->C, E->C: A 0.3123, B 0.2955, C 0.3322, D 0.0300, E 0.0300 (builder's node run, scratchpad ncmc/check.mjs, 2026-10-14). Matches brief cs.algorithms NCM #1.",
-      "status": "unverified"
+      "source": "Power iteration (200 rounds) of PR(p) = 0.15/5 + 0.85 × sum of PR(q) over pages q linking to p, links A->B, B->C, C->A, D->C, E->C: A 0.3123, B 0.2955, C 0.3322, D 0.0300, E 0.0300 (builder's node run, scratchpad ncmc/check.mjs, 2026-10-14). Matches brief cs.algorithms NCM #1. | FACT-CHECK 2026-10-14 (pass 21): Power iteration (500 rounds) and exact linear solve: A 0.31234, B 0.2955, C 0.33217, D = E = 0.03.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c3",
       "text": "PageRank is the long-run fraction of time a random surfer who follows links and sometimes jumps to a random page spends on each page.",
       "support": "source",
-      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (random-walk interpretation of scaled PageRank); Brin S. & Page L. (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30. Attribution for the fact-checker to confirm.",
-      "status": "unverified"
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (random-walk interpretation of scaled PageRank); Brin S. & Page L. (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30. Attribution for the fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 21): Sources not opened (hosts blocked). From my own knowledge: E&K ch. 14 'Link Analysis and Web Search' (14.3 PageRank, scaled PageRank; 14.6 random-walk formulation) and Brin & Page 1998, Computer Networks and ISDN Systems 30, which introduces the 'random surfer' reading. Chapter placement: confident.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c4",
       "text": "A's one link comes from C, so every visit to C is followed by a trip to A unless the surfer jumps; D and E have no in-links, so the surfer reaches them only by jumping.",
       "support": "derivation",
-      "source": "Read off the stage's link list (Demo.tsx OUT): C's only out-link is to A; no page links to D or E. D and E each get 0.15/5 = 0.03 of the time (claim c2), so their links pass little to C.",
-      "status": "unverified"
+      "source": "Read off the stage's link list (Demo.tsx OUT): C's only out-link is to A; no page links to D or E. D and E each get 0.15/5 = 0.03 of the time (claim c2), so their links pass little to C. | FACT-CHECK 2026-10-14 (pass 21): Demo.tsx OUT = A->B, B->C, C->A, D->C, E->C: C's only out-link is A; IN_LINKS D 0, E 0; D, E shares 0.03 each.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c5",
       "text": "Each page links to one other page; the run is seeded, so it gives the same clicks every time.",
       "support": "convention",
-      "source": "Stage set-up in Demo.tsx (OUT, SEED = 146).",
-      "status": "unverified"
+      "source": "Stage set-up in Demo.tsx (OUT, SEED = 146). | FACT-CHECK 2026-10-14 (pass 21): OUT has one target per page; SEED = 146 fixed and surf() restarts mulberry32(SEED), so totals depend only on the click count.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -78,13 +88,31 @@
   "version": 1,
   "curriculum": {
     "primary": "cs:pagerank-random-walk",
-    "also": ["probability:random-walk"],
-    "prerequisites": ["probability:random-walk"],
+    "also": [
+      "probability:random-walk"
+    ],
+    "prerequisites": [
+      "probability:random-walk"
+    ],
     "level": "core",
     "strand": "algorithms",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 14 }],
-    "tags": ["web", "random walk", "PageRank"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 14
+      }
+    ],
+    "tags": [
+      "web",
+      "random walk",
+      "PageRank"
+    ]
   },
   "format": "simulation-run",
-  "interactions": ["choice-before-reveal", "step-run-button", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

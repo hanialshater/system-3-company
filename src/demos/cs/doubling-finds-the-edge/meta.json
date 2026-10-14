@@ -26,36 +26,46 @@
       "id": "cs.doubling-finds-the-edge.c1",
       "text": "With the target at position 1000, probing positions 1, 2, 4, ... takes 11 comparisons (the 11th probe, at 1024, passes the target), leaving the gap 513-1023; 6 halvings find it, 17 comparisons in all.",
       "support": "simulation",
-      "source": "Demo.tsx FULL, computed with the same doubleOnce/halveOnce rules the stage uses; builder re-ran the count in Node (2026-10-14). Counting rule: every comparison of the target with a list value counts once; doubling starts at position 1 (position 0 is not probed) and the halving searches the open gap strictly between the last two probes (binary probes 768, 896, 960, 992, 1008, 1000). NOTE: the brief says 18; that count also probes position 0 first and searches the closed gap 512-1024 (builder reproduced 18 with that convention). The prediction's answer 'About 20' holds under either.",
-      "status": "unverified"
+      "source": "Demo.tsx FULL, computed with the same doubleOnce/halveOnce rules the stage uses; builder re-ran the count in Node (2026-10-14). Counting rule: every comparison of the target with a list value counts once; doubling starts at position 1 (position 0 is not probed) and the halving searches the open gap strictly between the last two probes (binary probes 768, 896, 960, 992, 1008, 1000). NOTE: the brief says 18; that count also probes position 0 first and searches the closed gap 512-1024 (builder reproduced 18 with that convention). The prediction's answer 'About 20' holds under either. · Fact-check pass 21 2026-10-14: Own node mirror of doubleOnce/halveOnce (fc21/dbl.mjs): 11 doubling probes to 1024, gap 513-1023, halvings 768, 896, 960, 992, 1008, 1000, total 17. Reveal reads these from FULL. The brief's 18 is a different counting convention, as noted.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.doubling-finds-the-edge.c2",
       "text": "A scan from the start needs 1,001 comparisons to reach position 1000.",
       "support": "derivation",
-      "source": "Positions 0 through 1000 are 1,001 positions, one comparison each.",
-      "status": "unverified"
+      "source": "Positions 0 through 1000 are 1,001 positions, one comparison each. · Fact-check pass 21 2026-10-14: Positions 0..1000 = 1,001 comparisons; Demo SCAN = POS + 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.doubling-finds-the-edge.c3",
       "text": "Because the list is sorted, a probe whose value is smaller than the target means the target lies further right, and the first probe that passes it bounds the target between the last two probes.",
       "support": "derivation",
-      "source": "Sortedness: value(i) < target implies the target's position is > i; value(2^k) > target and value(2^(k-1)) < target bound it to (2^(k-1), 2^k). The stage list is value(i) = 3i + 7 (target 3007), shown only through the probed values.",
-      "status": "unverified"
+      "source": "Sortedness: value(i) < target implies the target's position is > i; value(2^k) > target and value(2^(k-1)) < target bound it to (2^(k-1), 2^k). The stage list is value(i) = 3i + 7 (target 3007), shown only through the probed values. · Fact-check pass 21 2026-10-14: Sortedness argument; value(i) = 3i + 7 is strictly increasing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.doubling-finds-the-edge.c4",
       "text": "Doubling reaches a gap holding the target after about log2(position) probes, and halving that gap costs about as many again, so the cost grows like twice log2 of the position.",
       "support": "source",
-      "source": "Derivation: k = ceil(log2 p) + 1 doubling probes; the gap has 2^(k-2) - 1 positions, so binary search adds at most k - 2. Bentley and Yao (1976), 'An almost optimal algorithm for unbounded searching', Information Processing Letters 5(3) (citation from the brief, written from memory: check before verifying).",
-      "status": "unverified"
+      "source": "Derivation: k = ceil(log2 p) + 1 doubling probes; the gap has 2^(k-2) - 1 positions, so binary search adds at most k - 2. Bentley and Yao (1976), 'An almost optimal algorithm for unbounded searching', Information Processing Letters 5(3) (citation from the brief, written from memory: check before verifying). · Fact-check pass 21 2026-10-14: Derivation re-run: for every target position 2..65,536 the count is at most 2 ceil(log2(p+1)) + 1. Bentley & Yao (1976), 'An almost optimal algorithm for unbounded searching', IPL 5(3):82-87, bibliographic details confirmed via web search (Wikipedia 'Exponential search', XJTU scholar listing); full text not opened, the sentence rests on the derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.doubling-finds-the-edge.c5",
       "text": "For a target at position one million the same method takes 34 comparisons.",
       "support": "simulation",
-      "source": "Builder's Node run of the same counting rule as c1 (2026-10-14): position 1,000,000 -> 34; position 4,000 -> 19 (used in recall).",
-      "status": "unverified"
+      "source": "Builder's Node run of the same counting rule as c1 (2026-10-14): position 1,000,000 -> 34; position 4,000 -> 19 (used in recall). · Fact-check pass 21 2026-10-14: Own run: position 1,000,000 gives 21 doubling + 13 halving = 34; position 4,000 gives 19.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

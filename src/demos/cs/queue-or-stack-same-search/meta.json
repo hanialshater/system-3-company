@@ -46,8 +46,10 @@
       "id": "cs.queue-or-stack-same-search.c3",
       "text": "Look at the circled E: the queue found it 2 hops from A (through B), the stack 3 (through C and F).",
       "support": "simulation",
-      "source": "Builder's node script, hops recorded when a place is added to the to-do list: queue E=2 via B, stack E=3 via F; queue hops A0 B1 C1 D2 E2 F2, stack A0 B1 C1 F2 E3 D2. The true shortest A-to-E distance is 2. | r5 revision 2026-10-14: sentence reworded for v3; needs a fresh check.",
-      "status": "unverified"
+      "source": "Builder's node script, hops recorded when a place is added to the to-do list: queue E=2 via B, stack E=3 via F; queue hops A0 B1 C1 D2 E2 F2, stack A0 B1 C1 F2 E3 D2. The true shortest A-to-E distance is 2. | r5 revision 2026-10-14: sentence reworded for v3; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran Demo.tsx run(): queue E hops 2 from B; stack E hops 3, from F, F from C (A-C-F-E). Reveal wording matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.queue-or-stack-same-search.c4",

@@ -36,22 +36,28 @@
       "id": "physics.torch-underwater-tilt.c2",
       "text": "The critical angle for water to air is 48.6° from straight up; there the exit direction lies flat along the surface (90°) and no light gets out; beyond it there is no exit direction and all of it reflects back down (total internal reflection).",
       "support": "derivation",
-      "source": "sin(theta_c) = 1.00 / 1.333 = 0.750, theta_c = 48.61 degrees (node). OpenStax College Physics 2e, section 25.4 Total Internal Reflection gives 48.6 degrees for water.",
-      "status": "unverified"
+      "source": "sin(theta_c) = 1.00 / 1.333 = 0.750, theta_c = 48.61 degrees (node). OpenStax College Physics 2e, section 25.4 Total Internal Reflection gives 48.6 degrees for water. · Fact-check pass 21 2026-10-14: asin(1/1.333) = 48.607°, shown as 48.6°. At that stop snell() returns 90 and fresnel() returns 1; beyond it snell() returns null. OpenStax 2e 25.4 not reachable (DNS blocked); the number rests on Snell's law.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.torch-underwater-tilt.c3",
       "text": "At 45° in water the beam leaves at 70.5° from straight up; at 47°, at 77.1°; at 48°, at 82.1°; at 30°, at 41.8°.",
       "support": "derivation",
-      "source": "Snell's law with n = 1.333: asin(1.333 sin a). Node: 45 → 70.5, 47 → 77.1, 48 → 82.1, 30 → 41.8 (Demo.tsx v3 snell()).",
-      "status": "unverified"
+      "source": "Snell's law with n = 1.333: asin(1.333 sin a). Node: 45 → 70.5, 47 → 77.1, 48 → 82.1, 30 → 41.8 (Demo.tsx v3 snell()). · Fact-check pass 21 2026-10-14: Own asin(1.333 sin a): 30 → 41.80, 45 → 70.49, 47 → 77.13, 48 → 82.14.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.torch-underwater-tilt.c4",
       "text": "Below the critical angle some light still reflects: about 2% straight up, 14% at 45°, 26% at 47°, 43% at 48°, rising to 100% at 48.6°; the stage labels the reflected ray with this share.",
       "support": "derivation",
-      "source": "Fresnel equations, unpolarised average of rs and rp (Hecht, Optics, §4.6). Node over Demo.tsx v3 fresnel(): 0° 0.020, 45° 0.139, 47° 0.261, 48° 0.433, 48.6° 1.",
-      "status": "unverified"
+      "source": "Fresnel equations, unpolarised average of rs and rp (Hecht, Optics, §4.6). Node over Demo.tsx v3 fresnel(): 0° 0.020, 45° 0.139, 47° 0.261, 48° 0.433, 48.6° 1. · Fact-check pass 21 2026-10-14: Own Fresnel rs, rp (formulae re-derived: rs = ((n1 cos i - n2 cos t)/(n1 cos i + n2 cos t))², rp = ((n2 cos i - n1 cos t)/(n2 cos i + n1 cos t))², n1 = 1.333, n2 = 1): 0° 0.0204, 45° 0.1395, 47° 0.2614, 48° 0.4331, critical 1. Hecht not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.torch-underwater-tilt.c5",

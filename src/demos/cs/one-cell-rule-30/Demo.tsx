@@ -18,7 +18,7 @@ const MID = 8;
 const CELL = 10;
 
 function grow(rule: number): number[][] {
-  let row = Array.from({ length: W }, (_, i) => (i === MID ? 1 : 0));
+  let row: number[] = Array.from({ length: W }, (_, i) => (i === MID ? 1 : 0));
   const rows = [row];
   for (let t = 0; t < STEPS; t++) {
     const prev = row;

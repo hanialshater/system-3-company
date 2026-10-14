@@ -26,22 +26,28 @@
       "id": "cs.edges-are-differences.c1",
       "text": "For the row 200 200 200 10 10 10, right neighbour minus left neighbour at the four inner pixels gives 0, -190, -190, 0: two are not zero.",
       "support": "simulation",
-      "source": "Demo.tsx OUT_A via filt(); builder re-ran in Node (2026-10-14), matching the brief. Swapped row 10 10 10 200 200 200 gives 0, 190, 190, 0.",
-      "status": "unverified"
+      "source": "Demo.tsx OUT_A via filt(); builder re-ran in Node (2026-10-14), matching the brief. Swapped row 10 10 10 200 200 200 gives 0, 190, 190, 0. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own arithmetic on 200 200 200 10 10 10, right minus left at pixels 2-5: 0, -190, -190, 0 (two nonzero); swapped row gives 0, 190, 190, 0. Demo filt(row, p) = row[p] - row[p - 2] with 1-based p is right minus left.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.edges-are-differences.c2",
       "text": "A flat patch gives zero whatever its brightness; only a change gives a nonzero value, and swapping bright and dark flips its sign.",
       "support": "derivation",
-      "source": "If row[p-1] = row[p+1] the difference is 0 for any common value; reversing the step negates row[p+1] - row[p-1]. Brief's further check: 0 0 0 9 9 9 gives 0, 9, 9, 0.",
-      "status": "unverified"
+      "source": "If row[p-1] = row[p+1] the difference is 0 for any common value; reversing the step negates row[p+1] - row[p-1]. Brief's further check: 0 0 0 9 9 9 gives 0, 9, 9, 0. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Equal neighbours give 0 for any value; reversing the step negates the difference (re-derived).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.edges-are-differences.c3",
       "text": "Sliding a tiny filter like [−1 0 +1] along every row of a photo is a convolution, a basic building block of image processing.",
       "support": "source",
-      "source": "Strictly, sliding the window without flipping it is correlation; convolution flips the kernel, which for [-1 0 +1] only changes the sign. Image-processing texts and CNN literature call both convolution. Gonzalez and Woods, Digital Image Processing, spatial filtering chapter (ch. 3) (check before verifying).",
-      "status": "unverified"
+      "source": "Strictly, sliding the window without flipping it is correlation; convolution flips the kernel, which for [-1 0 +1] only changes the sign. Image-processing texts and CNN literature call both convolution. Gonzalez and Woods, Digital Image Processing, spatial filtering chapter (ch. 3) (check before verifying). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Gonzalez and Woods not opened (cited from memory; no copy reachable). Verified on my own derivation plus web-search snippets (MathWorks 'Compare image filtering using correlation and convolution'; DIP course notes): sliding the window unflipped is correlation; convolution rotates the kernel 180 degrees, so this operation is convolution with [+1 0 -1], and image-processing and CNN usage call such sliding filters convolutions. The sentence is fair under that usage. Optional wording the builder could take: 'a convolution-style filter'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

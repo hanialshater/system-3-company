@@ -26,43 +26,55 @@
       "id": "probability.near-and-far-links-find-the-way.c1",
       "text": "In the stage's model (ring of 2,000, one long link each, 1,000 messages per rule), greedy routing averages 38.3 steps with uniform links, 28.5 with 1/d links and 212.6 with 1/d² links.",
       "support": "simulation",
-      "source": "Demo.tsx runRule(): 5 networks from mulberry32 seeds 1-5 (not chosen; the first five) × 200 source/target pairs per network from mulberry32(100 + seed), the same pairs for every rule. Builder ran the lesson's own code in Node on 2026-10-14: q0 38.32, q1 28.52, q2 212.59. Robustness: drawing pairs from the network's own generator instead gave 37.0, 29.5, 219.2, and seeds 11-15 that way gave 38.9, 30.0, 213.1; the order 1/d < uniform << 1/d² held every time. Long-link distance d in 1..1000 drawn with chance ∝ (people at distance d) × d^-q; the message goes to whichever of the two ring neighbours or the long link is closest to the target. Brief's re-run with another generator: 29.5, 37.8, 219.1.",
-      "status": "unverified"
+      "source": "Demo.tsx runRule(): 5 networks from mulberry32 seeds 1-5 (not chosen; the first five) × 200 source/target pairs per network from mulberry32(100 + seed), the same pairs for every rule. Builder ran the lesson's own code in Node on 2026-10-14: q0 38.32, q1 28.52, q2 212.59. Robustness: drawing pairs from the network's own generator instead gave 37.0, 29.5, 219.2, and seeds 11-15 that way gave 38.9, 30.0, 213.1; the order 1/d < uniform << 1/d² held every time. Long-link distance d in 1..1000 drawn with chance ∝ (people at distance d) × d^-q; the message goes to whichever of the two ring neighbours or the long link is closest to the target. Brief's re-run with another generator: 29.5, 37.8, 219.1. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own independent implementation (fc21/sw.mjs), same model and seeds 1-5 with pairs from mulberry32(100 + seed): 38.32, 28.52, 212.59. Robustness, seeds 11-15: 37.86, 29.04, 203.61; seeds 21-25: 37.88, 29.03, 192.61. Order 1/d < uniform << 1/d^2 holds each time; the stage quotes this model's means only.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c2",
       "text": "With no long links the average is about 500 steps.",
       "support": "derivation",
-      "source": "Ring of 2,000: mean ring distance between two different people = (2·(1+…+999) + 1000)/1999 = 1,000,000/1,999 ≈ 500.25, and with ring neighbours only each step moves one place.",
-      "status": "unverified"
+      "source": "Ring of 2,000: mean ring distance between two different people = (2·(1+…+999) + 1000)/1999 = 1,000,000/1,999 ≈ 500.25, and with ring neighbours only each step moves one place. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sum over all 1,999 other people: mean ring distance 500.25 = 1,000,000 / 1,999; ring-only routing moves one place per step. Stage 'Ring only 500'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c3",
       "text": "Uniform links are mostly huge jumps, so near the target they rarely help and the last stretch crawls along the ring.",
       "support": "derivation",
-      "source": "Uniform over the other 1,999 people: 999 of 1,999 (about half) of all links are longer than 500. When the message is within distance D of the target, a uniform link lands closer than D with chance about 2D/2000 per holder, so small D takes many ring steps.",
-      "status": "unverified"
+      "source": "Uniform over the other 1,999 people: 999 of 1,999 (about half) of all links are longer than 500. When the message is within distance D of the target, a uniform link lands closer than D with chance about 2D/2000 per holder, so small D takes many ring steps. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sum: uniform links longer than 500 have share 999/1999 = 0.4997. The 2D/2000 chance per holder near the target follows. Qualitative sentence supported.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c4",
       "text": "1/d² links almost never jump far.",
       "support": "derivation",
-      "source": "With chance ∝ 1/d² over d = 1..1000 (two people at each distance), about 61% of links have length 1 and under 2% are longer than 31 (node sums, 2026-10-14).",
-      "status": "unverified"
+      "source": "With chance ∝ 1/d² over d = 1..1000 (two people at each distance), about 61% of links have length 1 and under 2% are longer than 31 (node sums, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums with weights 2/d^2 (1 at d = 1000): length 1 share 0.608, longer than 31 share 0.0187.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c5",
       "text": "1/d links come at every scale, so wherever the message is, some contact can cut the remaining distance a lot.",
       "support": "derivation",
-      "source": "With chance ∝ 1/d each doubling band of distances gets roughly the same share of links (about 10-15% each on a ring of 1,024; see every-scale-equally-likely), so a link that halves the remaining distance D has chance of order 1/log N per holder whatever D is.",
-      "status": "unverified"
+      "source": "With chance ∝ 1/d each doubling band of distances gets roughly the same share of links (about 10-15% each on a ring of 1,024; see every-scale-equally-likely), so a link that halves the remaining distance D has chance of order 1/log N per holder whatever D is. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums on this ring of 2,000: each doubling band of lengths gets 9-13% of 1/d links (0.134, 0.111, 0.101, 0.097, 0.095, 0.094, 0.093, 0.093, 0.093, 0.090); source's '10-15% on a ring of 1,024' is for the sibling lesson. Qualitative sentence supported.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c6",
       "text": "On large networks, Kleinberg proved greedy search is fast only when the exponent matches the dimension: 1 for a ring.",
       "support": "source",
-      "source": "Kleinberg (2000), 'Navigation in a small world', Nature 406, and 'The small-world phenomenon: an algorithmic perspective', STOC 2000; Easley and Kleinberg (2010) ch. 20. From the brief; builder has not opened these. Attribution: fact-checker confirms.",
-      "status": "unverified"
+      "source": "Kleinberg (2000), 'Navigation in a small world', Nature 406, and 'The small-world phenomenon: an algorithmic perspective', STOC 2000; Easley and Kleinberg (2010) ch. 20. From the brief; builder has not opened these. Attribution: fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Kleinberg, 'Navigation in a small world', Nature 406, 845 (2000), doi 10.1038/35022643: citation confirmed by search; result (greedy routing efficient iff the exponent equals the lattice dimension) confirmed via secondary sources in search snippets (Cartozo and De Los Rios 2009, arXiv 0901.4710; course slides). Papers not opened. Easley and Kleinberg ch. 20 'The Small-World Phenomenon', with sections on decentralized search and an advanced section analysing it: confirmed by library-catalog search snippets (book host blocked); matches my own knowledge of the book. 'Proved' is fair: Kleinberg's theorems give polylog delivery at the matching exponent and polynomial lower bounds otherwise.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

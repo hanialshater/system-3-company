@@ -26,36 +26,46 @@
       "id": "cs.running-median-two-heaps.c1",
       "text": "For the stream 5, 15, 1, 3 the medians after each number are 5, 10, 5, 4.",
       "support": "simulation",
-      "source": "Sorted prefixes [5], [5,15], [1,5,15], [1,3,5,15] give 5, 10, 5, (3+5)/2 = 4. Builder re-ran this in node (scratchpad algo2b0/check.mjs), 2026-10-14, and the stage computes the same values with its own two heaps (Demo.tsx feed()). Matches brief cs.algorithms #64.",
-      "status": "unverified"
+      "source": "Sorted prefixes [5], [5,15], [1,5,15], [1,3,5,15] give 5, 10, 5, (3+5)/2 = 4. Builder re-ran this in node (scratchpad algo2b0/check.mjs), 2026-10-14, and the stage computes the same values with its own two heaps (Demo.tsx feed()). Matches brief cs.algorithms #64. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own node (fc21/med.mjs) with sorted prefixes: 5, 10, 5, 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.running-median-two-heaps.c2",
       "text": "Trace: 5 starts the lower half; 15 > 5 goes to the upper half; 1 ≤ 5 goes to the lower half; 3 ≤ 5 goes to the lower half, which is then too big, so 5 moves up. At the end the lower half is 1, 3 and the upper half is 5, 15, and the median is (3 + 5) / 2 = 4.",
       "support": "simulation",
-      "source": "Demo.tsx feed() with array heaps push()/pop(); rule: insert into the lower half if it is empty or x ≤ its top, else the upper half; then move a top across if the lower half has 2 more or the upper half has more. Builder's independent trace in node (scratchpad algo2b0/check.mjs) gives the same halves.",
-      "status": "unverified"
+      "source": "Demo.tsx feed() with array heaps push()/pop(); rule: insert into the lower half if it is empty or x ≤ its top, else the upper half; then move a top across if the lower half has 2 more or the upper half has more. Builder's independent trace in node (scratchpad algo2b0/check.mjs) gives the same halves. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own trace of the stated rule: lower [5]; 15 up; 1 down; 3 down makes lower 3 vs upper 1, so 5 moves up; final lower {1, 3}, upper {5, 15}, (3 + 5) / 2 = 4. Same as Demo feed().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.running-median-two-heaps.c3",
       "text": "With the halves balanced, the median is the top of the lower half (odd count) or the mean of both tops (even count).",
       "support": "derivation",
-      "source": "Every item in the lower half is ≤ every item in the upper half (invariant kept by the insert rule and by moving only tops across), and the sizes differ by at most one in favour of the lower half; so the lower top is the middle item, or the two tops are the two middle items.",
-      "status": "unverified"
+      "source": "Every item in the lower half is ≤ every item in the upper half (invariant kept by the insert rule and by moving only tops across), and the sizes differ by at most one in favour of the lower half; so the lower top is the middle item, or the two tops are the two middle items. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Invariant argument checked; own random test (5,000 streams up to 15 numbers) of the same insert-and-rebalance rule always matched the true median.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.running-median-two-heaps.c4",
       "text": "Each new number costs one heap insert and at most one move, about log n steps: around 19 levels for a million numbers.",
       "support": "source",
-      "source": "Heap insert and extract take O(log n) (CLRS 4e ch. 6). Each half of a million numbers holds 500,000 items; a heap of 500,000 items has floor(log2 500000) + 1 = 19 levels (computed in Demo.tsx MILLION_LEVELS).",
-      "status": "unverified"
+      "source": "Heap insert and extract take O(log n) (CLRS 4e ch. 6). Each half of a million numbers holds 500,000 items; a heap of 500,000 items has floor(log2 500000) + 1 = 19 levels (computed in Demo.tsx MILLION_LEVELS). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Insert and extract on a binary heap walk one root-to-leaf path, height floor(log2 n): re-derived. 2^18 = 262,144 <= 500,000 < 2^19, so 19 levels (Demo MILLION_LEVELS). CLRS 4e ch. 6 cited from memory, not opened; the sentence does not depend on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.running-median-two-heaps.c5",
       "text": "The lower half keeps its biggest on top; the upper half keeps its smallest on top.",
       "support": "convention",
-      "source": "Max-heap and min-heap properties (CLRS 4e section 6.1). Stage labels.",
-      "status": "unverified"
+      "source": "Max-heap and min-heap properties (CLRS 4e section 6.1). Stage labels. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Max-heap and min-heap definitions; stage labels 'Lower · biggest on top' and 'Upper · smallest on top'; Demo uses maxFirst for lower, minFirst for upper.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

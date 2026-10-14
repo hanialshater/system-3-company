@@ -27,15 +27,19 @@
       "id": "physics.dam-depth-not-width.c1",
       "text": "In still fresh water, the pressure 10 m down (not counting the air above) is about 98.1 kPa, whatever the width of the container; the stage logs 98.1 kPa for every width the learner visits at 10 m (2 cm tube to 500 m lake), and the reveal names only those widths.",
       "support": "derivation",
-      "source": "Hydrostatics, P = rho g h = 1000 x 9.81 x 10 = 98,100 Pa. Re-derived by integrating dP/dz = rho g down a column in artifacts/scratch/w4phys/check.mjs: 98.10 kPa at 10 m; 19.62 to 196.20 kPa for the stage's 2-20 m depths. No width term appears.",
-      "status": "unverified"
+      "source": "Hydrostatics, P = rho g h = 1000 x 9.81 x 10 = 98,100 Pa. Re-derived by integrating dP/dz = rho g down a column in artifacts/scratch/w4phys/check.mjs: 98.10 kPa at 10 m; 19.62 to 196.20 kPa for the stage's 2-20 m depths. No width term appears. · Fact-check pass 21 2026-10-14: VERIFIED: node: 1000 x 9.81 x 10 = 98,100 Pa = 98.1 kPa; Demo pKpa has no width term. Edge case: widthsAt10 adds a width only when the width slider moves at 10 m, so a width reached at another depth then returned to 10 m is not logged; the log never shows anything false and the reveal names only logged widths.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.dam-depth-not-width.c2",
       "text": "Pressure at a depth is the weight of the column of water straight above each square metre (drawn as a dashed column over the gauge), so a wider lake adds columns side by side, not taller ones.",
       "support": "source",
-      "source": "OpenStax University Physics Vol. 1, section 14.1 Fluids, Density, and Pressure, subsection Variation of Pressure with Depth (the column argument); the hydrostatic paradox (Stevin, 1586; Pascal).",
-      "status": "unverified"
+      "source": "OpenStax University Physics Vol. 1, section 14.1 Fluids, Density, and Pressure, subsection Variation of Pressure with Depth (the column argument); the hydrostatic paradox (Stevin, 1586; Pascal). · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: column weight rho g h A over area A gives rho g h, independent of how many columns stand beside it. OpenStax UP1 14.1 not opened (host blocked); web search shows the OpenStax ch. 14 summary and its LibreTexts mirror derive p = rho g h from the column weight.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.dam-depth-not-width.c3",

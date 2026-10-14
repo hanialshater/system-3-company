@@ -35,8 +35,10 @@
       "id": "ai.one-nudge-per-mistake.c2",
       "text": "In this toy a point is right when it sits on its own side of the line (+ in the shaded side, − outside); a zero score counts as wrong, so with no line every point counts as wrong and the very first point is nudged.",
       "support": "convention",
-      "source": "Toy convention stated on the locked caption in Demo.tsx (v2) and in checkOne(): wrong if label·score ≤ 0; shaded side is w·x + b ≥ 0. Brief 33 in company/domains/briefs/ai.md.",
-      "status": "unverified"
+      "source": "Toy convention stated on the locked caption in Demo.tsx (v2) and in checkOne(): wrong if label·score ≤ 0; shaded side is w·x + b ≥ 0. Brief 33 in company/domains/briefs/ai.md. | FACT-CHECK 2026-10-14 (pass 21): checkOne(): wrong if l*score <= 0; shaded polygon is w.x + b >= 0; with w = 0 every score is 0, so (1,1) is nudged first (own trace). Locked caption says the same.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.one-nudge-per-mistake.c3",
@@ -51,15 +53,19 @@
       "id": "ai.one-nudge-per-mistake.c4",
       "text": "Each nudge moves the line toward putting the missed point on its own side (on stage, a red ring turns green): the missed point's score rises by |point|² + 1 (for a + point) or falls by as much (for a − point); points already right change nothing.",
       "support": "derivation",
-      "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error). On stage: (1,1) and (−1,0) both turn from red to green after their nudges (trace in Demo.tsx header).",
-      "status": "unverified"
+      "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error). On stage: (1,1) and (−1,0) both turn from red to green after their nudges (trace in Demo.tsx header). | FACT-CHECK 2026-10-14 (pass 21): Own trace: (1,1)+ score 0 -> 3 (rise 1+1+1 = 3); (-1,0)- score 0 -> -2 (fall 1+0+1 = 2); both rings go red -> green; the right points' scores are unchanged only in the sense that no update happens. Bishop 2006 section 4.1.7 not opened; matches my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.one-nudge-per-mistake.c5",
       "text": "The 'Rest of sweep' caption lists every nudge made in that sweep; on the recommended path it reads '(−1,0) −: score 0 → wrong, nudge. Then 3 points right, no change.', and each nudged point is labelled 'nudge 1', 'nudge 2' on the stage.",
       "support": "derivation",
-      "source": "restOfSweep() in Demo.tsx v2: after nudge 1 w = (1,1,1); (−1,0) scores −1 + 0 + 1 = 0 → nudge to (2,1,0); (2,−1) scores 3, (−1,−2) scores −4, (0,2) scores 2: all right.",
-      "status": "unverified"
+      "source": "restOfSweep() in Demo.tsx v2: after nudge 1 w = (1,1,1); (−1,0) scores −1 + 0 + 1 = 0 → nudge to (2,1,0); (2,−1) scores 3, (−1,−2) scores −4, (0,2) scores 2: all right. | FACT-CHECK 2026-10-14 (pass 21): Own copy of restOfSweep(): after one 'Check next point', caption reads '(-1,0) −: score 0 → wrong, nudge. Then 3 points right, no change.'; labels nudge 1 (1,1), nudge 2 (-1,0). The stage prints the coordinate with an ASCII hyphen '(-1,0)' where the claim has '(−1,0)': typographic only.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

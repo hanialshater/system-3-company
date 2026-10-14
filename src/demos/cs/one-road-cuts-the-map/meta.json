@@ -27,36 +27,46 @@
       "id": "cs.one-road-cuts-the-map.c1",
       "text": "On this map (triangle 1-2-3, road 3-4, triangle 4-5-6), closing 3-4 cuts towns 4, 5 and 6 off from 1, 2 and 3; closing any of the other six roads leaves every town reachable.",
       "support": "simulation",
-      "source": "Demo.tsx reach() flood-fills from town 1 with each road removed, the same code the stage uses; builder re-ran it in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: only 3-4 leaves 3 of 6 towns reachable. Matches brief cs.algorithms #76.",
-      "status": "unverified"
+      "source": "Demo.tsx reach() flood-fills from town 1 with each road removed, the same code the stage uses; builder re-ran it in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: only 3-4 leaves 3 of 6 towns reachable. Matches brief cs.algorithms #76. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran Demo.tsx reach() for each road: only 3-4 leaves {1,2,3}; others reach all 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c2",
       "text": "Towns 3 and 4 each touch three roads, yet closing the triangle roads beside them changes nothing.",
       "support": "simulation",
-      "source": "Degree count from Demo.tsx ROADS (town 3: 2-3, 1-3, 3-4; town 4: 3-4, 4-5, 4-6); flood-fill result as in c1.",
-      "status": "unverified"
+      "source": "Degree count from Demo.tsx ROADS (town 3: 2-3, 1-3, 3-4; town 4: 3-4, 4-5, 4-6); flood-fill result as in c1. | FACT-CHECK 2026-10-14 (pass 21): verified. Degrees from ROADS: town 3 = 3, town 4 = 3; closing 2-3, 1-3, 4-5, 4-6 keeps all 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c3",
       "text": "A road on a loop has a detour; a bridge is a road on no loop, so it has none.",
       "support": "derivation",
-      "source": "If edge u-v lies on a cycle, the rest of the cycle is a u..v path without it, so removing it disconnects nothing. If removing u-v leaves a u..v path, that path plus u-v is a cycle. CLRS 4e ch. 20 problem 20-2 (articulation points, bridges and biconnected components).",
-      "status": "unverified"
+      "source": "If edge u-v lies on a cycle, the rest of the cycle is a u..v path without it, so removing it disconnects nothing. If removing u-v leaves a u..v path, that path plus u-v is a cycle. CLRS 4e ch. 20 problem 20-2 (articulation points, bridges and biconnected components). | FACT-CHECK 2026-10-14 (pass 21): verified. Cycle/detour equivalence re-derived (both directions).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c4",
       "text": "Depth-first search finds every bridge in one pass by noting, for each road it walks down, whether the towns below can climb back above it by another road.",
       "support": "source",
-      "source": "Tarjan (1974), 'A note on finding the bridges of a graph', Information Processing Letters 2(6); low-link values: tree edge (u, v) is a bridge iff low[v] > disc[u]. CLRS 4e ch. 20, problem 20-2. Runs in linear time O(V + E).",
-      "status": "unverified"
+      "source": "Tarjan (1974), 'A note on finding the bridges of a graph', Information Processing Letters 2(6); low-link values: tree edge (u, v) is a bridge iff low[v] > disc[u]. CLRS 4e ch. 20, problem 20-2. Runs in linear time O(V + E). | FACT-CHECK 2026-10-14 (pass 21): verified. Implemented low-link DFS (bridge iff low[v] > disc[u]) on this map: returns only 3-4. Tarjan (1974) IPL 2(6) and CLRS 4e problem 20-2 cited from memory, not opened; the description matches the standard algorithm.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c5",
       "text": "Coloured towns can still be reached from town 1; red towns are cut off.",
       "support": "convention",
-      "source": "Stage convention: Demo.tsx colours towns in reach(closed) with var(--domain), others var(--bad).",
-      "status": "unverified"
+      "source": "Stage convention: Demo.tsx colours towns in reach(closed) with var(--domain), others var(--bad). | FACT-CHECK 2026-10-14 (pass 21): verified. Demo.tsx fills reach(closed) towns var(--domain), others var(--bad).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

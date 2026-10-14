@@ -26,50 +26,64 @@
       "id": "life.outbreak-can-fizzle-above-one.c1",
       "text": "With Poisson spread and mean 1.5, the chance that one case's chain dies out is 41.7%.",
       "support": "derivation",
-      "source": "Extinction probability q is the smallest solution of q = e^{R(q − 1)} (probability generating function of the Poisson distribution). Builder's fixed-point iteration from q = 0 (scratchpad ncmc/outbreak.mjs), 2026-10-14: R = 1.5 gives 0.4172. Matches brief life.health-epidemiology NCM #1.",
-      "status": "unverified"
+      "source": "Extinction probability q is the smallest solution of q = e^{R(q − 1)} (probability generating function of the Poisson distribution). Builder's fixed-point iteration from q = 0 (scratchpad ncmc/outbreak.mjs), 2026-10-14: R = 1.5 gives 0.4172. Matches brief life.health-epidemiology NCM #1. · Fact-check pass 21 2026-10-14: Own fixed-point iteration of q = e^{R(q-1)} from q = 0 (scratchpad fc21/outbreak.mjs): R = 1.5 gives 0.4172. Reveal '41.7%' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c2",
       "text": "The chance is about 20% for R = 2 and about 6% for R = 3; for R below 1 every chain dies out.",
       "support": "derivation",
-      "source": "Same fixed point: R = 2 gives 0.2032, R = 3 gives 0.0595, R = 0.9 gives 1 (for R ≤ 1 the only solution in [0, 1] is q = 1). Builder's node run, scratchpad ncmc/outbreak.mjs, 2026-10-14.",
-      "status": "unverified"
+      "source": "Same fixed point: R = 2 gives 0.2032, R = 3 gives 0.0595, R = 0.9 gives 1 (for R ≤ 1 the only solution in [0, 1] is q = 1). Builder's node run, scratchpad ncmc/outbreak.mjs, 2026-10-14. · Fact-check pass 21 2026-10-14: Same iteration: R = 2 0.2032, R = 3 0.0595, R = 0.9 converges to 1. Reveal 'about 20%', 'about 6%', 'below 1 every chain ends' match (for R <= 1 the PGF fixed point in [0,1] is 1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c3",
       "text": "In the stage's seeded run at R = 1.5, 38 of the first 101 outbreaks die out and 418 of 1,000; the reveal quotes the learner's own tally.",
       "support": "simulation",
-      "source": "Demo.tsx outbreak(): Poisson offspring by Knuth's product method, mulberry32 seed 218 + 10R (233 at R = 1.5), one stream per R; a chain passing 2,000 cases counts as taking off. Builder's node mirror of the same code (scratchpad ncmc/outbreak.mjs), 2026-10-14: at R = 1.5, after 1 outbreak 0 died (outbreak 1 took off), after 100 37 died, after 101 38, after 1,000 418 (41.8%). At R = 0.9 all 1,000 died; R = 2 237 of 1,000; R = 3 48 of 1,000. The seed formula reuses the brief's seed 218 and was not chosen for its result; the brief's own run (seed 218, 10,000 chains) gave 42.9%.",
-      "status": "unverified"
+      "source": "Demo.tsx outbreak(): Poisson offspring by Knuth's product method, mulberry32 seed 218 + 10R (233 at R = 1.5), one stream per R; a chain passing 2,000 cases counts as taking off. Builder's node mirror of the same code (scratchpad ncmc/outbreak.mjs), 2026-10-14: at R = 1.5, after 1 outbreak 0 died (outbreak 1 took off), after 100 37 died, after 101 38, after 1,000 418 (41.8%). At R = 0.9 all 1,000 died; R = 2 237 of 1,000; R = 3 48 of 1,000. The seed formula reuses the brief's seed 218 and was not chosen for its result; the brief's own run (seed 218, 10,000 chains) gave 42.9%. · Fact-check pass 21 2026-10-14: Own mulberry32 + Knuth Poisson mirror of Demo.tsx outbreak(), seed 218 + 10R, CAP 2,000: R = 1.5 after 1 run 0 died, after 100 37, after 101 38, after 1,000 418; R = 0.9 1000/1000, R = 2 237, R = 3 48. Reveal quotes the learner's own tally (mainDied/nMain).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c4",
       "text": "With Poisson spread and mean 1.5, a case infects 0 or 1 others 56% of the time, so a chain often starts too thin to survive bad luck.",
       "support": "derivation",
-      "source": "P(0) + P(1) = e^{-1.5}(1 + 1.5) = 0.5578. Stage tally 'First case infected 0 or 1' in the seeded run: 49 of 101 and 547 of 1,000 at R = 1.5 (scratchpad ncmc/outbreak.mjs).",
-      "status": "unverified"
+      "source": "P(0) + P(1) = e^{-1.5}(1 + 1.5) = 0.5578. Stage tally 'First case infected 0 or 1' in the seeded run: 49 of 101 and 547 of 1,000 at R = 1.5 (scratchpad ncmc/outbreak.mjs). · Fact-check pass 21 2026-10-14: e^-1.5 (1 + 1.5) = 0.5578. Own run: first case infected 0 or 1 in 49 of 101 and 547 of 1,000 at R = 1.5. Stage readout uses o.first <= 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c5",
       "text": "R above 1 means growth is possible, not certain: a single introduction can die out by chance.",
       "support": "source",
-      "source": "Branching-process view of early epidemics: Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 21 (branching process model of epidemics). Attribution for the fact-checker to confirm; follows from c1.",
-      "status": "unverified"
+      "source": "Branching-process view of early epidemics: Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 21 (branching process model of epidemics). Attribution for the fact-checker to confirm; follows from c1. · Fact-check pass 21 2026-10-14: Follows from c1-c2 (q = 0.417 > 0 at R = 1.5). Chapter placement checked from my own knowledge, book host blocked and not opened: Easley & Kleinberg (2010) ch. 21 is 'Epidemics', with the branching-process model and R0 in its opening sections; placement confident.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c6",
       "text": "This assumes Poisson spread, with every case equally infectious; real spread is more uneven, which makes dying out even more likely.",
       "support": "source",
-      "source": "Lloyd-Smith J.O., Schreiber S.J., Kopp P.E. & Getz W.M. (2005), 'Superspreading and the effect of individual variation on disease emergence', Nature 438:355-359: for a fixed R, more individual variation (smaller negative-binomial k) raises the probability that an introduction goes extinct. Required by the brief's acceptance edit; the existing lesson spreaders-are-rare cites the same paper.",
-      "status": "unverified"
+      "source": "Lloyd-Smith J.O., Schreiber S.J., Kopp P.E. & Getz W.M. (2005), 'Superspreading and the effect of individual variation on disease emergence', Nature 438:355-359: for a fixed R, more individual variation (smaller negative-binomial k) raises the probability that an introduction goes extinct. Required by the brief's acceptance edit; the existing lesson spreaders-are-rare cites the same paper. · Fact-check pass 21 2026-10-14: Lloyd-Smith et al. (2005) Nature 438(7066):355-359, doi 10.1038/nature04153: abstract (seen via web search result; nature.com and PubMed blocked) says models with individual variation predict 'disease extinction more likely and outbreaks rarer but more explosive'. Own check: negative-binomial offspring, R = 1.5, extinction q = 0.457 (k = 10), 0.667 (k = 1), 0.768 (k = 0.5), 0.932 (k = 0.1), all above the Poisson 0.417.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.outbreak-can-fizzle-above-one.c7",
       "text": "Each R has its own seeded run; an outbreak passing 2,000 cases is counted as taking off.",
       "support": "convention",
-      "source": "Stage set-up (Demo.tsx seedFor, CAP), from the brief's check.",
-      "status": "unverified"
+      "source": "Stage set-up (Demo.tsx seedFor, CAP), from the brief's check. · Fact-check pass 21 2026-10-14: Demo.tsx seedFor = 218 + round(10R), one stream per R in streams map; loop runs while total <= 2,000, so a chain passing 2,000 counts as taking off; stage line 'Seed N. Over 2,000 cases counts as taking off.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -26,43 +26,55 @@
       "id": "cs.shoelace-order-matters.c1",
       "text": "The rectangle (0,0) (4,0) (4,3) (0,3), listed in order, has shoelace area 12; the reverse order gives -12; the order (0,0) (4,3) (4,0) (0,3) gives 0.",
       "support": "simulation",
-      "source": "Builder's node check (2026-10-14): half the sum of x_i*y_(i+1) - x_(i+1)*y_i over the closed path gives 12, -12, 0. All 6 orders starting at (0,0): the two round the boundary give 12 and -12, the four that cross themselves give 0. Demo.tsx shoelace() recomputes the stage values. Matches brief cs.algorithms.md #74. Unverified.",
-      "status": "unverified"
+      "source": "Builder's node check (2026-10-14): half the sum of x_i*y_(i+1) - x_(i+1)*y_i over the closed path gives 12, -12, 0. All 6 orders starting at (0,0): the two round the boundary give 12 and -12, the four that cross themselves give 0. Demo.tsx shoelace() recomputes the stage values. Matches brief cs.algorithms.md #74. Unverified. · Fact-check pass 21 2026-10-14: Own node shoelace (fc21/shoe.mjs): 12, -12, 0; all 6 orders from (0,0) give 12, 0, 0, 0, 0, -12. Question and reveal use shoelace() values.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c2",
       "text": "The formula adds a signed strip under each edge: + for an edge going left, − for an edge going right.",
       "support": "derivation",
-      "source": "Trapezoid form: sum over edges of (x_i - x_(i+1)) * (y_i + y_(i+1)) / 2 expands to half of sum (x_i*y_(i+1) - x_(i+1)*y_i) plus half of sum (x_i*y_i - x_(i+1)*y_(i+1)), and the second sum telescopes to 0 round a closed path. So the strips between each edge and the x-axis add to the shoelace value; an edge with x decreasing (going left, y up) adds, one with x increasing subtracts. Unverified.",
-      "status": "unverified"
+      "source": "Trapezoid form: sum over edges of (x_i - x_(i+1)) * (y_i + y_(i+1)) / 2 expands to half of sum (x_i*y_(i+1) - x_(i+1)*y_i) plus half of sum (x_i*y_i - x_(i+1)*y_(i+1)), and the second sum telescopes to 0 round a closed path. So the strips between each edge and the x-axis add to the shoelace value; an edge with x decreasing (going left, y up) adds, one with x increasing subtracts. Unverified. · Fact-check pass 21 2026-10-14: Trapezoid identity checked: per-edge strips sum to the shoelace value for every order tried. With all y >= 0 on this stage, an edge going left adds and one going right subtracts (edges along y = 0 or vertical give 0, drawn as no strip).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c3",
       "text": "In the order (0,0) (4,3) (4,0) (0,3), the edge from (0,0) to (4,3) gives −6 and the edge from (4,0) to (0,3) gives +6; the two upright edges give 0, so the total is 0.",
       "support": "derivation",
-      "source": "(0-4)(0+3)/2 = -6; (4-0)(0+3)/2 = +6; edges (4,3)-(4,0) and (0,3)-(0,0) have x_i = x_(i+1), so 0. Unverified.",
-      "status": "unverified"
+      "source": "(0-4)(0+3)/2 = -6; (4-0)(0+3)/2 = +6; edges (4,3)-(4,0) and (0,3)-(0,0) have x_i = x_(i+1), so 0. Unverified. · Fact-check pass 21 2026-10-14: Own node per-edge strips for the bow-tie order: [-6, 0, +6, 0], total 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c4",
       "text": "The bow-tie path encloses two triangles of area 3, one traced each way round.",
       "support": "derivation",
-      "source": "The diagonals cross at (2, 1.5). Left lobe (2,1.5) (0,3) (0,0): shoelace +3 (anticlockwise). Right lobe (2,1.5) (4,3) (4,0): shoelace -3 (clockwise). Note: the brief's 'two triangles of area 6 with opposite signs' describes the two edge strips (c3), not the lobes. Unverified.",
-      "status": "unverified"
+      "source": "The diagonals cross at (2, 1.5). Left lobe (2,1.5) (0,3) (0,0): shoelace +3 (anticlockwise). Right lobe (2,1.5) (4,3) (4,0): shoelace -3 (clockwise). Note: the brief's 'two triangles of area 6 with opposite signs' describes the two edge strips (c3), not the lobes. Unverified. · Fact-check pass 21 2026-10-14: Diagonals cross at (2, 1.5). Own shoelace: left lobe (2,1.5)(0,3)(0,0) = +3, right lobe (2,1.5)(4,3)(4,0) = -3; each triangle base 3, height 2, area 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c5",
       "text": "The sign tells you the direction: positive when the corners go anticlockwise.",
       "support": "derivation",
-      "source": "With y pointing up, the boundary-order rectangle (0,0) (4,0) (4,3) (0,3) runs anticlockwise and gives +12; reversing every edge negates every term. Green's theorem gives area = (1/2) closed integral of (x dy - y dx) for a positively (anticlockwise) oriented simple curve. Unverified.",
-      "status": "unverified"
+      "source": "With y pointing up, the boundary-order rectangle (0,0) (4,0) (4,3) (0,3) runs anticlockwise and gives +12; reversing every edge negates every term. Green's theorem gives area = (1/2) closed integral of (x dy - y dx) for a positively (anticlockwise) oriented simple curve. Unverified. · Fact-check pass 21 2026-10-14: Stage maps y up (sy = OY - y*U); the boundary order (0,0)(4,0)(4,3)(0,3) is anticlockwise and gives +12; reversing negates. Standard Green's-theorem orientation; derivation, no external source needed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c6",
       "text": "A path that crosses itself makes some parts count positive and some negative.",
       "support": "derivation",
-      "source": "The shoelace sum equals the sum over regions of (winding number x region area); a self-crossing path has regions wound in opposite directions (c4 example: +1 and -1). Unverified.",
-      "status": "unverified"
+      "source": "The shoelace sum equals the sum over regions of (winding number x region area); a self-crossing path has regions wound in opposite directions (c4 example: +1 and -1). Unverified. · Fact-check pass 21 2026-10-14: Shoelace sum = sum of winding number x area over regions; c4 shows +3 and -3 lobes for the crossing path.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

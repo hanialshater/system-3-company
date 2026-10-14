@@ -10,3 +10,10 @@ Checker: fact-checker. c1 skipped by instruction and left unverified: it needs a
 |---|---|---|
 | c1 | unverified (skipped) | Needs a human source check of the primary table (network access to the source is blocked for agents; see the claim's earlier FACT-CHECK notes). Not touched in pass 17. |
 
+## Pass 21 (2026-10-14)
+
+Checker: fact-checker. Method: read Demo.tsx (stage, question, reveal) against each open claim, re-ran the lesson's own model in node (scratch scripts extracting or re-implementing it), and tried each named source. Most source hosts are blocked to fetch; where only a web-search extract was available, the row says so.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | disputed | Pass 21: still not opened (royalsocietypublishing, geologie.ens.fr OCR copy and Morgan 1968 PDF all blocked to fetch). Web-search extracts: an OCR of the paper lists fit 9 (500 fm) as '44.0 30.6 57.0', and Morgan (1968) cites Bullard et al. for a 44.0 N, 30.6 W pole; but Virtual Explorer (2007) lists Bullard et al. (1965) as 42.9, -30.1, 57.1 and gives 44/-30.6/57 to Smith and Hallam (1970). The learner sentence depends on the unopened table and secondary sources conflict, so disputed. To clear: a human opens Table 1 (fit 9) in Phil. Trans. R. Soc. A 258: 41-51 (copy at geologie.ens.fr/50years_plate_tectonics/phil-trans-r-soc-lond-a.pdf). |

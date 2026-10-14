@@ -26,36 +26,46 @@
       "id": "cs.each-element-pops-once.c1",
       "text": "On 9 8 7 6 5 4 3 2 1, scanning right from each position until a bigger number costs 36 comparisons (8 + 7 + ... + 1); none of them has a bigger number to its right.",
       "support": "simulation",
-      "source": "Demo.tsx run() (scanTotal), the number the question and stage print. Builder's node script (2026-10-14): 36. Closed form 8·9/2 = 36. Convention: the scan from position i compares a[i] with a[i+1], a[i+2], ... and stops at the first bigger value or the end.",
-      "status": "unverified"
+      "source": "Demo.tsx run() (scanTotal), the number the question and stage print. Builder's node script (2026-10-14): 36. Closed form 8·9/2 = 36. Convention: the scan from position i compares a[i] with a[i+1], a[i+2], ... and stops at the first bigger value or the end. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran run(): scan 36 = 8+7+...+1; no answers.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.each-element-pops-once.c2",
       "text": "With a stack of values still waiting, 9 8 7 6 5 4 3 2 1 costs 8 comparisons: each new number is compared once with the top, which is bigger, and pushed.",
       "support": "simulation",
-      "source": "Demo.tsx run() (stackTotal). Convention (disclosed in the Demo.tsx header): a stack comparison is one test of the new value against the current top; the first number meets an empty stack and costs nothing. Builder's node script (2026-10-14): 8 comparisons, 0 pops.",
-      "status": "unverified"
+      "source": "Demo.tsx run() (stackTotal). Convention (disclosed in the Demo.tsx header): a stack comparison is one test of the new value against the current top; the first number meets an empty stack and costs nothing. Builder's node script (2026-10-14): 8 comparisons, 0 pops. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran run(): stack 8 comparisons, 0 pops.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.each-element-pops-once.c3",
       "text": "On 8 7 6 5 4 3 2 1 9, scanning still costs 36, and the stack costs 15: 7 comparisons while the first eight are pushed, then 8 as the 9 pops all eight waiting numbers; each of the eight gets the answer 9 and the 9 gets none.",
       "support": "simulation",
-      "source": "List added by the spec (company/design/specs/each-element-pops-once.md), not in the brief. Demo.tsx run() on LISTS[1]; builder's node script (2026-10-14): scan 36, stack 15, 8 pops, answers 9 9 9 9 9 9 9 9 none. 9 pushes + 8 pops = 17 <= 18.",
-      "status": "unverified"
+      "source": "List added by the spec (company/design/specs/each-element-pops-once.md), not in the brief. Demo.tsx run() on LISTS[1]; builder's node script (2026-10-14): scan 36, stack 15, 8 pops, answers 9 9 9 9 9 9 9 9 none. 9 pushes + 8 pops = 17 <= 18. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran run() on 8 7 6 5 4 3 2 1 9: scan 36, stack 15 (7 + 8), 8 pops, answers 9 x8 then none.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.each-element-pops-once.c4",
       "text": "A number waits on the stack until a bigger one arrives, and then it is popped and answered, exactly once.",
       "support": "derivation",
-      "source": "The stack holds indices whose next bigger value has not been seen yet, in decreasing value from bottom to top; when a[i] arrives every smaller top is popped and answered with a[i], the first bigger value to its right (anything between them was smaller, else it would have popped it first). Each index is pushed once, so popped at most once.",
-      "status": "unverified"
+      "source": "The stack holds indices whose next bigger value has not been seen yet, in decreasing value from bottom to top; when a[i] arrives every smaller top is popped and answered with a[i], the first bigger value to its right (anything between them was smaller, else it would have popped it first). Each index is pushed once, so popped at most once. | FACT-CHECK 2026-10-14 (pass 21): verified. Derivation checked; brute-force next-greater equals stack answers on all 5040 orders of 1..7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.each-element-pops-once.c5",
       "text": "Every stack comparison either pops a number or ends that number's turn, so 9 numbers cost at most 9 pushes and 9 pops: the work grows like n, not n².",
       "support": "derivation",
-      "source": "Amortised (aggregate) count: comparisons <= pops + (n - 1), pops <= n, so comparisons < 2n; pushes + pops <= 2n. The aggregate method is CLRS 4e chapter 16 (amortized analysis; its stack MULTIPOP example uses the same argument). Scanning costs up to n(n-1)/2 (c1).",
-      "status": "unverified"
+      "source": "Amortised (aggregate) count: comparisons <= pops + (n - 1), pops <= n, so comparisons < 2n; pushes + pops <= 2n. The aggregate method is CLRS 4e chapter 16 (amortized analysis; its stack MULTIPOP example uses the same argument). Scanning costs up to n(n-1)/2 (c1). | FACT-CHECK 2026-10-14 (pass 21): verified. comparisons <= pops + (n-1) checked on all 5040 orders of 1..7 (max 11 for n = 7 < 2n); '9 pushes and 9 pops' is a valid (loose) bound. CLRS 4e ch. 16 amortized analysis cited from memory; not needed for the sentence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

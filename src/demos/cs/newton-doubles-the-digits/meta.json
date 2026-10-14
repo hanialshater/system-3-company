@@ -26,36 +26,46 @@
       "id": "cs.newton-doubles-the-digits.c1",
       "text": "Starting from g = 1, the guesses had 1, 1, 3, 6, then 12 correct significant digits of √2: 12 after four updates.",
       "support": "simulation",
-      "source": "Demo.tsx G and correctDigits(); builder's node script (2026-10-14), double precision: g = 1, 1.5, 1.4166666666666665, 1.4142156862745097, 1.4142135623746899; errors 0.41, 0.086, 0.0025, 2.1e-6, 1.6e-12. Digits counted by comparing the 17-significant-digit string of g with the true decimal expansion of √2 (1.41421356237309504880168872420969807856967187, OEIS A002193; cross-checked with a BigInt Newton iteration to 46 digits), not with Math.SQRT2. Matches the brief and spec.",
-      "status": "unverified"
+      "source": "Demo.tsx G and correctDigits(); builder's node script (2026-10-14), double precision: g = 1, 1.5, 1.4166666666666665, 1.4142156862745097, 1.4142135623746899; errors 0.41, 0.086, 0.0025, 2.1e-6, 1.6e-12. Digits counted by comparing the 17-significant-digit string of g with the true decimal expansion of √2 (1.41421356237309504880168872420969807856967187, OEIS A002193; cross-checked with a BigInt Newton iteration to 46 digits), not with Math.SQRT2. Matches the brief and spec. · Fact-check pass 21 2026-10-14: Own node (fc21/newton.mjs) with the 45-digit sqrt(2) string, itself checked by a BigInt Newton root: digits 1, 1, 3, 6, 12, 15, 15 for g0..g6. Note for builder (not blocking): the reveal quotes updates 1-4 as '1, 3, 6, then 12', while this claim text includes g0 ('1, 1, 3, 6, then 12'); both are true, consider matching the claim text to the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.newton-doubles-the-digits.c2",
       "text": "When g is too big, 2 ÷ g is too small by about the same amount, so their average lands much nearer √2.",
       "support": "derivation",
-      "source": "If g > √2 then 2/g < 2/√2 = √2. Writing g = √2 + e, 2/g = √2 - e + e²/√2 - ..., so 2/g is below √2 by about e, and the average is √2 + e²/(2√2) + O(e³). Shown on the stage's magnifier with exact decimal positions.",
-      "status": "unverified"
+      "source": "If g > √2 then 2/g < 2/√2 = √2. Writing g = √2 + e, 2/g = √2 - e + e²/√2 - ..., so 2/g is below √2 by about e, and the average is √2 + e²/(2√2) + O(e³). Shown on the stage's magnifier with exact decimal positions. · Fact-check pass 21 2026-10-14: Own check: g = 1.5 is 0.0858 high, 2/g = 1.3333 is 0.0809 low; the expansion 2/(√2 + e) = √2 - e + e²/√2 - ... holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.newton-doubles-the-digits.c3",
       "text": "The new error is about the old error squared (divided by 2.8), so the correct digits roughly double each update.",
       "support": "derivation",
-      "source": "From c2: e_new = e² / (2g) exactly (since (g + 2/g)/2 - √2 = (g - √2)² / (2g)), and 2g ≈ 2√2 ≈ 2.83 near the root. Squaring an error of 10^-k gives about 10^-2k, so correct digits double (quadratic convergence of Newton's method; e.g. Burden and Faires, Numerical Analysis, ch. 2, Newton's method). Check of the numbers: (2.1e-6)² / 2.83 = 1.6e-12.",
-      "status": "unverified"
+      "source": "From c2: e_new = e² / (2g) exactly (since (g + 2/g)/2 - √2 = (g - √2)² / (2g)), and 2g ≈ 2√2 ≈ 2.83 near the root. Squaring an error of 10^-k gives about 10^-2k, so correct digits double (quadratic convergence of Newton's method; e.g. Burden and Faires, Numerical Analysis, ch. 2, Newton's method). Check of the numbers: (2.1e-6)² / 2.83 = 1.6e-12. · Fact-check pass 21 2026-10-14: Identity (g + 2/g)/2 - √2 = (g - √2)²/(2g) checked numerically: predicted next errors 8.58e-2, 2.45e-3, 2.12e-6, 1.59e-12 equal the actual ones.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.newton-doubles-the-digits.c4",
       "text": "The fifth update reached 15 digits, the limit of the computer's numbers, and the sixth changed nothing.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14): update 5 gives 1.4142135623730949 (15 correct significant digits against the true expansion; error 1.3e-16), and update 6 returns the identical double. A JavaScript number is an IEEE 754 double with a 53-bit significand, about 15.95 decimal digits, and the spacing of doubles near 1.414 is 2^-52 ≈ 2.2e-16: g5 and the computed 2/g5 (1.4142135623730951) are neighbouring doubles either side of √2, and their average rounds back to g5. Shown only if the learner ran to the end.",
-      "status": "unverified"
+      "source": "Builder's node script (2026-10-14): update 5 gives 1.4142135623730949 (15 correct significant digits against the true expansion; error 1.3e-16), and update 6 returns the identical double. A JavaScript number is an IEEE 754 double with a 53-bit significand, about 15.95 decimal digits, and the spacing of doubles near 1.414 is 2^-52 ≈ 2.2e-16: g5 and the computed 2/g5 (1.4142135623730951) are neighbouring doubles either side of √2, and their average rounds back to g5. Shown only if the learner ran to the end. · Fact-check pass 21 2026-10-14: Own run: g5 = 1.4142135623730949, 15 digits, error -1.25e-16 (< 2^-52 ≈ 2.2e-16 spacing); g6 === g5. Caveat recorded: the nearest double to √2 (Math.SQRT2 = 1.4142135623730951) scores 16 by the lesson's own count, and is not itself a fixed point; '15 digits, the limit' is read as the usual ~15 reliable digits of a double (DBL_DIG = 15). Acceptable; builder may prefer 'about the limit'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.newton-doubles-the-digits.c5",
       "text": "This is Newton's method for g² = 2, the same rule as the ancient Babylonian one.",
       "support": "derivation",
-      "source": "Newton's update for f(g) = g² - 2 is g - f(g)/f'(g) = g - (g² - 2)/(2g) = (g + 2/g)/2, the same as averaging g and 2/g. The averaging rule is traditionally called the Babylonian (or Heron's) method; Heron of Alexandria describes it in Metrica (1st century AD) and Babylonian tablet YBC 7289 gives √2 to about six decimals, though how it was computed is not recorded (Fowler and Robson, 'Square root approximations in Old Babylonian mathematics', Historia Mathematica 25, 1998). Builder has not opened these sources in this session; 'Babylonian' is the conventional name, not a proven method of the tablet.",
-      "status": "unverified"
+      "source": "Newton's update for f(g) = g² - 2 is g - f(g)/f'(g) = g - (g² - 2)/(2g) = (g + 2/g)/2, the same as averaging g and 2/g. The averaging rule is traditionally called the Babylonian (or Heron's) method; Heron of Alexandria describes it in Metrica (1st century AD) and Babylonian tablet YBC 7289 gives √2 to about six decimals, though how it was computed is not recorded (Fowler and Robson, 'Square root approximations in Old Babylonian mathematics', Historia Mathematica 25, 1998). Builder has not opened these sources in this session; 'Babylonian' is the conventional name, not a proven method of the tablet. · Fact-check pass 21 2026-10-14: Newton = averaging rule: verified by derivation. The historical half is not checked: the learner sentence says the rule is 'the ancient Babylonian one', but the builder's own source says how YBC 7289 was computed is not recorded, and the Fowler & Robson (1998, Historia Math. 25:366-378) abstract, seen via web search only, reconstructs a geometric method rather than confirming this rule. Heron's Metrica not opened. Fix (builder): 'the rule known as the Babylonian (or Heron's) method', or cite an opened source for Babylonian use.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
