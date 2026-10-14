@@ -18,3 +18,15 @@ Unrecorded claims: I compared every learner-visible sentence (hook, question, op
 **Result:** no disputes. Held unverified: c5, because the source could not be opened (see the notes); publishing waits until these are withdrawn or sourced. Everything else is verified.
 
 Non-blocking note: the recall's 'why' says "Limestone switches near 850 °C" without the word "estimate". That is the same figure as c5 part 1 (the 25 °C estimate), while the full data give about 893 °C. To fix it, write "near 850 °C (an estimate from 25 °C data)" or "near 850-900 °C". The builder owns the wording.
+
+## Pass 37 (2026-10-14, W-732)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record these claims. Scope: the claims changed by the wave-J dispute fixes (fd53f77, merged in 754195b; meta.json v2). Method: I read Demo.tsx (and model.ts or solar.ts) v2 on every reachable path before I read the claims and then the build note's Revision v2. Then I re-ran the numbers in node and python from my own copies of the lesson logic, not imported from the lesson (scripts: artifacts/fact-check-wave-j/w732/). I did not use the dev server. No walkthrough transcript exists for this slug. Sources opened: only GitHub (raw files and public git clones) and PyPI. Each verdict names the file it rests on, and no verdict rests on an unopened source.
+
+Paths read: the chips 25, 500 and 900 in any order, 'Find the switch' (enabled after 900 C), and the readouts. Stage unchanged in v2; only the claim and the recall why changed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Pass 37 (W-732): derivation re-run from a copy of Demo.tsx: dH = 179.19 kJ/mol, dS = 0.16019 kJ/(mol K), T_SWITCH = 845.46 C, shown 'switch ~ 845 C (25 C data)' and 'near 845 C' in the reveal; 'about 850 C' is the nearest option. The withdrawn 890 C sentence is gone from claim, stage, reveal and recall. Recall why ('near 850 C (an estimate from 25 C data)') is honest: my own full-data run (NASA TM-4513 via Cantera nasa_gas.yaml and nasa_condensed.yaml, artifacts/fact-check-wave-j/w732/lime.mjs) puts dG = 0 at 893 C, so the 25 C figure is correctly labelled an estimate. The recall's answer ('above some temperature, where TdS outgrows dH') rests on c6 (verified). |
+
+**Result:** c5 verified. All six claims are now verified.

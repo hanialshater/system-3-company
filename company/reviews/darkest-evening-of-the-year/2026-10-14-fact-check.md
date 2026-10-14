@@ -17,3 +17,15 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c5 | verified | Opened: IANA tz database (tzdata 2026.5, zoneinfo Europe/London). The UTC offset is 0 from 26 Oct 2026 until 28 Mar 2027 (+1 h on 24 Oct 2026 and 29 Mar 2027), so the clock is GMT throughout 1 Dec - 15 Jan. |
 
 **Result:** disputed: c3 (this blocks publishing). All other claims verified. The fixes are in the notes; demo-builder owns them (board).
+
+## Pass 37 (2026-10-14, W-732)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record these claims. Scope: the claims changed by the wave-J dispute fixes (fd53f77, merged in 754195b; meta.json v2). Method: I read Demo.tsx (and model.ts or solar.ts) v2 on every reachable path before I read the claims and then the build note's Revision v2. Then I re-ran the numbers in node and python from my own copies of the lesson logic, not imported from the lesson (scripts: artifacts/fact-check-wave-j/w732/). I did not use the dev server. No walkthrough transcript exists for this slug. Sources opened: only GitHub (raw files and public git clones) and PyPI. Each verdict names the file it rests on, and no verdict rests on an unopened source.
+
+Paths read: the chips, the slider over its full range (0-45), and locked state. The reveal's numbers are module constants (Q), the same on every path.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Pass 37 (W-732): re-split solar.ts's own equation of time (type-stripped copy, artifacts/fact-check-wave-j/w732/solar.mjs). Solar noon 11:55 on 13 Dec (714.70 min) to 12:03 on 30 Dec (723.01), a later drift of 8.32 min: obliquity (tilt) terms 5.92 min (71%), eccentricity (orbital speed) terms 2.22 min (27%), cross term 0.18 min. So 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January' is now weighted correctly. Perihelion: astropy 8.0.1 (PyPI, built-in ephemeris, artifacts/fact-check-wave-j/w732/peri.py) gives 2027-01-03 03 UTC at 0.98333 AU; by Kepler's second law the orbital angular speed peaks there (Earth's own heliocentric rate, which the Moon perturbs, peaks on 6 Jan); both are early January. |
+
+**Result:** c3 verified, so the Pass 1 dispute is closed. All claims are now verified.

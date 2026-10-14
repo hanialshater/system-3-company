@@ -39,16 +39,20 @@
       "text": "With ΔH° and ΔS° varying with temperature (full NASA TM-4513 data), K is about 5.6 × 10^5 at 25 °C, about 0.39 at 200 °C and about 4.9 × 10^-5 at 450 °C, a fall by a factor of billions (about 10^10) (stage dot labels '5.6 × 10⁵', '0.39', '4.9 × 10⁻⁵'; reveal: 'K fell from about 5.6 × 10⁵ at 25 °C to about 4.9 × 10⁻⁵ at 450 °C, a factor of billions').",
       "support": "derivation",
       "source": "NASA-7 polynomials, McBride, Gordon & Reno, NASA TM-4513 (1993), as transcribed in Cantera data/nasa_gas.yaml (NH3, N2, H2; 200-1000 K range). ΔG°(T) = 2G(NH3) − G(N2) − 3G(H2) from the polynomials; K = exp(−ΔG°/RT): K = 5.60e5, 0.391, 4.91e-5; ratio 1.1e10 (node, demo-builder 2026-10-14, from Demo.tsx kAt()). At 25 °C the polynomials give ΔH° = −91.88 kJ/mol, ΔS° = −198.1 J/(mol K) (claim 1); at 450 °C ΔH° = −105.9 kJ/mol. Brief claim 2.",
-      "status": "unverified",
-      "note": "v2 (2026-10-14, W-674): switched from constant 25 °C ΔH°/ΔS° (0.62, 1.9e-4; disputed, no caveat on stage) to the full-data K the fact-checker computed from NASA TM-4513. Needs a fresh check."
+      "status": "verified",
+      "note": "Pass 37 (W-732): re-opened NASA TM-4513 polynomials in Cantera data/nasa_gas.yaml (GitHub raw, main; header cites McBride, Gordon & Reno 1993). The NH3, N2, H2 200-1000 K coefficients in Demo.tsx match the file digit for digit. Own evaluation from the parsed yaml (artifacts/fact-check-wave-j/w732/nh3.mjs) and a copy of kAt() (nh3demo.mjs) agree: K = 5.604e5 (25 C), 0.3913 (200 C), 4.910e-5 (450 C); fmtK shows '5.6 x 10^5', '0.39', '4.9 x 10^-5'; ratio 1.14e10, so 'a factor of billions' holds. dH at 450 C = -105.9 kJ/mol. Every temperature is inside the 200-1000 K range.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.heat-the-ammonia-maker.c3",
       "text": "Starting from 1 N2 : 3 H2 at 1 bar total, ammonia is about 94% of the settled gas at 25 °C, about 15% at 200 °C and about 0.23% at 450 °C (stage bar 'NH₃ at the end, 25 °C: 94%' etc.).",
       "support": "simulation",
       "source": "Ideal-gas equilibrium with the K of claim 2: K = x_NH3² / (x_N2 · x_H2³) at P = 1 bar = P°; with extent ξ, K = 4ξ²(4 − 2ξ)² / (27(1 − ξ)⁴), solved by bisection; share 2ξ/(4 − 2ξ) = 0.938, 0.148, 0.0023 (node, demo-builder 2026-10-14; Demo.tsx shareAt()). Not in the brief: added so the 'ammonia at the end' in the question is drawn, not only K. The 1 bar condition shows on the locked bar label only.",
-      "status": "unverified",
-      "note": "v2 (2026-10-14, W-674): shares now from the full-data K of claim 2 (were 17% and 0.45% under constant ΔH°/ΔS°; disputed). Needs a fresh check."
+      "status": "verified",
+      "note": "Pass 37 (W-732): re-derived with a different parametrisation (bisection on the NH3 mole fraction y: K = y^2 / (((1-y)/4)((3(1-y)/4)^3)), artifacts/fact-check-wave-j/w732/nh3.mjs) and with a copy of shareAt(): 0.9379, 0.1476, 0.002265, shown by pct() as 94%, 15%, 0.23%. Both solvers agree to 1e-12. Rests on the K of c2 (verified).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.heat-the-ammonia-maker.c4",

@@ -46,8 +46,10 @@
       "text": "Solar noon drifts later in late December mostly because of Earth's tilt, and partly because Earth moves fastest in early January.",
       "support": "source",
       "source": "Equation of time from orbital eccentricity and obliquity (Meeus 1998 ch. 28; the eot formula in solar.ts has an eccentricity term, -2e sin M, and an obliquity term, y sin 2L0). Perihelion falls on 2 to 5 January (Meeus). Not opened by the builder. | v2 (demo-builder, 2026-10-14, W-708): causal order reversed to match the split of solar.ts's own equation of time, 13 to 30 Dec: obliquity (tilt) term 5.9 min, eccentricity (orbital speed) term 2.2 min of the 8.3 min drift (fact-checker's figures, 2026-10-14 fact-check).",
-      "status": "unverified",
-      "note": "v2 (2026-10-14, W-708): reworded in the reveal and here, tilt first, per the fact-check. Needs a fresh check."
+      "status": "verified",
+      "note": "Pass 37 (W-732): re-split solar.ts's own equation of time (type-stripped copy, artifacts/fact-check-wave-j/w732/solar.mjs). Solar noon 11:55 on 13 Dec (714.70 min) to 12:03 on 30 Dec (723.01), a later drift of 8.32 min: obliquity (tilt) terms 5.92 min (71%), eccentricity (orbital speed) terms 2.22 min (27%), cross term 0.18 min. So 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January' is now weighted correctly. Perihelion: astropy 8.0.1 (PyPI, built-in ephemeris, artifacts/fact-check-wave-j/w732/peri.py) gives 2027-01-03 03 UTC at 0.98333 AU; by Kepler's second law the orbital angular speed peaks there (Earth's own heliocentric rate, which the Moon perturbs, peaks on 6 Jan); both are early January.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.darkest-evening-of-the-year.c4",

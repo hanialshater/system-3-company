@@ -18,3 +18,15 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c6 | verified | Derivation and code: Stokes drift goes as w k a^2, so the drift goes as the height squared. PXM 2.45, VY 80 and IK 90 px per m match the caption 'Heights and the duck's path drawn magnified'. |
 
 **Result:** disputed: c4 (this blocks publishing). Held unverified: c5. All other claims verified. The fixes are in the notes; demo-builder owns them (board).
+
+## Pass 37 (2026-10-14, W-732)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record these claims. Scope: the claims changed by the wave-J dispute fixes (fd53f77, merged in 754195b; meta.json v2). Method: I read Demo.tsx (and model.ts or solar.ts) v2 on every reachable path before I read the claims and then the build note's Revision v2. Then I re-ran the numbers in node and python from my own copies of the lesson logic, not imported from the lesson (scripts: artifacts/fact-check-wave-j/w732/). I did not use the dev server. No walkthrough transcript exists for this slug. Sources opened: only GitHub (raw files and public git clones) and PyPI. Each verdict names the file it rests on, and no verdict rests on an unopened source.
+
+Paths read: '1 wave passes', '10 waves pass' and 'Watch the buoy' in any order and repeated (each replays 400 ms), locked state; the Seen row and the reveal read seen.* values set when each milestone fires. In the 1-wave and 10-wave presets the train fills the sea (no front), and the tinted crest shows only there.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Pass 37 (W-732): verified on derivation (Kundu and Cohen not opened) and my own simulation. w = sqrt(gk) gives c_g = dw/dk = c/2 = 3.1226 m/s ('front 3.1 m/s'); 100/3.1226 = 32.02 s, rounded 32; 100/6.245 = 16.01 s, rounded 16 ('not 16'). Own dispersive packet (Gaussian spectrum, exact dispersion, artifacts/fact-check-wave-j/w732/duck.mjs): envelope peak at 125 m after 40 s, 3.125 m/s. Code read: in 'Watch the buoy' the front is C_G*t and the crests run at C under an envelope eased over half a wavelength centred on the front; the buoy's envelope is 0 until t = 30.0 s and 0.5 at 32 s, so 'begins to bob at 32 s' marks the front, which is fair for a smoothed front. Label, Seen row and reveal all read BUOY_T. Leftover approximation the builder flagged: in this preset the duck follows the steady-train simulation from t = 0, while the envelope at the duck is only 0.5 at t = 0 and reaches 1 at t = 2 s, so for the first 2 simulated s (about 25 ms of the 400 ms replay) the duck rides up to 4 px above the drawn surface. No learner-visible number comes from the duck in this preset (its drift by 32 s is 0.12 m, 0.3 px), so it does not affect the claim. Non-blocking. |
+
+**Result:** c4 verified, so the Pass 1 dispute is closed. c5 (breaking waves) is still held, as before; it was outside this pass. Non-blocking (builder): the leftover approximation, set out in the c4 note.

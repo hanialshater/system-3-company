@@ -17,3 +17,15 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c5 | unverified | Recorded by the fact-checker as an unrecorded learner-facing claim (so I do not verify it myself). It holds only if the country is wider than twice the ridge's distance from the coast; the recall never says so. Fix for demo-builder: state a width (for example 'a country 300 km wide'), then a different checker verifies it. |
 
 **Result:** no disputes. Held unverified: c5. All other claims verified. The fixes are in the notes; demo-builder owns them (board).
+
+## Pass 37 (2026-10-14, W-732)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record these claims. Scope: the claims changed by the wave-J dispute fixes (fd53f77, merged in 754195b; meta.json v2). Method: I read Demo.tsx (and model.ts or solar.ts) v2 on every reachable path before I read the claims and then the build note's Revision v2. Then I re-ran the numbers in node and python from my own copies of the lesson logic, not imported from the lesson (scripts: artifacts/fact-check-wave-j/w732/). I did not use the dev server. No walkthrough transcript exists for this slug. Sources opened: only GitHub (raw files and public git clones) and PyPI. Each verdict names the file it rests on, and no verdict rests on an unopened source.
+
+Independence: c5 was recorded by the Pass 1 checker. I am a different instance and did not record it. Stage unchanged in v2; only the recall changed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Pass 37 (W-732), checked by a fact-checker instance other than the one that recorded c5. Derivation: with the ridge as the divide (c3, verified; the stage teaches exactly this), the land east of it is 300 - 20 = 280 km of 300 km (93%), so with rain spread evenly most of it reaches the east coast. 'Probably' covers uneven rain: the west strip would need 14 times the rain per km of the east side to tip the split, which the claim notes. The recall now states the width, so the v1 gap (a country narrower than 40 km) is closed. The recall question, options, answer index 0 and why match the claim. |
+
+**Result:** c5 verified. All five claims are now verified.

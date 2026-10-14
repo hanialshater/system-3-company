@@ -19,3 +19,16 @@ Unrecorded claims: I compared every learner-visible sentence (hook, question, op
 **Result:** disputed: c2, c3 (this blocks publishing). Held unverified: c5, c6. The fixes are in the notes above; demo-builder owns them (board).
 
 Recorded elsewhere: the hook ("Heat speeds reactions up") and the recall ("every step still speeds up") rest on c5, which is held. They verify when c5 does.
+
+## Pass 37 (2026-10-14, W-732)
+
+Checker: fact-checker, a fresh instance. I did not write, build or record these claims. Scope: the claims changed by the wave-J dispute fixes (fd53f77, merged in 754195b; meta.json v2). Method: I read Demo.tsx (and model.ts or solar.ts) v2 on every reachable path before I read the claims and then the build note's Revision v2. Then I re-ran the numbers in node and python from my own copies of the lesson logic, not imported from the lesson (scripts: artifacts/fact-check-wave-j/w732/). I did not use the dev server. No walkthrough transcript exists for this slug. Sources opened: only GitHub (raw files and public git clones) and PyPI. Each verdict names the file it rests on, and no verdict rests on an unopened source.
+
+Paths read: the three temperature chips in any order, Show/Hide speed, locked state; the reveal reads kAt(25) and kAt(450) directly, so it shows the same values on every path.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Pass 37 (W-732): re-opened NASA TM-4513 polynomials in Cantera data/nasa_gas.yaml (GitHub raw, main; header cites McBride, Gordon & Reno 1993). The NH3, N2, H2 200-1000 K coefficients in Demo.tsx match the file digit for digit. Own evaluation from the parsed yaml (artifacts/fact-check-wave-j/w732/nh3.mjs) and a copy of kAt() (nh3demo.mjs) agree: K = 5.604e5 (25 C), 0.3913 (200 C), 4.910e-5 (450 C); fmtK shows '5.6 x 10^5', '0.39', '4.9 x 10^-5'; ratio 1.14e10, so 'a factor of billions' holds. dH at 450 C = -105.9 kJ/mol. Every temperature is inside the 200-1000 K range. |
+| c3 | verified | Pass 37 (W-732): re-derived with a different parametrisation (bisection on the NH3 mole fraction y: K = y^2 / (((1-y)/4)((3(1-y)/4)^3)), artifacts/fact-check-wave-j/w732/nh3.mjs) and with a copy of shareAt(): 0.9379, 0.1476, 0.002265, shown by pct() as 94%, 15%, 0.23%. Both solvers agree to 1e-12. Rests on the K of c2 (verified). |
+
+**Result:** c2 and c3 verified. The Pass 1 disputes are closed. c5 (kinetics) and c6 (factories sentence) are still held, as before; they were outside this pass.

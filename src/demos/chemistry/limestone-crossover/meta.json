@@ -68,8 +68,10 @@
       "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (25 °C data)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'; recall why: 'Limestone switches near 850 °C (an estimate from 25 °C data)').",
       "support": "derivation",
       "source": "T = 179,190 / 160.19 = 1,118.6 K = 845.4 °C (node; Demo.tsx T_SWITCH). Brief claim 4. v2: the unsourced 'measured decomposition about 890 °C' sentence is withdrawn (it was never shown to the learner).",
-      "status": "unverified",
-      "note": "v2 (2026-10-14, W-675): withdrew part 2 (measured ~890 °C, no openable source), as the fact-check advised; added 'an estimate from 25 °C data' to the recall why. Part 1 was verified on derivation in v1; needs a fresh check."
+      "status": "verified",
+      "note": "Pass 37 (W-732): derivation re-run from a copy of Demo.tsx: dH = 179.19 kJ/mol, dS = 0.16019 kJ/(mol K), T_SWITCH = 845.46 C, shown 'switch ~ 845 C (25 C data)' and 'near 845 C' in the reveal; 'about 850 C' is the nearest option. The withdrawn 890 C sentence is gone from claim, stage, reveal and recall. Recall why ('near 850 C (an estimate from 25 C data)') is honest: my own full-data run (NASA TM-4513 via Cantera nasa_gas.yaml and nasa_condensed.yaml, artifacts/fact-check-wave-j/w732/lime.mjs) puts dG = 0 at 893 C, so the 25 C figure is correctly labelled an estimate. The recall's answer ('above some temperature, where TdS outgrows dH') rests on c6 (verified).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.limestone-crossover.c6",
