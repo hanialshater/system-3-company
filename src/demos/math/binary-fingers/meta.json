@@ -26,8 +26,10 @@
       "id": "math.binary-fingers.c1",
       "text": "Ten fingers worth 1, 2, 4, ..., 512 add up to 1023 when all are up, the largest number and the last cell of the grid.",
       "support": "derivation",
-      "source": "1 + 2 + ... + 512 = 2^10 - 1 = 1023; recomputed with node from the stage's VALUES. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "1 + 2 + ... + 512 = 2^10 - 1 = 1023; recomputed with node from the stage's VALUES. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Own node: sum of VALUES = 1023 = 2^10-1; cell 1023 is row 15, column 63 of the 64x16 grid (last cell).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.binary-fingers.c2",
@@ -42,29 +44,37 @@
       "id": "math.binary-fingers.c3",
       "text": "Every whole number from 0 to 1023 has exactly one finger pattern (its binary representation); counting up one at a time, each new pattern lands on a new number, none skipped and none twice.",
       "support": "derivation",
-      "source": "Existence and uniqueness of binary representation, by induction on the number of places; 1024 patterns and 1024 numbers match one to one. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Existence and uniqueness of binary representation, by induction on the number of places; 1024 patterns and 1024 numbers match one to one. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Own node: the 1024 patterns give 1024 distinct sums 0..1023. Counting +1 visits n+1 each time, so no skip or repeat.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.binary-fingers.c4",
       "text": "Adding one more finger doubles the count: it can be down (all the old numbers) or up (each old number plus its value); ten doublings give 2 × 2 × … × 2 = 1024.",
       "support": "derivation",
-      "source": "Patterns with n + 1 places = 2 x patterns with n places. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Patterns with n + 1 places = 2 x patterns with n places. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Doubling argument correct; 2^10 = 1024.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.binary-fingers.c5",
       "text": "Counting from 0 to 15 uses only the four right fingers (worth 1, 2, 4, 8), 16 numbers; at 16 the finger worth 16 goes up and the four right fingers start again from all down.",
       "support": "derivation",
-      "source": "15 = 8 + 4 + 2 + 1 is the largest sum of the four right fingers; 16 = 10000 in binary. Stage caption at 16 in Demo.tsx. | Added 2026-10-14 (v3) by demo-builder.",
-      "status": "unverified"
+      "source": "15 = 8 + 4 + 2 + 1 is the largest sum of the four right fingers; 16 = 10000 in binary. Stage caption at 16 in Demo.tsx. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): 8+4+2+1 = 15; 16 = 10000 in binary; stage caption at 16 matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.binary-fingers.c6",
       "text": "The grid has one cell per number from 0 (top left) to 1023 (bottom right), lit when the learner has made that number; 'Numbers made' counts the lit cells.",
       "support": "convention",
-      "source": "The lesson's own display in Demo.tsx (64 × 16 grid, made set). | Added 2026-10-14 (v3) by demo-builder.",
-      "status": "unverified"
+      "source": "The lesson's own display in Demo.tsx (64 × 16 grid, made set). | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Demo.tsx: 1024 cells, cell k is number k, made-set cells lit; 'Numbers made' = made.size. Current number is drawn in a darker shade but is in the set.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

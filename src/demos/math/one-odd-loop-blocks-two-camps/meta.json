@@ -25,36 +25,46 @@
       "id": "math.one-odd-loop-blocks-two-camps.c1",
       "text": "On the stage (ring A-F plus cross link A-D, enemies A-B and D-E) the big ring has 2 enemy links and each of the two smaller loops made by the cross link has 1.",
       "support": "derivation",
-      "source": "enemyCount() in Demo.tsx; builder re-run in node 2026-10-14 (brief 8 graph: ring 0-5, chord 0-3, enemies 0-1 and 3-4): ring 2, loops 0-1-2-3 and 0-3-4-5 one each.",
-      "status": "unverified"
+      "source": "enemyCount() in Demo.tsx; builder re-run in node 2026-10-14 (brief 8 graph: ring 0-5, chord 0-3, enemies 0-1 and 3-4): ring 2, loops 0-1-2-3 and 0-3-4-5 one each. | FACT-CHECK 2026-10-14 (pass 22): Own count (scratchpad fc22/sg.mjs): ring has enemies A-B, D-E = 2; loop A-B-C-D has A-B = 1; loop A-D-E-F has D-E = 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c2",
       "text": "None of the 64 ways to put the six people into two camps keeps every friend pair together and every enemy pair apart; the best breaks 1 link.",
       "support": "derivation",
-      "source": "tryAll(ENEMIES_AS_GIVEN) in Demo.tsx, brute force over 2^6 = 64 labellings; builder re-run in node 2026-10-14: 0 valid, minimum 1 broken link.",
-      "status": "unverified"
+      "source": "tryAll(ENEMIES_AS_GIVEN) in Demo.tsx, brute force over 2^6 = 64 labellings; builder re-run in node 2026-10-14: 0 valid, minimum 1 broken link. | FACT-CHECK 2026-10-14 (pass 22): Own brute force over 64 labellings, 7 links: 0 valid, minimum 1 broken.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c3",
       "text": "With the enemy link moved from D-E to C-D every loop is even (2, 2 and 0), and 2 of the 64 labellings work: one split, with the camp names swapped.",
       "support": "derivation",
-      "source": "tryAll(ENEMIES_MOVED) in Demo.tsx; builder re-run in node 2026-10-14: 2 labellings ({A,D,E,F} vs {B,C} and its swap). Brief 8 edit: 2 labellings, one split.",
-      "status": "unverified"
+      "source": "tryAll(ENEMIES_MOVED) in Demo.tsx; builder re-run in node 2026-10-14: 2 labellings ({A,D,E,F} vs {B,C} and its swap). Brief 8 edit: 2 labellings, one split. | FACT-CHECK 2026-10-14 (pass 22): Own brute force with enemies A-B, C-D: loops 2, 2, 0; 2 valid labellings, both the split {A,D,E,F} vs {B,C}.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c4",
       "text": "Walking round a loop, every enemy link switches camp and every friendly link keeps it, so a loop with an odd number of enemy links brings you back to the start in the other camp.",
       "support": "derivation",
-      "source": "Parity argument: the camp after k switches is the start camp iff k is even.",
-      "status": "unverified"
+      "source": "Parity argument: the camp after k switches is the start camp iff k is even. | FACT-CHECK 2026-10-14 (pass 22): Parity argument re-derived: k switches return to the start camp iff k is even.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c5",
       "text": "A network splits into two camps (friends inside, enemies across) exactly when every loop has an even number of enemy links.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 5 (balance in general networks); F. Harary, 'On the notion of balance of a signed graph', Michigan Math. J. 2 (1953). Attribution: fact-checker confirms (flag carried from the brief).",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010) ch. 5 (balance in general networks); F. Harary, 'On the notion of balance of a signed graph', Michigan Math. J. 2 (1953). Attribution: fact-checker confirms (flag carried from the brief). | FACT-CHECK 2026-10-14 (pass 22): Own check on 3,000 random signed graphs (3-6 nodes): two-camp split exists iff every simple cycle has an even number of negative edges, 0 mismatches. Harary, Michigan Math. J. 2(2):143-146 (1953) confirmed as bibliographic data via search snippets; paper NOT opened. E&K ch. 5 (Positive and Negative Relationships; general-network balance in its advanced section) agrees with my knowledge of the book.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -77,13 +87,30 @@
   "version": 1,
   "curriculum": {
     "primary": "math:signed-cycle-balance",
-    "also": ["math:parity-rules"],
-    "prerequisites": ["math:parity-rules"],
+    "also": [
+      "math:parity-rules"
+    ],
+    "prerequisites": [
+      "math:parity-rules"
+    ],
     "level": "stretch",
     "strand": "discrete",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 5 }],
-    "tags": ["signed networks", "cycles"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 5
+      }
+    ],
+    "tags": [
+      "signed networks",
+      "cycles"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "toggle-before-after", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

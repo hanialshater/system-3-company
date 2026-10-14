@@ -27,50 +27,64 @@
       "id": "cs.shell-gaps-shrink-the-shuffles.c1",
       "text": "Plain insertion sort makes 120 shifts on 16 cards in exact reverse order.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14, algo2-sc) and the PLAIN table in Demo.tsx: while (j >= 1 && a[j-1] > v) { a[j] = a[j-1]; j--; shifts++ } on 16 15 ... 1 gives 120 = 15 x 16 / 2. A shift is one card copied one place over.",
-      "status": "unverified"
+      "source": "Builder's node script (2026-10-14, algo2-sc) and the PLAIN table in Demo.tsx: while (j >= 1 && a[j-1] > v) { a[j] = a[j-1]; j--; shifts++ } on 16 15 ... 1 gives 120 = 15 x 16 / 2. A shift is one card copied one place over. | FACT-CHECK 2026-10-14 (pass 22): Own node gapped-insertion (g=1) on 16..1: 120 shifts = 15*16/2; matches PLAIN and the predict text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c2",
       "text": "Shell sort with gaps 8, 4, 2, 1 on the same reversed hand makes 8 shifts in every pass, 32 in all.",
       "support": "simulation",
-      "source": "Builder's node script and the SHELL table in Demo.tsx: gapped insertion sort, while (j >= g && a[j-g] > v) { a[j] = a[j-g]; j -= g; shifts++ }, for g = 8, 4, 2, 1 on 16 15 ... 1: 8, 8, 8, 8 = 32. (Gaps 4, 1 give 48; not on the stage.) The stage replays each shift as a swap of the two cards g apart, which has the same count.",
-      "status": "unverified"
+      "source": "Builder's node script and the SHELL table in Demo.tsx: gapped insertion sort, while (j >= g && a[j-g] > v) { a[j] = a[j-g]; j -= g; shifts++ }, for g = 8, 4, 2, 1 on 16 15 ... 1: 8, 8, 8, 8 = 32. (Gaps 4, 1 give 48; not on the stage.) The stage replays each shift as a swap of the two cards g apart, which has the same count. | FACT-CHECK 2026-10-14 (pass 22): Own node run, gaps 8,4,2,1: 8,8,8,8 = 32 shifts; the stage's swap-form loop also counts 32. Gaps 4,1 give 48.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c3",
       "text": "In the Shell lane the farthest card from its sorted place is 15 places away at the start, then 7 after the 8-apart pass, 3 after 4 apart, 1 after 2 apart and 0 after 1 apart.",
       "support": "simulation",
-      "source": "Builder's node script: max over positions i of |i - (value - 1)| after each pass: 15, 7, 3, 1, 0. Hands after each pass: 8 7 6 5 4 3 2 1 16 15 14 13 12 11 10 9; 4 3 2 1 8 7 6 5 12 11 10 9 16 15 14 13; 2 1 4 3 6 5 8 7 10 9 12 11 14 13 16 15; 1 ... 16.",
-      "status": "unverified"
+      "source": "Builder's node script: max over positions i of |i - (value - 1)| after each pass: 15, 7, 3, 1, 0. Hands after each pass: 8 7 6 5 4 3 2 1 16 15 14 13 12 11 10 9; 4 3 2 1 8 7 6 5 12 11 10 9 16 15 14 13; 2 1 4 3 6 5 8 7 10 9 12 11 14 13 16 15; 1 ... 16. | FACT-CHECK 2026-10-14 (pass 22): Own node: max |i-(v-1)| = 15, 7, 3, 1, 0 after each pass; hands match the builder's. Reveal prints 15, then 7, 3, 1; stage readout shows 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c4",
       "text": "When the gap reaches 1, every card is one step from home, so ordinary insertion sort has only 8 swaps left.",
       "support": "simulation",
-      "source": "Builder's node script: the hand before the gap-1 pass is 2 1 4 3 ... 16 15 (eight adjacent out-of-order pairs, farthest distance 1); the gap-1 pass makes 8 shifts.",
-      "status": "unverified"
+      "source": "Builder's node script: the hand before the gap-1 pass is 2 1 4 3 ... 16 15 (eight adjacent out-of-order pairs, farthest distance 1); the gap-1 pass makes 8 shifts. | FACT-CHECK 2026-10-14 (pass 22): Hand before gap 1 is 2 1 4 3 ... 16 15: every card exactly 1 from home; gap-1 pass makes 8 shifts (own run). Reveal says 'swaps' for shifts; same count.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c5",
       "text": "In plain insertion sort the 1 had to walk 15 places, one at a time.",
       "support": "derivation",
-      "source": "The 1 starts at position 16 of 16 and ends at position 1; each shift moves it (equivalently, moves one card past it) one place, so 15 shifts are spent on the 1's insertion alone.",
-      "status": "unverified"
+      "source": "The 1 starts at position 16 of 16 and ends at position 1; each shift moves it (equivalently, moves one card past it) one place, so 15 shifts are spent on the 1's insertion alone. | FACT-CHECK 2026-10-14 (pass 22): Own node: during plain insertion the 1's insertion makes 15 shifts (position 16 to 1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c6",
       "text": "The last Shell pass (gap 1) is plain insertion sort, so the result is sorted whatever the earlier gaps were.",
       "support": "derivation",
-      "source": "Gapped insertion sort with g = 1 is exactly insertion sort, which sorts any input; earlier passes only permute the cards. Shell 1959, Commun. ACM 2(7); Knuth, TAOCP vol. 3, section 5.2.1 (from memory, not opened; check before publishing).",
-      "status": "unverified"
+      "source": "Gapped insertion sort with g = 1 is exactly insertion sort, which sorts any input; earlier passes only permute the cards. Shell 1959, Commun. ACM 2(7); Knuth, TAOCP vol. 3, section 5.2.1 (from memory, not opened; check before publishing). | FACT-CHECK 2026-10-14 (pass 22): Derivation: the g=1 pass is insertion sort, which sorts any input. Shell 1959 (Commun. ACM 2(7), 30-32) and Knuth TAOCP vol. 3 sec. 5.2.1 placement correct to my knowledge; neither opened, and the sentence does not depend on them.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shell-gaps-shrink-the-shuffles.c7",
       "text": "A shift copies one card one gap to the right; gap 1 is ordinary insertion sort.",
       "support": "convention",
-      "source": "Counting rule of this lesson (brief #41 and spec): one shift = one card copied one gap over, the inner-loop move of gapped insertion sort.",
-      "status": "unverified"
+      "source": "Counting rule of this lesson (brief #41 and spec): one shift = one card copied one gap over, the inner-loop move of gapped insertion sort. | FACT-CHECK 2026-10-14 (pass 22): Matches the stage rule line and the inner loop of gapped insertion sort (definition).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -93,11 +107,25 @@
   "curriculum": {
     "primary": "cs:shell-sort",
     "also": [],
-    "prerequisites": ["cs:insertion-sort", "cs:big-o-growth"],
+    "prerequisites": [
+      "cs:insertion-sort",
+      "cs:big-o-growth"
+    ],
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["sorting", "shell-sort", "insertion-sort", "gap-sequence"]
+    "tags": [
+      "sorting",
+      "shell-sort",
+      "insertion-sort",
+      "gap-sequence"
+    ]
   },
-  "interactions": ["choice-before-reveal", "side-by-side", "step-run-button", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "side-by-side",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

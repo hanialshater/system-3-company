@@ -14,3 +14,17 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx learne
 | c6 | verified | Derivation: potential 2i - j rises by at least 1 per comparison (match: +1; miss with j>0: j drops; miss at j=0: +2), is 0 at start and at most 2n - j at the end, and equality would need j=0 at the end with every step +1, impossible since the last step is then a j=0 miss (+2) or a match ending with j=M>0; so comparisons < 2n. Text index never decreases by construction. Own random check (50,000 cases, n<=30, m<=6): max ratio 1.92, never >= 2, never a back move. KMP 1977 / CLRS 4e 32.4 not opened (from memory; bound re-derived). |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 22 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder algo-pair-09). Method: read Demo.tsx learner-visible text (predict, stage captions/readouts, reveal) before the claim sources, then re-derived each number with my own node scripts (session scratchpad fc22/: bm.mjs, kn.mjs, kmp.mjs, nash.mjs, bid.mjs, sg.mjs, apply.mjs) or by hand. All external source hosts were blocked by the proxy (403); where a row cites a paper or book, only web-search snippets were seen and the row says so. Verdicts rest on the re-derivation, not on the unopened citation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Pass 22 re-check of v3 (scratchpad fc22/kmp.mjs, own naive): 24 comparisons, alignments 0-5. Predict text states 24; stage tally reaches 24 at the end. |
+| c2 | verified | Pass 22: own KMP: found at comparison 14, 0 back moves. Reveal computes KMP.length and backs(). |
+| c3 | verified | Pass 22: own prefix function of AAAB = 0 1 2 0. Stage label reads "numbers under AAAB: A's kept after a miss"; reveal muted line "That table (0 1 2 0) is the fallback table". |
+| c5 | verified | Pass 22: own traces, back move = text index lower than previous comparison: naive 1/3/5 after 5/14/24; KMP 0. Reveal uses backs() with the same definition. |
+| c7 | disputed | DISPUTED (pass 22): the arithmetic is right (own trace: 3 + 5 x 2 + 1 = 14; table 2 under the third A gives a slide of 3 - 2 = 1, next comparison at the same text index). But the reveal sentence this claim addresses says the next comparison was "the same text letter, never one already read". That is false as written: own trace reads text positions 3..7 twice each (the miss, then the re-compare). Fix (builder): "never one to its left" / "never an earlier letter". |
+
+**Result:** open after this pass: c7 (disputed blocks publishing until the builder fixes the stage text and the claim is re-checked).

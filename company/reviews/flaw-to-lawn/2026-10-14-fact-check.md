@@ -13,3 +13,15 @@ Checker: fact-checker. Method: read Demo.tsx (stage, reveal, model) against each
 | c5 | verified | Cell (i,j) = distance between prefixes; recurrence uses only (i-1,j-1), (i-1,j), (i,j-1). 25 cells vs exponentially many edit sequences. |
 | c6 | verified | (4+1)^2 = 25; given row 0 and column 0 = 9 cells; 16 inner, = CELLS = R*C in Demo.tsx. |
 | c7 | verified | Spell correction ranks candidates by minimum edit distance (Jurafsky & Martin, SLP 3rd ed. draft, ch. 2 "Minimum Edit Distance", which also notes alignment use in computational biology); Needleman-Wunsch (J. Mol. Biol. 48:443-453, 1970) fills the same prefix-by-prefix grid with different scores. "This grid" read as "this kind of grid"; acceptable in a muted aside. Sources from memory. |
+
+## Pass 22 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx (stage, reveal, model) before claim sources; re-ran the numbers with my own node scripts copying the lesson's logic (scratchpad fc22); sources checked by web search where reachable. Source hosts (JSTOR mirrors, Wikipedia, the E&K book host) were blocked, so citations are confirmed bibliographically only and say so per claim.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | own copy of the D/FROM table and caption() (scratchpad fc22/flaw.mjs): corner caption 'FLAW → LAWN = 2: insert N (+1), after FLAW → LAW (1)', matching the reveal (CORNER strips the final period). Every one of the 25 cells equals an independent Levenshtein distance of the two prefixes. |
+| c8 | verified | rows are FLAW, columns LAWN: down = consume a FLAW letter (delete), right = add a LAWN letter (insert), diagonal = replace or free match; legend text in the SVG matches. Wagner & Fischer not opened (memory); reading confirmed by derivation. |
+| c9 | verified | all 16 captions printed by my script; format matches; 'FL → L = 1: L = L, keep it free (+0), after F → · (1)' and 'FLA → LAW = 2: insert W (+1), after FLA → LA (1)' reproduced. |
+
+**Result:** every claim open at this pass is now verified.

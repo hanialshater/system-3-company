@@ -25,29 +25,37 @@
       "id": "economics.middle-of-three-takes-all.c1",
       "text": "On the stage, each round the end Bo left out offers to take 10 cents less and Bo switches, so the asks fall from $0.50 to $0.00 in five rounds and Bo's share rises to the whole $1.",
       "support": "derivation",
-      "source": "Lesson rule (10-cent undercut). Demo.tsx round(k): Bo's share 0.5, 0.6, 0.7, 0.8, 0.9, 1.0; re-run in node (ncm-e00).",
-      "status": "unverified"
+      "source": "Lesson rule (10-cent undercut). Demo.tsx round(k): Bo's share 0.5, 0.6, 0.7, 0.8, 0.9, 1.0; re-run in node (ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own node: rounds 0..5 matched ask 50,40,30,20,10,0 cents, Bo 50..100; LAST = 50/10 = 5 rounds; stage message \"No one can ask less than $0. Stable.\" at round 5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.middle-of-three-takes-all.c2",
       "text": "On a line of three where the centre can deal with only one end, the only stable outcome (no one can undercut, and no pair could both do better by dealing together) gives the centre the whole $1, in the limit; the centre's power comes from the spare partner, not from bargaining skill.",
       "support": "derivation",
-      "source": "An unmatched end gets 0, so it would accept any positive share; the matched end's share must be 0 or the left-out end can offer Bo more. Brief check: {centre: 1, endMatched: 0}. Easley and Kleinberg 2010, ch. 12 (stability).",
-      "status": "unverified"
+      "source": "An unmatched end gets 0, so it would accept any positive share; the matched end's share must be 0 or the left-out end can offer Bo more. Brief check: {centre: 1, endMatched: 0}. Easley and Kleinberg 2010, ch. 12 (stability). | FACT-CHECK 2026-10-14 (pass 22): Own derivation (E&K stability: no unmatched pair with x_u + x_v < 1): the unmatched end gets 0, so the centre must have x_B >= 1, hence B = 1 and the matched end 0; the empty matching is unstable. Unique up to which end is matched. E&K ch. 12 (Bargaining and Power in Networks) placement agrees with my knowledge; book not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.middle-of-three-takes-all.c3",
       "text": "In this model two people with no one else to turn to split the $1 evenly.",
       "support": "convention",
-      "source": "Lesson rule (symmetric split with equal, zero outside options). Stage message 'No one else to turn to: they split evenly.'",
-      "status": "unverified"
+      "source": "Lesson rule (symmetric split with equal, zero outside options). Stage message 'No one else to turn to: they split evenly.' | FACT-CHECK 2026-10-14 (pass 22): Convention, on stage: 2-person message \"No one else to turn to: they split evenly.\"; Bo 50.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.middle-of-three-takes-all.c4",
       "text": "The lesson is a simplified model: one deal per person, 10-cent undercuts, two people alone split evenly.",
       "support": "convention",
-      "source": "Assumptions of Demo.tsx; stage chip 'Model: each person makes one deal' and the reveal's last line.",
-      "status": "unverified"
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: each person makes one deal' and the reveal's last line. | FACT-CHECK 2026-10-14 (pass 22): Convention, on stage: chip \"Model: each person makes one deal\"; reveal muted line lists the three rules.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

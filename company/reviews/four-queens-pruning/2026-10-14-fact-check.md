@@ -13,3 +13,15 @@ Checker: fact-checker (did not write these claims; any claim marked 'recorded by
 | c5 | verified | Own DFS, same counting rule: 2,056 placements, 92 solutions (2,057 nodes with the root). 92: Wirth, CACM 14(4) (1971). |
 
 **Result:** all claims in this pass verified.
+
+## Pass 22
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predict, stage text, readouts, reveal) first, then re-ran each number in my own node scripts (copies of the lesson's logic plus independent re-implementations) or checked the source. Sources marked "not opened" were checked against my own knowledge only; Easley & Kleinberg chapter titles were confirmed through web-search results (library-catalogue tables of contents), as the book's host and mirrors are blocked.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node copy of v3 step() from empty: 17 steps, 16 tries, first solution at try 8, solutions 2-4-1-3 and 3-1-4-2; independent DFS also 16. Reveal uses the learner's clean run, which can only come from EMPTY via step(). |
+| c3 | verified | A conflicting prefix has no conflict-free extension; refusing it skips all completions. Stage marks attacked squares with x. |
+| c6 | verified | Own node: same step() at N=8 gives 2,056 placements and 92 solutions; 64 squares. The 16 = 16 match does not recur. |
+
+**Result:** 3 verified, 0 disputed, 0 withdrawn.

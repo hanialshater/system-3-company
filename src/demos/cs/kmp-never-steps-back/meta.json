@@ -38,22 +38,28 @@
       "id": "cs.kmp-never-steps-back.c1",
       "text": "Searching for AAAB in AAAAAAAAB by restarting one letter on after each mismatch takes 24 letter comparisons (shown on the stage when both searches run to the end).",
       "support": "simulation",
-      "source": "Builder's node script: alignments 0..5, each reading the pattern until a miss or a full match, 4 comparisons each (the pattern's B meets an A for alignments 0 to 4; alignment 5 matches), 6 x 4 = 24. Counting rule: every comparison of one text letter with one pattern letter counts 1, matching or not. | FACT-CHECK 2026-10-14 (pass 19): Own node script (scratchpad fc19b2/kmp.mjs, own naive search): alignments 0-5 at 4 comparisons each = 24; match at offset 5. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Builder's node script: alignments 0..5, each reading the pattern until a miss or a full match, 4 comparisons each (the pattern's B meets an A for alignments 0 to 4; alignment 5 matches), 6 x 4 = 24. Counting rule: every comparison of one text letter with one pattern letter counts 1, matching or not. | FACT-CHECK 2026-10-14 (pass 19): Own node script (scratchpad fc19b2/kmp.mjs, own naive search): alignments 0-5 at 4 comparisons each = 24; match at offset 5. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22 re-check of v3 (scratchpad fc22/kmp.mjs, own naive): 24 comparisons, alignments 0-5. Predict text states 24; stage tally reaches 24 at the end.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.kmp-never-steps-back.c2",
       "text": "Reusing what matched (KMP) finds AAAB in AAAAAAAAB at comparison 14, with the text arrow moving back 0 times.",
       "support": "simulation",
-      "source": "Builder's node script: standard KMP (text index i, pattern index j, on a miss j = fail[j-1], i unchanged unless j = 0). Compared text/pattern positions: 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14 comparisons, 0 back moves. Same counting rule as claim 1. KMP agrees with indexOf on 20,000 random binary strings. | FACT-CHECK 2026-10-14 (pass 19): Own KMP (CLRS-style prefix function, written independently): trace 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14, found at 5, 0 back moves; agrees with indexOf on 50,000 random binary cases. Matches Demo.tsx KMP loop. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Builder's node script: standard KMP (text index i, pattern index j, on a miss j = fail[j-1], i unchanged unless j = 0). Compared text/pattern positions: 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14 comparisons, 0 back moves. Same counting rule as claim 1. KMP agrees with indexOf on 20,000 random binary strings. | FACT-CHECK 2026-10-14 (pass 19): Own KMP (CLRS-style prefix function, written independently): trace 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14, found at 5, 0 back moves; agrees with indexOf on 50,000 random binary cases. Matches Demo.tsx KMP loop. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: own KMP: found at comparison 14, 0 back moves. Reveal computes KMP.length and backs().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.kmp-never-steps-back.c3",
       "text": "The numbers under AAAB, 0 1 2 0, are its fallback table: after a miss following a letter, they say how many of the matched letters still match (stage label: 'A's kept after a miss').",
       "support": "simulation",
-      "source": "Builder's node script: standard failure function (length of longest proper prefix that is also a suffix) of AAAB = 0 1 2 0. Knuth, Morris, Pratt 1977; CLRS 4th ed. section 32.4. | FACT-CHECK 2026-10-14 (pass 19): Own prefix function of AAAB = 0 1 2 0 (and by hand: A, AA, AAA have borders 0, 1, 2; AAAB has none). Matches FAIL in Demo.tsx and the reveal text. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Builder's node script: standard failure function (length of longest proper prefix that is also a suffix) of AAAB = 0 1 2 0. Knuth, Morris, Pratt 1977; CLRS 4th ed. section 32.4. | FACT-CHECK 2026-10-14 (pass 19): Own prefix function of AAAB = 0 1 2 0 (and by hand: A, AA, AAA have borders 0, 1, 2; AAAB has none). Matches FAIL in Demo.tsx and the reveal text. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: own prefix function of AAAB = 0 1 2 0. Stage label reads \"numbers under AAAB: A's kept after a miss\"; reveal muted line \"That table (0 1 2 0) is the fallback table\".",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.kmp-never-steps-back.c4",
@@ -68,8 +74,10 @@
       "id": "cs.kmp-never-steps-back.c5",
       "text": "Restarting one on moves its text arrow back 5 times in its 24 comparisons (1 time after 5 comparisons, 3 after 14), re-reading A's it had already matched; the reuse search moves it back 0 times.",
       "support": "simulation",
-      "source": "Builder's node script: a back move is a comparison whose text index is lower than the previous one's. Naive after 5: 1; after 14: 3; after 24: 5. KMP trace: 0. | FACT-CHECK 2026-10-14 (pass 19): Own traces, back move = text index lower than previous comparison's: naive 1/3/5 after 5/14/24; KMP 0. Same definition as backs() in Demo.tsx. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
-      "status": "unverified"
+      "source": "Builder's node script: a back move is a comparison whose text index is lower than the previous one's. Naive after 5: 1; after 14: 3; after 24: 5. KMP trace: 0. | FACT-CHECK 2026-10-14 (pass 19): Own traces, back move = text index lower than previous comparison's: naive 1/3/5 after 5/14/24; KMP 0. Same definition as backs() in Demo.tsx. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: own traces, back move = text index lower than previous comparison: naive 1/3/5 after 5/14/24; KMP 0. Reveal uses backs() with the same definition.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.kmp-never-steps-back.c6",
@@ -84,8 +92,10 @@
       "id": "cs.kmp-never-steps-back.c7",
       "text": "Every miss in the reuse search comes after AAA has matched; the table's 2 under the third A keeps two A's, so the pattern slides one place and the next comparison is the same text letter: 3 + 2 × 5 + 1 = 14 comparisons.",
       "support": "derivation",
-      "source": "Trace of KMP from Demo.tsx: comparisons 1-3 match T[0..2]; for i = 3..7 a miss (B vs A) then a match (P[2] vs T[i]) = 2 each, 5 rounds; then B matches T[8]: 3 + 10 + 1 = 14. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder.",
-      "status": "unverified"
+      "source": "Trace of KMP from Demo.tsx: comparisons 1-3 match T[0..2]; for i = 3..7 a miss (B vs A) then a match (P[2] vs T[i]) = 2 each, 5 rounds; then B matches T[8]: 3 + 10 + 1 = 14. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED (pass 22): the arithmetic is right (own trace: 3 + 5 x 2 + 1 = 14; table 2 under the third A gives a slide of 3 - 2 = 1, next comparison at the same text index). But the reveal sentence this claim addresses says the next comparison was \"the same text letter, never one already read\". That is false as written: own trace reads text positions 3..7 twice each (the miss, then the re-compare). Fix (builder): \"never one to its left\" / \"never an earlier letter\".",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "recall": {

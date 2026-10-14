@@ -34,36 +34,46 @@
       "id": "economics.no-best-move-one-stable-pair.c1",
       "text": "In the stage's game neither player has a move that is best against every reply of the other.",
       "support": "derivation",
-      "source": "Payoffs (row, column), columns L C R: U (3,1)(0,3)(2,0); M (4,2)(1,0)(0,1); D (2,0)(2,1)(1,3). Row's best reply is M against L, D against C, U against R; Column's best reply is C against U, L against M, R against D. Builder's node check: no row or column move weakly dominates the others (scratchpad ncm-e01-checks/check.mjs).",
-      "status": "unverified"
+      "source": "Payoffs (row, column), columns L C R: U (3,1)(0,3)(2,0); M (4,2)(1,0)(0,1); D (2,0)(2,1)(1,3). Row's best reply is M against L, D against C, U against R; Column's best reply is C against U, L against M, R against D. Builder's node check: no row or column move weakly dominates the others (scratchpad ncm-e01-checks/check.mjs). | FACT-CHECK 2026-10-14 (pass 22): Own node (scratchpad fc22/nash.mjs): Row's best replies M|L, D|C, U|R; Column's C|U, L|M, R|D, all unique; no move of either player is a best reply to all three of the other's moves.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.no-best-move-one-stable-pair.c2",
       "text": "(M, L) is the only cell where each player's move is a best reply to the other's: Row's 4 is the best in column L and Column's 2 is the best in row M; in every other cell someone gains by switching.",
       "support": "derivation",
-      "source": "Builder's node enumeration of all 9 cells: the only pure-strategy cell with both best replies is (M, L). Mixed strategies are not considered and the lesson says 'pure'. Demo.tsx STABLE computes the same.",
-      "status": "unverified"
+      "source": "Builder's node enumeration of all 9 cells: the only pure-strategy cell with both best replies is (M, L). Mixed strategies are not considered and the lesson says 'pure'. Demo.tsx STABLE computes the same. | FACT-CHECK 2026-10-14 (pass 22): Own enumeration of 9 cells: only (M, L) has both best replies (Row 4 best in L; Column 2 best in M). Each of the 8 others has a strict gain for at least one player. Pure strategies only, as stated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.no-best-move-one-stable-pair.c3",
       "text": "Each cell's message (who switches, to what, and the payoffs compared) follows from the table.",
       "support": "derivation",
-      "source": "Demo.tsx verdict(): compares the cell's payoff with the column's best row payoff and the row's best column payoff from the table in c1.",
-      "status": "unverified"
+      "source": "Demo.tsx verdict(): compares the cell's payoff with the column's best row payoff and the row's best column payoff from the table in c1. | FACT-CHECK 2026-10-14 (pass 22): Own messages for all 8 unstable cells match verdict() logic in Demo.tsx (e.g. UL: Row->M 4>3, Col->C 3>1; DR: Row->U 2>1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.no-best-move-one-stable-pair.c4",
       "text": "A pair of moves that are best replies to each other is a Nash equilibrium.",
       "support": "source",
-      "source": "Definition. J. F. Nash, 'Equilibrium points in n-person games', Proceedings of the National Academy of Sciences 36(1), 48-49 (1950); E&K ch. 6 (section unconfirmed). Citation from memory; fact-checker confirms.",
-      "status": "unverified"
+      "source": "Definition. J. F. Nash, 'Equilibrium points in n-person games', Proceedings of the National Academy of Sciences 36(1), 48-49 (1950); E&K ch. 6 (section unconfirmed). Citation from memory; fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): Definition (pure-strategy case of Nash's equilibrium point). Nash, PNAS 36(1):48-49 (1950) confirmed as bibliographic data via web-search snippets (PMC1063129 record); paper NOT opened (hosts blocked). E&K ch. 6 (Games) placement agrees with my knowledge of the book; section not checked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.no-best-move-one-stable-pair.c5",
       "text": "The payoffs are invented and the game is played once.",
       "support": "convention",
-      "source": "Modelling choice stated on the card and in the reveal.",
-      "status": "unverified"
+      "source": "Modelling choice stated on the card and in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Convention, present on stage: chip \"Payoffs: (Row, Column) · invented\"; reveal \"Invented payoffs, one round.\"",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "recall": {
