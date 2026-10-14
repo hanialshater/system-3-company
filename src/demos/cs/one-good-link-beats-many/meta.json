@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "cs.one-good-link-beats-many.c1",
-      "text": "On the stage's ten pages, page X has 3 links pointing at it and page Y has 1, from page H; H has 5 links pointing at it.",
+      "text": "On the stage's ten pages, page X has 3 links pointing at it and page Y has 1, from page H; H has 5 links pointing at it (A, B, C, D and Y, which links back to H).",
       "support": "derivation",
       "source": "LINKS in src/demos/cs/one-good-link-beats-many/model.ts: P, Q, R link to X; H links to Y; A, B, C, D and Y link to H. Counts re-run with inLinks() in node, 2026-10-14: X 3, Y 1, H 5. | FACT-CHECK 2026-10-14 (pass NCM-1): Own count from LINKS in model.ts (run on the lesson's own model.ts via node type-stripping): X 3 (P,Q,R), Y 1 (H), H 5 (A,B,C,D,Y). Reveal \"H, which five pages link to\" matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.one-good-link-beats-many.c2",
@@ -123,7 +121,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:pagerank",
     "prerequisites": [
