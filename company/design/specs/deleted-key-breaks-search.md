@@ -9,7 +9,7 @@ owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design 
 ## Stage at 390×844 (~300 px at predict, ~420 px in explore)
 1. Rule line (muted): "Toy table, 8 slots. A, B, C all hash to slot 1; each takes the next free slot." (16 words)
 2. **Table**: one row of 8 slots, 40 × 56 px each with 4 px gaps (348 px), index 0–7 under each slot. Keys A, B, C in slots 1, 2, 3. A small "hash → 1" tick above slot 1. An empty slot is blank; a gone marker is a hatched tile with "gone" in small type (pattern and text, not colour only).
-3. **Probe trace**, drawn above the table after a search: numbered hops (①, ②, ③) as short arcs from slot to slot, starting at slot 1. The slot where the search stopped gets a heavy outline: "stop: empty" or "C ✓".
+3. **Probe trace**, drawn above the table after a search: numbered markers (①, ②, ③) above each probed slot, joined by arrows, starting at slot 1. The slot where the search stopped gets a heavy outline: "stop: empty" or "C ✓".
 4. **Results log**, two lines max, each tagged with the delete mode it ran on: "Emptied slot: search C stopped at slot 2. Not found." / "Gone marker: search C passed slot 2. Found in slot 3." Before any search: "Search C: ?".
 5. Controls (below).
 

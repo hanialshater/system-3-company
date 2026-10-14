@@ -6,7 +6,7 @@ owner: chief-of-staff · date: 2026-10-14 · status: accepted (founder: "I upgra
 Usage limits stopped every running agent three times on 2026-10-13. The founder inbox item F-02 (usage budget and split) was open. The founder has now upgraded the plan from 5× to 20×.
 
 ## Decision
-- **Concurrency:** up to **30 agents** at once. That was about 8. Up to **10 on the inherited (Opus) model**, which was 3. Builders and revision builders default to Sonnet. Reviewers, fact-checkers, designers, leads and R&D use the inherited model.
+- **Concurrency:** up to **30 agents** (in practice 20: the harness caps concurrent subagents at 20 unless CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS is raised) at once. That was about 8. Up to **10 on the inherited (Opus) model**, which was 3. Builders and revision builders default to Sonnet. Reviewers, fact-checkers, designers, leads and R&D use the inherited model.
 - **Split, until the founder sets a different one:** about 40% review, fact-check, QA and publishing; 40% building and revising lessons; 20% teams (R&D, design, tools, backend).
 - **If usage limits still bite:** resume stopped agents from their transcripts. Drop to 15 at once and record it in the next WBR.
 
