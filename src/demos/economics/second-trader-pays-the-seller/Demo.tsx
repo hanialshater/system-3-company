@@ -8,6 +8,8 @@
 // Key states: T2 added; the bid reaches $1.00.
 // Model: traders ask their buyer's full $1; bids move in 1-cent steps; T1 bids first
 // (after Blume, Easley, Kleinberg and Tardos 2009).
+// v2 (r6): the title no longer states the outcome. The bid meter is labelled, and a tick keeps the highest
+// bid reached with T2 (it survives "Remove T2"), so the $1.00 the reveal quotes is still on stage.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -45,6 +47,7 @@ function Spot({ id, label, sub, on, dim }: { id: keyof typeof P; label: string; 
 export default function SecondTrader({ slug }: { slug: string }) {
   const [two, setTwo] = useState(false);
   const [bid, setBid] = useState(0); // cents, the leading bid to the seller
+  const [peak, setPeak] = useState(-1); // highest bid reached with T2 (kept through "Remove T2")
 
   // T1 bids first; with two traders the lead alternates with each 1-cent outbid.
   const leader = !two || bid % 2 === 0 ? "T1" : "T2";
@@ -68,7 +71,7 @@ export default function SecondTrader({ slug }: { slug: string }) {
             still resell for $1, so each would rather outbid by a cent than lose the item.
           </p>
           <p>
-            You watched the bid climb to <strong>$1.00</strong>. There it stops: bidding more would lose money. The seller takes the whole
+            You watched the bid climb to <strong>{c$(Math.max(peak, 0))}</strong>; the meter still marks it. There it stops: bidding more would lose money. The seller takes the whole
             $1 and the traders keep $0. A second trader doesn&apos;t halve the profit; competition hands it to the seller.
           </p>
           <p className="muted">
@@ -83,6 +86,7 @@ export default function SecondTrader({ slug }: { slug: string }) {
             const go = (cents: number) => {
               const v = Math.min(TOP, cents);
               setBid(v);
+              setPeak((p) => Math.max(p, v));
               if (v === TOP) reach("top");
             };
             const edge = (a: keyof typeof P, b: keyof typeof P, on: boolean, dim = false) => (
@@ -93,7 +97,7 @@ export default function SecondTrader({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.chip}>Model: each trader resells to her own $1 buyer</p>
                 <svg
-                  viewBox="0 0 320 190"
+                  viewBox="0 0 320 206"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "Seller, traders and buyers" : `${leader} leads with ${c$(bid)}; seller gets ${c$(seller)}`}
@@ -118,6 +122,17 @@ export default function SecondTrader({ slug }: { slug: string }) {
                   {/* bid meter */}
                   <rect x={20} y={172} width={280} height={10} rx={5} className={s.track} />
                   {!locked && <rect x={20} y={172} width={(280 * bid) / TOP} height={10} rx={5} className={s.soft} />}
+                  <text x={20} y={198} className={s.small}>
+                    bid to the seller: {locked ? "?" : c$(bid)}
+                  </text>
+                  {peak >= 0 && (
+                    <g>
+                      <line x1={20 + (280 * peak) / TOP} x2={20 + (280 * peak) / TOP} y1={166} y2={186} stroke="var(--fg)" strokeWidth={2} />
+                      <text x={300} y={198} className={s.small} textAnchor="end">
+                        highest with T2: {c$(peak)}
+                      </text>
+                    </g>
+                  )}
                 </svg>
                 <Row>
                   <Readout label="Seller gets" value={locked ? "?" : c$(seller)} />
@@ -142,6 +157,7 @@ export default function SecondTrader({ slug }: { slug: string }) {
                     onClick={() => {
                       setTwo(true);
                       setBid(0);
+                      setPeak((p) => Math.max(p, 0));
                       reach("second");
                     }}
                   >

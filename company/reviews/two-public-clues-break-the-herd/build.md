@@ -10,3 +10,14 @@ builder: demo-builder (ncm-specs) · 2026-10-14 · v1 draft · brief: company/do
 - Dependency: the brief says build after two-said-blue, and learner.knows names it, but two-said-blue is not on this branch. The lesson stands alone on its hook and stub; the prerequisite gap is for cm-probability / the course owner.
 - Format "before-after"; interactions choice-before-reveal, toggle-before-after, milestone-gate. Reference: E&K chapter 16 only (sections unconfirmed, so omitted). Claims c1–c5 unverified; c1 carries "Attribution: fact-checker confirms" (BHW 1992).
 - Not run, per the batch instruction: next build, typecheck, QA, walkthrough.
+
+## Pre-flight v2
+
+Revision for the pass-23 dispute on c6 (recall.why): "two independent new ones can outweigh it" is false in the lesson's own model (2 vs 2 is 50%, a tie). Reworded to "so two independent new ones count as much as the whole crowd, and one more would tip it." (c6 unverified). While here: the title "Can two clues beat a crowd of 100?" leaned towards "Red", so it is now "Follow 100 people, or two clues?"; the publish toggle no longer relabels itself (static "Publish two clues", pressed state by active/aria-pressed); the log keeps both quoted values ("Blue: 67% before publishing, 33% after") even if the toggle is switched off again.
+
+1. **Title and hook.** "Follow 100 people, or two clues?" / "Clues are right 2 times in 3. 100 people chose blue. How much do they know?" Both pose the choice; neither picks a side.
+2. **Options.** "Blue, with the crowd", "Red", "Toss-up" (was "Blue, with the 100", the only numbered one): none numbered, same plain wording.
+3. **Locked stage.** 100 blue squares, "Choices: 100 blue", your clue red, two "?" published chips, "100 choices?" in the blue box, chance "?". No 33% or "Best: red".
+4. **Reveal values.** "98 followers", "100 … only 2 clues": the counted state (milestone "counted"; squares 1–2 dotted, "1–2: clues. 3–100: followed."). "67%": BEFORE = pBlue(2, 1), shown on the readout after counting and kept in the log. "3 red to 2 blue … 33%": milestone "published-after-count"; the chips and readout show it, and the log keeps "33% after".
+5. **QA path.** Count the clues behind them ("counted", 67%), Publish two clues ("published-after-count", 33%, log). Both milestones; chips, readout and log are on stage at the reveal.
+6. **Reset.** No Reset control; turning the toggle off returns the readout to 67% but the log still reads "Blue: 67% before publishing, 33% after". Reveal from that run: "The 98 followers chose blue because of the first two choices, not their own clues, so the 100 blue choices held only 2 clues. With your red clue alone, blue stayed at 67%. Two published red clues plus yours make 3 red to 2 blue: blue falls to 33%, and red is the better choice. A herd built on two clues can be overturned by two more."

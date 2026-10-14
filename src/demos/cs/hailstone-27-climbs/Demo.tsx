@@ -5,6 +5,9 @@
 // then scrubs back over the run they made. Start chips add 26, 28 and 97 as thin lines on the same axes.
 // 27: 111 steps, peak 9,232 at step 77; 26: 10; 28: 18; 97: 118 (claims c1, c2; re-run in node by the builder).
 // Answer visibility: the x tick labels stay hidden until the first run reaches 1; the y axis only grows.
+// v2 (r6): options are three bands ("111" was the only exact one); title no longer says "long climb";
+// the table shows every start with "?" until its run reaches 1, under "No known formula fills a ?. Run it.",
+// so "you have to run it" (the stand-in for "nobody has proved they all stop") is on stage.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -26,6 +29,11 @@ function hailstone(n: number): number[] {
 const SEQ: Record<Start, number[]> = { 26: hailstone(26), 27: hailstone(27), 28: hailstone(28), 97: hailstone(97) };
 const STEPS = (n: Start) => SEQ[n].length - 1;
 const peakOf = (n: Start) => Math.max(...SEQ[n]);
+// the first value on 97's run that is also on 27's run (94): from there the two runs are the same
+const JOIN97 = fmt0(SEQ[97].find((v) => SEQ[27].includes(v))!);
+function fmt0(v: number) {
+  return v.toLocaleString("en-US");
+}
 
 const fmt = (v: number) => v.toLocaleString("en-US");
 const scaleFor = (v: number) => (v <= 100 ? 100 : v <= 1000 ? 1000 : 10000);
@@ -67,8 +75,8 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "Rule: if n is even, halve it; if odd, make it 3n + 1. Start at 27. How many steps until it reaches 1?",
-        options: ["Under 30", "111", "Never reaches 1"],
-        answer: 1,
+        options: ["Under 30", "30 to 100", "Over 100"],
+        answer: 2,
       }}
       exploreHint="Step a few times, then run 27 to 1."
       minInteractions={2}
@@ -80,13 +88,14 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
         if (has(26) && has(28)) parts.push(`Its neighbours were tiny: 26 took ${STEPS(26)} steps, 28 took ${STEPS(28)}.`);
         else if (has(26)) parts.push(`Its neighbour 26 took only ${STEPS(26)} steps.`);
         else if (has(28)) parts.push(`Its neighbour 28 took only ${STEPS(28)} steps.`);
-        if (has(97)) parts.push(`97 took ${STEPS(97)}.`);
+        if (has(97)) parts.push(`97 took ${STEPS(97)}: at ${JOIN97} it lands on 27's path and follows it down.`);
         return (
           <>
             <p>{parts.join(" ")} The start number tells you almost nothing about the run.</p>
             <p>
-              Every start that computers have checked reaches 1. But nobody has proved that every start does: the
-              Collatz conjecture is still open.
+              Each ? in your table stayed a ? until you ran that start: no known formula gives the count. Every start
+              that computers have checked reaches 1. But nobody has proved that every start does: the Collatz
+              conjecture is still open.
             </p>
           </>
         );
@@ -212,22 +221,39 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                   />
                   <circle cx={xs(Math.min(cursor, k))} cy={ys(cv)} r={4} fill="none" stroke="var(--domain)" strokeWidth={2} />
                 </svg>
-                <div className={s.table} role="group" aria-label="Runs that reached 1">
-                  {done.length > 0 && (
-                    <>
-                      <span className={s.th}>Start</span>
-                      <span className={s.th}>Steps</span>
-                      <span className={s.th}>Peak</span>
-                    </>
-                  )}
-                  {done.map((n) => (
-                    <span key={n} className={s.tr}>
-                      <span className={s.td}>{n}</span>
-                      <span className={s.td}>{STEPS(n)}</span>
-                      <span className={s.td}>{fmt(peakOf(n))}</span>
+                <div className={s.table} role="group" aria-label="Runs: steps and peak stay unknown until the run reaches 1">
+                  <span className={s.th}>Start</span>
+                  {STARTS.map((n) => (
+                    <span key={`s${n}`} className={s.th}>
+                      {n}
                     </span>
                   ))}
+                  <span className={s.th}>Steps</span>
+                  {STARTS.map((n) =>
+                    done.includes(n) ? (
+                      <span key={`t${n}`} className={s.td}>
+                        {STEPS(n)}
+                      </span>
+                    ) : (
+                      <span key={`t${n}`} className={s.unk}>
+                        ?
+                      </span>
+                    ),
+                  )}
+                  <span className={s.th}>Peak</span>
+                  {STARTS.map((n) =>
+                    done.includes(n) ? (
+                      <span key={`p${n}`} className={s.td}>
+                        {fmt(peakOf(n))}
+                      </span>
+                    ) : (
+                      <span key={`p${n}`} className={s.unk}>
+                        ?
+                      </span>
+                    ),
+                  )}
                 </div>
+                <p className={s.note}>No known formula fills a ?. Run it.</p>
                 <Row>
                   <Control className="tap" disabled={locked || busy || atOne} onClick={step}>
                     Step

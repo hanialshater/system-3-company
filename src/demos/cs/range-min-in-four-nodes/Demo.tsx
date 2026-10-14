@@ -4,6 +4,9 @@
 // single positions. Each block stores the minimum of its positions. A range query takes a block if it lies wholly
 // inside the range, skips it if it lies wholly outside, and otherwise asks its two halves. [3, 12] -> [3], [4-7],
 // [8-11], [12]: 4 blocks. [1, 14] -> 6. Changing one value rewrites only the 5 blocks above it.
+// v2 (r6): title and hook no longer state the answer; readouts sit above the sliders (they were cropped);
+// the reveal quotes the learner's own last range (state lifted to the lesson) instead of 1 to 14, and the
+// value change is a milestone, so "only the 5 nodes on its path" is something the learner did.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -40,7 +43,6 @@ function cover(lo: number, hi: number, l = 0, r = N - 1, out: Block[] = [], d = 
   return out;
 }
 const Q_COUNT = cover(Q_LO, Q_HI).length; // 4
-const WIDE_COUNT = cover(1, 14).length; // 6
 let MAX_COUNT = 0;
 for (let a = 0; a < N; a++) for (let b = a; b < N; b++) MAX_COUNT = Math.max(MAX_COUNT, cover(a, b).length);
 const PATH_LEN = BLOCKS.filter((b) => b.l <= EDIT_AT && EDIT_AT <= b.r).length; // 5
@@ -53,9 +55,19 @@ const bx = (b: Block) => X0 + b.l * W + 1;
 const bw = (b: Block) => (b.r - b.l + 1) * W - 2;
 const by = (b: Block) => Y0 + b.d * RH;
 
-function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
-  const [lo, setLo] = useState(0);
-  const [hi, setHi] = useState(N - 1);
+type Range = { lo: number; hi: number };
+function Stage({
+  locked,
+  reach,
+  range,
+  setR,
+}: {
+  locked: boolean;
+  reach: (n: string) => void;
+  range: Range;
+  setR: (r: Range) => void;
+}) {
+  const { lo, hi } = range;
   const [vals, setVals] = useState(START);
   const [edits, setEdits] = useState(0);
   const [combined, setCombined] = useState<string | null>(null); // "lo-hi-edits" when combined
@@ -69,8 +81,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
 
   const setRange = (a: number, b: number) => {
     if (locked) return;
-    setLo(a);
-    setHi(b);
+    setR({ lo: a, hi: b });
     setChanged(false);
     if (a === Q_LO && b === Q_HI) reach("range");
   };
@@ -86,6 +97,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
     setEdits(e);
     setVals(vals.map((v, i) => (i === EDIT_AT ? EDIT_VALUES[e % EDIT_VALUES.length] : v)));
     setChanged(true);
+    reach("changed");
   };
 
   const msg = locked
@@ -132,6 +144,11 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <rect x={X0 + lo * W} y={Y0 + LEVELS * RH + 14} width={(hi - lo + 1) * W} height={6} rx={3} fill="var(--domain)" />
       </svg>
       <Row>
+        <Readout label="Positions" value={hi - lo + 1} />
+        <Readout label="Nodes used" value={used.length} />
+        <Readout label="Minimum" value={isCombined ? answer : "?"} />
+      </Row>
+      <Row>
         <Control className={`${s.tap} active`} disabled={locked || (lo === Q_LO && hi === Q_HI)} onClick={() => setRange(Q_LO, Q_HI)}>
           Positions {Q_LO} to {Q_HI}
         </Control>
@@ -146,44 +163,45 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           Change the value at {EDIT_AT}
         </Control>
       </Row>
-      <Row>
-        <Readout label="Positions" value={hi - lo + 1} />
-        <Readout label="Nodes used" value={used.length} />
-        <Readout label="Minimum" value={isCombined ? answer : "?"} />
-      </Row>
     </div>
   );
 }
 
 export default function RangeMinInFourNodes({ slug }: { slug: string }) {
+  const [range, setR] = useState<Range>({ lo: 0, hi: N - 1 });
+  const own = cover(range.lo, range.hi).length;
+  const isQ = range.lo === Q_LO && range.hi === Q_HI;
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `A tree over ${N} positions stores the minimum of every aligned half, quarter and eighth. To get the minimum over positions ${Q_LO} to ${Q_HI} (0-based), how many stored nodes do you combine?`,
+        question: `A tree over ${N} positions stores the minimum of every aligned half, quarter and eighth. To get the minimum over positions ${Q_LO} to ${Q_HI}, how many stored nodes do you combine?`,
         options: [String(Q_HI - Q_LO + 1), String(Q_COUNT), "2"],
         answer: 1,
       }}
       exploreHint={`Select ${Q_LO} to ${Q_HI}, combine, then drag the range.`}
-      minInteractions={2}
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
             Positions {Q_LO} to {Q_HI} are {Q_HI - Q_LO + 1} values, but you combined just <strong>{Q_COUNT}</strong> stored
             nodes: [3], [4 to 7], [8 to 11] and [12]. Only the ragged ends need small nodes; the middle is covered by big
-            aligned ones. 1 to 14 needs {WIDE_COUNT}, and no range of these {N} positions needs more than {MAX_COUNT}.
+            aligned ones.{" "}
+            {isQ ? "" : `Your last range, ${range.lo} to ${range.hi}, needed ${own}. `}No range of these {N} positions needs
+            more than {MAX_COUNT}.
           </p>
           <p>
-            Every range is a union of at most about 2 log₂ n stored nodes. Changing one value rewrites only the{" "}
-            {PATH_LEN} nodes on its path to the top, so both the question and the update take about log n steps. The same tree works
+            Every range is a union of at most about 2 log₂ n stored nodes, where log₂ n counts the halvings from n
+            down to 1 (4 for {N}). When you changed one value, only the {PATH_LEN} nodes on its path to the top were
+            rewritten, so both the question and the update take about log n steps. The same tree works
             for maximum or sum.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["range", "combined"]}>
-          {(reach) => <Stage locked={locked} reach={reach} />}
+        <Milestones interact={interact} names={["range", "combined", "changed"]}>
+          {(reach) => <Stage locked={locked} reach={reach} range={range} setR={setR} />}
         </Milestones>
       )}
     </Lesson>

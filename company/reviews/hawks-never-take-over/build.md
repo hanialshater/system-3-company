@@ -14,3 +14,14 @@ Single card, from NCM brief 1 (company/domains/briefs/life.genetics-evolution.md
 - The baseline of 10 is shown on the stage ("Offspring = 10 + score"). It changes the speed but not where the share settles; the claim says so.
 - All claims are unverified. c4 (V/C as the ESS, Maynard Smith 1982) needs its attribution confirmed. References cite chapter 7 only.
 - I have not run the build, QA or walkthrough (the caller said not to). The QA path is my own reading of the code: preset 10%, preset 90%, then the slider, and each one changes the chart.
+
+## Pre-flight v2
+
+Revision for r6 (adult-beginner): the title "Why hawks never take over" and the hook ruled out "100% hawks", and "About 67% hawks, from either start" was the only precise option. New title and hook; four options, each naming a share; the stage line derives the −1 ("Two hawks: win 4 or lose 6, so (4 − 6) ÷ 2 = −1."); the reveal's end shares are computed from the learner's own low and high starts; chart capped at 24dvh so the reveal does not crop it. c6 added.
+
+1. **Title and hook.** "Hawks and doves: who wins?" / "Hawks fight for the prize; doves share it. What mix does the population end up with?" Neither rules out an option.
+2. **Options.** "Nearly 100% hawks", "About 67% hawks", "About 33% hawks", "Near its start (10% or 90%)": every option has a share, same precision.
+3. **Locked stage.** Payoff table (−1, 4 / 0, 2), the −1 derivation line, a chart with axes 0/50/100% and "?", readouts "?". No line at 67%, no end value.
+4. **Reveal values.** "From 10% and from 92% hawks": min of the learner's starts ≤ 20% and max ≥ 80% (milestones "from-few", "from-many"; `seen` lives in the lesson, so it survives). "ended at 67% and 67%": endPct() of those same starts, the same rounding as the chart's end label; the current run's label and the dashed earlier runs show it. "4 vs 0", "−1", "0": the payoff table and stage line. "4 ÷ 6 = 2/3": told (c4), pointing at the equal-scores readout.
+5. **QA path.** Start at 10% ("from-few"), Start at 90% ("from-many"), slider two presses (91%, 92%). Both milestones; at the reveal the 92% run is drawn with the 10% and 90% runs dashed behind it, all ending at 67%.
+6. **Reset.** No Reset control. Reveal from that run: "From 10% and from 92% hawks, the share ended at 67% and 67%: two hawks in three. Aggression did not take over. A hawk meeting a dove takes the whole prize (4 vs 0), so hawks grow while they are few. Two hawks fight and average −1, while a dove facing a hawk just backs off (0), so hawks shrink once they are many. The share settles where both score the same: prize ÷ cost = 4 ÷ 6 = 2/3. That mix is evolutionarily stable."

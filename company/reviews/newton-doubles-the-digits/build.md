@@ -22,3 +22,14 @@ The zoom constraint is infeasible as written (see above). Interaction designer m
 
 ## Checks skipped
 next build, QA, walkthrough and tsc were not run (coordinator order). `npm run registry` and `npm run check` passed.
+
+## Pre-flight v3
+
+Revision for r6 (adult-beginner): the title "Twelve digits of √2 in four steps" answered the question. Renamed "Averaging your way to √2". The reveal's last line drops the Babylonian/Heron naming clause (pass 23 held it: no openable source) and keeps "This is Newton's method for g² = 2." (c5 reworded, unverified). Mechanics unchanged.
+
+1. **Title and hook.** "Averaging your way to √2" / "Average a guess with 2 ÷ guess, again and again. How fast do the right digits pile up?" No count of steps or digits.
+2. **Options.** "4", "8", "12": all bare numbers.
+3. **Locked stage.** Rule line, ladder row #0 "1.0000000000000000" with bar 1, the magnifier for #0 (g, 2 ÷ g, average, open √2 circle, "#0 · zoom ×1"). Nothing marks 4 or 12 digits.
+4. **Reveal values.** "1, 3, 6, then 12" and "12 after four updates": DIGITS[1..4], gated by milestone "four-updates" (count ≥ 5), all on the ladder bars #1–#4. "15 digits … sixth changed nothing": printed only when count reached the "no change" row, which is then on the ladder. "divided by 2.8": told context (c3), not quoted as seen.
+5. **QA path.** Update g (#1), Update until it stops changing (60 ms per row, done in ~300 ms; "four-updates"), Look at update slider (two presses move the selected rung). Milestone reached; all seven rows stay on the ladder.
+6. **Reset.** No Reset control; rows only accumulate. Reveal from that run: "Your guesses had 1, 3, 6, then 12 correct digits: 12 after four updates, not twelve. When g is too big, 2 ÷ g is too small by about the same amount, so their average lands much nearer √2. The new error is about the old error squared (divided by 2.8), so the correct digits roughly double each update. The fifth update reached 15 digits, the limit of the computer's numbers, and the sixth changed nothing. This is Newton's method for g² = 2."

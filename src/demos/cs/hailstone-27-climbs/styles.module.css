@@ -3,10 +3,10 @@
 .wrap :global(.tap) { min-height: 44px; min-width: 44px; }
 .rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
 .readout { margin: 0; font-size: 0.85rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
-.chart { width: 342px; max-width: 100%; height: auto; }
+.chart { width: 342px; max-width: 100%; height: auto; max-height: 30dvh; }
 .tick { font-size: 9px; fill: var(--muted); font-variant-numeric: tabular-nums; }
 .axis { font-size: 10px; fill: var(--muted); }
-.table { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px 8px; width: 100%; max-width: 240px; font-size: 0.75rem; }
+.table { display: grid; grid-template-columns: auto repeat(4, 1fr); gap: 2px 8px; width: 100%; max-width: 280px; font-size: 0.75rem; }
 .tr { display: contents; }
 .th { color: var(--muted); font-weight: 600; text-align: center; }
 .td { text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -14,3 +14,5 @@
 .scrub :global(input[type="range"]) { height: 44px; }
 .lab { font-size: 0.75rem; color: var(--muted); }
 .chips { display: inline-flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.unk { text-align: center; color: var(--muted); }
+.note { margin: 0; font-size: 0.75rem; color: var(--muted); text-align: center; }
