@@ -33,3 +33,12 @@ Checker: fact-checker, a fresh instance that did not write these claims. Method:
 | c5 | verified | Convention matches the code: well-mixed SIR (one S, I compartment), the dose is moved from S to V instantly with no waning or failure, and v = min(DOSE, S) goes only to the not-yet-infected. The question says '20% of the town, all not yet infected'; the stage locked line says 'all not yet infected'; the reveal muted line says 'Model, not guidance: instant, perfect protection.' exactly. BETA, GAMMA and I0 are made-up constants. |
 
 **Result:** 3 verified, 1 disputed (c1; board W-509, demo-builder), 0 held unverified. Publishing stays blocked on the dispute.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: life/vaccinate-at-the-peak v6. Order: read Demo.tsx first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Independent node port of the Euler SIR (β 0.6, γ 0.2, I0 0.001, dt 0.01 to day 200): ever infected 0.9407 (94%); I peaks at t = 19.19 (PEAK_DAY = round = 19, the 'Peak' button); new cases β·S·I peak at t = 15.97 (about day 16). RK4 (h 0.001) cross-check: I peak 19.18, final 0.9406; final-size equation 1 − z = (1 − I0)e^(−3z) gives 0.9406. |
+| recall | verified | Derivation: dI/dt = (βS − γ)I = 0 at S = γ/β = 1/R0. Own node run of the stage model: S = 0.3332 at the I peak (RK4 0.3333), so about a third never infected; ever infected 66.7% then and 94.1% at the end, so 27.4 points (29% of all infections) still to come, which supports 'many infections are still to come'. In time, half of all infections have happened by day 16.5 and 99% by day 36, consistent with the answer 'Around the middle'. |

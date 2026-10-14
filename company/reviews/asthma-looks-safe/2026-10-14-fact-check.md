@@ -14,3 +14,12 @@ Checker: fact-checker, fresh instance (wrote none of these claims). Method: read
 | c6 | unverified | RECORDED (unrecorded claim found): meta.json hook, first sentence, shown on the card before the stage. Read as real-world testimony (it comes before the toy is introduced). This is the known pneumonia-risk finding (Cooper et al. 1997 data; Caruana et al. 2015, KDD), but I could not open either. Builder: either cite an opened source, or mark the hook as the toy ('In these toy records, asthma patients die less'). |
 
 **Result:** 4 verified, 1 disputed (c2, the claim quotes a stage string that does not exist), 1 recorded and held unverified (new c6, the hook, a real-world claim with no openable source).
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: ai/asthma-looks-safe v2. Order: read Demo.tsx first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Demo.tsx v2 prints, after 'Model's view', `Model's view of the old records: asthma ${pc(2,50)} risk, others ${pc(12,150)}. Safest: asthma.`; own node renders it as "Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma." and the claim text contains that string exactly (ASCII apostrophe). 2/50 = 4% < 12/150 = 8% (OTHERS_DIE: o mod 25 in {3,16}, 12 dots), so the group-rate model ranks asthma lowest; reveal says 'ranked asthma as the safest group'. |
+| c6 | verified | Hook now reads 'In toy records, asthma patients with pneumonia die less. What if a model acts on that?' (86 characters). It rests on the toy: old-rule deaths 2 of 50 asthma (4%) vs 12 of 150 others (8%), own node from ASTHMA_DIE_ICU and OTHERS_DIE; the stage tag reads 'Toy pneumonia patients'. No real-world finding is asserted, so Cooper 1997 / Caruana 2015 are not needed for it. |

@@ -14,3 +14,11 @@ Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: 
 | c6 | verified | Follows from c1 (verified): every capital 65-90 is below every small letter 97-122. Reveal prints the ranges from charCodeAt. 'Stores each letter as a number' is true of these encodings (node and Python encode each letter as one byte/code unit). |
 
 Dispute c5 is on the board as W-497 (demo-builder). After the fix, a fact-checker re-checks it.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: cs/zebra-sorts-before-apple v2. Order: read Demo.tsx first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Own node v22.22.0 (ICU 77.1): ['Zebra','apple','Banana'].sort(new Intl.Collator(loc).compare) and localeCompare give apple, Banana, Zebra for en, en-US, en-GB, de, fr, sv and the default locale, while the default sort() gives Banana, Zebra, apple (Demo byCode). The claim now asserts only that language-rule sorting exists and gives this order; a running collator on this host demonstrates both. Reveal 'a program can sort with language rules instead, which put apple first' matches. ECMA-402 and UTS #10 not opened (tc39.es DNS failure); not relied on. |

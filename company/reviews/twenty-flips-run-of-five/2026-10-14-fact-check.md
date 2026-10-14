@@ -14,3 +14,11 @@ Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: 
 | c6 | unverified | Not learner-facing. Rests only on Bar-Hillel & Wagenaar (1991), Advances in Applied Mathematics 12(4), which could not be opened from this host (web fetch DNS failure, proxy 403). Left unverified; re-check from a host that can open it. |
 
 Dispute c5 is on the board as W-498 (demo-builder). After the fix, a fact-checker re-checks it.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: probability/twenty-flips-run-of-five v2. Order: read Demo.tsx and model.ts first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Ran a copy of model.ts v2 (strip-types) against an independent mulberry32 + longest-run tally for n = 1000, 1001, 1002, 1005, 2000, 2001, 3001 (batches then steps): atMost(t, k) equals the true count of longest run <= k for every k = 1..20, 0 mismatches. n = 1,001: k = 7 94.6%, 8 97.5%, 9 99.0%, 12 99.9%, 14+ 100.0% (exact by brute force over 2^20: 94.56, 97.46, 98.83, 99.89). k = 1 (alternating taps) prints 0.0% via the myRun >= 2 guard; true share is also 0 (no seed in 1..3001 has longest run 1). Note for builder: the first source sentence still describes v1 ('atMost(t, k) = t.n - atLeast(t, k+1)'); update it, no effect on the claim. |

@@ -12,3 +12,11 @@ Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: 
 | c4 | verified | model.ts: equal SD 10, equal batch sizes (shares are per 100,000 in each), exact normal density, no sampling; the question's 'spread (10 cm)' is SD. The last sentence (different spreads or shapes change tail ratios) follows: unequal SDs change Q((c − μ)/σ) differently per batch. Convention. |
 
 Dispute c3 is on the board as W-501 (demo-builder). After the fix, a fact-checker re-checks it.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: probability/small-gap-big-extremes v2. Order: read Demo.tsx and model.ts first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node numeric integral of min(f_A, f_B) (means 100, 105, sd 10, step 0.001 cm): 0.80259, and 0.80258 inside the drawn 60-150 cm window; Python math.erfc(0.25/sqrt 2) = 2Φ(−0.25) = 0.80259. 'Mostly overlap, sharing about 80% of their area' and '5 cm (half a spread)' hold. Reveal text matches the claim. |

@@ -12,3 +12,11 @@ Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: 
 | c4 | verified | Stage chip reads 'Model: made-up flat tax. Today 25%. Later: slider.'; the reveal ends 'Not advice about any real account.'; accA/accB contain no limits, fees or penalties; no real account named. Convention. |
 
 Dispute c3 is on the board as W-500 (demo-builder). After the fix, a fact-checker re-checks it.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: economics/tax-now-or-tax-later v2. Order: read Demo.tsx first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node over every reachable record (growth ×2 or ×4, later rate 10..40 step 5, not 25): the reveal string 'at ×{g} and a {l}% later rate, B ended at {b} against A's {a}' matches independent 10,000 × 0.75 × g and 10,000 × g × (1 − l) for all 12 states, e.g. ×4 35% $26,000 vs $30,000, ×4 15% $34,000, ×2 35% $13,000 vs $15,000. rec stores g with the rate, so the reveal now quotes both, as the claim says; the record row under the chart shows the same values. |

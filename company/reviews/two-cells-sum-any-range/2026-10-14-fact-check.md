@@ -12,3 +12,11 @@ Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: 
 | c4 | verified | Own node: adding 1 to day 3 changes totals 3..8, 6 of 8. Traced every order: edit before build, edit mid-build (row mixes old and new totals) and repeated edits always count 6 stale against the new truth (built totals from day 3 on are always from a smaller day-3 value). staleSeen is recorded only from a complete row; the reveal prints it. |
 
 Dispute c3 is on the board as W-499 (demo-builder). After the fix, a fact-checker re-checks it.
+
+## Pass 36 (2026-10-14, W-637 re-check after the pass 35 fixes)
+
+Checker: fact-checker (fresh instance per the W-280 ruling; drafted none of this wording, and was not a pass 35 session). Artifact: cs/two-cells-sum-any-range v2. Order: read Demo.tsx first, then the claim text, then the source fields, this file's Pass 35 table and build.md. Numbers re-run in node (and Python where noted) from copies of the lesson logic and independent re-implementations; no dev server, no screenshots (QA and reveal-fit are W-638, not this pass). Web sources could not be opened (tc39.es DNS failure), so nothing here rests on an unopened source. Scripts: session scratchpad fc36/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node over all 36 ranges of 3 1 4 1 5 9 2 6: building P = 3 4 8 9 14 23 25 31 takes 7 additions; every range equals P[r] - P[l-1] (or P[r] when l = 1) against brute-force sums, 36/36; max reads 2, max subtractions 1; 8 ranges start at day 1 (1 read, 0 subtractions). Demo readout prints 'reads 1' / 'reads 2' accordingly; reveal 'Any range costs at most one subtraction, however long.' matches. |
