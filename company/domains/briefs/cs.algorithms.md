@@ -8,6 +8,39 @@ Revised 2026-10-14 by cm-cs-algorithms after interaction-design spec review: #3 
 
 Support types: **derivation** (worked by hand or proof), **simulation** (a script the verifier re-runs), **citation** (CLRS = Cormen, Leiserson, Rivest, Stein, *Introduction to Algorithms*, 3rd ed.; or the original paper).
 
+## Course: NCM (2026-10-14)
+
+Accepted by cm-cs-algorithms from `company/courses/ncm/briefs.md` (### cs.algorithms, proposed by cm-course-ncm). Answers re-run in node on 2026-10-14. Work: `easley-kleinberg-2010`; references name the chapter only. Edits made at acceptance are marked "Edited". One proposed brief, cut-the-busiest-link, is not accepted: its graph is not given and its numbers do not reproduce (objection under it in the course file). One-good-link-beats-many (batch 1, PageRank) is not yet built; build the PageRank lesson in this section after it.
+
+### 1. random-surfer-finds-the-rank · concept: pagerank-random-walk · core · demand 2 · format: Simulation run
+- Chapter: 14 · domain: cs
+- Learner knows: PageRank passes rank along links (batch 1) / does not know: that PageRank equals the share of time a random clicker (who sometimes jumps anywhere) spends on each page.
+- Misconception: A page with one in-link gets about a third of the visits of a page with three.
+- Prediction (stage text <= 25 words): "A surfer clicks random links forever, jumping anywhere 15% of the time. A has 1 in-link, C has 3. A's visits compared with C's?" options: A. About a third / B. About half / C. Almost the same (answer: C, about 31% to 33%).
+- Check: Links A->B, B->C, C->A, D->C, E->C; jump to a uniform page with probability 0.15. Re-run: power iteration (s = 0.85) gives A 0.312, B 0.295, C 0.332, D = E = 0.03. A 100,000-click surfer run gave A 0.313, C 0.331 (my own mulberry32 seed 146 loop; exact shares depend on how the builder draws numbers, so the builder records its own run and the visit shares land within 0.005 of PageRank).
+- Reveal (one line): A's one link comes from C, so the surfer lands on A almost as often as on C; the visit shares match PageRank to within a few thousandths.
+- Planned claims:
+  1. In the stage's run of 100,000 clicks the surfer's shares on A and C are those the lesson's own seeded run shows (about 31% and 33%). support: simulation; source: the lesson's script (builder records the seed and counts).
+  2. Scaled PageRank (s = 0.85) gives A 0.312 and C 0.332. support: derivation; source: node power iteration.
+  3. PageRank equals the long-run probability that a random surfer with random jumps is on each page. support: citation; source: E&K ch. 14; Brin and Page (1998). Attribution: fact-checker confirms.
+- curriculum: `{"primary":"cs:pagerank-random-walk","also":["probability:random-walk"],"prerequisites":["probability:random-walk"],"level":"core","strand":"algorithms","references":[{"work":"easley-kleinberg-2010","chapter":14}],"tags":["web","random walk","PageRank"]}`
+- Needs interaction-designer spec: no.
+- Differs from: one-good-link-beats-many (batch 1) computes PageRank by update rounds; this gets the same numbers from a surfer simulation, so it teaches the meaning, not the computation. probability/drunk-walk-distance is a random walk on a line. No built lesson or brief in batch 2 (#41-#80) covers PageRank. Edited: claim 1 no longer quotes 31.1% and 33.2% (not reproducible without the builder's draw order); reveal says "a few thousandths".
+
+### 2. good-lists-make-good-pages · concept: hubs-authorities · stretch · demand 1 · format: Single card with step-run button
+- Chapter: 14 · domain: cs
+- Learner knows: pages link to pages; counting in-links / does not know: that a link counts for more when it comes from a page that lists other good pages.
+- Misconception: The page with the most in-links ranks highest.
+- Prediction (stage text <= 25 words): "Page X has 3 in-links, mostly from pages that list only X. Page Y has 2, from pages that list several good pages. After updating, which scores higher?" options: A. X / B. Y / C. Tie (answer: B, Y 0.277 vs X 0.099).
+- Check: Hubs h1, h2 -> Y, Z, W; h3, h4 -> X; h5 -> X, W. 50 alternating authority/hub updates, each normalised to sum 1. Re-run: authority Y 0.277, Z 0.277, W 0.346, X 0.099; in-links Y 2, Z 2, W 3, X 3. W and X both have 3 in-links yet W is highest and X lowest: use that in the reveal.
+- Reveal (one line): A good list points to good pages, and a good page is pointed to by good lists; X's fans (h3, h4) list only X, so their votes count for little.
+- Planned claims:
+  1. After repeated updates Y's authority score is 0.277 and X's is 0.099, though X has 3 in-links and Y has 2. support: derivation; source: node HITS iteration (50 rounds).
+  2. Hub score is the sum of the authority scores a page points to; authority score is the sum of the hub scores pointing to it (then normalised). support: definition; source: E&K ch. 14; Kleinberg (1999), J. ACM 46(5). Attribution: fact-checker confirms.
+- curriculum: `{"primary":"cs:hubs-authorities","also":[],"prerequisites":["cs:graph-shortest-path"],"level":"stretch","strand":"algorithms","references":[{"work":"easley-kleinberg-2010","chapter":14}],"tags":["web","link analysis"]}`
+- Needs interaction-designer spec: no.
+- Differs from: one-good-link-beats-many (batch 1, PageRank) passes rank page to page; HITS keeps two scores. Build after it and after #1; the stage can reuse the graph idea. Edited: the stage text said X's in-links all come from one-link pages, but h5 lists X and W; it now says "mostly".
+
 ### 1. ties-keep-their-order · concept: sort-stability · intro · demand 3
 - Learner knows: sorting a hand by sliding cards left (insertion-by-hand) / does not know: that two sorting methods can give different results when items tie
 - Misconception: Sorted is sorted: any correct sort of the same list gives the same list.
