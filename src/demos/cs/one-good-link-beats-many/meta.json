@@ -66,12 +66,10 @@
     },
     {
       "id": "cs.one-good-link-beats-many.c5",
-      "text": "In round 2, each of X's three linkers passes on only about 0.013 to X.",
+      "text": "In round 2, each of X's three linkers passes on only about 0.013 to X (still about 0.013 at round 51).",
       "support": "derivation",
-      "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.85 x 0.015 = 0.01275; the reveal's f3(S*score(1,\"P\")) renders \"0.013\" (float 0.012750000000000003 rounds up). Matches. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. passed(2, 'P') = 0.85 x 0.015 = 0.01275, rendered 0.013 by f3 (float 0.012750000000000003). Matches reveal paragraph 2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.85 x 0.015 = 0.01275; the reveal's f3(S*score(1,\"P\")) renders \"0.013\" (float 0.012750000000000003 rounds up). Matches. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. passed(2, 'P') = 0.85 x 0.015 = 0.01275, rendered 0.013 by f3 (float 0.012750000000000003). Matches reveal paragraph 2. | Builder revision (demo-builder, 2026-10-14, final-review polish): The reveal quotes the round shown beside it: round 2 if the learner stepped there, round 51 if they ran straight to it. Node 2026-10-14 with model.ts: passed(2,P) = passed(51,P) = 0.01275 (P, Q, R stay at 0.015), rendered 0.013.",
+      "status": "unverified"
     },
     {
       "id": "cs.one-good-link-beats-many.c6",
@@ -93,12 +91,10 @@
     },
     {
       "id": "cs.one-good-link-beats-many.c8",
-      "text": "In round 2, H passes on about 0.374 to Y (0.85 x H's round-1 score of 0.440, H having one out-link). The numbers on the arrows into X and Y are the amounts passed in the round shown: 0.85 x the sender's score in the previous round, divided by its out-links.",
+      "text": "In round 2, H passes on about 0.374 to Y (0.85 x H's round-1 score of 0.440, H having one out-link). The numbers on the arrows into X and Y are the amounts passed in the round shown: 0.85 x the sender's score in the previous round, divided by its out-links. At round 51 H passes on about 0.359 to Y (0.85 x H's round-50 score, H having one out-link).",
       "support": "derivation",
-      "source": "passed() in model.ts: S x score(round-1, from) / outDeg. Re-run in node 2026-10-14: passed(2,H) 0.374, passed(2,P) 0.01275, passed(1,P) 0.085 (round 1: each of P, Q, R passes 0.085 to X, so X has 0.015 + 3 x 0.085 = 0.270). Y round 2 = 0.015 + 0.374 = 0.389, matching c2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. score(1, 'H') = 0.015 + 0.85 x 0.5 = 0.440; passed(2, 'H') = 0.374; Y round 2 = 0.015 + 0.374 = 0.389. passed() = S x score(round-1, from) / outDeg, as the claim says; arrows into X and Y are labelled with it.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "passed() in model.ts: S x score(round-1, from) / outDeg. Re-run in node 2026-10-14: passed(2,H) 0.374, passed(2,P) 0.01275, passed(1,P) 0.085 (round 1: each of P, Q, R passes 0.085 to X, so X has 0.015 + 3 x 0.085 = 0.270). Y round 2 = 0.015 + 0.374 = 0.389, matching c2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. score(1, 'H') = 0.015 + 0.85 x 0.5 = 0.440; passed(2, 'H') = 0.374; Y round 2 = 0.015 + 0.374 = 0.389. passed() = S x score(round-1, from) / outDeg, as the claim says; arrows into X and Y are labelled with it. | Builder revision (demo-builder, 2026-10-14, final-review polish): Node 2026-10-14: passed(2,H) = 0.374, passed(51,H) = 0.3590, Y at 51 = 0.015 + 0.359 = 0.374. The reveal quotes the shown round (2 or 51).",
+      "status": "unverified"
     },
     {
       "id": "cs.one-good-link-beats-many.c9",
@@ -129,7 +125,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "cs:pagerank",
     "prerequisites": [
