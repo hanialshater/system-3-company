@@ -185,7 +185,7 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
     exploreHint:special?'Try both evidence controls, then compare.':'Try the second layout; vary the shown input.',minInteractions:special?2:1,
     reveal:({correct})=><div className={s.reveal}>
       <p><strong>{correct?'Your prediction held.':'Not quite.'}</strong>{' '}{spec.model==='cord'?`At seed 17, the study-conditioned model gave ${sourceConditionedCordTrials(0.55).filter(Boolean).length}/20 at 3m, and 0/20 at 0.3m.`:spec.model==='bow'?`After ${p} model steps, the loops shown measure ${fmt(Math.max(0,20-p*0.8))}mm and ${fmt(Math.max(0,20-p*(after?0.3:0.8)))}mm.`:spec.model==='wobble'?`You visited the zero-gap position; the current illustrated gap is ${fmt(result.value)}mm.`:`The current ${spec.choices[after?1:0].toLowerCase()} setting gives ${fmt(result.value)}${result.unit}.`}</p>
-      <p>{spec.idea}</p><p>{spec.limit}</p>
+      <p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}
     </div>
   }};
 }

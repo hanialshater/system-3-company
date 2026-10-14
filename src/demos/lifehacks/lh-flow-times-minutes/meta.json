@@ -4,7 +4,7 @@
   "hook": "A flow rate is not the final volume until duration joins it.",
   "domain": "lifehacks",
   "concept": "lh-flow-times-minutes",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Minutes=7min: it gives 21L. A volume per minute multiplied by minutes gives volume. Keeping duration equal isolates the flow-rate difference. Actual flow can vary, so the picture demonstrates the stated arithmetic only."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-flow-times-minutes/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-flow-times-minutes",
     "prerequisites": [],

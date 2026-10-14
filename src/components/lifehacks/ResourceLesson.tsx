@@ -162,6 +162,7 @@ export function ResourceStage({ spec, x, selected, seen, children }: { spec: Res
         </div>)}
       </div>
       <p className={s.assumptions}>{spec.family === "geometry" ? spec.assumptions : spec.assumptions.replace("Scaled model;", `Full scale:${resourceAmount(resourceGraphicScale(spec), spec.unit)};`)}</p>
+      {spec.warning && <p className={s.assumptions}>{spec.warning}</p>}
       {children}
     </div>
   );

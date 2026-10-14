@@ -156,7 +156,8 @@ test('resource metadata keeps independent claim addresses and bounded lesson cop
       if (claim.status === 'verified') assert.ok(claim.checkedBy && claim.checkedBy !== meta.owner.builder && claim.checkedOn);
     }
     assert.ok(Object.values(meta.evidence).every(records => Array.isArray(records) && records.every(p => typeof p === 'string')));
-    assert.equal(meta.safety.reviewRequired, true);
+    // Safety verdicts live in company/reviews/<slug>/<date>-safety.md, not meta.json (engineering review 2026-10-14).
+    assert.equal(meta.safety, undefined);
     // Printed stage labels, two formulas, controls and model assumptions stay compact.
     const stageWords = `A: ${spec.aLabel} ? formula B: ${spec.bLabel} ? formula ${spec.assumptions} Test A Test B ${spec.variable.label} 1${spec.variable.unit}`.split(/\s+/).length + (spec.family === 'energy' ? 4 : 0);
     assert.ok(stageWords <= 25, `${spec.slug}: ${stageWords} stage words`);

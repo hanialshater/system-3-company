@@ -3,6 +3,23 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, community-engineer (Femi): PR #2 merged on our branch, all 200 Life Hacks lessons as draft
+- **Changed:**
+  - Merged `codex/lifehacks-200` @ `71e99fee` (`--no-ff`) on branch `worktree-agent-ad8b58b7e38edc358`. The founder approved the merge and said "Go ahead, all 200", so no lessons were removed.
+  - The PR's board ids are now W-354..356.
+  - Contributor records moved to `company/reviews/lifehacks-200/contributor/`. `evidence.qa` is cleared, and the PR's board, event and progress entries now say "contributor (PR #2)".
+  - Dropped the `safety` meta field and `content/collections/`. Added the claims-match drift fixture.
+  - Brought over Sana's 200 safety records and 8 batch summaries from `ccr-rnd-ncm`. Applied 9 required stage lines as a new optional `warning` spec field.
+  - All 200 lessons are draft, with 893 unverified claims.
+  - Details are in `company/engineering/community/prs/2.md` section 7.
+- **Believe:**
+  - High confidence that the merge is clean: check, tsc and 51/51 fixtures pass.
+  - Medium confidence in the new lines' placement. They render in small muted type under the assumptions line, and no one has seen them in a walkthrough yet.
+- **Next:**
+  - The coordinator merges session 2's recall patches and fact-check verdicts. Those patches also fix the water-meter recall and the drying `recall.why` phrase.
+  - Then `npm run verify` with a build. W-360 QA, W-359 safety second read and attestation, W-357 and W-358 builder fixes.
+- **Blocked:** nothing. Not pushed, and nothing posted to GitHub.
+
 ## 2026-10-14, design-lead: W-347 fold-at-the-reveal spec takes in the five W-335 changes
 
 - Changed: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md` Amendment spec rewritten as items 1 to 8: (1) evidence opt-in test (no Row with a Readout folds, kit-enforced; every reveal branch read in Demo.tsx, reveal-fit `named` is only a floor; the row's state must show in the picture); (2) net-saving gate, fold only if it frees at least the toggle's 44 px after paying for the toggle; (3) fold decided once, before the reveal's first paint, never from the 400 ms, growth, resize or rotation re-fits; (4) label "Show more controls" when other stage controls stay visible, "Show controls" only when none is left, and it looks like a control (look is W-350); (5) focus moves to the toggle, the toggle keeps its on-screen position on expand, no scroll jump. Status line, Sequence and the older re-check objection row annotated. The two W-335 objection rows: the evidence-test row is closed; the net-saving / re-fit row is accepted with the spec closed, while build and measurement stay open in W-348 and W-349. `company/design/system.md` "Fold at the reveal" matches. Note on W-332 that its title's "Show controls" is superseded. W-347 done. Nothing built.
@@ -584,7 +601,7 @@ who no longer exists: check what you rely on.
 - Next: chief of staff runs integrated build, QA and walkthrough sheets; look at the new controls on phone (two-flips-slip-by, midnight-sun-line day strip, two-bulges arrows). Then fact-checker on unverified claims.
 
 
-## 2026-10-14 · chief-of-staff · PR 2 sync and completed browser regression
+## 2026-10-14 · contributor (PR #2) · PR 2 sync and completed browser regression
 
 _Imported from PR #2 (`codex/lifehacks-200` @ `71e99fee`) in the merge; board ids remapped W-176→W-354, W-177→W-355, W-178→W-356. Contributor testimony, not verified._
 
@@ -646,7 +663,7 @@ _Imported from PR #2 (`codex/lifehacks-200` @ `71e99fee`) in the merge; board id
 
 Changed (see "Revision v<N>" in each company/reviews/<slug>/build.md): cut-the-cube-surface, dilute-until-none-left, heavy-but-floats, pay-first-then-profit, filament-vs-led-heat, pendulum-period, projectile-angle, puck-on-ice-no-push (phone clip: reveal-phase `.stage-svg {flex: none}` rule widened the lanes), point-one-is-26-percent (c3), collect-all-six-faces, tournament-second-best. QA passes except the known feed-chips failure (W-136). I believe the fixes work (walkthrough sheets and a phone probe seen); fairly sure. Edited claims are unverified (dilute c7 new, point-one c3): fact-checker next. Open: pendulum gate still needs only the weight trial (no one-tap path for a second trial); re-review wanted for all 11. collect-all-six-faces had no stuck label in the current code.
 
-## 2026-10-14 · chief-of-staff · 200 Life Hacks review collection and PR
+## 2026-10-14 · contributor (PR #2) · 200 Life Hacks review collection and PR
 
 _Imported from PR #2 (`codex/lifehacks-200` @ `71e99fee`) in the merge; board ids remapped W-176→W-354, W-177→W-355, W-178→W-356. Contributor testimony, not verified._
 

@@ -3,6 +3,8 @@ export interface HomeSpec {
   slug: string; title: string; hook: string; concept: string; model: string; view: string;
   initial: number; min: number; max: number; step: number; values: number[];
   choices: string[]; question: string; idea: string; limit: string; formula: string;
+  /** Safety-required reveal line (lifehacks-safety-reviewer record). */
+  warning?: string;
   recall: string; source: string | null; answer: number; unit: string; inputLabel: string;
 }
 export interface HomeResult { value: number; other: number; label: string; unit: string; inputs: string; }

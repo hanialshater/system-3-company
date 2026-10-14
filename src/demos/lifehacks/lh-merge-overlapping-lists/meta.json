@@ -4,7 +4,7 @@
   "hook": "Two requests overlap on three items. Adding the list lengths overcounts.",
   "domain": "lifehacks",
   "concept": "lh-merge-overlapping-lists",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-merge-overlapping-lists/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "List A has eight distinct items; list B has six. Exactly three items occur on both lists.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-merge-overlapping-lists",
     "prerequisites": [],

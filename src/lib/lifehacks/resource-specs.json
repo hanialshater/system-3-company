@@ -682,7 +682,8 @@
       ],
       "answer": 0,
       "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
-    }
+    },
+    "warning": "Cooking times do not scale with quantity."
   },
   {
     "slug": "lh-round-snack-packs",
@@ -1550,7 +1551,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with A-hours=4h: it gives 0.4kWh. Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-idle-versus-active",
@@ -1610,7 +1612,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Days=8: it gives 0.528kWh. Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-standby-days-add-up",
@@ -1669,7 +1672,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-duty-cycle-energy",
@@ -1728,7 +1732,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-fixed-energy-charge",
@@ -1782,7 +1787,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-same-energy-new-tariff",
@@ -1832,7 +1838,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Energy=6kWh: it gives €1.2. The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-annual-label-cost",
@@ -1944,7 +1951,8 @@
       ],
       "answer": 0,
       "why": "Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation."
-    }
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
   },
   {
     "slug": "lh-flow-times-minutes",

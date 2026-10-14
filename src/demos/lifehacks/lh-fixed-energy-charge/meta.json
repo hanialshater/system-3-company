@@ -4,7 +4,7 @@
   "hook": "A lower per-kWh price can still produce a higher total at small usage.",
   "domain": "lifehacks",
   "concept": "lh-fixed-energy-charge",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -56,6 +56,13 @@
       "support": "source",
       "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-fixed-energy-charge/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -70,21 +77,13 @@
     "why": "Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-fixed-energy-charge/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "electricity",
-    "reviewRequired": true,
-    "assumptions": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-fixed-energy-charge",
     "prerequisites": [],

@@ -4,7 +4,7 @@
   "hook": "A label says 8m² per litre. Fractional need is not a whole-container order.",
   "domain": "lifehacks",
   "concept": "lh-coverage-whole-cans",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Area=13m²: it gives 1.625L. Area divided by coverage gives modeled exact volume. The whole-container order rounds that result up. This ignores surface losses and product variation, so it teaches order arithmetic rather than actual application instructions."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-coverage-whole-cans/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-coverage-whole-cans",
     "prerequisites": [],

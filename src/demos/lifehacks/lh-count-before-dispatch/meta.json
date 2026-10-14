@@ -4,7 +4,7 @@
   "hook": "The record says ten, the shelf has eight. Which count remains after shipping three?",
   "domain": "lifehacks",
   "concept": "lh-count-before-dispatch",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Record=13: it gives 10items. Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-count-before-dispatch/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "The physical count is two below the record. Three units are then dispatched.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-count-before-dispatch",
     "prerequisites": [],

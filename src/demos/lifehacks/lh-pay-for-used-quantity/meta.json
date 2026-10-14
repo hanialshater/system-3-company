@@ -4,7 +4,7 @@
   "hook": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
   "domain": "lifehacks",
   "concept": "lh-pay-for-used-quantity",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-pay-for-used-quantity/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "money-arithmetic",
-    "reviewRequired": true,
-    "assumptions": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-pay-for-used-quantity",
     "prerequisites": [],

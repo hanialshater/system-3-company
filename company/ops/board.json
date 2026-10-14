@@ -3985,9 +3985,8 @@
       "domain": "lifehacks",
       "created": "2026-10-13",
       "links": [
-        "company/decisions/2026-10-14-lifehacks-200.md",
-        "content/collections/lifehacks-200.json",
-        "company/reviews/lifehacks-200/2026-10-14-validation.md",
+        "company/reviews/lifehacks-200/contributor/decision-2026-10-14-lifehacks-200.md",
+        "company/reviews/lifehacks-200/contributor/2026-10-14-validation.md",
         "https://github.com/hanialshater/system-3-company/pull/2"
       ],
       "updated": "2026-10-14",
@@ -3995,7 +3994,8 @@
         "from": "https://github.com/hanialshater/system-3-company/pull/2",
         "head": "71e99fee",
         "old_id": "W-176",
-        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted"
+        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted. Records it links were moved to company/reviews/lifehacks-200/contributor/ (prs/2.md blocker 2).",
+        "attributed_to": "contributor (PR #2)"
       }
     },
     {
@@ -4006,22 +4006,25 @@
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [
-        "content/collections/lifehacks-200.json",
-        "company/decisions/2026-10-14-lifehacks-200.md",
-        "company/reviews/lifehacks-200/2026-10-14-validation.md"
+        "company/reviews/lifehacks-200/contributor/decision-2026-10-14-lifehacks-200.md",
+        "company/reviews/lifehacks-200/contributor/2026-10-14-validation.md"
       ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
-        "by": "chief-of-staff",
+        "by": "contributor (PR #2)",
         "note": "Follow-up to founder-requested W-354 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates."
       },
       "imported": {
         "from": "https://github.com/hanialshater/system-3-company/pull/2",
         "head": "71e99fee",
         "old_id": "W-177",
-        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted"
-      }
+        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted. Records it links were moved to company/reviews/lifehacks-200/contributor/ (prs/2.md blocker 2).",
+        "attributed_to": "contributor (PR #2)"
+      },
+      "notes": [
+        "2026-10-14 merge: 10 new unverified claims (9 safety-required advice lines with sources owed, apply-not-quote c5). Claims now 893."
+      ]
     },
     {
       "id": "W-356",
@@ -4031,25 +4034,75 @@
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [
-        "content/collections/lifehacks-200.json",
-        "company/decisions/2026-10-14-lifehacks-200.md",
-        "company/reviews/lifehacks-200/2026-10-14-learner-sample.md",
-        "company/reviews/lifehacks-200/2026-10-14-safety.md",
+        "company/reviews/lifehacks-200/contributor/decision-2026-10-14-lifehacks-200.md",
+        "company/reviews/lifehacks-200/contributor/2026-10-14-learner-sample.md",
+        "company/reviews/lifehacks-200/contributor/2026-10-14-safety.md",
         "company/design/specs/lifehacks-design-handoff.md",
-        "company/reviews/lifehacks-200/2026-10-14-validation.md"
+        "company/reviews/lifehacks-200/contributor/2026-10-14-validation.md"
       ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
-        "by": "chief-of-staff",
+        "by": "contributor (PR #2)",
         "note": "Follow-up to founder-requested W-354 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates. Close the specific remaining sampled pedagogy findings and review the other 179 lessons before publication. Abstract cord scenes, table continuity/variants, towel baseline and flux visibility, selection highlights, queue waiting trade, and mechanism-specific transfer recalls need further review. Source checking remains W-355."
       },
       "imported": {
         "from": "https://github.com/hanialshater/system-3-company/pull/2",
         "head": "71e99fee",
         "old_id": "W-178",
-        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted"
+        "note": "Imported in the PR #2 merge; text is the contributor's account, untrusted. Records it links were moved to company/reviews/lifehacks-200/contributor/ (prs/2.md blocker 2).",
+        "attributed_to": "contributor (PR #2)"
       }
+    },
+    {
+      "id": "W-357",
+      "title": "lh-percentage-overage: at Required=100 the stage shows A=111, not 110 (Math.ceil(100*1.1) = ceil(110.00000000000001)); c3 says the formulas match at 100. Fix the ceil float error in evaluateResource (e.g. round to 1e-9 before ceil/floor), check every other ceil/floor spec in resource-specs.json, add a fixture, bump version, claims stay unverified. PR #2 known dispute.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": [
+        "src/demos/lifehacks/lh-percentage-overage/meta.json",
+        "src/lib/lifehacks/resource-model.ts"
+      ]
+    },
+    {
+      "id": "W-358",
+      "title": "elastic-loop-release and group-cables-with-ends: stage is missing its cord drawing (PR #2 known dispute). Draw the plain cord the stage and claims describe; keep the 'Plain cord; storage only' caption and no plug, charger or snap-back (safety records company/reviews/<slug>/2026-10-14-safety.md, watch items). Re-run lesson QA and the walkthrough.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": [
+        "company/reviews/elastic-loop-release/2026-10-14-safety.md",
+        "company/reviews/group-cables-with-ends/2026-10-14-safety.md"
+      ]
+    },
+    {
+      "id": "W-359",
+      "title": "PR #2 safety second read: re-read the 9 stage lines applied at merge (7 energy lessons 'Tariffs and appliance ratings vary: check your own.' under assumptions; lh-scale-recipe-portions 'Cooking times do not scale with quantity.'; drying-room-water-load ventilation line and neutral scope line in the reveal). Still open: drying-room-water-load recall.why still says 'do not infer mould or health outcomes' and lh-water-meter-units recall keys the wrong-digits B (1,800m3); both wait on session 2's recall patch. Then the launch attestation on the walkthrough for all 200. See company/engineering/community/prs/2.md section 7.",
+      "owner": "lifehacks-safety-reviewer",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": [
+        "company/engineering/community/prs/2.md",
+        "company/reviews/lifehacks-200/safety-B1-2026-10-14.md",
+        "company/reviews/lifehacks-200/safety-B7-2026-10-14.md",
+        "company/reviews/lifehacks-200/safety-B8-2026-10-14.md"
+      ]
+    },
+    {
+      "id": "W-360",
+      "title": "PR #2: QA contract on all 200 Life Hacks lessons on the merged tree in 8 batches of 25 (prs/2.md section 5 batches), file each with company qa-record. evidence.qa was cleared at merge; the contributor's QA records are in company/reviews/lifehacks-200/contributor/ and do not count.",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": [
+        "company/engineering/community/prs/2.md",
+        "tests/qa/contract.spec.ts"
+      ]
     }
   ]
 }

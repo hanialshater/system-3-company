@@ -4,7 +4,7 @@
   "hook": "Moving a hypothetical load changes its price while leaving its energy unchanged.",
   "domain": "lifehacks",
   "concept": "lh-same-energy-new-tariff",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -56,6 +56,13 @@
       "support": "source",
       "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-same-energy-new-tariff/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -70,21 +77,13 @@
     "why": "Use B's stated rule with Energy=6kWh: it gives €1.2. The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-same-energy-new-tariff/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "electricity",
-    "reviewRequired": true,
-    "assumptions": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-same-energy-new-tariff",
     "prerequisites": [],

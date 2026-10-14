@@ -4,7 +4,7 @@
   "hook": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
   "domain": "lifehacks",
   "concept": "lh-duty-cycle-energy",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -56,6 +56,13 @@
       "support": "source",
       "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-duty-cycle-energy/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -70,21 +77,13 @@
     "why": "Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-duty-cycle-energy/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "electricity",
-    "reviewRequired": true,
-    "assumptions": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-duty-cycle-energy",
     "prerequisites": [],

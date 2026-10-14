@@ -8,9 +8,9 @@ const get=slug=>specs.find(s=>s.slug===slug);
 const value=(slug,p,after)=>evaluateHome(get(slug),p,after).value;
 const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-8,`${actual} != ${expected}`);
 
-test('all seventy lesson models stay finite throughout their allowed controls',()=>{
- assert.equal(specs.length,70);
- assert.equal(new Set(specs.map(s=>s.slug)).size,70);
+test('all sixty-nine lesson models stay finite throughout their allowed controls',()=>{
+ assert.equal(specs.length,69);
+ assert.equal(new Set(specs.map(s=>s.slug)).size,69);
  for(const s of specs) for(const p of [s.min,s.initial,s.max]) for(const after of [false,true]) {
   const r=evaluateHome(s,p,after);assert.ok(Number.isFinite(r.value),`${s.slug}: ${p}`);assert.ok(Number.isFinite(r.other));assert.ok(r.inputs.length);
  }

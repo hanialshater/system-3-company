@@ -4,7 +4,7 @@
   "hook": "Which number describes water released by all items?",
   "domain": "lifehacks",
   "concept": "drying-room-water-load",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -30,7 +30,7 @@
     },
     {
       "id": "lifehacks.drying-room-water-load.c2",
-      "text": "Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card.",
+      "text": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
       "support": "convention",
       "source": "Scope limits and illustrative assumptions of this card; Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
       "status": "unverified"
@@ -55,6 +55,13 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.c6",
+      "text": "Dry indoors with a window open or a vent on: the water ends up in the room.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/drying-room-water-load/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a housing, public-health or energy-advice body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -69,9 +76,7 @@
     "why": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity. Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/drying-room-water-load/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

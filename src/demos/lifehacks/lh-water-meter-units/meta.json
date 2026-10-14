@@ -4,7 +4,7 @@
   "hook": "A thousand litres is not a thousand cubic metres.",
   "domain": "lifehacks",
   "concept": "lh-water-meter-units",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Litres=1800L: it gives 1,800m³. Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-water-meter-units/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-water-meter-units",
     "prerequisites": [],

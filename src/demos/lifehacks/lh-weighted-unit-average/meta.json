@@ -4,7 +4,7 @@
   "hook": "Mixing different quantities makes a simple average of unit prices misleading.",
   "domain": "lifehacks",
   "concept": "lh-weighted-unit-average",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-weighted-unit-average/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "money-arithmetic",
-    "reviewRequired": true,
-    "assumptions": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-weighted-unit-average",
     "prerequisites": [],

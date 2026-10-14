@@ -4,7 +4,7 @@
   "hook": "A higher upfront price can cross a lower one after repeated running costs.",
   "domain": "lifehacks",
   "concept": "lh-purchase-plus-running",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -56,6 +56,13 @@
       "support": "source",
       "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-purchase-plus-running/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -70,21 +77,13 @@
     "why": "Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-purchase-plus-running/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "electricity",
-    "reviewRequired": true,
-    "assumptions": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-purchase-plus-running",
     "prerequisites": [],

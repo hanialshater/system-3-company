@@ -4,7 +4,7 @@
   "hook": "Seven in stock and twelve needed: how many are missing?",
   "domain": "lifehacks",
   "concept": "lh-buy-only-stock-gap",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Required=15: it gives 15items. Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-buy-only-stock-gap/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Seven usable units are already available. A orders only the gap; B orders the whole requirement.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-buy-only-stock-gap",
     "prerequisites": [],

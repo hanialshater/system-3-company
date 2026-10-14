@@ -4,7 +4,7 @@
   "hook": "A small load lasts many hours. Does duration make it larger than the active load?",
   "domain": "lifehacks",
   "concept": "lh-idle-versus-active",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -56,6 +56,13 @@
       "support": "source",
       "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-idle-versus-active.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-idle-versus-active/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -70,21 +77,13 @@
     "why": "Use B's stated rule with Days=8: it gives 0.528kWh. Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-idle-versus-active/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "electricity",
-    "reviewRequired": true,
-    "assumptions": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-idle-versus-active",
     "prerequisites": [],

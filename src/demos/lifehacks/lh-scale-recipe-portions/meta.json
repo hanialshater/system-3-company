@@ -4,7 +4,7 @@
   "hook": "A four-portion recipe uses 300g. How much corresponds to six portions?",
   "domain": "lifehacks",
   "concept": "lh-scale-recipe-portions",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -49,6 +49,13 @@
       "support": "derivation",
       "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-scale-recipe-portions.c5",
+      "text": "Cooking times do not scale with quantity.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a food-safety body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -63,21 +70,13 @@
     "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-scale-recipe-portions/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "The quantity-only recipe uses 300g for four equal portions.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-scale-recipe-portions",
     "prerequisites": [],

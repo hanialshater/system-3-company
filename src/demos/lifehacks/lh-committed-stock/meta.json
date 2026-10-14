@@ -4,7 +4,7 @@
   "hook": "Six units are promised. Can every unit on the shelf serve a new request?",
   "domain": "lifehacks",
   "concept": "lh-committed-stock",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-committed-stock/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-committed-stock",
     "prerequisites": [],

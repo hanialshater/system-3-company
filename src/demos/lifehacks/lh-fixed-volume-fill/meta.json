@@ -4,7 +4,7 @@
   "hook": "A slower flow takes longer to fill the same bucket.",
   "domain": "lifehacks",
   "concept": "lh-fixed-volume-fill",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Bucket=13L: it gives 5.2min. Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-fixed-volume-fill/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-fixed-volume-fill",
     "prerequisites": [],

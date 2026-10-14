@@ -4,7 +4,7 @@
   "hook": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
   "domain": "lifehacks",
   "concept": "lh-lead-time-stock",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-lead-time-stock/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-lead-time-stock",
     "prerequisites": [],

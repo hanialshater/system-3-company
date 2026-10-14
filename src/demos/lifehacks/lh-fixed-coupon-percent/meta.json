@@ -4,7 +4,7 @@
   "hook": "€5 off and 20% off cross over at a particular basket size.",
   "domain": "lifehacks",
   "concept": "lh-fixed-coupon-percent",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Basket=23€: it gives €18. The percentage scales with the basket; the fixed deduction does not. Their deductions match at €25 because 20% of €25 is €5. The lower result depends on the basket size."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-fixed-coupon-percent/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "money-arithmetic",
-    "reviewRequired": true,
-    "assumptions": "A fictional basket can receive either 20% off or €5 off, with no exclusions.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-fixed-coupon-percent",
     "prerequisites": [],

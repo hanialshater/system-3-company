@@ -4,7 +4,7 @@
   "hook": "A fixed spare count and a percentage spare count diverge as a job grows.",
   "domain": "lifehacks",
   "concept": "lh-percentage-overage",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-percentage-overage/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-percentage-overage",
     "prerequisites": [],

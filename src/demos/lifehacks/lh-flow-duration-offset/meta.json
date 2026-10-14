@@ -4,7 +4,7 @@
   "hook": "Halving a flow rate and doubling duration: what happens to volume?",
   "domain": "lifehacks",
   "concept": "lh-flow-duration-offset",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with A-minutes=5min: it gives 60L. The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-flow-duration-offset/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-flow-duration-offset",
     "prerequisites": [],

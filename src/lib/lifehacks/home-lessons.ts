@@ -717,7 +717,8 @@ export const homeLessons: HomeSpec[] = [
     ],
     "question": "Which number describes water released by all items?",
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
-    "limit": "Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card.",
+    "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
+    "warning": "Dry indoors with a window open or a vent on: the water ends up in the room.",
     "formula": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
     "recall": "Why should you count the whole wet load rather than one garment?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
@@ -1575,34 +1576,6 @@ export const homeLessons: HomeSpec[] = [
     "unit": "boxes",
     "inputLabel": "Count",
     "hook": "Which label narrows this search to one box?"
-  },
-  {
-    "slug": "alphabet-sort-search",
-    "title": "Sorted labels allow a halving search",
-    "model": "binary-search",
-    "view": "order",
-    "initial": 8,
-    "min": 4,
-    "max": 16,
-    "step": 1,
-    "values": [
-      1
-    ],
-    "choices": [
-      "Scan unsorted",
-      "Halve sorted list"
-    ],
-    "question": "Which method has fewer worst-case comparisons here?",
-    "idea": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan.",
-    "limit": "Only comparison count is modelled; organising the list has a setup cost.",
-    "formula": "Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
-    "recall": "What condition must hold before halving a label search?",
-    "source": null,
-    "answer": 1,
-    "concept": "alphabet-sort-search",
-    "unit": "labels",
-    "inputLabel": "Count",
-    "hook": "Which method has fewer worst-case comparisons here?"
   },
   {
     "slug": "seasonal-bin-rotation",

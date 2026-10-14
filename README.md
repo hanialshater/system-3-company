@@ -25,7 +25,7 @@ Pages: `/` feed · `/d/<slug>` one lesson · `/catalog` the map of what we teach
 
 ## Life Hacks review collection
 
-The [200-lesson collection](content/collections/lifehacks-200.json) covers household
+The 200 Life Hacks lessons (`src/demos/lifehacks/`) cover household
 organisation and mechanisms (70), study/planning/digital work (70), and shopping/resource
 arithmetic (60). Each lesson has its own prediction, interactive example, recall question
 and addressed claims. Shared stages reuse interaction mechanics, with explicit model limits.
@@ -37,8 +37,8 @@ safety and learner gates still apply before publication; illustrative quantities
 measured personal outcomes or purchase recommendations.
 
 `npm run test:lifehacks` runs independent arithmetic and state-transition fixtures.
-`npm run verify` includes those fixtures and the existing browser contract. The three topic
-manifests in `company/domains/briefs/lifehacks-*-200.json` record source retrieval and scope;
+`npm run verify` includes those fixtures and the existing browser contract. The contributor's three topic
+manifests in `company/reviews/lifehacks-200/contributor/briefs/` record source retrieval and scope;
 the [interaction specification](company/design/specs/lifehacks-batch-200.md) records the design.
 
 ## Deploy (Vercel)

@@ -4,7 +4,7 @@
   "hook": "20% down, then 20% up: will the price return to its starting point?",
   "domain": "lifehacks",
   "concept": "lh-discount-round-trip",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-discount-round-trip/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "money-arithmetic",
-    "reviewRequired": true,
-    "assumptions": "B reduces the original price by 20%, then raises that reduced price by 20%.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-discount-round-trip",
     "prerequisites": [],

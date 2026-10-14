@@ -16,6 +16,8 @@ export interface ResourceSpec {
   options: string[];
   answer: number;
   assumptions: string;
+  /** Safety-required stage line (lifehacks-safety-reviewer record); shown under the assumptions line. */
+  warning?: string;
   details: string;
   principle: string;
   objective: string;

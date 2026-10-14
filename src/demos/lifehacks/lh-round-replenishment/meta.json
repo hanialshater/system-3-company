@@ -4,7 +4,7 @@
   "hook": "Boxes hold six. Does twelve required mean ordering two boxes?",
   "domain": "lifehacks",
   "concept": "lh-round-replenishment",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Required=15: it gives 12items. Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-round-replenishment/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "quantity-only",
-    "reviewRequired": true,
-    "assumptions": "Three usable units are in stock. New orders come only in six-unit boxes.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-round-replenishment",
     "prerequisites": [],

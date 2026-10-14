@@ -4,7 +4,7 @@
   "hook": "Rounding three tiny lines separately can differ from rounding their sum once.",
   "domain": "lifehacks",
   "concept": "lh-round-lines-versus-total",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-lifehacks",
@@ -63,21 +63,13 @@
     "why": "Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/lh-round-lines-versus-total/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "format": "side-by-side",
-  "safety": {
-    "classification": "money-arithmetic",
-    "reviewRequired": true,
-    "assumptions": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once.",
-    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  },
   "curriculum": {
     "primary": "lifehacks:lh-round-lines-versus-total",
     "prerequisites": [],
