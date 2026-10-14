@@ -27,3 +27,13 @@ Paths read: predict (locked strip plain, no curve), slider/+1/-1/All 10 fields, 
 | c4 | verified | Chip "Made-up farm: 10 fields, worst to best for corn" and muted reveal line "A model: the curve is made up, not data from a real farm." on every path. |
 
 **Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 34 (2026-10-14, W-363)
+
+Checker: fact-checker. I did not write or build these claims. Scope: c4, reopened by v5 (model line shortened). Method: read Demo.tsx v5 first, then the latest Pre-flight in build.md. Rendered the current code on the dev server (http://localhost:3530/d/bending-frontier, headless Playwright at 390x844, screenshots in the session scratchpad fc34/) on the paths listed below, with the reveal open. Numbers re-run in my own node scripts, not imported from Demo.tsx.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Reveal has one path (no modes). QA path (slider 0 to 2, +1, All 10 fields): the muted last line renders "The curve is made up, not real farm data." The svg top line "Made-up farm: 10 fields, worst to best for corn" renders in every phase, locked included. The curve is invented (corn = 100 − w², Demo.tsx header), so the disclosure is true. Node: the drops 1, 3, …, 19 are 2k − 1 and match the strip. |
+
+**Result:** 1 verified, 0 disputed. All five claims are now verified.

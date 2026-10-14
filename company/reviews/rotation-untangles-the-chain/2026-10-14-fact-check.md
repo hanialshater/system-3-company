@@ -35,3 +35,13 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | (no claim) W-235 fix | checked | switchMode: full = i >= 7 && !(m === 'rotating' && !first). Plain-first path: Plain, Insert next key x5 (results.plain = 7 levels), Rotating goes back to keys 1 and 2 (not replayed), Insert next key inserts 3 and sets first {key 3, up 2, below 1 and 3}, so the reveal unlocks. Insert the rest stays disabled until first is set, and the only way past i = 2 on Rotating without first is now closed. Own node port (fc25/rot.mjs): plain height 7, rotating height 3, 4 rotations (at nodes 1, 3, 2, 5 on keys 3, 5, 6, 7), root 4; the reveal's numbers are unchanged. |
 
 **Result:** 0 open claims; the soft-lock is fixed in code. Nothing blocks on facts.
+
+## Pass 34 (2026-10-14, W-375)
+
+Checker: fact-checker. I did not write or build these claims. Scope: c5, reopened by v4 (plain rule line reworded). Method: read Demo.tsx v4 first, then the latest Pre-flight in build.md. Rendered the current code on the dev server (http://localhost:3530/d/rotation-untangles-the-chain, headless Playwright at 390x844, screenshots in the session scratchpad fc34/) on the paths listed below, with the reveal open. Numbers re-run in my own node scripts, not imported from Demo.tsx.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | plainInsert() sends smaller keys left and the rest right, with 0 rotations. Rendered with the reveal opened in Plain mode (Insert next key, Insert the rest, Plain): the rule line "Smaller keys left, bigger right. No rotations.", the 7-level chain, Height 7 levels, Rotations 0. The reveal opened there quotes the recorded rotating result (3 levels, 4 rotations) and "the plain tree was a chain of 7", both true. This is standard BST insertion, and the stage shows it. |
+
+**Result:** 1 verified, 0 disputed. All six claims are now verified.

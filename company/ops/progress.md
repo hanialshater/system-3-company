@@ -3,6 +3,24 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (fact-checker, W-363 + W-375, FC pass 34: phone-fit re-checks)
+
+- **Changed:** re-checked the 11 claims that the build-6 phone-fit fixes reopened. All 11 are verified, each with checkedBy, checkedOn and an "FC pass 34" source note:
+  - bending-frontier c4
+  - eratosthenes-shadow c4, c5
+  - a-star-heads-for-goal c1, c6
+  - every-second-seat-out c3, c4
+  - rotation-untangles-the-chain c5
+  - who-pays-same-filter c2, c3, c4
+
+  A "Pass 34" table is appended to each company/reviews/<slug>/2026-10-14-fact-check.md. W-363 and W-375 are done. W-446 (3 non-blocking nits) is with demo-builder. All six lessons now have every claim verified.
+- **Believe:**
+  - High on every number. I re-ran them in node with my own A*, Josephus and Coase scripts.
+  - High on stage text. I rendered the current code on the dev server with headless Playwright at 390x844 and checked each path with the reveal open (Plain mode for rotation; Guess on/off and mid-replay toggles for a-star; 7/10/41 for seats).
+  - Medium on eratosthenes c4. The disputed stadion length is attested across search results (Engels, AJP 106(3) 1985; Firsov 1972; Hultsch; Rawlins), but WebFetch failed on DNS for every host, so no full text was opened.
+- **Next:** demo-builder W-446 (optional nits). The lessons' other gates (QA, learner review) are not mine.
+- **Blocked:** nothing. Web page fetches fail on DNS (search works).
+
 ## 2026-10-14, evaluation-steward: AMD-002 drafted (CI cancels superseded runs), not applied
 - **Changed:** new `company/constitution/amendments/AMD-002-ci-cancel-superseded-runs.md` (status: proposed), a row in `amendments/README.md`, and board W-445 (founder, next: ratify or reject). `ci.yml` is untouched. W-444 dropped: I created it by mistake (`board add --help` adds an empty item).
 - **Believe:** the top-level `concurrency` block as requested would weaken the protected-paths gate. On push, the `constitution` job diffs only `github.event.before..HEAD`. If push A (with an unratified protected change) is cancelled by push B, run B checks only A..B, passes, and on main B deploys. High confidence, from reading `ci.yml` and `deploy.yml`. So the draft puts `concurrency` (group `ci-verify-${{ github.ref }}`) on the `verify` job only. That job checks a whole tree, so the tip still gets every check. Medium confidence that it clears the queue: it has not run on Actions, and the prediction and falsifier are in the AMD. Separately, today a red constitution run for A does not stop B from deploying. That gap exists now, and AMD-002 leaves it as it is.

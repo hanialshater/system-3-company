@@ -42,3 +42,14 @@ Paths read: Remove next, Run to a power of 2, Run to the end, scrubber, chip swi
 | c5 | verified | Own play(): 7 -> powFrame 3, pow 4, survivor 7; 10 -> powFrame 2, pow 8, survivor 5. Result template gives "-> 7 (4 + 3)" and "-> 5 (8 + 2)" under the chips once each is finished; reveal sentence lists only finished sizes. |
 
 **Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 34 (2026-10-14, W-375)
+
+Checker: fact-checker. I did not write or build these claims. Scope: c3 and c4, reopened by v4 (binary moved into the circle centre, rule line removed). Method: read Demo.tsx v4 first, then the latest Pre-flight in build.md. Rendered the current code on the dev server (http://localhost:3530/d/every-second-seat-out, headless Playwright at 390x844, screenshots in the session scratchpad fc34/) on the paths listed below, with the reveal open. Numbers re-run in my own node scripts, not imported from Demo.tsx.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own queue simulation (fc34/jos.mjs). When a power of two is left, the count starts on 19 at 32, 16, 8, 4 and 2 left for 41; on 7 at 4 and 2 for 7; on 5 at 8, 4 and 2 for 10. Rendered on the 41 path (Run to a power of 2, Run to the end): "Starts on 19 at 32, 16, 8, 4, 2 left.", and the reveal says "stayed on 19 at 32, 16, 8, 4, 2 left". After switching to 7 and then 10, the line and the reveal quote the current circle ("On your 10 circle it started on 5 at 8, 4, 2 left"), which is also correct. |
+| c4 | verified | 41 = 32 + 9, and 2 × 9 + 1 = 19. 101001b → 010011b = 19; 111b → 111b = 7; 1010b → 0101b = 5. Both J(2^m + l) = 2l + 1 and the rotation match the simulation for every n < 1000. Rendered: the circle centre shows "binary 101001 → 010011" under "survivor: 19" once 41 is finished ("binary 111 → 111" and "binary 1010 → 0101" for 7 and 10). The reveal sentence is unchanged. |
+
+**Result:** 2 verified, 0 disputed. All five claims are now verified.
