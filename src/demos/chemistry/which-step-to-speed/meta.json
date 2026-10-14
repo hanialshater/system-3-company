@@ -26,35 +26,50 @@
       "text": "For consecutive first-order steps A → B → C starting from pure A, the fraction of A turned into C is 1 − (k2 e^(−k1 t) − k1 e^(−k2 t))/(k2 − k1) (the curves drawn on the stage).",
       "support": "derivation",
       "source": "Integrating d[A]/dt = −k1[A], d[B]/dt = k1[A] − k2[B], [C] = [A]0 − [A] − [B] (Atkins & de Paula, Physical Chemistry, consecutive elementary reactions). Demo.tsx C(). Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: the closed form checked against my own RK4 integration of dA/dt = -k1 A, dB/dt = k1 A - k2 B. The half-times agree to 4 decimals for all four (k1, k2) pairs. Atkins not needed."
     },
     {
       "id": "chemistry.which-step-to-speed.c2",
       "text": "With k1 = 0.1 /s and k2 = 10 /s, half the C appears at 7.03 s; with k2 = 100 /s, at 6.94 s; with k1 = 1 /s and k2 = 10 /s, at 0.80 s; with both sped up, at 0.70 s (stage legend 'start: 7.03 s', 'step 2 ×10: 6.94 s', 'step 1 ×10: 0.80 s', 'both ×10: 0.70 s'; reveal: 'from 7.03 s to 6.94 s', 'cut it to 0.80 s'; right option 'almost no sooner').",
       "support": "simulation",
       "source": "The lesson's own bisection on the closed form of claim 1 (Demo.tsx halfTime(), 100 halvings of [0, 100] s), re-run in node by demo-builder 2026-10-14: 7.032, 6.941, 0.798, 0.703 s. 7.03 / 6.94 = 1.01 (1% sooner). Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-run in node with my own copies of C() and halfTime() and an independent RK4: 7.0320, 6.9415, 0.7984 and 0.7032 s, shown as 7.03, 6.94, 0.80 and 0.70 s. 7.03/6.94 = 1.013, so 'almost no sooner' is right."
     },
     {
       "id": "chemistry.which-step-to-speed.c3",
       "text": "When one step is much slower than the rest, it sets the pace of the whole reaction: the rate-determining step (reveal: 'the slowest step sets the pace of the whole reaction. That step is the rate-determining step').",
       "support": "source",
       "source": "Atkins & de Paula, Physical Chemistry, the rate-determining step; claim 2 shows it numerically (with k2 ≫ k1 the half-time approaches ln 2 / k1 = 6.93 s).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: as k2/k1 -> infinity, C(t) -> 1 - exp(-k1 t), and the half-time -> ln 2/k1 = 6.93 s; c2 shows it numerically. 'Rate-determining step' is the name of this limit (terminology). No outside fact rests on Atkins."
     },
     {
       "id": "chemistry.which-step-to-speed.c4",
       "text": "Model disclosure: the rate constants (0.1 /s and 10 /s) are illustrative, not a real reaction (question: 'Step 1 is slow; step 2 is 100 times faster').",
       "support": "convention",
       "source": "The lesson's own model (brief claim 4); the gate openings on the stage grow with log k and are a picture, not a measurement.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, consistent: k1 = 0.1 /s and k2 = 10 /s match the question's 'step 2 is 100 times faster'; no real reaction is named."
     },
     {
       "id": "chemistry.which-step-to-speed.c5",
       "text": "The rate-determining step is the one a catalyst, or a chemist, has to speed up to make the whole reaction faster (reveal); molecules queue at the narrowest gate (reveal, a picture of A waiting before the slow step).",
       "support": "derivation",
       "source": "Follows from claims 2-3: only a change to the slow step's rate constant moves the half-time much. General statement in Atkins & de Paula (catalysis lowers the barrier of the rate-limiting step). The 'queue' image: with k2 ≫ k1, B stays tiny and the material waits as A.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation within the model: only a change to k1 moves the half-time much (7.03 -> 0.80 s, against 7.03 -> 6.94 s). With k2 >> k1, B stays tiny and material waits as A (the 'queue'). The general remark about catalysts is not used as evidence."
     }
   ],
   "confidence": "",

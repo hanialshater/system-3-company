@@ -31,21 +31,30 @@
       "text": "In the stage's model both groups recover on the same schedule; 16 of 20 are better by day 7 in each (3 of 20 by day 3).",
       "support": "derivation",
       "source": "Lesson code: DAYS = [2,3,3,4,4,4,5,5,5,5,6,6,6,6,7,7,8,9,10,12] (brief 57); both rows are permutations of DAYS (PILL_ORDER, NONE_ORDER). Days <= 7: 16 entries; days <= 3: 3 entries.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run in node: PILL_ORDER and NONE_ORDER are both permutations of 0..19, so both rows hold the same day list; days <= 3: 3 of 20, days <= 7: 16 of 20 in each row."
     },
     {
       "id": "probability.sixteen-of-twenty-got-better.c2",
       "text": "In this model colds clear up by themselves, so getting better after the pill was going to happen anyway; without a group that did not get the treatment, an improvement cannot be credited to the treatment. Only the comparison row shows what the pill added, and here it added nothing.",
       "support": "derivation",
       "source": "The treatment's effect in the model is the difference between the treated and untreated rows (the counterfactual comparison); both rows are the same day list, so the difference is 0 at every day. Brief 57 planned claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: the model effect is the treated count minus the untreated count, which is 0 on every day because the rows hold the same list. 'Colds clear up by themselves' is stated as the model ('In this model'), not as a fact about real colds."
     },
     {
       "id": "probability.sixteen-of-twenty-got-better.c3",
       "text": "The pill and the cold's recovery schedule are invented for the card; no real medicine is named.",
       "support": "convention",
       "source": "Lesson rule (brief 57 planned claim 3); stated on the stage caption 'Invented cold, invented pill.'",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, consistent: the caption 'Invented cold, invented pill.' is on the stage, and no medicine is named in Demo.tsx or meta.json."
     }
   ],
   "confidence": "",

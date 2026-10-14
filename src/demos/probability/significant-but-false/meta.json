@@ -34,35 +34,50 @@
       "text": "With 1,000 ideas, 10% true, 80% detection and a 5% fluke rate, 80 real effects and 45 flukes pass, so 36% of passes are flukes; 900 of the 1,000 ideas are duds.",
       "support": "derivation",
       "source": "Arithmetic: tp = 1,000 x 0.10 x 0.8 = 80; fp = 900 x 0.05 = 45; 45/125 = 36.0%. Brief 56 check (company/domains/briefs/checks/probability-round4-check.mjs). Demo.tsx counts(10).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run in node (own copy of counts()): 1,000 x 0.10 x 0.8 = 80 real, round(900 x 0.05) = 45 flukes, 45/125 = 36.0%; marked() draws exactly 80 rings and 45 crosses. Brief check script agrees. No source needed."
     },
     {
       "id": "probability.significant-but-false.c2",
       "text": "With 1% true, 86% of passes are flukes (8 real, 50 flukes drawn); with 50% true, 6% (400 real, 25 flukes).",
       "support": "derivation",
       "source": "Arithmetic: 1%: tp 8, fp 990 x 0.05 = 49.5, drawn as 50 on the grid (Math.round); 49.5/57.5 = 86.1%, 50/58 = 86.2%, both 86% at the stage's whole-percent rounding. 50%: tp 400, fp 25, 25/425 = 5.9% -> 6%. Brief 56 check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run: 1%: 8 real, 49.5 drawn as 50 (Math.round), 50/58 = 86.2% (unrounded 86.1%), both 86%; 50%: 400 and 25, 5.88% -> 6%. Grid draws exactly those counts."
     },
     {
       "id": "probability.significant-but-false.c3",
       "text": "The 5% threshold limits flukes among ideas that do nothing; it does not give the chance that a passing result is real. How far to trust a significant result depends on how many tested ideas were likely true.",
       "support": "derivation",
       "source": "Definition of a significance threshold: P(pass | dud) = 0.05. P(dud | pass) = P(pass | dud)P(dud) / P(pass), which depends on the prior share of true ideas (Bayes' rule); c1 and c2 are instances.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation (Bayes' rule): P(dud | pass) = 0.05 P(dud) / P(pass) depends on the prior share; c1 and c2 are instances. Recall check: 1 in 50 true gives 75% of passes as flukes, so 'could easily be a fluke' holds."
     },
     {
       "id": "probability.significant-but-false.c4",
       "text": "The 80% catch rate and 5% fluke rate are the stage's settings, not figures about any field.",
       "support": "convention",
       "source": "Lesson rule (brief 56 planned claim 4); stated on the stage caption 'Tests catch 80%; 5% of duds pass.'",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, consistent: the caption 'Tests catch 80%; 5% of duds pass.' is on the stage and the code uses CATCH 0.8, FLUKE 0.05."
     },
     {
       "id": "probability.significant-but-false.c5",
       "text": "(Not shown to the learner.) Optional context: Ioannidis (2005), 'Why most published research findings are false', PLoS Medicine 2(8): e124.",
       "support": "source",
       "source": "Brief 56 planned claim 5. NEEDS A HUMAN SOURCE CHECK. Not in learner text.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held: the Ioannidis (2005) paper could not be opened (web blocked) and the claim cannot be derived. It is a citation, not in the lesson text, but it shows in the ledger. Withdraw it, or keep it held until someone opens the paper."
     }
   ],
   "confidence": "",

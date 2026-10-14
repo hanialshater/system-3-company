@@ -31,28 +31,40 @@
       "text": "In the model (recovery chances evenly spaced from 30% to 90%), giving the drug to the 20 fittest makes expected recoveries 15.1 vs 8.9 of 20 with a drug that does nothing; she picked the fittest, so fitness passes for a cure.",
       "support": "derivation",
       "source": "Arithmetic: chance_i = 30% + 60% i/39; top 20 mean 75.4%, bottom 20 mean 44.6% (gap 30.8 points); 20 x 0.754 = 15.1, 20 x 0.446 = 8.9. Brief 58 check (company/domains/briefs/checks/probability-round4-check.mjs); model.ts result(doctorSplit()).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run in node (own copy of model.ts): the top 20 sum to 15.077 and the bottom 20 to 8.923 expected recoveries, shown as 15.1 vs 8.9, gap +6.2 (= 30.8 points x 20/100). The switch to expected recoveries is consistent: the boxes, the gap line and the reveal all use recoveries, and nothing on the stage says points."
     },
     {
       "id": "probability.the-doctor-picks-the-patients.c2",
       "text": "Under random assignment fit and frail patients land on both sides about equally: the expected gap is 0, with a standard deviation of about 5.7 points. The card's first coin split (mulberry32(58)) gives 11.8 vs 12.2 expected recoveries; the second (seed 59) 11.8 vs 12.2.",
       "support": "derivation",
       "source": "Variance of a difference of means under sampling without replacement: 2 sigma / sqrt(39), sigma = 17.75 points -> 5.69 (brief 58 check). Coin values: model.ts coinSplit(k) = Fisher-Yates shuffle with mulberry32(58 + k), first 20 get the drug; seeds 58, 59, ... in order, not chosen for their result (builder's run, Node 22, 2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: sigma = 17.759 points, SD of the gap = 2 sigma / sqrt(39) = 5.69 points (own 200,000-split simulation: 5.69), which is 1.14 recoveries in the stage's unit. Coin splits from the kit mulberry32 (it matches the check script's generator over 1,000 draws): seed 58 gives 11.846 vs 12.154 and seed 59 gives 11.815 vs 12.185, both 11.8 vs 12.2. Non-blocking: the text gives the SD in points; 'about 1.1 recoveries' would match the stage."
     },
     {
       "id": "probability.the-doctor-picks-the-patients.c3",
       "text": "A gap as big as the doctor's turns up by coin less than 1 time in 100.",
       "support": "simulation",
       "source": "Brief 58 check: mulberry32(58), 100,000 coin splits, |gap| >= 15 points in 0.74%; the doctor's gap (30.8 points) is larger still, about 5.4 standard deviations. Builder's cross-check with model.ts's shuffle, seeds 1058-101057: 0.72% at >= 15 points.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation re-run with my own seed, mulberry32(12345), 200,000 splits: a gap of 15 points or more came up in 0.72%, and a gap as big as the doctor's (30.8 points, 6.2 recoveries, z = 5.4) came up 0 times. So 'less than 1 time in 100' is true and understates the rarity. Non-blocking: the source quotes the 15-point rate, which is half the doctor's gap."
     },
     {
       "id": "probability.the-doctor-picks-the-patients.c4",
       "text": "The patients and the drug are a model, not data; in this model the drug does nothing.",
       "support": "convention",
       "source": "Lesson rule (brief 58 planned claim 4); stated on the stage caption 'In this model the drug does nothing.'",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, consistent: the caption 'In this model the drug does nothing.' is on the stage, and result() adds chances only, with no drug term."
     }
   ],
   "confidence": "",

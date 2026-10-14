@@ -34,35 +34,50 @@
       "text": "If opponents reply at twice the rate of backers in a 50/50 town, every batch of replies holds two opponents per backer, so a self-selected poll's expected share of backers is 1/3 (about 33%) at any sample size; more replies only shrink the margin around that wrong value.",
       "support": "derivation",
       "source": "Backers reply at rate r, opponents at 2r: expected share = 0.5r / (0.5r + 0.5 x 2r) = 1/3, independent of n. Margin 1.96 sqrt(p(1-p)/n): about ±2.9 at 1,000, ±0.9 at 10,000, ±0.3 at 100,000 points. Brief 59 check (company/domains/briefs/checks/probability-round4-check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 0.5r / (0.5r + 0.5 x 2r) = 1/3 at any n. 95% margins at p = 1/3: 2.92, 0.92 and 0.29 points at 1,000, 10,000 and 100,000. 'Two opponents per backer' is the expected ratio."
     },
     {
       "id": "probability.ten-thousand-replies-still-wrong.c2",
       "text": "The card's seeded web polls show 35.3% (1,000 replies), 32.3% (10,000) and 33.1% (100,000); its 1,000 random calls show 48.7%.",
       "support": "simulation",
       "source": "Demo.tsx run(): each reply backs the plan if rng() < 1/3 (web) or < 1/2 (calls). Seeds fixed by poll before looking at results, not chosen: web 1,000 mulberry32(591), 10,000 (592), 100,000 (593); calls mulberry32(59), the brief's seed, which the brief's check also gives as 48.7%. Builder's run, Node 22, 2026-10-14.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation re-run in node with my own copy of run() and the kit mulberry32: seed 591 gives 35.3% +/-3.0, 592 gives 32.3% +/-0.9, 593 gives 33.1% +/-0.3, and 59 gives 48.7% +/-3.1. All four match the stage and the reveal."
     },
     {
       "id": "probability.ten-thousand-replies-still-wrong.c3",
       "text": "A random sample of 1,000 has a 95% margin of about ±3.1 points for a 50/50 question, so the random calls land near the truth because everyone had the same chance of being asked.",
       "support": "derivation",
       "source": "1.96 x sqrt(0.25/1,000) = 0.031. Brief 59 planned claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 1.96 x sqrt(0.25/1,000) = 3.10 points. The seeded 48.7% is within it, so 'near the truth' holds."
     },
     {
       "id": "probability.ten-thousand-replies-still-wrong.c4",
       "text": "The town, the plan and the reply rates are a model; in the model the random calls reach anyone and everyone called answers.",
       "support": "convention",
       "source": "Lesson rule (brief 59 planned claim 4); stage caption 'Web: opponents reply twice as often. Calls: random.'",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, consistent: the caption 'Web: opponents reply twice as often. Calls: random.' is on the stage. The assumption that everyone called answers is in the code (p = 1/2 per call) and in this claim."
     },
     {
       "id": "probability.ten-thousand-replies-still-wrong.c5",
       "text": "(Not shown to the learner.) Optional context: the 1936 Literary Digest poll as the classic example of a huge but biased sample.",
       "support": "source",
       "source": "Brief 59 planned claim 5. NEEDS A HUMAN SOURCE CHECK. Not in learner text.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held: no source on the 1936 Literary Digest poll could be opened (web blocked), and the claim cannot be derived. It is a citation, not in the lesson text, but it shows in the ledger. Withdraw it, or keep it held until someone opens a source."
     }
   ],
   "confidence": "",

@@ -1,0 +1,18 @@
+# Fact-check: hydrogen-per-litre (2026-10-14)
+
+Board: W-639. Lesson: src/demos/chemistry/hydrogen-per-litre/ (status draft, version 1).
+
+Checker: fact-checker (I did not write these claims). Method: I read Demo.tsx (and model.ts where there is one) on every reachable path, including the dynamic strings, locked state, toggles and the order of presses, before reading the claims. Then I re-ran every number in node from my own copies of the lesson logic. The scripts are kept in artifacts/fact-check-wave-j/ (chem.mjs, petrol.mjs). Web: only PyPI, npm and raw.githubusercontent.com were reachable, so no web page, paper or book could be opened. The sources I did open: the CRC 'Standard Thermodynamic Properties of Chemical Substances' table, JANAF 1998, ATcT 1.112 and the Perry/DIPPR-105 density fits, all as transcribed in the PyPI package chemicals 1.5.2; and the NASA TM-4513 polynomials (McBride, Gordon & Reno 1993) from Cantera's data/nasa_gas.yaml and nasa_condensed.yaml. Where a verdict rests on a derivation instead of a source, the claim's note says so. No verdict rests on a source I could not open. No wave-J chemistry check script exists under company/domains/briefs/checks/. The brief's inline 'Check (node)' lines in company/domains/briefs/chemistry.energy-rates.md #8 were re-run instead, and they agree.
+
+Unrecorded claims: I compared every learner-visible sentence (hook, question, options, stage labels, reveal, recall) with the claims list and found none unrecorded.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Opened: CRC 'Standard Thermodynamic Properties' table as transcribed in the PyPI package chemicals 1.5.2 (H2O(l) -285.8), JANAF 1998 in the same package (-285.830) and ATcT 1.112 (-285.825). CODATA itself not opened; the -285.83 figure agrees with all three. H atomic weight 1.00794 (chemicals elements table) gives 2.016. Node: 285.83/2.016 = 141.78 MJ/kg, shown as 142 MJ. |
+| c2 | verified | Opened: CRC table (n-octane(l) -250.1, CO2 -393.5, H2O(l) -285.8) and JANAF/ATcT (CO2 -393.522/-393.474, octane(l) -249.73). Node: 8(393.51) + 9(285.83) - 250.1 = 5,470.4 kJ/mol (5,470.1 to 5,470.9 across the tables); / 114.232 g/mol = 47.89 MJ/kg, shown as 48 MJ. 'Petrol' is a disclosed stand-in ('octane for petrol' on the stage). From the same CRC table, the common petrol hydrocarbons (C5-C8 alkanes, toluene, xylene) give 42-49 MJ/kg. |
+| c3 | verified | Derivation re-run: PM/RT = 0.0824 g/L, x 141.78 MJ/kg = 11.68 kJ/L ('12 kJ', '0.08 g'). 'Close to ideal' checked against the CRC second virial coefficient of H2 at 298 K (+15.4 cm3/mol, chemicals 1.5.2): Z = 1.0006 at 1 atm. |
+| c4 | verified | The CRC organic-constants and cryogenic tables named in the source were not opened. Checked instead against tables I did open in chemicals 1.5.2: the Perry/DIPPR-105 liquid-density fits give n-octane 0.707 kg/L at 20 °C and 0.703 at 25 °C ('about 0.70'), and liquid H2 70.6 kg/m3 at 20.39 K ('about 71 g/L'). The CRC heat-of-vaporization table gives H2's normal boiling point as 20.39 K = -252.8 °C ('about -253 °C'). Node: 33.67 MJ/L and 10.04 MJ/L. |
+| c5 | verified | Derivation re-run: 33.67 MJ / 11.68 kJ = 2,881 (shown as x2,900; nearest option 3,000) and 33.67 / 10.04 = 3.35 (x3.4). The formatting functions (sig2, ratio, joules) give exactly the strings on the stage and in the reveal. With any petrol hydrocarbon from c2 (30-37 MJ/L) the ratio is 2,600-3,200, so the answer holds. |
+| c6 | verified | Derivation from c1-c5: the per-kg and per-litre rankings are opposite. Framing only; no claim about vehicles is made. |
+
+**Result:** every claim verified; no disputes. Non-blocking notes, if any, are in the Basis column (the builder owns any wording fix).

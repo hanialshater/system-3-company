@@ -27,42 +27,60 @@
       "text": "The standard enthalpy of formation of CO2(g) is −393.51 kJ/mol and of CO(g) −110.53 kJ/mol, so burning carbon (graphite) to CO2 releases 393.51 kJ/mol and to CO 110.53 kJ/mol (stage step labels '−393.51', '−110.53', end level 'CO₂', sums 'Σ −393.51'; reveal: '−393.51 kJ per mole of CO₂', 'carbon monoxide (−110.53 ...').",
       "support": "source",
       "source": "CODATA Key Values for Thermodynamics (Cox, Wagman & Medvedev, 1989): ΔfH CO2(g) −393.51 ± 0.13, CO(g) −110.53 ± 0.17 kJ/mol; CRC Handbook, standard thermodynamic properties of chemical substances. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: CRC (CO2 -393.5, CO -110.5), JANAF 1998 (-393.522, -110.527) and ATcT 1.112 (-393.474 +/-0.015, -110.525). CODATA itself not opened; the -393.51 and -110.53 figures agree with every opened table to within 0.04 kJ/mol."
     },
     {
       "id": "chemistry.two-routes-to-co2.c2",
       "text": "Burning CO to CO2 releases about 282.98 kJ/mol (stage step label '−282.98'; reveal: 'then −282.98').",
       "support": "derivation",
       "source": "Hess's law from claim 1: −393.51 − (−110.53) = −282.98 kJ/mol (node, demo-builder 2026-10-14). Demo.tsx steps('co'). Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: -393.51 + 110.53 = -282.98 kJ/mol. From the opened tables: JANAF -282.995, ATcT -282.949, CRC -283.0."
     },
     {
       "id": "chemistry.two-routes-to-co2.c3",
       "text": "Turning graphite into diamond takes about +1.90 kJ/mol, so burning diamond to CO2 releases about 395.41 kJ/mol (stage step labels '+1.90 diamond', '−395.41'; reveal: 'climbed +1.90 to diamond first').",
       "support": "source",
       "source": "CRC Handbook, standard thermodynamic properties (ΔfH C(diamond) = 1.9 kJ/mol); NBS tables (Wagman et al., 1982) 1.895 kJ/mol. −393.51 − 1.90 = −395.41 (node). Drawing note: on the ladder 1.9 kJ is under 1 px, so the diamond level is drawn 3 px above the start level (Demo.tsx YDIA); the number label carries the size. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: the CRC table gives dfH C(diamond) = 1.9 kJ/mol. The NBS 1982 value of 1.895 was not opened, so the stage's two-decimal '+1.90' rests on CRC's 1.9; the claim says 'about'. Node: -393.51 - 1.90 = -395.41, and the diamond route sums to -393.51. The 3 px drawing exaggeration is disclosed in this claim and in the code."
     },
     {
       "id": "chemistry.two-routes-to-co2.c4",
       "text": "Heat released depends only on where you start and where you finish (enthalpy is a state function: Hess's law), so chemists add measured steps to find the heat of reactions they cannot measure directly (reveal; stage: all three sums 'Σ −393.51').",
       "support": "source",
       "source": "Atkins & de Paula, Physical Chemistry, thermochemistry (Hess's law; enthalpy as a state function); the three sums on the stage, each added from its own steps in Demo.tsx sumOf(). The CO case is the textbook example: the heat of C + ½O2 → CO is hard to measure directly because some CO2 always forms (Atkins). Brief claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Verified on derivation; Atkins not opened. Enthalpy is a state function (H = U + PV of the state), so every route between the same states has the same dH; the three stage sums each add their own steps to -393.51. On 'chemists add measured steps ... cannot measure directly': the CO step on this stage is such a case. From the opened CRC dfG values, 2CO -> C + CO2 has dG° = -120 kJ/mol at 25 °C, so carbon cannot be burned cleanly to CO alone, and its heat is found as the difference of two combustions."
     },
     {
       "id": "chemistry.two-routes-to-co2.c5",
       "text": "Model disclosure: the routes are bookkeeping. Carbon burning in air makes a mixture; the stage shows each step as if it went to completion, at standard conditions (25 °C, 1 bar).",
       "support": "convention",
       "source": "The lesson's own simplification (brief claim 5); not shown on the stage (text budget).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the disclosure matches Demo.tsx, where each step is drawn as complete at standard values. The 'mixture' remark is consistent with the Boudouard derivation in c4. The claim is not on the stage and makes the model more cautious, not less."
     },
     {
       "id": "chemistry.two-routes-to-co2.c6",
       "text": "Like height lost walking downhill by any path (reveal).",
       "support": "convention",
       "source": "Analogy: gravitational potential energy is also a state function of position; the analogy claims only path independence.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the analogy claims only path independence, which holds for gravitational potential energy (a conservative force)."
     }
   ],
   "confidence": "",
