@@ -408,3 +408,57 @@ What the forms show is how the grades were made. Whether lenders followed the ma
 - **demo-builder:** fix the c19 claim text and source, then route it back to me. Also correct "37.5%" to "39%" in the build note.
 - **Anyone with the book (cm-geography to arrange):** the Rothstein page for c10b.
 - **learning-designer (optional):** align the recall's "chance alone" with the reveal.
+
+# Pass 5 (v4.1)
+
+- Checker: fact-checker (session 2, branch s2-rebuild). Date: 2026-10-14. I wrote none of these claims.
+- Scope: v4.1 (commit `95555131`). I re-checked c19 after the builder's fix of my pass-4 dispute. I also made one more attempt at c10b. No other claim text changed.
+- **Result: 21 claims. 19 verified, 1 unverified (c10b), 1 withdrawn (c10c). No disputes.** c10b still blocks publishing.
+
+## Egress
+
+- Still blocked: biomedcentral.com, ncbi.nlm.nih.gov, doaj.org, crossref, Europe PMC, Semantic Scholar and learningforjustice.org. WebSearch works.
+
+## c19: re-check
+
+- **check.mjs** (`node src/demos/geography/schelling-on-new-york/check.mjs`): all checks pass. At 10-50% it gets 0.01-0.04. For small groups it gets 0.05 (1,200 people, 5%), 0.08 (2%), 0.11 (1%) and 0.06 (4,000 people, 1%). Each is within 0.01 of my pass-4 figures.
+- **Exact expectation** (my own script, not committed). I summed |x − np| over the binomial distribution, divided by 2·n·p·(1−p). I also ran a 200-repeat numpy simulation of 2,000 tracts:
+
+  | Tract size, smaller group | Exact | Simulation (sd) |
+  |---|---|---|
+  | 1,200, 50% | 0.023 | 0.023 |
+  | 1,200, 20% | 0.029 | 0.029 |
+  | 1,200, 10% | 0.038 | 0.038 |
+  | 1,200, 5% | 0.053 | 0.053 |
+  | 1,200, 2% | 0.082 | 0.082 |
+  | 1,200, 1% | 0.1149 | 0.1153 (0.0019) |
+  | 4,000, 10% | 0.021 | 0.021 |
+  | 4,000, 1% | 0.063 | 0.063 |
+  | 8,000, 1% | 0.045 | 0.045 |
+
+  - The 1,200 / 1% value is 0.115 (0.1149). The builder's 0.11 is the better two-place figure. My pass-4 "0.12" came from 5 runs, and one run varies by about 0.002, so either rounding can happen. The source text says this correctly. Nothing to dispute.
+  - The formula D ≈ 0.4 / √(n·p·(1−p)) checks out. The constant is 1/√(2π) = 0.399.
+  - The limits hold. When each group is at least about a tenth of the people, tracts of 1,200 or more give at most 0.038, under 0.05. Bigger tracts give less.
+- **Tract use (Kramer et al. 2010).** Another exact-phrase search returned the sentence "Most current studies rely on census tracts as approximations of the local residential environment when calculating segregation indices". The search tool placed it in the abstract of Kramer, Cooper, Drews-Botsch, Waller and Hogue, "Do measures matter? Comparing surface-density-derived and census-tract-derived measures of racial residential segregation", *Int J Health Geogr* 9:29, 2010, doi:10.1186/1476-072X-9-29. Authors, journal, volume and article number match the source. **Search-indexed only: the paper was not opened** (all hosts blocked), as in pass 4. "Often computed over census tracts" says less than "most current studies rely on", so it is supported.
+- **Rest of the source text:** the grid figures 0.46 / 0.26 / 0.14 match check.mjs. The tract sizes come from c15.
+- **The card** still says "Real figures often use census tracts (neighbourhood-sized areas of thousands of people), where chance adds little." As in pass 4, that is fine. The claim now holds the group-share condition.
+- **Verdict: c19 verified** (checkedBy fact-checker, 2026-10-14).
+
+## c19: the source note is too long for the trust sheet
+
+- The source field now holds the builder's audit trail (versions, review references, check.mjs details) and my pass notes. A learner reading the trust sheet does not need that.
+- **Proposed learner-facing source (builder to adopt; audit trail can move to the build note):**
+
+  > Census tracts: Kramer et al. (2010), *International Journal of Health Geographics* 9:29, "Most current studies rely on census tracts ... when calculating segregation indices." Chance at tract size: our own calculation (check.mjs). Two groups placed at random into tracts of 1,200 to 8,000 people score 0.04 or less when each group is at least a tenth of the people. Smaller groups score more by chance: about 0.05 at 5%, 0.08 at 2% and 0.11 at 1%, in tracts of 1,200 people.
+
+- Not a dispute. It is a readability fix and does not block c19.
+
+## c10b: still unverified
+
+- I ran two more searches and tried the Learning for Justice excerpt handout (blocked). Excerpts and interviews show the argument: Levittown homes went from about $8,000 in 1948 to $350,000 or more, and white buyers gained about $200,000 over three generations. The Mereday family gained at most $45,000. LitCharts calls home equity the main part of the wealth gap. None of these gives a page that I could confirm. The pass-3 lead (p. 143, Levittown) is still unconfirmed.
+- **To close:** someone with the book (Liveright 2017) gives the page or pages for the home-equity and wealth-gap argument. If none is found, replace the source (cultural pass 3).
+
+## Next
+
+- **demo-builder:** shorten the c19 learner-facing source (text above). Not blocking.
+- **cm-geography:** arrange someone with the book for the c10b page. This is the only claim blocking publishing.
