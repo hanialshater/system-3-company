@@ -67,6 +67,16 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on five NCM lessons
+
+- **What changed.** Set every claim's status, checkedBy and checkedOn in the meta.json files for web-bow-tie-reach, one-good-link-beats-many, two-said-blue, few-shortcuts-shrink-the-world and news-comes-from-acquaintances. Appended a "FACT-CHECK ... (pass NCM-1)" note to each source. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all five. Not committed.
+- **Counts.** bow-tie 7/0/0 (verified/disputed/withdrawn). PageRank 7/0/0. two-said-blue 6/1/1. small-world 8/0/0. weak-ties 4/0/1.
+- **Dispute (blocks two-said-blue).** c4: the reveal prints "(1 in 9)" for every accuracy, but its first paragraph quotes the accuracy run most. At 80% or 60% the figure is wrong (1 in 25 and about 1 in 6). Fix: "(1 in 9 when clues are right 2 in 3)", or compute it from ACCS[q]. Owner: demo-builder.
+- **Withdrawn (not learner-facing).** two-said-blue c8: Anderson & Holt 1997 was a laboratory experiment, not a classroom one. weak-ties c5: Granovetter's 16.7/55.6/27.8 agree in secondary sources only, because the primary was unreachable.
+- **Other fixes.** news-comes-from-acquaintances: move curriculum `section` 3.1/3.2 to `section_unconfirmed`; strong triadic closure is likely in §3.2, unconfirmed (builder/cm-math). few-shortcuts: the objective's "more than half" is wrong for 5 links (47%) (cm-probability). The rest are advisories in the records.
+- **Belief.** High on every simulation and derivation: I re-ran the lessons' own model.ts and re-typed the graphs. Medium on the sources. The proxy blocks the primary papers and the E&K book, so these were checked through search-quoted abstracts and catalogue records. No E&K section number is confirmed.
+- **Proposed board items.** demo-builder: fix two-said-blue c4 and the news reference fields. cm-probability: correct the few-shortcuts objective. fact-checker: re-check c4 after the fix. Human or egress: confirm the E&K sections and Granovetter p. 1371 when cornell.edu is reachable.
+
 ### 2026-10-14: fact-checker, pass NCM-1 (5 NCM lessons)
 
 - **What changed.** Set claim status (checkedBy fact-checker, checkedOn 2026-10-14) in the meta.json of mild-preferences-sharp-divides (8 verified), penalty-kick-mix (4 verified, 1 disputed), bid-what-its-worth (7 verified), below-critical-mass (6 verified, plus 2 unrecorded learner-visible sentences recorded as new unverified claims c7 and c8) and agenda-picks-the-winner (4 verified). Wrote `## Pass NCM-1` in `company/reviews/<slug>/2026-10-14-fact-check.md` for each. No Demo.tsx, board, progress or events edits. Not committed.
