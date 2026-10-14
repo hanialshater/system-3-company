@@ -15,3 +15,11 @@ Departures from the brief: the "tap a block" tool chips became four direct butto
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 metal-feels-colder` (shared dev server, 2026-10-14): fit, crop 0 px, hiddenBelow 0, namedHidden 0, 81 reveal words, phoneFit true. Screenshot: `artifacts/reveal-fit/metal-feels-colder.png`. The reveal points at the probe lines, the skin lines and the two arrows, and all of them are visible. The picture is drawn at scale 1, so the 10.5–12 px labels render at 10.5–12 px.
 
 Stage text at most 24 words (block names, 4 record lines, caption). No console errors in the locked frame. Not run: next build, computer-use QA, walkthrough (the task said not to).
+
+## Revision v2 (demo-builder, 2026-10-14, learner r9: W-575)
+
+- **Options.** "The metal" / "The wood" / "Neither" (was "Neither: both are 20 °C", the only option with a number and a reason).
+- **"4.4 times" on the stage.** Each recorded arrow now carries its ratio to the wood arrow as a label: "4.6×" (aluminium) or "4.4×" (steel), "1×" (wood). Reveal: "the metal's heat-flow arrow read 4.4×, the wood's 1×." c4 updated, unverified.
+- **Swap metal no longer looks dead.** The swap changes the arrow label 4.6× -> 4.4× (and the block name). The skin line stays 21 °C on both metals (20.6 vs 21.0 rounded); that is true and now sits beside a number that does change.
+- Block label "Wood (pine)" -> "Wood" to keep stage text at 25 words with the two new labels.
+- **Pre-flight 7.** crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 78 words counted by reveal-fit. Measured with tools/reveal-fit.mjs logic against the shared dev server localhost:3530 (390x844 touch). The stock script timed out on page.goto (the dev server took 30-50 s to DOMContentLoaded and up to 3 min to hydrate under load average ~30), so I ran a scratch copy with only the goto/wait/tap timeouts raised (scratchpad reveal-fit-slow.mjs; measurement code unchanged). Results in artifacts/reveal-fit/r9-revise*.json.

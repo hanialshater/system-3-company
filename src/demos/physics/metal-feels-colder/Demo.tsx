@@ -61,7 +61,8 @@ export default function MetalFeelsColder({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "A metal block and a wooden block have sat in the same 20 °C room all day. Which one is colder?",
-        options: ["The metal", "The wood", "Neither: both are 20 °C"],
+        // v2 (learner r9, W-575): three bare options, so the right one no longer carries the only number and reason.
+        options: ["The metal", "The wood", "Neither"],
         answer: 2,
       }}
       exploreHint="Probe both blocks with the thermometer, then touch each one."
@@ -74,7 +75,7 @@ export default function MetalFeelsColder({ slug }: { slug: string }) {
             <p>
               Your thermometer read <strong>20 °C on both blocks</strong>. Yet when the finger touched, its skin dropped
               to about {m ? deg(m.skin) : "?"} on the metal and only to about {w ? deg(w.skin) : "?"} on the wood, and
-              the metal&apos;s heat-flow arrow was {m ? m.ratio.toFixed(1) : "?"} times thicker.
+              the metal&apos;s heat-flow arrow read {m ? `${m.ratio.toFixed(1)}×` : "?"}, the wood&apos;s 1×.
             </p>
             <p>
               Metal conducts heat away from your skin fast, so the skin cools; wood barely takes any, so the skin stays
@@ -158,9 +159,16 @@ function Stage({
     const top = 66;
     const tip = 104;
     return (
-      <g key={`${b}-${live}`} className={live ? s.arrow : s.arrowTrace}>
-        <rect x={cx - aw / 2} y={top} width={aw} height={tip - top - 8} />
-        <path d={`M${cx - aw / 2 - 5},${tip - 8} L${cx + aw / 2 + 5},${tip - 8} L${cx},${tip} z`} />
+      <g key={`${b}-${live}`}>
+        <g className={live ? s.arrow : s.arrowTrace}>
+          <rect x={cx - aw / 2} y={top} width={aw} height={tip - top - 8} />
+          <path d={`M${cx - aw / 2 - 5},${tip - 8} L${cx + aw / 2 + 5},${tip - 8} L${cx},${tip} z`} />
+        </g>
+        {/* v2 (learner r9): the arrow's width relative to the wood's, so the reveal's number is on the stage
+            and Swap metal visibly changes it (aluminium 4.6×, steel 4.4×). */}
+        <text x={cx + aw / 2 + 8} y={90} className={s.read}>
+          {b === "wood" ? "1×" : `${ratio.toFixed(1)}×`}
+        </text>
       </g>
     );
   };
@@ -189,7 +197,7 @@ function Stage({
           {MATERIALS[metal].name}
         </text>
         <text x={BLOCK.wood.x + 6} y={113} className={s.blockLabel}>
-          Wood (pine)
+          Wood
         </text>
         <line x1={6} y1={TABLE} x2={W - 6} y2={TABLE} className={s.table} />
 

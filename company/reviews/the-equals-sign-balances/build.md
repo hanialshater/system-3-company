@@ -18,3 +18,11 @@ builder: demo-builder (builder-wavej-math) · 2026-10-14 · v1 draft · brief: c
 5. QA path: Box = 12 (tipped), Box = 17, Box = 7 (level), Reset: both milestones by press 3. Trace visible after Reset.
 6. Reset: after Reset the reveal reads "With 12 in the box the right side came to 17, and the beam tipped: 17 is not 12. With 7 it went level, 12 on both sides. ..." and the caption still lists 12, 17 and 7.
 7. Phone fit: see the measurement section below.
+
+## Measurement v1 (demo-builder, 2026-10-14)
+
+- Reveal fit at 390×844 on the shared dev server (http://localhost:3530): verdict fit, stage-top crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true; reveal 72 words by the tool count (includes the verdict line); stage parts picture 196 px, controls 94 px, text 19 px. Screenshot: artifacts/reveal-fit/the-equals-sign-balances.png. On screen with the reveal: the trace caption (12, 17, 7) and the beam.
+- Caveat: the dev server took 45 to 200 s a page (load 25 to 40 on 4 CPUs), so tools/reveal-fit.mjs timed out at page.goto (30 s) and the lesson wait (15 s). The numbers above come from a scratch copy of the tool whose only changes are those two timeouts and an absolute import path; the measuring code is unchanged.
+- QA: the official command (tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wavej-math) ran twice and timed out on both projects at "lesson renders" (15 s, page still "Loading…"/"Compiling"), so it is not a pass. A scratch copy of the spec with only the goto/render timeouts raised (and the test timeout) passed phone and desktop. Run the official QA on a quiet server or a build before review.
+- Labels: smallest SVG text is 11 px in its viewBox, drawn at 10.4 px or larger at 390 px wide (smallest: the "mirror" label in minus-one-flips-the-order, 11 px in a 360-wide viewBox); stage numbers 12 px. Targets: every control has min-height 44 px.
+- QA (official spec, run 3): `tests/qa/contract.spec.ts` unmodified, with the CLI flag `--timeout=600000` (test timeout only; the 15 s render wait is the spec's own), QA_OUT=artifacts/qa-wavej-math: phone and desktop passed.

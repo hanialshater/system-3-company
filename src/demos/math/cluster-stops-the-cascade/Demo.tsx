@@ -100,20 +100,17 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
   const [start, setStart] = useState<Start>("01");
   const [t, setT] = useState(0);
   const [focus, setFocus] = useState<number | null>(null);
-  const [sawIn, setSawIn] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (focus !== null && GROUP.includes(focus) && start === "01" && t >= RUN["01"].last) setSawIn(focus);
-  }, [focus, start, t]);
-  const quoted = sawIn; // only a group member focused on the 0,1 final
-  const endFriends = (p: number) => NB[p].filter((j) => RUN["01"].at[j] >= 0).length;
+  // v5 (W-573): the reveal no longer quotes the focused person ("Person 8 had 1 of 4 ..."); its general
+  // "at most 1 of 4 friends adopted (or 0 of 3)" covers every member, and the tapped pill stays on the stage.
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question: "People 0 and 1 adopt first and the idea stops at 8 of 12. What would get it to all 12?",
-        options: ["Many more people adopting first, outside those four", "Nothing: those four are out of reach", "Two people adopting first, among those four"],
+        // v5 (learner r9, W-573): no option names "those four" (the group is the answer's key object, unmarked
+        // until the run ends), and the wrong options are the concrete ones.
+        options: ["Four people adopting first: 0, 1, 2 and 3", "Nothing: no start reaches all 12", "Two people adopting first, somewhere else"],
         answer: 2,
       }}
       exploreHint="Step round by round, tap a person to see their friends, then try the other start."
@@ -121,18 +118,13 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Where the seeds are decides it, not how many. From 0 and 1 it stopped at 8 of 12 in round 6, and the four outlined
-            never joined. Started at 8 and 9, inside the four, the same two seeds reached all 12. More starters outside the four
-            would not help, because none of them can be the first of the four to join.
+            Where the seeds are decides it, not how many. From 0 and 1 it stopped at 8 of 12; the four outlined never
+            joined. Started at 8 and 9, two seeds reached all 12.
           </p>
           <p>
-            {quoted !== null && `Person ${quoted} had ${endFriends(quoted)} of ${NB[quoted].length} friends adopted. `}
-            The four form a tight group: 8 has 3 of 4 friends inside it, the others 3 of 3. While none of them has adopted,
-            at most 1 of 4 (or 0 of 3) can have, under half. So none can join first.
-          </p>
-          <p className="muted">
-            A cascade stops exactly at such a group, where everyone has more than half their friends inside; with none among
-            the rest, it takes everyone.
+            The four are a tight group: each has more than half its friends inside. Until one adopts, each has at most
+            1 of 4 friends adopted (or 0 of 3), under half, so starters outside, however many, never get in. A cascade
+            stops at any such group.
           </p>
         </>
       )}
@@ -202,7 +194,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
                   />
                 ))}
                 {POS.map(([x, y], i) => (
-                  <Disc key={`${i}-${vs}-${run.at[i] === vt && vt > 0}`} x={x} y={y} kind={kind(i)} digit={i} isNew={vt > 0 && run.at[i] === vt} />
+                  <Disc key={`${i}-${vs}-${run.at[i] === vt && vt > 0}`} x={x} y={y} kind={kind(i)} digit={i} isNew={!pinned && vt > 0 && run.at[i] === vt} />
                 ))}
                 {focus !== null && (() => {
                   const x = POS[focus][0] + PILL[focus][0];
@@ -235,7 +227,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
               <span><Swatch><Disc x={0} y={0} kind="started" /></Swatch>started</span>
               <span><Swatch><Disc x={0} y={0} kind="adopted" /></Swatch>adopted</span>
               <span><Swatch><Disc x={0} y={0} kind="notyet" /></Swatch>not yet</span>
-              <span><Swatch><Disc x={0} y={0} kind="adopted" isNew /></Swatch>new</span>
+              {!pinned && <span><Swatch><Disc x={0} y={0} kind="adopted" isNew /></Swatch>new</span>}
               <span style={{ visibility: holdouts.length ? "visible" : "hidden" }}>
                 <Swatch><rect x={-20} y={-20} width={40} height={40} rx={8} fill="none" stroke="var(--fg)" strokeWidth={4} strokeDasharray="9 6" /></Swatch>holdouts
               </span>
@@ -243,14 +235,21 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
             <p className={s.readout} aria-live="polite">
               Adopted <b>{count}</b> of 12 · round <b>{vt}</b>{final ? " · final" : ""}
             </p>
-            <div className={s.controls}>
-              <Control className={s.tap} disabled={locked || pinned || final} onClick={() => setT(vt + 1)}>Step</Control>
-              <Control className={s.tap} disabled={locked || pinned || final} onClick={() => setT(run.last)}>To the end</Control>
-            </div>
-            <div className={s.controls} role="group" aria-label="Starting pair">
-              {chip("89")}
-              {chip("01")}
-            </div>
+            {/* v5 (learner r9 fit, W-573): at the reveal the stage is pinned to the 0,1 final and every control
+                below is disabled, so the two rows step aside (no reveal sentence reads them; the start shows in
+                the picture as ringed seeds). */}
+            {!pinned && (
+              <>
+                <div className={s.controls}>
+                  <Control className={s.tap} disabled={locked || final} onClick={() => setT(vt + 1)}>Step</Control>
+                  <Control className={s.tap} disabled={locked || final} onClick={() => setT(run.last)}>To the end</Control>
+                </div>
+                <div className={s.controls} role="group" aria-label="Starting pair">
+                  {chip("89")}
+                  {chip("01")}
+                </div>
+              </>
+            )}
           </div>
         );
       }}

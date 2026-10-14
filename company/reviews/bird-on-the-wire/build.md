@@ -17,3 +17,9 @@ Departures from the brief: the voltmeter probe is three buttons (Foot 1, Foot 2,
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 bird-on-the-wire`: fit, crop 0 px (it was 4 px in the first build, fixed by keeping control labels on one line), hiddenBelow 0, namedHidden 0, 84 reveal words, phoneFit true. Screenshot: `artifacts/reveal-fit/bird-on-the-wire.png`. Everything the reveal names (record lines, meter, wing on pole) is visible.
 
 Stage text at most about 23 words. No console errors in the locked frame. Not run: next build, computer-use QA, walkthrough (per the task).
+
+## Revision v2 (demo-builder, 2026-10-14, learner r9: W-576)
+
+- **Single-foot readings name ground.** Meter label "foot 1–ground" / "foot 2–ground" (was "foot 1" / "foot 2"); seen line "seen: feet–ground 11,000 V". Reveal: "Your voltmeter read 11,000 V from each foot to the ground, and only 0.003 V between them: their 7 cm of wire drops almost nothing, ..." (the "between the feet" repeat cut to keep the line count). c2 updated, unverified.
+- **Pre-flight 7.** First draft crop 8 px; after the trim: crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 84 words counted by reveal-fit. Measured with tools/reveal-fit.mjs logic against the shared dev server localhost:3530 (390x844 touch). The stock script timed out on page.goto (the dev server took 30-50 s to DOMContentLoaded and up to 3 min to hydrate under load average ~30), so I ran a scratch copy with only the goto/wait/tap timeouts raised (scratchpad reveal-fit-slow.mjs; measurement code unchanged). Results in artifacts/reveal-fit/r9-revise*.json.
+- Not addressed: minor 6 (no seen entry for the feet-only bird current).

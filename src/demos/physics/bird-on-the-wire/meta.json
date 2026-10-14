@@ -34,12 +34,10 @@
     },
     {
       "id": "physics.bird-on-the-wire.c2",
-      "text": "On a line at 11,000 V to ground carrying 200 A, each foot reads 11,000 V against ground, and the wire between feet 5 cm apart drops 0.002 V (2 cm: 0.001 V; 20 cm: 0.008 V); stage: 'feet 11,000 V', 'across 5 cm 0.002 V'; reveal: 'only 0.002 V between them'.",
+      "text": "On a line at 11,000 V to ground carrying 200 A, each foot reads 11,000 V against ground, and the wire between feet 5 cm apart drops 0.002 V (2 cm: 0.001 V; 20 cm: 0.008 V); stage: 'foot 1–ground' / 'foot 2–ground' meter readings, seen line 'feet–ground 11,000 V', 'across 5 cm 0.002 V'; reveal: '11,000 V from each foot to the ground, and only 0.002 V between them'.",
       "support": "derivation",
-      "source": "ΔV = I R' L with I = 200 A, R' = 0.2 ohm/km: 200 x 0.0002 x 0.05 = 0.002 V (Demo.tsx `acrossV`, shown with toFixed(3); 7 cm gives 0.0028 -> '0.003 V'). Foot 2 reads 11,000 - 0.002 V, shown rounded as 11,000 V. Current and conductor resistance are illustrative (brief claim 2; check.mjs); real line currents and conductors vary. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node port acrossV(cm) = 200 × 0.0002 × cm/100: 5 cm 0.002 V; 2 cm 0.0008 V, which toFixed(3) shows as '0.001 V'; 20 cm 0.008 V. Foot 1 reads V_LINE; foot 2 reads 11,000 − 0.002, which fmtV rounds to '11,000 V'. Seen line 'feet 11,000 V' needs both feet; 'across 5 cm 0.002 V' and the reveal quote the stored across reading (updated by the slider only while in across mode). The 2 cm value is a 3-decimal display of 0.0008 V; the claim says what the stage shows.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "ΔV = I R' L with I = 200 A, R' = 0.2 ohm/km: 200 x 0.0002 x 0.05 = 0.002 V (Demo.tsx `acrossV`, shown with toFixed(3); 7 cm gives 0.0028 -> '0.003 V'). Foot 2 reads 11,000 - 0.002 V, shown rounded as 11,000 V. Current and conductor resistance are illustrative (brief claim 2; check.mjs); real line currents and conductors vary. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node port acrossV(cm) = 200 × 0.0002 × cm/100: 5 cm 0.002 V; 2 cm 0.0008 V, which toFixed(3) shows as '0.001 V'; 20 cm 0.008 V. Foot 1 reads V_LINE; foot 2 reads 11,000 − 0.002, which fmtV rounds to '11,000 V'. Seen line 'feet 11,000 V' needs both feet; 'across 5 cm 0.002 V' and the reveal quote the stored across reading (updated by the slider only while in across mode). The 2 cm value is a 3-decimal display of 0.0008 V; the claim says what the stage shows. | v2 (2026-10-14, demo-builder, W-576 learner r9): single-foot readings now name ground: meter 'foot 1–ground' / 'foot 2–ground', seen line 'feet–ground 11,000 V', reveal 'Your voltmeter read 11,000 V from each foot to the ground, and only 0.003 V between them' (QA path at 7 cm). Values unchanged. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "physics.bird-on-the-wire.c3",
@@ -99,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:potential-difference",
     "also": [],

@@ -34,8 +34,9 @@ const fmtI = (a: number) => (a >= 0.01 ? `${a.toFixed(1)} A` : `${(a * 1e6).toFi
 
 type Mode = "foot1" | "foot2" | "across" | "wing";
 const MODE_LABEL: Record<Mode, string> = {
-  foot1: "foot 1",
-  foot2: "foot 2",
+  // v2 (learner r9, W-576): a single-foot reading names its second point, ground.
+  foot1: "foot 1–ground",
+  foot2: "foot 2–ground",
   across: "across feet",
   wing: "foot–pole",
 };
@@ -69,8 +70,8 @@ export default function BirdOnTheWire({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your voltmeter read {fmtV(V_LINE)} at each foot, and only <strong>{across ? fmtV(across.v) : "?"}</strong>{" "}
-            between them: the {across ? across.cm : "?"} cm of wire between the feet drops almost nothing, even with{" "}
+            Your voltmeter read {fmtV(V_LINE)} from each foot to the ground, and only <strong>{across ? fmtV(across.v) : "?"}</strong>{" "}
+            between them: their {across ? across.cm : "?"} cm of wire drops almost nothing, even with{" "}
             {I_LINE} A flowing. Current needs a voltage difference to push it, so almost none goes through the bird.
           </p>
           <p>
@@ -246,7 +247,7 @@ function Stage(p: {
           <g className={s.seen}>
             {(feet.foot1 || feet.foot2) && (
               <text x={POLE_X + 14} y={meter.y + 24}>
-                seen: {feet.foot1 && feet.foot2 ? "feet" : feet.foot1 ? "foot 1" : "foot 2"} {fmtV(V_LINE)}
+                seen: {feet.foot1 && feet.foot2 ? "feet" : feet.foot1 ? "foot 1" : "foot 2"}–ground {fmtV(V_LINE)}
               </text>
             )}
             {across && (

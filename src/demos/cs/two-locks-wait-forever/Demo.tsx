@@ -92,6 +92,9 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
   const [same, setSame] = useState(false);
   const [jamSeen, setJamSeen] = useState<Record<L, W> | null>(null);
   const [sameSeen, setSameSeen] = useState<{ waiter: W; lock: L } | null>(null);
+  // v2 (learner r9 minor, W-567): "P all, then Q" runs one worker to the end before the other starts, so
+  // nobody is ever turned away there; its status line must not say "Q had to wait".
+  const [serial, setSerial] = useState(false);
   const run = play(seq, same);
   const st = run.st;
 
@@ -124,16 +127,17 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
       {({ locked, interact }) => (
         <Milestones interact={interact} names={["jammed", "finished", "same-order"]}>
           {(reach) => {
-            const go = (next: W[], sameNow = same) => {
+            const go = (next: W[], sameNow = same, serialRun = false) => {
               if (locked) return;
               setSeq(next);
+              setSerial(serialRun);
               const r = play(next, sameNow);
               if (r.jam && !sameNow && r.st.holder.A && r.st.holder.B) {
                 setJamSeen({ A: r.st.holder.A, B: r.st.holder.B });
                 reach("jammed");
               }
               if (r.finished && !sameNow) reach("finished");
-              if (r.finished && sameNow && r.waited) {
+              if (r.finished && sameNow && r.waited && !serialRun) {
                 const waiter = r.waited;
                 setSameSeen({ waiter, lock: "A" });
                 reach("same-order");
@@ -144,6 +148,7 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
               if (locked) return;
               setSame(!same);
               setSeq([]);
+              setSerial(false);
             };
             const stepLabel = (w: W) =>
               st.done[w] >= 3 ? `${w} done` : blocked(st, w, same) ? `${w} waits for ${nextLock(st, w, same)}` : `Step ${w}`;
@@ -153,10 +158,12 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
               : run.jam
                 ? "Both wait: each holds the lock the other needs."
                 : run.finished
-                  ? `Both finished${run.waited ? `; ${run.waited} had to wait` : ""}.`
+                  ? serial
+                    ? "Both finished: P ran to the end, then Q started."
+                    : `Both finished${run.waited ? `; ${run.waited} had to wait` : ""}.`
                   : seq.length === 0
                     ? "Step P and Q in any order, or run a whole order."
-                    : `${seq.length} steps run.`;
+                    : `${seq.length} ${seq.length === 1 ? "step" : "steps"} run.`;
 
             const waitArrows = (["P", "Q"] as W[]).filter((w) => !locked && blocked(st, w, same));
             return (
@@ -227,8 +234,8 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
                   })}
                 </svg>
                 <div className={s.trace}>
-                  <span>{jamSeen ? `Jam: ${jamSeen.A} holds A, ${jamSeen.B} holds B.` : " "}</span>
-                  <span>{sameSeen ? `Same order: ${sameSeen.waiter} waited for A, both finished.` : " "}</span>
+                  <span>{jamSeen ? `Seen jam: ${jamSeen.A} held A, ${jamSeen.B} held B.` : " "}</span>
+                  <span>{sameSeen ? `Seen same order: ${sameSeen.waiter} waited for A, both finished.` : " "}</span>
                 </div>
                 <div className={s.controls}>
                   <Control disabled={locked || !canStep(st, "P", same)} onClick={() => step("P")}>
@@ -242,7 +249,7 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
                   </Control>
                 </div>
                 <div className={s.controls}>
-                  <Control aria-label="Run: P all three steps, then Q" disabled={locked} onClick={() => go(P_THEN_Q)}>
+                  <Control aria-label="Run: P all three steps, then Q" disabled={locked} onClick={() => go(P_THEN_Q, same, true)}>
                     P all, then Q
                   </Control>
                   <Control className={same ? "active" : ""} aria-pressed={same} disabled={locked} onClick={toggle}>

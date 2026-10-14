@@ -53,12 +53,10 @@
     },
     {
       "id": "physics.metal-feels-colder.c4",
-      "text": "At the same moment, heat flows out of the finger about 4.6 times as fast into aluminium as into pine (4.4 times for steel); the arrow widths are drawn in that ratio (reveal: 'the metal's heat-flow arrow was 4.6 times thicker').",
+      "text": "At the same moment, heat flows out of the finger about 4.6 times as fast into aluminium as into pine (4.4 times for steel); the arrow widths are drawn in that ratio and each arrow is labelled with it (stage: '4.6×' or '4.4×' on the metal arrow, '1×' on the wood arrow; reveal: 'the metal's heat-flow arrow read 4.4×, the wood's 1×').",
       "support": "derivation",
-      "source": "Surface heat flux between two semi-infinite bodies at time t is q = (Ts - To) e_s e_o / ((e_s + e_o) sqrt(pi t)), so the ratio at equal t is [e_al/(e_s+e_al)] / [e_w/(e_s+e_w)] = 4.57 (steel 4.43), shown with toFixed(1). Demo.tsx `flux()`; arrow width = 3 px x ratio. Brief claim 4 (check.mjs: 4.6). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: [e_al/(e_s+e_al)]/[e_w/(e_s+e_w)] = 4.573 -> '4.6'; steel 4.433 -> '4.4'. Rect body width = 3 px x ratio (arrowhead adds a fixed 5 px each side, so only the shaft is in ratio). The reveal prints m.ratio for the metal currently recorded, so it says 4.4 if the learner swapped to steel. Note: the real-world ratio depends on the unsourced skin effusivity (3.9 at e_skin 1,000, 5.0 at 1,400 with the ISO 10456 metal and pine values); the learner sentence speaks of the drawn arrow, which is exact.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Surface heat flux between two semi-infinite bodies at time t is q = (Ts - To) e_s e_o / ((e_s + e_o) sqrt(pi t)), so the ratio at equal t is [e_al/(e_s+e_al)] / [e_w/(e_s+e_w)] = 4.57 (steel 4.43), shown with toFixed(1). Demo.tsx `flux()`; arrow width = 3 px x ratio. Brief claim 4 (check.mjs: 4.6). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: [e_al/(e_s+e_al)]/[e_w/(e_s+e_w)] = 4.573 -> '4.6'; steel 4.433 -> '4.4'. Rect body width = 3 px x ratio (arrowhead adds a fixed 5 px each side, so only the shaft is in ratio). The reveal prints m.ratio for the metal currently recorded, so it says 4.4 if the learner swapped to steel. Note: the real-world ratio depends on the unsourced skin effusivity (3.9 at e_skin 1,000, 5.0 at 1,400 with the ISO 10456 metal and pine values); the learner sentence speaks of the drawn arrow, which is exact. | v2 (2026-10-14, demo-builder, W-575 learner r9): each recorded arrow now carries its ratio to the wood arrow as a stage label ('4.6×' aluminium, '4.4×' steel, '1×' wood; toFixed(1)), so the reveal's number is on the stage and Swap metal visibly changes it. Reveal now: 'the metal's heat-flow arrow read 4.4×, the wood's 1×' (QA path ends on steel). flux() unchanged. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "physics.metal-feels-colder.c5",
@@ -107,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:heat-flow-feels-cold",
     "also": [

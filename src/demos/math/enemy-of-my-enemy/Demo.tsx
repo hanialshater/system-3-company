@@ -94,6 +94,7 @@ const Tri = () => (
 
 function Stage({
   locked,
+  reveal,
   interact,
   signs,
   setSigns,
@@ -101,6 +102,7 @@ function Stage({
   setSeen,
 }: {
   locked: boolean;
+  reveal: boolean;
   interact: () => void;
   signs: Signs;
   setSigns: (s: Signs) => void;
@@ -154,8 +156,16 @@ function Stage({
   return (
     <div className={s.wrap}>
       <p className={s.rule}>Balanced trio: all +, or one + and two −</p>
-      <div className={s.board}>
-        <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
+      {/* v4 (learner r9 fit, W-574): at the reveal the board is drawn at 3/4 size (names and signs stay at
+          11 px or more) and its pair handles stop taking taps, so the 44 px targets never overlap. */}
+      <div className={`${s.board} ${reveal ? s.boardReveal : ""}`}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          className={`stage-svg ${s.svg}`}
+          role="img"
+          aria-label={label}
+          data-reveal-fit={reveal ? "" : undefined}
+        >
           {!locked &&
             bad.map(([a, b, c]) => (
               <polygon
@@ -206,7 +216,7 @@ function Stage({
               data-qa="control"
               className={s.hit}
               style={{ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` }}
-              disabled={locked}
+              disabled={locked || reveal}
               aria-pressed={f}
               aria-label={`Pair ${NAMES[a]}–${NAMES[b]}, ${f ? "friends" : "enemies"}`}
               onClick={() => flip(k)}
@@ -221,18 +231,24 @@ function Stage({
         {said}
       </p>
       {!locked && bad.length > 0 && bad.length <= 4 && <p className={s.names}>{bad.map(trioName).join(" · ")}</p>}
+      {/* v4 (learner r9, W-574): the 0-unbalanced splits the reveal quotes stay on the stage as a seen line. */}
+      {!locked && seen.zeros.length > 0 && <p className={s.seen}>0 unbalanced at: {seen.zeros.slice(0, 3).join(", ")}</p>}
       <Row>
         <Readout label="Unbalanced" value={locked ? "?" : `${bad.length} of 10`} />
         <Readout label="Camps" value={campText} />
       </Row>
-      <Row>
-        <Control className={`tap ${s.tap}`} disabled={locked || same(signs, ALL_ENEMIES)} onClick={() => preset(ALL_ENEMIES)}>
-          All enemies
-        </Control>
-        <Control className={`tap ${s.tap}`} disabled={locked || same(signs, THREE_CAMPS)} onClick={() => preset(THREE_CAMPS)}>
-          3 camps
-        </Control>
-      </Row>
+      {/* v4 (learner r9 fit, W-574): at the reveal the board stops taking taps, so the preset row steps aside too
+          (no reveal sentence reads it; the reveal quotes recorded states, shown in the seen line). */}
+      {!reveal && (
+        <Row>
+          <Control className={`tap ${s.tap}`} disabled={locked || same(signs, ALL_ENEMIES)} onClick={() => preset(ALL_ENEMIES)}>
+            All enemies
+          </Control>
+          <Control className={`tap ${s.tap}`} disabled={locked || same(signs, THREE_CAMPS)} onClick={() => preset(THREE_CAMPS)}>
+            3 camps
+          </Control>
+        </Row>
+      )}
     </div>
   );
 }
@@ -263,30 +279,24 @@ export default function EnemyOfMyEnemy({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Unbalanced hit 0 only at {seen.zeros.slice(0, 3).map(describe).join(" and ") || "no setting yet"}, always with
-            clean camps.
-            {seen.mixed !== null && <> Your “not camps” setting had {seen.mixed} unbalanced.</>}
+            Unbalanced hit 0 only at {seen.zeros.slice(0, 3).map(describe).join(" and ") || "no setting yet"}.
             {seen.three && (
               <>
                 {" "}
                 Your three camps ({nb(seen.three.split)}) left <strong>{seen.three.n}</strong>
-                {seen.three.trios.length <= 4 && <>: {seen.three.trios.join(", ")}. Each takes one person from each camp, so all three pairs are −</>}.
+                {seen.three.trios.length <= 4 && <>: {seen.three.trios.join(", ")}. Each has one person from each camp: three − pairs</>}.
               </>
             )}
           </p>
           <p>
-            For five people, all 16 balanced settings are camp splits. Three camps never balance: a trio with one person
-            from each is an unbalanced trio of three enemies. Five people leave at least 3 such trios; all enemies leaves 10.
-          </p>
-          <p>
-            So balanced means one camp or two. This is the balance theorem (Harary, 1953; Cartwright and Harary, 1956),
-            and it holds for any number of people.
+            So three camps never balance, and balanced means one camp or two.
+            This is the balance theorem (Harary, 1953), and it holds for any number of people.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
-        <Stage locked={locked} interact={interact} signs={signs} setSigns={setSigns} seen={seen} setSeen={setSeen} />
+      {({ locked, phase, interact }) => (
+        <Stage locked={locked} reveal={phase === "reveal"} interact={interact} signs={signs} setSigns={setSigns} seen={seen} setSeen={setSeen} />
       )}
     </Lesson>
   );

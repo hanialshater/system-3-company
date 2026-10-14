@@ -18,3 +18,12 @@ Builder: wave-i-cs (demo-builder) · 2026-10-14 · from brief cs.md #57 (single 
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 two-locks-wait-forever` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, 81 words with the verdict (73 reveal). Stage 331 px (picture 148, controls 90, text 49), reveal 226 px, window 594 px. The red loop itself is not on screen on the QA path (that run ended in the same-order run); the jam is on stage as the trace line, as the brief's phone-fit line asks. Screenshot `artifacts/reveal-fit/two-locks-wait-forever.png`.
 
 Not run: next build, QA, walkthrough. tsc and check pass.
+
+## Revision v2 (demo-builder, 2026-10-14, learner r9 minors: W-567)
+
+- Trace lines now read "Seen jam: P held A, Q held B." and "Seen same order: Q waited for A, both finished." (r9 finding 4: "Jam:" read as current state after Reset).
+- "1 steps run." -> "1 step run."
+- "P all, then Q" now says "Both finished: P ran to the end, then Q started." instead of "Both finished; Q had to wait" (r9 finding 5), and that run no longer counts toward the same-order milestone; "Take turns" still does. No claim text changed (c3's "one worker may wait for A" is the Take turns run).
+- Lesson is published; the change goes live only with the next approved deploy. Reveal text unchanged.
+- **Pre-flight 7.** crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 81 words counted by reveal-fit. Measured with tools/reveal-fit.mjs logic against the shared dev server localhost:3530 (390x844 touch). The stock script timed out on page.goto (the dev server took 30-50 s to DOMContentLoaded and up to 3 min to hydrate under load average ~30), so I ran a scratch copy with only the goto/wait/tap timeouts raised (scratchpad reveal-fit-slow.mjs; measurement code unchanged). Results in artifacts/reveal-fit/r9-revise*.json.
+- Not done from W-567: wheel-needs-four-colours (hand-colouring buttons and clash caption at 390x844), one-crowded-bucket, each-element-pops-once.

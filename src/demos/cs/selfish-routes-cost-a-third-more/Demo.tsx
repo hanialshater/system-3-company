@@ -81,18 +81,19 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
       reveal={() => (
         <>
           <p>
-            Selfish drivers all take B, never slower than A, so everyone takes 60 min. Your Lowest seen reads{" "}
-            {fmt(avg(best))} min at {best}% on B{roseBelow ? ", and your trace rises on both sides" : ""}. 30 is out of
-            reach: drivers on A still take 60.
+            Selfish drivers all take B: {fmt(A_MIN)} min. Your Lowest seen reads {fmt(avg(best))} min at {best}%
+            {roseBelow ? ", and the trace rises on both sides" : ""}. 30 is out of reach: A takes 60.
           </p>
           {join && (
             <p>
-              The line under the chart is why: {STEP} more drivers on B save {fmt(join.saved)} min between them and feel
-              it; the {join.pct} already there lose {fmt(join.lost)}, which nobody choosing feels.
+              The line under the chart is why: {STEP} more drivers on B save {fmt(join.saved)} min; the{" "}
+              {join.pct} already there lose {fmt(join.lost)}, which nobody choosing feels.
             </p>
           )}
           <p>
-            So selfish routing costs {fmt(A_MIN)} / {fmt(avg(BEST))} = 4/3 of the best: a third more.
+            {/* v6 (learner r9, W-564): the bound is back, so this network's 4/3 reads as the ceiling, not a law. */}
+            Selfish routing costs {fmt(A_MIN)} / {fmt(avg(BEST))} = 4/3 of the best, a third more: the worst case for roads
+            with a fixed time plus a part proportional to traffic.
           </p>
         </>
       )}
@@ -220,7 +221,7 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                 </Row>
                 <p className={s.note}>
                   {join
-                    ? `Lowest split, ${join.pct} of 100 on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
+                    ? `Lowest seen split, ${join.pct} of 100 on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
                     : ""}
                 </p>
               </div>

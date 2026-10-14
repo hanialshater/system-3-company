@@ -46,31 +46,25 @@
       "id": "math.agenda-picks-the-winner.c3",
       "text": "Because each option loses 2 to 1 to another, no option beats every other in a pairwise vote, so there is no majority favourite and whoever sets the order of the votes picks the winner.",
       "support": "derivation",
-      "source": "Follows from c1 and c2. A cycle of majority preferences is the topic of Easley & Kleinberg 2010, ch. 23 section 23.3 (section number unconfirmed; fact-checker to confirm against the book). No name or date is used in learner text. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Each option loses 2-1 to another (A>B, B>C, C>A, recomputed from RANK), so none beats both others; all 6 agendas re-run: the option held to the last vote always wins, so each of A, B, C can be made winner by the order. Reveal paragraph 2 matches. E&K 23.3 still unconfirmed (book site unreachable; web search did not show the TOC); no learner text depends on it.",
+      "source": "Follows from c1 and c2. A cycle of majority preferences is the topic of Easley & Kleinberg 2010, ch. 23 section 23.3 (section number unconfirmed; fact-checker to confirm against the book). No name or date is used in learner text. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Each option loses 2-1 to another (A>B, B>C, C>A, recomputed from RANK), so none beats both others; all 6 agendas re-run: the option held to the last vote always wins, so each of A, B, C can be made winner by the order. Reveal paragraph 2 matches. E&K 23.3 still unconfirmed (book site unreachable; web search did not show the TOC); no learner text depends on it. | v3 (2026-10-14, demo-builder, W-577 learner r9, 94 -> 86 words): reveal now 'Each voter's ranking is consistent, yet the group's majorities loop: A beats B, B beats C, C beats A, each 2 to 1. No option is the majority favourite, so whoever sets the order picks the winner, as long as everyone votes for the option they like better.' (cut: 'own', 'of the votes', 'each voter ... in every vote' -> 'everyone ...'). Meaning intended unchanged; no cm-math note on file for the cut. Previous verdict void; needs re-check.",
       "address": "reveal paragraph 2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.agenda-picks-the-winner.c4",
       "text": "This holds when every voter votes for the option they like better in each vote (sincere voting). The lesson does not claim that real elections have such cycles.",
       "support": "convention",
-      "source": "Modelling assumption stated in the reveal in plain words ('as long as each voter votes for the option they like better in every vote'); the brief excludes any claim about real elections. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Reveal paragraph 2 ends 'as long as each voter votes for the option they like better in every vote'; Demo.tsx votesFor() implements exactly sincere voting. No learner text (title, hook, predict, reveal, recall) claims real elections have such cycles.",
+      "source": "Modelling assumption stated in the reveal in plain words ('as long as each voter votes for the option they like better in every vote'); the brief excludes any claim about real elections. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Reveal paragraph 2 ends 'as long as each voter votes for the option they like better in every vote'; Demo.tsx votesFor() implements exactly sincere voting. No learner text (title, hook, predict, reveal, recall) claims real elections have such cycles. | v3 (2026-10-14, demo-builder, W-577 learner r9, 94 -> 86 words): reveal now 'Each voter's ranking is consistent, yet the group's majorities loop: A beats B, B beats C, C beats A, each 2 to 1. No option is the majority favourite, so whoever sets the order picks the winner, as long as everyone votes for the option they like better.' (cut: 'own', 'of the votes', 'each voter ... in every vote' -> 'everyone ...'). Meaning intended unchanged; no cm-math note on file for the cut. Previous verdict void; needs re-check.",
       "address": "reveal paragraph 2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.agenda-picks-the-winner.c5",
       "text": "Each voter's own ranking is consistent (a straight order with no loop), even though the group's majorities loop: A beats B, B beats C, C beats A.",
       "support": "derivation",
-      "source": "The rankings A>B>C, B>C>A, C>A>B are each a single order; the loop appears only in the pairwise majority counts of c1. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. A>B>C, B>C>A, C>A>B are each a strict order of 3 distinct options (no loop inside any voter); the loop exists only in the pairwise majority counts (2-1 each). Reveal paragraph 2 matches.",
+      "source": "The rankings A>B>C, B>C>A, C>A>B are each a single order; the loop appears only in the pairwise majority counts of c1. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. A>B>C, B>C>A, C>A>B are each a strict order of 3 distinct options (no loop inside any voter); the loop exists only in the pairwise majority counts (2-1 each). Reveal paragraph 2 matches. | v3 (2026-10-14, demo-builder, W-577 learner r9, 94 -> 86 words): reveal now 'Each voter's ranking is consistent, yet the group's majorities loop: A beats B, B beats C, C beats A, each 2 to 1. No option is the majority favourite, so whoever sets the order picks the winner, as long as everyone votes for the option they like better.' (cut: 'own', 'of the votes', 'each voter ... in every vote' -> 'everyone ...'). Meaning intended unchanged; no cm-math note on file for the cut. Previous verdict void; needs re-check.",
       "address": "reveal paragraph 2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +91,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:condorcet-cycle",
     "prerequisites": [],

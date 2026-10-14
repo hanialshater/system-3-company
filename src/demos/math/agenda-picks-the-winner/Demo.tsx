@@ -68,9 +68,10 @@ export default function AgendaPicksTheWinner({ slug }: { slug: string }) {
               last vote won every time.
             </p>
             <p>
-              Each voter&apos;s own ranking is consistent, yet the group&apos;s majorities loop: A beats B, B beats C, C beats A, each 2 to 1.
-              No option is the majority favourite, so whoever sets the order of the votes picks the winner, as long as each voter
-              votes for the option they like better in every vote.
+              {/* v3 (learner r9, W-577): tightened from 94 to 86 words; no sentence dropped. */}
+              Each voter&apos;s ranking is consistent, yet the group&apos;s majorities loop: A beats B, B beats C, C beats A, each 2 to 1.
+              No option is the majority favourite, so whoever sets the order picks the winner, as long as everyone votes for the
+              option they like better.
             </p>
           </>
         );
