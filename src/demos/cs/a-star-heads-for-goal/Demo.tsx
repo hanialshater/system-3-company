@@ -101,6 +101,7 @@ const cx = (i: number) => (i % N) * CELL + CELL / 2;
 const cy = (i: number) => Math.floor(i / N) * CELL + CELL / 2;
 /** S and G markers sit low in their cell, so the settle number fits above them. */
 const MARK_Y = 29;
+const markY = (i: number) => Math.floor(i / N) * CELL + MARK_Y;
 /** The guess at S: columns plus rows to the goal. */
 const GUESS_AT_S = Math.abs((START % N) - (GOAL % N)) + Math.abs(Math.floor(START / N) - Math.floor(GOAL / N));
 
@@ -289,25 +290,12 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                           strokeDasharray={fr ? "4 3" : undefined}
                           strokeWidth={fr ? 1.5 : 1}
                         />
-                        {i === START && <circle cx={x + CELL / 2} cy={y + MARK_Y} r={10} fill="var(--fg)" />}
-                        {i === GOAL && <circle cx={x + CELL / 2} cy={y + MARK_Y} r={10} fill="var(--bg-2)" stroke="var(--fg)" strokeWidth={2.5} />}
-                        {special && (
-                          <text
-                            x={x + CELL / 2}
-                            y={y + MARK_Y + 5}
-                            textAnchor="middle"
-                            className={s.mark}
-                            fill={i === START ? "var(--bg)" : "var(--fg)"}
-                          >
-                            {i === START ? "S" : "G"}
-                          </text>
-                        )}
                       </g>
                     );
                   })}
                   {routeCells.length > 1 && (
                     <polyline
-                      points={routeCells.map((i) => `${cx(i)},${cy(i)}`).join(" ")}
+                      points={routeCells.map((i) => `${cx(i)},${i === START || i === GOAL ? markY(i) : cy(i)}`).join(" ")}
                       fill="none"
                       stroke="var(--fg)"
                       strokeWidth={4}
@@ -316,6 +304,22 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                       opacity={0.85}
                     />
                   )}
+                  {/* S and G markers over the route's ends */}
+                  {[START, GOAL].map((i) => (
+                    <g key={`m${i}`}>
+                      <circle
+                        cx={cx(i)}
+                        cy={markY(i)}
+                        r={10}
+                        fill={i === START ? "var(--fg)" : "var(--bg-2)"}
+                        stroke="var(--fg)"
+                        strokeWidth={i === START ? 0 : 2.5}
+                      />
+                      <text x={cx(i)} y={markY(i) + 5} textAnchor="middle" className={s.mark} fill={i === START ? "var(--bg)" : "var(--fg)"}>
+                        {i === START ? "S" : "G"}
+                      </text>
+                    </g>
+                  ))}
                   {/* Settle numbers on top of the route, each with a halo, so the line never strikes through them.
                       On S and G the number sits above the marker, which is drawn lower in its cell. */}
                   {run.order.slice(0, v.k).map((i) => {

@@ -34,6 +34,7 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
   // Screen length of the ruler: 2,000 km along the equator.
   const half = (projection.scale() * (BAR_KM / EARTH_RADIUS_KM)) / 2;
   const [cx, cy] = projection([LON_C, lat])!;
+  const eqY = projection([LON_C, 0])![1];
   const x0 = cx - half;
   const x1 = cx + half;
   const a = projection.invert!([x0, cy])!;
@@ -71,22 +72,26 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>{seen?.ground ?? fmt(BAR_KM / 2)}</strong>. Your Seen line: at 60°N the bar spanned {seen?.ground} with a
-            map stretch of {seen?.stretch}. The bar never changed on the screen, but the map there is stretched twice as
-            much as at the equator, so the same bar covers half the ground. The green bar, a true{" "}
-            {BAR_KM.toLocaleString("en-US")} km there, was twice as long.
+            Your Seen line: at 60°N the bar spanned <strong>{seen?.ground ?? fmt(BAR_KM / 2)}</strong>, map stretch{" "}
+            {seen?.stretch}. The bar never changed on the screen, but the map there is stretched twice as much as at the
+            equator, so the same bar covers half the ground. The green bar, a true {BAR_KM.toLocaleString("en-US")} km there,
+            was twice as long.
           </p>
-          <p>
-            The stretch grows the farther north you go. A single scale bar on a world map is only true along one line.
-          </p>
+          <p>The stretch grows toward the poles, so one scale bar is true along only one line.</p>
         </>
       )}
     >
       {({ locked, interact, phase }) => (
         <div className={s.wrap}>
-          <WorldMap projection={projection} width={W} height={H} label={`Mercator map. A fixed-length bar at ${lat}°N spans ${fmt(groundKm)} on the ground.`}>
+          {/* v5: at the reveal, with the bar north of 10°N, the strip south of the equator is not drawn (the bar and
+              both labels stay; on the Equator-last path nothing is cut). */}
+          <WorldMap projection={projection} width={W} height={phase === "reveal" && lat >= 10 ? Math.ceil(eqY) + 2 : H} label={`Mercator map. A fixed-length bar at ${lat}°N spans ${fmt(groundKm)} on the ground.`}>
             {() => (
               <>
+                <line x1={0} x2={W} y1={eqY} y2={eqY} className={s.eq} />
+                <text x={4} y={eqY - 4} className={s.eqLabel}>
+                  equator
+                </text>
                 <line x1={cx - trueHalf} x2={cx + trueHalf} y1={cy + 7} y2={cy + 7} className={s.truth} />
                 <line x1={x0} x2={x1} y1={cy} y2={cy} className={s.bar} />
                 <line x1={x0} x2={x0} y1={cy - 5} y2={cy + 5} className={s.tick} />
