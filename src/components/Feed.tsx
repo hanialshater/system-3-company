@@ -11,8 +11,12 @@ type Item =
   | { kind: "lesson"; key: string; meta: FeedItem }
   | { kind: "revisit"; key: string; meta: DemoMeta };
 
-/** One loaded list per filter: the cards fetched so far and the next page to ask for (null at the end). */
-type List = { items: FeedItem[]; next: number | null; loading: boolean };
+/**
+ * One loaded list per filter: the cards fetched so far and the next page to ask for (null at the end).
+ * `failed`: the last fetch failed. Prefetch stops for this list until the learner taps retry
+ * (review 2026-10-14 finding 1: no automatic retry loop against the CDN).
+ */
+type List = { items: FeedItem[]; next: number | null; loading: boolean; failed: boolean };
 
 /** Fetch more when the active card is this close to the end of what is loaded. */
 const PREFETCH_CARDS = 8;
@@ -26,9 +30,14 @@ const MAX_REVISITS = 12;
  */
 export function Feed({ first, counts, domains }: { first: FeedPage; counts: Record<string, number>; domains: DomainInfo[] }) {
   const [filter, setFilter] = useState<string>("all");
-  const [lists, setLists] = useState<Record<string, List>>({ all: { items: first.items, next: first.next, loading: false } });
+  const [lists, setLists] = useState<Record<string, List>>({ all: { items: first.items, next: first.next, loading: false, failed: false } });
   const [revisits, setRevisits] = useState<DemoMeta[]>([]);
+  // Revisits go only at item positions after this one, frozen when they arrive, so the card the
+  // learner is on (and the ones above it) never shift (review finding 3).
+  const [revisitFrom, setRevisitFrom] = useState(0);
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
+  activeRef.current = active;
   const scroller = useRef<HTMLDivElement>(null);
   const domainById = useMemo(() => Object.fromEntries(domains.map((d) => [d.id, d])), [domains]);
   const inflight = useRef(new Set<string>());
@@ -37,46 +46,56 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     const key = `${f}/${page}`;
     if (inflight.current.has(key)) return;
     inflight.current.add(key);
-    setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: true } }));
+    setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: true, failed: false } }));
     fetch(`/api/feed/${encodeURIComponent(f)}/${page}`)
       .then((r) => (r.ok ? (r.json() as Promise<FeedPage>) : Promise.reject(new Error(String(r.status)))))
       .then((p) =>
         setLists((prev) => {
           const have = replace ? [] : (prev[f]?.items ?? []);
           const seen = new Set(have.map((i) => i.slug));
-          return { ...prev, [f]: { items: [...have, ...p.items.filter((i) => !seen.has(i.slug))], next: p.next, loading: false } };
+          return { ...prev, [f]: { items: [...have, ...p.items.filter((i) => !seen.has(i.slug))], next: p.next, loading: false, failed: false } };
         }),
       )
-      .catch(() => setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false } })))
+      .catch(() => setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } })))
       .finally(() => inflight.current.delete(key));
   }, []);
 
   useEffect(() => {
     const progress = loadProgress();
     const dayMs = dayMsFromLocation();
-    const due = Object.keys(progress)
-      .filter((slug) => revisitDue(progress[slug], Date.now(), dayMs))
-      .slice(0, MAX_REVISITS);
+    const due = Object.keys(progress).filter((slug) => revisitDue(progress[slug], Date.now(), dayMs));
     if (!due.length) return;
     let live = true;
-    Promise.all(due.map((slug) => fetch(`/api/meta/${encodeURIComponent(slug)}`).then((r) => (r.ok ? r.json() : null)).catch(() => null)))
-      .then((metas) => {
+    const fetchMeta = (slug: string) =>
+      fetch(`/api/meta/${encodeURIComponent(slug)}`)
+        .then((r) => (r.ok ? (r.json() as Promise<DemoMeta>) : null))
+        .catch(() => null);
+    // The cap applies after the status filter: fetch in batches of MAX_REVISITS until enough are shown
+    // or the due list runs out, so retired or renamed slugs (404s) cannot starve valid ones.
+    (async () => {
+      const shown: DemoMeta[] = [];
+      for (let at = 0; at < due.length && shown.length < MAX_REVISITS && live; at += MAX_REVISITS) {
+        const metas = await Promise.all(due.slice(at, at + MAX_REVISITS).map(fetchMeta));
         // Only lessons the feed shows come back (drafts and retired lessons stay out, as before).
-        if (live) setRevisits((metas.filter(Boolean) as DemoMeta[]).filter((m) => m.status === "published" || m.status === "review"));
-      });
+        for (const m of metas) if (m && (m.status === "published" || m.status === "review")) shown.push(m);
+      }
+      if (!live || !shown.length) return;
+      setRevisitFrom(activeRef.current + 2);
+      setRevisits(shown.slice(0, MAX_REVISITS));
+    })();
     return () => {
       live = false;
     };
   }, []);
 
-  const list = lists[filter] ?? { items: [], next: 0, loading: false };
+  const list = lists[filter] ?? { items: [], next: 0, loading: false, failed: false };
 
   const items: Item[] = useMemo(() => {
     const due = revisits.filter((r) => filter === "all" || r.domain === filter);
     const out: Item[] = [{ kind: "intro", key: "intro" }];
     list.items.forEach((meta, i) => {
       // Revisits come back between new lessons: retrieval before more input.
-      if (i % 3 === 1 && due.length) {
+      if (i % 3 === 1 && due.length && out.length >= revisitFrom) {
         const r = due.shift()!;
         out.push({ kind: "revisit", key: `revisit-${r.slug}`, meta: r });
       }
@@ -84,12 +103,19 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     });
     if (list.next === null) for (const r of due) out.push({ kind: "revisit", key: `revisit-${r.slug}`, meta: r });
     return out;
-  }, [list, filter, revisits]);
+  }, [list, filter, revisits, revisitFrom]);
 
   // EDD-001 option 3: load the next page before the learner reaches the end of what is loaded.
   useEffect(() => {
-    if (list.next !== null && !list.loading && active >= items.length - PREFETCH_CARDS) load(filter, list.next, false);
-  }, [active, items.length, list.next, list.loading, filter, load]);
+    // After a failure, wait for the learner's tap (retry below): no automatic retry.
+    if (list.next !== null && !list.loading && !list.failed && active >= items.length - PREFETCH_CARDS)
+      load(filter, list.next, false);
+  }, [active, items.length, list.next, list.loading, list.failed, filter, load]);
+
+  // A subject's page 0 replaces the seed taken from "all"; later pages append.
+  const retry = () => {
+    if (list.next !== null) load(filter, list.next, list.next === 0);
+  };
 
   // Track which card fills the viewport; only it (and its neighbours) mount a demo.
   useEffect(() => {
@@ -126,11 +152,12 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
       // Show at once what is already loaded (a prefix of that subject's order, see feedOrder), then
       // replace it with the subject's first page from the server.
       const seed = (lists.all?.items ?? []).filter((d) => d.domain === id);
-      setLists((prev) => ({ ...prev, [id]: { items: seed, next: 0, loading: false } }));
+      setLists((prev) => ({ ...prev, [id]: { items: seed, next: 0, loading: false, failed: false } }));
       load(id, 0, true);
     }
     setFilter(id);
     setActive(0);
+    setRevisitFrom(0);
     scroller.current?.scrollTo({ top: 0 });
   };
 
@@ -173,8 +200,19 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         ))}
         {list.next !== null && (
           <section className="slot-screen">
-            <div className="card-shell center">
-              <p className="muted">Loading more lessons…</p>
+            <div className="card-shell center" aria-live="polite">
+              {list.failed ? (
+                <>
+                  <p className="muted" data-testid="feed-load-error">
+                    Couldn&rsquo;t load more lessons.
+                  </p>
+                  <button type="button" className="primary" style={{ minHeight: 44 }} onClick={retry} data-testid="feed-retry">
+                    Tap to retry
+                  </button>
+                </>
+              ) : (
+                <p className="muted">Loading more lessons…</p>
+              )}
             </div>
           </section>
         )}
