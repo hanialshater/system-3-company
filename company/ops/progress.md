@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · demo-builder · QA-path fixes: cut-the-rod-for-more v2, drop-the-losing-start v3
+- Changed: cut-the-rod-for-more gets "Fill the rest" and "Start over" moves first in DOM order (disabled on an empty table), so one press per control reaches first-fill and best-4 with $10 still on stage. drop-the-losing-start: the real QA failure was a dead control ("Auto: start over below 0" pressed at total 0 changed only its class), not the reveal; a stage rule line now shows the current rule. No claim text changed. Pre-flight in each company/reviews/<slug>/build.md.
+- Believe: high (traced the QA loop by hand against the code); check and tsc pass. Not run: next build, computer-use QA, walkthrough.
+- Next: qa-tester re-runs tests/qa/contract.spec.ts on both slugs (phone + desktop) and records the result.
+- Blocked: nothing.
+
 ## 2026-10-14 · community-engineer · PR #3 (ccr-rnd-ncm, session 2) evaluated: merge with changes
 - Changed: new record company/engineering/community/prs/3.md. Board: W-226 (community-engineer, PR #3, review), W-227 (rnd-lead: take src/kit/knots off the PR until EDD-004 is approved), W-228 (demo-builder: news-comes-from-acquaintances section -> section_unconfirmed; one-good-link-beats-many format/interactions), W-229 (qa-tester: QA on the final head for all 17 lessons, agenda-picks qa-record). I ran a trial merge of `e2b7cc0` onto `e20baa0`: no conflicts, check and tsc pass. Then I aborted it, so nothing from the PR is committed.
 - Believe: high that the PR touches no protected paths and adds no dependencies, and that all 129 of its verified claims are fact-checker-verified. Its 2 withdrawn claims are not in learner text. Medium on the attribution, because session 2's snapshot commits mix roles. 15 learner verdicts describe pre-revision versions, and the-giant-appears has none. Those are publish gates, not merge gates.
