@@ -1,7 +1,7 @@
 {
   "slug": "same-songs-different-hits",
   "title": "Same songs, different hits",
-  "hook": "When people copy each other's picks, does the best song still rise to the top?",
+  "hook": "Same 8 songs, 8 worlds of listeners who copy each other. How alike are the worlds?",
   "domain": "probability",
   "concept": "rich-get-richer",
   "status": "review",
@@ -43,12 +43,10 @@
     },
     {
       "id": "probability.same-songs-different-hits.c3",
-      "text": "In the model, 8 songs have appeal 1.0, 1.1, ..., 1.7 (the best 70% more appealing than the worst); each of 1,000 listeners in turn picks a song with chance proportional to appeal x (1 + earlier picks of that song) with copying on, or to appeal only with copying off.",
+      "text": "In the model, 8 songs have appeal 1.0, 1.1, ..., 1.7 (the best 70% more appealing than the worst); each of 1,000 listeners in turn picks a song with chance proportional to its pick weight, appeal x (1 + earlier picks of that song) with copying on, or appeal only with copying off. The stage rule line calls this the \"pick weight\".",
       "support": "convention",
-      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Demo.tsx APPEAL = [1..1.7], w = a*(1+p[i]) or a, pick by cumulative interval of u*sum(w): proportional to the weight as stated. 1.7/1.0 = 70% more. ADVISORY (not blocking): the stage rule line reads \"Pick chance = appeal x (1 + earlier picks)\", which is a weight, not a chance (it exceeds 1 after one pick). Suggest \"Pick chance proportional to appeal x (1 + earlier picks)\" or \"Pick weight = ...\".",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Demo.tsx APPEAL = [1..1.7], w = a*(1+p[i]) or a, pick by cumulative interval of u*sum(w): proportional to the weight as stated. 1.7/1.0 = 70% more. ADVISORY (not blocking): the stage rule line reads \"Pick chance = appeal x (1 + earlier picks)\", which is a weight, not a chance (it exceeds 1 after one pick). Suggest \"Pick chance proportional to appeal x (1 + earlier picks)\" or \"Pick weight = ...\". | REVISION v2 (demo-builder): stage line now reads \"Pick weight = ...\" per the advisory; claim text reworded, so back to unverified.",
+      "status": "unverified"
     },
     {
       "id": "probability.same-songs-different-hits.c4",
@@ -67,6 +65,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.same-songs-different-hits.c9",
+      "text": "In the lesson's 8 worlds after 1,000 listeners the best song finishes 1st in 4 of 8 worlds with copying on and in 4 of 8 with copying off; its finishes span 1st to 7th with copying on and 1st to 2nd with copying off.",
+      "support": "simulation",
+      "source": "Derived from the c1 finishes (on 3,1,7,1,4,1,1,3; off 2,1,2,1,2,1,2,1): count of 1sts = 4 and 4; ranges 1st-7th and 1st-2nd. The reveal and the stage summary compute these from the stage runs. Added in revision v2 (builder); not yet checked.",
+      "status": "unverified"
     },
     {
       "id": "probability.same-songs-different-hits.c6",
@@ -115,7 +120,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:rich-get-richer",
     "also": [],
