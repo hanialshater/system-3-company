@@ -1,12 +1,15 @@
 "use client";
 
 // Heat the ammonia maker. Brief: company/domains/briefs/chemistry.energy-rates.md #11.
-// N2 + 3H2 ⇌ 2NH3. ΔH° = 2(−45.94) = −91.88 kJ/mol; ΔS° = 2(192.77) − 191.61 − 3(130.68) = −198.1 J/(mol K)
-// (CODATA / CRC, 25 °C). Holding both constant (stated in the claims): K = exp(−(ΔH° − TΔS°)/RT).
-//   25 °C: K = 5.6e5 · 200 °C: K = 0.62 · 450 °C: K = 1.9e-4 (a factor of about 3e9).
+// N2 + 3H2 ⇌ 2NH3. ΔH° and ΔS° change with temperature, so K comes from full temperature-dependent data:
+// the NASA-7 polynomials of McBride, Gordon & Reno, NASA TM-4513 (1993), as in Cantera data/nasa_gas.yaml
+// (200-1000 K range; every temperature here is inside it). At 25 °C they give ΔH° = −91.88 kJ/mol and
+// ΔS° = −198.1 J/(mol K) (the CODATA values); at 450 °C ΔH° is −105.9 kJ/mol. K = exp(−ΔG°/RT):
+//   25 °C: K = 5.6e5 · 200 °C: K = 0.39 · 450 °C: K = 4.9e-5 (a factor of about 1e10).
+// v1 held ΔH° and ΔS° at their 25 °C values (0.62, 1.9e-4) with no caveat; disputed in the 2026-10-14 fact-check.
 // The bar under the plot is the ammonia share of the settled gas, starting from 1 N2 : 3 H2 at 1 bar
 // total (ideal gas): K = 4ξ²(4 − 2ξ)² / (27(1 − ξ)⁴), solved for the extent ξ by bisection; share = 2ξ/(4 − 2ξ).
-//   25 °C: 94% · 200 °C: 17% · 450 °C: 0.45%.
+//   25 °C: 94% · 200 °C: 15% · 450 °C: 0.23%.
 //
 // One plot: log K (10^-5 to 10^6, a gridline per decade, labels every other decade) against temperature.
 // Locked: the axis, three empty temperature columns, an empty bar. Each chip plots K at that temperature
@@ -20,12 +23,20 @@ import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-const R = 8.314;
-const DH = 2 * -45.94e3; // J/mol
-const DS = 2 * 192.77 - 191.61 - 3 * 130.68; // J/(mol K)
+// NASA-7 coefficients a1..a7, 200-1000 K (NASA TM-4513). H/RT = a1 + a2T/2 + a3T²/3 + a4T³/4 + a5T⁴/5 + a6/T;
+// S/R = a1 ln T + a2T + a3T²/2 + a4T³/3 + a5T⁴/4 + a7.
+const NASA = {
+  NH3: [4.30177808, -4.7712733e-3, 2.19341619e-5, -2.29856489e-8, 8.28992268e-12, -6748.06394, -0.690644393],
+  N2: [3.53100528, -1.23660987e-4, -5.02999437e-7, 2.43530612e-9, -1.40881235e-12, -1046.97628, 2.96747468],
+  H2: [2.34433112, 7.98052075e-3, -1.9478151e-5, 2.01572094e-8, -7.37611761e-12, -917.935173, 0.683010238],
+};
+const gRT = (a: number[], T: number) =>
+  a[0] + (a[1] * T) / 2 + (a[2] * T ** 2) / 3 + (a[3] * T ** 3) / 4 + (a[4] * T ** 4) / 5 + a[5] / T -
+  (a[0] * Math.log(T) + a[1] * T + (a[2] * T ** 2) / 2 + (a[3] * T ** 3) / 3 + (a[4] * T ** 4) / 4 + a[6]);
 const kAt = (c: number) => {
   const T = c + 273.15;
-  return Math.exp(-(DH - T * DS) / (R * T));
+  const dGRT = 2 * gRT(NASA.NH3, T) - gRT(NASA.N2, T) - 3 * gRT(NASA.H2, T);
+  return Math.exp(-dGRT);
 };
 const shareAt = (K: number) => {
   const f = (x: number) => (4 * x * x * (4 - 2 * x) ** 2) / (27 * (1 - x) ** 4) - K;

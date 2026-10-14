@@ -21,3 +21,9 @@ Brief: `company/domains/briefs/probability.md` Round 4 item 59. Status draft, ve
 - reveal-fit: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; 70 words with the verdict (64 reveal). Parts: picture 134, controls 78, text 35 px. Smallest SVG text 10 viewBox px at about 1.0 scale. Screenshot artifacts/reveal-fit/ten-thousand-replies-still-wrong.png.
 - The shared dev server answered pages in 25-730 s under load 30-60, so `tools/reveal-fit.mjs` timed out on page.goto (30 s) on every try. The numbers above come from a scratch copy of the tool whose only changes are a 240 s goto timeout and a 120 s lesson-render wait (scratchpad, not committed); the measuring code is unchanged.
 - QA (tests/qa/contract.spec.ts on :3530, `--timeout=400000` CLI flag because pages took 1-4 min; spec unchanged): phone and desktop passed (artifacts/qa-wavej-probability/qa-report.json).
+
+## Revision v2 (demo-builder, 2026-10-14, wave-J fact-check disputes)
+
+Fact-check 2026-10-14 held c5 (W-676), the 1936 Literary Digest citation, which no one could open. It was never in learner text, so c5 is now status withdrawn rather than held. No learner-visible change.
+
+Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. No stage change, so reveal-fit was not re-run.

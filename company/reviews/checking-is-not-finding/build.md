@@ -22,3 +22,9 @@
 
 - Phone fit (390x844, `tools/reveal-fit.mjs` logic, after the QA path including Reset): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, reveal 80 words including the verdict line. Source: console output of the run (the JSON file was in artifacts/qa-wavej-cs/, which the later QA run cleared); screenshot artifacts/reveal-fit/checking-is-not-finding.png (looked at). Caveat: the shipped tool timed out on page load on the loaded host (load average 25-45), so I measured with a temporary copy that only raised its goto and render timeouts (deleted afterwards). Stage SVG text 11-16 px in the viewBox, drawn at about 1:1 on a 390 px phone; HTML text at least 0.72rem.
 - QA contract (`tests/qa/contract.spec.ts`, QA_ONLY the five wave J cs slugs, --workers=1, with the `--timeout=400000` CLI flag because pages took 45-115 s to load): phone passed, desktop passed. Log: artifacts/qa-wavej-cs-run2.log.
+
+## Revision v2 (demo-builder, 2026-10-14, wave-J fact-check disputes)
+
+Fact-check 2026-10-14 disputed c4 (W-686): 'nobody knows a method that always finds one without a search that grows this fast' is false, since meet-in-the-middle grows about 1.41x per number, not 2x. The reveal now reads '...yet nobody knows a method that finds one quickly in every case.' c4 rewritten and reset to unverified. Still open: c4 needs an openable source for subset-sum NP-completeness (CLRS 34.5.5 and Karp 1972 were not opened).
+
+Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. reveal-fit at 390x844 (REVEAL_FIT_TIMEOUT_MS=300000, --shots, artifacts/reveal-fit/wj-disputes.json): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true.

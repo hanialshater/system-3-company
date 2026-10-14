@@ -43,13 +43,11 @@
     },
     {
       "id": "geography.darkest-evening-of-the-year.c3",
-      "text": "Solar noon drifts because Earth moves fastest in early January and its tilt adds to the drift.",
+      "text": "Solar noon drifts later in late December mostly because of Earth's tilt, and partly because Earth moves fastest in early January.",
       "support": "source",
-      "source": "Equation of time from orbital eccentricity and obliquity (Meeus 1998 ch. 28; the eot formula in solar.ts has an eccentricity term, -2e sin M, and an obliquity term, y sin 2L0). Perihelion falls on 2 to 5 January (Meeus). Not opened by the builder.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Disputed: the two causes are weighted the wrong way round. The sentence says noon drifts 'because Earth moves fastest in early January and its tilt adds to the drift', which makes speed the cause and tilt a top-up. Splitting the lesson's own equation-of-time formula (solar.ts) from 13 to 30 Dec: of the 8.3 min later drift, the obliquity (tilt) term gives 5.9 min and the eccentricity (orbital speed) term 2.2 min. The tilt is about 70% of it. Both facts in the sentence are right: perihelion is 3 Jan 2027 about 03 UTC (astropy, distance 0.98333 AU), and by Kepler's second law the orbit is fastest there. Fix for demo-builder (wording, in the reveal and in this claim): 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January', or name the tilt first."
+      "source": "Equation of time from orbital eccentricity and obliquity (Meeus 1998 ch. 28; the eot formula in solar.ts has an eccentricity term, -2e sin M, and an obliquity term, y sin 2L0). Perihelion falls on 2 to 5 January (Meeus). Not opened by the builder. | v2 (demo-builder, 2026-10-14, W-708): causal order reversed to match the split of solar.ts's own equation of time, 13 to 30 Dec: obliquity (tilt) term 5.9 min, eccentricity (orbital speed) term 2.2 min of the 8.3 min drift (fact-checker's figures, 2026-10-14 fact-check).",
+      "status": "unverified",
+      "note": "v2 (2026-10-14, W-708): reworded in the reveal and here, tilt first, per the fact-check. Needs a fresh check."
     },
     {
       "id": "geography.darkest-evening-of-the-year.c4",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:equation-of-time",
     "also": [

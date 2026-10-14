@@ -54,13 +54,11 @@
     },
     {
       "id": "physics.duck-rides-the-wave.c4",
-      "text": "A buoy 100 m away begins to bob at 16 s, when the wave reaches it: the wave carries energy there, not water (stage label 'buoy starts to bob at 16 s', Seen row 'buoy: 16 s'; reveal: 'The buoy 100 m away began to bob at 16 s: the wave carried energy there, not water'). OBJECTION (demo-builder): the 16 s uses the crest speed. In deep water a wave train's front, and its energy, travel at the group speed, half the crest speed (3.1 m/s), so a buoy 100 m away would start to bob at about 32 s. Built as briefed; fact-checker and cm-physics to rule.",
+      "text": "In deep water a wave train's front, and the energy it carries, travel at the group speed, half the crest speed (about 3.1 m/s here), so a buoy 100 m away begins to bob at about 32 s, not the 16 s the crest speed would give: the wave carries energy there, not water (stage: dashed train front labelled 'front 3.1 m/s', label 'buoy starts to bob at 32 s', Seen row 'buoy: 32 s'; reveal: 'The buoy 100 m away began to bob at 32 s, not 16: a wave's energy travels at half its crest speed. It carried energy there, not water').",
       "support": "derivation",
-      "source": "Brief: 100 / 6.25 = 16 s (artifacts/scratch/cm-physics-r4/check.mjs). Against it: deep-water group velocity c_g = c / 2 (Kundu and Cohen, chapter on surface waves, group velocity and energy flux), giving 100 / 3.12 = 32 s. Demo.tsx draws the front moving at C.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Ruling: the builder's objection is right; 16 s is wrong. In deep water w = sqrt(gk), so the group velocity is dw/dk = c/2 = 3.12 m/s, and the energy flux is E c_g. A train that starts at the duck at t = 0 reaches the buoy 100 m away at 100/3.12 = 32.0 s, not 16 s. Individual crests run at c through the group and die out at its front, so no crest arrives before the group. Re-checked by simulation: a Gaussian packet with carrier k = w^2/g, propagated with the exact dispersion, has its envelope peak at 125 m after 40 s and 250 m after 80 s (3.12 m/s). The stage makes the same error twice: Demo.tsx draws the front at C*t, and the buoy label and Seen row say 16 s. Fix for demo-builder: (1) move the envelope's front at C_G = C/2 while the crests inside it move at C; (2) BUOY_T = BUOY/C_G = 32 s, in the label, the Seen row and the reveal; (3) the claim text and source become 'about 32 s, group speed c/2' (the 'energy, not water' sentence stays). Optional: draw the 1-wave and 10-wave presets as a steady train already filling the sea, so c1's '250 m' does not show a crest outrunning a front that has only reached 125 m. {S}duck.mjs."
+      "source": "Deep-water dispersion w² = gk gives group velocity c_g = dw/dk = c/2 = 3.12 m/s; energy flux E c_g (Kundu and Cohen, Fluid Mechanics, surface waves: group velocity and energy flux). 100 / 3.12 = 32.0 s; 100 / 6.25 = 16 s. Demo.tsx C_G, BUOY_T; the buoy preset moves the envelope front at C_G with crests at C inside it. Fact-checker's packet simulation (artifacts/fact-check-wave-j/wj-econ-phys-math-geo/duck.mjs): envelope at 125 m after 40 s. v1 used 16 s (brief); disputed 2026-10-14 (W-707) on the builder's own objection (W-581).",
+      "status": "unverified",
+      "note": "v2 (2026-10-14, W-707): stage model, label, Seen row, reveal and claim now use the group speed (32 s). The 1-wave and 10-wave presets draw a steady train filling the sea, so no crest outruns a front. Needs a fresh check."
     },
     {
       "id": "physics.duck-rides-the-wave.c5",
@@ -100,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:waves-carry-energy",
     "also": [],

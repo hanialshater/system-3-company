@@ -60,13 +60,11 @@
     },
     {
       "id": "cs.checking-is-not-finding.c4",
-      "text": "For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that always finds one without a search that grows this fast; whether such a method exists is the P versus NP question.",
+      "text": "For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that finds one quickly in every case; whether such a method exists is the P versus NP question.",
       "support": "source",
-      "source": "CLRS 3e ch. 34 (NP as problems verifiable in polynomial time; section 34.5.5: subset-sum is NP-complete); Karp (1972), 'Reducibility among combinatorial problems'. Caveat kept in the wording: a table method is fast when the numbers are small (pseudo-polynomial), so the reveal says 'nobody knows', never 'impossible' or 'always exponential'. 'Grows this fast' means exponentially in the input size, as the doubling on the stage shows. Attribution: fact-checker confirms.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "The phrase 'without a search that grows this fast' is wrong as the stage frames it. 'This fast' points at the doubling the learner just saw (64 -> 128). Meet-in-the-middle (split the numbers into two halves, list each half's sums, match them) finds a group or proves there is none using 2^(n/2) + 2^(n/2) sums: 16 instead of 64 here, 24 instead of 128 with seven numbers. That grows by about 1.41x per number, not 2x. I re-derived and ran it (artifacts/fact-check-wave-j/wj-cs-life/mitm.mjs); it agrees with brute force on 2,000 random cases. The search is still exponential, so 'exponentially' would be true. Fix: '...yet nobody knows a method that finds one quickly in every case.' (or 'without a search that grows exponentially'). Separately held: NP-completeness of subset sum (CLRS 3e 34.5.5) and Karp (1972) were not opened. walkccc/CLRS has only exercises for 34.5 and does not confirm the section number. So after the rewrite, c4 still needs an openable source."
+      "source": "CLRS 3e ch. 34 (NP as problems verifiable in polynomial time; section 34.5.5: subset-sum is NP-complete); Karp (1972), 'Reducibility among combinatorial problems'. Caveat kept in the wording: a table method is fast when the numbers are small (pseudo-polynomial), so the reveal says 'nobody knows', never 'impossible' or 'always exponential'. Attribution: fact-checker confirms. | v2 (demo-builder, 2026-10-14, W-686): reworded from 'always finds one without a search that grows this fast', which meet-in-the-middle (2^(n/2) + 2^(n/2) sums, about 1.41x per number) makes false. 'Quickly' means in time polynomial in the input size. Still needs an openable source for subset-sum NP-completeness (CLRS 34.5.5 / Karp 1972 were not opened).",
+      "status": "unverified",
+      "note": "v2 (2026-10-14, W-686): reveal and claim reworded to the fact-checker's suggested wording. Needs a fresh check and an openable NP-completeness source."
     }
   ],
   "confidence": "",
@@ -86,14 +84,20 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:verify-vs-search",
     "also": [],
-    "prerequisites": ["cs:combinatorial-explosion"],
+    "prerequisites": [
+      "cs:combinatorial-explosion"
+    ],
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["complexity", "P vs NP", "subset sum"]
+    "tags": [
+      "complexity",
+      "P vs NP",
+      "subset sum"
+    ]
   }
 }

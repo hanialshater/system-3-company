@@ -5,8 +5,11 @@
 // its path is integrated exactly as in artifacts/scratch/cm-physics-r4/check.mjs (Lagrangian particle
 // in u = a w e^{kz} cos(kx - wt), w_z = a w e^{kz} sin(kx - wt), dt = 1 ms): one loop about 0.19 m
 // across per wave, and a net drift of 0.15 m after 10 waves (Stokes drift w k a^2 = 0.004 m/s), while
-// the crests travel 250 m. The wave train's front starts at the duck at t = 0 and, as in the brief,
-// is drawn moving at the crest speed, so it reaches the buoy 100 m away at 100 / 6.25 = 16 s.
+// the crests travel 250 m. "1 wave" and "10 waves" draw a steady train that already fills the sea.
+// "Watch the buoy" draws a train whose front starts at the duck at t = 0. In deep water the front, and
+// the energy, move at the group speed c_g = dw/dk = c/2 = 3.12 m/s while the crests run through the
+// train at c and fade at its front, so the buoy 100 m away starts to bob at 100 / 3.12 = 32 s.
+// (v1 moved the front at c, 16 s, as the brief had it; disputed by the 2026-10-14 fact-check, W-707.)
 // Brief: company/domains/briefs/physics.md round 4, #58.
 //
 // One picture: a side-view band of sea, 2.45 px per m across; heights drawn 80 px per m (magnified,
@@ -29,7 +32,8 @@ const K = (OMEGA * OMEGA) / G;
 const LAMBDA = (2 * Math.PI) / K; // 25.0 m
 const C = OMEGA / K; // 6.25 m/s
 const BUOY = 100; // m
-const BUOY_T = BUOY / C; // 16 s
+const C_G = C / 2; // 3.12 m/s, deep-water group speed
+const BUOY_T = BUOY / C_G; // 32 s
 const SPAN = 40; // s simulated
 const MILESTONES = ["one-wave", "ten-waves", "buoy"] as const;
 
@@ -125,8 +129,8 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
             <strong>{seen.drift?.toFixed(2) ?? "?"} m</strong>.
           </p>
           <p>
-            The buoy {BUOY} m away began to bob at {seen.buoy !== undefined ? Math.round(seen.buoy) : "?"} s: the wave carried
-            energy there, not water. Each bit of water just circles and hands the motion on. Near the shore, where waves break,
+            The buoy {BUOY} m away began to bob at {seen.buoy !== undefined ? Math.round(seen.buoy) : "?"} s, not{" "}
+            {Math.round(BUOY / C)}: a wave&apos;s energy travels at half its crest speed. It carried energy there, not water. Each bit of water just circles and hands the motion on. Near the shore, where waves break,
             the water does rush forward.
           </p>
         </>
@@ -153,11 +157,13 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
             };
             const tEnd = preset === null || locked ? 0 : END[preset];
             const t = tEnd * p;
-            const front = C * t; // m, front of the wave train (starts at the duck)
-            // surface height above the calm level; the train's front is eased over half a wavelength
+            const train = preset === "buoy" && !locked;
+            const front = C_G * t; // m, front of the wave train (starts at the duck), at the group speed
+            // surface height above the calm level. 1 and 10 waves: a steady train (no front). Buoy: the
+            // crests move at C inside an envelope whose front, eased over half a wavelength, moves at C_G.
             const eta = (m: number) => {
               if (preset === null || locked) return 0;
-              const env = Math.max(0, Math.min(1, (front - m) / (LAMBDA / 2) + 0.5));
+              const env = train ? Math.max(0, Math.min(1, (front - m) / (LAMBDA / 2) + 0.5)) : 1;
               return env * A * Math.cos(K * m - OMEGA * t);
             };
             const surf: string[] = [];
@@ -202,8 +208,17 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
                   <polygon points={`0,${H - 22} ${surf.join(" ")} ${W},${H - 22}`} className={s.water} />
                   <polyline points={surf.join(" ")} className={s.surface} />
                   {/* the leading crest, tinted */}
-                  {!locked && preset !== null && leadCrest > 1 && X(leadCrest) < W && (
+                  {!locked && preset !== null && !train && leadCrest > 1 && X(leadCrest) < W && (
                     <circle cx={X(leadCrest)} cy={YM - VY * eta(leadCrest)} r={4} className={s.crest} />
+                  )}
+                  {/* the train's front (buoy preset) */}
+                  {train && (
+                    <g>
+                      <line x1={X(front)} y1={YM - 12} x2={X(front)} y2={YM + 12} className={s.front} />
+                      <text x={X(front)} y={YM + 23} textAnchor="middle" className={s.small}>
+                        front {C_G.toFixed(1)} m/s
+                      </text>
+                    </g>
                   )}
                   {/* buoy */}
                   <line x1={X(BUOY)} y1={buoyY} x2={X(BUOY)} y2={buoyY - 18} className={s.post} />
