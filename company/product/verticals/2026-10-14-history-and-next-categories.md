@@ -10,6 +10,8 @@ The founder's new-category decision went from the chief of staff straight to the
 
 ## 1. History: target, wave slot, pilot
 
+> **Superseded in part (2026-10-14, Vertical Review `company/rituals/records/2026-10-14-vertical-review.md` §1.3).** The founder set the target at 100, built now, with the W-556 gate lifted for History (`company/decisions/2026-10-14-founder-history-100.md`). The target, wave-slot and "no W-556 exemption" rows below no longer apply. The entry rules, the boundaries (§3), the pause and kill rule, and the held-claim trigger still apply, and now gate History's second tranche rather than its L and M slots. W-688 is moot.
+
 | Item | Recommendation | Why |
 |---|---|---|
 | **Target to 2,000** | **60 counted lessons**: **40 committed through Wave M** (K 10, L 15, M 15) and **20 conditional** in N to Q | The supply of history concepts that are predict-and-see, checkable from this host and not already owned by another category is small today (§3). 60 is about what Big Ideas' bar would allow for a narrower map. The 20 conditional slots work like the Big Ideas and Books tranches: released on triggers, otherwise returned to the pool at Wave N cycle-planning. |
