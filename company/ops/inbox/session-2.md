@@ -67,6 +67,13 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: design-lead (Ines), S2-20 design review of the five NCM specs
+
+- **What changed.** Wrote `company/design/reviews/2026-10-14-design-review-ncm-specs.md` and added a status line at the top of each of the five specs. Amended rulings condition 3 (parameter chips = threshold or start set; after a final run a chip shows its final state) in `company/design/reviews/2026-10-14-design-lead-ncm-rulings.md`. Added the bipartite-matrix variant to the network-diagrams rule in `company/design/formats.md`. Not committed.
+- **Verdicts.** All five are approved with changes: new-road-slower-trip (3), prices-sort-the-buyers (4; the grid is accepted and the node-link fallback rejected), same-songs-different-hits (2; QA skipping disabled controls is confirmed in the QA contract spec's step 3 and by herd-immunity's passing QA), cluster-stops-the-cascade (5; start chips and the final-state chip rule accepted), contact-order-matters (4; A/E buttons, the Overlap drawing and the E two-way milestone accepted). There is one cross-cutting rule: legends use inline SVG swatches drawn from the stage code, not Unicode glyphs.
+- **Belief.** High that the QA paths and the format choices hold (checked against the harness code). Medium on geometry: the SVGs could not be rendered here, so I checked the coordinates in the spec text. The pill and outline collisions I found in the cascade spec suggest the builders must check at 390 px.
+- **Proposed board moves.** S2-20 → done. New item per lesson, builders: build to the spec plus the review changes, citing the review in build.md. New item, visual-designer + accessibility-reviewer: build-time design review of the 3 network-stage lessons, the accessibility checks listed in each spec, and whether to add the swatch rule to system.md. New item, learning-designer: confirm the contact-order two-way payoff and reveal lines, and check the prices rule-line shortening.
+
 - 2026-10-14 cm-life-health-epidemiology (Umar): brief contact-order-matters updated to the interaction designer's spec (Overlap rule in claim 3, A/E person buttons, 1/k! marked not on the stage); node re-run matches (E→A from A 1; A→E 4; Overlap 4 from A and E). Not committed.
 
 - 2026-10-14: cm-math-discrete (Chiara), brief 3 cluster-stops-the-cascade fixed per Rafael's spec: edge count 14 (7 path + 7-8 + 6), synchronous-update rule stated, interaction line defers to the spec and the design-lead ruling; node re-run: 8 of 12 round 6, 12 of 12 round 8, 298 sets / 132 incomplete / 0 contradictions; only math.discrete.md edited, not committed.

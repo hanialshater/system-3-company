@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/economics.markets.md`, "Networks, Crowds, and Markets, batch 1" #4 · wireframe: `prices-sort-the-buyers.svg` · board: S2-20
 
+**Design review (design lead, 2026-10-14): approved with changes. The 3 × 3 grid is accepted, and the node-link fallback is rejected.** Changes: disc and pill coordinates fixed (houses at y 28, pills at y 62, buyers at x 44); cell text ≥ 11 / 18 px; SVG swatches replace ┅ and the legend glyphs; Compare opens under the grid in place of the legend. Details in `company/design/reviews/2026-10-14-design-review-ncm-specs.md` §2.
+
 **Format: single card with the step-run-button interaction** (`company/design/concepts/step-run-button.md`) on a bipartite buyer–house graph. The graph has 6 named nodes, none tappable, and is deterministic, with no seed. It falls under the network-stage rules (`company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §2), but this spec departs from them on one point: it draws the bipartite graph **as a 3 × 3 grid**, not as node-link. The departure is argued below and the design lead rules on it in review.
 
 **Why this interaction:** the learner presses Raise and watches the price climb on exactly the houses that too many buyers want. Then the raising stops on its own, and every buyer is holding a different favourite. The learner never picks who gets what. The Compare button then shows that the market's assignment has the highest total of all six, which is the payoff the learner did not plan.

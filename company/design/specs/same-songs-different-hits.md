@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review (design lead approves) · brief: `company/domains/briefs/probability.chance.md`, NCM batch 1 #3 · wireframe: `same-songs-different-hits.svg` · inbox item S2-20
 
+**Design review (design lead, 2026-10-14): approved with changes.** QA skipping disabled controls is confirmed (contract step 3, the herd-immunity pattern). Changes: world numbers and the second rule line ≥ 11 px; the chips get aria-labels "Copying on" / "Copying off" inside a "Copy others" group. Details in `company/design/reviews/2026-10-14-design-review-ncm-specs.md` §3.
+
 **Format: simulation run, small multiples.** Design-lead ruling 2026-10-14 (`company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §1, boundary test): 8 independent worlds, no agent sees another world, and the learner reads rankings, not a spatial pattern, so this is not ABM. The simulation-run rules apply: seeded (mulberry32, disclosed), a run button with a step button beside it, and the reveal quotes the learner's own run.
 
 **Why small multiples:** the misconception ("the best song always rises") is about *one* world. The idea is that the same songs give different hits *across* worlds. The learner has to see all 8 at once, and then see them become almost identical when copying is off. One picture, 8 small panels, read as one row of finishes.

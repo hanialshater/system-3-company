@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/life.health-epidemiology.md` #1 (NCM batch 1) · wireframe: `contact-order-matters.svg` (4 frames: predict, E→A at day 4, A→E at day 4, QA end)
 
+**Design review (design lead, 2026-10-14): approved with changes. The A/E buttons, the Overlap drawing and the two-way milestone with E are accepted.** Changes: each pair's link gets a fixed ±6 px x offset, so Overlap rungs do not join into one line; future links are muted *and* have hollow end dots; "first case" uses the shared bullseye; person buttons are ≥ 44 CSS px native buttons. Details in `company/design/reviews/2026-10-14-design-review-ncm-specs.md` §5.
+
 **Format: Storyboard / scrub.** Time is the axis and the payoff is a direction: infection can only travel forward in time. The one representation is a **dated contact timeline**, with one row per person (A to E, top to bottom) and one column per day (0 to 4). Each contact is a short vertical link between two neighbouring rows, drawn in the column of the day it happens. Infection spreads **rightward along a person's row** and **across a link only at its day**, never leftward. The order chips move the links between columns, and the scrubber moves a cursor through the days. This is not a network stage (no node-link graph is tapped), but it follows that stage's colour, motion and tap-target rules.
 
 ## Brief check (node, 2026-10-14, the exact rule below)

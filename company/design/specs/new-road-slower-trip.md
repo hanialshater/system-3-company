@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review · brief: `company/domains/briefs/cs.systems.md` N1 · wireframe: `new-road-slower-trip.svg` · board: S2-20
 
+**Design review (design lead, 2026-10-14): approved with changes.** The A→B link stays dotted in After (not solid); arrowheads ≥ 8 px at every road width, ending at the rim; the readout keeps fixed slots. Details in `company/design/reviews/2026-10-14-design-review-ncm-specs.md` §1.
+
 **Format: Before / after toggle** (`company/design/formats.md`, by hand), with a **step-run** pair inside the "after" view, on the interim **network stage** (`company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §2). 4 named nodes and 5 roads, none tappable. The road network is fixed and hand-placed, with no randomness and no seed.
 
 **Why this interaction:** the misconception is "at worst nobody uses the new road". The learner opens the link and sees the new route at 40 vs 65. Then they move drivers onto it 1,000 at a time and see it stay faster at every step, until all 4,000 are on it at 80. Nobody gets told that drivers flock to the link. The learner moves them there because each time it is the faster choice.

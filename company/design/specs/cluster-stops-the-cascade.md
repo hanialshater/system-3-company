@@ -2,6 +2,8 @@
 
 owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review (the design lead approves it; the review is chaired by the visual designer with the accessibility reviewer) · brief: `company/domains/briefs/math.discrete.md` #3 · wireframe: `cluster-stops-the-cascade.svg` (4 frames: predict, round 3, QA end, the other start's end)
 
+**Design review (design lead, 2026-10-14): approved with changes. Start chips and the final-state chip rule are accepted (rulings condition 3 amended).** Changes: "started" is a bullseye (inner `--bg` ring, no outer ring); nodes shifted down 14 px and `viewBox` 340 × 290; new pill anchors outside the holdout outline; the active chip's aria-label becomes "Watch … again", and it is locked at reveal; the 16-control QA cap is full. Details in `company/design/reviews/2026-10-14-design-review-ncm-specs.md` §4.
+
 **Format: Single card with Step on the interim network stage**, per the design-lead ruling `company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §1 (not ABM) and §2 (network stage). The payoff is a place on the graph: the learner steps the rule round by round, sees it stall at one group, and taps a person in that group to read why.
 
 ## Brief check (node, 2026-10-14, the exact rule below)
