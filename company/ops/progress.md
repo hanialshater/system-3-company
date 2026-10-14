@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (design-engineer, W-477: multi-card sequence format in the kit, EDD-006)
+
+- **Changed (branch `design/multi-card-sequence`, worktree /home/user/s3c-cards, not merged):** `src/kit/sequence.tsx` + `sequence.module.css` (`<CardSequence>`, `<SubCard>`, `useSubCard`); EDD `company/engineering/edd/EDD-006-multi-card-sequence.md`; draft reference lesson `src/demos/math/euclid-three-steps/` (Euclid IX.20 in three sub-cards; all 6 claims unverified; under math because no books domain existed); HQ Design inspector detects `<CardSequence>` (`src/lib/hq-design.ts`); concept file `company/design/concepts/multi-card-sequence.md` kit line. Board: W-477 principal-engineer review, W-478 interaction-designer design review, W-479 accessibility review, W-480 cm-math (the reference duplicates concept infinitude-of-primes, already covered by product-plus-one).
+- **Believe:** no `Lesson.tsx` change is needed (high confidence: the sequence uses only `phase`, `locked`, `interact`). The QA path reaches every sub-card (high: the contract passes 2/2 and the phone explore shot shows all steps ticked). No regression (fairly sure: 20/20 on 10 random lessons, and they do not import the code). Phone fit holds for a 3-card reference (crop 0, 63 words); a 4-card sequence with longer titles is unmeasured.
+- **Not checked:** a real phone (swipe vs the feed's vertical scroll; I used synthetic pointer events), a screen reader by ear, dark theme screenshots.
+- **Next:** principal-engineer reviews EDD-006 (W-477). After approval, interaction designer and accessibility reviewer (W-478, W-479), then the design lead flips the formats.md row from 🔴. Book Summaries builders wait until then.
+- **Blocked:** nothing. Note: the disk was full at 17 MB when I started (many `.next-*` dirs from other agents); I cleared only the npm cache. Someone who owns those builds should prune them.
+
 ## 2026-10-14 · chief-of-staff · Release: Life Hacks and NCM lessons to the live feed (founder-approved deploy)
 - **Approved by:** the founder ("please deploy new demos of life hacks and ncm!! This is top priority"), per the deploy-approval rule.
 - **What ships:** commit b803a9a plus this note. The feed shows 587 published lessons and 238 in review (tagged "In review"), including all 200 Life Hacks lessons and 49 NCM lessons.
