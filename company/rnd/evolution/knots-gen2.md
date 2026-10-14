@@ -10,7 +10,7 @@ owner: rnd-lead (Bram) · 2026-10-14 · brief: [knots-gen2-brief.md](knots-gen2-
 
 ## Official scores (gen-2 evaluator, frozen: 102 tests, `evolve.json` as briefed)
 
-Every run was `node tools/evolve.mjs eval knots gen2-ortho-force gen2-force-smooth gen2-ortho-round gen1-force gen0-baseline`, on a fresh seed (no `--seed`), into the official archive. **Five runs.** I fixed the number at 5 after run 1 and before seeing runs 2 to 5, because both crossover engineers' self-checks put a gain near T. Every run counts, and none was re-drawn. The session guard against command lines containing "eval", which two engineers reported, did not fire in this session.
+Every run was `node tools/evolve.mjs eval knots gen2-ortho-force gen2-force-smooth gen2-ortho-round gen1-force gen0-baseline`, on a fresh seed (no `--seed`), into the official archive. **Five runs.** I fixed the number at 5 after run 1 and before seeing runs 2 to 5, because the ortho-force and force-smooth self-checks put their median gains at +13.8 and +16.7, near T = 15. Every run counts, and none was re-drawn. The session guard against command lines containing "eval", which two engineers reported, did not fire in this session.
 
 Load average is the 1-minute figure just before and just after each run (4 cores; the machine was shared with other sessions).
 
@@ -227,5 +227,5 @@ The same columns for every gated-in candidate (transparency, decision §1):
 
 - Parents: `gen2-ortho-force` and `gen2-force-smooth`.
 - One idea worth a slot: **ortho-force's grid start and schedule, with force-smooth's one-cubic-per-edge representation, angle spring and slot-indexed storage.** That combines the start that beat the champion on every seed with the representation that removed wiggle.
-- Alternatively, the VP's own alternative target: `simplify` on hard unknots (60–73 % solved in these runs).
+- Alternatively, the VP's own alternative target: `simplify` on hard unknots (67–73 % solved in these runs).
 - The evaluator for gen 3 would include gaps 1 and 2 above, stated up front in the brief, and a re-score of the champion on it.
