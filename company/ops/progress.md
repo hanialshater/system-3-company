@@ -4,6 +4,12 @@ Newest entry at the top. Every session adds one before it ends. This is testimon
 who no longer exists: check what you rely on.
 
 
+## 2026-10-14 · demo-builder · pass 21 rewordings (W-195, W-196, W-198, W-203, W-204)
+- Changed: reveal text + claim text in 6 cs drafts. deleted-key-breaks-search c3 (v4): the reveal now reads "breaks the search for C (and any key whose probe path from its home slot crosses the gap)", and the claim is that sentence. bracket-order-sets-the-bill c5 (v2): "shortest sub-chains first". newton-doubles-the-digits (v2): c5 now says "the rule known as the Babylonian (or Heron's) method", with no YBC 7289 assertion in text or source; c1 now matches the reveal ("1, 3, 6, then 12 ... not twelve"). pairs-cancel-under-xor c2 (v2): reveal and header comment say "its partner flips the same lamps back". random-surfer c1 (v2): parenthetical fixed. ring-buffer c1 (v2): now includes "went round two and a half times". All 7 changed claims are unverified. Board: W-195/196/198/203/204 done, plus a fact-checker re-check item.
+- Believe (high): claim texts match the stage sentences. Ignore JSX line wraps and &apos;. Medium: the old deleted-key c3 also covered the search mechanism ("starts at the hash slot, walks right"). That mechanism now appears only in the question and c6. Fact-checker should decide whether it needs its own claim. pairs-cancel had no stage text with the phrase (only the reveal and a code comment).
+- Not run: tsc and next build (another builder held tsc) and QA. npm run registry and npm run check pass.
+- Next: fact-checker re-check (board). Nothing blocked.
+
 ## 2026-10-14 demo-builder: TS2322 fix + W-192, W-193, W-194, W-197 (pass 21 disputes)
 
 - cs/one-cell-rule-30 v2: grow() `row: number[]` (TS2322, no behaviour change); W-197 reveal drops "with no pattern" (c1 unverified).
