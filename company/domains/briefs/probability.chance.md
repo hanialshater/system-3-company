@@ -16,7 +16,7 @@ Accepted from company/courses/ncm/briefs.md (Jonah). Answers re-run in node by c
 - Planned claims:
   1. In the stage's model (ring of 2,000, one long link each), greedy routing averages about 30 steps with 1/d links, 38 with uniform links and 219 with 1/d² links. support: simulation; source: node, 5 seeds × 200 pairs (cm-probability-chance re-run, 2026-10-14: 29.5, 37.8, 219.1; quote rounded figures, builder re-runs with the lesson's own generator).
   2. Without long links the average is 500 steps. support: derivation; source: ring of 2,000: mean distance N/4.
-  3. Greedy routing is fast only when the long-link exponent equals the dimension (1 for a ring). support: citation (theorem); source: Kleinberg (2000), Nature 406 and STOC; E&K ch. 20 (sections unconfirmed; MIT reading list cites ch. 20). Attribution: fact-checker confirms.
+  3. Greedy routing is fast only when the long-link exponent equals the dimension (1 for a ring). support: citation (theorem); source: Kleinberg (2000), Nature 406 and STOC; E&K ch. 20 (MIT reading list cites ch. 20). Attribution: fact-checker confirms.
   4. Milgram's letter-forwarding studies showed that people can find short chains using only local knowledge. support: citation; source: Travers and Milgram (1969), Sociometry 32(4). **Needs a human source check (empirical); keep out of learner text until checked.**
 - curriculum: `{"primary":"probability:decentralized-search","also":["cs:graph-shortest-path"],"prerequisites":["probability:random-walk"],"level":"core","strand":"chance","references":[{"work":"easley-kleinberg-2010","chapter":20}],"tags":["small world","search","networks"]}`
 - Needs interaction-designer spec: no.

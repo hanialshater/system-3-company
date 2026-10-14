@@ -26,7 +26,7 @@ Accepted by cm-math-discrete from `company/courses/ncm/briefs.md` (### math.disc
 - Learner knows: ranking options and adding up points / does not know: that removing an option nobody ranks first can change who wins a points-based vote.
 - Misconception: Dropping a candidate who came last cannot change the winner.
 - Prediction (stage text ≤ 25 words): "Borda vote: 2 points for 1st, 1 for 2nd, 0 for 3rd. B wins; C is last. Remove C and recount. Who wins?" options: A. B again / B. A / C. A tie (answer: B, A wins 3-2). Edited: added "0 for 3rd" so the scoring is complete (23 words).
-- Check: 3 voters A>B>C, 2 voters B>C>A. Re-run: with C, A 6, B 7, C 2; without C (2 points for 1st, 1 for 2nd... recounted as 1 for 1st, 0 for 2nd), A 3, B 2.
+- Check: 3 voters A>B>C, 2 voters B>C>A. Re-run: with C, A 6, B 7, C 2; without C (recounted: 1 point for 1st, 0 for 2nd), A 3, B 2.
 - Reveal (one line): Nobody changed their mind about A versus B, yet removing last-placed C flipped the winner from B (7-6) to A (3-2).
 - Planned claims:
   1. With C on the ballot the Borda scores are A 6, B 7, C 2. support: derivation; source: node.
