@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-14: platform-engineer reveal stage crop (W-135 family; tier 2 proposed, review W-237)
+- At the reveal on a phone the card body scrolled the top of the stage away (W-135 `useRevealFit` scrolling stage + reveal overflow). DemoCard `useRevealFit` now scales the stage down first (`transform: scale(k)` from top centre, negative bottom margin, floor 0.4, `data-reveal-scale`) so stage and reveal both fit; it scrolls only what a stage below the floor leaves over. Lesson.tsx unchanged. 390×844 stage-top crop before → after: bending-frontier 187 → 0, one-odd-loop-blocks-two-camps 155 → 0, a-star-heads-for-goal 351 → 0, every-second-seat-out 467 → 0, midnight-sun-line 231 → 0, good-lists-make-good-pages 103 → 0; reveal hidden 0 everywhere. Note: company/engineering/notes/2026-10-14-reveal-stage-crop.md.
+
 ## 2026-10-14: release-manager wave F publish
 - Lifted 1 hold in company/ops/publish-holds.json (null-island-lat-lon): r6 learner verdict is launch for v1 with screenshots seen, all 5 claims verified, qa-tester record pass (phone and desktop). The other 7 geography holds stay until re-reviewed (eratosthenes-shadow, fingernail-ocean, half-of-humanity, horizon-ruler, mercator-greenland, ruler-on-mercator, shrinking-degree).
 - `node tools/publish-ready.mjs --publish`: 47 candidates (46 + the 1 lifted), 47 published, 0 refused by the gate. Not candidates: 8 verdict revise, 2 older-version verdict, 7 geography holds. Launch review records still to be written in company/rituals/records/.
