@@ -6,7 +6,7 @@
 // company/design/reviews/2026-10-14-design-review-ncm-specs.md §5 (pair offsets, hollow future dots,
 // bullseye first case, 44 px native person buttons).
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
@@ -24,8 +24,8 @@ const HIT = 44;
 
 type Order = "AE" | "EA" | "OV";
 const ORDERS: { id: Order; label: string; aria: string; days: number[][] }[] = [
-  { id: "AE", label: "A→E", aria: "Order A to E", days: [[1], [2], [3], [4]] },
-  { id: "EA", label: "E→A", aria: "Order E to A", days: [[4], [3], [2], [1]] },
+  { id: "AE", label: "A to E", aria: "Order A to E", days: [[1], [2], [3], [4]] },
+  { id: "EA", label: "E to A", aria: "Order E to A", days: [[4], [3], [2], [1]] },
   { id: "OV", label: "Overlap", aria: "Overlap: every pair meets each day", days: [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]] },
 ];
 const daysOf = (o: Order) => ORDERS.find((x) => x.id === o)!.days;
@@ -80,9 +80,13 @@ function Swatch({ state }: { state: DiscState }) {
 
 type View = { order: Order; first: number; day: number };
 
-function Stage({ locked, interact, onOnlyD }: { locked: boolean; interact: () => void; onOnlyD: () => void }) {
+function Stage({ locked, revealed, interact, onOnlyD }: { locked: boolean; revealed: boolean; interact: () => void; onOnlyD: () => void }) {
   const [v, setV] = useState<View>({ order: "EA", first: 0, day: 0 });
   const { reach } = useMilestones(interact, ["one-way", "forward", "two-way"]);
+  // The reveal opens on the state its first paragraph describes: A first, meetings run E to A, day 4.
+  useEffect(() => {
+    if (revealed) setV({ order: "EA", first: 0, day: 4 });
+  }, [revealed]);
   const go = (patch: Partial<View>) => {
     if (locked) return;
     const n = { ...v, ...patch };
@@ -113,6 +117,7 @@ function Stage({ locked, interact, onOnlyD }: { locked: boolean; interact: () =>
         </Control>
       </div>
       <div className={s.chips} role="group" aria-label="Order of contacts">
+        <span className={s.chipsLabel}>Meetings run</span>
         {ORDERS.map((o) => (
           <Control
             key={o.id}
@@ -180,6 +185,9 @@ function Stage({ locked, interact, onOnlyD }: { locked: boolean; interact: () =>
             ))
           )}
         </svg>
+        {!locked && v.first !== 4 && (
+          <span className={s.tapcue} aria-hidden="true" style={{ left: `${(24 / W) * 100}%`, top: `${(231 / H) * 100}%` }}>tap E</span>
+        )}
         {[0, 4].map((j) => (
           <button
             key={j}
@@ -216,33 +224,33 @@ export default function ContactOrderMatters({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A is infected. Four contacts happen one at a time: A-B, B-C, C-D, D-E. If they happen in the order D-E, C-D, B-C, A-B, how many people other than A can get infected?",
+          "A is infected. Four contacts happen one at a time: A-B, B-C, C-D, D-E. If they happen in the order D-E, C-D, B-C, A-B (meetings run E to A), how many people other than A can get infected?",
         options: ["1", "0", "4"],
         answer: 0,
       }}
-      exploreHint="Take each order to day 4, then tap E."
+      exploreHint="Take each order to day 4, then tap the E circle to start from E."
       minInteractions={3}
       reveal={() => (
         <>
           <p>
-            In E→A, A met B only on day 4, after the other contacts were over, so only B was reached. In A→E, all four were.
-            {onlyD && " From E, A→E reached only D."}
+            When meetings run E to A, A met B only on day 4, after the other contacts were over, so only B was reached. When they run A to E, all four were.
+            {onlyD && " Starting from E with meetings running A to E reached only D."}
           </p>
           <p>
             Infection only moves forward in time, so the same contacts can expose or protect someone depending on their order. A
             diagram of who met whom can overstate who can be reached.
           </p>
           <p>
-            Overlap is a different change, not another order: every pair meets every day, and from E all four were reached.
+            Overlap is a different change, not another order: here every pair meets on each of days 1 to 4, so infection can run both ways, and from E all four were reached.
           </p>
           <p className="muted">
-            Partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and
+            In real populations, partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and
             Kretzschmar, 1997). Real contacts are not certain to pass it on.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} onOnlyD={() => setOnlyD(true)} />}
+      {({ locked, phase, interact }) => <Stage locked={locked} revealed={phase === "reveal"} interact={interact} onOnlyD={() => setOnlyD(true)} />}
     </Lesson>
   );
 }

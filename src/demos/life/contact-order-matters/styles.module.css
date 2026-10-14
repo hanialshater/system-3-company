@@ -3,7 +3,9 @@
 .scrub { display: flex; align-items: flex-end; gap: 8px; }
 .scrub > label { flex: 1 1 auto; }
 .scrub input[type="range"] { height: 32px; margin: 0; }
-.chips { display: flex; gap: 6px; }
+.chips { display: flex; align-items: center; gap: 6px; }
+.chipsLabel { flex: 0 0 auto; font-size: 0.8rem; color: var(--muted); }
+.tapcue { position: absolute; transform: translate(-50%, 0); font-size: 0.68rem; font-weight: 700; color: var(--muted); pointer-events: none; white-space: nowrap; line-height: 1; }
 .chip { flex: 1 1 0; min-width: 0; }
 .tap { min-height: 44px; }
 .stage { position: relative; width: 100%; max-width: 340px; margin: 0 auto; aspect-ratio: 340 / 244; flex-shrink: 0; }
