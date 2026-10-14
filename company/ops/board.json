@@ -5678,6 +5678,196 @@
       "domain": null,
       "created": "2026-10-14",
       "links": []
+    },
+    {
+      "id": "W-522",
+      "title": "P1 COE (SEV2, ev-c33bee719d): CI queue reached ~300 runs, ci never concluded, deploy.yml skipped 33 times. Author outside CI/deploy; actions must change mechanisms (AMD-002 is containment, W-481 its falsifier). See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-523",
+      "title": "P1 COE (SEV2, ev-b27f3b93ae): [deploy] commits reached production via Vercel git builds before ci judged them (G1/W-480), and WIP pushes exhausted Vercel's 100/day quota. One COE, two failure paths. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-524",
+      "title": "P1 COE (SEV2, ev-d362239a23): shared host exhausted, disk full several times (W-486, 20+ stale .next-* dirs, 11 worktrees) and load 24-27 on 4 CPUs (dev server 15-60 s/page). Ops is in the area (W-486 was assigned to ops), so ops may not write it. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-525",
+      "title": "P2 Build-dir and disk policy: one .next per worktree (no .next-<tag> copies), a prune script for build dirs older than 24 h in worktrees with no live process, and a pre-build guard that refuses next build/QA when / has < 10 GB free. Report freed GB. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-526",
+      "title": "P2 Worktree-per-agent lifecycle: tools script creates the worktree for each dispatched agent and passes absolute paths only; a merged-and-idle check lists removable worktrees (removal stays a founder-approved step, never automatic). See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-527",
+      "title": "P2 Coordinator rule: never cd into a worktree from the coordinator shell; every brief names its absolute worktree path; agents refuse to write outside it (operating-loop and dispatch checklist). See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-528",
+      "title": "P2 Amendment (tools/company.mjs is protected): concurrency-safe board id allocation (lockfile with O_EXCL + re-read under lock + atomic rename of board.json) so concurrent board add neither duplicates ids nor loses items. Draft the AMD with a falsifier (20 parallel adds -> 20 distinct ids, 0 lost); founder ratifies. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-529",
+      "title": "P2 Process safety: ban pkill -f / pgrep -f patterns in briefs and checklists (two coordinator shells killed 10-14 despite W-072); all long-running processes via tools/serve.sh-style pid files; extend that wrapper to detach background walkthrough loops (setsid + pid file + log) so they survive the parent shell. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-530",
+      "title": "P2 check on WIP domains: decide how half-built domains on a shared tree stop failing npm run check for everyone (draft flag check honours, or WIP stays on branches). Gate change, so evaluation-steward decides; any tools/company.mjs change needs an amendment. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-531",
+      "title": "P2 Capacity decision record: second machine and/or self-hosted CI runner vs a hard concurrency cap (builds and QA at most 2 at once on 4 CPUs, one shared dev server). Include cost, runner security (secrets on a self-hosted runner), and a measure: load < 8, page < 5 s. Founder approves spend. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-532",
+      "title": "P2 Interim concurrency cap now (until the W-531 capacity decision): at most 2 concurrent next build / QA runs on the shared host, check free disk before each wave. Add to the dispatch checklist. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-533",
+      "title": "Org: name an owner for the shared dev host (disk, CPU, worktrees, processes). Today no role owns it; principal-engineer holds it interim in tiers.json. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-534",
+      "title": "Hold app deploys until W-477 is fixed: /spike ?cdn= is classified S1 (exploitable now with a URL), and S1 blocks deploys in its area. Add the check to the release checklist. See company/engineering/operations/2026-10-14-ops-review.md",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-535",
+      "title": "",
+      "owner": "chief-of-staff",
+      "state": "dropped",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-536",
+      "title": "Books: re-check the 12 cycle-1 briefs drafted by the CEO office (answers via company/domains/briefs/checks/books-cycle1-check.mjs, claims, sources, overlap) and confirm demand in content/curriculum/books.json; strand managers may reorder or rewrite (company/decisions/2026-10-14-books-and-big-ideas.md objection 4)",
+      "owner": "cm-books",
+      "state": "next",
+      "domain": "books",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-537",
+      "title": "Big Ideas: re-check the 12 cycle-1 briefs drafted by the CEO office (answers via company/domains/briefs/checks/big-ideas-cycle1-check.mjs, claims, sources, overlap) and confirm demand in content/curriculum/big-ideas.json (company/decisions/2026-10-14-books-and-big-ideas.md objection 4)",
+      "owner": "cm-big-ideas",
+      "state": "next",
+      "domain": "big-ideas",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-538",
+      "title": "Add 'books' and 'big-ideas' to DomainId in src/kit/types.ts before the first Books or Big Ideas build (company/decisions/2026-10-14-books-and-big-ideas.md objection 7)",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-539",
+      "title": "Answer the Books and Big Ideas consultation in your own words (agree / agree with changes / object) in company/decisions/2026-10-14-books-and-big-ideas.md; open: is 'does it hold up' a launch requirement, and the demand ratings",
+      "owner": "head-of-product",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-540",
+      "title": "Answer the Books and Big Ideas consultation in company/decisions/2026-10-14-books-and-big-ideas.md (multi-card plan, single card until the stepper lands; a Books lesson as the multi-card reference candidate; a Debunk spec for 'does it hold up'?)",
+      "owner": "design-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-541",
+      "title": "Founder decision: (a) a legal read of the Books copyright policy before the first Books lesson publishes? (b) allow a book source so fact-checkers can confirm chapter citations? (company/decisions/2026-10-14-books-and-big-ideas.md objections 1 and 3)",
+      "owner": "founder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-542",
+      "title": "P3 tools/ops-health.mjs looks for ops reviews only in company/rituals/records, so it reports 'never held' although company/engineering/operations/2026-10-14-ops-review.md exists. Read both locations (or agree one). See that record.",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
     }
   ]
 }

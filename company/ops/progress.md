@@ -3,6 +3,35 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+
+## 2026-10-14 ~15:40 UTC: principal-engineer-ops: first Operational Health Review
+
+**Changed:** wrote company/engineering/operations/2026-10-14-ops-review.md. Declared 3 SEV2 incidents (ev-c33bee719d CI queue; ev-b27f3b93ae deploy bypass + Vercel quota; ev-d362239a23 host disk/CPU), each with a COE author outside its area (W-522 backend-engineer, W-523 tools-lead, W-524 principal-engineer). Classified 5 SEV3s (wrong-worktree writes, pkill self-kill, dying background loops, board-id/scratch collisions, check red on WIP domains). tiers.json: new shared-dev-host T1, agent-isolation T2, spike-route-open-cdn-param S1 (W-477 reclassified from P2: exploitable now). Board W-522..W-534 and W-542.
+**Believe:** the common cause is concurrency without allocators for shared resources (fairly sure, about 70%; the COEs should test it). CI is still not draining after AMD-002 (7 of last 40 queued, 0 concluded), medium confidence from one gh sample. App deploys are held under the S1 rule until W-477 is fixed (W-534).
+**Next:** COE authors W-522..W-524; portfolio manager re-triages W-477 to P1 and W-023 to P2; tools-lead drafts the board-id amendment (W-528). Evidence for W-528: during this review, concurrent adds took W-535..W-541, and W-535 has an empty title (owner chief-of-staff, not mine).
+**Blocked:** no named owner for the shared host (W-533). ops-health.mjs does not see this review (W-542). Nothing built or committed.
+
+## 2026-10-14 · chief-of-staff-ceo-office · Book Summaries and Big Ideas: two categories, their org, curricula and first briefs (founder request)
+- **Changed:**
+  - Roles in `tools/org/roles.mjs`: cm-books (Hester) with strands business (Kwame), psychology (Imogen) and science-history (Tobias); cm-big-ideas (Dmitri) with strands science (Lucia), society (Babajide) and mind (Signe). Generated with `node tools/org/generate.mjs`: 92 roles.
+  - Rooms "Book Summaries" and "Big Ideas" on HQ floor 3, where the bottom row is now six rooms. Mapping in `tools/events.mjs` and `src/app/hq/people.ts`, and colours in `src/lib/hq-colors.ts`.
+  - Charters `company/domains/books.md` and `big-ideas.md`. The copyright and two-claim accuracy rules are binding.
+  - Curricula with 60 concepts each, and 27 books added to `content/works.json`.
+  - 12 ranked briefs per category, with node answer checks in `company/domains/briefs/checks/`.
+  - Decision record `company/decisions/2026-10-14-books-and-big-ideas.md`. Board W-536 to W-541.
+- **Believe:**
+  - The org and the wiring are right, and claim.mjs hands out both lists (high confidence; `npm run check` passes and the HQ files typecheck in isolation).
+  - Brief answers are right under their stated models (high confidence; checked in node).
+  - Book chapter numbers and some study details are from memory and are marked unconfirmed (medium confidence).
+  - The "does it hold up" verdicts are a first reading of the literature that the fact-checker may overturn (medium confidence).
+- **Next:**
+  - cm-books and cm-big-ideas re-check the 24 briefs (W-536, W-537). The CEO office drafted them, so the owners must review them.
+  - The platform engineer adds the two domain ids to `src/kit/types.ts` before any build (W-538).
+  - Priya and Ines answer the consultation (W-539, W-540).
+- **Blocked:**
+  - A founder call on a legal read of the copyright policy, and on book access for chapter checks (W-541). This does not block building, but Books claims can't be verified until chapters are confirmed.
+  - Not built, per the task.
+
 ## 2026-10-14 (pedagogy-critic, Yusuf: demo-crit, six pairs)
 
 - **Changed:** ran the overdue demo crit as its pairwise witness. Record: company/rituals/records/2026-10-14-demo-crit.md. Six pairwise records: company/reviews/{lh-sequential-discounts,lh-discount-round-trip,sock-pairs-not-all-combinations,penalty-kick-mix,a-star-heads-for-goal,who-pays-same-filter}/2026-10-14-pairwise.md. I regenerated the walkthroughs for all 12 lessons against `next dev` on :3530, because the .next build was from 10-13 and `npm run build` did not finish in 10 min. Board: W-513 to W-521.
