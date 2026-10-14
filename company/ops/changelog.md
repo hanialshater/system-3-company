@@ -1,5 +1,7 @@
 # Changelog
 
+## 2026-10-14: platform-engineer W-538 `books` and `big-ideas` in DomainId
+- `src/kit/types.ts` `DomainId` gains `"books"` and `"big-ideas"` (additive union widening). Audit by grep of src/ and tools/: feed (Feed.tsx, page.tsx), lesson page (`/d/[slug]`), map (`/catalog`), DemoCard colour/short tag, HQ curriculum and design pages and tools/metrics.mjs all read content/domains.json, which already lists both; HQ colours (`hq-colors.ts`), rooms (`hq.ts`) and offices (`hq/people.ts`) were already done in the org change. No `Record<DomainId, ...>` or switch on domain exists, so nothing else needed changing. `/d/[slug]` non-null-asserts the domain lookup, so a lesson whose domain is missing from domains.json would crash; both are present.
 ## 2026-10-14: community-engineer PR #2 merged (Life Hacks 200)
 - Life Hacks shared stage engines (`src/components/lifehacks/`, `src/lib/lifehacks/`) and `test:lifehacks` in verify (PR #2). At merge: `safety` meta field and `content/collections/` dropped, dead `alphabet-sort-search` home spec removed, new optional `warning` spec field (Home reveal, Resource stage) for safety-required lines, and `tests/lifehacks/claims-match.test.mjs` (lib prose must appear in claims). Record: company/engineering/community/prs/2.md.
 ## 2026-10-14: platform-engineer W-332 (+ W-348, W-349 kit side) fold at the reveal (EDD-005; no lesson opted in)

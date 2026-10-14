@@ -11,7 +11,9 @@ export type DomainId =
   | "life"
   | "chemistry"
   | "geography"
-  | "lifehacks";
+  | "lifehacks"
+  | "books"
+  | "big-ideas";
 
 export type DemoStatus = "draft" | "review" | "published" | "retired";
 
