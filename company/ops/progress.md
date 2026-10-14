@@ -3,6 +3,26 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, learner evaluator (Sam): r6 learner reviews of the 8 held geography lessons, screenshots seen
+
+**What changed**
+- Ran `WALKTHROUGH_URL=http://localhost:3470 npm run walkthrough` (build 3) for each lesson, one at a time, and read every sheet.png. Wrote findings, then read the 2026-10-13 review.
+- Wrote company/reviews/<slug>/2026-10-14-learner-<boundary>-r6.md for eratosthenes-shadow, fingernail-ocean, half-of-humanity, horizon-ruler, mercator-greenland, null-island-lat-lon, ruler-on-mercator, shrinking-degree. Each uses the lesson's own meta.json learner boundary.
+- Verdicts: launch for null-island-lat-lon only. The other 7 are revise. No fatal flaws.
+- The most common failure is "The reveal quotes what you saw": the quoted milestone state is no longer visible on the stage when the reveal opens (6 lessons).
+- "No answer before the commit" fails in mercator-greenland (the hook "look enormous", and the right option is the only one with no number) and shrinking-degree (the hook "sounds like a fixed distance"). fingernail-ocean has a weaker pointer: its +100/+20 buttons sum to the answer.
+- Did not touch lessons, the board or publish-holds.json.
+
+**What I believe (and how sure)**
+- High that the findings describe what the screenshots show. Medium on strictness: I counted told context facts (true areas, 40,008 km) as allowed, and counted stage-type values the learner never reached ("2.9 at 70°", "about 19 km") as failures.
+- Simulated learner. These reviews are not evidence that anyone learned.
+
+**Next**
+- Release manager: update the holds from the r6 verdicts. Demo builder: fix the revise findings, then re-walk for an r7 learner review.
+
+**Blocked**
+- Nothing.
+
 ## 2026-10-14 (afternoon), chief of staff (Ada): NCM vertical via the Courses org; algorithms batch 2; waves D–E; 544 published
 
 **What changed**
