@@ -13,3 +13,17 @@ builder: demo-builder · 2026-10-14 · session 2 (NCM batch 1)
 - Known cosmetic: in the reveal phase the stage panel is a little taller than its box on a phone, so the top (scoring line, column headers) scrolls out of view; the quoted numbers (bars, 1.00 cell) stay visible.
 - All claims unverified. Status review.
 - QA: contract passes on phone and desktop (company/reviews/penalty-kick-mix/2026-10-14-qa.md). One earlier desktop run failed under parallel load alongside the feed specs and passed on rerun.
+
+## Revision v3 (2026-10-14, session 2)
+
+Findings from the learner review and fact-check NCM-1, and what changed:
+
+- **Mechanism not shown (learner 4, 5):** under each bar the stage now shows the opponent's payoff from each choice. Under "Kicker shoots left": keeper left x / right y (the kicker's score against each dive). Under "Keeper dives left": kick left / right. "=" appears when equal. At 1.00 both read 0.722 (the indifference); the slider moves the mixes so the pair stays equal.
+- **"Why not keep 50/50?" (learner 6):** new button "Keep 50% left". Kicker stays at 50%, keeper bar jumps to 100% (best reply), readout 0.700 vs 0.750, score falls back to 0.700. Second milestone kept-50; minInteractions is now 2, so both states are reached before the reveal quotes them.
+- **Why the score still rises (learner 6):** reveal contrasts 0.700 (keeping 50%) with 0.722 (re-mixed, every kick and dive pays the same). Slogan last line removed (learner 8).
+- **Start mix unexplained / orientation (learner 1, 2):** question rewritten (guess his side 0.5, not 0.9; mixing so the keeper can't guess; left kick 1.0 when the keeper guesses wrong).
+- **Layout (learner 9):** svg min-height 0 so the picture can shrink. On a phone the reveal still clips the top of the stage panel; the quoted bars stay visible.
+- **c1 (fact-check):** text reworded as the checker described (by kick and dive); status back to unverified. Demo.tsx header comment fixed. New unverified claims c6 (keeping 50% scores 0.700) and c7 (both kicks and both dives 0.722 at the best mixes). c2-c5 unchanged, still verified.
+- Numbers re-run in node with the lesson's rule: keep mode at 1.00 gives 0.700 vs 0.750, score 0.700; best mix gives 0.7222 on all four payoffs; 0.94 gives 0.7095.
+- Stage words (excluding numbers) about 25.
+- QA: contract passes phone and desktop (2026-10-14-qa.md). A full-suite run also failed 2 feed specs (subject chips filter, both viewports), not this lesson.

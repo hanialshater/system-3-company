@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "economics.penalty-kick-mix.c1",
-      "text": "In the toy game (score 0.5 if the keeper dives the right way, 0.9 if he dives the wrong way to the right, and 0.9 or 1.0 if he dives the wrong way to the left), the kicker's best mix shoots left 50.0% of the time at 0.90 and 44.4% at 1.00.",
+      "text": "In the toy game (the kicker scores 0.5 when the keeper dives the way the ball goes, 0.9 on a kick to the right when the keeper dives left, and 0.9 or 1.0 on a kick to the left when the keeper dives right), the kicker's best mix shoots left 50.0% of the time at 0.90 and 44.4% at 1.00.",
       "support": "derivation",
-      "source": "Kicker left-share p makes the keeper indifferent: p*0.5 + (1-p)*0.9 = p*x + (1-p)*0.5, so p = (0.9-0.5)/((x-0.5)+(0.9-0.5)). x=0.90: 0.4/0.8 = 0.500. x=1.00: 0.4/0.9 = 0.4444. Re-run in node with Demo.tsx mix(); the six slider states give 0.500, 0.488, 0.476, 0.465, 0.455, 0.444.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Kicker left-share p makes the keeper indifferent: p*0.5 + (1-p)*0.9 = p*x + (1-p)*0.5, so p = (0.9-0.5)/((x-0.5)+(0.9-0.5)). x=0.90: 0.4/0.8 = 0.500. x=1.00: 0.4/0.9 = 0.4444. Re-run in node with Demo.tsx mix(); the six slider states give 0.500, 0.488, 0.476, 0.465, 0.455, 0.444. Revised v3: claim text reworded per fact-check pass NCM-1 (dive direction by kick).",
+      "status": "unverified"
     },
     {
       "id": "economics.penalty-kick-mix.c2",
@@ -67,6 +65,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.penalty-kick-mix.c6",
+      "text": "In the toy game at 1.00, if the kicker keeps shooting left 50% of the time, a keeper who dives left every time holds him to 0.700 (a right dive would concede 0.750), the same scoring chance as at 0.90.",
+      "support": "derivation",
+      "source": "Kicker at p=0.5: dive left gives 0.5*0.5+0.5*0.9 = 0.700; dive right gives 0.5*1.0+0.5*0.5 = 0.750. Keeper picks the lower, so 0.700 = the 0.90 value. Node re-run of Demo.tsx mix(100, true).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.penalty-kick-mix.c7",
+      "text": "In the toy game at 1.00 with both sides at their best mixes (kicker left 44.4%, keeper left 55.6%), either keeper dive concedes 0.722 and either kick scores 0.722.",
+      "support": "derivation",
+      "source": "Kicker p=0.4444: dive left 0.4444*0.5+0.5556*0.9 = 0.7222, dive right 0.4444*1.0+0.5556*0.5 = 0.7222. Keeper q=0.5556: kick left 0.5556*0.5+0.4444*1.0 = 0.7222, kick right 0.5556*0.9+0.4444*0.5 = 0.7222. Node re-run of mix(100).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -88,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:mixed-strategy-equilibrium",
     "prerequisites": [
