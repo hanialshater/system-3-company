@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.cards { width: 340px; max-width: 100%; height: auto; }
+.card { transition: transform 150ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+.digit { fill: var(--fg); font-size: 24px; font-weight: 800; }
+.tick { fill: var(--good); font-size: 15px; font-weight: 800; }
+.tally { margin: 0; font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; min-height: 1.4em; }
+.good { color: var(--good); }
+.strip { width: 340px; max-width: 100%; height: auto; }
+.clip { fill: var(--muted); font-size: 7px; }
+.meanLab { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.table { display: grid; grid-template-columns: 4.2rem 1fr 1fr; gap: 3px 6px; width: 100%; max-width: 340px; font-size: 0.75rem; align-items: center; }
+.tr { display: contents; }
+.th { color: var(--muted); font-weight: 600; text-align: left; }
+.cur .th { color: var(--fg); }
+.td { text-align: center; padding: 3px 2px; border-radius: 6px; background: var(--bg-2); color: var(--muted); font-variant-numeric: tabular-nums; }
+.on { color: var(--fg); font-weight: 700; }
+.lab { font-size: 0.75rem; color: var(--muted); }
