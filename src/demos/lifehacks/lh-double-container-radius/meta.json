@@ -1,0 +1,79 @@
+{
+  "slug": "lh-double-container-radius",
+  "title": "Double the radius, not the volume",
+  "hook": "Two ideal cylinders have equal height and radii of 3cm and 6cm.",
+  "domain": "lifehacks",
+  "concept": "lh-double-container-radius",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Predict cylinder capacity scaling when radius doubles at fixed height."
+    ]
+  },
+  "misconception": "Doubling radius only doubles an ideal cylinder’s capacity.",
+  "objective": "Predict cylinder capacity scaling when radius doubles at fixed height.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-double-container-radius.c1",
+      "text": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Scaled model; ideal cylinders; V=πr²h; 1000cm³/L.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-double-container-radius.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Height=10cm, A=0.283L and B=1.131L. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-double-container-radius.c3",
+      "text": "Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-double-container-radius.c4",
+      "text": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Change only Height to 13cm. What is B (6cm-radius) now? Correct: 1.47L. Use B's stated rule with Height=13cm: it gives 1.47L. Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Change only Height to 13cm. What is B (6cm-radius) now?",
+    "options": [
+      "1.47L",
+      "0.368L",
+      "3.47L"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Height=13cm: it gives 1.47L. Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

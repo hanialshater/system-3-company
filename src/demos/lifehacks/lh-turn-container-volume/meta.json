@@ -1,0 +1,79 @@
+{
+  "slug": "lh-turn-container-volume",
+  "title": "Turn it; volume stays the same",
+  "hook": "Swapping the height and width of an ideal box changes its drawing, not its capacity.",
+  "domain": "lifehacks",
+  "concept": "lh-turn-container-volume",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Separate ideal container capacity from the orientation of its dimensions."
+    ]
+  },
+  "misconception": "Turning a rectangular box changes its ideal internal volume.",
+  "objective": "Separate ideal container capacity from the orientation of its dimensions.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-turn-container-volume.c1",
+      "text": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Scaled model; ideal inner dimensions; 1000cm³/L.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-turn-container-volume.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Third-side=15cm, A=3L and B=3L. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-turn-container-volume.c3",
+      "text": "The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-turn-container-volume.c4",
+      "text": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now? Correct: 3.6L. Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now?",
+    "options": [
+      "3.6L",
+      "4.6L",
+      "5.6L"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

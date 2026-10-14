@@ -1,0 +1,78 @@
+{
+  "slug": "box-handle-clearance",
+  "title": "A box is wider with handles",
+  "hook": "Which measurement catches this shelf collision?",
+  "domain": "lifehacks",
+  "concept": "box-handle-clearance",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same.",
+  "claims": [
+    {
+      "id": "lifehacks.box-handle-clearance.c1",
+      "text": "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Test width=40 or 40+2×3 cm. Shelf margin=opening−test width.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.box-handle-clearance.c2",
+      "text": "Measure the real outermost points; soft handles may flex, which this rigid drawing does not model.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Test width=40 or 40+2×3 cm. Shelf margin=opening−test width.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.box-handle-clearance.c3",
+      "text": "Test width=40 or 40+2×3 cm. Shelf margin=opening−test width.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.box-handle-clearance.c4",
+      "text": "Which measurement catches this shelf collision?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.box-handle-clearance.c5",
+      "text": "Which parts should be included in the width of a storage box?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which parts should be included in the width of a storage box?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same. Measure the real outermost points; soft handles may flex, which this rigid drawing does not model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

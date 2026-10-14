@@ -1,0 +1,70 @@
+{
+  "slug": "meeting-and-preparation",
+  "title": "Preparation needs its own slot",
+  "hook": "You booked the presentation, but where did preparation go?",
+  "domain": "lifehacks",
+  "concept": "meeting-and-preparation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Schedule preparation before a dependent live task."
+    ]
+  },
+  "misconception": "Prepare during presentation",
+  "objective": "Schedule preparation before a dependent live task.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: You booked the presentation, but where did preparation go? Which layout makes preparation finish first? Correct option: Prepare then present. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.meeting-and-preparation.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.meeting-and-preparation.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, meeting-and-preparation fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.meeting-and-preparation.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Prepare then present. The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.meeting-and-preparation.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which layout makes preparation finish first?",
+    "options": [
+      "Prepare then present",
+      "Prepare during presentation"
+    ],
+    "answer": 0,
+    "why": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

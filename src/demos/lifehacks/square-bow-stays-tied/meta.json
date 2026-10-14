@@ -1,0 +1,78 @@
+{
+  "slug": "square-bow-stays-tied",
+  "title": "Which way does your bow lie?",
+  "hook": "Which wrap pattern tends to hold better?",
+  "domain": "lifehacks",
+  "concept": "shoelace-square-bow",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose.",
+  "claims": [
+    {
+      "id": "lifehacks.square-bow-stays-tied.c1",
+      "text": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose.",
+      "support": "source",
+      "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c2",
+      "text": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Illustrative remaining loop=20−steps×rate mm, clipped at 0; matching rate=0.8, opposing=0.3. No claimed empirical lifetime.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c3",
+      "text": "Illustrative remaining loop=20−steps×rate mm, clipped at 0; matching rate=0.8, opposing=0.3. No claimed empirical lifetime.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c4",
+      "text": "Which wrap pattern tends to hold better?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c5",
+      "text": "A bow points along your shoe. Which knot step could you reverse?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bow points along your shoe. Which knot step could you reverse?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose. Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

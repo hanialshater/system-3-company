@@ -1,0 +1,70 @@
+{
+  "slug": "work-back-from-a-deadline",
+  "title": "Plan backwards",
+  "hook": "A thirty-minute task due at minute forty cannot start whenever you like.",
+  "domain": "lifehacks",
+  "concept": "work-back-from-a-deadline",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Compute a latest start from duration and deadline."
+    ]
+  },
+  "misconception": "Minute 30",
+  "objective": "Compute a latest start from duration and deadline.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A thirty-minute task due at minute forty cannot start whenever you like. Latest start for 30 minutes due at minute 40? Correct option: Minute 10. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.work-back-from-a-deadline.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.work-back-from-a-deadline.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-back-from-a-deadline fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.work-back-from-a-deadline.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Minute 10. Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.work-back-from-a-deadline.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Latest start for 30 minutes due at minute 40?",
+    "options": [
+      "Minute 10",
+      "Minute 30"
+    ],
+    "answer": 0,
+    "why": "Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "door-swing-clearance",
+  "title": "A door needs a quarter-circle",
+  "hook": "Where can this light basket clear the door?",
+  "domain": "lifehacks",
+  "concept": "door-swing-clearance",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed.",
+  "claims": [
+    {
+      "id": "lifehacks.door-swing-clearance.c1",
+      "text": "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Basket center radius=65cm or door width+10cm; point-basket collision when radius<door width. Door sweeps 90°.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.door-swing-clearance.c2",
+      "text": "Real handles and basket shapes need extra clearance. Keep exits unobstructed.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Basket center radius=65cm or door width+10cm; point-basket collision when radius<door width. Door sweeps 90°.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.door-swing-clearance.c3",
+      "text": "Basket center radius=65cm or door width+10cm; point-basket collision when radius<door width. Door sweeps 90°.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.door-swing-clearance.c4",
+      "text": "Where can this light basket clear the door?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.door-swing-clearance.c5",
+      "text": "What area should you measure before putting a basket behind a door?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What area should you measure before putting a basket behind a door?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed. Real handles and basket shapes need extra clearance. Keep exits unobstructed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

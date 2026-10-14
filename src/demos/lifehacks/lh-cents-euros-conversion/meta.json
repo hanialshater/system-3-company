@@ -1,0 +1,79 @@
+{
+  "slug": "lh-cents-euros-conversion",
+  "title": "Move the decimal with the unit",
+  "hook": "125 cents is not €12.50. The unit tells you the conversion factor.",
+  "domain": "lifehacks",
+  "concept": "lh-cents-euros-conversion",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Convert cents to euros using the stated unit relationship."
+    ]
+  },
+  "misconception": "Converting cents to euros requires moving the decimal only one place.",
+  "objective": "Convert cents to euros using the stated unit relationship.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-cents-euros-conversion.c1",
+      "text": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Scaled model; unit arithmetic; 100 cents/€; B deliberately wrong.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-cents-euros-conversion.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Cents=125c, A=€1.25 and B=€12.5. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-cents-euros-conversion.c3",
+      "text": "The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-cents-euros-conversion.c4",
+      "text": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Change only Cents to 140c. What is B (Tenths) now? Correct: €14. Use B's stated rule with Cents=140c: it gives €14. The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Change only Cents to 140c. What is B (Tenths) now?",
+    "options": [
+      "€14",
+      "€1.4",
+      "€16"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Cents=140c: it gives €14. The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

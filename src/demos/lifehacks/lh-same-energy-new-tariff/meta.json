@@ -1,0 +1,86 @@
+{
+  "slug": "lh-same-energy-new-tariff",
+  "title": "Same energy, different tariff",
+  "hook": "Moving a hypothetical load changes its price while leaving its energy unchanged.",
+  "domain": "lifehacks",
+  "concept": "lh-same-energy-new-tariff",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Distinguish a cost change from an energy-use change."
+    ]
+  },
+  "misconception": "A lower electricity charge necessarily means fewer kilowatt-hours were used.",
+  "objective": "Distinguish a cost change from an energy-use change.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c1",
+      "text": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Scaled model; fictional:€0.40/kWh-or-€0.20/kWh;same kWh.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Energy=3kWh, A=€1.2 and B=€0.6. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.4]; B=[\"*\",\"x\",0.2]; x denotes Energy. At x=3, A=1.2, B=0.6; recall at x=6: B=1.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c3",
+      "text": "The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.4]; B=[\"*\",\"x\",0.2]; x denotes Energy. At x=3, A=1.2, B=0.6; recall at x=6: B=1.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c4",
+      "text": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Change only Energy to 6kWh. What is B (Off-peak) now? Correct: €1.2. Use B's stated rule with Energy=6kWh: it gives €1.2. The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.4]; B=[\"*\",\"x\",0.2]; x denotes Energy. At x=3, A=1.2, B=0.6; recall at x=6: B=1.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c5",
+      "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
+      "support": "source",
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Change only Energy to 6kWh. What is B (Off-peak) now?",
+    "options": [
+      "€1.2",
+      "€2.4",
+      "€3.2"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Energy=6kWh: it gives €1.2. The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "electricity",
+    "reviewRequired": true,
+    "assumptions": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

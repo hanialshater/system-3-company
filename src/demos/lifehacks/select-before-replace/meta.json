@@ -1,0 +1,70 @@
+{
+  "slug": "select-before-replace",
+  "title": "Selection bounds replacement",
+  "hook": "Replacing a selection affects that selection, not every matching word.",
+  "domain": "lifehacks",
+  "concept": "select-before-replace",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish replacing a selected occurrence from replacing all."
+    ]
+  },
+  "misconception": "Replace all",
+  "objective": "Distinguish replacing a selected occurrence from replacing all.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Replacing a selection affects that selection, not every matching word. Which limits the edit to the selected occurrence? Correct option: Selected replacement. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.select-before-replace.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The first replacement changes only the selected position. Replace-all changes every exact match; inspect that scope before applying a broad edit.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
+      "id": "lifehacks.select-before-replace.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: edit. Local command model; app and locale can differ. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, select-before-replace fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply the two stated local edit transformations and show their resulting tokens, style, focus, selection or highlight.",
+      "id": "lifehacks.select-before-replace.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Selected replacement. The first replacement changes only the selected position. Replace-all changes every exact match; inspect that scope before applying a broad edit.",
+      "support": "derivation",
+      "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
+      "id": "lifehacks.select-before-replace.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which limits the edit to the selected occurrence?",
+    "options": [
+      "Selected replacement",
+      "Replace all"
+    ],
+    "answer": 0,
+    "why": "The first replacement changes only the selected position. Replace-all changes every exact match; inspect that scope before applying a broad edit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

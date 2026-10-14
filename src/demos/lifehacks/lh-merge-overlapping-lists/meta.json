@@ -1,0 +1,79 @@
+{
+  "slug": "lh-merge-overlapping-lists",
+  "title": "Merge lists without counting twice",
+  "hook": "Two requests overlap on three items. Adding the list lengths overcounts.",
+  "domain": "lifehacks",
+  "concept": "lh-merge-overlapping-lists",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Use inclusion-exclusion for two overlapping resource lists."
+    ]
+  },
+  "misconception": "The size of a merged list is always the sum of both list lengths.",
+  "objective": "Use inclusion-exclusion for two overlapping resource lists.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-merge-overlapping-lists.c1",
+      "text": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Scaled model; exact three-item overlap; unique items per list.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-merge-overlapping-lists.c2",
+      "text": "The stage's two results are computed by the printed expressions. At List-A=8, A=14items and B=11items. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-merge-overlapping-lists.c3",
+      "text": "Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-merge-overlapping-lists.c4",
+      "text": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Change only List-A to 11. What is B (Unique) now? Correct: 14items. Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Change only List-A to 11. What is B (Unique) now?",
+    "options": [
+      "14items",
+      "17items",
+      "16items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "List A has eight distinct items; list B has six. Exactly three items occur on both lists.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

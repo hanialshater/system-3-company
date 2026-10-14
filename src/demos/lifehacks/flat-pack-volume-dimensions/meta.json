@@ -1,0 +1,78 @@
+{
+  "slug": "flat-pack-volume-dimensions",
+  "title": "Same panels, different envelope",
+  "hook": "Which empty-object envelope is smaller?",
+  "domain": "lifehacks",
+  "concept": "flat-pack-volume-dimensions",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
+  "claims": [
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.c1",
+      "text": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.c2",
+      "text": "Real hardware and edges add volume; never dismantle furniture unless its instructions permit it.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.c3",
+      "text": "Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.c4",
+      "text": "Which empty-object envelope is smaller?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.c5",
+      "text": "What disappears when an empty panel-built object becomes a flat stack?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What disappears when an empty panel-built object becomes a flat stack?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material. Real hardware and edges add volume; never dismantle furniture unless its instructions permit it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

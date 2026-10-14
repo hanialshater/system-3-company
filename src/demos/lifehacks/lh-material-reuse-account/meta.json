@@ -1,0 +1,79 @@
+{
+  "slug": "lh-material-reuse-account",
+  "title": "Count material, state the boundary",
+  "hook": "A heavier reusable container and light replacements accumulate material differently.",
+  "domain": "lifehacks",
+  "concept": "lh-material-reuse-account",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compare cumulative material amounts while stating what the account excludes."
+    ]
+  },
+  "misconception": "A material-mass comparison alone proves the lower environmental impact.",
+  "objective": "Compare cumulative material amounts while stating what the account excludes.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-material-reuse-account.c1",
+      "text": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Scaled model; toy masses; material only; no lifecycle claim.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-material-reuse-account.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Uses=10, A=220g and B=200g. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-material-reuse-account.c3",
+      "text": "Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-material-reuse-account.c4",
+      "text": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Change only Uses to 13. What is B (Replaced) now? Correct: 260g. Use B's stated rule with Uses=13: it gives 260g. Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Change only Uses to 13. What is B (Replaced) now?",
+    "options": [
+      "260g",
+      "226g",
+      "262g"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Uses=13: it gives 260g. Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

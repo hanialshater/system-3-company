@@ -1,0 +1,70 @@
+{
+  "slug": "copy-keeps-the-original",
+  "title": "Copy keeps the original",
+  "hook": "A copy creates another instance without moving the source.",
+  "domain": "lifehacks",
+  "concept": "copy-keeps-the-original",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish copy from move using visible source and destination."
+    ]
+  },
+  "misconception": "Only destination",
+  "objective": "Distinguish copy from move using visible source and destination.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A copy creates another instance without moving the source. What does copy preserve? Correct option: Original source. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.copy-keeps-the-original.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Copy leaves the source in place and creates destination content. This fixture models that command; operating-system clipboard rules are outside it.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
+      "id": "lifehacks.copy-keeps-the-original.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: edit. Local command model; app and locale can differ. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, copy-keeps-the-original fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply the two stated local edit transformations and show their resulting tokens, style, focus, selection or highlight.",
+      "id": "lifehacks.copy-keeps-the-original.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Original source. Copy leaves the source in place and creates destination content. This fixture models that command; operating-system clipboard rules are outside it.",
+      "support": "derivation",
+      "source": "Microsoft Learn, Keyboard accelerators, Common Keyboard Accelerators and scope caveats; retrieved 2026-10-13: https://learn.microsoft.com/en-us/windows/apps/develop/input/keyboard-accelerators . Shortcuts depend on app, platform and locale; this exercise models the command, not a global keyboard binding.",
+      "id": "lifehacks.copy-keeps-the-original.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does copy preserve?",
+    "options": [
+      "Original source",
+      "Only destination"
+    ],
+    "answer": 0,
+    "why": "Copy leaves the source in place and creates destination content. This fixture models that command; operating-system clipboard rules are outside it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

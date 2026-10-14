@@ -1,0 +1,78 @@
+{
+  "slug": "shoes-opposite-ends",
+  "title": "Toe next to heel",
+  "hook": "Which pair uses a narrower envelope?",
+  "domain": "lifehacks",
+  "concept": "shoes-opposite-ends",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "These simplified shoes have wide toes and narrow heels. Reversing one matches a wide section with a narrow section, reducing the maximum pair width without shrinking either shoe."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "These simplified shoes have wide toes and narrow heels. Reversing one matches a wide section with a narrow section, reducing the maximum pair width without shrinking either shoe.",
+  "claims": [
+    {
+      "id": "lifehacks.shoes-opposite-ends.c1",
+      "text": "These simplified shoes have wide toes and narrow heels. Reversing one matches a wide section with a narrow section, reducing the maximum pair width without shrinking either shoe.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Pair envelope is 2×toe width or toe+heel width; toe=12, heel=6 cm. Bag width input; margin=bag−envelope.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shoes-opposite-ends.c2",
+      "text": "Actual shoe contours and cleanliness matter; the shapes are illustrative.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Pair envelope is 2×toe width or toe+heel width; toe=12, heel=6 cm. Bag width input; margin=bag−envelope.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shoes-opposite-ends.c3",
+      "text": "Pair envelope is 2×toe width or toe+heel width; toe=12, heel=6 cm. Bag width input; margin=bag−envelope.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shoes-opposite-ends.c4",
+      "text": "Which pair uses a narrower envelope?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shoes-opposite-ends.c5",
+      "text": "When can reversing an irregular object help two fit together?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When can reversing an irregular object help two fit together?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "These simplified shoes have wide toes and narrow heels. Reversing one matches a wide section with a narrow section, reducing the maximum pair width without shrinking either shoe. Actual shoe contours and cleanliness matter; the shapes are illustrative."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "laundry-sort-before-walk",
+  "title": "Carry once, sort at the start",
+  "hook": "Which plan travels less in the pictured route?",
+  "domain": "lifehacks",
+  "concept": "laundry-sort-before-walk",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
+  "claims": [
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c1",
+      "text": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c2",
+      "text": "Capacity and urgency may rule out batching; the result is route arithmetic, not measured chore time.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c3",
+      "text": "Round trip distance=2×4m; total=8×item count or 8m for one batch.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c4",
+      "text": "Which plan travels less in the pictured route?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-sort-before-walk.c5",
+      "text": "What assumption can make one large batch infeasible?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What assumption can make one large batch infeasible?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch. Capacity and urgency may rule out batching; the result is route arithmetic, not measured chore time."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

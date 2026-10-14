@@ -1,0 +1,78 @@
+{
+  "slug": "elastic-loop-release",
+  "title": "A loop is not a permanent knot",
+  "hook": "Which manipulation removes the drawn crossing?",
+  "domain": "lifehacks",
+  "concept": "elastic-loop-release",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
+  "claims": [
+    {
+      "id": "lifehacks.elastic-loop-release.c1",
+      "text": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.elastic-loop-release.c2",
+      "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.elastic-loop-release.c3",
+      "text": "Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.elastic-loop-release.c4",
+      "text": "Which manipulation removes the drawn crossing?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.elastic-loop-release.c5",
+      "text": "Why does the position of a free end matter when judging a tangle?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does the position of a free end matter when judging a tangle?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord. Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "handoff-needs-a-checkpoint",
+  "title": "Leave a restart point",
+  "hook": "A handoff saying “almost done” lacks a place to resume.",
+  "domain": "lifehacks",
+  "concept": "handoff-needs-a-checkpoint",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Record the current artifact, completed step and next check."
+    ]
+  },
+  "misconception": "Almost done",
+  "objective": "Record the current artifact, completed step and next check.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A handoff saying “almost done” lacks a place to resume. Which handoff identifies a restart point? Correct option: Artifact and next check. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-needs-a-checkpoint.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The checklist records artifact, last completed step and next check. It gives a specific restart point while leaving responsibility for verification explicit.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-needs-a-checkpoint.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, handoff-needs-a-checkpoint fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.handoff-needs-a-checkpoint.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Artifact and next check. The checklist records artifact, last completed step and next check. It gives a specific restart point while leaving responsibility for verification explicit.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-needs-a-checkpoint.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which handoff identifies a restart point?",
+    "options": [
+      "Artifact and next check",
+      "Almost done"
+    ],
+    "answer": 0,
+    "why": "The checklist records artifact, last completed step and next check. It gives a specific restart point while leaving responsibility for verification explicit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

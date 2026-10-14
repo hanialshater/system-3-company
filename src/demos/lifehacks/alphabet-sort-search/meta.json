@@ -1,0 +1,78 @@
+{
+  "slug": "alphabet-sort-search",
+  "title": "Sorted labels allow a halving search",
+  "hook": "Which method has fewer worst-case comparisons here?",
+  "domain": "lifehacks",
+  "concept": "alphabet-sort-search",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan.",
+  "claims": [
+    {
+      "id": "lifehacks.alphabet-sort-search.c1",
+      "text": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.alphabet-sort-search.c2",
+      "text": "Only comparison count is modelled; organising the list has a setup cost.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.alphabet-sort-search.c3",
+      "text": "Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.alphabet-sort-search.c4",
+      "text": "Which method has fewer worst-case comparisons here?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.alphabet-sort-search.c5",
+      "text": "What condition must hold before halving a label search?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What condition must hold before halving a label search?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan. Only comparison count is modelled; organising the list has a setup cost."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

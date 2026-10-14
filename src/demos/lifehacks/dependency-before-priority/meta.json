@@ -1,0 +1,70 @@
+{
+  "slug": "dependency-before-priority",
+  "title": "Priority cannot bypass input",
+  "hook": "The important output cannot run before its input exists.",
+  "domain": "lifehacks",
+  "concept": "dependency-before-priority",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish task priority from prerequisite readiness."
+    ]
+  },
+  "misconception": "Review before draft",
+  "objective": "Distinguish task priority from prerequisite readiness.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The important output cannot run before its input exists. Which order respects the stated dependency? Correct option: Draft before review. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.dependency-before-priority.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.dependency-before-priority.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, dependency-before-priority fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.dependency-before-priority.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Draft before review. The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.dependency-before-priority.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which order respects the stated dependency?",
+    "options": [
+      "Draft before review",
+      "Review before draft"
+    ],
+    "answer": 0,
+    "why": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

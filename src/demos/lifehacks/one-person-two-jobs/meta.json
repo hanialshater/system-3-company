@@ -1,0 +1,70 @@
+{
+  "slug": "one-person-two-jobs",
+  "title": "One person, two blocks",
+  "hook": "Separate rows do not give you two pairs of hands.",
+  "domain": "lifehacks",
+  "concept": "one-person-two-jobs",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Detect simultaneous bookings for one constrained resource."
+    ]
+  },
+  "misconception": "Two",
+  "objective": "Detect simultaneous bookings for one constrained resource.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Separate rows do not give you two pairs of hands. How many blocks can one person do simultaneously in this model? Correct option: One. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.one-person-two-jobs.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.one-person-two-jobs.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, one-person-two-jobs fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.one-person-two-jobs.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: One. All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.one-person-two-jobs.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How many blocks can one person do simultaneously in this model?",
+    "options": [
+      "One",
+      "Two"
+    ],
+    "answer": 0,
+    "why": "All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

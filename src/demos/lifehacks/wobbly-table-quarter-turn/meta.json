@@ -1,0 +1,78 @@
+{
+  "slug": "wobbly-table-quarter-turn",
+  "title": "Turn the table, lose the wobble",
+  "hook": "Can a turn help this square equal-leg table?",
+  "domain": "lifehacks",
+  "concept": "wobbly-table-turn",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The illustrated signed gap crosses zero during a quarter turn. For square equal-leg tables on suitably gentle continuous ground, a balanced position exists."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The illustrated signed gap crosses zero during a quarter turn. For square equal-leg tables on suitably gentle continuous ground, a balanced position exists.",
+  "claims": [
+    {
+      "id": "lifehacks.wobbly-table-quarter-turn.c1",
+      "text": "The illustrated signed gap crosses zero during a quarter turn. For square equal-leg tables on suitably gentle continuous ground, a balanced position exists.",
+      "support": "source",
+      "source": "Baritompa, Löwen, Polster & Ross, Mathematical table turning revisited, full text opened 2026-10-14 at https://arxiv.org/pdf/math/0511490. Square equal-leg table, continuous ground and slope/leg length conditions; proof of sign change and balanced position. Our cosine gap is an illustration, not a solution of the full contact geometry.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wobbly-table-quarter-turn.c2",
+      "text": "Four feet down is not level. Clear hot drinks before turning; steps, holes and unequal legs fall outside this model.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Illustrative gap=4cos(2×angle) mm; angle=0 initially or 45 at balance. This is an illustration of a sign change, not a physical contact solver.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wobbly-table-quarter-turn.c3",
+      "text": "Illustrative gap=4cos(2×angle) mm; angle=0 initially or 45 at balance. This is an illustration of a sign change, not a physical contact solver.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wobbly-table-quarter-turn.c4",
+      "text": "Can a turn help this square equal-leg table?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wobbly-table-quarter-turn.c5",
+      "text": "Does having four feet down guarantee a level tabletop?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does having four feet down guarantee a level tabletop?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The illustrated signed gap crosses zero during a quarter turn. For square equal-leg tables on suitably gentle continuous ground, a balanced position exists. Four feet down is not level. Clear hot drinks before turning; steps, holes and unequal legs fall outside this model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

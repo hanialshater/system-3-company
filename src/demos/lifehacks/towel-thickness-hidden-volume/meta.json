@@ -1,0 +1,78 @@
+{
+  "slug": "towel-thickness-hidden-volume",
+  "title": "Thicker cloth, less face per volume",
+  "hook": "Which sheet has less face area per material volume?",
+  "domain": "lifehacks",
+  "concept": "towel-thickness-hidden-volume",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
+  "claims": [
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.c1",
+      "text": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.c2",
+      "text": "This geometric ratio alone does not determine a fabric’s drying time.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.c3",
+      "text": "Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.c4",
+      "text": "Which sheet has less face area per material volume?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-thickness-hidden-volume.c5",
+      "text": "What happens to face-area-to-volume ratio when thickness doubles?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to face-area-to-volume ratio when thickness doubles?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves. This geometric ratio alone does not determine a fabric’s drying time."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

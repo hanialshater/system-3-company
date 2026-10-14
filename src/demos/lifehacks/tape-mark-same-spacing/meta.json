@@ -1,0 +1,78 @@
+{
+  "slug": "tape-mark-same-spacing",
+  "title": "Small step errors accumulate",
+  "hook": "Which method avoids compounding this repeated bias?",
+  "domain": "lifehacks",
+  "concept": "tape-mark-same-spacing",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A biased step repeated from the previous mark adds its error each time. Measuring each chosen position from one origin avoids that particular accumulation, though the measuring tool can still have its own errors."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A biased step repeated from the previous mark adds its error each time. Measuring each chosen position from one origin avoids that particular accumulation, though the measuring tool can still have its own errors.",
+  "claims": [
+    {
+      "id": "lifehacks.tape-mark-same-spacing.c1",
+      "text": "A biased step repeated from the previous mark adds its error each time. Measuring each chosen position from one origin avoids that particular accumulation, though the measuring tool can still have its own errors.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Nth error=N×0.2cm for stepped marks or0.2cm for one-origin readings; target pitch10cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.tape-mark-same-spacing.c2",
+      "text": "The bias is hypothetical, not a specification for real tape measures.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Nth error=N×0.2cm for stepped marks or0.2cm for one-origin readings; target pitch10cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.tape-mark-same-spacing.c3",
+      "text": "Nth error=N×0.2cm for stepped marks or0.2cm for one-origin readings; target pitch10cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.tape-mark-same-spacing.c4",
+      "text": "Which method avoids compounding this repeated bias?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.tape-mark-same-spacing.c5",
+      "text": "Which error does a common measuring origin prevent?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which error does a common measuring origin prevent?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A biased step repeated from the previous mark adds its error each time. Measuring each chosen position from one origin avoids that particular accumulation, though the measuring tool can still have its own errors. The bias is hypothetical, not a specification for real tape measures."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "lh-standby-days-add-up",
+  "title": "A tiny load accumulates",
+  "hook": "Two watts over a whole day and over one hour are different annual totals.",
+  "domain": "lifehacks",
+  "concept": "lh-standby-days-add-up",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Convert a small stated constant load into a multiday energy quantity."
+    ]
+  },
+  "misconception": "A small wattage cannot accumulate a meaningful quantity over many days.",
+  "objective": "Convert a small stated constant load into a multiday energy quantity.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c1",
+      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; illustrative:2W;24h/day-or-1h/day;€0.30/kWh.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Days=365, A=17.52kWh and B=0.73kWh. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c3",
+      "text": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c4",
+      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now? Correct: 0.736kWh. Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c5",
+      "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
+      "support": "source",
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now?",
+    "options": [
+      "0.736kWh",
+      "17.664kWh",
+      "2.736kWh"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "electricity",
+    "reviewRequired": true,
+    "assumptions": "A constant illustrative 2W load runs for either 24h/day or 1h/day.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

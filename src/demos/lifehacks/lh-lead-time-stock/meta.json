@@ -1,0 +1,79 @@
+{
+  "slug": "lh-lead-time-stock",
+  "title": "Stock during a delivery delay",
+  "hook": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
+  "domain": "lifehacks",
+  "concept": "lh-lead-time-stock",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate lead-time demand and separate an explicit buffer."
+    ]
+  },
+  "misconception": "Delivery lead time has no effect on the quantity consumed before arrival.",
+  "objective": "Calculate lead-time demand and separate an explicit buffer.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-lead-time-stock.c1",
+      "text": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer. Scaled model; constant toy demand; buffer=8; no policy advice.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Lead-days=3, A=20items and B=12items. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",4,\"x\"],8]; B=[\"*\",4,\"x\"]; x denotes Lead-days. At x=3, A=20, B=12; recall at x=6: B=24. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c3",
+      "text": "Lead-time demand is daily demand multiplied by delivery days. A stated buffer is added separately. Real demand and delays can vary; these values illustrate the distinction, not a universal reorder policy.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",4,\"x\"],8]; B=[\"*\",4,\"x\"]; x denotes Lead-days. At x=3, A=20, B=12; recall at x=6: B=24. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c4",
+      "text": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer. Change only Lead-days to 6. What is B (No-buffer) now? Correct: 24items. Use B's stated rule with Lead-days=6: it gives 24items. Lead-time demand is daily demand multiplied by delivery days. A stated buffer is added separately. Real demand and delays can vary; these values illustrate the distinction, not a universal reorder policy.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",4,\"x\"],8]; B=[\"*\",4,\"x\"]; x denotes Lead-days. At x=3, A=20, B=12; recall at x=6: B=24. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer. Change only Lead-days to 6. What is B (No-buffer) now?",
+    "options": [
+      "24items",
+      "32items",
+      "26items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Lead-days=6: it gives 24items. Lead-time demand is daily demand multiplied by delivery days. A stated buffer is added separately. Real demand and delays can vary; these values illustrate the distinction, not a universal reorder policy."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

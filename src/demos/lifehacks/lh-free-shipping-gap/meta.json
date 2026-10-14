@@ -1,0 +1,79 @@
+{
+  "slug": "lh-free-shipping-gap",
+  "title": "The free-shipping gap",
+  "hook": "Adding an item can remove shipping while raising the total you pay.",
+  "domain": "lifehacks",
+  "concept": "lh-free-shipping-gap",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compare total checkout cost when adding merchandise to reach a shipping threshold."
+    ]
+  },
+  "misconception": "Free shipping means a lower checkout total.",
+  "objective": "Compare total checkout cost when adding merchandise to reach a shipping threshold.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-free-shipping-gap.c1",
+      "text": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Scaled model; fictional policy; added goods optional.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-free-shipping-gap.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Basket=42€, A=€46 and B=€50. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-free-shipping-gap.c3",
+      "text": "Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-free-shipping-gap.c4",
+      "text": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Change only Basket to 45€. What is B (Reach-threshold) now? Correct: €50. Use B's stated rule with Basket=45€: it gives €50. Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Change only Basket to 45€. What is B (Reach-threshold) now?",
+    "options": [
+      "€50",
+      "€49",
+      "€52"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Basket=45€: it gives €50. Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

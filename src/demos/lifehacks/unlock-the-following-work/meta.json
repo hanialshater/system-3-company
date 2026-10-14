@@ -1,0 +1,70 @@
+{
+  "slug": "unlock-the-following-work",
+  "title": "Start the blocking input",
+  "hook": "A tiny input task can unlock a much larger dependent task.",
+  "domain": "lifehacks",
+  "concept": "unlock-the-following-work",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Identify the work that releases a blocked successor."
+    ]
+  },
+  "misconception": "Unrelated polish",
+  "objective": "Identify the work that releases a blocked successor.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A tiny input task can unlock a much larger dependent task. Which goes before the dependent build? Correct option: Input task. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.unlock-the-following-work.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.unlock-the-following-work.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, unlock-the-following-work fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.unlock-the-following-work.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Input task. The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.unlock-the-following-work.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which goes before the dependent build?",
+    "options": [
+      "Input task",
+      "Unrelated polish"
+    ],
+    "answer": 0,
+    "why": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

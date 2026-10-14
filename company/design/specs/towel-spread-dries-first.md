@@ -45,3 +45,9 @@ Towel strips `--domain` (apricot) outline with water fill `--accent` at opacity 
 
 ## Claims this spec adds (for the builder to record as `unverified`)
 "Breeze doubles the rate" is an illustrative factor; it must be labelled on the stage ("toy ×2") and recorded. Flag for cm-lifehacks: brief claim (4) gives the direction, not a size.
+
+## 200-lesson review collection
+
+The implementation variant in the founder-requested 200-lesson PR is described in
+`company/design/specs/towel-spread-dries-first-collection-200.md`. It remains in review; this addition does not attest that
+the original specification or publication gates have been met.

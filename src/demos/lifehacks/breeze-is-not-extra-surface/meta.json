@@ -1,0 +1,78 @@
+{
+  "slug": "breeze-is-not-extra-surface",
+  "title": "Airflow and surface are different",
+  "hook": "Which change alters flux while keeping exposed area fixed?",
+  "domain": "lifehacks",
+  "concept": "breeze-is-not-extra-surface",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other.",
+  "claims": [
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.c1",
+      "text": "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.c2",
+      "text": "The doubled flux is an illustrative parameter, not a measured benefit from any fan.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Rate=exposed area×chosen flux; area=input m²; still flux=1, moving flux=2 arbitrary water units/(m²·step).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.c3",
+      "text": "Rate=exposed area×chosen flux; area=input m²; still flux=1, moving flux=2 arbitrary water units/(m²·step).",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.c4",
+      "text": "Which change alters flux while keeping exposed area fixed?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.c5",
+      "text": "Does improving airflow expose an inner towel face that is still folded shut?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does improving airflow expose an inner towel face that is still folded shut?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other. The doubled flux is an illustrative parameter, not a measured benefit from any fan."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

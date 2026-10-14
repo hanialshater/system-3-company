@@ -1,0 +1,70 @@
+{
+  "slug": "file-type-then-owner",
+  "title": "Narrow with two filters",
+  "hook": "Four files match one clue. Which one matches both?",
+  "domain": "lifehacks",
+  "concept": "file-type-then-owner",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Intersect type and owner filters."
+    ]
+  },
+  "misconception": "Either condition",
+  "objective": "Intersect type and owner filters.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Four files match one clue. Which one matches both? What does adding an owner filter to PDF mean? Correct option: Both conditions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.file-type-then-owner.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.file-type-then-owner.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, file-type-then-owner fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.file-type-then-owner.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Both conditions. Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.file-type-then-owner.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does adding an owner filter to PDF mean?",
+    "options": [
+      "Both conditions",
+      "Either condition"
+    ],
+    "answer": 0,
+    "why": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

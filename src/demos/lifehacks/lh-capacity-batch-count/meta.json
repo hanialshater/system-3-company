@@ -1,0 +1,79 @@
+{
+  "slug": "lh-capacity-batch-count",
+  "title": "Capacity changes batch count",
+  "hook": "Twenty objects and a six-object carrier: a remainder still needs another trip.",
+  "domain": "lifehacks",
+  "concept": "lh-capacity-batch-count",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate whole batch counts using a stated usable capacity."
+    ]
+  },
+  "misconception": "A fractional last batch can be ignored when counting trips.",
+  "objective": "Calculate whole batch counts using a stated usable capacity.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-capacity-batch-count.c1",
+      "text": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable. Scaled model; ideal usable capacities; no weight or safety claim.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-capacity-batch-count.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Objects=20, A=4batches and B=3batches. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",6]]; B=[\"ceil\",[\"/\",\"x\",8]]; x denotes Objects. At x=20, A=4, B=3; recall at x=23: B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-capacity-batch-count.c3",
+      "text": "Divide object count by usable capacity and round up. The partial final batch still counts as a complete trip in this quantity-only model. Volume, weight and safe carrying limits would require separate constraints.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",6]]; B=[\"ceil\",[\"/\",\"x\",8]]; x denotes Objects. At x=20, A=4, B=3; recall at x=23: B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-capacity-batch-count.c4",
+      "text": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable. Change only Objects to 23. What is B (Eight-capacity) now? Correct: 3batches. Use B's stated rule with Objects=23: it gives 3batches. Divide object count by usable capacity and round up. The partial final batch still counts as a complete trip in this quantity-only model. Volume, weight and safe carrying limits would require separate constraints.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",6]]; B=[\"ceil\",[\"/\",\"x\",8]]; x denotes Objects. At x=20, A=4, B=3; recall at x=23: B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable. Change only Objects to 23. What is B (Eight-capacity) now?",
+    "options": [
+      "3batches",
+      "4batches",
+      "5batches"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Objects=23: it gives 3batches. Divide object count by usable capacity and round up. The partial final batch still counts as a complete trip in this quantity-only model. Volume, weight and safe carrying limits would require separate constraints."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

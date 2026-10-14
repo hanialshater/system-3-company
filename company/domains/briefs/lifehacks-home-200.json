@@ -1,0 +1,568 @@
+{
+  "builder": "demo-builder",
+  "count": 70,
+  "status": "review",
+  "note": "Implemented; no independent claim verification, learner review or safety approval is implied.",
+  "concepts": [
+    {
+      "id": "surface-area-drying",
+      "slug": "towel-spread-dries-first",
+      "title": "Same towel, smaller doorway",
+      "model": "dry",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "wobbly-table-turn",
+      "slug": "wobbly-table-quarter-turn",
+      "title": "Turn the table, lose the wobble",
+      "model": "wobble",
+      "format": "Single card"
+    },
+    {
+      "id": "shoelace-square-bow",
+      "slug": "square-bow-stays-tied",
+      "title": "Which way does your bow lie?",
+      "model": "bow",
+      "format": "Side-by-side comparison"
+    },
+    {
+      "id": "cord-tangle-length",
+      "slug": "long-cord-knots-itself",
+      "title": "Long cord, more loops",
+      "model": "cord",
+      "format": "Single card"
+    },
+    {
+      "id": "door-swing-clearance",
+      "slug": "door-swing-clearance",
+      "title": "A door needs a quarter-circle",
+      "model": "swing",
+      "format": "Single card"
+    },
+    {
+      "id": "furniture-through-door",
+      "slug": "furniture-through-door",
+      "title": "Volume is not doorway fit",
+      "model": "fit",
+      "format": "Single card"
+    },
+    {
+      "id": "sofa-diagonal-room",
+      "slug": "sofa-diagonal-room",
+      "title": "The diagonal hides more length",
+      "model": "diagonal",
+      "format": "Single card"
+    },
+    {
+      "id": "box-handle-clearance",
+      "slug": "box-handle-clearance",
+      "title": "A box is wider with handles",
+      "model": "clearance",
+      "format": "Single card"
+    },
+    {
+      "id": "drawer-divider-cost",
+      "slug": "drawer-divider-cost",
+      "title": "Dividers eat drawer width",
+      "model": "divider",
+      "format": "Single card"
+    },
+    {
+      "id": "suitcase-rotate-block",
+      "slug": "suitcase-rotate-block",
+      "title": "Rotate before buying a bigger bag",
+      "model": "gridfit",
+      "format": "Single card"
+    },
+    {
+      "id": "shoes-opposite-ends",
+      "slug": "shoes-opposite-ends",
+      "title": "Toe next to heel",
+      "model": "pairpack",
+      "format": "Single card"
+    },
+    {
+      "id": "socks-use-shoe-space",
+      "slug": "socks-use-shoe-space",
+      "title": "Use an existing hollow",
+      "model": "hollow",
+      "format": "Single card"
+    },
+    {
+      "id": "packing-cube-walls",
+      "slug": "packing-cube-walls",
+      "title": "A cube has an inside and an outside",
+      "model": "inner-volume",
+      "format": "Single card"
+    },
+    {
+      "id": "rolled-or-folded-volume",
+      "slug": "rolled-or-folded-volume",
+      "title": "Rolling cannot erase the cloth",
+      "model": "conserve",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "folded-shirt-stack-height",
+      "slug": "folded-shirt-stack-height",
+      "title": "Half the footprint, twice the stack",
+      "model": "layers",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "file-fold-see-each-shirt",
+      "slug": "file-fold-see-each-shirt",
+      "title": "See every shirt edge",
+      "model": "visibility",
+      "format": "Single card"
+    },
+    {
+      "id": "suitcase-layer-access",
+      "slug": "suitcase-layer-access",
+      "title": "Pack for the first thing you need",
+      "model": "access",
+      "format": "Single card"
+    },
+    {
+      "id": "jacket-last-first",
+      "slug": "jacket-last-first",
+      "title": "Pack the return order backwards",
+      "model": "reverse-order",
+      "format": "Single card"
+    },
+    {
+      "id": "heavy-book-close-to-back",
+      "slug": "heavy-book-close-to-back",
+      "title": "Same weight, shorter lever",
+      "model": "torque",
+      "format": "Single card"
+    },
+    {
+      "id": "tote-balance-sides",
+      "slug": "tote-balance-sides",
+      "title": "Two sides, one centre",
+      "model": "balance",
+      "format": "Single card"
+    },
+    {
+      "id": "bag-weight-before-volume",
+      "slug": "bag-weight-before-volume",
+      "title": "A half-empty bag can be overweight",
+      "model": "weight-limit",
+      "format": "Single card"
+    },
+    {
+      "id": "towel-over-two-bars",
+      "slug": "towel-over-two-bars",
+      "title": "Give both towel faces air",
+      "model": "exposed",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "laundry-gap-air-path",
+      "slug": "laundry-gap-air-path",
+      "title": "A gap is an air path",
+      "model": "gaps",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "garment-overlap-hides-face",
+      "slug": "garment-overlap-hides-face",
+      "title": "Overlap can hide a drying face",
+      "model": "overlap",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "drying-room-water-load",
+      "slug": "drying-room-water-load",
+      "title": "The water goes somewhere",
+      "model": "water-load",
+      "format": "Single card"
+    },
+    {
+      "id": "humidity-evaporation-gap",
+      "slug": "humidity-evaporation-gap",
+      "title": "Humid air narrows the gap",
+      "model": "humidity",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "breeze-is-not-extra-surface",
+      "slug": "breeze-is-not-extra-surface",
+      "title": "Airflow and surface are different",
+      "model": "flux",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "wetter-cloth-more-water",
+      "slug": "wetter-cloth-more-water",
+      "title": "Same layout, more water",
+      "model": "water-time",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "half-size-two-towels",
+      "slug": "half-size-two-towels",
+      "title": "Cut size, keep area",
+      "model": "split-area",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "wet-knit-hang-stretch",
+      "slug": "wet-knit-hang-stretch",
+      "title": "Hanging concentrates the load",
+      "model": "support-load",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "towel-thickness-hidden-volume",
+      "slug": "towel-thickness-hidden-volume",
+      "title": "Thicker cloth, less face per volume",
+      "model": "area-volume",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "fitted-sheet-corners-nest",
+      "slug": "fitted-sheet-corners-nest",
+      "title": "Put the corner inside the corner",
+      "model": "nest",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "pillowcase-set-kit",
+      "slug": "pillowcase-set-kit",
+      "title": "One set, one retrieval",
+      "model": "group-access",
+      "format": "Single card"
+    },
+    {
+      "id": "sock-pairing-by-pattern",
+      "slug": "sock-pairing-by-pattern",
+      "title": "Match a pattern before searching",
+      "model": "pair-search",
+      "format": "Single card"
+    },
+    {
+      "id": "sock-pairs-not-all-combinations",
+      "slug": "sock-pairs-not-all-combinations",
+      "title": "Six socks are not six possible pairs",
+      "model": "combinations",
+      "format": "Single card"
+    },
+    {
+      "id": "laundry-sort-before-walk",
+      "slug": "laundry-sort-before-walk",
+      "title": "Carry once, sort at the start",
+      "model": "trips",
+      "format": "Single card"
+    },
+    {
+      "id": "small-items-in-mesh",
+      "slug": "small-items-in-mesh",
+      "title": "Count items inside the boundary",
+      "model": "contain",
+      "format": "Single card"
+    },
+    {
+      "id": "care-label-first-choice",
+      "slug": "care-label-first-choice",
+      "title": "The label beats the fastest layout",
+      "model": "label-rule",
+      "format": "Before / after toggle"
+    },
+    {
+      "id": "shelf-front-labels",
+      "slug": "shelf-front-labels",
+      "title": "A label behind a box is hidden",
+      "model": "label-face",
+      "format": "Single card"
+    },
+    {
+      "id": "transparent-box-visibility",
+      "slug": "transparent-box-visibility",
+      "title": "See through, or open it",
+      "model": "transparent",
+      "format": "Single card"
+    },
+    {
+      "id": "group-cables-with-ends",
+      "slug": "group-cables-with-ends",
+      "title": "A bundle still has loose ends",
+      "model": "end-paths",
+      "format": "Single card"
+    },
+    {
+      "id": "elastic-loop-release",
+      "slug": "elastic-loop-release",
+      "title": "A loop is not a permanent knot",
+      "model": "loop-release",
+      "format": "Single card"
+    },
+    {
+      "id": "coiled-cord-bend-radius",
+      "slug": "coiled-cord-bend-radius",
+      "title": "Tighter coils, more curvature",
+      "model": "coil-radius",
+      "format": "Single card"
+    },
+    {
+      "id": "mug-handle-packing",
+      "slug": "mug-handle-packing",
+      "title": "Handles break the neat circle",
+      "model": "handle-envelope",
+      "format": "Single card"
+    },
+    {
+      "id": "circle-tray-square-corners",
+      "slug": "circle-tray-square-corners",
+      "title": "Rotating a circle changes nothing",
+      "model": "circle-fit",
+      "format": "Single card"
+    },
+    {
+      "id": "round-box-leftover-gap",
+      "slug": "round-box-leftover-gap",
+      "title": "Round inside square leaves corners",
+      "model": "circle-area",
+      "format": "Single card"
+    },
+    {
+      "id": "rectangular-bin-nesting",
+      "slug": "rectangular-bin-nesting",
+      "title": "Walls limit nesting depth",
+      "model": "nested-wall",
+      "format": "Single card"
+    },
+    {
+      "id": "flat-pack-volume-dimensions",
+      "slug": "flat-pack-volume-dimensions",
+      "title": "Same panels, different envelope",
+      "model": "flat-pack",
+      "format": "Single card"
+    },
+    {
+      "id": "rug-chair-pullback",
+      "slug": "rug-chair-pullback",
+      "title": "Chairs need room beyond the table",
+      "model": "rug-clearance",
+      "format": "Single card"
+    },
+    {
+      "id": "shelf-gap-wasted-height",
+      "slug": "shelf-gap-wasted-height",
+      "title": "Small boxes under tall gaps",
+      "model": "shelf-height",
+      "format": "Single card"
+    },
+    {
+      "id": "trays-slide-out-reach",
+      "slug": "trays-slide-out-reach",
+      "title": "Move the tray, shorten the reach",
+      "model": "reach",
+      "format": "Single card"
+    },
+    {
+      "id": "desk-supply-near-use",
+      "slug": "desk-supply-near-use",
+      "title": "Store it where the route ends",
+      "model": "distance-use",
+      "format": "Single card"
+    },
+    {
+      "id": "keys-fixed-drop-zone",
+      "slug": "keys-fixed-drop-zone",
+      "title": "An address changes the search",
+      "model": "known-address",
+      "format": "Single card"
+    },
+    {
+      "id": "duplicates-two-stations",
+      "slug": "duplicates-two-stations",
+      "title": "One tool or two locations?",
+      "model": "two-stations",
+      "format": "Single card"
+    },
+    {
+      "id": "labels-specific-address",
+      "slug": "labels-specific-address",
+      "title": "A category is not a location",
+      "model": "address-specific",
+      "format": "Single card"
+    },
+    {
+      "id": "alphabet-sort-search",
+      "slug": "alphabet-sort-search",
+      "title": "Sorted labels allow a halving search",
+      "model": "binary-search",
+      "format": "Single card"
+    },
+    {
+      "id": "seasonal-bin-rotation",
+      "slug": "seasonal-bin-rotation",
+      "title": "Frequent use belongs near access",
+      "model": "weighted-access",
+      "format": "Single card"
+    },
+    {
+      "id": "lids-match-by-size",
+      "slug": "lids-match-by-size",
+      "title": "Fit needs diameter, not a colour",
+      "model": "diameter-match",
+      "format": "Single card"
+    },
+    {
+      "id": "nested-box-retrieval",
+      "slug": "nested-box-retrieval",
+      "title": "Saved space can cost access",
+      "model": "nest-access",
+      "format": "Single card"
+    },
+    {
+      "id": "spacer-protects-clearance",
+      "slug": "spacer-protects-clearance",
+      "title": "A fit with no margin is fragile",
+      "model": "tolerance",
+      "format": "Single card"
+    },
+    {
+      "id": "wrapping-paper-minimum-area",
+      "slug": "wrapping-paper-minimum-area",
+      "title": "A box has six faces",
+      "model": "box-area",
+      "format": "Single card"
+    },
+    {
+      "id": "ribbon-around-box-length",
+      "slug": "ribbon-around-box-length",
+      "title": "Two loops share the same height",
+      "model": "ribbon",
+      "format": "Single card"
+    },
+    {
+      "id": "tape-mark-same-spacing",
+      "slug": "tape-mark-same-spacing",
+      "title": "Small step errors accumulate",
+      "model": "mark-error",
+      "format": "Single card"
+    },
+    {
+      "id": "measure-diagonal-for-square",
+      "slug": "measure-diagonal-for-square",
+      "title": "Equal sides do not prove square",
+      "model": "square-test",
+      "format": "Single card"
+    },
+    {
+      "id": "ruler-start-not-zero",
+      "slug": "ruler-start-not-zero",
+      "title": "Subtract the starting mark",
+      "model": "ruler-offset",
+      "format": "Single card"
+    },
+    {
+      "id": "measure-inside-not-outside",
+      "slug": "measure-inside-not-outside",
+      "title": "Outside width can fool the fit",
+      "model": "inside-width",
+      "format": "Single card"
+    },
+    {
+      "id": "cm-to-inches",
+      "slug": "cm-to-inches",
+      "title": "An inch is exactly 2.54cm",
+      "model": "conversion",
+      "format": "Single card"
+    },
+    {
+      "id": "margin-before-cut",
+      "slug": "margin-before-cut",
+      "title": "Mark the allowance, not just the face",
+      "model": "cut-allowance",
+      "format": "Single card"
+    },
+    {
+      "id": "resize-photo-frame-ratio",
+      "slug": "resize-photo-frame-ratio",
+      "title": "Fit the photo without stretching",
+      "model": "aspect-fit",
+      "format": "Single card"
+    },
+    {
+      "id": "weight-spread-on-table",
+      "slug": "weight-spread-on-table",
+      "title": "Same load, different pressure",
+      "model": "pressure",
+      "format": "Single card"
+    }
+  ],
+  "sources": {
+    "dry": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+    "bow": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
+    "cord": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+    "table": "Baritompa, Löwen, Polster & Ross, Mathematical table turning revisited, full text opened 2026-10-14 at https://arxiv.org/pdf/math/0511490. Square equal-leg table, continuous ground and slope/leg length conditions; proof of sign change and balanced position. Our cosine gap is an illustration, not a solution of the full contact geometry.",
+    "label": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
+    "pack": "REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction.",
+    "units": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm.",
+    "net": "Bosch manufacturer, product 00461036 Wäschenetz, https://www.bosch-home.com/de/de/product/waschen-trocknen/zubehoer-trockner/wollekorb-trockner/00461036 (retrieved 2026-10-14); two nets for delicate/small items. Card only models retaining items, not measured damage reduction."
+  },
+  "preparedBriefAdjustments": {
+    "towel-spread-dries-first": "Prediction asks which layout dries sooner under the same explicitly chosen model flux, rather than suggesting a measured three-hour/twelve-hour universal household comparison. Constant-rate faces omit edges, internal transport and falling-rate drying. Spread remains final state on QA control path.",
+    "wobbly-table-quarter-turn": "Uses an explicitly illustrative signed cosine contact gap; it is not a full 3D table-floor contact solver. Only square equal-leg tables, continuous gentle ground. Retains four-feet-down is not level and clear-hot-drinks caution. Zero/contact survives QA path until reset.",
+    "square-bow-stays-tied": "Preserves opposing/matching wraps and across/along bow comparison. Literal second wrap direction shown. Crossing and loops are schematic, not an exact instructional knot diagram. Loop-loss rates are stated invented model coefficients, not study data; both can fail.",
+    "long-cord-knots-itself": "Preserves length comparison with twenty seeded draws at 0.3m and3m. Uses observed study frequencies0 and0.55 as source-conditioned Bernoulli model parameters, with seed17 and 30cm box/1rev per second/10seconds disclosed. These are not household odds and no true zero-knot probability is claimed. Joined-ends manipulation omitted because the implemented objective is the observed length effect, not topological invariance."
+  },
+  "sourceRetrieval": [
+    {
+      "source": "Raymer & Smith 2007",
+      "url": "https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf",
+      "read": "Full six-page PDF; standard setup and length dependence p16432; Table1 at p16434 gives3m/0.3m-box55%; end-weaving discussion p16435. PMC hit recaptcha, used MIT-hosted original paper."
+    },
+    {
+      "source": "Daily-Diamond et al.2017",
+      "url": "https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf",
+      "read": "Full research PDF; impact/inertia and weak/strong knot mechanism. PMC and DOI opens blocked; used author institutional archive. No lifetime or probability claimed on this card."
+    },
+    {
+      "source": "Baritompa et al.",
+      "url": "https://arxiv.org/pdf/math/0511490",
+      "read": "Full17page preprint, mathematical table contact assumptions. Abstract and original PDF opened, HTML unavailable."
+    },
+    {
+      "source": "Ian Fieggen",
+      "url": "https://www.fieggen.com/shoelace/grannyknot.htm",
+      "read": "Author guide sections balanced/unbalanced stages, bow orientation and reversed starting knot."
+    },
+    {
+      "source": "GINETEX",
+      "url": "https://www.ginetex.net/article/FR/care-symbols",
+      "read": "Care standard owner guidance, Natural drying section. No licensed trademark-symbol artwork copied."
+    },
+    {
+      "source": "NIST",
+      "url": "https://www.nist.gov/pml/owm/si-units-length",
+      "read": "Exact inch25.4mm definition, 1959 metric redefinition section."
+    },
+    {
+      "source": "REI",
+      "url": "https://www.rei.com/learn/expert-advice/loading-backpack.html",
+      "read": "Equipment retailer guidance, core gear and balanced load; calculations remain explicitly chosen static models."
+    },
+    {
+      "source": "Bosch",
+      "url": "https://www.bosch-home.com/de/de/product/waschen-trocknen/zubehoer-trockner/wollekorb-trockner/00461036",
+      "read": "Manufacturer product guidance retrieved; this lesson only claims ideal bag containment, not real cleaning or damage rates."
+    },
+    {
+      "source": "OpenStax",
+      "url": "https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling",
+      "read": "Official open textbook §13.6, evaporation inhibited by humidity and vapour pressure equilibrium. Flux/rate constants in our models are assumptions, not cited measurements."
+    }
+  ],
+  "builderChecks": {
+    "pureModelTests": "13 node:test groups passed; known geometry/mechanics/access fixtures and all control endpoint bounds.",
+    "typecheck": "tsc --noEmit --incremental false passed before integration.",
+    "companyCheck": "Run; wrapper source contract and duplicate slug corrected. Remaining expected concept/registry errors await root curriculum+registry integration.",
+    "browserQA": "Root owns integrated phone/desktop QA; no pass fabricated here.",
+    "reactReview": "Applied vercel:react-best-practices. Stable hook order; no effects, external runtime calls, storage or dependencies; semantic disabled controls, SVG text alternatives; derived outputs rather than effects."
+  }
+}

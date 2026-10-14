@@ -1,0 +1,70 @@
+{
+  "slug": "mail-minus-noise",
+  "title": "Exclude the noisy term",
+  "hook": "The right topic appears in both notes and newsletters.",
+  "domain": "lifehacks",
+  "concept": "mail-minus-noise",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Use exclusion to remove an explicitly unwanted term."
+    ]
+  },
+  "misconception": "Topic OR newsletter",
+  "objective": "Use exclusion to remove an explicitly unwanted term.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The right topic appears in both notes and newsletters. Which query removes newsletter matches? Correct option: Topic minus newsletter. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.mail-minus-noise.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The second query keeps topic matches that lack the excluded word. This local field matcher leaves Gmail’s conversation grouping out.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "id": "lifehacks.mail-minus-noise.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, mail-minus-noise fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.mail-minus-noise.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Topic minus newsletter. The second query keeps topic matches that lack the excluded word. This local field matcher leaves Gmail’s conversation grouping out.",
+      "support": "derivation",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "id": "lifehacks.mail-minus-noise.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which query removes newsletter matches?",
+    "options": [
+      "Topic minus newsletter",
+      "Topic OR newsletter"
+    ],
+    "answer": 0,
+    "why": "The second query keeps topic matches that lack the excluded word. This local field matcher leaves Gmail’s conversation grouping out."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

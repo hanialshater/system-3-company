@@ -1,0 +1,79 @@
+{
+  "slug": "lh-area-scales-square",
+  "title": "Double the side, quadruple area",
+  "hook": "Two square surfaces have side lengths 2m and 4m. Is the second only twice as large?",
+  "domain": "lifehacks",
+  "concept": "lh-area-scales-square",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Apply square scaling to area coverage."
+    ]
+  },
+  "misconception": "Doubling a square’s side only doubles the area to cover.",
+  "objective": "Apply square scaling to area coverage.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-area-scales-square.c1",
+      "text": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Scaled model; ideal squares; area=side×side.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-area-scales-square.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Side=2m, A=4m² and B=16m². The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-area-scales-square.c3",
+      "text": "Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-area-scales-square.c4",
+      "text": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Change only Side to 5m. What is B (Side-2x) now? Correct: 100m². Use B's stated rule with Side=5m: it gives 100m². Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Change only Side to 5m. What is B (Side-2x) now?",
+    "options": [
+      "100m²",
+      "25m²",
+      "102m²"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Side=5m: it gives 100m². Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "slug": "lh-round-lines-versus-total",
+  "title": "Round lines or round the total",
+  "hook": "Rounding three tiny lines separately can differ from rounding their sum once.",
+  "domain": "lifehacks",
+  "concept": "lh-round-lines-versus-total",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compare line-level rounding with aggregate rounding under a stated convention."
+    ]
+  },
+  "misconception": "Rounding before summing is always identical to rounding after summing.",
+  "objective": "Compare line-level rounding with aggregate rounding under a stated convention.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-round-lines-versus-total.c1",
+      "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Scaled model; toy rule: nearest cent, half upward; no billing-law claim.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-lines-versus-total.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Lines=3, A=€1.02 and B=€1.01. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-lines-versus-total.c3",
+      "text": "Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-lines-versus-total.c4",
+      "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now? Correct: €2.01. Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now?",
+    "options": [
+      "€2.01",
+      "€2.04",
+      "€4.01"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

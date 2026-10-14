@@ -1,0 +1,90 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { evaluateHome, sourceConditionedCordTrials } from '../../src/lib/lifehacks/home-models.ts';
+const source=fs.readFileSync(new URL('../../src/lib/lifehacks/home-lessons.ts',import.meta.url),'utf8');
+const specs=JSON.parse(source.slice(source.indexOf('= [')+2,source.lastIndexOf(';')));
+const get=slug=>specs.find(s=>s.slug===slug);
+const value=(slug,p,after)=>evaluateHome(get(slug),p,after).value;
+const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-8,`${actual} != ${expected}`);
+
+test('all seventy lesson models stay finite throughout their allowed controls',()=>{
+ assert.equal(specs.length,70);
+ assert.equal(new Set(specs.map(s=>s.slug)).size,70);
+ for(const s of specs) for(const p of [s.min,s.initial,s.max]) for(const after of [false,true]) {
+  const r=evaluateHome(s,p,after);assert.ok(Number.isFinite(r.value),`${s.slug}: ${p}`);assert.ok(Number.isFinite(r.other));assert.ok(r.inputs.length);
+ }
+});
+test('the prepared towel exposes four times the faces, with chosen flux kept fixed',()=>{
+ const spec=get('towel-spread-dries-first');
+ const folded=evaluateHome(spec,70,false),spread=evaluateHome(spec,70,true);
+ close(folded.other,0.49);close(spread.other,1.96);close(folded.value/spread.value,4);
+ close(spread.value,3.0000000006); // 600g/(1.96m² × explicitly chosen 0.1020408163kg/(m²h))
+});
+test('equal-leg contact illustration crosses zero rather than proving a level tabletop',()=>{
+ close(value('wobbly-table-quarter-turn',0,false),4);
+ close(value('wobbly-table-quarter-turn',45,true),0);
+ close(value('wobbly-table-quarter-turn',90,true),-4);
+});
+test('twenty illustrative walking steps can reduce both bow loops',()=>{
+ close(value('square-bow-stays-tied',20,false),4);close(value('square-bow-stays-tied',20,true),14);
+ assert.equal(value('square-bow-stays-tied',40,false),0);
+ assert.equal(value('square-bow-stays-tied',40,true),8);
+});
+test('cord trials reproduce a fixed seed and retain genuine trial sampling variation',()=>{
+ assert.equal(sourceConditionedCordTrials(0).filter(Boolean).length,0);
+ assert.equal(sourceConditionedCordTrials(1).filter(Boolean).length,20);
+ assert.deepEqual(sourceConditionedCordTrials(0.55),sourceConditionedCordTrials(0.55));
+ assert.notDeepEqual(sourceConditionedCordTrials(0.55,20,17),sourceConditionedCordTrials(0.55,20,18));
+ assert.throws(()=>sourceConditionedCordTrials(-1));
+});
+test('a width fit differs from a volume check and includes protrusions',()=>{
+ assert.equal(value('furniture-through-door',75,false),-5);assert.equal(value('furniture-through-door',75,true),15);
+ assert.equal(value('box-handle-clearance',42,false),2);assert.equal(value('box-handle-clearance',42,true),-4);
+ assert.equal(value('measure-inside-not-outside',40,false),3);assert.equal(value('measure-inside-not-outside',40,true),-1);
+});
+test('two-dimensional packing uses integer rows and rotation, not just total area',()=>{
+ assert.equal(value('suitcase-rotate-block',30,false),3);assert.equal(value('suitcase-rotate-block',30,true),4);
+ assert.equal(value('drawer-divider-cost',40,true),9.25);
+ assert.equal(value('circle-tray-square-corners',28,false),4);assert.equal(value('circle-tray-square-corners',28,true),4);
+});
+test('rolling and splitting conserve material and face area under the stated assumptions',()=>{
+ assert.equal(value('rolled-or-folded-volume',12,false),1440);assert.equal(value('rolled-or-folded-volume',12,true),1440);
+ close(value('half-size-two-towels',80,false),1.92);close(value('half-size-two-towels',80,true),1.92);
+ close(value('towel-thickness-hidden-volume',2,false),10);close(value('towel-thickness-hidden-volume',2,true),5);
+});
+test('access, grouping and repeated routes have concrete counts',()=>{
+ assert.equal(value('suitcase-layer-access',6,false),5);assert.equal(value('suitcase-layer-access',6,true),0);
+ assert.equal(value('pillowcase-set-kit',4,false),3);assert.equal(value('pillowcase-set-kit',4,true),1);
+ assert.equal(value('sock-pairs-not-all-combinations',6,false),15);assert.equal(value('sock-pairs-not-all-combinations',6,true),3);
+ assert.equal(value('laundry-sort-before-walk',8,false),64);assert.equal(value('laundry-sort-before-walk',8,true),8);
+ assert.equal(value('seasonal-bin-rotation',8,false),28);assert.equal(value('seasonal-bin-rotation',8,true),7);
+});
+test('geometry checks dimensions, conservative bounds and an actual origin',()=>{
+ close(value('sofa-diagonal-room',120,true),10); // 120-90-150 right triangle, minus140cm rod.
+ assert.equal(value('ruler-start-not-zero',18,true),15);
+ assert.equal(value('spacer-protects-clearance',30,true),0);
+ assert.equal(value('wrapping-paper-minimum-area',20,true),880);
+ assert.equal(value('ribbon-around-box-length',20,true),112);
+ assert.equal(value('margin-before-cut',20,true),24);
+ close(value('measure-diagonal-for-square',70,true),0);
+ close(value('resize-photo-frame-ratio',30,true),200/3);
+});
+test('static mechanics never claims to reduce the total load',()=>{
+ close(value('heavy-book-close-to-back',2,false),5.886);close(value('heavy-book-close-to-back',2,true),1.962);
+ close(value('tote-balance-sides',3,false),-10);close(value('tote-balance-sides',3,true),0);
+ close(value('weight-spread-on-table',2,false),19620);close(value('weight-spread-on-table',2,true),6540);
+});
+test('conversion uses an exact definition while a repeated bias adds up',()=>{
+ close(value('cm-to-inches',25.4,true),10);
+ close(value('tape-mark-same-spacing',5,false),1);close(value('tape-mark-same-spacing',5,true),0.2);
+});
+test('metadata retains independent gates and complete model addresses',()=>{
+ for(const s of specs) {
+  const meta=JSON.parse(fs.readFileSync(new URL(`../../src/demos/lifehacks/${s.slug}/meta.json`,import.meta.url),'utf8'));
+  assert.equal(meta.status,'review');assert.equal(meta.confidence,'');
+  for(const c of meta.claims)assert.equal(c.status,'unverified');
+  assert.equal(meta.claims[2].text,s.formula);
+  assert.ok(Object.values(meta.evidence).every(e=>e.length===0));
+ }
+});

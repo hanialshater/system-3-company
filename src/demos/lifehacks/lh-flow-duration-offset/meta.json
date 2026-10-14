@@ -1,0 +1,79 @@
+{
+  "slug": "lh-flow-duration-offset",
+  "title": "A slower flow runs longer",
+  "hook": "Halving a flow rate and doubling duration: what happens to volume?",
+  "domain": "lifehacks",
+  "concept": "lh-flow-duration-offset",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Explain the offset between rate and duration under a fixed proportional change."
+    ]
+  },
+  "misconception": "Half the flow rate always means half the volume.",
+  "objective": "Explain the offset between rate and duration under a fixed proportional change.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-flow-duration-offset.c1",
+      "text": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration. Scaled model; illustrative:12L/min×t;6L/min×2t;constant flow.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-flow-duration-offset.c2",
+      "text": "The stage's two results are computed by the printed expressions. At A-minutes=2min, A=24L and B=24L. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",12,\"x\"]; B=[\"*\",6,2,\"x\"]; x denotes A-minutes. At x=2, A=24, B=24; recall at x=5: B=60. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-flow-duration-offset.c3",
+      "text": "The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",12,\"x\"]; B=[\"*\",6,2,\"x\"]; x denotes A-minutes. At x=2, A=24, B=24; recall at x=5: B=60. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-flow-duration-offset.c4",
+      "text": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration. Change only A-minutes to 5min. What is B (6L/min) now? Correct: 60L. Use B's stated rule with A-minutes=5min: it gives 60L. The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",12,\"x\"]; B=[\"*\",6,2,\"x\"]; x denotes A-minutes. At x=2, A=24, B=24; recall at x=5: B=60. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration. Change only A-minutes to 5min. What is B (6L/min) now?",
+    "options": [
+      "60L",
+      "61L",
+      "62L"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with A-minutes=5min: it gives 60L. The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

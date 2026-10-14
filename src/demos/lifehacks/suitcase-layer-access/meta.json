@@ -1,0 +1,78 @@
+{
+  "slug": "suitcase-layer-access",
+  "title": "Pack for the first thing you need",
+  "hook": "Which layout needs fewer removals for the orange item?",
+  "domain": "lifehacks",
+  "concept": "suitcase-layer-access",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves.",
+  "claims": [
+    {
+      "id": "lifehacks.suitcase-layer-access.c1",
+      "text": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-layer-access.c2",
+      "text": "The model counts removals, not travel time; pockets and side access change the result.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-layer-access.c3",
+      "text": "Removals=N−1 at bottom or 0 at top; one target and N−1 other layers.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-layer-access.c4",
+      "text": "Which layout needs fewer removals for the orange item?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-layer-access.c5",
+      "text": "Which packing question should you ask after checking that everything fits?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which packing question should you ask after checking that everything fits?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves. The model counts removals, not travel time; pockets and side access change the result."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

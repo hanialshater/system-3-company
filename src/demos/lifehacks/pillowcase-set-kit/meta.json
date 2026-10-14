@@ -1,0 +1,78 @@
+{
+  "slug": "pillowcase-set-kit",
+  "title": "One set, one retrieval",
+  "hook": "Which setup uses fewer container visits for a complete set?",
+  "domain": "lifehacks",
+  "concept": "pillowcase-set-kit",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification.",
+  "claims": [
+    {
+      "id": "lifehacks.pillowcase-set-kit.c1",
+      "text": "The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Chosen set has three pieces: scattered visits=min(input locations,3), kit visits=1.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.pillowcase-set-kit.c2",
+      "text": "It is an organisation trade-off, not proof that every object should be grouped.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Chosen set has three pieces: scattered visits=min(input locations,3), kit visits=1.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.pillowcase-set-kit.c3",
+      "text": "Chosen set has three pieces: scattered visits=min(input locations,3), kit visits=1.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.pillowcase-set-kit.c4",
+      "text": "Which setup uses fewer container visits for a complete set?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.pillowcase-set-kit.c5",
+      "text": "When is grouping by a complete set more useful than grouping by item type?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When is grouping by a complete set more useful than grouping by item type?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification. It is an organisation trade-off, not proof that every object should be grouped."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

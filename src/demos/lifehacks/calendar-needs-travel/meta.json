@@ -1,0 +1,70 @@
+{
+  "slug": "calendar-needs-travel",
+  "title": "Travel occupies the calendar",
+  "hook": "The meeting fits. Does the journey fit too?",
+  "domain": "lifehacks",
+  "concept": "calendar-needs-travel",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Reserve travel as a separate time block."
+    ]
+  },
+  "misconception": "Meeting only",
+  "objective": "Reserve travel as a separate time block.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The meeting fits. Does the journey fit too? Which layout includes the journey? Correct option: Travel before meeting. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.calendar-needs-travel.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.calendar-needs-travel.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, calendar-needs-travel fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.calendar-needs-travel.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Travel before meeting. Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.calendar-needs-travel.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which layout includes the journey?",
+    "options": [
+      "Travel before meeting",
+      "Meeting only"
+    ],
+    "answer": 0,
+    "why": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,15 @@
+.wrap { width: 100%; max-width: 440px; margin: 0 auto; display: grid; gap: 8px; }
+.caption { color: var(--muted); text-align: center; font-size: 12px; letter-spacing: .04em; }
+.diagram { display: block; width: 100%; max-height: 174px; overflow: visible; }
+.diagram text { font-family: inherit; font-size: 12px; }
+.diagram .rowLabel { font-size: 11px; }
+.diagram .fileName { font-size: 11px; }
+.diagram .fileValue { font-size: 10px; }
+.results { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.result { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px; font-size: 12px; color: var(--muted); }
+.result strong { font-size: 17px; color: var(--fg); font-variant-numeric: tabular-nums; }
+.controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; }
+.controls button { min-height: 44px; min-width: 44px; flex: 1 1 auto; font-size: 12px; padding: 7px 9px; }
+.controls button:focus-visible { outline: 3px solid var(--domain); outline-offset: 2px; }
+@media (max-width: 380px) { .wrap { gap: 6px; } .diagram text { font-size: 11px; } .controls button { font-size: 11px; padding: 6px 7px; } }
+@media (prefers-reduced-motion: reduce) { .wrap * { transition: none !important; animation: none !important; } }

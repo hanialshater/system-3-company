@@ -1,0 +1,70 @@
+{
+  "slug": "apply-not-quote",
+  "title": "Apply the rule",
+  "hook": "Quoting “sort ascending” is easier than applying it to new values.",
+  "domain": "lifehacks",
+  "concept": "apply-not-quote",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Use a stated sorting rule on a fresh set rather than repeat its wording."
+    ]
+  },
+  "misconception": "Quote the definition",
+  "objective": "Use a stated sorting rule on a fresh set rather than repeat its wording.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Quoting “sort ascending” is easier than applying it to new values. What checks application of ascending order? Correct option: Order new values. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.apply-not-quote.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.apply-not-quote.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, apply-not-quote fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "id": "lifehacks.apply-not-quote.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Order new values. The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.apply-not-quote.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What checks application of ascending order?",
+    "options": [
+      "Order new values",
+      "Quote the definition"
+    ],
+    "answer": 0,
+    "why": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

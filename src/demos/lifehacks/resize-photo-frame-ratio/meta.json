@@ -1,0 +1,78 @@
+{
+  "slug": "resize-photo-frame-ratio",
+  "title": "Fit the photo without stretching",
+  "hook": "Which layout preserves the pictured photo’s proportions?",
+  "domain": "lifehacks",
+  "concept": "resize-photo-frame-ratio",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Uniform scaling keeps the width-to-height ratio. In this frame, preserving a four-to-three photo may leave margins; forcing both dimensions to the frame would distort that ratio."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Uniform scaling keeps the width-to-height ratio. In this frame, preserving a four-to-three photo may leave margins; forcing both dimensions to the frame would distort that ratio.",
+  "claims": [
+    {
+      "id": "lifehacks.resize-photo-frame-ratio.c1",
+      "text": "Uniform scaling keeps the width-to-height ratio. In this frame, preserving a four-to-three photo may leave margins; forcing both dimensions to the frame would distort that ratio.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Frame=input×20cm; ratio4/3; scale=min(W/4,20/3), photo=4s×3s; empty area=W×20−12s².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.resize-photo-frame-ratio.c2",
+      "text": "Cropping is a third option that this comparison does not perform.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Frame=input×20cm; ratio4/3; scale=min(W/4,20/3), photo=4s×3s; empty area=W×20−12s².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.resize-photo-frame-ratio.c3",
+      "text": "Frame=input×20cm; ratio4/3; scale=min(W/4,20/3), photo=4s×3s; empty area=W×20−12s².",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.resize-photo-frame-ratio.c4",
+      "text": "Which layout preserves the pictured photo’s proportions?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.resize-photo-frame-ratio.c5",
+      "text": "Which property does uniform scaling preserve when fitting a photo?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which property does uniform scaling preserve when fitting a photo?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Uniform scaling keeps the width-to-height ratio. In this frame, preserving a four-to-three photo may leave margins; forcing both dimensions to the frame would distort that ratio. Cropping is a third option that this comparison does not perform."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

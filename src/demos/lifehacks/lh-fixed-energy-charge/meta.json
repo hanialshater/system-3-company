@@ -1,0 +1,86 @@
+{
+  "slug": "lh-fixed-energy-charge",
+  "title": "The fixed charge changes the bill",
+  "hook": "A lower per-kWh price can still produce a higher total at small usage.",
+  "domain": "lifehacks",
+  "concept": "lh-fixed-energy-charge",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compare fixed and usage-dependent charges in a stated bill model."
+    ]
+  },
+  "misconception": "The smallest per-kWh rate always makes the smallest total bill.",
+  "objective": "Compare fixed and usage-dependent charges in a stated bill model.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c1",
+      "text": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Usage=40kWh, A=€18 and B=€12. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c3",
+      "text": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c4",
+      "text": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Change only Usage to 70kWh. What is B (No-fee) now? Correct: €21. Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c5",
+      "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
+      "support": "source",
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Change only Usage to 70kWh. What is B (No-fee) now?",
+    "options": [
+      "€21",
+      "€24",
+      "€23"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "electricity",
+    "reviewRequired": true,
+    "assumptions": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

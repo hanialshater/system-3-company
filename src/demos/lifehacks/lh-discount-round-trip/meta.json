@@ -1,0 +1,79 @@
+{
+  "slug": "lh-discount-round-trip",
+  "title": "The discount round trip",
+  "hook": "20% down, then 20% up: will the price return to its starting point?",
+  "domain": "lifehacks",
+  "concept": "lh-discount-round-trip",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Explain why opposite percentage changes do not cancel."
+    ]
+  },
+  "misconception": "Equal percentage increases and decreases cancel out.",
+  "objective": "Explain why opposite percentage changes do not cancel.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-discount-round-trip.c1",
+      "text": "B reduces the original price by 20%, then raises that reduced price by 20%. Scaled model; fictional prices; changing percentage base.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-discount-round-trip.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Original=100€, A=€100 and B=€96. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-discount-round-trip.c3",
+      "text": "The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-discount-round-trip.c4",
+      "text": "B reduces the original price by 20%, then raises that reduced price by 20%. Change only Original to 115€. What is B (Down-up) now? Correct: €110.4. Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "B reduces the original price by 20%, then raises that reduced price by 20%. Change only Original to 115€. What is B (Down-up) now?",
+    "options": [
+      "€110.4",
+      "€115",
+      "€112.4"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "B reduces the original price by 20%, then raises that reduced price by 20%.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

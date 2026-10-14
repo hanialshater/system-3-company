@@ -1,0 +1,79 @@
+{
+  "slug": "lh-duplex-sheet-rounding",
+  "title": "The last sheet can be half-used",
+  "hook": "Two pages per sheet: what happens when the page count is odd?",
+  "domain": "lifehacks",
+  "concept": "lh-duplex-sheet-rounding",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compute whole-sheet needs for odd double-sided page counts."
+    ]
+  },
+  "misconception": "Double-sided printing always uses exactly half a sheet per page.",
+  "objective": "Compute whole-sheet needs for odd double-sided page counts.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-duplex-sheet-rounding.c1",
+      "text": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Scaled model; page-count model; two printable sides/sheet.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duplex-sheet-rounding.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Pages=7, A=7sheets and B=4sheets. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duplex-sheet-rounding.c3",
+      "text": "Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duplex-sheet-rounding.c4",
+      "text": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Change only Pages to 10. What is B (Double-sided) now? Correct: 5sheets. Use B's stated rule with Pages=10: it gives 5sheets. Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Change only Pages to 10. What is B (Double-sided) now?",
+    "options": [
+      "5sheets",
+      "10sheets",
+      "7sheets"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Pages=10: it gives 5sheets. Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

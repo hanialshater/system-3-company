@@ -1,0 +1,79 @@
+{
+  "slug": "lh-reuse-cost-per-use",
+  "title": "The denominator is uses",
+  "hook": "A €12 reusable item spreads its modeled purchase cost over repeated uses.",
+  "domain": "lifehacks",
+  "concept": "lh-reuse-cost-per-use",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Find a reuse cost-per-use crossover under explicitly limited costs."
+    ]
+  },
+  "misconception": "A reusable purchase is automatically cheaper at every use count.",
+  "objective": "Find a reuse cost-per-use crossover under explicitly limited costs.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-reuse-cost-per-use.c1",
+      "text": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Scaled model; fictional prices; upkeep excluded; equivalent service.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-reuse-cost-per-use.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Uses=10, A=1.2€/use and B=0.2€/use. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-reuse-cost-per-use.c3",
+      "text": "Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-reuse-cost-per-use.c4",
+      "text": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Change only Uses to 25. What is B (Single-use) now? Correct: 0.2€/use. Use B's stated rule with Uses=25: it gives 0.2€/use. Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Change only Uses to 25. What is B (Single-use) now?",
+    "options": [
+      "0.2€/use",
+      "0.48€/use",
+      "2.2€/use"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Uses=25: it gives 0.2€/use. Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "separate-ready-from-blocked",
+  "title": "Ready is a task property",
+  "hook": "A blocked task belongs on the board, but cannot run yet.",
+  "domain": "lifehacks",
+  "concept": "separate-ready-from-blocked",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Move blocked work behind its explicitly required input."
+    ]
+  },
+  "misconception": "Blocked output",
+  "objective": "Move blocked work behind its explicitly required input.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A blocked task belongs on the board, but cannot run yet. Which task can run before the input arrives? Correct option: Independent work. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.separate-ready-from-blocked.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The output requires the input in this exercise. An ordering that executes it first violates the dependency, regardless of its position on a to-do list.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.separate-ready-from-blocked.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, separate-ready-from-blocked fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.separate-ready-from-blocked.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Independent work. The output requires the input in this exercise. An ordering that executes it first violates the dependency, regardless of its position on a to-do list.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.separate-ready-from-blocked.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which task can run before the input arrives?",
+    "options": [
+      "Independent work",
+      "Blocked output"
+    ],
+    "answer": 0,
+    "why": "The output requires the input in this exercise. An ordering that executes it first violates the dependency, regardless of its position on a to-do list."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

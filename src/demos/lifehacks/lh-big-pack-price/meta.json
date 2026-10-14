@@ -1,0 +1,86 @@
+{
+  "slug": "lh-big-pack-price",
+  "title": "The big pack can cost more",
+  "hook": "A larger pack looks like a bargain. What happens per kilogram?",
+  "domain": "lifehacks",
+  "concept": "lh-big-pack-price",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Normalize different pack masses to cost per kilogram."
+    ]
+  },
+  "misconception": "The largest pack always has the lowest unit price.",
+  "objective": "Normalize different pack masses to cost per kilogram.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-big-pack-price.c1",
+      "text": "A costs €3 for 500g. B costs €6 for 900g. Scaled model; prices fictional; same product.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-big-pack-price.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Large-price=6€, A=6€/kg and B=6.667€/kg. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-big-pack-price.c3",
+      "text": "Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-big-pack-price.c4",
+      "text": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now? Correct: 8.333€/kg. Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-big-pack-price.c5",
+      "text": "A unit price expresses cost per stated quantity; comparable unit-price labels use consistent units of measure.",
+      "support": "source",
+      "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1181e2025/NIST.SP.1181e2025.html NIST SP 1181-2025, Definitions / Unit Pricing and E-Commerce. Opened 2026-10-13. Dataset prices and package amounts are invented for the arithmetic demonstration.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now?",
+    "options": [
+      "8.333€/kg",
+      "6€/kg",
+      "10.333€/kg"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "A costs €3 for 500g. B costs €6 for 900g.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

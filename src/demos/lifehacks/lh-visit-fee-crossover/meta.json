@@ -1,0 +1,79 @@
+{
+  "slug": "lh-visit-fee-crossover",
+  "title": "Entry fee versus per-visit fee",
+  "hook": "A fixed access fee and a smaller visit charge cross a pay-per-visit total.",
+  "domain": "lifehacks",
+  "concept": "lh-visit-fee-crossover",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate a fixed-access versus per-visit crossover."
+    ]
+  },
+  "misconception": "A smaller per-visit charge guarantees a smaller total.",
+  "objective": "Calculate a fixed-access versus per-visit crossover.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-visit-fee-crossover.c1",
+      "text": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent. Scaled model; fictional prices; equivalent service; no recommendation.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-visit-fee-crossover.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Visits=3, A=€30 and B=€42. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,\"x\"]; B=[\"+\",30,[\"*\",4,\"x\"]]; x denotes Visits. At x=3, A=30, B=42; recall at x=6: B=54. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-visit-fee-crossover.c3",
+      "text": "Separate the one-time term from the per-visit term. The two totals match at five visits in this model. The comparison does not determine which service fits someone’s needs or predict future attendance.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,\"x\"]; B=[\"+\",30,[\"*\",4,\"x\"]]; x denotes Visits. At x=3, A=30, B=42; recall at x=6: B=54. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-visit-fee-crossover.c4",
+      "text": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent. Change only Visits to 6. What is B (Fee+visits) now? Correct: €54. Use B's stated rule with Visits=6: it gives €54. Separate the one-time term from the per-visit term. The two totals match at five visits in this model. The comparison does not determine which service fits someone’s needs or predict future attendance.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,\"x\"]; B=[\"+\",30,[\"*\",4,\"x\"]]; x denotes Visits. At x=3, A=30, B=42; recall at x=6: B=54. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent. Change only Visits to 6. What is B (Fee+visits) now?",
+    "options": [
+      "€54",
+      "€60",
+      "€56"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Visits=6: it gives €54. Separate the one-time term from the per-visit term. The two totals match at five visits in this model. The comparison does not determine which service fits someone’s needs or predict future attendance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}

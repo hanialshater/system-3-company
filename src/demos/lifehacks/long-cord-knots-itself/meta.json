@@ -1,0 +1,78 @@
+{
+  "slug": "long-cord-knots-itself",
+  "title": "Long cord, more loops",
+  "hook": "In the paper’s setup, which length knotted more often?",
+  "domain": "lifehacks",
+  "concept": "cord-tangle-length",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17.",
+  "claims": [
+    {
+      "id": "lifehacks.long-cord-knots-itself.c1",
+      "text": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.c2",
+      "text": "These are study-conditioned model draws, not household knot odds. Plain cord; storage only.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; 20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.c3",
+      "text": "20 deterministic Bernoulli draws each with p=0 and p=0.55, fixed seed17; reported count=sum(draws). The probabilities are observed setup-specific frequencies, not true universal probabilities.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.c4",
+      "text": "In the paper’s setup, which length knotted more often?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.long-cord-knots-itself.c5",
+      "text": "Why should a tumbling-box knot frequency not be treated as your drawer’s knot probability?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why should a tumbling-box knot frequency not be treated as your drawer’s knot probability?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The experiment used a 30cm box, one revolution per second and ten seconds of tumbling. Its short strings had no observed knots; three-metre strings knotted in 55% of the reported trials. The stage samples those observed frequencies with seed 17. These are study-conditioned model draws, not household knot odds. Plain cord; storage only."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

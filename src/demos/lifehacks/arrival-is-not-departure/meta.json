@@ -1,0 +1,70 @@
+{
+  "slug": "arrival-is-not-departure",
+  "title": "Arrival time works backwards",
+  "hook": "A twenty-minute trip for a minute-forty arrival has a latest departure.",
+  "domain": "lifehacks",
+  "concept": "arrival-is-not-departure",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Compute a departure block ending at the required arrival."
+    ]
+  },
+  "misconception": "Minute 40",
+  "objective": "Compute a departure block ending at the required arrival.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A twenty-minute trip for a minute-forty arrival has a latest departure. Latest departure for this 20-minute trip? Correct option: Minute 20. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.arrival-is-not-departure.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The travel block must end at the arrival requirement. Start equals arrival minus journey duration; the model leaves real traffic uncertainty out.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.arrival-is-not-departure.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, arrival-is-not-departure fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.arrival-is-not-departure.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Minute 20. The travel block must end at the arrival requirement. Start equals arrival minus journey duration; the model leaves real traffic uncertainty out.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.arrival-is-not-departure.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Latest departure for this 20-minute trip?",
+    "options": [
+      "Minute 20",
+      "Minute 40"
+    ],
+    "answer": 0,
+    "why": "The travel block must end at the arrival requirement. Start equals arrival minus journey duration; the model leaves real traffic uncertainty out."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

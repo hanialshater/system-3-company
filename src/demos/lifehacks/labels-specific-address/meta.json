@@ -1,0 +1,78 @@
+{
+  "slug": "labels-specific-address",
+  "title": "A category is not a location",
+  "hook": "Which label narrows this search to one box?",
+  "domain": "lifehacks",
+  "concept": "labels-specific-address",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A broad category may include several boxes. A unique box address specifies one location in the pictured system; category and location labels answer different questions."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A broad category may include several boxes. A unique box address specifies one location in the pictured system; category and location labels answer different questions.",
+  "claims": [
+    {
+      "id": "lifehacks.labels-specific-address.c1",
+      "text": "A broad category may include several boxes. A unique box address specifies one location in the pictured system; category and location labels answer different questions.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidate boxes=ceil(N/2) in a chosen category or1 unique address.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.labels-specific-address.c2",
+      "text": "The item must still be put back correctly; labels alone do not enforce storage.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Candidate boxes=ceil(N/2) in a chosen category or1 unique address.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.labels-specific-address.c3",
+      "text": "Candidate boxes=ceil(N/2) in a chosen category or1 unique address.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.labels-specific-address.c4",
+      "text": "Which label narrows this search to one box?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.labels-specific-address.c5",
+      "text": "What does a location label add beyond a category name?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does a location label add beyond a category name?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A broad category may include several boxes. A unique box address specifies one location in the pictured system; category and location labels answer different questions. The item must still be put back correctly; labels alone do not enforce storage."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

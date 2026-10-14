@@ -1,0 +1,79 @@
+{
+  "slug": "lh-indivisible-shares",
+  "title": "The leftover after equal shares",
+  "hook": "Ten objects among three people: where does the tenth go?",
+  "domain": "lifehacks",
+  "concept": "lh-indivisible-shares",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Preserve the remainder after dividing indivisible resources equally."
+    ]
+  },
+  "misconception": "Equal whole-number shares distribute every object automatically.",
+  "objective": "Preserve the remainder after dividing indivisible resources equally.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-indivisible-shares.c1",
+      "text": "Three recipients each receive the same whole-number count. Remainders are kept aside. Scaled model; whole objects; three equal shares.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-indivisible-shares.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Objects=10, A=9items and B=10items. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-indivisible-shares.c3",
+      "text": "Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-indivisible-shares.c4",
+      "text": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now? Correct: 13items. Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now?",
+    "options": [
+      "13items",
+      "12items",
+      "15items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "Side-by-side comparison",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Three recipients each receive the same whole-number count. Remainders are kept aside.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  }
+}
