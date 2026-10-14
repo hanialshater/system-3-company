@@ -26,10 +26,8 @@
       "id": "cs.one-cell-rule-30.c1",
       "text": "Rule 90's row 8 had 2 live cells, in a neat nested triangle. Rule 30's had 7, and its counts went 1, 3, 3, 6, 4, 9, 5, 12, 7.",
       "support": "simulation",
-      "source": "Demo.tsx grow(); builder's node script (2026-10-14): next cell = bit (left*4 + self*2 + right) of the rule number, 17-cell row, dead beyond the edges (the pattern is 2*8 + 1 = 17 wide at step 8, so the edge is never involved). Rule 30 counts 1, 3, 3, 6, 4, 9, 5, 12, 7; Rule 90 counts 1, 2, 2, 4, 2, 4, 4, 8, 2 (Rule 90 from one cell is Pascal's triangle mod 2, the Sierpinski pattern; row 8 has 2 live cells because C(8, k) is odd only for k = 0 and 8). Matches the brief and spec. | FACT-CHECK 2026-10-14 (pass 21): Numbers re-run (Demo.tsx grow(), 17-cell row): Rule 30 counts 1,3,3,6,4,9,5,12,7, Rule 90 row 8 = 2. DISPUTED: the reveal sentence this claim records says the counts went '1, 3, 3, 6, 4, 9, 5, 12, 7 with no pattern', and the shown counts have an obvious one (odd steps 3, 6, 9, 12; even steps rise 1, 3, 4, 5, 7). The run breaks only at step 9 (12, not 15). Fix: drop 'with no pattern', or say the run does not last (step 9 gives 12, step 10 gives 11).",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx grow(); builder's node script (2026-10-14): next cell = bit (left*4 + self*2 + right) of the rule number, 17-cell row, dead beyond the edges (the pattern is 2*8 + 1 = 17 wide at step 8, so the edge is never involved). Rule 30 counts 1, 3, 3, 6, 4, 9, 5, 12, 7; Rule 90 counts 1, 2, 2, 4, 2, 4, 4, 8, 2 (Rule 90 from one cell is Pascal's triangle mod 2, the Sierpinski pattern; row 8 has 2 live cells because C(8, k) is odd only for k = 0 and 8). Matches the brief and spec. | FACT-CHECK 2026-10-14 (pass 21): Numbers re-run (Demo.tsx grow(), 17-cell row): Rule 30 counts 1,3,3,6,4,9,5,12,7, Rule 90 row 8 = 2. DISPUTED: the reveal sentence this claim records says the counts went '1, 3, 3, 6, 4, 9, 5, 12, 7 with no pattern', and the shown counts have an obvious one (odd steps 3, 6, 9, 12; even steps rise 1, 3, 4, 5, 7). The run breaks only at step 9 (12, not 15). Fix: drop 'with no pattern', or say the run does not last (step 9 gives 12, step 10 gives 11). | CLAIM FIX 2026-10-14 (demo-builder, W-197): Reveal no longer says 'with no pattern'; it now ends at the counts, matching this claim text. 'Breaks at step 9' not added because the stage stops at step 8. Also v2: grow() row typed number[] (TS2322), no behaviour change. Needs an independent check.",
+      "status": "unverified"
     },
     {
       "id": "cs.one-cell-rule-30.c2",
@@ -94,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:rule-30",
     "also": [],

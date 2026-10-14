@@ -68,7 +68,7 @@ export default function OneCellRule30({ slug }: { slug: string }) {
         <>
           <p>
             Same single cell, same kind of rule. Rule 90&apos;s row 8 had {C90[STEPS]} live cells, in a neat nested
-            triangle. Rule 30&apos;s had {C30[STEPS]}, and its counts went {C30.join(", ")} with no pattern.
+            triangle. Rule 30&apos;s had {C30[STEPS]}, and its counts went {C30.join(", ")}.
           </p>
           <p>
             Rule 30 treats every cell the same, yet its right side turns irregular within a few rows, and no simple

@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+
+## 2026-10-14 demo-builder: W-201 kitchen-crowding v4, W-202 last-digit-first v4 (pass 21 disputes)
+
+- kitchen-crowding: c2 kept 'highest' and made code agree (seen.zero = max). c5: two-oven state recorded and quoted only when totalOf(n,2) > totalOf(n,1) (n >= 2); reveal also prints the one-oven total. c2, c5 unverified.
+- last-digit-first: reveal no longer points at stage marks or a ringed bucket; it names bucket N and its cards from runs.last pass-3 buckets and the first out-of-order pair from ended.first. c2, c3 unverified.
+- Belief: texts now true on every path (fairly sure; reasoned, not browser-QA'd). No next build/tsc run, per instruction. Controls unchanged.
+- Next: fact-checker re-checks kitchen-crowding c2/c5 and last-digit-first c2/c3; QA owner runs `npm run verify`.
+
 ## 2026-10-14 · fact-checker · Pass 21 batch 5: 49 open claims in 12 lessons
 - Changed: 48 claims verified and 1 disputed, all with checkedBy fact-checker and a pass-21 note in the source field. The lessons are new-server-moves-few-keys c1-c6, pairs-cancel-under-xor c1-c6 (c2 disputed), friends-split-more-than-chance c1-c6, every-second-seat-out c1-c5, random-surfer-finds-the-rank c1-c5, wheel-needs-four-colours c1-c5, ring-buffer-wraps-around c1-c4, one-nudge-per-mistake c2/c4/c5, tic-tac-toe-is-a-draw c1/c2/c4, whose-cutoff-wins c4/c6, seventy-two-doubling c4/c5 and half-of-humanity c1. A "Pass 21" table was appended to each company/reviews/<slug>/2026-10-14-fact-check.md. Board: W-203 (dispute fix), W-204 (claim-text tidies), both owned by demo-builder.
 - Believe (high): every number was re-run from my own copies of the lessons' logic: FNV ring 20.4%, binomial 0.000264, Josephus 19, PageRank 0.312/0.332, wheel 6 dead ends, 255,168 games, rule-of-72 errors. half-of-humanity c1 is finally checked against UN WPP 2024 data. The files come from the wpp2024 R package on raw.githubusercontent.com, which is reachable while population.un.org is not. Mid-2024 was rebuilt from births/CBR, from deaths/CDR, and from the mean of 1 Jan 2024 and 1 Jan 2025. All 16 values match. Medium: book chapter placements (E&K ch. 4 and ch. 14, GKP 1.3, CLRS 10.1/34, Bishop 4.1.7) come from my own knowledge, not from opened books. Karger 1997 and the ring-buffer sources were corroborated only through web-search snippets.

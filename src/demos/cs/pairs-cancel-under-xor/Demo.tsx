@@ -1,7 +1,7 @@
 "use client";
 
 // Fold a list with XOR, one number at a time: running = running XOR next. Three bit lamps (4, 2, 1) show the running
-// value. When a number's partner arrives, the lamps it switched on switch back off, so pairs vanish and only the
+// value. Whatever lamps a number flips, its partner flips the same lamps back, so pairs vanish and only the
 // single number is left: 7 3 5 4 5 3 4 -> 7. "New order" reshuffles with a seeded generator; the result stays 7.
 
 import { useState } from "react";
@@ -165,8 +165,8 @@ export default function PairsCancelUnderXor({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The lamps ended at <strong>{bin(RESULT)}</strong>, which is {RESULT}. Each time a number's partner arrived, the
-            lamps it had switched on switched back off: a XOR a = 0, and a XOR 0 = a. Every pair cancelled, and only the
+            The lamps ended at <strong>{bin(RESULT)}</strong>, which is {RESULT}. Whatever lamps a number flips, its partner
+            flips the same lamps back: a XOR a = 0, and a XOR 0 = a. Every pair cancelled, and only the
             lone {RESULT} was left.
           </p>
           <p>

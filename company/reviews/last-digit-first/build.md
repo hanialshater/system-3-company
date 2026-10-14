@@ -11,3 +11,6 @@ Skipped (machine out of memory, coordinator order): next build, tsc, QA, walkthr
 - What changed: Two rows of pass buttons (last-first, first-first), each its own run; gate needs both runs finished. On a third pass the first bucket with two cards is ringed with 'Tie in bucket N: kept the order earlier passes gave it'. 'Flip the order' sentence removed. Retitled 'Sort by the last digit first?'.
 - Claims reopened (status unverified): c2, c3.
 - Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.
+
+## v4 (2026-10-14)
+W-202: reveal names the tie bucket and cards from the last-digit-first pass-3 buckets and the first out-of-order pair from the first-digit-first ending, instead of pointing at the stage (c2, c3).

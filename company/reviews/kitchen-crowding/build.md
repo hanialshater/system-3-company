@@ -10,3 +10,6 @@ builder: demo-builder · 2026-10-13
 ## Revision v2
 
 Review: question stated the decrement; worker 6 quoted but unvisited. Changes: question gives only the first worker's 10; reveal gated on worker 6 adding nothing (button Fill the kitchen); hook no longer asks about 40; reveal states the 2-fewer rule as the model's. c1, c2 unverified. Version 2. Not done: drawing the oven and queue as a visible cause (a design change; flagged to learning-designer).
+
+## v4 (2026-10-14)
+W-201: seen.zero keeps the max worker past the peak (c2 text unchanged). Two-oven sentence gated on totalOf(n,2) > totalOf(n,1), with the one-oven total shown (c5).

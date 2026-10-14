@@ -33,12 +33,10 @@
     },
     {
       "id": "cs.pairs-cancel-under-xor.c2",
-      "text": "a XOR a = 0 and a XOR 0 = a, so when a number's partner arrives, the bits it switched on switch back off.",
+      "text": "Whatever lamps a number flips, its partner flips the same lamps back: a XOR a = 0, and a XOR 0 = a.",
       "support": "derivation",
-      "source": "Bitwise: each bit of a XOR a is b XOR b = 0; each bit of a XOR 0 is b. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Algebra true, mechanism sentence false on the stage's own order. Trace of 7 3 5 4 5 3 4: 3 turns lamps 2 and 1 OFF (111->100) and its partner turns them back ON (000->011); the first 5 turns 4 off and 1 on. So 'the bits it switched on switch back off' (and the reveal's 'the lamps it had switched on switched back off') misdescribes what the learner watches. Fix (builder): 'the lamps it flipped flip back' / 'its partner flips the same lamps again'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Bitwise: each bit of a XOR a is b XOR b = 0; each bit of a XOR 0 is b. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Algebra true, mechanism sentence false on the stage's own order. Trace of 7 3 5 4 5 3 4: 3 turns lamps 2 and 1 OFF (111->100) and its partner turns them back ON (000->011); the first 5 turns 4 off and 1 on. So 'the bits it switched on switch back off' (and the reveal's 'the lamps it had switched on switched back off') misdescribes what the learner watches. Fix (builder): 'the lamps it flipped flip back' / 'its partner flips the same lamps again'. · Builder 2026-10-14 (W-203): reworded per pass 21; awaiting re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.pairs-cancel-under-xor.c3",
@@ -94,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:xor-cancel",
     "also": [],
