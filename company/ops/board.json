@@ -2872,10 +2872,11 @@
       "id": "W-237",
       "title": "Engineering review (tier 2) of the reveal stage-crop fix: DemoCard useRevealFit now scales the stage (transform, floor 0.4) so stage + reveal fit at 390x844 instead of scrolling the stage top off. Note: company/engineering/notes/2026-10-14-reveal-stage-crop.md",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-238",
@@ -3354,6 +3355,33 @@
       "title": "Re-check a-star-heads-for-goal c3 (v6: reveal last sentence cut via W-277 fallback, support now derivation); fold into W-283",
       "owner": "fact-checker",
       "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-287",
+      "title": "W-237 change 1+2 (BLOCKS RELEASE; else revert 1a879c6 for that build): useRevealFit legibility floor per picture = max(0.4, 9px / smallest rendered svg <text> px), no shrink if >= 1; undo any shrink that frees < 1px; skip preserveAspectRatio=none and position absolute/fixed svgs (7 overlays distorted for 0px today). Probe: 347/433 shrunk lessons have svg text < 9px (median 4.9px). See company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-288",
+      "title": "W-237 change 3+4: skip svgs holding [tabindex]/[role=button]/[role=slider]; hand-check the-tagged-molecule, wheel-needs-four-colours, three-students-two-rooms (untagged pointer targets in shrunk svgs; tag data-qa=control if live). Then re-measure with company/engineering/reviews/2026-10-14-W-237-probe.mjs (or W-242 reveal-fit) and replace the change note's 6-lesson table. See company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-289",
+      "title": "Set a minimum rendered text size for svg labels at the reveal (W-237 review uses 9px as a placeholder; no company file sets one). Answer in company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md objections table",
+      "owner": "accessibility-reviewer",
+      "state": "next",
       "domain": null,
       "created": "2026-10-14",
       "links": []

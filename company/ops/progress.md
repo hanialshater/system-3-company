@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, principal-engineer: W-237 reviewed (reveal picture fit, 1a879c6): approve with changes
+
+- Changed: review `company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md`, with the probe and its data next to it (`2026-10-14-W-237-probe.mjs`, `-probe.json`: 638 lessons on pre-fix build 4 at :3480, with 1a879c6's fit copied into the page; it reproduces the note's numbers). Objection row added to `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`. Board: W-237 done; W-287 and W-288 (platform-engineer), W-289 (accessibility-reviewer). No code changed, nothing built.
+- Believe: the code is correct and loop-free (resize, Reset, re-entry, reduced motion and no-viewBox are all fine; it converges in 2 passes). High confidence. But the uniform letterbox scale shrinks svg labels: 347 of 433 shrunk lessons end with labels under 9 px (median 4.9 px), which breaks demo-standard's "never shrink text". 7 absolute overlays get distorted and free 0 px. 40% is defensible only for text-free pictures. Fairly sure (probe on build 4 lesson code, not build 5). A 9 px floor fits about 60 lessons fully instead of 261. That is an estimate, not a measurement.
+- Next: W-287 blocks release. If it is not in the shipping build, revert 1a879c6 (and the useRevealFit part of 740f5a1/01006ec) for that build. Paste the build 5 verify summary into the review record (coordinator). Head of product: does "never shrink text" allow any shrink of labelled pictures?
+- Blocked: nothing.
+
 ## 2026-10-14, fact-checker: W-284 (midnight-sun-line c5, c7, Pass 32)
 
 - Changed: c5 and c7 are verified in meta.json (checkedBy: fact-checker, checkedOn: 2026-10-14, and a pass 32 note in each source field). Pass 32 is recorded in company/reviews/midnight-sun-line/2026-10-14-fact-check.md. W-284 is done. This was a fresh instance that read the artifact first, as the W-280 ruling requires. It used its own astronomy-engine and d3-geo runs and a WordNet 3.1 tarball it downloaded itself (the sha256 matches).
