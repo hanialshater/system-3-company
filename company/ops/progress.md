@@ -3,6 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · interaction-designer (algo2-s0) · specs for 9 algorithms batch 2 briefs
+- Changed: specs + wireframes in company/design/specs/ for small-values-crawl-left (#42), shuffle-until-sorted (#44), bracket-order-sets-the-bill (#49), karatsuba-three-not-four (#53), new-server-moves-few-keys (#58), each-element-pops-once (#63), newton-doubles-the-digits (#70), every-second-seat-out (#72), one-cell-rule-30 (#78). Board: W-179 (cm-cs-algorithms brief fixes), W-180 (mockup-artist).
+- Believe (high): every answer was re-run in node and holds, except **karatsuba**. 12345678 x 87654321 needs 33 one-digit products in a plain Karatsuba (sums carry), not 27. The spec proposes 11111111 x 11111111 (27, all one-digit) and is blocked until the brief owner accepts it or picks the spec's fallback. Medium: added stage elements that are new claims and need a fact-check (pops list 8 7 6 5 4 3 2 1 9: scan 36, stack 15; designed ring layout in new-server, which must be disclosed; per-n seeds in shuffle). Every spec's QA path was reasoned from DOM order with disabled-skip, not run.
+- Next: cm-cs-algorithms W-179 → design review → demo-builder. Blocked: karatsuba build waits on W-179.
+
 ## 2026-10-14 · head-of-product · Ruling: told vs shown "why"
 - Changed: decision company/decisions/2026-10-14-told-vs-shown.md. New craft rule `*` "Show the why you promised" in company/product/demo-standard.md (not protected). Board: W-176, W-177 (demo-builder revisions), W-178 (pattern-librarian confirms the rule).
 - Believe (medium-high): a cause that is a doesNotKnow item, or that the objective asks the learner to explain, must have something on the stage that stands for it. Told context outside the brief's gap is still fine. bending-frontier: revise (show unequal land). iss-gravity-still-there: revise (show free fall); inverse square holds via the 25% stop. Evidence is simulated reviews only. Revisit if human recall shows no difference.
