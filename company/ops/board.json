@@ -4300,10 +4300,11 @@
       "id": "W-380",
       "title": "Re-check claims reset by W-367 (FC LH-1 disputes fixed): flat-pack-volume-dimensions c3, folded-shirt-stack-height c4, rolled-or-folded-volume c3, suitcase-rotate-block c3, agenda-needs-an-outcome c1, apply-not-quote c2 (new fixture source), file-type-then-owner c1, fragmented-time-does-not-fit c1 (hook shortened to 84 chars for the 90-char bound), keep-the-error-feedback c1, link-label-names-the-target c2 c4, preview-replace-all c3 (new reveal line), size-is-not-recency c1 c4 (new caption; Drive source removed), work-in-process-limit c2 c4, lh-subtract-openings-area c2. Plus 25 new B7 hook claims (c5, or c6/c7 where taken) and all 60 lh-* c4 claims rewritten from the session 2 resource recall patch. Notes: company/reviews/<slug>/build.md 'Pre-flight v2'",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-381",
@@ -4328,19 +4329,21 @@
       "id": "W-383",
       "title": "W-369 FC LH-2 follow-ups (company/reviews/<slug>/2026-10-14-fact-check.md, Pass LH-2): (1) elastic-loop-release c1 and group-cables-with-ends c1: retype support from source (Raymer & Smith, unopenable here) to derivation/observation with the argument in the record, then a fact-checker re-checks; (2) delete the unrendered superseded transfer-prompt c5 in elastic-loop-release, group-cables-with-ends, coiled-cord-bend-radius, drying-room-water-load (spec.recall is never rendered; .recall replaces them); (3) lh-scale-recipe-portions c4 source still cites the old 750 g recall; (4) minor: elastic crossing dot at y=125, true crossing y=116.7",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-384",
       "title": "lh-percentage-overage c5 DISPUTED (FC LH-2): hook 'A fixed spare count and a percentage spare count diverge as a job grows.' is false on the stage (gap 8 at 20, 0 at 95/100, 2 at 120: they converge then cross). Reword the hook (example wording, owner decides: 'A fixed spare count stays the same; a percentage spare count grows with the job, so the two cross.'); builder applies in resource-specs.json + meta hook + c5, then fact-checker re-checks. See company/reviews/lh-percentage-overage/2026-10-14-fact-check.md",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-385",
@@ -4500,6 +4503,33 @@
       "id": "W-402",
       "title": "Build physics round-3 briefs (claim via tools/claim.mjs next physics): metal-feels-colder, bird-on-the-wire, head-on-is-a-wall, shake-faster-same-speed. Briefs in company/domains/briefs/physics.{electricity,mechanics,waves}.md round 3; numbers in artifacts/scratch/cm-physics-r3/check.mjs. bird-on-the-wire carries a power-line safety line that needs a reader other than its author before publish.",
       "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-403",
+      "title": "FC LH-4 dispute: work-in-process-limit c2/c4 (principle in studyCatalog.ts) say slicing into 5-min turns delays first completion 5 -> 15, but the stage changes order too: same order sliced or whole gives the same first completion (three,two,one: 15/15; one,two,three: 5/5). Fix by comparing one order in both views with a first job longer than a turn (e.g. 3x10 min: 10 vs 20), or reword to name the order; reword c1 predict question with it (splitting also finishes a 5-min first job at 5). See company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-404",
+      "title": "FC LH-4 found on the way: flat-pack-volume-dimensions choice label 'Assembled cube' names a 40x30x30 box (not a cube): rename e.g. 'Assembled box'; apply-not-quote c5 records spec.boundary as a stage line but StudyLesson.tsx never renders boundary: render it or drop the claim; lh-scale-recipe-portions c4 source still cites the old 750 g recall. See company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-405",
+      "title": "Re-check after W-383/W-384: elastic-loop-release c1 and group-cables-with-ends c1 (retyped to derivation, argument in source), lh-percentage-overage c5 (new hook 'Ten extra or 10% extra: which order is bigger depends on the job size.'), elastic c3 dot now at (150,116.7). Notes in company/reviews/<slug>/build.md Pre-flight v3/notes",
+      "owner": "fact-checker",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
