@@ -23,6 +23,9 @@
 // v6 (FC pass 26, W-248): the reveal says "your {fastest landing} and 7.9 km/s throws both fell 17.6 km" only when
 // the fastest landing has a first-minute record with the same fall; a slider jump to 0.79 or 4.0 km/s (which land
 // before one minute) now reads "your 7.9 km/s throw fell 17.6 km".
+// v7 (learner r8, phone fit): reveal cut to 72 words (muted "No air ... ISS" line cut, c5 withdrawn); picture
+// 16 units shorter with the header as two lines at the top left; labels 13px so the card's reveal fit can
+// shrink the picture to 200 px tall and keep them at 10 px. Crop 180 -> 0 px at 390x844.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Slider } from "@/kit/controls";
