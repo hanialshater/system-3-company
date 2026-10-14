@@ -58,3 +58,11 @@ Not run here: next build, QA, walkthrough, tsc (caller's order).
 5. QA path: unchanged (Offer $50 → $200 → $350 → Pay $300 damages → Fit $100 filter).
 6. Reset: unchanged. Reveal text as above.
 7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 who-pays-same-filter`, dev server): crop 0 px (was 229), hiddenBelow 0, phoneFit true. Stage 330 px (both panels fitted 96/118 px), reveal 267 px, 89 words. Named and visible: right to pollute, factory, laundry, 100, 200, 300; both Totals and the band are on screen.
+
+## Category manager (cm-economics-markets, 2026-10-14, W-376)
+
+Decision: ACCEPT the v4 reveal (89 words), no rewrite. Read old (102) and new against brief 5 in company/domains/briefs/economics.markets.md.
+- "Here bargaining is free": the stage chip "Simplified: two sides, free bargaining, costs known." says it, and the reveal's "with costly bargaining or many people, it can fail" still sets it against the free case. Brief claim 3's condition (costless bargaining) is on the stage, so the Coase sentence is not overstated.
+- ", the laundry or the factory" and "idea": no teaching content; both panels' Totals show who paid.
+- Stage evidence kept: $200 in the shaded band, $100 vs $300, both Totals -$100. Coase payoff kept: "The right decided only who pays. Economists call this the Coase theorem". Failure condition (brief claim 4) kept, merged into that sentence.
+Condition: c2, c3, c4 were reopened by the builder and still need the fact-checker; this approval is of the wording, not of the claims.

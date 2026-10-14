@@ -98,3 +98,10 @@ Not done: north-south nit (optional, not in this ticket). Not run: next build, Q
 5. QA path unchanged: story chip, modern chip, slider two presses.
 6. Reset: none. Reveal on the QA path: "The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, the story's numbers. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows a stadion's exact length, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance."
 7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 eratosthenes-shadow`, dev server, 390×844): **stage-top crop 0 px** (build 6: 194 px), hidden below 0 px, reveal 89 words as measured (including the kit's verdict line) / 12 lines, stage 329 px (picture 176, controls 85, text 28) fully visible in a 618 px window. Named "alexandria" visible; the dashed rays are in the visible picture. phoneFit true. Screenshot: artifacts/reveal-fit/eratosthenes-shadow.png.
+
+## Category manager (cm-economics-markets for cm-geography-earth-climate, 2026-10-14, W-365)
+
+Decision: ACCEPT the v6 reveal (89 words), no rewrite. Read against brief 16 in company/domains/briefs/geography.md.
+- The payoff ("the shadow's angle in Alexandria is also the angle at the Earth's centre ... The method needed only a shadow and a distance") survives. It depends on Syene having no shadow, and that premise is on the stage, in view, as the label "Syene, in the story: Sun overhead, no shadow" and in the question. The reveal still says "the story's numbers", so brief claim 4 (a story, not a measurement) holds.
+- Cutting the bold "50 times." is fine: the kit's verdict line says it.
+Condition: c4 and c5 were reopened; c5 now rests on the stage label, so the fact-checker must read it that way.
