@@ -117,3 +117,77 @@ WebFetch and curl fail DNS for every publisher host. Only raw.githubusercontent.
 - **demo-builder:** fix c6 (readout), c13 (recall wording), c15 (block sentence) and the c10a split / c10c withdraw-or-narrow, then route back to me.
 - **cultural-reviewer:** re-check the new c10a wording against R7.
 - **Anyone with egress:** open AEJ: Policy 13(4), JUE 141:103462, Rothstein, the Furman Center tables, the Census glossary and Social Forces 67(2), and confirm the indexed readings above against the pages.
+
+---
+
+# Pass 2 (v2)
+
+- Checker: fact-checker (session 2, branch s2-rebuild). Date: 2026-10-14. I wrote none of these claims.
+- Scope: v2 at commit `5b709594`. I re-checked the 10 claims reset to unverified: c6, c10a, c10b, c10d, c10e, c11, c12, c13, c14 and c15. I confirmed that c10c is withdrawn, and checked c4, c5, c7, c8 and c9 against the v2 text.
+- Order of reading: meta.json, then Demo.tsx and check.mjs. I did not read the build note's v2 section.
+- **Walkthrough:** `artifacts/walkthroughs/schelling-on-new-york/transcript.md` was rewritten while I was reading it. A mid-session grep found v1-era stage text. It now holds only "Walkthrough aborted: locator.waitFor: Timeout 15000ms exceeded" (twice). Another session is probably running it. So I read the learner-visible text from Demo.tsx and the meta.json `recall`, not from a rendered transcript. The QA owner should confirm that a v2 walkthrough completes.
+- **Result: 16 claims. 14 verified, 1 unverified (c10b), 1 withdrawn (c10c), 0 disputed.** The only claim left open is c10b, which still blocks publishing.
+
+## Egress (unchanged from pass 1)
+
+- curl, and WebFetch to dsl.richmond.edu, aeaweb.org, nber.org, census.gov, archive.org and epi.org all fail DNS. raw.githubusercontent.com resolves.
+- WebSearch works. Every "search-indexed" basis below is a search engine's summary, not the page itself, and each claim note says so.
+
+## Re-runs
+
+- `node --experimental-strip-types src/demos/geography/schelling-on-new-york/check.mjs`: all checks pass. This includes the new v2 checks:
+  - region scan: 1,865 frames, worst 0.86;
+  - floor readout: 0 frames read 100% with movers.
+- I wrote my own scan, not check.mjs's code. It imports `run` and `MASK` from engine.ts and uses my own D (block enumeration). Over the 48 lesson seeds at 0, 5, … 30%:
+  - 1,865 frames;
+  - 0 frames where `floor(100*(agents-movers)/agents)` = 100 with movers > 0;
+  - 0 unsettled runs, max 24 ticks;
+  - settled D (2x2) at 30%: 0.672-0.834, mean 0.753;
+  - at most 4 land cells in any 2x2 block on the mask; 576 land cells.
+- `git diff dfca2abf 5b709594 -- engine.ts` is empty. The mask and rule are the ones I re-derived in pass 1.
+
+## Verdicts
+
+| Claim | Status | Basis |
+|---|---|---|
+| c6 settles at 30%, about 0.75; readout | verified | Re-run plus my own scan. The readout fix holds, since floor gives at most 99 when movers ≥ 1. The slider label "Move if fewer than 30% of neighbours are like them" matches `like*100 < pct*occupied`. |
+| c10a late-1930s government maps graded for lending risk | verified | Mapping Inequality data read in pass 1 (grades A-D, mortgage fields, surveys mostly 1937-39). "Government" (HOLC was a federal agency) comes from search-indexed descriptions only. |
+| c10d grades associated with later home values and ownership | verified | Search-indexed AEA abstract only. Wording understates the source, which is acceptable. |
+| c10e research mixed: caused or recorded earlier practice | verified | Search-indexed abstracts only (SSRN, Chicago Fed, Arizona: JUE 141 (2024) 103462, NBER w29244 2021). The FHA's exclusion came before the maps, and the maps had little effect on lending. Against c10d, that is a real disagreement about cause. Caveat in the note: Fishback et al. measure lending, not later home values. |
+| c10b discrimination; widened wealth gaps (Rothstein) | **unverified** | See below. |
+| c11 city boundaries, 40 x 40, about 1.2 km, 576 cells | verified | engine.ts unchanged. The union of the borough boundaries is the city boundary. 3,855 ft is 1.175 km. |
+| c12 toy model, made-up groups, setting not a measure | verified | v2 stage lines ("Made-up equal groups, A and B. Not New York's population." / "A setting, not a measure of anyone.") are true of engine.ts (259/259, uniform density). |
+| c13 recall | verified | Every pass-1 problem is fixed: "In this model", "2 × 2", "squares", and one range (0.4 to 0.5) in both question and why. Every seed starts at 0.42-0.53 on 2x2 and scores lower on 4x4 and 8x8. A 2x2 block holds at most 4 cells. |
+| c14 not modelled | verified | engine.ts unchanged. "Who could live where" is accurate, since anyone may move to any empty cell. |
+| c15 tract thousands; 2x2 block at most 4 squares | verified | Grid half by derivation (max 4 land cells per 2x2). Tract half from search-indexed records of the Census definition (1,200-8,000, optimum 4,000), as in pass 1. |
+
+## Withdrawn c10c
+
+- Status is `withdrawn`. The word "income" appears nowhere in Demo.tsx, and the meta.json recall has no income or wealth words.
+- The only wealth words a learner sees are "widening wealth gaps" in the reveal. They are c10b's. No card text depends on c10c.
+
+## Unchanged claims against the v2 text
+
+- **c8.** The reveal says "In this model, a moving rule sorted the grid to {D}". "A moving rule" claims less than c8's "a simple moving rule sorts the grid", keeps "In this model", and does not say "preferences" (R3). Still within c8. No change.
+- **c5 and c7.** The reveal still quotes the learner's own start values (2x2 and the largest other block measured). check.mjs ranges are unchanged.
+- **c9.** Reveal: "Without money or history, the model does not show why any real city looks as it does." Within c9.
+- **c4.** The stage gloss is now "Spread (0 even, 1 apart):", still within c4.
+- None of c4, c5, c7, c8 or c9 is broken. I did not change their statuses.
+
+## Unverified: c10b
+
+- The v2 wording narrows the clause to wealth, which follows my pass-1 caution: "the documented history includes housing and lending discrimination, widening wealth gaps, …".
+- Search-indexed secondary summaries say the book ties segregation to the Black-white wealth gap through home equity, with a 1948 Levittown/Lakeview comparison. These were LitCharts and other study guides, an EPI blog drawing on Rothstein's film, and an ABA review.
+- That fits the wording. But no source shows the book's own text or a page, and cultural review condition 8 asks for the page. So the claim stays unverified.
+- **To close:** anyone with the book (Liveright 2017) supplies the page or pages for the home-equity and wealth-gap argument. I would then verify on that page.
+- Wording note, not a dispute: on the card "widening wealth gaps" reads as an item in the list ("discrimination, widening wealth gaps, and … maps"), while the claim says discrimination "widened" them. The card claims a little less than the claim, which is acceptable. The builder may want "which widened wealth gaps" so the card says what the claim says.
+
+## Disputes
+
+- None in pass 2.
+
+## Next
+
+- **Anyone with access to the book (cm-geography or demo-builder to arrange):** find the Rothstein 2017 page for c10b, then route it back to fact-checker.
+- **QA / walkthrough owner:** the v2 walkthrough transcript currently reads "Walkthrough aborted (locator.waitFor timeout)". Re-run it and confirm it completes. Evaluators need it.
+- **cultural-reviewer:** re-check c10a/c10d/c10e against R7. The split wording is on the card now.

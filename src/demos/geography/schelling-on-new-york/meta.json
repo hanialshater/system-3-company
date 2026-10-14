@@ -47,8 +47,10 @@
       "id": "geography.schelling-on-new-york.c6",
       "text": "In this model, at the 30% setting (move if fewer than 30% of occupied neighbouring cells hold the same group), the grid settles with everyone staying, and D on 2 x 2-cell blocks rises to about 0.75.",
       "support": "simulation",
-      "source": "engine.ts run(seed, 30). Builder run 2026-10-14 (check.mjs), the lesson's 48 seeds: settled D on 2 x 2 blocks 0.67-0.83, mean 0.75; all settle in 7-24 ticks; seed 1: 0.47 -> 0.76 in 7 ticks (matches the brief's real-mask numbers, company/domains/briefs/checks/nyc-mask-40.md). The reveal quotes the learner's own last settled 30% run, pinned on the stage when the reveal opens. Slider range 0-30% in steps of 5 (cultural review 2, ruling (a)): at 35% and above the settled frame can leave one region of the city more than 90% one group (35%: 2 of 48 seeds; 40%: 3; 45-50%: 4). check.mjs scans every frame of every lesson seed at every setting 0-30% (1,865 frames): no region (at least 10 agents) over 90% one group; worst 0.86. Every lesson seed settles at every setting 0-30% (max 24 ticks). The 'would stay' readout is floor(100 x (agents - movers) / agents) at the frame shown, so it reads 100% only when no square would move (check.mjs: 0 frames read 100% with movers, 0-30%). v2 (demo-builder, 2026-10-14): slider capped at 30% and readout changed from Math.round to an integer floor after the fact-check dispute; reset to unverified for re-check.",
-      "status": "unverified"
+      "source": "engine.ts run(seed, 30). Builder run 2026-10-14 (check.mjs), the lesson's 48 seeds: settled D on 2 x 2 blocks 0.67-0.83, mean 0.75; all settle in 7-24 ticks; seed 1: 0.47 -> 0.76 in 7 ticks (matches the brief's real-mask numbers, company/domains/briefs/checks/nyc-mask-40.md). The reveal quotes the learner's own last settled 30% run, pinned on the stage when the reveal opens. Slider range 0-30% in steps of 5 (cultural review 2, ruling (a)): at 35% and above the settled frame can leave one region of the city more than 90% one group (35%: 2 of 48 seeds; 40%: 3; 45-50%: 4). check.mjs scans every frame of every lesson seed at every setting 0-30% (1,865 frames): no region (at least 10 agents) over 90% one group; worst 0.86. Every lesson seed settles at every setting 0-30% (max 24 ticks). The 'would stay' readout is floor(100 x (agents - movers) / agents) at the frame shown, so it reads 100% only when no square would move (check.mjs: 0 frames read 100% with movers, 0-30%). v2 (demo-builder, 2026-10-14): slider capped at 30% and readout changed from Math.round to an integer floor after the fact-check dispute; reset to unverified for re-check. | FACT-CHECK 2026-10-14 (v2): VERIFIED. Re-ran check.mjs and my own scan: all 48 lesson seeds settle at every setting 0-30% (max 24 ticks); settled D on 2x2 at 30% is 0.672-0.834, mean 0.753. Over all 1,865 frames the 'would stay' readout never shows 100% while a square would still move. The slider label matches the rule in engine.ts. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c7",
@@ -81,29 +83,37 @@
       "id": "geography.schelling-on-new-york.c10a",
       "text": "Late-1930s US government maps graded neighbourhoods in US cities for lending risk.",
       "support": "source",
-      "source": "Mapping Inequality: Redlining in New Deal America, University of Richmond Digital Scholarship Lab, https://dsl.richmond.edu/panorama/redlining/ (the Home Owners' Loan Corporation maps, security grades A-D). Its area-description data (github.com/americanpanorama/HOLC_Area_Description_Data) date most surveys 1937-1939; New York City's map is 1938, so the card says 'late-1930s'. On the card, inside the sentence that begins 'In US cities': 'late-1930s government maps grading neighbourhoods for lending risk'. No acronym, no neighbourhood named beside a grade (R7). v2 (demo-builder, 2026-10-14): split from v1 c10a into c10a (this, Mapping Inequality only), c10d (Aaronson et al. 2021) and c10e (Fishback et al. 2024), one source each, after the fact-check dispute; '1938' changed to 'late-1930s'. Builder: Mapping Inequality site not opened (no egress).",
-      "status": "unverified"
+      "source": "Mapping Inequality: Redlining in New Deal America, University of Richmond Digital Scholarship Lab, https://dsl.richmond.edu/panorama/redlining/ (the Home Owners' Loan Corporation maps, security grades A-D). Its area-description data (github.com/americanpanorama/HOLC_Area_Description_Data) date most surveys 1937-1939; New York City's map is 1938, so the card says 'late-1930s'. On the card, inside the sentence that begins 'In US cities': 'late-1930s government maps grading neighbourhoods for lending risk'. No acronym, no neighbourhood named beside a grade (R7). v2 (demo-builder, 2026-10-14): split from v1 c10a into c10a (this, Mapping Inequality only), c10d (Aaronson et al. 2021) and c10e (Fishback et al. 2024), one source each, after the fact-check dispute; '1938' changed to 'late-1930s'. Builder: Mapping Inequality site not opened (no egress). | FACT-CHECK 2026-10-14 (v2): VERIFIED. Read the Mapping Inequality data (github.com/americanpanorama): A-D grades, 'Best' to 'Hazardous', with mortgage fields; most surveys dated 1937-1939. The site itself was unreachable. That the Home Owners' Loan Corporation was a federal agency comes from search-indexed descriptions only (Mapping Inequality overview, ICPSR). See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c10d",
       "text": "The maps' grades are associated with later outcomes in the graded neighbourhoods, such as home values and home ownership.",
       "support": "source",
-      "source": "Aaronson, D., Hartley, D. and Mazumder, B. (2021). The effects of the 1930s HOLC 'redlining' maps. American Economic Journal: Economic Policy 13(4): 355-392 (later home ownership, house values, rents and segregation by grade). The authors argue for an effect; the card states only an association, which understates the source. The card says outcomes, not lending: on the card 'The grades are associated with later home values and ownership'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute ('lending' was the authors' inferred mechanism, not a measured outcome). Builder: paper not opened (no egress).",
-      "status": "unverified"
+      "source": "Aaronson, D., Hartley, D. and Mazumder, B. (2021). The effects of the 1930s HOLC 'redlining' maps. American Economic Journal: Economic Policy 13(4): 355-392 (later home ownership, house values, rents and segregation by grade). The authors argue for an effect; the card states only an association, which understates the source. The card says outcomes, not lending: on the card 'The grades are associated with later home values and ownership'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute ('lending' was the authors' inferred mechanism, not a measured outcome). Builder: paper not opened (no egress). | FACT-CHECK 2026-10-14 (v2): VERIFIED from the search-indexed abstract only; the paper was not opened. The abstract reports lower later home ownership, house values and rents in lower-graded areas. 'Associated with' claims less than the authors do, which is acceptable. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c10e",
       "text": "Research is mixed on whether the maps caused these later differences or recorded lending practice that already existed.",
       "support": "source",
-      "source": "Fishback, P., Rose, J., Snowden, K. and Storrs, T. (2024). New Evidence on Redlining by Federal Housing Programs in the 1930s. Journal of Urban Economics 141: 103462 (NBER Working Paper w29244, 2021): exclusion of such neighbourhoods by federal programmes predates the maps, and the maps had little effect on lending; set against Aaronson et al. (c10d), which finds an effect. On the card: 'research is mixed on whether the maps caused this or recorded earlier practice'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute (the 'mixed' clause needs its own source). Builder: paper not opened (no egress); the date is 2024 (journal) / 2021 (NBER), not 2022 as in R7.",
-      "status": "unverified"
+      "source": "Fishback, P., Rose, J., Snowden, K. and Storrs, T. (2024). New Evidence on Redlining by Federal Housing Programs in the 1930s. Journal of Urban Economics 141: 103462 (NBER Working Paper w29244, 2021): exclusion of such neighbourhoods by federal programmes predates the maps, and the maps had little effect on lending; set against Aaronson et al. (c10d), which finds an effect. On the card: 'research is mixed on whether the maps caused this or recorded earlier practice'. v2 (demo-builder, 2026-10-14): split from v1 c10a after the fact-check dispute (the 'mixed' clause needs its own source). Builder: paper not opened (no egress); the date is 2024 (journal) / 2021 (NBER), not 2022 as in R7. | FACT-CHECK 2026-10-14 (v2): VERIFIED from search-indexed abstracts only; the paper was not opened. Fishback et al. find that the FHA's exclusion of these neighbourhoods came before the maps and that the maps had little effect on lending. Set against Aaronson et al. (c10d), this supports 'research is mixed'. Fishback et al. study lending, not later home values, so the disagreement is about cause. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c10b",
       "text": "In US cities, households did not all have the same choices: the documented history includes housing and lending discrimination, which widened wealth gaps between groups.",
       "support": "source",
-      "source": "Rothstein, R. (2017). The Color of Law: A Forgotten History of How Our Government Segregated America. New York: Liveright (federal, state and local housing and lending discrimination; its effect on home equity and so on wealth). On the card: 'In US cities, households did not all have the same choices: the documented history includes housing and lending discrimination, widening wealth gaps, ...'. v2 (demo-builder, 2026-10-14): narrowed from 'income and wealth gaps' to 'wealth gaps' after the fact-check note (Rothstein's income argument runs partly the other way). Income is no longer on the card. Builder: book not opened (no egress); fact-checker, please find the page for the wealth/home-equity argument.",
-      "status": "unverified"
+      "source": "Rothstein, R. (2017). The Color of Law: A Forgotten History of How Our Government Segregated America. New York: Liveright (federal, state and local housing and lending discrimination; its effect on home equity and so on wealth). On the card: 'In US cities, households did not all have the same choices: the documented history includes housing and lending discrimination, widening wealth gaps, ...'. v2 (demo-builder, 2026-10-14): narrowed from 'income and wealth gaps' to 'wealth gaps' after the fact-check note (Rothstein's income argument runs partly the other way). Income is no longer on the card. Builder: book not opened (no egress); fact-checker, please find the page for the wealth/home-equity argument. | FACT-CHECK 2026-10-14 (v2): STILL UNVERIFIED. The book could not be opened. Search-indexed summaries (study guides, EPI) say Rothstein links segregation to the Black-white wealth gap through home equity. That fits 'widening wealth gaps', but a summary is not the book, and no page was found. To verify: cite the book's page for the home-equity and wealth argument. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c10c",
@@ -118,36 +128,46 @@
       "id": "geography.schelling-on-new-york.c11",
       "text": "The grid's shape comes from New York City's official city boundaries, rasterised to 40 x 40 cells of about 1.2 km (576 land cells).",
       "support": "source",
-      "source": "NYC Department of City Planning, Borough Boundaries, BYTES of the BIG APPLE release 16A (2016), nybb.shp, EPSG:2263; obtained from the PyPI wheel geopandas-0.14.4-py3-none-any.whl (geopandas/datasets/nybb_16a.zip, sha256 b4a98fc3b77be5af58676de9560c2782b902b83d1d8c7914dea8d0e75177e2a1), downloaded 2026-10-14 because the NYC Open Data host was unreachable; rasterised by company/domains/briefs/checks/nyc-mask-rasterise.mjs (cell centres, even-odd point-in-polygon, cell 3,855 ft); output company/domains/briefs/checks/nyc-mask-40.json, documented in nyc-mask-40.md. The lesson inlines only the 200-byte land bitmask (engine.ts MASK_HEX); no region labels reach the lesson (R2). check.mjs confirms MASK_HEX equals the JSON's land cells. v2 (demo-builder, 2026-10-14): claim text says 'city boundaries' (cultural review 2, advisory); the dataset is still the DCP Borough Boundaries file named above. Text change only; reset to unverified for re-check.",
-      "status": "unverified"
+      "source": "NYC Department of City Planning, Borough Boundaries, BYTES of the BIG APPLE release 16A (2016), nybb.shp, EPSG:2263; obtained from the PyPI wheel geopandas-0.14.4-py3-none-any.whl (geopandas/datasets/nybb_16a.zip, sha256 b4a98fc3b77be5af58676de9560c2782b902b83d1d8c7914dea8d0e75177e2a1), downloaded 2026-10-14 because the NYC Open Data host was unreachable; rasterised by company/domains/briefs/checks/nyc-mask-rasterise.mjs (cell centres, even-odd point-in-polygon, cell 3,855 ft); output company/domains/briefs/checks/nyc-mask-40.json, documented in nyc-mask-40.md. The lesson inlines only the 200-byte land bitmask (engine.ts MASK_HEX); no region labels reach the lesson (R2). check.mjs confirms MASK_HEX equals the JSON's land cells. v2 (demo-builder, 2026-10-14): claim text says 'city boundaries' (cultural review 2, advisory); the dataset is still the DCP Borough Boundaries file named above. Text change only; reset to unverified for re-check. | FACT-CHECK 2026-10-14 (v2): VERIFIED. engine.ts is unchanged since pass 1, when the mask was re-derived from the DCP file (576 land cells, cells 3,855 ft, about 1.18 km). The outline of the five borough boundaries is the city boundary, so 'city boundaries' is accurate. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c12",
       "text": "A toy model on a grid shaped like New York City; two made-up equal groups; not a map of people and not a cause. The 30% setting is a setting in this model, not a measure of anyone.",
       "support": "convention",
-      "source": "Judgement about the model (cultural review R9, R1, R6). On the stage (v2 wording, trimmed for the stage word budget per cultural review 2 (b)): 'Made-up equal groups, A and B. Not New York's population.' and, directly above the slider, 'A setting, not a measure of anyone.' Density is equal everywhere in the model (one agent per land cell, 10% empty) while real density varies. v2 (demo-builder, 2026-10-14): stage lines reworded; reset to unverified for re-check.",
-      "status": "unverified"
+      "source": "Judgement about the model (cultural review R9, R1, R6). On the stage (v2 wording, trimmed for the stage word budget per cultural review 2 (b)): 'Made-up equal groups, A and B. Not New York's population.' and, directly above the slider, 'A setting, not a measure of anyone.' Density is equal everywhere in the model (one agent per land cell, 10% empty) while real density varies. v2 (demo-builder, 2026-10-14): stage lines reworded; reset to unverified for re-check. | FACT-CHECK 2026-10-14 (v2): VERIFIED. The stage lines match this claim. engine.ts has two equal made-up groups (259 and 259) with one per land cell. The slider value is a model setting, not data about anyone. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c13",
       "text": "In this model, a random mix scores about 0.4 to 0.5 on 2 x 2 blocks: a 2 x 2 block holds at most 4 squares, so chance alone makes blocks uneven, and the same mix scores lower on larger blocks. So a segregation number depends on its unit and means little without it.",
       "support": "simulation",
-      "source": "Recall card (R10). Restates c5 and c7 (48 lesson seeds: start 0.42-0.53 on 2 x 2, about 0.26 on 4 x 4, 0.14 on 8 x 8); 'squares', not 'households' (c12); one range, 0.4 to 0.5, in the question and here. Carries no real-city figure and no group names. v2 (demo-builder, 2026-10-14): reworded after the fact-check dispute; reset to unverified.",
-      "status": "unverified"
+      "source": "Recall card (R10). Restates c5 and c7 (48 lesson seeds: start 0.42-0.53 on 2 x 2, about 0.26 on 4 x 4, 0.14 on 8 x 8); 'squares', not 'households' (c12); one range, 0.4 to 0.5, in the question and here. Carries no real-city figure and no group names. v2 (demo-builder, 2026-10-14): reworded after the fact-check dispute; reset to unverified. | FACT-CHECK 2026-10-14 (v2): VERIFIED. The recall question and 'why' now say 'in this model', '2 x 2' and 'squares' and use the same 0.4-0.5 range. Every lesson seed starts at 0.42-0.53 on 2x2. A 2x2 block on the mask holds at most 4 land cells. Every seed scores lower on 4x4 (0.21-0.31) and 8x8. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c14",
       "text": "Not modelled: money, prices, jobs, history, who could live where.",
       "support": "derivation",
-      "source": "Scope of the rule (engine.ts): the only inputs are the city mask, the share of empty cells, the two equal groups, the seed and the threshold; agents move to any empty cell at no cost. Shown on the stage after the learner's first finished run (R3 item 5); the reveal repeats part of it ('Without money or history, the model does not show why any real city looks as it does'). v2 (demo-builder, 2026-10-14): stage line trimmed per cultural review 2 (b) item 4 ('who could live where' for 'who was allowed to live where'); reset to unverified.",
-      "status": "unverified"
+      "source": "Scope of the rule (engine.ts): the only inputs are the city mask, the share of empty cells, the two equal groups, the seed and the threshold; agents move to any empty cell at no cost. Shown on the stage after the learner's first finished run (R3 item 5); the reveal repeats part of it ('Without money or history, the model does not show why any real city looks as it does'). v2 (demo-builder, 2026-10-14): stage line trimmed per cultural review 2 (b) item 4 ('who could live where' for 'who was allowed to live where'); reset to unverified. | FACT-CHECK 2026-10-14 (v2): VERIFIED. engine.ts is unchanged. Its only inputs are the mask, the empty share, the two equal groups, the seed and the threshold, and anyone may move to any empty cell. None of the listed factors is modelled. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.schelling-on-new-york.c15",
       "text": "A census tract holds thousands of people. A 2 x 2 block in this grid holds at most 4 squares.",
       "support": "source",
-      "source": "Tract size: US Census Bureau, Glossary, 'Census Tract' (https://www.census.gov/programs-surveys/geography/about/glossary.html), which gives tracts generally between 1,200 and 8,000 people, optimum about 4,000 (builder: from memory, not opened). Grid block: derivation, a 2 x 2 block holds at most 4 cells, each at most one square. On the card: 'A census tract holds thousands of people; a 2×2 block here, at most 4 squares.' v2 (demo-builder, 2026-10-14): tied to the 2 x 2 block after the fact-check dispute ('a handful' was false for 8 x 8); 'census' added (cultural review 2). Reset to unverified.",
-      "status": "unverified"
+      "source": "Tract size: US Census Bureau, Glossary, 'Census Tract' (https://www.census.gov/programs-surveys/geography/about/glossary.html), which gives tracts generally between 1,200 and 8,000 people, optimum about 4,000 (builder: from memory, not opened). Grid block: derivation, a 2 x 2 block holds at most 4 cells, each at most one square. On the card: 'A census tract holds thousands of people; a 2×2 block here, at most 4 squares.' v2 (demo-builder, 2026-10-14): tied to the 2 x 2 block after the fact-check dispute ('a handful' was false for 8 x 8); 'census' added (cultural review 2). Reset to unverified. | FACT-CHECK 2026-10-14 (v2): VERIFIED. Tract size from search-indexed records of the Census definition only (generally 1,200-8,000 people, optimum 4,000); census.gov was unreachable. Grid half by derivation: a 2x2 block on the mask holds at most 4 cells, so at most 4 squares. See company/reviews/schelling-on-new-york/2026-10-14-fact-check.md (pass 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
