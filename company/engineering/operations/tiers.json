@@ -14,28 +14,158 @@
     "lesson quality (UX deficits from reviews)": "qa-tester"
   },
   "services": [
-    { "id": "feed-and-lesson-runtime", "tier": "T1", "owner": "platform-engineer", "status": "ok", "note": "Local only; not deployed (founder inbox F-04)" },
-    { "id": "lesson-kit", "tier": "T1", "owner": "platform-engineer", "status": "ok", "note": "src/kit; constitutional contract" },
-    { "id": "gates-and-qa-contract", "tier": "T1", "owner": "evaluation-steward", "status": "at-risk", "note": "AMD-001(d) unratified: the publish loop is hand-checked (founder inbox F-03)" },
-    { "id": "ci-and-deploy", "tier": "T1", "owner": "release-manager", "status": "degraded", "note": "CI runs on push; no production deploy yet" },
-    { "id": "auth-and-progress-db", "tier": "T1", "owner": "backend-engineer", "status": "missing", "note": "Waits on founder inbox F-01" },
-    { "id": "event-api", "tier": "T2", "owner": "backend-engineer", "status": "ok", "note": "Local file store only" },
-    { "id": "walkthrough-and-qa-tools", "tier": "T2", "owner": "tools-lead", "status": "ok", "note": "Stale-build risk; serve.sh freshness check" },
-    { "id": "publish-loop", "tier": "T2", "owner": "release-manager", "status": "at-risk", "note": "Run by the operating chief of staff, not the release manager (CEO office finding P1)" },
-    { "id": "work-queue", "tier": "T2", "owner": "tools-lead", "status": "ok", "note": "tools/claim.mjs" },
-    { "id": "lesson-storage-at-scale", "tier": "T2", "owner": "principal-engineer", "status": "missing", "note": "EDD-003 stage 1 awaiting approval (F-05)" },
-    { "id": "hq", "tier": "T3", "owner": "hq-engineer", "status": "ok", "note": "Gated in production" },
-    { "id": "metrics-and-ops-health", "tier": "T3", "owner": "tools-lead", "status": "ok", "note": "" }
+    {
+      "id": "feed-and-lesson-runtime",
+      "tier": "T1",
+      "owner": "platform-engineer",
+      "status": "ok",
+      "note": "Deployed to production via Vercel [deploy] commits (constitutional review 2026-10-14 G1/G2); the earlier \"local only\" note was stale"
+    },
+    {
+      "id": "lesson-kit",
+      "tier": "T1",
+      "owner": "platform-engineer",
+      "status": "ok",
+      "note": "src/kit; constitutional contract"
+    },
+    {
+      "id": "gates-and-qa-contract",
+      "tier": "T1",
+      "owner": "evaluation-steward",
+      "status": "at-risk",
+      "note": "AMD-001(d) unratified: the publish loop is hand-checked (founder inbox F-03)"
+    },
+    {
+      "id": "ci-and-deploy",
+      "tier": "T1",
+      "owner": "release-manager",
+      "status": "degraded",
+      "note": "2026-10-14: ~300 queued ci runs (AMD-002 ratified, falsifier W-481 on 10-16); [deploy] commits reach production via Vercel git builds before ci concludes (G1, W-480); Vercel 100/day quota exhausted by WIP pushes (now [deploy]-filtered + founder approval). SEV2 x2, ops review 2026-10-14"
+    },
+    {
+      "id": "auth-and-progress-db",
+      "tier": "T1",
+      "owner": "backend-engineer",
+      "status": "missing",
+      "note": "Waits on founder inbox F-01"
+    },
+    {
+      "id": "shared-dev-host",
+      "tier": "T1",
+      "owner": "principal-engineer",
+      "status": "degraded",
+      "note": "One 4-CPU machine runs every agent, build, dev server and QA. 2026-10-14: load 24-27, dev server 15-60 s/page, disk full several times (W-486). Interim owner until the CEO office chief of staff names one (ops review 2026-10-14). SEV2"
+    },
+    {
+      "id": "agent-isolation",
+      "tier": "T2",
+      "owner": "tools-lead",
+      "status": "degraded",
+      "note": "Worktree, scratch dir, board id and process isolation between concurrent agents. 2026-10-14: wrong-worktree writes, board id collisions, fc35/ scratch collision, pkill killed coordinator shell x2, background loops died with parent. SEV3 x5"
+    },
+    {
+      "id": "event-api",
+      "tier": "T2",
+      "owner": "backend-engineer",
+      "status": "ok",
+      "note": "Local file store only"
+    },
+    {
+      "id": "walkthrough-and-qa-tools",
+      "tier": "T2",
+      "owner": "tools-lead",
+      "status": "ok",
+      "note": "Stale-build risk; serve.sh freshness check"
+    },
+    {
+      "id": "publish-loop",
+      "tier": "T2",
+      "owner": "release-manager",
+      "status": "at-risk",
+      "note": "Run by the operating chief of staff, not the release manager (CEO office finding P1)"
+    },
+    {
+      "id": "work-queue",
+      "tier": "T2",
+      "owner": "tools-lead",
+      "status": "ok",
+      "note": "tools/claim.mjs"
+    },
+    {
+      "id": "lesson-storage-at-scale",
+      "tier": "T2",
+      "owner": "principal-engineer",
+      "status": "missing",
+      "note": "EDD-003 stage 1 awaiting approval (F-05)"
+    },
+    {
+      "id": "hq",
+      "tier": "T3",
+      "owner": "hq-engineer",
+      "status": "ok",
+      "note": "Gated in production"
+    },
+    {
+      "id": "metrics-and-ops-health",
+      "tier": "T3",
+      "owner": "tools-lead",
+      "status": "ok",
+      "note": ""
+    }
   ],
   "data": [
-    { "id": "learner-accounts", "tier": "D1", "owner": "backend-engineer", "status": "missing", "note": "Not collected yet; age policy pending (F-01)" },
-    { "id": "learning-events-and-attempts", "tier": "D2", "owner": "backend-engineer", "status": "ok", "note": "Anonymous, local; retention policy needed before deploy" },
-    { "id": "lessons-claims-curriculum", "tier": "D3", "owner": "evaluation-steward", "status": "ok", "note": "In git" },
-    { "id": "company-records-and-event-log", "tier": "D3", "owner": "tools-lead", "status": "ok", "note": "Agent transcripts are summarised; check for pasted secrets before publishing HQ" }
+    {
+      "id": "learner-accounts",
+      "tier": "D1",
+      "owner": "backend-engineer",
+      "status": "missing",
+      "note": "Not collected yet; age policy pending (F-01)"
+    },
+    {
+      "id": "learning-events-and-attempts",
+      "tier": "D2",
+      "owner": "backend-engineer",
+      "status": "ok",
+      "note": "Anonymous, local; retention policy needed before deploy"
+    },
+    {
+      "id": "lessons-claims-curriculum",
+      "tier": "D3",
+      "owner": "evaluation-steward",
+      "status": "ok",
+      "note": "In git"
+    },
+    {
+      "id": "company-records-and-event-log",
+      "tier": "D3",
+      "owner": "tools-lead",
+      "status": "ok",
+      "note": "Agent transcripts are summarised; check for pasted secrets before publishing HQ"
+    }
   ],
-  "security": [],
+  "security": [
+    {
+      "id": "spike-route-open-cdn-param",
+      "tier": "S1",
+      "owner": "platform-engineer",
+      "status": "at-risk",
+      "note": "W-477: /spike ships to production; ?cdn= frames any site under our domain and writes real localStorage and /api/events. Exploitable now with a URL, so S1 (exploitable now) not S2. Blocks app deploys until fixed (README tier rule)"
+    }
+  ],
   "ux_deficits": [
-    { "id": "accessibility-review-never-run", "tier": "U1", "owner": "accessibility-reviewer", "status": "at-risk", "note": "0 accessibility records; 76 lessons published; 49 learner reviews mention contrast, screen-reader or tap-size issues (CEO office P2)" },
-    { "id": "told-not-shown", "tier": "U2", "owner": "design-lead", "status": "at-risk", "note": "104 of 289 learner reviews" }
+    {
+      "id": "accessibility-review-never-run",
+      "tier": "U1",
+      "owner": "accessibility-reviewer",
+      "status": "at-risk",
+      "note": "0 accessibility records; 76 lessons published; 49 learner reviews mention contrast, screen-reader or tap-size issues (CEO office P2)"
+    },
+    {
+      "id": "told-not-shown",
+      "tier": "U2",
+      "owner": "design-lead",
+      "status": "at-risk",
+      "note": "104 of 289 learner reviews"
+    }
   ]
 }
