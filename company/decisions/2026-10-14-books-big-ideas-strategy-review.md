@@ -5,6 +5,8 @@ reviewed: `company/domains/books-strategy.md` (cm-books, Hester), `company/domai
 inputs read: both strategies in full; `company/decisions/2026-10-14-w556-wave-gate.md` (my gate); `company/decisions/2026-10-14-books-and-big-ideas.md` (founder request: "Book Summaries: multi-card lessons that teach a book's core ideas … book summary (multiple cards)"); `company/product/verticals/plan-to-2000.md` §2 and §3; `company/ops/brief-skips.json`; `company/roles/cultural-reviewer.md`; Big Ideas briefs 6, 8 and 9; `npm run company -- status` and the meta.json status of the 8 drafts (2026-10-14).
 founder's intent, as given to me by the session that dispatched this review: "double down on big ideas and book summary".
 
+> **Amended 2026-10-14 by `2026-10-14-book-deck-format.md`** (after the founder's `2026-10-14-founder-books-experience.md`): Ruling 5 is superseded in part (a book is a deck of 3-4 idea lessons, not a path of 2; W-629 re-scoped). Ruling 1's Books slots now count review in lesson-equivalents (a deck = its ideas + 1), and "keep 120" reads "keep 120 idea-lessons" (founder, F4). Ruling 2's Books DLR five of loose drafts is replaced by the reference deck. D2 and the "2 per book" cap are withdrawn from the accepted list; D6 is replaced. Details: that record, "What changes in my earlier review".
+
 ## What is true today (checked 2026-10-14)
 
 - There are 8 drafts on disk and 0 published. Books has slowest-station-sets-pace, one-percent-a-day, born-in-january-picked-first and wheel-number-pulls-guess, with 6 claims each. Big Ideas has two-four-six-rule, ten-times-taller-giant, noise-draws-dunning-kruger and earth-history-in-a-day, with 5, 5, 5 and 8 claims. None has a review.
