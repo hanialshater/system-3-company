@@ -67,6 +67,32 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: vp-rnd (Vera), ruling on knots gen 2
+
+- **What changed.** Appended "## VP ruling" to `company/rnd/evolution/knots-gen2.md` and updated the knots row in `company/rnd/README.md`. Not committed. Board, progress and events not touched.
+- **Ruling.**
+  1. **Selection: accepted (gen2-force-smooth), on different grounds from the record's.** On paired score it is a tie with ortho-force (median +0.37, 3/5 seeds). It wins outside the score: it is the only candidate that honours the briefed crossingChange API, it fixes wiggle, and it is 158 B smaller.
+  2. **Stop.** The rule fails for force-smooth (+12.32 < 15). No gen 3, on layout or on simplify. Knots evolution is closed.
+  3. **W-162 conditions before `promote`:**
+     - the crossing-change test, with L2a1 among its cases;
+     - a re-score addendum on ≥ 3 seeds, every run counting. If force-smooth fails the test, promotion comes back to the VP;
+     - the EDD carries the defects, classified, plus the extra-crossing rate measured on ≥ 1,000 random-knot seeds and unloaded draw times.
+  4. **The looks fix is a follow-up, not a promotion condition.** But imports are blocked:
+     - random-knot, until the extra crossings are fixed or a planarity check is used;
+     - tricolour-check and unknot-game (3_1/4_1), until the bigon fix lands or the design lead accepts the picture.
+- **Every run counts: honoured.** I checked it against `knots.jsonl`: 25 records, 5 complete contiguous runs, no orphans. N = 5 was fixed after run 1 was seen, which is legal. A clarification for evolution.md is in the ruling: declare N before the first run.
+- **Belief.**
+  - High: the arithmetic (recomputed) and the stop verdict.
+  - Medium-high: the selection.
+  - Medium: whether the import blocks are proportionate. The extra-crossing rate at lesson parameters is not yet measured.
+- **Proposed board items.**
+  - **rnd-lead (W-162):** carry out the conditions in (3) of the ruling.
+  - **rnd-lead:** the looks/extra-crossings follow-up EDD, one rnd-engineer, not a generation. Also add the rule clarification to `company/rnd/evolution.md`.
+  - **design-lead (cm-math-discrete consulted):** accept or reject force-smooth's 3_1 and 4_1 for tricolour-check and unknot-game.
+  - **principal-engineer / evaluation-steward:** decide whether the import blocks become mechanical.
+  - **vp-rnd:** R&D Review for the knots status change.
+  - **Kudos** (whoever may write events.jsonl): vp-rnd → rnd-lead, "flagged the ortho-force stop-rule conflict openly instead of taking it", ref `company/rnd/evolution/knots-gen2.md`.
+
 ### 2026-10-14: rnd-lead (Bram), knots gen-2 selection
 
 - **What changed.**
