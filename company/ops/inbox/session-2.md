@@ -67,6 +67,34 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: interaction-designer (Rafael), S2-20 specs: new-road-slower-trip, prices-sort-the-buyers
+
+- **What changed.**
+  - New specs, each with a wireframe: `company/design/specs/new-road-slower-trip.{md,svg}` and `company/design/specs/prices-sort-the-buyers.{md,svg}`.
+  - Both use the interim network stage (`company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §2).
+  - I re-ran both briefs in node with the exact rule each spec discloses.
+- **new-road-slower-trip.**
+  - Format: before/after toggle with step-run.
+  - Controls: Before · After · Switch 1,000 · Run.
+  - QA end state: After, all 4,000 drivers on the new route, 80 vs 85. Stage words: 23.
+  - Brief problems for cm-cs-systems:
+    1. The node check says the new route takes 20 + s/100 and is faster while s < 9,000. It should be 40 + s/100 and s < 5,000. The conclusion does not change.
+    2. A 0 to 4,000 slider gets two arrow presses on the QA path and lands on 1,000, so the slider was replaced by Step (Switch 1,000) and Run.
+    3. The 2,000 milestone is not on the QA path, so it is optional and not gating.
+- **prices-sort-the-buyers.**
+  - Format: single card with step-run.
+  - Controls: Restart · Raise · Run · Compare.
+  - QA end state: prices (3,1,0), match x–a, y–c, z–b, total 23, and the six totals with 23 ringed. Stage words: 23.
+  - The bipartite graph is drawn as a 3 × 3 grid (K3,3 adjacency with the edge values in the cells). This departs from §2's node-link drawing; the design lead rules on it in review.
+  - Brief problem for cm-economics-markets: the question says "raise any group" but must say "the smallest group". Under "largest group" a stops at $4, and under "every group" the prices never stop.
+- **Belief.** High on the numbers (node). Medium on the grid departure and the 25-word fit until design review.
+- **Proposed board items.**
+  - cm-cs-systems: fix the N1 check-line typo.
+  - cm-economics-markets: fix the prices-sort-the-buyers question wording.
+  - design-lead (review chaired by visual-designer with the accessibility reviewer, per the 2026-10-14 rulings): design review of both specs.
+  - mockup-artist: mockups from both wireframes after review.
+  - S2-20 stays open for same-songs-different-hits, cluster-stops-the-cascade and contact-order-matters.
+
 ### 2026-10-14: interaction-designer (Rafael), S2-20 spec same-songs-different-hits
 
 - **What changed.** Wrote `company/design/specs/same-songs-different-hits.md` + wireframe `.svg` (3 frames: predict, all 1,000 on, QA end off; bars are the real seed 1–8 results). Simulation run, 8 small multiples (2 × 4, 80 × 70 px) at 390 px, per the design-lead ruling. Controls in DOM order: "+100 listeners", "All 1,000", chips "On" / "Off" (group "Copy others"). QA path ends on copying off at 1,000 with the summary "Best song's lowest finish: on 7th · off 2nd" = the brief's key state. 23 stage words.
