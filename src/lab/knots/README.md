@@ -1,11 +1,11 @@
 # src/lab/knots: knot theory for 60-second lessons
 
-Status: **lab, generation 0 (baseline)**, 2026-10-14. Plain ESM JavaScript, no dependencies, types and
+Status: **lab, layout from `gen2-force-smooth`** (promoted into the lab 2026-10-14, W-162; design notes of `draw.mjs` in [NOTES.md](NOTES.md); kit move proposed in `company/engineering/edd/EDD-004-knots-kit.md`). Plain ESM JavaScript, no dependencies, types and
 docs in `index.d.ts`. **Lessons may not import `src/lab/`** (company/rnd/README.md). It reaches lessons
 only after the R&D lead's EDD and the principal engineer's review move it to `src/kit/`.
 
 - Prior art, data sources and licences: [PRIOR-ART.md](PRIOR-ART.md)
-- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 101 tests, about 15 s. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
+- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 103 tests. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
 - Bench (quality metrics, one JSON line): `node src/lab/knots/bench.mjs`
 - Sizes: `node src/lab/knots/size.mjs`
 
