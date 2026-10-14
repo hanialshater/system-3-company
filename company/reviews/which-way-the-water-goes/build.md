@@ -3,7 +3,7 @@
 Kept from evaluators until they report. Brief: company/domains/briefs/geography.earth-climate.md, Wave J #2.
 
 - Directions re-run against section `ekman` of the check: net flow = wind bearing + 90 degrees north of the equator, - 90 south (N wind → E; W wind → N; E wind → S; south: N wind → W). Demo.tsx computes the same and names the direction with the same compass words.
-- Ekman spiral drawn at z/D = 0, 0.6, 1.2, 1.8, 2.4: each layer turned 45 degrees + z/D rad off the wind and shortened by exp(-z/D). The net-flow arrow is not to scale with the layer arrows (the card shows directions only; magnitudes stay in claim c1).
+- Ekman spiral drawn at z/D = 0, 0.4, 0.8, 1.2, 1.6: each layer turned 45 degrees + z/D rad off the wind and shortened by exp(-z/D). The net-flow arrow is not to scale with the layer arrows (the card shows directions only; magnitudes stay in claim c1).
 - "Ocean view" always shows the northern basin (it switches the south toggle off), because the key state and the reveal are about 30 N. "South of the equator" pressed from the ocean view returns to the square with the southern wind case.
 - Milestones `trades` and `westerlies` count only north of the equator (the reveal says "your trade winds pushed water north").
 - Claims c3 and c4 rest on a textbook the builder could not open (left unverified, as the brief says).
@@ -19,3 +19,7 @@ Kept from evaluators until they report. Brief: company/domains/briefs/geography.
 7. Phone fit (tools/reveal-fit.mjs, 390x844, shared dev server :3530, 2026-10-14): 83 words; stage-top crop 0 px; hiddenBelow 0; namedHidden 0; phoneFit true (first run: crop 76 px with four control rows and a 250 px picture; labels shortened, wind direction moved onto the picture's wind label, picture 196 px). Points at: the ocean view's net-flow arrows and the circling arrow.
 
 reveal-fit note: run through a preload that only raises Playwright's default navigation and waitFor timeouts (the shared dev server took 30 to 240 s a page); the tool's measuring code was not changed.
+
+## Local QA (2026-10-14)
+
+`QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J geography slugs> QA_OUT=artifacts/qa-wavej-geography npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=900000`. The `--timeout` flag is a time budget only, because the default 45 s test timeout expired in `page.goto` on the shared dev server in every run. No check was changed. Reports: artifacts/qa-wavej-geography/qa-report-5lessons.json (9 of 10 passed; the one failure was which-sea-gets-the-rain on desktop, a React "state update on a component that hasn't mounted yet" console warning, the dev-server Fast Refresh noise also seen in other wave J runs), qa-report-which-sea-rerun.json (phone and desktop pass), qa-report-which-way-rerun.json (phone and desktop pass, after the v1 sea-rectangle fix). No QA record was filed with `company qa-record`; that belongs to qa-tester.

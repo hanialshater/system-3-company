@@ -43,8 +43,8 @@ function Arrow({ x, y, bearing, len, className, head = 7 }: { x: number; y: numb
   );
 }
 
-// Ekman spiral layers: z/D = 0, 0.6, 1.2, 1.8, 2.4 (turn z/D radians further, shrink by exp(-z/D)).
-const LAYERS = [0, 0.6, 1.2, 1.8, 2.4];
+// Ekman spiral layers: z/D = 0, 0.4, 0.8, 1.2, 1.6 (turn z/D radians further, shrink by exp(-z/D)).
+const LAYERS = [0, 0.4, 0.8, 1.2, 1.6];
 
 export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
   const [wind, setWind] = useState<Wind>("N");
@@ -114,7 +114,7 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
                 >
                   {!ocean ? (
                     <>
-                      <rect {...SQ} className={s.sea} />
+                      <rect x={SQ.x} y={SQ.y} width={SQ.w} height={SQ.h} className={s.sea} />
                       {/* Wind streaks across the square */}
                       {[-60, 0, 60].map((o) => {
                         const [px, py] = vec(wb + 90, o);
@@ -221,7 +221,7 @@ function OceanView() {
   const mx = B.x + B.w / 2;
   return (
     <>
-      <rect {...B} className={s.sea} />
+      <rect x={B.x} y={B.y} width={B.w} height={B.h} className={s.sea} />
       {[15, 30, 45].map((l) => (
         <g key={l}>
           <line x1={B.x} y1={yLat(l)} x2={B.x + B.w} y2={yLat(l)} className={l === 30 ? s.mid : s.grid} />
