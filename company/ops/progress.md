@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 demo-builder: W-266 midnight-sun-line v4 (reveal fits with its picture)
+
+- Changed: I applied cm-geography's W-266 reveal text as given (81 words rendered, budget 90 or fewer). c4 withdrawn with a note. c3, c5 and c7 reset to unverified. c1 untouched. Version 3 to 4. Status published to review, on the coordinator's instruction, so the launch gate is not broken. Updated the Demo.tsx header and added `## Pre-flight v4` to company/reviews/midnight-sun-line/build.md. tsc and check pass. W-266 is now in review.
+- Believe: the text and claims match W-266 (high confidence). I believe the crop is now about 0 px, but that is a moderate-confidence estimate. Pre-flight 7 was not measured, because builds, QA and walkthrough were not allowed.
+- Next: W-269 fact-checker (c3, c5, c7, c4 withdrawal). W-270 qa-tester (reveal-fit px at 390x844, orange gap visible). W-271 release-manager (republish).
+- Open: c5 says "around June 21", but the predict question still says "June 21". cm-geography should decide whether the question changes.
+
 ## 2026-10-14 head-of-product: W-263 reveal fit rule adopted with changes; reveal budget is 90 words
 
 - What changed: `company/product/demo-standard.md` has a new craft rule, "The reveal fits with its picture" (at 390×844 the stage top, the reveal's last line and everything the reveal points at are on screen; no inner scroller), and a new Pre-flight question 7, "Phone fit". The Text budget line now says the reveal is ≤ 90 words (it said 120). `company/design/system.md` also says 90 and points back. The verdict and four changes from the design lead's text are in the Consulted section of `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`, along with two new objection rows. W-263 is done. W-268 (chief-of-staff) is new: roles.mjs still gives the learning designer a 120-word reveal script.

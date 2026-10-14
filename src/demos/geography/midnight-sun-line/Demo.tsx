@@ -8,6 +8,8 @@
 // v3: after the lock, the globe marks the pole and the gap between the night edge and the pole along the
 // midnight meridian ("23.4° gap = tilt"), so 90 − 23.4 can be read off the picture; the reveal quotes the
 // highest latitude the learner saw a sunset at and the lowest they saw none at.
+// v4 (W-266, cm-geography's text): reveal cut to about 81 words so the stage top and the orange gap stay on
+// screen at 390x844. The no-air caveat left the reveal (the stage caption keeps "Toy: no air"); c4 withdrawn.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -75,10 +77,9 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
             <strong>{fmtLat(LINE)}</strong>: 90° minus the tilt, 90 − {DEC.toFixed(1)}.
           </p>
           <p>
-            Look at the orange gap on the globe. In June the north pole leans {DEC.toFixed(1)}° toward the Sun, so the
-            night side&rsquo;s edge stops {DEC.toFixed(1)}° short of the pole. A town whose circle fits inside that gap
-            stays in the light all the way round. This line is the Arctic Circle. 23.4°N is the Tropic of Cancer, where the Sun is overhead at noon, not where it stops setting. This model has no air: in reality, air bends sunlight and the Sun is a
-            disc, so the midnight Sun can be seen a little south of the line.
+            The orange gap on the globe is that tilt: the pole leans {DEC.toFixed(1)}° toward the Sun, so the night
+            side&rsquo;s edge stops {DEC.toFixed(1)}° short of it. A town whose circle fits inside the gap stays lit all
+            day. That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), where the noon Sun is overhead.
           </p>
         </>
       )}

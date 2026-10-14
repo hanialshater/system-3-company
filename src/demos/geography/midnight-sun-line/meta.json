@@ -4,7 +4,7 @@
   "hook": "In June the far north gets a Sun that never sets. Where exactly does that start?",
   "domain": "geography",
   "concept": "midnight-sun",
-  "status": "published",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-geography",
@@ -45,28 +45,24 @@
       "id": "geography.midnight-sun-line.c3",
       "text": "The line at 66.6 N is the Arctic Circle.",
       "support": "convention",
-      "source": "The Arctic Circle is defined as the parallel at 90 degrees minus the obliquity, about 66.56 N today (Astronomical Almanac; any atlas). From memory, not checked online.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "The Arctic Circle is defined as the parallel at 90 degrees minus the obliquity, about 66.56 N today (Astronomical Almanac; any atlas). From memory, not checked online. | REOPENED 2026-10-14 (v4, W-266 by demo-builder): learner-visible reveal sentence changed to cm-geography's W-266 text; needs a fresh check. Claim wording unchanged; the reveal sentence now reads 'That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), ...'.",
+      "status": "unverified"
     },
     {
       "id": "geography.midnight-sun-line.c4",
       "text": "Because air bends sunlight and the Sun is a disc, the real midnight Sun can be seen a little south of the line.",
       "support": "source",
-      "source": "Standard sunrise/sunset is defined at a Sun-centre altitude of -0.833 degrees (34 arcmin refraction plus 16 arcmin semi-diameter; USNO / Astronomical Almanac). With that, the solstice midnight Sun reaches roughly 65.7 N. From memory, not checked online; the lesson gives no number for it.",
-      "status": "verified",
+      "source": "Standard sunrise/sunset is defined at a Sun-centre altitude of -0.833 degrees (34 arcmin refraction plus 16 arcmin semi-diameter; USNO / Astronomical Almanac). With that, the solstice midnight Sun reaches roughly 65.7 N. From memory, not checked online; the lesson gives no number for it. | WITHDRAWN 2026-10-14 (v4, W-266 by demo-builder): cm-geography cut the no-air caveat from the reveal; no learner-visible sentence carries this claim now (the stage caption keeps only 'Toy: no air', a model label). Fact-checker to confirm the withdrawal.",
+      "status": "withdrawn",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
     {
       "id": "geography.midnight-sun-line.c5",
-      "text": "23.4 N is the Tropic of Cancer, where the Sun is directly overhead at noon on the June solstice; it is not where the Sun stops setting. June 21 is the longest day of the year in the northern hemisphere.",
+      "text": "23.4 N is the Tropic of Cancer, where the Sun is directly overhead at noon on the June solstice; the Arctic Circle is a different line. Around June 21 is the longest day of the year in the northern hemisphere (predict question).",
       "support": "source",
-      "source": "Standard geography references (Tropic of Cancer at the Sun-declination limit of about 23.44 N; June solstice about 21 June). · Fact-check pass 19 2026-10-14: VERIFIED. Tropic latitude = solar declination limit (23.44 N); on the June solstice the subsolar point is at the declination, so noon Sun is overhead there. \"June 21\": the solstice falls on June 20-22 depending on year and time zone; declination one day off the solstice differs by 0.0035 deg, so day length differs by seconds. Suggest \"around June 21\" if the builder touches the text.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Standard geography references (Tropic of Cancer at the Sun-declination limit of about 23.44 N; June solstice about 21 June). · Fact-check pass 19 2026-10-14: VERIFIED. Tropic latitude = solar declination limit (23.44 N); on the June solstice the subsolar point is at the declination, so noon Sun is overhead there. \"June 21\": the solstice falls on June 20-22 depending on year and time zone; declination one day off the solstice differs by 0.0035 deg, so day length differs by seconds. Suggest \"around June 21\" if the builder touches the text. | REOPENED 2026-10-14 (v4, W-266 by demo-builder): learner-visible reveal sentence changed to cm-geography's W-266 text; needs a fresh check. Reveal now carries the Tropic as a clause; 'around June 21' per pass 19.",
+      "status": "unverified"
     },
     {
       "id": "geography.midnight-sun-line.c6",
@@ -79,12 +75,10 @@
     },
     {
       "id": "geography.midnight-sun-line.c7",
-      "text": "In June the north pole leans 23.4 degrees toward the Sun, so the night side's edge stops 23.4 degrees short of the pole (the orange 'gap = tilt' arc on the globe, from the night edge to the pole along the midnight meridian); a place whose daily circle fits inside that gap stays in sunlight all day.",
+      "text": "In June the north pole leans 23.4 degrees toward the Sun, so the night side's edge stops 23.4 degrees short of the pole (the orange gap on the globe); a town whose daily circle fits inside the gap stays lit all day.",
       "support": "derivation",
-      "source": "The night side is the 90-degree circle centred on the antisolar point at 23.44 S; along its meridian it reaches 90 − 23.44 = 66.56 N, leaving 23.44 degrees to the pole. Geometry in Demo.tsx (night, gap). Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own node: a 90-degree circle centred at 23.44 S reaches at most 66.56 N, on the antisolar meridian, leaving 23.44 degrees to the pole; any parallel above it is wholly lit.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The night side is the 90-degree circle centred on the antisolar point at 23.44 S; along its meridian it reaches 90 − 23.44 = 66.56 N, leaving 23.44 degrees to the pole. Geometry in Demo.tsx (night, gap). Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own node: a 90-degree circle centred at 23.44 S reaches at most 66.56 N, on the antisolar meridian, leaving 23.44 degrees to the pole; any parallel above it is wholly lit. | REOPENED 2026-10-14 (v4, W-266 by demo-builder): learner-visible reveal sentence changed to cm-geography's W-266 text; needs a fresh check. Text shortened to match reveal paragraph 2.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -111,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "geography:midnight-sun",
     "prerequisites": [
