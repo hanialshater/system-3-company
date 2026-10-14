@@ -27,3 +27,24 @@ The shared dev server (3530) took 50-105 s per page load, longer than reveal-fit
 
 ## QA (local, dev server 3530)
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=total-signups-hide-the-slide,biased-judge-noisy-judge QA_OUT=artifacts/qa-books-pilot npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=400000`: 4 passed (phone and desktop, both lessons), report `artifacts/qa-books-pilot/qa-report.json`. Final reveal-fit re-run on the current code: both fit, crop 0, namedHidden 0, phoneFit true (89 and 86 measured words).
+
+## v2: learner r10 fixes (W-823, demo-builder, 2026-10-14)
+
+Review: company/reviews/total-signups-hide-the-slide/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Reveal narrowed (c1): 'A total rises whenever a month adds anyone, so “it rose” can't tell you which way you are going. Each step's size can: A's shrink, B's grow.' It now points at the bend instead of denying it. Fact-checker: please re-check this claim's scope.
+- Locked frame no longer draws the bending 'worse' curve: the chart is empty until a view is picked.
+- Neutral preset names: 'Total A', 'Each month of A', 'Total B'; chart tags A / B; Seen row 'A: … · B: …'.
+- Book claims (c3-c6, recall) untouched and still unverified (Books pilot). c1, c2 rewritten (unverified).
+
+## Pre-flight v2
+
+1. Title/hook unchanged: 'Six months of rising sign-ups' / 'Total customers went up every single month. Is the product getting better?'
+2. Options unchanged (none numbered).
+3. Locked stage: axes and '1,000 visitors a month' only; no line, no bend.
+4. Reveal values: 5% (b, cohort milestone, recorded; Seen row); 450 (b, better-total milestone; end label and Seen row).
+5. QA path: Total A, Each month of A (cohort-seen), Total B (better-total-seen; A stays as a dashed trace).
+6. Reset: no Reset control. Reveal: 'Total A kept climbing while each month converted worse, down to 5% by month six. B's months got better; its total also ended at 450. A total rises whenever a month adds anyone, so “it rose” can't tell you which way you are going. Each step's size can: A's shrink, B's grow. The Lean Startup calls … Does it hold up? …' (86 words)
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 100 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
