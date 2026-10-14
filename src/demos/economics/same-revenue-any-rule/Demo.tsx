@@ -83,7 +83,7 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
               <strong>{a[1]}</strong> (first-price) and <strong>{a[2]}</strong> (all-pay). Theory says $33.3 for all three.
             </p>
             <p>
-              Second-price charges a high price, the lower value. First-price charges less, half the winner&apos;s value. All-pay charges
+              Second-price charges the lower of the two values. First-price winners pay only half their own value, but the winner holds the higher value. All-pay charges
               both bidders, but each bids only a little. Each rule changes how much bidders bid, and the changes cancel: on average the
               seller collects the lower of the two values, $100 ÷ 3.
             </p>

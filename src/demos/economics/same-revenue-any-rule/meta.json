@@ -69,12 +69,10 @@
     },
     {
       "id": "economics.same-revenue-any-rule.c6",
-      "text": "Second-price charges a high price, the lower value. First-price charges less, half the winner's value.",
+      "text": "Second-price charges the lower of the two values. First-price winners pay only half their own value, but the winner holds the higher value.",
       "support": "simulation",
-      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. Read literally, first-price charges less than second-price. It does not: on average both charge $33.3 (c1, c2), and per auction, half the winner's value is below the lower value in 10,065 of the 20,000 seeded auctions (own node, mulberry32(97)), about half, as theory gives (P(max/2 < min) = 1/2). The sentence contradicts the lesson's own result. Fix (builder): compare each rule to the winner's value, not to the other rule, e.g. 'Second-price charges the lower of the two values. First-price winners bid only half their own value, but the winner is the higher value.'",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. Read literally, first-price charges less than second-price. It does not: on average both charge $33.3 (c1, c2), and per auction, half the winner's value is below the lower value in 10,065 of the 20,000 seeded auctions (own node, mulberry32(97)), about half, as theory gives (P(max/2 < min) = 1/2). The sentence contradicts the lesson's own result. Fix (builder): compare each rule to the winner's value, not to the other rule, e.g. 'Second-price charges the lower of the two values. First-price winners bid only half their own value, but the winner is the higher value.' | Builder fix (demo-builder, 2026-10-14): W-211: reveal reworded along the fact-checker's suggestion; it no longer says first-price 'charges less' than second-price. Support: c3 (first-price optimal bid v/2, the winner pays its bid) and the winner being the higher-value bidder under every rule here.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:revenue-equivalence",
     "also": [
