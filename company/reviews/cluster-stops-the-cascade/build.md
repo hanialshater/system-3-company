@@ -68,3 +68,16 @@ Pass on phone and desktop (`2026-10-14-qa.md`). I looked at every phone screensh
 - **Predict state:** the chip row sits below the stage's scroll fold on a phone. It is rendered and disabled; it becomes visible once predict collapses.
 - **Reveal phase:** the kit scrolls the card, so the top row of the graph is off-screen. The outline, the "1/4" pill and the readout stay visible.
 - No hero illustration was made.
+
+## Revision v2 (demo-builder, 2026-10-14)
+Inputs: learner review `2026-10-14-learner-threshold-rule-only.md`, fact-check Pass NCM-1 (9/9 verified, nothing disputed).
+- **Why-it-stops step told, not shown (finding 1, 6).** Tapping a holdout at the 0,1 final now replaces the rule line (sticky at the top of the stage) with "8: 1 of 4 friends adopted; 3 of 4 in the group, so at most 1 (needs 2)." For 9, 10, 11: "0 of 3 friends adopted; 3 of 3 in the group, so at most 0 (needs 2)." Other people get "n: k of d friends adopted." The reveal now spells out the complement step: none inside has adopted, so at most 1 of 4 (or 0 of 3), under half, so none can join first.
+- **Predict tests the misconception (finding 2).** "People 0 and 1 adopt first and the idea stops at 8 of 12. What would get it to all 12?" Options: many more starters / nothing, out of reach / two starters somewhere else. Correct is the LAST option (answer 2). Recall options also reordered, correct last (answer 2).
+- **Pill key (finding 5).** The focus line states "n of d friends adopted" beside the n/d pill.
+- **Title/hook (finding 3).** "Why a spreading idea stops" / "Two people adopt an idea. It spreads friend to friend, then stops short. What fixes that?" (89 chars). While locked, the second chip reads "Another start" instead of "Start 8,9".
+- **Reveal** leads with the answer, quotes "Person N had a of d friends adopted" only for a group member the learner focused on the 0,1 final.
+- Controls still 16. Stage text with a person focused is about 28 words (rule slot swapped, legend and readout kept); one slot reuse, still over 25 by a few words: flagged for design review.
+- Numbers re-run in node with the exact rule: 0,1 final round 6, 8 adopted; 8,9 final round 8, 12 adopted; inside counts 8 3/4, others 3/3; adopted at 0,1 final 8 1/4, others 0/3; needs 2 each.
+- Claims now **unverified**: c4, c5, c6 (text changed). c1-c3, c7-c9 unchanged text and still verified. Hook/title are not claims. Predict option texts are covered by c6.
+- QA: phone and desktop pass, NEXT_DIST_DIR=.next-casc2, QA_PORT=3711, QA_OUT=test-results-casc2, 0 retries. Walkthrough looked at (predict, 0,1 final with 8 focused, reveal).
+- Known: chip row still below the fold in predict (rendered, disabled). Sticky rule line added because the stage scroll clipped the new focus line.

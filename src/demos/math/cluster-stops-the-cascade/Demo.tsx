@@ -58,6 +58,8 @@ function simulate(seeds: number[]) {
   }
   return { at, last };
 }
+const GROUP = [8, 9, 10, 11];
+const need = (d: number) => Math.ceil(d / 2);
 const RUN = { "01": simulate(SEEDS["01"]), "89": simulate(SEEDS["89"]) };
 
 type Kind = "started" | "adopted" | "notyet";
@@ -98,31 +100,34 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
   const [start, setStart] = useState<Start>("01");
   const [t, setT] = useState(0);
   const [focus, setFocus] = useState<number | null>(null);
-  const [saw8, setSaw8] = useState(false);
+  const [sawIn, setSawIn] = useState<number | null>(null);
 
   useEffect(() => {
-    if (focus === 8 && start === "01" && t >= RUN["01"].last) setSaw8(true);
+    if (focus !== null && GROUP.includes(focus) && start === "01" && t >= RUN["01"].last) setSawIn(focus);
   }, [focus, start, t]);
+  const quoted = focus !== null && GROUP.includes(focus) && start === "01" ? focus : sawIn;
+  const endFriends = (p: number) => NB[p].filter((j) => RUN["01"].at[j] >= 0).length;
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "People 0 and 1 adopt first. Anyone joins once at least half their friends have. How many of the 12 end up adopting?",
-        options: ["2", "8", "12"],
-        answer: 1,
+        question: "People 0 and 1 adopt first and the idea stops at 8 of 12. What would get it to all 12?",
+        options: ["Many more people adopting first", "Nothing: those four are out of reach", "Two people adopting first, somewhere else"],
+        answer: 2,
       }}
       exploreHint="Step round by round, tap a person to see their friends, then try the other start."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            From 0 and 1 it stopped at 8 of 12 in round 6; the four outlined never joined.
-            {saw8 || focus === 8 ? " Person 8 had only 1 of 4 friends adopted." : " Each has most of its friends inside the group."}{" "}
-            Started at 8 and 9, the same two seeds reached all 12.
+            Not more seeds: two in a better place. From 0 and 1 it stopped at 8 of 12 in round 6, and the four outlined never
+            joined. Started at 8 and 9, the same two seeds reached all 12.
           </p>
           <p>
-            Not too few seeds: a tight group. 8 has 3 of 4 friends inside it, the others 3 of 3, so none can join first.
+            {quoted !== null && `Person ${quoted} had ${endFriends(quoted)} of ${NB[quoted].length} friends adopted. `}
+            The four form a tight group: 8 has 3 of 4 friends inside it, the others 3 of 3. While none of them has adopted,
+            at most 1 of 4 (or 0 of 3) can have, under half. So none can join first.
           </p>
           <p className="muted">
             A cascade stops exactly at such a group, where everyone has more than half their friends inside; with none among
@@ -159,13 +164,21 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
               className={`${s.tap} ${active ? "active" : ""}`}
               disabled={locked || pinned || (active && vt === 0)}
               aria-pressed={active}
-              aria-label={watchAgain ? `Watch start ${NAME[c]} again` : `Start ${NAME[c]}`}
+              aria-label={locked ? (c === "01" ? "Start 0,1" : "Another start") : watchAgain ? `Watch start ${NAME[c]} again` : `Start ${NAME[c]}`}
               onClick={() => pick(c)}
             >
-              Start {NAME[c]}
+              {locked && c === "89" ? "Another start" : `Start ${NAME[c]}`}
             </Control>
           );
         };
+        const sealed = vs === "01" && focus !== null && holdouts.includes(focus);
+        const focusLine =
+          focus === null
+            ? null
+            : `${focus}: ${friends(focus)} of ${NB[focus].length} friends adopted` +
+              (sealed
+                ? `; ${NB[focus].filter((j) => GROUP.includes(j)).length} of ${NB[focus].length} in the group, so at most ${NB[focus].filter((j) => !GROUP.includes(j)).length} (needs ${need(NB[focus].length)}).`
+                : ".");
         const label =
           `Start ${SEEDS[vs].join(" and ")}, round ${vt}${final ? ", final" : ""}: ${count} of 12 adopted` +
           (holdouts.length ? `; ${holdouts.join(", ")} never adopted` : "");
@@ -173,7 +186,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
         return (
           <div className={s.wrap}>
             <Gate interact={interact} start={vs} t={vt} />
-            <p className={s.rule}>Anyone joins once at least half their friends have.</p>
+            <p className={s.rule}>{focusLine ?? "Anyone joins once at least half their friends have."}</p>
             <div className={s.stage}>
               <svg viewBox={`0 0 ${W} ${H}`} className="stage-svg" role="img" aria-label={label}>
                 {holdouts.length > 0 && (
