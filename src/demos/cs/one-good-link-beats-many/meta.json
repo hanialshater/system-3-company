@@ -1,7 +1,7 @@
 {
   "slug": "one-good-link-beats-many",
-  "title": "One good link beats many",
-  "hook": "Count the links pointing at a page. Is that how important it is?",
+  "title": "What is one link worth?",
+  "hook": "Three links in, or one: which page scores higher?",
   "domain": "cs",
   "concept": "pagerank",
   "status": "review",
@@ -51,21 +51,17 @@
     },
     {
       "id": "cs.one-good-link-beats-many.c4",
-      "text": "At round 51 the scores have settled: Y 0.374 and X 0.053 (H 0.422).",
+      "text": "At round 51 the scores have stopped changing (to three decimals): Y 0.374 and X 0.053 (H 0.422).",
       "support": "simulation",
       "source": "ROUNDS[51] in node, 2026-10-14: Y 0.374, X 0.053, H 0.422, A 0.060, other pages 0.015, sum 1.000. Rounded to 3 decimals the scores no longer change from round 50; the largest change from round 50 to 51 is 0.00015. H and Y swing in earlier rounds, so 'settled' means three-decimal stability, not exact convergence. The vertical review's earlier figure (Y 0.395) did not reproduce and is not used. | FACT-CHECK 2026-10-14 (pass NCM-1): ROUNDS[51]: Y 0.374, X 0.053, H 0.422, A 0.060, others 0.015; max change 50->51 is 0.000151; all pages equal to 3 dp at 50 and 51. Iterating 2,000 more rounds gives the fixed point Y 0.3741, X 0.0533, H 0.4224, so the round-51 figures equal the limit to 3 dp.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.one-good-link-beats-many.c5",
       "text": "In round 2, each of X's three linkers passes on only about 0.013 to X.",
       "support": "derivation",
       "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.85 x 0.015 = 0.01275; the reveal's f3(S*score(1,\"P\")) renders \"0.013\" (float 0.012750000000000003 rounds up). Matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.one-good-link-beats-many.c6",
@@ -84,6 +80,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c8",
+      "text": "In round 2, H passes on about 0.374 to Y (0.85 x H's round-1 score of 0.440, H having one out-link). The numbers on the arrows into X and Y are the amounts passed in the round shown: 0.85 x the sender's score in the previous round, divided by its out-links.",
+      "support": "derivation",
+      "source": "passed() in model.ts: S x score(round-1, from) / outDeg. Re-run in node 2026-10-14: passed(2,H) 0.374, passed(2,P) 0.01275, passed(1,P) 0.085 (round 1: each of P, Q, R passes 0.085 to X, so X has 0.015 + 3 x 0.085 = 0.270). Y round 2 = 0.015 + 0.374 = 0.389, matching c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c9",
+      "text": "X leads after round 1; the scores have stopped changing (to three decimals) at round 51.",
+      "support": "simulation",
+      "source": "Stage hints. Same runs as c2 and c4: X 0.270 > Y 0.100 at round 1; rounds 50 and 51 equal to 3 dp.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,10 +101,10 @@
     "question": "Page M has 2 links pointing at it, from two pages that nobody links to. Page N has 1 link, from a page that 20 pages link to. Under the lesson's rule, which page is likely to score higher once scores settle?",
     "options": [
       "M, it has more links",
-      "N, its one link comes from a well-linked page",
-      "They always tie"
+      "They always tie",
+      "N, its one link comes from a well-linked page"
     ],
-    "answer": 1,
+    "answer": 2,
     "why": "A link passes on a share of the linking page's own score. Links from pages nobody links to pass on almost nothing; a link from a well-linked page passes on a lot."
   },
   "evidence": {
@@ -105,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:pagerank",
     "prerequisites": [

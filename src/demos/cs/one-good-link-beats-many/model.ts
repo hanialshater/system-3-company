@@ -17,7 +17,7 @@ export const LINKS: [string, string][] = [
 ];
 
 const idx = (p: string) => PAGES.indexOf(p as (typeof PAGES)[number]);
-const outDeg = PAGES.map((p) => LINKS.filter(([f]) => f === p).length);
+export const outDeg = PAGES.map((p) => LINKS.filter(([f]) => f === p).length);
 
 export function step(scores: number[]): number[] {
   const next = PAGES.map(() => FREE);
@@ -33,3 +33,6 @@ export const ROUNDS: number[][] = (() => {
 
 export const score = (round: number, page: string) => ROUNDS[round][idx(page)];
 export const inLinks = (page: string) => LINKS.filter(([, t]) => t === page).length;
+
+// Amount page f passes along one of its links in round r (r >= 1): S x its round r-1 score / its out-links.
+export const passed = (round: number, from: string) => (S * score(round - 1, from)) / outDeg[idx(from)];
