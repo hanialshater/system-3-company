@@ -191,3 +191,118 @@ WebFetch and curl fail DNS for every publisher host. Only raw.githubusercontent.
 - **Anyone with access to the book (cm-geography or demo-builder to arrange):** find the Rothstein 2017 page for c10b, then route it back to fact-checker.
 - **QA / walkthrough owner:** the v2 walkthrough transcript currently reads "Walkthrough aborted (locator.waitFor timeout)". Re-run it and confirm it completes. Evaluators need it.
 - **cultural-reviewer:** re-check c10a/c10d/c10e against R7. The split wording is on the card now.
+
+---
+
+# Pass 3 (v3)
+
+- Checker: fact-checker (session 2, branch s2-rebuild). Date: 2026-10-14. I wrote none of these claims.
+- Scope: v3 (meta.json version 3). I re-checked the 11 open claims: c5, c6, c7, c10b, c10f, c12, c13, c14, c15, c16 and c17. I also checked c4, c8 and c9 against the v3 text.
+- Order of reading: meta.json, then Demo.tsx, engine.ts and check.mjs. I read the build note's v3 lines on c4, c8 and c9 only after my view of those claims was formed.
+- **Walkthrough:** `artifacts/walkthroughs/schelling-on-new-york/transcript.md` (13:50) is still v2: it shows "Tick", "would stay", "seed" and a 1×1 chip. So I read the learner-visible text from Demo.tsx and the meta.json `recall`. The QA owner should re-run the walkthrough on v3.
+- **Result: 19 claims. 17 verified, 1 unverified (c10b), 1 withdrawn (c10c), 0 disputed.** c10b still blocks publishing.
+
+## Egress
+
+- The agent proxy refuses CONNECT (policy 403) to census.gov, archive.org, books.google.com, wwnorton.com and epi.org. WebFetch to npr.org fails DNS. I did not retry the blocked hosts.
+- raw.githubusercontent.com works. WebSearch works. Where a verdict rests on a search summary, the claim note says so.
+
+## Re-runs
+
+- `node src/demos/geography/schelling-on-new-york/check.mjs` (Node 22.22): all checks pass.
+- **Independent model.** I wrote my own Python version of the model (scratch file, not committed). It reads only `MASK_HEX` from engine.ts. It re-implements mulberry32, the shuffle, placement, the rule, D, one-group boxes and cell agreement. The numbers below are its output, and they match check.mjs.
+  - Mask: 576 land cells. No 2 × 2 box holds more than 4 land cells. 259/259 households in every seed.
+  - All 48 lesson seeds settle at 30%, in 7 to 24 rounds.
+
+  | Boxes | Start D | Settled D at 30% |
+  |---|---|---|
+  | 2×2 | 0.421-0.525 (mean 0.461) | 0.672-0.834 (mean 0.753) |
+  | 4×4 | 0.212-0.309 (mean 0.255) | 0.436-0.637 (mean 0.529) |
+  | 8×8 | 0.104-0.185 (mean 0.138) | 0.224-0.448 (mean 0.330) |
+
+  - On every round of every lesson seed, D is lower in 4×4 than in 2×2, and lower again in 8×8.
+  - Mix 1: 0.47→0.76 in 7 rounds. 4×4 0.27→0.53, 8×8 0.12→0.34. One-group 2×2 boxes: 72/181→135/180. "Would move": 20, 12, 7, 5, 3, 2, 1, 0%.
+  - Mix 2: 0.44→0.76 in 12 rounds. 4×4 0.24→0.54, 8×8 0.14→0.31. One-group boxes: 2×2 65/184→127/181, 4×4 7/58, 8×8 0/18.
+  - One-group share at the start: 2×2 33.9-47.3% (mean 38.9%), 4×4 3.4-15.5%, 8×8 0-11.1%. Settled 2×2: 63.6-80.9% (mean 72.0%).
+  - "Would move" (ceil) reads 0% exactly when nobody would move: 0 mismatches.
+  - Agreement of settled mixes on cells both fill:
+    - mix 1 vs mix 2: 229/463;
+    - mix 2 vs mix 4: 231/464;
+    - consecutive seeds: 0.413-0.590 (mean 0.511);
+    - all 1,128 pairs: 0.352-0.621 (mean 0.499).
+
+## Verdicts
+
+| Claim | Status | Basis |
+|---|---|---|
+| c5 random start about 0.4-0.5 in 2×2 | verified | Re-run plus my own model. The predict stage draws 2×2 boxes, as the question says. |
+| c6 settles at 30%, about 0.75; "would move" readout; rule line | verified | Re-run plus my own model. The readout and the rule line match the code. |
+| c7 D by box size | verified | Means match. D falls with box size on every frame. |
+| c12 made-up model, one household per mark, equal groups, setting not a measure | verified | engine.ts: 259/259, one per cell, uniform density. S1 and S3 say this. |
+| c13 recall | verified | Numbers as c5, c7 and c17. Caveat below. |
+| c14 not modelled | verified | engine.ts inputs. S4 matches the code. |
+| c15 tract thousands; 2×2 box at most 4 households | verified | Box half by derivation on the mask. Tract half from search-indexed copies of the Census definition (1,200-8,000, optimum 4,000), including a Census document hosted on energy.gov. census.gov was blocked. |
+| c16 mixes settle into clumps in different places, about half agreement | verified | My own model. I checked all pairs, because the reveal can pin any two seeds, not only consecutive ones. 0.5 is what two independent equal-group grids would give. |
+| c17 one-group box shares | verified | My own count. Caveat below. |
+| c10f race in the area descriptions | verified | Primary data. See below. |
+| c10b Rothstein 2017 | **unverified** | See below. |
+
+## c10f: what the forms record
+
+Source: `https://raw.githubusercontent.com/americanpanorama/HOLC_Area_Description_Data/master/ad_data.json`, downloaded 2026-10-14, sha256 `e501b6e6…3254eca`. It holds 7,930 area descriptions from 169 cities, on six form types.
+
+**Method.** I searched the reason fields for words naming Black residents: the period term, "colored", the slur, and "blacks". The reason fields are `favorable_influences`, `detrimental_influences` and `clarifying_remarks`, plus `description` on the free-text form type. I also searched for "race" and "racial", leaving out "race track". Staten Island's December 1940 supplements were excluded. I sampled the matches by hand. "Racial" is almost always "racial hazards", "racial elements", "racial concentration" or deed restrictions.
+
+| Count | All forms | Grade D forms | New York City (5 boroughs) |
+|---|---|---|---|
+| Forms | 7,930 | 1,884 | 389 (D: 115) |
+| The form's printed race line (`negro_yes_or_no` / `negro_percent`) filled in | 6,566 | 1,573 | 373 |
+| Black residents named in reason text | 1,013 | | 25 |
+| … under `detrimental_influences` alone | 222 | | 10 |
+| … in reason text or the form's `infiltration_of` line | 1,140 | 697 (37%) | 37 (D: 27 of 115) |
+| Reason text naming Black residents or using "race"/"racial" | 1,391 | | 35 |
+
+Grade gradient: Black residents are named in reason text on 17 of 873 A forms, 100 of 2,055 B, 298 of 3,117 C and 598 of 1,884 D (one form has no grade).
+
+**NYC examples, described, not quoted.** I give borough labels here, not neighbourhood names (R7).
+- **Bronx D1:** the detrimental influences list the arrival of Black families first, before distance to the business centre and an elevated line.
+- **Bronx D4:** the detrimental influences name the arrival of Black and Puerto Rican families.
+- **Brooklyn C6, D7 and D8:** "infiltration" of Black families is listed as a detrimental influence. D8's remarks call it an adverse influence on desirability.
+- **Manhattan C5:** the remarks put the area's decline partly down to Black families moving in.
+- **Queens C50 and C91:** the detrimental influences note map marks that show where Black families live.
+- **Queens C77:** "encroachment" from the north is a detrimental influence.
+- **Staten Island D21:** the detrimental influences note the Black population and a school attended by Black children.
+
+**Limits.** This is a keyword estimate. It misses other wordings and counts some plain descriptions as well as stated reasons. "Many" holds on any reading: about one form in eight overall, and more than a third of D forms.
+
+What the forms show is how the grades were made. Whether lenders followed the maps is c10e's open question. On the card, "lending discrimination by race" is carried jointly by c10b and c10f. c10b is still unverified.
+
+## c10b: still unverified
+
+- The book could not be opened. archive.org, Google Books and the publisher were blocked by policy.
+- A search-indexed blog review cites p. 143 for the 1948 Levittown price and equity example. That is a lead for whoever opens the book, not a check.
+- **To close:** someone with the book (Liveright 2017) supplies the page or pages for the home-equity and wealth-gap argument, and routes it back to me.
+
+## c4, c8, c9 against v3 (statuses unchanged, verified)
+
+- **c4:** "(a segregation index: 0 even, 1 fully apart)" and "Spread in boxes (0 even, 1 apart):" stay within the claim.
+- **c8:** "The rule sorted your mixes into clumps in different places" claims less than "a simple moving rule sorts the grid", and does not say "preferences".
+- **c9:** "this model does not show why real cities look as they do" means the same as the claim text. c9's source still lists "jobs" among what the rule lacks. That remains true of engine.ts, even though S4 dropped the word.
+
+## Caveat, not a dispute: "chance alone" and the coastline (c13, c17, reveal)
+
+- About 48% of the one-group 2×2 boxes at the start hold a single household. In total, 1,645 of the 3,412 one-group boxes over the 48 seeds hold one household. A single-household box is one group by definition. Most of these boxes are cut by the coastline: only 110 of the 186 land-touching 2×2 boxes are all land.
+- Among boxes with 4 households, 13% are one-group.
+- On a 40 × 40 all-land grid with the same placement, the start gives 2×2 D of about 0.41 (0.36-0.44) and about 18% one-group boxes. The mask gives 0.46 and 39%.
+- The card's "chance alone left N% one group" is true in the sense the card means: nothing has moved yet. The figure also carries the coastline.
+- **Optional fix (builder, with the learning designer):** state it in the claim source. Or change the card to say "before anything moved". A dispute is not required.
+
+## Disputes
+
+- None.
+
+## Next
+
+- **Anyone with the book (cm-geography to arrange):** find the Rothstein page for c10b. It is the last open claim.
+- **QA / walkthrough owner:** re-run `npm run walkthrough -- schelling-on-new-york` on v3. The transcript on disk is v2.
+- **demo-builder (optional):** the coastline caveat above.
