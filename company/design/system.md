@@ -37,3 +37,26 @@ Rules:
 - `.chip.on` and `.primary` use #0d0f14 on `--domain`: 7.3 to 11.8:1.
 - The locked stage is no longer dimmed (K6). The old opacity .55 took `--fg` to 3.7:1 (light) and `--muted` to 2.2:1 and 2.8:1. Only disabled controls are dimmed, which WCAG exempts.
 - Stage SVG text should use `--fg`/`--muted` or the text-safe semantic colours, never `--domain` or a hard-coded pastel in light mode. Lessons still doing so are listed in the 2026-10-14 re-scan (builders).
+
+## Accessibility: minimum text size in lesson pictures (W-289, 2026-10-14, accessibility reviewer)
+
+**Ruling.** When the kit shrinks a picture at the reveal (390×844 phone), no SVG label may end up smaller than these rendered sizes:
+
+| Label kind | Floor (rendered CSS px) | Constant for W-287 |
+|---|---|---|
+| Meaning-carrying: anything the reveal or stage names, axis and category names, values, legends, node labels | **10 px** | `SVG_TEXT_FLOOR_PX = 10` |
+| Decorative or redundant: tick numbers, grid labels, anything inside `aria-hidden="true"` | 8 px | `SVG_DECOR_FLOOR_PX = 8` |
+
+Per picture, scale floor = `max(0.4, 10 / smallest meaning-carrying <text> px)`, applied to the smallest label that is not `aria-hidden`. If that gives 1 or more, do not shrink. A label already below 10 px at natural size is never shrunk further (k = 1). A picture with no text keeps 0.4. This replaces the 9 px placeholder in the W-237 review.
+
+**Authoring target (new and revised lessons, not a kit floor):** meaning-carrying SVG labels render at 11 px or more at natural size on a 390 px phone.
+
+**Reasoning.**
+- WCAG 2.x sets no pixel minimum. 1.4.4 (Resize Text) requires text to be readable at 200% without loss, and 1.4.10 (Reflow) requires no two-dimensional scrolling at 320 px. The intent is that a learner can always get readable text. Pinch-zoom is the learner's only escape once the kit has shrunk a picture, and unlike before the shrink they can no longer scroll up to the unshrunk label. So the kit must not take the readable size away.
+- Platform minimums: iOS about 11 pt (11 CSS px) as the smallest caption style, Android 12 sp for small text. Both are for text a person reads alone. Diagram labels are short words next to a shape, so the shrink floor sits one step under those, at 10 px. The authoring target of 11 px matches iOS.
+- Why not 11 or 12 as the kit floor: the probe (`company/engineering/reviews/2026-10-14-W-237-probe.json`) shows the natural smallest label is under 11 px in 288 of 390 measured pictures and under 10 px in 183. An 11 px floor would not be a shrink rule, it would condemn most existing labels, and that is a backlog for builders, not a number the kit can enforce.
+- Cost, estimated from the probe's per-picture heights and smallest label (433 shrunk lessons): lessons the fit fully resolves are about 97 at 8 px, 66 at 9, 44 at 10 and 36 at 11 (261 today). The rest is the per-lesson route in decision `2026-10-14-reveal-fits-with-its-picture.md` (W-264 to W-267). That is the honest price of "never fix it by shrinking text" in `demo-standard.md`.
+- Decorative labels get a lower floor because losing them costs the learner nothing they need. Meaning is never carried by a decorative label; if a label is needed to answer the question, it is meaning-carrying and is not `aria-hidden`.
+- Limit: the 10 px number is a judgement, not a measurement. I did not test it with learners or on a device.
+
+Objection: the head of product may still decide that no labelled picture shrinks at all (floor 1). That is stricter than this ruling and compatible with it.

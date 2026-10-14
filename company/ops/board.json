@@ -3383,7 +3383,18 @@
       "id": "W-289",
       "title": "Set a minimum rendered text size for svg labels at the reveal (W-237 review uses 9px as a placeholder; no company file sets one). Answer in company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md objections table",
       "owner": "accessibility-reviewer",
-      "state": "next",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "note": "RULING 2026-10-14: meaning-carrying svg labels floor 10 px rendered (SVG_TEXT_FLOOR_PX=10); decorative/aria-hidden floor 8 px (SVG_DECOR_FLOOR_PX=8). Per picture k = max(0.4, 10 / smallest non-aria-hidden <text> px); k>=1 means no shrink; natural size under 10 is never shrunk; text-free keeps 0.4. W-287 sets the constants. Reasoning: company/design/system.md, Accessibility: minimum text size in lesson pictures.",
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-290",
+      "title": "QA + walkthrough for one-odd-loop-blocks-two-camps v4 and a-star-heads-for-goal v6 (stage logic changed in W-281/W-282; claims all verified FC pass 33). Fold in W-279 crop measurement for these two.",
+      "owner": "qa-tester",
+      "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
       "links": []
