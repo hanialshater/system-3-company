@@ -28,35 +28,45 @@
       "text": "In the toy game (score 0.5 if the keeper dives the right way, 0.9 if he dives the wrong way to the right, and 0.9 or 1.0 if he dives the wrong way to the left), the kicker's best mix shoots left 50.0% of the time at 0.90 and 44.4% at 1.00.",
       "support": "derivation",
       "source": "Kicker left-share p makes the keeper indifferent: p*0.5 + (1-p)*0.9 = p*x + (1-p)*0.5, so p = (0.9-0.5)/((x-0.5)+(0.9-0.5)). x=0.90: 0.4/0.8 = 0.500. x=1.00: 0.4/0.9 = 0.4444. Re-run in node with Demo.tsx mix(); the six slider states give 0.500, 0.488, 0.476, 0.465, 0.455, 0.444.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.penalty-kick-mix.c2",
       "text": "In the same game the keeper's best mix dives left 50.0% of the time at 0.90 and 55.6% at 1.00.",
       "support": "derivation",
       "source": "Keeper left-share q makes the kicker indifferent: q*0.5 + (1-q)*x = q*0.9 + (1-q)*0.5, so q = (x-0.5)/((x-0.5)+(0.9-0.5)). x=0.90: 0.5; x=1.00: 0.5/0.9 = 0.5556. Node re-run, Demo.tsx mix().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.penalty-kick-mix.c3",
       "text": "In the same game the kicker's scoring chance at the best mixes rises from 0.700 to 0.722.",
       "support": "derivation",
       "source": "Value = p*0.5 + (1-p)*0.9 = q*0.5 + (1-q)*x. x=0.90: 0.7000; x=1.00: 0.5*(0.4444)+0.9*(0.5556) = 0.7222. Both indifference sides agree to 1e-16 in the node run.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.penalty-kick-mix.c4",
       "text": "In a mixed equilibrium each side's mix is set so the other side gains nothing from either of its choices.",
       "support": "source",
       "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 6 (mixed strategies and equilibrium; section 6.7 unconfirmed, proxy 403 when the brief was written). Needs the section checked against the free PDF.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.penalty-kick-mix.c5",
       "text": "The lesson uses made-up numbers: it shows the logic, not real penalty rates.",
       "support": "convention",
       "source": "The payoffs 0.5, 0.9 and 0.9 to 1.0 are chosen for the toy game (brief). The empirical claim that real penalty data are close to the predicted mixes (Palacios-Huerta 2003, Review of Economic Studies 70(2)) is deliberately omitted: it was recalled from memory and needs a human source check before it could appear.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
