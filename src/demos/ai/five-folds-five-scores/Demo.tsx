@@ -49,24 +49,24 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N} points, ${FLIPS} of them with wrong labels. A fixed rule (say 1 if x > 0.5) is scored on ${K} held-out groups of ${N / K} points each. Highest group score minus lowest:`,
+        question: `${N} dots, ${FLIPS} of them with wrong labels (ringed). A fixed rule (say 1 if x > 0.5) is scored on ${K} held-out groups (folds) of ${N / K} dots each. Highest fold score minus lowest, in percentage points:`,
         options: ["Within 5 points", "About 10 points", "25 points or more"],
         answer: 2,
       }}
-      exploreHint="Score all five folds."
+      exploreHint="Score all five folds, one tap each."
       minInteractions={K}
       reveal={() => (
         <>
           <p>
-            Your five folds scored {SCORES.join(", ")}%: a spread of {Math.max(...SCORES) - Math.min(...SCORES)} points for one rule
-            that never changed. Which {N / K} points landed in the group decided the score.
+            Your five folds scored {SCORES.join(", ")}%: a spread of {Math.max(...SCORES) - Math.min(...SCORES)} percentage points for one rule
+            that never changed. Which {N / K} dots landed in the fold decided the score.
           </p>
           <p>
-            The mean, {MEAN}%, uses every point once and matches the {RIGHT_ALL} of {N} the rule gets right.
+            The mean, {MEAN}%, uses every point once and matches the {RIGHT_ALL} of {N} dots the rule gets right.
           </p>
           <p>
-            With {FLIPS} wrong labels in groups of {N / K}, the folds can never all agree: in 1,000 shuffles the spread was 25 points
-            or more every time. One held-out slice is one draw.
+            {FLIPS} wrong labels cannot split evenly over {K} folds, so two folds always differ by at least one dot, which is{" "}
+            {100 / (N / K)} percentage points. One held-out slice is one draw.
           </p>
         </>
       )}
@@ -83,7 +83,7 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <span className={`tag ${s.model}`}>Toy data · fixed rule, not trained</span>
-                <svg viewBox="0 0 320 170" className="stage-svg" role="img" aria-label={cur === null ? "20 points" : `Fold ${cur + 1}`}>
+                <svg viewBox="0 0 320 170" className="stage-svg" role="img" aria-label={cur === null ? "20 dots" : `Fold ${cur + 1}`}>
                   <rect x={X(0.5)} y={30} width={w / 2} height={110} fill="var(--domain)" opacity={0.1} />
                   <line x1={X(0.5)} y1={26} x2={X(0.5)} y2={144} stroke="var(--domain)" strokeWidth={2} />
                   <text x={X(0.5) + 4} y={24} className={s.small} fill="var(--domain)">
@@ -106,6 +106,7 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
                     const ok = RULE(x) === KEY[i];
                     return (
                       <g key={i}>
+                        {FLIPPED.has(i) && <circle cx={X(x)} cy={y} r={hot ? 10 : 8} fill="none" stroke="var(--bad)" strokeWidth={1.2} strokeDasharray="2 2" opacity={0.7} />}
                         <circle cx={X(x)} cy={y} r={hot ? 7 : 4.5} fill={hot ? (ok ? "var(--good)" : "var(--bad)") : "var(--muted)"} opacity={!locked && cur !== null && !hot ? 0.35 : 1} />
                         {hot && (
                           <text x={X(x)} y={y - 11} textAnchor="middle" className={s.small} fill={ok ? "var(--good)" : "var(--bad)"}>
@@ -122,10 +123,11 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
                     x = 1
                   </text>
                   <text x={160} y={162} textAnchor="middle" className={s.tiny} fill="var(--muted)">
-                    row = the point&apos;s label (1 or 0)
+                    row = the dot&apos;s label (1 or 0) · ringed = wrong label
                   </text>
                 </svg>
                 <Row>
+                  <span className={s.small}>Score fold:</span>
                   {FOLDS.map((_, k) => (
                     <Control
                       key={k}
@@ -137,12 +139,12 @@ export default function FiveFoldsFiveScores({ slug }: { slug: string }) {
                         reach(`fold-${k + 1}`);
                       }}
                     >
-                      {!locked && scored.includes(k) ? `F${k + 1}: ${SCORES[k]}%` : `Fold ${k + 1}`}
+                      {!locked && scored.includes(k) ? `${k + 1}: ${SCORES[k]}%` : `${k + 1}`}
                     </Control>
                   ))}
                 </Row>
                 <Row>
-                  <Readout label="Highest − lowest" value={locked || seenScores.length < 2 ? "–" : `${Math.max(...seenScores) - Math.min(...seenScores)} points`} />
+                  <Readout label="Highest − lowest" value={locked || seenScores.length < 2 ? "–" : `${Math.max(...seenScores) - Math.min(...seenScores)} pct points`} />
                   <Readout label="Mean of 5 folds" value={locked || !all ? "–" : `${MEAN}%`} />
                 </Row>
               </div>

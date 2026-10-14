@@ -43,21 +43,15 @@ function history(run: number, gens: number, size: number) {
   return h;
 }
 const exactLoss = (size: number) => (1 - START[RARE] / BASE) ** size;
-/** Share of runs 1..runs in which the rare word is gone after one generation. */
-function lossRate(size: number, runs: number) {
-  let lost = 0;
-  for (let r = 1; r <= runs; r++) if (history(r, 1, size)[1][RARE] === 0) lost++;
-  return lost / runs;
-}
 // MODEL END
 
 const MAX_GEN = 40;
-const SPREAD_RUNS = 2000;
 
 export default function CopyOfACopy({ slug }: { slug: string }) {
   const [run, setRun] = useState(1);
   const [gen, setGen] = useState(0);
   const [size, setSize] = useState<number>(50);
+  const [big, setBig] = useState<{ gen: number; alive: number } | null>(null);
   const [lostSeen, setLostSeen] = useState<{ run: number; gen: number; words: string[] } | null>(null);
 
   const h = history(run, gen, size);
@@ -73,10 +67,9 @@ export default function CopyOfACopy({ slug }: { slug: string }) {
         options: ["About 2%", `About ${Math.round(exactLoss(BASE) * 100)}%`, "About 98%"],
         answer: 1,
       }}
-      exploreHint="Run generations. Watch the rare words, then try 500 words per generation."
-      minInteractions={1}
+      exploreHint="Run generations and watch the rare words. Then try 500 words per generation."
+      minInteractions={2}
       reveal={() => {
-        const rate = lossRate(BASE, SPREAD_RUNS);
         return (
           <>
             <p>
@@ -87,12 +80,13 @@ export default function CopyOfACopy({ slug }: { slug: string }) {
                 </>
               ) : null}
               Each of the {BASE} draws misses &quot;{WORDS[RARE]}&quot; with chance 0.98, so all {BASE} miss it with 0.98
-              <sup>{BASE}</sup> = <strong>{(exactLoss(BASE) * 100).toFixed(1)}%</strong>. In {SPREAD_RUNS.toLocaleString("en")}{" "}
-              seeded runs it vanished after one generation {(rate * 100).toFixed(1)}% of the time.
+              <sup>{BASE}</sup> = <strong>{(exactLoss(BASE) * 100).toFixed(1)}%</strong>, about one run in three.
             </p>
             <p>
-              Once a count is zero the next model cannot produce it, so losses only pile up, and the common words take over.
-              Bigger samples ({SIZES[1]}) slow this but never undo it.
+              In this toy, once a count is zero the next model cannot produce that word, so losses only pile up.{" "}
+              {big
+                ? `With ${SIZES[1]} words per generation, ${big.alive} of ${WORDS.length} words were left after ${big.gen} generations: bigger samples slow the losing, they do not undo it.`
+                : `Bigger samples slow the losing; they do not undo it.`}
             </p>
             <p className="muted">Toy: counts only, no real model. Shumailov et al. (2024, Nature) report rare cases vanishing first when real models are trained on model output.</p>
           </>
@@ -100,7 +94,7 @@ export default function CopyOfACopy({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["lost-for-good"]}>
+        <Milestones interact={interact} names={["lost-for-good", "big-sample"]}>
           {(reach) => {
             const goTo = (g: number) => {
               const n = Math.min(MAX_GEN, g);
@@ -146,11 +140,17 @@ export default function CopyOfACopy({ slug }: { slug: string }) {
                   <Control
                     disabled={locked}
                     onClick={() => {
-                      setSize((z) => (z === SIZES[0] ? SIZES[1] : SIZES[0]));
-                      setGen(0);
+                      const z = size === SIZES[0] ? SIZES[1] : SIZES[0];
+                      setSize(z);
+                      setGen(10);
+                      if (z === SIZES[1]) {
+                        const c = history(run, 10, z)[10];
+                        setBig({ gen: 10, alive: c.filter((x) => x > 0).length });
+                        reach("big-sample");
+                      }
                     }}
                   >
-                    Draw {size === SIZES[0] ? SIZES[1] : SIZES[0]} per generation
+                    {size === SIZES[0] ? `Run 10 generations of ${SIZES[1]} words` : `Back to ${SIZES[0]} words`}
                   </Control>
                   <Control
                     disabled={locked}

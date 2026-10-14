@@ -4,11 +4,13 @@
 // matches the label on 19 (95%); the shape clue (hump = camel) is right on 16 (80%).
 // The model keeps whichever single clue scores best on training: background. On 20 test
 // photos with backgrounds shuffled (10 match), it scores 50%; shape still scores 80%.
-// The reveal waits until the learner has seen the model's own clue on the shuffled photos.
+// Four buttons run each clue on each set of photos; the reveal waits until all four have been run,
+// because it quotes all four scores.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 // MODEL START
@@ -84,22 +86,25 @@ function Tile({ p, x, y, mark }: { p: Photo; x: number; y: number; mark: boolean
 
 const pct = (x: number) => `${Math.round(100 * x)}%`;
 
-export default function BackgroundShortcut({ slug }: { slug: string }) {
-  const [clue, setClue] = useState<Clue>(LEARNED);
-  const [test, setTest] = useState(false);
-  const set = test ? TEST : TRAIN;
-  const acc = accuracy(set, clue);
+type Cell = { clue: Clue; test: boolean };
+const CELLS: Cell[] = [
+  { clue: "background", test: false },
+  { clue: "background", test: true },
+  { clue: "shape", test: false },
+  { clue: "shape", test: true },
+];
+const key = (c: Cell) => `${c.clue}-${c.test ? "shuffled" : "training"}`;
+const NAMES = CELLS.map(key);
 
-  const update = (nextClue: Clue, nextTest: boolean, interact: () => void) => {
-    setClue(nextClue);
-    setTest(nextTest);
-    if (nextTest && nextClue === LEARNED) interact(); // the reveal waits for the learned clue on shuffled photos
-  };
+export default function BackgroundShortcut({ slug }: { slug: string }) {
+  const [view, setView] = useState<Cell | null>(null);
+  const [seen, setSeen] = useState<string[]>([]);
+  const set = view?.test ? TEST : TRAIN;
 
   const message = (locked: boolean) => {
     if (locked) return "Lock in a guess to start.";
-    if (!test) return clue === "background" ? "Training photos: grass means cow, almost always." : "Training photos, judged by the hump.";
-    return "Backgrounds shuffled: same animals, new places.";
+    if (!view) return "Run a clue on a set of photos. Ticks are right, crosses are wrong.";
+    return `${view.clue === "background" ? "Background" : "Shape"} clue on ${view.test ? "photos with shuffled backgrounds" : "training photos"}: ${Math.round(20 * accuracy(set, view.clue))} of 20 right.`;
   };
 
   return (
@@ -107,22 +112,23 @@ export default function BackgroundShortcut({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Photos are labelled cow or camel. In training, the background (grass or sand) matches the label 95% of the time; the shape clue is right 80%. A model that picks the more reliable clue is tested on photos with backgrounds shuffled. Its accuracy is about:",
+          "Photos are labelled cow or camel. In training, the background (grass or sand) matches the label 95% of the time; the shape clue is right 80%. A model picks the more reliable clue, then is tested on photos with backgrounds shuffled. Its accuracy is about:",
         options: ["95%", "80%", "50%"],
         answer: 2,
       }}
-      exploreHint="Test the model on shuffled photos. Then switch its clue to shape."
+      exploreHint="Run each clue on each set of photos: four buttons."
+      minInteractions={4}
       reveal={() => (
         <>
           <p>
-            The model kept the background clue: right on {Math.round(20 * accuracy(TRAIN, "background"))} of 20 training
-            photos ({pct(accuracy(TRAIN, "background"))}), against {pct(accuracy(TRAIN, "shape"))} for shape. With
-            backgrounds shuffled it got <strong>{Math.round(20 * accuracy(TEST, "background"))} of 20: {pct(accuracy(TEST, "background"))}</strong>,
+            The toy model kept the background clue: right on {Math.round(20 * accuracy(TRAIN, "background"))} of 20
+            training photos ({pct(accuracy(TRAIN, "background"))}), against {pct(accuracy(TRAIN, "shape"))} for shape.
+            With backgrounds shuffled it got <strong>{Math.round(20 * accuracy(TEST, "background"))} of 20: {pct(accuracy(TEST, "background"))}</strong>,
             a coin flip, because grass no longer meant cow. Shape held {pct(accuracy(TEST, "shape"))} on both sets.
           </p>
           <p>
-            A model takes the cheapest clue that works on its training data. A high score proves the clue worked there,
-            not that it is the clue you meant, and test photos from the same source share the shortcut.
+            Models tend to take an easy clue that works on their training data. A high score proves the clue worked
+            there, not that it is the clue you meant, and test photos from the same source share the shortcut.
           </p>
           <p className="muted">
             This toy uses one clue at a time. Real image models have been caught using backgrounds in the same way.
@@ -131,42 +137,52 @@ export default function BackgroundShortcut({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <svg viewBox="0 0 316 196" className="stage-svg" role="img" aria-label={`${test ? "Test" : "Training"} photos; the model is right on ${Math.round(acc * 20)} of 20`}>
-            {set.map((p, i) => (
-              <Tile
-                key={i}
-                p={p}
-                x={(i % 5) * (TW + GAP)}
-                y={Math.floor(i / 5) * (TH + GAP)}
-                mark={locked ? null : guess(p, clue) === p.animal}
-              />
-            ))}
-          </svg>
-          <p className={s.msg} aria-live="polite">
-            {message(locked)}
-          </p>
-          <Row>
-            <Control className={test ? "active" : ""} aria-pressed={test} disabled={locked} onClick={() => update(clue, !test, interact)}>
-              {test ? "Back to training photos" : "Shuffle backgrounds"}
-            </Control>
-            <Readout label={test ? "Shuffled" : "Training"} value={locked ? "?" : pct(acc)} />
-          </Row>
-          <Row>
-            <span className={s.small}>Model&apos;s clue:</span>
-            {(["background", "shape"] as const).map((c) => (
-              <Control
-                key={c}
-                className={clue === c ? "active" : ""}
-                aria-pressed={clue === c}
-                disabled={locked || clue === c}
-                onClick={() => update(c, test, interact)}
-              >
-                {c === "background" ? "Background" : "Shape"}
-              </Control>
-            ))}
-          </Row>
-        </div>
+        <Milestones interact={interact} names={NAMES}>
+          {(reach) => (
+            <div className={s.wrap}>
+              <svg viewBox="0 0 316 196" className="stage-svg" role="img" aria-label={view ? `${view.test ? "Shuffled" : "Training"} photos; right on ${Math.round(accuracy(set, view.clue) * 20)} of 20` : "Training photos"}>
+                {set.map((p, i) => (
+                  <Tile
+                    key={i}
+                    p={p}
+                    x={(i % 5) * (TW + GAP)}
+                    y={Math.floor(i / 5) * (TH + GAP)}
+                    mark={locked || !view ? null : guess(p, view.clue) === p.animal}
+                  />
+                ))}
+              </svg>
+              <p className={s.msg} aria-live="polite">
+                {message(locked)}
+              </p>
+              <span className={s.small}>If the model used the clue below, on these photos:</span>
+              {(["background", "shape"] as const).map((c) => (
+                <Row key={c}>
+                  {[false, true].map((test) => {
+                    const cell = { clue: c, test };
+                    const done = seen.includes(key(cell));
+                    const on = view?.clue === c && view.test === test;
+                    return (
+                      <Control
+                        key={String(test)}
+                        className={on ? "active" : ""}
+                        aria-pressed={on}
+                        disabled={locked}
+                        onClick={() => {
+                          setView(cell);
+                          setSeen((x) => (x.includes(key(cell)) ? x : [...x, key(cell)]));
+                          reach(key(cell));
+                        }}
+                      >
+                        {c === "background" ? "Background" : "Shape"}, {test ? "shuffled" : "training"}
+                        {done ? `: ${pct(accuracy(test ? TEST : TRAIN, c))}` : ""}
+                      </Control>
+                    );
+                  })}
+                </Row>
+              ))}
+            </div>
+          )}
+        </Milestones>
       )}
     </Lesson>
   );

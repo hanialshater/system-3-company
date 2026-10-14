@@ -8,7 +8,8 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 // MODEL START
@@ -60,7 +61,8 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
 
   const message = (locked: boolean) => {
     if (locked) return "Lock in a guess to start.";
-    if (q % 360 === 0) return "Pointing straight at A, yet A gets two thirds.";
+    if (q % 360 === 0) return "Pointing straight at A, yet A gets about two thirds.";
+    if (q === 45) return "Midway: A and B tie, and C still keeps a slice.";
     return "Rotate the query. Watch the shares trade.";
   };
 
@@ -69,11 +71,11 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A query arrow points midway between word A (0°) and word B (90°); word C sits at 180°. Scores are the dot products with unit arrows; weights come from softmax. A's share of attention is about:",
+          "Each word is an arrow: A at 0°, B at 90°, C at 180°. A query arrow points midway between A and B. Each word scores by how well its arrow lines up with the query; scores are then turned into shares of one total. A's share is about:",
         options: ["100%", "45%", "33%"],
         answer: 1,
       }}
-      exploreHint="Rotate the query. Try pointing it straight at A (0°)."
+      exploreHint="Press both buttons to see each case, then rotate the query yourself."
       minInteractions={2}
       reveal={() => {
         const mid = attend(45);
@@ -81,12 +83,12 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              At 45° the scores are 0.71, 0.71 and −0.71. Softmax turns them into shares of one total: A{" "}
+              At 45° the scores are 0.71, 0.71 and −0.71. A step called softmax turns scores into shares of one total: A{" "}
               <strong>{pct(mid.weights[0])}</strong>, B {pct(mid.weights[1])}, C {pct(mid.weights[2])}. A shares with B,
               and even C keeps a slice.
             </p>
             <p>
-              Point the query straight at A and A still gets only <strong>{pct(atA.weights[0])}</strong>. The shares
+              Point the query straight at A and A gets just <strong>{pct(atA.weights[0])}</strong>. The shares
               always add to 100%, so lifting one word&apos;s weight must lower the others. The blend arrow, the weighted
               average of the word arrows, is what attention passes on.
             </p>
@@ -98,6 +100,14 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
+        <Milestones interact={interact} names={["on-A", "midway"]}>
+          {(reach) => {
+            const go = (v: number) => {
+              setQ(v);
+              if (v === 0) reach("on-A");
+              if (v === 45) reach("midway");
+            };
+            return (
         <div className={s.wrap}>
           <svg viewBox="0 0 320 230" className="stage-svg" role="img" aria-label={`Query at ${q} degrees`}>
             <circle cx={CX} cy={CY} r={RAD} fill="none" stroke="var(--line)" strokeDasharray="3 4" />
@@ -133,6 +143,19 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
           <p className={s.msg} aria-live="polite">
             {message(locked)}
           </p>
+          {!locked && (
+            <p className={s.msg}>
+              Scores: {at.scores.map((x, i) => `${KEYS[i].name} ${x.toFixed(2).replace("-", "−")}`).join(" · ")}
+            </p>
+          )}
+          <Row>
+            <Control disabled={locked} onClick={() => go(0)}>
+              Query on A (0°)
+            </Control>
+            <Control disabled={locked} onClick={() => go(45)}>
+              Query midway (45°)
+            </Control>
+          </Row>
           <Slider
             label="Query direction"
             value={q}
@@ -141,19 +164,19 @@ export default function AttentionSharesOne({ slug }: { slug: string }) {
             step={5}
             format={(v) => `${v}°`}
             disabled={locked}
-            onChange={(v) => {
-              setQ(v);
-              interact();
-            }}
+            onChange={go}
           />
           <Row>
             <Readout label="A's share" value={locked ? "?" : pct(at.weights[0])} />
             <Readout label="Total" value={locked ? "?" : pct(at.weights.reduce((a, b) => a + b, 0))} />
             <span className={s.legend}>
-              <i className={s.q} /> query <i /> blend
+              <i className={s.q} /> query <i /> blend of the words
             </span>
           </Row>
         </div>
+            );
+          }}
+        </Milestones>
       )}
     </Lesson>
   );

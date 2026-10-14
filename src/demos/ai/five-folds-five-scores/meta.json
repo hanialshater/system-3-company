@@ -1,7 +1,7 @@
 {
   "slug": "five-folds-five-scores",
   "title": "Same rule, five test groups",
-  "hook": "Score one unchanging rule on five different held-out groups. Do the scores agree?",
+  "hook": "One unchanging rule, five held-out groups. How far apart can the scores land?",
   "domain": "ai",
   "concept": "cross-validation",
   "status": "review",
@@ -34,21 +34,17 @@
     },
     {
       "id": "ai.five-folds-five-scores.c2",
-      "text": "On the stage's split the five folds score 100%, 75%, 100%, 50% and 75%: a spread of 50 points; their mean is 80%, the same as the 16 of 20 points the rule gets right.",
+      "text": "On the stage's split the five folds score 100%, 75%, 100%, 50% and 75%: a spread of 50 percentage points; their mean is 80%, the same as the 16 of 20 dots the rule gets right.",
       "support": "simulation",
       "source": "SCORES, MEAN, RIGHT_ALL in Demo.tsx with mulberry32(seed 1), the first seed, untuned (flipped points 3, 6, 11, 13). node re-run: [100, 75, 100, 50, 75], mean 80. The mean equals 16/20 for every seed, since equal folds partition the points.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.five-folds-five-scores.c3",
-      "text": "With 4 wrong labels in five groups of 4, the fold scores can never all be equal; in 1,000 shuffles the spread was 25 points or more every time.",
+      "text": "With 4 wrong labels in five folds of 4 dots, the fold scores can never all be equal, so two folds always differ by at least one dot, which is 25 percentage points.",
       "support": "simulation",
-      "source": "Derivation: equal scores need an equal number of wrong labels per fold, impossible for 4 across 5 folds (4 is not 0 or a multiple of 5). node over seeds 1-1000: spread 25 in 253, 50 in 671, 75 in 76, never below 25.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Derivation: equal scores need an equal number of wrong labels per fold, impossible for 4 across 5 folds. A one-dot difference in a fold of 4 is 25 percentage points.",
+      "status": "unverified"
     },
     {
       "id": "ai.five-folds-five-scores.c4",
@@ -79,7 +75,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:cross-validation",
     "prerequisites": [
@@ -88,5 +84,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

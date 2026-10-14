@@ -17,8 +17,8 @@ import s from "./styles.module.css";
 const START = 4;
 const MAX_STEPS = 10;
 const XMAX = 6;
-const PRESETS = [0.05, 0.45, 0.95, 1.05];
-const MILESTONES = ["tiny-run", "big-run"] as const;
+const PRESETS = [0.05, 0.45, 0.5, 0.95, 1.05];
+const MILESTONES = ["tiny-run", "mid-run", "half-run", "big-run"] as const;
 const TINY = 0.1; // a finished run at or below this counts as "tiny"
 const BIG = 0.95; // a finished run at or above this counts as "too big"
 const f = (x: number) => x * x;
@@ -41,6 +41,7 @@ function path(eta: number, steps: number): number[] {
 }
 
 function fmtDist(d: number) {
+  if (d === 0) return "0";
   if (d < 0.001) return "< 0.001";
   if (d >= 100) return Math.round(d).toLocaleString("en-US");
   return d.toFixed(2);
@@ -74,6 +75,8 @@ export default function GradientDescent({ slug }: { slug: string }) {
   const finish = (e: number) => {
     setRuns((r) => ({ ...r, [key(e)]: finalDist(e) }));
     if (e <= TINY) reach("tiny-run");
+    if (e === 0.45) reach("mid-run");
+    if (e === 0.5) reach("half-run");
     if (e >= BIG) reach("big-run");
   };
 
@@ -91,7 +94,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
 
   const runList = Object.keys(runs)
     .sort((a, b) => Number(a) - Number(b))
-    .map((k) => `${k} → ${fmtDist(runs[k])}`);
+    .map((k) => `${k}: ${fmtDist(runs[k])}`);
 
   const tinyKey = Object.keys(runs)
     .filter((k) => Number(k) <= TINY)
@@ -109,7 +112,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
         options: ["0.05", "0.45", "0.95"],
         answer: 1,
       }}
-      exploreHint="Tap 0.05 and 0.95 to run 10 hops each, then try the others."
+      exploreHint="Tap each step size to run 10 hops and compare how far from the bottom each ends."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -131,15 +134,16 @@ export default function GradientDescent({ slug }: { slug: string }) {
                 {tinyKey === "0.05" && bigKey === "0.95" ? ": exactly as far as 0.05." : "."}{" "}
               </>
             ) : null}
-            At <strong>0.45</strong> it is within 0.04 after two hops. Bigger is not faster.
+            At <strong>0.45</strong> it ended {runs["0.45"] !== undefined ? fmtDist(runs["0.45"]) : "right at"} from the bottom,
+            and <strong>0.50</strong> landed on it in one hop. Bigger is not faster.
           </p>
           <p>
-            On this valley each hop multiplies the distance by (1 − 2 × step size): 0.9 at 0.05, −0.9 at 0.95, 0.1 at
-            0.45. Fastest is where it is zero: a step size of 0.5. Past 1 it drops below −1, so every hop lands farther out.
+            On this valley each hop multiplies the distance by (1 − 2 × step size): 0.9 at 0.05, 0.1 at 0.45, 0 at 0.50
+            (so it lands at once), −0.9 at 0.95. Past 1 it drops below −1, so every hop lands farther out.
           </p>
           <p className="muted">
-            Training a neural network uses the same rule on millions of numbers at once. The step size, called the
-            learning rate, is often the most important setting to tune.
+            Training a neural network uses the same rule on millions of numbers at once. Its step size is called the
+            learning rate, and it is often the most important setting to tune.
           </p>
         </>
       )}
@@ -168,6 +172,19 @@ export default function GradientDescent({ slug }: { slug: string }) {
               <text x={px(START)} y={BOT + 18} textAnchor="middle" className={s.label} fill="var(--muted)">
                 start
               </text>
+
+              <line x1={px(0)} y1={BOT + 9} x2={px(START)} y2={BOT + 9} stroke="var(--muted)" strokeWidth={2} strokeDasharray="2 3" />
+              {!locked && (
+                <line
+                  x1={px(0)}
+                  y1={BOT + 9}
+                  x2={Math.max(L, Math.min(R, px(x)))}
+                  y2={BOT + 9}
+                  stroke={off ? "var(--bad)" : "var(--domain)"}
+                  strokeWidth={5}
+                  strokeLinecap="round"
+                />
+              )}
 
               <g clipPath={`url(#${clip})`}>
                 {xs.slice(1).map((b, i) => {
@@ -225,7 +242,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
               <p className={s.rule}>
                 {off
                   ? "Off the valley."
-                  : `Next hop = ${eta.toFixed(2)} × slope ${slope.toFixed(slope === 0 || Math.abs(slope) >= 10 ? 1 : 2)} = ${fmtDist(Math.abs(eta * slope))}`}
+                  : `Next hop = ${eta.toFixed(2)} × slope ${slope.toFixed(slope === 0 || Math.abs(slope) >= 10 ? 1 : 2)} = ${fmtDist(Math.abs(eta * slope))}. Distance × ${factor.toFixed(2).replace("-", "−")} per hop.`}
               </p>
             )}
 
@@ -278,7 +295,7 @@ export default function GradientDescent({ slug }: { slug: string }) {
                 <Readout label="From bottom" value={fmtDist(dist)} />
               </span>
             </Row>
-            {runList.length > 0 && <p className={s.runs}>10-hop runs: {runList.join(" · ")}</p>}
+            {runList.length > 0 && <p className={s.runs}>Distance from bottom after 10 hops, by step size · {runList.join(" · ")}</p>}
           </div>
         );
       }}
