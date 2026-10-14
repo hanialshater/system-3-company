@@ -1,7 +1,7 @@
 {
   "slug": "below-critical-mass",
-  "title": "A good product can still fail",
-  "hook": "Same product, same price: one launch dies, one takes off.",
+  "title": "Does a good product always find users?",
+  "hook": "Two launches, same product, same price. Where do they end up?",
   "domain": "economics",
   "concept": "network-effects-tipping",
   "status": "review",
@@ -77,29 +77,36 @@
     },
     {
       "id": "economics.below-critical-mass.c7",
-      "text": "Below this critical mass, even a product worth buying fails.",
+      "text": "Below this critical mass, a product that most people would buy if others used it still fails.",
       "support": "derivation",
-      "source": "Unrecorded learner-visible sentence (reveal para 2) recorded by the fact-checker, pass NCM-1, 2026-10-14. Builder to supply support and source, or reword: 'worth buying' is undefined in the model (at an 18% share it is worth the $0.16 price to only the 11% of people with x < 0.111). See company/reviews/below-critical-mass/2026-10-14-fact-check.md.",
+      "source": "From c1: person x joins when (1 - x) * s > 0.16. At full use (s = 1) that holds for x < 0.84, so 84% of people value it above $0.16, yet a start below 20% still shrinks to 0 (c3, c4). Reworded after fact-check pass NCM-1 ('worth buying' was undefined). Builder-written; needs a checker other than the builder.",
       "status": "unverified"
     },
     {
       "id": "economics.below-critical-mass.c8",
-      "text": "With network effects, a launch below the tipping point loses users each round, because the product is worth less to later people.",
+      "text": "With network effects, a launch below the tipping point loses users each round: with few users, the product is worth less than its price to most people, so even fewer join.",
       "support": "derivation",
-      "source": "Unrecorded learner-visible sentence (recall 'why') recorded by the fact-checker, pass NCM-1, 2026-10-14. The first half matches c4/c5; the 'because' clause does not match the model's mechanism (at a low share the product is worth less to everyone, so fewer people value it above the price). Builder to reword and source. See company/reviews/below-critical-mass/2026-10-14-fact-check.md.",
+      "source": "From c1: at share s, the product beats $0.16 only for people with x < 1 - 0.16/s, which is fewer than s itself when s < 0.2 (e.g. s = 0.18 gives 0.111). Matches c4 and c5. Reworded after fact-check pass NCM-1. Builder-written; unverified. Also shown in the reveal in short form.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.below-critical-mass.c9",
+      "text": "People differ in how much they want the product, the more of the market uses it the more it is worth to each person, and each round everyone who values it above $0.16 starts using it.",
+      "support": "derivation",
+      "source": "Plain-words restatement of the c1 model for the predict question (value (1 - x) * share for person x; join if value > price). Added in revision v2; builder-written, unverified.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A product is worth its price to many people, but only 10% of the market uses it, and its value grows with the number of users. What usually happens?",
+    "question": "A product is worth its price to many people, but only 10% of the market uses it, and its value grows with the number of users. What can happen?",
     "options": [
       "It can shrink to nothing, because it starts below its critical mass",
       "It always climbs, because it is worth its price",
       "Its share stays at 10% forever"
     ],
     "answer": 0,
-    "why": "With network effects, a launch below the tipping point loses users each round, because the product is worth less to later people. Only a start above critical mass grows."
+    "why": "With network effects, a launch below the tipping point loses users each round: with few users, the product is worth less than its price to most people, so even fewer join. Only a start above critical mass grows."
   },
   "evidence": {
     "qa": [],
@@ -107,7 +114,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:network-effects-tipping",
     "prerequisites": [
