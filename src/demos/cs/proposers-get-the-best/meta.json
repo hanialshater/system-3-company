@@ -1,0 +1,100 @@
+{
+  "slug": "proposers-get-the-best",
+  "title": "Same lists, one switch",
+  "hook": "Same four rankings, same rules. Swap who makes the offers and the outcome changes.",
+  "domain": "cs",
+  "concept": "stable-matching",
+  "format": "toggle-before-after",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo-pair-11"
+  },
+  "learner": {
+    "knows": [
+      "greedy choices (coin-greedy-trap)",
+      "ranking options from first to last"
+    ],
+    "doesNotKnow": [
+      "that in a matching market who proposes decides who gets their first choice",
+      "that deferred acceptance always ends stable"
+    ]
+  },
+  "misconception": "A stable matching procedure is neutral between the two sides.",
+  "objective": "The learner can explain that the same rankings give different stable matchings depending on which side proposes, and that the proposing side gets its best stable partner.",
+  "claims": [
+    {
+      "id": "cs.proposers-get-the-best.c1",
+      "text": "With Ann ranking X then Y, Bea Y then X, X ranking Bea then Ann, and Y ranking Ann then Bea, students proposing gives Ann-X and Bea-Y, and both students get their first choice.",
+      "support": "simulation",
+      "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c2",
+      "text": "With the same rankings, hospitals proposing gives X-Bea and Y-Ann, and both hospitals get their first choice.",
+      "support": "simulation",
+      "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c3",
+      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners.",
+      "support": "simulation",
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c4",
+      "text": "Deferred acceptance always ends stable and gives the proposing side its best stable partner.",
+      "support": "source",
+      "source": "Gale and Shapley 1962, College admissions and the stability of marriage, Amer. Math. Monthly 69(1), theorems 1 and 2 (proposer-optimality).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c5",
+      "text": "The US residency match moved to students proposing for this reason.",
+      "support": "source",
+      "source": "Roth and Peranson 1999, The redesign of the matching market for American physicians, Amer. Econ. Rev. 89(4). Check the 'for this reason' wording against the paper: the redesign adopted an applicant-proposing algorithm; the paper discusses applicant-optimality as a motive.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c6",
+      "text": "In this example no offer is ever refused, so each person gets one of their two choices on a single offer.",
+      "support": "simulation",
+      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two sides each rank the other. Running deferred acceptance twice on the same rankings, once with each side proposing, can give two different stable matchings. Which side does better in its own run?",
+    "options": [
+      "The side that proposes",
+      "The side that receives offers",
+      "Neither: stable matchings are unique"
+    ],
+    "answer": 0,
+    "why": "Deferred acceptance gives the proposing side its best stable partner, so switching who proposes can change who is happy."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:stable-matching",
+    "also": [],
+    "prerequisites": [
+      "cs:greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["matching", "gale-shapley", "deferred-acceptance", "stability"]
+  },
+  "interactions": ["choice-before-reveal", "milestone-gate", "toggle-before-after", "step-run-button"]
+}
