@@ -38,7 +38,7 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: spacing. Illustrative curves; not personal memory predictions. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, spaced-beats-cram fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cram=exp(-day/7), distributed=exp(-day/18); illustrative parameters, not fitted data. Marker visits gate the reveal; three sessions on days-2,-1,0 are calendar markers, not fitted review boosts.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, spaced-beats-cram fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cram=exp(-day/7), distributed=exp(-day/18); illustrative parameters, not fitted data. Marker visits gate the reveal; three sessions on days-2,-1,0 are calendar markers, not fitted review boosts. Future decay curves, scrub marker and retention-point markers are not rendered before prediction; only neutral stipulated calendars and chart axes are shown while locked.",
       "id": "lifehacks.spaced-beats-cram.c3",
       "status": "unverified"
     },
@@ -74,5 +74,20 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:spaced-repetition-study",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "storyboard-scrub",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "scrubber-timeline",
+    "preset-buttons"
+  ]
 }

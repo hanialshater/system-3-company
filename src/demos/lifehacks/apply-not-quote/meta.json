@@ -36,9 +36,9 @@
       "status": "unverified"
     },
     {
-      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "text": "The displayed match count compares the learner’s ordering of 2, 5, 9 with ascending order. The unsorted input stays visible while they work. There is no measured learning or productivity gain.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, apply-not-quote fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, apply-not-quote fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three. Application refinement presents new unsorted input 5, 9, 2 and leaves it visible while the learner rearranges the separate attempt row. No Cover control is offered; a real swap is required before checking. Feedback marks which attempt positions match ascending order 2, 5, 9 after Check; the unsorted input remains unchanged. This is a rule-application fixture, not a recall or retention test.",
       "id": "lifehacks.apply-not-quote.c3",
       "status": "unverified"
     },
@@ -66,5 +66,19 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:apply-not-quote",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

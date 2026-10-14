@@ -69,11 +69,25 @@
     "humanLearners": []
   },
   "version": 1,
-  "format": "Side-by-side comparison",
+  "format": "side-by-side",
   "safety": {
     "classification": "quantity-only",
     "reviewRequired": true,
     "assumptions": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles.",
     "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  }
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-percentage-overage",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
 }

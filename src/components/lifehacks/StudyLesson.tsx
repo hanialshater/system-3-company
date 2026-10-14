@@ -8,14 +8,14 @@ import { calendarResult, queueResult, fileResult, editResult, illustrativeMemory
 import s from "./StudyLesson.module.css";
 
 interface State {
-  step: number; starts: number[]; order: number[]; covered: boolean; checked: boolean;
+  step: number; starts: number[]; order: number[]; covered: boolean; checked: boolean; rearranged: boolean;
   refined: boolean; day: number; morning: boolean; month: boolean; mode: "A" | "B" | "both";
 }
 const milestones = ["first-observation", "key-comparison"] as const;
 const textColor = "var(--fg)";
 
 function initialState(spec: StudySpec): State {
-  return {step:0,starts:spec.family==="schedule"?spec.rows.map(r=>r.start):[],order:spec.family==="order"?spec.initial:[2,0,1],covered:false,checked:false,refined:false,day:0,morning:false,month:false,mode:"both"};
+  return {step:0,starts:spec.family==="schedule"?spec.rows.map(r=>r.start):[],order:spec.family==="order"?spec.initial:[2,0,1],covered:false,checked:false,rearranged:false,refined:false,day:0,morning:false,month:false,mode:"both"};
 }
 function Result({label,value}:{label:string;value:string|number}) {
   return <span className={s.result}><span>{label}</span><strong>{value}</strong></span>;
@@ -44,6 +44,7 @@ function observation(spec: StudySpec,state: State): string {
   }
   if(spec.family==="recall") {
     const matched=reconstructionMatches(spec.words,state.order);
+    if(spec.slug==="apply-not-quote") return `Your ordering ${state.order.map(i=>spec.words[i]).join(" → ")} matches ${matched.filter(Boolean).length} of ${spec.words.length} ascending positions. The input values stayed visible while you applied the rule; this was not a memory test.`;
     return `Your reconstruction matches ${matched.filter(Boolean).length} of ${spec.words.length} positions. The covered target was ${spec.words.join(" → ")}; your attempt was ${state.order.map(i=>spec.words[i]).join(" → ")}.`;
   }
   if(spec.family==="files") {
@@ -63,7 +64,7 @@ export function StudyLesson({slug,spec}:{slug:string;spec:StudySpec}) {
     slug={slug}
     predict={{question:spec.question,options:spec.options,answer:spec.answer}}
     minInteractions={2}
-    exploreHint={spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":"Try both labelled operations; inspect what changes in the fixture."}
+    exploreHint={spec.slug==="apply-not-quote"?"Try the new values. Rearrange them into ascending order, then check.":spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":"Try both labelled operations; inspect what changes in the fixture."}
     reveal={()=> <><p>{observation(spec,state)}</p><p>{spec.principle}</p></>}
   >
     {({locked,interact})=> <Stage spec={spec} state={state} setState={setState} locked={locked} interact={interact}/>}
@@ -82,17 +83,19 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const line=(constant:number)=>Array.from({length:31},(_,d)=>`${d?"L":"M"}${28+d*9},${118-Math.exp(-d/constant)*54}`).join(" ");
     return <div className={s.wrap}>
       <div className={s.caption}>Illustrative recall·3h/plan</div>
-      <Frame label={`Illustrative curves at day ${state.day}. A and B use invented decay constants; not measured memory.`}>
+      <Frame label={locked
+        ? "Stipulated calendars: A studies three hours on day zero. B starts with recall and studies one hour on each of days minus two, minus one, and zero. Recall illustration hidden until prediction."
+        : `Illustrative curves at day ${state.day}, view ${state.mode}. A: ${Math.round(values.cram*100)} percent; B: ${Math.round(values.spaced*100)} percent. Chosen decay constants, not measured memory.`}>
         <path d="M28 58 V118 H302" fill="none" stroke="var(--line)"/>
-        {state.mode!=="B"&&<path d={line(7)} stroke="var(--domain)" strokeWidth="3" fill="none"/>}
-        {state.mode!=="A"&&<path d={line(18)} stroke="var(--good)" strokeWidth="3" strokeDasharray="5 3" fill="none"/>}
-        <line x1={28+state.day*9} x2={28+state.day*9} y1="58" y2="118" stroke={textColor} strokeWidth="2"/>
+        {!locked&&state.mode!=="B"&&<path d={line(7)} stroke="var(--domain)" strokeWidth="3" fill="none"/>}
+        {!locked&&state.mode!=="A"&&<path d={line(18)} stroke="var(--good)" strokeWidth="3" strokeDasharray="5 3" fill="none"/>}
+        {!locked&&<line x1={28+state.day*9} x2={28+state.day*9} y1="58" y2="118" stroke={textColor} strokeWidth="2"/>}
         <text x="4" y="16" fill={textColor}>A:3h@0</text>
         <rect x="236" y="4" width="60" height="14" rx="3" fill="var(--domain)"/>
         <text x="4" y="38" fill={textColor}>B:recall→1h</text>
         {spec.days.map((d,i)=><g key={d}><rect x={106+i*65} y="26" width="20" height="14" rx="3" fill="var(--good)"/><text x={116+i*65} y="53" textAnchor="middle" fill={textColor}>{d}d</text></g>)}
         <text x="2" y="65" fill={textColor}>100%</text><text x="2" y="120" fill={textColor}>0%</text><text x="298" y="136" textAnchor="end" fill={textColor}>30d</text>
-        {[state.morning?1:null,state.month?30:null].filter((d): d is number=>d!==null).map(d=><g key={d}>
+        {!locked&&[state.morning?1:null,state.month?30:null].filter((d): d is number=>d!==null).map(d=><g key={d}>
           {state.mode!=="B"&&<circle cx={28+d*9} cy={118-illustrativeMemory(d).cram*54} r="4" fill="var(--domain)" stroke={textColor}/>}
           {state.mode!=="A"&&<circle cx={28+d*9} cy={118-illustrativeMemory(d).spaced*54} r="4" fill="var(--good)" stroke={textColor}/>}
         </g>)}
@@ -118,7 +121,7 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const moved=state.starts.every((v,i)=>v===spec.target[i]);
     return <div className={s.wrap}>
       <div className={s.caption}>One person · minutes</div>
-      <Frame label={`Calendar. ${rows.map(r=>`${r.label} starts ${r.start} lasts ${r.duration} minutes`).join("; ")}. ${values.conflict} conflict minutes.`}>
+      <Frame label={`One-person calendar. ${rows.map(r=>`${r.label} starts ${r.start} lasts ${r.duration} minutes`).join("; ")}. ${state.step&&!locked?`${values.conflict} overlap minutes; ${dueRow>=0?`first task finishes at minute ${rows[0].start+rows[0].duration}, due at minute ${spec.deadline}`:`last finish at minute ${values.finish}`}.`:"Results not yet tested."}`}>
         {rows.map((r,i)=><g key={r.label}>
           <text x="2" y={32+i*36} fill={textColor} className={s.rowLabel}>{r.label}</text>
           <rect x={x(r.start)} y={15+i*36} width={r.duration/limit*220} height="19" rx="4" fill={i===spec.movable?"var(--domain)":"var(--line)"} stroke={textColor}/>
@@ -142,7 +145,7 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const x=(time:number)=>74+time/80*225;
     return <div className={s.wrap}>
       <div className={s.caption}>{roundRobin?"Slice=5m · duration/due":spec.switchCost?`Setup=${spec.switchCost}m/switch`:"Exercise · duration/due"}</div>
-      <Frame label={`Queue order ${state.order.map(id=>spec.labels[id]).join(", ")}; durations and due times in minutes. Dependencies ${JSON.stringify(spec.dependencies)}.`}>
+      <Frame label={`Queue order: ${state.order.map(id=>`${spec.labels[id]}, duration ${spec.durations[id]} minutes, due at minute ${spec.due[id]}${spec.dependencies[String(id)]!==undefined?`, requires ${spec.labels[spec.dependencies[String(id)]]}`:""}`).join("; ")}. ${roundRobin?"Five-minute slices.":spec.switchCost?`Each context change adds ${spec.switchCost} minutes.`:"Whole-job execution."} ${state.step&&!locked?`${spec.metric==="completion"?`First completion at minute ${v.firstFinish}`:`Total waiting ${v.waiting} minutes`}; ${v.late} late jobs; ${spec.metric==="switches"?`${v.switches} context switches`:`${v.breaches} prerequisite breaches`}.`:"Results not yet tested."}`}>
         {state.order.map((id,i)=><g key={id}>
           <text x="2" y={29+i*35} fill={textColor} className={s.rowLabel}>{spec.labels[id]}</text>
           {v.segments.filter(seg=>seg.id===id).map((seg,index)=><rect key={index} x={x(seg.start)} y={13+i*35} width={(seg.end-seg.start)/80*225} height="20" rx="4" fill={i===0?"var(--domain)":"var(--line)"} stroke={textColor}/>)}
@@ -171,15 +174,20 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const sourceLabels=reverse?spec.words:spec.labels;
     const actualLabels=spec.slug==="cue-needs-a-boundary"&&!state.refined?["capital","capital","capital"]:spec.slug==="separate-confusable-pairs"&&!state.refined?["AX","AX","AX"]:sourceLabels;
     const compound=spec.slug==="one-question-one-card"&&!state.refined;
-    const application=spec.slug==="apply-not-quote"&&state.refined;
+    const isApplication=spec.slug==="apply-not-quote";
+    const application=isApplication&&state.refined;
+    const canRearrange=isApplication?state.refined:state.covered;
+    // This same displayed text feeds both the SVG and its accessible description.
+    const visibleSourceWords=sourceWords.map((word,i)=>application?spec.words[[1,2,0][i]]:state.checked?word:state.covered||(spec.slug==="note-gap-check"&&state.refined&&i===1)?"?":word);
+    const sourceDescription=compound?"Compound prompt: who, where, when?":isApplication?`Input ${visibleSourceWords.join(", ")}; rule ascending`:actualLabels.map((label,i)=>`${label}: ${visibleSourceWords[i]==="?"?"covered":visibleSourceWords[i]}`).join("; ");
     return <div className={s.wrap}>
       <div className={s.caption}>{application?"Rule: ascending":"Local reconstruction"}</div>
-      <Frame label={`Target ${state.covered?"covered":spec.words.join(", ")}. Attempt ${state.order.map(id=>spec.words[id]).join(", ")}. ${state.checked?`${matches.filter(Boolean).length} matches`:"Unchecked"}.`}>
+      <Frame label={`${sourceDescription}. Attempt ${state.order.map(id=>sourceWords[id]).join(", ")}. ${state.checked&&!locked?`${matches.filter(Boolean).length} matching positions`:"Unchecked"}.`}>
         {compound&&<g><rect x="7" y="26" width="306" height="40" rx="9" fill="var(--bg-2)" stroke="var(--line)"/><text x="160" y="51" textAnchor="middle" fill={textColor}>who/where/when?</text></g>}
         {sourceWords.map((word,i)=><g key={i}>
           {!compound&&<><text x={54+i*106} y="18" textAnchor="middle" fill="var(--muted)">{actualLabels[i]}</text>
           <rect x={7+i*106} y="26" width="94" height="40" rx="9" fill="var(--bg-2)" stroke="var(--line)"/>
-          <text x={54+i*106} y="51" textAnchor="middle" fill={textColor}>{application&&!state.checked?spec.words[[1,2,0][i]]:state.checked?word:state.covered||(spec.slug==="note-gap-check"&&state.refined&&i===1)?"?":word}</text></>}
+          <text x={54+i*106} y="51" textAnchor="middle" fill={textColor}>{visibleSourceWords[i]}</text></>}
           <path d={`M${54+i*106} 70 v10`} stroke="var(--line)"/>
           <rect x={7+i*106} y="84" width="94" height="42" rx="9" fill="var(--bg-2)" stroke={state.checked?(matches[i]?"var(--good)":"var(--bad)"):"var(--domain)"} strokeWidth="2"/>
           <text x={54+i*106} y="111" textAnchor="middle" fill={textColor}>{state.order.map(id=>sourceWords[id])[i]}</text>
@@ -187,11 +195,11 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
       </Frame>
       <div className={s.results}><Result label="Match" value={state.checked?`${matches.filter(Boolean).length}/3`:"?"}/></div>
       <div className={s.controls}>
-        {needsRefinement&&<Control disabled={locked||state.refined} onClick={()=>setState(p=>({...p,refined:true,checked:false}))}>{refinement[spec.slug]}</Control>}
-        <Control disabled={locked||state.covered||(needsRefinement&&!state.refined)} onClick={()=>{setState(p=>({...p,covered:true}));reach("first-observation");}}>Cover</Control>
-        <Control disabled={locked||!state.covered} onClick={()=>setState(p=>({...p,order:swapPositions(p.order,0,1),checked:false}))}>Swap 1↔2</Control>
-        <Control disabled={locked||!state.covered} onClick={()=>setState(p=>({...p,order:swapPositions(p.order,1,2),checked:false}))}>Swap 2↔3</Control>
-        <Control disabled={locked||!state.covered||state.checked} onClick={()=>{setState(p=>({...p,checked:true}));reach("key-comparison");}}>Check</Control>
+        {needsRefinement&&<Control disabled={locked||state.refined} onClick={()=>{setState(p=>({...p,refined:true,checked:false}));if(isApplication) reach("first-observation");}}>{refinement[spec.slug]}</Control>}
+        {!isApplication&&<Control disabled={locked||state.covered||(needsRefinement&&!state.refined)} onClick={()=>{setState(p=>({...p,covered:true}));reach("first-observation");}}>Cover</Control>}
+        <Control disabled={locked||!canRearrange} onClick={()=>setState(p=>({...p,order:swapPositions(p.order,0,1),checked:false,rearranged:true}))}>Swap 1↔2</Control>
+        <Control disabled={locked||!canRearrange} onClick={()=>setState(p=>({...p,order:swapPositions(p.order,1,2),checked:false,rearranged:true}))}>Swap 2↔3</Control>
+        <Control disabled={locked||!canRearrange||state.checked||(isApplication&&!state.rearranged)} onClick={()=>{setState(p=>({...p,checked:true}));reach("key-comparison");}}>Check</Control>
       </div>
     </div>;
   }
@@ -240,7 +248,7 @@ function FileStage({spec,state,locked,step}:{spec:FilesSpec;state:State;locked:b
   const showRows=transforms.includes(spec.operation)?v.rows:candidates.map(c=>c.item);
   return <div className={s.wrap}>
     <div className={s.caption}>{spec.operation==="date"?"C=created M=modified":"Exercise records"}</div>
-    <Frame label={`${v.caption}: ${v.count}. ${v.rows.map(r=>`${r.name}: ${r.value}`).join("; ")}.`}>
+    <Frame label={`${state.step&&!locked?`${v.caption}: ${v.count}. Current selected records` : "Exercise records; results not yet tested"}: ${v.rows.map(r=>`${r.name}: ${r.value}`).join("; ")||"none"}.`}>
       {showRows.map((item,i)=> {
         const selected=transforms.includes(spec.operation)||v.rows.some(r=>r.name===item.name&&r.value===item.value);
         return <g key={i} opacity={!state.step||selected?1:.33}>

@@ -76,11 +76,25 @@
     "humanLearners": []
   },
   "version": 1,
-  "format": "Side-by-side comparison",
+  "format": "side-by-side",
   "safety": {
     "classification": "electricity",
     "reviewRequired": true,
     "assumptions": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s.",
     "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  }
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-watts-hours-trade",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
 }

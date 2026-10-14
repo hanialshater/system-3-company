@@ -69,11 +69,25 @@
     "humanLearners": []
   },
   "version": 1,
-  "format": "Side-by-side comparison",
+  "format": "side-by-side",
   "safety": {
     "classification": "quantity-only",
     "reviewRequired": true,
     "assumptions": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal.",
     "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  }
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-around-versus-across",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
 }

@@ -5,10 +5,10 @@ import type { LessonProps, StageContext } from '@/kit/Lesson';
 import { Control, Slider } from '@/kit/controls';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
-import { evaluateHome, fmt, sourceConditionedCordTrials, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
+import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
 import s from './HomeLesson.module.css';
 
-function Scene({ spec, p, after, result }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult }) {
+function Scene({ spec, p, after, result, locked }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean }) {
   const n = Math.min(12,Math.max(2,Math.round(p)));
   const v=spec.values, model=spec.model;
   const rect=(x:number,y:number,w:number,h:number,key:string,target=false)=><rect key={key} x={x} y={y} width={Math.max(1,w)} height={Math.max(1,h)} rx={3} className={target?s.target:s.object}/>;
@@ -24,20 +24,27 @@ function Scene({ spec, p, after, result }: { spec:HomeSpec; p:number; after:bool
     else art=<>{Array.from({length:Math.min(8,layers)},(_,i)=>rect(150-widths/2,42+i*23,widths,20+(model==='area-volume'?Math.min(25,p*3*(after?2:1)):0),`face${i}`))}{[0,1,2,3].map(i=><path key={i} d={`M${160-widths/2+i*widths/4},${38+(model==='humidity'?p/4:0)}v-18l-4,6m4,-6l4,6`} className={s.air}/>)}<path d={`M${after?220:195},170q-20,-20 -40,0`} className={s.air}/></>;
   } else if(spec.view==='grid') {
     if(model==='pairpack') art=<><path d="M40,50q45,-15 65,5v115q-25,15 -35,-5z" className={s.object}/><path d={after?'M115,55q30,-15 40,5v95q-25,35 -55,10z':'M155,50q45,-15 65,5v115q-25,15 -35,-5z'} className={s.target}/></>;
-    else if(model==='circle-fit'||model==='handle-envelope') {
-      const cols=Math.min(5,Math.floor(p/(model==='circle-fit'?v[0]:(v[0]+(after?v[1]:0)))));
-      art=<><rect x="35" y="28" width="230" height="165" className={s.outline}/>{Array.from({length:model==='circle-fit'?cols*cols:cols},(_,i)=>{
-       const cx=55+(i%cols)*44,cy=50+Math.floor(i/cols)*35;
-       return <g key={i}><circle cx={cx} cy={cy} r={15} className={s.object}/>{model==='handle-envelope'&&<path d={`M${cx+15},${cy-7}c18,-4 18,19 0,14`} className={s.line}/>}</g>;
-      })}<path d={after?'M130,202h35l-5,-5m5,5l-5,5':'M125,202h25'} className={s.air}/></>;
-    } else if(model==='divider') art=<><rect x="35" y="45" width="230" height="130" className={s.outline}/>{[1,2,3].map(i=><rect key={i} x={35+i*230/4-3} y={45} width={after?6:1} height={130} className={after?s.object:s.hidden}/>)}</>;
+    else if(model==='circle-fit') {
+      const diameter=v[0],columns=Math.floor(p/diameter),scale=170/p,x=65,y=30;
+      art=<><rect x={x} y={y} width={170} height={170} className={s.outline}/>{Array.from({length:columns*columns},(_,i)=><circle key={i} cx={x+(i%columns+0.5)*diameter*scale} cy={y+(Math.floor(i/columns)+0.5)*diameter*scale} r={diameter*scale/2} className={s.object}/>)}<path d="M132,222q20,-16 37,0m-8,-2l8,2l-3,-8" transform={`rotate(${after?90:0},150,220)`} className={s.air}/></>;
+    } else if(model==='handle-envelope') {
+      const diameter=v[0],handle=v[1],pitch=diameter+(after?handle:0),scale=230/p,columns=Math.floor(p/pitch),r=diameter*scale/2,h=handle*scale;
+      art=<><rect x="35" y="55" width="230" height="100" className={s.outline}/>{Array.from({length:columns},(_,i)=>{
+        const cx=35+i*pitch*scale+r,cy=105;
+        return <g key={i}><circle cx={cx} cy={cy} r={r} className={s.object}/><path d={`M${cx+r},${cy-r/2}C${cx+r+4*h/3},${cy-r/2} ${cx+r+4*h/3},${cy+r/2} ${cx+r},${cy+r/2}`} className={s.line}/></g>;
+      })}</>;
+    } else if(model==='divider') {
+      const scale=230/p,compartment=result.value*scale,wall=after?v[1]*scale:0;
+      art=<><rect x="35" y="45" width="230" height="130" className={s.outline}/>{[1,2,3].map(i=><rect key={i} x={35+i*compartment+(i-1)*wall} y={45} width={after?wall:0.5} height={130} className={after?s.object:s.hidden}/>)}</>;
+    }
     else if(model==='shelf-height') art=<><rect x="35" y="35" width="230" height="165" className={s.outline}/><line x1="35" x2="265" y1={after?100:45} y2={after?100:45} className={s.line}/>{rect(65,after?130:145,85,45,'box')}{after&&rect(170,52,65,42,'extra')}</>;
     else if(model==='contain') art=<>{after&&<rect x="50" y="32" width="200" height="160" rx="20" className={s.outline}/>} {Array.from({length:n},(_,i)=>rect(after?75+(i%4)*36:25+(i%4)*65,50+Math.floor(i/4)*45,22,30,`item${i}`,i===0))}{after&&<path d="M60,40h180m-170,0v140m30,-140v140m30,-140v140m30,-140v140m30,-140v140m30,-140v140" stroke="var(--line)" fill="none"/>}</>;
     else if(model==='transparent') art=<>{Array.from({length:n},(_,i)=><g key={i}><rect x={35+(i%4)*60} y={35+Math.floor(i/4)*55} width="50" height="44" className={s.outline}/>{after&&rect(44+(i%4)*60,46+Math.floor(i/4)*55,30,24,`inside${i}`,i===n-1)}</g>)}</>;
-    else {
-      const cols=model==='gridfit'?Math.floor(p/(after?v[2]:v[1])):4;
-      const count=model==='gridfit'?Math.min(12,result.value):n;
-      art=<><rect x="35" y="30" width="230" height="170" className={s.outline}/>{Array.from({length:count},(_,i)=>rect(43+(i%Math.max(cols,1))*52,40+Math.floor(i/Math.max(cols,1))*52,model==='gridfit'?(after?34:46):42,model==='gridfit'?(after?46:34):40,`tile${i}`,i===count-1))}</>;
+    else if(model==='gridfit') {
+      const scene=rectangularPackingScene(p,v[0],after?v[2]:v[1],after?v[1]:v[2]);
+      art=<><rect x={scene.x} y={scene.y} width={scene.width} height={scene.height} className={s.outline}/>{scene.items.map((item,i)=>rect(item.x,item.y,item.width,item.height,`tile${i}`,i===scene.items.length-1))}</>;
+    } else {
+      art=<><rect x="35" y="30" width="230" height="170" className={s.outline}/>{Array.from({length:n},(_,i)=>rect(43+(i%4)*52,40+Math.floor(i/4)*52,42,40,`tile${i}`,i===n-1))}</>;
     }
   } else if(spec.view==='volume') {
     if(model==='hollow') art=<><path d="M40,80h120l60,60v35H40z" className={s.outline}/><ellipse cx="105" cy="86" rx="45" ry="20" className={s.hidden}/>{rect(after?90:230,after?74:135,38,30,'socks',true)}</>;
@@ -54,15 +61,31 @@ function Scene({ spec, p, after, result }: { spec:HomeSpec; p:number; after:bool
       return <g key={i}>{rect(x,y,w,h,`item${i}`,target&&i===(row?0:n-1))}{(model==='label-face'?after:true)&&<text x={x+w/2} y={row?120:y+16} textAnchor="middle">{model==='binary-search'&&after?String.fromCharCode(65+i):i+1}</text>}</g>;
     })}{['access','reverse-order','weighted-access','nest-access'].includes(model)&&<path d={after?'M30,174h30l-5,-5m5,5l-5,5':'M150,180v-30l-5,5m5,-5l5,5'} className={s.air}/>}</>;
   } else if(spec.view==='route') {
-    const trips=after?1:Math.min(8,Math.max(2,Math.round(p)));
-    art=<><rect x="20" y="30" width="260" height="165" className={s.outline}/>{rect(38,80,40,45,'desk')}{rect(225,80,40,45,'bin',true)}{Array.from({length:trips},(_,i)=><path key={i} d={`M80,${85+i*9}H220l-6,-4m6,4l-6,4`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>)}{after&&model!=='trips'&&rect(45,90,15,15,'copy',true)}<text x="150" y="178" textAnchor="middle">{fmt(p)}{spec.unit==='m'?'m':'items'}</text></>;
+    const roundTrip=model!=='two-stations';
+    const journeys=model==='trips'?(after?1:Math.round(p)):(after?0:v[0]);
+    const oneWay=model==='trips'?v[0]:p;
+    art=<><rect x="20" y="30" width="260" height="165" className={s.outline}/>{rect(38,80,40,45,'desk')}{rect(225,80,40,45,'bin')}{Array.from({length:journeys},(_,i)=>{
+      const y=58+i*(journeys>8?9:14),reverse=!roundTrip&&i%2===1;
+      return <g key={i}><path d={reverse?`M220,${y}H80l6,-3m-6,3l6,3`:`M80,${y}H220l-6,-3m6,3l-6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>{roundTrip&&<path d={`M220,${y+5}H80l6,-3m-6,3l6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>}</g>;
+    })}{model!=='trips'&&rect(49,94,16,16,'tool',true)}{after&&model==='two-stations'&&rect(236,94,16,16,'copy',true)}<text x="150" y="182" textAnchor="middle">{fmt(oneWay)}m {roundTrip?'one-way':'between desks'}</text></>;
   } else if(spec.view==='mechanics') {
     if(model==='balance') art=<><path d="M50,75h200l-20,110H70z" className={s.outline}/><path d="M95,75q0,-50 55,-50t55,50" className={s.line}/>{rect(70,95,after?50:80,62,'left')}{rect(182,after?95:130,after?50:35,after?62:27,'right',true)}<line x1={150+result.value*2} y1="65" x2={150+result.value*2} y2="190" className={s.air}/></>;
     else if(model==='pressure') art=<><line x1="30" x2="270" y1="175" y2="175" className={s.line}/>{rect(after?60:105,110,after?180:90,64,'load')}<path d="M150,60v45l-5,-7m5,7l5,-7" className={s.line}/><text x="150" y="50" textAnchor="middle">{fmt(p)}kg</text></>;
     else art=<><line x1="55" x2="55" y1="35" y2="195" className={s.line}/><path d="M55,190h215" className={s.line}/>{rect(after?70:190,80,40,65,'book')}<path d={`M${after?90:210},150v28l-5,-6m5,6l5,-6`} className={s.target}/><line x1="55" y1="65" x2={after?90:210} y2="65" className={s.air}/><text x={after?74:135} y="56" textAnchor="middle">{result.other}cm</text></>;
   } else if(spec.view==='ruler') {
-    const isOffset=model==='ruler-offset';
-    art=<><rect x="20" y="130" width="260" height="35" className={s.outline}/>{Array.from({length:21},(_,i)=><g key={i}><line x1={25+i*12.5} x2={25+i*12.5} y1="130" y2={i%5===0?152:142} className={s.line}/>{i%5===0&&<text x={25+i*12.5} y="162" textAnchor="middle">{i}</text>}</g>)}{rect(isOffset?64:35,75,model==='cut-allowance'?(after?220:175):180,30,'measured')}<path d={`M${isOffset&&after?64:35},112h${model==='mark-error'?180+result.value*5:after?180:200}`} className={s.air}/>{model==='cut-allowance'&&after&&<><line x1="57" x2="57" y1="75" y2="105" className={s.line}/><line x1="235" x2="235" y1="75" y2="105" className={s.line}/></>}</>;
+    const scene=homeRulerScene(spec,p,after),offset=model==='ruler-offset',mark=model==='mark-error',conversion=model==='conversion';
+    const labelled=(i:number)=>mark?[0,50,100].includes(i):conversion?[0,20,40].includes(i):i%5===0;
+    const tickStep=mark?10:1;
+    art=<><rect x={scene.zero-5} y="130" width={scene.max*scene.scale+10} height="35" className={s.outline}/>{Array.from({length:Math.floor(scene.max/tickStep)+1},(_,i)=>{
+      const cm=i*tickStep,x=scene.zero+cm*scene.scale;
+      return <g key={i}><line x1={x} x2={x} y1="130" y2={labelled(cm)?151:141} className={s.line}/>{labelled(cm)&&<text x={x} y="163" textAnchor="middle">{cm}</text>}</g>;
+    })}{mark?scene.marks.map((m,i)=><g key={i}><line x1={m.target} x2={m.target} y1="75" y2="110" className={s.hidden}/><line x1={m.actual} x2={m.actual} y1="68" y2="105" className={s.air}/><circle cx={m.actual} cy="68" r="3" fill="var(--good)"/></g>):rect(scene.objectStart,75,scene.objectEnd-scene.objectStart,30,'measured')}
+      <path d={`M${scene.measureStart},112H${scene.measureEnd}`} className={s.air}/>{scene.folds.map((x,i)=><line key={i} x1={x} x2={x} y1="75" y2="105" className={s.line}/>)}
+      {conversion&&Array.from({length:16},(_,inch)=>{
+        const x=scene.zero+inch*(after?v[0]:v[1])*scene.scale;
+        return <g key={inch}><line x1={x} x2={x} y1="185" y2={inch%5===0?203:195} className={s.air}/>{inch%5===0&&<text x={x} y="216" textAnchor="middle">{inch}in</text>}</g>;
+      })}
+    </>;
   } else if(spec.view==='swing') {
     const theta=after?Math.PI/2:Math.PI/4;
     art=<><path d="M45,35v160h220" className={s.line}/><path d="M45,195V45A150,150 0 0 1 195,195Z" fill="var(--domain)" fillOpacity=".08" stroke="var(--line)"/><line x1="45" y1="195" x2={45+150*Math.cos(theta)} y2={195-150*Math.sin(theta)} className={s.object}/>{rect(after?230:105,after?110:115,35,35,'basket',true)}<circle cx="45" cy="195" r="5" fill="var(--fg)"/></>;
@@ -76,20 +99,19 @@ function Scene({ spec, p, after, result }: { spec:HomeSpec; p:number; after:bool
   } else {
     if(model==='circle-area') art=<><rect x="60" y="30" width="180" height="180" className={s.outline}/>{after?<circle cx="150" cy="120" r="90" className={s.object}/>:rect(60,30,180,180,'square')}</>;
     else if(model==='diameter-match') art=<><circle cx="90" cy="120" r={Math.min(60,p*2.5)} className={s.outline}/><circle cx="215" cy="120" r={Math.min(60,(after?p:v[1])*2.5)} className={s.object}/></>;
-    else if(model==='unused-mirror') art=<><circle cx="75" cy="45" r="12" className={s.object}/><path d="M75,57v118m0,-78l-20,35m20,-35l20,35m-20,43l-15,27m15,-27l15,27" className={s.line}/><rect x="220" y={after?70:30} width="14" height={after?90:180} className={s.object}/><path d="M75,35L220,70L75,50M75,204L220,127L75,50" className={s.air}/></>;
     else if(model==='rug-clearance') art=<><rect x={after?35:80} y={after?25:50} width={after?230:140} height={after?180:130} className={s.object}/><rect x="80" y="60" width="140" height="110" className={s.outline}/>{rect(125,after?28:65,50,30,'chair-top',true)}{rect(125,after?174:135,50,30,'chair-bottom',true)}<path d={after?'M150,68v-28M150,162v28':'M150,75v12M150,148v-12'} className={s.air}/></>;
     else if(model==='aspect-fit') art=<><rect x="30" y="35" width="240" height="160" className={s.outline}/>{rect(after?60:30,after?45:35,after?180:240,after?135:160,'photo')}<path d={after?'M70,170l50,-80l80,80z':'M45,180l75,-95l100,95z'} className={s.line}/></>;
     else if(model==='reach') art=<><rect x="40" y="40" width="220" height="140" className={s.outline}/>{rect(after?50:165,after?155:95,75,45,'tray')}{rect(after?67:184,after?155:96,35,27,'item',true)}<path d={`M150,210L${after?80:200},${after?180:120}`} className={s.air}/></>;
     else art=<><path d="M60,70l45,-35h140v125l-45,35H60z" className={s.outline}/><path d="M60,70h140v125M200,70l45,-35" className={s.line}/>{after&&<path d={model==='ribbon'?'M130,40v153M62,132h137l45,-40':'M60,70l140,125M60,195l140,-125'} className={s.air}/>}</>;
   }
-  return <svg viewBox="0 0 300 240" className={s.scene} role="img" aria-label={`${spec.title}: ${spec.choices[after?1:0]}; ${result.label} ${fmt(result.value)} ${result.unit}`}>{art}</svg>;
+  return <svg viewBox={model==='ruler-offset'?"0 0 350 240":"0 0 300 240"} className={s.scene} role="img" aria-label={locked?`${spec.title}: ${spec.choices[after?1:0]}; illustrative arrangement before prediction`:`${spec.title}: ${spec.choices[after?1:0]}; ${result.label} ${fmt(result.value)} ${result.unit}`}>{art}</svg>;
 }
 
 function Stage({spec,p,setP,after,setAfter,locked,interact}:{spec:HomeSpec;p:number;setP:(p:number)=>void;after:boolean;setAfter:(a:boolean)=>void;locked:boolean;interact:()=>void}) {
   const {reach}=useMilestones(interact,['comparison']);
   const result=evaluateHome(spec,p,after);
   return <div className={s.stage}>
-    <Scene spec={spec} p={p} after={after} result={result}/>
+    <Scene spec={spec} p={p} after={after} result={result} locked={locked}/>
     <div className={s.controls}>
       <Control disabled={locked||!after} onClick={()=>{setAfter(false);}}>{spec.choices[0]}</Control>
       <Control disabled={locked||after} onClick={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</Control>

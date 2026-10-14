@@ -76,11 +76,25 @@
     "humanLearners": []
   },
   "version": 1,
-  "format": "Side-by-side comparison",
+  "format": "side-by-side",
   "safety": {
     "classification": "electricity",
     "reviewRequired": true,
     "assumptions": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed.",
     "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  }
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-idle-versus-active",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
 }

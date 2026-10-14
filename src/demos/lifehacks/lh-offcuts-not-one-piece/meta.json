@@ -69,11 +69,25 @@
     "humanLearners": []
   },
   "version": 1,
-  "format": "Side-by-side comparison",
+  "format": "side-by-side",
   "safety": {
     "classification": "quantity-only",
     "reviewRequired": true,
     "assumptions": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss.",
     "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
-  }
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-offcuts-not-one-piece",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
 }

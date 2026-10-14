@@ -100,3 +100,26 @@ export function sourceConditionedCordTrials(probability: number, count = 20, see
     return x/4294967296<probability;
   });
 }
+
+/** Physical dimensions share one SVG scale; leftover strips remain too narrow for another item. */
+export function rectangularPackingScene(width: number, height: number, itemWidth: number, itemHeight: number) {
+  const scale=Math.min(230/width,170/height), x=(300-width*scale)/2, y=30;
+  const columns=Math.floor(width/itemWidth), rows=Math.floor(height/itemHeight);
+  return {x,y,scale,width:width*scale,height:height*scale,columns,rows,
+    items:Array.from({length:columns*rows},(_,i)=>({x:x+(i%columns)*itemWidth*scale,y:y+Math.floor(i/columns)*itemHeight*scale,width:itemWidth*scale,height:itemHeight*scale}))};
+}
+
+/** Geometry used by the actual ruler SVG. Endpoints and all marks are derived from centimetres. */
+export function homeRulerScene(spec: HomeSpec, p: number, after: boolean) {
+  const [a=1,b=1]=spec.values;
+  const offset=spec.model==='ruler-offset', mark=spec.model==='mark-error', cut=spec.model==='cut-allowance';
+  const max=offset?25:mark?105:cut?35:40;
+  const scale=offset?12.5:250/max, zero=25;
+  const start=offset?a:0;
+  const end=offset?p:mark?p*a+(after?b:p*b):cut?p+(after?2*a:0):p;
+  return {max,scale,zero,viewWidth:offset?350:300,start,end,
+    objectStart:zero+start*scale,objectEnd:zero+end*scale,
+    measureStart:zero+(offset&&after?start:0)*scale,measureEnd:zero+end*scale,
+    folds:cut&&after?[zero+a*scale,zero+(a+p)*scale]:[],
+    marks:mark?Array.from({length:Math.round(p)},(_,i)=>({target:zero+(i+1)*a*scale,actual:zero+((i+1)*a+(after?b:(i+1)*b))*scale})):[]};
+}

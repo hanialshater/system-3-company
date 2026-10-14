@@ -559,10 +559,15 @@
     }
   ],
   "builderChecks": {
-    "pureModelTests": "13 node:test groups passed; known geometry/mechanics/access fixtures and all control endpoint bounds.",
+    "pureModelTests": "16 node:test groups passed, including actual SVG geometry endpoint and packing fixtures.",
     "typecheck": "tsc --noEmit --incremental false passed before integration.",
     "companyCheck": "Run; wrapper source contract and duplicate slug corrected. Remaining expected concept/registry errors await root curriculum+registry integration.",
     "browserQA": "Root owns integrated phone/desktop QA; no pass fabricated here.",
     "reactReview": "Applied vercel:react-best-practices. Stable hook order; no effects, external runtime calls, storage or dependencies; semantic disabled controls, SVG text alternatives; derived outputs rather than effects."
+  },
+  "visualFollowup": {
+    "findings": "Independently inspected actual integrated phone Explore screenshots for ruler-start-not-zero, suitcase-rotate-block, laundry-sort-before-walk, circle-tray-square-corners, cm-to-inches, margin-before-cut and duplicates-two-stations. Numeric calculations were correct but several shapes used incompatible hardcoded scales.",
+    "changes": "Physical ruler endpoints/fold marks/mark bias/conversion scales now derive from displayed units. Ruler-offset uses12.5px/cm and shows all0–25cm within a350px viewbox. Rectangular/circle/cup packing shares physical scale with the container; divider widths subtract actual wall thickness. Round trips have outward and return arrows; zero-travel modes show no route arrows. Locked SVG accessible descriptions omit computed outcomes.",
+    "check": "Rendered the ten affected scenes from the actual TSX source in a temporary ReactDOMServer/Playwright harness and inspected the PNG. This is targeted diagram inspection, not integrated Lesson-contract or assistive-technology clearance.16 pure fixture-test groups pass and TypeScript passes. Root will rerun integrated phone/desktop QA."
   }
 }

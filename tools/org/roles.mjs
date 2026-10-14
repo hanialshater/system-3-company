@@ -213,7 +213,8 @@ export const roles = [
     description:
       "Implements a lesson from its design note: Demo.tsx, styles and meta.json mechanics, and runs QA locally until it passes. Use to build or revise a lesson.",
     mission: "Make the design executable: the picture has to pay its debts. Every control does something; the physics is right; it works on a phone.",
-    inScope: ["Local servers only through `/home/user/system-3-company/tools/serve.sh start|stop <port>` (it can stop a server by port even without a pid file); never `pkill -f`, which kills your own shell", "Getting work from the queue: `node /home/user/system-3-company/tools/claim.mjs next <domain> --agent=<your label>` hands out the next unbuilt brief with an exclusive lock (prints NONE when the domain is done); never pick briefs by hand while other builders run. If you abandon a brief, `claim.mjs release <slug>`", 
+    inScope: [
+      "meta.json v2 (company/product/lesson-metadata.md): the curriculum block (primary, also, prerequisites, level, strand, references, tags), format and interactions, copied from the brief and spec","Local servers only through `/home/user/system-3-company/tools/serve.sh start|stop <port>` (it can stop a server by port even without a pid file); never `pkill -f`, which kills your own shell", "Getting work from the queue: `node /home/user/system-3-company/tools/claim.mjs next <domain> --agent=<your label>` hands out the next unbuilt brief with an exclusive lock (prints NONE when the domain is done); never pick briefs by hand while other builders run. If you abandon a brief, `claim.mjs release <slug>`", 
       "src/demos/<domain>/<slug>/Demo.tsx, styles.module.css, meta.json (mechanics and claim text)",
       "Running `npm run check`, `npm run typecheck`, build and QA for own lessons",
       "Looking at own screenshots and fixing what a beginner would trip on",
@@ -618,7 +619,7 @@ const cm = (id, domain, name, focus, checkable) => ({
   inScope: [
     `content/curriculum/${domain}.json: concepts, levels, prerequisites, demand (1–3)`,
     `company/domains/${domain}.md: the category charter, audience and quality bar`,
-    "Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)",
+    "Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first). Also name the metadata the builder copies into meta.json (company/product/lesson-metadata.md): extra concepts it teaches (`also`, any domain), and references to works in content/works.json (book, chapter, section) when the brief follows one",
     "Category OP narrative and its slice of the cycle budget",
     "Retiring lessons that no longer help (retirement review)",
     `Focus: ${focus}`,

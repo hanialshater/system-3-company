@@ -99,3 +99,14 @@ test('round-robin activity does not imply the first task is complete',()=> {
   assert.equal(queueResult(spec,[0,1,2]).firstFinish,5);
   assert.equal(sliced.time,30);assert.equal(queueResult(spec,[0,1,2]).time,30);
 });
+
+test('application sorts new visible values rather than recalling a hidden target',()=> {
+  const spec=catalog['apply-not-quote'];
+  const input=[spec.words[1],spec.words[2],spec.words[0]];
+  assert.deepEqual(input,['5','9','2']);
+  const ascending=[...input].map(Number).sort((a,b)=>a-b).map(String);
+  assert.deepEqual(ascending,['2','5','9']);
+  const edited=swapPositions(swapPositions([2,0,1],0,1),1,2).map(i=>spec.words[i]);
+  assert.deepEqual(edited,ascending);
+  assert.deepEqual(input,['5','9','2'], 'editing the attempt must preserve the input');
+});

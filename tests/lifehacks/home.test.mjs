@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { evaluateHome, sourceConditionedCordTrials } from '../../src/lib/lifehacks/home-models.ts';
+import { evaluateHome, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene } from '../../src/lib/lifehacks/home-models.ts';
 const source=fs.readFileSync(new URL('../../src/lib/lifehacks/home-lessons.ts',import.meta.url),'utf8');
 const specs=JSON.parse(source.slice(source.indexOf('= [')+2,source.lastIndexOf(';')));
 const get=slug=>specs.find(s=>s.slug===slug);
@@ -87,4 +87,37 @@ test('metadata retains independent gates and complete model addresses',()=>{
   assert.equal(meta.claims[2].text,s.formula);
   assert.ok(Object.values(meta.evidence).every(e=>e.length===0));
  }
+});
+
+
+test('the ruler drawing places a three-to-twenty centimetre span on the actual scale',()=>{
+ const r=homeRulerScene(get('ruler-start-not-zero'),20,true);
+ assert.equal(r.scale,12.5);assert.equal(r.objectStart,62.5);assert.equal(r.objectEnd,275);
+ assert.equal(r.measureStart,r.objectStart);assert.equal(r.measureEnd,r.objectEnd);
+ assert.equal((r.objectEnd-r.objectStart)/r.scale,17);
+ const max=homeRulerScene(get('ruler-start-not-zero'),25,true);
+ assert.ok(max.objectEnd<max.viewWidth);
+});
+test('the shown suitcase fills two exact-height rows without suggesting an extra column',()=>{
+ const scene=rectangularPackingScene(32,36,12,18);
+ assert.equal(scene.items.length,4);assert.equal(scene.columns,2);assert.equal(scene.rows,2);
+ close(scene.items[0].width/scene.items[0].height,12/18);
+ close(scene.items[3].y+scene.items[3].height,scene.y+scene.height);
+ assert.ok(scene.width-2*scene.items[0].width<scene.items[0].width);
+ for(const tile of scene.items) {
+  assert.ok(tile.x>=scene.x);assert.ok(tile.y>=scene.y);
+  assert.ok(tile.x+tile.width<=scene.x+scene.width+1e-8);
+  assert.ok(tile.y+tile.height<=scene.y+scene.height+1e-8);
+ }
+});
+test('fold allowances, conversion span and repeated mark bias use their own real scale',()=>{
+ const cut=homeRulerScene(get('margin-before-cut'),22,true);
+ close((cut.objectEnd-cut.objectStart)/cut.scale,26);
+ close((cut.folds[1]-cut.folds[0])/cut.scale,22);
+ const converted=homeRulerScene(get('cm-to-inches'),30.2,true);
+ close((converted.objectEnd-converted.objectStart)/converted.scale,30.2);
+ const origin=homeRulerScene(get('tape-mark-same-spacing'),5,true);
+ const stepping=homeRulerScene(get('tape-mark-same-spacing'),5,false);
+ close((origin.marks[4].actual-origin.marks[4].target)/origin.scale,0.2);
+ close((stepping.marks[4].actual-stepping.marks[4].target)/stepping.scale,1);
 });

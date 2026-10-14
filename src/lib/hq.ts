@@ -30,8 +30,8 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories, 4 = R&D and Research. */
-  floor?: 1 | 2 | 3 | 4;
+  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories, 4 = R&D and Research, 5 = Engineering (app team). */
+  floor?: 1 | 2 | 3 | 4 | 5;
 }
 
 const DOMAINS: [string, string, string][] = [
@@ -63,8 +63,7 @@ export const ROOMS: Room[] = [
   { id: "meeting-retro", name: "Retro room", x: 20, y: 236, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-crit", name: "Demo Crit", x: 20, y: 356, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-planning", name: "Planning room", x: 20, y: 476, w: 150, h: 76, kind: "meeting" },
-  { id: "engineering", name: "Engineering", x: 830, y: 116, w: 150, h: 110, kind: "office" },
-  { id: "backend", name: "Backend", x: 830, y: 236, w: 150, h: 110, kind: "office" },
+  { id: "to-floor-5", name: "↑ Floor 5 · Engineering", x: 830, y: 116, w: 150, h: 230, kind: "lobby" },
   { id: "growth", name: "Growth", x: 830, y: 356, w: 150, h: 110, kind: "office" },
   { id: "tools", name: "Company Tools", x: 830, y: 476, w: 150, h: 76, kind: "office" },
   { id: "build-floor", name: "Build floor", x: 186, y: 116, w: 400, h: 230, kind: "floor" },
@@ -91,6 +90,11 @@ export const ROOMS: Room[] = [
   { id: "rnd-office", name: "R&D leads", x: 20, y: 366, w: 470, h: 130, kind: "office", color: "#64b5f6", floor: 4 },
   { id: "research-office", name: "Research leads", x: 510, y: 366, w: 470, h: 130, kind: "office", color: "#81c784", floor: 4 },
   { id: "seminar", name: "Seminar room · R&D review", x: 20, y: 516, w: 960, h: 124, kind: "meeting", floor: 4 },
+  // Floor 5 (2026-10-14): Engineering. The app team (app shell, feed, kit, backend) moved up from floor 1.
+  { id: "app-team", name: "App team · app shell, feed, kit, backend", x: 20, y: 16, w: 620, h: 330, kind: "floor", color: "#4fc3f7", floor: 5 },
+  { id: "backend", name: "Data & privacy", x: 660, y: 16, w: 320, h: 330, kind: "office", color: "#4fc3f7", floor: 5 },
+  { id: "engineering", name: "Engineering review room", x: 20, y: 366, w: 620, h: 150, kind: "meeting", floor: 5 },
+  { id: "deploy", name: "Release & deploy", x: 660, y: 366, w: 320, h: 150, kind: "office", floor: 5 },
 ];
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");
