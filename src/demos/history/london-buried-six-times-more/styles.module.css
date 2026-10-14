@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; gap: 6px; }
+.wrap :global(.readout) { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.msg { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.axis { stroke: var(--fg); stroke-width: 1.2; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.tick { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.legend { font-size: 12px; fill: var(--fg); }
+.other { fill: var(--muted); opacity: 0.55; }
+.plague { fill: var(--bad); }
+.focus .other { fill: var(--domain); opacity: 1; }
+.note { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.noteBig { font-size: 13px; font-weight: 800; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.notePlague { font-size: 12px; font-weight: 700; fill: var(--bad); }
+.noteChr { font-size: 12px; font-weight: 700; fill: var(--good); font-variant-numeric: tabular-nums; }
+.chrLine { stroke: var(--good); stroke-width: 2.5; }
+.chrLead { stroke: var(--good); stroke-width: 1; stroke-dasharray: 2 2; }
+.halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.presets { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 4px; }
+.presets :global(.control) { grid-column: span 2; padding: 6px 4px; min-height: 40px; line-height: 1.2; }
+.presets :global(.control:nth-child(n + 4)) { grid-column: span 3; }

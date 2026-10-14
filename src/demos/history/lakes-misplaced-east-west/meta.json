@@ -1,0 +1,101 @@
+{
+  "slug": "lakes-misplaced-east-west",
+  "title": "Where old maps put the Great Lakes",
+  "hook": "Eleven maps, 1688 to 1818, placed the same 39 lakeshore points. Which way were they off?",
+  "domain": "history",
+  "concept": "old-map-longitude-error",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-2"
+  },
+  "learner": {
+    "knows": [
+      "old maps were less accurate"
+    ],
+    "doesNotKnow": [
+      "that the error was mostly east-west",
+      "that it shrank within a century"
+    ]
+  },
+  "misconception": "Old maps were equally wrong in every direction.",
+  "objective": "The learner can say that old maps of the Great Lakes were wrong mostly east-west (Coronelli 1688: about 6 times the north-south error) and that the east-west error shrank by 1818, because longitude needs a time difference while latitude does not.",
+  "claims": [
+    {
+      "id": "history.lakes-misplaced-east-west.c1",
+      "text": "The latitude and longitude of 39 Great Lakes points as read from 11 maps (Coronelli 1688 to Melish 1818), and their actual positions.",
+      "support": "source",
+      "source": "history-data.mjs: oldmaps, OldMaps.csv, columns lat and long (Andrews & Herzberg 1985, Table 10.1, per the HistData doc). Absolute values used because of sign typos noted in the doc; copied into Demo.tsx as ACTUAL and MAPS.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.lakes-misplaced-east-west.c2",
+      "text": "On Coronelli's 1688 map the points were on average 59 km off north-south but 363 km off east-west; on Melish's 1818 map the east-west error was 41 km (north-south 24 km); east-west was the worse error on 9 of the 11 maps.",
+      "support": "derivation",
+      "source": "history-cycle1-check.mjs section 10: north-south = |dlat| x 111.32 km, east-west = |dlon| x 111.32 x cos(actual latitude), mean over 39 points. Coronelli 59 / 363 (x6.2), Melish 24 / 41, 9 of 11 (not Mitchell 1755 or Lattre 1784). Demo.tsx computes the same; stage and reveal both round to whole km (the brief's draft reveal rounded to tens: 60, 360, 40).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.lakes-misplaced-east-west.c3",
+      "text": "Latitude can be taken from the height of the Sun or a star, while longitude needs a time difference.",
+      "support": "derivation",
+      "source": "Brief #10 claim (3): the longitude problem (prerequisite geography:sun-time-from-longitude; 15 degrees of longitude per hour of Earth's rotation). Not opened against a primary source by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.lakes-misplaced-east-west.c4",
+      "text": "Where it stops: each map's 39 points were read off by hand.",
+      "support": "source",
+      "source": "history-data.mjs: oldmaps, HistData OldMaps documentation (opened per the brief): points read from the maps with a grid overlay and linear interpolation.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.lakes-misplaced-east-west.c5",
+      "text": "The map is drawn on a conic equal-area projection over the Great Lakes (parallels 42 and 47 N), with today's country outlines from Natural Earth 1:110m.",
+      "support": "convention",
+      "source": "Demo.tsx: geoConicEqualArea().parallels([42, 47]).rotate([84, 0]) from d3-geo via @/kit/geo; outlines from the kit's world-atlas 110m countries (coarse; lakes are not cut out). Outlines are context only; every error is computed from the point coordinates, not from the drawing.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sailor in 1700 knows her latitude exactly but her clock is 20 minutes wrong. Which way is her position uncertain?",
+    "options": [
+      "North-south",
+      "East-west",
+      "Both equally"
+    ],
+    "answer": 1,
+    "why": "A clock error is a longitude error: 20 minutes of time is 5 degrees of longitude, east or west."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:old-map-longitude-error",
+    "also": [],
+    "prerequisites": [
+      "history:longitude-problem-estimates"
+    ],
+    "level": "core",
+    "strand": "maps-borders",
+    "references": [],
+    "tags": [
+      "old maps",
+      "longitude",
+      "cartography"
+    ]
+  },
+  "format": "map-explorer",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

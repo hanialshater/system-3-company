@@ -1,0 +1,93 @@
+{
+  "slug": "more-boys-christened",
+  "title": "Boys and girls in London's registers",
+  "hook": "82 years of London christenings, counted by sex. How often were boys ahead?",
+  "domain": "history",
+  "concept": "sex-ratio-at-baptism",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-2"
+  },
+  "learner": {
+    "knows": [
+      "about as many boys as girls are born"
+    ],
+    "doesNotKnow": [
+      "that a small surplus of boys showed in every one of 82 years of London's christenings, because the counts were large"
+    ]
+  },
+  "misconception": "In old records, boys and girls come out about even, so any year could go either way.",
+  "objective": "The learner can say that London christened more boys than girls in every one of 82 years (about 107 to 100), and that a small steady difference shows every year when the counts are large.",
+  "claims": [
+    {
+      "id": "history.more-boys-christened.c1",
+      "text": "London christened 484,382 boys and 453,841 girls from 1629 to 1710 (82 years), with counts for each year.",
+      "support": "source",
+      "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, columns Males and Females (Arbuthnot 1710, per the HistData doc). Copied into Demo.tsx as CHRISTENED. Known trap (charter): the 1674 and 1704 rows are identical in the file; both are drawn as given.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.more-boys-christened.c2",
+      "text": "Boys outnumbered girls at christening in all 82 years, by about 107 to 100 overall; the closest year, 1703, had 101 boys for every 100 girls and the widest, 1661, had 116.",
+      "support": "derivation",
+      "source": "history-cycle2-check.mjs section 16: 82 of 82; 100 x 484,382 / 453,841 = 106.7 -> 107; min ratio 1703 (101.1 -> 101), max 1661 (115.6 -> 116). Demo.tsx computes the same from CHRISTENED; stage and reveal both use Math.round.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.more-boys-christened.c3",
+      "text": "A small, steady difference shows every single year once the counts are in the thousands.",
+      "support": "derivation",
+      "source": "Each year's christenings of each sex in the file are between about 2,700 and 8,500 (CHRISTENED); with a surplus near 7%, the yearly surplus (82 to 800 on the stage) stays above zero in every year. The general point (a sign test / sampling noise falls with count) is owned by probability; stated here as what the record shows.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.more-boys-christened.c4",
+      "text": "Where it stops: these are christenings in London, not births, so babies who were never christened are missing.",
+      "support": "source",
+      "source": "history-data.mjs: arbuthnot, HistData Arbuthnot documentation (christenings by sex in London). Brief #16: no held source sentence.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Boys are 51% of births. Which hospital more often has a day with more girls than boys: one with 10 births a day or one with 1,000?",
+    "options": [
+      "The one with 10",
+      "The one with 1,000",
+      "Both equally often"
+    ],
+    "answer": 0,
+    "why": "With few births a day, chance swamps a small surplus; with 1,000 the 51% shows almost every day, as London's thousands of christenings did every year."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:sex-ratio-at-baptism",
+    "also": [
+      "life:sex-ratio-fisher"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "christenings",
+      "sex ratio",
+      "records"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

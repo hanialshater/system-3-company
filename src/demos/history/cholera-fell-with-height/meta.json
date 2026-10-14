@@ -1,0 +1,101 @@
+{
+  "slug": "cholera-fell-with-height",
+  "title": "Farr's cholera table: deaths by height",
+  "hook": "Farr recorded each London district's height above the Thames in 1849. What did cholera do?",
+  "domain": "history",
+  "concept": "cholera-1849-elevation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-2"
+  },
+  "learner": {
+    "knows": [
+      "cholera hit poor, crowded parts of Victorian London"
+    ],
+    "doesNotKnow": [
+      "how strongly it fell with height above the Thames in Farr's own table",
+      "that height and water supply went together, so the table cannot separate them"
+    ]
+  },
+  "misconception": "A pattern as strong as this in the record shows the cause.",
+  "objective": "The learner can say that in Farr's 1849 table cholera deaths fell steeply with height (about 5 times fewer at 80 feet and up), and that because the low districts mostly drew central-Thames water, the table alone cannot say whether height or water mattered.",
+  "claims": [
+    {
+      "id": "history.cholera-fell-with-height.c1",
+      "text": "Farr's table gives cholera deaths, population, height above the Thames high-water mark and water supply for 38 London districts in 1849.",
+      "support": "source",
+      "source": "history-data.mjs: cholera, Cholera.csv, columns district, cholera_deaths, popn, elevation (feet above high water), water (Farr's tables; the HistData doc names Brigham et al. 2003 as its source, the brief cites Bingham et al. 2004). Copied into Demo.tsx as DISTRICTS by a node script.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.cholera-fell-with-height.c2",
+      "text": "The 16 districts under 20 feet lost 92 per 10,000; the 4 at 80 feet or more lost 20, about 5 times fewer.",
+      "support": "derivation",
+      "source": "history-cycle2-check.mjs section 20: pooled deaths / population x 10,000: under 20 ft 8,584 / 935,869 = 91.7 -> 92; 80 ft and up (St Pancras, Islington, Marylebone, Hampstead) 19.8 -> 20; ratio 4.6 -> 'about 5'. Demo.tsx computes the same; the question's 92 is also computed. Dots plot each district's own rate (deaths / popn x 10,000, rounded; equals the file's cholera_drate).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.cholera-fell-with-height.c3",
+      "text": "11 of the 16 low districts drew their water from the Thames between Battersea and Waterloo (\"Thames, central\" on the stage).",
+      "support": "derivation",
+      "source": "history-cycle2-check.mjs section 20 (11 of 16 with water = Battersea). The level 'Battersea' means 'Thames, between Battersea and Waterloo Bridges' per the HistData Cholera documentation (opened 2026-10-14 by the builder from raw.githubusercontent.com); 'Kew' = 'Thames, at Kew and Hammersmith'; 'New River' = 'New River, Rivers Lea and Ravensbourne'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.cholera-fell-with-height.c4",
+      "text": "Height and water went together, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height (r = −0.68).",
+      "support": "derivation",
+      "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates). Brief: the lesson never says water alone.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.cholera-fell-with-height.c5",
+      "text": "Where it stops: these are deaths registered in one year, district by district.",
+      "support": "source",
+      "source": "history-data.mjs: cholera, HistData Cholera documentation (1849 deaths by registration district). Brief #20: no held source sentence; Farr's miasma theory is not used.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a city, the low streets have both more illness and the oldest wells. From those two facts alone, what causes the illness?",
+    "options": [
+      "The low ground",
+      "The wells",
+      "These facts cannot tell"
+    ],
+    "answer": 2,
+    "why": "When two possible causes go together, a pattern with one of them cannot separate it from the other."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:cholera-1849-elevation",
+    "also": [],
+    "prerequisites": [
+      "probability:confounding"
+    ],
+    "level": "core",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "cholera",
+      "confounding",
+      "Farr"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
