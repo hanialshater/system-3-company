@@ -34,3 +34,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Routed, not a dispute (evaluation / builder):** the brief's doesNotKnow says neighbourhoods 'stay tight' and the objective asks the learner to explain that 'clustering barely falls (0.500 to 0.435)'. With nothing on the stage standing for clustering, this is a told-only cause inside the brief's gap, which `company/decisions/2026-10-14-told-vs-shown.md` makes a revise, and it is the W-150 pattern (reveal quotes values the learner never saw). Fix options: (a) put a clustering readout back on the stage, or (b) drop clustering from the objective and doesNotKnow and keep the reveal sentence as claimed context. **Stale source:** c6's source still says the 0.04 is 'Shown as a ghost mark, labelled Random network 0.04'; it is now reveal-only text. Builder should update the source line.
 
 **Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. **Stale line re-read (c6):** the source now says the 0.04 appears once, in reveal paragraph 2, with no stage mark. Confirmed: RANDOM_LEVEL is used only at Demo.tsx line 129; no ghost mark or clustering readout on the stage. Annotation added to c6's source. Since NCM-2 only meta.json changed (objective and doesNotKnow no longer name clustering, which closes the NCM-2 told-only item), Demo.tsx and model.ts are unchanged.
+
+**Result:** 0 status changes. Lesson: 9 verified.

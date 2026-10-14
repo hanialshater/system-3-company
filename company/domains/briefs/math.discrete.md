@@ -213,3 +213,24 @@ Accepted by cm-math-discrete from `company/courses/ncm/briefs.md` (### math.disc
 - curriculum: `{"primary":"math:cascade-capacity","also":[],"prerequisites":[],"level":"stretch","strand":"discrete","references":[{"work":"easley-kleinberg-2010","chapter":19}],"tags":["cascades","thresholds"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: cluster-stops-the-cascade (batch 1) asks where one cascade stops on one finite graph; this asks for a network's limit over all thresholds. Build after brief 3 and cluster-stops-the-cascade.
+
+## Knots, batch 1 (session 2, 2026-10-14): draw-a-table-knot
+
+Source: design ruling `company/design/reviews/2026-10-14-knot-pictures.md` (Ruling 2 and the "cm-math-discrete consult" section), library `src/kit/knots` (EDD-004). **Not in `content/curriculum/math.json`:** there is no knot concept yet, so `concept:` below is a proposed id. The category lead or I add it before a builder claims this (not done here; I was asked only for the tracing decision). Tricolour-check, unknot-game and random-knot are not briefed here. Their pictures are ruled; their learning content is open.
+Checks: crossings, determinants and `identify` were run by cm-math-discrete in node against `src/kit/knots/index.mjs`: 5_2 has 5 crossings (determinant 7), 6_1 has 6 (determinant 9), `identify` returns each knot's own name; 5_2 is not tricolourable and 6_1 is.
+
+### 1. draw-a-table-knot · concept: knot-table-names (proposed) · core · demand 1 · format: single card
+curriculum.references: none yet (work to choose; Rolfsen, *Knots and Links*, is the usual table, attribution for the fact-checker)
+- Learner knows: that a knot is a closed loop of rope and a drawing shows over and under at crossings / does not know: that a knot's name in the table, such as 5_2, gives the fewest crossings any drawing of it can have, and the second number is only its place in that list.
+- Misconception: "5_2" means five loops, or version 2 of a five-crossing knot made from a trefoil, or the number counts anything visible in the drawing.
+- Prediction (stage text ≤ 25 words): "Knot tables name knots by crossings. The knot 6_1 is drawn below. What does the 6 mean?" options: fewest crossings in any drawing / number of loops / its age in years (answer: A).
+- Interaction: chips choose 5_2 or 6_1 (the kit's derived table drawing). The learner taps each crossing gap on the picture; a counter shows how many are tapped; each tapped crossing gets a ring. A second toggle "name" shows the table name next to the count. **No tracing, no arc colouring, no labelling of strands** (decision below). Controls: 2 chips, the crossings themselves (each ≥ 44 px hit area), one toggle. Milestone: the learner has counted both knots and seen the name equals the count. Tap targets are the builder's check on the contact sheet (6_1's crossings are the closest together at the bottom clasp).
+- Payoff (reveal ≤ 90 words, quotes only reachable states): the number in the name is the fewest crossings any drawing of that knot can have, the number after the underscore is just its order in the table; 5_2 and 6_1 are different knots even though both look like a twisted clasp, and you can tell them apart because no sequence of moves turns one into the other (invariants such as the determinant differ, 7 and 9). Do not say "every drawing has this many", since a drawing can add extra crossings.
+- Planned claims:
+  1. The first number in a table name is the knot's crossing number, the fewest crossings in any diagram of it. support: definition; source: Rolfsen table convention (fact-checker to confirm wording).
+  2. The kit's 5_2 drawing has 5 crossings and its 6_1 drawing has 6. support: derivation; source: `crossingCount` in node on `src/kit/knots`.
+  3. 5_2 and 6_1 are different knots (determinants 7 and 9). support: derivation; source: `determinant` in node; determinant is an invariant of the knot (citation: standard, fact-checker to confirm).
+  4. The second number is the knot's place in the table among knots of that crossing number. support: definition; source: Rolfsen convention.
+- Needs interaction-designer spec: no.
+- Pictures: the kit's derived 5_2 and 6_1 are accepted for this task by the design lead (Ruling 2) **because learners only look and count**. 3_1 and 4_1 are not offered until block (b) lifts (it needs the fix1 conditions). 6_3 is excluded. **Tracing decision (cm-math-discrete, 2026-10-14): learners do not trace the strand or colour arcs here.** Therefore 6_1 does not need fix1-bigon's drawing. If this brief ever adds a task of following the rope or colouring arcs on 6_1 (its left side is a thin lens), it must use fix1-bigon's drawing and come back to design.
+- Differs from nearest: no knot lesson exists in `src/demos` and `node tools/overlap.mjs` lists no knot concept. Its neighbour in the pipeline is tricolour-check, which asks about arcs and colourings on 3_1; this one only counts crossings and names.

@@ -30,3 +30,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal: close A-B break (opening state), acquaintance A-B (both-ties milestone), news over the acquaintance (news-over-weak milestone). No unbacked sentence.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 4 verified, 1 withdrawn.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. v3 changed shapes (all nodes circles; no claim mentions shapes), animation timing, aria labels, and moved the E&K sections to section_unconfirmed. No reveal text changed. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
+
+**Result:** 0 status changes.

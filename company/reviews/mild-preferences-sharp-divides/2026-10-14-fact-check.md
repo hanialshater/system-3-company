@@ -39,3 +39,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal quotes only the learner's own finished runs (pinRun, others, cascade count from that run); the 30% run and another threshold are milestone-gated. No unbacked sentence.
 
 **Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. v3 changed only the replay timing (8 frames, 45 ms), the stage-fit floor and a chip aria-label ("Moves if under p% like neighbours", matches the rule in the predict and c1). No model or reveal text changed. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
+
+**Result:** 0 status changes.

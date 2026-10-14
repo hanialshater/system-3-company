@@ -34,3 +34,16 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Advisory (builder):** Meusel et al. (WWW 2014) report that the bow-tie proportions depend on the crawl. 'The real web has this shape too' is defensible, but the attributed form ('Broder and colleagues found ...', which the next sentence already uses) is safer.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c2 | Own undirected BFS over the 14 Demo.tsx edges: A's component = ABCDEFGHIJ (10); K-L separate (only K>L). | verified |
+| c3 | Directed reach from each of A-D = ABCDGHI (7), never E or F; G 3, H 2, I 1. The reveal prints the first core page's reach (always 7) beside "Ten pages are joined", so 7 < 10 is on screen. | verified |
+
+**Reveal check:** paragraph 1 matches c1-c3 and the group legend (IN E, F; CORE A-D; OUT G-I; tendril J; detached K, L) matches the edge list. Paragraph 2 = c4, c5, c6 (NCM-2 advisory on attributing the shape to Broder still stands, not blocking).
+
+**Result:** 2 verified, 0 disputed. Lesson now: 7 verified.

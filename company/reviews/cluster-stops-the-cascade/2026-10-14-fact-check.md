@@ -38,3 +38,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Advisory (claim text):** c4 says the reveal quotes the count 'only for the group member the learner focused on that final'; the code quotes the current focus at start 0,1 at any round (endFriends always uses the final). The pinned reveal stage shows the same number, so the learner sees nothing unbacked.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. v3 sets quoted = sawIn, so the reveal quotes a person only for a group member focused on the 0,1 final, as c4 says (closes the NCM-2 advisory). No other change. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
+
+**Result:** 0 status changes.

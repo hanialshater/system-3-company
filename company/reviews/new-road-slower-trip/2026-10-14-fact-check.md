@@ -31,3 +31,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal uses the furthest state; milestone nobody-gains forces 4,000, and the 2,000 sentence prints only if 2,000 was seen. No unbacked sentence.
 
 **Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 11 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c12 | Triangle (aria "quicker") is drawn beside whichever of New route / Switch back is lower, only with the link open; the stage note reads "Switch back: one driver leaving the new route. ▲: the quicker trip." Switch back = oldRoute(v) = (2000 + v/2)/100 + 45, which is exactly what a driver moving from S-A-B-E to S-A-E or S-B-E meets (85 at 4,000, c5). | verified |
+
+**Reveal check:** 40 v 65 at 0 (c3); "At 2,000 ... 60 against 75" only if 2,000 was seen; final state is 4,000 (milestone nobody-gains): 40 + 0 + 40 = 80, switch back 85 (c11, c5); lost 15 (c6); Braess (c7); footer c8.
+
+**Result:** 1 verified, 0 disputed. Lesson now: 12 verified.

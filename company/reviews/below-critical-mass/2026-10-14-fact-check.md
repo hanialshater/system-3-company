@@ -38,3 +38,18 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal quotes the finished runs closest to 20% on each side; milestones force 19 and 21, so it prints 19% died in 2 rounds and 21% climbed to 80% in 8 (Demo run()). No unbacked sentence.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c10 | Value (1 - x)s beats 0.16 iff x < 1 - 0.16/s: cut 0.84 at s = 1, 0.80 at s = 0.8, so 0.8 is a fixed point and the least keen 16-20% stay out. Runs from 90% and 100% fall back (90 82 81 80; 100 84 81 80 80). | verified |
+| c11 | Claim (grows only between 20% and 80%) is right, and the dashed diagonal (dasharray 5 4), the ring at 20% and the 0-20 / 20-80 shading match it. **But reveal paragraph 2 says "Right of it the curve is above the line and the share grows" with no upper bound.** next(s) < s for all s > 0.8 (0.9 -> 0.822, 1.0 -> 0.84) and the Start slider reaches 81-100%, where the stage visibly shrinks. | **disputed** |
+
+**Fix (demo-builder):** reveal paragraph 2, replace "Right of it the curve is above the line and the share grows." with "Between it and 80% the curve is above the line and the share grows." (optional: "Above 80% it dips below again, so the share falls back to 80%."). Then set c11 to unverified for re-check.
+
+**Reveal check:** paragraph 1 always quotes 19% (dies in 2 rounds) and 21% (80% in 8 rounds) because the edge milestones force them and onEnded keeps the start nearest 20% on each side (re-run: 19 16 0; 21 24 33 51 69 77 79 80 80): backed by c3/c4. Paragraph 3 = c8, c10, c7. Footer = c6. The "shaded green" label is the domain teal #80cbc4; acceptable.
+
+**Result:** 1 verified, 1 disputed. Lesson now: 10 verified, 1 disputed (c11). Blocks publish until the one-line fix.

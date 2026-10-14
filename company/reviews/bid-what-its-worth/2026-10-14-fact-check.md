@@ -32,3 +32,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal quotes rival $60 and $75 (both milestones). Paragraph 2 is c6/c2. No unbacked sentence.
 
 **Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. Demo.tsx and meta.json unchanged since NCM-2. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
+
+**Result:** 0 status changes.

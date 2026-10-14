@@ -36,3 +36,11 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Advisory (builder):** milestone `kept-50` fires at any slider value above 0.90 in keep mode (`v > START && k`), so a learner can earn the reveal having seen keep-50% only at, say, 0.94 (right dive 0.720) while the reveal quotes 1.00 (0.750). Gate it on `v === BEST`. Backed by c6, so not a dispute.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. **Stale line re-read (c6 advisory):** resolved. Demo.tsx line 104 now fires "kept-50" only when v === BEST (1.00) in keep mode, so the reveal's 0.700 / 0.750 is a reached state; annotation added to c6's source. Diff since NCM-2 is that one line, so all numbers are unchanged (A 0.700 at 50/50; Z 44.4% / 55.6% / 0.722; K 0.700 v 0.750, re-derived from mix()).
+
+**Result:** 0 status changes. Lesson: 7 verified.

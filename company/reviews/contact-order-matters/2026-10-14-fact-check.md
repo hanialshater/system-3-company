@@ -28,3 +28,13 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** NCM-1 fix applied ('can overstate'). Reveal: E->A and A->E from A and Overlap from E are milestones; 'From E, A->E reached only D' prints only if reached.
 
 **Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+No open claims. v3 changed the reveal wording and pinned the reveal stage. Re-ran spread() verbatim: AE from A 1,2,3,4; AE from E only D on day 4; EA from A only B on day 4; EA from E all four; Overlap from A or E all four, one per day. New sentences "When meetings run E to A ... only B" (c2), "Starting from E with meetings running A to E reached only D" (c4, gated by onOnlyD) and "Overlap ... every pair meets on each of days 1 to 4, so infection can run both ways, and from E all four were reached" (c3, milestone two-way) are backed.
+
+**Advisory (not blocking):** the footer now begins "In real populations, partnerships that overlap ... can spread infection further (Morris and Kretzschmar, 1997)". c6 does not say "in real populations", and the cited paper is a simulation of a model population; the size of the real-world effect is contested in the empirical literature. "Can" keeps it true, but "In models of real populations" or dropping the prefix would match the source. Owner: demo-builder.
+
+**Result:** 0 status changes. Lesson: 7 verified.

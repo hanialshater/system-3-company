@@ -10,12 +10,13 @@ const at = (M, d) => (d & ~3) + ((d - [0, 1, 2, 3].find((i) => M.h[(d & ~3) + i]
 
 export function layout(pd, { relax = 60 } = {}) {
   const M = load(pd), F = faces(M), n = M.n, P = pieces(M), X = [], Y = []
-  tutte(M, F, P, X, Y)
-  if (relax) force(M, F, P, X, Y, relax)
+  const O = tutte(M, F, P, X, Y)
+  if (relax) force(M, F, P, X, Y, relax, O)
   return { crossings: [...Array(n).keys()].map((c) => [X[c], Y[c]]), points: darts(M).reduce((a, d) => ((a[at(M, d)] = [X[n + d], Y[n + d]]), a), []), loops: Array.from({ length: M.loops }, (_, j) => [2.6 * (P.length + j), 0, 0.8]) }
 }
 // Vertices: crossing c, handle n + d of dart d, region 5n + i. A region is joined to the handles round it; each
 // piece's largest region is put on a unit circle, at x = 2.6 x piece, and every other vertex at its neighbours' mean.
+// Returns those outer regions (by index in F).
 function tutte(M, F, P, X, Y) {
   const n = M.n, N = 5 * n + F.length, pc = [], fix = [], adj = Array.from({ length: N }, () => []), E = (d) => n + d, add = (a, b) => (adj[a].push(b), adj[b].push(a)), outer = P.map(() => -1)
   P.forEach((cs, i) => cs.forEach((c) => (pc[c] = i)))
@@ -30,18 +31,20 @@ function tutte(M, F, P, X, Y) {
   })
   for (let v = 0; v < N; v++) if (!fix[v]) X[v] = Y[v] = 0
   for (let it = 0; it < 500; it++) for (let v = 0; v < N; v++) if (!fix[v] && adj[v].length) { let sx = 0, sy = 0; for (const w of adj[v]) (sx += X[w]), (sy += Y[w]); X[v] = sx / adj[v].length; Y[v] = sy / adj[v].length }
+  return outer
 }
 
 // Relaxation that keeps the embedding (PrEd, Bertault 2000; ImPrEd, Simonetto et al. 2011), forces after
 // Fruchterman-Reingold, on the control polygons (crossing, handle, handle, crossing) of the edges: springs,
 // vertex-vertex repulsion (8 x between two crossings, to spread them), vertex-segment repulsion within each face,
-// a pull to the piece centre, a square-crossing pull, and an angle spring at handles so strands bend evenly.
+// a pull to the piece centre, a square-crossing pull, an angle spring at handles so strands bend evenly, and a
+// bigon opener (in `relax`) so a long 2-sided region is drawn as a lens, not as a doubled line.
 // Moves are bounded per direction (8 sectors, below), so no vertex crosses a segment: the polygons keep their
 // faces and handedness. Each curve lies inside its polygon's hull; hulls of near strands can still overlap.
-function force(M, F, P, X, Y, its) {
+function force(M, F, P, X, Y, its, O) {
   const n = M.n
   P.forEach((cs, p) => {
-    const V = cs.flatMap((c) => [c, ...[0, 1, 2, 3].map((s) => n + 4 * c + s)]), N = V.length, id = {}, x = new Float64Array(N), y = new Float64Array(N), cx = 2.6 * p, E = [], T = [], W = []
+    const V = cs.flatMap((c) => [c, ...[0, 1, 2, 3].map((s) => n + 4 * c + s)]), N = V.length, id = {}, x = new Float64Array(N), y = new Float64Array(N), cx = 2.6 * p, E = [], T = [], W = [], B = []
     V.forEach((v, i) => { id[v] = i; x[i] = X[v] - cx; y[i] = Y[v] })
     // Segments with springs: crossing to handle, and handle to handle (not across a kink, so its loop can open).
     // Strand triples (crossing, handle, next handle) for the bending spring.
@@ -50,7 +53,9 @@ function force(M, F, P, X, Y, its) {
       E.push(id[c], a); if (d < M.o[d] && M.o[d] >> 2 != c) E.push(a, b)
       T.push(id[c], a, b)
     }
+    // Bigons (2-sided regions, not the outer one): [crossing a, edge 1's handles from a, crossing b, edge 2's from a].
     for (const f of F) if (f[0] >> 2 in id) {
+      if (f.length == 2 && !O.includes(F.indexOf(f))) { const [d, e] = f; B.push(id[d >> 2], id[n + d], id[n + M.o[d]], id[e >> 2], id[n + M.o[e]], id[n + e]) }
       const b = f.flatMap((d) => [id[d >> 2], id[n + d], id[n + M.o[d]]])
       b.forEach((u, i) => { const v = b[(i + 1) % b.length]; for (const w of b) if (w != u && w != v) W.push(w, u, v) })
     }
@@ -58,7 +63,7 @@ function force(M, F, P, X, Y, its) {
     // square frame separates them in the right order before relaxing. (A large one could cross a segment.)
     for (let c = 0; c < N; c += 5) frame(x, y, c, (v, ux, uy) => { x[v] += ux / 1e3; y[v] += uy / 1e3 })
     const x0 = x.slice(), y0 = y.slice()
-    relax(x, y, E, T, W, Math.min(its, (2e8 / N ** 3) | 0))
+    relax(x, y, E, T, W, B, Math.min(its, (2e8 / N ** 3) | 0))
     if (hand(x, y) > hand(x0, y0)) x.set(x0), y.set(y0)
     let mx = 0, my = 0, R = 0
     for (let i = 0; i < N; i++) mx += x[i] / N, my += y[i] / N
@@ -84,7 +89,7 @@ const hand = (x, y) => { let h = 0; for (let c = 0; c < x.length; c += 5) h += (
 // sector, its largest component along any direction in that sector stays under the sector's bound. Moves along or
 // away from a near segment are free. (A step is at most k/4, so a bound at d >= 0.6 k never binds: skipped.)
 // Steps: `its` cooling steps of all forces, then 12 steps of squaring alone (`frame`), inside the same zones.
-function relax(x, y, E, T, W, its) {
+function relax(x, y, E, T, W, B, its) {
   const N = x.length, fx = new Float64Array(N), fy = new Float64Array(N), lim = new Float64Array(8 * N), k = Math.sqrt(Math.PI / N), g = k / 2, Q = Math.PI / 4, U = [0, 1, 2, 3, 4, 5, 6, 7].map((s) => [Math.cos(s * Q), Math.sin(s * Q)])
   const zone = (v, ex, ey, d) => { const j = 8 * v + (Math.round(Math.atan2(ey, ex) / Q) & 7); if (d < lim[j]) lim[j] = d }
   for (let it = 0; it < its + 12; it++) {
@@ -103,6 +108,16 @@ function relax(x, y, E, T, W, its) {
     for (let e = 0; e < T.length; e += 3) {
       const a = T[e], b = T[e + 1], c = T[e + 2], f = (0.4 * k) / (Math.hypot(x[c] - x[a], y[c] - y[a]) + 1e-9), ux = f * ((x[a] + x[c]) / 2 - x[b]), uy = f * ((y[a] + y[c]) / 2 - y[b])
       fx[b] += ux; fy[b] += uy; fx[a] -= ux / 2; fy[a] -= uy / 2; fx[c] -= ux / 2; fy[c] -= uy / 2
+    }
+    // Bigon opener. Squared crossings on Tutte's outer circle leave a long bigon as two near-parallel strands (a
+    // doubled line). For a bigon with crossings a, b (chord l), w = how far apart its two edges' handles sit across
+    // the chord (sum of the two handles' offsets, edge 1 minus edge 2). Below 6 (l - 1.5 k) the edges are pushed apart
+    // across the chord, in proportion to the shortfall. A bigon shorter than 1.5 k (a twist in a dense diagram) gets
+    // nothing: there the room is better spent on the other regions. The zones still bound every move.
+    for (let e = 0; e < B.length; e += 6) {
+      const a = B[e], b = B[e + 3], l = Math.hypot(x[b] - x[a], y[b] - y[a]) + 1e-9, nx = (y[a] - y[b]) / l, ny = (x[b] - x[a]) / l
+      const o = (i) => (x[B[e + i]] + x[B[e + i + 1]] - 2 * x[a]) * nx + (y[B[e + i]] + y[B[e + i + 1]] - 2 * y[a]) * ny, w = o(1) - o(4), f = 6 * (l - 1.5 * k) - Math.abs(w)
+      if (f > 0) for (const i of [1, 2, 4, 5]) { const q = (i < 3) == (w >= 0) ? 10 * f : -10 * f; fx[B[e + i]] += q * nx; fy[B[e + i]] += q * ny }
     }
     }
     for (let e = 0; e < W.length; e += 3) {

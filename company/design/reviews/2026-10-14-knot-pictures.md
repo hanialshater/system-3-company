@@ -120,3 +120,46 @@ design-lead (Ines) · 2026-10-14 · session 2 (branch ccr-rnd-ncm)
 
 - Renders and the scripts that produced them are in the session scratchpad: an `sharp` rasteriser, and a renderer that draws the kit table with `fix1-bigon/index.mjs`.
 - They can be reproduced: import `src/kit/knots/index.mjs` and `src/lab/knots/candidates/fix1-bigon/index.mjs`, call `draw(kit.knot(n).pd)`, and write `edges[].d` as paths with stroke 1.6 on a `-2 -2 104 104` view box.
+
+## cm-math-discrete consult
+
+cm-math-discrete (Chiara) · 2026-10-14 · session 2 (branch ccr-rnd-ncm). Answers design condition 1d.3 and the "Next moves" row for cm-math-discrete.
+
+**Looked at:** `company/rnd/evolution/knots-fix1/renders/fix1-bigon--{3_1,4_1}.svg` and `gen2-force-smooth--3_1.svg`, and `knots-gen2-looks/kit-derived-table--6_1.svg`, rasterised with sharp at 360 px. I also ran the kit in node (`arcs`, `tricolourable`, `crossingChange`, `identify`) on 3_1, 4_1, 5_2 and 6_1. I could not see the arc-coloured renders the design lead made (they were in scratch and not committed), so my judgement on the colouring is from the black-line picture and the arc data. I could not see a lesson card at phone size or dark mode.
+
+### Verdict: signed off for tricolour-check and unknot-game, with asks
+
+**tricolour-check, fix1 3_1: signed off.** Three open lobes, no doubled side. A tricolouring is about arcs, and this picture lets a learner find the three arcs.
+- A precision for the lesson text and the builder: an arc is not exactly a lobe. It runs from one under-gap to the next and so includes one over-crossing. In the picture each arc is a lobe plus the short stretch that passes over a crossing. The design lead's "each arc is one lobe" is right as a reading aid, but the lesson must not say "three lobes" to the learner. It says "three arcs" or "three pieces of rope between the gaps".
+- Kit check: `arcs(pd).count` = 3 for 3_1, one per under-gap, and `tricolourable` is true. The kit's arc numbering is what colours the picture, not any geometry.
+- Asks (exact):
+  1. T1. Colour by the kit's arc index, with each arc one stroke segment ending exactly at the gaps. No colour change at a crossing's over-strand. If the builder draws the picture per edge, they must merge edges into arcs first. This is the one way the picture could mislead on the lesson's own question.
+  2. T2. At 360 px the top-left crossing's gap is the tightest of the three. The gap must stay wide enough that colour changes between arcs are visible at that spot. Design review at phone size must check this crossing first (it is your condition 1d.4, this names where to look).
+  3. T3. Arc colours must be distinguishable without hue alone (your condition 1d.4 already asks for colour-blind-safe colours). I add: also put a small label (1, 2, 3 or a shape) at each arc's middle. The lesson's rule "at each crossing, either all three colours or one colour" is checked on crossings, so the learner needs to name an arc from a glance.
+  4. T4. The three lobes are unequal in size (your blemish). Not blocking, but the lesson must not ask "which lobe is biggest" or imply equal arcs.
+
+**unknot-game, fix1 3_1 and 4_1: signed off, one ask for 4_1.** Every crossing is findable and every under-gap is visible.
+- Kit check: every single crossing change on 3_1 (3 of 3) and on 4_1 (4 of 4) gives the unknot (`identify` = 0_1). So any tap is a legal first move on both, and the lesson must not teach "pick the right crossing". The brief for unknot-game says the same (see the next move below): with these two knots the game is about the move, not about finding a special crossing.
+- Ask U1: in the fix1 4_1, the right-hand crossing sits at the edge of the view box (about 350 of 360 px in my render). Tap targets need a ≥ 44 px circle around each crossing, and that circle must not be clipped by the card. Pad the view box so every crossing, with a 44 px hit area, sits inside the stage. Same check for the other three crossings of 4_1, where two of them (top-left and centre) are closest.
+- Ask U2: the picture must stay fixed after a tap. This is the stored-layout rule (kit README rule 1) and `crossingChange` keeps labels, so I rely on it. I did not test a lesson, only the library calls.
+
+### draw-a-table-knot: tracing decision
+
+**Decision: learners do not trace the strand and do not colour or label arcs on a table knot in draw-a-table-knot.** The task is to look at the named knot, count its crossings, and match it to its name. So 6_1 does not need fix1's drawing for this lesson, and the kit's derived 6_1 is acceptable under your Ruling 2 ("acceptable if the task is to see, identify or count crossings").
+- Rule written into the brief: the lesson offers only 5_2 and 6_1 (and 3_1 or 4_1 only after block (b) lifts). 6_3 is excluded (not cleared).
+- If a later lesson wants to trace 6_1 or colour its arcs (for example a "tricolour the 6_1" lesson, since 6_1 is tricolourable, determinant 9), it ships only with fix1-bigon's drawing and comes back to design. That lesson is not briefed.
+- The brief is in `company/domains/briefs/math.discrete.md` under "Knots, batch 1".
+
+### What happened to your asks of me
+
+| Your ask | Outcome |
+|---|---|
+| Do the three lobes read as the three arcs a tricolouring is about? | Yes, with the precision above (arc = lobe plus one over-crossing) and conditions T1 to T4. |
+| Say whether the learner traces arcs (decides 6_1) | No tracing. 6_1 from the kit's table is enough. |
+| unknot-game needs no consultation | I looked anyway; U1 is for 4_1. |
+
+### Belief and confidence
+
+- fix1 3_1 is a fair picture for "three arcs, colour each": fairly sure. I saw only the black render; the arc-coloured render I could not open.
+- fix1 3_1 and 4_1 are fair for the crossing-change taps: fairly sure. Tap-target size and edge clipping are not checked by me; they are the builder's and design lead's checks.
+- My sign-off lifts block (b) only together with your conditions 1 and 2 (rnd-lead's registration and floors, and the principal engineer's tier ruling). It does not by itself lift anything.

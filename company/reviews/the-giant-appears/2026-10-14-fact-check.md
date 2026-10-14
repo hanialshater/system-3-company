@@ -31,3 +31,18 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** No unverified claims (6 of 6 verified in NCM-1). Re-read predict and reveal against c1, c3-c6; no new learner-visible claim found.
 
 **Result:** 0 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 6 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c1 | biggest() on current model.ts, and an independent regeneration of LINKS (identical arrays) with my own BFS: 9, 36, 76, 110, 148, 183 at 50, 100, 125, 150, 200, 300 links. Predict "36 (18%)", answer "about 75%" = 74%. | verified |
+| c4 | 2m/200 = 0.5, 1.0, 1.25, 1.5, 2.0, 3.0; CHIPS and linksFor() match; readout shows "1.25". | verified |
+| c5 | Own union-find per block of 50 links: links joining two groups neither of which is the biggest = 44, 42, 23, 4, 2, 2; links inside one group = 0, 0, 9, 30, 32, 42. Early links usually join two small groups. The green group at each chip from 100 on lies wholly inside the gold group at the next chip (all four transitions), so "the gold giant swallows the green group" is what the learner sees. | verified |
+| c7 | secondSize from biggest() and my BFS agree: 9 (tied with the biggest), 12, 23, 21, 3, 3. Green = --good #4fd1a5, gold = probability domain #f6c453; legend matches. | verified |
+
+**Reveal check:** paragraph 1 lists only chips the learner pressed, each from biggest(); paragraph 2 = c5 and c3; footer c6. NCM-1 note 1 (add "usually") still optional.
+
+**Result:** 4 verified, 0 disputed. Lesson now: 7 verified.

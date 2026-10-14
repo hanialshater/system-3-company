@@ -31,3 +31,18 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** NCM-1 dispute on c4 is resolved: the reveal now computes (1-p)^2 for the accuracy run most and names the split-start route. Reveal tallies are the learner's own runs. No unbacked sentence.
 
 **Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified, 1 withdrawn.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c2 | Current model.ts, seeds 1-10,000 at each accuracy: 0 picks differ from the locked colour after the ring, 0 outlined people before the ring, 0 crowds without a ring. Ring = first person who saw a lead of 2; outline = pick against own clue. Bayes 4:1 / 2:1 argument as in NCM-1. | verified |
+| c9 | 1 - p = 33.3%, 40.0%, 20.0%; exact crowd wrong 20.0%, 30.8%, 5.9% (each lower); plain vote of 100 clues wrong 0.020%, 1.68%, ~0% (binomial, ties excluded). Reveal prints pct(1 - ACCS[q]). | verified |
+
+**Advisories (not blocking):**
+1. If the learner runs 60% clues most, reveal paragraph 2 says "a plain vote would almost never be wrong" while the plain vote is wrong 1.7% of the time (their tally shows about 1.6%), above the predict option's own definition "Almost never (under 1 time in 100)". Suggest "would rarely be wrong" or printing the pooled rate. Owner: demo-builder.
+2. If the learner switches to an accuracy chip with no runs, paragraph 3 says "Look at crowd N on the stage" for another accuracy while the stage shows no run. Owner: demo-builder.
+
+**Result:** 2 verified, 0 disputed. Lesson now: 8 verified, 1 withdrawn (c8, not shown).

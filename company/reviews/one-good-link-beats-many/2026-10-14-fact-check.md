@@ -33,3 +33,18 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** Reveal quotes rounds 1 and 2 (round-two milestone) and round 51 only when the learner is at round 51 (`r51`). No unbacked sentence.
 
 **Result:** 4 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c1 | inLinks() on current model.ts (tsx): X 3 (P, Q, R), Y 1 (H), H 5 (A, B, C, D, Y). | verified |
+| c4 | Numbers right (round 51: Y 0.374, X 0.053, H 0.422). **Reveal wording wrong:** "At round 51 the scores had stopped changing: Y 0.374, X 0.053, the same as at round 2." comes right after "By round 2, Y had 0.389". Read naturally, "the same as at round 2" covers both scores; Y's is not (0.389 vs 0.374, and it swings 0.205, 0.518, 0.252 in between). Only X is unchanged (c3). | **disputed** (was verified) |
+
+**Fix (demo-builder):** reveal paragraph 1, replace ", the same as at round 2." with ". X has not moved since round 2, and Y has stayed ahead." (or just drop the phrase). Then set c4 to unverified for re-check.
+
+**Reveal check:** round 1 (0.270 v 0.100) and round 2 (0.389 v 0.053) are reached (milestone round-two); round 51 sentence shows only if r51. Paragraph 2: passed(2, P) 0.013, passed(2, H) 0.374 (c5, c8). Paragraph 3 = c6; footer = c7.
+
+**Result:** 1 verified, 1 disputed. Lesson now: 8 verified, 1 disputed (c4).

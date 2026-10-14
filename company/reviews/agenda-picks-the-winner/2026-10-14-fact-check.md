@@ -25,3 +25,17 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** No unverified claims (4 of 4 verified in NCM-1). Re-read the reveal: it computes each agenda's winner with run() and all three agendas are milestones; no new learner-visible claim found.
 
 **Result:** 0 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 4 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c3 | Recomputed from RANK: A>B, B>C, C>A, each 2-1, so no option beats both others. All 6 agendas run: the option held to the last vote always wins, so the order picks the winner. E&K 23.3 still unconfirmed (book site unreachable from here; web search did not surface the TOC). No learner text depends on it. | verified |
+| c4 | Reveal paragraph 2 ends "as long as each voter votes for the option they like better in every vote"; votesFor() is sincere voting. Title, hook, predict, reveal and recall make no claim about real elections. | verified |
+| c5 | Each ranking is a strict order of three distinct options; the loop is only in the pairwise majorities. | verified |
+
+**Reveal check:** paragraph 1 is computed from run() for the three agendas (C, A, B; c2), all milestone-gated; the reveal pins the stage to the asked agenda. Recall card: Q beats R (Ana, Ben), P beats Q (Ana, Cy), answer P: correct.
+
+**Result:** 3 verified, 0 disputed. Lesson now: 5 verified.

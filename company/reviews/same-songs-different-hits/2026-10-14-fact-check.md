@@ -32,3 +32,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Advisory (builder):** 'copying did not hide quality' sits beside a world where the best song finished 7th; it is backed by c9 (1st in 4 of 8 both ways), but 'copying did not stop the best song winning as often' would say exactly what c9 shows.
 
 **Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c9 | Independent re-implementation (own cumulative-interval draw, kit mulberry32, seeds 1-8): on 3,1,7,1,4,1,1,3 (1st in 4 of 8, range 1st-7th, lowest world 3); off 2,1,2,1,2,1,2,1 (1st in 4, range 1st-2nd). New wording "copying did not stop the best song winning as often" matches 4 = 4. | verified |
+
+**Reveal check:** top shares 34.9-48.2% on vs max 17.6% (shown 18%) off (c2); both states milestone-gated (copy-1000, nocopy-1000). Paragraph 2 = c5; footer c6.
+
+**Result:** 1 verified, 0 disputed. Lesson now: 9 verified.
