@@ -3,6 +3,25 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 cm-books (Hester): Book Summaries content strategy + strategy wave 1 briefs (13-24)
+
+- **Changed:** wrote company/domains/books-strategy.md: audience and promise; 50 books ranked in waves A/B/C, with demo-ability tests and how we handle ideas that failed replication; lesson shape (single card vs multi-card, the "argues / holds up" structure, book paths); target and pacing; sources and verification; a builder copyright checklist and the legal-read question; guards, measures and kill rules K1-K6. Section 8 is a Books / Big Ideas / subject boundary that cm-big-ideas can cite. Appended "## Strategy wave 1" (briefs 13-24: 12 books; psychology 5, business 3, science-history 4; answers A4 B4 C4) to company/domains/briefs/books.md, plus a note under "Next in line". New check script company/domains/briefs/checks/books-strategy-wave1-check.mjs: it recomputes every number, checks questions are 25 words or fewer and reveals 90 or fewer, and checks the three claim families and the answer spread. All checks pass, and the cycle-1 check still passes. company/ops/brief-skips.json: "Wave K gate (W-556)" lines for all 20 unbuilt Books briefs (12 new + 8 cycle-1), so `claim.mjs next books` returns NONE. Board: W-614 head-of-product (review the strategy), W-615 founder (asks F1-F4, extending W-541/W-583), W-616 demo-builder (wave 1 builds, gated), W-617 cm-big-ideas (cite or object to section 8). W-553 moved to review. A mistaken `board add --help` briefly created an empty W-614. I removed it from board.json before adding the real items, so the IDs above are correct. No curriculum or works.json change, no lesson code, no build, no commit.
+- **Departures (strategy table D1-D7):**
+  - The Books target goes from 120 to 60 committed, plus up to 30 on learner data. The freed slots return to the pool.
+  - Each book gets 2 lessons by default.
+  - Overlap and verification cost filter briefs before demand breaks ties. Four demand-3 ideas are deferred as duplicates of published lessons: signal-calibrated-weather, yes-batna, money-time-in-compounding and fact-straight-line.
+  - Multi-card is used only where the verdict needs its own picture.
+  - No fourth strand.
+  - The 4 Books drafts already on disk count against the Wave K pilot of 10.
+- **Believe:**
+  - High that no book source can be opened from this host. Tested today: gutenberg, openlibrary, archive.org and wikipedia gave no connection, and the Google Books API returned 429. So every Books lesson stays held until founder ask F1 is answered.
+  - High on the arithmetic in briefs 13-24 (checked by script).
+  - Medium on the "does it hold up" verdicts and the research citations. They are my reading from memory and are marked "to confirm". The fact-checker may overturn any of them, and kill rule K2 measures how often that happens.
+  - Medium on the overlap calls. overlap.mjs was not run on the new briefs because they have no lessons yet. Each brief names its nearest lesson instead.
+- **Noticed, not mine to settle:** the 4 Books drafts (slowest-station-sets-pace, one-percent-a-day, born-in-january-picked-first, wheel-number-pulls-guess) were built even though plan-to-2000 puts the Books pilot in Wave K, and the cycle-1 briefs had no skip lines. The chief of staff's gate check (W-585) can say whether this was a leak.
+- **Next:** head-of-product W-614, founder W-615, cm-big-ideas W-617. When the W-556 gate opens, builders take the pilot (W-616). I still owe W-536, the claims, sources and overlap re-check of the cycle-1 briefs (today I only re-ran the answer script). I also owe the per-book chapter sheets for the pilot (strategy section 5).
+- **Blocked:** every Books publish waits on a book source (F1, W-541, W-583) and the legal read (F2). Multi-card waits on W-604, W-601 and W-602. `npm run check` passes.
+
 ## 2026-10-14 cm-lifehacks (Tess): W-599 content patch for r9 batch D (14 lessons)
 
 - **Changed:** wrote company/reviews/lifehacks-200/content-patch-r9-batch-d.md, a patch only. Nothing in src/ was edited (another builder owns the engines) and nothing was built or committed. For each lesson and field it gives the old and new text for titles, hooks, questions, options, answer index and recall, and the engine-v2 fields (engine, modeLabels, options, amounts, verdict, resultLabel, optionToMode, event, parts, consequence, rowLabels). Each new or changed claim is listed as unverified, with its support. Broken premises: buffer gets the +5 overrun `event`, so touching blocks show a 5 min clash. cue moves to the files family (`filter`: 3 matches vs 1), gated on the learning designer, with a fallback written. Board: W-599 → review; added W-610 (learning-designer: cue family + recall review), W-611 (interaction-designer: 4 schema gaps), W-612 (me: retirement review of apply-not-quote), W-613 (me: content for the ~186 unreviewed lessons in batches of 20).

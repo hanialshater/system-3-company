@@ -176,3 +176,263 @@ Ranked briefs for `tools/claim.mjs next books`, in the same format as the other 
 
 ## Next in line (cycle 2, no brief yet)
 Demand 3 concepts with no brief: `ggs-continental-axes` (map work; geography's map kit), `fact-straight-line` (UN projections), `signal-calibrated-weather` (calibration chart; prerequisite `ai:calibration`), `goal-dependent-fluctuations` (dice game; simulation run), `zero-power-law-returns`, `yes-batna` (overlap with economics `outside-option-sets-the-split` to settle first), `money-time-in-compounding`, `nudge-defaults`, `irrational-decoy` (the "holds up" claim must cite the replication evidence carefully), `influence-social-proof`, `noise-bias-vs-noise`, `outliers-ten-thousand-hours`.
+
+**Update 2026-10-14 (cm-books):** 8 of these 12 are briefed below in "Strategy wave 1". The other 4 (`fact-straight-line`, `signal-calibrated-weather`, `yes-batna`, `money-time-in-compounding`) are deferred for overlap, with the reasons in `company/domains/books-strategy.md` section 8. Every unbuilt brief in this file is held by a "Wave K gate (W-556)" line in `company/ops/brief-skips.json`.
+
+## Strategy wave 1
+
+owner: cm-books (Hester) · written 2026-10-14 from `company/domains/books-strategy.md` (ranks 13-24 of section 10) · answer and word checks: `node company/domains/briefs/checks/books-strategy-wave1-check.mjs` (recomputes every number below and counts every stage question and reveal draft) · **gated:** every brief here has a "Wave K gate (W-556)" line in `company/ops/brief-skips.json`. Builders do not claim them until the gate opens and the line is removed.
+
+Rules for all twelve (strategy section 3):
+- **Format.** Single card, simulation run or map explorer, as named. Each has a "Multi-card later" line. Nobody uses `<CardSequence>` until W-604, W-601 and W-602 close and the design lead flips the formats.md row.
+- **QA path.** Every milestone is reached by preset buttons pressed once each, in DOM order. No drag, slider-only state, or Reset button (a preset sets the full state). Values the reveal quotes are recorded when their milestone fires and shown in a "Seen" row, so the last preset pressed does not erase them.
+- **Labels.** Every meaning-carrying label is at least 10 px rendered at 390 px wide (author at 11 px); 8 px only for `aria-hidden` decoration (W-289, W-513 ruling).
+- **Words.** Stage question 25 words or fewer; reveal draft 90 words or fewer (counted by the check script). The reveal drafts are cm-books teaching content: a builder who must cut asks me which sentence goes.
+- **Claims** are split three ways: **Derivation** (the toy's arithmetic, checked in node), **Book-sourced** ("the book argues", chapter **(unconfirmed)**, never marked verified by a builder), **Research-sourced** (the verdict). Sources were not opened from this host; "to confirm" marks details I am least sure of.
+- **Copyright.** Follow the builder checklist in strategy section 6 and paste it into `build.md`. No brief here needs a quote.
+
+### 13. ten-thousand-hours-how-much · concept: outliers-ten-thousand-hours · core · demand 3
+- Format: Single card (four presets, one scatter). Proposed as the design lead's first multi-card Books reference once the format is open.
+- Strand: psychology (cm-books-psychology). Book: *Outliers* (Gladwell, 2008), work `gladwell-outliers-2008`. Second Outliers lesson; born-in-january-picked-first is the first, so Outliers is at its limit of 2 in review.
+- Audience and knowledge boundary: learner knows: practice makes you better / does not know: how much of the *difference between people* practice accounts for, when it is measured.
+- Misconception: Practice hours explain almost all of who becomes an expert; put in the hours and the skill follows.
+- Prediction (stage text): "Across studies of games, music and sport, how much of the difference in skill between people did practice account for?" options: A) About a quarter or less / B) About half / C) Nearly all of it (answer: A). The locked stage shows empty axes ("practice hours", "skill") and no dots.
+- Check (node): the toy scatter is 40 people built so that the share of skill variance explained by practice (r²) is exactly the preset's value: 0.90, 0.26, 0.21, 0.18. The measured shares are the meta-analysis's (to confirm): games 26%, music 21%, sport 18%; all are at or under about a quarter, so A.
+- What the stage shows: a scatter of 40 dots (practice hours on x, skill on y), a fitted line, and one readout: "practice explains 21% of skill differences". Preset buttons in DOM order: "The rule's picture", "Games", "Music", "Sport" (4). Each preset redraws the dots at once. A "Seen" row under the chart fills in as presets are pressed: "Rule 90% · Games 26% · Music 21% · Sport 18%". The rule's picture is labelled "illustrative: what the rule implies".
+- Key state (milestones): rule-seen; field-seen (any one measured field; the share is recorded). Reveal unlocks after both. QA presses all four, so the Seen row is full at the reveal.
+- Reveal payoff (draft, 75 words): "In the rule's picture, practice hours explained 90% of the skill differences. In the measured fields they explained {games}% in games, {music}% in music and {sport}% in sport: people with the same hours landed far apart. *Outliers* argues that about 10,000 hours of practice is what world-class skill takes. Does it hold up? Mostly not as a rule: those are a 2014 meta-analysis's shares. Practice matters a lot. It is not most of the story."
+- Phone fit (390x844): the reveal points at the Seen row and the dots. Scatter about 200 px tall; axis labels 11 px; Seen row one line at 11 px; four presets in one wrapped row of two lines at 44 px. Stage-top crop 0 px with the Seen row visible.
+- Planned claims:
+  - **Derivation:** (D1) In the toy, practice explains exactly 90%, 26%, 21% and 18% of skill variance in the four presets (r² by construction; node). (D2) The toy's dots are illustrative people, not data (stated on the stage).
+  - **Book-sourced:** (B1) The book argues that about 10,000 hours of practice is the threshold for world-class expertise. *Outliers*, ch. 2 "The 10,000-Hour Rule" (**unconfirmed**). (B2) The book draws on a study of violinists at a Berlin music academy: cite the study, Ericsson, Krampe & Tesch-Römer (1993), "The role of deliberate practice in the acquisition of expert performance", *Psychological Review* 100(3), for its result, and the book only for using it.
+  - **Research-sourced:** (R1) Deliberate practice explained about 26% of variance in games, 21% in music, 18% in sports, 4% in education and under 1% in professions (Macnamara, Hambrick & Oswald, 2014, "Deliberate practice and performance in music, games, sports, education, and professions: a meta-analysis", *Psychological Science* 25(8); figures to confirm). (R2) Contested in part: Ericsson disputed both the "rule" and the meta-analysis's definition of practice (Ericsson & Pool, *Peak*, 2016; to confirm). If R2 cannot be checked, cut it and keep "Mostly not".
+- Curriculum: primary `books:outliers-ten-thousand-hours`; also none; references `[{ "work": "gladwell-outliers-2008", "chapter": 2, "note": "The 10,000-Hour Rule; chapter unconfirmed" }]`.
+- Differs from nearest: no lesson on practice and expertise (overlap tool to confirm). born-in-january-picked-first is the same book's selection idea, a different engine.
+- Multi-card later: card 1 "The case" (the rule's picture), card 2 "Your test" (one field's scatter), card 3 "Holds up?" (the five fields as bars, 26% to under 1%). Traces: "90%", "21%".
+- Copyright: none of the book's anecdotes (bands, programmers) as facts or as stage content. No quote.
+
+### 14. biased-judge-noisy-judge · concept: noise-bias-vs-noise · intro · demand 3
+- Format: Single card (three presets, two dot strips).
+- Strand: psychology. Book: *Noise* (Kahneman, Sibony & Sunstein, 2021), work `kahneman-sibony-sunstein-noise-2021`. **Wave K pilot** (derivation core).
+- Audience and knowledge boundary: learner knows: being consistently off is an error / does not know: that inconsistency is an error of the same size, and that squared error adds the two.
+- Misconception: A judge who is right on average is a fair judge; only bias is a real error.
+- Prediction (stage text): "Judge A gives every sentence 2 years too long. Judge B is right on average, scattering 2 years either way. Whose squared error is bigger?" options: A) Judge A's / B) Judge B's / C) They are the same (answer: C). The locked stage shows two empty strips with a "fair sentence" line.
+- Check (node): Judge A's errors are all +2, so mean squared error 4 (bias² 4, noise 0). Judge B's errors are −3, −3, −1, −1, 0, 0, 1, 1, 3, 3 years: mean 0, variance 4, standard deviation 2, mean squared error 4. Judge C has B's scatter plus A's +2: mean squared error 8 = 4 + 4.
+- What the stage shows: one strip per judge, 10 dots each (one per case) placed by error in years against a "fair sentence" line, and a readout per judge: "error 4.0 = bias² 4 + noise² 0". Preset buttons in DOM order: "Judge A: biased", "Judge B: noisy", "Judge C: both" (3). A Seen row lists each judge's error once shown.
+- Key state (milestones): a-seen, b-seen (the question case, both recorded), c-seen. Reveal unlocks after a-seen and b-seen.
+- Reveal payoff (draft, 77 words): "Judge A was off by the same 2 years every time; Judge B was right on average but scattered. Both scored {a} on squared error, and Judge C, with both faults, scored {c}. *Noise* argues that scatter is an error as costly as bias, and that it can be measured even when nobody knows the right answer. Does it hold up? Yes for the arithmetic: squared error is bias² plus noise², exactly. Real judges disagree widely too."
+- Phone fit: two or three strips at about 48 px each, axis ticks at −4 to +6 years in 11 px, readouts one line each. Stage-top crop 0 px with all readouts visible.
+- Planned claims:
+  - **Derivation:** (D1) Mean squared error = bias² + variance (identity; node on the stage's values: 4 + 0, 0 + 4, 4 + 4). (D2) The judges and errors are the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that noise (unwanted variability in judgments) is an error as important as bias, and that the two add in squared error. *Noise*, Part I and Part II "Your Mind Is a Measuring Instrument" (chapter numbers **unconfirmed**; the error equation is in Part II). (B2) The book argues noise can be measured without knowing the correct answer, by comparing judgments of the same cases ("noise audit"). Same book, ch. 1 or 2 (**unconfirmed**). Cut B2 and the reveal's clause if it cannot be confirmed.
+  - **Research-sourced:** (R1) "Real judges disagree widely": when US federal judges were given the same case files, their sentences varied widely (Partridge & Eldridge, 1974, *The Second Circuit Sentencing Study*, Federal Judicial Center; to confirm). If R1 cannot be checked, cut the last sentence of the reveal; the verdict stands on D1.
+- Curriculum: primary `books:noise-bias-vs-noise`; also `ai:bias-variance`; references `[{ "work": "kahneman-sibony-sunstein-noise-2021", "note": "Part II, error equation; chapter unconfirmed" }]`.
+- Differs from nearest: ai/shrink-toward-zero (bias-variance) shows a biased estimate can beat an unbiased one. This shows the reverse misconception: an unbiased but scattered judge is not error-free, and equal amounts cost the same.
+- Multi-card later: card 1 the biased judge, card 2 the noisy judge, card 3 both errors added.
+- Copyright: the book's target-shooting figure is not copied or imitated. Our strips are a different picture. No quote.
+
+### 15. dice-line-falls-behind · concept: goal-dependent-fluctuations · core · demand 3
+- Format: Simulation run (seeded, seed disclosed).
+- Strand: business (cm-books-business). Book: *The Goal* (Goldratt & Cox, 1984), work `goldratt-the-goal-1984`. Second Goal lesson; slowest-station-sets-pace is the first, so The Goal is at its limit of 2 in review.
+- Audience and knowledge boundary: learner knows: the slowest step sets a line's pace (slowest-station-sets-pace) / does not know: that a line of *equal* steps still falls short of its average when each step varies and depends on the one before.
+- Misconception: If every station averages 3.5 parts a round, the line makes 3.5 a round.
+- Prediction (stage text): "Five stations each roll a die every round and pass on that many matches, if they have them. Over 20 rounds, matches finished per round?" options: A) More than 3.5 / B) About 2.5 / C) About 3.5 (answer: B). The locked stage shows five empty stations and no piles.
+- Check (node, mulberry32): each round, station 1 (unlimited supply) rolls and moves its roll; each later station rolls and moves the smaller of its roll and its pile, which includes what arrived this round. Seed 7, 20 rounds: 2.70 finished per round, 18 matches left in piles. Seeds 1-1,000: mean 2.57 per round, 18.9 in piles. "No swings" (every station rolls 3, then 4, then 3 …): 3.50 per round, 0 in piles. 2.57 and 2.70 are both nearer 2.5 than 3.5, so B.
+- What the stage shows: five stations in a row with a pile of matches between each pair (pile height and count), a round counter, and the readout "finished per round 2.70 · piled up 18 · seed 7". Preset buttons in DOM order: "Roll 20 rounds", "Run 1,000 lines", "No swings: 3, 4, 3, 4" (3). "Roll 20 rounds" plays the 20 rounds in under 400 ms and ends on the final state. "Run 1,000 lines" shows only the averages. A Seen row records each preset's result.
+- Key state (milestones): rolled (question case, seed 7, 2.70 recorded); many (1,000-line mean 2.57 recorded); steady (3.50 recorded). Reveal unlocks after rolled and steady.
+- Reveal payoff (draft, 76 words): "Every station averaged 3.5, yet your line finished {avg} a round and left {pile} matches piled between stations. A slow roll can't be made up later: each station can only pass on what reached it. Over 1,000 lines the average was {avg1000}. *The Goal* argues that dependent steps plus random swings cost a balanced line output. Does it hold up? Yes: it is a standard result in operations research. Without swings, the same line made 3.5."
+- Phone fit: five stations at about 60 px wide; pile counts at 11 px; readout and Seen row one line each; presets in one row (three at 44 px).
+- Planned claims:
+  - **Derivation:** (D1) In the toy, seed 7 gives 2.70 finished per round over 20 rounds, the 1,000-line mean is 2.57, and the no-swing line gives 3.50 (node; seeds disclosed per `disclose-chosen-seeds`). (D2) The passing rule (what arrives this round can move on this round) is the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that "dependent events" combined with "statistical fluctuations" make a balanced line produce less than its average capacity and build inventory, using a dice-and-matches game. *The Goal*, the dice game chapter, around ch. 14-15 (**unconfirmed**).
+  - **Research-sourced:** (R1) Variability in a line with dependent stations reduces throughput or raises inventory and waiting (the variability law). Hopp & Spearman, *Factory Physics*, 3rd ed. (2008), ch. 8 "Variability Basics" and ch. 9 "The Corrupting Influence of Variability" (chapters to confirm).
+- Curriculum: primary `books:goal-dependent-fluctuations` (prerequisite `goal-bottleneck-sets-pace`, already in the map); also none; references `[{ "work": "goldratt-the-goal-1984", "note": "dice and matches game; chapter unconfirmed" }]`.
+- Differs from nearest: slowest-station-sets-pace has fixed rates and one bottleneck (min of rates). Here every rate is equal and the loss comes from chance plus dependence. lifehacks/batch-by-setup has no randomness.
+- Multi-card later: card 1 one station's die, card 2 the 20-round line, card 3 the no-swing line.
+- Copyright: The Goal is a novel. Describe the game, not the scene or its characters. Our stations and matches are our own drawing. No quote.
+
+### 16. tick-to-join-or-leave · concept: nudge-defaults · intro · demand 3
+- Format: Single card (three presets, a 10x10 crowd).
+- Strand: psychology. Book: *Nudge* (Thaler & Sunstein, 2008), work `thaler-sunstein-nudge-2008`.
+- Audience and knowledge boundary: learner knows: people choose what they prefer / does not know: how much the pre-ticked box decides, even for a choice people care about.
+- Misconception: People who care about a choice will pick the same thing whatever the form's starting box says.
+- Prediction (stage text): "In an online study, people got one of two organ-donor forms: 'tick to join' or 'tick to leave'. How far apart were the sign-up rates?" options: A) About 40 points / B) About 10 points / C) About the same (answer: A). The locked stage shows 100 grey people and an empty form.
+- Check (node): the study's rates (to confirm) are 42% with "tick to join", 82% with "tick to leave" and 79% when everyone had to choose: 82 − 42 = 40 points. The stage crowd is built to reproduce all three: 42 "would join anyway", 37 "lean yes, go with the box", 3 "lean no, go with the box", 18 "would leave anyway". Tick to join: 42. Tick to leave: 100 − 18 = 82. Must choose: 42 + 37 = 79.
+- What the stage shows: a 10x10 grid of people, filled when signed up, with a small form above it showing the box's starting state, and a readout "signed up: 42 of 100". Preset buttons in DOM order: "Form: tick to join", "Form: tick to leave", "Form: must choose" (3). A Seen row records each form's count. A caption labels the crowd "model fitted to the study's three rates".
+- Key state (milestones): join-seen, leave-seen (question case), choose-seen. Reveal unlocks after join-seen and leave-seen.
+- Reveal payoff (draft, 74 words): "With 'tick to join', {join} of 100 signed up. With 'tick to leave', {leave}. Same people; only the starting box changed. When everyone had to choose, {choose} did. *Nudge* argues that the default wins many choices, because switching takes effort and a default looks recommended. Does it hold up? Mostly: a meta-analysis of defaults finds a sizeable average effect. For organ donation, opt-out countries register far more people, but actual donations rise much less."
+- Phone fit: grid 10x10 at 22 px cells (220 px); form row one line at 11 px; Seen row one line; three presets in two rows.
+- Planned claims:
+  - **Derivation:** (D1) The crowd's four groups give 42, 82 and 79 for the three forms (node). The crowd is the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that defaults strongly shape choices, through inertia and implied endorsement. *Nudge*, ch. 1 "Biases and Blunders" or ch. 5 "Choice Architecture" (**unconfirmed**). (B2) The book discusses organ donation defaults. *Nudge*, ch. 11 "How to Increase Organ Donations" (**unconfirmed**). B2 is optional: cut it if the chapter is not confirmed.
+  - **Research-sourced:** (R1) Online study: 42% (opt-in), 82% (opt-out), 79% (neutral, forced choice). Johnson & Goldstein (2003), "Do defaults save lives?", *Science* 302(5649) (figures to confirm). (R2) A meta-analysis of default effects finds a sizeable average effect that varies widely by domain (Jachimowicz, Duncan, Weber & Johnson, 2019, "When and why defaults influence decisions: a meta-analysis of default effects", *Behavioural Public Policy* 3(2); to confirm). (R3) Opt-out (presumed consent) countries have higher deceased-donor rates, by much less than the registration gap (Abadie & Gay, 2006, *Journal of Health Economics* 25(4); to confirm).
+- Curriculum: primary `books:nudge-defaults`; also none; references `[{ "work": "thaler-sunstein-nudge-2008", "note": "defaults; chapter unconfirmed" }]`.
+- Differs from nearest: no lesson on defaults (overlap tool to confirm); economics lessons model choices by price, not by a starting state.
+- Multi-card later: card 1 tick to join, card 2 tick to leave, card 3 registrations versus actual donations.
+- Safety: about how forms shape choices. No advice on whether to register as a donor.
+- Copyright: no quote; the form is our own drawing.
+
+### 17. rome-beijing-same-daylight · concept: ggs-continental-axes · intro · demand 3
+- Format: Map explorer (geo kit `WorldMap`, a named projection, three city pairs).
+- Strand: science-history (cm-books-science-history). Book: *Guns, Germs, and Steel* (Diamond, 1997), work `diamond-guns-germs-steel-1997`.
+- Audience and knowledge boundary: learner knows: places far apart have different weather / does not know: that seasons and day length follow latitude, not distance, so an east-west journey keeps the seasons while a north-south one changes them.
+- Misconception: The closer two places are, the more alike their seasons.
+- Prediction (stage text): "Rome to Beijing is 8,100 km. Rome to Lagos is 4,000 km. On the longest day of the year, whose daylight is closer to Rome's?" options: A) Beijing's / B) Lagos's / C) About equal (answer: A). The locked stage shows the map with the three cities as unlabelled dots.
+- Check (node; geometric day length with the Sun's declination 23.44°, no refraction): Rome 41.90°N 15 h 03 min; Beijing 39.90°N 14 h 50 min (13 min shorter); Lagos 6.45°N 12 h 22 min (2 h 41 min shorter). Great-circle distances: Rome-Beijing 8,125 km, Rome-Lagos 4,043 km. Americas: Mexico City 19.43°N 13 h 10 min; Lima 12.05°S 11 h 18 min (1 h 52 min apart, 4,255 km). Gaps are taken between the rounded times shown.
+- What the stage shows: a world map with latitude lines every 20°, the chosen pair joined by a line, and a readout "Rome 15 h 03 · Beijing 14 h 50 · 13 min apart · 8,125 km". Preset buttons in DOM order: "Rome and Beijing", "Rome and Lagos", "Mexico City and Lima" (3). A Seen row records each pair's gap. Caption: "June solstice, day length from latitude (no refraction)".
+- Key state (milestones): beijing-seen, lagos-seen (both recorded), americas-seen. Reveal unlocks after the first two.
+- Reveal payoff (draft, 73 words): "Beijing is twice as far from Rome as Lagos, yet its longest day was only {rb} shorter than Rome's. Lagos's was {rl} shorter. Day length and seasons follow latitude. *Guns, Germs, and Steel* argues that crops spread faster along Eurasia's east-west axis than along the Americas' north-south one, because seasons stay alike. Does it hold up? Mixed: one study finds traits spread farther east-west; others argue institutions explain more of who got rich."
+- Phone fit: map about 190 px tall at 390 px; city labels 11 px with collision offsets; readout one line; Seen row one line. The pair line and both labels must be visible at the reveal.
+- Planned claims:
+  - **Derivation:** (D1) The day lengths and great-circle distances above (node; formula cos h = −tan φ tan δ, haversine with R = 6,371 km). (D2) City coordinates (rounded to 0.01°; to confirm against any gazetteer).
+  - **Book-sourced:** (B1) The book argues that Eurasia's east-west axis let crops and domestic animals spread faster than the Americas' and Africa's north-south axes, because places at similar latitudes share day length and seasons. *Guns, Germs, and Steel*, ch. 10 "Spacious Skies and Tilted Axes" (**unconfirmed**).
+  - **Research-sourced:** (R1) Support: cultural traits (languages) persisted and spread more along east-west axes (Laitin, Moortgat & Robinson, 2012, "Geographic axes and the persistence of cultural diversity", *PNAS* 109(26); to confirm). (R2) Contested: institutions, not geography, explain the reversal of fortune among former colonies (Acemoglu, Johnson & Robinson, 2002, "Reversal of fortune", *Quarterly Journal of Economics* 117(4)). This links to *Why Nations Fail*, a later Books path.
+- Curriculum: primary `books:ggs-continental-axes` (prerequisite `geography:climate-zones`, in the map); also `geography:daylight-by-latitude`; references `[{ "work": "diamond-guns-germs-steel-1997", "chapter": 10, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: geography's day-length lessons (equinox-twelve-everywhere, polar-day-length) teach latitude and date. This one compares east-west and north-south pairs to test the book's argument about the spread of farming.
+- Multi-card later: card 1 the Rome pairs, card 2 the Americas pair, card 3 the debate (spread rates versus institutions).
+- Copyright: the book's axis map is not copied or imitated; ours is the kit's projection with our own pairs. No quote.
+
+### 18. one-deal-beats-the-rest · concept: zero-power-law-returns · intro · demand 3
+- Format: Single card (three presets, a 20-bar chart).
+- Strand: business. Book: *Zero to One* (Thiel & Masters, 2014), work `thiel-zero-to-one-2014`.
+- Audience and knowledge boundary: learner knows: some investments do better than others / does not know: that under a steep power law one outcome can outweigh all the others combined, and that this depends on how steep the tail is.
+- Misconception: In a portfolio of 20, the best one is a bonus; the total is made by the many.
+- Prediction (stage text): "A fund backs 20 startups. The best returns 50 times its stake; each next one, 1/rank² as much. Best one, or the other 19 combined?" options: A) The other 19 return more / B) The best one returns more / C) About equal (answer: B). The locked stage shows 20 empty bars.
+- Check (node): steep tail, deal k returns 50/k²: deal 1 = 50×; deals 2-20 sum to 29.8×. Gentle tail, 50/k: deals 2-20 sum to 129.9×. Bell curve, 20 deals evenly from 1× to 3×: best 3×, the other 19 sum to 37×.
+- What the stage shows: 20 bars sorted by return, the best one highlighted, and a split bar under them: "#1: 50× · the other 19: 29.8×". Preset buttons in DOM order: "Steep tail (1/rank²)", "Gentle tail (1/rank)", "Bell curve" (3). A Seen row records each preset's split. Caption: "illustrative returns, equal stakes".
+- Key state (milestones): steep-seen (question case), gentle-seen, bell-seen. Reveal unlocks after steep-seen and gentle-seen.
+- Reveal payoff (draft, 80 words): "With the steep tail, deal #1 returned 50×, and the other 19 together only {rest}×. With the gentle tail, the rest won easily, {gentle}×. In the bell curve, no single deal mattered. *Zero to One* argues that venture returns follow a power law, so a fund's best deal can return more than all the rest combined. Does it hold up? Mixed: venture returns are extremely skewed, but whether one deal beats the rest depends on how steep the tail is."
+- Phone fit: 20 bars at 14 px wide in 340 px, log-free linear axis capped at 50×; split bar one line at 11 px; presets in two rows.
+- Planned claims:
+  - **Derivation:** (D1) The three sums above (node). (D2) The returns are the lesson's model, not data (stated).
+  - **Book-sourced:** (B1) The book argues that venture returns follow a power law, so the best investment in a successful fund can equal or outperform the rest of the fund combined. *Zero to One*, ch. 7 "Follow the Money" (**unconfirmed**).
+  - **Research-sourced:** (R1) Venture returns are highly skewed: most investments return little or nothing and a small share produce most of the gains (Kerr, Nanda & Rhodes-Kropf, 2014, "Entrepreneurship as experimentation", *Journal of Economic Perspectives* 28(3); to confirm the exact statement). If R1 cannot be checked, the verdict becomes "Untested here" and the reveal says only the derivation.
+- Curriculum: primary `books:zero-power-law-returns` (prerequisite `probability:power-law-scaling`, in the map); also none; references `[{ "work": "thiel-zero-to-one-2014", "chapter": 7, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: probability/ten-times-links-hundred-times-rarer (power-law-scaling) asks how rare big values are. Big Ideas pareto-80-20 asks what share the top few produce (strategy section 8). This asks whether one outcome beats all the others, and shows that the answer flips with the tail's steepness.
+- Multi-card later: card 1 the steep tail, card 2 the gentle tail, card 3 the bell curve.
+- Safety: about how a sum behaves, not investing. No "so you should"; no fund, firm or person named on the stage.
+- Copyright: no quote; the book has no figure we use.
+
+### 19. decoy-nobody-buys · concept: irrational-decoy · intro · demand 3
+- Format: Single card (three presets, three offer cards and share bars).
+- Strand: psychology. Book: *Predictably Irrational* (Ariely, 2008), work `ariely-predictably-irrational-2008`.
+- Audience and knowledge boundary: learner knows: adding an option nobody wants should change nothing / does not know: that a dominated option can shift choices between the others, and that the effect is less robust than its fame.
+- Misconception: An option nobody chooses can't change what people choose.
+- Prediction (stage text): "Web-only costs $59; print-plus-web $125. 32% of a class chose print-plus-web. Add print-only, also $125. Now what share picks print-plus-web?" options: A) Still about 32% / B) About 50% / C) About 84% (answer: C). The locked stage shows two offer cards and empty bars.
+- **The answer rests on a book-sourced number** (the class test the book reports). The lesson is held until B2 is confirmed against the book. That is the one exception to the held-claim rule in this wave, and it is why the verdict is "Mixed".
+- Check (node): the book's reported shares (to confirm): two offers 68% web-only and 32% print-plus-web; three offers 16% web-only, 0% print-only, 84% print-plus-web. Each set sums to 100; 84 is C.
+- What the stage shows: offer cards side by side with prices, a bar per offer with its share, and a "twin" marker. Preset buttons in DOM order: "Two offers", "Add print-only", "Spot the twin" (3). "Spot the twin" outlines print-only and print-plus-web at the same price, so the decoy is visibly worse. A Seen row records "print-plus-web: 32% → 84%".
+- Key state (milestones): two-seen, three-seen (question case), twin-seen. Reveal unlocks after two-seen and three-seen.
+- Reveal payoff (draft, 69 words): "With two offers, {two}% took print-plus-web. Add a print-only offer at the same price, which nobody picked, and {three}% did: next to its worse twin, the bundle looked like a bargain. *Predictably Irrational* argues that we judge options against each other, not on their own. Does it hold up? Mixed: the effect appears in many lab studies, but larger tests with realistic choices often find it small or absent."
+- Phone fit: three offer cards at about 110 px wide in one row; prices at 12 px; bars under each; Seen row one line.
+- Planned claims:
+  - **Derivation:** (D1) The shares sum to 100% in both conditions (arithmetic on the book's figures). The stage draws the reported shares; it does not model them.
+  - **Book-sourced:** (B1) The book argues that people judge options relative to nearby alternatives, so a dominated decoy can make a similar option look better. *Predictably Irrational*, ch. 1 "The Truth about Relativity" (**unconfirmed**). (B2) The book reports a test with about 100 MIT students: without the print-only offer 68% / 32%; with it 16% / 0% / 84%. Same chapter (**unconfirmed**; figures to confirm).
+  - **Research-sourced:** (R1) The original attraction (decoy) effect: Huber, Payne & Puto (1982), "Adding asymmetrically dominated alternatives", *Journal of Consumer Research* 9(1). (R2) Limits: the effect was weak or absent in many replications with realistic stimuli (Frederick, Lee & Baskin, 2014, "The limits of attraction", *Journal of Marketing Research* 51(4); Yang & Lynn, 2014, "More evidence challenging the robustness and usefulness of the attraction effect", *JMR* 51(4); to confirm).
+  - **Fact-checker, before verifying:** check whether any study this lesson relies on has been retracted or carries an expression of concern (strategy section 2, item 6). The verdict judges the evidence only.
+- Curriculum: primary `books:irrational-decoy`; also none; references `[{ "work": "ariely-predictably-irrational-2008", "chapter": 1, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: no decoy lesson (overlap tool to confirm). lifehacks bundle lessons (lh-two-for-one-boundary) are about price arithmetic, not the choice set.
+- Multi-card later: card 1 two offers, card 2 the decoy, card 3 "Holds up?" (original versus replications, drawn as effect bars only if R2 gives numbers we can confirm).
+- Copyright: the subscription offer is described in our words with our own cards. Do not copy the advertisement's wording or layout. No quote.
+
+### 20. most-guests-reuse-towels · concept: influence-social-proof · intro · demand 3
+- Format: Single card (three presets, a 10x10 grid of rooms).
+- Strand: psychology. Book: *Influence* (Cialdini, 1984), work `cialdini-influence-1984`.
+- Audience and knowledge boundary: learner knows: a good reason persuades / does not know: that telling people what others do can move them more than a reason, and that the famous hotel result is less solid than its fame.
+- Misconception: People are moved by reasons, not by what other guests happen to do.
+- Prediction (stage text): "One hotel card says 'help save the environment': 35% of guests reuse towels. Another says 'most guests here reuse their towels'. Reuse with that card?" options: A) About 35% / B) About 44% / C) About 75% (answer: B). The locked stage shows 100 dark rooms and a blank card.
+- Check (node): the study's rates (to confirm): environment card 35.1%, "most guests" 44.1%, "guests in this room" 49.3%. Rounded to whole rooms out of 100: 35, 44, 49. 44 is B.
+- What the stage shows: a 10x10 grid of hotel rooms, lit when the towel was reused, the card's message above the grid, and a readout "reused: 44 of 100". Preset buttons in DOM order: "Card: help the environment", "Card: most guests", "Card: guests in this room" (3). A Seen row records each card's count. Caption: "rates from one hotel study, drawn as 100 rooms".
+- Key state (milestones): env-seen, most-seen (question case), room-seen. Reveal unlocks after env-seen and most-seen.
+- Reveal payoff (draft, 75 words): "The environment card got {env} of 100 rooms to reuse towels. 'Most guests here' got {most}, and 'guests in this room' {room}. Telling people what others do moved them more than giving a reason. *Influence* argues that when we are unsure, we copy what people like us do. Does it hold up? Mixed: the hotel study is widely cited, a German replication found no effect, and a meta-analysis of towel studies finds a small one."
+- Phone fit: grid 10x10 at 22 px; card text one line at 12 px; readout and Seen row one line each.
+- Planned claims:
+  - **Derivation:** (D1) The rounded room counts from the published rates (arithmetic). The grid draws data, not a model.
+  - **Book-sourced:** (B1) The book argues that people decide what is correct by looking at what others do, especially when uncertain and when the others are similar to them. *Influence*, ch. 4 "Social Proof: Truths Are Us" (**unconfirmed**; chapter numbering differs between editions, so the fact-checker records the edition).
+  - **Research-sourced:** (R1) Hotel field experiment: 35.1% / 44.1% / 49.3% (Goldstein, Cialdini & Griskevicius, 2008, "A room with a viewpoint", *Journal of Consumer Research* 35(3); figures to confirm). The study is cited for its result; the 1984 book predates it. (R2) A replication in German hotels found no effect of the descriptive norm (Bohner & Schlüter, 2014, *PLoS ONE* 9(8); to confirm). (R3) A Bayesian meta-analysis of towel-reuse studies found a small effect (Scheibehenne, Jamil & Wagenmakers, 2016, *Psychological Science* 27(7); to confirm).
+- Curriculum: primary `books:influence-social-proof` (prerequisite `probability:information-cascade`, in the map); also none; references `[{ "work": "cialdini-influence-1984", "chapter": 4, "note": "Social Proof; edition and chapter unconfirmed" }]`.
+- Differs from nearest: probability/two-said-blue (information cascade) shows rational copying from private signals in sequence. This is a field experiment on a message's effect size, and whether it replicates.
+- Multi-card later: card 1 the environment card, card 2 the "most guests" card, card 3 "Holds up?" (original versus replication versus meta-analysis).
+- Copyright: the card wording on our stage is ours, not the study's or the book's. No quote.
+
+### 21. one-slip-echoes-forever · concept: axelrod-tit-for-tat · core · demand 2
+- Format: Single card (three presets, two 100-cell move strips).
+- Strand: science-history. Book: *The Evolution of Cooperation* (Axelrod, 1984), work `axelrod-evolution-of-cooperation-1984`.
+- Audience and knowledge boundary: learner knows: tit for tat (copy the other's last move) can beat cheats when partners meet again (life/strategy-builder) / does not know: that one mistake between two tit-for-tat players sets off an endless echo, and that a more forgiving rule avoids it.
+- Misconception: Two tit-for-tat players who make one mistake go straight back to cooperating.
+- Prediction (stage text): "Two tit-for-tat players cooperate for 100 rounds. In round 10, one defects once by mistake. What happens in the remaining rounds?" options: A) They take turns defecting to the end / B) One round of revenge, then peace / C) Back to cooperating at once (answer: A). The locked stage shows two empty strips.
+- Check (node; payoffs both cooperate 3/3, cooperate vs defect 0/5, both defect 1/1, the same as life/strategy-builder): no mistakes: 300 each. Tit for tat with one slip by A in round 10: rounds 10-100 alternate, A scores 257 and B 252 (9 × 3 + 46 × 5 and 9 × 3 + 45 × 5). Tit for two tats (defect only after two defections in a row), same slip: A 302, B 297.
+- What the stage shows: two strips of 100 cells (C filled, D outlined in the warning colour) and a readout "A 257 · B 252 (300 each without mistakes)". Preset buttons in DOM order: "No mistakes", "One mistake in round 10", "Same mistake, tit for two tats" (3). A Seen row records each pair of scores. The cells are decoration (`aria-hidden`); the readout carries the meaning, at 11 px.
+- Key state (milestones): clean-seen, slip-seen (question case, 257 and 252 recorded), forgive-seen. Reveal unlocks after clean-seen and slip-seen.
+- Reveal payoff (draft, 77 words): "Without mistakes both scored 300. One slip in round 10 set off an echo: each copied the other's last move, so they took turns defecting to the end and scored {a} and {b}. Tit for two tats forgave the slip and kept {forgive}. *The Evolution of Cooperation* argues that tit for tat wins by being nice, retaliating and forgiving. Does it hold up? Mixed: reciprocity wins in many tournaments, but with mistakes, more forgiving rules do better."
+- Phone fit: two strips of 100 cells at 3.4 px each in 340 px (decoration), round markers at 1, 10 and 100 in 11 px; readout one line.
+- Planned claims:
+  - **Derivation:** (D1) The scores above (node; deterministic). (D2) The payoffs and the single slip are the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that tit for tat won Axelrod's computer tournaments, and that its success comes from being nice, retaliatory, forgiving and clear. *The Evolution of Cooperation*, ch. 2 "The Success of TIT FOR TAT in Computer Tournaments" (**unconfirmed**). (B2) Optional: the book reports that tit for two tats would have won the first tournament had it been entered. Same chapter (**unconfirmed**); cut if not confirmed.
+  - **Research-sourced:** (R1) With errors, generous tit for tat (Nowak & Sigmund, 1992, "Tit for tat in heterogeneous populations", *Nature* 355) and win-stay, lose-shift (Nowak & Sigmund, 1993, "A strategy of win-stay, lose-shift that outperforms tit-for-tat in the Prisoner's Dilemma game", *Nature* 364) do better than tit for tat.
+- Curriculum: primary `books:axelrod-tit-for-tat` (prerequisite `life:evolution-of-cooperation`, in the map); also `economics:prisoners-dilemma`; references `[{ "work": "axelrod-evolution-of-cooperation-1984", "chapter": 2, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: life/strategy-builder shows tit for tat invading a population of cheats with no mistakes (a 1-in-17 threshold). economics/two-suspects-payoff is the one-shot game. This shows what one error does between two reciprocators, which is where the book's claim is weakest.
+- Multi-card later: card 1 no mistakes, card 2 the echo, card 3 the forgiving rule.
+- Copyright: no quote; the tournament tables are not reproduced.
+
+### 22. trade-the-issues · concept: yes-interests-not-positions · intro · demand 2
+- Format: Single card (three presets, two points tables and two score bars).
+- Strand: business. Book: *Getting to Yes* (Fisher & Ury, 1981), work `fisher-ury-getting-to-yes-1981`.
+- Audience and knowledge boundary: learner knows: meeting halfway is fair / does not know: that when two sides care about different issues, trading issues gives both more than splitting each one.
+- Misconception: In a negotiation, one side's gain is the other's loss, so meeting halfway on everything is the best both can do.
+- Prediction (stage text): "A buyer and seller settle price and delivery date. Meeting halfway on both gives each 25 points. Can both do better at once?" options: A) No: halfway is the best for both / B) Only if one side gives up points / C) Yes, both can gain at once (answer: C). The locked stage shows the two issues and empty score bars; the points tables are hidden until "Show what each values".
+- Check (node): buyer scores 40 × (share of price won) + 10 × (share of date won); seller scores 10 × (share of price won) + 40 × (share of date won). Halfway on both: 25 and 25. Buyer wins price, seller wins date: 40 and 40. Total 80 against 50, so splitting left 30 points unclaimed.
+- What the stage shows: two issue sliders drawn as bars (not controls), two score bars, and the readout "Buyer 25 · Seller 25". Preset buttons in DOM order: "Meet halfway on both", "Show what each values", "Trade: buyer wins price, seller wins date" (3). A Seen row records each deal's scores.
+- Key state (milestones): halfway-seen, values-seen, trade-seen (question case). Reveal unlocks after halfway-seen and trade-seen.
+- Reveal payoff (draft, 76 words): "Meeting halfway gave each side {half} points. Once you saw what each cared about, each side took the issue it valued more, and both got {trade}. Halfway felt fair and left 30 points unclaimed. *Getting to Yes* argues: bargain over interests, not positions, and look for options that give both sides more. Does it hold up? Mostly: studies find many negotiators wrongly assume the other side wants the opposite on every issue, and miss these trades."
+- Phone fit: two issue bars and two score bars, each 36 px; tables at 11 px in two columns; presets in two rows. The tables stay visible at the reveal (the reveal points at them).
+- Planned claims:
+  - **Derivation:** (D1) 25 / 25 at halfway and 40 / 40 after the trade (node). (D2) The point values are the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that negotiators should focus on interests rather than positions and invent options for mutual gain. *Getting to Yes*, ch. 3 "Focus on Interests, Not Positions" and ch. 4 "Invent Options for Mutual Gain" (**unconfirmed**). The book's orange story is not used.
+  - **Research-sourced:** (R1) Many negotiators hold a "fixed-pie" belief that the other side's interests are directly opposed (Thompson & Hastie, 1990, "Social perception in negotiation", *Organizational Behavior and Human Decision Processes* 47(1); to confirm). (R2) Negotiators often settle for worse outcomes for both when their interests were compatible (Thompson & Hrebec, 1996, "Lose-lose agreements in interdependent decision making", *Psychological Bulletin* 120(3); to confirm). R1 or R2 alone carries the verdict.
+- Curriculum: primary `books:yes-interests-not-positions`; also none; references `[{ "work": "fisher-ury-getting-to-yes-1981", "chapter": 3, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: economics/outside-option-sets-the-split is a single-issue split set by outside options (it is also why yes-batna is deferred). This is two issues with different values and no outside option. economics comparative-advantage lessons trade goods by relative cost, not issues in one deal.
+- Multi-card later: card 1 halfway, card 2 what each values, card 3 the trade.
+- Copyright: the book's orange story and its examples are not retold. No quote.
+
+### 23. poison-climbs-the-chain · concept: spring-biomagnification · intro · demand 2
+- Format: Single card (three presets, a five-level food chain).
+- Strand: science-history. Book: *Silent Spring* (Carson, 1962), work `carson-silent-spring-1962`.
+- Audience and knowledge boundary: learner knows: energy shrinks up a food chain (life/ten-percent-up) / does not know: that a chemical that stays in the body does the opposite, concentrating at each link.
+- Misconception: A chemical too dilute to matter in the water stays too dilute everywhere in the lake.
+- Prediction (stage text): "A lake holds 0.02 ppm of a pesticide. Each animal eats ten times its weight and keeps it all. Four links up, the grebe carries:" options: A) 0.02 ppm, like the water / B) About 200 ppm / C) About 2,000 ppm (answer: B). The locked stage shows five empty level boxes.
+- Check (node): concentration multiplies by 10 per link: water 0.02, plankton 0.2, small fish 2, large fish 20, grebe 200 ppm (10,000 times the water). Half excreted at each link (×5): 0.1, 0.5, 2.5, 12.5 ppm. One link only: 0.2 ppm. 2,000 ppm would need five links.
+- What the stage shows: five boxes stacked from water to grebe, each with its concentration (11 px) and a fill that grows on a log scale, and the readout "grebe: 200 ppm · 10,000 × the water". Preset buttons in DOM order: "One link up", "Four links up", "Half excreted each link" (3). A Seen row records the grebe value for each preset.
+- Key state (milestones): one-seen, four-seen (question case, 200 recorded), excreted-seen (12.5 recorded). Reveal unlocks after four-seen and excreted-seen.
+- Reveal payoff (draft, 77 words): "The water held 0.02 parts per million. Each link ate ten times its weight and kept it all, so four links up the grebe carried {grebe}: ten thousand times the water. When half was excreted at each link, it carried {half}. *Silent Spring* argues that a pesticide too dilute to harm in water can reach harmful doses at the top of a food chain. Does it hold up? Yes, for chemicals that stay in fat, like DDT."
+- Phone fit: five boxes at 40 px each (200 px); labels 11 px; log fill bars; readout one line.
+- Planned claims:
+  - **Derivation:** (D1) 0.02 × 10⁴ = 200 ppm; with half excreted, 0.02 × 5⁴ = 12.5 ppm (node). (D2) Ten times body weight eaten and full retention are the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that pesticides applied at very low concentrations accumulate up food chains to harmful levels, using a California lake treated against gnats as an example. *Silent Spring*, ch. 4 "Surface Waters and Underground Seas" (**unconfirmed**). The book's measured concentrations are not shown; if used later, they are sourced to the original survey.
+  - **Research-sourced:** (R1) DDT residues rose from about 0.00005 ppm in estuary water to about 25 ppm in fish-eating birds on Long Island (Woodwell, Wurster & Isaacson, 1967, "DDT residues in an east coast estuary", *Science* 156(3776); figures to confirm). (R2) Biomagnification applies to persistent, fat-soluble chemicals; chemicals that are excreted or broken down do not magnify the same way (a review such as Gobas et al., 2009, "Revisiting bioaccumulation criteria for POPs and PBT assessments", *Integrated Environmental Assessment and Management* 5(4); to confirm).
+- Curriculum: primary `books:spring-biomagnification` (prerequisite `life:energy-pyramid`, in the map); also none; references `[{ "work": "carson-silent-spring-1962", "chapter": 4, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: life/ten-percent-up shows energy shrinking about tenfold per level. This is the mirror image: the mass eaten shrinks while a retained chemical concentrates.
+- Multi-card later: card 1 one link, card 2 four links, card 3 a chemical that is excreted.
+- Safety: about ecology and a historical pesticide. No advice on pesticides, fish eating or health.
+- Copyright: no quote; the book's lake account is not retold.
+
+### 24. late-hot-water-overshoots · concept: meadows-delay-oscillation · core · demand 2
+- Format: Single card (three presets, a temperature-over-time chart).
+- Strand: science-history. Book: *Thinking in Systems* (Meadows, 2008), work `meadows-thinking-in-systems-2008`.
+- Audience and knowledge boundary: learner knows: a controller corrects toward a target (life/thermostat-leftover) / does not know: that a delay between action and effect turns steady correction into overshoot and swings, and that acting more gently helps.
+- Misconception: If you keep correcting toward the target, you can't overshoot it; a delay only makes you slower.
+- Prediction (stage text): "Shower at 30°C; you want 38. Each second you turn the tap by half the gap you feel. Water takes 2 seconds to arrive. Then?" options: A) It never goes above 38 / B) It overshoots a little, to about 39 / C) It overshoots to about 44, then swings (answer: C). The locked stage shows an empty chart with a 38°C target line.
+- Check (node): tap temperature S(t+1) = S(t) + k × (38 − felt), felt = S(t − delay), start 30°C, 30 seconds. No delay, k = 0.5: rises to 38 with no overshoot (peak 38.0). Delay 2 s, k = 0.5: peak 44.0°C, low 33.5°C, still swinging at 30 s (39.7 at 28 s). Delay 2 s, k = 0.25 (gentle hand): peak 39.1°C, within 0.5°C of 38 from 12 s on.
+- What the stage shows: a 30-second chart of the temperature you feel, the 38°C target line, and the readout "peak 44.0°C · still swinging at 30 s". Preset buttons in DOM order: "No delay", "2-second delay", "2-second delay, gentle hand" (3). Each preset draws its curve at once; earlier curves stay as faint lines. A Seen row records each peak.
+- Key state (milestones): nodelay-seen, delay-seen (question case, 44.0 recorded), gentle-seen (39.1 recorded). Reveal unlocks after delay-seen and gentle-seen.
+- Reveal payoff (draft, 74 words): "With no delay, the water crept up to 38°C. With a 2-second delay, the same hand overshot to {peak}°C and was still swinging at 30 seconds. A gentler hand peaked at {gentle}°C and settled. *Thinking in Systems* argues that delays in a feedback loop cause overshoot and swings, and that reacting harder makes them worse. Does it hold up? Yes: it is basic control theory, and experiments find people ignore delays they can't see."
+- Phone fit: chart about 180 px tall, axis labels 11 px (0-30 s, 30-46°C); readout one line; presets in two rows.
+- Planned claims:
+  - **Derivation:** (D1) The three curves' peaks and settling (node). (D2) The tap rule, the 2-second delay and the gains are the lesson's model (stated).
+  - **Book-sourced:** (B1) The book argues that delays in balancing feedback loops cause oscillation, and that acting faster or harder on a delayed loop often makes the oscillation worse. *Thinking in Systems*, ch. 2 "A Brief Visit to the Systems Zoo" (**unconfirmed**). The book's car-dealer example is not used.
+  - **Research-sourced:** (R1) In a managed stock with a supply-line delay, people under-weight orders already in the pipeline, which produces overshoot and oscillation (Sterman, 1989, "Modeling managerial behavior: misperceptions of feedback in a dynamic decision making experiment", *Management Science* 35(3)).
+- Curriculum: primary `books:meadows-delay-oscillation` (prerequisite `life:negative-feedback`, in the map); also none; references `[{ "work": "meadows-thinking-in-systems-2008", "chapter": 2, "note": "chapter unconfirmed" }]`.
+- Differs from nearest: life/thermostat-leftover shows a proportional controller settling short of its target, with no delay. ai/step-too-long (learning-rate-overshoot) overshoots because the step is too big. Here the same gentle-enough step overshoots only because of the delay.
+- Multi-card later: card 1 no delay, card 2 the delay, card 3 the gentle hand.
+- Safety: 44°C is a toy number in a chart, not advice about water temperature. No scalding imagery.
+- Copyright: no quote; the book's diagrams are not imitated.
