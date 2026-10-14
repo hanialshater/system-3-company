@@ -29,3 +29,7 @@ Path walked: chose "1"; +1; −1; slider to 2; "All 10 fields"; opened reveal.
 ## 3. Verdict
 
 launch. A learner with this boundary sees each extra ton take a better corn field and drop more corn; the bend comes from the stage. No FATAL.
+
+## 4. After reading build.md
+
+Pre-flight v5 item 7 reports crop 0 px and 88 words on the dev server; the release build measures the same. It does not mention the slashed field numbers at the reveal. Findings and verdict unchanged.

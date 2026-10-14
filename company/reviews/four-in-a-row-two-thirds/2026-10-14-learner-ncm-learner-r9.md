@@ -28,3 +28,8 @@ Path walked: chose "About $0.50"; Next round; Run until settled; Reset; opened r
 ## 3. Verdict
 
 launch. The moving fallback is on the stage and the reveal points at it. Should fix: post-Reset node labels ($0.500) contradict the verdict at a glance; C's round-1 $0.750 is quoted but not on any row. No FATAL.
+
+## 4. After reading build.md
+
+- Pre-flight v5 item 7 (crop 0, 78 words) matches the release build.
+- Build.md says removing the readouts row also fixes r8's should-fix ("after Reset, no large B GETS $0.500"). **I partly disagree:** the readouts row is gone, but after Reset the node labels still read $0.500 for A, B, C and D directly above the verdict, in the largest stage print. The strip and rows carry the truth. Kept as should fix; verdict unchanged.
