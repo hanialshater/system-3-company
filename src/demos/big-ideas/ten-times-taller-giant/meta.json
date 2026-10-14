@@ -27,35 +27,50 @@
       "text": "Scaling every length by k multiplies weight (volume, same material) by k³ and bone cross-section by k², so the load on each square centimetre of bone grows by k: at 10×, weight ×1,000, bone area ×100, load ×10.",
       "support": "derivation",
       "source": "Geometry of similar solids (prerequisites math:area-scaling, math:volume-scaling); company/domains/briefs/checks/big-ideas-cycle1-check.mjs #3; Demo.tsx scaleOf(). Static axial load only; the model ignores bending and dynamic loads.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: similar solids scaled by k have volume x k^3 (so weight x k^3 at the same density) and every area x k^2, so load per unit bone area = k^3 / k^2 = k. Node: k = 10 gives 1,000 / 100 = 10; Demo.tsx scaleOf(10, false) gives the same, and the reveal prints them. The recall's statue (k = 3: 27 / 9 = 3) is the same derivation. The model is static axial load only; the claim says so.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.ten-times-taller-giant.c2",
       "text": "Galileo argued in 1638 that giants need disproportionately thick bones.",
       "support": "source",
       "source": "Galilei, G. (1638), Discorsi e dimostrazioni matematiche intorno a due nuove scienze (Two New Sciences), Second Day (public domain; the bone figure and passage on giants, section to confirm). Not opened by the builder.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (class P). Galileo 1638, Two New Sciences, Second Day, could not be opened: no public-domain copy is reachable from this host (Gutenberg, archive.org and Wikisource blocked; no OpenStax text discusses it). Not verified on trust. The lesson does not need it: the 'thicker legs' result is c1/c4 derivation. If W-583 cannot open it, cut the Galileo sentence (cm-big-ideas-science's call).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.ten-times-taller-giant.c3",
       "text": "Where it stops: big mammals mostly stand more upright instead of growing far thicker bones, which keeps peak bone stress roughly level across sizes.",
       "support": "source",
       "source": "Biewener, A. A. (1989), 'Scaling body support in mammals: limb posture and muscle mechanics', Science 245(4913), 45-48: bone allometry is modest; larger mammals reduce peak stresses mainly through more upright limbs (better mechanical advantage). Holds roughly up to horse size; the largest mammals (elephants) are also slower and less athletic (to confirm). The lesson's one held citation (class H) on the learner path; Galileo (c2, 1638) is public domain (class P). Not opened by the builder. Cut if not checkable; fallback (v2, W-634): the reveal's last paragraph becomes 'Where it stops: real animals change shape and posture as they grow.' (support: convention, illustrated by the stage's 'thicker legs' toggle, c4), with no claim about bone stress in mammals.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (the lesson's one class-H citation). Biewener 1989 (Science 245) could not be opened (web blocked), and no openable source covers limb posture and bone stress scaling. Not verified on trust. The v2 fallback is ready and verifiable as convention: 'Where it stops: real animals change shape and posture as they grow.' Use it if W-583 cannot open Biewener.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.ten-times-taller-giant.c4",
       "text": "The limit line (4× today's load) and the thicker-legs model (bone diameter ×k^1.5, so load stays level) are the lesson's illustrations, not measured values.",
       "support": "convention",
       "source": "Labelled 'limit (illustrative)' on the stage. 4× is chosen to sit within the 2-4 safety factors reported for limb bones in vigorous activity (Biewener, A. A. (1990), 'Biomechanics of mammalian terrestrial locomotion', Science 250(4984), 1097-1103; to confirm). Thicker legs: diameter ∝ k^1.5 gives cross-section ∝ k³ = weight, so load ×1 (derivation).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention: LIMIT = 4 in Demo.tsx, and the stage labels the line 'limit (illustrative)'; the reveal calls it 'the illustrative limit'. Thicker legs: diameter x k^1.5 gives area x k^3, load x 1 (node: 1 at k = 2, 3, 5, 10). The reason given for 4x (Biewener 1990 safety factors of 2 to 4) is not on the learner path and was not checked; it does not affect this verdict.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.ten-times-taller-giant.c5",
       "text": "With same-shape legs, each square centimetre of bone in the 10× giant carries more than the illustrative limit.",
       "support": "derivation",
       "source": "10 > 4 (c1, c4). The stage colours the legs and the bar red above the line. The lesson does not claim a 10× giant would collapse standing still: real standing stresses are far below bone strength, and the margin that disappears is the one used in running and jumping (c4).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: 10 > 4 (c1, c4), and the code turns legs and bar red when load > LIMIT. The lesson makes no collapse claim, so nothing here rests on real bone strength.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

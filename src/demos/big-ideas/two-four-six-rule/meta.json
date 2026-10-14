@@ -27,35 +27,50 @@
       "text": "The secret rule is any three increasing numbers.",
       "support": "convention",
       "source": "The lesson's set-up, printed on the stage at the reveal ('Secret rule: any three increasing numbers'). v2 (W-633): the caption no longer cites Wason, so the learner path carries one held citation (c4). Off the learner path, for the record: the task and its rule are Wason's 2-4-6 task (Wason, P. C. (1960), 'On the failure to eliminate hypotheses in a conceptual task', Quarterly Journal of Experimental Psychology 12(3), 129-140; not opened by the builder). Whether the stage should credit Wason by name instead is cm-big-ideas' call: it would be a second held citation, or replace c4 as the one.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention: secret() in Demo.tsx is t0 < t1 < t2, and the reveal-phase stage prints 'Secret rule: any three increasing numbers'. Wason 1960 is off the learner path and was not opened; nothing on the card names him.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.two-four-six-rule.c2",
       "text": "8-10-12, 20-22-24 and 1-3-5 fit both 'add 2 each time' and 'any three increasing numbers', so they cannot tell the two rules apart; 1-2-10 breaks 'add 2' and fits the secret rule; 6-4-2 fits neither.",
       "support": "derivation",
       "source": "Direct check of each triple against both rules; Demo.tsx plus2() and secret() compute the marks on the stage; brief answer check company/domains/briefs/checks/big-ideas-cycle1-check.mjs. Every +2 triple is increasing, so no +2 test can ever separate the two rules.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node, own copies of both rules: 8-10-12, 20-22-24, 1-3-5 fit both; 1-2-10 breaks +2 and fits the secret rule; 6-4-2 fits neither. Exhaustive over every triple in the stage's range 0-40: no +2 triple fails 'increasing' (0 cases), so no +2 test can separate the rules. Also checked: the stage's mismatch message can only show 'your guess said no, but it fits!', the one possible disagreement.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.two-four-six-rule.c3",
       "text": "A test that could prove you wrong tells you more.",
       "support": "derivation",
       "source": "v2 (W-633): this is the fallback wording for the Popper sentence, which leaves the reveal (strategy section 5: at most one held citation per reveal; c4 is the one). It follows from c2: only a test your guess says will fail (1-2-10, or 6-4-2) can separate 'add 2' from a broader rule; every +2 test fits both. Off the learner path: the idea is Popper's falsifiability criterion (Popper, K. (1959), The Logic of Scientific Discovery, section to confirm). If the fact-checker confirms Popper and cm-big-ideas prefers it to c4 as the one held sentence, the reveal may read 'Karl Popper argued that a claim is scientific when a test could prove it false.' Not opened by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation, as the lesson uses it: guess +2 is a subset of 'increasing', so only triples the guess says will fail (1-2-10, 6-4-2) can come out differently under the two rules; every test the guess says will pass fits both and carries no information about which is true (c2). Read in context the sentence holds. Its limit as a general maxim is c4's job. Popper is off the learner path and was not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.two-four-six-rule.c4",
       "text": "Where it stops: testing cases that fit (a positive test strategy) is often a sensible strategy; it fails when the true rule is broader than the guess.",
       "support": "source",
       "source": "Klayman, J. & Ha, Y.-W. (1987), 'Confirmation, disconfirmation, and information in hypothesis testing', Psychological Review 94(2), 211-228. The lesson's one held citation on the learner path (W-633). Not opened by the builder. Cut if not checkable; fallback (support: derivation): 'Where it stops: if your guess were broader than the true rule, testing cases that fit would catch it, because some would fail. It fails here because the true rule is broader than the guess.' (A positive test can only fail where the guess says yes and the rule says no, so it exposes a guess that is too broad, never one that is too narrow.)",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (the lesson's one class-H citation). Klayman and Ha 1987 (Psychological Review 94(2)) could not be opened (web blocked). The second half is derivation and holds: a positive test can only fail where the guess says yes and the rule says no, so it exposes a guess that is too broad, never one that is too narrow; here the rule is broader, so it fails. But 'testing cases that fit is often sensible' is the paper's empirical and normative claim and needs the source. The brief's fallback is ready and I verify its logic: 'Where it stops: if your guess were broader than the true rule, testing cases that fit would catch it, because some would fail. It fails here because the true rule is broader than the guess.' Use it if W-583 cannot open Klayman and Ha.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.two-four-six-rule.c5",
       "text": "Your guess is 'add 2 each time'; the stage marks each tested triple against your guess and against the secret rule.",
       "support": "convention",
       "source": "The lesson's set-up, stated in the question stem and the stage caption; the secret rule is shown on the stage only once the reveal opens.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention: the question stem says 'You guess add 2 each time'; the stage caption reads 'Your guess: add 2 each time. Test any three numbers.'; each logged row carries two marks from plus2() and secret(). The secret rule appears only in the reveal phase (phase === 'reveal' branch).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

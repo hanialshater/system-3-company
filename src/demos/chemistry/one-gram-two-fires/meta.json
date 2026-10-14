@@ -28,49 +28,70 @@
       "text": "Burning carbon completely to CO2 releases about 33 kJ per gram (stage: '1 g carbon burned: 33 kJ' and readout; reveal: 'Burning 1 g of carbon gave about 33 kJ').",
       "support": "derivation",
       "source": "Standard enthalpy of formation of CO2(g) −393.51 kJ/mol (CODATA Key Values for Thermodynamics, 1989; CRC) / 12.011 g/mol = 32.76 kJ/g (node, demo-builder 2026-10-14). Demo.tsx C_PER_G. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened standard enthalpies of formation of CO2(g) as transcribed in PyPI chemicals 1.5.2: JANAF 1998 -393.522 kJ/mol, ATcT 1.112 -393.474 (298 K), Yaws -393.52. Node: 393.51e3 / 12.011 = 32,762 J/g, shown '33 kJ'. Any of the opened values gives 32.76 kJ/g to 4 figures. The CODATA 1989 paper was not opened; the JANAF value agrees with it to 0.01 kJ/mol.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c2",
       "text": "Fission of one U-235 nucleus releases about 200 MeV (stage per-event label 'one U-235 fission: 200 MeV'; reveal: 'one fission about 200 MeV').",
       "support": "source",
       "source": "Krane, Introductory Nuclear Physics, fission chapter (about 200 MeV total per fission, about 190-200 MeV recoverable); cross-check from binding energies: about 7.6 MeV per nucleon at A = 235 against about 8.5 MeV per nucleon for the fragments, about 0.9 x 235 = about 210 MeV (AME2020). Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened OpenStax College Physics 2e, 'Fission' (module m42662, cloned from github.com/openstax/osbooks-college-physics-bundle): worked example 'given the average fission reaction of 235U produces 200 MeV'. Krane and AME2020 were not opened; the binding-energy cross-check in the source field was not re-run.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c3",
       "text": "Fully fissioning 1 g of U-235 releases about 82 GJ, about 2.5 million times the energy of burning 1 g of carbon (stage: '1 g U-235 split: 82 GJ' and readout 'Per gram: carbon · U-235 33 kJ · 82 GJ'; reveal: 'gave about 82 GJ, about 2.5 million times more').",
       "support": "derivation",
       "source": "(1/235.04) mol x 6.02214076e23 /mol x 200e6 eV x 1.602176634e-19 J/eV = 8.21e10 J; / 32.76e3 J = 2.51e6 (node, demo-builder 2026-10-14; NA and e exact, SI 2019). Nearest power of ten: log10 = 6.40, so 10^6 ('about 1 million times more'). Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node with exact SI constants: (1/235.04) x 6.02214076e23 x 200e6 x 1.602176634e-19 = 8.210e10 J per g, shown '82 GJ'; / 32,762 J/g = 2.506e6, shown '2.5 million'; log10 = 6.40, nearest power 10^6, so option 3 is right. Independently matches OpenStax College Physics 2e 'Fission' (m42662) worked example: 1.00 kg of U-235 at 200 MeV gives 8.21 x 10^13 J. The 'every atom splits' idealisation is c7.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c4",
       "text": "Burning about 2.5 tonnes of carbon matches the energy of 1 g of U-235; stepping the carbon up tenfold from 1 g passes it at the 7th step, 10 t (stage readout 'Carbon to match: 2.5 t (7 steps)'; reveal: 'Carbon passed it on tenfold step 7: about 2.5 t of carbon matches one gram').",
       "support": "derivation",
       "source": "8.21e10 J / 32.76e3 J/g = 2.506e6 g = 2.5 t; 10^6 g gives 3.3e10 J (< 8.2e10), 10^7 g gives 3.3e11 J (>), so the 7th tenfold step passes it. Demo.tsx MATCH_G and untilPasses().",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node: match mass 2.506e6 g, shown '2.5 t'. Tenfold steps from 1 g: 10^6 g gives 3.28e10 J (< 8.21e10), 10^7 g gives 3.28e11 J (>=), so step(7) records matchSteps = 7 and '10 t'. Checked against untilPasses()/step() in Demo.tsx.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c5",
       "text": "Forming one CO2 molecule from carbon and oxygen releases about 4 eV (stage per-event label 'one CO₂ formed: 4.1 eV'; reveal: 'forming one CO₂ frees about 4 eV').",
       "support": "derivation",
       "source": "393.51e3 J/mol / 96,485.33 C/mol (Faraday constant, exact via NA and e) = 4.08 eV per molecule (node). Brief claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node: 393.51e3 J/mol / (NA x e) = 4.0784 eV per CO2 (JANAF -393.522: 4.0786). Stage shows 4.1 eV and the reveal 'about 4 eV' (toFixed(0)).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c6",
       "text": "Burning only moves electrons between atoms; fission rearranges the nucleus itself (reveal).",
       "support": "source",
       "source": "Any general chemistry or nuclear physics text (e.g. Krane, Introductory Nuclear Physics; Atkins, chemical bonding): chemical reactions change electron arrangements and bonds, leaving nuclei unchanged; fission splits the nucleus into two lighter nuclei.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened OpenStax Chemistry 2e section 2.6 (m68696): 'In ordinary chemical reactions, the nucleus of each atom (and thus the identity of the element) remains unchanged. Electrons, however, can be added ... lost ... or shared'; OpenStax College Physics 2e 'Fission' (m42662): the nucleus 'pops ... into two large pieces and a few neutrons'. Krane and Atkins were not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.one-gram-two-fires.c7",
       "text": "Idealisation (in the question, not repeated on stage): every atom in the gram of U-235 splits and the carbon is pure and burns completely. Real reactor fuel is mostly U-238 and only a few per cent fissions before refuelling; coal gives less per gram than pure carbon.",
       "support": "convention",
       "source": "Stated assumption, brief claim 5. The lesson quotes no burnup figure. Coal heating values about 24-35 MJ/kg against 32.8 MJ/kg for pure carbon (brief); fact-checker to confirm or drop if the coal range is ever shown.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention (the idealisation is in the question: 'Split all the atoms', 'Burn 1 g of carbon completely'). The factual half checked in OpenStax Chemistry 2e section 9.4 (m68754): natural uranium 0.72% U-235, 'Nuclear reactors require fuel that is 2-5% U-235', so fuel is mostly U-238. 'Only a few per cent fissions before refuelling' rests on that and is not shown to learners. Coal: OpenStax 5.3 (m68727) 'hard coal averages -35 kJ/g'; the brief's 24-35 MJ/kg range is not shown and its lower end was not checked. See the review file: the recall question carries an unrecorded real-plant claim.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

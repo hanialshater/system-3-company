@@ -27,35 +27,50 @@
       "text": "Under x → 4x(1 − x), runs from 0.3 and 0.3001 first differ by more than 0.1 at step 11 and are 0.616 apart at step 30; runs from 0.3 and 0.3000001 (1,000 times more precise) first differ by more than 0.1 at step 21, 10 steps later.",
       "support": "derivation",
       "source": "Direct iteration in double precision: company/domains/briefs/checks/big-ideas-cycle1-check.mjs (brief #6 and the W-537 block); Demo.tsx series() and splitStep() compute every point and marker on the stage. Re-run by the builder in node, 2026-10-14: 11, 21, gap 0.616 at step 30.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Re-iterated x -> 4x(1 - x) in node (own code, double precision): gap 0.0001 first exceeds 0.1 at step 11, gap at step 30 = 0.616; gap 0.0000001 first exceeds 0.1 at step 21, 10 steps later. Matches Demo.tsx splitStep()/series() and the reveal ('until step 11', 'only 10 more steps').",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.one-ten-thousandth-apart.c2",
       "text": "In this map the gap between two nearby runs roughly doubles each step.",
       "support": "derivation",
       "source": "The r = 4 logistic map is conjugate to the doubling (tent) map, so its Lyapunov exponent is ln 2: small gaps grow by a factor of about 2 per step on average. Consistent with the stage: a 1,000× smaller gap (log2 1000 ≈ 10) buys 10 steps (c1). Standard result, e.g. Strogatz, Nonlinear Dynamics and Chaos, 2nd ed., ch. 10 (not needed for the derivation; not opened by the builder).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation plus numeric check: x = sin^2(pi theta) conjugates the r = 4 map to theta -> 2 theta mod 1, so the Lyapunov exponent is ln 2 and small gaps grow by about 2 per step on average. Node: mean of ln|4 - 8x| over 1e6 steps = 0.693146 (ln 2 = 0.693147). Consistent with c1: log2(1000) = 9.97, about 10 steps. Strogatz not opened and not needed. The recall's log2(100) = 6.64, about 7 days, also re-checked.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.one-ten-thousandth-apart.c3",
       "text": "Edward Lorenz found this in a weather model in 1963.",
       "support": "source",
       "source": "Held citation, the lesson's one (strategy section 5). Lorenz, E. N. (1963), 'Deterministic nonperiodic flow', Journal of the Atmospheric Sciences 20(2), 130-141. Not opened by the builder. Cut if not checkable; fallback (brief W-537 re-check): the reveal drops this sentence and says instead 'Mathematicians call this sensitive dependence on initial conditions.' (support: convention, a definition).",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (the lesson's one class-H citation). Lorenz 1963 (J. Atmos. Sci. 20(2)) could not be opened (web blocked); no openable text names Lorenz. Note for when it is opened: the 1963 paper's model is a simplified convection system; check whether 'a weather model' and the year describe it fairly. The brief's fallback is ready and I can verify it: 'Mathematicians call this sensitive dependence on initial conditions.' OpenStax College Physics 2e 'The Onset of Turbulence' (m42210) defines a chaotic system as one 'so sensitive to some factor that it is extremely difficult to predict' and uses 'extremely sensitive dependence'. If W-583 cannot open Lorenz, use the fallback.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.one-ten-thousandth-apart.c4",
       "text": "Where it stops: each step was unpredictable, but the long-run averages matched (0.51 from 0.3 and 0.48 from 0.3001, over 1,000 steps); chaos limits forecasting a particular step, not the average.",
       "support": "derivation",
       "source": "1,000-step averages computed in Demo.tsx longAverage() and in the cycle-1 check script (W-537 block): 0.51 and 0.48. The exact long-run mean of the r = 4 map is 0.5 (its invariant density is 1/(π√(x(1 − x))), symmetric about 0.5). Shown on the stage by the 'Average 1,000 steps' preset (strategy D4 a: the limit is shown, not told). The reveal has a second branch for learners who did not press 'Average 1,000 steps': 'Where it stops: chaos limits forecasting a particular day, not necessarily the average. Average 1,000 steps compares the two runs' long-run averages.' It quotes no values. The brief's last sentence ('That is why a forecast fades after days…') was cut for the 90-word budget; it would have been a second weather claim resting on c3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node: 1,000-step averages from 0.3 and 0.3001 = 0.5119 and 0.4810, shown 0.51 and 0.48 (toFixed(2)). Exact long-run mean: the invariant density 1/(pi sqrt(x(1 - x))) is symmetric about 1/2, so the mean is 0.5. 'Matched' is fair: both are within about 0.02 of 0.5 while single steps differ by up to 1. The no-average branch of the reveal states no value and holds.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.one-ten-thousandth-apart.c5",
       "text": "The rule, the start 0.3 and the gaps 0.0001 and 0.0000001 are the lesson's choices; every value of the map stays between 0 and 1, so two unrelated runs can be up to 1 apart.",
       "support": "convention",
       "source": "The lesson's model (brief #6). For x in [0, 1], 4x(1 − x) is in [0, 1]. Option C's 'like two random numbers' is a description of the runs' behaviour after they split, not a claim that the map is random.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention: start 0.3 and gaps 1e-4 and 1e-7 are constants in Demo.tsx (X_START, COARSE, FINE). For x in [0, 1], 4x(1 - x) has maximum 1 at x = 1/2 and minimum 0, so every value stays in [0, 1] and two runs are at most 1 apart.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -34,28 +34,40 @@
       "text": "In the lesson's model, a full lake of 1,000 fish with a fixed catch of 130 a year is empty in year 55 (54.9); with 120 a year it settles near 600 (600 at year 60). Other catches on the slider: 80 settles at 800, 90 at 765, 100 at 724, 110 at 673; 140 empties in year 29, 150 in year 21.",
       "support": "simulation",
       "source": "dN/dt = 0.5N(1 - N/1000) - H, N(0) = 1000, Euler dt 0.001 year, in Demo.tsx simulate(); re-run in node 2026-10-14 (matches the brief's check in company/domains/briefs/life.ecology-body.md).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Re-checked two independent ways in node (not the lesson's Euler): RK4 with dt 0.001 and the closed form. Writing u = N - 500, dN/dt = -(r/K)u^2 - (H - 125), time to empty from full = (2/sqrt(ab)) atan(500 sqrt(a/b)) with a = 5e-4, b = H - 125: H 130 -> 54.94 yr (year 55), 140 -> 28.57 (year 29), 150 -> 20.58 (year 21). Equilibria 500 + sqrt(250000 - 2000H): 80 -> 800, 90 -> 764.6, 100 -> 723.6, 110 -> 673.2, 120 -> 600 (RK4 at year 60: 600.33, rounds to 600). All match the claim.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.steady-catch-from-a-lake.c2",
       "text": "The most the model lake can add in a year is 125 fish, when it is half full (500 fish).",
       "support": "derivation",
       "source": "Growth 0.5N(1 - N/1000) peaks at N = K/2 with value rK/4 = 0.5 x 1000 / 4 = 125.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: g(N) = 0.5N(1 - N/1000) has g'(N) = 0.5 - N/1000 = 0 at N = 500, g(500) = 125 = rK/4. Stage label 'half full: grows fastest, 125 a year'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.steady-catch-from-a-lake.c3",
       "text": "Any fixed catch above 125 a year takes more than the lake can ever replace, so it empties.",
       "support": "derivation",
       "source": "0.5N(1 - N/1000) <= 125 for all N, so dN/dt < 0 everywhere when H > 125.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: g(N) <= 125 for all N, so with H > 125, dN/dt <= 125 - H < 0 everywhere and N falls at least (H - 125) a year; it reaches 0 in finite time (closed form in c1). The hook's 'only 13%' is 130/1000.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.steady-catch-from-a-lake.c4",
       "text": "A lake holds at most 1,000 fish and starts full; a few fish multiply fast and a crowded lake barely grows. It is a toy lake: no weather, no luck.",
       "support": "convention",
       "source": "Model choice (logistic, r = 0.5, K = 1000, fixed catch; no weather, age structure or chance), stated on the stage and in the reveal. Context for the fact-checker, not on the card: the logistic surplus-production model is the textbook origin of maximum sustainable yield (Schaefer 1954; Hilborn and Walters 1992). Unverified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention, stated on the locked stage ('A lake holds at most 1,000 fish and starts full. A few fish multiply fast; a crowded lake barely grows') and the unlocked stage ('Toy lake: no weather, no luck'); matches K = 1000, r = 0.5, N(0) = K in Demo.tsx. The Schaefer 1954 context is not on the card and was not checked.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

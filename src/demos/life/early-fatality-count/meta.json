@@ -35,28 +35,40 @@
       "text": "In the model, on day 45 deaths so far ÷ cases so far is 0.247%, about 1 in 405; once cases have stopped it climbs to 1 in 50 (1.998% on day 120, 1.999% on day 125, exactly 2% by day 135).",
       "support": "simulation",
       "source": "Demo.tsx CUM_C/CUM_D, deterministic; re-run in node 2026-10-14: day 30 1 in 443, 45 1 in 405, 60 1 in 401, 75 1 in 88, 90 1 in 53, 105-135 1 in 50 (matches the brief's check in company/domains/briefs/life.health-epidemiology.md).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Re-ran the model in node from my own copy (scratch cfr.mjs): day 30 0.2259% (1 in 443), 45 0.2470% (1 in 405), 60 1 in 401, 75 1 in 88, 90 1 in 53, 105 1 in 50, 120 1.9984%, 125 1.9993%, 135 2.0000%. Matches the claim and ratioText() rounding. Note: day 120 is 1.998%, which the readout shows as '1 in 50'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.early-fatality-count.c2",
       "text": "Each day's deaths come from cases counted 15 days earlier, when there were 8 times fewer (three doublings); so while cases grow the ratio tends to 2% x 2^-3 = 0.25%, and deaths so far ÷ cases so far runs low.",
       "support": "derivation",
       "source": "15 days / 5-day doubling = 3 doublings, 2^3 = 8; ratio -> 0.02 / 8 = 0.0025 while growth is steady.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: 15 / 5 = 3 doublings, 2^3 = 8; in steady growth cumulative cases and deaths both grow as 2^(d/5), so the ratio tends to 0.02 x 2^-3 = 0.25%. Node: day 60 (end of growth) 0.2496%.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.early-fatality-count.c3",
       "text": "Made-up outbreak: cases double every 5 days, and exactly 2 in 100 cases die, always 15 days after being counted (every case is counted).",
       "support": "convention",
       "source": "Model choices from the brief, stated on the stage and in the reveal. Real delays vary between people and real counts miss cases. Optional context for the fact-checker, not on the card: Ghani et al. 2005, Am. J. Epidemiol. 162(5), on biased early fatality estimates. Unverified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention, stated on the locked stage ('Made-up outbreak: cases double every 5 days. Exactly 2 in 100 cases die, always 15 days after being counted') and in Demo.tsx constants (DOUBLE 5, CFR 0.02, LAG 15). No real-world number is shown, so nothing about real outbreaks rests on it. Ghani et al. 2005 was not opened and is not needed.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.early-fatality-count.c4",
       "text": "Deaths each day are drawn 50 times larger, so a death dot sits level with the case bar it came from 15 days earlier.",
       "support": "convention",
       "source": "Chart convention: 0.02 x 50 = 1, stated on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention checked in the code: dots are drawn at deaths(d) x 50 = 0.02 x 50 x cases(d - 15) = cases(d - 15), the same height as the bar 15 days earlier; the stage caption says 'drawn ×50'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

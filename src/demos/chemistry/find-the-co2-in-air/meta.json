@@ -29,42 +29,60 @@
       "text": "Dry air is about 78.08% nitrogen, 20.95% oxygen and 0.93% argon by volume (molecule count): of 10,000 molecules, 7,808 nitrogen, 2,095 oxygen and 93 argon (stage legend; reveal: 'Of your 10,000 dots, 7,808 were nitrogen, 2,095 oxygen, 93 argon').",
       "support": "source",
       "source": "CRC Handbook of Chemistry and Physics, 'Composition of dry air' / U.S. Standard Atmosphere 1976 (N2 78.084%, O2 20.946%, Ar 0.934%). Per 10,000: 7,808.4, 2,094.6, 93.4, rounded. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened the U.S. Standard Atmosphere 1976 sea-level volume fractions as transcribed in PyPI ussa1976 0.3.4 (constants.py, F: N2 0.78084, O2 0.209476, Ar 0.00934; cites NASA-TM-X-74335). Per 10,000: 7,808.4, 2,094.8, 93.4, rounded to 7,808, 2,095, 93. Cross-check: OpenStax Astronomy 2e 'The Massive Atmosphere of Venus' (m59840) table, Earth N2 78.1%, Ar 0.93%, O2 21.0%; OpenStax Chemistry 2e 9.1 (m68750) 78.1% N2, 21.0% O2. The CRC table was not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.find-the-co2-in-air.c2",
       "text": "Carbon dioxide is about 420 parts per million of the atmosphere, 0.042%, about 4 of every 10,000 molecules (question answer; stage legend 'CO₂ 4'; reveal: 'only 4 carbon dioxide: about 420 parts per million, or 0.042%').",
       "support": "source",
       "source": "WMO Greenhouse Gas Bulletin No. 20 (October 2024): global mean 420.0 ppm for 2023; cross-check NOAA GML or Scripps Mauna Loa records. 420 ppm = 4.2 per 10,000 = 0.042%. Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened NOAA GML global marine-surface annual means via the datasets/co2-ppm mirror on GitHub (data/co2-annmean-gl.csv, ODC-PDDL, sourced from NOAA ESRL): 2023 419.35 ppm, 2024 422.79, 2025 425.62; Mauna Loa 2023 421.08. 'About 420 ppm, 0.042%, about 4 of 10,000' holds for the cited 2023 value, and 4 of 10,000 still holds today (monthly global mean mid-2026 about 428). WMO Bulletin No. 20 itself was not opened. Non-blocking: the figure rises about 2.5 ppm a year and the stage gives no year; consider 'about 420 ppm (2023)' or update to about 425 (2025 global mean). cm-chemistry's call.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.find-the-co2-in-air.c3",
       "text": "The grid's 7,808 + 2,095 + 93 + 4 = 10,000 rounds each share and leaves out gases under 1 per 10,000 (neon, helium, methane, krypton, hydrogen and others, about 27 ppm in total).",
       "support": "derivation",
       "source": "Node arithmetic (demo-builder 2026-10-14) from c1 and c2. Not stated to the learner; disclosed here. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node: 7,808 + 2,095 + 93 + 4 = 10,000. The left-out gases in USSA 1976 (ussa1976 0.3.4 constants.py): Ne 18.18 + He 5.24 + Kr 1.14 + Xe 0.087 + CH4 2 + H2 0.5 = 27.15 ppm, 'about 27 ppm' and 0.27 per 10,000, under one dot. Not shown to learners.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.find-the-co2-in-air.c4",
       "text": "One breath of about 0.5 L of air at 25 °C and 1 atm holds about 5 x 10^18 CO2 molecules (stage: 'One breath, about 0.5 L: about 5 × 10¹⁸ CO₂ molecules'; reveal).",
       "support": "derivation",
       "source": "n = PV/RT = 101,325 Pa x 0.0005 m^3 / (8.314 x 298.15) = 0.0204 mol; x 6.02214076e23 x 420e-6 = 5.2e18 (node). Tidal volume about 0.5 L at rest: Guyton & Hall, Textbook of Medical Physiology, pulmonary ventilation. Brief claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Node, my own constants (R = 8.314462618): n = 101,325 x 0.0005 / (R x 298.15) = 0.02044 mol; x 6.02214076e23 x 420e-6 = 5.17e18, stage shows '5 × 10¹⁸' (toFixed(0) of 5.17); at 428 ppm 5.27e18, still 5. Tidal volume opened in OpenStax Anatomy and Physiology 2e 'The Process of Breathing' (m46549): 'Tidal volume ... about 500 milliliters'. Guyton & Hall was not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.find-the-co2-in-air.c5",
       "text": "A part per million is a share, not an amount; a tiny share of a huge crowd is still a huge number, which is why trace gases are counted in ppm (reveal).",
       "support": "convention",
       "source": "Definition: 1 ppm = 1 part in 10^6 by count (mole fraction, for gases), e.g. IUPAC Gold Book on 'parts per million'; the 'huge number' follows from c4.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Definition opened in OpenStax Chemistry 2e section 3.4 'Other Units for Solution Concentrations' (m68704): ppm, 'like percentage (part per hundred)', a share. For gases the NOAA data description (datasets/co2-ppm README) defines ppm as molecules of CO2 over all molecules in dry air. The 'huge number' follows from c4 (verified). IUPAC Gold Book not opened.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.find-the-co2-in-air.c6",
       "text": "The dot positions are a seeded layout, not a sample of real air (mulberry32, seed 42; seed picked so the four CO2 rings sit apart and away from the edge, which does not change any count).",
       "support": "convention",
       "source": "The lesson (Demo.tsx layout()). Brief claim 5; pattern disclose-chosen-seeds.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention checked against the code: re-ran the mulberry32 seed 42 Fisher-Yates shuffle in node (own copy): CO2 cells (39,81), (27,45), (83,89), (38,64), closest pair 17 cells apart, none at the edge. Counts are assigned from GASES, not from the seed, so no count depends on the seed.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

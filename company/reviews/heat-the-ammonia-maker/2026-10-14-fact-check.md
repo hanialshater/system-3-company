@@ -32,3 +32,20 @@ Paths read: the three temperature chips in any order, Show/Hide speed, locked st
 | c3 | verified | Pass 37 (W-732): re-derived with a different parametrisation (bisection on the NH3 mole fraction y: K = y^2 / (((1-y)/4)((3(1-y)/4)^3)), artifacts/fact-check-wave-j/w732/nh3.mjs) and with a copy of shareAt(): 0.9379, 0.1476, 0.002265, shown by pct() as 94%, 15%, 0.23%. Both solvers agree to 1e-12. Rests on the K of c2 (verified). |
 
 **Result:** c2 and c3 verified. The Pass 1 disputes are closed. c5 (kinetics) and c6 (factories sentence) are still held, as before; they were outside this pass.
+
+## Pass 38
+
+Checker: fact-checker, a fresh instance (set B: chemistry, life, big-ideas). I did not write, build or record these claims. Method: I read Demo.tsx on every reachable path before I read the claims, and checked the walkthrough transcript (artifacts/walkthroughs/heat-the-ammonia-maker/transcript.md) for learner-visible sentences. Then I re-ran every number in node from my own copies of the lesson logic. Scratch scripts were not kept in the repo; each note gives the method and the values. Web: only GitHub (raw files and public clones) and PyPI were reachable. WebFetch fails DNS, and journal, publisher, library, Gutenberg and archive.org hosts are blocked (W-583). Sources I opened: OpenStax textbooks, cloned from github.com/openstax (Chemistry 2e, Biology 2e, Concepts of Biology, Anatomy and Physiology 2e, Astronomy 2e, College Physics 2e, Psychology 2e; CNXML modules, cited by module id); PyPI chemicals 1.5.2 (CRC, JANAF, ATcT tables), ussa1976 0.3.4 (US Standard Atmosphere 1976 composition) and pyrolite 0.3.8.post1 (ICS chronostratigraphic chart 2024/12); and the NOAA CO2 series via github.com/datasets/co2-ppm. No verdict rests on a source I could not open. A claim whose cited source was not opened, but which I verified from another opened source, says so in its note.
+
+Paths read: not re-walked; this pass covers only c5 and c6, the two claims Pass 1 held for want of a source.
+
+Unrecorded claims: Not re-scanned (Pass 1 found none).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Source now openable: OpenStax Chemistry 2e (2019; cloned from github.com/openstax/osbooks-chemistry-bundle), section 13.3 (m68799), on Haber-Bosch: 'the rate of this reaction is relatively slow at low temperatures' and 'the reaction rate at low temperatures is inefficiently slow'; section 12.5 Collision Theory (m68793) gives the Arrhenius relation of rate constant to temperature. Supports the qualitative stage label 'reaches equilibrium faster' at 450 °C and the reveal's 'Heat still makes the reaction faster'. Atkins was not opened. |
+| c6 | verified | Source now openable: OpenStax Chemistry 2e section 13.3 (m68799): 'High pressures ... ~150-250 atm, to shift the equilibrium right'; 'A catalyst is used to accelerate the reaction to reasonable rates at relatively moderate temperatures (400-500 °C)'; section 18.5 glossary (m68833): Haber process 'involves the use of an iron catalyst and elevated temperatures and pressures'. Matches the reveal sentence 'factories run hot anyway, with an iron catalyst and high pressure to win some yield back'. Greenwood & Earnshaw was not opened. Aside, not this lesson's claim: OpenStax 13.3 gives 'Kp on the order of 10^-5 at 25 °C', which conflicts with NASA data (5.6e5 at 25 °C, c2); the lesson follows NASA, correctly. |
+
+**Result (Pass 38):** 2 verified.
+
+The sources Pass 1 lacked are now openable: OpenStax Chemistry 2e is on GitHub (openstax/osbooks-chemistry-bundle, CNXML). An aside, not this lesson's claim: OpenStax 13.3 says Haber-Bosch "Kp [is] on the order of 10^-5 at 25 °C". That conflicts with NASA TM-4513 (K = 5.6 x 10^5 at 25 °C, verified in Pass 37). The lesson follows NASA, correctly. Do not cite OpenStax for K.

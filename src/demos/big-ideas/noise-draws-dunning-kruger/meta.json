@@ -27,35 +27,50 @@
       "text": "In this model, with guesses that are pure noise, the bottom quarter's average guess is about the 50th percentile (49 for seed 42) while its real average is 12.5; with guesses that match skill, the two lines coincide.",
       "support": "simulation",
       "source": "Demo.tsx simulate(): 1,000 people with real percentiles (i + 0.5)/10, guesses uniform 0-100 from mulberry32(seed). Seed 42 quarter means: real 12.5/37.5/62.5/87.5, guessed 49.2/50.7/52.3/51.5; seeds 43 and 44 give bottom 51.8 and 50.1 (node, 2026-10-14). Seed 42 is the brief's check seed and was not chosen for its result (pattern disclose-chosen-seeds). Expected value is exactly 50 by construction. company/domains/briefs/checks/big-ideas-cycle1-check.mjs #4.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Re-ran from my own copy of mulberry32 and the model (scratch dk.mjs): seed 42, w 0, shift 0: real 12.5 / 37.5 / 62.5 / 87.5, guessed 49.2 / 50.7 / 52.3 / 51.5, so the reveal reads '49th'; seeds 43 and 44 bottom 51.8 and 50.1; w 1: guesses equal real exactly (lines meet). Expected bottom guess = E[uniform 0-100] = 50 by construction. Seed 42 is the start seed, and nearby seeds agree, so it is not cherry-picked.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c2",
       "text": "Adding a better-than-average shift (+15 in the model) lifts every guess, so the bottom quarter looks even more overconfident.",
       "support": "simulation",
       "source": "Demo.tsx with shift +15, seed 42: tracking 0 bottom 63.3; tracking 0.3 bottom 53.2 vs real 12.5, top 76.2 vs 87.5; tracking 1 bottom 27.5 (node, 2026-10-14). The +15 and the 0 / 0.3 / 1 tracking levels are the lesson's model, labelled on the stage, not estimates from data.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): Same re-run with shift +15, seed 42: w 0 bottom 63.3; w 0.3 bottom 53.2 vs real 12.5, top 76.2 vs 87.5; w 1 bottom 27.5 (top 98.0, clamped at 100). Every quarter's guess rises against shift off, as claimed. The +15 and the tracking levels are the model's, labelled on the stage ('guesses track skill', 'shift +15').",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c3",
       "text": "Kruger and Dunning's 1999 chart had this shape: the bottom quarter's self-estimates sat far above its real percentile, and the top quarter's slightly below.",
       "support": "source",
       "source": "Kruger, J. & Dunning, D. (1999), 'Unskilled and unaware of it: how difficulties in recognizing one's own incompetence lead to inflated self-assessments', Journal of Personality and Social Psychology 77(6), 1121-1134 (Figure 1 and others; bottom quartile near the 12th percentile estimating around the 60th; figures to confirm). Not opened by the builder.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ strong form). Kruger and Dunning 1999 (JPSP 77(6)) could not be opened (web blocked), and no openable source covers it (OpenStax Psychology 2e has no Dunning-Kruger passage). Not verified on trust. Under big-ideas-strategy section 5 (a ⚑ lesson's two sides are both H; if one side cannot be checked, both names go and only 'contested' plus the D content stays), c3 to c5 stand or fall together. Fix in the review file. Needs W-583.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c4",
       "text": "Random-number simulations reproduce the pattern, and some analyses argue that the effect is mostly a statistical artefact.",
       "support": "source",
       "source": "Nuhfer, E. et al. (2016), 'Random number simulations reveal how random noise affects the measurements and graphical portrayals of self-assessed competency', Numeracy 9(1), art. 4; Gignac, G. E. & Zajenkowski, M. (2020), 'The Dunning-Kruger effect is (mostly) a statistical artefact: valid approaches to testing the hypothesis with individual differences data', Intelligence 80, 101449. Not opened by the builder.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ artefact side). Nuhfer et al. 2016 (Numeracy) and Gignac and Zajenkowski 2020 (Intelligence) could not be opened. The half that is derivation ('random-number simulations reproduce the pattern') is shown by this lesson's own simulation (c1), but the claim as written attributes it to the literature and names 'some analyses' calling it mostly an artefact, which needs the papers. Both-names-or-neither fallback applies (see c3).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c5",
       "text": "Where it stops: noise drawing the shape does not prove there is no effect; other analyses find a smaller real effect, so the question is not settled.",
       "support": "source",
       "source": "Jansen, R. A., Rafferty, A. N. & Griffiths, T. L. (2021), 'A rational model of the Dunning-Kruger effect supports insensitivity to evidence in low performers', Nature Human Behaviour 5, 756-763 (to confirm). Flag for the fact-checker: charter rule, contested ideas name both sides; c4 is the artefact side, this is the real-effect side. Not opened by the builder.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ real-effect side, and the 'where it stops' claim). Jansen, Rafferty and Griffiths 2021 (Nature Human Behaviour) could not be opened; the source field itself says 'to confirm'. The logical half ('noise drawing the shape does not prove there is no effect') is a valid derivation: a pattern noise can produce is not thereby shown to be produced by noise. But 'other analyses find a smaller real effect' needs the source. Both-names-or-neither fallback applies (see c3).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

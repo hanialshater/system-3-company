@@ -1,0 +1,23 @@
+# Fact-check: noise-draws-dunning-kruger (2026-10-14)
+
+Lesson: src/demos/big-ideas/noise-draws-dunning-kruger/ (status draft, version 1).
+
+## Pass 38
+
+Checker: fact-checker, a fresh instance (set B: chemistry, life, big-ideas). I did not write, build or record these claims. Method: I read Demo.tsx on every reachable path before I read the claims, and checked the walkthrough transcript (artifacts/walkthroughs/noise-draws-dunning-kruger/transcript.md) for learner-visible sentences. Then I re-ran every number in node from my own copies of the lesson logic. Scratch scripts were not kept in the repo; each note gives the method and the values. Web: only GitHub (raw files and public clones) and PyPI were reachable. WebFetch fails DNS, and journal, publisher, library, Gutenberg and archive.org hosts are blocked (W-583). Sources I opened: OpenStax textbooks, cloned from github.com/openstax (Chemistry 2e, Biology 2e, Concepts of Biology, Anatomy and Physiology 2e, Astronomy 2e, College Physics 2e, Psychology 2e; CNXML modules, cited by module id); PyPI chemicals 1.5.2 (CRC, JANAF, ATcT tables), ussa1976 0.3.4 (US Standard Atmosphere 1976 composition) and pyrolite 0.3.8.post1 (ICS chronostratigraphic chart 2024/12); and the NOAA CO2 series via github.com/datasets/co2-ppm. No verdict rests on a source I could not open. A claim whose cited source was not opened, but which I verified from another opened source, says so in its note.
+
+Paths read: Run, New 1,000 people, track 0 / 0.3 / 1, shift on/off; the reveal's {g} is the first noise run's bottom mean.
+
+Unrecorded claims: None.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Re-ran from my own copy of mulberry32 and the model (scratch dk.mjs): seed 42, w 0, shift 0: real 12.5 / 37.5 / 62.5 / 87.5, guessed 49.2 / 50.7 / 52.3 / 51.5, so the reveal reads '49th'; seeds 43 and 44 bottom 51.8 and 50.1; w 1: guesses equal real exactly (lines meet). Expected bottom guess = E[uniform 0-100] = 50 by construction. Seed 42 is the start seed, and nearby seeds agree, so it is not cherry-picked. |
+| c2 | verified | Same re-run with shift +15, seed 42: w 0 bottom 63.3; w 0.3 bottom 53.2 vs real 12.5, top 76.2 vs 87.5; w 1 bottom 27.5 (top 98.0, clamped at 100). Every quarter's guess rises against shift off, as claimed. The +15 and the tracking levels are the model's, labelled on the stage ('guesses track skill', 'shift +15'). |
+| c3 | unverified | HELD (⚑ strong form). Kruger and Dunning 1999 (JPSP 77(6)) could not be opened (web blocked), and no openable source covers it (OpenStax Psychology 2e has no Dunning-Kruger passage). Not verified on trust. Under big-ideas-strategy section 5 (a ⚑ lesson's two sides are both H; if one side cannot be checked, both names go and only 'contested' plus the D content stays), c3 to c5 stand or fall together. Fix in the review file. Needs W-583. |
+| c4 | unverified | HELD (⚑ artefact side). Nuhfer et al. 2016 (Numeracy) and Gignac and Zajenkowski 2020 (Intelligence) could not be opened. The half that is derivation ('random-number simulations reproduce the pattern') is shown by this lesson's own simulation (c1), but the claim as written attributes it to the literature and names 'some analyses' calling it mostly an artefact, which needs the papers. Both-names-or-neither fallback applies (see c3). |
+| c5 | unverified | HELD (⚑ real-effect side, and the 'where it stops' claim). Jansen, Rafferty and Griffiths 2021 (Nature Human Behaviour) could not be opened; the source field itself says 'to confirm'. The logical half ('noise drawing the shape does not prove there is no effect') is a valid derivation: a pattern noise can produce is not thereby shown to be produced by noise. But 'other analyses find a smaller real effect' needs the source. Both-names-or-neither fallback applies (see c3). |
+
+**Result (Pass 38):** 2 verified, 3 unverified.
+
+⚑ rule (big-ideas-strategy section 5): a ⚑ lesson's two sides are both H, and if one side cannot be checked, both names go and only "contested" plus the D content stays. Neither side could be opened (c3 Kruger and Dunning 1999, c4 Nuhfer 2016 / Gignac and Zajenkowski 2020, c5 Jansen et al. 2021). Fallback for the builder (owner cm-big-ideas-mind / research-lead, W-622): until W-583 opens both sides, the reveal keeps the simulation sentences (c1, c2, verified) and a "where it stops" with no names, e.g. "Where it stops: noise drawing the shape does not prove there is no effect. Whether the real effect is large is contested." Drop "Kruger and Dunning's 1999 chart had this shape" and the two "some analyses / others" clauses. The research-lead map (W-622) is still a precondition (brief table row 4).
