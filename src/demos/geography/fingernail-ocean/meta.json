@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "geography.fingernail-ocean.c1",
-      "text": "At 2.5 cm a year, widening an ocean by 3,000 km takes 120 million years; each million years adds 25 km.",
+      "text": "At 2.5 cm a year, widening an ocean by 3,000 km takes 120 million years; each million years adds 25 km (the caption shows '= 25 km per million years' only after the prediction is committed).",
       "support": "derivation",
-      "source": "3,000 km = 3 x 10^8 cm; 3 x 10^8 / 2.5 = 1.2 x 10^8 years. Computed in Demo.tsx (TARGET_MYR, gapKm).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "3,000 km = 3 x 10^8 cm; 3 x 10^8 / 2.5 = 1.2 x 10^8 years. Computed in Demo.tsx (TARGET_MYR, gapKm). | v4 (demo-builder, 2026-10-14, wave H r8): the caption's km-per-million-years rate is now hidden before the commit (r8 finding 1); reopened, unverified.",
+      "status": "unverified"
     },
     {
       "id": "geography.fingernail-ocean.c2",
@@ -45,10 +43,8 @@
       "id": "geography.fingernail-ocean.c3",
       "text": "Real spreading in the Atlantic varies along the ridge and over time, about 2 to 4 cm a year.",
       "support": "source",
-      "source": "Full spreading rates of the Mid-Atlantic Ridge are about 2 to 4 cm a year, slower in the north (USGS 'This Dynamic Earth: Plate Motions'; NASA Earth Observatory; from memory, not checked online).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Full spreading rates of the Mid-Atlantic Ridge are about 2 to 4 cm a year, slower in the north (USGS 'This Dynamic Earth: Plate Motions'; NASA Earth Observatory; from memory, not checked online). | v4 (demo-builder, 2026-10-14, wave H r8): withdrawn. The sentence ('Real spreading in the Atlantic varies along the ridge and over time, about 2 to 4 cm a year; this stage is a toy...') was cut from the reveal for the 90-word budget (r8 finding 2); no learner-visible text depends on this claim now. The toy disclosure stays in the stage caption (c5).",
+      "status": "withdrawn"
     },
     {
       "id": "geography.fingernail-ocean.c4",
@@ -61,12 +57,10 @@
     },
     {
       "id": "geography.fingernail-ocean.c5",
-      "text": "The stage is a toy: South America's shapes slide due west at a steady average rate; it is not a plate reconstruction.",
+      "text": "The stage is a toy: South America rides its plate due west at a steady average rate (caption: 'Toy: South America rides its plate west at 2.5 cm a year'); it is not a plate reconstruction.",
       "support": "convention",
-      "source": "Demo.tsx rotates the 1:110m South American country shapes about the Earth's axis by (rate x time) / (R cos 10 degrees), so the stated distance is exact along 10 S and smaller toward the south. Labelled 'Toy' on the stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Demo.tsx rotates the 1:110m South American country shapes about the Earth's axis by (rate x time) / (R cos 10 degrees), so the stated distance is exact along 10 S and smaller toward the south. Labelled 'Toy' on the stage. | v4 (demo-builder, 2026-10-14, wave H r8): caption now says South America 'rides its plate' (r8 moderate: question says plates, stage moved a continent); the reveal's toy sentence was cut, so the caption is the only toy disclosure; reopened, unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -93,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "geography:plate-motion-rates",
     "prerequisites": [

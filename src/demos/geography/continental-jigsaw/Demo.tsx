@@ -6,9 +6,11 @@
 // told these are the published values; the reveal says only what the stage did).
 // A rotation on the sphere keeps its size and shape; only its place changes. The learner closes
 // the Atlantic and sees where Brazil's eastern bulge lands.
-// v6 (learner r8, phone fit): region labels 10.5px (they drew at 8.5px); at the reveal the slider and the two
-// buttons and the legend line are hidden (the stage is synced to 57°, the fit the reveal describes), so the globe top with the pivot
-// arrow, the readouts and the reveal's last line share a 390×844 screen. The told "small gaps and overlaps"
+// v6 (learner r8, phone fit): region labels 10.5px (they drew at 8.5px); the slider is labelled "Turned" (its output
+// is the angle) and shares a row with the size readout, replacing the separate Turned readout; at the reveal the two
+// preset buttons and the legend line are hidden (the stage is synced to 57°, the fit the reveal describes; the slider
+// stays, so the learner can still turn it and watch the size hold), so the globe top with the pivot arrow, the slider,
+// the size readout and the reveal's last line share a 390×844 screen. The told "small gaps and overlaps"
 // sentence left the reveal (nothing on the stage marks them). "Horn of Africa" now sits under its dot, clear of
 // the Gulf of Guinea label.
 
@@ -190,12 +192,10 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
               globe squashes shapes near its edge.
             </p>
           )}
+          {/* v6: the slider's own label is the "Turned" readout, sharing a row with the size readout. */}
           <Row>
-            <Readout label="Turned" value={`${deg(pct)}°`} />
+            <Slider label="Turned" value={pct} min={0} max={100} disabled={locked} format={(v) => `${deg(v)}°`} onChange={(v) => set(v, interact)} />
             <Readout label="Size on the globe" value={`${area} million km²`} />
-          </Row>
-          <Row>
-            <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${deg(v)}°`} onChange={(v) => set(v, interact)} />
           </Row>
           {phase !== "reveal" && (
           <Row>

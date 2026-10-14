@@ -10,7 +10,9 @@
 // at 25 and 100 women (v2, wave G r7: "about 2N" is shown, not told: the mean roughly doubles with N).
 // v3 (learner r8): tree viewBox 360 × 201 with 12px labels, drawn at its natural height (never squeezed), so
 // "common mother", "+ 49 others" and the axis read at about 10.7px on a 390px phone; histogram labels 11.5px.
-// At the reveal the rule line, slider and buttons are hidden so the tree sits above the reveal on 390×844.
+// At the reveal the rule line and the four buttons are hidden (the slider stays, so the learner can still scrub the
+// tree) and the tree is set to at least her generation, so it sits above the reveal on 390×844. The "k back: n lines"
+// readout is the slider's own output, and the seed is printed in the tree's corner (one row less).
 // The theory sentence (97 exact, 2N(1 − 1/N) = 98) left the reveal (c2 withdrawn; W-184).
 
 import { Lesson } from "@/kit/Lesson";
@@ -203,9 +205,12 @@ function Stage({
   onSizes: () => void;
   onOneLine: () => void;
 }) {
-  const [backState, setBack] = useState(0);
-  // v3: at the reveal the tree shows at least her generation, so the row the reveal quotes is on the stage.
-  const back = atReveal ? Math.max(backState, T) : backState;
+  const [back, setBack] = useState(0);
+  // v3: when the reveal opens, the tree is put back on at least her generation, so the row the reveal quotes is on
+  // the stage; afterwards the learner may move the slider again.
+  useEffect(() => {
+    if (atReveal) setBack((b) => Math.max(b, T));
+  }, [atReveal]);
   const anim = useRef<number | null>(null);
   useEffect(() => () => {
     if (anim.current !== null) cancelAnimationFrame(anim.current);
@@ -314,22 +319,26 @@ function Stage({
         <text x={X0} y={196} className={s.tick}>
           today: 50 women
         </text>
+        <text x={358} y={12} textAnchor="end" className={s.tick}>
+          seed {STAGE_SEED}
+        </text>
       </svg>
 
-      <div className={s.readout} aria-live="polite">
-        <strong>
-          {back} back: {linesNow} {linesNow === 1 ? "line" : "lines"}
-        </strong>
-        <span className={s.seed}>seed {STAGE_SEED}</span>
-      </div>
 
       {runs && <Strip runs={runs} sizes={sizes} />}
 
-      {!atReveal && (
-        <>
       <div className={s.sliderWrap}>
-        <Slider label="Generations back" value={back} min={0} max={MAX_BACK} disabled={locked} onChange={go} />
+        <Slider
+          label="Generations back"
+          value={back}
+          min={0}
+          max={MAX_BACK}
+          disabled={locked}
+          format={(v) => `${v} back: ${gens[v].length} ${gens[v].length === 1 ? "line" : "lines"}`}
+          onChange={go}
+        />
       </div>
+      {!atReveal && (
       <div className={s.controls}>
         <Control className={s.tap} disabled={locked || back >= MAX_BACK} onClick={() => go(back + 10)}>
           Back 10
@@ -344,7 +353,6 @@ function Stage({
           25 and 100 women
         </Control>
       </div>
-        </>
       )}
     </div>
   );

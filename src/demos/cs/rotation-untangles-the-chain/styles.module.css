@@ -1,7 +1,7 @@
-.wrap { display: flex; flex-direction: column; gap: 4px; align-items: center; width: 100%; }
+.wrap { display: flex; flex-direction: column; gap: 3px; align-items: center; width: 100%; }
 .wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
 .wrap :global(.tap) { min-height: 44px; min-width: 44px; }
-.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 2.4em; max-width: 342px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 1.2em; line-height: 1.2; max-width: 342px; }
 .svg { width: 342px; max-width: 100%; height: auto; }
 .key { font-size: 14px; font-weight: 800; fill: var(--fg); }
 .ghostKey { font-size: 12px; font-weight: 700; fill: var(--muted); }
@@ -11,5 +11,5 @@
 .lab { font-size: 0.75rem; color: var(--muted); }
 .controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; width: 100%; max-width: 360px; }
 .controls :global(.tap) { padding: 4px 6px; line-height: 1.15; }
-.chips { display: contents; }
+.chips { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
 .up { font-size: 12px; fill: var(--domain); }

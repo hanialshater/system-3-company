@@ -9,6 +9,9 @@
 // first rotation (2 lifted above 1 and 3) as a step. "Insert the rest" stays disabled until that step. The ghost
 // shows only the keys that moved, with an arrow up the lifted key's column. The reveal quotes the recorded first
 // rotation and the recorded results, so switching trees cannot change them.
+// v4 (phone fit, build 6 measured crop 199 px): the picture is only as tall as its tree ever gets (rotating 4
+// levels with ghosts, plain 7), with the key row under the deepest level; the four controls share one row; the
+// rule lines are one line each; labels are 12-14 units for the 10 px floor. Measured crop 0 at 390x844.
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -375,8 +378,8 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.rule}>
                   {mode === "rotating"
-                    ? "If one side gets two levels deeper, rotate: lift the middle key up."
-                    : "Smaller keys go left, bigger go right. No rotations."}
+                    ? "Side two levels deeper? Lift the middle key up."
+                    : "Smaller keys left, bigger right. No rotations."}
                 </p>
                 <Tree mode={mode} i={i} dur={dur} />
                 <p className={s.note} aria-live="polite">
