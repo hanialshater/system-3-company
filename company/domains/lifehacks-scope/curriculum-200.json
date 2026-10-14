@@ -1,0 +1,2709 @@
+{
+  "status": "proposal (not merged)",
+  "owner": "cm-lifehacks (Tess)",
+  "date": "2026-10-14",
+  "target": "content/curriculum/lifehacks.json, applied when PR #2 (origin/codex/lifehacks-200 @ 71e99fee) merges. Do not apply before: the lessons are not in the tree.",
+  "basis": [
+    "company/decisions/2026-10-14-pr2-lifehacks-scope.md, \"Founder decision\" (all 200 land) and items 6-7 (strand tags in subarea, idea-named concepts, demand set by cm-lifehacks, PR note line and PR curriculum file do not land).",
+    "company/domains/lifehacks.md (charter, growth rule of 2026-10-14).",
+    "company/domains/lifehacks-scope/category.md §2-4 (strand mapping and overlap table).",
+    "PR lesson meta.json title, hook and objective, read as untrusted data via git show. No walkthrough was run: every grouping is from the brief text, not the artifact."
+  ],
+  "howToApply": [
+    "Keep our file; do not take the PR version or its note line (\"Founder-requested 200-lesson review collection\").",
+    "Replace the concepts array with `concepts` below (the 15 existing ids are kept; two-minute-rule demand 3->2 and unit-price-shopping demand 3->1 are deliberate). Keep the existing note line.",
+    "For each lesson, set meta.json `concept` and `curriculum.primary` to `lessons[slug].concept` (re-run tools/meta.mjs so curriculum.strand follows the concept subarea). This is builder work, not cm-lifehacks work.",
+    "Drop `lessons`, `conceptNotes`, `duplicates` and `summary` at merge: they are for this proposal and for cross-referencing; the curriculum schema has no such fields.",
+    "For each lesson with `duplicate: true`, add `also` pointing at the receiving category concept (see `duplicates`), until that category manager accepts or declines the transfer."
+  ],
+  "summary": {
+    "concepts": 136,
+    "existingConceptsKept": 15,
+    "newConceptsWithLessons": 112,
+    "gapConceptsWithoutLessons": 9,
+    "lessonsMapped": 200,
+    "conceptsOverTwoLessons": [
+      {
+        "concept": "surface-area-drying",
+        "lessons": [
+          "towel-spread-dries-first",
+          "towel-over-two-bars",
+          "garment-overlap-hides-face",
+          "half-size-two-towels"
+        ]
+      },
+      {
+        "concept": "measure-the-inside",
+        "lessons": [
+          "measure-inside-not-outside",
+          "packing-cube-walls",
+          "drawer-divider-cost"
+        ]
+      },
+      {
+        "concept": "see-it-to-find-it",
+        "lessons": [
+          "file-fold-see-each-shirt",
+          "transparent-box-visibility",
+          "shelf-front-labels"
+        ]
+      },
+      {
+        "concept": "round-up-to-whole-packs",
+        "lessons": [
+          "lh-round-snack-packs",
+          "lh-jug-rounding-extra",
+          "lh-duplex-sheet-rounding",
+          "lh-capacity-batch-count"
+        ]
+      }
+    ],
+    "byStrand": {
+      "kitchen": {
+        "concepts": 9,
+        "lessons": 4,
+        "demand3Concepts": 4,
+        "demand3Uncovered": 4,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 1
+      },
+      "cleaning": {
+        "concepts": 3,
+        "lessons": 0,
+        "demand3Concepts": 3,
+        "demand3Uncovered": 3,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      },
+      "laundry": {
+        "concepts": 11,
+        "lessons": 19,
+        "demand3Concepts": 1,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 1
+      },
+      "fix": {
+        "concepts": 17,
+        "lessons": 25,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 2
+      },
+      "storage": {
+        "concepts": 13,
+        "lessons": 24,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 1
+      },
+      "energy": {
+        "concepts": 8,
+        "lessons": 13,
+        "demand3Concepts": 1,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      },
+      "shopping": {
+        "concepts": 20,
+        "lessons": 36,
+        "demand3Concepts": 3,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 4,
+        "duplicateLessons": 8
+      },
+      "study": {
+        "concepts": 11,
+        "lessons": 12,
+        "demand3Concepts": 5,
+        "demand3Uncovered": 2,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      },
+      "time": {
+        "concepts": 19,
+        "lessons": 32,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 12,
+        "duplicateLessons": 2
+      },
+      "digital": {
+        "concepts": 18,
+        "lessons": 26,
+        "demand3Concepts": 2,
+        "demand3Uncovered": 2,
+        "outOfScopeLessons": 9,
+        "duplicateLessons": 0
+      },
+      "travel": {
+        "concepts": 6,
+        "lessons": 9,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      },
+      "garden": {
+        "concepts": 0,
+        "lessons": 0,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      },
+      "none": {
+        "concepts": 1,
+        "lessons": 0,
+        "demand3Concepts": 0,
+        "demand3Uncovered": 0,
+        "outOfScopeLessons": 0,
+        "duplicateLessons": 0
+      }
+    }
+  },
+  "concepts": [
+    {
+      "id": "salt-lowers-freezing",
+      "name": "Why salt on ice (and ice + salt chills drinks fast)",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "surface-area-drying",
+      "name": "Drying faster: spread it out (exposed surface area)",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "resting-meat",
+      "name": "Resting food after cooking (carry-over heat)",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "two-minute-rule",
+      "name": "Small tasks now beat a long list (task switching cost)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "spaced-repetition-study",
+      "name": "Study in spaced sessions, not one cram",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "standby-power-cost",
+      "name": "What standby power really costs in a year",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "lever-opens-jars",
+      "name": "Opening a stuck jar: grip, leverage, heat",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "packing-rolling-vs-folding",
+      "name": "Rolling vs folding clothes in a suitcase",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "unit-price-shopping",
+      "name": "Unit price: the bigger pack is not always cheaper",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "viral-hack-debunk",
+      "name": "Debunking viral hacks: test the claim, not the video",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "sleep-caffeine-half-life",
+      "name": "Afternoon coffee and sleep (caffeine half-life)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "boil-less-water",
+      "name": "Boil only the water you need (energy per litre)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "wobbly-table-turn",
+      "name": "A rocking table: turn it, less than a quarter turn (intermediate values)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "shoelace-square-bow",
+      "name": "Laces that stay tied: square bow vs granny bow",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "cord-tangle-length",
+      "name": "Why long cords knot themselves (and how to stop it: control the ends)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "recipe-scale-per-portion",
+      "name": "Scale a recipe by portions (cooking times do not scale)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "volume-ignores-orientation",
+      "name": "A tall container and a wide one: turning it does not change what it holds",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "area-scales-as-square",
+      "name": "Double the width, four times the area (and the cylinder holds 4x)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "drying-airflow",
+      "name": "Moving air and spacing on the rack speed drying (airflow is not extra surface)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "surface-area-drying"
+      ],
+      "subarea": "laundry"
+    },
+    {
+      "id": "drying-humidity",
+      "name": "Humid air dries slower, and drying laundry indoors adds the humidity",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "surface-area-drying"
+      ],
+      "subarea": "laundry"
+    },
+    {
+      "id": "drying-water-load",
+      "name": "Less water in, less to dry: wring it out; thick cloth holds more per face",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "surface-area-drying"
+      ],
+      "subarea": "laundry"
+    },
+    {
+      "id": "dry-knits-flat",
+      "name": "Follow the care label: knits dry flat because hanging loads the shoulders",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "loop-is-not-a-knot",
+      "name": "A crossing is not a knot: slide the loop off the end",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "sock-matching-by-pattern",
+      "name": "Sort socks by pattern first: a smaller pool to search",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "sock-pair-count",
+      "name": "Unmarked socks: every pair is a candidate (pair counting)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "fold-footprint-vs-height",
+      "name": "Folding trades footprint for stack height; the cloth volume stays",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "laundry"
+    },
+    {
+      "id": "inch-is-2-54-cm",
+      "name": "An inch is exactly 2.54 cm: the 2.5 shortcut error grows with length",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "measure-from-one-origin",
+      "name": "Measure every mark from one origin (start mark and accumulated error)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "allowance-per-piece",
+      "name": "Allowances repeat: add one per cut and per fold",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "wrap-surface-plus-overlap",
+      "name": "Wrapping a box: six faces plus the overlap",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "around-vs-across",
+      "name": "Around is not across: ribbon length is a perimeter path",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "paint-coverage",
+      "name": "Paint a wall: subtract the openings, then buy whole cans",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "diagonals-check-square",
+      "name": "Equal sides do not prove square; equal diagonals do",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "measure-the-inside",
+      "name": "Measure the inside: walls and dividers take space",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "fit-with-margin",
+      "name": "A fit with no margin is fragile: allow for size tolerance",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "match-by-fit-dimension",
+      "name": "Match a lid by diameter, not by colour",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "keep-aspect-ratio",
+      "name": "Resize a photo without stretching: keep the ratio",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "pieces-are-not-one-whole",
+      "name": "Two offcuts are not one long piece; scattered minutes are not one block",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "material-reuse-account",
+      "name": "Reusable vs disposable: count the material and state the boundary",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "cord-coil-bend-radius",
+      "name": "Coil a cord loosely: tighter loops bend it harder",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "pressure-spreads-load",
+      "name": "Spread the load: same weight, lower pressure",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "shelf-load-lever",
+      "name": "Heavy book near the back: same weight, shorter lever",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "fix"
+    },
+    {
+      "id": "envelope-includes-protrusions",
+      "name": "Handles count: measure the whole outline, not the body",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "round-in-square-wastes-corners",
+      "name": "Round in a square leaves the corners empty (about 21%)",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "store-at-point-of-use",
+      "name": "Store it where you use it; a second copy can beat the walk",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "clearance-for-movement",
+      "name": "Leave room for the door swing and the pulled-back chair",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "nesting-shares-hollow",
+      "name": "Nest or flat-pack: the empty inside is what you save",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "diagonal-and-tilt-fit",
+      "name": "The sofa through the door: tilt it, use the diagonal",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "fixed-address-shrinks-search",
+      "name": "A fixed home for the keys: an address shrinks the search",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "see-it-to-find-it",
+      "name": "See it to pick it: file-fold shirts, clear boxes, labels that face out",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "frequent-items-in-front",
+      "name": "Keep what you use often in front; nesting costs access",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "group-items-used-together",
+      "name": "Keep a set together: one trip, not three",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "slide-out-shortens-reach",
+      "name": "A pull-out tray shortens the reach to the back",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "adjust-shelf-height",
+      "name": "Small boxes under a tall gap waste height: move the shelf",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "sorted-halving-search",
+      "name": "Sorted labels let you halve the search",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "storage"
+    },
+    {
+      "id": "energy-power-times-time",
+      "name": "Watts times hours: power and duration trade places",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "bill-equals-energy-times-rate",
+      "name": "The bill is energy times the rate: labels and tariffs",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "standing-charge-vs-unit-rate",
+      "name": "A lower unit rate can still cost more at low use (standing charge)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "water-flow-times-time",
+      "name": "Water used is flow times minutes",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "low-flow-saves-timed-use-only",
+      "name": "A low-flow tap saves water on a timed shower, not on filling a bucket",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "water-flow-times-time"
+      ],
+      "subarea": "energy"
+    },
+    {
+      "id": "small-leak-adds-up",
+      "name": "A dripping tap over a year: small flow, long time",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "decimal-unit-conversion",
+      "name": "Move the decimal with the unit (cents and euros, litres and cubic metres)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "energy"
+    },
+    {
+      "id": "percent-changes-multiply",
+      "name": "Stacked discounts multiply: 20% then 10% is not 30%; down then up does not cancel",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "price-plus-running-cost",
+      "name": "Price tag plus running cost: when the dearer one wins",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "fixed-fee-vs-per-visit",
+      "name": "Membership fee or pay per visit: the crossover",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "weighted-average-price",
+      "name": "Average price across purchases: weight by quantity",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "count-usable-units",
+      "name": "Count the sheets, not the rolls; price per piece you actually use",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "round-up-to-whole-packs",
+      "name": "Whole packs, whole trips: rounding up leaves extra",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "bundle-deals-odd-quantities",
+      "name": "Bundles and 2-for-1 when you need an odd number",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "round-up-to-whole-packs"
+      ],
+      "subarea": "shopping"
+    },
+    {
+      "id": "shortage-before-rounding",
+      "name": "Subtract what you have, then round to packs",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "round-up-to-whole-packs"
+      ],
+      "subarea": "shopping"
+    },
+    {
+      "id": "fixed-fee-per-order",
+      "name": "One fee per order: split orders pay it twice",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "spend-threshold-trap",
+      "name": "Free shipping and voucher minimums: adding items can cost more",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "fixed-vs-percentage",
+      "name": "Fixed amount or percentage: they cross as the basket grows",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "round-lines-vs-total",
+      "name": "Round each line or round the total; billing increments",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "deposit-is-not-cost",
+      "name": "A refundable deposit is cash out, not cost",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "split-by-share",
+      "name": "Split the bill by what each ordered, not by heads",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "equal-shares-remainder",
+      "name": "Equal shares of indivisible things leave a remainder",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "merge-lists-once",
+      "name": "Merge two shopping lists without counting overlaps twice",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "use-expiring-first",
+      "name": "Use the tickets that expire first",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "shop-available-stock",
+      "name": "Shop stock: committed and pooled units (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "shop-reorder-and-recount",
+      "name": "Shop stock: lead time and count corrections (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "shopping"
+    },
+    {
+      "id": "retrieval-practice",
+      "name": "Test yourself, then check: cover the answer before you look",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "fluency-illusion",
+      "name": "Feeling you know it is not knowing it: check with output",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "retrieval-practice"
+      ],
+      "subarea": "study"
+    },
+    {
+      "id": "self-explain-structure",
+      "name": "Rebuild the links and the order, not just the list",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "retrieval-practice"
+      ],
+      "subarea": "study"
+    },
+    {
+      "id": "one-cue-one-answer",
+      "name": "One question per card, and a cue that names its context",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "test-both-directions",
+      "name": "Flip the flashcard: knowing A to B does not test B to A",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "contrast-confusable-pairs",
+      "name": "Study look-alikes side by side to learn the difference",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "apply-not-recite",
+      "name": "Apply the rule; quoting it is not knowing it",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "work-back-from-deadline",
+      "name": "Work back from the deadline or the arrival time",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "plan-with-the-long-estimate",
+      "name": "We underestimate tasks: plan with the long end and a buffer",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "book-travel-and-wrap-up",
+      "name": "The calendar must hold the journey and the wrap-up",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "book-setup-and-prep",
+      "name": "Setup and preparation need their own time",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "fit-around-fixed-slots",
+      "name": "Flexible work fits around fixed slots; keep some slack",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "no-double-booking",
+      "name": "One person cannot be in two blocks",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "do-the-blocking-task-first",
+      "name": "Do the task that unlocks the others first",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "limit-work-in-progress",
+      "name": "Finish before starting more",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "batch-shared-overhead",
+      "name": "Batch to pay the setup or the walk once",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "homework-deadline-first",
+      "name": "Homework order: earliest deadline first vs shortest first",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "queue-shortest-first",
+      "name": "Shortest job first cuts total waiting",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-handoff",
+      "name": "Office: a handoff with input and a restart point (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-ready-vs-blocked",
+      "name": "Office: ready vs blocked work (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-specific-requests",
+      "name": "Office: name the object and bound the question (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-owner-and-status",
+      "name": "Office: next owner, status vs blocker (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-agenda-and-reasons",
+      "name": "Office: agenda outcomes and decision reasons (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-bug-report",
+      "name": "Office: a reproducible bug report (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "office-deadline-reference",
+      "name": "Office: a deadline needs a date and time zone (out of scope)",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "time"
+    },
+    {
+      "id": "text-sort-vs-number-sort",
+      "name": "Name files so they sort: ISO dates and padded version numbers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "search-and-or-filters",
+      "name": "AND narrows, OR widens: combine filters",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "search-phrase-and-exclude",
+      "name": "Quote the exact phrase, minus the noise",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "name-is-not-identity",
+      "name": "Same name is not same file: check contents and extension",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "descriptive-names-and-links",
+      "name": "Names and link labels that say what they point to",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "sort-by-the-right-date",
+      "name": "Modified is not created; big is not recent",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "search-scope",
+      "name": "Search the body and the trash, not just titles",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "work-on-a-copy",
+      "name": "Experiment on a copy, keep the original",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "tags-are-not-copies",
+      "name": "Two tags, one file",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "shallow-folders",
+      "name": "Flatten a folder level: fewer steps every visit",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-copy-vs-cut",
+      "name": "UI: copy keeps the original, cut moves it (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-view-is-not-edit",
+      "name": "UI: find and zoom change the view, not the text (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-replace-scope",
+      "name": "UI: selection and preview bound a replace (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-paste-plain-text",
+      "name": "UI: paste without the style (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-selection-vs-focus",
+      "name": "UI: focus and selection differ (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "ui-undo-redo",
+      "name": "UI: undo and redo walk the edit history (out of scope)",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "weight-limit-not-volume",
+      "name": "A half-empty bag can be overweight: weight and volume are different limits",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "pack-in-reverse-order",
+      "name": "Pack in reverse: what you need first goes in last",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "orientation-changes-fit",
+      "name": "Rotate before you buy a bigger bag: toe to heel, turn the block",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "fill-the-hollows",
+      "name": "Fill the hollows: socks in shoes, corners in corners",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "balance-the-load",
+      "name": "Balance a bag: the centre of mass under the handle",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "travel"
+    },
+    {
+      "id": "lid-boils-water-sooner",
+      "name": "A lid on the pot boils water sooner",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "searing-does-not-seal",
+      "name": "Debunk: searing does not seal in the juices",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "resting-meat"
+      ],
+      "subarea": "kitchen"
+    },
+    {
+      "id": "blot-dont-rub",
+      "name": "Blot a fresh spill, do not rub it",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "cleaning"
+    },
+    {
+      "id": "disinfectant-contact-time",
+      "name": "Let the spray sit: disinfectants need contact time",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "cleaning"
+    },
+    {
+      "id": "cold-water-protein-stains",
+      "name": "Cold water first on a protein stain",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "cleaning"
+    },
+    {
+      "id": "interleaved-practice",
+      "name": "Mix problem types instead of blocking them",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "retrieval-practice"
+      ],
+      "subarea": "study"
+    },
+    {
+      "id": "learning-styles-debunk",
+      "name": "Debunk: matching your \"learning style\" does not help",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "study"
+    },
+    {
+      "id": "battery-partial-charging",
+      "name": "Debunk: draining a phone battery to 0% before charging",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "digital"
+    },
+    {
+      "id": "backup-3-2-1",
+      "name": "One backup is not a backup (3-2-1)",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "digital"
+    }
+  ],
+  "lessons": {
+    "agenda-needs-an-outcome": {
+      "concept": "office-agenda-and-reasons",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "alphabet-sort-search": {
+      "concept": "sorted-halving-search",
+      "strand": "storage",
+      "duplicate": true
+    },
+    "apply-not-quote": {
+      "concept": "apply-not-recite",
+      "strand": "study"
+    },
+    "arrival-is-not-departure": {
+      "concept": "work-back-from-deadline",
+      "strand": "time"
+    },
+    "bag-weight-before-volume": {
+      "concept": "weight-limit-not-volume",
+      "strand": "travel"
+    },
+    "batch-by-setup": {
+      "concept": "batch-shared-overhead",
+      "strand": "time"
+    },
+    "box-handle-clearance": {
+      "concept": "envelope-includes-protrusions",
+      "strand": "storage"
+    },
+    "breeze-is-not-extra-surface": {
+      "concept": "drying-airflow",
+      "strand": "laundry"
+    },
+    "buffer-for-a-late-finish": {
+      "concept": "plan-with-the-long-estimate",
+      "strand": "time"
+    },
+    "bug-report-needs-reproduction": {
+      "concept": "office-bug-report",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "calendar-needs-travel": {
+      "concept": "book-travel-and-wrap-up",
+      "strand": "time"
+    },
+    "care-label-first-choice": {
+      "concept": "dry-knits-flat",
+      "strand": "laundry"
+    },
+    "check-confidence-with-output": {
+      "concept": "fluency-illusion",
+      "strand": "study"
+    },
+    "choose-the-metric-first": {
+      "concept": "homework-deadline-first",
+      "strand": "time"
+    },
+    "circle-tray-square-corners": {
+      "concept": "round-in-square-wastes-corners",
+      "strand": "storage"
+    },
+    "cm-to-inches": {
+      "concept": "inch-is-2-54-cm",
+      "strand": "fix"
+    },
+    "coiled-cord-bend-radius": {
+      "concept": "cord-coil-bend-radius",
+      "strand": "fix"
+    },
+    "copy-keeps-the-original": {
+      "concept": "ui-copy-vs-cut",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "count-setup-in-the-block": {
+      "concept": "book-setup-and-prep",
+      "strand": "time"
+    },
+    "cover-before-recall": {
+      "concept": "retrieval-practice",
+      "strand": "study"
+    },
+    "cue-needs-a-boundary": {
+      "concept": "one-cue-one-answer",
+      "strand": "study"
+    },
+    "cut-moves-the-selection": {
+      "concept": "ui-copy-vs-cut",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "deadline-needs-a-reference": {
+      "concept": "office-deadline-reference",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "delegate-the-whole-handoff": {
+      "concept": "office-handoff",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "deleted-is-a-search-state": {
+      "concept": "search-scope",
+      "strand": "digital"
+    },
+    "dependency-before-priority": {
+      "concept": "do-the-blocking-task-first",
+      "strand": "time"
+    },
+    "desk-supply-near-use": {
+      "concept": "store-at-point-of-use",
+      "strand": "storage"
+    },
+    "do-not-starve-the-long-job": {
+      "concept": "queue-shortest-first",
+      "strand": "time",
+      "duplicate": true
+    },
+    "door-swing-clearance": {
+      "concept": "clearance-for-movement",
+      "strand": "storage"
+    },
+    "drawer-divider-cost": {
+      "concept": "measure-the-inside",
+      "strand": "fix"
+    },
+    "drying-room-water-load": {
+      "concept": "drying-humidity",
+      "strand": "laundry"
+    },
+    "duplicate-before-experiment": {
+      "concept": "work-on-a-copy",
+      "strand": "digital"
+    },
+    "duplicates-two-stations": {
+      "concept": "store-at-point-of-use",
+      "strand": "storage"
+    },
+    "earliest-deadline-first": {
+      "concept": "homework-deadline-first",
+      "strand": "time"
+    },
+    "elastic-loop-release": {
+      "concept": "loop-is-not-a-knot",
+      "strand": "laundry"
+    },
+    "equal-names-not-equal-files": {
+      "concept": "name-is-not-identity",
+      "strand": "digital"
+    },
+    "estimate-a-range": {
+      "concept": "plan-with-the-long-estimate",
+      "strand": "time"
+    },
+    "explain-the-link": {
+      "concept": "self-explain-structure",
+      "strand": "study"
+    },
+    "file-fold-see-each-shirt": {
+      "concept": "see-it-to-find-it",
+      "strand": "storage"
+    },
+    "file-modified-not-created": {
+      "concept": "sort-by-the-right-date",
+      "strand": "digital"
+    },
+    "file-type-then-owner": {
+      "concept": "search-and-or-filters",
+      "strand": "digital"
+    },
+    "find-next-is-navigation": {
+      "concept": "ui-view-is-not-edit",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "fit-before-fixed-slot": {
+      "concept": "fit-around-fixed-slots",
+      "strand": "time"
+    },
+    "fitted-sheet-corners-nest": {
+      "concept": "fill-the-hollows",
+      "strand": "travel"
+    },
+    "flat-pack-volume-dimensions": {
+      "concept": "nesting-shares-hollow",
+      "strand": "storage"
+    },
+    "folded-shirt-stack-height": {
+      "concept": "fold-footprint-vs-height",
+      "strand": "laundry"
+    },
+    "fragmented-time-does-not-fit": {
+      "concept": "pieces-are-not-one-whole",
+      "strand": "fix"
+    },
+    "furniture-through-door": {
+      "concept": "diagonal-and-tilt-fit",
+      "strand": "storage"
+    },
+    "garment-overlap-hides-face": {
+      "concept": "surface-area-drying",
+      "strand": "laundry"
+    },
+    "group-cables-with-ends": {
+      "concept": "cord-tangle-length",
+      "strand": "laundry"
+    },
+    "half-size-two-towels": {
+      "concept": "surface-area-drying",
+      "strand": "laundry"
+    },
+    "handoff-after-finish": {
+      "concept": "office-ready-vs-blocked",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "handoff-needs-a-checkpoint": {
+      "concept": "office-handoff",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "heavy-book-close-to-back": {
+      "concept": "shelf-load-lever",
+      "strand": "fix",
+      "duplicate": true
+    },
+    "humidity-evaporation-gap": {
+      "concept": "drying-humidity",
+      "strand": "laundry"
+    },
+    "include-the-wrap-up": {
+      "concept": "book-travel-and-wrap-up",
+      "strand": "time"
+    },
+    "iso-date-filename-sort": {
+      "concept": "text-sort-vs-number-sort",
+      "strand": "digital"
+    },
+    "jacket-last-first": {
+      "concept": "pack-in-reverse-order",
+      "strand": "travel"
+    },
+    "keep-the-error-feedback": {
+      "concept": "retrieval-practice",
+      "strand": "study"
+    },
+    "keys-fixed-drop-zone": {
+      "concept": "fixed-address-shrinks-search",
+      "strand": "storage"
+    },
+    "labels-specific-address": {
+      "concept": "fixed-address-shrinks-search",
+      "strand": "storage"
+    },
+    "laundry-gap-air-path": {
+      "concept": "drying-airflow",
+      "strand": "laundry"
+    },
+    "laundry-sort-before-walk": {
+      "concept": "batch-shared-overhead",
+      "strand": "time"
+    },
+    "lh-align-price-units": {
+      "concept": "unit-price-shopping",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-annual-label-cost": {
+      "concept": "bill-equals-energy-times-rate",
+      "strand": "energy"
+    },
+    "lh-area-scales-square": {
+      "concept": "area-scales-as-square",
+      "strand": "kitchen"
+    },
+    "lh-around-versus-across": {
+      "concept": "around-vs-across",
+      "strand": "fix"
+    },
+    "lh-big-pack-price": {
+      "concept": "unit-price-shopping",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-billing-rounds-hours": {
+      "concept": "round-lines-vs-total",
+      "strand": "shopping"
+    },
+    "lh-buy-only-stock-gap": {
+      "concept": "shortage-before-rounding",
+      "strand": "shopping"
+    },
+    "lh-capacity-batch-count": {
+      "concept": "round-up-to-whole-packs",
+      "strand": "shopping"
+    },
+    "lh-cents-euros-conversion": {
+      "concept": "decimal-unit-conversion",
+      "strand": "energy"
+    },
+    "lh-committed-stock": {
+      "concept": "shop-available-stock",
+      "strand": "shopping",
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "lh-count-before-dispatch": {
+      "concept": "shop-reorder-and-recount",
+      "strand": "shopping",
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "lh-count-sheets-not-rolls": {
+      "concept": "count-usable-units",
+      "strand": "shopping"
+    },
+    "lh-coverage-whole-cans": {
+      "concept": "paint-coverage",
+      "strand": "fix"
+    },
+    "lh-deposit-checkout-net": {
+      "concept": "deposit-is-not-cost",
+      "strand": "shopping"
+    },
+    "lh-discount-round-trip": {
+      "concept": "percent-changes-multiply",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-double-container-radius": {
+      "concept": "area-scales-as-square",
+      "strand": "kitchen",
+      "duplicate": true
+    },
+    "lh-duplex-sheet-rounding": {
+      "concept": "round-up-to-whole-packs",
+      "strand": "shopping"
+    },
+    "lh-duty-cycle-energy": {
+      "concept": "energy-power-times-time",
+      "strand": "energy"
+    },
+    "lh-each-cut-allowance": {
+      "concept": "allowance-per-piece",
+      "strand": "fix"
+    },
+    "lh-fixed-coupon-percent": {
+      "concept": "fixed-vs-percentage",
+      "strand": "shopping"
+    },
+    "lh-fixed-energy-charge": {
+      "concept": "standing-charge-vs-unit-rate",
+      "strand": "energy"
+    },
+    "lh-fixed-volume-fill": {
+      "concept": "low-flow-saves-timed-use-only",
+      "strand": "energy"
+    },
+    "lh-flow-duration-offset": {
+      "concept": "water-flow-times-time",
+      "strand": "energy"
+    },
+    "lh-flow-times-minutes": {
+      "concept": "water-flow-times-time",
+      "strand": "energy"
+    },
+    "lh-free-shipping-gap": {
+      "concept": "spend-threshold-trap",
+      "strand": "shopping"
+    },
+    "lh-idle-versus-active": {
+      "concept": "standby-power-cost",
+      "strand": "energy"
+    },
+    "lh-indivisible-shares": {
+      "concept": "equal-shares-remainder",
+      "strand": "shopping"
+    },
+    "lh-jug-rounding-extra": {
+      "concept": "round-up-to-whole-packs",
+      "strand": "shopping"
+    },
+    "lh-lead-time-stock": {
+      "concept": "shop-reorder-and-recount",
+      "strand": "shopping",
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "lh-material-reuse-account": {
+      "concept": "material-reuse-account",
+      "strand": "fix"
+    },
+    "lh-merge-overlapping-lists": {
+      "concept": "merge-lists-once",
+      "strand": "shopping"
+    },
+    "lh-offcuts-not-one-piece": {
+      "concept": "pieces-are-not-one-whole",
+      "strand": "fix"
+    },
+    "lh-overlap-material-area": {
+      "concept": "wrap-surface-plus-overlap",
+      "strand": "fix"
+    },
+    "lh-parcel-fee-repeats": {
+      "concept": "fixed-fee-per-order",
+      "strand": "shopping"
+    },
+    "lh-pay-for-used-quantity": {
+      "concept": "count-usable-units",
+      "strand": "shopping"
+    },
+    "lh-percentage-overage": {
+      "concept": "fixed-vs-percentage",
+      "strand": "shopping"
+    },
+    "lh-pool-spare-stock": {
+      "concept": "shop-available-stock",
+      "strand": "shopping",
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "lh-purchase-plus-running": {
+      "concept": "price-plus-running-cost",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-reuse-cost-per-use": {
+      "concept": "price-plus-running-cost",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-round-lines-versus-total": {
+      "concept": "round-lines-vs-total",
+      "strand": "shopping"
+    },
+    "lh-round-replenishment": {
+      "concept": "shortage-before-rounding",
+      "strand": "shopping"
+    },
+    "lh-round-snack-packs": {
+      "concept": "round-up-to-whole-packs",
+      "strand": "shopping"
+    },
+    "lh-same-energy-new-tariff": {
+      "concept": "bill-equals-energy-times-rate",
+      "strand": "energy"
+    },
+    "lh-scale-recipe-portions": {
+      "concept": "recipe-scale-per-portion",
+      "strand": "kitchen"
+    },
+    "lh-sequential-discounts": {
+      "concept": "percent-changes-multiply",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-small-leak-large-duration": {
+      "concept": "small-leak-adds-up",
+      "strand": "energy"
+    },
+    "lh-split-order-fixed-fee": {
+      "concept": "fixed-fee-per-order",
+      "strand": "shopping"
+    },
+    "lh-standby-days-add-up": {
+      "concept": "standby-power-cost",
+      "strand": "energy"
+    },
+    "lh-subtract-openings-area": {
+      "concept": "paint-coverage",
+      "strand": "fix"
+    },
+    "lh-ticket-bundle-unused": {
+      "concept": "bundle-deals-odd-quantities",
+      "strand": "shopping"
+    },
+    "lh-turn-container-volume": {
+      "concept": "volume-ignores-orientation",
+      "strand": "kitchen"
+    },
+    "lh-two-for-one-boundary": {
+      "concept": "bundle-deals-odd-quantities",
+      "strand": "shopping"
+    },
+    "lh-use-deadline-tickets": {
+      "concept": "use-expiring-first",
+      "strand": "shopping"
+    },
+    "lh-visit-fee-crossover": {
+      "concept": "fixed-fee-vs-per-visit",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-voucher-minimum": {
+      "concept": "spend-threshold-trap",
+      "strand": "shopping"
+    },
+    "lh-water-meter-units": {
+      "concept": "decimal-unit-conversion",
+      "strand": "energy"
+    },
+    "lh-watts-hours-trade": {
+      "concept": "energy-power-times-time",
+      "strand": "energy"
+    },
+    "lh-weighted-bill-share": {
+      "concept": "split-by-share",
+      "strand": "shopping"
+    },
+    "lh-weighted-unit-average": {
+      "concept": "weighted-average-price",
+      "strand": "shopping",
+      "duplicate": true
+    },
+    "lh-weighted-volume-allocation": {
+      "concept": "split-by-share",
+      "strand": "shopping"
+    },
+    "lids-match-by-size": {
+      "concept": "match-by-fit-dimension",
+      "strand": "fix"
+    },
+    "link-label-names-the-target": {
+      "concept": "descriptive-names-and-links",
+      "strand": "digital"
+    },
+    "long-cord-knots-itself": {
+      "concept": "cord-tangle-length",
+      "strand": "laundry"
+    },
+    "mail-exact-phrase": {
+      "concept": "search-phrase-and-exclude",
+      "strand": "digital"
+    },
+    "mail-minus-noise": {
+      "concept": "search-phrase-and-exclude",
+      "strand": "digital"
+    },
+    "mail-or-vs-and": {
+      "concept": "search-and-or-filters",
+      "strand": "digital"
+    },
+    "make-a-question-answerable": {
+      "concept": "office-specific-requests",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "margin-before-cut": {
+      "concept": "allowance-per-piece",
+      "strand": "fix"
+    },
+    "measure-diagonal-for-square": {
+      "concept": "diagonals-check-square",
+      "strand": "fix"
+    },
+    "measure-inside-not-outside": {
+      "concept": "measure-the-inside",
+      "strand": "fix"
+    },
+    "meeting-and-preparation": {
+      "concept": "book-setup-and-prep",
+      "strand": "time"
+    },
+    "mug-handle-packing": {
+      "concept": "envelope-includes-protrusions",
+      "strand": "storage"
+    },
+    "name-the-next-owner": {
+      "concept": "office-owner-and-status",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "nested-box-retrieval": {
+      "concept": "frequent-items-in-front",
+      "strand": "storage"
+    },
+    "note-gap-check": {
+      "concept": "fluency-illusion",
+      "strand": "study"
+    },
+    "one-person-two-jobs": {
+      "concept": "no-double-booking",
+      "strand": "time"
+    },
+    "one-question-one-card": {
+      "concept": "one-cue-one-answer",
+      "strand": "study"
+    },
+    "packing-cube-walls": {
+      "concept": "measure-the-inside",
+      "strand": "fix"
+    },
+    "pillowcase-set-kit": {
+      "concept": "group-items-used-together",
+      "strand": "storage"
+    },
+    "plain-text-paste-scope": {
+      "concept": "ui-paste-plain-text",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "preview-replace-all": {
+      "concept": "ui-replace-scope",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "project-prefix-filenames": {
+      "concept": "descriptive-names-and-links",
+      "strand": "digital"
+    },
+    "rebuild-the-procedure": {
+      "concept": "self-explain-structure",
+      "strand": "study"
+    },
+    "record-the-reason": {
+      "concept": "office-agenda-and-reasons",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "rectangular-bin-nesting": {
+      "concept": "nesting-shares-hollow",
+      "strand": "storage"
+    },
+    "request-needs-the-object": {
+      "concept": "office-specific-requests",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "reserve-an-unassigned-slot": {
+      "concept": "fit-around-fixed-slots",
+      "strand": "time"
+    },
+    "resize-photo-frame-ratio": {
+      "concept": "keep-aspect-ratio",
+      "strand": "fix"
+    },
+    "reverse-the-flashcard": {
+      "concept": "test-both-directions",
+      "strand": "study"
+    },
+    "ribbon-around-box-length": {
+      "concept": "around-vs-across",
+      "strand": "fix"
+    },
+    "rolled-or-folded-volume": {
+      "concept": "packing-rolling-vs-folding",
+      "strand": "travel"
+    },
+    "round-box-leftover-gap": {
+      "concept": "round-in-square-wastes-corners",
+      "strand": "storage"
+    },
+    "rug-chair-pullback": {
+      "concept": "clearance-for-movement",
+      "strand": "storage"
+    },
+    "ruler-start-not-zero": {
+      "concept": "measure-from-one-origin",
+      "strand": "fix"
+    },
+    "search-the-document-body": {
+      "concept": "search-scope",
+      "strand": "digital"
+    },
+    "seasonal-bin-rotation": {
+      "concept": "frequent-items-in-front",
+      "strand": "storage"
+    },
+    "select-before-replace": {
+      "concept": "ui-replace-scope",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "selection-not-focus": {
+      "concept": "ui-selection-vs-focus",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "separate-confusable-pairs": {
+      "concept": "contrast-confusable-pairs",
+      "strand": "study"
+    },
+    "separate-ready-from-blocked": {
+      "concept": "office-ready-vs-blocked",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "shelf-front-labels": {
+      "concept": "see-it-to-find-it",
+      "strand": "storage"
+    },
+    "shelf-gap-wasted-height": {
+      "concept": "adjust-shelf-height",
+      "strand": "storage"
+    },
+    "shoes-opposite-ends": {
+      "concept": "orientation-changes-fit",
+      "strand": "travel"
+    },
+    "short-jobs-clear-a-queue": {
+      "concept": "queue-shortest-first",
+      "strand": "time",
+      "duplicate": true
+    },
+    "shorter-folder-path": {
+      "concept": "shallow-folders",
+      "strand": "digital"
+    },
+    "show-the-file-extension": {
+      "concept": "name-is-not-identity",
+      "strand": "digital"
+    },
+    "size-is-not-recency": {
+      "concept": "sort-by-the-right-date",
+      "strand": "digital"
+    },
+    "small-items-in-mesh": {
+      "concept": "group-items-used-together",
+      "strand": "storage"
+    },
+    "sock-pairing-by-pattern": {
+      "concept": "sock-matching-by-pattern",
+      "strand": "laundry"
+    },
+    "sock-pairs-not-all-combinations": {
+      "concept": "sock-pair-count",
+      "strand": "laundry",
+      "duplicate": true
+    },
+    "socks-use-shoe-space": {
+      "concept": "fill-the-hollows",
+      "strand": "travel"
+    },
+    "sofa-diagonal-room": {
+      "concept": "diagonal-and-tilt-fit",
+      "strand": "storage"
+    },
+    "spaced-beats-cram": {
+      "concept": "spaced-repetition-study",
+      "strand": "study"
+    },
+    "spacer-protects-clearance": {
+      "concept": "fit-with-margin",
+      "strand": "fix"
+    },
+    "square-bow-stays-tied": {
+      "concept": "shoelace-square-bow",
+      "strand": "laundry"
+    },
+    "status-and-blocker-differ": {
+      "concept": "office-owner-and-status",
+      "strand": "time",
+      "outOfScope": "office team process"
+    },
+    "suitcase-layer-access": {
+      "concept": "pack-in-reverse-order",
+      "strand": "travel"
+    },
+    "suitcase-rotate-block": {
+      "concept": "orientation-changes-fit",
+      "strand": "travel"
+    },
+    "tags-are-not-copies": {
+      "concept": "tags-are-not-copies",
+      "strand": "digital"
+    },
+    "tape-mark-same-spacing": {
+      "concept": "measure-from-one-origin",
+      "strand": "fix"
+    },
+    "tote-balance-sides": {
+      "concept": "balance-the-load",
+      "strand": "travel"
+    },
+    "towel-over-two-bars": {
+      "concept": "surface-area-drying",
+      "strand": "laundry"
+    },
+    "towel-spread-dries-first": {
+      "concept": "surface-area-drying",
+      "strand": "laundry"
+    },
+    "towel-thickness-hidden-volume": {
+      "concept": "drying-water-load",
+      "strand": "laundry"
+    },
+    "transparent-box-visibility": {
+      "concept": "see-it-to-find-it",
+      "strand": "storage"
+    },
+    "trays-slide-out-reach": {
+      "concept": "slide-out-shortens-reach",
+      "strand": "storage"
+    },
+    "undo-then-redo": {
+      "concept": "ui-undo-redo",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "unlock-the-following-work": {
+      "concept": "do-the-blocking-task-first",
+      "strand": "time"
+    },
+    "version-nine-and-ten": {
+      "concept": "text-sort-vs-number-sort",
+      "strand": "digital"
+    },
+    "weight-spread-on-table": {
+      "concept": "pressure-spreads-load",
+      "strand": "fix",
+      "duplicate": true
+    },
+    "wet-knit-hang-stretch": {
+      "concept": "dry-knits-flat",
+      "strand": "laundry"
+    },
+    "wetter-cloth-more-water": {
+      "concept": "drying-water-load",
+      "strand": "laundry"
+    },
+    "wobbly-table-quarter-turn": {
+      "concept": "wobbly-table-turn",
+      "strand": "fix"
+    },
+    "work-back-from-a-deadline": {
+      "concept": "work-back-from-deadline",
+      "strand": "time"
+    },
+    "work-in-process-limit": {
+      "concept": "limit-work-in-progress",
+      "strand": "time"
+    },
+    "wrapping-paper-minimum-area": {
+      "concept": "wrap-surface-plus-overlap",
+      "strand": "fix"
+    },
+    "zoom-does-not-rewrite": {
+      "concept": "ui-view-is-not-edit",
+      "strand": "digital",
+      "outOfScope": "UI- or version-specific how-to"
+    }
+  },
+  "conceptNotes": {
+    "salt-lowers-freezing": {
+      "lessons": 0
+    },
+    "surface-area-drying": {
+      "lessons": 4,
+      "overTwoPerConcept": true,
+      "note": "4 lessons, over the 2-per-concept rule: the three unhide-the-face lessons are one idea; half-size-two-towels is its inverse (cutting does not add face area). Merge candidates as stage variants of the anchor."
+    },
+    "resting-meat": {
+      "lessons": 0
+    },
+    "two-minute-rule": {
+      "lessons": 0,
+      "note": "Demand lowered from 3 to 2: the charter already doubts the evidence; needs a published study before a brief."
+    },
+    "spaced-repetition-study": {
+      "lessons": 1
+    },
+    "standby-power-cost": {
+      "lessons": 2
+    },
+    "lever-opens-jars": {
+      "lessons": 0
+    },
+    "packing-rolling-vs-folding": {
+      "lessons": 1
+    },
+    "unit-price-shopping": {
+      "lessons": 2,
+      "duplicateOfAnotherCategory": true,
+      "note": "Demand lowered 3 -> 1: same insight as economics unit-price-aisle (economics:unit-pricing, published). Retire to economics or keep only as a shelf-label variant with also: economics/unit-pricing."
+    },
+    "viral-hack-debunk": {
+      "lessons": 0,
+      "note": "No strand: Debunk is a format across strands (company/design/formats.md). Proposed for retirement as a concept; until then it shows as untagged."
+    },
+    "sleep-caffeine-half-life": {
+      "lessons": 0
+    },
+    "boil-less-water": {
+      "lessons": 0
+    },
+    "wobbly-table-turn": {
+      "lessons": 1
+    },
+    "shoelace-square-bow": {
+      "lessons": 1
+    },
+    "cord-tangle-length": {
+      "lessons": 2
+    },
+    "recipe-scale-per-portion": {
+      "lessons": 1,
+      "note": "Rebuild condition from the scope decision: add \"Cooking times do not scale with quantity.\""
+    },
+    "volume-ignores-orientation": {
+      "lessons": 1
+    },
+    "area-scales-as-square": {
+      "lessons": 2,
+      "duplicateOfAnotherCategory": true,
+      "note": "Same insight as math double-the-size (math:area-scaling). lh-area-scales-square is NOT on the scope decision's transfer list but category.md §4 names it; flagged as a 16th duplicate."
+    },
+    "drying-airflow": {
+      "lessons": 2
+    },
+    "drying-humidity": {
+      "lessons": 2
+    },
+    "drying-water-load": {
+      "lessons": 2
+    },
+    "dry-knits-flat": {
+      "lessons": 2
+    },
+    "loop-is-not-a-knot": {
+      "lessons": 1,
+      "note": "Check against math knot lessons (unknot idea) before any rebuild."
+    },
+    "sock-matching-by-pattern": {
+      "lessons": 1
+    },
+    "sock-pair-count": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true
+    },
+    "fold-footprint-vs-height": {
+      "lessons": 1
+    },
+    "inch-is-2-54-cm": {
+      "lessons": 1,
+      "note": "Unit fact; no popular wrong method found from the title. Drop candidate unless a walkthrough finds one."
+    },
+    "measure-from-one-origin": {
+      "lessons": 2
+    },
+    "allowance-per-piece": {
+      "lessons": 2
+    },
+    "wrap-surface-plus-overlap": {
+      "lessons": 2
+    },
+    "around-vs-across": {
+      "lessons": 2
+    },
+    "paint-coverage": {
+      "lessons": 2
+    },
+    "diagonals-check-square": {
+      "lessons": 1
+    },
+    "measure-the-inside": {
+      "lessons": 3,
+      "overTwoPerConcept": true,
+      "note": "3 lessons on one idea, over the 2-per-concept rule; drawer-divider-cost is the merge candidate."
+    },
+    "fit-with-margin": {
+      "lessons": 1
+    },
+    "match-by-fit-dimension": {
+      "lessons": 1
+    },
+    "keep-aspect-ratio": {
+      "lessons": 1
+    },
+    "pieces-are-not-one-whole": {
+      "lessons": 2
+    },
+    "material-reuse-account": {
+      "lessons": 1
+    },
+    "cord-coil-bend-radius": {
+      "lessons": 1,
+      "note": "Safety pattern: never show a plugged-in coiled cable."
+    },
+    "pressure-spreads-load": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true
+    },
+    "shelf-load-lever": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true
+    },
+    "envelope-includes-protrusions": {
+      "lessons": 2
+    },
+    "round-in-square-wastes-corners": {
+      "lessons": 2
+    },
+    "store-at-point-of-use": {
+      "lessons": 2
+    },
+    "clearance-for-movement": {
+      "lessons": 2
+    },
+    "nesting-shares-hollow": {
+      "lessons": 2
+    },
+    "diagonal-and-tilt-fit": {
+      "lessons": 2
+    },
+    "fixed-address-shrinks-search": {
+      "lessons": 2
+    },
+    "see-it-to-find-it": {
+      "lessons": 3,
+      "overTwoPerConcept": true,
+      "note": "3 lessons, over the 2-per-concept rule; shelf-front-labels is the weakest (common-sense why) and the drop candidate."
+    },
+    "frequent-items-in-front": {
+      "lessons": 2
+    },
+    "group-items-used-together": {
+      "lessons": 2
+    },
+    "slide-out-shortens-reach": {
+      "lessons": 1
+    },
+    "adjust-shelf-height": {
+      "lessons": 1
+    },
+    "sorted-halving-search": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true,
+      "note": "Principal engineer: delete the dead alphabet-sort-search homeLessons entry."
+    },
+    "energy-power-times-time": {
+      "lessons": 2,
+      "nearOverlap": "physics/kettle-vs-bulb-kwh (physics:power-vs-energy). category.md §4 gives kW vs kWh to physics; not on the scope decision's list. Keep only if the reveal is the household number, with also: physics/power-vs-energy."
+    },
+    "bill-equals-energy-times-rate": {
+      "lessons": 2
+    },
+    "standing-charge-vs-unit-rate": {
+      "lessons": 1,
+      "nearOverlap": "economics/break-even-cups (economics:break-even)"
+    },
+    "water-flow-times-time": {
+      "lessons": 2
+    },
+    "low-flow-saves-timed-use-only": {
+      "lessons": 1
+    },
+    "small-leak-adds-up": {
+      "lessons": 1
+    },
+    "decimal-unit-conversion": {
+      "lessons": 2
+    },
+    "percent-changes-multiply": {
+      "lessons": 2,
+      "duplicateOfAnotherCategory": true
+    },
+    "price-plus-running-cost": {
+      "lessons": 2,
+      "duplicateOfAnotherCategory": true
+    },
+    "fixed-fee-vs-per-visit": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true
+    },
+    "weighted-average-price": {
+      "lessons": 1,
+      "duplicateOfAnotherCategory": true
+    },
+    "count-usable-units": {
+      "lessons": 2,
+      "nearOverlap": "economics/unit-price-aisle: distinct twist (count inside the pack, wasted pieces); reveal must say how it differs."
+    },
+    "round-up-to-whole-packs": {
+      "lessons": 4,
+      "overTwoPerConcept": true,
+      "note": "4 lessons on one idea (ceiling division), over the 2-per-concept rule. lh-capacity-batch-count was mapped to kitchen by title in category.md; it is not about food."
+    },
+    "bundle-deals-odd-quantities": {
+      "lessons": 2
+    },
+    "shortage-before-rounding": {
+      "lessons": 2
+    },
+    "fixed-fee-per-order": {
+      "lessons": 2
+    },
+    "spend-threshold-trap": {
+      "lessons": 2
+    },
+    "fixed-vs-percentage": {
+      "lessons": 2
+    },
+    "round-lines-vs-total": {
+      "lessons": 2
+    },
+    "deposit-is-not-cost": {
+      "lessons": 1
+    },
+    "split-by-share": {
+      "lessons": 2
+    },
+    "equal-shares-remainder": {
+      "lessons": 1
+    },
+    "merge-lists-once": {
+      "lessons": 1
+    },
+    "use-expiring-first": {
+      "lessons": 1,
+      "nearOverlap": "same rule as homework-deadline-first (earliest deadline first)."
+    },
+    "shop-available-stock": {
+      "lessons": 2,
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "shop-reorder-and-recount": {
+      "lessons": 2,
+      "outOfScope": "shop or warehouse stock-keeping"
+    },
+    "retrieval-practice": {
+      "lessons": 2
+    },
+    "fluency-illusion": {
+      "lessons": 2
+    },
+    "self-explain-structure": {
+      "lessons": 2
+    },
+    "one-cue-one-answer": {
+      "lessons": 2
+    },
+    "test-both-directions": {
+      "lessons": 1
+    },
+    "contrast-confusable-pairs": {
+      "lessons": 1
+    },
+    "apply-not-recite": {
+      "lessons": 1
+    },
+    "work-back-from-deadline": {
+      "lessons": 2
+    },
+    "plan-with-the-long-estimate": {
+      "lessons": 2
+    },
+    "book-travel-and-wrap-up": {
+      "lessons": 2
+    },
+    "book-setup-and-prep": {
+      "lessons": 2,
+      "note": "Near-same idea as book-travel-and-wrap-up (hidden time around a task); a merge candidate."
+    },
+    "fit-around-fixed-slots": {
+      "lessons": 2
+    },
+    "no-double-booking": {
+      "lessons": 1
+    },
+    "do-the-blocking-task-first": {
+      "lessons": 2
+    },
+    "limit-work-in-progress": {
+      "lessons": 1
+    },
+    "batch-shared-overhead": {
+      "lessons": 2
+    },
+    "homework-deadline-first": {
+      "lessons": 2,
+      "nearOverlap": "cs/shortest-job-first-wait teaches SJF; this concept keeps the deadline comparison (category.md §4 allows one)."
+    },
+    "queue-shortest-first": {
+      "lessons": 2,
+      "duplicateOfAnotherCategory": true
+    },
+    "office-handoff": {
+      "lessons": 2,
+      "outOfScope": "office team process"
+    },
+    "office-ready-vs-blocked": {
+      "lessons": 2,
+      "outOfScope": "office team process"
+    },
+    "office-specific-requests": {
+      "lessons": 2,
+      "outOfScope": "office team process"
+    },
+    "office-owner-and-status": {
+      "lessons": 2,
+      "outOfScope": "office team process"
+    },
+    "office-agenda-and-reasons": {
+      "lessons": 2,
+      "outOfScope": "office team process"
+    },
+    "office-bug-report": {
+      "lessons": 1,
+      "outOfScope": "office team process"
+    },
+    "office-deadline-reference": {
+      "lessons": 1,
+      "outOfScope": "office team process"
+    },
+    "text-sort-vs-number-sort": {
+      "lessons": 2
+    },
+    "search-and-or-filters": {
+      "lessons": 2
+    },
+    "search-phrase-and-exclude": {
+      "lessons": 2
+    },
+    "name-is-not-identity": {
+      "lessons": 2
+    },
+    "descriptive-names-and-links": {
+      "lessons": 2
+    },
+    "sort-by-the-right-date": {
+      "lessons": 2
+    },
+    "search-scope": {
+      "lessons": 2
+    },
+    "work-on-a-copy": {
+      "lessons": 1
+    },
+    "tags-are-not-copies": {
+      "lessons": 1
+    },
+    "shallow-folders": {
+      "lessons": 1
+    },
+    "ui-copy-vs-cut": {
+      "lessons": 2,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "ui-view-is-not-edit": {
+      "lessons": 2,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "ui-replace-scope": {
+      "lessons": 2,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "ui-paste-plain-text": {
+      "lessons": 1,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "ui-selection-vs-focus": {
+      "lessons": 1,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "ui-undo-redo": {
+      "lessons": 1,
+      "outOfScope": "UI- or version-specific how-to"
+    },
+    "weight-limit-not-volume": {
+      "lessons": 1
+    },
+    "pack-in-reverse-order": {
+      "lessons": 2
+    },
+    "orientation-changes-fit": {
+      "lessons": 2
+    },
+    "fill-the-hollows": {
+      "lessons": 2
+    },
+    "balance-the-load": {
+      "lessons": 1
+    },
+    "lid-boils-water-sooner": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "searing-does-not-seal": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "blot-dont-rub": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "disinfectant-contact-time": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "cold-water-protein-stains": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "interleaved-practice": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "learning-styles-debunk": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "battery-partial-charging": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    },
+    "backup-3-2-1": {
+      "lessons": 0,
+      "gap": "no lesson yet; kept so coverage shows unmet demand"
+    }
+  },
+  "duplicates": [
+    {
+      "slug": "lh-big-pack-price",
+      "lifehacksConcept": "unit-price-shopping",
+      "duplicates": "economics/unit-price-aisle",
+      "existingConcept": "economics:unit-pricing",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-align-price-units",
+      "lifehacksConcept": "unit-price-shopping",
+      "duplicates": "economics/unit-price-aisle",
+      "existingConcept": "economics:unit-pricing",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-sequential-discounts",
+      "lifehacksConcept": "percent-changes-multiply",
+      "duplicates": "economics/twenty-then-ten-off",
+      "existingConcept": "economics:percent-stacking",
+      "existingStatus": "review",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-discount-round-trip",
+      "lifehacksConcept": "percent-changes-multiply",
+      "duplicates": "math/fifty-up-fifty-down",
+      "existingConcept": "math:percent-change-asymmetry",
+      "existingStatus": "review",
+      "receivingManager": "cm-math"
+    },
+    {
+      "slug": "lh-purchase-plus-running",
+      "lifehacksConcept": "price-plus-running-cost",
+      "duplicates": "economics/cheap-printer-dear-ink",
+      "existingConcept": "economics:total-cost-of-ownership",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-reuse-cost-per-use",
+      "lifehacksConcept": "price-plus-running-cost",
+      "duplicates": "economics/cheap-printer-dear-ink",
+      "existingConcept": "economics:total-cost-of-ownership",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-weighted-unit-average",
+      "lifehacksConcept": "weighted-average-price",
+      "duplicates": "economics/same-dollars-more-shares",
+      "existingConcept": "economics:average-purchase-cost",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-visit-fee-crossover",
+      "lifehacksConcept": "fixed-fee-vs-per-visit",
+      "duplicates": "economics/break-even-cups",
+      "existingConcept": "economics:break-even",
+      "existingStatus": "published",
+      "receivingManager": "cm-economics"
+    },
+    {
+      "slug": "lh-double-container-radius",
+      "lifehacksConcept": "area-scales-as-square",
+      "duplicates": "math/double-the-size",
+      "existingConcept": "math:area-scaling",
+      "existingStatus": "published",
+      "receivingManager": "cm-math"
+    },
+    {
+      "slug": "sock-pairs-not-all-combinations",
+      "lifehacksConcept": "sock-pair-count",
+      "duplicates": "math/handshakes-halve",
+      "existingConcept": "math:handshake-counting",
+      "existingStatus": "published",
+      "receivingManager": "cm-math"
+    },
+    {
+      "slug": "weight-spread-on-table",
+      "lifehacksConcept": "pressure-spreads-load",
+      "duplicates": "physics/snowshoe-pressure",
+      "existingConcept": "physics:pressure-force-area",
+      "existingStatus": "published",
+      "receivingManager": "cm-physics"
+    },
+    {
+      "slug": "heavy-book-close-to-back",
+      "lifehacksConcept": "shelf-load-lever",
+      "duplicates": "physics/seesaw-sit-closer",
+      "existingConcept": "physics:torque-lever",
+      "existingStatus": "review",
+      "receivingManager": "cm-physics"
+    },
+    {
+      "slug": "alphabet-sort-search",
+      "lifehacksConcept": "sorted-halving-search",
+      "duplicates": "cs/binary-search",
+      "existingConcept": "cs:binary-search",
+      "existingStatus": "published",
+      "receivingManager": "cm-cs"
+    },
+    {
+      "slug": "short-jobs-clear-a-queue",
+      "lifehacksConcept": "queue-shortest-first",
+      "duplicates": "cs/shortest-job-first-wait",
+      "existingConcept": "cs:shortest-job-first",
+      "existingStatus": "published",
+      "receivingManager": "cm-cs"
+    },
+    {
+      "slug": "do-not-starve-the-long-job",
+      "lifehacksConcept": "queue-shortest-first",
+      "duplicates": "cs/shortest-job-first-wait",
+      "existingConcept": "cs:shortest-job-first",
+      "existingStatus": "published",
+      "receivingManager": "cm-cs"
+    }
+  ]
+}
