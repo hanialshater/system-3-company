@@ -199,3 +199,13 @@ PR: https://github.com/hanialshater/system-3-company/pull/2 · head read: `origi
 - **lifehacks-safety-reviewer:** launch attestation for the anchor five against the walkthrough.
 - **community-engineer:** update `prs/2.md` §5 and the draft reply to match tranches A and B.
 - **principal-engineer:** the shared-engine catalogue question (objection 8); blocker 3.
+
+## Founder decision, 2026-10-14 (supersedes the capped-subset decision above)
+
+The founder, asked directly ("start with 5, or all 200?"), answered: **"Go ahead, all 200."** This reopens the decision as the record said it would. All 200 lessons are to land through PR #2. The head of product's objections stay on record. Coverage would read about 200 of 210 concepts while kitchen and cleaning have nothing, and 10 drying lessons sit outside the two-per-concept rule. These are now known costs, accepted by the founder, not blockers.
+
+Consequences:
+- All 8 batches go through the full pipeline after the merge: QA, fact-check (883 claims), learner review, accessibility, and the safety reviewer's walkthrough attestation.
+- The blocker-5 recall fix (answers that are almost always option 0) now applies to all 200.
+- cm-lifehacks still writes the charter edit (strand tags, growth rule), now covering 200. The head of product co-signs, recording the founder's override.
+- The 10 safety "pass with changes" items and the principal engineer's changes (drop the `safety` field and the collection file, add a lib/claims check) still apply before merge.
