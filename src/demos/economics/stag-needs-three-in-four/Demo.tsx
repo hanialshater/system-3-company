@@ -9,6 +9,8 @@
 // just as sure of you, 0% gives "both hare" (each one's best reply to the other's hare) and 100% gives "both stag";
 // each box is ticked once its case has been set. Milestones: hare-stable (0%), half (50%), threshold (75%),
 // stag-stable (100%). The stage opens at 60% so every preset is pressable.
+// v3 (r7): the preset row is not rendered while locked (its 75% label matched the answer); options are four
+// "at least" thresholds so 75 is not the only non-anchor number.
 // Model: invented payoffs, one partner, payoffs are all that matter.
 
 import { useState } from "react";
@@ -48,7 +50,7 @@ export default function StagHunt({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Stag: ${STAG} if both hunt it, 0 if alone. Hare: ${HARE} for sure. How sure must you be your partner hunts stag?`,
-        options: ["More than 50%", "At least 75%", "Fully sure, 100%"],
+        options: ["At least 50%", "At least 75%", "At least 90%", "Fully sure: 100%"],
         answer: 1,
       }}
       exploreHint="Try each preset, and watch the two boxes under the chart."
@@ -147,6 +149,8 @@ export default function StagHunt({ slug }: { slug: string }) {
                   <Readout label="Hare is worth" value={locked ? "?" : HARE} />
                   <Readout label="Best reply" value={locked ? "?" : best} />
                 </Row>
+                {/* The presets name 75%, so they appear only after the commit (no answer before the commit). */}
+                {!locked && (
                 <Row>
                   {PRESETS.map((v) => (
                     <Control key={v} className={p === v ? "active" : ""} disabled={locked || p === v} onClick={() => set(v)}>
@@ -154,6 +158,7 @@ export default function StagHunt({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </Row>
+                )}
                 <Slider label="How sure you are" value={p} min={0} max={100} step={5} format={(v) => `${v}%`} disabled={locked} onChange={set} />
               </div>
             );

@@ -75,6 +75,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.range-min-in-four-nodes.c7",
+      "text": "Once 3 to 12 is combined, the stage keeps a Seen row, '3 to 12 = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes, minimum 2' (the minimum recorded at that moment), and outlines those four blocks dashed whenever they are not lit. The first 'Change the value at 9' turns 2 into 8 and the message says so ('changed from 2 to 8').",
+      "support": "simulation",
+      "source": "Demo.tsx: Q_LABELS from cover(3, 12); seenMin set in combine() when lo..hi is 3..12 (START values 5 7 9 4 8 6 2 7 5 3 at 3..12, min 2); prev records vals[9] before the change (START[9] = 2, EDIT_VALUES[1] = 8). Builder revision v3 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:segment-tree",
     "also": [],

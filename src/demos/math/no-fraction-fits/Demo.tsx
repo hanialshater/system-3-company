@@ -11,6 +11,7 @@
 // counts and quotes the learner's own closest call.
 // v4: a "Tried q" trace under the caption keeps every q the learner visited (slider steps included) with its miss,
 // so the reveal's list of q is on the stage when it opens.
+// v5 (r7): a gloss row spells out "2s" for the two numbers on the line (50 = 2 × 25; 49 = 49 (no 2s)).
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -37,6 +38,15 @@ const twos = (n: number) => {
     k++;
   }
   return k;
+};
+/** n written as its 2s times what is left: 16 = 2 × 2 × 2 × 2, 50 = 2 × 25, 49 = 49 (no 2s). */
+const split = (n: number) => {
+  const k = twos(n);
+  const rest = n / 2 ** k;
+  if (k === 0) return `${n} (no 2s)`;
+  const parts = Array(k).fill("2");
+  if (rest > 1) parts.push(String(rest));
+  return parts.join(" × ");
 };
 /** The learner's closest call: smallest miss, then largest q. */
 const closest = (qs: number[]) =>
@@ -145,6 +155,12 @@ function Stage({
           ? "Make a prediction to start."
           : `Nearest square ${p}² = ${p * p}: off by ${off}. Its 2s: ${twos(p * p)}, even; ${t}'s: ${twos(t)}, odd.`}
       </p>
+
+      {!locked && (
+        <p className={s.gloss}>
+          2s = how many 2s multiply into it: {t} = {split(t)}; {p * p} = {split(p * p)}.
+        </p>
+      )}
 
       {!locked && (
         <p className={s.caption} data-testid="tried">

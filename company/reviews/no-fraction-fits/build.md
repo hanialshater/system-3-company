@@ -28,3 +28,14 @@ Edited claims are unverified for the fact-checker. Not run here: build, QA, walk
 4. Reveal values: "q = 1, 2, 3, 5" (current state: seen, shown in the Tried row); "2 × 5² = 50 next to 7² = 49, off by 1" (current state: closest(seen); its entry "5 (off 1)" is in the Tried row, and it is the stage's current q after the jump); "7² had 0", "50 had 1" (computed from the same closest call; the line's labels show them while q = 5 is on stage).
 5. QA path: slider two right presses (q = 2, 3; three-q), Next close call (q = 5; close-call). Both milestones in three presses. The Tried row keeps q = 2 and 3.
 6. Reset: no Reset control; seen only grows. Reveal after that path: "No, never. For your q = 1, 2, 3, 5 (the Tried row), 2 × q² never landed on a perfect square. Your closest call: 2 × 5² = 50 next to 7² = 49, off by 1. Close calls keep coming, so closeness cannot settle it. The 2s can. / Look at the count of 2s under each number. A square p² has each 2 of p twice, so its count is even: 7² had 0. 2 × q² has q's 2s twice plus one, so its count is odd: 50 had 1. Even never equals odd, so no whole p and q give p² = 2 × q². No fraction is √2."
+
+## Pre-flight v5 (demo-builder, 2026-10-14, wave G, r7 adult-beginner)
+
+Fix: (top) "2s" is glossed on the stage. After the commit a row under the number line splits both numbers on the line into their 2s: "2s = how many 2s multiply into it: 50 = 2 × 25; 49 = 49 (no 2s)." (at q = 1: "2 = 2; 1 = 1 (no 2s)"; at q = 2: "8 = 2 × 2 × 2; 9 = 9 (no 2s)"). It updates with q, so the learner can check "2s: 1 (odd)" against 50 = 2 × 25. New claim c8. Not changed: the hook's "surely" (r7 called it mild; it voices the misconception) and the empty lower half on a phone (the gloss row uses some of it).
+1. Title and hook: "Does any fraction hit √2?" / "With big enough numbers, surely some fraction hits √2 exactly?" Questions; no answer stated.
+2. Options: "Yes, with big enough numbers" · "No, never" · "Yes: 99,999 / 70,710". The only exact number is a wrong option.
+3. Locked stage: rule line, number line with 1² = 1 and 2² = 4, "Make a prediction to start.", readouts "?". No 2-counts, no gloss row, no Tried row.
+4. Reveal values: unchanged from v4: q list (a) seen, in the Tried row; closest call 50 / 49 / off 1 (a) closest(seen), in the Tried row and on the line after the jump; "7² had 0", "50 had 1" (a) the same call, on the line labels and now spelled out in the gloss row ("50 = 2 × 25; 49 = 49 (no 2s)").
+5. QA path: slider two presses (q = 2, 3; three-q), Next close call (q = 5; close-call). Gloss row at reveal: "50 = 2 × 25; 49 = 49 (no 2s)".
+6. Reset: no Reset; seen only grows. Reveal text as in Pre-flight v4 (unchanged).
+- meta.json 4 -> 5; new claim c8 (unverified). Not run: build, QA, walkthrough, tsc.
