@@ -153,6 +153,7 @@ function sourceProblems(src, id, cfg, cands) {
     if (/(?:^|[^\w$.])import\s*\(/.test(t) || /(?:^|[^\w$.])require\s*\(/.test(t)) problems.push(`${f}: dynamic import() or require() is not allowed (it hides size from the gate)`);
   }
   const parents = cfg.parents?.[id] ?? [];
+  if (cfg.mutable?.length && !(id in (cfg.parents ?? {}))) problems.push(`${id} is not registered in evolve.json "parents", so its frozen files cannot be checked`);
   if (cfg.mutable?.length && parents.length) {
     const ok = cfg.mutable.map(glob), free = (f) => ok.some((r) => r.test(f));
     const pdirs = parents.map((p) => path.join(cands, p)).filter((p) => fs.existsSync(p));
@@ -219,6 +220,7 @@ function selftest() {
   const fcfg = { mutable: ["draw.mjs", "layout*.mjs"], parents: { ok: ["p"], bad: ["p"] } };
   ok(sourceProblems(path.join(cands, "ok"), "ok", fcfg, cands).length == 0, "mutable files may change, new mutable files may be added");
   ok(sourceProblems(path.join(cands, "bad"), "bad", fcfg, cands).some((p) => /core\.mjs is frozen/.test(p)), "a frozen file that changed is refused");
+  ok(sourceProblems(path.join(cands, "ok"), "stranger", fcfg, cands).some((p) => /not registered/.test(p)), "an unregistered candidate is refused when files are frozen");
   fs.rmSync(tmp, { recursive: true, force: true });
   // The real library still works when every module is stripped: run the knot tests on a stripped copy.
   const lib = path.resolve("src/lab/knots");

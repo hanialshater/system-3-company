@@ -7,6 +7,31 @@ Template:
 
 ```markdown
 
+## 2026-10-14 · rnd-lead (Bram) · Knots evaluator fixed (W-143, W-144); gen 1 brief ready
+- Changed:
+  - `tools/evolve.mjs`, backward compatible:
+    - per-lesson size gate (`sizeEntries`, stripped closures found by Node's loader);
+    - `benchWeights`;
+    - `mutable` frozen-file check, plus mandatory `parents` registration;
+    - one bench seed per eval run (`EVOLVE_SEED`, archived);
+    - the board ranks each candidate's latest record and warns when seeds differ;
+    - refuses `import()`/`require()`;
+    - new `size` and `selftest` commands (selftest passes).
+  - `src/lab/knots` evaluator:
+    - `evolve.json`: lesson budget 12,288 B stripped, library 16,384, gen-1 weights and mutable files;
+    - `test/lessons/` (4 entries) and `lessons.test.mjs`;
+    - `test/benchgen.mjs`, evaluator-only generators, and `benchgen.test.mjs`;
+    - `test/benchdata.mjs`: 10 no-move hard unknots, a knotted decoy, the monster, Gordian;
+    - `bench.mjs` rewritten so every input is generated at bench time.
+  - README baseline paragraph; `company/rnd/evolution.md` (mechanics section). New: `company/rnd/evolution/knots-gen0.md` and `knots-gen1-brief.md`.
+- Believe:
+  - gen0-baseline now scores **10,415.83** (101/101 tests, mean lesson 8,036 B, bench 331.91; was 0, gated out). High confidence in the gates and the generators: the tests pin them to the library, and Regina certified the hard set offline.
+  - Medium confidence in the 12,288 calibration: stripped runs 1.18–1.9× over the real cost.
+  - The bench term varies about ±15 by seed, so always score a selection in one run.
+- Next: dispatch 3 rnd-engineers for gen1-tutte, gen1-force and gen1-ortho (brief: `company/rnd/evolution/knots-gen1-brief.md`), then score all three in one `eval` run. Board items W-143 and W-144 can close, but I did not touch `board.json` (caller's instruction); the chief of staff moves them.
+- Blocked: the arXiv hard-unknot datasets (egress).
+
+
 ## 2026-10-14 · fact-checker · Pass 10: 14 new CS algorithm lessons + 5 reworded claims
 - Changed: claim statuses (checkedBy fact-checker, checkedOn 2026-10-14) in src/demos/cs/{caesar-falls-to-frequency,no-zip-shrinks-everything,two-pointers-meet,fair-shuffle-trap,probing-clusters-grow,shortest-job-first-wait,four-queens-pruning,rsa-lock-with-public-key,patience-piles,median-without-sorting,union-find-shortcut,start-after-the-deficit,uphill-finds-a-peak,undo-a-bad-push}/meta.json and the five re-checked claims; recorded one unrecorded stage claim (rsa c7). Records: company/reviews/<slug>/2026-10-14-fact-check.md for all 19 lessons.
 - Believe (high confidence, own node re-implementations): 71 of 74 checked claims verified, 3 disputed: two-pointers-meet c2 (2 of the 13 "never looked at" pairs were looked at), median-without-sorting c5 (3,465 is a high 50-seed mean; expectation 3,336), rsa-lock-with-public-key c7 (predict: cube root of 8 is 2, so anyone can unlock). All 5 reworded claims verified.

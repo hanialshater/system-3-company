@@ -27,6 +27,12 @@ So each R&D project runs as a **population of variants**, written by several R&D
 6. **Stop:** when a generation improves the best score by less than 2%, or after the bet's generation budget (default 4). Then `node tools/evolve.mjs promote <p> <id>`, and the EDD and engineering review follow.
 7. **Record:** a short generation record in `company/rnd/evolution/<p>-gen<N>.md` lists the variants, scores, the winner, and what was learned, including the ideas that lost and why. These records feed the R&D Review.
 
+## Evaluator mechanics (tools/evolve.mjs; see knots-gen0.md for the reasons)
+- **Seed.** Each `eval` run draws one bench seed (`EVOLVE_SEED`, or `--seed=N`) for every candidate in it, and records it in the archive. Bench inputs must be generated or disguised from that seed by evaluator code that does not call the candidate. The board ranks each candidate's latest run, and warns when the seeds differ.
+- **Size.** `sizeEntries` are evaluator-owned lesson programs in `test/lessons/`. Each is measured as the gzip of its real module closure (found by Node's loader) with comments and whitespace stripped, and each must fit `sizeBudgetGzBytes`. A project without `sizeEntries` keeps the old raw whole-library gate.
+- **Weights and frozen files.** `benchWeights` weights each metric. `mutable` names the files a generation may change; every other file must equal a parent's, and candidates must be listed in `parents`.
+- **Self-test.** `node tools/evolve.mjs selftest` checks the harness after any change to it.
+
 ## Rules
 - **The evaluator is fixed within a generation.** If the lead changes the tests or the weights, every surviving candidate is re-scored before selection.
 - **Diversity over polish:** two candidates with the same idea waste a slot.
