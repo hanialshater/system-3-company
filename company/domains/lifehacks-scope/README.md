@@ -428,7 +428,7 @@ This generates `cm-lifehacks-home`, `cm-lifehacks-kitchen-cleaning`, `cm-lifehac
 | 2 | `money-energy` and `digital` | Wave 2 |
 | 3 | `kitchen-cleaning` | When kitchen opens. Sana's pattern notes come first. |
 
-A role whose strands miss their kill criteria is retired with them (`company/rituals/retro-and-offboarding.md`).
+A role whose strands miss their kill criteria is retired with them through the org-change process.
 
 **Who to consult** (`org-change-process.md` step 2). Each answers in the decision record's `## Consulted` section.
 
