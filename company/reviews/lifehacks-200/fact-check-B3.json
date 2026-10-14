@@ -1,0 +1,722 @@
+[
+ {
+  "slug": "sock-pairing-by-pattern",
+  "claimId": "lifehacks.sock-pairing-by-pattern.c1",
+  "status": "verified",
+  "note": "Node: N=4,6,8,10 -> mixed N-1 = 3,5,7,9; one of two equal bins ceil(N/2)-1 = 1,2,3,4. Default N=6: 5 vs 2. Hedges (no time saving, partner may be absent) are correct."
+ },
+ {
+  "slug": "sock-pairing-by-pattern",
+  "claimId": "lifehacks.sock-pairing-by-pattern.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "sock-pairing-by-pattern",
+  "claimId": "lifehacks.sock-pairing-by-pattern.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "sock-pairing-by-pattern",
+  "claimId": "lifehacks.sock-pairing-by-pattern.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "sock-pairing-by-pattern",
+  "claimId": "lifehacks.sock-pairing-by-pattern.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "sock-pairs-not-all-combinations",
+  "claimId": "lifehacks.sock-pairs-not-all-combinations.c1",
+  "status": "verified",
+  "note": "Node: N=4..10 -> N(N-1)/2 = 6,15,28,45 vs floor(N/2) marked pairs = 2,3,4,5. Default 6 socks: 15 vs 3. \"Explains the appeal of distinctive patterns\" is interpretive but harmless."
+ },
+ {
+  "slug": "sock-pairs-not-all-combinations",
+  "claimId": "lifehacks.sock-pairs-not-all-combinations.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "sock-pairs-not-all-combinations",
+  "claimId": "lifehacks.sock-pairs-not-all-combinations.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "sock-pairs-not-all-combinations",
+  "claimId": "lifehacks.sock-pairs-not-all-combinations.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "sock-pairs-not-all-combinations",
+  "claimId": "lifehacks.sock-pairs-not-all-combinations.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "socks-use-shoe-space",
+  "claimId": "lifehacks.socks-use-shoe-space.c1",
+  "status": "verified",
+  "note": "Node: socks 100..400 cm3 -> beside shoe envelope 800+socks (1000 at default 200), inside hollow 800 (hollow 600 never exceeded in the slider range). Matches claim."
+ },
+ {
+  "slug": "socks-use-shoe-space",
+  "claimId": "lifehacks.socks-use-shoe-space.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "socks-use-shoe-space",
+  "claimId": "lifehacks.socks-use-shoe-space.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "socks-use-shoe-space",
+  "claimId": "lifehacks.socks-use-shoe-space.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "socks-use-shoe-space",
+  "claimId": "lifehacks.socks-use-shoe-space.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "sofa-diagonal-room",
+  "claimId": "lifehacks.sofa-diagonal-room.c1",
+  "status": "verified",
+  "note": "Node: sqrt(120^2+90^2)=150 > 140 > 120, margin +10 vs -20 at default. Caveat: the sqrt(140^2-90^2)=107.2 cm, so for slider widths 100-107 the diagonal does NOT fit either (margin -5.5 at 100). Claim is conditional (\"can fit ... when\"), and c4 scopes the prediction to defaults; no dispute, but a builder may want to raise slider min to 108."
+ },
+ {
+  "slug": "sofa-diagonal-room",
+  "claimId": "lifehacks.sofa-diagonal-room.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "sofa-diagonal-room",
+  "claimId": "lifehacks.sofa-diagonal-room.c3",
+  "status": "verified",
+  "note": "Matches model (150 cm diagonal, margins +10 / -20). Note valid range: diagonal fits only for width >= 107.3 cm."
+ },
+ {
+  "slug": "sofa-diagonal-room",
+  "claimId": "lifehacks.sofa-diagonal-room.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values. Caveat: false for slider widths 100-107 (see c1)."
+ },
+ {
+  "slug": "sofa-diagonal-room",
+  "claimId": "lifehacks.sofa-diagonal-room.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "spacer-protects-clearance",
+  "claimId": "lifehacks.spacer-protects-clearance.c1",
+  "status": "verified",
+  "note": "Node: opening 30 -> nominal 30-28=2, bounded (30-1)-(28+1)=0; bounded is below nominal by 2 for every opening 27-35. Matches claim."
+ },
+ {
+  "slug": "spacer-protects-clearance",
+  "claimId": "lifehacks.spacer-protects-clearance.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "spacer-protects-clearance",
+  "claimId": "lifehacks.spacer-protects-clearance.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "spacer-protects-clearance",
+  "claimId": "lifehacks.spacer-protects-clearance.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "spacer-protects-clearance",
+  "claimId": "lifehacks.spacer-protects-clearance.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "square-bow-stays-tied",
+  "claimId": "lifehacks.square-bow-stays-tied.c1",
+  "status": "unverified",
+  "note": "Orientation claim (opposing stages -> balanced reef bow lies across shoe; granny bow lies along it) matches secondary descriptions found by web search (Wikipedia \"horizontal bows are secure, vertical ones slip\"; Fieggen quoted as \"vertical bows signal a granny knot\"); Daily-Diamond/Gregg/O'Reilly abstract (Proc. R. Soc. A 2017) confirms impact then whipping then slipping as the failure sequence. The cited Fieggen page itself could not be read: primary host unreachable from this sandbox (HTTP 403 via proxy / DNS blocked). Left unverified rather than guessed."
+ },
+ {
+  "slug": "square-bow-stays-tied",
+  "claimId": "lifehacks.square-bow-stays-tied.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "square-bow-stays-tied",
+  "claimId": "lifehacks.square-bow-stays-tied.c3",
+  "status": "verified",
+  "note": "Node: 20-20*0.8 = 4 mm, 20-20*0.3 = 14 mm at step 20; 20 mm at step 0 (both). Matches the stage and the reveal sentence."
+ },
+ {
+  "slug": "square-bow-stays-tied",
+  "claimId": "lifehacks.square-bow-stays-tied.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "square-bow-stays-tied",
+  "claimId": "lifehacks.square-bow-stays-tied.c5",
+  "status": "unverified",
+  "note": "Keyed answer (make the second stage right-over-left so stages oppose; reef-type bow) rests on the same Fieggen/Daily-Diamond sources as c1, which could not be opened here. Knot-theory content is standard (reef = opposed half-knots)."
+ },
+ {
+  "slug": "suitcase-layer-access",
+  "claimId": "lifehacks.suitcase-layer-access.c1",
+  "status": "verified",
+  "note": "Node: layers 3..10 -> removals N-1 = 2..9 at bottom, 0 at top. Matches claim; hedge (pockets, side access) present."
+ },
+ {
+  "slug": "suitcase-layer-access",
+  "claimId": "lifehacks.suitcase-layer-access.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "suitcase-layer-access",
+  "claimId": "lifehacks.suitcase-layer-access.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "suitcase-layer-access",
+  "claimId": "lifehacks.suitcase-layer-access.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "suitcase-layer-access",
+  "claimId": "lifehacks.suitcase-layer-access.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "suitcase-rotate-block",
+  "claimId": "lifehacks.suitcase-rotate-block.c1",
+  "status": "verified",
+  "note": "Node: bag 30x36, block 18x12: long way floor(30/18)*floor(36/12)=3, quarter-turn floor(30/12)*floor(36/18)=4. True for widths 28-35; for widths 36-40 (slider max 40) both orientations give 6, so the card's answer is a tie there. Claim c1 itself (\"rotation changes how many complete rows and columns fit\") is true."
+ },
+ {
+  "slug": "suitcase-rotate-block",
+  "claimId": "lifehacks.suitcase-rotate-block.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "suitcase-rotate-block",
+  "claimId": "lifehacks.suitcase-rotate-block.c3",
+  "status": "disputed",
+  "note": "Formula text says floor(24/itemH) but the stage uses a bag 36 cm tall (spec values [36,18,12]; inputs line shows \"Bag=30x36cm\"). With 24 the counts would be 2 and 2 (no gain), so the stated formula contradicts the displayed 3 vs 4. FIX: change claim c3 and the formula string in home-lessons.ts to \"Count=floor(W/itemW)*floor(36/itemH), item=18x12 or 12x18 cm\". Also either cap the slider at 35 or add \"(from W=36 cm both orientations fit 6)\" to the limit text, because at W 36-40 the quarter-turn gives no gain."
+ },
+ {
+  "slug": "suitcase-rotate-block",
+  "claimId": "lifehacks.suitcase-rotate-block.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values. Caveat: a tie at slider widths 36-40 (see c3)."
+ },
+ {
+  "slug": "suitcase-rotate-block",
+  "claimId": "lifehacks.suitcase-rotate-block.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "tape-mark-same-spacing",
+  "claimId": "lifehacks.tape-mark-same-spacing.c1",
+  "status": "verified",
+  "note": "Node: marks 3..10 -> stepped last-mark error N*0.2 = 0.6..2.0 cm vs one-origin 0.2 cm. Default 5 marks: 1.0 vs 0.2 cm. Hedge about the tool's own error is correct."
+ },
+ {
+  "slug": "tape-mark-same-spacing",
+  "claimId": "lifehacks.tape-mark-same-spacing.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "tape-mark-same-spacing",
+  "claimId": "lifehacks.tape-mark-same-spacing.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "tape-mark-same-spacing",
+  "claimId": "lifehacks.tape-mark-same-spacing.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "tape-mark-same-spacing",
+  "claimId": "lifehacks.tape-mark-same-spacing.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "tote-balance-sides",
+  "claimId": "lifehacks.tote-balance-sides.c1",
+  "status": "verified",
+  "note": "Node: 3 kg at -20 cm, 1 kg at +20 cm -> centre (3*-20+1*20)/4 = -10 cm; after each side (3+1)/2 = 2 kg -> 0 cm; total mass unchanged. Centre of mass as mass-weighted mean is standard. The cited REI page was not needed for the arithmetic and could not be read (primary host unreachable from this sandbox (HTTP 403 via proxy / DNS blocked))."
+ },
+ {
+  "slug": "tote-balance-sides",
+  "claimId": "lifehacks.tote-balance-sides.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "tote-balance-sides",
+  "claimId": "lifehacks.tote-balance-sides.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "tote-balance-sides",
+  "claimId": "lifehacks.tote-balance-sides.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "tote-balance-sides",
+  "claimId": "lifehacks.tote-balance-sides.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "towel-over-two-bars",
+  "claimId": "lifehacks.towel-over-two-bars.c1",
+  "status": "verified",
+  "note": "Node: 70x140 cm both faces = 1.96 m2; touching 50% -> 0.98 m2, separated 1.96 m2. Geometric-model statement; the 50% fraction is stated on the stage as an assumption. OpenStax 13.6 (evaporation inhibited by humidity) corroborated via a mirror in search results; the openstax.org page itself was unreachable (primary host unreachable from this sandbox (HTTP 403 via proxy / DNS blocked)). The claim does not depend on it."
+ },
+ {
+  "slug": "towel-over-two-bars",
+  "claimId": "lifehacks.towel-over-two-bars.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "towel-over-two-bars",
+  "claimId": "lifehacks.towel-over-two-bars.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "towel-over-two-bars",
+  "claimId": "lifehacks.towel-over-two-bars.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "towel-over-two-bars",
+  "claimId": "lifehacks.towel-over-two-bars.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "towel-spread-dries-first",
+  "claimId": "lifehacks.towel-spread-dries-first.c1",
+  "status": "verified",
+  "note": "Node: area 2*0.7*1.4/4 = 0.49 m2 -> 0.6/(0.49*0.1020408163) = 12.0 h; flat 1.96 m2 -> 3.0 h (ratio 1/4 exact). Model statement correct and heavily hedged. openstax.org unreachable; mirror text corroborates humidity-inhibits-evaporation."
+ },
+ {
+  "slug": "towel-spread-dries-first",
+  "claimId": "lifehacks.towel-spread-dries-first.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "towel-spread-dries-first",
+  "claimId": "lifehacks.towel-spread-dries-first.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1). Advisory (unclaimed number): the stage shows \"flux=0.102\" with no unit; add \"kg/(m2.h)\" to the formula/inputs line."
+ },
+ {
+  "slug": "towel-spread-dries-first",
+  "claimId": "lifehacks.towel-spread-dries-first.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "towel-spread-dries-first",
+  "claimId": "lifehacks.towel-spread-dries-first.c5",
+  "status": "verified",
+  "note": "Node: time = m/(A*flux): doubling area halves the time. Keyed option \"B takes half as long\" correct."
+ },
+ {
+  "slug": "towel-thickness-hidden-volume",
+  "claimId": "lifehacks.towel-thickness-hidden-volume.c1",
+  "status": "verified",
+  "note": "Node: 50x100 cm, 2 mm -> face area 10000 cm2, volume 5000*0.2 = 1000 cm3, ratio 10 cm^-1; 4 mm -> 5 cm^-1. Halving confirmed (stage value 2/(t/10))."
+ },
+ {
+  "slug": "towel-thickness-hidden-volume",
+  "claimId": "lifehacks.towel-thickness-hidden-volume.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "towel-thickness-hidden-volume",
+  "claimId": "lifehacks.towel-thickness-hidden-volume.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "towel-thickness-hidden-volume",
+  "claimId": "lifehacks.towel-thickness-hidden-volume.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "towel-thickness-hidden-volume",
+  "claimId": "lifehacks.towel-thickness-hidden-volume.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "transparent-box-visibility",
+  "claimId": "lifehacks.transparent-box-visibility.c1",
+  "status": "verified",
+  "note": "Boolean model (opaque 0, clear 1 visible target); trivially consistent with stage and hedged."
+ },
+ {
+  "slug": "transparent-box-visibility",
+  "claimId": "lifehacks.transparent-box-visibility.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "transparent-box-visibility",
+  "claimId": "lifehacks.transparent-box-visibility.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "transparent-box-visibility",
+  "claimId": "lifehacks.transparent-box-visibility.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "transparent-box-visibility",
+  "claimId": "lifehacks.transparent-box-visibility.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "trays-slide-out-reach",
+  "claimId": "lifehacks.trays-slide-out-reach.c1",
+  "status": "verified",
+  "note": "Node: depth 35..65, travel 30 -> reach 35..65 fixed vs 5..35 on the tray (max(0,.) never binds). Default 50 -> 20."
+ },
+ {
+  "slug": "trays-slide-out-reach",
+  "claimId": "lifehacks.trays-slide-out-reach.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "trays-slide-out-reach",
+  "claimId": "lifehacks.trays-slide-out-reach.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "trays-slide-out-reach",
+  "claimId": "lifehacks.trays-slide-out-reach.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "trays-slide-out-reach",
+  "claimId": "lifehacks.trays-slide-out-reach.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "weight-spread-on-table",
+  "claimId": "lifehacks.weight-spread-on-table.c1",
+  "status": "verified",
+  "note": "Node: 2 kg -> 2*9.81/0.001 = 19,620 Pa at 10 cm2; /0.003 = 6,540 Pa at 30 cm2. P=F/A is textbook-correct; the total-weight hedge is correct."
+ },
+ {
+  "slug": "weight-spread-on-table",
+  "claimId": "lifehacks.weight-spread-on-table.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "weight-spread-on-table",
+  "claimId": "lifehacks.weight-spread-on-table.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "weight-spread-on-table",
+  "claimId": "lifehacks.weight-spread-on-table.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "weight-spread-on-table",
+  "claimId": "lifehacks.weight-spread-on-table.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "wet-knit-hang-stretch",
+  "claimId": "lifehacks.wet-knit-hang-stretch.c1",
+  "status": "verified",
+  "note": "Node: 600 g -> 300 vs 100 g-equivalent per point (2 vs 6 equal supports). GINETEX natural-drying set including flat drying confirmed by search results on GINETEX's own brochure/newsletter; ginetex.net page itself unreachable (primary host unreachable from this sandbox (HTTP 403 via proxy / DNS blocked)). Model hedged: no stretch predicted."
+ },
+ {
+  "slug": "wet-knit-hang-stretch",
+  "claimId": "lifehacks.wet-knit-hang-stretch.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "wet-knit-hang-stretch",
+  "claimId": "lifehacks.wet-knit-hang-stretch.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "wet-knit-hang-stretch",
+  "claimId": "lifehacks.wet-knit-hang-stretch.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "wet-knit-hang-stretch",
+  "claimId": "lifehacks.wet-knit-hang-stretch.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "wetter-cloth-more-water",
+  "claimId": "lifehacks.wetter-cloth-more-water.c1",
+  "status": "verified",
+  "note": "Node: 200 g / 100 g per step = 2 steps; 400 g -> 4 (ratio 2). Fixed-rate arithmetic. openstax.org unreachable; claim does not rest on it."
+ },
+ {
+  "slug": "wetter-cloth-more-water",
+  "claimId": "lifehacks.wetter-cloth-more-water.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "wetter-cloth-more-water",
+  "claimId": "lifehacks.wetter-cloth-more-water.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "wetter-cloth-more-water",
+  "claimId": "lifehacks.wetter-cloth-more-water.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "wetter-cloth-more-water",
+  "claimId": "lifehacks.wetter-cloth-more-water.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "wobbly-table-quarter-turn",
+  "claimId": "lifehacks.wobbly-table-quarter-turn.c1",
+  "status": "verified",
+  "note": "Baritompa, Lowen, Polster, Ross, \"Mathematical table turning revisited\" (arXiv math/0511490, Math. Intelligencer 2007): search results for the arXiv record state the square-table intermediate-value argument shows a square table can be balanced (all four feet on continuous, not-too-wild ground) by turning on the spot, with cliff counterexamples. Node: illustrative gap 4cos(2*theta): 4 mm at 0 deg, 0 at 45 deg, -4 at 90 deg (sign change in a quarter turn). Page itself unreachable here (primary host unreachable from this sandbox (HTTP 403 via proxy / DNS blocked)); abstract-level support only, which is the level the claim asserts."
+ },
+ {
+  "slug": "wobbly-table-quarter-turn",
+  "claimId": "lifehacks.wobbly-table-quarter-turn.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "wobbly-table-quarter-turn",
+  "claimId": "lifehacks.wobbly-table-quarter-turn.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "wobbly-table-quarter-turn",
+  "claimId": "lifehacks.wobbly-table-quarter-turn.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "wobbly-table-quarter-turn",
+  "claimId": "lifehacks.wobbly-table-quarter-turn.c5",
+  "status": "verified",
+  "note": "Keyed answer correct: feet-on-ground (existence result) does not imply a level top; the paper's result is contact, not levelness."
+ },
+ {
+  "slug": "wrapping-paper-minimum-area",
+  "claimId": "lifehacks.wrapping-paper-minimum-area.c1",
+  "status": "verified",
+  "note": "Node: 20x10x8 -> 2(200+160+80) = 880 cm2 vs footprint 200 cm2. Surface area is a true lower bound for covering a closed box; overlaps hedge present."
+ },
+ {
+  "slug": "wrapping-paper-minimum-area",
+  "claimId": "lifehacks.wrapping-paper-minimum-area.c2",
+  "status": "verified",
+  "note": "Scope limit; true of the card and its code, asserts nothing beyond the model."
+ },
+ {
+  "slug": "wrapping-paper-minimum-area",
+  "claimId": "lifehacks.wrapping-paper-minimum-area.c3",
+  "status": "verified",
+  "note": "Matches model in home-models.ts and the formula line shown on the stage (re-run in node, see c1)."
+ },
+ {
+  "slug": "wrapping-paper-minimum-area",
+  "claimId": "lifehacks.wrapping-paper-minimum-area.c4",
+  "status": "verified",
+  "note": "Prediction prompt matches the learner-visible question; the keyed answer is correct at the stated default values."
+ },
+ {
+  "slug": "wrapping-paper-minimum-area",
+  "claimId": "lifehacks.wrapping-paper-minimum-area.c5",
+  "status": "verified",
+  "note": "Recall prompt matches the lesson and the keyed option is correct."
+ },
+ {
+  "slug": "agenda-needs-an-outcome",
+  "claimId": "lifehacks.agenda-needs-an-outcome.c1",
+  "status": "disputed",
+  "note": "Hook says \"Three discussion topics still do not name the decision needed\", but the stage (message family) shows one topic (\"plan\"), then outcome (\"choose\") and owner (\"Bo\"); there are not three topics anywhere, so the learner is told a fixture fact the stage contradicts. FIX: reword hook and claim c1 to \"A topic alone does not name the decision needed.\" (or add the three topics to the stage)."
+ },
+ {
+  "slug": "agenda-needs-an-outcome",
+  "claimId": "lifehacks.agenda-needs-an-outcome.c2",
+  "status": "verified",
+  "note": "Checklist convention stated as such; no effectiveness claim."
+ },
+ {
+  "slug": "agenda-needs-an-outcome",
+  "claimId": "lifehacks.agenda-needs-an-outcome.c3",
+  "status": "verified",
+  "note": "Message model: count of fields = step+1 of 3, matches reveal sentence."
+ },
+ {
+  "slug": "agenda-needs-an-outcome",
+  "claimId": "lifehacks.agenda-needs-an-outcome.c4",
+  "status": "verified",
+  "note": "Recall question/answer correct (\"Choose plan plus owner\" states outcome and owner)."
+ },
+ {
+  "slug": "apply-not-quote",
+  "claimId": "lifehacks.apply-not-quote.c1",
+  "status": "verified",
+  "note": "Ascending order of 2,5,9 is the only arrangement matching the rule (6 permutations, node). Values labelled as conventions; hook and question consistent."
+ },
+ {
+  "slug": "apply-not-quote",
+  "claimId": "lifehacks.apply-not-quote.c2",
+  "status": "disputed",
+  "note": "Two defects. (1) The cited source (Roediger & Karpicke 2006, Psychol. Sci. 17(3):249-255, doi:10.1111/j.1467-9280.2006.01693.x; bibliographic details correct) concerns retrieval practice and supports nothing in this sentence; the claim is an arithmetic/convention statement and should cite the fixture. (2) \"The target uses new values ordered smallest to largest\" is not what the stage shows: the target is the same numbers 2, 5, 9 (the \"Try values\" step re-presents them as 5, 9, 2). FIX: reword claim and the principle string to \"The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.\" and replace the source with the exercise fixture; keep the paper only as background in c2 of a different, retrieval-practice claim, or drop it."
+ },
+ {
+  "slug": "apply-not-quote",
+  "claimId": "lifehacks.apply-not-quote.c3",
+  "status": "verified",
+  "note": "Node: reconstructionMatches counts positions equal to ascending order 2,5,9; initial order 9,2,5 matches 0 of 3; \"Try values\" shows 5,9,2 and leaves it visible. Matches stage and the disclaimer."
+ },
+ {
+  "slug": "apply-not-quote",
+  "claimId": "lifehacks.apply-not-quote.c4",
+  "status": "verified",
+  "note": "Node: 7,1,4 ascending is 1,4,7 (1<4<7); keyed option correct."
+ },
+ {
+  "slug": "arrival-is-not-departure",
+  "claimId": "lifehacks.arrival-is-not-departure.c1",
+  "status": "verified",
+  "note": "Hook arithmetic: arrival 40 minus 20-minute trip = 40-20 = 20. Rows: travel 30-50 initially overlaps visit 40-55 by 10; target [20,40,55] gives 0 overlap and first task ends at 40 (spill 0) - node via calendarResult."
+ },
+ {
+  "slug": "arrival-is-not-departure",
+  "claimId": "lifehacks.arrival-is-not-departure.c2",
+  "status": "verified",
+  "note": "Start = arrival minus duration is correct; the real-traffic hedge is present."
+ },
+ {
+  "slug": "arrival-is-not-departure",
+  "claimId": "lifehacks.arrival-is-not-departure.c3",
+  "status": "verified",
+  "note": "Matches calendarResult/observation sentence (overlap minutes, finish minute, spill vs minute 40)."
+ },
+ {
+  "slug": "arrival-is-not-departure",
+  "claimId": "lifehacks.arrival-is-not-departure.c4",
+  "status": "verified",
+  "note": "Keyed \"Minute 20\" correct."
+ },
+ {
+  "slug": "batch-by-setup",
+  "claimId": "lifehacks.batch-by-setup.c1",
+  "status": "verified",
+  "note": "Tags A,B,A cost: initial order A1,B1,A2 has 2 switches (4 min); grouped A1,A2,B1 has 1 (2 min) - node via queueResult. Cost of two minutes is stated in the hook."
+ },
+ {
+  "slug": "batch-by-setup",
+  "claimId": "lifehacks.batch-by-setup.c2",
+  "status": "verified",
+  "note": "Correct and hedged (does not estimate real concentration cost)."
+ },
+ {
+  "slug": "batch-by-setup",
+  "claimId": "lifehacks.batch-by-setup.c3",
+  "status": "verified",
+  "note": "Matches queueResult (waiting 21 vs 12 minutes, switches 2 vs 1)."
+ },
+ {
+  "slug": "batch-by-setup",
+  "claimId": "lifehacks.batch-by-setup.c4",
+  "status": "verified",
+  "note": "Keyed \"Group equal tags\" correct."
+ },
+ {
+  "slug": "buffer-for-a-late-finish",
+  "claimId": "lifehacks.buffer-for-a-late-finish.c1",
+  "status": "verified",
+  "note": "Target [0,25,45]: draft 0-20, call 25-40, notes 45-55 leaves 5-minute gaps, so a 5-minute overrun of draft or call overlaps nothing (node). Note: the stage never shows a task running late, only the gap; the claim is true as arithmetic."
+ },
+ {
+  "slug": "buffer-for-a-late-finish",
+  "claimId": "lifehacks.buffer-for-a-late-finish.c2",
+  "status": "verified",
+  "note": "A gap absorbs delay up to its length; hedged as a stated allowance."
+ },
+ {
+  "slug": "buffer-for-a-late-finish",
+  "claimId": "lifehacks.buffer-for-a-late-finish.c3",
+  "status": "verified",
+  "note": "Matches calendarResult and the reveal sentence (0 overlap, ends minute 55 after the buffer; 0 overlap, ends 45 before)."
+ },
+ {
+  "slug": "buffer-for-a-late-finish",
+  "claimId": "lifehacks.buffer-for-a-late-finish.c4",
+  "status": "verified",
+  "note": "Keyed \"A five-minute gap\" correct."
+ }
+]

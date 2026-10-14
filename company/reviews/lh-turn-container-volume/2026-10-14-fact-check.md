@@ -1,0 +1,18 @@
+# Fact-check: lh-turn-container-volume (Turn it; volume stays the same)
+
+## Pass LH-1 (pre-merge, read-only)
+
+Checker: fact-checker (Ingrid). Date: 2026-10-14. Batch B8 of PR #2 (origin/codex/lifehacks-200; untrusted contributor content, read via git show only, nothing checked out, built or run). Method: the claims in src/demos/lifehacks/lh-turn-container-volume/meta.json compared with the learner-visible text from src/lib/lifehacks/resource-specs.json (title, question, options, details, assumptions, principle, recall) and the stage and reveal templates in src/components/lifehacks/ResourceLesson.tsx and src/lib/lifehacks/resource-model.ts. I did not read the contributor's review records. Arithmetic re-derived in node with an independent oracle over the whole slider range (1 to 30, step 1), plus the prediction answer and the recall answer. Verdicts are to be applied to meta.json after the merge.
+
+Question as shown: An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Which modeled internal capacity is larger? Marked answer: Equal (re-derived at the start value, correct).
+
+| Claim | Support | Verdict | Note |
+|---|---|---|---|
+| c1 | convention | verified | Declared hypothetical; 1000 cm3 = 1 L correct by definition (litre = dm3). 20 x 10 x 15 cm = 3000 cm3 = 3 L. |
+| c2 | derivation | verified | Re-derived in node against an independent integer/decimal oracle at every slider stop (1 to 30, step 1): both formulas equal at 3-decimal display. Start values in the claim text match. |
+| c3 | derivation | verified | Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption. |
+| c4 | derivation | verified | Recall answer re-derived in node; marked option is the only correct one among three distinct options; claim text matches the learner-visible question and why. |
+
+Unrecorded learner-visible factual sentences: none of substance. The "Full scale: ..." caption and the reveal's "At the prediction's ..., A gives ... and B gives ..." sentence come from the same model and are covered by c2.
+
+Blocking: no dispute.
