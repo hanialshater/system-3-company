@@ -1,0 +1,48 @@
+{
+  "note": "Change-tier path map read by tools/readiness.mjs (EDD-007). Owner: principal-engineer (change tiers). principal-engineer-ops proposes entries. Rules are checked in order and the FIRST match wins, except that every glob in company/constitution/protected-paths.txt is tier 2 before any rule here. A path no rule matches is tier 1. 'added' rules apply only to files the diff adds (git diff --name-status A). Review: company/engineering/reviews/2026-10-14-edd-007-review.md. tools-lead may reshape this format when building W-790, keeping the same tiers.",
+  "since": null,
+  "sinceNote": "Set to the commit at which the deploy starts refusing (end of rollout week 1). The deploy base is the later of this commit and the commit in the last production record in company/ops/deployments/. Until set, the tool reports and never refuses.",
+  "protectedPathsFile": "company/constitution/protected-paths.txt",
+  "default": 1,
+  "added": [
+    { "glob": "src/app/**/page.tsx", "tier": 2, "why": "a new production route is new public surface (W-477 /spike shipped with no review)" },
+    { "glob": "src/app/**/route.ts", "tier": 2, "why": "a new API route" }
+  ],
+  "rules": [
+    { "glob": "tools/readiness.mjs", "tier": 2, "class": "gate", "why": "the gate itself" },
+    { "glob": "company/engineering/readiness/paths.json", "tier": 2, "class": "gate", "why": "the map the gate reads" },
+
+    { "glob": "src/demos/**", "tier": 0, "why": "a lesson's own files, including the generated registry (it changes with every lesson)" },
+    { "glob": "content/**", "tier": 0, "why": "curriculum and domains" },
+    { "glob": "company/**", "tier": 0, "why": "records and docs" },
+    { "glob": ".claude/agents/**", "tier": 0, "why": "generated from tools/org" },
+    { "glob": ".claude/commands/**", "tier": 0, "why": "ritual prompts" },
+    { "glob": "*.md", "tier": 0, "why": "root docs" },
+
+    { "glob": "src/kit/**", "tier": 2, "class": "kit", "why": "the lesson contract and kit" },
+    { "glob": "src/app/d/**", "tier": 2, "class": "kit", "why": "the lesson page: every lesson renders through it" },
+    { "glob": "src/components/DemoHost.tsx", "tier": 2, "class": "kit", "why": "loads every lesson" },
+    { "glob": "src/app/layout.tsx", "tier": 2, "class": "kit", "why": "every page; head and scripts" },
+    { "glob": "src/lib/catalog.ts", "tier": 2, "class": "data", "why": "lesson data shape and visibility" },
+    { "glob": "src/components/lifehacks/**", "tier": 2, "class": "shared-engine", "why": "engine used by more than 10 lessons" },
+    { "glob": "src/lib/lifehacks/**", "tier": 2, "class": "shared-engine", "why": "engine and data used by more than 10 lessons" },
+
+    { "glob": "src/app/api/**", "tier": 2, "class": "event-api", "why": "routes a stranger can reach; events" },
+    { "glob": "src/lib/events*", "tier": 2, "class": "event-api", "why": "event shapes" },
+    { "glob": "src/**/auth*", "tier": 2, "class": "auth", "why": "auth (none exists yet; lessons are excluded above)" },
+    { "glob": "src/**/db*", "tier": 2, "class": "data", "why": "learner data stores (none exist yet; lessons are excluded above)" },
+
+    { "glob": "vercel.json", "tier": 2, "class": "deploy", "why": "deploy config" },
+    { "glob": ".vercelignore", "tier": 2, "class": "deploy", "why": "what ships" },
+    { "glob": "tools/deploy.mjs", "tier": 2, "class": "deploy", "why": "the release path and the gate's caller" },
+    { "glob": "tools/snapshot.sh", "tier": 2, "class": "deploy", "why": "pushes to the shared tree" },
+    { "glob": ".github/workflows/**", "tier": 2, "class": "ci", "why": "CI and deploy workflows" },
+    { "glob": "next.config.*", "tier": 2, "class": "build", "why": "build config" },
+    { "glob": "tsconfig.json", "tier": 2, "class": "build", "why": "build config" },
+    { "glob": "playwright.config.ts", "tier": 2, "class": "ci", "why": "can weaken the QA gate without touching tests/qa" },
+    { "glob": "package.json", "tier": 2, "class": "build", "why": "scripts and dependencies" },
+    { "glob": "package-lock.json", "tier": 2, "class": "build", "why": "dependencies" },
+    { "glob": ".claude/settings*.json", "tier": 2, "class": "ci", "why": "permissions for every agent" },
+    { "glob": ".claude/hooks/**", "tier": 2, "class": "ci", "why": "hooks every agent runs" }
+  ]
+}

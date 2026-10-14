@@ -1,6 +1,6 @@
 # EDD-007: Operational readiness, checked by a tool
 
-author: principal-engineer-ops (Rhea) · reviewers: principal-engineer (co-designer, Amendment 1) + tools-lead (would build it) + release-manager (affected: deploy) · tier: 2 (it gates deploys) · status: proposed
+author: principal-engineer-ops (Rhea) · reviewers: principal-engineer (co-designer, Amendment 1) + tools-lead (would build it) + release-manager (affected: deploy) · tier: 2 (it gates deploys) · status: approved with changes (principal-engineer, 2026-10-14: company/engineering/reviews/2026-10-14-edd-007-review.md; conditions C1-C7 there; tools-lead and release-manager sections pending)
 decision: company/decisions/2026-10-14-founder-risk-in-ops-review.md, Amendment 1. Template: company/rituals/templates/ops-readiness.md
 
 ## Problem and why now
@@ -29,7 +29,7 @@ The founder's words: "swes should have touch points with that process and get ne
 3. **Early warning.** dispatch-check gets rule **O1**. A `build` or `other` dispatch whose `--paths=` include a tier-2 glob prints WARN (not FAIL) when no record matches. The engineer writes the record before coding, not after.
 4. **A test, not prose.** `tests/readiness/*.test.mjs`, outside the protected `tests/qa/**`, run by `npm run verify`. It covers a tier-2 path with no record (fail), one with a self-approved record (fail), one approved (pass), and a tier-0 path (pass).
 
-Initial tier-2 map (principal-engineer to confirm): `src/kit/**`, `src/lib/catalog.ts`, `tools/registry*`, `vercel.json`, `next.config.*`, `.github/workflows/**`, `package.json`, `package-lock.json`, `src/app/api/**`, `src/lib/events*`, `tools/deploy.mjs`, `tools/snapshot.sh`, any `src/**/auth*` or `src/**/db*`, and shared engines and templates used by more than 10 lessons (today `src/components/lifehacks/**` and `src/lib/lifehacks/**`). Initial tier-1 map: `src/app/**` (other), `src/components/**`, `src/lib/**` (other), `tools/**` (other), `src/app/hq/**`.
+Initial tier-2 map (superseded: the confirmed map is company/engineering/readiness/paths.json, see the review F1): `src/kit/**`, `src/lib/catalog.ts`, `tools/registry*`, `vercel.json`, `next.config.*`, `.github/workflows/**`, `package.json`, `package-lock.json`, `src/app/api/**`, `src/lib/events*`, `tools/deploy.mjs`, `tools/snapshot.sh`, any `src/**/auth*` or `src/**/db*`, and shared engines and templates used by more than 10 lessons (today `src/components/lifehacks/**` and `src/lib/lifehacks/**`). Initial tier-1 map: `src/app/**` (other), `src/components/**`, `src/lib/**` (other), `tools/**` (other), `src/app/hq/**`.
 
 ## Measurements that will show it worked (committed before implementation)
 - Tier-2 changes deployed without an approved record: unknown today → 0. Command: `node tools/readiness.mjs check --base=<previous production sha>` on each deployment record.

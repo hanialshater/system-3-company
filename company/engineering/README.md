@@ -14,6 +14,8 @@ expensive to reverse. Those get a design and a review. The tier decides which is
 | **1: shared, reversible** | Feed UI, catalog page, CLI commands outside the gates, CSS shared by lessons, the walkthrough tool | `npm run verify`; a changelog line; one reviewer (any engineer role) reads the diff |
 | **2: critical** | The lesson kit or contract (`src/kit/`), data shapes (`meta.json` schema, registry), build/deploy config, new dependencies, anything touching every lesson, performance at scale, privacy and events, protected paths | An **EDD** before code, an **engineering review** before merge, an **ADR** if the decision is expensive to reverse, `npm run verify` on the integrated tree, and a rollback plan. If it is a protected path, also an **amendment**. |
 
+Which paths are which tier is data: [readiness/paths.json](readiness/paths.json) (ordered rules, first match wins, protected paths always tier 2, unmatched paths tier 1). `tools/readiness.mjs` reads it (EDD-007). Tier 1 and tier 2 also need an [operational readiness record](readiness/README.md).
+
 When unsure, ask the principal engineer. Do not upgrade tier-0 work "to be safe".
 
 ## Documents
@@ -41,6 +43,7 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
 | [EDD-003](edd/EDD-003-lesson-storage-at-scale.md) | Lesson storage and loading at 10k–1M (client-side bundles, hybrid) | approved with changes ([review](../rituals/records/2026-10-13-eng-review-lesson-storage.md), 2026-10-14) |
 | [EDD-004](edd/EDD-004-knots-kit.md) | Promote the knots library (gen2-force-smooth) to `src/kit/knots` | approved with conditions ([review](../rituals/records/2026-10-14-eng-review-EDD-004.md)); moved. Addendum A: kit drawing → fix1-bigon (tier 2, approved, shipped) |
+| [EDD-007](edd/EDD-007-ops-readiness-gate.md) | Operational readiness, checked by a tool (`tools/readiness.mjs` from `deploy.mjs`, dispatch-check O1) | approved with changes ([review](reviews/2026-10-14-edd-007-review.md), 2026-10-14); advisory until W-480 |
 | [SPIKE-001](spikes/SPIKE-001-frontend-sandbox.md) | 3 lessons as content-hashed bundles in a sandboxed cross-origin iframe (EDD-003 stage-1 spike) | done: go with changes (accepted in the EDD-003 review, 2026-10-14) |
 
 See also [best-practices.md](best-practices.md).
