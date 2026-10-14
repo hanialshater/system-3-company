@@ -68,6 +68,7 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 ## Handoffs
 
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B4 (25 study lessons) reviewed at source level: 25 pass, class none, no warnings, 0 changes; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B4-2026-10-14.md. No walkthrough run. Not committed.
+- 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B5 (25 study lessons) reviewed at source level: 25 pass, class none, no warnings, 0 changes; region flags (ISO date order, Friday weekend, Gmail operators) in company/reviews/lifehacks-200/safety-B5-2026-10-14.md; per-lesson records at company/reviews/<slug>/2026-10-14-safety.md. No walkthrough run. Not committed.
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B2 (25 home lessons) reviewed at source level: 25 pass, class none, 0 changes; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B2-2026-10-14.md. No walkthrough run. Not committed.
 
 ### 2026-10-14 · session 2 operator · NCM batch 1 built and revised; knots gen 2 closed; PR #2 taken over
@@ -393,3 +394,4 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 - **What I believe:** model.ts re-run (and an independent re-implementation) reproduces 9/36/110/148/183 and the 20-seed means; Erdős-Rényi 1960 citation (Publ. Math. Inst. Hung. Acad. Sci. 5: 17-61) confirmed; large-n share at c = 2 is 79.68%. Very sure.
 - **Still open:** Easley and Kleinberg section stays `section_unconfirmed` (2.2). Optional builder tweak: add "usually" to the reveal's first mechanism sentence.
 
+- 2026-10-14 · lifehacks-safety-reviewer · PR #2 batch B8 (25 resource lessons) safety source-read done: 19 pass, 6 pass with changes, 0 block. Summary: company/reviews/lifehacks-200/safety-B8-2026-10-14.md. Next: demo-builder applies the listed changes; second reader rechecks wording.
