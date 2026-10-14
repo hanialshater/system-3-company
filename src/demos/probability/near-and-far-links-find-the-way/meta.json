@@ -1,0 +1,115 @@
+{
+  "slug": "near-and-far-links-find-the-way",
+  "title": "Which shortcuts help you find someone?",
+  "hook": "Random long links reach farthest. Do they help a message find its way?",
+  "domain": "probability",
+  "concept": "decentralized-search",
+  "format": "simulation-run",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "small worlds have short paths (few-shortcuts-shrink-the-world)"
+    ],
+    "doesNotKnow": [
+      "that people can find short paths using only local knowledge only if long links are spread across distance scales (probability ∝ 1/d on a ring)"
+    ]
+  },
+  "misconception": "Purely random long links are best for finding people, since they reach farthest.",
+  "objective": "The learner can explain that greedy routing on a ring is fastest when long links are drawn with chance ∝ 1/distance (about 29 steps here, vs 38 for uniform and 213 for 1/distance²), because 1/d links exist at every distance scale.",
+  "claims": [
+    {
+      "id": "probability.near-and-far-links-find-the-way.c1",
+      "text": "In the stage's model (ring of 2,000, one long link each, 1,000 messages per rule), greedy routing averages 38.3 steps with uniform links, 28.5 with 1/d links and 212.6 with 1/d² links.",
+      "support": "simulation",
+      "source": "Demo.tsx runRule(): 5 networks from mulberry32 seeds 1-5 (not chosen; the first five) × 200 source/target pairs per network from mulberry32(100 + seed), the same pairs for every rule. Builder ran the lesson's own code in Node on 2026-10-14: q0 38.32, q1 28.52, q2 212.59. Robustness: drawing pairs from the network's own generator instead gave 37.0, 29.5, 219.2, and seeds 11-15 that way gave 38.9, 30.0, 213.1; the order 1/d < uniform << 1/d² held every time. Long-link distance d in 1..1000 drawn with chance ∝ (people at distance d) × d^-q; the message goes to whichever of the two ring neighbours or the long link is closest to the target. Brief's re-run with another generator: 29.5, 37.8, 219.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.near-and-far-links-find-the-way.c2",
+      "text": "With no long links the average is about 500 steps.",
+      "support": "derivation",
+      "source": "Ring of 2,000: mean ring distance between two different people = (2·(1+…+999) + 1000)/1999 = 1,000,000/1,999 ≈ 500.25, and with ring neighbours only each step moves one place.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.near-and-far-links-find-the-way.c3",
+      "text": "Uniform links are mostly huge jumps, so near the target they rarely help and the last stretch crawls along the ring.",
+      "support": "derivation",
+      "source": "Uniform over the other 1,999 people: 999 of 1,999 (about half) of all links are longer than 500. When the message is within distance D of the target, a uniform link lands closer than D with chance about 2D/2000 per holder, so small D takes many ring steps.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.near-and-far-links-find-the-way.c4",
+      "text": "1/d² links almost never jump far.",
+      "support": "derivation",
+      "source": "With chance ∝ 1/d² over d = 1..1000 (two people at each distance), about 61% of links have length 1 and under 2% are longer than 31 (node sums, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.near-and-far-links-find-the-way.c5",
+      "text": "1/d links come at every scale, so wherever the message is, some contact can cut the remaining distance a lot.",
+      "support": "derivation",
+      "source": "With chance ∝ 1/d each doubling band of distances gets roughly the same share of links (about 10-15% each on a ring of 1,024; see every-scale-equally-likely), so a link that halves the remaining distance D has chance of order 1/log N per holder whatever D is.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.near-and-far-links-find-the-way.c6",
+      "text": "On large networks, Kleinberg proved greedy search is fast only when the exponent matches the dimension: 1 for a ring.",
+      "support": "source",
+      "source": "Kleinberg (2000), 'Navigation in a small world', Nature 406, and 'The small-world phenomenon: an algorithmic perspective', STOC 2000; Easley and Kleinberg (2010) ch. 20. From the brief; builder has not opened these. Attribution: fact-checker confirms.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a ring, each person has one long link drawn with chance ∝ 1/d^q. Passing a message to whichever contact is closest to the target, which q finds targets fastest?",
+    "options": [
+      "q = 0: uniformly random links",
+      "q = 1: chance ∝ 1/distance",
+      "q = 2: chance ∝ 1/distance²"
+    ],
+    "answer": 1,
+    "why": "1/d links come at every distance scale, so a holder anywhere can usually cut the remaining distance; uniform links are almost all far jumps and 1/d² links are almost all short ones."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:decentralized-search",
+    "also": [
+      "cs:graph-shortest-path"
+    ],
+    "prerequisites": [
+      "probability:random-walk"
+    ],
+    "level": "core",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 20
+      }
+    ],
+    "tags": [
+      "small world",
+      "search",
+      "networks"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}
