@@ -1,0 +1,106 @@
+{
+  "slug": "lower-bid-takes-the-top-ad",
+  "title": "Does the top bid get the top ad?",
+  "hook": "Ad A bids more per click than ad B. Is A sure to get the top slot?",
+  "domain": "economics",
+  "concept": "ad-quality-ranking",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ads can be sold by auction",
+      "how to multiply two numbers"
+    ],
+    "doesNotKnow": [
+      "that when ads are ranked by bid times a quality score, a lower bid can win the top slot and pay less"
+    ]
+  },
+  "misconception": "The highest bidder always gets the top ad slot.",
+  "objective": "The learner can rank two ads by bid × quality, see that the lower bid can come first, and work out that under a pay-the-least-that-keeps-your-rank rule the winner pays the next ad's score divided by its own quality.",
+  "claims": [
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c1",
+      "text": "Ranked by bid alone, A's $2.00 beats B's $1.50 and takes the top slot.",
+      "support": "derivation",
+      "source": "2.00 > 1.50; Demo.tsx key(…, 'bid').",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c2",
+      "text": "Ranked by bid × quality, B scores $1.50 × 1.0 = 1.5 and A scores $2.00 × 0.5 = 1.0, so B takes the top slot with the lower bid.",
+      "support": "derivation",
+      "source": "Arithmetic; Demo.tsx key(…, 'score'). Brief check in company/domains/briefs/economics.markets.md #22.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c3",
+      "text": "Under the rule 'pay the least bid that keeps your slot', B pays 1.0 ÷ 1.0 = $1.00 a click, less than A bid.",
+      "support": "derivation",
+      "source": "B stays on top for any bid above A's score ÷ B's quality = 1.0 ÷ 1.0 = $1.00 (equal at $1.00); price = next score ÷ own quality. Demo.tsx B_PRICE.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c4",
+      "text": "With B's bid at $0.80, B's score 0.8 falls below A's 1.0 and A takes the top slot (and pays 0.8 ÷ 0.5 = $1.60 a click); at $1.00 the two tie.",
+      "support": "derivation",
+      "source": "0.80 × 1.0 = 0.8 < 1.0; 0.8 ÷ 0.5 = 1.60; 1.00 × 1.0 = 1.0 = 2.00 × 0.5. Demo.tsx readouts.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lower-bid-takes-the-top-ad.c5",
+      "text": "The ranking and payment rule are a simplified model with invented numbers, not a description of any real search engine.",
+      "support": "convention",
+      "source": "Stage chip states the payment rule; reveal footnote. The brief's planned claim about real search engines (quality factor used, formulas not public; E&K ch. 15) needs a human source check and is kept out of learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ads are ranked by bid × quality. Ad P bids $3 with quality 0.4; ad Q bids $2 with quality 0.8. Which ad is ranked first?",
+    "options": [
+      "P, because it bids more",
+      "Q",
+      "They tie"
+    ],
+    "answer": 1,
+    "why": "P scores 3 × 0.4 = 1.2 and Q scores 2 × 0.8 = 1.6. The product decides, so the lower bid can win."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:ad-quality-ranking",
+    "also": [],
+    "prerequisites": [
+      "economics:supply-demand"
+    ],
+    "level": "intro",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 15
+      }
+    ],
+    "tags": [
+      "auctions",
+      "advertising"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after",
+    "preset-buttons",
+    "locked-readouts"
+  ]
+}
