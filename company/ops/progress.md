@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (pedagogy-critic, Yusuf: demo-crit, six pairs)
+
+- **Changed:** ran the overdue demo crit as its pairwise witness. Record: company/rituals/records/2026-10-14-demo-crit.md. Six pairwise records: company/reviews/{lh-sequential-discounts,lh-discount-round-trip,sock-pairs-not-all-combinations,penalty-kick-mix,a-star-heads-for-goal,who-pays-same-filter}/2026-10-14-pairwise.md. I regenerated the walkthroughs for all 12 lessons against `next dev` on :3530, because the .next build was from 10-13 and `npm run build` did not finish in 10 min. Board: W-513 to W-521.
+- **Believe:** medium-high confidence (simulated reading of screenshots, one witness). In all three Life Hacks duplicates, the existing lesson is better. The shared receipt template draws totals, never the quantities the reveal explains. sock-pairs never shows its central number (a possible fatal for the head-of-product to rule on). penalty-kick-mix and a-star are good lessons that should come *after* two-suspects-payoff and wave-from-the-corner. Phone-fit: a-star now fits. who-pays and penalty fit by shrinking until the text is unreadable. Published wave-from-the-corner fails on the QA path (wall taps wipe the labels the reveal cites).
+- **Next:** head-of-product decides the six pairs (W-513). pattern-librarian takes the six pattern candidates (W-514). evaluation-steward rules on the builder notes in the walkthrough trust-sheet appendix (W-520).
+- **Blocked / not done:** learner-evaluator, QA, a11y and fact-check did not report in this crit. company/ops/events.jsonl holds my kudos line mixed with other sessions' incident events, so I did not commit it.
+
 ## 2026-10-14 (fact-checker, FC pass 35 batch 0: 31 lessons)
 
 - **Changed:** claim status, checkedBy, checkedOn and a "FC pass 35" source note on 84 open claims across the 31 lessons in batch 0, plus one new recorded claim (asthma-looks-safe c6, the hook). Every lesson's company/reviews/<slug>/2026-10-14-fact-check.md has a "Pass 35" table. Board: W-512 (demo-builder). No code touched, nothing built or committed.
