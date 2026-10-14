@@ -156,7 +156,8 @@ const PAGE_HELPERS = `(() => {
     for (let i = 0; i < stack.length; i++) if (stack[i] === textEl || textEl.contains(stack[i])) idx = i;
     if (idx === -1) return { obscured: true };
     let acc = [255, 255, 255, 0], unsure = false;
-    for (let i = stack.length - 1; i > idx; i--) {
+    const start = stack[idx] === textEl && textEl.namespaceURI !== 'http://www.w3.org/2000/svg' ? idx : idx + 1; // an HTML element's own background sits under its own text
+    for (let i = stack.length - 1; i >= start; i--) {
       const e = stack[i], s = getComputedStyle(e);
       if (e.namespaceURI === 'http://www.w3.org/2000/svg') {
         if (/^(text|tspan)$/i.test(e.tagName)) continue;
