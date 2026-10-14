@@ -32,3 +32,16 @@ builder: demo-builder · 2026-10-14 · session 2 (NCM batch 1, brief 2 in `compa
 - **Known limits:**
   - On the phone, during predict the chip row is below the fold of the stage, which scrolls. They are locked anyway.
   - In light theme the legend's tint triangle is faint.
+
+## Revision v2 (2026-10-14, session 2, demo-builder)
+
+Inputs: learner review saying-only, fact-check pass NCM-1 (c6 disputed).
+
+- **Reveal jumped from "3 camps never balance" to "one camp or two" (finding 5):** the reveal now says every Unbalanced = 0 setting the learner reached showed clean camps, and that for five people all 16 balanced settings are camp splits (claim c2), before the three-camps argument.
+- **"mixed" unexplained (finding 3):** readout renamed "not camps". New third milestone "mixed": the learner must tap into a not-camps setting. The reveal quotes its unbalanced count (QA path: 6) beside the 0-unbalanced states, so the pairing is seen, not told. The explore hint names it.
+- **Preset shortcut (finding 7):** the "three" milestone now counts only taps; the 3 camps chip no longer reaches it.
+- **Answer hints (finding 2):** hook changed to "What does that force on a whole group?"; predict text shortened. Options unchanged; "At most 2" may still read as the natural pick (open).
+- **c6:** claim text and reveal credit Harary (1953) and Cartwright and Harary (1956) in the fact-checker's wording; c6 is now unverified. Other claim texts unchanged (c2 address line extended). curriculum.references untouched.
+- **Not done:** finding 4 (overlapping tints) needs a design decision; the count carries it.
+- Version 2. Reveal about 100 words. No new numbers (same rule).
+- QA: the slug's contract passed on phone and desktop with QA_PORT 3721; the 2 failures in that run are the feed spec "subject chips filter the feed" (not this lesson). Walkthrough (phone, 14 frames) viewed.
