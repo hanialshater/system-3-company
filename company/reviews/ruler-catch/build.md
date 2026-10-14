@@ -28,12 +28,12 @@ Changes: (1) the time scale (0.20 s beside 20 cm) is drawn only after the commit
 
 ## Pre-flight v4 (demo-builder, 2026-10-14, wave H, learner r8 / W-323)
 
-Changes: reveal cut from ~99 to 63 body words: "No air drag; the catcher here is simulated." cut (the caption now reads "Simulated catcher, not your reflex. The ruler falls from rest, no air drag."; new claim c7), the 5-thousandths sentence cut (c5 withdrawn), "The working line under the ruler" → "The working line". Ruler numbers and "cm fallen" 9 → 10 px; "cm fallen" moved left so it no longer runs into "time, d = ½gt²".
+Changes: reveal cut from ~99 to 70 body words: "No air drag; the catcher here is simulated." cut (the caption now reads "Simulated catcher, not your reflex. The ruler falls from rest, no air drag."; new claim c7), the 5-thousandths sentence cut (c5 withdrawn), "The working line under the ruler" → "The working line". Ruler numbers and "cm fallen" 9 → 10 px; "cm fallen" moved left so it no longer runs into "time, d = ½gt²".
 
 1. Title and hook: unchanged.
 2. Options: unchanged ("0.02 s", "0.2 s", "2 s").
 3. Locked stage: unchanged (cm ruler only, no time scale).
 4. Reveal values: catches count, 12.6 and 27.4 cm, 0.16 and 0.24 s (b) the Seen row (five milestone; survives Clear); 20 cm and 0.20 s are the question's constants via timeFor/working().
 5. QA path: Drop once, Drop 5 times, Clear; Seen row and working line on screen at the reveal.
-6. Reset: Clear last (QA path). Reveal (63 words): "Your Seen row: 6 catches closed between 12.6 and 27.4 cm, which is 0.16 to 0.24 s on the scale. A catch at 20 cm means 0.20 s. The working line is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for 20 cm, t = √(2 × 0.200 m ÷ 9.81) = 0.20 s. Distance grows with the square of the time."
+6. Reset: Clear last (QA path). Reveal (70 words): "Your Seen row: 6 catches closed between 12.6 and 27.4 cm, which is 0.16 to 0.24 s on the scale. A catch at 20 cm means 0.20 s. The working line is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for 20 cm, t = √(2 × 0.200 m ÷ 9.81) = 0.20 s. Distance grows with the square of the time."
 7. Phone fit (reveal-fit, localhost:3530, 2026-10-14): crop 72 px → 0 px; hiddenBelow 0; namedHidden 0; phoneFit true; reveal 101 → 69 words as measured (verdict included). Picture drawn at full scale (212 px, no shrink), so the time-scale labels are 10 px at the reveal. Screenshot: artifacts/reveal-fit/ruler-catch.png.

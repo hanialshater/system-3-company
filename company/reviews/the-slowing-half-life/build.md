@@ -40,3 +40,13 @@ Revision for W-251 (evaluation-steward ruling on W-247, see 2026-10-14-fact-chec
 4. **Reveal values.** Unchanged from v5. "one fixed half-life" rests on waitRow(1) ("10, 10 min", >= 2 entries by "first-twice"), which is on stage.
 5. **QA path.** Unchanged from v5.
 6. **Reset.** No Reset control. Reveal from that run now ends: "In 1st order the rate only halved (1/2 → 1/4), so the wait stayed the same: one fixed half-life."
+
+## Pre-flight v7 (demo-builder, 2026-10-14, answering 2026-10-14-learner-adult-beginner-r8.md, W-291)
+
+Changes: reveal 113 -> 88 words (tool count, verdict line "Not quite: it was "20 min"." included; body about 83). Cut the "As the line under it said, ..." sentence the reviewer named (at the reveal the line under the chart showed the 1st-order wording on the QA path, so it pointed at the wrong line); its reasoning is kept in one clause, "With half as much left to lose at a quarter of the rate, each wait doubles." "Your 2nd-order waits row reads" became "Your 2nd-order waits read"; "A second-order reaction needs two reactant molecules to meet" became "Second order needs two molecules to meet"; the 1st-order ending is "so the half-life stays fixed". cm-chemistry should confirm the cut sentence is the right one. Stage: the four readouts are now one 2x2 table (rows "2nd order" / "1st order"; columns "waits" / "rate vs start"; same values, about 56 px instead of about 150). The why line is not rendered at the reveal (the reveal carries its reasoning for both orders). Slider and order buttons share one `Row foldAtReveal`, so the card folds them behind "Show controls" at the reveal. Chart labels 10/11 -> 12/13 viewBox units; "mmol/L" moved inside the left edge (at 12 px it clipped). Order button "Pairs must meet (2nd order)" -> "Pairs meet (2nd order)". The r6/r7 minor (locked readout row cut at the stage bottom) is gone with the readouts.
+1-3. Title, hook, options, locked stage: unchanged, except the table replaces the readouts (it shows "—" while locked).
+4. Reveal values: 10, 20 min and 10, 10 min (table, waits); 1/4, 1/16 and 1/2 -> 1/4 (table, rate vs start); 10 min (the bars and the question). All on stage at the reveal.
+5. QA path: unchanged.
+6. Reset: none.
+7. Phone fit: `node tools/reveal-fit.mjs --url http://localhost:3530 the-slowing-half-life` (dev server, 2026-10-14): before crop 292 px, 113 words, 3 named labels off screen ("20", "10", "1st order"); after **crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit 1, 88 words**. Stage 350 px + reveal 247 px in a 618 px card; the whole curve, both wait bars and the table are on screen.
+- meta.json 6 -> 7; c2, c3, c4, c5 reopened. Not run: build, QA, walkthrough.

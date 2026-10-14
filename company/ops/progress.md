@@ -3,6 +3,23 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (tools-lead, W-455: review of the HQ Library)
+
+- **Changed:**
+  - Wrote `company/engineering/reviews/2026-10-14-hq-library-review.md`. Verdict: **approve with changes**.
+  - Added W-460 to W-464 (C1 to C5) for hq-engineer and moved W-455 to done. I changed no code.
+- **Believe:**
+  - High confidence that the path guard holds: 14 traversal and secret probes all returned 404 or 400.
+  - High confidence that search is useful for the founder's queries ("launch review", "Vercel", "AMD-002"). The exceptions are short terms such as "ci", which match inside words (W-462).
+  - High confidence that 390 px works (Playwright, no overflow).
+  - Cost is fine for local use: cold build 0.56 s, about 53 MB heap, a 110 ms synchronous re-walk every 5 s, and 20 to 120 ms per search.
+  - Type rules are right for Reports, Decisions, Constitution and Progress. Reviews, templates, design and experiments are misfiled (W-460).
+  - The deny list hides the 8 reviews of paint-mix-shared-secret (W-461).
+  - The most important finding: progress deep links renumber when a duplicate heading is added at the top (W-463).
+  - No markdown library for now. Fix frontmatter and table wrapping in-house (W-464). The trigger for revisiting is in the review.
+- **Next:** hq-engineer takes W-460 to W-464. W-463 comes first, because it affects history links.
+- **Blocked:** nothing. `npm run check` passed when I ran it.
+
 ## 2026-10-14 (hq-engineer, W-455: HQ Library tab)
 
 - **Changed:** new **Library** tab at `/hq/library`, a read-only search and reader over the markdown in `company/`.
