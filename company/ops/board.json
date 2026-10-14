@@ -3364,10 +3364,11 @@
       "id": "W-285",
       "title": "Decide whether to propose an amendment to company/reviews/README.md rule 7 stating the W-258/W-280 reading (self-verification bar is per instance+context for checkers, per role for builders; adopted checker example wording goes to a fresh instance, artifact first). Only if it recurs or confuses a third ruling; review board ratifies.",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-286",
@@ -5286,6 +5287,69 @@
       "id": "W-478",
       "title": "EDD-003 review tools questions 1-2: what the CLI, walkthrough, HQ and metrics need to address a lesson as <slug>@<hash>; incremental check + nightly full scan without weakening it. Needed before stage 1 ships. See company/rituals/records/2026-10-13-eng-review-lesson-storage.md",
       "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-479",
+      "title": "Constitutional Review 2026-10-14 (company/rituals/records/2026-10-14-constitutional-review.md): ratify or decide. (1) AMD-001 parts a/b/c1/c2 (still proposed since 10-12). (2) Commission AMD-003 (fixed-base protected-path check; no new-branch skip; amendments scoped to their surface paths) - G5. (3) Agree AMD-004 outline (state W-258/W-280 rule-7 reading in reviews/README.md; steward and fact-checker not deciding votes) - J2. (4) G2: write an Article 4.1 override record for In-review lessons on production (owner, reason, objections, exit date) or set SHOW_REVIEW=off. (5) G1: production deploys only via deploy.yml after green ci.",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-480",
+      "title": "G1/G2 (company/rituals/records/2026-10-14-constitutional-review.md): make production deploys wait for green ci (disable Vercel git-triggered production builds or add a Deployment Check on ci), and make drafts unreachable in production regardless of SHOW_REVIEW (findDemo passes includeDrafts:true). Decision record with founder.",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-481",
+      "title": "AMD-002 falsifier check on 2026-10-16 (company/rituals/records/2026-10-14-constitutional-review.md J1): ci queue < 20 at busiest hour and median push-to-conclusion < 30 min; at ~15:00 10-14 the latest 60 ci runs were all queued. Record result in the AMD-002 file; plus the Monday cancelled-run sample.",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-482",
+      "title": "G4 (company/rituals/records/2026-10-14-constitutional-review.md): tools/snapshot.sh must not stage protected paths unless S3_AMENDMENT is set (print what it skipped), and should record check pass/fail in the commit message. Release checklist: a [deploy] commit needs npm run check green on that exact tree.",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-483",
+      "title": "J5 (company/rituals/records/2026-10-14-constitutional-review.md): keep one log of stage-only rewords (W-222/W-247/W-258 precedent): slug, claim, removed sentence, source that would restore it; give each a category-manager restore item; work it from a host with egress before next OP.",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-484",
+      "title": "Draft AMD-003 and AMD-004 files once the founder commissions them (W-item for founder, company/rituals/records/2026-10-14-constitutional-review.md section 3). Not before.",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-485",
+      "title": "Decide two EDD-003 stage-1 questions: the lesson bundler devDependency (recommended: esbuild, exact pin) and question 7, does 'the disk is the memory' mean git (recommended: git now, rule = properties; every manifest change a commit). One page: company/decisions/2026-10-14-lesson-bundler-and-memory.md",
+      "owner": "founder",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
