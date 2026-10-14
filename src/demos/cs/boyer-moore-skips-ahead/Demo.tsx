@@ -332,7 +332,7 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Stage locked={locked} interact={interact} k={k} step={step} runTo={runTo} busy={k < target} last={last} />
+        <Stage locked={locked} interact={interact} k={k} step={step} runTo={runTo} busy={k < target} last={last} stepped={stepped} />
       )}
     </Lesson>
   );
