@@ -110,8 +110,8 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
           <p>
             Look at the ray{odd ? ` from (${fmt(odd.p[0])}, ${fmt(odd.p[1])}), drawn again above` : ""}: at each numbered
             crossing it switches between solid (inside) and dashed (outside), and past the last crossing it is always
-            outside. So an odd count means inside and an even count means outside, however central the point looks, with
-            any number of notches.
+            outside. So odd means inside and even means outside, however central the point looks, with any number of
+            notches.
           </p>
         </>
       )}
@@ -176,12 +176,13 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
               in: (hits.length - i) % 2 === 1,
             }));
             return (
-              <div className={s.wrap}>
-                <p className={s.note}>
+              <div className={`${s.wrap} ${phase === "reveal" ? s.compact : ""}`}>
+                {/* v5: at the reveal the note's words are in the readouts (Point, Crossings, Verdict), so it steps aside. */}
+                {phase !== "reveal" && <p className={s.note}>
                   {locked
                     ? "Ray to the right from the point. Count the edges it crosses."
                     : `${replay ? "Again: " : ""}(${fmt(pt[0])}, ${fmt(pt[1])}): ${n} crossing${n === 1 ? "" : "s"}, ${n % 2 ? "odd" : "even"}, so ${inside ? "inside" : "outside"}.`}
-                </p>
+                </p>}
                 <svg
                   ref={svgRef}
                   viewBox="0 0 320 240"
@@ -260,7 +261,7 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                   {PRESETS.map(({ p, label }) => (
                     <Control
                       key={label}
-                      className={pt[0] === p[0] && pt[1] === p[1] ? "active" : ""}
+                      className={`${s.preset} ${pt[0] === p[0] && pt[1] === p[1] ? "active" : ""}`}
                       disabled={locked || (pt[0] === p[0] && pt[1] === p[1])}
                       onClick={() => go(p)}
                     >
@@ -269,6 +270,7 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                   ))}
                 </Row>
                 <Row>
+                  <Readout label={replay ? "Point (again)" : "Point"} value={`(${fmt(pt[0])}, ${fmt(pt[1])})`} />
                   <Readout label="Crossings" value={locked ? "?" : n} />
                   <Readout label="Verdict" value={locked ? "?" : inside ? "inside" : "outside"} />
                 </Row>
@@ -277,15 +279,16 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                     Seen:{" "}
                     {[notch, odd]
                       .filter((x): x is Seen => x !== null)
-                      .map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} crossing${x.n === 1 ? "" : "s"}, ${x.n % 2 ? "inside" : "outside"}`)
+                      .map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} crossing${x.n === 1 ? "" : "s"}, ${x.n % 2 ? "in" : "out"}`)
                       .join(" · ")}
                   </p>
                 )}
-                <p className={s.log} data-testid="tried">
+                {/* v5: the Tried trace is not quoted by the reveal (the Seen line is); it steps aside at the reveal. */}
+                {phase !== "reveal" && <p className={s.log} data-testid="tried">
                   {log.length
                     ? `Tried: ${log.map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} ${x.n % 2 ? "in" : "out"}`).join(" · ")}`
                     : "Tried: none yet"}
-                </p>
+                </p>}
               </div>
             );
           }}

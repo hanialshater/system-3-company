@@ -2,13 +2,14 @@
 .wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
 .wrap :global(.tap) { min-height: 44px; }
 .top { display: flex; gap: 6px; align-items: center; justify-content: center; width: 100%; max-width: 360px; }
-.svg { width: 250px; flex: 0 1 250px; min-width: 0; height: auto; }
+/* v5 (W-447): one fixed width in every phase, so the kit's reveal rule (flex: none) cannot grow the circle past the stage. */
+.svg { width: 232px; max-width: 232px; flex: none; min-width: 0; height: auto; }
 .col { display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 96px; max-width: 120px; }
 .col :global(.tap) { padding: 6px 8px; line-height: 1.15; }
-.seat { font-size: 14px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.seat { font-size: 15.5px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .seatOut { fill: var(--muted); font-weight: 400; }
 .seatOn { font-weight: 900; text-decoration: underline; }
-.star { font-size: 14px; fill: #0d0f14; }
+.star { font-size: 16px; fill: #0d0f14; }
 .big { font-size: 30px; font-weight: 900; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .small { font-size: 16px; font-weight: 700; fill: var(--muted); font-variant-numeric: tabular-nums; }
 .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 6px; width: 100%; max-width: 340px; }

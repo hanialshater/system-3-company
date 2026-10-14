@@ -72,9 +72,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
           </p>
           <p>
             The working line under the ruler is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for {ASKED_CM} cm,{" "}
-            {working(ASKED_CM)}. Distance grows with the square of the time. That makes a few centimetres a fine
-            clock: near {ASKED_CM} cm, each extra centimetre is about {Math.round((timeFor(ASKED_CM + 1) - timeFor(ASKED_CM)) * 1000)} thousandths of a second.
-            No air drag; the catcher here is simulated.
+            {working(ASKED_CM)}. Distance grows with the square of the time.
           </p>
         </>
       )}
@@ -89,7 +87,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
               setSeen((x) => Math.max(x, next));
               if (next >= FIVE) reach("five");
             };
-            const caption = locked ? "Make a prediction to start." : "Simulated catcher, not your reflex. The ruler falls from rest.";
+            const caption = locked ? "Make a prediction to start." : "Simulated catcher, not your reflex. The ruler falls from rest, no air drag.";
             return (
               <div className={s.wrap}>
                 <svg viewBox="0 0 320 212" className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
