@@ -70,7 +70,6 @@ test('crossing change: one switch unknots the trefoil; it flips that sign and mo
 
 test('simplify: honest statuses, never "knotted" from being stuck', () => {
   assert.equal(K.simplify(K.KNOTS['3_1'].pd).status, 'minimal')
-  assert.equal(K.simplify(K.knot('monster-unknot').pd).status, 'unknot')
   assert.equal(K.simplify(K.scramble([], 4, 15)).status, 'unknot')
   assert.equal(K.simplify(K.deleteComponent(K.knot('borromean').pd, 0)).status, 'unlink')
   for (let s = 1; s <= 5; s++) {

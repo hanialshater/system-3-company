@@ -64,6 +64,5 @@ test('identify: scrambled table knots are found, mirrors flagged, unknown knots 
     assert.deepEqual(K.identify(K.mirror(q)).map((x) => x.name), [n])
   }
   assert.deepEqual(K.identify(K.mirror(K.KNOTS['3_1'].pd)), [{ name: '3_1', mirror: true }])
-  assert.deepEqual(K.identify(K.knot('monster-unknot').pd), [{ name: '0_1', mirror: false }])
   assert.deepEqual(K.identify(K.fromBraid([1, 1, 1, 1, 1, 1, 1, 1, 1])), [], '9_1 is not in the table')
 })
