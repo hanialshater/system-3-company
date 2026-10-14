@@ -5,6 +5,7 @@ import type { Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
 import { Face } from "./Avatar";
 import type { Person } from "./people";
+import { WhiteboardLinks } from "./WhiteboardLinks";
 import s from "./hq.module.css";
 
 const STATE_DOT: Record<Person["state"], string> = { working: "#3ddc97", stopped: "#ff6b6b", done: "#9aa3b5", idle: "transparent" };
@@ -121,6 +122,7 @@ export default function Office({ rooms, people, activity, selected, onRoom, onPe
           </g>
         );
       })}
+      <WhiteboardLinks rooms={rooms} />
       {rooms.map((r) => {
         const here = people.filter((p) => p.room === r.id);
         // On the build floor people sit at the desks; elsewhere they stand in a grid.
