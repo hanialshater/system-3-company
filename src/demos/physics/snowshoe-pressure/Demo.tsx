@@ -49,7 +49,8 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
         options: ["17 kPa", "1.7 kPa", "0.17 kPa"],
         answer: 1,
       }}
-      exploreHint="Change what the hiker wears and watch the foot and the pressure."
+      exploreHint="Widen the contact area from boots to snowshoes. Watch the foot and the pressure bar."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -66,11 +67,12 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["stays-on-top"]}>
+        <Milestones interact={interact} names={["sinks", "stays-on-top"]}>
           {(reach) => {
             const choose = (a: number) => {
               const v = Math.round(a * 100) / 100;
               setArea(v);
+              if (kPa(v) > LIMIT) reach("sinks");
               if (kPa(v) <= LIMIT) {
                 setBest((b) => (b === null ? v : b));
                 reach("stays-on-top");
@@ -103,7 +105,7 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
                   {!locked && <rect x={BAR_X - 7} y={BAR_BASE - barH} width={14} height={barH} className={p > LIMIT ? s.barOver : s.barOk} />}
                   <line x1={BAR_X - 12} y1={BAR_BASE - LIMIT * BAR_K} x2={BAR_X + 12} y2={BAR_BASE - LIMIT * BAR_K} className={s.limit} />
                   <text x={BAR_X - 14} y={BAR_BASE - LIMIT * BAR_K + 3} textAnchor="end" className={s.limitLabel}>
-                    snow limit
+                    snow limit 3 kPa
                   </text>
                   <text x={BAR_X} y={BAR_BASE + 11} textAnchor="middle" className={s.chip}>
                     kPa
@@ -113,6 +115,7 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
                   </text>
                 </svg>
 
+                <Slider label="Contact area" value={area} min={0.04} max={0.4} step={0.04} disabled={locked} format={fmtA} onChange={choose} />
                 <Row>
                   <Control className={area === BOOTS ? "active" : ""} disabled={locked || area === BOOTS} onClick={() => choose(BOOTS)}>
                     Boots
@@ -121,9 +124,8 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
                     Snowshoes
                   </Control>
                 </Row>
-                <Slider label="Contact area" value={area} min={0.04} max={0.4} step={0.04} disabled={locked} format={fmtA} onChange={choose} />
                 <Row>
-                  <Readout label="Weight" value={`${F.toFixed(0)} N`} />
+                  <Readout label="Weight (70 kg pulls down)" value={`${F.toFixed(0)} N`} />
                   <Readout label="Pressure" value={locked ? "?" : fmtP(p)} />
                 </Row>
               </div>

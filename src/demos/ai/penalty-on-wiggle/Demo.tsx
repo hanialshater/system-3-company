@@ -110,12 +110,22 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
     return pts.join(" ");
   }, [now]);
 
+  const ghost = useMemo(() => {
+    const pts: string[] = [];
+    for (let i = 0; i <= 120; i++) {
+      const x = -1.05 + (2.1 * i) / 120;
+      const y = Math.max(-3, Math.min(3, evalPoly(none.w, x)));
+      pts.push(`${i ? "L" : "M"}${px(x).toFixed(1)},${py(y).toFixed(1)}`);
+    }
+    return pts.join(" ");
+  }, [none]);
+
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "A wiggly degree-7 curve passes through all 8 training dots. You add a penalty on large coefficients (ridge). The miss on the training dots gets:",
+          "A wiggly curve passes through all 8 training dots (miss 0). Now add a penalty that discourages wild bends (ridge: it charges for big coefficients, the numbers that set how sharply the curve bends). The miss on the training dots gets:",
         options: ["Larger", "Smaller", "Stays exactly 0"],
         answer: 0,
       }}
@@ -157,12 +167,15 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
                 </clipPath>
               </defs>
               <text x={160} y={12} textAnchor="middle" className={s.small} fill="var(--muted)">
-                Toy data: ● 8 training dots, ○ 40 held-out dots
+                ● 8 training dots, ○ 40 held-out dots{li > 0 ? ", dashed = no penalty" : ""}
               </text>
               <line x1={14} y1={py(0)} x2={306} y2={py(0)} stroke="var(--line)" />
               {now.held.map(([x, y], i) => (
                 <circle key={`h${i}`} cx={px(x)} cy={py(y)} r={3} fill="none" stroke="var(--muted)" strokeWidth={1.2} />
               ))}
+              {li > 0 && (
+                <path d={ghost} fill="none" stroke="var(--muted)" strokeWidth={1.5} strokeDasharray="4 3" clipPath="url(#pow-clip)" />
+              )}
               <path d={path} fill="none" stroke="var(--domain)" strokeWidth={2.5} clipPath="url(#pow-clip)" />
               {now.train.map(([x, y], i) => (
                 <circle key={`t${i}`} cx={px(x)} cy={py(y)} r={5} fill="var(--fg)" />
@@ -178,6 +191,7 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             <Row>
               <Readout label="Training miss" value={locked ? "–" : now.trainMiss.toFixed(2)} />
               <Readout label="Held-out miss" value={locked ? "–" : now.heldMiss.toFixed(2)} />
+              <Readout label="No-penalty held-out" value={none.heldMiss.toFixed(2)} />
               <Control disabled={locked} onClick={() => setSeed(seed + 1)}>
                 New data
               </Control>

@@ -5,3 +5,7 @@
 - Key states (two milestones): both 7 m and 8 m seen (bracketed), and 7.07 m. QA's in-order path visits every value the question and reveal name (25 m option, 7, 8, 7.07).
 - Reveal mentions the 25 m case only if visited.
 - All claims unverified, for the fact-checker.
+
+## Revision v2
+
+Review 2026-10-14: the 25 m square was undersold. It stays clipped by the grid but is labelled 'runs off the grid' and the caption says 12.5x the target. The square-root sentence moved to the first reveal paragraph. c4, c5 reworded, unverified.

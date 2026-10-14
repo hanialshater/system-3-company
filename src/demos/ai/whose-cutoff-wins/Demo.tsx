@@ -6,9 +6,10 @@
 // The minimum is at 50, group A's line: 2 mistakes, both group B (20% of B, 0% of A).
 // The reveal waits until the learner has seen the cutoff at the minimum.
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 // MODEL START
@@ -41,17 +42,25 @@ const px = (score: number) => L + (score / 100) * (R - L);
 
 export default function WhoseCutoffWins({ slug }: { slug: string }) {
   const [cut, setCut] = useState(30);
+  const [seen, setSeen] = useState<number[]>([]);
   const m = mistakes(cut);
+  const interactRef = useRef<() => void>(() => {});
+  const { reach } = useMilestones(() => interactRef.current(), ["at-40", "at-best"]);
 
-  const move = (c: number, interact: () => void) => {
+  // The reveal compares 40 with the best cutoff, so it waits until the learner has stood on both.
+  const move = (c: number) => {
     setCut(c);
-    if (c === BEST) interact(); // the reveal waits for the fewest-mistakes cutoff
+    setSeen((p) => (p.includes(c) ? p : [...p, c]));
+    if (c === 40) reach("at-40");
+    if (c === BEST) reach("at-best");
   };
+  const step = () => move(cut < BEST ? cut + 10 : cut - 10);
 
   const message = (locked: boolean) => {
     if (locked) return "Lock in a guess to start.";
-    if (cut === BEST) return `Fewest mistakes: ${m.total}. Whose are they?`;
-    return `${m.total} mistakes. Find the fewest.`;
+    if (cut === BEST) return seen.includes(40) ? `Fewest mistakes: ${m.total}. Whose are they?` : `${m.total} mistakes. Now compare with 40.`;
+    if (cut === 40) return `${m.total} mistakes: ${m.a} in A, ${m.b} in B. Now try 50.`;
+    return `${m.total} mistakes. Try 40, then 50.`;
   };
 
   return (
@@ -59,30 +68,32 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One pass/fail cutoff is learned from 90 people in group A (qualified from 50) and 10 in group B (qualified from 30). Scores are spread evenly 0–100. For the fewest total mistakes, the cutoff lands:",
+          "One pass/fail cutoff is learned from 90 people in group A (qualified at a score of 50 or more) and 10 in group B (qualified at 30 or more). Scores are spread evenly 0–100. For the fewest total mistakes, the cutoff lands:",
         options: ["At 50, group A's line", "At 40, halfway", "At 30, group B's line"],
         answer: 0,
       }}
-      exploreHint="Drag the cutoff, or let the model learn. Count each group's red."
+      exploreHint="Move the cutoff to 40, then 50. Count each group's red."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
-            The fewest mistakes came at <strong>{BEST}</strong>, group A&apos;s line: {mistakes(BEST).total} in 100.
-            Both were group B people scoring 30–50, wrongly failed: <strong>20% of group B</strong>, 0% of group A.
+            The fewest mistakes came at <strong>{BEST}</strong>, group A&apos;s line: {mistakes(BEST).total} in 100,
+            both group B people scoring 30–50, wrongly failed: <strong>20% of group B</strong>, 0% of group A.
           </p>
           <p>
-            Moving the cutoff from 50 to 40 fixes one group B person and breaks nine group A people, so a rule that
-            minimises total mistakes stays put. The model never saw anyone&apos;s group. It fit the majority, and the
-            rare group got the errors, behind an overall score of 98% right.
+            You saw 40: it fixes one group B person and breaks nine group A people, so the cutoff stays put. The model
+            never saw anyone&apos;s group. It fit the majority, and the rare group got the errors, behind 98% right.
           </p>
           <p className="muted">
-            Real systems show this too: commercial face-analysis tools misclassified darker-skinned women far more
-            often than lighter-skinned men (Gender Shades, 2018).
+            Real face-analysis tools misclassified darker-skinned women far more often than lighter-skinned men
+            (Gender Shades, 2018).
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        interactRef.current = interact;
+        return (
         <div className={s.wrap}>
           <svg viewBox="0 0 320 214" className="stage-svg" role="img" aria-label={`Cutoff at ${cut}: ${m.a} group A and ${m.b} group B mistakes`}>
             <rect x={px(cut)} y={8} width={R - px(cut)} height={A_BOT - 4} fill="var(--good)" opacity={0.1} />
@@ -91,11 +102,11 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
             </text>
 
             {B_SCORES.map((x, i) => {
-              const wrong = x >= cut !== x >= B_LINE;
+              const wrong = !locked && x >= cut !== x >= B_LINE;
               return <circle key={`b${i}`} cx={px(x)} cy={B_Y} r={7} className={wrong ? s.wrong : s.b} />;
             })}
             {A_SCORES.map((x, i) => {
-              const wrong = x >= cut !== x >= A_LINE;
+              const wrong = !locked && x >= cut !== x >= A_LINE;
               const bin = Math.floor(i / A_PER_BIN);
               const row = i % A_PER_BIN;
               return (
@@ -145,16 +156,17 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
           <p className={s.msg} aria-live="polite">
             {message(locked)}
           </p>
-          <Slider label="Cutoff" value={cut} min={0} max={100} step={10} disabled={locked} onChange={(v) => move(v, interact)} />
+          <Slider label="Cutoff" value={cut} min={0} max={100} step={10} disabled={locked} onChange={(v) => move(v)} />
           <Row>
-            <Control disabled={locked || cut === BEST} onClick={() => move(BEST, interact)}>
-              Let the model learn
+            <Control disabled={locked || cut === BEST} onClick={step}>
+              Let the model learn a step
             </Control>
             <Readout label="A wrong" value={locked ? "?" : `${m.a} of 90`} />
             <Readout label="B wrong" value={locked ? "?" : `${m.b} of 10`} />
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

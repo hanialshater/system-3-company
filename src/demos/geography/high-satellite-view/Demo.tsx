@@ -15,7 +15,8 @@ const W = 320;
 const H = 214;
 const GEO_KM = 35786;
 const START_KM = 1000;
-const MILESTONES = ["geostationary"] as const;
+const MILESTONES = ["low", "geostationary"] as const;
+const LOW_KM = 5000; // a "low" satellite for this lesson
 
 /** Half-angle (degrees) of the cap a satellite h km up can see. */
 function capAngleDeg(h: number) {
@@ -34,7 +35,7 @@ const PRESETS = [
   { label: "Geostationary", h: GEO_KM },
 ];
 
-function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
+function Stage({ locked, reach, onLow }: { locked: boolean; reach: (n: string) => void; onLow: (h: number) => void }) {
   const [h, setH] = useState(START_KM);
   const projection = useMemo(
     () => geoOrthographic().rotate([0, -30]).scale(98).translate([W / 2, H / 2 + 2]).clipAngle(90),
@@ -43,6 +44,10 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const set = (v: number) => {
     setH(v);
     if (v === GEO_KM) reach("geostationary");
+    if (v < LOW_KM) {
+      onLow(v);
+      reach("low");
+    }
   };
   const angle = capAngleDeg(h);
   const cap = useMemo(() => geoCircle().center([0, 0]).radius(angle)(), [angle]);
@@ -105,7 +110,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
 export default function HighSatelliteView({ slug }: { slug: string }) {
   const geo = share(GEO_KM);
   const geoAngle = capAngleDeg(GEO_KM);
-  const start = share(START_KM);
+  const [lowH, setLowH] = useState<number | null>(null);
   return (
     <Lesson
       slug={slug}
@@ -114,14 +119,17 @@ export default function HighSatelliteView({ slug }: { slug: string }) {
         options: ["About half (50%)", "Less than half (about 40%)", "About a quarter (25%)"],
         answer: 1,
       }}
-      exploreHint="Press the Geostationary button, then compare it with lower satellites."
+      exploreHint="Press a low satellite, then the Geostationary button, and compare."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             From {km(GEO_KM)} the satellite sees about {Math.round(geo * 100)}% of the surface: everything within{" "}
-            {geoAngle.toFixed(0)}° of the point below it. The poles stay in the dark. From {km(START_KM)} it saw only
-            about {Math.round(start * 100)}%.
+            {geoAngle.toFixed(0)}° of the point below it. The poles stay in the dark. {lowH !== null && (
+              <>
+                From {km(lowH)} it saw only {pct(share(lowH))}.
+              </>
+            )}
           </p>
           <p>
             The edge of view is where your sightline just grazes the ball, and it creeps outward as you climb. Exactly
@@ -132,7 +140,7 @@ export default function HighSatelliteView({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
-          {(reach) => <Stage locked={locked} reach={reach} />}
+          {(reach) => <Stage locked={locked} reach={reach} onLow={(v) => setLowH((p) => (p === null ? v : Math.min(p, v)))} />}
         </Milestones>
       )}
     </Lesson>

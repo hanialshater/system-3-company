@@ -11,3 +11,7 @@
 
 Input: latest learner review (and fact-check). Slowing was told. Added a share-vs-generation curve that draws as generations run and marks 5.0% after 10 and 1.0% after 90; reveal states 10 to 5 took 10 generations, 5 to 1 took 80; reveal shows generation 90. c2 reworded, unverified.
 QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 2, `format` set, edited claims are unverified for the fact-checker.
+
+## Revision v3
+
+Review 2026-10-14 r2: the x-axis ended on the answer 90. The axis now runs to 120 and shows no tick labels (and no 0/5% marks) until the guess is locked.

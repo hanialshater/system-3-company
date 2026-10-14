@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "probability.random-dots-cluster.c1",
-      "text": "Each dot lands at a uniformly random place on the grid, independently of the others.",
+      "text": "Each dot lands at a uniformly random place on the grid, independently of the others (drawn nudged off the grid lines, inside its own square).",
       "support": "convention",
-      "source": "Stage text and model.ts batch(): two mulberry32 uniform draws per dot.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Stage text and model.ts batch(): two mulberry32 uniform draws per dot. | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "probability.random-dots-cluster.c2",
@@ -60,12 +58,10 @@
     },
     {
       "id": "probability.random-dots-cluster.c5",
-      "text": "An evenly spread pattern of dots is the unusual outcome; lumps are what random scatter looks like.",
+      "text": "An evenly spread pattern of dots is the unusual outcome; lumps are what random scatter looks like, so a lump on its own is weak evidence that something attracts the dots.",
       "support": "derivation",
-      "source": "Follows from claim 2: more than half of random scatters contain a crowded square. No claim is made about real-world clusters.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Follows from claim 2: more than half of random scatters contain a crowded square. No claim is made about real-world clusters. | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -87,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:clustering-illusion",
     "prerequisites": [

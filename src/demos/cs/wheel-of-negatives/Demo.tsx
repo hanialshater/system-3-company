@@ -45,7 +45,7 @@ export default function WheelOfNegatives({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In an 8-bit signed number (two's complement), what is ${START} + 1 (${bitsOf(START)} + 1)?`,
+        question: `Eight on/off switches (bits) store a whole number, negatives included. They show ${bitsOf(START)}, which is ${START}. Add 1. What number do they show?`,
         options: [String(START + 1), String(answer), "0"],
         answer: 1,
       }}
@@ -55,14 +55,13 @@ export default function WheelOfNegatives({ slug }: { slug: string }) {
         <>
           <p>
             {log.length ? `You saw ${log.slice(0, 3).join(", ")}. ` : ""}
-            {bitsOf(START)} + 1 is {bitsOf(START + 1)}. In two&apos;s complement the top switch is worth −128, not 128, so
-            the value is <strong>{answer}</strong>. Eight bits only go from −128 to 127.
+            {bitsOf(START)} + 1 is {bitsOf(START + 1)}. In two&apos;s complement, the usual way to store negatives, the top
+            switch is worth −128, not 128, so the value is <strong>{answer}</strong>. Eight bits only go from −128 to 127.
           </p>
           <p>
-            The 256 patterns sit on a circle. The first half are 0 to 127; the second half are the negatives, −128 up to −1
-            ({bitsOf(SIZE - 1)} is −128 + 127). Adding 1 always steps one notch round, so going past the top wraps to the
-            most negative number, and −1 + 1 wraps back to 0. That wrap is overflow: a counter that grows too big comes out
-            negative.
+            The 256 patterns sit on a circle: 0 to 127, then the negatives −128 up to −1 ({bitsOf(SIZE - 1)} is −128 + 127).
+            Adding 1 steps one notch round, so past the top you wrap to the most negative number, and −1 + 1 wraps to 0.
+            That wrap is overflow: a counter that grows too big comes out negative.
           </p>
         </>
       )}
@@ -127,7 +126,7 @@ export default function WheelOfNegatives({ slug }: { slug: string }) {
                     + 1
                   </Control>
                   <Control disabled={locked} onClick={() => turn(HALF, `+ ${HALF}`)}>
-                    + {HALF} (half turn)
+                    Half turn (+{HALF})
                   </Control>
                   <Control disabled={locked} onClick={() => turn(-1, "− 1")}>
                     − 1

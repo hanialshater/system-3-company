@@ -26,7 +26,7 @@ export default function ThirteenPigeons({ slug }: { slug: string }) {
         options: [String(N), String(N + 1), String(2 * N)],
         answer: 1,
       }}
-      exploreHint="Seat people so that nobody shares a month, for as long as you can."
+      exploreHint="Tap month tiles to seat people, one per month. The reveal opens once all 12 months are taken."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -77,11 +77,11 @@ function Stage({ locked, interact, seats, setSeats }: StageContext & { seats: nu
           </>
         ) : count === 0 ? (
           <>
-            <strong>Person 1</strong> is waiting. Tap a month to seat them.
+            <strong>Person 1</strong> is waiting. Tap a month tile to seat them there.
           </>
         ) : (
           <>
-            <strong>Person {count + 1}</strong> waiting. {N - filled.size} empty month{N - filled.size === 1 ? "" : "s"} left.
+            <strong>Person {count + 1}</strong> waiting. {N - filled.size} empty month{N - filled.size === 1 ? "" : "s"} left (numbers show who sits where).
           </>
         )}
       </div>

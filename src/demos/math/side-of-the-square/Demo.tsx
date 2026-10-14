@@ -45,13 +45,12 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {seen.includes(TARGET / 2) ? `A ${TARGET / 2} m side gave ${area(TARGET / 2)} m², far too much: halving 50 does not find the side. ` : ""}
-            {LO} m gave {area(LO)} m² and {HI} m gave {area(HI)}, so the side lies between them. 7.07 m gave {area(7.07)} m², just
-            under {TARGET}.
+            The square root of {TARGET} is the side whose square is {TARGET}: about {ROOT.toFixed(2)} m, not a whole number.
           </p>
           <p>
-            The square root of {TARGET} is the side whose square is {TARGET}: about {ROOT.toFixed(2)} m. It is not a whole number,
-            because {LO} × {LO} = {area(LO)} and {HI} × {HI} = {area(HI)} skip right over {TARGET}.
+            {seen.includes(TARGET / 2) ? `A ${TARGET / 2} m side gave ${area(TARGET / 2)} m², far too much: halving 50 does not find the side. ` : ""}
+            {LO} m gave {area(LO)} m² and {HI} m gave {area(HI)}, so the side lies between them. 7.07 m gave {area(7.07)} m², just
+            under {TARGET}. Whole sides skip right over {TARGET}.
           </p>
         </>
       )}
@@ -84,7 +83,7 @@ function Stage({ locked, side, onSide }: { locked: boolean; side: number; onSide
     ? "Make a prediction to start."
     : side === START
       ? `Area = side × side: ${START} × ${START} = ${a} m². Which side covers ${TARGET} m²?`
-      : `${side} × ${side} = ${a} m²: ${verdict}.`;
+      : `${side} × ${side} = ${a} m²: ${verdict}${verdict === "too big" ? ` (${Number((a / TARGET).toFixed(1))}× the target)` : ""}.`;
   const shown = Math.min(side, MAXM + 0.6);
   const y0 = PAD + F;
 
@@ -114,6 +113,11 @@ function Stage({ locked, side, onSide }: { locked: boolean; side: number; onSide
         {!locked && (
           <text x={PAD + ROOT * U - 4} y={y0 - ROOT * U - 5} className={s.targetLab}>
             {TARGET} m²
+          </text>
+        )}
+        {!locked && side > MAXM && (
+          <text x={PAD + F / 2} y={PAD + 14} className={s.targetLab} textAnchor="middle">
+            runs off the grid
           </text>
         )}
         <text x={PAD + (Math.min(shown, MAXM) * U) / 2} y={y0 - (Math.min(shown, MAXM) * U) / 2 + 6} className={s.inside}>

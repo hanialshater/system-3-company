@@ -7,3 +7,7 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Earned reveal: milestone 'stays-on-top' (pressure at or below the limit). "Snowshoes" is the first enabled control on QA's path. The reveal quotes the first area at which the learner's foot stayed on top.
 - Open question for the fact-checker: claim c4 (snow gives way above some pressure) has no specific citation; I could not find one I could check offline, so the source says so.
 - After screenshots: the pressure bar was tiny at low pressures and the snow block left a large empty area; stage shortened and the bar rescaled (3.6 px per kPa).
+
+## Revision v2
+
+Review 2026-10-14: the boot never visibly sank on the path. Slider is first in DOM order; new 'sinks' milestone (any area over the 3 kPa limit) plus 'stays-on-top', minInteractions 2, so boots and snowshoes are both seen. Gauge label shows 3 kPa; weight readout glossed.
