@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (second reader, W-362/W-368, lifehacks-safety-reviewer, independent instance)
+
+Changed: appended "Second reader (independent)" to 11 safety records; W-362 and W-368 moved to done; two follow-ups added to the board.
+Believe (high confidence, rendered pages walked at 390x844): the tariff line is accurate, visible on the stage and closes the risk in 7 energy lessons (duty-cycle, fixed-charge, idle, purchase-plus-running, same-energy-new-tariff, standby, watts-hours): APPROVE. lh-annual-label-cost carries no such line (consistent with B6 'met in substance'); approve, line recommended. drying-room-water-load warning (reveal only) and recall.why (mould phrase gone): APPROVE. lh-scale-recipe-portions 'Cooking times do not scale with quantity.': REQUIRED CHANGES (inaccurate and gives no action; proposed wording in its record). lh-water-meter-units recall still keys 1,800 m3: REQUIRED CHANGES, waits on the recall patch.
+Next: demo-builder rewords the recipe line, a third reader confirms; learning-designer applies the water-meter recall patch; fact-checker owes sources for the unverified warning claims (energy c6, drying c6, recipe c5). Blocked: nothing.
+Note: walkthrough tool timed out on these pages (15s waitFor), so I used a direct Playwright read of the dev server instead.
+
 ## 2026-10-14, demo-builder: W-357 ceil float fix, W-358 cord drawings, W-361 safety wording
 - **Changed:**
   - **W-357:** `resource-model.ts` gets `snapToInteger`. Before ceil or floor, a value within a relative 1e-9 of an integer snaps to it, so 100×1.1 gives 110, not 111. I swept all 14 ceil/floor specs at every slider value, and only lh-percentage-overage changed (at x=50, 90, 100, 110). Its sentence "The formulas match only at that crossover." was false (A=B at 95 and 100). It now reads "Rounding up also ties them at 95; above 100 the percentage order is larger." That changes the principle, recall.why, c3 and c4. Version 2. New fixture in tests/lifehacks/resources.test.mjs.

@@ -3281,10 +3281,11 @@
       "id": "W-278",
       "title": "W-267 design review of the compact stages: every-second-seat-out v3 and a-star-heads-for-goal v5 (company/reviews/<slug>/<date>-design.md), then learner re-review",
       "owner": "design-lead",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-279",
@@ -4132,10 +4133,11 @@
       "id": "W-362",
       "title": "Independent second reader for the 9 PR #2 safety stage lines (author role cannot approve its own wording); see W-359 and company/reviews/<slug>/2026-10-14-safety.md",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-363",
@@ -4186,10 +4188,11 @@
       "id": "W-368",
       "title": "W-361(c): outside-role second read of the Life Hacks safety stage lines written in lifehacks-safety-reviewer's own words, starting with drying-room-water-load v2 warning and lh-scale-recipe-portions v2 assumptions (see company/reviews/<slug>/build.md Pre-flight v2 and 2026-10-14-safety.md); also judge recipe principle 'not cooking or nutritional advice' next to the warning",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-369",
@@ -4222,6 +4225,69 @@
       "id": "W-372",
       "title": "Wave H batch 0: three lessons hide preset/step buttons at the reveal by their own code (not the kit fold): accurate-bettor-takes-the-pot (race-step row, all disabled at race 500), all-lines-meet-in-one-mother (Back 10 / Back to one line / Run 1,000 / 25 and 100; slider kept), continental-jigsaw (Close it all the way / Back to today; slider kept). Each kept the slider or readouts that carry the evidence. Rule whether lesson-level hiding of preset rows is allowed under 2026-10-14-reveal-fits-with-its-picture.md (fold spec says no opt-ins until the re-sweep), or route to the kit fold. Build notes: company/reviews/<slug>/build.md",
       "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-373",
+      "title": "lh-scale-recipe-portions: reword stage warning 'Cooking times do not scale with quantity.' (inaccurate: they scale, not proportionally); proposed wording in company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md second reader; a reader other than the author confirms",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-374",
+      "title": "lh-water-meter-units: apply recall patch (company/reviews/lifehacks-200/recall-patch-resources.lines.txt line 45) so recall keys 1.8 m3, then fact-checker re-verifies c4/recall; still keys wrong-digits 1,800 m3",
+      "owner": "learning-designer",
+      "state": "next",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-375",
+      "title": "Re-check claims reopened by the build-6 phone-fit fixes: a-star-heads-for-goal v7 c1, c6 (tie-break moved to the legend; legend reworded); every-second-seat-out v4 c3, c4 (binary moved into the circle centre); rotation-untangles-the-chain v4 c5 (plain rule line reworded); who-pays-same-filter v4 c2, c3 (claim text changed), c4 (reveal reworded). Notes in each company/reviews/<slug>/build.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-376",
+      "title": "who-pays-same-filter v4: accept or change the phone-fit reveal cut 102 -> 89 words (cut 'Here bargaining is free' (the stage chip says it), ', the laundry or the factory', 'idea'; c4 merged into the Coase sentence). Text in company/reviews/who-pays-same-filter/build.md Revision v4",
+      "owner": "cm-economics-markets",
+      "state": "backlog",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-377",
+      "title": "Design review of the build-6 phone-fit stages (all measured crop 0 at 390x844): a-star-heads-for-goal v7 (controls in a column beside the grid; No guess/With guess merged into one 'Guess: on/off' toggle), every-second-seat-out v4 (step buttons beside the circle, binary in the circle centre, rule line cut), rotation-untangles-the-chain v4 (one picture height for both trees, plain chain at half pitch; four controls in one row), who-pays-same-filter v4 (panels 190 -> 125 units, nets inside the blocks, Total on the title row). Supersedes the stage part of W-278",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-378",
+      "title": "QA + walkthrough for a-star-heads-for-goal v7, every-second-seat-out v4, the-loser-flips-the-winner v3, rotation-untangles-the-chain v4, who-pays-same-filter v4 (phone-fit stage changes; a-star control set changed to Settle next / Settle to goal / Wall / Guess). Supersedes W-290 for a-star and the W-279 measurement for a-star and every-second-seat-out (measured crop 0 on the dev server, see each build.md Pre-flight 7)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-379",
+      "title": "reveal-fit.mjs waits 120 ms between control presses; lessons whose replays disable the next controls (a-star-heads-for-goal, rotation-untangles-the-chain) then skip them, so about half the runs on the dev server end 'reveal never unlocked' or measure a different reveal path. The QA contract waits 450 ms. Consider matching it or waiting for enabled",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

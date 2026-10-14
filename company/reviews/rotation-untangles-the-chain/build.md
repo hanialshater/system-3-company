@@ -50,10 +50,10 @@ W-235 (FC pass 24 observation). Choosing Plain, filling it, then choosing Rotati
 
 - Build 6 (W-287 10 px label floor) measured crop 199 px at 390×844 with the reveal open, 87 words. Re-measured on the dev server before editing: 178 px on the 79-word path (the tool's 120 ms press gap skipped Plain because a replay was still running); parts picture 295 (fitted 295/303), controls 88, text 131. At the reveal only the key row showed; the tree itself was above the card (r8 note: "fold the empty band under the tree").
 - Changes:
-  - The picture is only as tall as the current tree ever gets: LEVELS is computed from every frame's depths, pre-rotation shape and ghosts (rotating 4 levels, plain 7). The key row sits under the deepest level (viewBox 342×324 for plain, 342×204 for rotating). Switching trees changes the stage height; that is a learner action, not a re-fit.
+  - The picture is only as tall as the rotating tree ever gets: LEVELS is computed from every frame's depths, pre-rotation shape and ghosts (rotating 4 levels, plain 7). Both trees share one viewBox, 342×204 (was 342×324): the rotating tree keeps 40 units a level; the plain chain packs its 7 levels at 20 units, which still reads as a diagonal chain because each key keeps its column (checked in a plain-mode reveal screenshot). The key row sits under the deepest level. A first try with a per-mode height (plain 324) cropped 94 px when the reveal opened in plain mode, so the height is now the same in both modes and switching trees no longer moves the stage.
   - The four controls (Insert next key, Insert the rest, Plain, Rotating) share one four-column row; the "Tree" text label is gone (the group keeps aria-label "Tree"). DOM order unchanged.
   - Rule lines are one line each: rotating "Side two levels deeper? Lift the middle key up." (the question states the full rule), plain "Smaller keys left, bigger right. No rotations.".
-  - Node keys 13 → 14, key row 11 → 12, arrow 10 → 12 units, so the card's fit keeps labels at 10 px or more. Gaps 6 → 3 px.
+  - Node keys 13 → 14, key row and ghosts 11-12 → 13, arrow 10 → 13 units, so the card's fit keeps labels at 10 px or more. Gaps 6 → 3 px.
   - Reveal unchanged (79 words; 87 when the Plain tree was run).
 - Claims reopened: c5 (plain rule line wording). Claim text unchanged. c1-c4, c6 untouched.
 
@@ -65,4 +65,4 @@ W-235 (FC pass 24 observation). Choosing Plain, filling it, then choosing Rotati
 4. Reveal values: unchanged sources.
 5. QA path: unchanged (Insert next key → Insert the rest → Plain → Rotating).
 6. Reset: unchanged. Reveal text unchanged.
-7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 rotation-untangles-the-chain`, dev server, three runs): crop 0 px on both reveal paths (was 178 on the dev server; build 6 reported 199). 79-word path: stage 386 px, picture 191 at full size. 87-word path (Plain run): stage 367 px, picture fitted 172/191. hiddenBelow 0, phoneFit true. Named and visible: height, "3 levels", rotations, plain, tree. The whole 3-level tree, the key row and all four readouts are on screen.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 rotation-untangles-the-chain`, dev server, three runs): crop 0 px on both reveal paths, rotating mode and plain mode (was 178 on the dev server; build 6 reported 199). 79-word path: stage 386 px, picture 191 at full size. 87-word path (Plain run): stage 367 px, picture fitted 172/191. hiddenBelow 0, phoneFit true. Named and visible: height, "3 levels", rotations, plain, tree. The whole 3-level tree, the key row and all four readouts are on screen.
