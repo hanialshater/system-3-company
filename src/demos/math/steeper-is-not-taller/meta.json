@@ -1,7 +1,7 @@
 {
   "slug": "steeper-is-not-taller",
   "title": "Which ramp is steeper?",
-  "hook": "Two ramps from the same foot: one ends higher. Is it the steeper one?",
+  "hook": "Two ramps start from the same foot. Which one is steeper?",
   "domain": "math",
   "concept": "slope-as-rate",
   "status": "review",
@@ -48,6 +48,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.steeper-is-not-taller.c4",
+      "text": "Both ramps start at the same foot (the locked stage marks it: both ramps start here).",
+      "support": "convention",
+      "source": "Stage design in Demo.tsx: both ramps are drawn from (0, 0); while locked only the grid, the ground and that point are drawn. Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -72,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:slope-as-rate",
     "prerequisites": [],

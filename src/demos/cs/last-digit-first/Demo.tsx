@@ -1,9 +1,13 @@
 "use client";
 
 // Radix sort by hand. Seven three-digit numbers; each pass deals them into buckets 0-9 by ONE digit (in the
-// current list order, so ties keep it) and collects buckets 0 to 9. One button per pass. The "Order" button
-// flips between last-digit-first and first-digit-first and restarts, keeping what each finished run ended with.
+// current list order, so ties keep it) and collects buckets 0 to 9. One button per pass, one row per order
+// (last digit first, first digit first); each row keeps its own run and what it ended with.
 // The reveal quotes only runs the learner finished.
+// v3: two rows of pass buttons, one per order, each with its own run; the stage shows the run last
+// touched. The gate needs both runs finished, so the learner sees first-digit-first fail before the
+// reveal. On a third pass the first bucket holding two cards is ringed and captioned: the tie kept
+// the order the earlier passes gave it (stability, shown).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -17,31 +21,33 @@ const PLACES: Record<Order, number[]> = { last: [0, 1, 2], first: [2, 1, 0] }; /
 const NAME = ["last", "middle", "first"]; // by place 0,1,2
 const dig = (v: number, p: number) => Math.floor(v / 10 ** p) % 10;
 
-type St = {
-  order: Order;
-  passes: number;
-  list: number[];
-  buckets: number[][] | null;
-  ended: Partial<Record<Order, number[]>>;
-};
-const INIT: St = { order: "last", passes: 0, list: START, buckets: null, ended: {} };
+type Run = { passes: number; list: number[]; buckets: number[][] | null };
+type St = { order: Order; runs: Record<Order, Run>; ended: Partial<Record<Order, number[]>> };
+const FRESH: Run = { passes: 0, list: START, buckets: null };
+const INIT: St = { order: "last", runs: { last: FRESH, first: FRESH }, ended: {} };
 
 export default function LastDigitFirst({ slug }: { slug: string }) {
   const [st, setSt] = useState<St>(INIT);
-  const { order, passes, list, buckets, ended } = st;
+  const { order, runs, ended } = st;
+  const { passes, list, buckets } = runs[order];
   const place = passes > 0 ? PLACES[order][passes - 1] : -1;
+  // On the third pass, the first bucket holding two cards: a tie the earlier passes already ordered.
+  const tie = passes === 3 && buckets ? buckets.findIndex((b) => b.length >= 2) : -1;
 
-  const deal = (n: number) => {
-    const p = PLACES[order][n - 1];
+  const deal = (o: Order, n: number) => {
+    const p = PLACES[o][n - 1];
     const b: number[][] = Array.from({ length: 10 }, () => []);
-    list.forEach((v) => b[dig(v, p)].push(v));
+    runs[o].list.forEach((v) => b[dig(v, p)].push(v));
     const next = b.flat();
-    setSt({ ...st, passes: n, list: next, buckets: b, ended: n === 3 ? { ...ended, [order]: next } : ended });
+    setSt({
+      order: o,
+      runs: { ...runs, [o]: { passes: n, list: next, buckets: b } },
+      ended: n === 3 ? { ...ended, [o]: next } : ended,
+    });
   };
-  const flip = () => setSt({ ...INIT, order: order === "last" ? "first" : "last", ended });
 
   const fmt = (a: number[]) => a.join(" ");
-  const label = (n: number) => `Pass ${n}: ${NAME[PLACES[order][n - 1]]} digit`;
+  const label = (o: Order, n: number) => `Pass ${n}: ${NAME[PLACES[o][n - 1]]} digit`;
 
   return (
     <Lesson
@@ -52,8 +58,8 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
         options: ["fully sorted", "sorted by first digit only", "scrambled"],
         answer: 0,
       }}
-      exploreHint="Press the three passes in turn, then flip the order and try again."
-      minInteractions={1}
+      exploreHint="Run the three passes last digit first, then run them first digit first. Compare the endings."
+      minInteractions={2}
       reveal={() => {
         const l = ended.last;
         const f = ended.first;
@@ -61,9 +67,9 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
           <>
             {l && (
               <p>
-                Your last-digit-first run ended <strong>{fmt(l)}</strong>: every neighbour in order. Each pass dealt
-                the cards in the order the last pass left them, so cards with the same digit kept the order the
-                earlier digits had given them. The first digit, dealt last, has the last word.
+                Your last-digit-first run ended <strong>{fmt(l)}</strong>: every neighbour in order. Look at the ringed
+                bucket on pass 3: those cards tied on the first digit, and they kept the order the earlier passes had
+                given them. So the earlier digits settle ties, and the first digit, dealt last, has the last word.
               </p>
             )}
             {f && (
@@ -71,17 +77,16 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
                 Your first-digit-first run ended <strong>{fmt(f)}</strong>
                 {fmt(f) === fmt([...START].sort((a, b) => a - b))
                   ? "."
-                  : ": ordered by the last digit only. The first pass's work was overwritten."}
+                  : ": ordered by the last digit only, with red > marks. The first digit went first, so the later passes overwrote its work."}
               </p>
             )}
-            {!f && <p>Flip the order to see the same three passes run first digit first.</p>}
             <p className="muted">Three passes sort three-digit numbers, however many there are.</p>
           </>
         );
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["third-pass"]}>
+        <Milestones interact={interact} names={["last-done", "first-done"]}>
           {(reach) => (
             <div className={s.wrap}>
               <p className={s.rule}>Deal by one digit, collect buckets 0 to 9. Ties keep order.</p>
@@ -114,6 +119,9 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
                     <text x={10 + d * 32 + 15} y={78} textAnchor="middle" className={s.axis}>
                       {d}
                     </text>
+                    {d === tie && (
+                      <rect x={10 + d * 32 - 1} y={63} width={32} height={72} rx={5} fill="none" stroke="var(--domain)" strokeWidth={2.5} />
+                    )}
                     {(buckets?.[d] ?? []).map((v, k) => (
                       <text key={v} x={10 + d * 32 + 15} y={94 + k * 14} textAnchor="middle" className={s.small}>
                         {String(v)
@@ -128,10 +136,12 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
                   </g>
                 ))}
                 <text x={20} y={156} className={s.axis}>
-                  Buckets 0–9 · {order === "last" ? "last" : "first"} digit first
+                  {tie >= 0
+                    ? `Tie in bucket ${tie}: kept the order earlier passes gave it`
+                    : `Buckets 0–9 · ${order === "last" ? "last" : "first"} digit first`}
                 </text>
                 <text x={20} y={170} className={s.axis}>
-                  Passes done: {passes} of 3
+                  {order === "last" ? "Last" : "First"} digit first · passes done: {passes} of 3
                 </text>
               </svg>
               {(["last", "first"] as Order[]).map(
@@ -142,24 +152,24 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
                     </p>
                   ),
               )}
-              <Row>
-                {[1, 2, 3].map((n) => (
-                  <Control
-                    key={n}
-                    className={s.tap}
-                    disabled={locked || passes !== n - 1}
-                    onClick={() => {
-                      deal(n);
-                      if (n === 3) reach("third-pass");
-                    }}
-                  >
-                    {label(n)}
-                  </Control>
-                ))}
-                <Control className={s.tap} disabled={locked} onClick={flip}>
-                  Order: {order === "last" ? "last digit first" : "first digit first"}
-                </Control>
-              </Row>
+              {(["last", "first"] as Order[]).map((o) => (
+                <Row key={o}>
+                  {[1, 2, 3].map((n) => (
+                    <Control
+                      key={n}
+                      className={s.tap}
+                      disabled={locked || runs[o].passes !== n - 1}
+                      aria-label={`${o === "last" ? "Last" : "First"} digit first, pass ${n}`}
+                      onClick={() => {
+                        deal(o, n);
+                        if (n === 3) reach(o === "last" ? "last-done" : "first-done");
+                      }}
+                    >
+                      {n === 1 ? `${o === "last" ? "Last" : "First"} first · ${label(o, n)}` : label(o, n)}
+                    </Control>
+                  ))}
+                </Row>
+              ))}
             </div>
           )}
         </Milestones>

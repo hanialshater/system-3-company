@@ -6,6 +6,10 @@
 // Two lines: orange = on the "on" side of exactly one line (OR minus AND of the two cuts,
 // what a hidden layer of two units can compute). Lines turn in 45 degree steps and slide
 // through three offsets, measured from the centre (0.5, 0.5).
+// v4: line 1 starts at x = 0.85 (2 of 4) so Turn, Slide reaches the one-line ceiling (3 of 4);
+// line 2 is added in a position that does not solve it, so the learner must move it. Gate:
+// "ceiling" (one line at 3 of 4) and "solved" (two lines at 4 of 4). Each line marks its "on"
+// side, and the middle dot takes the model's colour, so the midpoint argument is on stage.
 
 import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -34,6 +38,11 @@ function predict(l1: Line, l2: Line | null, x: number, y: number) {
 }
 const score = (l1: Line, l2: Line | null) => POINTS.filter((p) => predict(l1, l2, p.x, p.y) === p.orange).length;
 
+const START1: Line = { turn: 0, slide: 1 };
+/** Where line 2 appears: the first candidate that does not already solve it with line 1. */
+const L2_STARTS: Line[] = [{ turn: 0, slide: 0 }, { turn: 2, slide: 0 }, { turn: 1, slide: 0 }, { turn: 3, slide: 0 }];
+const startLine2 = (l1: Line) => L2_STARTS.find((c) => score(l1, c) < 4) ?? L2_STARTS[0];
+
 /** Best score any single line in the toy can reach (all turns and slides). */
 function bestOneLine() {
   let best = 0;
@@ -59,13 +68,20 @@ function segment(l: Line) {
   const [px, py] = [0.5 + nx * d, 0.5 + ny * d];
   return { x1: X(px - ny * 3), y1: Y(py + nx * 3), x2: X(px + ny * 3), y2: Y(py - nx * 3) };
 }
+/** Where to print a line's "on" label: just inside its on side, shifted along the line by `along`. */
+function onMark(l: Line, along: number) {
+  const a = (l.turn * Math.PI) / 4;
+  const [nx, ny] = [Math.cos(a), Math.sin(a)];
+  const d = OFFSETS[l.slide] + 0.13;
+  return { x: X(0.5 + nx * d - ny * along), y: Y(0.5 + ny * d + nx * along) };
+}
 
 export default function DrawTheXorLines({ slug }: { slug: string }) {
-  const [l1, setL1] = useState<Line>({ turn: 0, slide: 0 });
+  const [l1, setL1] = useState<Line>(START1);
   const [l2, setL2] = useState<Line | null>(null);
-  const [bestSingle, setBestSingle] = useState<number>(score({ turn: 0, slide: 0 }, null));
+  const [bestSingle, setBestSingle] = useState<number>(score(START1, null));
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["one-line", "solved"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["ceiling", "solved"]);
 
   const apply = (n1: Line, n2: Line | null) => {
     setL1(n1);
@@ -73,9 +89,9 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
     const sc = score(n1, n2);
     if (!n2) {
       setBestSingle((b) => Math.max(b, sc));
-      reach("one-line");
+      if (sc === bestOneLine()) reach("ceiling");
     }
-    if (sc === 4) reach("solved");
+    if (n2 && sc === 4) reach("solved");
   };
 
   const correct = score(l1, l2);
@@ -89,19 +105,19 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
         options: ["Yes, if placed cleverly", "No, never", "Yes, if the blue dots are moved slightly"],
         answer: 1,
       }}
-      exploreHint="Turn and slide one line. Then add a second line and solve it."
+      exploreHint="Get one line to its best score. Then add a second line and move it until all 4 are right."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            One line never got all four.{" "}
-            With one line you reached {bestSingle} of 4 (you began at {score({ turn: 0, slide: 0 }, null)}); the best any line can do is{" "}
-            {bestOneLine()} of 4. The two blue dots share a midpoint with the two orange dots, (0.5, 0.5), so any side that holds both
-            blues holds that midpoint, and so does any side that holds both oranges.
+            Your best with one line was {bestSingle} of 4, and no line in this toy does better. Look at the middle dot: it sits halfway
+            between the two blues and halfway between the two oranges. A side that holds both blues must hold the middle dot, and so
+            must a side that holds both oranges. A line&apos;s two sides cannot share a point, so one line always misses a dot.
           </p>
           <p>
-            Two lines did it: orange where exactly one line says &quot;on&quot;, for example a band between them when the lines are parallel. Combining two simple cuts makes a
-            shape no single cut can. That combining step is what a hidden layer adds: here, two hidden units (small calculators inside a network between input and answer), each one line.
+            Your two lines got all 4: the shading is orange where a point is on the &quot;on&quot; side of exactly one line (each line
+            marks its &quot;on&quot; side). Combining two simple cuts makes a shape no single cut can. That combining step is what a hidden
+            layer adds: here, two hidden units (small calculators inside a network between input and answer), each one line.
           </p>
         </>
       )}
@@ -137,8 +153,17 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
               <rect x={OX} y={OY} width={SZ} height={SZ} fill="none" stroke="var(--line)" />
               <g clipPath="url(#xor-clip)">
                 {[l1, l2].map((l, i) => (l ? <line key={i} {...segment(l)} stroke="var(--fg)" strokeWidth={3} /> : null))}
+                {[l1, l2].map((l, i) => {
+                  if (!l) return null;
+                  const p = onMark(l, i === 0 ? 0.32 : -0.32);
+                  return (
+                    <text key={`on${i}`} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" className={s.tiny} fill="var(--fg)">
+                      {`on ${i + 1}`}
+                    </text>
+                  );
+                })}
               </g>
-              <circle cx={X(0.5)} cy={Y(0.5)} r={3} fill="var(--fg)" />
+              <circle cx={X(0.5)} cy={Y(0.5)} r={5} fill={predict(l1, l2, 0.5, 0.5) ? ORANGE : BLUE} stroke="var(--fg)" strokeWidth={1.5} />
               <text x={X(0.5) - 24} y={Y(0.5) + 16} className={s.label} fill="var(--muted)">
                 middle
               </text>
@@ -162,7 +187,7 @@ export default function DrawTheXorLines({ slug }: { slug: string }) {
               <Control disabled={locked} onClick={() => apply({ ...l1, slide: (l1.slide + 1) % OFFSETS.length }, l2)}>
                 Slide line 1
               </Control>
-              <Control disabled={locked} onClick={() => apply(l1, l2 ? null : { turn: 1, slide: 2 })}>
+              <Control disabled={locked} onClick={() => apply(l1, l2 ? null : startLine2(l1))}>
                 {l2 ? "Remove line 2" : "Add line 2"}
               </Control>
             </Row>

@@ -35,21 +35,17 @@
     },
     {
       "id": "probability.hidden-third-cause.c2",
-      "text": "Across all 365 simulated days the correlation between ice-cream sales and sunburns is strong, about 0.83.",
+      "text": "Across all 365 simulated days the correlation between ice-cream sales and sunburns is strong, about 0.83 (shown on the 'Link, all days' readout).",
       "support": "simulation",
-      "source": "model.ts correlation() on town(2024): 0.827. Theory: var(temp) = 30^2/12 = 75, so r = 75 / (75 + 15) = 0.83.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "model.ts correlation() on town(2024): 0.827. Theory: var(temp) = 30^2/12 = 75, so r = 75 / (75 + 15) = 0.83. | v4 2026-10-14 (demo-builder): the all-days value is now on the stage readout from the locked state onward; the reveal says 'the readout said strong (0.83)'. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "probability.hidden-third-cause.c3",
-      "text": "Inside a 3-degree temperature band the link mostly disappears; the reveal quotes the correlation in each band the learner held still in.",
+      "text": "Inside a 3-degree temperature band the link mostly disappears, in cool and hot bands alike: the line through each band is far flatter than the cloud. The reveal quotes the correlation in each band the learner held still in (e.g. 10–13°C: 0.07; 26–29°C: −0.02).",
       "support": "simulation",
-      "source": "model.ts, bands [s, s+3) for s = 5..32, seed 2024: mean 0.047, min -0.19, max 0.30, 30-45 days per band. Theory: within a band var(temp) = 3^2/12 = 0.75, so r = 0.75/(0.75+15) = 0.048; with about 36 days the sampling spread is about +/- 0.17. The seed was not tuned (of seeds 1-2000, 67 keep every band within +/- 0.25).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "model.ts, bands [s, s+3) for s = 5..32, seed 2024: mean 0.047, min -0.19, max 0.30, 30-45 days per band. Theory: within a band var(temp) = 3^2/12 = 0.75, so r = 0.75/(0.75+15) = 0.048; with about 36 days the sampling spread is about +/- 0.17. The seed was not tuned (of seeds 1-2000, 67 keep every band within +/- 0.25). | v4 2026-10-14 (demo-builder): gate now needs a cool band (start ≤ 15) and a hot band (start ≥ 24), via the 'Cool days (10–13°C)' / 'Hot days (26–29°C)' buttons or a 300 ms slider rest. Builder's node run of correlation() per band with SEED 2024: 10 → 0.07, 26 → −0.02; all bands range −0.19 (18) to 0.30 (29). 'Far flatter' rests on |band r| ≤ 0.30 against 0.83. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "probability.hidden-third-cause.c4",
@@ -62,12 +58,17 @@
     },
     {
       "id": "probability.hidden-third-cause.c5",
-      "text": "Correlation runs from -1 to +1: +1 means two quantities rise together perfectly, 0 means no straight-line link. The stage labels |correlation| of 0.6 or more strong, 0.3 to 0.6 weak, 0.1 to 0.3 very weak and under 0.1 none.",
+      "text": "Correlation runs from -1 to +1: +1 means two quantities rise together perfectly, 0 means no straight-line link (stage key: 'Link: +1 rise together, 0 none'). The stage labels |correlation| of 0.6 or more strong, 0.3 to 0.6 weak, 0.1 to 0.3 very weak and under 0.1 none.",
       "support": "convention",
-      "source": "Standard definition of Pearson's correlation coefficient; stated in the stage key. Added by the builder 2026-10-13 in revision v2; needs an independent check. | FACT-CHECK 2026-10-13 (pass 4): Pearson's r lies in [-1, +1] (Cauchy-Schwarz); +1 = perfect increasing straight-line relation, 0 = no linear association. Stage key reads 'Correlation: +1 rise together, 0 no link', consistent. (Minor: the readout word 'weak' covers |r| 0.3-0.6, which many texts call moderate; labelling, not a recorded claim.)",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Standard definition of Pearson's correlation coefficient; stated in the stage key. Added by the builder 2026-10-13 in revision v2; needs an independent check. | FACT-CHECK 2026-10-13 (pass 4): Pearson's r lies in [-1, +1] (Cauchy-Schwarz); +1 = perfect increasing straight-line relation, 0 = no linear association. Stage key reads 'Correlation: +1 rise together, 0 no link', consistent. (Minor: the readout word 'weak' covers |r| 0.3-0.6, which many texts call moderate; labelling, not a recorded claim.) | v4 2026-10-14 (demo-builder): stage key shortened to 'Link: +1 rise together, 0 none' (was clipped on phone). Reopened.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.hidden-third-cause.c6",
+      "text": "Temperature is the hidden cause: the red (hot) dots sit top right and the grey (cool) ones bottom left; hot days sell more ice cream and burn more skin.",
+      "support": "derivation",
+      "source": "Model: sales = temp + noise and sunburn = temp + noise (model.ts), so both rise with temperature; dot colour is color-mix of var(--bad) at (temp − 5)/30 with var(--muted) (Demo.tsx). Replaces the stem sentence 'Warm weather drives both; neither affects the other', now told only after the band slice. Added v4 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "probability:confounding",
     "prerequisites": [],

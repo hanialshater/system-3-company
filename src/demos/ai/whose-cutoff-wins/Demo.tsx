@@ -5,8 +5,12 @@
 // evenly 0-100. One cutoff is learned for everyone by minimising total mistakes.
 // The minimum is at 50, group A's line: 2 mistakes, both group B (20% of B, 0% of A).
 // The reveal waits until the learner has seen the cutoff at the minimum.
+// v3: "at-40" needs the cutoff to rest at 40 for DWELL_MS (a drag from 30 to 50 passes 40
+// without counting), so the reveal's 40-vs-50 comparison is one the learner stood on.
+// "Let the model learn a step" comes first and walks 30 -> 40 -> 50, reporting the total
+// before and after, so "training lowers the total" is watched, not read.
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
@@ -39,28 +43,42 @@ const A_TOP = 54;
 const CELL_H = 13;
 const A_BOT = A_TOP + A_PER_BIN * CELL_H;
 const px = (score: number) => L + (score / 100) * (R - L);
+const DWELL_MS = 300;
 
 export default function WhoseCutoffWins({ slug }: { slug: string }) {
   const [cut, setCut] = useState(30);
   const [seen, setSeen] = useState<number[]>([]);
+  const [last, setLast] = useState<{ from: number; to: number } | null>(null);
   const m = mistakes(cut);
   const interactRef = useRef<() => void>(() => {});
   const { reach } = useMilestones(() => interactRef.current(), ["at-40", "at-best"]);
 
   // The reveal compares 40 with the best cutoff, so it waits until the learner has stood on both.
-  const move = (c: number) => {
+  // 40 counts only once the cutoff rests there, so a drag straight past it does not.
+  useEffect(() => {
+    if (cut !== 40) return;
+    const t = setTimeout(() => {
+      setSeen((p) => (p.includes(40) ? p : [...p, 40]));
+      reach("at-40");
+    }, DWELL_MS);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cut]);
+
+  const move = (c: number, byModel = false) => {
+    setLast(byModel ? { from: cut, to: c } : null);
     setCut(c);
-    setSeen((p) => (p.includes(c) ? p : [...p, c]));
-    if (c === 40) reach("at-40");
+    if (c !== 40) setSeen((p) => (p.includes(c) ? p : [...p, c]));
     if (c === BEST) reach("at-best");
   };
-  const step = () => move(cut < BEST ? cut + 10 : cut - 10);
+  const step = () => move(cut < BEST ? cut + 10 : cut - 10, true);
 
   const message = (locked: boolean) => {
     if (locked) return "Lock in a guess to start.";
-    if (cut === BEST) return seen.includes(40) ? `Fewest mistakes: ${m.total}. Whose are they?` : `${m.total} mistakes. Now compare with 40.`;
-    if (cut === 40) return `${m.total} mistakes: ${m.a} in A, ${m.b} in B. Now try 50.`;
-    return `${m.total} mistakes. Try 40, then 50.`;
+    const stepped = last && last.to === cut ? `Model step ${last.from}→${cut}: ${mistakes(last.from).total}→${m.total} mistakes. ` : "";
+    if (cut === BEST) return stepped + (seen.includes(40) ? `Fewest: ${m.total}. Whose are they?` : `${m.total} mistakes. Now stop at 40 to compare.`);
+    if (cut === 40) return stepped + `${m.total} mistakes: ${m.a} in A, ${m.b} in B.`;
+    return stepped + `${m.total} mistakes. Stop at 40, then 50.`;
   };
 
   return (
@@ -72,7 +90,7 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
         options: ["At 50, group A's line", "At 40, halfway", "At 30, group B's line"],
         answer: 0,
       }}
-      exploreHint="Move the cutoff to 40, then 50. Count each group's red."
+      exploreHint="Let the model learn a step at a time, or stop the cutoff at 40, then 50. Count each group's red."
       minInteractions={2}
       reveal={() => (
         <>
@@ -81,8 +99,9 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
             both group B people scoring 30–50, wrongly failed: <strong>20% of group B</strong>, 0% of group A.
           </p>
           <p>
-            You saw 40: it fixes one group B person and breaks nine group A people, so the cutoff stays put. The model
-            never saw anyone&apos;s group. It fit the majority, and the rare group got the errors, behind 98% right.
+            You stopped at 40: {mistakes(40).total} mistakes, {mistakes(40).a} in A and {mistakes(40).b} in B. Going from 40 to 50 breaks
+            one group B person and fixes nine group A people, so the total drops and training lands on 50. The model never saw
+            anyone&apos;s group. It fit the majority, and the rare group got the errors, hidden inside an overall 98% right.
           </p>
           <p className="muted">
             Real face-analysis tools misclassified darker-skinned women far more often than lighter-skinned men
@@ -156,11 +175,13 @@ export default function WhoseCutoffWins({ slug }: { slug: string }) {
           <p className={s.msg} aria-live="polite">
             {message(locked)}
           </p>
-          <Slider label="Cutoff" value={cut} min={0} max={100} step={10} disabled={locked} onChange={(v) => move(v)} />
           <Row>
             <Control disabled={locked || cut === BEST} onClick={step}>
               Let the model learn a step
             </Control>
+          </Row>
+          <Slider label="Cutoff" value={cut} min={0} max={100} step={10} disabled={locked} onChange={(v) => move(v)} />
+          <Row>
             <Readout label="A wrong" value={locked ? "?" : `${m.a} of 90`} />
             <Readout label="B wrong" value={locked ? "?" : `${m.b} of 10`} />
           </Row>

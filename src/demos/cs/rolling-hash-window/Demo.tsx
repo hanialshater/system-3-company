@@ -3,6 +3,9 @@
 // A window of 5 letters slides along a text. The window hash is the sum of letter values (A=1 ... F=6). Each slide
 // updates it by one subtraction and one addition instead of adding all 5 letters again. A window whose sum equals the
 // pattern's is only a flag: the letters still have to be checked (EBCDA is a false flag; ABCDE is the match).
+// v3: the text starts FEBCD (no flag), so the first action is a slide; the false flag EBCDA is window 2. The four
+// letters both windows share are bracketed "kept" on a slide, so "only the ends change" is on the stage. The
+// letter counter is hidden until the prediction is locked, and "Slide to end" reports the per-slide cost.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -10,10 +13,10 @@ import { Milestones } from "@/kit/milestones";
 import { Control, Row } from "@/kit/controls";
 import s from "./styles.module.css";
 
-const TEXT = "EBCDAFFABCDE";
+const TEXT = "FEBCDAFFABCDE";
 const PATTERN = "ABCDE";
 const K = PATTERN.length;
-const W = TEXT.length - K + 1; // 8 windows
+const W = TEXT.length - K + 1; // 9 windows
 const val = (c: string) => c.charCodeAt(0) - 64;
 const sumOf = (t: string) => [...t].reduce((a, c) => a + val(c), 0);
 const PSUM = sumOf(PATTERN);
@@ -29,6 +32,7 @@ const xOf = (c: number) => TX + c * TW;
 export default function RollingHashWindow({ slug }: { slug: string }) {
   const [i, setI] = useState(0);
   const [checks, setChecks] = useState<Checks>({});
+  const [jump, setJump] = useState(0); // slides taken by the last "Slide to end"
 
   const rolling = K + 2 * i;
   const readd = K * (i + 1);
@@ -38,24 +42,28 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Window hash = sum of letter values (A = 1, B = 2 …). The window is 5 letters wide. Sliding it one letter along, how many letters must you add up again?",
-        options: ["All 5 in the window", "None: subtract the one that left, add the one that arrived", "About half of them"],
+          "Window hash = sum of letter values (A = 1, B = 2 …). The window is 5 letters wide. Sliding it one letter along, how many letter values must you use to get the new sum?",
+        options: ["All 5", "Just 2", "About 3"],
         answer: 1,
       }}
-      exploreHint="Check the flagged window, then slide the window to the end of the text."
+      exploreHint="Slide the window one letter, check the window it flags, then slide to the end."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            You slid the window {i} times. Each slide touched two letters: one out, one in. Sliding read <strong>{rolling}</strong>{" "}
-            letters in all; adding every window up again would have read <strong>{readd}</strong>.
+            You slid the window {i} times. Each slide used two letters, the one marked − and the one marked +; the {K - 1} letters
+            marked &quot;kept&quot; were already in the sum. Sliding read <strong>{rolling}</strong> letters in all; adding every window up
+            again would have read <strong>{readd}</strong>.
           </p>
           <p>
-            {checks[0] && !checks[0].ok ? <>EBCDA summed to 15 too, but checking the letters caught it (E is not A). </> : null}
+            {checks[1] && !checks[1].ok ? <>EBCDA summed to 15 too, but checking the letters caught it (E is not A). </> : null}
             {checks[i]?.ok ? <>ABCDE flagged at the end, and checking its letters confirmed the match. </> : <>ABCDE flagged at the end. </>}
             The sum cannot tell one order of letters from another, so equal sums still need a check.
           </p>
-          <p className="muted">An updatable hash makes each slide cost the same, however long the pattern is.</p>
+          <p className="muted">
+            Only the two end letters change, so a wider window would still cost 2 per slide: an updatable hash makes each slide cost
+            the same, however long the pattern is.
+          </p>
         </>
       )}
     >
@@ -81,11 +89,13 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
             };
             const slide = () => {
               if (locked || atEnd || blocked) return;
+              setJump(0);
               setI(i + 1);
               if (i + 1 === W - 1) reach("second-flag");
             };
             const toEnd = () => {
               if (locked || atEnd || blocked) return;
+              setJump(W - 1 - i);
               setI(W - 1);
               reach("second-flag");
             };
@@ -94,7 +104,9 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
               ? `Window ${win(0)}: sum ${SUMS[0]} · pattern ${PSUM}`
               : i === 0
                 ? `Window ${win(0)}: sum ${sum} · pattern ${PSUM}`
-                : `${SUMS[i - 1]} − ${val(leave!)} + ${val(arrive!)} = ${sum}`;
+                : jump > 1
+                  ? `${jump} slides × 2 letters. Last: ${SUMS[i - 1]} − ${val(leave!)} + ${val(arrive!)} = ${sum}`
+                  : `${SUMS[i - 1]} − ${val(leave!)} + ${val(arrive!)} = ${sum}`;
             const flagMsg = !flagged
               ? "No flag: the sum differs from the pattern's."
               : !chk
@@ -110,7 +122,7 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
                   {msg}
                 </p>
                 <svg
-                  viewBox="0 0 340 74"
+                  viewBox="0 0 360 86"
                   className="stage-svg"
                   role="img"
                   aria-label={`Window ${win(i)}, sum ${sum}${flagged ? (chk ? (chk.ok ? ", match" : ", false flag") : ", flag") : ""}`}
@@ -153,6 +165,19 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
                       −{val(leave)}
                     </text>
                   )}
+                  {!locked && i > 0 && (
+                    <g>
+                      <path
+                        d={`M ${xOf(i) + 3} 66 v 4 H ${xOf(i + K - 1) - 3} v -4`}
+                        fill="none"
+                        stroke="var(--muted)"
+                        strokeWidth={1.5}
+                      />
+                      <text x={(xOf(i) + xOf(i + K - 1)) / 2} y={82} textAnchor="middle" className={s.val}>
+                        kept: already in the sum
+                      </text>
+                    </g>
+                  )}
                   {!locked && arrive && (
                     <text x={xOf(i + K - 1) + TW / 2} y={12} textAnchor="middle" className={s.chipIn}>
                       +{val(arrive)}
@@ -162,19 +187,17 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
                 <p className={s.hist}>Sums: {SUMS.map((v, k) => (k <= i ? v : "·")).join(" ")}</p>
                 <p className={`${s.flag} ${chk ? (chk.ok ? s.good : s.bad) : ""}`}>{locked ? "" : flagMsg}</p>
                 <Row>
-                  <Control className={s.btn} disabled={locked || !flagged || !!chk} onClick={check}>
-                    Check letters
-                  </Control>
                   <Control className={s.btn} disabled={locked || atEnd || blocked} onClick={slide}>
                     Slide
+                  </Control>
+                  <Control className={s.btn} disabled={locked || !flagged || !!chk} onClick={check}>
+                    Check letters
                   </Control>
                   <Control className={s.btn} disabled={locked || atEnd || blocked} onClick={toEnd}>
                     Slide to end
                   </Control>
                 </Row>
-                <p className={s.count}>
-                  Letters added up: sliding {rolling} · adding each window again {readd}
-                </p>
+                <p className={s.count}>{locked ? "" : `Letters used: sliding ${rolling} · adding each window again ${readd}`}</p>
               </div>
             );
           }}

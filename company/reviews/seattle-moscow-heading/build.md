@@ -15,3 +15,11 @@ From the latest learner review and fact-check (batch 03).
 - Hook no longer names north.
 - New control "Show on a flat map" redraws the same route on an ordinary map where it bends north; reveal points to it or recalls it.
 - Dropped the winds/airspace sentence from the reveal to keep it short. New claim c8 (flat-map bend), unverified.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Locked stage shows the ordinary flat map (Moscow plainly east), not the Seattle-centred disc. New milestone 'flat-hit': the on-target route viewed on the flat map. QA path reaches it: east, NE, N, +10° (on target), R1, L1, flat.
+- Claims reopened (status unverified): c8.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

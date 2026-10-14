@@ -52,12 +52,10 @@
     },
     {
       "id": "ai.whose-cutoff-wins.c4",
-      "text": "Moving the cutoff from 50 to 40 fixes one group B person and breaks nine group A people, so the cutoff stays at 50.",
+      "text": "At a cutoff of 40 there are 10 mistakes, 9 in group A and 1 in group B. Going from 40 to 50 breaks one group B person and fixes nine group A people, so the total drops and training lands on 50.",
       "support": "derivation",
-      "source": "The 40–50 band holds 9 group A people (not qualified, below 50) who a cutoff of 40 wrongly passes, and 1 group B person (score 45, qualified) whom it now correctly passes. mistakes(40) in Demo.tsx = A 9, B 1 (the remaining B mistake is the person at 35, still failed). | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The 40–50 band holds 9 group A people (not qualified, below 50) who a cutoff of 40 wrongly passes, and 1 group B person (score 45, qualified) whom it now correctly passes. mistakes(40) in Demo.tsx = A 9, B 1 (the remaining B mistake is the person at 35, still failed). | REVISION v2 2026-10-14: text edited to match stage; needs re-check. | v3 2026-10-14 (demo-builder): reveal now quotes mistakes(40) computed live (A 9, B 1, total 10) and runs the comparison 40 -> 50 instead of 50 -> 40. The gate's 'at-40' milestone now needs the cutoff to rest at 40 for 300 ms, so the reveal's 'You stopped at 40' is true. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "ai.whose-cutoff-wins.c5",
@@ -67,6 +65,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.whose-cutoff-wins.c6",
+      "text": "Each press of 'Let the model learn a step' moves the cutoff 10 points toward the lowest total, and the stage reports the total before and after (30→40: 18→10; 40→50: 10→2).",
+      "support": "convention",
+      "source": "step() and message() in Demo.tsx; totals from mistakes() (see c3: 18 at 30, 10 at 40, 2 at 50). Stand-in for the doesNotKnow item 'training minimises the average mistake'. Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -92,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:training-data-bias",
     "prerequisites": [

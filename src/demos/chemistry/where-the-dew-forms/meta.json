@@ -35,21 +35,17 @@
     },
     {
       "id": "chemistry.where-the-dew-forms.c2",
-      "text": "Relative humidity is the water vapour in the air as a share of the most that can stay vapour at that temperature.",
+      "text": "Relative humidity is the water vapour in the air divided by the most that can stay vapour at that temperature (Water divided by Max on the stage), and warm air allows far more.",
       "support": "convention",
-      "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure. | v3 2026-10-14 (demo-builder): reveal now points at the stage's Water and Max readouts (vapour and es(t) in Demo.tsx; Fullness = Water / Max). Reopened.",
+      "status": "unverified"
     },
     {
       "id": "chemistry.where-the-dew-forms.c3",
-      "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour, which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point).",
+      "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour (half of 4.24 kPa), which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point), between 20 and 15 °C.",
       "support": "derivation",
-      "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD). | v3 2026-10-14 (demo-builder): the predict options are now brackets (25-20, 20-15, below 15 °C; key 'Between 20 and 15 °C'), because the presets show 91% and no dew at 20 °C and dew at 15 °C (fullness 0.908 at 20, 1.245 at 15 by es()). The stage marks the crossing 'dew point ≈ 18 °C' once the learner cools past it. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "chemistry.where-the-dew-forms.c4",
@@ -59,6 +55,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "chemistry.where-the-dew-forms.c5",
+      "text": "Until the dew point, cooling never changed your air's water (2.12 kPa); it lowered the maximum, so Fullness rose until the curve met your line at about 18 °C: 100% full, and the first dew.",
+      "support": "derivation",
+      "source": "Stage model in Demo.tsx: vapour = min(E, es(t)) with E = 2.118 kPa constant above TD = 18.45 °C; es(t) falls as t falls (Magnus formula, see c1). Reveal paragraph 1. Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -83,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:vapor-pressure-humidity",
     "prerequisites": [
