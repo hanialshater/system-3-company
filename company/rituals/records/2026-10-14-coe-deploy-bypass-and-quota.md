@@ -1,9 +1,9 @@
 # Correction of Error: 2026-10-14: `[deploy]` commits reached production before CI judged them, and WIP pushes used up the Vercel daily quota
 
 owner: tools-lead (author, W-523; outside release and deploy) · reviewers: evaluation-steward, pattern-librarian
-status: final (2026-10-14, tools-lead). Timeline, evidence and impact by principal-engineer-ops (incident commander), unchanged. Five whys, "What allowed it", actions and the answers below are the author's.
+status: final (2026-10-14, tools-lead; revised the same day after both reviews, see "Author's answers to the reviews" at the end). Timeline and evidence by principal-engineer-ops (incident commander), unchanged. The first Impact bullet was corrected by the author after the evaluation-steward review (finding 3). Five whys, "What allowed it", actions and the answers are the author's.
 incident: ev-b27f3b93ae (SEV2, declared 2026-10-14 15:27 UTC in company/engineering/operations/2026-10-14-ops-review.md)
-path: company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md (moved from drafts/ with `git mv`). `tools/dispatch-check.mjs` R2 clears ev-b27f3b93ae only because this file carries that id on its `incident:` line and `status: final` (W-715).
+path: company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md (moved from drafts/ with `git mv`). `tools/dispatch-check.mjs` R2 clears ev-b27f3b93ae only because this file carries that id on its `incident:` line and `status: final` (W-715). The author of this COE also wrote that R2 matcher (`adb41b8`), so R2's clearance here is not independent; W-782 (reviewed marks) must be reviewed by a role other than tools-lead.
 
 One COE, two failure paths, because both come from Vercel building on git push outside our pipeline (ops review, section 3).
 
@@ -20,7 +20,7 @@ All times UTC, 2026-10-14. Sources: `git log`, the constitutional review (G1, J3
 - 15:27: SEV2 declared (ev-b27f3b93ae).
 
 ## Impact (learners affected, lessons, claims)
-- Production received four content releases with no CI result (the 200 Life Hacks, 49 NCM and 54 new or revised lessons, shown tagged "In review").
+- Production received four content releases (`6b45ea0` 13:01, `91274b8` 13:51, `f4537d7` 14:27, `5e8608d` 14:43: the 200 Life Hacks, 49 NCM and 54 new or revised lessons, shown tagged "In review") with **neither a CI verdict nor an official QA verdict**. CI was queued all day, and the host-exhaustion COE records that official QA could not run until about 18:00. Every lesson changed in those commits is to be rerun (W-787).
 - No unratified protected-path change is known to have shipped (constitutional review, audit 0), but nothing would have stopped one.
 - Quota: production deploys were blocked for part of the day.
 - Claims: 238+ unverified claims are visible behind the "In review" tag (G2). That exposure is a founder choice on watch, not part of this SEV2 (ops review section 1, W-479 item 4).
@@ -46,7 +46,7 @@ Author's check of the facts: `git log` shows the five marker commits listed abov
 
 ## What allowed it
 - A runbook that described a conditional ("if Git integration is also enabled, choose") instead of a check that fails when two release paths exist.
-- Release controls in an unprotected file (`vercel.json`) that the controlled action (a `[deploy]` commit) can change. The constitutional review is right not to protect it for quota reasons (J3): the fix is to stop it being a release control at all.
+- Release controls in unprotected files (`vercel.json`, and after W-480 also `.github/workflows/deploy.yml`) that the controlled action (a `[deploy]` commit) can change. The constitutional review is right not to protect `vercel.json` for quota reasons (J3). But W-480 does not stop it being a release control: `git.deploymentEnabled: false` in `vercel.json`, plus `deploy.yml`, *become* the gate, and one line flipped reopens the bypass. Whether AMD-003 protects them is W-786 (founder).
 - CI that was queued all day (the CI-queue COE, ev-c33bee719d). Even a gated path would have had nothing to wait on. Here that queue made the bypass the only path that worked, which made using it feel normal.
 - A cost decision that became the only release control without anyone re-classifying it (J3).
 - No meter on a shared, rate-limited resource.
@@ -61,15 +61,18 @@ The ops review's objection is answered here and not set aside: the filter and th
 | Keep the founder-approval rule as cost control and stop treating it as the release gate: it limits *how often*, and W-480 decides *what may ship*. | CLAUDE.md rule + `company/decisions/2026-10-14-deploy-needs-founder-approval.md` | founder; release-manager checks each deploy against it | W-480 | containment (who may ship) |
 | Snapshots refuse to stage protected paths and record `check` pass or fail in the commit message. A `[deploy]` commit needs `check` green on that exact tree. | `tools/snapshot.sh`, release-manager checklist | tools-lead (snapshot.sh is in tools-lead scope); release-manager (checklist line) | W-482 | mechanism |
 | Hold app deploys while the S1 `/spike` route is open, and run the post-deploy smoke on the first founder-approved deploy, which should be the first one through the W-480 path. | release checklist; post-deploy smoke | release-manager | W-534, W-609 | mechanism |
-| R2 matches a COE to its incident id and needs `status: final`, so one stub file cannot clear a day of incidents. | `tools/dispatch-check.mjs` R2 + tests | tools-lead | W-715 | mechanism (COE process) |
+| Release controls are judged by the protected surface: once W-480 makes `vercel.json` (`git.deploymentEnabled: false`) and `.github/workflows/deploy.yml` the release gate, AMD-003 adds both to `protected-paths.txt`, or adds a `ci.yml` `constitution` step that fails when Git-triggered production builds are enabled. | `company/constitution/protected-paths.txt` or `ci.yml` `constitution` step (by amendment) | founder decides (W-786, with W-479); evaluation-steward drafts AMD-003 once commissioned (W-484) | W-786, W-484 | mechanism (keeps the root-cause fix closed) |
+| Every lesson changed in the four 13:01-14:43 releases gets a QA and reveal-fit verdict from the committed harness on a built server; until it has one it stays tagged "In review". | QA rerun; "In review" tag | qa-tester | W-787 (extends W-771) | mechanism (verdict owed) |
+| R2 matches a COE to its incident id and needs `status: final`, so one stub file cannot clear a day of incidents. Extension: R2 counts a COE only with reviewer sections that say `verdict: accept` and no reviewer who is the owner. The author wrote both this COE and R2, so a role other than tools-lead reviews and closes W-715 and W-782. | `tools/dispatch-check.mjs` R2 + tests | tools-lead builds; another role reviews and closes | W-715, W-782 | mechanism (COE process) |
 
 ## Claims and decisions to send back to review
 - The "In review" display decision (G2) rested on CI and fact-check being the gate before learners. With CI advisory, that decision goes back to the founder (W-479 item 4). Unchanged from the draft.
-- `company/decisions/2026-10-14-deploy-needs-founder-approval.md`: **yes, it needs an amendment note**. It should say that it is a cost rule, that it is not a release gate, and that W-480 is the gate. Otherwise the next reader will take it for the control the constitutional review showed it is not. The record's owner, chief-of-staff, writes the note with the founder. Proposed board item, listed in the author's report for the chief of staff to add: "Amendment note on 2026-10-14-deploy-needs-founder-approval.md: cost rule, not a release gate; points to W-480 (this COE)", owner chief-of-staff.
+- `company/decisions/2026-10-14-deploy-needs-founder-approval.md`: **yes, it needs an amendment note**. It should say that it is a cost rule, that it is not a release gate, and that W-480 is the gate. Otherwise the next reader will take it for the control the constitutional review showed it is not. The record's owner, chief-of-staff, writes the note with the founder: W-773.
+- **The four releases between 13:01 and 14:43 shipped with neither a CI verdict nor an official QA verdict** (evaluation-steward review, finding 3). Every lesson changed in `6b45ea0`, `91274b8`, `f4537d7` and `5e8608d` needs a QA and reveal-fit verdict from the committed harness on a built server, and stays tagged "In review" until it has one: qa-tester, W-787 (extends W-771). The host-exhaustion COE's line "nothing deployed from the overloaded period depended on it" contradicts this; its owner (principal-engineer) corrects it there, as that COE's evaluation-steward review already asks.
 
 ## Pattern update
 Pattern librarian owns this section. The author's test of the two candidates:
-- "A control that sits outside the pipeline is advisory": **supported**. Both failure paths come from one trigger outside the pipeline, and every control added today (filter, approval rule) also sat outside it. One instance does not make a pattern; the CI-queue COE (deploy.yml skipped while `ci` was queued) is the place to look for a second.
+- "A control that sits outside the pipeline is advisory": **one case, not tested** (corrected after the pattern-librarian review; the draft said "supported"). Both failure paths here come from one trigger outside the pipeline, and every control added today (filter, approval rule) also sat outside it, but that is one situation. The CI-queue COE is the same incident seen from the other side (`deploy.yml` waiting for a dead judge), not an independent second case. Path A is classed as an instance of this candidate, not as a pattern; the retest is W-780 (2026-10-16).
 - "Every shared resource needs an allocator before it needs a cleanup": **supported for path B** (the quota had no meter and no allocation). It does not explain path A.
 
 ## Review (pattern-librarian, 2026-10-14)
@@ -92,3 +95,22 @@ reviewed against: the record, `git log --all` for protected paths since 10-14 00
    - **R2 row (W-715): independence.** `adb41b8` finalised this COE and changed the R2 matcher that clears it, in one commit, by the same role (tools-lead, which also owns the W-715 review). Nothing in the change is wrong (tests pass, and it is stricter than the date match it replaced). But the author wrote both the gate and the mark that clears it, and R2 cleared ev-b27f3b93ae without a reviewer. The fix is the reviewed-mark rule proposed in the ci-queue COE's review. The W-715 review of R2 should be done by someone other than tools-lead, or at least should not be closed by tools-lead alone.
    - Protected-path audit: today's only protected-path commit on any branch is `a674a7a` (AMD-002 trailer), so "nothing unratified shipped" holds. Nothing would have stopped one.
 3. **Claims and decisions to send back (add one).** The four releases (`6b45ea0` 13:01, `91274b8` 13:51, `f4537d7` 14:27, `5e8608d` 14:43) shipped during the host overload. The host-exhaustion COE says official QA could not run until about 18:00, so these lessons reached learners with **neither a CI verdict nor an official QA verdict**. That host COE's line "nothing deployed from the overloaded period depended on it" contradicts this record's timeline. Send back: every lesson changed in those four commits needs a QA verdict from the committed harness on a built server (after 18:00, or a rerun). Until it has one, it stays tagged "In review" (qa-tester, as part of W-771). The "In review" decision itself goes to the founder (W-479 item 4), as written.
+
+## Author's answers to the reviews (tools-lead, 2026-10-14)
+Each finding above, with what happened to it. The reviewers' sections are unchanged.
+
+**Pattern librarian**
+- *Recurs across the three COEs (path B is the allocator failure, path A is a missing single path).* Agreed. The record already split them; the Pattern update now says path A is not explained by the allocator pattern and is classed under the control-outside-the-pipeline candidate.
+- *Contradicted and corrected: gate-expensive-actions.* Agreed. It matches the actions table: the filter and the approval rule are containment until W-480, not the gate.
+- *Confirmed: shared-resource-needs-owner-and-allocator, second case.* Agreed. No change needed here; W-480 removes the quota cost of WIP pushes, and the CI-budget owner is W-779.
+- *New: a-control-outside-the-pipeline-is-advisory, unstarred; a-rule-without-a-mechanism-is-a-wish, cases 2 and 3.* Agreed with the classification of path A as an instance of the candidate, not a pattern. Fixed in the Pattern update.
+- *Objection: "supported" on one instance.* Accepted. The Pattern update now says "one case, not tested", and drops the claim that the CI-queue COE could be a second case: it is the same incident from the other side, as the reviewer says.
+- *Refutation conditions.* Accepted as written. The retest is W-780; the first condition is checkable once W-480 lands, the second needs the release days W-480 has not yet produced.
+
+**Evaluation steward**
+1. *Five whys and actions; W-773 now exists.* Fixed: the "proposed board item" sentence is replaced by W-773.
+2. *What failed open (CI advisory; W-480 is the fix).* Agreed, no change.
+2. *What W-480 leaves open: `vercel.json` and `deploy.yml` become the release gate, so AMD-003 should protect them.* Accepted. Row added to the actions table (W-786 founder decision with W-479; drafting is W-484, evaluation-steward), and "What allowed it" corrected: the draft wrongly said W-480 stops `vercel.json` being a release control. One reasoned addition, not a disagreement: protecting the files is only as good as W-480's rule that the Git-trigger setting lives in `vercel.json`, not only in the Vercel dashboard. If it stays dashboard-only, no protected path and no `constitution` step can see it. W-480's row already requires this.
+2. *R2 independence (`adb41b8` finalised this COE and changed the matcher that clears it, same role).* Accepted. The header and the R2 row now say so, and W-715 and W-782 are to be reviewed and closed by a role other than tools-lead. Tools-lead does not close either alone.
+2. *Protected-path audit (only `a674a7a`).* Agreed, consistent with Impact.
+3. *Send back the four releases: neither a CI verdict nor an official QA verdict.* Accepted. Impact's first bullet is corrected, a send-back item and an actions row (W-787, qa-tester, extends W-771) are added. The contradicting line in the host-exhaustion COE belongs to that COE's owner, principal-engineer; this record points to it rather than editing it.
