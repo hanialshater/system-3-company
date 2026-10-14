@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-14: platform-engineer W-135 reveal fit on phones
+- At the reveal the card body scrolls the reveal into view (DemoCard `useRevealFit`), and `.stage-svg` takes its natural height instead of collapsing to its min-height. Lesson.tsx unchanged. New `tools/reveal-fit.mjs`: at 390×844, 502/509 reveals fully visible (was 257), thumbnails 141 → 6 (lesson-level dvh caps). Note: company/engineering/notes/2026-10-14-W-135-reveal-fit.md.
+
 ## 2026-10-13: platform-engineer SPIKE-001 (scratch, never merged)
 - `spike/` tooling and the `/spike` host route: 3 lessons as content-hashed ES module bundles against a shared kit, served from a second origin into `sandbox="allow-scripts"` frames with a postMessage bridge. No feed, lesson page, kit, gate, tests/qa or lesson source changed; no new dependency. Results: company/engineering/spikes/SPIKE-001-frontend-sandbox.md.
 

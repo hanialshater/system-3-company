@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import type { DemoMeta } from "@/kit/types";
 import { DemoHost } from "./DemoHost";
 
@@ -25,6 +25,8 @@ export function DemoCard({
 }) {
   const [trustOpen, setTrustOpen] = useState(false);
   const verified = meta.claims.filter((c) => c.status === "verified").length;
+  const bodyRef = useRef<HTMLDivElement>(null);
+  useRevealFit(bodyRef, active);
 
   return (
     <article
@@ -44,7 +46,7 @@ export function DemoCard({
         <p className="card-hook">{meta.hook}</p>
       </header>
 
-      <div className="card-body">{active ? <DemoHost slug={meta.slug} /> : <div className="loading">Swipe here to start</div>}</div>
+      <div className="card-body" ref={bodyRef}>{active ? <DemoHost slug={meta.slug} /> : <div className="loading">Swipe here to start</div>}</div>
 
       <footer className="card-foot">
         <button type="button" className="link" data-testid="trust-button" onClick={() => setTrustOpen(true)}>
@@ -89,3 +91,44 @@ export function DemoCard({
     </article>
   );
 }
+
+/**
+ * W-135: at the reveal, the card body scrolls just far enough that the reveal's bottom is on screen
+ * (or its top, if the reveal is taller than the card). Before this the reveal started at the card's
+ * bottom edge and the rest sat below the fold of an unmarked inner scroll: on a phone it read as
+ * text clipped under "Why trust this?". The lesson contract (src/kit/Lesson.tsx) is protected, so
+ * the card watches the lesson's data-phase from outside instead of the kit scrolling itself.
+ */
+function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
+  useEffect(() => {
+    const body = bodyRef.current;
+    if (!body || !active || typeof MutationObserver === "undefined") return;
+    let revealed = false;
+    const timers: number[] = [];
+    const bringIntoView = () => {
+      const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
+      if (!reveal) return;
+      const b = body.getBoundingClientRect();
+      const r = reveal.getBoundingClientRect();
+      const below = r.bottom - b.bottom + 4;
+      if (below <= 0) return;
+      body.scrollTop += Math.max(0, Math.min(below, r.top - b.top - 12));
+    };
+    const onChange = () => {
+      const isReveal = body.querySelector('[data-testid="lesson"]')?.getAttribute("data-phase") === "reveal";
+      if (isReveal === revealed) return;
+      revealed = isReveal;
+      if (!isReveal) return;
+      requestAnimationFrame(bringIntoView);
+      timers.push(window.setTimeout(bringIntoView, 400)); // a reveal that animates in may still be growing
+    };
+    const mo = new MutationObserver(onChange);
+    mo.observe(body, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-phase"] });
+    onChange();
+    return () => {
+      mo.disconnect();
+      timers.forEach((t) => clearTimeout(t));
+    };
+  }, [bodyRef, active]);
+}
+
