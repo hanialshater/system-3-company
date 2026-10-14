@@ -39,6 +39,7 @@ const ROW = 40;
 
 export default function CutTheRod({ slug }: { slug: string }) {
   const [filled, setFilled] = useState(0); // best(1)..best(filled) are known
+  const [seen, setSeen] = useState(false); // best(4) was reached once; survives Start over
 
   const best4 = TABLE[N];
   const opts = ["$9, sell it whole", "$10", "$13"];
@@ -58,11 +59,11 @@ export default function CutTheRod({ slug }: { slug: string }) {
           <p>
             You filled best(1) to best(4): ${TABLE[1].best}, ${TABLE[2].best}, ${TABLE[3].best}, ${best4.best}. For length 4,
             two pieces of length 2 (${PRICE[1]} + ${PRICE[1]}) beat selling it whole for ${PRICE[3]}, and beat cutting off
-            the best-priced piece (length 3, ${PRICE[2]}) and selling the leftover for ${PRICE[0]}.
+            the most expensive piece (length 3, ${PRICE[2]}) and selling the leftover for ${PRICE[0]}.
           </p>
           <p>
-            The best price of a rod is the best over first-cut sizes of (piece price + best price of the rest). Each shorter
-            rod is solved once and reused. With prices 1, 5, 8, 9, 10, 17, 17, 20 for lengths 1 to 8, a length-8 rod
+            The best price of a rod is the best over first-cut sizes of (piece price + best price of the rest). Each
+            cut line read a filled row, like best(3) in &quot;1 + best(3)&quot;: each shorter rod is solved once and reused. With prices 1, 5, 8, 9, 10, 17, 17, 20 for lengths 1 to 8, a length-8 rod
             sells for ${BIG[8].best} (pieces {BIG[8].pieces.join(" + ")}), not $20 whole.
           </p>
         </>
@@ -76,13 +77,17 @@ export default function CutTheRod({ slug }: { slug: string }) {
               const n = filled + 1;
               setFilled(n);
               reach("first-fill");
-              if (n === N) reach("best-4");
+              if (n === N) {
+                reach("best-4");
+                setSeen(true);
+              }
             };
             const fillRest = () => {
               if (locked || filled >= N) return;
               setFilled(N);
               reach("first-fill");
               reach("best-4");
+              setSeen(true);
             };
             const restart = () => {
               if (locked || filled === 0) return;
@@ -91,6 +96,7 @@ export default function CutTheRod({ slug }: { slug: string }) {
             const n = filled; // the length whose choices are listed
             const list: ReturnType<typeof choices> = n > 0 ? choices(n) : [];
             const top = n > 0 ? TABLE[n].first : 0;
+            const reused = n > 1 && top < n ? n - top : 0; // the shorter row the kept cut reads
 
             return (
               <div className={s.wrap}>
@@ -106,6 +112,9 @@ export default function CutTheRod({ slug }: { slug: string }) {
                     let x = X0;
                     return (
                       <g key={len}>
+                        {len === reused && (
+                          <rect x={2} y={y} width={336} height={30} rx={6} fill="none" stroke="var(--good)" strokeWidth={2} strokeDasharray="5 3" />
+                        )}
                         <text x={8} y={y + 20} className={s.lab}>
                           length {len}
                         </text>
@@ -144,7 +153,7 @@ export default function CutTheRod({ slug }: { slug: string }) {
                 <ul className={s.choices} aria-label="choices for the last length filled">
                   {list.map((c) => (
                     <li key={c.k} className={c.k === top ? s.win : ""}>
-                      cut {c.k}: ${c.piece} + ${c.rest} = ${c.total}
+                      {c.k < n ? `${c.k} + best(${n - c.k})` : `whole ${c.k}`}: ${c.piece} + ${c.rest} = ${c.total}
                     </li>
                   ))}
                 </ul>
@@ -163,7 +172,10 @@ export default function CutTheRod({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Whole rod" value={`$${PRICE[3]}`} />
-                  <Readout label="best(4)" value={filled >= N ? `$${best4.best}` : "?"} />
+                  <Readout
+                    label="Seen: best(1..4)"
+                    value={seen ? `$${TABLE[1].best}, $${TABLE[2].best}, $${TABLE[3].best}, $${best4.best}` : "?"}
+                  />
                 </Row>
               </div>
             );

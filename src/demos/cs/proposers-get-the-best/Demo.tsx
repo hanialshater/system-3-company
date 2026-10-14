@@ -1,116 +1,117 @@
 "use client";
 
-// Before / after toggle: the same four rankings, run twice. Press a free proposer to make
-// its next offer; the receiver keeps the better offer. A toggle swaps who proposes and
-// starts a fresh run; finished runs stay in the log so the two outcomes sit side by side.
-// v3: "stable" is shown, not told. "Would a pair rather swap?" checks every finished run on stage: for each
-// student and the hospital they did not get, does each side want the swap? A matching is stable when no pair
-// says yes twice. The reveal needs both runs and the check of both, and quotes the check lines.
+// Before / after toggle: the same six rankings, run twice. Press a free proposer to make offers down its list
+// until a receiver holds it; a receiver keeps the better offer and turns the other down (dashed line, ✕). A toggle
+// swaps who proposes and starts a fresh run; finished runs stay in the log so the two outcomes sit side by side.
+// v4 (learner r7): 3 × 3 so each run has a clash (Ann and Bea both want X; Y and Z both want Ann), and the
+// question asks whether swapping the proposer changes anything, which is where the misconception lives.
+// "Would a pair rather swap?" checks every finished run: for each student and each hospital they did not get, does
+// each side want the swap? A matching is stable when no pair says yes twice. The reveal needs both runs and the check.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-type Name = "Ann" | "Bea" | "X" | "Y";
+type Name = "Ann" | "Bea" | "Cal" | "X" | "Y" | "Z";
 type Mode = "S" | "H";
+type Pairs = [Name, Name][]; // [student, hospital]
 
 const PREF: Record<Name, Name[]> = {
-  Ann: ["X", "Y"],
-  Bea: ["Y", "X"],
-  X: ["Bea", "Ann"],
-  Y: ["Ann", "Bea"],
+  Ann: ["X", "Y", "Z"],
+  Bea: ["X", "Y", "Z"],
+  Cal: ["Z", "X", "Y"],
+  X: ["Cal", "Ann", "Bea"],
+  Y: ["Ann", "Bea", "Cal"],
+  Z: ["Ann", "Bea", "Cal"],
 };
-const STUDENTS: Name[] = ["Ann", "Bea"];
-const HOSPITALS: Name[] = ["X", "Y"];
+const STUDENTS: Name[] = ["Ann", "Bea", "Cal"];
+const HOSPITALS: Name[] = ["X", "Y", "Z"];
 
 type Run = {
   held: Partial<Record<Name, Name>>; // receiver -> proposer it holds
   next: Record<Name, number>;
   refused: [Name, Name][]; // [proposer, receiver] pairs turned down
 };
-const FRESH: Run = { held: {}, next: { Ann: 0, Bea: 0, X: 0, Y: 0 }, refused: [] };
+const FRESH: Run = { held: {}, next: { Ann: 0, Bea: 0, Cal: 0, X: 0, Y: 0, Z: 0 }, refused: [] };
 
 const heldBy = (run: Run, p: Name) => (Object.keys(run.held) as Name[]).find((r) => run.held[r] === p);
+const prefers = (who: Name, a: Name, b: Name) => PREF[who].indexOf(a) < PREF[who].indexOf(b);
 
-// For each student and the hospital they did not get: would each of the two rather be together?
-function swapRows(pairs: [Name, Name][]) {
+// Every student with every hospital they did not get: how many pairs have one yes, how many two.
+function swapCount(pairs: Pairs) {
   const hospOf = (st: Name) => pairs.find(([a]) => a === st)![1];
   const studOf = (h: Name) => pairs.find(([, b]) => b === h)![0];
-  return STUDENTS.map((st) => {
-    const h = HOSPITALS.find((x) => x !== hospOf(st))!;
-    const sw = PREF[st].indexOf(h) < PREF[st].indexOf(hospOf(st));
-    const hw = PREF[h].indexOf(st) < PREF[h].indexOf(studOf(h));
-    return { st, h, sw, hw };
-  });
+  let other = 0;
+  let one = 0;
+  let both = 0;
+  for (const st of STUDENTS)
+    for (const h of HOSPITALS) {
+      if (h === hospOf(st)) continue;
+      other++;
+      const yes = Number(prefers(st, h, hospOf(st))) + Number(prefers(h, st, studOf(h)));
+      if (yes === 1) one++;
+      if (yes === 2) both++;
+    }
+  return { other, one, both };
 }
-const swapCheck = (pairs: [Name, Name][]) =>
-  swapRows(pairs).map(({ st, h, sw, hw }) => `${st}–${h}: ${st} ${sw ? "yes" : "no"}, ${h} ${hw ? "yes" : "no"}`);
-// Reveal wording, from the same check: who says no in each pair.
-const whoSaysNo = (pairs: [Name, Name][]) =>
-  swapRows(pairs)
-    .map(({ st, h, sw, hw }) => `${st}–${h}, ${[!sw ? st : null, !hw ? h : null].filter(Boolean).join(" and ")} said no`)
-    .join("; ");
-
-// A matching is stable if no student and hospital both prefer each other to their partners.
-function isStable(pairs: [Name, Name][]) {
-  const hospOf = (st: Name) => pairs.find(([a]) => a === st)![1];
-  const studOf = (h: Name) => pairs.find(([, b]) => b === h)![0];
-  return !STUDENTS.some((st) =>
-    HOSPITALS.some(
-      (h) =>
-        PREF[st].indexOf(h) < PREF[st].indexOf(hospOf(st)) && PREF[h].indexOf(st) < PREF[h].indexOf(studOf(h)),
-    ),
-  );
-}
+const firsts = (pairs: Pairs) => ({
+  st: pairs.filter(([a, b]) => PREF[a][0] === b).length,
+  ho: pairs.filter(([a, b]) => PREF[b][0] === a).length,
+});
+const pairText = (pairs: Pairs) => pairs.map(([a, b]) => `${a}–${b}`).join(", ");
 
 function Stage({
   locked,
   reach,
-  onChecked,
+  found,
+  setFound,
+  checked,
+  setChecked,
 }: {
   locked: boolean;
   reach: (n: string) => void;
-  onChecked: (c: Partial<Record<Mode, [Name, Name][]>>) => void;
+  found: Partial<Record<Mode, Pairs>>;
+  setFound: (f: Partial<Record<Mode, Pairs>>) => void;
+  checked: Partial<Record<Mode, boolean>>;
+  setChecked: (c: Partial<Record<Mode, boolean>>) => void;
 }) {
   const [mode, setMode] = useState<Mode>("S");
   const [run, setRun] = useState<Run>(FRESH);
-  const [log, setLog] = useState<Partial<Record<Mode, string>>>({});
-  const [found, setFound] = useState<Partial<Record<Mode, [Name, Name][]>>>({});
-  const [checked, setChecked] = useState<Partial<Record<Mode, string>>>({});
   const unchecked = (["S", "H"] as Mode[]).filter((m) => found[m] && !checked[m]);
 
   const proposers = mode === "S" ? STUDENTS : HOSPITALS;
   const done = proposers.every((p) => heldBy(run, p));
-  // partner of each person in the finished run
-  const partner = (n: Name): Name | undefined =>
-    proposers.includes(n) ? heldBy(run, n) : run.held[n];
+  const partner = (n: Name): Name | undefined => (proposers.includes(n) ? heldBy(run, n) : run.held[n]);
 
+  // p offers down its list until someone holds it. If that bumps a held proposer, the bumped one is free again.
   const offer = (p: Name) => {
     if (locked || done || heldBy(run, p) || !proposers.includes(p)) return;
-    const r = PREF[p][run.next[p]];
-    if (!r) return;
-    const cur = run.held[r];
     const nr: Run = { held: { ...run.held }, next: { ...run.next }, refused: [...run.refused] };
-    if (!cur) nr.held[r] = p;
-    else if (PREF[r].indexOf(p) < PREF[r].indexOf(cur)) {
-      nr.held[r] = p;
-      nr.next[cur]++;
-      nr.refused.push([cur, r]);
-    } else {
+    for (;;) {
+      const r = PREF[p][nr.next[p]];
+      if (!r) break;
+      const cur = nr.held[r];
+      if (!cur) {
+        nr.held[r] = p;
+        break;
+      }
+      if (prefers(r, p, cur)) {
+        nr.held[r] = p;
+        nr.next[cur]++;
+        nr.refused.push([cur, r]);
+        break;
+      }
       nr.next[p]++;
       nr.refused.push([p, r]);
     }
     setRun(nr);
     if (proposers.every((q) => heldBy(nr, q))) {
       const pairs = proposers.map((q) => [q, heldBy(nr, q)!] as [Name, Name]);
-      const asStudentHospital = pairs.map(([a, b]) => (mode === "S" ? [a, b] : [b, a]) as [Name, Name]);
-      const text = pairs.map(([a, b]) => `${a}–${b}${PREF[a][0] === b ? " ★" : ""}`).join(", ");
+      const asStudentHospital = pairs
+        .map(([a, b]) => (mode === "S" ? [a, b] : [b, a]) as [Name, Name])
+        .sort((x, y) => STUDENTS.indexOf(x[0]) - STUDENTS.indexOf(y[0]));
       setFound({ ...found, [mode]: asStudentHospital });
-      setLog({
-        ...log,
-        [mode]: `${mode === "S" ? "Students" : "Hospitals"} proposed: ${text}`,
-      });
       reach(mode === "S" ? "students-proposed" : "hospitals-proposed");
     }
   };
@@ -118,12 +119,8 @@ function Stage({
   const check = () => {
     if (locked || unchecked.length === 0) return;
     const next = { ...checked };
-    for (const m of unchecked) {
-      const pairs = found[m]!;
-      next[m] = `Swap? ${swapCheck(pairs).join(". ")}. ${isStable(pairs) ? "No double yes: stable." : "Unstable."}`;
-    }
+    for (const m of unchecked) next[m] = true;
     setChecked(next);
-    onChecked(Object.fromEntries((Object.keys(next) as Mode[]).map((m) => [m, found[m]!])));
     if (next.S && next.H) reach("checked-both");
   };
 
@@ -168,14 +165,14 @@ function Stage({
     );
   };
 
-  const xOf = (n: Name) => (n === "Ann" || n === "X" ? 90 : 270);
+  const xOf = (n: Name) => 60 + 120 * (STUDENTS.includes(n) ? STUDENTS.indexOf(n) : HOSPITALS.indexOf(n));
   const top = (n: Name) => STUDENTS.includes(n);
-  const lineFor = (p: Name, r: Name, kind: "held" | "refused") => {
+  const lineFor = (p: Name, r: Name, kind: "held" | "refused", k: number) => {
     const prop = top(p);
     const y1 = prop ? 2 : 78;
     const y2 = prop ? 78 : 2;
     return (
-      <g key={`${kind}${p}${r}`}>
+      <g key={`${kind}${p}${r}${k}`}>
         <line
           x1={xOf(p)}
           y1={y1}
@@ -196,9 +193,19 @@ function Stage({
     );
   };
 
+  const runLine = (m: Mode) => {
+    const p = found[m]!;
+    const f = firsts(p);
+    return `${m === "S" ? "Students" : "Hospitals"} proposed: ${pairText(p)}. First choices: students ${f.st}, hospitals ${f.ho}.`;
+  };
+  const checkLine = (m: Mode) => {
+    const c = swapCount(found[m]!);
+    return `Swap? ${c.both} of ${c.other} other pairs say yes both ways: ${c.both === 0 ? "stable" : "unstable"}.`;
+  };
+
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>Offer to your next choice. Receivers keep their best offer.</p>
+      <p className={s.rule}>Tap a free card to offer down its list. Receivers keep their best offer.</p>
       <div className={s.row}>{STUDENTS.map(card)}</div>
       <button
         type="button"
@@ -216,20 +223,20 @@ function Stage({
             <path d="M0,0 L8,4 L0,8 z" fill="var(--fg)" />
           </marker>
         </defs>
-        {run.refused.map(([p, r]) => lineFor(p, r, "refused"))}
-        {(Object.keys(run.held) as Name[]).map((r) => lineFor(run.held[r]!, r, "held"))}
+        {run.refused.map(([p, r], k) => lineFor(p, r, "refused", k))}
+        {(Object.keys(run.held) as Name[]).map((r) => lineFor(run.held[r]!, r, "held", 0))}
       </svg>
       <div className={s.row}>{HOSPITALS.map(card)}</div>
       <div className={s.log} aria-live="polite">
-        {log.S || log.H ? (
+        {found.S || found.H ? (
           <>
-            {log.S && <p>{log.S}</p>}
-            {checked.S && <p className={s.check}>{checked.S}</p>}
-            {log.H && <p>{log.H}</p>}
-            {checked.H && <p className={s.check}>{checked.H}</p>}
+            {found.S && <p>{runLine("S")}</p>}
+            {checked.S && <p className={s.check}>{checkLine("S")}</p>}
+            {found.H && <p>{runLine("H")}</p>}
+            {checked.H && <p className={s.check}>{checkLine("H")}</p>}
           </>
         ) : (
-          <p>First choices: ?</p>
+          <p>Matchings: ?</p>
         )}
       </div>
       <button
@@ -246,29 +253,41 @@ function Stage({
 }
 
 export default function ProposersGetTheBest({ slug }: { slug: string }) {
-  const [checks, setChecks] = useState<Partial<Record<Mode, [Name, Name][]>>>({});
+  const [found, setFound] = useState<Partial<Record<Mode, Pairs>>>({});
+  const [checked, setChecked] = useState<Partial<Record<Mode, boolean>>>({});
+  const fs = found.S ? firsts(found.S) : null;
+  const fh = found.H ? firsts(found.H) : null;
+  const cs = found.S ? swapCount(found.S) : null;
+  const ch = found.H ? swapCount(found.H) : null;
+  const same = !!found.S && !!found.H && pairText(found.S) === pairText(found.H);
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Ann prefers hospital X then Y; Bea prefers Y then X. X prefers Bea; Y prefers Ann. If the students propose, who gets their first choice?",
-        options: ["Both students", "Both hospitals", "One of each"],
-        answer: 0,
+          "Three students and three hospitals rank each other (lists on the cards). Run it with the students making offers, then with the hospitals. What happens?",
+        options: [
+          "The same pairs both times",
+          "Different pairs; the side making offers does better",
+          "Different pairs; the side receiving offers does better",
+        ],
+        answer: 1,
       }}
       exploreHint="Run it with students proposing, flip the switch, run it again, then check for a swap."
       minInteractions={3}
       reveal={() => (
         <>
           <p>
-            When students proposed, both students got their first choice. When hospitals proposed, both hospitals did.
-            Same four rankings. Your swap check: in the students&apos; matching {checks.S ? whoSaysNo(checks.S) : "(not checked)"};
-            in the hospitals&apos; {checks.H ? whoSaysNo(checks.H) : "(not checked)"}. No pair wanted each other both ways,
-            so both matchings are stable and neither answer was an error.
+            Students proposing gave {found.S ? pairText(found.S) : "(not run)"}: first choices for students{" "}
+            {fs ? fs.st : "?"}, hospitals {fs ? fs.ho : "?"}. Hospitals proposing gave{" "}
+            {found.H ? pairText(found.H) : "(not run)"}: students {fh ? fh.st : "?"}, hospitals {fh ? fh.ho : "?"}.
+            {same ? " Same pairs." : " Same rankings, different pairs, and the side making offers did better."} Each run had
+            a clash: two offers reached one receiver, it kept the one it ranked higher, and the other moved down its list.
           </p>
           <p>
-            Deferred acceptance always ends stable and gives the proposing side its best stable partner (Gale and
-            Shapley 1962). The US residency match switched to students proposing in 1998, a change studied by Roth and Peranson (1999).
+            Your swap check found {cs && checked.S ? cs.both : "?"} and {ch && checked.H ? ch.both : "?"} pairs that
+            wanted each other both ways, so both matchings are stable. Deferred acceptance always ends stable and gives the
+            proposing side its best stable partner (Gale and Shapley 1962).
           </p>
           <p className="muted">A fair-looking procedure can still have a side it favours.</p>
         </>
@@ -276,7 +295,16 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={["students-proposed", "hospitals-proposed", "checked-both"]}>
-          {(reach) => <Stage locked={locked} reach={reach} onChecked={setChecks} />}
+          {(reach) => (
+            <Stage
+              locked={locked}
+              reach={reach}
+              found={found}
+              setFound={setFound}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          )}
         </Milestones>
       )}
     </Lesson>

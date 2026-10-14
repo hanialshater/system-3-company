@@ -1,6 +1,6 @@
 {
   "slug": "accurate-bettor-takes-the-pot",
-  "title": "60% or 50%: who ends with the money?",
+  "title": "Two bettors, 500 races: who holds what?",
   "hook": "Two bettors, nearly the same belief, the same money. Bet against each other for 500 races.",
   "domain": "economics",
   "concept": "market-selection-wealth",
@@ -69,12 +69,10 @@
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c7",
-      "text": "Stage captions: a single race reads 'Race t: win/loss, money ratio ×1.2/×0.8'; a jump reads 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×(1.2^w × 0.8^l)'. The money ratio readout is the 60% bettor's money divided by the 50% bettor's.",
+      "text": "Stage captions: a single race reads 'Race t: win/loss, money ratio ×1.2/×0.8'; a jump reads 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×(1.2^w × 0.8^l)'; after picking a run the caption counts from race 1, so its ratio equals the money ratio readout (the 60% bettor's money divided by the 50% bettor's). A 'Seen:' row repeats the single race, the five finals, '3 wins + 2 losses ×1.11' and the circled low point.",
       "support": "derivation",
-      "source": "Demo.tsx v2 msg and Readout 'Money ratio, 60% : 50%' = share/(1-share). Product follows from c3 (each race multiplies the ratio by 1.2 or 0.8 whatever the shares). Values of 1,000 or more print as '1,000+'. Builder, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Read msg in Demo.tsx: seg.length === 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)' (1,000+ / <0.001 caps). Readout 'Money ratio, 60% : 50%' = share/(1 - share). Own window check: the printed product equals the readout's change over the window (0 failures). Side note (not this claim): at race 500 the Pool's win odds readout shows 59.9% in runs 2 and 5, 60.0% in 1, 3, 4; the reveal's 'move toward the true 60%' holds.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx v2 msg and Readout 'Money ratio, 60% : 50%' = share/(1-share). Product follows from c3 (each race multiplies the ratio by 1.2 or 0.8 whatever the shares). Values of 1,000 or more print as '1,000+'. Builder, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Read msg in Demo.tsx: seg.length === 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)' (1,000+ / <0.001 caps). Readout 'Money ratio, 60% : 50%' = share/(1 - share). Own window check: the printed product equals the readout's change over the window (0 failures). Side note (not this claim): at race 500 the Pool's win odds readout shows 59.9% in runs 2 and 5, 60.0% in 1, 3, 4; the reveal's 'move toward the true 60%' holds. · v3 (2026-10-14, learner r7: run 2 caption 'Races 52–500 … ×280' did not match its ratio 81): pick() now sets from = 0, so the caption covers races 1..t of the selected run; the ratio starts at 1, so 1.2^w × 0.8^l is exactly the readout up to rounding. Seen row added. Needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:market-selection-wealth",
     "also": [
