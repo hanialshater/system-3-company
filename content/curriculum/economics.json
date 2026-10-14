@@ -492,6 +492,282 @@
       "level": "core",
       "demand": 3,
       "prerequisites": []
+    },
+    {
+      "id": "nash-equilibrium",
+      "name": "Nash equilibrium without dominant strategies",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "prisoners-dilemma"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "coordination-stag-hunt",
+      "name": "Coordination games: the stag hunt's trust threshold",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "prisoners-dilemma"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "hawk-dove-chicken",
+      "name": "Hawk–dove (chicken): equilibria where players differ",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "prisoners-dilemma"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "iterated-dominance",
+      "name": "Iterated deletion of dominated strategies (guess 2/3 of the average)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "prisoners-dilemma"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "ascending-auction",
+      "name": "Ascending auctions end at the second-highest value",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "supply-demand"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "first-price-shading",
+      "name": "First-price auctions: shade your bid",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:expected-value"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "revenue-equivalence",
+      "name": "Revenue equivalence across auction rules",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "first-price-shading"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "trader-competition",
+      "name": "Competing intermediaries hand the surplus to the seller",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "supply-demand"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "essential-trader-profit",
+      "name": "A trader profits only if essential",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "trader-competition"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "network-exchange-power",
+      "name": "Power in exchange networks: the centre of a 3-path",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "supply-demand"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "nash-bargaining",
+      "name": "Nash bargaining: outside options set the split",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "opportunity-cost"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "ultimatum-game",
+      "name": "The ultimatum game: theory vs people",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "prisoners-dilemma"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "balanced-outcomes",
+      "name": "Balanced outcomes in exchange networks (4-path splits 1/3–2/3)",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "nash-bargaining"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "alternating-offers",
+      "name": "Alternating offers: patience is bargaining power (Rubinstein)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "present-value"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "vcg-mechanism",
+      "name": "VCG: pay the harm you cause others",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "externality"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "gsp-auction",
+      "name": "Generalized second price: truth-telling is not dominant",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "vcg-mechanism"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "ad-quality-ranking",
+      "name": "Ad quality: rank by bid × quality",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "supply-demand"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "vcg-market-clearing",
+      "name": "VCG prices are market-clearing prices",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "vcg-mechanism"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "el-farol-minority",
+      "name": "El Farol: a shared forecast defeats itself",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "supply-demand"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "parimutuel-beliefs",
+      "name": "Betting odds are the wealth-weighted average belief",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:odds-vs-probability"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "signaling-education",
+      "name": "Signalling: a costly credential that teaches nothing",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "adverse-selection"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "market-selection-wealth",
+      "name": "Markets move wealth to accurate forecasters",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "probability:multiplicative-bets"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "coase-theorem",
+      "name": "The Coase theorem: who holds the right doesn't change the outcome",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "externality"
+      ],
+      "subarea": "markets",
+      "course": "ncm",
+      "proposed": true
     }
   ]
 }
