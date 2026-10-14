@@ -103,16 +103,16 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
             {seen.includes(3)
               ? `Of the ${TRIANGLES.length} triangles in camps of 3 + 2 + 1, ${three.banned} are banned and ${three["all-enemy"]} are all enemies. `
               : ""}
-            A banned triangle needs two friends of one person to be enemies. Friends share a camp: in A, B, C, B and C
-            are both A&apos;s friends, so they share A&apos;s camp and are friends too.
+            Banned needs two friends of one person to be enemies, but friends share a camp: in A, B, C, B and C share
+            A&apos;s camp, so they are friends too.
             {bannedSeen
-              ? ` When you made B and D friends across camps, ${bannedSeen.n} triangles turned banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")} (Seen rows).`
+              ? ` Making B and D friends across camps turned ${bannedSeen.n} banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}.`
               : ""}
           </p>
           <p>
-            The all-enemy triangle is what the strict rule forbids, and it is what forces
-            two sides. Allow it, and any number of camps is stable
-            {seen.length > 0 ? `: you saw ${listOf([...seen].sort((a, b) => a - b))} camps, each with 0 banned triangles.` : "."}
+            The balance rule also bans the all-enemy triangle, and that is what forces two sides. Allow it, and any
+            number of camps is stable
+            {seen.length > 0 ? `: you saw ${listOf([...seen].sort((a, b) => a - b))} camps, each with 0 banned.` : "."}
           </p>
         </>
       )}
@@ -208,8 +208,8 @@ function Stage({
       ? verdict(camp, link, t)
       : link
         ? bannedAll.length
-          ? `B and D are friends across camps: ${bannedAll.length} banned triangles (red).`
-          : "B and D are friends across camps, but nobody has two friends."
+          ? `B–D friends: ${bannedAll.length} banned triangles (red).`
+          : "B–D friends, but nobody has two friends."
         : checked === TRIANGLES.length
           ? `All ${TRIANGLES.length} triangles checked in camps of ${SPLIT_NAME[camps]}.`
           : "Green: friends. Red dashes: enemies.";
@@ -284,7 +284,7 @@ function Stage({
       </Row>
       <p className={s.caption} data-testid="seen">
         {seen.length
-          ? `Seen (banned, all enemies): ${seen.map((c) => `${c} camps ${tally(c).banned}, ${tally(c)["all-enemy"]}`).join(" · ")}`
+          ? `Seen: ${seen.map((c, i) => (i === 0 ? `${c} camps ${tally(c).banned} banned, ${tally(c)["all-enemy"]} all-enemy` : `${c} camps ${tally(c).banned}, ${tally(c)["all-enemy"]}`)).join(" · ")}`
           : ""}
       </p>
       <p className={s.caption}>

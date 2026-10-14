@@ -52,18 +52,16 @@
     },
     {
       "id": "economics.bending-frontier.c4",
-      "text": "The curve is made up, not data from a real farm.",
+      "text": "The curve is made up, not real farm data.",
       "support": "convention",
-      "source": "Stage chip 'Made-up farm'; reveal's last line. | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal. | FC pass 30 (fact-checker, 2026-10-14, W-276): VERIFIED. Chip \"Made-up farm: 10 fields, worst to best for corn\" and muted reveal line \"A model: the curve is made up, not data from a real farm.\" on every path.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Stage chip 'Made-up farm'; reveal's last line. | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal. | FC pass 30 (fact-checker, 2026-10-14, W-276): VERIFIED. Chip \"Made-up farm: 10 fields, worst to best for corn\" and muted reveal line \"A model: the curve is made up, not data from a real farm.\" on every path. | REOPENED 2026-10-14 (v5, build 6 phone fit, demo-builder): reveal model line shortened to \"The curve is made up, not real farm data.\"; the \"Made-up farm: 10 fields, worst to best for corn\" chip text is unchanged but now sits in the picture top line (svg text) instead of a chip above it. Builder statement, not self-verified.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c5",
       "text": "The made-up farm has 10 fields, each able to grow 1 ton of wheat or, from worst to best for corn, 1, 3, 5, … 19 tons of corn; wheat is put on the fields worst for corn first, which gives the frontier corn = 100 − wheat².",
       "support": "convention",
-      "source": "The lesson's own model in Demo.tsx (field strip: field k grows stepCost(k) = 2k − 1 corn; sum of the first n is n², so corn = 100 − n²). The ordering 'worst for corn first' is what a farm maximising output would do (standard textbook account of a bowed-out PPF, e.g. Mankiw, Principles of Economics, ch. 2; chapter not re-checked). | Added 2026-10-14 (v2) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): sum of 2k - 1 for k = 1..n is n^2, so corn = 100 - n^2. Worst-for-corn first is output-maximising: every field gives 1 ton of wheat, so switching the field with least corn minimises corn lost. Chip 'Made-up farm: 10 fields, worst to best for corn' matches.",
+      "source": "The lesson's own model in Demo.tsx (field strip: field k grows stepCost(k) = 2k − 1 corn; sum of the first n is n², so corn = 100 − n²). The ordering 'worst for corn first' is what a farm maximising output would do (standard textbook account of a bowed-out PPF, e.g. Mankiw, Principles of Economics, ch. 2; chapter not re-checked). | Added 2026-10-14 (v2) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): sum of 2k - 1 for k = 1..n is n^2, so corn = 100 - n^2. Worst-for-corn first is output-maximising: every field gives 1 ton of wheat, so switching the field with least corn minimises corn lost. Chip 'Made-up farm: 10 fields, worst to best for corn' matches. | 2026-10-14 (v5, demo-builder): the \"Made-up farm: 10 fields, worst to best for corn\" text moved from a chip above the picture into the picture top line (same words); claim text unchanged, status left as is.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -94,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "economics:production-possibilities",
     "prerequisites": [
