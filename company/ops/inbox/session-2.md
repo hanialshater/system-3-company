@@ -67,6 +67,14 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: fact-checker, pass NCM-1 (5 NCM lessons)
+
+- **What changed.** Set claim status (checkedBy fact-checker, checkedOn 2026-10-14) in the meta.json of mild-preferences-sharp-divides (8 verified), penalty-kick-mix (4 verified, 1 disputed), bid-what-its-worth (7 verified), below-critical-mass (6 verified, plus 2 unrecorded learner-visible sentences recorded as new unverified claims c7 and c8) and agenda-picks-the-winner (4 verified). Wrote `## Pass NCM-1` in `company/reviews/<slug>/2026-10-14-fact-check.md` for each. No Demo.tsx, board, progress or events edits. Not committed.
+- **Blocking.** penalty-kick-mix c1 is disputed: the claim text (shown in the trust sheet) describes the payoffs the wrong way round ("0.9 or 1.0 if he dives the wrong way to the left"; on the stage the 0.9-1.0 cell is the keeper diving right on a left kick). The numbers are right. The fix is the claim text only. below-critical-mass c7 ("even a product worth buying fails") and c8 (recall "because the product is worth less to later people") need rewording and sourcing by the builder. Exact wording suggestions are in each review file.
+- **Sources.** Schelling 1971, J. Math. Sociol. 1(2): 143-186, doi:10.1080/0022250X.1971.9989794: correct, confirmed via search-indexed secondary records (the publisher, DOI resolver and Crossref were blocked here). E&K sections: Cambridge-TOC snippets via search corroborate 4.5, 6.7/6.8, 9.4, 17.2/17.3; 23.3 was not reproducible. I opened no page directly, so every `section_unconfirmed` stays as is.
+- **Belief.** High on every simulation and derivation number (re-run from the lessons' own code; Schelling over seeds 1-500). High-but-secondary on the bibliographic details.
+- **Proposed board items.** demo-builder: fix penalty-kick-mix c1 text and below-critical-mass c7/c8 (copy + claims), then ask for a fact-check re-pass. cm-economics-markets / cm-math-discrete: promote E&K sections once someone reads the CUP TOC directly.
+
 ### 2026-10-14: design-lead (Ines), S2-20 design review of the five NCM specs
 
 - **What changed.** Wrote `company/design/reviews/2026-10-14-design-review-ncm-specs.md` and added a status line at the top of each of the five specs. Amended rulings condition 3 (parameter chips = threshold or start set; after a final run a chip shows its final state) in `company/design/reviews/2026-10-14-design-lead-ncm-rulings.md`. Added the bipartite-matrix variant to the network-diagrams rule in `company/design/formats.md`. Not committed.

@@ -26,50 +26,64 @@
       "id": "cs.one-good-link-beats-many.c1",
       "text": "On the stage's ten pages, page X has 3 links pointing at it and page Y has 1, from page H; H has 5 links pointing at it.",
       "support": "derivation",
-      "source": "LINKS in src/demos/cs/one-good-link-beats-many/model.ts: P, Q, R link to X; H links to Y; A, B, C, D and Y link to H. Counts re-run with inLinks() in node, 2026-10-14: X 3, Y 1, H 5.",
-      "status": "unverified"
+      "source": "LINKS in src/demos/cs/one-good-link-beats-many/model.ts: P, Q, R link to X; H links to Y; A, B, C, D and Y link to H. Counts re-run with inLinks() in node, 2026-10-14: X 3, Y 1, H 5. | FACT-CHECK 2026-10-14 (pass NCM-1): Own count from LINKS in model.ts (run on the lesson's own model.ts via node type-stripping): X 3 (P,Q,R), Y 1 (H), H 5 (A,B,C,D,Y). Reveal \"H, which five pages link to\" matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c2",
       "text": "With the stage's rule (each page splits 85% of its score equally among the pages it links to, every page also gets 1.5% free, all start at 0.1, updated in rounds), after round 1 X has 0.270 and Y 0.100; after round 2 Y has 0.389 and X 0.053.",
       "support": "simulation",
-      "source": "step() and ROUNDS in model.ts (power iteration; s = 0.85, free share (1 - 0.85) / 10 = 0.015, start 1/10, every page has an out-link so scores sum to 1). Re-run in node on 2026-10-14 with the exact lesson code: round 1 X 0.270, Y 0.100, H 0.440; round 2 Y 0.389, H 0.223, X 0.053, A 0.245. The 0.85 and the 1.5% are this lesson's chosen values, not claims about any real search engine.",
-      "status": "unverified"
+      "source": "step() and ROUNDS in model.ts (power iteration; s = 0.85, free share (1 - 0.85) / 10 = 0.015, start 1/10, every page has an out-link so scores sum to 1). Re-run in node on 2026-10-14 with the exact lesson code: round 1 X 0.270, Y 0.100, H 0.440; round 2 Y 0.389, H 0.223, X 0.053, A 0.245. The 0.85 and the 1.5% are this lesson's chosen values, not claims about any real search engine. | FACT-CHECK 2026-10-14 (pass NCM-1): Ran the lesson's step()/ROUNDS (fc/pr.mjs): round 1 X 0.270, Y 0.100, H 0.440; round 2 Y 0.389, X 0.053, H 0.223, A 0.245; sums 1.000000 every round. Stage rule text \"splits 85%... all get 1.5% free\" matches S and FREE.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c3",
       "text": "X's score stays at 0.053 from round 2 on, and Y stays ahead of X in every round from 2 to 51.",
       "support": "simulation",
-      "source": "Node run 2026-10-14 over rounds 1 to 51 with the lesson's model.ts: X identical to 12 decimals from round 2 (its three linkers have no in-links, so each stays at 0.015); Y > X in all rounds 2 to 51 (X leads only in round 1). The brief's own check covered rounds 2 to 12; this covers 51.",
-      "status": "unverified"
+      "source": "Node run 2026-10-14 over rounds 1 to 51 with the lesson's model.ts: X identical to 12 decimals from round 2 (its three linkers have no in-links, so each stays at 0.015); Y > X in all rounds 2 to 51 (X leads only in round 1). The brief's own check covered rounds 2 to 12; this covers 51. | FACT-CHECK 2026-10-14 (pass NCM-1): X differs from its round-2 value by < 1e-12 in rounds 2-51; Y > X in every round 2-51; X > Y only in round 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c4",
       "text": "At round 51 the scores have settled: Y 0.374 and X 0.053 (H 0.422).",
       "support": "simulation",
-      "source": "ROUNDS[51] in node, 2026-10-14: Y 0.374, X 0.053, H 0.422, A 0.060, other pages 0.015, sum 1.000. Rounded to 3 decimals the scores no longer change from round 50; the largest change from round 50 to 51 is 0.00015. H and Y swing in earlier rounds, so 'settled' means three-decimal stability, not exact convergence. The vertical review's earlier figure (Y 0.395) did not reproduce and is not used.",
-      "status": "unverified"
+      "source": "ROUNDS[51] in node, 2026-10-14: Y 0.374, X 0.053, H 0.422, A 0.060, other pages 0.015, sum 1.000. Rounded to 3 decimals the scores no longer change from round 50; the largest change from round 50 to 51 is 0.00015. H and Y swing in earlier rounds, so 'settled' means three-decimal stability, not exact convergence. The vertical review's earlier figure (Y 0.395) did not reproduce and is not used. | FACT-CHECK 2026-10-14 (pass NCM-1): ROUNDS[51]: Y 0.374, X 0.053, H 0.422, A 0.060, others 0.015; max change 50->51 is 0.000151; all pages equal to 3 dp at 50 and 51. Iterating 2,000 more rounds gives the fixed point Y 0.3741, X 0.0533, H 0.4224, so the round-51 figures equal the limit to 3 dp.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c5",
       "text": "In round 2, each of X's three linkers passes on only about 0.013 to X.",
       "support": "derivation",
-      "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14.",
-      "status": "unverified"
+      "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.85 x 0.015 = 0.01275; the reveal's f3(S*score(1,\"P\")) renders \"0.013\" (float 0.012750000000000003 rounds up). Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c6",
       "text": "A link passes on a share of the linking page's own score, and PageRank ranks a page by who links to it, weighted by how important those linkers are.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 UNCONFIRMED: the book page fetch returned a proxy 403 on 2026-10-14; chapter and section are from the table of contents as remembered; fact-checker to confirm against the free PDF). Brin and Page (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30: 107-117. Needs a human source check. The lesson makes no claim about link-buying or about how any search engine ranks today.",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 UNCONFIRMED: the book page fetch returned a proxy 403 on 2026-10-14; chapter and section are from the table of contents as remembered; fact-checker to confirm against the free PDF). Brin and Page (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30: 107-117. Needs a human source check. The lesson makes no claim about link-buying or about how any search engine ranks today. | FACT-CHECK 2026-10-14 (pass NCM-1): Brin and Page (1998), Computer Networks and ISDN Systems 30(1-7): 107-117, DOI 10.1016/S0169-7552(98)00110-X, confirmed by bibliographic records (search). Formula PR(A) = (1-d) + d(PR(T1)/C(T1) + ... + PR(Tn)/C(Tn)) reproduced by secondary sources: each linker passes its rank divided by its out-link count, so rank depends on the linkers' ranks. Primary PDF unreachable (proxy). E&K ch. 14 is link analysis and web search (catalogue); section 14.3 stays unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-good-link-beats-many.c7",
       "text": "This is a ten-page toy; the real web is far bigger.",
       "support": "source",
-      "source": "Scale remark only: the stage has 10 pages. No figure for the real web is given. Fact-checker: confirm the sentence cannot be read as a claim about ranking practice.",
-      "status": "unverified"
+      "source": "Scale remark only: the stage has 10 pages. No figure for the real web is given. Fact-checker: confirm the sentence cannot be read as a claim about ranking practice. | FACT-CHECK 2026-10-14 (pass NCM-1): Scale remark only; it says nothing about how any engine ranks. The stage has 10 pages.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

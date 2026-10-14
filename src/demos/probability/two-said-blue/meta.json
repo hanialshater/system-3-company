@@ -29,57 +29,73 @@
       "id": "probability.two-said-blue.c1",
       "text": "The urn is blue. Everyone sees the earlier picks; a person who sees one colour lead by 2 or more copies it, and otherwise (a lead of 0 or 1, ties included) follows their own clue.",
       "support": "convention",
-      "source": "model.ts sequence(): lead = blue picks minus red picks so far; |lead| >= 2 copies the leader, else pick = own clue. The urn is blue in every run; the clue is blue with probability ACC. Rule as in Easley & Kleinberg 2010 ch. 16 (section unconfirmed; tie rule chosen here and disclosed).",
-      "status": "unverified"
+      "source": "model.ts sequence(): lead = blue picks minus red picks so far; |lead| >= 2 copies the leader, else pick = own clue. The urn is blue in every run; the clue is blue with probability ACC. Rule as in Easley & Kleinberg 2010 ch. 16 (section unconfirmed; tie rule chosen here and disclosed). | FACT-CHECK 2026-10-14 (pass NCM-1): Read model.ts sequence(): lead = blue minus red picks; |lead| >= 2 copies, else own clue; urn always blue. Stage message states the rule. E&K ch. 16 is Information Cascades (catalogue); section stays unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c2",
       "text": "Once one colour leads the picks by 2, every later person (clue right 2 times in 3) copies it whatever their own clue says, so the crowd adds no new information.",
       "support": "derivation",
-      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents).",
-      "status": "unverified"
+      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c3",
       "text": "With clues right 2 times in 3, the chance the crowd locks onto the wrong colour is 1/5 = 20%. (Shown as 'exact: 20.0%' beside the learner's tally.)",
       "support": "derivation",
-      "source": "Until the lead reaches 2 every pick equals its clue, so the lead is a gambler's-ruin walk with step +1 at probability p = 2/3 and -1 at q = 1/3, absorbed at +-2: P(red) = q^2/(q^2+p^2) = (1/9)/(5/9) = 1/5. Node check 2026-10-14: seeds 1..10,000 give 1,991 wrong (19.9%), seeds 1..101 give 18 wrong, seeds 1..10,101 give 2,009 wrong; every one of 10,000 sequences reached a lead of 2 (latest at person 27).",
-      "status": "unverified"
+      "source": "Until the lead reaches 2 every pick equals its clue, so the lead is a gambler's-ruin walk with step +1 at probability p = 2/3 and -1 at q = 1/3, absorbed at +-2: P(red) = q^2/(q^2+p^2) = (1/9)/(5/9) = 1/5. Node check 2026-10-14: seeds 1..10,000 give 1,991 wrong (19.9%), seeds 1..101 give 18 wrong, seeds 1..10,101 give 2,009 wrong; every one of 10,000 sequences reached a lead of 2 (latest at person 27). | FACT-CHECK 2026-10-14 (pass NCM-1): q^2/(q^2+p^2) = 1/5 re-derived (gambler's ruin absorbed at +-2). Lesson's runMore: seeds 1-10,000 give 1,991 wrong; QA path (1,100,10,000) gives 101 -> 18 and 10,101 -> 2,009 (19.9%); every sequence reached a lead of 2, latest at index 26 (person 27).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c4",
       "text": "If the first two clues are both wrong (a 1 in 9 chance when clues are right 2 in 3), the crowd locks onto the wrong colour.",
       "support": "derivation",
-      "source": "Two red clues give two red picks, a lead of 2, so by c2 everyone copies red. P = (1/3)^2 = 1/9. Seeds 1..10,000: 1,080 of 10,000 start with two red clues (10.8%).",
-      "status": "unverified"
+      "source": "Two red clues give two red picks, a lead of 2, so by c2 everyone copies red. P = (1/3)^2 = 1/9. Seeds 1..10,000: 1,080 of 10,000 start with two red clues (10.8%). | FACT-CHECK 2026-10-14 (pass NCM-1): The claim as written is right ((1/3)^2 = 1/9; 1,080 of seeds 1-10,000 start with two red clues), but the reveal prints \"(1 in 9)\" unconditionally while its first paragraph quotes the accuracy the learner ran most. If that is 60% or 80% (reachable: run 10,000 at 80%, 100 at 2 in 3), the stage says 1 in 9 where the true value is 0.16 (about 1 in 6) or 0.04 (1 in 25). Fix: write \"(1 in 9 when clues are right 2 in 3)\", or compute (1-ACCS[q])^2 and print it.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c5",
       "text": "A plain vote of the same 100 clues (each right 2 times in 3) is wrong with probability about 0.0199% (about 1 in 5,000), plus 0.0220% for an exact 50-50 tie. On the stage, 'Pooled wrong' counts the runs whose 100 clues have a red majority; ties are not counted.",
       "support": "derivation",
-      "source": "Exact binomial, computed in node 2026-10-14: P(blue clues < 50) = 0.0001989, P(= 50) = 0.0002204 with 100 clues at p = 2/3. Seeds 1..10,000: 2 red majorities and 3 ties; seeds 1..10,101: 2 and 3. Reveal quotes the learner's own count of red majorities.",
-      "status": "unverified"
+      "source": "Exact binomial, computed in node 2026-10-14: P(blue clues < 50) = 0.0001989, P(= 50) = 0.0002204 with 100 clues at p = 2/3. Seeds 1..10,000: 2 red majorities and 3 ties; seeds 1..10,101: 2 and 3. Reveal quotes the learner's own count of red majorities. | FACT-CHECK 2026-10-14 (pass NCM-1): Own exact binomial (n=100, p=2/3): P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties; 1-10,101: 2 and 3. Advisory: the stage label \"Pooled wrong\" does not say ties are excluded; at 60% ties (128) are comparable to wrongs (163). Not false as claimed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c6",
       "text": "With clues right 60% of the time the crowd is wrong about 30.8% of the time; with clues right 80% of the time, about 5.9% (the same formula q^2/(q^2+p^2)). The reveal quotes the exact figure for the accuracy the learner ran most.",
       "support": "derivation",
-      "source": "q^2/(q^2+p^2), computed in node: p=0.6 gives 0.16/0.52 = 0.3077, p=0.8 gives 0.04/0.68 = 0.0588. Seeds 1..10,000 give 3,094 (30.9%) at 60% and 594 (5.9%) at 80%.",
-      "status": "unverified"
+      "source": "q^2/(q^2+p^2), computed in node: p=0.6 gives 0.16/0.52 = 0.3077, p=0.8 gives 0.04/0.68 = 0.0588. Seeds 1..10,000 give 3,094 (30.9%) at 60% and 594 (5.9%) at 80%. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.16/0.52 = 0.3077 -> \"30.8%\", 0.04/0.68 = 0.0588 -> \"5.9%\" (pct()); runMore seeds 1-10,000: 3,094 at 60%, 594 at 80%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c7",
       "text": "Seed and counting rules are disclosed: crowd number k uses mulberry32(k), counted separately for each clue accuracy; 'Runs (seeds 1 to n)' shows n.",
       "support": "convention",
-      "source": "model.ts runMore() and sequence(); Demo.tsx readout label. Seeds are not chosen: they are 1, 2, 3, ... in order.",
-      "status": "unverified"
+      "source": "model.ts runMore() and sequence(); Demo.tsx readout label. Seeds are not chosen: they are 1, 2, 3, ... in order. | FACT-CHECK 2026-10-14 (pass NCM-1): runMore iterates k = t.n+1..t.n+count with a separate Tally per accuracy; readout label \"Runs (seeds 1 to n)\".",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c8",
       "text": "(Not shown to the learner; dropped.) In the classroom urn experiment of Anderson and Holt (1997) cascades formed in the lab.",
       "support": "source",
-      "source": "Brief planned claim 4. NEEDS A HUMAN SOURCE CHECK by the fact-checker (Anderson & Holt 1997, American Economic Review). Not used in the lesson text, so no learner sees it unverified; kept here so the check is not lost.",
-      "status": "unverified"
+      "source": "Brief planned claim 4. NEEDS A HUMAN SOURCE CHECK by the fact-checker (Anderson & Holt 1997, American Economic Review). Not used in the lesson text, so no learner sees it unverified; kept here so the check is not lost. | FACT-CHECK 2026-10-14 (pass NCM-1): Not in learner text. Source finding kept: Anderson and Holt (1997), \"Information Cascades in the Laboratory\", AER 87(5): 847-862 (RePEc, via search) report rational cascades formed in most periods where an imbalance arose. But it was a laboratory experiment; \"classroom\" belongs to Anderson and Holt (1996), JEP \"Classroom Games: Information Cascades\". If reinstated, drop \"classroom\".",
+      "status": "withdrawn",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

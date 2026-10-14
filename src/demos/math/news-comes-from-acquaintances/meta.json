@@ -26,36 +26,46 @@
       "id": "math.news-comes-from-acquaintances.c1",
       "text": "Rule used in the lesson (strong triadic closure): if a person is close to two people, those two are linked. Stage: \"Rule: any two of your close friends are linked.\"",
       "support": "convention",
-      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law.",
-      "status": "unverified"
+      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law. | FACT-CHECK 2026-10-14 (pass NCM-1): Stage text matches; Demo.tsx marks the rule broken exactly when A-B is close. Convention of the lesson. E&K ch. 3 is \"Strong and weak ties\" (catalogue). Section: search results suggest strong triadic closure sits in section 3.2 (The Strength of Weak Ties), not 3.1 (Triadic Closure); not confirmed from the book, so the reference must stay section_unconfirmed (see review record).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c2",
       "text": "In the stage graph (two groups of four, every pair inside a group linked, plus the one link A–B; 13 links), A–B is the only link whose ends share no neighbour (the only local bridge), and with A–B close the rule breaks: B and C are both close to A but are not linked.",
       "support": "derivation",
-      "source": "Node enumeration (builder, 2026-10-14; same rule as the code): local bridges = [A-B]. With all 12 in-group links close and A–B close there are 6 broken triples (A: C-B, D-B, E-B; B: F-A, G-A, H-A); the stage draws one (C–B). With A–B an acquaintance, 0 broken. C–E and F–H exist (the two check triangles).",
-      "status": "unverified"
+      "source": "Node enumeration (builder, 2026-10-14; same rule as the code): local bridges = [A-B]. With all 12 in-group links close and A–B close there are 6 broken triples (A: C-B, D-B, E-B; B: F-A, G-A, H-A); the stage draws one (C–B). With A–B an acquaintance, 0 broken. C–E and F–H exist (the two check triangles). | FACT-CHECK 2026-10-14 (pass NCM-1): Own enumeration (fc/news.mjs): 13 links; local bridges = [A-B]; all-close gives 6 broken triples (A: CB, DB, EB; B: FA, GA, HA); A-B weak gives 0; B-C absent; C-E and F-H present.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c3",
       "text": "A–B could only be close if A and B had no other close friends. When people have close friends in their own group, the one link between two groups must be an acquaintance.",
       "support": "derivation",
-      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text.",
-      "status": "unverified"
+      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text. | FACT-CHECK 2026-10-14 (pass NCM-1): Own enumeration of 8,192 labellings: 4,160 satisfy the rule; 64 have A-B close; in all 64 neither A nor B has another close tie. General result (a node with two strong ties cannot have a strong local bridge) corroborated by course slides based on E&K ch. 3 (search); section stays unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c4",
       "text": "So news from outside your group reaches you over a weak tie (in this model: on the stage, news from H reaches group 1 only across A–B).",
       "support": "derivation",
-      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E.",
-      "status": "unverified"
+      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E. | FACT-CHECK 2026-10-14 (pass NCM-1): Within the model: A-B is the only cross-group link and must be weak when A and B have close in-group friends; Demo HOP sends H -> F,G,B -> A -> C,D,E. Reveal ties it to the stage (\"like H's ... you saw it cross A-B\").",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c5",
       "text": "NOT IN LEARNER TEXT. Granovetter (1973): of people who found a job through a contact, 16.7% saw the contact often, 55.6% occasionally, 27.8% rarely.",
       "support": "source",
-      "source": "Granovetter, M. S. (1973), \"The Strength of Weak Ties\", American Journal of Sociology 78(6), as reported in Easley & Kleinberg (2010) ch. 3. Empirical: needs a human source check by the fact-checker (the brief's author could not open the paper). 9, 30 and 15 of 54 reproduce the percentages to 0.1 (node). Kept out of the hook, stage and reveal until checked.",
-      "status": "unverified"
+      "source": "Granovetter, M. S. (1973), \"The Strength of Weak Ties\", American Journal of Sociology 78(6), as reported in Easley & Kleinberg (2010) ch. 3. Empirical: needs a human source check by the fact-checker (the brief's author could not open the paper). 9, 30 and 15 of 54 reproduce the percentages to 0.1 (node). Kept out of the hook, stage and reveal until checked. | FACT-CHECK 2026-10-14 (pass NCM-1): Not in learner text. Primary paper (AJS 78(6)) unreachable through the proxy. Secondary sources via search (Wikipedia \"Interpersonal ties\": 16.7/55.6/27.8%, N = 54, often = at least twice a week, occasionally, rarely = once a year or less) agree, and 9/30/15 of 54 reproduce them, but per the pass brief a figure not confirmed from the cited source is not verified. Before any learner use: a human checks Granovetter 1973, p. 1371.",
+      "status": "withdrawn",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
