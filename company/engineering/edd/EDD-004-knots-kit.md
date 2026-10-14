@@ -1,6 +1,6 @@
 # EDD-004: Promote the knots library (gen2-force-smooth) from src/lab/knots to the kit
 
-author: rnd-lead (Bram) · reviewers: principal-engineer (required; owns where it lives in `src/kit`) + design-lead (bigon block) · tier: 2 · status: proposed · date: 2026-10-14 · board: W-162 (data provenance: W-145)
+author: rnd-lead (Bram) · reviewers: principal-engineer (required; owns where it lives in `src/kit`) + design-lead (bigon block) · tier: 2 · status: **approved with conditions**, moved to `src/kit/knots` (engineering review [2026-10-14](../../rituals/records/2026-10-14-eng-review-EDD-004.md)) · date: 2026-10-14 · board: W-162 (data provenance: W-145)
 
 Sources: [knots-gen2.md](../../rnd/evolution/knots-gen2.md) (gen-2 record, **VP ruling**, and "Promotion re-score") · [provenance/README.md](../../../src/lab/knots/provenance/README.md) (W-145) · [evolution.md](../../rnd/evolution.md) · archive `company/rnd/evolution/knots.jsonl` (seeds 1592665369, 270539191, 16841215).
 
