@@ -18,9 +18,10 @@ const W = 320;
 const H = 170;
 const RATE_CM_YR = 2.5;
 const TARGET_KM = 3000;
-const MAX_MYR = 150;
+const MAX_MYR = 300;
 const REF_LAT = 10; // degrees S, where the shift is measured
-const STEPS = [100, 20, 5];
+// Powers of ten, so no single press or pair of presses lands on one option more than another.
+const STEPS = [1, 10, 100];
 const SA = new Set([
   "Argentina", "Chile", "Falkland Is.", "Uruguay", "Brazil", "Bolivia", "Peru", "Colombia",
   "Venezuela", "Guyana", "Suriname", "Ecuador", "Paraguay", "Trinidad and Tobago",
@@ -47,6 +48,8 @@ function southAmerica(): CountryFeature[] {
 
 export default function FingernailOcean({ slug }: { slug: string }) {
   const [myr, setMyr] = useState(0);
+  // Recorded when the 3,000 km milestone fires; Reset ("Back to today") does not clear it.
+  const [seen, setSeen] = useState<{ myr: number; km: number } | null>(null);
   const projection = useMemo(() => geoEqualEarth().rotate([30, 0]).fitSize([W, H], { type: "Sphere" }), []);
   const path = useMemo(() => {
     const g = geoPath(projection);
@@ -69,13 +72,14 @@ export default function FingernailOcean({ slug }: { slug: string }) {
         options: ["12 million years", "120 million years", "1.2 billion years"],
         answer: 1,
       }}
-      exploreHint="Add time until South America has moved 3,000 km."
+      exploreHint="Run time until South America has moved exactly 3,000 km, then add or reset."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            <strong>{fmt(TARGET_MYR)} million years.</strong> 3,000 km is 300 million cm. At {RATE_CM_YR} cm a year that
-            takes {fmt(TARGET_MYR)} million years. Each million years adds only {fmt(gapKm(1))} km of new ocean.
+            <strong>{fmt(TARGET_MYR)} million years.</strong> You saw it, and the Seen line keeps it: {fmt(seen?.myr ?? TARGET_MYR)} million years made{" "}
+            {fmt(seen?.km ?? TARGET_KM)} km of new ocean. 3,000 km is 300 million cm, and at {RATE_CM_YR} cm a year each
+            million years adds only {fmt(gapKm(1))} km, the rate under the map.
           </p>
           <p>
             A speed you could never see in a lifetime, about 2 metres in one, becomes an ocean once geological time
@@ -90,7 +94,11 @@ export default function FingernailOcean({ slug }: { slug: string }) {
           {(reach) => {
             const go = (v: number) => {
               setMyr(v);
-              if (gapKm(v) >= TARGET_KM) reach("ocean");
+              // Exactly the question's case, so the readout showed the recorded 3,000 km.
+              if (v === TARGET_MYR) {
+                setSeen({ myr: v, km: gapKm(v) });
+                reach("ocean");
+              }
             };
             return (
               <div className={s.wrap}>
@@ -112,8 +120,13 @@ export default function FingernailOcean({ slug }: { slug: string }) {
                     <path key={`m${i}`} d={path(c)} className={s.moved} />
                   ))}
                 </svg>
-                <p className="muted tiny">Equal Earth. Toy: South America slides due west at 2.5 cm a year. Dashed: today.</p>
+                <p className="muted tiny">
+                  Toy: South America slides west at {RATE_CM_YR} cm a year = {fmt(gapKm(1))} km per million years. Dashed: today.
+                </p>
                 <div className={s.chips} role="group" aria-label="Add time">
+                  <Control disabled={locked || myr === TARGET_MYR} onClick={() => go(TARGET_MYR)}>
+                    Run to {fmt(TARGET_KM)} km
+                  </Control>
                   {STEPS.map((st) => (
                     <Control key={st} disabled={locked || myr + st > MAX_MYR} onClick={() => go(myr + st)}>
                       +{st} million years
@@ -127,6 +140,9 @@ export default function FingernailOcean({ slug }: { slug: string }) {
                   <Readout label="Time" value={`${myr} million years`} />
                   <Readout label="New ocean" value={locked ? "?" : `${fmt(km)} km`} />
                 </Row>
+                <p className="tiny" data-testid="seen">
+                  Seen: {seen ? `${fmt(seen.myr)} million years → ${fmt(seen.km)} km of new ocean` : "nothing yet"}
+                </p>
               </div>
             );
           }}
