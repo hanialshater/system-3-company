@@ -20,6 +20,9 @@ const cy = (v: number) => CY1 - (CY1 - CY0) * v;
 const trace = (a: number[], upTo: number) => a.slice(0, upTo + 1).map((v, d) => `${d ? "L" : "M"}${cx(d).toFixed(1)} ${cy(v).toFixed(1)}`).join(" ");
 const DAYS = 900;
 const SETTLED = DAYS;
+// Another immunity length counts once the learner views it late in the run (day 800+), when every
+// run is within 2 points of half; the panel's path (day 900, slider back a step, switch) lands here.
+const LATE = 800;
 const LS = [100, 50, 200];
 const L_Q = 100;
 const TOWN = 400, COLS = 20, GAP = 14;
@@ -50,6 +53,13 @@ function simulate(L: number): Run {
 const RUNS = new Map(LS.map((L) => [L, simulate(L)]));
 const pct = (x: number) => `${Math.round(100 * x)}%`;
 const pct1 = (x: number) => `${(100 * x).toFixed(1)}%`;
+// Susceptible share: two decimals near half, so "over half" / "under half" can be read off the number.
+const pctS = (x: number) => `${(100 * x).toFixed(Math.abs(x - 1 / R0) < 0.0005 ? 2 : 1)}%`;
+// Cases grow exactly when the susceptible share is above 1/R0 (new infections beta*S*I beat recoveries gamma*I).
+function trend(S: number) {
+  if (Math.abs(S - 1 / R0) < 0.0001) return "cases holding steady: half can catch it";
+  return S > 1 / R0 ? "cases growing: over half can catch it" : "cases shrinking: under half can catch it";
+}
 const RQ = RUNS.get(L_Q)!;
 
 function outline(n: number) {
@@ -83,7 +93,7 @@ function Stage({
       reach("a-peak");
       if (l === L_Q) onSeen((x) => (x.peaks.includes(k + 1) ? x : { ...x, peaks: [...x.peaks, k + 1].sort((a, b) => a - b) }));
     }
-    if (dd >= SETTLED && l !== L_Q) reach("other-immunity");
+    if (dd >= LATE && l !== L_Q) reach("other-immunity");
     if (dd >= SETTLED) {
       reach("settled");
       if (l === L_Q) onSeen((x) => ({ ...x, settledS: rr.S[dd] }));
@@ -97,7 +107,7 @@ function Stage({
   const next = run.peaks.find((p) => p > day);
   const msg = locked
     ? `Make a prediction to start. Toy: R0 ${R0}, immunity fades after about ${L_Q} days.`
-    : `Day ${day}: ${pct1(S)} susceptible, ${pct1(I)} sick${k >= 0 ? ` (peak of wave ${k + 1})` : day > 0 && run.I[day] > run.I[day - 1] ? ", cases growing" : day > 0 ? ", cases shrinking" : ""}.`;
+    : `Day ${day}: ${pctS(S)} susceptible, ${pct1(I)} sick${k >= 0 ? ` (peak of wave ${k + 1})` : `, ${trend(S)}`}.`;
 
   return (
     <div className={s.wrap}>
@@ -116,6 +126,7 @@ function Stage({
             <text x={CX0 - 4} y={cy(v) + 3} textAnchor="end" className={s.tick}>{pct(v)}</text>
           </g>
         ))}
+        <text x={CX0} y={73} className={s.tick}>grey: susceptible share · red: sick</text>
         <text x={CX1} y={73} textAnchor="end" className={s.tick}>day {DAYS}</text>
         {!locked && (
           <>
@@ -127,11 +138,10 @@ function Stage({
       </svg>
 
       <div className={s.legend} aria-hidden>
-        <span><i className={s.sus} />susceptible (can catch it)</span>
+        <span><i className={s.sus} />can catch it</span>
         <span><i className={s.sick} />sick</span>
         <span><i className={s.imm} />immune</span>
-        <span><i className={s.dash} />half the town</span>
-        <span>grey: susceptible share; red: sick</span>
+        <span><i className={s.dash} />half</span>
       </div>
 
       <p className={s.msg} aria-live="polite">{msg}</p>
@@ -142,9 +152,10 @@ function Stage({
       </Row>
       <Slider label="Day" value={day} min={0} max={DAYS} step={5} disabled={locked} onChange={(v) => go(v, L)} />
       <Row>
+        <span className={s.rowLabel}>Immunity</span>
         {LS.map((l) => (
-          <Control key={l} className={L === l ? "active" : ""} aria-pressed={L === l} disabled={locked || L === l} onClick={() => go(day, l)}>
-            Immunity {l} d
+          <Control key={l} className={L === l ? "active" : ""} aria-pressed={L === l} aria-label={`Immunity ${l} days`} disabled={locked || L === l} onClick={() => go(day, l)}>
+            {l} d
           </Control>
         ))}
       </Row>
@@ -162,16 +173,16 @@ export default function WavesReturn({ slug }: { slug: string }) {
         options: ["Almost none", "About half", "Almost everyone"],
         answer: 1,
       }}
-      exploreHint="Jump to a wave peak, then to day 900, then try another immunity length. Watch the grey line against the dashed half."
+      exploreHint="Jump to a wave peak, then to day 900, then try another immunity length late in the run. Watch the grey line against the dashed half."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             {seen.peaks.length
-              ? `You saw wave ${seen.peaks[0]} peak with ${pct1(RQ.peakS[seen.peaks[0] - 1])} susceptible. `
+              ? `You saw wave ${seen.peaks[0]} peak with ${pctS(RQ.peakS[seen.peaks[0] - 1])} susceptible. `
               : ""}
             It peaked when about half the town was susceptible. For the {L_Q}-day town, day {DAYS} settled at{" "}
-            <strong>{pct1(RQ.S[DAYS])}</strong> susceptible, {pct1(RQ.I[DAYS])} sick.
+            <strong>{pctS(RQ.S[DAYS])}</strong> susceptible, {pct1(RQ.I[DAYS])} sick.
           </p>
           <p>
             Why half? With R0 = {R0}, each sick person infects {R0} others only if everyone can catch it. At half, each

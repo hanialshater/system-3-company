@@ -33,21 +33,17 @@
     },
     {
       "id": "cs.tortoise-meets-hare.c2",
-      "text": "From tick 2, when both are in the loop, fast is 3, then 2, then 1, then 0 boxes behind slow.",
+      "text": "Your green arc, the boxes fast still had to run to reach slow, was 3, then 2, then 1, then they shared box 6 at tick 5.",
       "support": "simulation",
-      "source": "Builder's node trace: gap = (slow - fast) mod 5 over loop boxes 3 to 7 gives 3, 2, 1, 0 at ticks 2 to 5.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node trace: gap = (slow - fast) mod 5 over loop boxes 3 to 7 gives 3, 2, 1, 0 at ticks 2 to 5. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Same numbers (ticks 2-5: 3, 2, 1, 0), now phrased as the forward distance from fast to slow that the stage draws as an arc; r5 found 'behind' contradicted the picture (fast looked 2-3 boxes ahead).",
+      "status": "unverified"
     },
     {
       "id": "cs.tortoise-meets-hare.c3",
-      "text": "Inside a loop the fast marker gains exactly one box per tick, so the gap shrinks by one each tick and cannot step over 0.",
+      "text": "In a loop the fast one gains exactly one box per tick, so the arc shrinks by one box and cannot step over 0.",
       "support": "derivation",
-      "source": "Per tick fast moves 2 and slow moves 1, so the distance fast is behind along the loop changes by exactly 1. A gap that falls by 1 from a whole number reaches 0.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Per tick fast moves 2 and slow moves 1, so the distance fast is behind along the loop changes by exactly 1. A gap that falls by 1 from a whole number reaches 0. | REVISED v3 2026-10-14 (demo-builder, wave D r5): 'gap counts down' became 'the arc shrinks by one box' to point at the stage; the duplicated closing line 'The gap shrinks by one each tick, so it must hit zero' was removed.",
+      "status": "unverified"
     },
     {
       "id": "cs.tortoise-meets-hare.c4",
@@ -75,6 +71,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c7",
+      "text": "Stage readout: 'Gap n boxes fast must run to reach slow (green arc)', drawn as a green arc inside the ring from fast forward to slow; 'Gap —: slow not in the loop yet' before slow reaches box 3, and 'Gap —: no loop here' when the last arrow points nowhere.",
+      "support": "derivation",
+      "source": "gapOf() in Demo.tsx: (slow - fast) mod 5 on the ring of boxes 3-7, i.e. the arrows fast must follow to reach slow; GapArc draws that many 72-degree steps from fast's box. Tick 2: slow 3, fast 5, arc 5→6→7→3 = 3. | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text (r5 top finding: Gap was undefined on stage).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:cycle-detection",
     "also": [],

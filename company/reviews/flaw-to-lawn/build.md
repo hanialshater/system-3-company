@@ -20,3 +20,7 @@ Builder: algo-pair-04 (demo-builder). Status: draft. Kept from evaluators until 
 - Claim 7 ("Spell checkers and DNA alignment fill this grid") is loose; they fill grids of the same kind. The fact-checker may want the wording tightened.
 - Curriculum reference chapter (CLRS 4th ed. ch. 14) is from memory and unverified.
 - Format id `storyboard-scrub` is used although the stage is a stepper, not a time scrubber.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: grid directions had no edit meaning; cell meaning never shown; "built from beginnings" told. Changes: legend under the grid (down delete, right insert, diagonal replace, free if letters match); every caption names the two beginnings and the smaller pair it was built from (+1 / +0); reveal quotes the corner caption; trace button no longer looks enabled while locked. Not done: learner picking the neighbour for a cell (would add controls). Reopened c5; new c8, c9.

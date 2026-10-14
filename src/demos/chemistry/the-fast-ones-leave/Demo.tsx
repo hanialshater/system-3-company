@@ -2,7 +2,7 @@
 
 // A speed histogram of 60 water molecules (one dot each), drawn from the Maxwell–Boltzmann spread
 // at 25 °C with a seeded generator. Each column is a button: tap it and its fastest molecule
-// escapes. The dashed line is the average speed; the thermometer shows the average kinetic
+// escapes (only columns above the threshold are buttons; slower ones are too slow). The dashed line is the average speed; the thermometer shows the average kinetic
 // energy (temperature) as a share of the start. Lifting out the fast tail drags both down.
 
 import { useMemo, useRef, useState } from "react";
@@ -34,13 +34,15 @@ const mean = (v: number[]) => v.reduce((a, x) => a + x, 0) / v.length;
 const meanSq = (v: number[]) => v.reduce((a, x) => a + x * x, 0) / v.length;
 const MEAN0 = mean(all(START));
 const MS0 = meanSq(all(START));
-const FAST_BIN = Math.ceil(MEAN0 / BIN); // first column wholly faster than the starting average
+// Escape threshold: the first column wholly faster than the starting rms speed (630 m/s -> 750 m/s).
+// Every molecule there is above both the average speed and the rms speed, and both only fall as
+// the fast ones leave, so each escape lowers the average speed AND the average energy.
+const FAST_BIN = Math.ceil(Math.sqrt(MS0) / BIN);
 const MAXV = NB * BIN;
 
 export default function TheFastOnesLeave({ slug }: { slug: string }) {
   const [bins, setBins] = useState(START);
   const [fastGone, setFastGone] = useState(0);
-  const [slowGone, setSlowGone] = useState(0);
   // The coolest state the learner reached (kept through "put them back", so the reveal describes it).
   const [low, setLow] = useState({ avg: MEAN0, energy: 1, gone: 0 });
   const ix = useRef(() => {});
@@ -56,11 +58,9 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
     const nv = all(nb);
     const a = mean(nv);
     if (a < low.avg) setLow({ avg: a, energy: meanSq(nv) / MS0, gone: N - nv.length });
-    if (i >= FAST_BIN) {
-      const n = fastGone + 1;
-      setFastGone(n);
-      if (n >= 3) reach("fast-gone");
-    } else setSlowGone((n) => n + 1);
+    const n = fastGone + 1; // only fast columns are buttons
+    setFastGone(n);
+    if (n >= 3) reach("fast-gone");
   };
 
   const gone = N - v.length;
@@ -73,17 +73,17 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
         options: ["Higher", "Lower", "Unchanged"],
         answer: 1,
       }}
-      exploreHint="Each dot is a molecule; filled dots on the right are the fast ones. Tap a filled column: one molecule escapes."
+      exploreHint="Each dot is a molecule. Only the pink ones on the right are fast enough to escape. Tap a pink column: one escapes."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
             {low.gone > 0 ? (
               <>
-                When {low.gone} molecules had escaped, the average speed of the rest had gone from about{" "}
+                When you had let {low.gone} fast molecules escape, the average speed of the rest had gone from about{" "}
                 <strong>{Math.round(MEAN0)} m/s</strong> to <strong>{Math.round(low.avg)} m/s</strong>, and the
-                thermometer had fallen to about {Math.round(low.energy * 100)}% of its start
-                {slowGone > 0 ? ". Taking slow ones pushed it the other way" : ""}.
+                thermometer had fallen to {Math.round(low.energy * 100)}% of its start
+                {low.gone !== gone ? " (before you put them back)" : ""}. Each tap lowered both.
               </>
             ) : (
               <>
@@ -110,7 +110,14 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
           <div className={s.wrap}>
             <div className={s.chart}>
               <div className={s.hist} role="group" aria-label="Molecule speeds, slow to fast">
-                {bins.map((col, i) => (
+                {bins.map((col, i) =>
+                  i < FAST_BIN ? (
+                    <div key={i} className={`${s.col} ${s.inert}`} aria-label={`${i * BIN}–${(i + 1) * BIN} m/s: too slow to escape`}>
+                      {col.map((_, k) => (
+                        <span key={k} className={s.dot} />
+                      ))}
+                    </div>
+                  ) : (
                   <Control
                     key={i}
                     className={s.col}
@@ -119,33 +126,36 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
                     aria-label={`Let one molecule at ${i * BIN}–${(i + 1) * BIN} m/s escape`}
                   >
                     {col.map((_, k) => (
-                      <span key={k} className={`${s.dot} ${i >= FAST_BIN ? s.fast : ""}`} />
+                      <span key={k} className={`${s.dot} ${s.fast}`} />
                     ))}
                   </Control>
-                ))}
+                  ),
+                )}
                 <span className={s.avg0} style={{ left: `${(MEAN0 / MAXV) * 100}%` }} />
                 <span className={s.avg} style={{ left: `${(avg / MAXV) * 100}%` }}>
                   <span className={s.avgLabel}>{Math.round(avg)} m/s</span>
                 </span>
               </div>
+              <div className={s.thermoBox}>
               <svg viewBox="0 0 30 180" className={s.thermo} role="img" aria-label={`Temperature at ${Math.round(energy * 100)}% of the start`}>
                 <rect x={10} y={8} width={10} height={150} rx={5} className={s.tube} />
                 <rect x={12} y={152 - 140 * Math.min(1, energy)} width={6} height={140 * Math.min(1, energy) + 6} className={s.mercury} />
                 <circle cx={15} cy={165} r={9} className={s.bulb} />
                 <line x1={6} x2={24} y1={12} y2={12} className={s.mark} />
               </svg>
+              <span className={s.tlabel}>{locked ? 100 : Math.round(energy * 100)}%</span>
+              </div>
             </div>
             <div className={s.axis}>
-              <span>slow</span>
+              <span>grey: too slow to escape</span>
               <span>speed →</span>
-              <span>fast</span>
+              <span>pink: can escape</span>
             </div>
             <div className={s.reset}>
               <Control
                 onClick={() => {
                   setBins(START);
                   setFastGone(0);
-                  setSlowGone(0);
                 }}
                 disabled={locked || gone === 0}
                 aria-label="Put them all back"

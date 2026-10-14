@@ -19,7 +19,10 @@
   position: absolute; top: -14px; left: 0; transform: translateX(-50%); white-space: nowrap;
   font-size: 10px; font-weight: 700; color: var(--fg);
 }
-.thermo { width: 30px; height: 100%; flex: none; }
+.thermoBox { display: flex; flex-direction: column; align-items: center; flex: none; width: 34px; }
+.thermo { width: 30px; flex: 1; min-height: 0; }
+.tlabel { font-size: 11px; font-weight: 700; color: var(--fg); }
+.hist .inert { cursor: default; }
 .tube { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1; }
 .mercury { fill: var(--bad); transition: y 0.3s, height 0.3s; }
 .bulb { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }

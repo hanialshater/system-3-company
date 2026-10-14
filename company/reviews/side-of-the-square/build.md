@@ -9,3 +9,7 @@
 ## Revision v2
 
 Review 2026-10-14: the 25 m square was undersold. It stays clipped by the grid but is labelled 'runs off the grid' and the caption says 12.5x the target. The square-root sentence moved to the first reveal paragraph. c4, c5 reworded, unverified.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: locked stage listed 7, 7.1, 7.07 chips; "just over 7 m" was the only non-round option. Changes: only 25 m and 12.5 m chips visible before the prediction; each next chip appears once the previous one is tried (hidden chips kept in the DOM with visibility hidden, so QA order is unchanged); options 25 / 7.07 / 10 / 12.5 m, question "closest to"; added the 12.5 m (50 / 4) chip and a reveal line for it. New c6.

@@ -9,8 +9,10 @@
 .good { color: var(--good); }
 .num { font-size: 11px; font-weight: 800; fill: var(--fg); }
 .group { font-size: 0.75rem; color: var(--muted); }
-.tape { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.tile { min-height: 44px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.toggle { min-height: 44px; width: 100%; font-weight: 700; }
+.tape { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+.tile { min-height: 40px; min-width: 0; padding: 0; font-weight: 800; font-variant-numeric: tabular-nums; }
+.toggle { min-height: 40px; width: 100%; font-weight: 700; }
 @keyframes pulse { from { transform: scale(1.5); } to { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .gap { animation: none; } }
+.gapWhy { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+.arcNum { font-size: 12px; font-weight: 800; fill: var(--good); }

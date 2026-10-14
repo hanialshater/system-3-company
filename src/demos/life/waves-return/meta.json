@@ -34,12 +34,10 @@
     },
     {
       "id": "life.waves-return.c2",
-      "text": "On the stage (infection 0.4/day, recovery 0.2/day, immunity fading at 1/100 per day, 0.1% sick on day 0), waves peak on days 34, 185, 329, 473, 617 and 761 with 50.7%, 50.2% and then 50.0% susceptible at the daily snapshot; by day 900 the town is at 50.0% susceptible and 2.4% sick.",
+      "text": "On the stage (infection 0.4/day, recovery 0.2/day, immunity fading at 1/100 per day, 0.1% sick on day 0), waves peak on days 34, 185, 329, 473, 617 and 761 with 50.7%, 50.2% and then about 50.0% susceptible at the daily snapshot (shares within 0.05 points of half are printed to two decimals); by day 900 the town is at 50.00% susceptible and 2.4% sick.",
       "support": "simulation",
-      "source": "Euler step 0.01 day, deterministic, no seed; peaks are local maxima of the daily sick share (artifacts/scratch/w3life/sirs.mjs and revision 2026-10-13 rerun): peak S 50.7, 50.2, 50.0, 50.0, 50.0, 50.0%; day 900 S 50.0%, I 2.4%. Parameters are the brief's, made up. | v3 (2026-10-14): reveal derives 1/R0, quotes only the wave and day the learner reached (settled now needs day 900); locked stage hides the half line; previous verification void, needs re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Euler step 0.01 day, deterministic, no seed; peaks are local maxima of the daily sick share (artifacts/scratch/w3life/sirs.mjs and revision 2026-10-13 rerun): peak S 50.7, 50.2, 50.0, 50.0, 50.0, 50.0%; day 900 S 50.0%, I 2.4%. Parameters are the brief's, made up. | v3 (2026-10-14): reveal derives 1/R0, quotes only the wave and day the learner reached (settled now needs day 900); locked stage hides the half line; previous verification void, needs re-check. | REVISED v4 2026-10-14 (demo-builder, wave D r5): Only the display precision changed: susceptible shares within 0.05 points of half now show two decimals (pctS), so 'over half' / 'under half' in the new trend text can be read off the number. Builder re-run: S(900) = 0.50001, I(900) = 0.0238.",
+      "status": "unverified"
     },
     {
       "id": "life.waves-return.c3",
@@ -76,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "life.waves-return.c7",
+      "text": "Stage readout on non-peak days: 'cases growing: over half can catch it', 'cases shrinking: under half can catch it', or 'cases holding steady: half can catch it' (within 0.01 points of half).",
+      "support": "derivation",
+      "source": "In the SIR(S) model dI/dt = I(βS − γ), so with β = 0.4 and γ = 0.2 cases grow exactly when S > γ/β = 1/R0 = 0.5. trend() in Demo.tsx tests the stage's own S. Replaces the old 'cases growing/shrinking' label, which compared daily snapshots and read as noise at day 890 (r5). | REVISED v4 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text: shows the grow/shrink cause (above or below half) on stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "life:waning-immunity",
     "prerequisites": [

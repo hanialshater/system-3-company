@@ -60,12 +60,10 @@
     },
     {
       "id": "cs.flaw-to-lawn.c5",
-      "text": "The distance between whole words is built from distances between their beginnings, so a small grid replaces trying every sequence of edits.",
+      "text": "Every cell compared two beginnings. The corner said \"FLAW → LAWN = 2: insert N (+1), after FLAW → LAW (1)\": the whole-word distance was built from a beginning you had already filled, as every cell was, by the cheapest of three neighbours. A small grid replaces trying every sequence of edits.",
       "support": "source",
-      "source": "Same recurrence as c3: cell (i, j) is the distance between the first i letters of FLAW and the first j letters of LAWN. Unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Same recurrence as c3: cell (i, j) is the distance between the first i letters of FLAW and the first j letters of LAWN. Unverified. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal now points at the corner cell's caption (seen by every learner, since the gate requires a full grid) instead of telling 'built from beginnings' with nothing on stage. Corner caption is computed by caption(R, C) from the same table the grid shows.",
+      "status": "unverified"
     },
     {
       "id": "cs.flaw-to-lawn.c6",
@@ -84,6 +82,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c8",
+      "text": "Stage legend: ↓ delete · → insert · ↘ replace (free if letters match).",
+      "support": "convention",
+      "source": "Standard Wagner-Fischer reading with the first word down the side: a step down consumes a letter of FLAW (delete), right adds a letter of LAWN (insert), diagonal replaces one with the other at cost 1, or costs 0 when they match. Wagner & Fischer 1974, J. ACM 21(1); Jurafsky & Martin, Speech and Language Processing, 3rd ed. draft, ch. 2 (minimum edit distance). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Added for r5 top finding: grid directions had no edit meaning on stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c9",
+      "text": "Each cell's caption reads '<beginning of FLAW> → <beginning of LAWN> = n: <edit> (+1 or +0), after <smaller pair> (n')', e.g. 'FL → L = 1: L = L, keep it free (+0), after F → · (1)'. A cell's number is the fewest edits from that beginning of FLAW to that beginning of LAWN.",
+      "support": "derivation",
+      "source": "caption() in Demo.tsx; D[i][j] = fewest edits from the first i letters of FLAW to the first j of LAWN (the table comment). All 16 captions printed by a builder node script reproducing Demo.tsx; e.g. FLA → LAW = 2: insert W, after FLA → LA (1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Replaces the per-cell 'cheapest neighbour is diagonal (0 + 1 = 1)' caption.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -103,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:edit-distance",
     "prerequisites": [
