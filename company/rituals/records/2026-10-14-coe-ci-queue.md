@@ -95,7 +95,7 @@ verdict: accept
 - Pattern file updated: shared-resource-needs-owner-and-allocator now cites W-779 as the proposed CI-budget owner.
 
 ## Review (evaluation-steward, 2026-10-14)
-verdict: revise (small: two action rows change scope; no change to the five whys or the root cause)
+verdict: accept (re-review 2026-10-14 after 375ff76; the first review said revise: two action rows change scope)
 reviewed against: the record, `git log --all` for protected paths since 10-14 00:00, `tools/dispatch-check.mjs` + `tools/lib/coe-coverage.mjs`, `npm run test:dispatch` (pass), the amendments README. Builder notes not read.
 
 1. **Five whys and actions.** The whys reach a mechanism (no allocator, no meter, no back-pressure on a capped runner pool) and stop there. Every row has an owner and a real board id (W-774 to W-778 exist). Accepted as written.
@@ -107,6 +107,16 @@ reviewed against: the record, `git log --all` for protected paths since 10-14 00
 3. **Claims and decisions to send back.** The AMD-002 finding and "no green ci claimed today" are right. I add one: the **14 successful `ci` runs for 09:xx commits judged old trees**, so no lesson record may cite them as "ci passed" for any later commit. No published lesson cites CI today (author's check, which I accept).
 
 **R2 proposal (owner tools-lead, under W-715; I am not making the change).** I should not write a gate that reads my own mark. R2 should count an incident as covered only when its COE: (1) has `status: final` and `incident: <id>` in the **header block** (the lines before the first `## `), because today any line anywhere in the file that starts `status: final` counts; (2) lists reviewers on a `reviewers:` header line (a COE with no such line is not covered); (3) has, for **each** named reviewer, a `## Review (<role>, YYYY-MM-DD)` section with a `verdict: accept` line; and (4) has no reviewer who is the `owner:`. `verdict: revise` keeps the incident uncovered, with the reason "revise by <role>". Tests in `tests/dispatch/r2-coe.test.mjs`: final with no review is not covered; one reviewer accepts and one is missing, not covered; a revise, not covered with that reason; owner as reviewer, not covered; `status: final` only in the body, not covered; both accept, covered. The existing test "the real final records ... clear their incidents" will fail until the real reviews accept. That is the point. Today it would hold build and wave dispatch until these three COEs are revised and accepted by both reviewers (`check`, `ritual` and `incident` dispatches only warn).
+
+### Re-review (evaluation-steward, 2026-10-14, after 375ff76)
+Read against the revised record, the board (W-771 to W-787 all exist with the owners the table names) and the amendments README (AMD-007 reserved). Builder notes not read.
+- Finding 1 (whys and actions): stands. New rows cite real board ids.
+- Finding 2a (the CI gate failed open): fixed in Impact, with the audit result (`a674a7a` only, `Amendment: AMD-002`).
+- Finding 2b (the drain skips the protected-path check): fixed. The W-784 row runs a fixed-base audit over the whole cancelled range before cancelling, records it in the ops log, and repeats until AMD-003. The row also records that the drain itself is blocked on the founder (W-781).
+- Finding 2c (W-775 / AMD-007 must fail closed): fixed. Conditions (a) to (d) and the order with AMD-003 are in the row, and condition (c) is repeated in the W-480 row, which is the right place for it. Drafting AMD-007 is mine (W-785).
+- Finding 2d (R2 read the author's own word): fixed as far as this record can fix it. The W-782 row carries the spec, `reviewers:` is on its own header line, and the header says `final` is the author's word only.
+- Finding 3 (the 14 green runs judged old trees): fixed in Claims and Impact. The four-releases correction ("5 `[deploy]` commits" and "no direct harm found" were both wrong) is also fixed, with W-787 and W-783.
+- Still open, not blocking this record: W-782 is in backlog, so R2 still clears incidents on `status: final` alone. This accept is a review verdict, not proof that the gate works.
 
 ## Author's answers to review (backend-engineer, 2026-10-14)
 Each finding above, and what happened to it. The reviewers' sections are unchanged; they mark accept on re-review.

@@ -93,7 +93,7 @@ verdict: accept
 - Not mine, noted: the second Pattern update line still says "before it needs a cleanup" for path B. The pattern file treats that order as target state; this is wording, not a blocker.
 
 ## Review (evaluation-steward, 2026-10-14)
-verdict: revise (one action row added, one claim to send back; the five whys and the root cause stand)
+verdict: accept (re-review 2026-10-14 after 6046c17; the first review said revise: one action row to add, one claim to send back)
 reviewed against: the record, `git log --all` for protected paths since 10-14 00:00, `adb41b8`, `tools/dispatch-check.mjs` + `tools/lib/coe-coverage.mjs`, the host-exhaustion COE. Builder notes not read.
 
 1. **Five whys and actions.** Both paths end at a mechanism: there is a second entry point to production that no company tool can see. The record answers the ops-review objection instead of setting it aside. Every row has an owner and a board id. W-773 (the founder-approval note) now exists, so the "proposed board item" sentence can cite it.
@@ -103,6 +103,14 @@ reviewed against: the record, `git log --all` for protected paths since 10-14 00
    - **R2 row (W-715): independence.** `adb41b8` finalised this COE and changed the R2 matcher that clears it, in one commit, by the same role (tools-lead, which also owns the W-715 review). Nothing in the change is wrong (tests pass, and it is stricter than the date match it replaced). But the author wrote both the gate and the mark that clears it, and R2 cleared ev-b27f3b93ae without a reviewer. The fix is the reviewed-mark rule proposed in the ci-queue COE's review. The W-715 review of R2 should be done by someone other than tools-lead, or at least should not be closed by tools-lead alone.
    - Protected-path audit: today's only protected-path commit on any branch is `a674a7a` (AMD-002 trailer), so "nothing unratified shipped" holds. Nothing would have stopped one.
 3. **Claims and decisions to send back (add one).** The four releases (`6b45ea0` 13:01, `91274b8` 13:51, `f4537d7` 14:27, `5e8608d` 14:43) shipped during the host overload. The host-exhaustion COE says official QA could not run until about 18:00, so these lessons reached learners with **neither a CI verdict nor an official QA verdict**. That host COE's line "nothing deployed from the overloaded period depended on it" contradicts this record's timeline. Send back: every lesson changed in those four commits needs a QA verdict from the committed harness on a built server (after 18:00, or a rerun). Until it has one, it stays tagged "In review" (qa-tester, as part of W-771). The "In review" decision itself goes to the founder (W-479 item 4), as written.
+
+### Re-review (evaluation-steward, 2026-10-14, after 6046c17)
+Read against the revised record and the board (W-773, W-484, W-786, W-787, W-782 exist with the owners named). Builder notes not read.
+- Finding 1 (W-773): fixed.
+- Finding 2, what W-480 leaves open: fixed. The new row sends `vercel.json` and `deploy.yml` to AMD-003 (W-786 founder decision, W-484 drafting), and "What allowed it" no longer says W-480 ends `vercel.json` being a release control. I accept the author's addition: protection only works if the Git-trigger setting lives in `vercel.json`, where a protected path or a `constitution` step can see it. W-480's row already requires that. When I draft AMD-003 under W-484, it will name that condition.
+- Finding 2, R2 independence: fixed. The header and the R2 row say the author wrote both this record and the R2 matcher, and that W-715 and W-782 are reviewed and closed by a role other than tools-lead.
+- Finding 3 (four releases with neither a CI nor an official QA verdict): fixed in Impact, in Claims and with a W-787 row. The author rightly leaves the host COE's contradicting line to that COE's owner, who has since corrected it.
+- Note for W-782 (tools-lead), not blocking: this header has `owner: ... · reviewers: ...` on one line. The W-782 parser must read `reviewers:` there too, with a test for it, or this record (and the host COE, which uses the same form) will stay uncovered after both reviewers accept. That fails closed, so it is not a gate hole, but it would hold dispatch for no reason.
 
 ## Author's answers to the reviews (tools-lead, 2026-10-14)
 Each finding above, with what happened to it. The reviewers' sections are unchanged.
