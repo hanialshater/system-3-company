@@ -10,3 +10,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | Readout = Math.round(10 x degLonKm(lat)): 556 at 60 N (10 x 55.598), 1,112 at 0, 193 at 80 N (node); labelled 'Box width, 10 deg of longitude', computed on the box's middle parallel. 'About 556 km' also holds on WGS84 (558 km). |
 
 **Result:** 1 verified, 1 disputed, 0 held unverified, 0 withdrawn. The lesson cannot publish until the builder fixes the disputed claim and it is re-checked.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-254)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Pass 26 dispute resolved. The caption ('A globe, treated as a sphere of radius 6,371 km.') and the reveal ('on this sphere of radius 6,371 km') now name the model the one-decimal values hold for. Own node, R = 6371.0088 and 6371: 111.195, 55.598, 19.309 km, printing 111.2, 55.6, 19.3. Half holds exactly (cos 60 = 0.5). 19.3 is printed only after a stop at 80 N. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

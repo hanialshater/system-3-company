@@ -47,3 +47,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c5 | verified | Re-derived, not resting on the unopened texts: brute force over all 2^15 friend/enemy assignments on 6 people: no two-friends-one-enemy triangle = 203 graphs, exactly the camp splits (Bell 6); adding the all-enemy ban leaves 32, exactly the splits into at most 2 camps, and an all-enemy triangle exists iff there are 3 or more camps. The all-enemy triangle breaks 'the enemy of my enemy is my friend'. Wording drift, not blocking: the reveal now says 'the strict rule forbids, and it is what forces two sides' without the parenthetical the claim text still carries; the claim text should be updated to the reveal string (builder). |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-254)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | The claim text now equals the reveal string. Own brute force over 2^15 graphs on 6 people: 203 weakly balanced (all camp splits, Bell 6), and the all-enemy ban leaves 32 (at most 2 camps). An all-enemy triangle exists iff there are 3 or more camps. Rests on derivation, not Easley-Kleinberg or Davis (not opened). Advisory: 'the strict rule' is undefined on stage (W-255, learning-designer; pedagogy, not mine). |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

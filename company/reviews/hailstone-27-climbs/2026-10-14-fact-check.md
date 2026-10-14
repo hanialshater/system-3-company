@@ -42,3 +42,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c6 | verified | Own node run: SEQ[97].findIndex(v in SEQ[27]) = 13, value 94, at 27's index 6; tails from 94 identical; 97 has 118 steps; 97's peak before 94 is 376, so its 9,232 peak is on 27's path. Stage line shows once show(97, steps >= 13) sets joinSeen (stepping, or runOut strides of 6: 6, 12, 18) and stays; reveal quotes it only if has(97) && joinSeen. Nit, not blocking: path chip 97 at the start, Step 13 times, chip 27, chip 97 (no run is finished, so no auto-run) leaves the line '..., ringed.' on stage while drawn[97] = 0 and no ring is drawn; the reveal cannot be open in that state with 97 done. Board item for demo-builder. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-254)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own node: join at 97's step 13, value 94 (27's step 6), tails identical, 118 steps, peak before the join 376. v5: one condition (drawn[97] >= 13) drives both the ring and the ', ringed.' ending. The pass 26 nit path (chip 97, Step x13, chip 27, chip 97) now reads '(its step 13).' with no ring. runOut strides and reduced motion (jump to 118) set joinSeen and ringOn together. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

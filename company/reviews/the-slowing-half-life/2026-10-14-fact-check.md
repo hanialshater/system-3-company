@@ -62,3 +62,13 @@ Ruler: evaluation-steward (wrote, built and checked none of these claims). Input
 - Then a fact-checker re-checks c3. The stage half was already checked in Pass 26, so this should be a short re-check.
 
 **Objection (cost of this ruling), and its answer:** the radioactive-decay sentence is the bridge back to the prior lesson the learner is assumed to know (content/curriculum/chemistry.json "Radioactive half-life"; meta learner.knows "half-life lesson"), so cutting it weakens the "why does this matter" link. Answer: the stage-only reword stands for now, because a learner-facing fact with no opened source is worse than a missing bridge. The sentence may come back unchanged as soon as any checker can open a source (IUPAC Gold Book "half life", OpenStax Chemistry 2e ch. 21, or any general-chemistry text). cm-chemistry owns whether the bridge is worth reopening; it does not block this lesson.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-253)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | v6 text and reveal ('so the wait stayed the same: one fixed half-life') are now stage-only, per the W-247 ruling. Own node: waitRow(1) = '10, 10 min' / '10, 10, 10 min'. Independent Euler of dA/dt = -kA reaches 40, 20, 10 at 10, 20, 30 min. t1/2 = ln2/k has no concentration term. The reveal needs first-twice, so the row always has at least 2 entries. Rests on derivation, not Atkins (not opened). Nit (builder): support field still says 'source'. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

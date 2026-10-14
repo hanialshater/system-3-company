@@ -21,3 +21,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | fly(9000): back round 143.8 min (144), fell 17.7, groundAway 22.9, apex about 5,429 km; fly(79000): escapes (11.17 km/s escape speed), 'never: escapes'. |
 
 **Result:** 1 claim disputed; publishing blocked until the builder fixes it and a fact-checker re-checks.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-256)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Pass 26 dispute resolved. Ran model.ts fly() in node: fell 17.638 to 17.643 km (17.6) for 7.0 to 7.9 km/s; groundAway 13.858, 16.333, 17.202, 17.423, 17.646 km. 0.79 and 4.0 km/s land at 46 s and 53 s (minute = null). I ran the v6 reveal for every possible fastest landing: 0.79 and 4.0 give 'your 7.9 km/s throw fell 17.6 km'; 7.0 to 7.85 give 'your X and 7.9 km/s throws both fell 17.6 km'. The failing path (Home to 0.79, track click on 7.9) now reads correctly. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified. W-248 (demo-builder) can close.

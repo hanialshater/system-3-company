@@ -34,3 +34,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | disputed | DISPUTED (two reachable mismatches). Own node port: cover(3, 12) = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes; START min over 3..12 = 2; first change: prev 2, EDIT_VALUES[1] = 8, message 'Position 9 changed from 2 to 8: ...' (that part holds). (1) 'minimum 2': seenMin is written on every combine of 3..12, and combine is allowed again after each edit. Path: Change the value at 9 (2 -> 8), Positions 3 to 12, Combine: the row reads 'minimum 3'; Combine first, then Change, re-select 3 to 12, Combine: the row is overwritten to 'minimum 3'. The row does not keep the first record. (2) 'outlined dashed whenever they are not lit' (reveal: 'dashed when not lit'): trace = !on && !onPath && ..., so after a change [8 to 11], which contains 9, is drawn with the solid green path stroke instead. Path: combine 3..12, drag To to 15 and From to 0 (root lit), Change the value at 9, open the reveal: [3], [4 to 7], [12] dashed, [8 to 11] solid green. Fix (builder): record seenMin only once (or say 'minimum at the time' in the row and drop the fixed 2 from the claim), and either keep the dashed outline on Q blocks that are on the change path or say 'dashed when not lit or highlighted'. |
 
 **Result:** 0 verified, 1 disputed, 0 held unverified, 0 withdrawn. The lesson cannot publish until the builder fixes the disputed claim and it is re-checked.
+
+## Pass 27 (2026-10-14, re-check of pass 26 disputes and rewordings, W-254)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read the pass 26 dispute, then the new Demo.tsx on every reachable branch, including the exact path that failed in pass 26, plus Reset and reduced motion where they exist. Then I re-ran the numbers in my own node scripts (session scratchpad fc27/). No builds. External source hosts were refused (proxy 403 / DNS), so nothing below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | Both pass 26 mismatches fixed. (1) seenMin is written only while null. 200,000 random action sequences gave 'minimum 2' whenever no Change preceded the first 3..12 combine, and the row was never rewritten. (2) The dash is now independent of onPath: on the pass 26 path (combine, widen to 0..15, Change), [8 to 11] is drawn dashed '4 3' in green, width 3. cover(3,12) gives 4 nodes; the first Change goes 2 to 8. The reveal needs 'combined', so the Seen row is present. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.
