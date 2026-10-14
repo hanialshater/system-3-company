@@ -12,3 +12,8 @@
 
 - Review (v1): 'Length is ignored' leaked the answer, doubled brackets, label collision. Fix: that caption half appears only after the prediction; brackets fixed; Q and C labels separated. The 12.7 figure is on the stage from the first unlocked frame (k = 10).
 - Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): locked caption and stem gave B away; reveal quoted a length never visited. Fix: stem defines cosine as the angle between arrows without saying B points the same way; the 'cosine: 1 = same direction' caption and Q's direction line appear only after unlock; the reveal quotes only lengths the learner set with the slider.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

@@ -35,6 +35,7 @@ const fmtT = (t: number) => {
   const m = Math.round((t - d * 24 - h) * 60);
   return `${DAYS[d + 1] ?? "Wed"} ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")} UTC`;
 };
+const monBands = (t: number) => NOMINAL.filter((o) => dayAt(t, o) === 1).length;
 const fmtOff = (o: number) => `UTC${o >= 0 ? "+" : "−"}${Math.abs(o)}`;
 
 export default function FiftyHourMonday({ slug }: { slug: string }) {
@@ -55,8 +56,8 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
         options: ["24", "50", "38"],
         answer: 1,
       }}
-      exploreHint="Step the time forward, or jump to when Monday first starts and when the last Monday ends."
-      minInteractions={2}
+      exploreHint="Step the time forward and watch Monday sweep across, then see when Monday first starts and last ends."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -65,20 +66,26 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
             {fmtT(MON_END)}.
           </p>
           <p>
-            Each place has its own 24-hour Monday, but the places start at different moments. Clocks on Earth are spread
+            Clocks on Earth are spread
             over {MAX_OFF - MIN_OFF} hours, from {fmtOff(MIN_OFF)} to {fmtOff(MAX_OFF)}, so one date lasts 24 +{" "}
             {MAX_OFF - MIN_OFF} = {MON_HOURS} hours from the first midnight to the last. A date is not one wall of
             midnight; it is a wave that takes two days to cross the world.
+          </p>
+          <p>
+            Kiritimati sits at the map&rsquo;s west edge yet keeps UTC+14: the date line bends east round Kiribati so the
+            country shares one date.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["begins", "ends"]}>
+        <Milestones interact={interact} names={["wave", "begins", "ends"]}>
           {(reach) => {
             const go = (v: number) => {
               setT(v);
-              if (v >= MON_START && v < MON_END) reach("begins");
+              const nb = monBands(v);
+              if (nb >= 3 && nb < NOMINAL.length) reach("wave");
+              if (v === MON_START) reach("begins");
               if (v >= MON_END) reach("ends");
             };
             return (
@@ -122,15 +129,15 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">
-                  UTC is the clock at Greenwich; UTC+14 runs 14 hours ahead of it. Bands: 15° strips of the world. Dots: islands with the
+                  UTC is the world reference clock, the same as Greenwich winter time (GMT); UTC+14 runs 14 hours ahead of it. Bands: 15° strips of the world. Dots: islands with the
                   extreme clocks.{" "}
                   <span className={s.key}>
-                    <i className={s.sun} /> S Sun <i className={s.mon} /> M Mon <i className={s.tue} /> T Tue
+                    <i className={s.sun} /> S Sun <i className={s.mon} /> M Mon <i className={s.tue} /> T Tue <i className={s.other} /> earlier day
                   </span>
                 </p>
                 <div className={s.chips} role="group" aria-label="Move through time">
-                  <Control disabled={locked || t >= 72} onClick={() => go(Math.min(72, t + 6))}>
-                    Forward 6 hours
+                  <Control disabled={locked || t >= 72} onClick={() => go(Math.min(72, t + 18))}>
+                    Forward 18 hours
                   </Control>
                   <Control disabled={locked || t === MON_START} className={t === MON_START ? "active" : ""} onClick={() => go(MON_START)}>
                     First Monday starts

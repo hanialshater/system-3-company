@@ -14,3 +14,8 @@
 Why: learner review (2026-10-13, v1, revise).
 - Hook neutral. Latitude grid (equator, 20, 40 N) labelled on the map; tropic lines named; "Earth's axis tilt 23.4" readout beside "farthest north so far", so the match is on the stage.
 - 27 May / 16 July dropped from the reveal (claim c3 withdrawn). c4 reworded. Hint no longer says "through June".
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Fact-check c6: the caption said latitude is how far north of the equator. Fix: 'north or south of the equator'.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

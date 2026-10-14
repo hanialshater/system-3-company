@@ -10,3 +10,8 @@ builder: demo-builder · 2026-10-13
 
 Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Options equally specific; caption shows the current split; "1 cheese costs Ana 2 loaves, Ben 1 loaf" on stage; counters turn green at 24/12; new "Ana bakes in her spare hours" button (disabled when it changes nothing); reveal shortened. c3 edited, unverified.
 QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Board W-168: on a phone the last slider was clipped. Fix: tighter stage CSS (smaller gap, svg minimum height 70 px, stage scrolls if still too tall).
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

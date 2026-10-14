@@ -43,12 +43,10 @@
     },
     {
       "id": "ai.memorise-coin-flips.c3",
-      "text": "On label set 1 the degree-1 line misses by up to 1.51 and the degree-3 curve by 0.76; the degree-5 curve's largest miss is 0.00.",
+      "text": "On label set 1 the degree-1 line misses by up to 1.50 and the degree-3 curve by 0.76; the degree-5 curve's largest miss is 0.00.",
       "support": "simulation",
-      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000. Degree 3 misses some dot in 967 of 1000 label sets. | FACT-CHECK 2026-10-14 (pass 16): Exact least squares (Python Fractions) on set 1 labels (-1,1,-1,-1,-1,1): the degree-1 line is -13/21 + (4/7)x, largest miss 158/105 = 1.50476, which the stage's f2() shows as '1.50', not 1.51. The degree-3 miss is 0.7619 ('0.76', right); the degree-5 miss is 8e-13 ('0.00', right). Fix (builder): 'misses by up to 1.50' in the claim and in the Demo.tsx header comment.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000. Degree 3 misses some dot in 967 of 1000 label sets. | FACT-CHECK 2026-10-14 (pass 16): Exact least squares (Python Fractions) on set 1 labels (-1,1,-1,-1,-1,1): the degree-1 line is -13/21 + (4/7)x, largest miss 158/105 = 1.50476, which the stage's f2() shows as '1.50', not 1.51. The degree-3 miss is 0.7619 ('0.76', right); the degree-5 miss is 8e-13 ('0.00', right). Fix (builder): 'misses by up to 1.50' in the claim and in the Demo.tsx header comment. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.memorise-coin-flips.c4",
@@ -88,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:memorise-random-labels",
     "prerequisites": [

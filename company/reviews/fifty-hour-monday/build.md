@@ -14,3 +14,8 @@
 Why: learner review (2026-10-13, v1, revise).
 - Hook no longer says "longer than 24"; neutral question. UTC defined on the stage (new claim c5).
 - "Forward 6 hours" step button so the wave of dates is watched; bands carry S/M/T letters and stronger colours; islands are named on the map. "Clocks spread over 26 h (UTC-12 to UTC+14)" readout lets the learner build 24 + 26.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2) and fact-check c5: the gate skipped any mid-Monday state, white was unexplained, UTC+14 beside UTC-12 unexplained, 'UTC is the clock at Greenwich' disputed. Fix: three milestones (a mixed state with at least 3 Monday bands, Monday first starting, Monday ending); the one-tap step is 'Forward 18 hours', which lands in a mid-Monday sweep; legend adds 'earlier day'; caption now says UTC is the world reference clock, the same as Greenwich winter time (GMT); reveal gains one line on the date line bending east round Kiribati (new claim, unverified).
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

@@ -59,7 +59,7 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
 
   return (
     <div className={s.wrap}>
-      <p className={s.chip}>Model: fixed output per hour</p>
+      {!locked && <p className={s.chip}>Model: fixed output per hour</p>}
       <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={`${t.loaves} loaves and ${t.cheeses} cheeses`}>
         {ROWS.map((row, r) => {
           const cells = r === 0 ? anaCells : benCells;
@@ -96,12 +96,17 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
           cheeses
         </text>
       </svg>
+      {!locked && (
+        <>
       <p className={s.msg} aria-live="polite">
-        {locked ? "Lock in a guess to start." : better ? `Cheese kept at ${t.cheeses}, bread up to ${t.loaves}.` : `Now: ${t.loaves} loaves, ${t.cheeses} cheeses (even split: ${EVEN.loaves} and ${EVEN.cheeses}).`}
+        {better ? `Cheese kept at ${t.cheeses}, bread up to ${t.loaves}.` : `Now: ${t.loaves} loaves, ${t.cheeses} cheeses (even split: ${EVEN.loaves} and ${EVEN.cheeses}).`}
       </p>
       <p className={s.msg}>
         1 cheese costs Ana {ANA.bread / ANA.cheese} loaves, Ben {BEN.bread / BEN.cheese} loaf.
       </p>
+
+        </>
+      )}
 
       <Row>
         <Readout label="Loaves" value={<span className={!locked && t.loaves > EVEN.loaves ? s.good : ""}>{t.loaves}</span>} />

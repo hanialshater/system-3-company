@@ -14,5 +14,10 @@
 
 Why: learner review (2026-10-13, v1, revise).
 - The Western Europe preset (which handed over the maximum) is gone. Presets: North Pole (40 percent), Mid-Pacific (21), Africa (38). Gate: any half over 38 percent and any under 25 percent.
-- A "Stuck? Show the landiest half a computer found" button appears only after three tries. The reveal says a search found 47 percent, then quotes the learner's own best and lowest.
+- A "Give up? Show the landiest half a computer found" button appears only after three tries. The reveal says a search found 47 percent, then quotes the learner's own best and lowest.
 - "Whole planet 29 percent" is a readout; 11 percent and 40 percent claims (c3, c4) withdrawn. Slider labels in plain words.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): the 47% answer was never on the gated path; land drawn blue. Fix: a third milestone needs a half with at least 45% land, reached by search or by the 'Give up?' button (always on stage, below the sliders); land is the kit's grey on pale sea with a legend.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

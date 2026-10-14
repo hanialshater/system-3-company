@@ -14,3 +14,8 @@ Why: learner review (2026-10-13, v1, revise).
 - Chimborazo against Everest is now shown: a button reveals both distances from the Earth's centre (third milestone). 43 km, 0.34 percent and the 21 km bulge are readouts.
 - WGS84 and "flattening" removed from the stage text; caption says "real shape, its squash multiplied by k".
 - Claims unchanged in text (all still match the stage); version bumped for the stage change.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): the locked stage drew the real-shape ellipse at true scale, ruling out the large options. Fix: the solid ellipse, axis and pole label are hidden until unlock; only the dashed ball shows while predicting.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

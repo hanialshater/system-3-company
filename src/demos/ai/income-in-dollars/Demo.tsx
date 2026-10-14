@@ -109,7 +109,7 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
                 </clipPath>
               </defs>
               <text x={160} y={12} textAnchor="middle" className={s.small} fill="var(--muted)">
-                1 year of age counts like {unitName(unit)} of income
+                {chosen ? `1 year of age counts like ${unitName(unit)} of income` : "Pick a unit to place everyone"}
               </text>
               {!locked && chosen && (
                 <g clipPath="url(#iid-clip)">
@@ -117,23 +117,25 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
                   <line x1={X(QUERY)} y1={Y(QUERY)} x2={X(near)} y2={Y(near)} stroke="var(--domain)" strokeWidth={2.5} />
                 </g>
               )}
-              {PEOPLE.map((p, i) => (
+              {chosen && PEOPLE.map((p, i) => (
                 <circle key={i} cx={X(p)} cy={Y(p)} r={p.id ? 6 : 4} fill={p.id ? "var(--fg)" : "var(--muted)"} opacity={p.id ? 1 : 0.7} />
               ))}
-              {[A, B].map((p) => (
+              {chosen && [A, B].map((p) => (
                 <text key={p.id} x={X(p) + 9} y={Y(p) + 4} className={s.label} fill="var(--fg)">
                   {p.id}
                 </text>
               ))}
-              <rect x={X(QUERY) - 6} y={Y(QUERY) - 6} width={12} height={12} fill="var(--domain)" transform={`rotate(45 ${X(QUERY)} ${Y(QUERY)})`} />
-              <text x={X(QUERY) - 10} y={Y(QUERY) + 4} textAnchor="end" className={s.label} fill="var(--domain)">
-                you
-              </text>
+              {chosen && <rect x={X(QUERY) - 6} y={Y(QUERY) - 6} width={12} height={12} fill="var(--domain)" transform={`rotate(45 ${X(QUERY)} ${Y(QUERY)})`} />}
+              {chosen && (
+                <text x={X(QUERY) - 10} y={Y(QUERY) + 4} textAnchor="end" className={s.label} fill="var(--domain)">
+                  you
+                </text>
+              )}
               <text x={BX1} y={230} textAnchor="end" className={s.tiny} fill="var(--muted)">
                 age →
               </text>
               <text x={6} y={230} className={s.tiny} fill="var(--muted)">
-                ↑ income ({unitsLabel(unit)})
+                ↑ income{chosen ? ` (${unitsLabel(unit)})` : ""}
               </text>
             </svg>
             <Row>
