@@ -25,29 +25,37 @@
       "id": "probability.two-public-clues-break-the-herd.c1",
       "text": "In a cascade, from person 3 on a lead of 2 outweighs any single clue, so people after the first two follow regardless of their own clue and their choices reveal nothing: the 98 followers chose blue because of the first two choices, not their own clues.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 16 (information cascades; sections unconfirmed); S. Bikhchandani, D. Hirshleifer and I. Welch (1992), 'A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades', J. Political Economy 100(5). Attribution: fact-checker confirms (flag carried from the brief). Stage stub: 'Person 3 on: a lead of 2 wins'.",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010) ch. 16 (information cascades; sections unconfirmed); S. Bikhchandani, D. Hirshleifer and I. Welch (1992), 'A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades', J. Political Economy 100(5). Attribution: fact-checker confirms (flag carried from the brief). Stage stub: 'Person 3 on: a lead of 2 wins'. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Verified by derivation, not by the sources: E&K ch. 16 and BHW 1992 were NOT opened (every scholarly host was unreachable through the proxy). With q = 2/3 and prior 1/2, person 3 holds 2 inferred blue clues. Own red gives P(blue) = 2/3 > 1/2, and own blue gives 8/9, so person 3 picks blue either way and the choice carries no clue. By induction every later person faces the same 2-clue lead (own node, persons 3-100, no break). The stage line 'Person 3 on: a lead of 2 wins' and reveal para 1 match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-public-clues-break-the-herd.c2",
       "text": "With clues right 2 times in 3 and even odds to start, 2 blue clues and 3 red clues give the blue urn a 33% chance, so red is the better choice.",
       "support": "derivation",
-      "source": "Bayes with likelihood ratio 2 per clue: P(blue) = 1 / (1 + 2^(red − blue)) = 1 / (1 + 2) = 1/3. pBlue in Demo.tsx, builder re-run in node 2026-10-14; matches the brief's node check (0.333).",
-      "status": "unverified"
+      "source": "Bayes with likelihood ratio 2 per clue: P(blue) = 1 / (1 + 2^(red − blue)) = 1 / (1 + 2) = 1/3. pBlue in Demo.tsx, builder re-run in node 2026-10-14; matches the brief's node check (0.333). | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo pBlue(b, r) = 1 / (1 + 2^(r - b)) equals the exact Bayes posterior for q = 2/3 and prior 1/2 (own node: both give 0.3333 for 2 blue and 3 red). The readout shows 33% and 'Best: red', and the reveal says 'blue falls to 33%, and red is the better choice'. Advisory: the prior of 1/2 ('even odds') is never stated to the learner; only the hook gives the 2-in-3 accuracy.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-public-clues-break-the-herd.c3",
       "text": "Without the published clues, the same person with a red clue in the cascade still rates blue at 67%.",
       "support": "derivation",
-      "source": "2 blue clues vs 1 red: 1 / (1 + 2^(1 − 2)) = 2/3. pBlue(2, 1) in Demo.tsx, builder re-run 2026-10-14; matches the brief (inCascadeOwnRed 0.667).",
-      "status": "unverified"
+      "source": "2 blue clues vs 1 red: 1 / (1 + 2^(1 − 2)) = 2/3. pBlue(2, 1) in Demo.tsx, builder re-run 2026-10-14; matches the brief (inCascadeOwnRed 0.667). | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. pBlue(2, 1) = 2/3, shown as 67%: the readout after counting and before publishing. The log 'Before publishing: 67% blue' and reveal 'With your red clue alone, blue stayed at 67%' match. Exact Bayes gives 0.6667.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-public-clues-break-the-herd.c4",
       "text": "The 100 blue choices held only 2 clues; a herd built on two clues can be overturned by two more.",
       "support": "derivation",
-      "source": "Follows from c1–c3: only persons 1–2 chose on their own clue, so the crowd's evidence is 2 blue clues; adding 2 red clues (plus the learner's own red) moves blue from 67% to 33%.",
-      "status": "unverified"
+      "source": "Follows from c1–c3: only persons 1–2 chose on their own clue, so the crowd's evidence is 2 blue clues; adding 2 red clues (plus the learner's own red) moves blue from 67% to 33%. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Follows from c1-c3: persons 1-2 are the only ones who chose on their own clues, so the 100 choices hold 2 clues. The reveal puts 'overturned by two more' right after 'Two published red clues plus yours make 3 red to 2 blue', and with the learner's own red clue it flips to 33%. Note: without the learner's red clue, two red against two blue is 50%, a tie, not a reversal. The sentence holds only in its reveal context (see the new c6).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-public-clues-break-the-herd.c5",
@@ -77,13 +85,30 @@
   "version": 1,
   "curriculum": {
     "primary": "probability:cascade-fragility",
-    "also": ["probability:bayesian-updating"],
-    "prerequisites": ["probability:bayesian-updating"],
+    "also": [
+      "probability:bayesian-updating"
+    ],
+    "prerequisites": [
+      "probability:bayesian-updating"
+    ],
     "level": "core",
     "strand": "statistics",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 16 }],
-    "tags": ["cascades", "Bayes", "herding"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 16
+      }
+    ],
+    "tags": [
+      "cascades",
+      "Bayes",
+      "herding"
+    ]
   },
   "format": "before-after",
-  "interactions": ["choice-before-reveal", "toggle-before-after", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
 }

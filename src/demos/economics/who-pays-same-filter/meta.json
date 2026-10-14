@@ -25,36 +25,44 @@
       "id": "economics.who-pays-same-filter.c1",
       "text": "If the factory is liable, it fits the $100-a-year filter rather than pay $300 a year of damages: factory −$100, laundry $0, total −$100 (paying damages would give factory −$300, laundry $0, total −$300).",
       "support": "derivation",
-      "source": "Lesson numbers D = 300, F = 100 (Demo.tsx). min(F, D) = F; re-run in node by ncm-coase, 2026-10-14. Brief claim 1.",
-      "status": "unverified"
+      "source": "Lesson numbers D = 300, F = 100 (Demo.tsx). min(F, D) = F; re-run in node by ncm-coase, 2026-10-14. Brief claim 1. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo.tsx D = 300 and F = 100. In panel 2, fitting gives p2Factory = -F = -100 and p2Laundry = 0, total -$100. Paying gives -300 and 0, total -$300. If both buttons are pressed, the factory keeps the filter (fitted takes precedence), so no press order shows a worse end. The reveal's '$100 beats $300 of damages' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.who-pays-same-filter.c2",
       "text": "If the factory has the right to pollute, the laundry gains by paying the factory between $100 and $300 a year to fit the filter: a $200 offer leaves the factory +$100 and the laundry −$200 (better than −$300 of smoke), total −$100; an offer of $50 leaves the factory −$50, so it refuses; an offer of $350 leaves the laundry worse than the $300 smoke, so it won't pay.",
       "support": "derivation",
-      "source": "Deal test in Demo.tsx: offer − F > 0 and −offer > −D. Node re-run (ncm-coase, 2026-10-14): $50 → factory −50, refused; $200 → factory +100, laundry −200, deal; $350 → laundry −350, refused; strict gains on whole dollars from $101 to $299 (closed range $100–$300 with ties). Brief claim 2.",
-      "status": "unverified"
+      "source": "Deal test in Demo.tsx: offer − F > 0 and −offer > −D. Node re-run (ncm-coase, 2026-10-14): $50 → factory −50, refused; $200 → factory +100, laundry −200, deal; $350 → laundry −350, refused; strict gains on whole dollars from $101 to $299 (closed range $100–$300 with ties). Brief claim 2. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own node with the Demo deal test (offer - F > 0 and -offer > -D). $50: factory -50, refused, flash '-$50 for me'. $200: deal, factory +100, laundry -200, total -100. $350: the factory would accept, but laundry -350 < -300, flash '-$350: worse than smoke'. Whole-dollar deals run $101-$299, so 'between $100 and $300' holds. The milestone needs the deal and only $200 makes one, so the reveal's 'your $200 offer' is always true.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.who-pays-same-filter.c3",
       "text": "Either way the filter is fitted and the total cost is $100; the legal right decides only who pays. This is the Coase theorem, which holds when bargaining is costless.",
       "support": "source",
-      "source": "Coase, R. H. (1960), 'The Problem of Social Cost', Journal of Law and Economics 3; Easley and Kleinberg 2010, ch. 24. Stage: both Totals −$100. Brief claim 3; fact-checker to confirm.",
+      "source": "Coase, R. H. (1960), 'The Problem of Social Cost', Journal of Law and Economics 3; Easley and Kleinberg 2010, ch. 24. Stage: both Totals −$100. Brief claim 3; fact-checker to confirm. | FC pass 23 (fact-checker, 2026-10-14): HELD, still unverified. The model part is verified: both Totals read -$100 (panel 1 deal: +100 - 200; panel 2: -100 + 0), the filter is fitted in both, and only the payer differs (own node). Held on the naming, 'This is the Coase theorem, which holds when bargaining is costless', which rests only on Coase (1960), J. Law Econ. 3, and E&K ch. 24 'Property Rights' (chapter title from my own knowledge). I could open neither: every scholarly host was unreachable through the proxy. The naming is standard, but I may not verify a sentence that rests only on an unopened source. Needs: a checker with access opens Coase 1960 or E&K ch. 24.",
       "status": "unverified"
     },
     {
       "id": "economics.who-pays-same-filter.c4",
       "text": "With costly bargaining or many parties, the Coase result can fail.",
       "support": "source",
-      "source": "Easley and Kleinberg 2010, ch. 24. Reveal's last sentence. Brief claim 4; fact-checker to confirm.",
-      "status": "unverified"
+      "source": "Easley and Kleinberg 2010, ch. 24. Reveal's last sentence. Brief claim 4; fact-checker to confirm. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Verified by derivation in the lesson's own model; E&K ch. 24 not opened. The deal's surplus is D - F = $200. If bargaining costs more than $200, no offer leaves both sides strictly better, so under the right to pollute the filter is not fitted and the total is -$300, not -$100: the result fails. With many laundries sharing the $300, each one's own gain can fall below the cost of acting alone, and paying requires a collective deal (free riding and holdouts). 'Can fail' is the modest form. Reveal line 370 matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.who-pays-same-filter.c5",
       "text": "The lesson is a simplified model: two parties, costless bargaining and known costs; the $300 smoke damage and $100 filter (both a year) are made-up numbers.",
       "support": "convention",
-      "source": "Lesson rule. Stage line 'Simplified: two sides, free bargaining, costs known.' (visible through the reveal); Demo.tsx constants D, F. Tied to c4.",
-      "status": "unverified"
+      "source": "Lesson rule. Stage line 'Simplified: two sides, free bargaining, costs known.' (visible through the reveal); Demo.tsx constants D, F. Tied to c4. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. The stage line 'Simplified: two sides, free bargaining, costs known.' is on stage at all times. D = 300 and F = 100 are constants, labelled 'smoke $300 a year' and 'filter $100 a year'. Nothing claims they are real figures.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
