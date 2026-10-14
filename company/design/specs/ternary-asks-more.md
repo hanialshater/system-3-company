@@ -13,12 +13,12 @@ Sorted list 1 … 1,000. A question is one comparison of the target with one lis
 
 ## Stage at 390×844 (~300 px at predict, ~430 px in explore)
 1. Rule line (muted, 14 words): "Find 721 in 1 to 1,000. Each question compares 721 with one number."
-2. **Lane "Halves"**: a number line 1–1,000, 336 px wide. The numbers still possible are a thick `--domain` band, and the rest of the line is thin `--line`. Each question leaves a small tick at the number asked. Only the latest tick is labelled ("750?"). The band ends are labelled ("501–749"). The band has a minimum width of 4 px, so it stays visible when 4 numbers are left. Readouts on the right: "Questions: 0" and "Left: 1,000".
+2. **Lane "Halves"**: a number line 1–1,000, 336 px wide. The numbers still possible are a thick `--domain` band, and the rest of the line is thin `--line`. Each question leaves a small tick at the number asked. Only the latest tick is labelled ("750?"). The band ends are labelled ("501–749"). The band has a minimum width of 4 px. **Shared zoom:** once both lanes have fewer than 40 numbers left, both lines zoom once to the same window, the smallest run of tens holding both bands (for 721 that happens after question 6: **701–740**), and stay there, with the window ends labelled and a small "zoomed" mark at the left. The two lanes always share one scale, so their bands stay comparable. Without the zoom the last six ticks pile into 2 px (seen in the wireframe check). Readouts on the right: "Questions: 0" and "Left: 1,000".
 3. **Lane "Thirds"**: the same line and readouts. A round's two probes are joined by a small bracket. A question that cut nothing leaves its tick hollow, and "Left" does not change.
 4. **Results table**, three columns × two rows (readouts): "721" · "worst of 1,000" · "average", rows Halves and Thirds. Every cell reads "?" until it is filled.
 5. Controls, below.
 
-Stage words at the busiest moment: rule line 14 + lane titles 2 + readout labels 4 + table headers 5 = 25.
+Stage words at the busiest moment: rule line 14 + lane titles 2 + readout labels 4 + table headers 5 = 25 ("zoomed" appears only after the 6th question, when the rule line is shortened to "Find 721." to keep the budget).
 
 ## Controls, in DOM order (3)
 | # | Kind | Label | Behaviour |
