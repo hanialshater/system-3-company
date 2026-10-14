@@ -1,0 +1,85 @@
+{
+  "slug": "ties-keep-their-order",
+  "title": "Who leads the Bs?",
+  "hook": "Two correct sorts of one list can disagree about who comes first among equals.",
+  "domain": "cs",
+  "concept": "sort-stability",
+  "format": "Side-by-side comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sorting a hand by sliding cards left (insertion-by-hand)"
+    ],
+    "doesNotKnow": [
+      "that two sorting methods can give different results when items tie",
+      "what a stable sort is"
+    ]
+  },
+  "misconception": "Sorted is sorted: any correct sort of the same list gives the same list.",
+  "objective": "The learner can explain that a stable sort never lets equal items pass each other, so sorting by one key keeps the order of the previous key, while a swap-based selection sort can reorder ties.",
+  "claims": [
+    {
+      "id": "cs.ties-keep-their-order.c1",
+      "text": "Sorting Ana (B), Ben (A), Cal (B), Dee (A) by grade, A before B, by sliding each card left past higher grades gives Ben, Dee, Ana, Cal; swapping the first smallest grade to the front gives Ben, Dee, Cal, Ana.",
+      "support": "simulation",
+      "source": "Builder's node script (insertion with strict 'higher grade' test; selection with strict less-than, first minimum, swap into front). Insertion rows: Ben Ana Cal Dee / Ben Ana Cal Dee / Ben Dee Ana Cal. Selection rows: Ben Ana Cal Dee / Ben Dee Cal Ana / Ben Dee Cal Ana. Matches the designer's re-run in company/design/specs/ties-keep-their-order.md. Reference only: TheAlgorithms/Python sorts/insertion_sort.py, selection_sort.py.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ties-keep-their-order.c2",
+      "text": "On swap 2, swapping Dee with Ana throws Ana past Cal, which has the same grade; Cal stays put on slide step 2 because Ana is not a higher grade.",
+      "support": "derivation",
+      "source": "Rows above: before swap 2 the order is Ben Ana Cal Dee; swapping slot 2 (Ana) with slot 4 (Dee) gives Ben Dee Cal Ana, so Ana moves from before Cal to after it. Slide step 2: Cal's left neighbour Ana has grade B, not higher than B, so Cal does not move.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ties-keep-their-order.c3",
+      "text": "A sort that never lets equal items pass each other is called stable. Insertion sort (sliding past strictly higher items only) is stable; selection sort done with swaps is not.",
+      "support": "source",
+      "source": "CLRS 3rd ed. section 8.2 (definition of stable) and 2.1 (insertion sort); the unstable example for selection sort is the swap-2 run in c1/c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ties-keep-their-order.c4",
+      "text": "Sorting a spreadsheet by name and then (stably) by grade keeps names in order inside each grade.",
+      "support": "derivation",
+      "source": "After the name sort, equal-grade rows are in name order; a stable grade sort never reorders equal grades, so they stay in name order. Requires the grade sort to be stable (spreadsheet tools differ).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A list is sorted by name. You then sort it by grade with a stable sort. Two students have the same grade. Which comes first?",
+    "options": [
+      "The one earlier in the alphabet",
+      "The one later in the alphabet",
+      "Either, it is not defined"
+    ],
+    "answer": 0,
+    "why": "A stable sort never lets equal items pass each other, so students with the same grade keep their name order."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:sort-stability",
+    "also": [],
+    "prerequisites": [
+      "cs:insertion-sort"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["sorting", "stability", "insertion-sort", "selection-sort"]
+  },
+  "interactions": ["choice-before-reveal", "two-panel-shared-control", "step-run-button", "milestone-gate"]
+}
