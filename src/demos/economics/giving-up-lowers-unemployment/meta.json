@@ -1,0 +1,81 @@
+{
+  "slug": "giving-up-lowers-unemployment",
+  "title": "4 people stop looking for work. Then?",
+  "hook": "Nobody finds a job, but 4 people stop searching. What does the unemployment rate do?",
+  "domain": "economics",
+  "concept": "unemployment-rate-denominator",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-j-economics"
+  },
+  "learner": {
+    "knows": [
+      "a rate is a part over a whole"
+    ],
+    "doesNotKnow": [
+      "that the unemployment rate counts only people looking for work, so when job-seekers stop looking the rate falls although nobody found a job"
+    ]
+  },
+  "misconception": "When the unemployment rate falls, more people have jobs.",
+  "objective": "The learner can explain that when 4 of 10 job-seekers stop looking the rate falls from 10% to 6.25% with jobs unchanged at 90, almost the same as 4 finding jobs (6%, jobs 94), because people who stop looking leave both the top and the bottom of the fraction.",
+  "claims": [
+    {
+      "id": "economics.giving-up-lowers-unemployment.c1",
+      "text": "In this count, the unemployment rate is people looking ÷ (people working + people looking); people not looking are not counted.",
+      "support": "convention",
+      "source": "Lesson rule stated on the stage chip (a definition the lesson sets). Brief: company/domains/briefs/economics.md #62 keeps official definitions (ILO, BLS) and the term 'discouraged workers' out of learner text until a human source check passes.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.giving-up-lowers-unemployment.c2",
+      "text": "With 90 working and 10 looking the rate is 10%; when 4 of the 10 stop looking it is 6 / 96 = 6.25% and jobs stay at 90.",
+      "support": "derivation",
+      "source": "10 / (90 + 10) = 0.10; 6 / (90 + 6) = 0.0625. Demo.tsx town(4, 0).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.giving-up-lowers-unemployment.c3",
+      "text": "When 4 of the 10 find jobs instead, the rate is 6 / 100 = 6% and jobs rise to 94.",
+      "support": "derivation",
+      "source": "6 / (94 + 6) = 0.06; 90 + 4 = 94. Demo.tsx town(0, 4).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.giving-up-lowers-unemployment.c4",
+      "text": "When people stop looking they leave the count, so the top and the bottom of the fraction both shrink; a falling rate alone cannot tell which case happened, the number of jobs can.",
+      "support": "derivation",
+      "source": "From the rule in c1: a person moving from looking to not looking lowers numerator and denominator by 1; a person moving from looking to working lowers only the numerator. The two cases above give 6.25% vs 6% with jobs 90 vs 94.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.giving-up-lowers-unemployment.c5",
+      "text": "The lesson is a toy town of 100 people, not any country's statistics.",
+      "support": "convention",
+      "source": "Lesson rule; reveal's last sentence.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town's unemployment rate fell from 8% to 5% this year. What do you need to know before saying more people have jobs?",
+    "options": [
+      "Nothing: a lower rate means more jobs",
+      "Whether the number of people working went up, or job-seekers just stopped looking",
+      "Whether the town's population grew"
+    ],
+    "answer": 1,
+    "why": "The rate counts only people looking. If job-seekers stop looking they leave the count and the rate falls with no new jobs, so check the number of jobs."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {"primary":"economics:unemployment-rate-denominator","also":["probability:base-rates"],"prerequisites":["economics:percentage-points"],"level":"core","strand":"macro","references":[],"tags":["macro","labour market","ratios"]},
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+}

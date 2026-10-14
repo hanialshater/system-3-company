@@ -1,0 +1,74 @@
+{
+  "slug": "winning-bid-overpays",
+  "title": "Guesses are right on average. Is the winner?",
+  "hook": "Ten people bid on a jar of coins, each bidding their own guess. What does the winner pay?",
+  "domain": "economics",
+  "concept": "common-value-winners-curse",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-j-economics"
+  },
+  "learner": {
+    "knows": [
+      "in an auction the highest bid wins (rising-price-stops-at-second)"
+    ],
+    "doesNotKnow": [
+      "that when the prize is worth the same to everyone and each bidder only has an estimate, the winner is the one who overestimated most, so bidding your estimate loses money on average, and more bidders make it worse"
+    ]
+  },
+  "misconception": "If everyone's guess is right on average, the winning bid is right on average too.",
+  "objective": "The learner can explain that when ten bidders bid their own unbiased guesses of a $100 jar, the winning bid averages about $116, because winning selects the largest overestimate, and that with fewer rivals the overpayment is smaller.",
+  "claims": [
+    {
+      "id": "economics.winning-bid-overpays.c1",
+      "text": "In the lesson's seeded run (20 auctions, 10 bidders, seed 1), the guesses averaged $99.2, the winning bids averaged $116.5, and the winner overpaid in 20 of 20 auctions.",
+      "support": "simulation",
+      "source": "Demo.tsx simulate(10) with the kit's mulberry32(1), guesses 100 + (u × 40 − 20) drawn auction by auction, bidder by bidder; builder node run 2026-10-14: average guess 99.17, average winning bid 116.53, 20 of 20 above $100. Seed 1 was the brief's seed, not chosen for the result; seeds 7 and 42 give 117.2 and 116.0 (20 of 20). Brief: company/domains/briefs/economics.md #64.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.winning-bid-overpays.c2",
+      "text": "With 2 bidders, the same seeded run's winning bids averaged $105.4 (12 of 20 overpaid); with 20 bidders, $118.6.",
+      "support": "simulation",
+      "source": "Demo.tsx simulate(2), simulate(20), mulberry32(1); builder node run 2026-10-14: 105.42 (12 of 20), 118.56 (20 of 20).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.winning-bid-overpays.c3",
+      "text": "Winning picks out the bidder whose guess was highest, so the error that wins is the biggest one; with more rivals the expected overpayment is bigger.",
+      "support": "derivation",
+      "source": "Order statistics of n independent uniform errors on [−20, 20]: E[max] = 20(n − 1)/(n + 1): $6.7 for 2, $16.4 for 10, $18.1 for 20 above $100; increasing in n.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.winning-bid-overpays.c4",
+      "text": "Model rule on the card: each guess is $100 plus a random error up to ±$20 (seeded), each bidder bids its guess, the highest bid wins and pays it; a made-up jar.",
+      "support": "convention",
+      "source": "Lesson rule (stage chip and question); Demo.tsx simulate(). The oil-lease history (Capen, Clapp and Campbell 1971) and the label 'winner's curse' are kept out of learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Five firms each estimate an oil field's value; their estimates are right on average. Each bids its estimate. What should the firm that wins expect?",
+    "options": [
+      "To have paid about the right price",
+      "To have paid too much, since winning means its estimate was the highest",
+      "To have paid too little, since it beat four rivals"
+    ],
+    "answer": 1,
+    "why": "Winning selects the highest estimate, which is usually an overestimate, so bidding your estimate means the winner overpays on average; more rivals make it worse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {"primary":"economics:common-value-winners-curse","also":["probability:winners-curse"],"prerequisites":["economics:ascending-auction"],"level":"core","strand":"markets","references":[],"tags":["auctions","information","selection"]},
+  "format": "simulation-run",
+  "interactions": ["choice-before-reveal", "preset-buttons", "step-run-button", "milestone-gate", "locked-readouts"]
+}

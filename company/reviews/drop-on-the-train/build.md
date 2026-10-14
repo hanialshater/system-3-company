@@ -1,0 +1,14 @@
+# Build note: drop-on-the-train
+
+Builder: demo-builder (wave-j-physics), 2026-10-14. Brief: `company/domains/briefs/physics.md` round 4, #57. Status draft; every claim unverified.
+
+Built as briefed: one carriage band; "View from the platform" redraws the same drop with the carriage at release (dashed ghost) and at landing, and the ball's parabola. The ball animates for 380 ms; milestones fire on the press. Departures: title and hook written here ("A ball dropped on a fast train" / "The train races forward while the ball falls. Where does it hit the floor?"). The platform view is drawn 10 px per m across and 40 px per m up, disclosed on the stage ("Heights drawn 4× taller") and in claim c5. "View from the platform" before any drop drops at 20 m/s, so the button never does nothing. The platform distance is recorded at the speed on show when the platform milestone fires (12.1 m on the QA path). The inside view labels speeds relative to the ground ("ball 20 m/s", "train 20 m/s") so the ball's arrow, the cause, is equal to the train's.
+
+## Pre-flight v1
+
+1. **Title and hook.** "A ball dropped on a fast train" / "The train races forward while the ball falls. Where does it hit the floor?" The hook voices the misconception's premise; it names no landing spot.
+2. **Options.** "Behind your feet", "At your feet", "Ahead of your feet": none numbered, same wording.
+3. **Locked stage.** Carriage, passenger holding the ball, a floor mark below the hand (it marks the hand, not a landing), "train 20 m/s" arrow. No trace, no ball arrow, no landing label.
+4. **Reveal values.** "0 cm" at 20 m/s: milestone drop-20 (Seen row). "0 cm at 40 m/s": milestone drop-40 (Seen row). "0.61 s": constant T_FALL (claim c2). "12.1 m": milestone platform (Seen row "platform: 12.1 m curve").
+5. **QA path.** DOM order: Drop at 20 m/s (drop-20), View from the platform (platform, 12.1 m), Drop at 40 m/s (drop-40, shown in the platform view as 24.2 m). Three presses reach all three. At the reveal the platform view at 40 m/s and the Seen row "20 m/s: 0 cm · platform: 12.1 m curve · 40 m/s: 0 cm" are on the stage.
+6. **Reset.** No Reset; the Seen row is never cleared. Reveal from the QA path: "Your ball fell straight down beside your legs and landed 0 cm from below your hand at 20 m/s, and 0 cm at 40 m/s. From the platform the same drop was a long curve: in the 0.61 s fall the train moved 12.1 m, and so did the ball. It left your hand already moving at the train's speed, and nothing slowed it, so it kept pace with you. Inside a steadily moving train, things fall just as they do standing still."

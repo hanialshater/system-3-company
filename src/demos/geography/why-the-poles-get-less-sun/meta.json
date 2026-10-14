@@ -1,0 +1,99 @@
+{
+  "slug": "why-the-poles-get-less-sun",
+  "title": "Why do the poles get less sun?",
+  "hook": "The North Pole gets less sunlight in a year than the equator. What causes the gap?",
+  "domain": "geography",
+  "concept": "sunlight-by-latitude",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the poles are cold"
+    ],
+    "doesNotKnow": [
+      "that it is the angle of the sunlight, not extra distance from the Sun, that cuts their yearly sunlight to about two fifths of the equator's"
+    ]
+  },
+  "misconception": "The poles are cold because they are farther from the Sun.",
+  "objective": "The learner can say that the North Pole gets about 41% of the equator's yearly top-of-atmosphere sunlight, and that the cause is the angle (the same beam spread over more ground), not its at most 6,371 km of extra distance.",
+  "claims": [
+    {
+      "id": "geography.why-the-poles-get-less-sun.c1",
+      "text": "Over a year the North Pole gets about 41% of the equator's sunlight per square metre at the top of the atmosphere (51.5 N 67%, 60 N 57%, 30 N 88%).",
+      "support": "derivation",
+      "source": "Daily-mean insolation Q = (S0/pi)(h0 sin(lat) sin(dec) + cos(lat) cos(dec) sin(h0)) (Berger 1978) averaged over a circular orbit in 3,600 steps: 415.5, 365.2, 277.0, 236.3 and 172.3 W/m^2 at 0, 30, 51.5, 60 and 90 N (pole/equator 0.415). Section `insol-annual` of company/domains/briefs/checks/geography-wave-j.mjs; re-run by the builder (scratchpad insol.mjs) and computed in Demo.tsx. Hartmann 2016 (Global Physical Climatology, ch. 2) shows about 417 and 173 W/m^2 (not opened by the builder).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.why-the-poles-get-less-sun.c2",
+      "text": "The pole is at most 6,371 km farther from the Sun, 0.004% of the way.",
+      "support": "source",
+      "source": "Earth mean radius 6,371.0088 km (IUGG; EARTH_RADIUS_KM in src/kit/geo); 1 AU = 149,597,870.7 km (IAU 2012 resolution B2). At equinox the pole is R (1 - cos 90) = R farther along the Sun line than the sub-solar point: 6,371 / 149,597,870.7 = 0.0043%. Readout shown to 3 decimals: 0.004%. Sources not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.why-the-poles-get-less-sun.c3",
+      "text": "That extra distance is worth less than 0.01% of the light.",
+      "support": "derivation",
+      "source": "Flux falls as 1/r^2: 1 - (1 AU / (1 AU + 6,371 km))^2 = 0.0085% (section `insol-annual`).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.why-the-poles-get-less-sun.c4",
+      "text": "Near the poles the same beam lands on more ground, so each square metre gets less: at equinox noon the lit ground is 1/cos(latitude) times the beam's width (x1.61 at 51.5 N, x2.00 at 60 N), and at the pole the beam grazes the ground.",
+      "support": "derivation",
+      "source": "Geometry of a parallel beam meeting a sphere at angle (90 - latitude) at equinox noon. Section `insol-annual` prints 1.00, 1.15, 1.61, 2.00. Drawn in Demo.tsx as the lit arc under a fixed-width band.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.why-the-poles-get-less-sun.c5",
+      "text": "Equinox noon, top of atmosphere.",
+      "support": "convention",
+      "source": "Scope statement on the stage: the picture is equinox noon; the yearly share is above the air. The card makes no claim about climate zones (that needs temperature data).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Name the reason a square metre near the pole gets less sunlight in a year than one at the equator.",
+    "options": [
+      "The same beam is spread over more ground",
+      "The pole is farther from the Sun"
+    ],
+    "answer": 0,
+    "why": "Low sunlight spreads one beam over more ground. The pole's extra distance changes the light by under 0.01%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:sunlight-by-latitude",
+    "also": [
+      "geography:climate-zones"
+    ],
+    "prerequisites": [
+      "geography:latitude-longitude"
+    ],
+    "level": "intro",
+    "strand": "earth-climate",
+    "references": [],
+    "tags": [
+      "insolation",
+      "angle"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

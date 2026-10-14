@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; }
+.svg { flex-shrink: 0; }
+.msg { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.label { font-size: 11px; font-weight: 700; fill: var(--fg); }
+.gap { font-size: 10.5px; font-weight: 700; fill: var(--fg); }
+.legend { stroke: var(--domain); stroke-width: 0.8; }
+.box { fill: none; stroke: var(--line); stroke-width: 1.2; }
+.dot { fill: var(--domain); stroke: var(--domain); stroke-width: 1.2; transition: cx 0.35s ease, cy 0.35s ease; }
+@media (prefers-reduced-motion: reduce) { .dot { transition: none; } }

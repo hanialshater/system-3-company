@@ -1,0 +1,65 @@
+{
+  "slug": "sudden-skill-or-strict-score",
+  "title": "What does a strict score do to progress?",
+  "hook": "Six models, each a bit better per word than the last. Graded strictly, how do they look?",
+  "domain": "ai",
+  "concept": "emergence-metric-artifact",
+  "format": "before-after",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "toggle-before-after"],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-ai", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["a whole answer's probability is the product of its tokens' (long-answers-lose-the-product, greedy-word-trap)"],
+    "doesNotKnow": [
+      "that an all-or-nothing score on a multi-token answer turns a smooth per-token improvement into a curve that sits near zero and then shoots up, so a \"sudden ability\" can be made by the metric"
+    ]
+  },
+  "misconception": "When a skill appears suddenly as models grow, something new must have switched on inside the bigger model.",
+  "objective": "The learner can explain that with 10-token answers scored all-or-nothing, models improving steadily from 50% to 95% per token score 0.1% to 59.9%, near zero and then a jump, so an apparent sudden ability can come from the metric rather than the model.",
+  "claims": [
+    {
+      "id": "ai.sudden-skill-or-strict-score.c1",
+      "text": "In the toy, a 10-token answer is fully right with probability p^10 when each token is right with probability p independently (stage tag: 'Toy: each token right or wrong independently'; reveal: 'ten tokens all right is p to the tenth power, which stays tiny until p is near 1').",
+      "support": "derivation",
+      "source": "Product rule for independent events; independence is the toy's stated assumption. exact() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.sudden-skill-or-strict-score.c2",
+      "text": "For p = 50, 60, 70, 80, 90 and 95%, p^10 is 0.098%, 0.60%, 2.8%, 10.7%, 34.9% and 59.9% (stage and reveal round to one decimal: 0.1%, 0.6%, 2.8%, 10.7%, 34.9%, 59.9%); scored per token the same models read 50% to 95%; with 1-token answers the whole-answer score equals p.",
+      "support": "derivation",
+      "source": "Arithmetic (node, 2026-10-14, cm-ai brief); WHOLE and ONE in Demo.tsx MODEL block. Values in the reveal are recorded when the learner presses each preset.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.sudden-skill-or-strict-score.c3",
+      "text": "Some reported 'emergent abilities' of large language models look sudden under all-or-nothing metrics such as exact match and smooth under continuous or per-token metrics (reveal: 'Before calling an ability emergent, check whether a smoother score shows it growing all along').",
+      "support": "source",
+      "source": "Schaeffer, Miranda and Koyejo (2023), 'Are emergent abilities of large language models a mirage?', NeurIPS 2023 (arXiv 2304.15004); original emergence reports: Wei et al. (2022), 'Emergent abilities of large language models', TMLR. About real systems; the lesson advises a check and does not claim every case is an artifact.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A benchmark counts an answer only if all 20 of its steps are right. Across model sizes the score jumps from 2% to 40%. What should you check before calling it a new ability?",
+    "options": [
+      "Whether a per-step score rose smoothly across the same sizes",
+      "Whether the biggest model has more layers",
+      "Nothing; a jump that large must be a new ability"
+    ],
+    "answer": 0,
+    "why": "All-or-nothing scoring raises per-step accuracy to a high power, which sits near zero and then shoots up. A per-step score can show steady growth hiding under the jump."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:emergence-metric-artifact",
+    "also": ["probability:independence"],
+    "prerequisites": ["ai:next-token", "ai:sequence-length-bias"],
+    "level": "core",
+    "strand": "neural-language",
+    "references": [],
+    "tags": ["evaluation", "scaling", "benchmarks"]
+  }
+}

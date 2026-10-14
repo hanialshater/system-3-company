@@ -1,0 +1,9 @@
+# Build note: gradient-fades-with-depth (demo-builder, builder-wavej-ai-1, 2026-10-14)
+
+Brief: `company/domains/briefs/ai.md` item 60 (Wave J). Status draft, version 1. Claims c1-c4 unverified; c4 (Bengio et al. 1994, Glorot et al. 2011, Goodfellow et al. 2016) is the real-systems citation for the fact-checker.
+
+- Stage: tag "Toy: weights 1, every unit at its steepest"; 10 layer boxes (output on the right, "◀ signal flows back from the output"); under them a log axis (100%, 1%, 0.01%, 0.0001% gridlines) with one bar per layer showing the share of the signal it receives. The 3-layer net uses the three columns next to the output, labelled 1-3 (its layer k gets the same share as column 7+k of the 10-layer net). Once the 10-sigmoid case has been seen, any other view draws its values as dashed ticks ("dashes: 10 sigmoid layers"). One line under the picture: "Layer 1 gets: 10 sigmoid x · 10 ReLU y · 3 sigmoid z", each filled in when first shown (current one in the domain colour).
+- Controls in DOM order: "10 sigmoid layers", "10 ReLU layers", "3 sigmoid layers", Reset (4). Active preset disabled; Reset disabled when nothing is shown. The preset row folds at the reveal (`foldAtReveal`): no readout in it and no reveal sentence about its state.
+- Milestones: question-case (10 sigmoid; layer-1 share recorded), relu-seen (10 ReLU; recorded). shallow-seen is recorded (3 sigmoid) but not gated; the reveal's "With three layers it still got 1.6%." appears only if it was seen.
+- Stage rounding: one decimal at or above 1%, one significant figure below ("0.0001%" for 0.0000954%, matching option C "About 0.0001%").
+- Departures from the brief: columns 24 px wide with 3 px gaps (brief 32/4) to leave a 50 px gutter for the gridline labels in a 340-unit viewBox; the reveal adds ", 100%" after "the full signal" so the ReLU sentence quotes the stage.

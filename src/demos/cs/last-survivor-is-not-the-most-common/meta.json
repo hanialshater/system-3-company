@@ -1,0 +1,94 @@
+{
+  "slug": "last-survivor-is-not-the-most-common",
+  "title": "Who is left standing?",
+  "hook": "One candidate, one counter, seven items. Which item survives the cancelling?",
+  "domain": "cs",
+  "concept": "majority-vote",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "keeping a running count"
+    ],
+    "doesNotKnow": [
+      "that one candidate and one counter find an item filling more than half a stream, and only that: with no such item the survivor means nothing until a second pass checks it"
+    ]
+  },
+  "misconception": "The item left standing after cancelling pairs of different items is the most common one.",
+  "objective": "The learner can explain that each -1 cancels two different items, so an item filling more than half the stream (A, 5 of 7 in stream 2) must survive, but with no such item the survivor can be anything (C, only 2 of 7 in stream 1, while A had 3), so a second pass must check it.",
+  "claims": [
+    {
+      "id": "cs.last-survivor-is-not-the-most-common.c1",
+      "text": "With the rule (same item as the candidate +1, different -1, at 0 the next item becomes the candidate), stream 1, A A A B B C C, ends with candidate C (counter 1), and stream 2, A A B A C A A, ends with candidate A (counter 3).",
+      "support": "simulation",
+      "source": "run() in src/demos/cs/last-survivor-is-not-the-most-common/model.ts. Builder's node run 2026-10-14: stream 1 counters A1 A2 A3 A2 A1 A0 C1; stream 2 A1 A2 A1 A2 A1 A2 A3. The fact-checker can redo both by hand (7 steps each).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.last-survivor-is-not-the-most-common.c2",
+      "text": "In stream 1, A appears 3 times and C 2 times, and no item fills more than half the stream (which needs 4 of 7); in stream 2, A fills 5 of 7.",
+      "support": "derivation",
+      "source": "Counting the tiles: stream 1 A 3, B 2, C 2; stream 2 A 5, B 1, C 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.last-survivor-is-not-the-most-common.c3",
+      "text": "Each -1 cancels two different items, so if an item fills more than half the stream, that many copies cannot all be cancelled and it is the final candidate.",
+      "support": "derivation",
+      "source": "Each decrement pairs one copy of the candidate with one different item and removes both from consideration; a majority item has more copies than all other items together, so it cannot be fully paired off (Boyer and Moore's correctness argument).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.last-survivor-is-not-the-most-common.c4",
+      "text": "With no item in more than half the stream, the survivor proves nothing, so a second pass is needed to check that the candidate really is a majority.",
+      "support": "derivation",
+      "source": "Stream 1 is a counterexample: the survivor C is not the most common item (A, 3 vs 2) and not a majority. Counting the candidate in a second pass decides whether a majority exists.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.last-survivor-is-not-the-most-common.c5",
+      "text": "One counter finds a majority if there is one (the Boyer-Moore majority vote method).",
+      "support": "source",
+      "source": "Boyer and Moore (1991), 'MJRTY: A Fast Majority Vote Algorithm', in Automated Reasoning: Essays in Honor of Woody Bledsoe (Kluwer), 105-117. The lesson does not name the method on the learner's screen; the name is recorded here for the fact-checker. Attribution: fact-checker confirms.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You run the one-candidate, one-counter method over a list of votes and it ends with candidate Q. What do you know about Q before counting again?",
+    "options": [
+      "Q is the most common vote",
+      "If any vote is a majority, it is Q",
+      "Q got more than half the votes"
+    ],
+    "answer": 1,
+    "why": "A majority item cannot be cancelled away, so it must survive; but with no majority the survivor can be anything. A second pass counts Q to check."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:majority-vote",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["streaming", "counting", "majority"]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "where-the-axis-starts",
+  "title": "Read the bar, or read the number?",
+  "hook": "Two schools' pass rates on one bar chart. What does the taller bar really tell you?",
+  "domain": "probability",
+  "concept": "truncated-axis",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "locked-readouts"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["bar charts"],
+    "doesNotKnow": ["that a bar's length shows the value only when the axis starts at zero"]
+  },
+  "misconception": "If one bar is three times as tall as another, its value is about three times as big.",
+  "objective": "The learner can explain that on a bar chart whose axis does not start at zero, bar heights show only the part above the start, so their ratio exaggerates the ratio of the values.",
+  "claims": [
+    {
+      "id": "probability.where-the-axis-starts.c1",
+      "text": "With the axis from 50, bars of 52 and 56 show only the part above 50, heights 2 and 6, so B's bar is 3.00 times as tall (1.33 from 40, 1.08 from 0).",
+      "support": "derivation",
+      "source": "Arithmetic: (56 - start)/(52 - start): start 0 -> 1.08, 40 -> 16/12 = 1.33, 50 -> 6/2 = 3.00. Brief 60 check (company/domains/briefs/checks/probability-round4-check.mjs); Demo.tsx ratio().",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.where-the-axis-starts.c2",
+      "text": "B's pass rate is only 1.08 times A's: 56 against 52.",
+      "support": "derivation",
+      "source": "Arithmetic: 56/52 = 1.0769 -> 1.08.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.where-the-axis-starts.c3",
+      "text": "A bar's length stands for its value only when the bar starts at zero: ratios of bar lengths equal ratios of values only from a zero baseline. On a cut axis, read the numbers, not the heights.",
+      "support": "derivation",
+      "source": "Geometry of the chart: length = value - start, so length_B / length_A = value_B / value_A for all values only when start = 0 (brief 60 planned claim 3). Content boundary kept: the claim is about bar lengths, not every chart.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.where-the-axis-starts.c4",
+      "text": "The schools and pass rates are invented.",
+      "support": "convention",
+      "source": "Lesson rule (brief 60 planned claim 4); stage caption 'Pass rates at two invented schools.'",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A bar chart's axis starts at 90. One bar reaches 95, the other 91. One bar looks five times as tall. How do the values compare?",
+    "options": [
+      "One is about five times the other",
+      "They differ by about 4%",
+      "You can't tell from the chart"
+    ],
+    "answer": 1,
+    "why": "From a cut axis the bars show only the part above 90 (5 against 1). The values are 95 and 91, about 4% apart: read the numbers, not the heights."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:truncated-axis",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "data-literacy",
+    "references": [],
+    "tags": ["charts", "axes", "misleading graphs"]
+  }
+}

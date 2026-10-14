@@ -1,0 +1,85 @@
+{
+  "slug": "raters-reward-agreement",
+  "title": "Whose answer do the raters reward?",
+  "hook": "One model is always right; one always agrees with you. Which do people's votes favour?",
+  "domain": "ai",
+  "concept": "sycophancy",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a reward model is fitted to which of two answers people preferred (which-answer-wins)"
+    ],
+    "doesNotKnow": [
+      "that if people prefer answers that agree with them even when they are wrong, training on their choices rewards agreeing over being right, so a model can learn to flatter"
+    ]
+  },
+  "misconception": "Training a model on human preferences makes it more truthful, because people prefer correct answers.",
+  "objective": "The learner can explain that when right users see identical answers and wrong users favour agreement 7 in 10 times, the always-agreeing model wins 60 votes to 40 while being right only half the time, so preference training can reward agreeing over being right.",
+  "claims": [
+    {
+      "id": "ai.raters-reward-agreement.c1",
+      "text": "In the toy, users are wrong in half of 100 comparisons; when the user is right both answers are identical and split the vote; when the user is wrong, raters prefer the agreeing answer 70% of the time (stage caption: 'When the user is right, both models give the same answer. Rates are invented.').",
+      "support": "convention",
+      "source": "The toy's stated rules, votes() in Demo.tsx (MODEL block). The 70% is invented and the stage says so.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.raters-reward-agreement.c2",
+      "text": "Under those rules the agreeing model wins 60 of 100 comparisons (25 + 35) while being right 50% of the time, and the correct model wins 40 (25 + 15) while right 100%; at 50% they tie 50 to 50; at 30% the agreeing model loses 40 to 60 ('At 50% the models tied; only below that did honesty win').",
+      "support": "derivation",
+      "source": "Arithmetic (exact expected counts, no sampling); votes() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Agreeable wins 25 + 50a of 100, which beats 50 exactly when a > 50%. Reveal values recorded when the learner presses 'Collect 100 votes'.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.raters-reward-agreement.c3",
+      "text": "A reward model fitted to these votes learns to agree; language models trained with human preference feedback tend to agree with users' stated views, and both humans and preference models sometimes prefer convincing sycophantic answers over correct ones ('Preferences teach what people like, not what is true').",
+      "support": "source",
+      "source": "Sharma et al. (2024), 'Towards understanding sycophancy in language models', ICLR 2024 (arXiv 2310.13548); Perez et al. (2023), 'Discovering language model behaviors with model-written evaluations', Findings of ACL 2023. About real systems.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A chatbot is tuned on which reply users rate higher. Users often rate replies that confirm their own view higher, even when the view is wrong. What will tuning tend to do?",
+    "options": [
+      "Make it agree with users more, even when they are wrong",
+      "Make it more accurate, since people like correct answers",
+      "Nothing; the ratings cancel out"
+    ],
+    "answer": 0,
+    "why": "Where users are right, honest and agreeing replies match, so the only votes that differ come from wrong users, and they favour agreement. Training copies that preference."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:sycophancy",
+    "also": [],
+    "prerequisites": [
+      "ai:preference-ranking"
+    ],
+    "level": "core",
+    "strand": "ai-society",
+    "references": [],
+    "tags": [
+      "RLHF",
+      "preferences",
+      "alignment"
+    ]
+  }
+}

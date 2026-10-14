@@ -1,0 +1,125 @@
+{
+  "slug": "heat-the-ammonia-maker",
+  "title": "Heat the ammonia maker",
+  "hook": "Heat speeds reactions up. Does it also leave more product at the end?",
+  "domain": "chemistry",
+  "concept": "temperature-shifts-equilibrium",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that heating speeds reactions up (twice-as-hot-not-twice-as-fast, the-tail-that-reacts)",
+      "that an equilibrium settles where forward and backward rates match (four-to-one-settles)",
+      "that squeezing shifts an equilibrium (squeeze-the-brown-gas)"
+    ],
+    "doesNotKnow": [
+      "that temperature changes the equilibrium constant itself",
+      "that for a reaction that releases heat, heating lowers how much product there is at the end"
+    ]
+  },
+  "misconception": "Heating helps every reaction, so a hotter ammonia reactor ends with more ammonia.",
+  "objective": "The learner can say that heating the ammonia reaction from 25 °C to 450 °C lowers K by a factor of billions, and explain that because making ammonia releases heat, heating pushes the balance back, even though it makes the reaction faster.",
+  "claims": [
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c1",
+      "text": "N2 + 3H2 ⇌ 2NH3 releases heat: ΔH° about −92 kJ/mol, with ΔS° about −198 J/(mol K) at 25 °C (question: 'releases heat'; reveal: 'Making ammonia releases heat').",
+      "support": "derivation",
+      "source": "CODATA Key Values / CRC Handbook standard thermodynamic properties: ΔfH NH3(g) −45.94 kJ/mol; S° NH3(g) 192.77, N2 191.61, H2 130.68 J/(mol K). ΔH° = 2(−45.94) = −91.88 kJ/mol; ΔS° = 385.54 − 191.61 − 392.04 = −198.11 J/(mol K) (node, demo-builder 2026-10-14). Demo.tsx DH, DS. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c2",
+      "text": "With ΔH° and ΔS° held at their 25 °C values, K is about 5.6 × 10^5 at 25 °C, about 0.62 at 200 °C and about 1.9 × 10^-4 at 450 °C, a fall by a factor of billions (stage dot labels '5.6 × 10⁵', '0.62', '1.9 × 10⁻⁴'; reveal: 'K fell from about 5.6 × 10⁵ at 25 °C to about 1.9 × 10⁻⁴ at 450 °C, a factor of billions').",
+      "support": "derivation",
+      "source": "ΔG° = ΔH° − TΔS°, K = exp(−ΔG°/RT), R = 8.314 J/(mol K): ΔG° = −32.81, +1.86, +51.38 kJ/mol; K = 5.61e5, 0.624, 1.94e-4; ratio 2.9e9 (node). Demo.tsx kAt(). Constant ΔH° and ΔS° is an approximation; tabulated K values at high temperature differ somewhat but fall the same way (Atkins & de Paula, Physical Chemistry, van 't Hoff equation). The stage does not carry this caveat (text budget); fact-checker to judge whether the claim's 'about' and 'held at 25 °C values' suffice. Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c3",
+      "text": "Starting from 1 N2 : 3 H2 at 1 bar total, ammonia is about 94% of the settled gas at 25 °C, about 17% at 200 °C and about 0.45% at 450 °C (stage bar 'NH₃ at the end, 25 °C: 94%' etc.).",
+      "support": "simulation",
+      "source": "Ideal-gas equilibrium with the K of claim 2: K = x_NH3² / (x_N2 · x_H2³) at P = 1 bar = P°; with extent ξ, K = 4ξ²(4 − 2ξ)² / (27(1 − ξ)⁴), solved by bisection; share 2ξ/(4 − 2ξ) = 0.938, 0.175, 0.0045 (node, demo-builder 2026-10-14; Demo.tsx shareAt()). Not in the brief: added so the 'ammonia at the end' in the question is drawn, not only K. The 1 bar condition shows on the locked bar label only.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c4",
+      "text": "For a reaction that releases heat, raising the temperature lowers K (reveal: 'so heat pushes the balance back toward nitrogen and hydrogen'); large K means mostly product at equilibrium (stage caption 'large K: mostly ammonia').",
+      "support": "derivation",
+      "source": "van 't Hoff: d ln K / dT = ΔH°/(RT²) < 0 when ΔH° < 0 (Atkins & de Paula, Physical Chemistry, equilibrium chapter). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c5",
+      "text": "Heating makes the reaction reach equilibrium faster (stage label 'reaches equilibrium faster' beside the 450 °C dot; reveal: 'Heat still makes the reaction faster').",
+      "support": "source",
+      "source": "Arrhenius: k = A exp(−Ea/RT) rises with T for forward and backward steps (Atkins & de Paula, Physical Chemistry, reaction kinetics). Qualitative; no number shown.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c6",
+      "text": "Industrial ammonia plants (Haber-Bosch) run hot anyway, with an iron catalyst and high pressure to win some yield back (reveal).",
+      "support": "source",
+      "source": "Greenwood & Earnshaw, Chemistry of the Elements, nitrogen chapter (ammonia synthesis: about 400-450 °C, about 150-300 bar, iron catalyst). Brief claim 4: if no source is checkable, cut the 'factories' sentence from the reveal and keep the rest.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-the-ammonia-maker.c7",
+      "text": "Temperature is the one change that moves K itself (reveal): for a given reaction, K depends only on temperature; pressure, concentration and catalysts shift or speed the mixture but leave K alone.",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, chemical equilibrium (K = exp(−ΔrG°/RT), and ΔrG° depends only on T for a fixed standard state); the same point is made in squeeze-the-brown-gas and lower-the-hill.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A reaction gives out heat. You run it hotter. What happens to the amount of product once it settles, and to how fast it gets there?",
+    "options": [
+      "More product, reached faster",
+      "Less product, reached faster",
+      "Less product, reached more slowly"
+    ],
+    "answer": 1,
+    "why": "Heat lowers K for a reaction that releases heat, so less product at the end, while every step still speeds up. Hotter trades yield for speed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:temperature-shifts-equilibrium",
+    "also": [
+      "chemistry:le-chatelier",
+      "chemistry:equilibrium-constant",
+      "chemistry:exothermic-endothermic"
+    ],
+    "prerequisites": [
+      "chemistry:le-chatelier",
+      "chemistry:exothermic-endothermic",
+      "chemistry:equilibrium-constant"
+    ],
+    "level": "core",
+    "strand": "energy-rates",
+    "references": [],
+    "tags": [
+      "equilibrium",
+      "ammonia",
+      "Haber-Bosch",
+      "log scale",
+      "temperature"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

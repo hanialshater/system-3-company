@@ -1,0 +1,106 @@
+{
+  "slug": "snap-the-magnet",
+  "title": "Snap a magnet in half",
+  "hook": "One end of a bar magnet is north, the other south. Break it: what does each half get?",
+  "domain": "physics",
+  "concept": "magnet-poles-pair",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "magnets have a north and a south end",
+      "opposite poles attract"
+    ],
+    "doesNotKnow": [
+      "that a magnet is made of countless tiny atomic magnets lined up, so every piece, however small, has both poles; there is no lone north pole"
+    ]
+  },
+  "misconception": "Snapping a bar magnet in half separates its north pole from its south pole.",
+  "objective": "The learner can explain that every piece of a magnet has both a north and a south pole, because a magnet is built from tiny atomic magnets lined up head to tail.",
+  "claims": [
+    {
+      "id": "physics.snap-the-magnet.c1",
+      "text": "Every piece of a magnet, however small, has both a north and a south pole; magnetic field lines have no start or end (stage: N and S letters on every piece's faces, 'every piece: N + S'; reveal: 'any piece has a north end and a south end').",
+      "support": "source",
+      "source": "Gauss's law for magnetism, ∇·B = 0: Griffiths, Introduction to Electrodynamics, chapter 5 (magnetostatics). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snap-the-magnet.c2",
+      "text": "A bar magnet's magnetism comes from countless tiny atomic magnets (atomic magnetic moments, grouped in domains) lined up head to tail (stage: the arrows inside the bar, caption 'Arrows are the tiny atomic magnets'; reveal: 'A magnet is built from countless tiny atomic magnets lined up head to tail').",
+      "support": "source",
+      "source": "Griffiths, Introduction to Electrodynamics, chapter 6 (magnetic fields in matter; ferromagnetism and domains). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snap-the-magnet.c3",
+      "text": "Snapped in the middle, the break shows a new south pole on the north half and a new north pole on the other half, and the halves attract; with one half turned round the facing poles are S and S and the halves push apart (stage: compasses at the break, labels 'S | N at the break: they pull together', 'S | S: they push apart'; Seen row; reveal first paragraph).",
+      "support": "simulation",
+      "source": "Coaxial point-dipole chain force sum for two 5-unit halves with a 0.1 gap: attractive as cut, repulsive with one half reversed (artifacts/scratch/cm-physics-r4/check.mjs, block 'snap-the-magnet'). In the pole model each piece carries +σA on its N face and −σA on its S face (net 0). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snap-the-magnet.c4",
+      "text": "Nobody has ever found a lone north pole (an isolated magnetic monopole) (reveal).",
+      "support": "source",
+      "source": "Griffiths, Introduction to Electrodynamics, chapter 5 (no magnetic monopoles have been found); Particle Data Group, Review of Particle Physics, magnetic monopole searches. Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snap-the-magnet.c5",
+      "text": "Compass convention: the compass's filled (north) end points away from an N face and towards an S face, along the field on the bar's axis; beside the middle of the whole bar the field runs from the N end towards the S end and there is no pole (stage: 'Compass: the filled end is its north end.', 'middle: no pole').",
+      "support": "convention",
+      "source": "Field outside a magnet runs from N to S; a compass needle's north end points along the field (any introductory text, e.g. Griffiths chapter 5). Demo.tsx Compass.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.snap-the-magnet.c6",
+      "text": "Idealisations: a uniformly magnetised bar, a clean break, and no loss of magnetism from the snap. The arrows are a picture of the alignment, not a count of atoms.",
+      "support": "convention",
+      "source": "Brief claim 5.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You cut a fridge magnet into ten strips. How many of the strips have a north pole?",
+    "options": [
+      "One",
+      "Five",
+      "All ten",
+      "None"
+    ],
+    "answer": 2,
+    "why": "Each strip is still made of tiny atomic magnets lined up, so each has its own north and south pole."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:magnet-poles-pair",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "electricity",
+    "references": [],
+    "tags": [
+      "magnetism",
+      "poles",
+      "domains"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "slowest-station-sets-pace",
+  "title": "Double the fastest machine",
+  "hook": "A line of four machines makes parts. What does one much faster machine buy you?",
+  "domain": "books",
+  "concept": "goal-bottleneck-sets-pace",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a faster machine makes more parts"
+    ],
+    "doesNotKnow": [
+      "that a line's output is capped by its slowest step, so speeding up any other step changes nothing except the pile in front of the slow one"
+    ]
+  },
+  "misconception": "Doubling the speed of any station raises the line's output.",
+  "objective": "The learner can explain that a serial line runs at the pace of its slowest station: doubling station 1 from 12 to 24 parts an hour leaves output at 5, only upgrading the bottleneck raises it, and once it is fast enough the bottleneck moves to the next-slowest station.",
+  "claims": [
+    {
+      "id": "books.slowest-station-sets-pace.c1",
+      "text": "The Goal builds its story on this: find the constraint (bottleneck), improve it, then look for the next one; improving a non-constraint does not raise the system's output.",
+      "support": "source",
+      "source": "Goldratt & Cox, The Goal: A Process of Ongoing Improvement (North River Press, 1984), work goldratt-the-goal-1984, the scout-hike (Herbie) chapters, around ch. 13-14 (unconfirmed). The book argues this; the claim is about the book, not the world. Paraphrased in our own words; no quote. Brief: company/domains/briefs/books.md #1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.slowest-station-sets-pace.c2",
+      "text": "Does it hold up? On a steady line, yes: a serial line's throughput in steady state equals its slowest station's capacity (standard operations maths).",
+      "support": "source",
+      "source": "Hopp & Spearman, Factory Physics, 3rd ed. (2008), ch. 7 'Basic Factory Dynamics' (bottleneck rate; chapter to confirm). Also checkable by derivation: in a serial line no station can pass on more than it receives, so output = min(rates).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.slowest-station-sets-pace.c3",
+      "text": "For whole firms, the evidence that applying the Theory of Constraints raises performance is mostly case reports.",
+      "support": "source",
+      "source": "Mabin & Balderstone (2003), 'The performance of the theory of constraints methodology: analysis and discussion of successful TOC applications', International Journal of Operations & Production Management 23(6) (a review of published TOC applications; to confirm). Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.slowest-station-sets-pace.c4",
+      "text": "Model on the card (chip 'Our model line · piles after 1 hour' and the question): four stations in a row at 12, 9, 5 and 10 parts an hour, station 1 has unlimited raw material, each tap adds 2 parts an hour with 3 upgrades to spend; the pile in front of a station is how many parts wait there after one hour.",
+      "support": "convention",
+      "source": "Lesson model, Demo.tsx: output = min(rates); inflow to station i = min of the rates before it; pile = max(0, inflow - rate) after one hour. The rates are the brief's (company/domains/briefs/books.md #1), not data from the book.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.slowest-station-sets-pace.c5",
+      "text": "Doubling station 1 from 12 to 24 leaves output at 5 an hour (the pile in front of station 2 grows from 3 to 15); three upgrades on station 3 take it to 11, output rises to 9 and the slowest station becomes station 2.",
+      "support": "derivation",
+      "source": "min(12, 9, 5, 10) = 5 and min(24, 9, 5, 10) = 5; piles [0, 3, 4, 0] and [0, 15, 4, 0]; min(12, 9, 11, 10) = 9 with station 2 unique slowest. Builder node run 2026-10-14; brief check node company/domains/briefs/checks/books-cycle1-check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.slowest-station-sets-pace.recall",
+      "text": "A café takes 40 orders an hour, makes 15 coffees an hour and rings up 30 an hour; a second cashier (60 an hour) still leaves 15 coffees an hour, because the coffee station is the slowest step.",
+      "support": "derivation",
+      "source": "min(40, 15, 60) = 15; same rule as c2. Recall item, stipulated example.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A café takes 40 orders an hour, makes 15 coffees an hour and rings up 30 an hour. You hire a second cashier, so the till does 60. How many customers get a coffee each hour?",
+    "options": [
+      "15",
+      "30",
+      "40",
+      "60"
+    ],
+    "answer": 0,
+    "why": "The coffee station is the slowest step at 15 an hour, so the café serves 15 whatever the till does; the extra till speed only means more waiting at the coffee machine."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:goal-bottleneck-sets-pace",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "goldratt-the-goal-1984",
+        "note": "scout hike (Herbie); chapter unconfirmed"
+      }
+    ],
+    "tags": ["bottleneck", "theory-of-constraints", "operations", "throughput"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "locked-readouts"]
+}

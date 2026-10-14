@@ -1,0 +1,103 @@
+{
+  "slug": "june-sunshine-pole-or-equator",
+  "title": "Most June sunshine: pole or equator?",
+  "hook": "On the longest day, which part of the Earth collects the most sunlight?",
+  "domain": "geography",
+  "concept": "seasons-axial-tilt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "seasons come from tilt, not distance"
+    ],
+    "doesNotKnow": [
+      "that tilt works through both Sun height and day length",
+      "that on 21 June the never-setting Sun gives the North Pole more sunlight per day than anywhere else"
+    ]
+  },
+  "misconception": "The equator always gets the most sunlight, because the Sun is highest there.",
+  "objective": "The learner can explain that on 21 June the North Pole receives more top-of-atmosphere sunlight per square metre in a day (12.6 kWh) than the equator (9.2 kWh), because 24 hours of a low Sun beat 12 hours of a high one.",
+  "claims": [
+    {
+      "id": "geography.june-sunshine-pole-or-equator.c1",
+      "text": "Daily sunlight per square metre at the top of the atmosphere follows Q = (S0/pi)(a/r)^2 (h0 sin(lat) sin(dec) + cos(lat) cos(dec) sin(h0)); the 24-hour curves on the chart are S0 (a/r)^2 max(0, sin(lat) sin(dec) + cos(lat) cos(dec) cos(h)).",
+      "support": "derivation",
+      "source": "Berger 1978 (J. Atmos. Sci. 35); Hartmann 2016, Global Physical Climatology, ch. 2. Section `june` of company/domains/briefs/checks/geography-wave-j.mjs. Builder check: integrating the hourly curve in node (2,880 steps) reproduces the closed form to 0.1 W/m^2 at 0, 45 and 90 N.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.june-sunshine-pole-or-equator.c2",
+      "text": "The solar constant is 1,361 W/m^2.",
+      "support": "source",
+      "source": "Kopp and Lean 2011, Geophys. Res. Lett. 38, L01706 (not opened by the builder). The answer is a ratio and does not depend on it.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.june-sunshine-pole-or-equator.c3",
+      "text": "On 21 June the Sun's declination is 23.44 degrees and the Earth-Sun distance about 1.0163 AU.",
+      "support": "source",
+      "source": "Meeus 1998, Astronomical Algorithms (equations as in section `sunset` of the check); not opened by the builder. The distance factor (a/r)^2 = 0.968 scales every place equally.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.june-sunshine-pole-or-equator.c4",
+      "text": "On 21 June the pole gets 12.6 kWh per square metre against the equator's 9.2 (45 degrees N: 11.6); at the pole the Sun stays 23 degrees up for all 24 hours, at the equator it climbs to 67 degrees and sets after 12.",
+      "support": "derivation",
+      "source": "Arithmetic from c1 to c3: daily means 524.2, 384.8 and 483.4 W/m^2 times 24 h / 1000 = 12.58, 9.24, 11.60 kWh/m^2. Noon Sun height 90 - |lat - 23.44|: 23.4, 66.6 and 68.4 degrees. Day length 24 * acos(-tan(lat) tan(dec)) / pi: 24, 12.0, 15.4 h. Section `june` of the check; computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.june-sunshine-pole-or-equator.c5",
+      "text": "In June, tilt gives the north both a higher Sun and longer days; this is sunlight arriving above the air, not warmth at the ground.",
+      "support": "derivation",
+      "source": "Follows from c1 with dec = +23.44: both the noon height term and the day length h0 grow northward in June. 'Top of the atmosphere, not ground temperature' is a scope statement (no clouds, air or albedo in the model).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can a place where the Sun never gets high receive more sunlight in a day than the equator?",
+    "options": [
+      "Its Sun never sets",
+      "It is closer to the Sun in June",
+      "Polar air is thinner"
+    ],
+    "answer": 0,
+    "why": "Daily sunlight is height times hours: 24 hours at 23 degrees beat 12 hours climbing to 67 degrees."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:seasons-axial-tilt",
+    "also": [
+      "geography:polar-day-length",
+      "geography:sunlight-by-latitude"
+    ],
+    "prerequisites": [
+      "geography:seasons-axial-tilt"
+    ],
+    "level": "core",
+    "strand": "earth-climate",
+    "references": [],
+    "tags": [
+      "insolation",
+      "solstice"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "slider-live-chart"
+  ]
+}

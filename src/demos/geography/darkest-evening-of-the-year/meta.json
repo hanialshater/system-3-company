@@ -1,0 +1,79 @@
+{
+  "slug": "darkest-evening-of-the-year",
+  "title": "The darkest evening of the year",
+  "hook": "London's shortest day is around 21 December. Is that also its earliest sunset?",
+  "domain": "geography",
+  "concept": "equation-of-time",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-geography", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["the shortest day is about 21 December"],
+    "doesNotKnow": [
+      "that solar noon drifts later through December, so the earliest sunset comes before the shortest day and the latest sunrise after it"
+    ]
+  },
+  "misconception": "The earliest sunset of the year is on the shortest day.",
+  "objective": "The learner can explain that London's earliest sunset (about 13 December) comes a week before the shortest day and the latest sunrise (about 30 December) after it, because solar noon slides later through those weeks.",
+  "claims": [
+    {
+      "id": "geography.darkest-evening-of-the-year.c1",
+      "text": "London's earliest sunset, 15:51, comes around 13 December; the latest sunrise, 08:06, comes around 30 December; the day is shortest on the 21st (7 h 50 min).",
+      "support": "derivation",
+      "source": "NOAA solar calculator equations (Meeus 1998, Astronomical Algorithms, ch. 25 and 28), refraction 0.833 degrees, 51.5074 N 0.1278 W, GMT, 2026-27 values, computed for 1 Dec 2026 to 15 Jan 2027: earliest sunset 13 Dec 15:51:20 (within 30 s from 9 to 16 Dec), latest sunrise 30 Dec 08:06:15, shortest day 21 Dec 7:49:31. Section `sunset` of company/domains/briefs/checks/geography-wave-j.mjs; src/demos/geography/darkest-evening-of-the-year/solar.ts is a port, re-run by the builder with identical results. Values move by under a minute between years, hence 'around'. The window is December to mid-January; the claim that these are the year's extremes rests on winter being the only season with sunsets this early.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.darkest-evening-of-the-year.c2",
+      "text": "Solar noon in London moves from 11:55 on 13 December to 12:03 on 30 December.",
+      "support": "derivation",
+      "source": "Same equations: solar noon = 720 - 4 x longitude - equation of time (minutes, GMT): 11:54:42 on 13 Dec, 12:03 on 30 Dec (12:03:29 on 31 Dec). Section `sunset`; solar.ts.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.darkest-evening-of-the-year.c3",
+      "text": "Solar noon drifts because Earth moves fastest in early January and its tilt adds to the drift.",
+      "support": "source",
+      "source": "Equation of time from orbital eccentricity and obliquity (Meeus 1998 ch. 28; the eot formula in solar.ts has an eccentricity term, -2e sin M, and an obliquity term, y sin 2L0). Perihelion falls on 2 to 5 January (Meeus). Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.darkest-evening-of-the-year.c4",
+      "text": "London at 51.51 N, 0.13 W.",
+      "support": "source",
+      "source": "Gazetteer coordinates for central London (51.5074 N, 0.1278 W); the result holds across central London. Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.darkest-evening-of-the-year.c5",
+      "text": "London, clock time (GMT), winter 2026-27.",
+      "support": "convention",
+      "source": "UK clocks are on GMT from late October to late March, so there is no daylight saving in December and January (stage caption).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does the earliest sunset come before the shortest day?",
+    "options": [
+      "Solar noon drifts later through December",
+      "Clocks change in December",
+      "The Sun is farthest away in December"
+    ],
+    "answer": 0,
+    "why": "The day keeps shrinking until the 21st, but the whole day slides later, so the evening end stops getting earlier first."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:equation-of-time",
+    "also": ["geography:sun-time-from-longitude"],
+    "prerequisites": ["geography:sun-time-from-longitude"],
+    "level": "core",
+    "strand": "earth-climate",
+    "references": [],
+    "tags": ["sunset", "solar-noon"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "slider-live-chart"]
+}

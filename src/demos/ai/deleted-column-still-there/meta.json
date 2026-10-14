@@ -1,0 +1,94 @@
+{
+  "slug": "deleted-column-still-there",
+  "title": "Delete the group column. Then what?",
+  "hook": "A lender trains a model without the group column. How will its approvals compare?",
+  "domain": "ai",
+  "concept": "proxy-discrimination",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a model can inherit bias from its data (whose-cutoff-wins)"
+    ],
+    "doesNotKnow": [
+      "that deleting the protected column does not stop a model learning from biased past decisions, because a correlated feature (here neighbourhood) carries the group, and the gap can grow"
+    ]
+  },
+  "misconception": "If the group column is removed from the data, the model cannot treat the groups differently.",
+  "objective": "The learner can explain that a model trained on biased past approvals, seeing only neighbourhood, approved 80% of A and 20% of B because neighbourhood stood in for group, and that with mixed neighbourhoods the gap vanished.",
+  "claims": [
+    {
+      "id": "ai.deleted-column-still-there.c1",
+      "text": "In the toy, 50 applicants are in group A and 50 in group B, and past lenders approved 80% of group A and 40% of group B in both neighbourhoods (stage header: 'Past lenders approved ○ A 80%, ▢ B 40%'). The toy model approves a whole neighbourhood if more than half of its past applicants were approved (explore hint).",
+      "support": "convention",
+      "source": "The toy's own data and rule, world() in Demo.tsx (MODEL block), stated on the stage and in the explore hint. Dot positions inside each box are shuffled with mulberry32 seed 1 (first seed, untuned; positions change no number).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.deleted-column-still-there.c2",
+      "text": "With 80% of each group in its own neighbourhood (40 A + 10 B in N1, 10 A + 40 B in N2), N1's past approval rate is 72% and N2's 48%, so the toy model approves N1 and rejects N2: A 80%, B 20%, a wider gap than the lenders' 80% and 40%. With 90% together: N1 76%, N2 44%; A 90%, B 10%.",
+      "support": "derivation",
+      "source": "Arithmetic: (32 + 4)/50 = 72%, (8 + 16)/50 = 48%; (36 + 2)/50 = 76%, (4 + 18)/50 = 44%. world() in Demo.tsx; cm-ai brief check (node, 2026-10-14). Reveal values recorded when the learner presses 'Train without group'.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.deleted-column-still-there.c3",
+      "text": "With mixed neighbourhoods (25 A + 25 B in each), both past rates are 60%, and the model approves everyone ('the same model approved both groups alike'; stage: A 100% · B 100%).",
+      "support": "derivation",
+      "source": "(20 + 10)/50 = 60% > 50% in both neighbourhoods. world(0.5) in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.deleted-column-still-there.c4",
+      "text": "Removing a protected attribute does not prevent discrimination when other features, such as where people live, are correlated with it ('Deleting the column deletes the label, not the pattern. Fairness has to be checked on outcomes by group, not on inputs').",
+      "support": "source",
+      "source": "Barocas, Hardt and Narayanan, Fairness and Machine Learning: Limitations and Opportunities (MIT Press, 2023; fairmlbook.org), chapter 3 ('Classification'), on why removing the sensitive attribute fails (redundant encodings); Pedreshi, Ruggieri and Turini (2008), 'Discrimination-aware data mining', KDD 2008 (redlining). About real systems.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A hiring model is trained on past hiring decisions with the gender column removed. It still uses which sports club applicants list. Can it treat men and women differently?",
+    "options": [
+      "Yes, if club membership tracks gender and the past decisions were biased",
+      "No, it never saw gender",
+      "Only if someone adds the gender column back"
+    ],
+    "answer": 0,
+    "why": "A feature correlated with the group carries the group into the model, so it can copy biased past decisions. Check outcomes by group, not just which columns go in."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:proxy-discrimination",
+    "also": [
+      "probability:confounding"
+    ],
+    "prerequisites": [
+      "ai:training-data-bias"
+    ],
+    "level": "core",
+    "strand": "ai-society",
+    "references": [],
+    "tags": [
+      "fairness",
+      "proxies",
+      "lending"
+    ]
+  }
+}

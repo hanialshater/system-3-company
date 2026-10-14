@@ -1,0 +1,103 @@
+{
+  "slug": "one-percent-a-day",
+  "title": "Get 1% better every day",
+  "hook": "Each day builds on the last. Where does a year of small gains leave you?",
+  "domain": "books",
+  "concept": "habits-one-percent",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "small improvements add up"
+    ],
+    "doesNotKnow": [
+      "that 1% a day compounds to about 37.8 times, not 4.65 times",
+      "that measured skill gains usually slow down with practice, so a constant 1% a day is arithmetic, not what learning data show"
+    ]
+  },
+  "misconception": "1% a day for a year is 365% better; or, once told it is 37 times, that real skills improve that way.",
+  "objective": "The learner can explain that 1% a day compounded for 365 days gives about 37.8 times the start (against 4.65 times if the gains were simply added), and that measured practice curves rise fast and then flatten, so skills do not compound at a fixed daily rate.",
+  "claims": [
+    {
+      "id": "books.one-percent-a-day.c1",
+      "text": "Atomic Habits uses the arithmetic of 1% a day compounding (about 37 times better in a year) to argue that tiny habits matter.",
+      "support": "source",
+      "source": "James Clear, Atomic Habits (Avery, 2018), work clear-atomic-habits-2018, ch. 1 'The Surprising Power of Atomic Habits' (unconfirmed). The book argues this; the claim is about the book, not the world. Our own words; no quote. Brief: company/domains/briefs/books.md #2.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.one-percent-a-day.c2",
+      "text": "Compounded, 1% a day for 365 days gives 1.01^365 ≈ 37.8 times the start; added without compounding it gives 1 + 3.65 = 4.65 times.",
+      "support": "derivation",
+      "source": "Arithmetic, drawn on the stage (Demo.tsx compound() and added()). Builder node run 2026-10-14: 1.01^365 = 37.78; 1 + 0.01 × 365 = 4.65; 1.02^365 = 1377.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.one-percent-a-day.c3",
+      "text": "Does it hold up as a picture of learning? Mostly not: when skill is measured, gains come fast at first and then slow (the law of practice). Small habits can still matter; they just don't compound at a fixed rate.",
+      "support": "source",
+      "source": "Newell & Rosenbloom (1981), 'Mechanisms of skill acquisition and the law of practice', in J. R. Anderson (ed.), Cognitive Skills and Their Acquisition (Erlbaum): power-law speed-ups across many tasks. Heathcote, Brown & Mewhort (2000), 'The power law repealed: the case for an exponential law of practice', Psychonomic Bulletin & Review 7(2): exponential fits individuals better. Either way gains slow down. Verdict 'mostly not' is the brief drafter's reading, for the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.one-percent-a-day.c4",
+      "text": "The practice curve on the card is illustrative: skill grows as day^0.4, reaching about 10.6 times after a year (3.9 times by day 30); it is not fitted to any data.",
+      "support": "convention",
+      "source": "Lesson model, stated on the stage chip ('Practice curve: illustrative, skill ∝ day^0.4'); Demo.tsx practice(). 365^0.4 = 10.59, 30^0.4 = 3.90 (node, 2026-10-14). The exponent 0.4 is the brief's illustrative choice.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.one-percent-a-day.c5",
+      "text": "Scenario, hook and question: get 1% better every day, each day building on the last, for one year; options about 4.7, 37.8 or 365 times.",
+      "support": "convention",
+      "source": "Lesson question; brief company/domains/briefs/books.md #2 (check: company/domains/briefs/checks/books-cycle1-check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.one-percent-a-day.recall",
+      "text": "A 1% daily gain compounded over a year is about 38 times the start, but measured practice gains slow down, so real skills do not grow that way.",
+      "support": "derivation",
+      "source": "Same as c2 and c3. Recall item.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A friend says: 'Practise piano and get 1% better each day, and in a year you'll be about 38 times better.' What is right about this?",
+    "options": [
+      "The arithmetic is right, but measured skill gains slow down, so real progress won't compound like that",
+      "Both are right: skills compound at a steady daily rate",
+      "The arithmetic is wrong: 1% a day for a year is about 4.65 times"
+    ],
+    "answer": 0,
+    "why": "1.01^365 is about 37.8, so the sum is right; but practice data show fast early gains that then flatten, not a fixed daily rate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:habits-one-percent",
+    "also": ["economics:compound-interest"],
+    "prerequisites": ["economics:compound-interest"],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "clear-atomic-habits-2018",
+        "chapter": 1,
+        "note": "chapter unconfirmed"
+      }
+    ],
+    "tags": ["compounding", "habits", "law-of-practice", "debunk"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "slider-drives-live-chart", "preset-buttons", "locked-readouts"]
+}

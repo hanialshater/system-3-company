@@ -1,0 +1,75 @@
+{
+  "slug": "secret-in-the-counts",
+  "title": "Prompt it with 'my pin is'",
+  "hook": "One private sentence among seven training lines. What does the model say when prompted?",
+  "domain": "ai",
+  "concept": "training-data-extraction",
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-ai", "builder": "demo-builder" },
+  "learner": {
+    "knows": [
+      "a language model picks the next word from counts of what followed (next-word-tally)",
+      "that longer context gives sharper predictions"
+    ],
+    "doesNotKnow": [
+      "that text seen only once can be reproduced word for word when its context is unique, so a model can leak private training data, and longer context (a bigger model) leaks more"
+    ]
+  },
+  "misconception": "A model learns general patterns from lots of text, so it cannot repeat one private sentence it saw once.",
+  "objective": "The learner can explain that with a two-word context the counts after 'pin is' held only the secret's next word, so the model wrote '4 7 1 9' back in full, while a one-word context fell back on the common 'ready'.",
+  "claims": [
+    {
+      "id": "ai.secret-in-the-counts.c1",
+      "text": "In the toy corpus (7 sentences, shown on the stage), the only word that follows 'pin is' is '4', and each later two-word context in the secret is unique, so greedy generation from 'my pin is' with 2-word context outputs '4 7 1 9' (reveal: 'After 'pin is', its counts held only one word, so the most common next word was the secret').",
+      "support": "derivation",
+      "source": "The toy corpus and generate() in Demo.tsx (MODEL block: greedy, ties to first seen, back-off to shorter context when unseen, stop at sentence end). Builder ran the MODEL block in node 2026-10-14: 2-word -> 4 7 1 9; 1-word -> ready; secret deleted, 2-word -> ready (back-off to 'is').",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.secret-in-the-counts.c2",
+      "text": "With 1-word context the commonest word after 'is' is 'ready' (3 of the 7 words that follow 'is'), so the output is 'my pin is ready' ('is' was followed by 'ready' three times, and the pin stayed hidden'); with the secret deleted, 'pin is' never occurred, the model backs off to 'is' and also outputs 'ready'.",
+      "support": "derivation",
+      "source": "Counts after 'is' in the corpus: ready 3, at 1, sam 1, late 1, 4 1. generate() in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.secret-in-the-counts.c3",
+      "text": "Large language models can emit verbatim sequences from their training data, including personal information such as phone numbers and addresses ('Real language models have repeated phone numbers and addresses from their training data the same way').",
+      "support": "source",
+      "source": "Carlini et al. (2021), 'Extracting training data from large language models', USENIX Security 2021 (arXiv 2012.07805). About real systems. 'The same way' is the toy's analogy (a unique context makes rare text the most likely continuation); the fact-checker should confirm the paper supports memorised sequences being recovered by prompting with their prefix.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.secret-in-the-counts.c4",
+      "text": "Longer contexts remember rarer text ('Longer contexts remember rarer text'): in the toy the 2-word context reproduced a sentence seen once, the 1-word context did not.",
+      "support": "derivation",
+      "source": "Shown by the toy (c1, c2). The general version, memorisation growing with model size and duplication, is Carlini et al. (2023), 'Quantifying memorization across neural language models', ICLR 2023 (arXiv 2202.07646); the lesson does not state it.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A chatbot was trained on support chats, one of which contained a customer's full card number. An attacker types the exact words that came before the number in that chat. What is the risk?",
+    "options": [
+      "The model may complete it with the real card number",
+      "None; a model only learns general patterns",
+      "It will make up a random but valid-looking number"
+    ],
+    "answer": 0,
+    "why": "If a context is unique in the training data, the most likely continuation is whatever followed it there, so text seen once can come back word for word."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:training-data-extraction",
+    "also": [],
+    "prerequisites": ["ai:next-token"],
+    "level": "core",
+    "strand": "ai-society",
+    "references": [],
+    "tags": ["privacy", "memorisation", "language models"]
+  }
+}

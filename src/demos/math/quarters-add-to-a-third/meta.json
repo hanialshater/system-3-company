@@ -1,0 +1,88 @@
+{
+  "slug": "quarters-add-to-a-third",
+  "title": "Quarters of quarters, forever",
+  "hook": "Add 1/4, then a quarter of that, then a quarter of that… Where does the total settle?",
+  "domain": "math",
+  "concept": "geometric-series-quarters",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "1/2 + 1/4 + 1/8 + … gets ever closer to 1 (math/zeno-half-steps)"
+    ],
+    "doesNotKnow": [
+      "that the quarters series 1/4 + 1/16 + 1/64 + … approaches 1/3, and that a picture with three equal colours proves it"
+    ]
+  },
+  "misconception": "An endless sum of quarters heads for 1/2 (a quarter is half of a half, so the sum is half of the halves series) or for some untidy number like 3/8.",
+  "objective": "The learner can explain why 1/4 + 1/16 + 1/64 + … = 1/3: at every level three equal pieces are coloured and the leftover shrinks to nothing, so each colour takes a third.",
+  "claims": [
+    {
+      "id": "math.quarters-add-to-a-third.c1",
+      "text": "1/4 + 1/16 + … + 1/4^6 = 0.333251953125, shown as 0.3333 of the square at level 6 (partial sums 0.2500, 0.3125, 0.3281, 0.3320, 0.3330, 0.3333 at levels 1 to 6).",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label A5; the stage prints solid(n).toFixed(4). The reveal's value is recorded when the 'level-six' milestone fires.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.quarters-add-to-a-third.c2",
+      "text": "At every level the leftover corner splits into four equal squares, one solid, one hatched, one dotted and one left over, so the three patterns always cover the same area (each 0.3333 of the square at level 6).",
+      "support": "derivation",
+      "source": "Construction in Demo.tsx: level k draws three squares of side S/2^k and leaves the fourth; each pattern's total is the same sum 1/4 + … + 1/4^k.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.quarters-add-to-a-third.c3",
+      "text": "The leftover corner shrinks toward nothing (1/4^n of the square after n levels), so each pattern ends with a third: 1/4 + 1/16 + 1/64 + … = 1/3.",
+      "support": "derivation",
+      "source": "Three equal patterns plus the leftover fill the square: 3 × sum_n + 1/4^n = 1, so sum_n = (1 − 1/4^n)/3 → 1/3; equivalently 1/3 − sum_n = (1/3)(1/4)^n (check A5), the geometric series a/(1 − r) with a = r = 1/4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "1/3 + 1/9 + 1/27 + … forever. What does the total get closer and closer to?",
+    "options": [
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "answer": 1,
+    "why": "Split a shape into three equal parts: colour one, mark one, and repeat in the third. The two patterns stay equal and the leftover vanishes, so each pattern, the thirds series, ends at 1/2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:geometric-series-quarters",
+    "also": [
+      "math:infinite-series-halves"
+    ],
+    "prerequisites": [
+      "math:infinite-series-halves"
+    ],
+    "level": "core",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "series",
+      "visual-proof",
+      "fractions"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

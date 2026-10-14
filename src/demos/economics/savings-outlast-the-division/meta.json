@@ -1,0 +1,89 @@
+{
+  "slug": "savings-outlast-the-division",
+  "title": "How long does $500,000 last?",
+  "hook": "You take $40,000 a year from savings that keep earning. When does the money run out?",
+  "domain": "economics",
+  "concept": "drawdown-longevity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-j-economics"
+  },
+  "learner": {
+    "knows": [
+      "savings earn interest (compound-interest)",
+      "interest is charged first in the minimum-payment trap (minimum-payment-trap)"
+    ],
+    "doesNotKnow": [
+      "that a pot that keeps earning while you draw from it lasts longer than pot ÷ withdrawal, and forever if you take no more than its interest"
+    ]
+  },
+  "misconception": "$500,000 at $40,000 a year lasts 500 ÷ 40 = 12.5 years.",
+  "objective": "The learner can explain that $500,000 earning 5% while $40,000 a year is withdrawn lasts 20.1 years, not 12.5, because the interest ($25,000 in year 1) pays part of every withdrawal; taking only the interest leaves the pot unchanged.",
+  "claims": [
+    {
+      "id": "economics.savings-outlast-the-division.c1",
+      "text": "$500,000 earning 5% a year, with $40,000 taken out at the end of each year, lasts 20.1 years (20 full withdrawals and part of a 21st).",
+      "support": "derivation",
+      "source": "n = −ln(1 − rP/W) / ln(1 + r) = −ln(1 − 0.05 × 500,000 / 40,000) / ln 1.05 = −ln 0.375 / 0.04879 = 20.10. Stepping b ← b × 1.05 − 40,000: year 20 balance 4,013, year 21 would be negative. Demo.tsx life(), path(); builder node run 2026-10-14. Brief: company/domains/briefs/economics.md #63.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.savings-outlast-the-division.c2",
+      "text": "In year 1 the pot earns $25,000, so after the $40,000 withdrawal it shrinks by only $15,000.",
+      "support": "derivation",
+      "source": "0.05 × 500,000 = 25,000; 40,000 − 25,000 = 15,000.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.savings-outlast-the-division.c3",
+      "text": "Each year the pot earns a little less, so the end speeds up.",
+      "support": "derivation",
+      "source": "Interest is 5% of a falling balance, so the yearly fall W − 0.05 × b grows as b shrinks; the stage line steepens toward zero (Demo.tsx path()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.savings-outlast-the-division.c4",
+      "text": "Taking $25,000 a year, exactly the interest, the pot stays at $500,000 and never runs out.",
+      "support": "derivation",
+      "source": "500,000 × 1.05 − 25,000 = 500,000, every year. Demo.tsx life(25, 5) = Infinity.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.savings-outlast-the-division.c5",
+      "text": "At 0% growth, $40,000 a year lasts 12.5 years: division is only right when the money earns nothing.",
+      "support": "derivation",
+      "source": "500,000 / 40,000 = 12.5; for any r > 0, −ln(1 − rP/W)/ln(1 + r) > P/W. Demo.tsx life(40, 0). Other slider values at 5%: $30k 36.7, $50k 14.2, $60k 11.1 years.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.savings-outlast-the-division.c6",
+      "text": "A steady 5% is a made-up rate; real returns vary. The model has end-of-year withdrawals and no inflation, taxes or fees; not a plan or advice.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx path(); reveal's last sentence; stage chip 'Grows 5% a year, then you withdraw.' Brief keeps any 'safe withdrawal rate' rule out of learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A pot of $200,000 earns 4% a year. You take out $8,000 at the end of every year. How long does it last?",
+    "options": [
+      "25 years ($200,000 ÷ $8,000)",
+      "Forever: $8,000 is exactly the yearly interest",
+      "About 15 years"
+    ],
+    "answer": 1,
+    "why": "4% of $200,000 is $8,000, so each year's interest pays the whole withdrawal and the pot never shrinks. Division ignores what the money earns."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {"primary":"economics:drawdown-longevity","also":["economics:compound-interest"],"prerequisites":["economics:compound-interest","economics:minimum-payment-trap"],"level":"core","strand":"personal-finance","references":[],"tags":["saving","retirement","withdrawals"]},
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "which-step-to-speed",
+  "title": "Which step to speed?",
+  "hook": "A reaction runs in two steps. Make one of them ten times faster. Does it matter which?",
+  "domain": "chemistry",
+  "concept": "rate-determining-step",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that rate constants set how fast one step goes (multiply-dont-add-rates, the-slowing-half-life)"
+    ],
+    "doesNotKnow": [
+      "that in a chain of steps the slowest step sets the overall time, so speeding up a fast step barely helps"
+    ]
+  },
+  "misconception": "Making any step of a reaction faster speeds the whole reaction up in proportion.",
+  "objective": "The learner can say that speeding the fast step of A → B → C tenfold barely moves the half-time (7.03 s to 6.94 s) while speeding the slow step tenfold cuts it to 0.80 s, and explain that the slowest step sets the pace (the rate-determining step).",
+  "claims": [
+    {
+      "id": "chemistry.which-step-to-speed.c1",
+      "text": "For consecutive first-order steps A → B → C starting from pure A, the fraction of A turned into C is 1 − (k2 e^(−k1 t) − k1 e^(−k2 t))/(k2 − k1) (the curves drawn on the stage).",
+      "support": "derivation",
+      "source": "Integrating d[A]/dt = −k1[A], d[B]/dt = k1[A] − k2[B], [C] = [A]0 − [A] − [B] (Atkins & de Paula, Physical Chemistry, consecutive elementary reactions). Demo.tsx C(). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-step-to-speed.c2",
+      "text": "With k1 = 0.1 /s and k2 = 10 /s, half the C appears at 7.03 s; with k2 = 100 /s, at 6.94 s; with k1 = 1 /s and k2 = 10 /s, at 0.80 s; with both sped up, at 0.70 s (stage legend 'start: 7.03 s', 'step 2 ×10: 6.94 s', 'step 1 ×10: 0.80 s', 'both ×10: 0.70 s'; reveal: 'from 7.03 s to 6.94 s', 'cut it to 0.80 s'; right option 'almost no sooner').",
+      "support": "simulation",
+      "source": "The lesson's own bisection on the closed form of claim 1 (Demo.tsx halfTime(), 100 halvings of [0, 100] s), re-run in node by demo-builder 2026-10-14: 7.032, 6.941, 0.798, 0.703 s. 7.03 / 6.94 = 1.01 (1% sooner). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-step-to-speed.c3",
+      "text": "When one step is much slower than the rest, it sets the pace of the whole reaction: the rate-determining step (reveal: 'the slowest step sets the pace of the whole reaction. That step is the rate-determining step').",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, the rate-determining step; claim 2 shows it numerically (with k2 ≫ k1 the half-time approaches ln 2 / k1 = 6.93 s).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-step-to-speed.c4",
+      "text": "Model disclosure: the rate constants (0.1 /s and 10 /s) are illustrative, not a real reaction (question: 'Step 1 is slow; step 2 is 100 times faster').",
+      "support": "convention",
+      "source": "The lesson's own model (brief claim 4); the gate openings on the stage grow with log k and are a picture, not a measurement.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.which-step-to-speed.c5",
+      "text": "The rate-determining step is the one a catalyst, or a chemist, has to speed up to make the whole reaction faster (reveal); molecules queue at the narrowest gate (reveal, a picture of A waiting before the slow step).",
+      "support": "derivation",
+      "source": "Follows from claims 2-3: only a change to the slow step's rate constant moves the half-time much. General statement in Atkins & de Paula (catalysis lowers the barrier of the rate-limiting step). The 'queue' image: with k2 ≫ k1, B stays tiny and the material waits as A.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A three-step process has steps taking about 1 s, 1 s and 60 s on average. You can make one step 10 times faster. Which choice speeds up the whole process the most?",
+    "options": [
+      "Any one of them, it is the same",
+      "One of the 1 s steps",
+      "The 60 s step"
+    ],
+    "answer": 2,
+    "why": "The slowest step sets the pace of a chain. Speeding up a fast step barely changes the total; speeding up the slow one is what helps (the rate-determining step)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:rate-determining-step",
+    "also": [
+      "chemistry:reaction-order",
+      "chemistry:catalysts"
+    ],
+    "prerequisites": [
+      "chemistry:rate-law-concentration",
+      "chemistry:reaction-order"
+    ],
+    "level": "core",
+    "strand": "energy-rates",
+    "references": [],
+    "tags": [
+      "kinetics",
+      "rate-determining step",
+      "consecutive reactions",
+      "half-time"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

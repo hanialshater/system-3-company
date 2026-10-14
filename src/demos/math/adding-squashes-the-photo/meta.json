@@ -1,0 +1,95 @@
+{
+  "slug": "adding-squashes-the-photo",
+  "title": "Bigger photo, same face?",
+  "hook": "Enlarge a 4 by 6 photo without stretching the face. What must the long side be?",
+  "domain": "math",
+  "concept": "multiplicative-scaling",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "width and height of a rectangle",
+      "multiplying by 1.5"
+    ],
+    "doesNotKnow": [
+      "that a shape is kept by keeping the ratio of its sides, so each side is multiplied by the same number, not increased by the same amount"
+    ]
+  },
+  "misconception": "To enlarge a 4 by 6 photo without distorting it you add the same amount to each side (6 by 8).",
+  "objective": "The learner can say that a 4 by 6 photo with short side 6 keeps its shape only at 6 by 9, because both sides are multiplied by 1.5, and that adding the same amount changes the ratio.",
+  "claims": [
+    {
+      "id": "math.adding-squashes-the-photo.c1",
+      "text": "A 4 by 6 photo enlarged so its short side is 6 keeps its shape only at 6 by 9: 6 ÷ 4 = 1.5 and 6 × 1.5 = 9, and 9 ÷ 6 = 1.5 = 6 ÷ 4.",
+      "support": "derivation",
+      "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A2 (x1.5 6 9 1.500 true).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.adding-squashes-the-photo.c2",
+      "text": "Adding 2 to each side gives 6 by 8, ratio 8 ÷ 6 = 1.33; adding 4 gives 8 by 10, ratio 1.25; neither is 1.5, so the corner leaves the line. Multiplying by 2 gives 8 by 12, ratio 1.5, on the line.",
+      "support": "derivation",
+      "source": "Check A2 (+2 6 8 1.333 false; +4 8 10 1.250 false; x2 8 12 1.500 true). The stage prints ratios with up to 2 decimals (1.33, 1.25, 1.5). The reveal quotes the first adding chip the learner pressed, recorded when the 'added-off' milestone fires.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.adding-squashes-the-photo.c3",
+      "text": "Two rectangles anchored at the same bottom-left corner have the same shape exactly when their side ratios are equal; then their top-right corners lie on one line through that corner.",
+      "support": "derivation",
+      "source": "Similar triangles: the corner (w, h) lies on the line y = (6/4)x through the anchor exactly when h ÷ w = 1.5.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.adding-squashes-the-photo.c4",
+      "text": "A shape is kept by multiplying every side by the same number; adding the same amount grows the short side by a bigger share than the long side.",
+      "support": "derivation",
+      "source": "Adding d to sides a < b raises them by the fractions d/a and d/b, and d/a > d/b (here 2/4 = 50% against 2/6 = 33%).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 10 by 15 poster is shrunk so its short side is 4, without distorting it. What is its long side?",
+    "options": [
+      "6",
+      "9",
+      "11"
+    ],
+    "answer": 0,
+    "why": "Keeping the shape means multiplying both sides by the same number: 4 ÷ 10 = 0.4, and 15 × 0.4 = 6. Subtracting 6 from each side would give 4 by 9, a different shape."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:multiplicative-scaling",
+    "also": [
+      "math:similar-triangles"
+    ],
+    "prerequisites": [
+      "math:multiplication-as-area"
+    ],
+    "level": "intro",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "ratio",
+      "proportion",
+      "scaling"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

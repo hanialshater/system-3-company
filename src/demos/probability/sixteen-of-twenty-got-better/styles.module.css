@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; }
+.svg { flex-shrink: 0; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.label { font-size: 11px; font-weight: 700; fill: var(--fg); }
+.ill { fill: none; stroke: var(--fg); stroke-width: 1.2; }
+.well { fill: var(--good); stroke: var(--good); stroke-width: 1.2; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 1.5; }

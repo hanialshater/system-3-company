@@ -1,0 +1,117 @@
+{
+  "slug": "hydrogen-per-litre",
+  "title": "Fill the same tank",
+  "hook": "Hydrogen beats petrol kilogram for kilogram. Now fill the same tank with each.",
+  "domain": "chemistry",
+  "concept": "energy-density",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that burning a fuel releases energy (pay-first-then-profit)",
+      "that a gas takes far more room than a liquid (one-ml-of-steam)"
+    ],
+    "doesNotKnow": [
+      "that \"energy per kilogram\" and \"energy per litre\" can rank fuels in opposite orders",
+      "that hydrogen wins one and loses the other by a factor of thousands"
+    ]
+  },
+  "misconception": "Hydrogen is simply the best fuel, so a tank of it holds more energy than the same tank of petrol.",
+  "objective": "The learner can say that hydrogen carries about 3 times petrol's energy per kilogram but, as gas at room pressure, about 2,900 times less per litre (about 3.4 times less even liquefied), and explain that the gas is so light per litre.",
+  "claims": [
+    {
+      "id": "chemistry.hydrogen-per-litre.c1",
+      "text": "Burning hydrogen to liquid water releases about 286 kJ/mol, about 142 MJ per kilogram (stage label 'hydrogen: 142 MJ/kg' and readout 'Per kg: H₂ · petrol 142 MJ · 48 MJ'; reveal: 'about 142 MJ'; hook: 'Hydrogen beats petrol kilogram for kilogram'; question: 'about 3 times').",
+      "support": "derivation",
+      "source": "ΔfH(H2O, l) = −285.83 kJ/mol (CODATA Key Values for Thermodynamics, 1989; CRC Handbook) / molar mass of H2 2.016 g/mol (IUPAC 2021) = 141.8 MJ/kg (node, demo-builder 2026-10-14). Demo.tsx H2_J_KG. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.hydrogen-per-litre.c2",
+      "text": "Burning octane (standing in for petrol) releases about 5,470 kJ/mol, about 48 MJ per kilogram; both heats are higher heating values, water formed as liquid (stage label 'petrol (octane): 48 MJ/kg', caption 'octane for petrol · water formed as liquid'; reveal: '48 MJ for petrol').",
+      "support": "derivation",
+      "source": "8(−393.51) + 9(−285.83) − (−250.1) = −5,470.5 kJ/mol: ΔfH CO2(g) −393.51 and H2O(l) −285.83 kJ/mol (CODATA), ΔfH n-octane(l) −250.1 kJ/mol (CRC, Standard thermodynamic properties of chemical substances); / 114.23 g/mol = 47.9 MJ/kg (node). Cross-check: CRC heat of combustion of n-octane about −5,470 kJ/mol. Ratio to hydrogen 141.8 / 47.9 = 2.96 (stage '×3.0' not shown; question 'about 3 times'). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.hydrogen-per-litre.c3",
+      "text": "Hydrogen gas at 25 °C and 1 atm has a density of about 0.082 g/L, so a litre of it carries about 12 kJ when burned (reveal: 'a litre of hydrogen gas at room pressure weighs only 0.08 g, so it carries about 12 kJ'; stage label 'hydrogen gas: 12 kJ/L').",
+      "support": "derivation",
+      "source": "Ideal gas law ρ = PM/RT = 101,325 × 0.002016 / (8.314 × 298.15) = 0.0824 kg/m³ = 0.0824 g/L; hydrogen is close to ideal at 1 atm. × 141.8 MJ/kg = 11.7 kJ/L (node). Demo.tsx RHO_H2_GAS, H2_GAS_J_L. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.hydrogen-per-litre.c4",
+      "text": "Octane's density is about 0.70 kg/L (so about 34 MJ per litre burned) and liquid hydrogen's about 71 g/L at its boiling point, about −253 °C (so about 10 MJ per litre) (stage labels 'petrol (octane): 34 MJ/L', 'liquid hydrogen: 10 MJ/L', button 'Liquefy hydrogen (−253 °C)'; reveal: 'a litre of petrol carries about 34 MJ', 'liquefied at −253 °C').",
+      "support": "source",
+      "source": "CRC Handbook: physical constants of organic compounds (n-octane 0.703 g/cm³ at 20 °C) and properties of cryogenic fluids (para-hydrogen liquid density about 70.8 kg/m³ at the normal boiling point 20.3 K = −252.9 °C). 47.9 MJ/kg × 0.703 = 33.7 MJ/L; 141.8 × 0.0708 = 10.0 MJ/L (node). Assumption disclosed on the stage caption: octane stands in for petrol, a mixture with a similar energy per kilogram. Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.hydrogen-per-litre.c5",
+      "text": "Per litre, octane carries about 2,900 times the energy of hydrogen gas at 1 atm and about 3.4 times that of liquid hydrogen (readout 'Per litre: petrol ahead gas ×2,900 · liquid ×3.4'; reveal: 'it lost by about 2,900 times', 'hydrogen holds about 3.4 times less per litre'; right option 'about 3,000 times less').",
+      "support": "derivation",
+      "source": "33.67 MJ/L / 11.68 kJ/L = 2,882 (two significant figures 2,900; nearest option 3,000); 33.67 / 10.04 = 3.35 (3.4) (node, from claims 1-4). Demo.tsx ratio().",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.hydrogen-per-litre.c6",
+      "text": "Which fuel is 'best' depends on whether you are short of mass or short of space (reveal).",
+      "support": "derivation",
+      "source": "Follows from claims 1-5: the per-kilogram and per-litre rankings are opposite. A framing sentence, not a claim about vehicles or tanks; the lesson makes no claim about 700-bar tanks (brief, Differs from).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A drone must carry the most energy for the least weight; a ship's fuel tank has a fixed volume. Which unit should each designer compare fuels by?",
+    "options": [
+      "Both by energy per kilogram",
+      "Drone by energy per kilogram, ship by energy per litre",
+      "Both by energy per litre"
+    ],
+    "answer": 1,
+    "why": "Energy per kilogram and energy per litre can rank fuels in opposite orders: hydrogen gas wins per kilogram by about 3 times and loses per litre by thousands. Short of mass, compare per kilogram; short of space, per litre."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:energy-density",
+    "also": [
+      "chemistry:bond-energy-enthalpy",
+      "chemistry:ideal-gas-law",
+      "chemistry:density"
+    ],
+    "prerequisites": [
+      "chemistry:bond-energy-enthalpy",
+      "chemistry:ideal-gas-law"
+    ],
+    "level": "core",
+    "strand": "energy-rates",
+    "references": [],
+    "tags": [
+      "fuel",
+      "hydrogen",
+      "energy density",
+      "log scale",
+      "units"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

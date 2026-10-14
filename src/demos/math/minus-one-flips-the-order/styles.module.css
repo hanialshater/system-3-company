@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 100px; max-height: 130px; }
+.axis { stroke: var(--fg); stroke-width: 2; }
+.tick { stroke: var(--muted); stroke-width: 1.2; }
+.tickLabel { fill: var(--muted); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.circle { fill: var(--domain); stroke: var(--fg); stroke-width: 1.5; }
+.square { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2.5; }
+.val { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mirror { stroke: var(--domain); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.mirrorLabel { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.readout { margin: 0; text-align: center; font-weight: 800; font-size: 1rem; font-variant-numeric: tabular-nums; }
+.log { margin: 0; text-align: center; color: var(--muted); font-size: 0.82rem; min-height: 1.3em; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }
+.tap { min-height: 44px; min-width: 52px; padding: 6px 9px; }

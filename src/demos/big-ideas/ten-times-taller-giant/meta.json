@@ -1,0 +1,105 @@
+{
+  "slug": "ten-times-taller-giant",
+  "title": "A giant built just like you",
+  "hook": "Make a person 10 times bigger, same shape, same bone. Are the legs still up to the job?",
+  "domain": "big-ideas",
+  "concept": "square-cube-giants",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-big-ideas",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a bigger animal is stronger"
+    ],
+    "doesNotKnow": [
+      "that weight grows with the cube of size but bone cross-section only with the square",
+      "so each square centimetre of bone in a scaled-up body carries more load in proportion to its size"
+    ]
+  },
+  "misconception": "A giant built exactly like a person, just 10 times larger, would be just as sturdy.",
+  "objective": "The learner can explain that scaling every length by 10 multiplies weight by 1,000 but bone cross-section by only 100, so load per square centimetre rises 10 times; that much thicker bones would keep it level; and that real large mammals mostly keep bone stress level by posture instead.",
+  "claims": [
+    {
+      "id": "big-ideas.ten-times-taller-giant.c1",
+      "text": "Scaling every length by k multiplies weight (volume, same material) by k³ and bone cross-section by k², so the load on each square centimetre of bone grows by k: at 10×, weight ×1,000, bone area ×100, load ×10.",
+      "support": "derivation",
+      "source": "Geometry of similar solids (prerequisites math:area-scaling, math:volume-scaling); company/domains/briefs/checks/big-ideas-cycle1-check.mjs #3; Demo.tsx scaleOf(). Static axial load only; the model ignores bending and dynamic loads.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.ten-times-taller-giant.c2",
+      "text": "Galileo argued in 1638 that giants need disproportionately thick bones.",
+      "support": "source",
+      "source": "Galilei, G. (1638), Discorsi e dimostrazioni matematiche intorno a due nuove scienze (Two New Sciences), Second Day (public domain; the bone figure and passage on giants, section to confirm). Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.ten-times-taller-giant.c3",
+      "text": "Where it stops: big mammals mostly stand more upright instead of growing far thicker bones, which keeps peak bone stress roughly level across sizes.",
+      "support": "source",
+      "source": "Biewener, A. A. (1989), 'Scaling body support in mammals: limb posture and muscle mechanics', Science 245(4913), 45-48: bone allometry is modest; larger mammals reduce peak stresses mainly through more upright limbs (better mechanical advantage). Holds roughly up to horse size; the largest mammals (elephants) are also slower and less athletic (to confirm). Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.ten-times-taller-giant.c4",
+      "text": "The limit line (4× today's load) and the thicker-legs model (bone diameter ×k^1.5, so load stays level) are the lesson's illustrations, not measured values.",
+      "support": "convention",
+      "source": "Labelled 'limit (illustrative)' on the stage. 4× is chosen to sit within the 2-4 safety factors reported for limb bones in vigorous activity (Biewener, A. A. (1990), 'Biomechanics of mammalian terrestrial locomotion', Science 250(4984), 1097-1103; to confirm). Thicker legs: diameter ∝ k^1.5 gives cross-section ∝ k³ = weight, so load ×1 (derivation).",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.ten-times-taller-giant.c5",
+      "text": "With same-shape legs, each square centimetre of bone in the 10× giant carries more than the illustrative limit.",
+      "support": "derivation",
+      "source": "10 > 4 (c1, c4). The stage colours the legs and the bar red above the line. The lesson does not claim a 10× giant would collapse standing still: real standing stresses are far below bone strength, and the margin that disappears is the one used in running and jumping (c4).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A statue is copied at 3 times the size in every direction, in the same stone. Compared with the original, the pressure on the stone at its base is about…",
+    "options": [
+      "The same",
+      "3 times higher",
+      "9 times higher",
+      "27 times higher"
+    ],
+    "answer": 1,
+    "why": "Weight grows 27 times (3³) but the base area only 9 times (3²), so the pressure on each bit of base grows 3 times, the scale factor itself."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "big-ideas:square-cube-giants",
+    "also": [
+      "math:volume-scaling"
+    ],
+    "prerequisites": [
+      "math:area-scaling",
+      "math:volume-scaling"
+    ],
+    "level": "intro",
+    "strand": "science",
+    "references": [],
+    "tags": [
+      "scaling",
+      "square-cube-law",
+      "biomechanics"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

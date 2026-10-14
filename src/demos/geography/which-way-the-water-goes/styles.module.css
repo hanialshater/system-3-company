@@ -1,0 +1,24 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.chips :global(.control) { padding-left: 8px; padding-right: 8px; }
+.sea { fill: var(--domain); fill-opacity: 0.14; stroke: var(--line); }
+.wind line { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 5 3; }
+.wind polygon { fill: var(--muted); }
+.windMain line { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 3; }
+.windMain polygon { fill: var(--muted); }
+.layer line { stroke: var(--domain); stroke-width: 1.6; }
+.layer polygon { fill: var(--domain); }
+.layerTop line { stroke: var(--domain); stroke-width: 2.4; }
+.layerTop polygon { fill: var(--domain); }
+.net line { stroke: var(--fg); stroke-width: 5; }
+.net polygon { fill: var(--fg); }
+.gyre { fill: none; stroke: var(--domain); stroke-width: 2; stroke-dasharray: 6 3; }
+.gyreHead line { stroke: var(--domain); stroke-width: 2; }
+.gyreHead polygon { fill: var(--domain); }
+.grid { stroke: var(--line); stroke-width: 1; }
+.mid { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 2; }
+.label { font-size: 10px; fill: var(--fg); }
+.caption { font-size: 10px; fill: var(--muted); }
+.halo { font-size: 10px; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+.haloBold { font-size: 11px; font-weight: 800; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+.labelBold { font-size: 11px; font-weight: 800; fill: var(--fg); }

@@ -1,0 +1,94 @@
+{
+  "slug": "two-pages-swallow-the-rank",
+  "title": "Where does all the score go?",
+  "hook": "Pages pass their score along links. Does every page keep a share?",
+  "domain": "cs",
+  "concept": "rank-sink-scaled-pagerank",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "PageRank passes a page's score along its links (one-good-link-beats-many)"
+    ],
+    "doesNotKnow": [
+      "that without random jumps a group of pages that links only to itself soaks up every page's score"
+    ]
+  },
+  "misconception": "Passing score along links shares it out fairly, so every page keeps some.",
+  "objective": "The learner can explain that score entering a group of pages with no links out never leaves, so under the basic rule E and F end with all of it (100.0% after 50 rounds), and that 15% random jumps (scaled PageRank) leave every page some score (E and F 69.9%).",
+  "claims": [
+    {
+      "id": "cs.two-pages-swallow-the-rank.c1",
+      "text": "On the stage's six pages the links are A->B, B->C, C->A, C->D, D->E, E->F and F->E: E and F link only to each other, so no link leaves the E + F group.",
+      "support": "derivation",
+      "source": "LINKS in src/demos/cs/two-pages-swallow-the-rank/model.ts; the graph is the brief's (company/domains/briefs/cs.algorithms.md #88).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-pages-swallow-the-rank.c2",
+      "text": "Under the basic rule (each page splits its whole score equally among its links, all six start at 1/6), E and F hold 79.2% of the score after 5 rounds and 100.0% (to one decimal) after 50 rounds, when A to D together hold 0.0%.",
+      "support": "derivation",
+      "source": "scores()/sinkShare() in model.ts (power iteration, s = 1). Re-run in node 2026-10-14 by the builder: E+F 79.17% at 5, 93.75% at 10, 99.35% at 20, 100.00% at 50 (E 0.4444, F 0.5556; A-D 0.0000 each). Matches the brief's check J4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-pages-swallow-the-rank.c3",
+      "text": "With 15% random jumps (each page passes 85% of its score along its links and 15% is spread evenly over all 6 pages each round), E and F hold 64.8% after 5 rounds and 69.9% after 50 (the same at 200), and every page keeps some score (A 0.064, C 0.093 at 50 rounds).",
+      "support": "derivation",
+      "source": "scores(r, true) in model.ts (power iteration, s = 0.85, jump share 0.15/6 = 0.025 per page). Node 2026-10-14 by the builder: E+F 64.84% at 5, 69.85% at 50 and at 200; A 0.0644, B 0.0798, C 0.0928, D 0.0644. Matches the brief's check J4 (r50 0.6985). The 15% is the lesson's chosen value (s = 0.85, the value in Brin and Page 1998), not a claim about any search engine today.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-pages-swallow-the-rank.c4",
+      "text": "Score that reaches E or F never comes back out, so round by round it drains in; a group of pages like this is called a rank sink.",
+      "support": "source",
+      "source": "Derivation for the first half: no link leaves E or F (c1), so under the basic rule their combined score never falls. Term 'rank sink': Page, Brin, Motwani and Winograd (1999), 'The PageRank citation ranking: bringing order to the web', Stanford InfoLab tech report; Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 unconfirmed). Fact-checker: confirm the term and the attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-pages-swallow-the-rank.c5",
+      "text": "Scaled PageRank adds random jumps to fix score draining into groups of pages with no links out.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 unconfirmed: scaled PageRank as the fix for the problem in which a set of nodes with no links out absorbs all the PageRank); Brin and Page (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30: 107-117 (damping factor d = 0.85). Attribution: fact-checker confirms.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three pages link only to each other, and other pages link into them. With the basic rule (no random jumps), what happens to their share of the total score over many rounds?",
+    "options": [
+      "It stays where it started",
+      "It grows towards all of it",
+      "It shrinks towards none"
+    ],
+    "answer": 1,
+    "why": "Score that enters a group with no links out never leaves, so it keeps draining in: a rank sink. Random jumps (scaled PageRank) stop it taking everything."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:rank-sink-scaled-pagerank",
+    "also": ["cs:pagerank-random-walk"],
+    "prerequisites": ["cs:pagerank"],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 14, "section_unconfirmed": "14.3" }],
+    "tags": ["web", "PageRank", "link analysis"]
+  }
+}

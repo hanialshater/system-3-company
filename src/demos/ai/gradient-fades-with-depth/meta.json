@@ -1,0 +1,72 @@
+{
+  "slug": "gradient-fades-with-depth",
+  "title": "How much blame reaches layer 1?",
+  "hook": "The error signal travels back through every layer. How much is left by the first one?",
+  "domain": "ai",
+  "concept": "vanishing-gradients",
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-ai", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["the error signal is passed back layer by layer by the chain rule (chain-of-blame)"],
+    "doesNotKnow": [
+      "that each layer multiplies the signal by its activation's slope, the sigmoid's slope is at most 0.25, so in a deep sigmoid stack the first layers get almost no signal and barely learn; a slope-1 activation (ReLU, on its active side) passes it through"
+    ]
+  },
+  "misconception": "Adding layers gives every layer the same chance to learn; the first layer is corrected as strongly as the last.",
+  "objective": "The learner can explain that each sigmoid layer multiplies the backward signal by at most 0.25, so after 10 layers the first gets about 0.0001% of it (3 layers: 1.6%), while ReLU's slope of 1 passes the full signal back.",
+  "claims": [
+    {
+      "id": "ai.gradient-fades-with-depth.c1",
+      "text": "The sigmoid's slope s(x)(1 - s(x)) is at most 0.25, reached at x = 0 (question: 'Each multiplies it by the sigmoid's slope, 0.25'; reveal: 'Each sigmoid layer passed back at most a quarter of what it received').",
+      "support": "derivation",
+      "source": "Calculus: s' = s(1 - s), maximised at s = 1/2, i.e. x = 0, where it is 1/4.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-fades-with-depth.c2",
+      "text": "In the toy (weights 1, every unit at input 0, stated on the stage tag), the gradient reaching layer 1 through 10 sigmoid layers is 0.25^10 = 0.0000954% of the original (shown as 'about 0.0001%' / '0.0001%'); through 3 layers it is 0.25^3 = 1.5625% (shown as 1.6%). Layer k of n receives 0.25^(n - k + 1); the bars on the log axis draw exactly these values.",
+      "support": "derivation",
+      "source": "Arithmetic; share() in Demo.tsx (MODEL block). Values in the reveal are recorded when the learner presses each preset.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-fades-with-depth.c3",
+      "text": "ReLU's slope is 1 for positive inputs ('wherever it is active'), so in the toy all 10 ReLU layers get 100% of the signal.",
+      "support": "derivation",
+      "source": "Definition ReLU(x) = max(0, x), derivative 1 for x > 0; 1^10 = 1. The toy assumes every ReLU unit is on its active side.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.gradient-fades-with-depth.c4",
+      "text": "Gradients that shrink through many layers made deep sigmoid networks hard to train ('That is why deep sigmoid networks were hard to train'), and its weights barely move when layer 1 gets so little of the signal; ReLU-type activations eased this.",
+      "support": "source",
+      "source": "Bengio, Simard and Frasconi (1994), 'Learning long-term dependencies with gradient descent is difficult', IEEE Trans. Neural Networks 5(2): 157-166; Glorot, Bordes and Bengio (2011), 'Deep sparse rectifier neural networks', AISTATS 2011; Goodfellow, Bengio and Courville, Deep Learning (2016), sections 8.2.5 and 6.3.1. About real systems.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 20-layer network uses sigmoid activations everywhere. After training, which layers' weights have changed the least?",
+    "options": [
+      "The first layers, nearest the input",
+      "The last layers, nearest the output",
+      "All layers changed about equally"
+    ],
+    "answer": 0,
+    "why": "Going backwards, each sigmoid layer multiplies the error signal by its slope, at most 0.25, so the layers furthest from the output receive almost none of it and barely learn."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:vanishing-gradients",
+    "also": [],
+    "prerequisites": ["ai:backprop-chain"],
+    "level": "core",
+    "strand": "neural-language",
+    "references": [],
+    "tags": ["backpropagation", "activations", "depth"]
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "slug": "empty-ponds-still-left",
+  "title": "Drain the ponds, keep the good ones",
+  "hook": "Frogs live in 60 of 100 ponds. Drain 70 ponds and 30 good ones remain. Enough?",
+  "domain": "life",
+  "concept": "metapopulation-extinction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "less area holds fewer species (cut-the-island)"
+    ],
+    "doesNotKnow": [
+      "that a species living as many small populations needs empty patches to be refilled faster than occupied ones die out, so it is lost before the last good patch goes"
+    ]
+  },
+  "misconception": "As long as some good habitat is left, the species that lives there will hang on in it.",
+  "objective": "The learner can explain that each pond's frogs die out now and then and only frogs from other ponds refill it, so with 70 of 100 ponds drained refills come too slowly and the frogs vanish though 30 good ponds remain.",
+  "claims": [
+    {
+      "id": "life.empty-ponds-still-left.c1",
+      "text": "In the lesson's model (seed 1), after 70 of 100 ponds are drained (19 good ponds with frogs left) the frogs are gone by year 23 though 30 good ponds remain; across seeds 1 to 1,000 they are gone by year 100 in 996. Reveal: \"With 70 ponds drained, the frogs were gone by year 23, though 30 good ponds were still there.\" (the year is read from the learner's current run: seed 2 gives 21). Stage: \"70 drained: none from year 23\".",
+      "support": "simulation",
+      "source": "runPonds() in Demo.tsx (kit mulberry32, one stream per run, ponds in index order, drained ponds draw nothing). Builder re-run 2026-10-14 (node strip-types on the Demo.tsx function), seeds 1-12, drain 70: extinct in years 23, 21, 14, 19, 23, 24, 35, 21, 16, 29, 33, 60; start 19 frog ponds. Seeds 1-1,000 count (996 extinct by year 100) from check script E3, company/domains/briefs/checks/life-wave-j-check.mjs, same model and draw order (its mulberry32 matches the kit's on seeds 1-12 for all three drains).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.empty-ponds-still-left.c2",
+      "text": "After 30 ponds are drained, frogs persist (33 ponds at year 100, seed 1; no seed of 1,000 died out by year 100). The 'New seed' button cycles seeds 1 to 12; in all 12, drain 70 dies out by year 100 and drain 30 does not, so the reveal's sentence holds on every reachable seed. Reveal: \"Draining 30 left frogs in 33 ponds.\" (or, if only drain 50 was tried, its own result).",
+      "support": "simulation",
+      "source": "runPonds() seeds 1-12, drain 30 at year 100: 33, 8, 6, 26, 18, 26, 16, 28, 19, 12, 20, 29 ponds; drain 50: extinct in 67, 83, -, -, 32, 45, -, 66, -, 45, 43, - (5, 6, 9, 8, 7 ponds left where not). Check script E3: drain 30, seeds 1-1,000, none extinct, mean 25.8. Seed range 1-12 is the builder's choice (the first 12, not filtered), disclosed here.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.empty-ponds-still-left.c3",
+      "text": "Each pond's frogs die out now and then, and only frogs from other ponds refill it; with few occupied ponds, refills come too slowly to keep up. Stage: \"Start: 19 frog ponds, refill chance 9% a year\" against \"empties with chance 20%\".",
+      "support": "derivation",
+      "source": "Model rule: refill chance 1 - 0.995^n with n occupied ponds: n = 60 -> 26%, 42 -> 19%, 19 -> 9%. With 19 occupied of 30 good ponds, expected losses 0.2 x 19 = 3.8 a year vs gains 0.09 x 11 = 1.0 a year, so the count falls.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.empty-ponds-still-left.c4",
+      "text": "In the simplest (deterministic, Levins) version of this model, the species is lost once the drained share reaches the share that had frogs before: 60% here. Reveal: \"In the simplest version of this model, the species is lost once the drained share reaches the share that had frogs before: 60% here.\"",
+      "support": "derivation",
+      "source": "Levins with habitat loss: dp/dt = c p (1 - D - p) - e p; equilibrium p* = 1 - D - e/c. Before loss (D = 0) p* = 1 - e/c = 0.6 (e/c = 0.4 as set by the brief; check E3 prints p* = 0.6, 0.3, 0.1, 0, 0 for D = 0, 0.3, 0.5, 0.6, 0.7). p* = 0 when D = 1 - e/c = 0.6. Optional literature context (Levins 1969; Nee and May 1992, J. Anim. Ecol. 61) is not on the card: unverified, needs a human source check. Note for the fact-checker: e/c = 0.4 is the brief's Levins analogue (die-out 0.2 vs colonisation 0.005 x 100 ponds = 0.5), not fitted to the stochastic grid.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.empty-ponds-still-left.c5",
+      "text": "Rates, pond count and the drain pattern are invented: toy model. Stage: \"Each year a frog pond empties with chance 20%; an empty pond refills with chance 1 − 0.995ⁿ, n = frog ponds.\" Reveal: \"Habitat can outlast its species. Toy model.\"",
+      "support": "convention",
+      "source": "The lesson's model (brief empty-ponds-still-left, company/domains/briefs/life.ecology-body.md #3). 'Habitat can outlast its species' summarises claims 1 and 4 inside the model.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.empty-ponds-still-left.c6",
+      "text": "Locked stage: 100 ponds; 60 have frogs. Question: drain 70 ponds, 30 good ponds are left, 19 with frogs.",
+      "support": "derivation",
+      "source": "Ponds 0-59 start occupied; drained = (i x 37) mod 100 < 70 removes 70 ponds, 41 of them occupied, leaving 19 occupied of 30 good (runPonds start = 19).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A butterfly lives in 50 meadows. Half the meadows are ploughed, and 25 good meadows remain. Why can it still vanish?",
+    "options": [
+      "Each meadow's butterflies die out now and then, and with few occupied meadows the empty ones are refilled too slowly",
+      "The remaining meadows are too small for any butterflies",
+      "It cannot vanish while good meadows remain"
+    ],
+    "answer": 0,
+    "why": "Local populations wink out by chance and are refilled from neighbours. With too few occupied patches, refills fall behind losses and the species is lost while good habitat is still there."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:metapopulation-extinction",
+    "also": [
+      "life:species-area"
+    ],
+    "prerequisites": [
+      "life:species-area"
+    ],
+    "level": "stretch",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "habitat loss",
+      "extinction threshold",
+      "simulation"
+    ]
+  },
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

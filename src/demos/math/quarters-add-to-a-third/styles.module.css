@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 170px; max-height: 230px; }
+.square { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.solid { fill: var(--domain); stroke: var(--fg); stroke-width: 0.75; }
+.cell { stroke: var(--fg); stroke-width: 0.75; }
+.patBg { fill: var(--bg-2); }
+.hatchLine { stroke: var(--fg); stroke-width: 1.6; }
+.dot { fill: var(--fg); }
+.leftover { fill: none; stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.readout { margin: 0; text-align: center; font-weight: 800; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.trace { margin: 0; text-align: center; color: var(--muted); font-size: 0.82rem; min-height: 1.3em; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }
+.tap { min-height: 44px; min-width: 44px; padding: 6px 10px; }

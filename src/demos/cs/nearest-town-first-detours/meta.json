@@ -1,0 +1,95 @@
+{
+  "slug": "nearest-town-first-detours",
+  "title": "Always the nearest town next?",
+  "hook": "Drive to the closest town you have not visited, every time. Is the trip short?",
+  "domain": "cs",
+  "concept": "nearest-neighbour-tour",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a greedy rule can fail (coin-greedy-trap)",
+      "the number of routes explodes (route-explosion)"
+    ],
+    "doesNotKnow": [
+      "that always going to the nearest unvisited town can build a long round trip, because the hops it skips pile up at the end"
+    ]
+  },
+  "misconception": "Always driving to the nearest unvisited town gives the shortest round trip.",
+  "objective": "The learner can explain that on this road nearest-first takes cheap hops (2, 5, 11) and then pays 23 km to cross the road and 15 to return (56 km), while driving out to 8 first and sweeping back costs 46, because the far towns greedy puts off all come due at the end.",
+  "claims": [
+    {
+      "id": "cs.nearest-town-first-detours.c1",
+      "text": "With towns at km -15, -3, 2 and 8 and the start at 0, always driving to the nearest unvisited town visits 2, -3, 8, -15 and returns: 2 + 5 + 11 + 23 + 15 = 56 km. No step has a tie.",
+      "support": "derivation",
+      "source": "nearestFirst() in src/demos/cs/nearest-town-first-detours/model.ts; by hand: from 0 nearest is 2 (2 vs 3); from 2, -3 (5 vs 6); from -3, 8 (11 vs 12); then -15 (23); home 15. Builder's node run 2026-10-14: hops 2, 5, 11, 23, 15, total 56.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.nearest-town-first-detours.c2",
+      "text": "Driving out to 8 first (0, 2, 8, -3, -15, 0) costs 2 + 6 + 11 + 12 + 15 = 46 km.",
+      "support": "derivation",
+      "source": "outTo8First() in model.ts; arithmetic.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.nearest-town-first-detours.c3",
+      "text": "Over all 24 visiting orders the shortest round trip is 46 km and the longest 56 km; nearest-first ties for the longest.",
+      "support": "simulation",
+      "source": "ALL_TOTALS in model.ts (all 24 permutations). Builder's node run 2026-10-14: min 46 (8 orders), max 56 (8 orders, nearest-first among them). The brief said 'nearest-first is the longest of all 24'; it ties with 7 other orders, so the reveal says 'tied for the longest'. Lower bound check: any tour from 0 that reaches both ends of the road costs at least 2 x (8 + 15) = 46.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.nearest-town-first-detours.c4",
+      "text": "Each greedy hop was the cheapest at that moment, but the far towns it put off all came due at the end.",
+      "support": "derivation",
+      "source": "From c1: the first three hops (2, 5, 11) were each the shortest available; the last two (23, 15) cross the road to the far end skipped earlier and come back.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.nearest-town-first-detours.c5",
+      "text": "Route planners use tours like this only as a start and then repair them.",
+      "support": "source",
+      "source": "Croes (1958), 'A method for solving traveling-salesman problems', Operations Research 6(6): 791-812 (2-opt: improving a tour by swapping pairs of links); construction-then-improvement as standard TSP heuristic practice (e.g. Johnson and McGeoch (1997), 'The traveling salesman problem: a case study in local optimization'). Attribution: fact-checker confirms; if it cannot, cut this sentence (the brief allows it).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A delivery van always drives to the nearest stop it has not visited yet, then returns to the depot. What does that rule guarantee about the total distance?",
+    "options": [
+      "It is the shortest possible",
+      "Nothing: it can be among the longest",
+      "It is within 5% of the shortest"
+    ],
+    "answer": 1,
+    "why": "Each hop is cheapest at that moment, but stops it skips come due at the end, often as long detours. On a road with towns at -15, -3, 2 and 8 the rule tied for the longest of all 24 orders."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:nearest-neighbour-tour",
+    "also": [],
+    "prerequisites": ["cs:greedy-failure", "cs:combinatorial-explosion"],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["travelling salesman", "greedy", "heuristics"]
+  }
+}

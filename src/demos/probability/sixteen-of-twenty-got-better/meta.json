@@ -1,0 +1,78 @@
+{
+  "slug": "sixteen-of-twenty-got-better",
+  "title": "16 of 20 got better. Did the pill work?",
+  "hook": "Most people who took a new pill felt better within a week. What does that tell you?",
+  "domain": "probability",
+  "concept": "control-groups",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "before-after"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["percentages"],
+    "doesNotKnow": [
+      "that many conditions improve with no treatment, so improvement after a treatment means nothing without a comparison group"
+    ]
+  },
+  "misconception": "If most people who took a treatment got better, the treatment worked.",
+  "objective": "The learner can explain that to credit a treatment you must compare with a group that did not get it, because people often get better anyway.",
+  "claims": [
+    {
+      "id": "probability.sixteen-of-twenty-got-better.c1",
+      "text": "In the stage's model both groups recover on the same schedule; 16 of 20 are better by day 7 in each (3 of 20 by day 3).",
+      "support": "derivation",
+      "source": "Lesson code: DAYS = [2,3,3,4,4,4,5,5,5,5,6,6,6,6,7,7,8,9,10,12] (brief 57); both rows are permutations of DAYS (PILL_ORDER, NONE_ORDER). Days <= 7: 16 entries; days <= 3: 3 entries.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sixteen-of-twenty-got-better.c2",
+      "text": "In this model colds clear up by themselves, so getting better after the pill was going to happen anyway; without a group that did not get the treatment, an improvement cannot be credited to the treatment. Only the comparison row shows what the pill added, and here it added nothing.",
+      "support": "derivation",
+      "source": "The treatment's effect in the model is the difference between the treated and untreated rows (the counterfactual comparison); both rows are the same day list, so the difference is 0 at every day. Brief 57 planned claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.sixteen-of-twenty-got-better.c3",
+      "text": "The pill and the cold's recovery schedule are invented for the card; no real medicine is named.",
+      "support": "convention",
+      "source": "Lesson rule (brief 57 planned claim 3); stated on the stage caption 'Invented cold, invented pill.'",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A town paints its crossings and road injuries fall the next year. What would you most want to know before crediting the paint?",
+    "options": [
+      "How bright the paint was",
+      "What happened in similar towns that did not paint",
+      "How many crossings were painted"
+    ],
+    "answer": 1,
+    "why": "Injuries can fall without any change. Only a comparison group that did not get the treatment shows what the treatment added."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:control-groups",
+    "also": ["probability:regression-to-mean"],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "statistics",
+    "references": [],
+    "tags": ["experiments", "control group", "placebo", "causation"]
+  }
+}

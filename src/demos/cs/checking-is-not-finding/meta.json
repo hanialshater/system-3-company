@@ -1,0 +1,87 @@
+{
+  "slug": "checking-is-not-finding",
+  "title": "Quick to check. Quick to find?",
+  "hook": "Checking a sum takes one addition. How much work is finding one?",
+  "domain": "cs",
+  "concept": "verify-vs-search",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "tally-counters",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the number of choices multiplies fast (route-explosion)"
+    ],
+    "doesNotKnow": [
+      "that checking a proposed answer can take one step while finding one, or proving none exists, can mean trying every group, and that this gap is the P versus NP question"
+    ]
+  },
+  "misconception": "If checking an answer is quick, finding an answer must be about as quick.",
+  "objective": "The learner can explain that checking 4 + 5 = 9 takes one addition, while finding a group of the six numbers that makes 9 took 21 tries and proving none makes 13 took all 64, that each extra number doubles the groups, and that whether a fast general finding method exists is the P versus NP question.",
+  "claims": [
+    {
+      "id": "cs.checking-is-not-finding.c1",
+      "text": "Six numbers form 2^6 = 64 groups (including the empty group); seven numbers form 128, so one more number doubles the groups.",
+      "support": "derivation",
+      "source": "Each number is in or out of a group independently: 2^n groups. 2^6 = 64, 2^7 = 128.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.checking-is-not-finding.c2",
+      "text": "Trying the groups of 3, 34, 4, 12, 5, 2 in binary counting order (number b in the group when bit b of the group number is set, list order, starting with the empty group), the first group that sums to 9 is the 21st tried, {4, 5}; no group sums to 13, so the search tries all 64.",
+      "support": "simulation",
+      "source": "search() in src/demos/cs/checking-is-not-finding/model.ts; builder's node enumeration 2026-10-14: first sum 9 at index 20 (21st tried) = {4, 5}; groups summing to 9: {4, 5} and {3, 4, 2}; groups summing to 13: 0. The fact-checker can redo it by listing the 64 sums.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.checking-is-not-finding.c3",
+      "text": "Checking the proposed group 4 + 5 = 9 takes one addition (checking any group takes one addition per extra number in it).",
+      "support": "derivation",
+      "source": "A group of k numbers needs k - 1 additions to total; {4, 5} needs 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.checking-is-not-finding.c4",
+      "text": "For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that always finds one without a search that grows this fast; whether such a method exists is the P versus NP question.",
+      "support": "source",
+      "source": "CLRS 3e ch. 34 (NP as problems verifiable in polynomial time; section 34.5.5: subset-sum is NP-complete); Karp (1972), 'Reducibility among combinatorial problems'. Caveat kept in the wording: a table method is fast when the numbers are small (pseudo-polynomial), so the reveal says 'nobody knows', never 'impossible' or 'always exponential'. 'Grows this fast' means exponentially in the input size, as the doubling on the stage shows. Attribution: fact-checker confirms.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Someone hands you a filled-in Sudoku and says it is solved. Compared with solving a blank one yourself, checking their grid is usually:",
+    "options": [
+      "Much quicker",
+      "About as slow",
+      "Impossible without solving it again"
+    ],
+    "answer": 0,
+    "why": "Checking a proposed answer takes one pass over it; finding one can mean searching a number of possibilities that multiplies with every blank. That gap between checking and finding is what P versus NP asks about."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:verify-vs-search",
+    "also": [],
+    "prerequisites": ["cs:combinatorial-explosion"],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["complexity", "P vs NP", "subset sum"]
+  }
+}

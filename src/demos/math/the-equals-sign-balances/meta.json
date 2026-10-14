@@ -1,0 +1,84 @@
+{
+  "slug": "the-equals-sign-balances",
+  "title": "What does = actually ask?",
+  "hook": "8 + 4 = □ + 5 looks like a sum with a gap in it. What fills the gap?",
+  "domain": "math",
+  "concept": "equals-as-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adding whole numbers",
+      "the equals sign from school sums"
+    ],
+    "doesNotKnow": [
+      "that \"=\" says the two sides are the same amount, not \"the answer comes next\""
+    ]
+  },
+  "misconception": "\"=\" is an instruction to write the answer, so in 8 + 4 = □ + 5 the box is 12 (the sum so far) or 17 (all the numbers added).",
+  "objective": "The learner can say that 8 + 4 = □ + 5 needs 7 in the box, because \"=\" says both sides are the same amount, like a level beam.",
+  "claims": [
+    {
+      "id": "math.the-equals-sign-balances.c1",
+      "text": "8 + 4 = 12 and 7 + 5 = 12, so 8 + 4 = 7 + 5: with 7 in the box both sides are 12 and the beam is level.",
+      "support": "derivation",
+      "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A1 ([7, 12, 12, true]). Stage: LEFT = 8 + 4, right = box + 5 in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-equals-sign-balances.c2",
+      "text": "With 12 or 17 in the box the right side is 17 or 22, not 12, so the beam tips to the right.",
+      "support": "derivation",
+      "source": "Arithmetic; check A1 ([12, 12, 17, false], [17, 12, 22, false]). The reveal quotes the first wrong value the learner tried (recorded when the 'tipped' milestone fires) and that value + 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-equals-sign-balances.c3",
+      "text": "The equals sign says both sides are the same amount (a = b states that a and b are the same number), not that the answer comes next.",
+      "support": "convention",
+      "source": "The meaning of equality in arithmetic and algebra (a = b means a and b name the same number).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "□ + 3 = 6 + 4. What number goes in the box?",
+    "options": [
+      "7",
+      "10",
+      "13"
+    ],
+    "answer": 0,
+    "why": "The right side is 10, and \"=\" says both sides are the same amount, so □ + 3 must be 10: the box is 7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:equals-as-balance",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "algebra",
+      "equations",
+      "equals-sign"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

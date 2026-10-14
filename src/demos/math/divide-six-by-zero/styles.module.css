@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 200px; }
+.jug { fill: none; stroke: var(--fg); stroke-width: 2.5; stroke-linejoin: round; }
+.tick { stroke: var(--muted); stroke-width: 1.2; }
+.mark { fill: var(--muted); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.fillA { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); }
+.fillB { fill: color-mix(in srgb, var(--domain) 40%, var(--bg-2)); }
+.scoop { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.zeroScoop { stroke: var(--bad); stroke-width: 2; stroke-dasharray: 3 3; }
+.label { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.empty { fill: var(--bad); font-size: 12px; font-weight: 800; }
+.head { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.row { fill: var(--muted); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rowNow { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.check { fill: var(--fg); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }
+.tap { min-height: 44px; min-width: 44px; padding: 6px 9px; }

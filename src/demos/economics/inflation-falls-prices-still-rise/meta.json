@@ -1,0 +1,103 @@
+{
+  "slug": "inflation-falls-prices-still-rise",
+  "title": "Inflation is falling. Do prices fall?",
+  "hook": "Inflation drops every year for five years. What happens to what a basket costs?",
+  "domain": "economics",
+  "concept": "disinflation-vs-deflation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-j-economics"
+  },
+  "learner": {
+    "knows": [
+      "inflation is the yearly rise in prices (inflation-halves-cash)"
+    ],
+    "doesNotKnow": [
+      "that inflation is a rate of change, so 'inflation is falling' means prices rise more slowly, not that they come down; prices fall only when the rate goes below zero"
+    ]
+  },
+  "misconception": "Inflation is coming down, so prices will come back down.",
+  "objective": "The learner can explain that inflation falling from 8% to 2% over five years still raises a $100 basket to $125.08, because inflation is the rate prices rise at, not their level; at 0% the price stays put and only a negative rate lowers it.",
+  "claims": [
+    {
+      "id": "economics.inflation-falls-prices-still-rise.c1",
+      "text": "With yearly rates of 8%, 6%, 4%, 3% and 2%, each applied to last year's price, a $100 basket costs 108.00, 114.48, 119.06, 122.63 and then $125.08.",
+      "support": "derivation",
+      "source": "p ← p × (1 + i): 100 × 1.08 = 108.00; × 1.06 = 114.48; × 1.04 = 119.0592; × 1.03 = 122.6310; × 1.02 = 125.0836. Demo.tsx PATH; builder node run 2026-10-14. Brief: company/domains/briefs/economics.md #61.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.inflation-falls-prices-still-rise.c2",
+      "text": "Inflation is how fast prices rise, not how high they are, so a falling rate means slower rises.",
+      "support": "derivation",
+      "source": "Definition used by the lesson (stage chip 'Each year's rate applies to last year's price'): the rate is the yearly percentage change of the price level; a smaller positive rate still multiplies the price by more than 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.inflation-falls-prices-still-rise.c3",
+      "text": "A sixth year at 0% leaves the basket at $125.08; it does not go back.",
+      "support": "derivation",
+      "source": "125.0836 × (1 + 0) = 125.0836: a zero rate of change leaves the level unchanged. Demo.tsx y6Price(0).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.inflation-falls-prices-still-rise.c4",
+      "text": "A sixth year at −1% lowers the basket to $123.83: prices fall only when the rate goes below zero.",
+      "support": "derivation",
+      "source": "125.0836 × 0.99 = 123.8328; for any rate i ≥ 0, p × (1 + i) ≥ p, so the level falls only if i < 0. Demo.tsx y6Price(-1).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.inflation-falls-prices-still-rise.c5",
+      "text": "The rates are made up, not any country's data and not a forecast.",
+      "support": "convention",
+      "source": "Lesson rule; the rates are the brief's illustrative path (Demo.tsx RATES); reveal's last sentence.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Inflation was 5% last year and is 1% this year. Over this year, what did prices do on average?",
+    "options": [
+      "They went down",
+      "They went up, but more slowly",
+      "They stayed the same"
+    ],
+    "answer": 1,
+    "why": "Inflation is the rate prices rise at. A fall from 5% to 1% means prices still rose, by 1%, only more slowly; they fall only when inflation is below zero."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:disinflation-vs-deflation",
+    "also": [
+      "economics:inflation",
+      "economics:percentage-points"
+    ],
+    "prerequisites": [
+      "economics:inflation"
+    ],
+    "level": "intro",
+    "strand": "macro",
+    "references": [],
+    "tags": [
+      "macro",
+      "inflation",
+      "rates vs levels"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

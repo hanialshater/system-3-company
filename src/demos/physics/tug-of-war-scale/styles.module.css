@@ -1,0 +1,26 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 34dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; min-height: 44px; padding-left: 4px; padding-right: 4px; white-space: normal; line-height: 1.15; }
+.caption { margin: 0; font-size: 13px; color: var(--fg); }
+.seen { margin: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rope { fill: none; stroke: var(--fg); stroke-width: 2.2; stroke-linecap: round; }
+.body { fill: color-mix(in srgb, var(--muted) 40%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.limb { stroke: var(--fg); stroke-width: 2.4; stroke-linecap: round; }
+.wall { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.hatch { stroke: var(--muted); stroke-width: 1; }
+.endArrow { stroke: var(--fg); stroke-width: 2.6; }
+.headEnd { fill: var(--fg); }
+.tArrow { stroke: var(--domain); stroke-width: 2.6; }
+.headT { fill: var(--domain); }
+.stem { stroke: var(--muted); stroke-width: 1.4; }
+.hook { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.2; }
+.spring { fill: none; stroke: var(--domain); stroke-width: 1.8; stroke-linejoin: round; transition: d 0.3s ease; }
+.dial { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.tick { stroke: var(--fg); stroke-width: 1; }
+.tickLabel { fill: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+.needle { stroke: var(--domain); stroke-width: 2.4; stroke-linecap: round; }
+.hub { fill: var(--fg); }
+.big { fill: var(--fg); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lab { fill: var(--fg); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.labT { fill: var(--domain); font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums; }

@@ -1,0 +1,98 @@
+{
+  "slug": "two-four-six-rule",
+  "title": "Every test fits your guess",
+  "hook": "2, 4, 6 fits a secret rule. Your guess passed three tests. What should you test next?",
+  "domain": "big-ideas",
+  "concept": "falsification-2-4-6",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-big-ideas",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "evidence that fits your idea supports it"
+    ],
+    "doesNotKnow": [
+      "that tests chosen to fit your idea can't tell it apart from a broader one",
+      "that a test which could prove you wrong tells you more"
+    ]
+  },
+  "misconception": "Three examples that fit my rule show my rule is right.",
+  "objective": "The learner can explain that tests chosen to fit a guess (+2) also fit a broader rule (any increasing numbers), so they cannot tell the two apart, while a test the guess says will fail (1-2-10) can; and can say that this strategy fails when the true rule is broader than the guess.",
+  "claims": [
+    {
+      "id": "big-ideas.two-four-six-rule.c1",
+      "text": "The task is Peter Wason's 2-4-6 task (1960), whose secret rule is any three increasing numbers.",
+      "support": "source",
+      "source": "Wason, P. C. (1960), 'On the failure to eliminate hypotheses in a conceptual task', Quarterly Journal of Experimental Psychology 12(3), 129-140: the rule 'three numbers in increasing order of magnitude'. The brief also cites Wason for 'most participants announced a wrong, too-narrow rule at first' (counts to confirm); that sentence is not on the learner surface. Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.two-four-six-rule.c2",
+      "text": "8-10-12, 20-22-24 and 1-3-5 fit both 'add 2 each time' and 'any three increasing numbers', so they cannot tell the two rules apart; 1-2-10 breaks 'add 2' and fits the secret rule; 6-4-2 fits neither.",
+      "support": "derivation",
+      "source": "Direct check of each triple against both rules; Demo.tsx plus2() and secret() compute the marks on the stage; brief answer check company/domains/briefs/checks/big-ideas-cycle1-check.mjs. Every +2 triple is increasing, so no +2 test can ever separate the two rules.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.two-four-six-rule.c3",
+      "text": "Karl Popper argued that a claim is scientific when a test could prove it false.",
+      "support": "source",
+      "source": "Popper, K. (1959), The Logic of Scientific Discovery (English edition of Logik der Forschung, 1934), on falsifiability as the criterion of demarcation (section to confirm; ch. 1 sec. 6 is the drafter's guess). Flag for the fact-checker: the criterion is Popper's argument, not a settled consensus in philosophy of science, which is why the sentence says 'argued'. Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.two-four-six-rule.c4",
+      "text": "Where it stops: testing cases that fit (a positive test strategy) is often a sensible strategy; it fails when the true rule is broader than the guess.",
+      "support": "source",
+      "source": "Klayman, J. & Ha, Y.-W. (1987), 'Confirmation, disconfirmation, and information in hypothesis testing', Psychological Review 94(2), 211-228. Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.two-four-six-rule.c5",
+      "text": "Your guess is 'add 2 each time'; the stage marks each tested triple against your guess and against the secret rule.",
+      "support": "convention",
+      "source": "The lesson's set-up, stated in the question stem and the stage caption; the secret rule is shown on the stage only once the reveal opens.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You think a vending machine only accepts coins. You put in five coins and all are accepted. Which test tells you most?",
+    "options": [
+      "Put in a sixth coin",
+      "Try a banknote",
+      "Put in the same coin again"
+    ],
+    "answer": 1,
+    "why": "Coins fit your idea and also fit broader ones (coins and notes). Only a test your idea says will fail, like a note, can tell them apart."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "big-ideas:falsification-2-4-6",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "mind",
+    "references": [],
+    "tags": [
+      "falsification",
+      "hypothesis-testing",
+      "confirmation-bias"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

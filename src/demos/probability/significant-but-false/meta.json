@@ -1,0 +1,95 @@
+{
+  "slug": "significant-but-false",
+  "title": "Significant, and still a fluke?",
+  "hook": "A study's result passes the 5% test. How likely is it that the effect isn't real?",
+  "domain": "probability",
+  "concept": "false-discovery-rate",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "locked-readouts"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what 'significant at 5%' means for one test (how-surprising-is-sixty)",
+      "base rates (base-rates)"
+    ],
+    "doesNotKnow": [
+      "that the share of significant results that are false depends on how many tested ideas were true to begin with, and can be far above 5%"
+    ]
+  },
+  "misconception": "A result significant at 5% has about a 95% chance of being real.",
+  "objective": "The learner can explain that the 5% is the fluke rate among ideas that do nothing, so when true ideas are rare, flukes can be a large share of all passing results.",
+  "claims": [
+    {
+      "id": "probability.significant-but-false.c1",
+      "text": "With 1,000 ideas, 10% true, 80% detection and a 5% fluke rate, 80 real effects and 45 flukes pass, so 36% of passes are flukes; 900 of the 1,000 ideas are duds.",
+      "support": "derivation",
+      "source": "Arithmetic: tp = 1,000 x 0.10 x 0.8 = 80; fp = 900 x 0.05 = 45; 45/125 = 36.0%. Brief 56 check (company/domains/briefs/checks/probability-round4-check.mjs). Demo.tsx counts(10).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.significant-but-false.c2",
+      "text": "With 1% true, 86% of passes are flukes (8 real, 50 flukes drawn); with 50% true, 6% (400 real, 25 flukes).",
+      "support": "derivation",
+      "source": "Arithmetic: 1%: tp 8, fp 990 x 0.05 = 49.5, drawn as 50 on the grid (Math.round); 49.5/57.5 = 86.1%, 50/58 = 86.2%, both 86% at the stage's whole-percent rounding. 50%: tp 400, fp 25, 25/425 = 5.9% -> 6%. Brief 56 check.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.significant-but-false.c3",
+      "text": "The 5% threshold limits flukes among ideas that do nothing; it does not give the chance that a passing result is real. How far to trust a significant result depends on how many tested ideas were likely true.",
+      "support": "derivation",
+      "source": "Definition of a significance threshold: P(pass | dud) = 0.05. P(dud | pass) = P(pass | dud)P(dud) / P(pass), which depends on the prior share of true ideas (Bayes' rule); c1 and c2 are instances.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.significant-but-false.c4",
+      "text": "The 80% catch rate and 5% fluke rate are the stage's settings, not figures about any field.",
+      "support": "convention",
+      "source": "Lesson rule (brief 56 planned claim 4); stated on the stage caption 'Tests catch 80%; 5% of duds pass.'",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.significant-but-false.c5",
+      "text": "(Not shown to the learner.) Optional context: Ioannidis (2005), 'Why most published research findings are false', PLoS Medicine 2(8): e124.",
+      "support": "source",
+      "source": "Brief 56 planned claim 5. NEEDS A HUMAN SOURCE CHECK. Not in learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a field where only 1 in 50 tested ideas is true, a result passes a 5% significance test. Is it about 95% likely to be real?",
+    "options": [
+      "Yes, that is what 5% means",
+      "No, it could easily be a fluke, because duds far outnumber true ideas",
+      "No, it is exactly 5% likely to be real"
+    ],
+    "answer": 1,
+    "why": "The 5% is the fluke rate among duds. With 49 duds per true idea, flukes from that big pile can make up a large share of all passing results."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:false-discovery-rate",
+    "also": ["probability:p-values", "probability:base-rates"],
+    "prerequisites": ["probability:p-values", "probability:base-rates"],
+    "level": "core",
+    "strand": "statistics",
+    "references": [],
+    "tags": ["significance", "false positives", "base rates", "research"]
+  }
+}

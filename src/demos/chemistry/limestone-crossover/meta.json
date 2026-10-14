@@ -1,0 +1,115 @@
+{
+  "slug": "limestone-crossover",
+  "title": "When limestone lets go",
+  "hook": "Breaking limestone soaks up heat. So can it ever happen by itself, and when?",
+  "domain": "chemistry",
+  "concept": "gibbs-free-energy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that some changes absorb heat (cold-pack-takes-heat)",
+      "that spreading out raises entropy (why-gas-spreads)"
+    ],
+    "doesNotKnow": [
+      "that a change goes by itself when ΔH − TΔS is negative",
+      "that a heat-absorbing change that makes gas therefore switches on above a definite temperature"
+    ]
+  },
+  "misconception": "A reaction that absorbs heat can never go by itself; heating only 'feeds it' gradually, with no switch point.",
+  "objective": "The learner can say that limestone's breakdown switches on near 850 °C (about 845 °C from 25 °C data), where TΔS grows past ΔH, and explain that making a gas raises entropy and temperature multiplies that gain.",
+  "claims": [
+    {
+      "id": "chemistry.limestone-crossover.c1",
+      "text": "Standard values at 25 °C: ΔfH CaCO3 (calcite) −1,207.6, CaO −634.9, CO2 −393.51 kJ/mol; S° CaCO3 91.7, CaO 38.1, CO2 213.79 J/(mol K) (inputs to every number on the stage).",
+      "support": "source",
+      "source": "CRC Handbook, standard thermodynamic properties of chemical substances; CODATA Key Values for Thermodynamics (1989) for CaO and CO2. Calcite values differ by about 1 kJ/mol between tables; the crossover moves by under 10 °C. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limestone-crossover.c2",
+      "text": "CaCO3 → CaO + CO2 absorbs about 179 kJ/mol (ΔH° +179) and raises entropy by about 160 J/(mol K) (stage label 'ΔH (heat in): 179 kJ'; question: 'absorbing heat'; reveal: 'the 179 kJ of heat needed', 'Making a gas raises entropy').",
+      "support": "derivation",
+      "source": "ΔH° = −634.9 − 393.51 + 1,207.6 = +179.19 kJ/mol; ΔS° = 38.1 + 213.79 − 91.7 = +160.19 J/(mol K) (node, demo-builder 2026-10-14; Demo.tsx DH, DS), from claim 1. Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limestone-crossover.c3",
+      "text": "A change at constant temperature and pressure goes by itself when ΔG = ΔH − TΔS is negative (stage: 'does not go' / 'goes by itself'; reveal: 'ΔG was +131 kJ and nothing happened', 'ΔG was −9 kJ and limestone breaks up by itself').",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, the Gibbs energy (spontaneity at constant T and p). Brief claim 3. Here ΔG° at 1 bar CO2 (the question states 1 bar CO2).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limestone-crossover.c4",
+      "text": "With 25 °C values held constant, TΔS is about 48, 124 and 188 kJ/mol at 25, 500 and 900 °C, so ΔG° is about +131, +55 and −9 kJ/mol (stage labels 'TΔS at 900 °C: 188 kJ', readouts 'ΔG at 25 °C +131 kJ', 'ΔG at 900 °C −9 kJ'; reveal: '+131 kJ', '−9 kJ').",
+      "support": "derivation",
+      "source": "T × 0.16019 kJ/(mol K) with T = 298.15, 773.15, 1,173.15 K: 47.76, 123.85, 187.93; 179.19 minus these: +131.43, +55.34, −8.74 (node; Demo.tsx tds(), dG()).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limestone-crossover.c5",
+      "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (25 °C data)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'). Measured decomposition at 1 bar CO2 is about 890 °C.",
+      "support": "derivation",
+      "source": "T = 179,190 / 160.19 = 1,118.6 K = 845.4 °C (node; Demo.tsx T_SWITCH). The 890 °C figure: Greenwood & Earnshaw, Chemistry of the Elements, calcium chapter, or CRC (dissociation pressure of CaCO3 against temperature); it is not shown to the learner. If it cannot be checked, drop that sentence and keep 'about 850 °C, an estimate'. Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limestone-crossover.c6",
+      "text": "Temperature multiplies the entropy gain (TΔS); absorbing heat does not forbid a change, it sets the temperature where it starts (reveal).",
+      "support": "derivation",
+      "source": "From ΔG = ΔH − TΔS with ΔH > 0 and ΔS > 0: ΔG < 0 exactly when T > ΔH/ΔS (Atkins & de Paula, Physical Chemistry). Claims 2-5.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A change absorbs heat but turns a solid into a gas. What happens as you heat it?",
+    "options": [
+      "It can never go by itself, because it absorbs heat",
+      "It goes by itself above some temperature, where TΔS outgrows ΔH",
+      "It goes by itself at any temperature, a little faster when hot"
+    ],
+    "answer": 1,
+    "why": "ΔG = ΔH − TΔS. Making gas raises entropy, and TΔS grows with temperature, so above T = ΔH/ΔS the change goes by itself. Limestone switches near 850 °C."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:gibbs-free-energy",
+    "also": [
+      "chemistry:entropy-mixing",
+      "chemistry:exothermic-endothermic"
+    ],
+    "prerequisites": [
+      "chemistry:exothermic-endothermic",
+      "chemistry:entropy-mixing"
+    ],
+    "level": "stretch",
+    "strand": "energy-rates",
+    "references": [],
+    "tags": [
+      "Gibbs energy",
+      "entropy",
+      "limestone",
+      "spontaneity",
+      "crossover temperature"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
