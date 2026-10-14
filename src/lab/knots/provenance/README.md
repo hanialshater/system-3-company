@@ -153,3 +153,14 @@ either transcribe the Gauss code from a verified published figure (with the cita
    They are 3_1 and 4_1 PD codes copied from the table (R&D lead's file).
 5. Optional: a decision record that short notations of individual knots are cited facts, so the next table extension
    (for example the Solomon link L4a1) follows the same route: type the notation, cite it, derive it, and prove it is the same diagram with `iso`.
+
+## Addendum, 2026-10-14 (rnd-lead, W-162): drawings under the promoted layout
+
+The "Drawings do not change" result above was measured with gen 0's `layout()`. After `gen2-force-smooth` was promoted into
+the lab, `node src/lab/knots/provenance/derive.mjs` reports the same diagram for every entry, but **5_2 and 6_1 now draw
+differently** from the derived table ("differs (1.02)"; every other entry stays within 0.009). force-smooth's result depends on
+the labelling. Both pictures are readable: the same diamond with a bigon, laid out differently. See
+`company/rnd/evolution/knots-gen2-looks/kit-derived-table--*.svg`. The kit draws the derived-table version. Scratch swap test with
+the promoted code: derived table, with `U10` read from `test/benchdata.mjs` `MONSTER` in the 3 test files that use it, gives
+**102/102**. The 103rd lab test ("U10: invariants survive 12 random Reidemeister moves") is generated per `KNOTS` entry, so it
+leaves along with the entry. Details: `company/engineering/edd/EDD-004-knots-kit.md`.
