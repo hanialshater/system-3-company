@@ -4,3 +4,8 @@
 - The answer 2/3 comes from exact() enumeration. The reveal quotes the learner's own draw tally only if they drew (QA path: 18 of 23, 78%; noisy at 60 draws, disclosed in c3).
 - Bertrand attribution omitted (not on the stage).
 - Iteration after screenshots: widened the "card N, side N" chips; colours moved to CSS variables.
+
+
+## Revision v2
+
+Review: reveal clipped, rebuttal cut off; sampling noise unaddressed. Changes: reveal leads with 'counts cards, but the clue is about a face' and then the learner's draws with 'short runs wobble around 2/3'. c3 unverified. Version 2.

@@ -13,7 +13,8 @@
 // The reveal unlocks once the learner has moved into the crash (t > 0).
 
 import { Lesson } from "@/kit/Lesson";
-import { Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import { useMemo, useState } from "react";
 import s from "./styles.module.css";
 
@@ -85,6 +86,9 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
   const run = useMemo(() => crash(truckKg), [truckKg]);
   const now = run[ms];
   const kN = Math.round(now.F / 1000);
+  const end = run[T_MAX_MS];
+  const dvTruck = (r: Sample) => Math.abs(r.vt - V0);
+  const dvCar = (r: Sample) => Math.abs(r.vc + V0);
 
   return (
     <Lesson
@@ -95,7 +99,8 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
         options: ["The truck pushes harder", "The car pushes harder", "They push equally hard"],
         answer: 2,
       }}
-      exploreHint="Slide through the crash. Then change the truck's mass and look again."
+      exploreHint="Slide into the crash, then play it to the end and compare the speed changes."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -104,23 +109,30 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
             the same force, in opposite directions.
           </p>
           <p>
-            What differed was the effect. The same force changes the 1,000 kg car&rsquo;s speed ten times as much as the
-            10,000 kg truck&rsquo;s: the car&rsquo;s velocity reversed while the truck slowed only a little. That is why the car
-            comes off worse.
+            What differed was the effect. By the end the car&rsquo;s speed had changed by{" "}
+            <strong>{dvCar(end).toFixed(1)} m/s</strong> and the truck&rsquo;s by <strong>{dvTruck(end).toFixed(1)} m/s</strong>: the
+            same push changes the lighter vehicle much more. That is why the car comes off worse.
           </p>
-          <p className="muted">Newton&rsquo;s third law, with a = F / m for each vehicle.</p>
+          <p className="muted">Newton&rsquo;s third law, with a = F / m for each vehicle. 1 kN is about the weight of a 100 kg person.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["into-crash", "crash-over"]}>
+          {(reach) => {
         const truckW = 74 + 46 * Math.cbrt(truckKg / 20000);
         const truckH = 30 + 26 * Math.cbrt(truckKg / 20000);
+        const go = (v: number) => {
+          setMs(v);
+          if (v > 0) reach("into-crash");
+          if (v > 0 && run[v].F === 0) reach("crash-over");
+        };
         const showForces = !locked && ms > 0;
         const caption = locked
           ? "Make a prediction to start."
           : ms === 0
             ? "Just touching. Slide into the crash."
-            : "Thick arrows: pushes. Thin arrows: velocities.";
+            : `Thick arrows: pushes. Thin: velocities. Car ${now.vc > 0 ? "now moving away" : "still moving in"}.`;
 
         return (
           <div className={s.wrap}>
@@ -169,6 +181,15 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
             </p>
 
             <Row>
+              <Readout label="Truck speed change" value={locked ? "?" : `${dvTruck(now).toFixed(1)} m/s`} />
+              <Readout label="Car speed change" value={locked ? "?" : `${dvCar(now).toFixed(1)} m/s`} />
+            </Row>
+            <Row>
+              <Control disabled={locked || ms === T_MAX_MS} onClick={() => go(T_MAX_MS)}>
+                Play to the end
+              </Control>
+            </Row>
+            <Row>
               <Slider
                 label="Into the crash"
                 value={ms}
@@ -177,10 +198,7 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
                 step={10}
                 disabled={locked}
                 format={(v) => `${v} ms`}
-                onChange={(v) => {
-                  setMs(v);
-                  if (v > 0) interact();
-                }}
+                onChange={go}
               />
               <Slider
                 label="Truck mass"
@@ -190,15 +208,14 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
                 step={1000}
                 disabled={locked}
                 format={(v) => `${v.toLocaleString("en-US")} kg`}
-                onChange={(v) => {
-                  setTruckKg(v);
-                  if (ms > 0) interact();
-                }}
+                onChange={(v) => setTruckKg(v)}
               />
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

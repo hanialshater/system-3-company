@@ -6,3 +6,8 @@
 - Key state (milestone "hereford"): the layout matches. That happens at a quarter-turn left. That button is first in DOM order, so QA reaches the key state on the first press. The second button turns the globe back to north-up.
 - All historical claims (c1-c6) are from memory and not checked online. c2's source notes that Hereford swaps the Europe and Africa labels. No claim about why north-up won (brief rule 4).
 - The phone screenshot looked fine. No iteration needed beyond checking that the compass rose stays outside the globe.
+
+
+## Revision v2
+
+Review: answer deducible from the question; arrow-only buttons; south told. Changes: question no longer gives the Hereford layout (it is in the explore hint); buttons labelled Turn left 90, Turn right 90, Turn 180; reveal gated on reaching south-up as well; caption says the globe is not the medieval map. c5, c6 unverified. Version 2.

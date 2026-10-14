@@ -7,7 +7,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const K_B = 1.380649e-23; // J/K
@@ -92,7 +93,6 @@ function Box({ temp }: { temp: number }) {
 
 export default function TwiceAsHot({ slug }: { slug: string }) {
   const [temp, setTemp] = useState(T0);
-  const [seen, setSeen] = useState<number[]>([T0]);
   const v = vrms(temp);
 
   return (
@@ -100,28 +100,34 @@ export default function TwiceAsHot({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Air is heated from 300 K (27 °C) to 600 K (327 °C). The typical speed of its molecules becomes about…",
+          "Kelvin (K) is the temperature scale that starts at absolute zero; 300 K is a room at 27 °C. Air is heated from 300 K to 600 K (327 °C). The typical speed of its molecules becomes about…",
         options: ["2 times as fast", "1.4 times as fast", "Unchanged"],
         answer: 1,
       }}
-      exploreHint="Drag to 600 K and check the speed bar. Then find where it doubles."
+      exploreHint="Heat to 600 K and read the speed bar. Then heat to 1,200 K."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            {seen.includes(600) ? "At 600 K you saw" : "At 600 K the bar shows"} the typical speed go from about 510 to
-            about <strong>720 m/s</strong>: 1.41 times, not 2. {seen.includes(1200) ? "You needed" : "It takes"} 1,200
-            K, four times the kelvins, to double the speed.
+            At 600 K you saw the typical speed go from about 510 to about <strong>720 m/s</strong>: 1.41 times, not 2. At
+            1,200 K, four times the kelvins, it reached about 1,020 m/s: double.
           </p>
           <p>
-            Temperature measures the average energy of motion per molecule, and that energy grows with speed squared.
-            Double the energy and the speed grows by √2 ≈ 1.41.
+            Temperature tracks the average energy of motion, and energy grows with speed squared. So doubling the kelvins
+            multiplies the speed by only √2 ≈ 1.41.
           </p>
-          <p className="muted">And 27 °C to 54 °C is not &ldquo;twice as hot&rdquo; at all: 300 K to 327 K.</p>
         </>
       )}
     >
       {({ locked, interact }) => (
+        <Milestones interact={interact} names={["at-600", "at-1200"]}>
+        {(reach) => {
+          const heat = (tk: number) => {
+            setTemp(tk);
+            if (tk === 600) reach("at-600");
+            if (tk === 1200) reach("at-1200");
+          };
+          return (
         <div className={s.wrap}>
           <svg viewBox={`0 0 ${BW} ${BAR_Y + 30}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Air molecules at ${temp} kelvin, typical speed ${Math.round(v)} metres per second`}>
             <Box temp={temp} />
@@ -141,6 +147,14 @@ export default function TwiceAsHot({ slug }: { slug: string }) {
             </text>
           </svg>
           <Row>
+            <Control disabled={locked} onClick={() => heat(600)}>
+              Heat to 600 K
+            </Control>
+            <Control disabled={locked} onClick={() => heat(1200)}>
+              Heat to 1,200 K
+            </Control>
+          </Row>
+          <Row>
             <Slider
               label="Temperature"
               value={temp}
@@ -149,14 +163,13 @@ export default function TwiceAsHot({ slug }: { slug: string }) {
               step={50}
               disabled={locked}
               format={(t) => `${t} K (${t - 273} °C)`}
-              onChange={(t) => {
-                setTemp(t);
-                setSeen((xs) => (xs.includes(t) ? xs : [...xs, t]));
-                interact();
-              }}
+              onChange={heat}
             />
           </Row>
         </div>
+          );
+        }}
+        </Milestones>
       )}
     </Lesson>
   );

@@ -145,16 +145,15 @@ export default function ThreeCards({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Seeing red tells you one of the {EX.redFaces} red faces is up, and each is equally likely. Turned over,{" "}
-            {EX.redBacks} of them showed red, because the red/red card owns two red faces: <strong>{frac}</strong>.
+            <strong>{frac}.</strong> &ldquo;Red/red or red/blue card, so 1/2&rdquo; counts cards, but the clue is about a face. Of
+            the {EX.redFaces} red faces, each equally likely, {EX.redBacks} turned over to red, because the red/red card owns
+            two of them.
           </p>
-          <p>
-            &ldquo;It is the red/red card or the red/blue card, so 1/2&rdquo; counts cards. The clue is about a face, so count
-            faces.
-            {n > 0
-              ? ` Your ${n} draws showed red ${t.red} times, and the back was red ${t.redBack} of those (${pct(t.redBack / Math.max(1, t.red))}).`
-              : ""}
-          </p>
+          {n > 0 && (
+            <p>
+              {`Your ${n} draws showed red ${t.red} times, and the back was red ${t.redBack} of those (${pct(t.redBack / Math.max(1, t.red))}). Short runs wobble around ${frac}.`}
+            </p>
+          )}
         </>
       )}
     >

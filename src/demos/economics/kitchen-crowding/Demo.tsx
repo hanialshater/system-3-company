@@ -16,7 +16,7 @@ const DROP = 2;
 const Q_N = 4;
 const N_MAX = 8;
 const START = 2;
-const MILESTONES = ["four-workers"] as const;
+const MILESTONES = ["four-workers", "tops-out"] as const;
 
 /** Pizzas an hour added by worker k (k = 1, 2, …). */
 const adds = (k: number) => Math.max(0, FIRST - DROP * (k - 1));
@@ -41,6 +41,7 @@ function Stage({ ctx, n, setN, onSee }: { ctx: StageContext; n: number; setN: (n
     setN(k);
     onSee(k);
     if (k === Q_N) reach("four-workers");
+    if (k > PEAK_AT) reach("tops-out");
   };
   const total = totalOf(n);
   const naive = FIRST * n;
@@ -97,6 +98,9 @@ function Stage({ ctx, n, setN, onSee }: { ctx: StageContext; n: number; setN: (n
         <Readout label="Pizzas an hour" value={locked ? "?" : total} />
       </Row>
       <Row>
+        <Control className={s.tile} disabled={locked || n >= N_MAX} onClick={() => set(N_MAX)}>
+          Fill the kitchen
+        </Control>
         <Control className={s.tile} disabled={locked || n >= N_MAX} onClick={() => set(n + 1)}>
           Add a worker
         </Control>
@@ -110,36 +114,33 @@ function Stage({ ctx, n, setN, onSee }: { ctx: StageContext; n: number; setN: (n
 
 export default function KitchenCrowding({ slug }: { slug: string }) {
   const [n, setN] = useState(START);
-  const [maxSeen, setMaxSeen] = useState(START);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `One worker in a small kitchen makes ${FIRST} pizzas an hour. Each added worker adds ${DROP} fewer than the last (${adds(2)}, then ${adds(3)}, then ${adds(4)}…). How many pizzas an hour with ${Q_N} workers?`,
+        question: `One worker in a small kitchen with one oven makes ${FIRST} pizzas an hour. How many pizzas an hour do ${Q_N} workers make together?`,
         options: [`${FIRST * Q_N}`, `${ANSWER}`, `${FIRST * 2}`],
         answer: 1,
       }}
-      exploreHint={`Set ${Q_N} workers. Then keep adding.`}
+      exploreHint={`Set ${Q_N} workers, then fill the kitchen.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             {Q_N} workers made <strong>{ANSWER}</strong> pizzas an hour ({adds(1)} + {adds(2)} + {adds(3)} + {adds(4)}), not the{" "}
-            {FIRST * Q_N} in the dashed outline. Each worker added less than the one before.
+            {FIRST * Q_N} in the dashed outline. In this model each added worker adds 2 fewer than the one before.
           </p>
           <p>
             The oven and the counter stay the same size, so each new worker shares them with more people and adds less.
-            {maxSeen > PEAK_AT
-              ? ` You saw worker ${PEAK_AT + 1} add nothing: the kitchen tops out at ${PEAK} an hour.`
-              : ` Keep adding and worker ${PEAK_AT + 1} adds nothing: the kitchen tops out at ${PEAK} an hour.`}{" "}
+            {` You saw worker ${PEAK_AT + 1} add nothing: the kitchen tops out at ${PEAK} an hour.`}{" "}
             That is diminishing returns: when one input is fixed, adding more of another helps less and less.
           </p>
           <p className="muted">A model with made-up numbers. Real kitchens differ, but the fixed oven is the reason.</p>
         </>
       )}
     >
-      {(ctx) => <Stage ctx={ctx} n={n} setN={setN} onSee={(k) => setMaxSeen((m) => Math.max(m, k))} />}
+      {(ctx) => <Stage ctx={ctx} n={n} setN={setN} onSee={() => {}} />}
     </Lesson>
   );
 }

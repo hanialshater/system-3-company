@@ -1,7 +1,7 @@
 {
   "slug": "spam-threshold-tradeoff",
-  "title": "Catch more spam, pay for it",
-  "hook": "Lowering the bar catches more spam. What else does it catch?",
+  "title": "Where do you set the spam bar?",
+  "hook": "Ten emails, one score line. Move the bar and see who gets flagged.",
   "domain": "ai",
   "concept": "precision-recall-threshold",
   "status": "review",
@@ -36,10 +36,8 @@
       "id": "ai.spam-threshold-tradeoff.c2",
       "text": "At 0.50, 4 of 5 spam are caught and 1 real email (0.6) is flagged. At 0.25, all 5 spam are caught and 3 real emails (0.6, 0.4, 0.3) are flagged. At 0.65, no real mail is flagged and 2 spam get through.",
       "support": "derivation",
-      "source": "Count the scores at or above each threshold. Reproduced by running counts() from Demo.tsx: t = 50 → 4, 1; t = 25 → 5, 3; t = 65 → 3, 0.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Count the scores at or above each threshold. Reproduced by running counts() from Demo.tsx: t = 50 → 4, 1; t = 25 → 5, 3; t = 65 → 3, 0. | v2 (2026-10-14): stage now gates the reveal on visiting 0.25 and 0.65; question asks the count of real mail flagged at 0.25; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.spam-threshold-tradeoff.c3",
@@ -82,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:precision-recall-threshold",
     "prerequisites": [

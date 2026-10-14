@@ -108,9 +108,9 @@ export default function WebMapCutOffLatitude({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <Row>
-                  {CUTS.map((c) => (
+                  {CUTS.map((c, i) => (
                     <Control key={c} disabled={locked} className={cut === c ? "active" : ""} onClick={() => go(c)}>
-                      {c >= 90 ? "To the pole" : `${fmtLat(c)}°`}
+                      {locked ? `Cut ${i + 1}` : c >= 90 ? "To the pole" : `${fmtLat(c)}°`}
                     </Control>
                   ))}
                 </Row>

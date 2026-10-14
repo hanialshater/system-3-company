@@ -4,3 +4,8 @@
 - No randomness: full enumeration. 17/42 = 0.4048 and pooled 12 of 24 recomputed in node from model.ts, the same code that draws the tiles.
 - Question reuses the exact brief wording about averaging; "share" defined on stage as heads among flips right after a head.
 - Miller and Sanjurjo citation recorded as claim 5 (unverified, wording to check). No claim about whether the hot hand exists.
+
+
+## Revision v2
+
+Review: procedure unclear; 17/42 from nowhere; weighting not visible. Changes: worked example (HHHT: 2 of 3) in the question; stage says each tile gets one vote; 17/42 dropped from the reveal. Version 2. Not done: showing flip counts on tiles.
