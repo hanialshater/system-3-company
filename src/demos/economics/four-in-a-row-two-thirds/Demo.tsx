@@ -73,9 +73,9 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
             settled at <strong>{usd(ROUNDS[SETTLED_AT].inner)}</strong> (two thirds) by round {SETTLED_AT}. A kept {usd(1 - ROUNDS[SETTLED_AT].inner)}.
           </p>
           <p>
-            B&apos;s fallback is $1 minus C&apos;s share the round before, and C&apos;s share is always B&apos;s. When C got{" "}
-            {usd(ROUNDS[1].inner)} in round 1, B&apos;s fallback fell to {usd(ROUNDS[2].fallback)} in round 2. C&apos;s fallback is B, so C is never desperate either. Each inner person&apos;s outside option
-            feeds the other&apos;s, and the swings shrink to the split where B&apos;s share = 1 − half of C&apos;s: two thirds.
+            B&apos;s fallback is $1 minus C&apos;s share the round before, and C&apos;s share is always B&apos;s: when C got{" "}
+            {usd(ROUNDS[1].inner)} in round 1, B&apos;s fallback fell to {usd(ROUNDS[2].fallback)} in round 2. Each inner
+            person&apos;s outside option feeds the other&apos;s.
           </p>
           <p>
             In a line of three, the centre&apos;s partners have no other deal, so the centre can take nearly all. Power depends on the whole
@@ -98,7 +98,7 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
             // Split bars: A–B bar has A on the left, B on the right (B's fallback hatched next to B).
             const ab = { x: NODE_X[0] - 20, a: outer, b: inner, fb: fallback };
             const cd = { x: NODE_X[2] - 20 };
-            const stripX = (r: number) => 30 + (r / MAX_ROUND) * 270;
+            const stripX = (r: number) => 30 + (r / MAX_ROUND) * 260; // ends at 290; labels end at 318
             const stripY = (v: number) => STRIP_Y + STRIP_H - ((v - 0.5) / 0.5) * STRIP_H;
             return (
               <div className={s.wrap}>
@@ -160,11 +160,11 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
 
                   {/* B's share by round */}
                   {[0.5, 0.75, 1].map((v) => (
-                    <text key={v} x={302} y={stripY(v) + 4} className={s.small}>
+                    <text key={v} x={318} y={stripY(v) + 4} textAnchor="end" className={s.small}>
                       {v.toFixed(2)}
                     </text>
                   ))}
-                  <line x1={30} y1={STRIP_Y + STRIP_H} x2={300} y2={STRIP_Y + STRIP_H} stroke="var(--line)" />
+                  <line x1={30} y1={STRIP_Y + STRIP_H} x2={290} y2={STRIP_Y + STRIP_H} stroke="var(--line)" />
                   <text x={30} y={STRIP_Y - 6} className={s.axis}>
                     B&apos;s share by round
                   </text>

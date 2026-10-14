@@ -42,7 +42,11 @@ function cover(lo: number, hi: number, l = 0, r = N - 1, out: Block[] = [], d = 
   cover(lo, hi, m + 1, r, out, d + 1);
   return out;
 }
-const Q_COUNT = cover(Q_LO, Q_HI).length; // 4
+const Q_COVER = cover(Q_LO, Q_HI);
+const Q_COUNT = Q_COVER.length; // 4
+const Q_KEYS = new Set(Q_COVER.map((b) => `${b.l}-${b.r}`));
+const label = (b: Block) => (b.l === b.r ? `[${b.l}]` : `[${b.l} to ${b.r}]`);
+const Q_LABELS = Q_COVER.map(label); // [3], [4 to 7], [8 to 11], [12]
 let MAX_COUNT = 0;
 for (let a = 0; a < N; a++) for (let b = a; b < N; b++) MAX_COUNT = Math.max(MAX_COUNT, cover(a, b).length);
 const PATH_LEN = BLOCKS.filter((b) => b.l <= EDIT_AT && EDIT_AT <= b.r).length; // 5
@@ -72,6 +76,9 @@ function Stage({
   const [edits, setEdits] = useState(0);
   const [combined, setCombined] = useState<string | null>(null); // "lo-hi-edits" when combined
   const [changed, setChanged] = useState(false);
+  const [prev, setPrev] = useState<number | null>(null); // the value at EDIT_AT before the last change
+  // Recorded when the question's own range is combined; stays on the stage after the range moves.
+  const [seenMin, setSeenMin] = useState<number | null>(null);
 
   const min = (b: Block) => Math.min(...vals.slice(b.l, b.r + 1));
   const used = cover(lo, hi);
@@ -89,12 +96,16 @@ function Stage({
     if (locked || isCombined) return;
     setCombined(`${lo}-${hi}-${edits}`);
     setChanged(false);
-    if (lo === Q_LO && hi === Q_HI) reach("combined");
+    if (lo === Q_LO && hi === Q_HI) {
+      setSeenMin(answer);
+      reach("combined");
+    }
   };
   const change = () => {
     if (locked) return;
     const e = edits + 1;
     setEdits(e);
+    setPrev(vals[EDIT_AT]);
     setVals(vals.map((v, i) => (i === EDIT_AT ? EDIT_VALUES[e % EDIT_VALUES.length] : v)));
     setChanged(true);
     reach("changed");
@@ -103,7 +114,7 @@ function Stage({
   const msg = locked
     ? "Predict first, then pick a range."
     : changed
-      ? `Position ${EDIT_AT} changed: only the ${PATH_LEN} nodes on its path to the top were rewritten.`
+      ? `Position ${EDIT_AT} changed from ${prev} to ${vals[EDIT_AT]}: only the ${PATH_LEN} nodes on its path to the top were rewritten.`
       : isCombined
         ? `Minimum of ${lo} to ${hi} is ${answer}, from ${used.length} stored nodes.`
         : `Lit nodes lie wholly inside ${lo} to ${hi}. Combine them.`;
@@ -117,6 +128,7 @@ function Stage({
         {BLOCKS.map((b) => {
           const on = usedKeys.has(key(b));
           const onPath = changed && b.l <= EDIT_AT && EDIT_AT <= b.r;
+          const trace = !on && !onPath && seenMin !== null && Q_KEYS.has(key(b));
           return (
             <g key={key(b)}>
               <rect
@@ -127,8 +139,9 @@ function Stage({
                 rx={4}
                 fill={on ? "var(--domain)" : "var(--bg-2)"}
                 fillOpacity={on ? 0.85 : 1}
-                stroke={onPath ? "var(--good)" : on ? "var(--fg)" : "var(--line)"}
-                strokeWidth={onPath ? 3 : on ? (isCombined ? 2.5 : 1.5) : 1}
+                stroke={onPath ? "var(--good)" : on ? "var(--fg)" : trace ? "var(--domain)" : "var(--line)"}
+                strokeWidth={onPath ? 3 : on ? (isCombined ? 2.5 : 1.5) : trace ? 2 : 1}
+                strokeDasharray={trace ? "4 3" : undefined}
               />
               <text x={bx(b) + bw(b) / 2} y={by(b) + 17} textAnchor="middle" className={`${s.v} ${on ? s.vOn : ""}`}>
                 {min(b)}
@@ -148,6 +161,11 @@ function Stage({
         <Readout label="Nodes used" value={used.length} />
         <Readout label="Minimum" value={isCombined ? answer : "?"} />
       </Row>
+      {seenMin !== null && (
+        <p className={s.seen}>
+          Seen: {Q_LO} to {Q_HI} = {Q_LABELS.join(" + ")}, {Q_COUNT} nodes, minimum {seenMin}
+        </p>
+      )}
       <Row>
         <Control className={`${s.tap} active`} disabled={locked || (lo === Q_LO && hi === Q_HI)} onClick={() => setRange(Q_LO, Q_HI)}>
           Positions {Q_LO} to {Q_HI}
@@ -185,7 +203,8 @@ export default function RangeMinInFourNodes({ slug }: { slug: string }) {
         <>
           <p>
             Positions {Q_LO} to {Q_HI} are {Q_HI - Q_LO + 1} values, but you combined just <strong>{Q_COUNT}</strong> stored
-            nodes: [3], [4 to 7], [8 to 11] and [12]. Only the ragged ends need small nodes; the middle is covered by big
+              nodes: {Q_LABELS.slice(0, -1).join(", ")} and {Q_LABELS[Q_LABELS.length - 1]} (the Seen row; dashed when not lit).
+            Only the ragged ends need small nodes; the middle is covered by big
             aligned ones.{" "}
             {isQ ? "" : `Your last range, ${range.lo} to ${range.hi}, needed ${own}. `}No range of these {N} positions needs
             more than {MAX_COUNT}.

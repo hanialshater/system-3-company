@@ -75,6 +75,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.no-fraction-fits.c8",
+      "text": "Stage gloss: '2s' is how many 2s multiply into a number, shown by splitting off its 2s, e.g. 50 = 2 × 25 (one 2), 16 = 2 × 2 × 2 × 2 (four), 49 = 49 (no 2s), 9800 = 2 × 2 × 2 × 1225 (three).",
+      "support": "derivation",
+      "source": "Demo.tsx split(n): twos(n) factors of 2, then the odd part n / 2^twos(n), omitted when it is 1. Arithmetic: 50 = 2·25, 16 = 2^4, 49 odd, 9800 = 8·1225. Builder revision v5 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -103,7 +110,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "math:sqrt2-irrational",
     "prerequisites": [

@@ -59,20 +59,40 @@ function plan(hand: number[]): Plan {
 }
 const PLANS: Record<Hand, Plan> = { spread: plan(HANDS.spread), clumped: plan(HANDS.clumped) };
 
+// What a sorted hand looked like, for the "Seen" rows (they survive switching hands) and the reveal.
+function summary(h: Hand) {
+  const p = PLANS[h];
+  const used = p.dropped.filter((x) => x.length > 0).length;
+  const shared = p.dropped.filter((x) => x.length > 1);
+  const full = p.dropped.findIndex((x) => x.length === 10);
+  // Tests each newcomer made, in arrival order (the first number in a bucket makes none).
+  const terms = HANDS[h].map((x) => p.slides.get(x) ?? 0).filter((t) => t > 0);
+  return { used, shared, full, terms, total: p.events.length };
+}
+const SUM = { spread: summary("spread"), clumped: summary("clumped") };
+const range = (b: number) => `${b * 10 + 1}-${b * 10 + 10}`;
+const seenLine = (h: Hand) => {
+  const m = SUM[h];
+  const n = `${m.total} comparison${m.total === 1 ? "" : "s"}`;
+  if (m.full >= 0) return `clumped: all 10 in ${range(m.full)}; ${m.terms.join("+")} = ${n}`;
+  const sh = m.shared.map((x) => x.join(" & ")).join(", ");
+  return `spread: ${m.used} buckets${sh ? `, ${sh} shared one` : ""}; ${n}`;
+};
+
 type View = { hand: Hand; k: number; step: number; sorted: boolean; flash: boolean };
 const START: View = { hand: "spread", k: 0, step: 0, sorted: false, flash: false };
 
 const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// Layout (viewBox 340 x 282).
+// Layout (viewBox 340 x 260; compact so the whole tower of ten fits the phone stage).
 const TILE = 30;
 const COL = 32;
 const GAP = 2;
 const TOP = 44;
-const DEPTH = 186;
+const DEPTH = 166;
 const BOTTOM = TOP + DEPTH;
-const STACK = 18;
+const STACK = 16;
 const colX = (b: number) => 1 + b * (COL + GAP);
 
 export default function OneCrowdedBucket({ slug }: { slug: string }) {
@@ -99,19 +119,20 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
       exploreHint="Drop and sort the spread hand, then switch to the clumped one."
       minInteractions={2}
       reveal={() => {
-        const sp = results.spread ?? 1;
-        const cl = results.clumped ?? 30;
+        const sp = SUM.spread;
+        const cl = SUM.clumped;
         const sl = PLANS.clumped.slides;
         const most = Math.max(...Array.from(sl.values()));
         const late = HANDS.clumped.filter((x) => sl.get(x) === most);
+        const shared = sp.shared.map((x) => x.join(" and ")).join(", ");
         return (
           <>
             <p>
-              Spread out, the ten numbers landed in nine buckets. Only 64 and 70 shared one, so sorting took {sp}{" "}
-              comparison{sp === 1 ? "" : "s"}. Clumped, all ten fell into 41-50, and the &ldquo;tiny&rdquo; sorts became
-              one insertion sort of ten numbers: {cl} comparisons. The small numbers on the tower&rsquo;s tiles add up to
-              that: each newcomer slides past every bigger number already there, and {late.join(" and ")} made {most}{" "}
-              tests each.
+              Spread out, the ten numbers landed in {sp.used} buckets{shared ? `. Only ${shared} shared one` : ""}, so
+              sorting took {sp.total} comparison{sp.total === 1 ? "" : "s"}. Clumped, all ten fell into{" "}
+              {range(cl.full)}, and the &ldquo;tiny&rdquo; sorts became one insertion sort of ten numbers. Each
+              newcomer slid past every bigger number already there: {cl.terms.join(" + ")} = {cl.total} comparisons, and{" "}
+              {late.join(" and ")} made {most} tests each. Both runs are on the Seen rows.
             </p>
             <p>
               Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it
@@ -222,7 +243,7 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                 <p className={s.rule}>
                   Drop each number in its bucket of ten, then insertion-sort inside each bucket. Count comparisons.
                 </p>
-                <svg viewBox="0 0 340 282" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
+                <svg viewBox="0 0 340 260" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
                   {hand.map((x, i) => {
                     const gone = i < v.k;
                     return (
@@ -277,14 +298,14 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                               />
                               <text
                                 x={v.sorted ? x + 12 : x + COL / 2}
-                                y={y + 12}
+                                y={y + 11}
                                 textAnchor="middle"
                                 className={s.bnum}
                               >
                                 {val}
                               </text>
                               {v.sorted && (p.slides.get(val) ?? 0) > 0 && (
-                                <text x={x + COL - 4} y={y + 12} textAnchor="end" className={s.slide}>
+                                <text x={x + COL - 4} y={y + 11} textAnchor="end" className={s.slide}>
                                   {p.slides.get(val)}
                                 </text>
                               )}
@@ -302,7 +323,7 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  <text x={170} y={278} textAnchor="middle" className={s.cap}>
+                  <text x={170} y={256} textAnchor="middle" className={s.cap}>
                     {v.sorted ? "small number on a tile: tests it made sliding into place" : "each bucket holds ten values"}
                   </text>
                 </svg>
@@ -337,6 +358,13 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                   <Readout label="Spread" value={results.spread ?? "?"} />
                   <Readout label="Clumped" value={results.clumped ?? "?"} />
                 </Row>
+                {(["spread", "clumped"] as const).map((h) =>
+                  results[h] !== undefined ? (
+                    <p key={h} className={s.seen}>
+                      Seen, {seenLine(h)}
+                    </p>
+                  ) : null,
+                )}
               </div>
             );
           }}

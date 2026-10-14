@@ -1,7 +1,7 @@
 {
   "slug": "every-scale-equally-likely",
   "title": "Near or far: where do 1/d links land?",
-  "hook": "If nearer links are likelier, where do most links land?",
+  "hook": "Nearer distances are likelier. How much likelier is a near band than a far one?",
   "domain": "probability",
   "concept": "distance-scales",
   "format": "single-card",
@@ -78,12 +78,19 @@
     },
     {
       "id": "probability.every-scale-equally-likely.c7",
-      "text": "Under 1/d, band 2–3 holds 2 distances at about 0.42 each (relative to d = 1), about 0.83 in all, and band 256–512 holds 257 distances at about 0.0027 each, about 0.70 in all; their shares are 12.2% and 10.2%.",
+      "text": "Under 1/d, band 2–3 holds 2 distances at about 0.42 each (relative to d = 1) and band 256–512 holds 257 distances at about 0.0027 each; their shares are 12.2% and 10.2%. The stage's compare line shows this ('1/d, distances × chance each: 2–3: 2 × 0.42 → 12.2% · 256–512: 257 × 0.0027 → 10.2% · ratio 1.2×') once 1/d has been picked, and keeps it while other rules are shown.",
       "support": "derivation",
-      "source": "Builder's node sums (2026-10-14): sum_{d=2..3} 1/d = 0.8333, /2 = 0.4167; sum_{d=256..512} 1/d = 0.6961, /257 = 0.00271. Shown as sig2(): 0.42, 0.83, 0.0027, 0.70. Shares per c1 (the stage weights also count 2 people per distance except d = 512, which is why 0.83 : 0.70 matches 12.2 : 10.2 only approximately; the line uses ≈). Demo.tsx v2 compare line and reveal. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own sums: sum_{d=2..3} 1/d = 0.833 (/2 = 0.42), sum_{d=256..512} 1/d = 0.696 (/257 = 0.0027), sig2 -> 0.42, 0.83, 0.0027, 0.70. The people-weighted shares (2 per distance, 1 at 512) are 12.2% and 10.2%. The compare line is shown under 1/d (milestone q1 is required).",
-      "status": "verified",
+      "source": "Builder's node sums (2026-10-14): sum_{d=2..3} 1/d = 0.8333, /2 = 0.4167; sum_{d=256..512} 1/d = 0.6961, /257 = 0.00271. Shown as sig2(): 0.42, 0.83, 0.0027, 0.70. Shares per c1 (the stage weights also count 2 people per distance except d = 512, which is why 0.83 : 0.70 matches 12.2 : 10.2 only approximately; the line uses ≈). Demo.tsx v2 compare line and reveal. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own sums: sum_{d=2..3} 1/d = 0.833 (/2 = 0.42), sum_{d=256..512} 1/d = 0.696 (/257 = 0.0027), sig2 -> 0.42, 0.83, 0.0027, 0.70. The people-weighted shares (2 per distance, 1 at 512) are 12.2% and 10.2%. The compare line is shown under 1/d (milestone q1 is required). | Builder revision v3 (demo-builder, 2026-10-14, wave G r7): the band totals '≈ 0.83' and '≈ 0.70' are no longer printed (they matched 12.2 : 10.2 only approximately, because the shares also weight 2 people per distance except d = 512); the line adds the ratio and stays once 1/d is seen. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c8",
+      "text": "With 1/d links on a ring of 1,024, about 1.2 times as many links land 2–3 away as 256–512 away (12.2% against 10.2%), though each 2–3 distance is far likelier than each 256–512 distance.",
+      "support": "simulation",
+      "source": "Demo.tsx RATIO = 12.2 / 10.2 at the stage's one-decimal rounding = 1.196 -> '1.2'. Unrounded shares from shares(1): 0.1222 / 0.1018 ≈ 1.20. Per-distance chance: 0.42 vs 0.0027 (c7), about 150 times. Answer key: the question asks 'how many times as many links land 2–3 away as 256–512 away'; options About 100× / About 10× / About 1×, answer About 1×. Builder revision v3 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -108,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:distance-scales",
     "also": [],

@@ -5,7 +5,8 @@
 // number is compared with the stack top, pops every smaller top (each pop answers that value), then is pushed
 // (each comparison is a tick, so the cost is a thin column). Comparison convention (claim c2): a stack comparison
 // is one test of the new value against the current top; the scan stops at the first bigger value.
-// 9 8 ... 1: scan 36, stack 8. 8 ... 1 9 (added by the spec): scan 36, stack 15, eight pops in one press.
+// 9 8 ... 1: scan 36, stack 8. 8 ... 1 9 (added by the spec): scan 36, stack 15; the 9 pops eight, one per
+// Next number press (or one per 260 ms frame in a replay).
 // Spec: company/design/specs/each-element-pops-once.md.
 
 import { useEffect, useRef, useState } from "react";
@@ -49,6 +50,7 @@ const RUNS = LISTS.map(run);
 const N = LISTS[0].length;
 
 const CELL = 36;
+const POP_MS = 260;
 const LX = 18;
 const ROW = 18;
 const PANEL_Y = 92;
@@ -67,9 +69,9 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
   // True once the learner has watched the 9 on 8 ... 1 9 empty the stack one box at a time (animated, or
   // stepped press by press under reduced motion). The reveal says "box by box" only then.
   const [sawEmpty, setSawEmpty] = useState(false);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
-    if (timer.current) clearInterval(timer.current);
+    if (timer.current) clearTimeout(timer.current);
   }, []);
 
   const a = LISTS[list];
@@ -98,15 +100,15 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
         options: [String(d0.scanTotal), "18", String(d0.stackTotal)],
         answer: 2,
       }}
-      exploreHint="Feed in the numbers and watch both counts."
+      exploreHint="Step with Next number. When a bigger number arrives, each press pops one waiting number."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
             On {CHIP[0]}, scanning took {d0.scanTotal} comparisons and the stack {d0.stackTotal}: each later number met one
-            bigger top (a hollow tick) and was pushed.
+            bigger top (a hollow "stop" tick) and was pushed.
             {table[1]
-              ? ` On ${CHIP[1]}, the 9's row showed ${d1.pops} solid ticks marked "${d1.pops} pops", one for each waiting number${
+              ? ` On ${CHIP[1]}, the 9's row showed ${d1.pops} solid "pop" ticks marked "${d1.pops} pops", one for each waiting number${
                   sawEmpty ? ", while the stack emptied box by box down to the 9" : ""
                 }. That run cost ${d1.stackTotal} in all, still against ${d1.scanTotal}.`
               : ""}
@@ -129,9 +131,10 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
             const reducedMotion = () =>
               typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
             // Play frames [k, pk] for numbers from..to-1 of list l: one per number, and a number that pops gets a
-            // frame on arrival and one per pop (8 ... 1 9: 18 frames, ~400 ms). Finishes the list if it reaches N.
+            // frame on arrival and one per pop. Plain frames take 40 ms; pop frames take POP_MS so each pop is a
+            // visible state (8 ... 1 9 from the start: 8 x 40 + 9 x 260 + 40, about 2.7 s). Finishes the list at N.
             const play = (l: number, from: number, to: number) => {
-              if (timer.current) clearInterval(timer.current);
+              if (timer.current) clearTimeout(timer.current);
               const frames: [number, number | null][] = [];
               let pops = false;
               for (let i = from; i < to; i++) {
@@ -144,24 +147,26 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
               }
               setBusy(true);
               let f = 0;
-              timer.current = setInterval(() => {
+              const tick = () => {
                 const [kk, q] = frames[f];
                 setK(kk);
                 setPk(q);
                 f += 1;
                 if (f >= frames.length) {
-                  if (timer.current) clearInterval(timer.current);
                   timer.current = null;
                   setBusy(false);
                   if (pops && l === 1) setSawEmpty(true);
                   if (to >= N) finish(l);
+                  return;
                 }
-              }, 22);
+                timer.current = setTimeout(tick, q !== null ? POP_MS : 40);
+              };
+              timer.current = setTimeout(tick, 40);
             };
             const replay = (l: number, from: number) => {
               if (reducedMotion() || from >= N) {
                 // No animation: jump to the end. The stack was not seen emptying, so sawEmpty stays as it was.
-                if (timer.current) clearInterval(timer.current);
+                if (timer.current) clearTimeout(timer.current);
                 setK(N);
                 setPk(null);
                 finish(l);
@@ -171,7 +176,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
             };
             const next = () => {
               if (locked || busy || finished) return;
-              // Reduced motion, mid-pops: each press shows one more pop; the press after the last pushes the number.
+              // Mid-pops: each press shows one more pop; the press after the last pushes the number.
               if (pk !== null) {
                 const np = R.steps[k - 1].popped.length;
                 if (pk < np) {
@@ -185,12 +190,9 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
               }
               const kk = k + 1;
               if (R.steps[kk - 1].popped.length > 0) {
-                if (reducedMotion()) {
-                  setK(kk);
-                  setPk(0); // arrival frame; the pops follow press by press
-                } else {
-                  play(list, k, kk); // the pops step one box at a time, as in the replay
-                }
+                // Arrival frame; each further press pops one waiting number, so every pop is its own state.
+                setK(kk);
+                setPk(0);
                 return;
               }
               setK(kk);
@@ -257,6 +259,14 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                   <text x={186} y={PANEL_Y} className={s.head}>
                     Stack: {k === 0 ? "?" : stackSoFar}
                   </text>
+                  <rect x={262} y={PANEL_Y - 10} width={7} height={11} fill="var(--domain)" stroke="var(--domain)" />
+                  <text x={272} y={PANEL_Y} className={s.lab}>
+                    pop
+                  </text>
+                  <rect x={300} y={PANEL_Y - 10} width={7} height={11} fill="none" stroke="var(--domain)" strokeWidth={1.8} />
+                  <text x={310} y={PANEL_Y} className={s.lab}>
+                    stop
+                  </text>
                   <line x1={180} x2={180} y1={PANEL_Y - 12} y2={STACK_BOTTOM} stroke="var(--line)" />
 
                   {seen.map((x, i) => {
@@ -279,10 +289,10 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                             x={246 + t * 8}
                             y={y + 1}
                             width={6}
-                            height={10}
-                            fill={t < np ? "var(--domain)" : "none"}
+                            height={11}
+                            fill={t < np ? "var(--domain)" : "var(--bg)"}
                             stroke="var(--domain)"
-                            strokeWidth={1}
+                            strokeWidth={t < np ? 1 : 1.8}
                           />
                         ))}
                         {np > 0 && (

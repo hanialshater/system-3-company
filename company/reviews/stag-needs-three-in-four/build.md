@@ -21,3 +21,14 @@ builder: demo-builder (ncm-e00) · 2026-10-14 · brief: Course NCM #8
 4. Reveal values: "4 × your confidence", "a sure 3" (the lines); "At 50% ... only 2" (milestone half; the mark "2" on the stag line); "crossed at 75%" (milestone threshold; mark "3" at 75% and the bold 75% tick); "At 0% ... hare ... 3 each" (milestone hare-stable; ticked box "✓ both hare: 3 each"); "At 100% ... 4 each" (milestone stag-stable; ticked box "✓ both stag: 4 each").
 5. QA path: 0% (hare-stable), 50% (half), 75% (threshold), 100% (stag-stable), slider two left presses (95%, 90%). Four presses reach all four milestones, including the question's case (75%); the marks and ticks stay.
 6. Reset: no Reset control; marks and ticks only accumulate. Reveal after that path: "Stag is worth 4 × your confidence; hare is a sure 3. At 50% the stag was worth only 2, and the lines crossed at 75%: below that, hare is the better bet. / At 0% your best reply was hare, and a partner just as sure of you replies hare too: both hare, 3 each. At 100% it was both stag, 4 each. Both boxes are ticked: each outcome is the best reply to itself. Both hunters prefer the stag, yet doubt alone can lock them into hare. / Invented payoffs in a simplified model. The game is called the stag hunt, after an example of Rousseau's."
+
+## Pre-flight v3 (demo-builder, 2026-10-14, wave G, r7 adult-beginner)
+
+Fixes: (top) the preset row (0 / 50 / 75 / 100% sure) is no longer rendered while locked, so no "75%" label sits on the locked stage. The options are now four thresholds worded the same way, so 75 is not the only non-anchor number. Not changed: the coordination chip wording (r7 finding 3, minor) and "at least" vs the tie at 75% (finding 4, defensible: stag is not worse at 75%).
+1. Title and hook: "Stag or hare: how sure must you be?" / "Both hunters prefer the stag. So why might both settle for a hare?" No percentage named.
+2. Options: "At least 50%" · "At least 75%" · "At least 90%" · "Fully sure: 100%". Each one whole percentage; 50 and 100 are anchors, 75 and 90 are not.
+3. Locked stage: model chip, empty axes 0–4 and evenly spaced ticks 0/25/50/75/100% (75 drawn like the others), two unticked boxes, readouts "?", the slider (disabled, label "How sure you are", value 60%). No preset row, line, tint or dot.
+4. Reveal values: unchanged from v2: 2 at 50% (milestone half, mark "2"); crossing at 75% (milestone threshold, mark "3" and bold tick); both hare 3 each at 0% (milestone hare-stable, ticked box); both stag 4 each at 100% (milestone stag-stable, ticked box).
+5. QA path: after the commit the preset row appears in the same place in DOM order: 0%, 50%, 75%, 100%, then the slider (two presses). All four milestones; marks and ticks stay.
+6. Reset: no Reset; marks and ticks only accumulate. Reveal text as in Pre-flight v2 (unchanged code).
+- meta.json 2 -> 3; no claim text changed (options are not claims). Not run: build, QA, walkthrough, tsc.

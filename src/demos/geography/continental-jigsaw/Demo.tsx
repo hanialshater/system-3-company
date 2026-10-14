@@ -7,10 +7,10 @@
 // A rotation on the sphere keeps its size and shape; only its place changes. The learner closes
 // the Atlantic and sees where Brazil's eastern bulge lands.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Row, Slider } from "@/kit/controls";
-import { WorldMap, country, geoOrthographic, mapFeature } from "@/kit/geo";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { EARTH_RADIUS_KM, WorldMap, country, geoArea, geoOrthographic, mapFeature } from "@/kit/geo";
 import type { Feature, FeatureCollection, Geometry, MultiPolygon } from "geojson";
 import s from "./styles.module.css";
 
@@ -52,6 +52,18 @@ const REGIONS: { t: string; p: Pt; a?: "end" }[] = [
   { t: "Southern Africa", p: [24, -27] },
 ];
 
+const deg = (pct: number) => Math.round((ANGLE * pct) / 100);
+// Area on the sphere in million km², at the stage's rounding (one decimal). A rotation cannot change it.
+const areaM = (fc: FeatureCollection<Geometry>) => ((geoArea(fc) * EARTH_RADIUS_KM * EARTH_RADIUS_KM) / 1e6).toFixed(1);
+
+/** When the reveal opens after a fit, put the slider back on the fit the reveal describes. */
+function SyncOnReveal({ on, sync }: { on: boolean; sync: () => void }) {
+  useEffect(() => {
+    if (on) sync();
+  }, [on]); // only when the reveal opens; afterwards the learner may move the slider again
+  return null;
+}
+
 export default function ContinentalJigsaw({ slug }: { slug: string }) {
   const [pct, setPct] = useState(0);
   const [fitted, setFitted] = useState(false);
@@ -68,10 +80,19 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
     [sa, turn],
   );
   const tip = projection(turn(TIP));
-  // In the reveal the stage shows the closed fit the reveal describes, even if the learner went back to today.
-  const full = useMemo(() => rotation(POLE, ANGLE), []);
-  const closed = useMemo(() => ({ ...sa, features: sa.features.map((f) => mapFeature(f, full)) }), [sa, full]);
-  const closedTip = projection(full(TIP));
+  // The bulge's trail: where the tip has been on the way from today to the current turn (an arc about the pivot).
+  const trail = useMemo(() => {
+    const pts: string[] = [];
+    for (let k = 0; k <= pct; k += 2) {
+      const q = projection(rotation(POLE, (ANGLE * k) / 100)(TIP));
+      if (q) pts.push(`${q[0].toFixed(1)},${q[1].toFixed(1)}`);
+    }
+    const end = projection(rotation(POLE, (ANGLE * pct) / 100)(TIP));
+    if (end) pts.push(`${end[0].toFixed(1)},${end[1].toFixed(1)}`);
+    return pts.join(" ");
+  }, [pct, projection]);
+  const pivot = projection(POLE);
+  const area = areaM(moved);
 
   const set = (v: number, interact: () => void) => {
     setPct(v);
@@ -95,8 +116,10 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
         <>
           <p>
             It tucks into the <strong>Gulf of Guinea</strong>, under West Africa&rsquo;s coast near Nigeria and Cameroon.
-            You turned South America as one solid piece, {ANGLE}° about a single point in the North Atlantic, and its
-            coast closed against Africa&rsquo;s with only small gaps and overlaps, as you saw in the outline.
+            You turned South America as one solid piece, {ANGLE}° about the pivot in the North Atlantic: the red
+            dot&rsquo;s trail is an arc around it. It looked bigger as it moved toward the middle of the globe, but its size
+            stayed {areaM(sa)} million km² the whole way. Its coast closed against Africa&rsquo;s with small gaps and
+            overlaps.
           </p>
           <p>
             The fit here is rough: these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
@@ -106,17 +129,18 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact, phase }) => {
-        const showFit = phase === "reveal" && fitted;
-        const shape = showFit ? closed : moved;
-        const dot = showFit ? closedTip : tip;
+        const shape = moved;
+        const dot = tip;
         return (
         <div className={s.wrap}>
+          {/* In the reveal the stage shows the closed fit the reveal describes, even if the learner went back to today. */}
+          <SyncOnReveal on={phase === "reveal" && fitted} sync={() => setPct(100)} />
           <WorldMap
             projection={projection}
             width={W}
             height={H}
             graticule={false}
-            label={`Orthographic view of the South Atlantic. South America turned ${showFit ? 100 : pct}% of the way to its fit against Africa.`}
+            label={`Orthographic view of the South Atlantic. South America turned ${deg(pct)} degrees about a pivot in the North Atlantic.`}
           >
             {({ path }) => (
               <>
@@ -132,13 +156,38 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
                     </g>
                   );
                 })}
+                {pct > 0 && <polyline points={trail} className={s.trail} />}
+                {pivot && !locked &&
+                  (pivot[1] >= 8 ? (
+                    <g>
+                      <path d={`M${pivot[0] - 5},${pivot[1]} h10 M${pivot[0]},${pivot[1] - 5} v10`} className={s.pivot} />
+                      <text x={pivot[0] + 7} y={pivot[1] + 3} className={s.region}>
+                        pivot
+                      </text>
+                    </g>
+                  ) : (
+                    // The pivot (44°N) sits just above this view: an arrow at the top edge points to it.
+                    <g>
+                      <path d={`M${pivot[0]},3 l-5,8 h10 z`} className={s.pivotArrow} />
+                      <text x={pivot[0] + 8} y={11} className={s.region}>
+                        pivot just above (44°N)
+                      </text>
+                    </g>
+                  ))}
                 {dot && <circle cx={dot[0]} cy={dot[1]} r={3.2} className={s.tip} />}
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">Globe view. Grey: today&rsquo;s coasts. Blue outline: South America as you move it; gaps and overlaps show. Red dot: the bulge.</p>
+          <p className="muted tiny">
+            Grey: today&rsquo;s coasts. Blue: South America, turned about the pivot. Red dot: the bulge, with its trail. The
+            globe squashes shapes near its edge.
+          </p>
           <Row>
-            <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${v}%`} onChange={(v) => set(v, interact)} />
+            <Readout label="Turned" value={`${deg(pct)}°`} />
+            <Readout label="Size on the globe" value={`${area} million km²`} />
+          </Row>
+          <Row>
+            <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${deg(v)}°`} onChange={(v) => set(v, interact)} />
           </Row>
           <Row>
             <Control disabled={locked || pct === 100} onClick={() => set(100, interact)}>

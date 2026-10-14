@@ -51,6 +51,8 @@ const sig2 = (x: number) => (x >= 0.1 ? x.toFixed(2) : x.toPrecision(2));
 const QB = [1, 8]; // the question's bands: 2–3 and 256–512
 const SHARES = RULES.map((r) => shares(r.q));
 const pct = (x: number) => `${(100 * x).toFixed(1)}%`;
+// How many times as many links land 2–3 away as 256–512 away under 1/d, from the shares at the stage's rounding.
+const RATIO = (Number((100 * SHARES[R1][1]).toFixed(1)) / Number((100 * SHARES[R1][8]).toFixed(1))).toFixed(1); // 1.2
 const frac = (n: number) => (n === 1 ? "1" : `1/${n.toLocaleString("en-US")}`);
 
 // chart
@@ -78,8 +80,9 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "On a ring of 1,024, links land at distance d with chance ∝ 1/d. More likely: 2–3 away or 256–512 away?",
-        options: ["2–3 away", "256–512 away", "About equal"],
+        question:
+          "On a ring of 1,024, links land at distance d with chance ∝ 1/d. How many times as many links land 2–3 away as 256–512 away?",
+        options: ["About 100×", "About 10×", "About 1×"],
         answer: 2,
       }}
       exploreHint="Try all three rules, then slide across the bands under 1/d."
@@ -87,9 +90,10 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With 1/d links, the band 2–3 got {pct(SHARES[R1][1])} of links and 256–512 got {pct(SHARES[R1][8])}: 2
-            distances at about {sig2(weight(BANDS[1], 1) / 2)} each against 257 at about {sig2(weight(BANDS[8], 1) / 257)}{" "}
-            each (the compare line). Every band from 2–3 out gets 10–12%.
+            With 1/d links, the band 2–3 got {pct(SHARES[R1][1])} of links and 256–512 got {pct(SHARES[R1][8])}: about{" "}
+            {RATIO}× as many (the compare line), though each 2–3 distance is far likelier: 2 distances at about{" "}
+            {sig2(weight(BANDS[1], 1) / 2)} each against 257 at about {sig2(weight(BANDS[8], 1) / 257)} each. Every band from
+            2–3 out gets 10–12%.
           </p>
           <p>
             Each band holds twice as many distances as the one before, and each of those distances is half as likely, so
@@ -185,7 +189,7 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
                     % of links
                   </text>
                   <text x={W - L} y={H - 4} textAnchor="end" className={s.tick}>
-                    band: from distance d to 2d (ring of 1,024)
+                    band: distances d to 2d − 1 (last: 256–512)
                   </text>
                 </svg>
                 <Row>
@@ -213,14 +217,15 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
                     if (rule === R1) reach("band"); // only under the question's rule
                   }}
                 />
-                {!locked && rule === R1 && (
+                {!locked && seenRules.includes(R1) && (
                   <p className={s.compare} data-testid="compare">
-                    Distances × chance each (d = 1 is 1):{" "}
+                    1/d, distances × chance each:{" "}
                     {QB.map((k) => {
                       const bd = BANDS[k];
                       const n = bd.hi - bd.lo + 1;
-                      return `${label(bd)}: ${n} × ${sig2(weight(bd, 1) / n)} ≈ ${sig2(weight(bd, 1))} → ${pct(SHARES[R1][k])}`;
+                      return `${label(bd)}: ${n} × ${sig2(weight(bd, 1) / n)} → ${pct(SHARES[R1][k])}`;
                     }).join("  ·  ")}
+                    {`  ·  ratio ${RATIO}×`}
                   </p>
                 )}
                 <Row>
