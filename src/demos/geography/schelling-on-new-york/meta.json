@@ -1,0 +1,178 @@
+{
+  "slug": "schelling-on-new-york",
+  "title": "Schelling on New York",
+  "hook": "Measure a random mix on New York's shape. What can the number say, and what can't it?",
+  "domain": "geography",
+  "concept": "segregation-model-nyc",
+  "format": "agent-based-simulation",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the Schelling mechanism from the Economics lesson (a simple moving rule sorts a grid), though this card explains its own squares and rule",
+      "that cities can have neighbourhoods where one group is concentrated",
+      "decimals between 0 and 1"
+    ],
+    "doesNotKnow": [
+      "that a segregation index depends on the size of the unit it is measured on (a random mix already scores about 0.4 to 0.5 on small blocks)",
+      "what a model like this can and cannot say about a real city"
+    ]
+  },
+  "misconception": "If a simple model reproduces a city's pattern, then that is why the city looks that way. Second: a mix placed at random would score a segregation index near zero.",
+  "objective": "The learner can explain that an unevenness index such as D depends on the unit it is measured on (a random mix scores about 0.45 on 2 x 2-cell blocks and less on larger ones, and a census tract holds thousands of people), that in this toy model a simple moving rule sorts the grid to about 0.75, and that the model leaves out money, prices, jobs, history and who was allowed to live where, so it does not show why any real city looks as it does.",
+  "claims": [
+    {
+      "id": "geography.schelling-on-new-york.c4",
+      "text": "The index of dissimilarity D measures how unevenly two groups are spread over a set of units, from 0 (both groups spread in the same proportions over every unit) to 1 (no unit holds both groups); it equals the share of one group that would have to change units for an even spread. On the card only as 'how unevenly spread (0 even, 1 fully apart)'; the 'would have to change units' gloss is in this claim only (cultural review R4).",
+      "support": "source",
+      "source": "Massey, D. S. and Denton, N. A. (1988). The dimensions of residential segregation. Social Forces 67(2): 281-315 (evenness, index of dissimilarity). Computed in engine.ts dissimilarity(): D = 0.5 * sum over aligned k x k blocks of |a_i/A - b_i/B|, over agents only (walls and empty cells ignored). Builder: citation from memory, not opened (no egress).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c5",
+      "text": "In this model, two equal groups placed at random on the grid already score about 0.4 to 0.5 on blocks of 2 x 2 cells, before anyone moves.",
+      "support": "simulation",
+      "source": "engine.ts run(seed, 30), frames[0], dissimilarity(frame, 40, 2). Builder run 2026-10-14 (node src/demos/geography/schelling-on-new-york/check.mjs): the lesson's seeds (1 to 50 without 3 and 36, 48 seeds) start at 0.42-0.53, mean 0.46; seed 1 (the default) 0.47. Seed 1 is simply the first seed, not chosen for its result; seeds 3 and 36 are left out of New mix because their settled frame leaves one region of the city more than 90% one group (edge artefact, cultural review R2), not for their D. Same rule as the brief's check script (check.mjs shows start frames, end frames and ticks identical for seeds 1 to 50). The stage and the reveal quote the learner's own start value.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c6",
+      "text": "In this model, at the 30% setting (move if fewer than 30% of occupied neighbouring cells hold the same group), the grid settles with everyone staying, and D on 2 x 2-cell blocks rises to about 0.75.",
+      "support": "simulation",
+      "source": "engine.ts run(seed, 30). Builder run 2026-10-14 (check.mjs), the lesson's 48 seeds: settled D on 2 x 2 blocks 0.67-0.83, mean 0.75; all settle in 7-24 ticks; seed 1: 0.47 -> 0.76 in 7 ticks (matches the brief's real-mask numbers, company/domains/briefs/checks/nyc-mask-40.md). The reveal quotes the learner's own last settled 30% run, pinned on the stage when the reveal opens. Slider range 0-50% in steps of 5: every lesson seed settles at every setting (max 26 ticks); above 50% runs stop settling within 60 ticks and near-uniform regions become common (55%: 16 region-seeds of 240), so the slider stops at 50%. The 'would stay' readout is 1 minus the share of agents that would move at the frame shown.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c7",
+      "text": "D depends on the size of the unit it is measured on: the same model grid scores 1.00 on single cells (every cell holds one agent) and less on larger blocks; at the random start about 0.46 on 2 x 2, 0.26 on 4 x 4 and 0.14 on 8 x 8 cells, and after settling at 30% about 0.75, 0.53 and 0.33.",
+      "support": "simulation",
+      "source": "engine.ts dissimilarity(frame, 40, k) for k = 1, 2, 4, 8 over the lesson's 48 seeds (check.mjs, 2026-10-14): start 1.00 / 0.42-0.53 (mean 0.46) / 0.21-0.31 (0.26) / 0.10-0.19 (0.14); settled at 30% 1.00 / 0.67-0.83 (0.75) / 0.44-0.64 (0.53) / 0.22-0.45 (0.33). Seed 1: start 1.00 / 0.47 / 0.27 / 0.12, settled 1.00 / 0.76 / 0.53 / 0.34. On the stage each block button the learner has pressed shows its value at the start and now; the reveal quotes the learner's run at 2 x 2 and the largest other block size they measured.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c8",
+      "text": "In this model, a simple moving rule sorts the grid: a simplified version of Thomas Schelling's segregation model.",
+      "support": "simulation",
+      "source": "Simulation as in c6. Model: Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186 (verified as a citation in economics.mild-preferences-sharp-divides.c6; the stage rule is the same simplified variant, moving to a random empty cell). Reworded per cultural review R3: 'a simple moving rule', not 'preferences'.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c9",
+      "text": "This model does not show why any real city looks as it does.",
+      "support": "convention",
+      "source": "Judgement about the model's scope (cultural review R3, brief claim 9): the rule has no money, prices, jobs, history or rules about who may live where (see c14), both groups follow the same rule and may move anywhere, and the grid is not a map of people (c12). Shown in the reveal, in the same paragraph as the model's result.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10a",
+      "text": "A US government agency's 1938 maps graded neighbourhoods for lending risk; the grades are associated with later lending patterns, and research is mixed on whether the maps created those patterns or recorded practice that already existed.",
+      "support": "source",
+      "source": "Mapping Inequality: Redlining in New Deal America, University of Richmond Digital Scholarship Lab, https://dsl.richmond.edu/panorama/redlining/ (the Home Owners' Loan Corporation maps and grades), plus Aaronson, D., Hartley, D. and Mazumder, B. (2021). The effects of the 1930s HOLC 'redlining' maps. American Economic Journal: Economic Policy 13(4): 355-392 (association with later outcomes, and how much of it reflects differences that existed before the maps). Builder: both from memory via the brief and the cultural review, not opened (no egress). Fact-checker: confirm the study and that it supports 'mixed on created or recorded'; if not, the 'mixed' clause needs its own claim with its own source (the review names Fishback and co-authors 2022 as a candidate). The card never names the agency by acronym and names no neighbourhood beside a grade (R7).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10b",
+      "text": "In US cities, households did not all have the same housing choices: housing and lending discrimination is part of the documented history, and it widened income and wealth gaps between groups.",
+      "support": "source",
+      "source": "Rothstein, R. (2017). The Color of Law: A Forgotten History of How Our Government Segregated America. New York: Liveright (secondary account of federal, state and local housing and lending discrimination, and its effect on home equity and wealth). Builder: from memory, not opened (no egress). Fact-checker: confirm the book supports both halves, or split the 'widened gaps' half into its own claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c10c",
+      "text": "Income and wealth differences between groups are part of the documented history of where households live.",
+      "support": "source",
+      "source": "NYU Furman Center, State of New York City's Housing and Neighborhoods (annual report), https://furmancenter.org/stateofthecity (income differences across New York City neighbourhoods and groups). Builder: not opened (no egress). The card names income after discrimination and does not present it as a separate neutral cause (R3). Fact-checker: confirm the report covers income by group, or name a better single source.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c11",
+      "text": "The grid's shape comes from New York City's official borough boundaries, rasterised to 40 x 40 cells of about 1.2 km (576 land cells).",
+      "support": "source",
+      "source": "NYC Department of City Planning, Borough Boundaries, BYTES of the BIG APPLE release 16A (2016), nybb.shp, EPSG:2263; obtained from the PyPI wheel geopandas-0.14.4-py3-none-any.whl (geopandas/datasets/nybb_16a.zip, sha256 b4a98fc3b77be5af58676de9560c2782b902b83d1d8c7914dea8d0e75177e2a1), downloaded 2026-10-14 because the NYC Open Data host was unreachable; rasterised by company/domains/briefs/checks/nyc-mask-rasterise.mjs (cell centres, even-odd point-in-polygon, cell 3,855 ft); output company/domains/briefs/checks/nyc-mask-40.json, documented in nyc-mask-40.md. The lesson inlines only the 200-byte land bitmask (engine.ts MASK_HEX); no region labels reach the lesson (R2). check.mjs confirms MASK_HEX equals the JSON's land cells.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c12",
+      "text": "A toy model on a grid shaped like New York City; two made-up equal groups; not a map of people and not a cause. The 30% setting is a setting in this model, not a measure of anyone.",
+      "support": "convention",
+      "source": "Judgement about the model (cultural review R9, R1, R6). On the stage: 'Two made-up groups, A and B, equal in number. Not New York's population.' and 'A setting in this model, not a measure of anyone.' Density is equal everywhere in the model (one agent per land cell, 10% empty) while real density varies.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c13",
+      "text": "A random mix scores about 0.4 to 0.5 on small blocks, so a segregation number depends on its unit and means little without it.",
+      "support": "simulation",
+      "source": "Recall card (R10). Restates c5 and c7; carries no real-city figure and no group names.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c14",
+      "text": "Left out of this model: money, prices, jobs, history, who was allowed to live where.",
+      "support": "derivation",
+      "source": "Scope of the rule (engine.ts): the only inputs are the city mask, the share of empty cells, the two equal groups, the seed and the threshold; agents move to any empty cell at no cost. Shown on the stage after the learner's first finished run (R3 item 5); the reveal points at it ('Lacking what the stage lists').",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.schelling-on-new-york.c15",
+      "text": "A census tract holds thousands of people. A block in this grid holds a handful of squares.",
+      "support": "source",
+      "source": "Tract size: US Census Bureau, Glossary, 'Census Tract' (https://www.census.gov/programs-surveys/geography/about/glossary.html), which gives tracts generally between 1,200 and 8,000 people, optimum about 4,000 (builder: from memory, not opened). Grid block: derivation, a 2 x 2 block holds at most 4 cells, each at most one agent. This is the unit-contrast sentence kept under R8 after the real-city figure (brief claim 3) was dropped.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A random mix scores about 0.5 on small blocks. What does that tell you about a segregation number?",
+    "options": [
+      "It depends on the unit it is measured on, so the unit must be stated",
+      "The random mix is already half sorted",
+      "The number is broken and should not be used"
+    ],
+    "answer": 0,
+    "why": "A small block holds only a few households, so chance alone makes blocks uneven. The same mix scores lower on larger blocks. A number without its unit says little."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/schelling-on-new-york/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:segregation-model-nyc",
+    "also": [],
+    "prerequisites": [
+      "economics:schelling-segregation"
+    ],
+    "level": "core",
+    "strand": "people-places",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4,
+        "note": "Schelling model",
+        "section_unconfirmed": "4.5"
+      }
+    ],
+    "tags": [
+      "agent-based-model",
+      "segregation",
+      "unit-of-measurement",
+      "modifiable-areal-unit"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "step-run-button",
+    "preset-buttons",
+    "simulation-run",
+    "milestone-gate"
+  ]
+}
