@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const CARDS = [3, 1, 4, 1, 5, 9, 2, 6];
@@ -46,14 +47,14 @@ export default function PatiencePiles({ slug }: { slug: string }) {
         options: ["3", "4", "5"],
         answer: 1,
       }}
-      exploreHint="Deal each card onto the leftmost pile whose top is not smaller."
-      minInteractions={1}
+      exploreHint="Deal each card onto the leftmost pile whose top is not smaller, then trace a run back from the last pile."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
             All 8 cards made <strong>4</strong> piles, and the longest rising run has 4 cards
-            {trace.length === 4 ? `: you traced ${trace.map((i) => CARDS[i]).join(" ")}` : ", such as 1 4 5 6"}. 3 4 5 9 works
-            too, so a longest run need not start at the smallest card.
+            {trace.length === 4 ? `: you traced ${trace.map((i) => CARDS[i]).join(" ")}` : ""}. 3 4 5 9 is another, so a
+            longest run need not start at the smallest card.
           </p>
           <p>
             A rising run can use at most one card from each pile, since each pile goes downward. And every card on pile k
@@ -63,11 +64,13 @@ export default function PatiencePiles({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["dealt-all", "traced-4"]}>
+          {(reach) => {
         const commit = (np: Placed[][]) => {
           setPiles(np);
           setTrace([]);
-          if (np.reduce((a, p) => a + p.length, 0) === CARDS.length) interact();
+          if (np.reduce((a, p) => a + p.length, 0) === CARDS.length) reach("dealt-all");
         };
         const dealOne = () => {
           if (locked || next === null) return;
@@ -94,6 +97,7 @@ export default function PatiencePiles({ slug }: { slug: string }) {
               cur = byIndex(cur).prev;
             }
             setTrace(run);
+            if (run.length === 4) reach("traced-4");
             setNote(`Traced back from pile ${k + 1}: ${run.map((i) => CARDS[i]).join(" ")}.`);
             return;
           }
@@ -132,6 +136,9 @@ export default function PatiencePiles({ slug }: { slug: string }) {
               <Control disabled={locked || next === null} onClick={dealAll}>
                 Deal the rest
               </Control>
+              <Control disabled={locked || next !== null} onClick={() => tapPile(piles.length - 1)}>
+                Trace from last pile
+              </Control>
             </Row>
             <div className={s.piles}>
               {Array.from({ length: slots }, (_, k) => {
@@ -144,11 +151,12 @@ export default function PatiencePiles({ slug }: { slug: string }) {
                     aria-label={p ? (next === null ? `Trace back from pile ${k + 1}` : `Put ${next} on pile ${k + 1}`) : `Put ${next} on a new pile`}
                     onClick={() => tapPile(k)}
                   >
-                    <span className={s.pileName}>{p ? `pile ${k + 1} · top` : "new"}</span>
+                    <span className={s.pileName}>{p ? `pile ${k + 1}` : "new"}</span>
                     {p ? (
-                      [...p].reverse().map((c) => (
+                      [...p].reverse().map((c, j) => (
                         <span key={c.i} className={`${s.pcard} ${trace.includes(c.i) ? s.traced : ""}`}>
                           {c.v}
+                          {j === 0 ? " ←" : ""}
                         </span>
                       ))
                     ) : (
@@ -159,11 +167,13 @@ export default function PatiencePiles({ slug }: { slug: string }) {
               })}
             </div>
             <p className={s.count}>
-              Dealt {dealt} of 8 · piles <strong>{piles.length}</strong>
+              Dealt {dealt} of 8 · piles <strong>{piles.length}</strong> · ← marks each pile&apos;s top card
             </p>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

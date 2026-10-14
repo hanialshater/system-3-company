@@ -44,7 +44,7 @@ export default function TwoNamesOneList({ slug }: { slug: string }) {
         <>
           <p>
             Both names pointed at one list. When you appended through b, a showed {shared ?? show([...START, 3])} too.
-            {held ? ` After the copy, you changed ${held.moved} and the other stayed ${held.other}.` : ""}
+            {held ? ` While b had its own copy, you changed ${held.moved} and the other stayed ${held.other}.` : ""}
           </p>
           <p>
             Assigning a list copies the name, not the list: two names can point at one list, so a change through
@@ -86,7 +86,7 @@ export default function TwoNamesOneList({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : log === ""
-                ? "Names point at lists. Both names point at the same list now."
+                ? "After b = a, both names point at the same list."
                 : `Ran ${log}. ${aliased ? "One list, two names." : "Two lists."}`;
             const Box = ({ items, y, label }: { items: number[]; y: number; label: string }) => (
               <g aria-label={label}>
@@ -114,12 +114,16 @@ export default function TwoNamesOneList({ slug }: { slug: string }) {
                   <g>
                     <rect x={10} y={34} width={44} height={32} rx={6} fill="var(--domain)" opacity={0.25} stroke="var(--domain)" strokeWidth={2} />
                     <text x={32} y={56} textAnchor="middle" fontSize={17} fontWeight={800} fill="var(--fg)">a</text>
-                    <rect x={10} y={114} width={44} height={32} rx={6} fill="var(--domain)" opacity={0.25} stroke="var(--domain)" strokeWidth={2} />
-                    <text x={32} y={136} textAnchor="middle" fontSize={17} fontWeight={800} fill="var(--fg)">b</text>
+                    {!locked && (
+                      <>
+                        <rect x={10} y={114} width={44} height={32} rx={6} fill="var(--domain)" opacity={0.25} stroke="var(--domain)" strokeWidth={2} />
+                        <text x={32} y={136} textAnchor="middle" fontSize={17} fontWeight={800} fill="var(--fg)">b</text>
+                      </>
+                    )}
                   </g>
-                  <line x1={56} y1={50} x2={BOX_X - 4} y2={aY} stroke="var(--domain)" strokeWidth={2.5} markerEnd="url(#arr)" />
-                  <line x1={56} y1={130} x2={BOX_X - 4} y2={bY} stroke="var(--domain)" strokeWidth={2.5} markerEnd="url(#arr)" />
-                  <Box items={aList} y={aY} label={`List a points at: ${show(aList)}`} />
+                  <line x1={56} y1={50} x2={BOX_X - 4} y2={locked ? 50 : aY} stroke="var(--domain)" strokeWidth={2.5} markerEnd="url(#arr)" />
+                  {!locked && <line x1={56} y1={130} x2={BOX_X - 4} y2={bY} stroke="var(--domain)" strokeWidth={2.5} markerEnd="url(#arr)" />}
+                  <Box items={aList} y={locked ? 50 : aY} label={`List a points at: ${show(aList)}`} />
                   {!aliased && <Box items={bList} y={bY} label={`List b points at: ${show(bList)}`} />}
                 </svg>
                 <Row>

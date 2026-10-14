@@ -76,34 +76,34 @@ export default function NorthIsUp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "The Hereford world map (about 1300) puts Asia at the top, Europe at lower left and Africa at lower right. Which direction is at its top?",
+          "The Hereford world map was drawn in England about 1300. Which compass direction did it put at the top?",
         options: ["North", "South", "East"],
         answer: 2,
       }}
-      exploreHint="Turn the globe until it matches the Hereford layout."
-      minInteractions={1}
+      exploreHint="Turn the globe until Asia is on top, Europe lower left, Africa lower right (the Hereford layout)."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
             <strong>East.</strong> A quarter-turn left put {topDirection(90).toLowerCase()} at the top,
-            and the globe matched: Asia above, Europe lower left, Africa lower right. Medieval European world maps such as
-            Hereford&rsquo;s put the east, where the Sun rises, at the top. That is where the word <em>orient</em> comes from: Latin for
-            &ldquo;rising&rdquo;, the east.
+            and the globe matched the Hereford layout: Asia above, Europe lower left, Africa lower right. Hereford&rsquo;s
+            map puts the east, where the Sun rises, at the top. <em>Orient</em> is Latin for &ldquo;rising&rdquo;.
           </p>
           <p>
-            Two turns give south at the top, the way al-Idrisi drew his world map in 1154. The Earth is a ball with no top, so which way is
+            Turning twice gave south at the top, the way al-Idrisi drew his world map in 1154. The Earth is a ball with no top, so which way is
             up on a map is a choice. North-up is today&rsquo;s convention, not a fact about the planet.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["hereford"]}>
+        <Milestones interact={interact} names={["hereford", "south-up"]}>
           {(reach) => {
             const spin = (delta: number) => {
               const next = (((turn + delta) % 360) + 360) % 360;
               setTurn(next);
               if (matchesHereford(next)) reach("hereford");
+              if (topDirection(next) === "South") reach("south-up");
             };
             return (
               <div className={s.wrap}>
@@ -137,7 +137,7 @@ export default function NorthIsUp({ slug }: { slug: string }) {
                           </text>
                         </g>
                         <text x={6} y={H - 6} className={s.small}>
-                          Globe view centred on Jerusalem, as the Hereford map is.
+                          A modern globe centred on Jerusalem, not the medieval map.
                         </text>
                       </>
                     );
@@ -145,10 +145,13 @@ export default function NorthIsUp({ slug }: { slug: string }) {
                 </WorldMap>
                 <Row>
                   <Control disabled={locked} aria-label="Turn the globe a quarter turn left" onClick={() => spin(90)}>
-                    ↺ 90°
+                    Turn left 90°
                   </Control>
                   <Control disabled={locked} aria-label="Turn the globe a quarter turn right" onClick={() => spin(-90)}>
-                    ↻ 90°
+                    Turn right 90°
+                  </Control>
+                  <Control disabled={locked} aria-label="Turn the globe upside down" onClick={() => spin(180)}>
+                    Turn 180°
                   </Control>
                   <Readout label="Top of the map" value={top} />
                 </Row>

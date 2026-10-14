@@ -7,3 +7,8 @@
 - Key state: `square` (85.05) and `beyond` (89 or the pole). The 89° figure and the pole sentence appear in the reveal only if they were visited.
 - Phone iteration 1: the shading above the square was the same colour as the sea. It now has its own tint, and a legend was added.
 - The "85.05°" button shows the answer's number once the stage unlocks, after the prediction. Reviewers may prefer an unlabelled step. c1 (the tile scheme) is from memory (OSM wiki); no product is named.
+
+
+## Revision v2
+
+Review: the 85.05 button was visible while locked. Changes: cut buttons read Cut 1 to Cut 5 while locked and show latitudes after the prediction. Claims unchanged. Version 2.

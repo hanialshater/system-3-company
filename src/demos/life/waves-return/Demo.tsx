@@ -19,7 +19,7 @@ const cx = (d: number) => CX0 + ((CX1 - CX0) * d) / DAYS;
 const cy = (v: number) => CY1 - (CY1 - CY0) * v;
 const trace = (a: number[], upTo: number) => a.slice(0, upTo + 1).map((v, d) => `${d ? "L" : "M"}${cx(d).toFixed(1)} ${cy(v).toFixed(1)}`).join(" ");
 const DAYS = 900;
-const SETTLED = 700;
+const SETTLED = DAYS;
 const LS = [100, 50, 200];
 const L_Q = 100;
 const TOWN = 400, COLS = 20, GAP = 14;
@@ -97,7 +97,7 @@ function Stage({
   const next = run.peaks.find((p) => p > day);
   const msg = locked
     ? `Make a prediction to start. Toy: R0 ${R0}, immunity fades after about ${L_Q} days.`
-    : `Day ${day}: ${pct1(S)} susceptible, ${pct1(I)} sick${k >= 0 ? ` (peak of wave ${k + 1})` : ""}.`;
+    : `Day ${day}: ${pct1(S)} susceptible, ${pct1(I)} sick${k >= 0 ? ` (peak of wave ${k + 1})` : day > 0 && run.I[day] > run.I[day - 1] ? ", cases growing" : day > 0 ? ", cases shrinking" : ""}.`;
 
   return (
     <div className={s.wrap}>
@@ -106,13 +106,13 @@ function Stage({
           const st = locked ? "sus" : i < nS ? "sus" : i < nS + nI ? "sick" : "imm";
           return <circle key={i} cx={(i % COLS) * GAP + GAP / 2} cy={Math.floor(i / COLS) * GAP + GAP / 2} r={4.6} className={s[st]} />;
         })}
-        <path d={outline(TOWN / R0)} className={s.half} />
+        {!locked && <path d={outline(TOWN / R0)} className={s.half} />}
       </svg>
 
       <svg viewBox="0 0 300 76" className={`stage-svg ${s.chart}`} role="img" aria-label={`Share susceptible and share sick over ${DAYS} days; day ${day}`}>
         {[0, 0.5, 1].map((v) => (
           <g key={v}>
-            <line x1={CX0} x2={CX1} y1={cy(v)} y2={cy(v)} className={v === 0.5 ? s.chartHalf : s.chartGrid} />
+            {(!locked || v !== 0.5) && <line x1={CX0} x2={CX1} y1={cy(v)} y2={cy(v)} className={v === 0.5 ? s.chartHalf : s.chartGrid} />}
             <text x={CX0 - 4} y={cy(v) + 3} textAnchor="end" className={s.tick}>{pct(v)}</text>
           </g>
         ))}
@@ -170,13 +170,14 @@ export default function WavesReturn({ slug }: { slug: string }) {
             {seen.peaks.length
               ? `You saw wave ${seen.peaks[0]} peak with ${pct1(RQ.peakS[seen.peaks[0] - 1])} susceptible. `
               : ""}
-            Each wave peaks when about half the town is susceptible, and by day {DAYS} the town settled at{" "}
+            It peaked when about half the town was susceptible. For the {L_Q}-day town, day {DAYS} settled at{" "}
             <strong>{pct1(RQ.S[DAYS])}</strong> susceptible, {pct1(RQ.I[DAYS])} sick.
           </p>
           <p>
-            Above half, cases grow and use up susceptibles; below half, cases shrink while fading immunity refills them
-            (the grey line). The infection holds the town at 1/R0 = {pct(1 / R0)}, whatever the immunity length: that only
-            changes how many are sick and how far apart the waves are.
+            Why half? With R0 = {R0}, each sick person infects {R0} others only if everyone can catch it. At half, each
+            infects 1: cases hold steady. Above half they grow; below half they shrink while fading immunity refills the
+            susceptibles. That balance (1/R0 = {pct(1 / R0)}) held whatever the immunity length: it changes only how many
+            are sick and how far apart the waves are.
           </p>
           <p className="muted">Toy model: no births, deaths, seasons or vaccines. Numbers are made up.</p>
         </>

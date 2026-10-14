@@ -19,7 +19,7 @@ const M = 50; // kg
 const HT = 1; // m
 const force = (L: number) => (M * G * HT) / L;
 const WORK = M * G * HT; // 490.5 J
-const PUSH_MS = 1400;
+const PUSH_MS = 350;
 
 const W = 320;
 const H = 150;
@@ -32,7 +32,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
   const [L, setL] = useState(2);
   const [d, setD] = useState(0); // distance pushed along the ramp, m
   const [pushing, setPushing] = useState(false);
-  const [lastFull, setLastFull] = useState<number | null>(null);
+  const [fulls, setFulls] = useState<number[]>([]); // ramp lengths of finished pushes
   const reachRef = useRef<(n: string) => void>(() => {});
   const lRef = useRef(L);
   lRef.current = L;
@@ -47,8 +47,10 @@ export default function RampSameWork({ slug }: { slug: string }) {
       setD(f * lRef.current);
       if (f >= 1) {
         setPushing(false);
-        setLastFull(lRef.current);
-        if (lRef.current >= 4) reachRef.current("pushed-up");
+        const done = lRef.current;
+        setFulls((xs) => (xs.includes(done) ? xs : [...xs, done]));
+        if (done >= 4) reachRef.current("pushed-up");
+        if (done === 1) reachRef.current("lifted-straight");
         return;
       }
       raf = requestAnimationFrame(tick);
@@ -66,14 +68,14 @@ export default function RampSameWork({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "To raise a 50 kg crate 1.0 m, you push it up a frictionless 4 m ramp at steady speed. The push along the ramp is about…",
+        question: "A 50 kg crate weighs about 490 N. To raise it 1.0 m, you push it up a frictionless 4 m ramp at steady speed. The push along the ramp is about…",
         options: ["490 N", "123 N", "31 N"],
         answer: 1,
       }}
-      exploreHint="Make the ramp 4 m long, then push the crate to the top."
-      minInteractions={2}
+      exploreHint="Push the crate up a 4 m ramp, then lift it straight up, and compare the work."
+      minInteractions={3}
       reveal={() => {
-        const Ls = lastFull ?? 4;
+        const Ls = [...fulls].reverse().find((x) => x >= 4) ?? 4;
         return (
           <>
             <p>
@@ -92,7 +94,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["long-ramp", "pushed-up"]}>
+        <Milestones interact={interact} names={["long-ramp", "pushed-up", "lifted-straight"]}>
           {(reach) => {
             reachRef.current = reach;
             const topX = X0 + base * K;
@@ -143,9 +145,25 @@ export default function RampSameWork({ slug }: { slug: string }) {
                     if (v >= 4) reach("long-ramp");
                   }}
                 />
+                <p className={s.log} aria-live="polite">
+                  {locked || fulls.length === 0
+                    ? "Finished pushes appear here."
+                    : fulls.map((x) => `${x} m: ${force(x).toFixed(0)} N × ${x} m = ${(force(x) * x).toFixed(1)} J`).join("  ·  ")}
+                </p>
                 <Row>
                   <Control disabled={locked || pushing} onClick={() => setPushing(true)}>
                     {d > 0 ? "Push again" : "Push it up"}
+                  </Control>
+                  <Control
+                    disabled={locked || pushing}
+                    onClick={() => {
+                      setL(1);
+                      setD(0);
+                      lRef.current = 1;
+                      setPushing(true);
+                    }}
+                  >
+                    Lift straight up
                   </Control>
                   <Readout label="Push" value={locked ? "?" : `${F.toFixed(1)} N`} />
                   <Readout label="Work done" value={locked ? "?" : `${work.toFixed(1)} J`} />

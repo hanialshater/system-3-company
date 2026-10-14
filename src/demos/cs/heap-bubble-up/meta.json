@@ -43,21 +43,17 @@
     },
     {
       "id": "cs.heap-bubble-up.c3",
-      "text": "Each swap climbs one level, so an insert costs at most the tree's height, about log2 n swaps: 2 for 6 items, at most 19 for a million.",
+      "text": "Each swap climbs one level, so adding an item costs at most one swap per level: 2 for 6 items, at most 19 for a million.",
       "support": "source",
-      "source": "CLRS 6.1 (height of an n-element heap is floor(log2 n)) and 6.5 (MIN-HEAP-INSERT / HEAP-DECREASE-KEY run in O(log n)). floor(log2 6) = 2, floor(log2 1,000,000) = 19 (computed in Node).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "CLRS 6.1 (height of an n-element heap is floor(log2 n)) and 6.5 (MIN-HEAP-INSERT / HEAP-DECREASE-KEY run in O(log n)). floor(log2 6) = 2, floor(log2 1,000,000) = 19 (computed in Node). | v2 (2026-10-14): text/stage revised after learner review; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.heap-bubble-up.c4",
-      "text": "A heap can be stored as an array where the parent of index i is (i − 1)/2 rounded down.",
+      "text": "A heap tree can be stored as a list read top to bottom, left to right; the parent of position i (counting from 0) is at (i − 1)/2 rounded down.",
       "support": "convention",
-      "source": "Zero-based layout; CLRS 6.1 uses one-based PARENT(i) = floor(i / 2), equivalent after shifting indices.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Zero-based layout; CLRS 6.1 uses one-based PARENT(i) = floor(i / 2), equivalent after shifting indices. | v2 (2026-10-14): text/stage revised after learner review; previous verification void, needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -81,7 +77,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:heap-priority-queue",
     "prerequisites": [

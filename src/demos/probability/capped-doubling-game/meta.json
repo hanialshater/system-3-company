@@ -36,10 +36,8 @@
       "id": "probability.capped-doubling-game.c2",
       "text": "The exact fair price is $20: each k from 1 to 20 adds 2^k x (1/2)^k = $1 to the average payout.",
       "support": "derivation",
-      "source": "Sum over k = 1..20 of 2^k (1/2)^k = 20 (fairPrice() in model.ts, recomputed in node). The probability of first tails on flip k is (1/2)^k.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Sum over k = 1..20 of 2^k (1/2)^k = 20 (fairPrice() in model.ts, recomputed in node). The probability of first tails on flip k is (1/2)^k. | v2 (2026-10-14): options parallel and payouts spelled out; reveal shows the $1-per-flip working; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "probability.capped-doubling-game.c3",
@@ -97,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:expected-value",
     "prerequisites": [],

@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const NA = 6.02214076e23;
@@ -38,7 +39,6 @@ function sci(n: number) {
 export default function SameCountDifferentWeight({ slug }: { slug: string }) {
   const [sub, setSub] = useState(0);
   const [grams, setGrams] = useState(6);
-  const [fullAt, setFullAt] = useState<Record<string, boolean>>({});
 
   const m = SUBSTANCES[sub];
   const mol = grams / m.molar;
@@ -46,41 +46,60 @@ export default function SameCountDifferentWeight({ slug }: { slug: string }) {
   const shown = Math.min(dots, COLS * 10);
   const isOneMol = Math.abs(mol - 1) < 0.02;
 
-  const note = (i: number, g: number) => {
-    const mm = g / SUBSTANCES[i].molar;
-    if (Math.abs(mm - 1) < 0.02) setFullAt((f) => ({ ...f, [SUBSTANCES[i].id]: true }));
-  };
-  const sawBoth = fullAt.C && fullAt.H2O;
-
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "You weigh out 12 g of carbon atoms and 18 g of water molecules. Which pile has more particles?",
+        question: "You weigh out 12 g of carbon and 18 g of water. Count each carbon atom and each water molecule as one particle. Which pile has more particles?",
         options: ["The water", "The carbon", "About the same"],
         answer: 2,
       }}
-      exploreHint="Weigh 12 g of carbon, then switch to water and find what fills the same outline."
+      exploreHint="Weigh 12 g of carbon, then 18 g of water, and compare the fill."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            {sawBoth
-              ? "You filled the same outline with 12 g of carbon and with 18 g of water."
-              : "12 g of carbon and 18 g of water both fill the same outline."}{" "}
-            Same crowd: about <strong>6.02 × 10²³</strong> particles each, one mole. The water weighs more because each
-            molecule is heavier (about 18 mass units against 12), not because there are more of them.
+            You filled the same box with 12 g of carbon and with 18 g of water. Same crowd: about{" "}
+            <strong>6.02 × 10²³</strong> particles each. That crowd is called one <strong>mole</strong>. The water weighs
+            more because each molecule is heavier (18 against 12, in the same units), not because there are more.
           </p>
           <p>
-            A mole is a count, like a dozen but much bigger. A substance&rsquo;s molar mass is just what one mole of its
-            particles weighs: 12 g for carbon, 18 g for water, about 56 g for iron.
+            A mole is a count, like a dozen but far bigger. Molar mass is what one mole weighs: about 12 g for carbon, 18 g
+            for water, 56 g for iron. That is why chemists weigh things to count them.
           </p>
-          <p className="muted">That is why chemists weigh things to count them.</p>
         </>
       )}
     >
       {({ locked, interact }) => (
+        <Milestones interact={interact} names={["carbon-full", "water-full"]}>
+        {(reach) => {
+          const note = (i: number, g: number) => {
+            if (Math.abs(g / SUBSTANCES[i].molar - 1) < 0.02) reach(i === 0 ? "carbon-full" : i === 1 ? "water-full" : "");
+          };
+          return (
         <div className={s.wrap}>
+          <Row>
+            <Control
+              disabled={locked}
+              onClick={() => {
+                setSub(0);
+                setGrams(12);
+                note(0, 12);
+              }}
+            >
+              12 g carbon
+            </Control>
+            <Control
+              disabled={locked}
+              onClick={() => {
+                setSub(1);
+                setGrams(18);
+                note(1, 18);
+              }}
+            >
+              18 g water
+            </Control>
+          </Row>
           <Row>
             {SUBSTANCES.map((x, i) => (
               <Control
@@ -91,7 +110,6 @@ export default function SameCountDifferentWeight({ slug }: { slug: string }) {
                 onClick={() => {
                   setSub(i);
                   note(i, grams);
-                  interact();
                 }}
               >
                 {x.name}
@@ -102,7 +120,7 @@ export default function SameCountDifferentWeight({ slug }: { slug: string }) {
             {/* the one-mole outline: the bottom two rows */}
             <rect x={8} y={PAN_Y - 2 * D - 4} width={COLS * D + 4} height={2 * D + 2} rx={4} className={isOneMol ? s.moleFull : s.mole} />
             <text x={W - 10} y={PAN_Y - 2 * D - 8} textAnchor="end" className={s.moleLabel}>
-              1 mole
+              full box
             </text>
             {Array.from({ length: shown }, (_, k) => {
               const col = k % COLS;
@@ -131,14 +149,16 @@ export default function SameCountDifferentWeight({ slug }: { slug: string }) {
             onChange={(g) => {
               setGrams(g);
               note(sub, g);
-              interact();
             }}
           />
           <Row>
             <Readout label="Particles" value={sci(mol * NA)} />
-            <Readout label="Moles" value={mol.toFixed(2)} />
+            <Readout label="Box filled" value={`${Math.round(mol * 100)}%`} />
           </Row>
         </div>
+          );
+        }}
+        </Milestones>
       )}
     </Lesson>
   );

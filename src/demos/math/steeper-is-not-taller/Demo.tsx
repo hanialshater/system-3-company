@@ -7,7 +7,7 @@
 // Key state: the line at B's full run (4 across), where A has climbed 1 and B 2.
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -16,7 +16,7 @@ const A = { rise: 3, run: 12 };
 const B = { rise: 2, run: 4 };
 const MAXX = Math.max(A.run, B.run);
 const MAXY = (B.rise / B.run) * MAXX; // B extended to A's run
-const MILESTONES = ["same-run"] as const;
+const MILESTONES = ["same-run", "kept-going"] as const;
 
 const W = 320;
 const U = 23;
@@ -40,7 +40,7 @@ export default function SteeperIsNotTaller({ slug }: { slug: string }) {
         options: ["A", "B", "Same"],
         answer: 1,
       }}
-      exploreHint={`Slide the line across to ${B.run} and compare the climbs.`}
+      exploreHint={`Put the line at ${B.run} across, then at ${A.run}, and compare the climbs.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -69,7 +69,8 @@ function Stage({ locked, interact, x, setX }: StageContext & { x: number; setX: 
 
   const move = (v: number) => {
     setX(v);
-    if (v >= B.run) reach("same-run");
+    if (v === B.run) reach("same-run");
+    if (v === A.run) reach("kept-going");
   };
 
   return (
@@ -83,10 +84,14 @@ function Stage({ locked, interact, x, setX }: StageContext & { x: number; setX: 
         ))}
         <line x1={px(0)} y1={py(0)} x2={px(MAXX)} y2={py(0)} className={s.ground} />
 
-        <line x1={px(B.run)} y1={py(B.rise)} x2={px(MAXX)} y2={py(MAXY)} className={s.ext} />
-        <text x={px(MAXX) - 12} y={py(MAXY) - 4} textAnchor="end" className={s.extLabel}>
-          B, if it kept going
-        </text>
+        {!locked && (
+          <>
+            <line x1={px(B.run)} y1={py(B.rise)} x2={px(MAXX)} y2={py(MAXY)} className={s.ext} />
+            <text x={px(MAXX) - 12} y={py(MAXY) - 4} textAnchor="end" className={s.extLabel}>
+              B, if it kept going
+            </text>
+          </>
+        )}
         <line x1={px(0)} y1={py(0)} x2={px(A.run)} y2={py(A.rise)} className={s.rampA} />
         <line x1={px(0)} y1={py(0)} x2={px(B.run)} y2={py(B.rise)} className={s.rampB} />
         <text x={px(A.run) - 4} y={py(A.rise) - 7} textAnchor="end" className={s.labA}>
@@ -117,6 +122,14 @@ function Stage({ locked, interact, x, setX }: StageContext & { x: number; setX: 
                 : `${x} across: A climbs ${num(ya)}, B climbs ${num(yb)}.`}
       </p>
 
+      <Row>
+        <Control disabled={locked} onClick={() => move(B.run)}>
+          Line at {B.run} across
+        </Control>
+        <Control disabled={locked} onClick={() => move(A.run)}>
+          Line at {A.run} across
+        </Control>
+      </Row>
       <Slider label="Across" value={x} min={0} max={MAXX} step={2} disabled={locked} onChange={move} />
       <Row>
         <Readout label="A climbs" value={locked ? "?" : num(ya)} />

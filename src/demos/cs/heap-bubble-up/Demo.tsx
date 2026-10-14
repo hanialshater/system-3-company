@@ -53,7 +53,7 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A min-heap holds ${show(HEAP)} (parent of index i is (i−1)/2 rounded down). You insert ${NEW} at the end and swap it up while it is smaller than its parent. What is the final array?`,
+        question: `A tree of numbers has a rule: every parent is smaller than its children. It is stored as the list ${show(HEAP)}, read top to bottom, left to right. You add ${NEW} in the next free spot, then swap it with its parent while it is smaller. What is the list afterwards?`,
         options: [show(FINAL), "[1, 2, 3, 9, 6, 5]", show([...HEAP, NEW])],
         answer: 0,
       }}
@@ -67,9 +67,9 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
             to the top changed; the other items never moved, and the smallest is on top again.
           </p>
           <p>
-            Each swap climbs one level, so an insert costs at most the tree&apos;s height, about log2 n swaps: {HEIGHT} for these{" "}
-            {HEAP.length + 1} items, and at most {MILLION_HEIGHT} for a million. No re-sorting needed: a heap only promises that
-            every parent is smaller than its children, and one climb restores that.
+            Each swap climbs one level, so adding an item costs at most one swap per level: {HEIGHT} for these{" "}
+            {HEAP.length + 1} items, and at most {MILLION_HEIGHT} for a million. No re-sorting needed: the tree only promises
+            that every parent is smaller than its children, and one climb restores that.
           </p>
         </>
       )}
@@ -114,7 +114,7 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
             const p = at !== null && at > 0 ? parent(at) : null;
             const note =
               at === null
-                ? "Every parent is smaller than its children."
+                ? "Rule: every parent is smaller than its children."
                 : canSwap && p !== null
                   ? `${arr[at]} < parent ${arr[p]}: swap`
                   : at === 0
@@ -123,7 +123,7 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.note}>{note}</p>
+                <p className={s.note}>{note}{at !== null ? " · rule: parent < children" : ""}</p>
                 <svg viewBox="0 0 320 196" className="stage-svg" role="img" aria-label={`Heap ${show(arr)}`}>
                   {arr.map((_, i) =>
                     i === 0 ? null : (
@@ -157,7 +157,7 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
                     </g>
                   ))}
                 </svg>
-                <p className={s.arr}>array {show(arr)}</p>
+                <p className={s.arr}>list {show(arr)}</p>
                 <Row>
                   <Control disabled={locked || at === null} onClick={restart}>
                     Start over
@@ -174,7 +174,7 @@ export default function HeapBubbleUp({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Swaps" value={path.length} />
-                  <Readout label="Tree height" value={Math.floor(Math.log2(arr.length))} />
+                  <Readout label="Levels below top" value={Math.floor(Math.log2(arr.length))} />
                 </Row>
               </div>
             );
