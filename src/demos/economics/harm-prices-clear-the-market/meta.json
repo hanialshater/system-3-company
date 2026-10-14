@@ -1,0 +1,104 @@
+{
+  "slug": "harm-prices-clear-the-market",
+  "title": "Fair prices or market prices?",
+  "hook": "Charge each buyer the harm it does to others. Is that what a market would charge?",
+  "domain": "economics",
+  "concept": "vcg-market-clearing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "raising prices on over-demanded items until each buyer gets a preferred item clears a matching market (prices-sort-the-buyers)",
+      "the VCG rule: pay the harm you cause others (pay-for-the-harm-you-do)"
+    ],
+    "doesNotKnow": [
+      "that charging each buyer the harm they cause gives exactly the market-clearing prices found by raising prices"
+    ]
+  },
+  "misconception": "Prices from a fairness rule (pay the harm) and prices from supply and demand are unrelated.",
+  "objective": "The learner can compute each buyer's harm (the others' best total without it minus what they get with it) in a 3 × 3 matching market and see that the harms equal the market-clearing prices of the items those buyers get.",
+  "claims": [
+    {
+      "id": "economics.harm-prices-clear-the-market.c1",
+      "text": "In the stage's table the best assignment is x–a, y–c, z–b, with total value 23.",
+      "support": "derivation",
+      "source": "Demo.tsx best(): enumeration of all 6 assignments; the optimum is unique. Valuations from the brief (company/domains/briefs/economics.markets.md #23).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.harm-prices-clear-the-market.c2",
+      "text": "x's presence costs the others 14 − 11 = 3, z's costs 19 − 18 = 1, and y's costs 17 − 17 = 0, so harm payments total $4.",
+      "support": "derivation",
+      "source": "Demo.tsx WITHOUT, WITH, HARM. Without x: y–b 7 + z–a 7 = 14, with x: y 6 + z 5 = 11. Without z: x–a 12 + y–b 7 = 19, with z: 12 + 6 = 18. Without y: x–a 12 + z–b 5 = 17, with y: 12 + 5 = 17. Re-run in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.harm-prices-clear-the-market.c3",
+      "text": "Raising prices clears this market at a $3, b $1, c $0 (total $4), and each buyer's harm equals the price of the item it gets.",
+      "support": "derivation",
+      "source": "Demo.tsx clearingPrices(): ascending procedure (raise a constricted set's preferred items by 1, renormalise to a minimum of 0) ends at 3, 1, 0 whichever constricted set is chosen first (builder checked smallest and largest). Builder brute force over integer prices 0 to 12: 79 clearing price vectors, the unique smallest-total one is 3, 1, 0. Harms: x (gets a) 3, z (gets b) 1, y (gets c) 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.harm-prices-clear-the-market.c4",
+      "text": "In matching markets like this, harm (VCG) prices always clear the market, and are the lowest prices that do.",
+      "support": "source",
+      "source": "Theorem: Leonard (1983), 'Elicitation of honest preferences for the assignment of individuals to positions', Journal of Political Economy 91(3); Easley and Kleinberg (2010) ch. 15 (advanced section); Kern, Manthey and Uetz, arXiv 1604.04157. Fact-checker confirms the exact statement.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.harm-prices-clear-the-market.c5",
+      "text": "The valuations are invented.",
+      "support": "convention",
+      "source": "Reveal footnote; Demo.tsx V.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a matching market, removing buyer Q would let the others gain $5 in total. Q gets item k in the best assignment. What is k's lowest market-clearing price?",
+    "options": [
+      "$0, because Q values k most",
+      "$5",
+      "It cannot be told without the full supply and demand"
+    ],
+    "answer": 1,
+    "why": "Q's harm to the others is $5, and in such markets the harm a buyer causes is the lowest clearing price of the item it gets."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:vcg-market-clearing",
+    "also": [],
+    "prerequisites": [
+      "economics:vcg-mechanism"
+    ],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 15
+      }
+    ],
+    "tags": [
+      "matching markets",
+      "VCG"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

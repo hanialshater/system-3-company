@@ -1,0 +1,116 @@
+{
+  "slug": "accurate-bettor-takes-the-pot",
+  "title": "60% or 50%: does a little error matter?",
+  "hook": "Two bettors, nearly the same belief, the same money. Bet against each other for 500 races.",
+  "domain": "economics",
+  "concept": "market-selection-wealth",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "betting odds are the wealth-weighted average belief (odds-average-the-bettors)",
+      "repeated bets multiply your money rather than add to it"
+    ],
+    "doesNotKnow": [
+      "that repeated betting shifts wealth toward the more accurate bettor, so prices drift toward the truth, though luck can lead for a long time"
+    ]
+  },
+  "misconception": "Two bettors with similar beliefs will keep similar wealth.",
+  "objective": "The learner can explain that each race multiplies the ratio of two bettors' money by how well each belief fit the result, so a small edge in accuracy compounds until the accurate bettor holds nearly all the money and the odds approach the truth, even though luck can favour the other bettor for hundreds of races.",
+  "claims": [
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c1",
+      "text": "In all five seeded runs of 500 races, the 60% bettor ended with at least 98.8% of the money (98.8% to over 99.9%).",
+      "support": "simulation",
+      "source": "Demo.tsx run(): mulberry32 seeds 2211 to 2215 (consecutive seeds fixed by the brief, not picked by the builder), one rng() per race, win if < 0.6. Share at race 500: 0.999905, 0.987766, 0.999678, 1.000000 (rounded), 0.991811. Matches the brief's check in company/domains/briefs/economics.markets.md #21.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c2",
+      "text": "In run 2 (seed 2212) the 50% bettor held 88.6% of the money at race 200.",
+      "support": "simulation",
+      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c3",
+      "text": "In this model each win multiplies the ratio of the 60% bettor's money to the 50% bettor's by 1.2, each loss by 0.8; three wins and two losses multiply it by 1.11.",
+      "support": "derivation",
+      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c4",
+      "text": "The pool's win odds are the money-weighted average belief, so as money moves to the 60% bettor the odds move toward the true 60%.",
+      "support": "derivation",
+      "source": "With everyone betting all their money, the share of the pool on 'win' is 0.6·a + 0.5·(1 − a), where a is the 60% bettor's share (Demo.tsx readout). As a → 1 this → 0.6.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c5",
+      "text": "In such markets, wealth flows to the traders whose beliefs are closest to the truth.",
+      "support": "source",
+      "source": "Market selection: Blume and Easley (2006), 'If you're so smart, why aren't you rich?', Econometrica 74(4); Easley and Kleinberg (2010) ch. 22 (advanced section). Not stated as a general sentence in learner text beyond this model; the reveal speaks of this model. Fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c6",
+      "text": "The market is a simplified model: two bettors, no fees, each bets all their money every race, split by belief.",
+      "support": "convention",
+      "source": "Stage chip and reveal footnote; Demo.tsx run().",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two bettors keep betting all their money against each other on the same event. One's belief is slightly closer to the true chance. After a very long time, what is most likely?",
+    "options": [
+      "They stay roughly even, since their beliefs are close",
+      "The closer one holds nearly all the money",
+      "Whoever is ahead after the first 100 bets stays ahead"
+    ],
+    "answer": 1,
+    "why": "Each bet multiplies the ratio of their money by how well each belief fit the result. A small edge compounds; luck can lead for a while but not forever."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:market-selection-wealth",
+    "also": [
+      "probability:multiplicative-bets"
+    ],
+    "prerequisites": [
+      "probability:multiplicative-bets"
+    ],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 22
+      }
+    ],
+    "tags": [
+      "markets",
+      "selection",
+      "simulation"
+    ]
+  },
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button",
+    "preset-buttons",
+    "locked-readouts"
+  ]
+}
