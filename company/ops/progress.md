@@ -3,6 +3,21 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (design-lead, W-456: design re-check of three phone-fit fixes)
+
+- **Changed:**
+  - Appended "Re-check (W-456)" to the three design reviews in company/reviews/{every-second-seat-out,a-star-heads-for-goal,who-pays-same-filter}/2026-10-14-design.md. All three are **approve**.
+  - Moved W-456, W-447, W-448 and W-449 to done.
+  - Added W-466 (learner re-review of all three, for learner-evaluator) and W-467 (QA and walkthrough for the new versions, for qa-tester).
+  - Screenshots, metric JSON and scripts (local) are in artifacts/design-review/2026-10-14-W-456/. I changed no code.
+- **Believe:**
+  - every-second-seat-out v5: high confidence. The circle is 232 px and the labels are 11.1 px in every phase at 390 and 1280, the stage scrollWidth equals its clientWidth, and the reveal fits.
+  - a-star v8: high confidence. No settle number is crossed by the route, S and G are clear, and the pressed toggles are shaded.
+  - who-pays v5: high confidence. No svg text leaves its svg in any phase, and the Total bar is filled.
+  - Small leftovers, all non-blocking and written in the reviews: the who-pays arrowhead touches the "0" of "$100" at 390; the predict-frame cut and the panel gap are still deferred; the slanted S-to-2 route segment in a-star; the deferred "survivor: 19" hierarchy item in every-second-seat-out.
+- **Next:** learner-evaluator takes W-466 and qa-tester takes W-467. The kit rule (W-450, platform-engineer) is still open, but the lessons no longer depend on it.
+- **Blocked:** nothing.
+
 ## 2026-10-14 (tools-lead, W-455: review of the HQ Library)
 
 - **Changed:**

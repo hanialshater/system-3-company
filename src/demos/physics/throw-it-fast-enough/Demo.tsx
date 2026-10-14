@@ -32,7 +32,7 @@ import { FLIGHTS, R_E, V_CIRC_SURFACE, lineHeight } from "./model";
 import s from "./styles.module.css";
 
 const W = 320;
-const H = 276;
+const H = 260;
 const CX = 160;
 const CY = 140;
 const RP = 108; // planet radius, px
@@ -76,22 +76,19 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            At <strong>{kms(loop.v)}</strong> your ball never landed: the readout showed it back round at the peak after{" "}
-            {Math.round(loop.time / 60)} minutes. Your fastest landing, at {kms(near.v)}, came down {km(near.dist)} km
-            away (the line under the readout).
+            At <strong>{kms(loop.v)}</strong> your ball never landed: back round in {Math.round(loop.time / 60)} min. Your
+            fastest landing, {kms(near.v)}, came down {km(near.dist)} km away.
           </p>
           <p>
-            The ball was falling the whole time: in the first minute{" "}
+            It kept falling: in the first minute{" "}
             {near.minute && km1(near.minute.fell) === km1(loop.minute!.fell)
               ? `your ${kms(near.v)} and ${kms(loop.v)} throws both fell`
               : `your ${kms(loop.v)} throw fell`}{" "}
-            {km1(loop.minute!.fell)} km below the dashed straight line. What changed was the ground.{" "}
-            {near.minute
-              ? `Under your ${kms(near.v)} throw it curved away ${km1(near.minute.groundAway)} km; under`
-              : "Under"}{" "}
-            {kms(loop.v)} it curved away {km1(loop.minute!.groundAway)} km, as fast as the ball fell. That is an orbit: about √(gR) = {kms(V_CIRC_SURFACE)} near the ground.
+            {km1(loop.minute!.fell)} km below the dashed line.{" "}
+            {near.minute ? `Under ${kms(near.v)} the ground curved away ${km1(near.minute.groundAway)} km; under` : "Under"}{" "}
+            {kms(loop.v)}{near.minute ? "," : " it curved away"} {km1(loop.minute!.groundAway)} km, as fast as the ball fell. That is an orbit: √(gR) ≈{" "}
+            {kms(V_CIRC_SURFACE)}.
           </p>
-          <p className="muted">No air, round non-spinning Earth. The ISS orbits at about 7.7 km/s, 400 km up.</p>
         </>
       )}
     >
@@ -152,8 +149,11 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                       )}
                     </>
                   )}
-                  <text x={6} y={H - 6} className={s.chip}>
-                    No air. 10 km peak. Heights ×40.
+                  <text x={4} y={13} className={s.chip}>
+                    No air. 10 km peak.
+                  </text>
+                  <text x={4} y={28} className={s.chip}>
+                    Heights ×40.
                   </text>
                 </svg>
 

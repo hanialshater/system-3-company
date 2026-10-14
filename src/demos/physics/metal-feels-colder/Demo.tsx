@@ -12,7 +12,7 @@
 // "touch-wood". Each reading is recorded when it is taken and stays on stage as a label under its
 // block ("probe 20 °C", "skin 21 °C"); the last touch's arrow stays as a dashed outline, so the
 // reveal's numbers are on screen when it opens. QA path (DOM order, one press each): probe metal,
-// probe wood, touch metal, touch wood, try steel (finger moves to the steel); all three milestones by the
+// probe wood, touch metal, touch wood, swap metal (finger moves to the steel); all three milestones by the
 // fourth press. The swap always touches the new metal, so the metal block's label, its "skin" line and
 // its arrow describe the same material when the reveal opens.
 // No Reset control: there is nothing to undo, and the records must survive.
@@ -252,7 +252,7 @@ function Stage({
           Touch wood
         </Control>
         <Control disabled={locked} onClick={swap}>
-          {metal === "aluminium" ? "Try steel" : "Try aluminium"}
+          Swap metal
         </Control>
       </Row>
     </div>

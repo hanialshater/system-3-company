@@ -74,7 +74,7 @@ function Stage({ locked, reach, cut, setCut, seen, setSeen }: {
             <rect x={XL + XW * sb} y={BAR_Y} width={XW * (1 - sb)} height={BAR_H} className={s.barA} />
             <text x={XL + 5} y={BAR_Y + 13} className={s.barText}>B {pct(sb)}</text>
             <text x={XL + XW - 5} y={BAR_Y + 13} textAnchor="end" className={s.barText}>A {pct(1 - sb)}</text>
-            {seen.map((c) => (
+            {seen.filter((c) => c !== cut).map((c) => (
               <g key={c}>
                 <line x1={XL + XW * shareB(c)} y1={BAR_Y - 2} x2={XL + XW * shareB(c)} y2={BAR_Y + BAR_H + 3} className={s.seenTick} />
                 <text x={XL + XW * shareB(c)} y={BAR_Y + BAR_H + 14} textAnchor="middle" className={s.tick}>{c}</text>

@@ -74,12 +74,12 @@ export default function HeadOnIsAWall({ slug }: { slug: string }) {
           <>
             <p>
               Your 50 km/h head-on crash filled car A&apos;s crush bar to <strong>{car ? kJ(car) : "?"}</strong>, as high as
-              the 50 km/h wall ({w50 ? kJ(w50) : "?"}). The 100 km/h wall filled it to {w100 ? kJ(w100) : "?"}, about{" "}
+              the 50 km/h wall ({w50 ? kJ(w50) : "?"}). The 100 km/h wall filled it to {w100 ? kJ(w100) : "?"},{" "}
               {w100 && w50 ? (w100 / w50).toFixed(0) : "?"} times higher.
             </p>
             <p>
               The cars stopped at the meeting point, which never moved, so each stopped from 50 to 0 in its own crumple
-              zone, as if the other were a wall. Doubling the closing speed doubles the total energy, but two cars share
+              zone, as against a wall. Doubling the closing speed doubles the total energy, but two cars share
               it. Crush energy grows with speed squared.
             </p>
           </>
@@ -146,6 +146,7 @@ function Stage(p: {
   const carY = ROAD_Y + (ROAD_H - CAR_H) / 2;
   const liveE = crashed === key(config) ? energy(config.speed) * t : 0;
   const barW = (j: number) => (j / BAR_MAX) * BAR_W;
+  const headOnSeen = Object.keys(runs).some((k) => k.startsWith("car-") && k !== crashed);
   const chip = (c: Config) => key(c) === crashed && !running;
 
   return (
@@ -196,14 +197,15 @@ function Stage(p: {
             <text x={2 * MID - frontA + (CAR_L - crumple) / 2} y={carY + CAR_H / 2 + 4} textAnchor="middle" className={s.carLabel}>
               B
             </text>
-            {done && (
-              <>
-                <line x1={MID} y1={ROAD_Y - 8} x2={MID} y2={ROAD_Y + ROAD_H + 4} className={s.mid} />
-                <text x={MID} y={ROAD_Y - 11} textAnchor="middle" className={s.midLabel}>
-                  meeting point
-                </text>
-              </>
-            )}
+          </>
+        )}
+        {/* once a head-on crash has been seen, its meeting point stays marked (the wall stands on it) */}
+        {!locked && (headOnSeen || (config.target === "car" && done)) && (
+          <>
+            <line x1={MID} y1={ROAD_Y - 8} x2={MID} y2={ROAD_Y + ROAD_H + 4} className={s.mid} />
+            <text x={MID} y={ROAD_Y - 11} textAnchor="middle" className={s.midLabel}>
+              meeting point
+            </text>
           </>
         )}
         <rect x={frontA - CAR_L + crumple} y={carY} width={CAR_L - crumple} height={CAR_H} rx={4} className={s.carA} />

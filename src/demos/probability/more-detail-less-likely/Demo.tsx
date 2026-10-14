@@ -60,7 +60,7 @@ function Stage({ locked, reach, lib, setLib, club, setClub, seen, setSeen }: {
             ? `Club share at ${seen.club}%: ${fmt(seen.inner)} in the inner ring, ${fmt(seen.outer)} in the outer.`
             : "1,000 people like Sam. Outer ring: librarians. Inner ring: librarians with a book club."}
       </p>
-      <svg viewBox={`0 0 ${COLS * PITCH + 20} ${ROWS * PITCH + 12}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${outer} librarians, ${inner} of them run a book club, of ${PEOPLE} people`}>
+      <svg viewBox={`0 0 ${COLS * PITCH + 20} ${ROWS * PITCH + 12}`} className={`stage-svg ${s.svg} ${locked ? s.lockedSvg : ""}`} role="img" aria-label={`${outer} librarians, ${inner} of them run a book club, of ${PEOPLE} people`}>
         <path d={dots(0, locked ? 0 : inner)} className={s.club} />
         <path d={dots(locked ? 0 : inner, locked ? 0 : outer)} className={s.lib} />
         <path d={dots(locked ? 0 : outer, PEOPLE)} className={s.dot} />
