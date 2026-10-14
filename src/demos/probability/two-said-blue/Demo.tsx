@@ -22,15 +22,16 @@ const GRID_H = (N / COLS) * PITCH;
 const accLabel = (a: number) => `${Math.round(a * 100)}%`;
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-function Stage({ locked, reach, tallies, setTallies, ai, setAi }: {
+function Stage({ locked, reach, tallies, setTallies, ai, setAi, pool, setPool }: {
   locked: boolean;
   reach: (n: string) => void;
   tallies: Tally[];
   setTallies: (t: Tally[]) => void;
   ai: number;
   setAi: (i: number) => void;
+  pool: boolean;
+  setPool: (p: boolean) => void;
 }) {
-  const [pool, setPool] = useState(false);
   const acc = ACCS[ai];
   const t = tallies[ai];
   const seq = t.n > 0 ? sequence(t.n, acc) : null;
@@ -105,12 +106,14 @@ function Stage({ locked, reach, tallies, setTallies, ai, setAi }: {
 export default function TwoSaidBlue({ slug }: { slug: string }) {
   const [tallies, setTallies] = useState<Tally[]>([EMPTY, EMPTY, EMPTY]);
   const [ai, setAi] = useState(1);
+  const [pool, setPool] = useState(false);
   let q = 1;
   for (let i = 0; i < tallies.length; i++) if (tallies[i].n > tallies[q].n) q = i;
   const t = tallies[q];
   const v = ai; // the accuracy the stage is showing
   const last = tallies[v].n > 0 ? sequence(tallies[v].n, ACCS[v]) : null; // null when the stage is empty: no pointer to it
   const over = last ? last.picks.filter((p, i) => p !== last.clues[i]).length : 0;
+  const nPick = last ? last.picks.filter(Boolean).length : 0;
   return (
     <Lesson
       slug={slug}
@@ -131,7 +134,9 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
           </p>
           {last && (
             <p>
-              Look at crowd {fmt(tallies[v].n)} on the stage (clue right {v === 1 ? "2 in 3" : accLabel(ACCS[v])}): the ring marks where the picks first led by 2, and after it no clue changed a pick. {over} people picked against their own clue (outlined). Tap Pool the clues: {last.poolBlue} of {N} clues were blue, while the picks were {last.picks.filter(Boolean).length} blue out of {N}.
+              Look at crowd {fmt(tallies[v].n)} on the stage (clue right {v === 1 ? "2 in 3" : accLabel(ACCS[v])}). {pool
+                ? `The stage now shows the clues: ${last.poolBlue} of ${N} were blue, while the picks were ${nPick} blue out of ${N}. Tap Show the crowd to see the ring (where the picks first led by 2; after it no clue changed a pick) and the ${over} people who picked against their own clue (outlined).`
+                : `The ring marks where the picks first led by 2, and after it no clue changed a pick. ${over} people picked against their own clue (outlined). Tap Pool the clues: ${last.poolBlue} of ${N} clues were blue, while the picks were ${nPick} blue out of ${N}.`}
             </p>
           )}
           <p>
@@ -142,7 +147,7 @@ export default function TwoSaidBlue({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
-          {(reach) => <Stage locked={locked} reach={reach} tallies={tallies} setTallies={setTallies} ai={ai} setAi={setAi} />}
+          {(reach) => <Stage locked={locked} reach={reach} tallies={tallies} setTallies={setTallies} ai={ai} setAi={setAi} pool={pool} setPool={setPool} />}
         </Milestones>
       )}
     </Lesson>

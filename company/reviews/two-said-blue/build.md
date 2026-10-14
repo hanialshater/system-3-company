@@ -47,3 +47,8 @@ Inputs: learner review r2 (2026-10-14-learner-adult-beginner-r2.md).
 ## Revision (v4, 2026-10-14, fact-check NCM-3)
 
 Reveal paragraph 2 prints the plain-vote wrong chance for the accuracy run most (new plainWrong in model.ts, exact binomial, ties excluded) instead of "almost never"; the "Look at crowd N on the stage" paragraph now shows only when the selected accuracy chip has a run, so it never points at an empty stage. c9 text extended and reset to unverified. meta version 4.
+
+## Revision v5 (demo-builder, 2026-10-14, final learner review)
+- Reveal instructions matched the wrong state: the Pool/crowd toggle state is now lifted to the lesson, so the reveal knows which view the stage is in. In crowd view it says "Tap Pool the clues" (ring and outlines on screen); in pooled view it describes the clues and says "Tap Show the crowd" to see the ring and outlined picks.
+- Claims: no claim text changed. QA: see below.
+- QA v5 (QA_PORT 3991): contract fails only the 24px tap-target check at reveal (stage is scaled at reveal by the in-progress kit change; reported, not fixed). Reveal frame viewed: text matches the Pool view shown.
