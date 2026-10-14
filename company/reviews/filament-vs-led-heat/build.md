@@ -8,3 +8,11 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Numbers (node): 60 x 0.05 = 3 W light, 57 W heat; LED 9 - 3 = 6 W heat, 3/9 = 33%; 9/60 = 0.15 (< 1/6).
 - Risk for the fact-checker: c3 and c4 are typical estimates the brief asked to have sourced (US DOE or manufacturer data); they are labelled "Typical figures" on the stage. The 5% is a radiant visible share, which differs from the eye-weighted luminous efficiency (about 2%) often quoted.
 - After screenshots: moved the heat label above the bar so it no longer overlaps the light label on the short LED bar.
+
+## Revision v2
+
+Findings from 2026-10-14-learner-adult-beginner.md (revise).
+
+The filament's split was never on the stage. Nothing is measured at first; each bulb button switches that bulb on and shows its split; the reveal needs both (filament, then LED; minInteractions 2). Prompt says so.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 2.

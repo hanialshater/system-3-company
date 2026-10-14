@@ -9,6 +9,9 @@
 //   air time = 2 v sin(a) / g,  peak = (v sin a)^2 / (2 g),  range = v^2 sin(2a) / g
 // Both axes use the same scale, so the arcs have their true shape.
 //
+// v3: Launch and Partner come before the slider in the DOM so the QA path (each control once) launches 30 and 60 first.
+// v3: starts at 30 degrees (the question's throw); the same-landing caption follows the latest throw; a Sideways speed
+// readout backs the 'moves sideways slower' sentence; Partner is defined in the caption.
 // v2: the reveal is earned. Milestones "launched-30" and "launched-60": both throws the question
 // names are on the stage. "Partner" launches 90 minus the current angle, so any pair can be tried.
 
@@ -26,6 +29,8 @@ const X0 = 18; // launch point, px
 const GY = 168; // ground line, px
 const K = 6.5; // px per metre, both axes
 const MAX_PINS = 4;
+const ASK_A = 30;
+const ASK_B = 60;
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
 const airTime = (deg: number) => (2 * V * Math.sin(rad(deg))) / G;
@@ -47,8 +52,6 @@ function arcPath(deg: number) {
   return `M ${pts.join(" L ")}`;
 }
 
-const ASK_A = 30;
-const ASK_B = 60;
 
 function Milestones({
   interact,
@@ -64,7 +67,7 @@ function Milestones({
 }
 
 export default function ProjectileAngle({ slug }: { slug: string }) {
-  const [angle, setAngle] = useState(20);
+  const [angle, setAngle] = useState(ASK_A);
   const [pins, setPins] = useState<number[]>([]);
   const [everLaunched, setEverLaunched] = useState<number[]>([]);
 
@@ -74,7 +77,9 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
     const key = range(a).toFixed(1);
     landings.set(key, [...(landings.get(key) ?? []), a]);
   }
-  const shared = [...landings.values()].find((as) => as.length > 1);
+  const lastPin = pins[pins.length - 1];
+  // the pair that includes the throw just made (so the caption is never about an older pair)
+  const shared = lastPin === undefined ? undefined : [...landings.values()].find((as) => as.length > 1 && as.includes(lastPin));
   const otherPairs = [...landings.values()]
     .filter((as) => as.length > 1 && !as.includes(ASK_A))
     .map((as) =>
@@ -138,10 +143,10 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
             const caption = locked
               ? "Make a prediction to start."
               : shared
-                ? `${shared.map((a) => `${a}°`).join(" and ")}: same landing spot. The steep one stays up longer but moves sideways slower.`
+                ? `${shared.map((a) => `${a}°`).join(" and ")}: same landing spot. The steep one stays up longer but moves sideways slower (see Sideways).`
                 : pins.length === 0
-                  ? "Aim with the slider, then launch."
-                  : "Launch another angle, or its partner, and compare landings.";
+                  ? "Launch, then press Partner: the angle that adds up to 90°. The slider tries other angles."
+                  : justLaunched ? "Landed. Move the slider to launch another angle, or press Partner." : "Launch another angle, or its partner, and compare landings.";
 
             return (
               <div className={s.wrap}>
@@ -213,16 +218,6 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
                   {caption}
                 </p>
 
-                <Slider
-                  label="Launch angle"
-                  value={angle}
-                  min={5}
-                  max={85}
-                  step={5}
-                  disabled={locked}
-                  format={(v) => `${v}°`}
-                  onChange={(v) => setAngle(v)}
-                />
                 <Row>
                   <Control disabled={locked || justLaunched} onClick={launch} aria-label={`Launch at ${angle} degrees`}>
                     {justLaunched ? "Landed" : "Launch"}
@@ -235,10 +230,21 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
                     {partner === angle ? "45° has no partner" : `Partner ${partner}°`}
                   </Control>
                 </Row>
+                <Slider
+                  label="Launch angle"
+                  value={angle}
+                  min={5}
+                  max={85}
+                  step={5}
+                  disabled={locked}
+                  format={(v) => `${v}°`}
+                  onChange={(v) => setAngle(v)}
+                />
                 <Row>
                   <Readout label="Lands" value={`${range(angle).toFixed(1)} m`} />
                   <Readout label="Peak" value={`${peak(angle).toFixed(1)} m`} />
                   <Readout label="Air" value={`${airTime(angle).toFixed(1)} s`} />
+                  <Readout label="Sideways" value={`${(V * Math.cos(rad(angle))).toFixed(1)} m/s`} />
                 </Row>
               </div>
             );

@@ -5,9 +5,11 @@
 // x = a t^2 / 2, so the disc takes 1.11 s and the hoop 1.28 s. Two lanes, side view; the race
 // plays at a third of real speed (the clock shows real time, marked slow-mo).
 //
-// Controls in DOM order: hoop mass toggle (1 kg / 2 kg; resets the race), Release, Jump to
-// finish (step button). Earned reveal: milestones "mass" (hoop mass changed) and "finished"
-// (both reached the bottom). QA path: mass -> 2 kg, Release, Jump to finish.
+// v2: the predicted race (hoop 1 kg, same mass as the disc) is run first. Controls in DOM order: Release,
+// Jump to finish (step button), then the hoop-mass button, which swaps the hoop to the other mass and races
+// at once. Earned reveal: milestones "light" (a race finished with the 1 kg hoop) and "heavy" (a race finished
+// with the 2 kg hoop), so the reveal can quote both hoop times. A bar under each lane shows how much of the
+// energy goes into spin. QA path: Release, Jump to finish, Race with hoop 2 kg.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -29,6 +31,7 @@ const finish = (k: number) => Math.sqrt((2 * LEN) / accel(k));
 const T_DISC = finish(SHAPES[0].k);
 const T_HOOP = finish(SHAPES[1].k);
 const SLOW = 1 / 3;
+const SPIN_W = 52; // px for 100% of the energy
 
 const W = 320;
 const H = 176;
@@ -45,7 +48,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
   const [running, setRunning] = useState(false);
   const [raced, setRaced] = useState<number[]>([]);
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["mass", "finished"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["light", "heavy"]);
   const reachRef = useRef(reach);
   reachRef.current = reach;
   const kgRef = useRef(hoopKg);
@@ -53,7 +56,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
 
   const done = (kg: number) => {
     setRaced((xs) => (xs.includes(kg) ? xs : [...xs, kg]));
-    reachRef.current("finished");
+    reachRef.current(kg === 1 ? "light" : "heavy");
   };
   const doneRef = useRef(done);
   doneRef.current = done;
@@ -88,14 +91,14 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
         options: ["The solid disc", "The thin hoop", "They tie"],
         answer: 0,
       }}
-      exploreHint="Change the hoop's mass, then race them. Jump to the finish if you like."
+      exploreHint="Race them with equal masses, then make the hoop 2 kg and race again."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
             The disc reached the bottom in <strong>{T_DISC.toFixed(2)} s</strong>, the hoop in{" "}
             <strong>{T_HOOP.toFixed(2)} s</strong>
-            {raced.length > 1 ? `, whether the hoop was ${[...raced].sort().join(" kg or ")} kg` : raced.length ? `, with the hoop at ${raced[0]} kg` : ""}.
+            , whether the hoop was 1 kg or 2 kg.
           </p>
           <p>
             Rolling shares the energy between moving along and spinning. The hoop has all its mass at the rim, so half its
@@ -112,7 +115,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
           if (locked || running) return;
           setHoopKg((m) => (m === 1 ? 2 : 1));
           setT(0);
-          reach("mass");
+          setRunning(true);
         };
         const release = () => {
           if (locked || running) return;
@@ -131,7 +134,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
             ? `Disc ${T_DISC.toFixed(2)} s, hoop ${T_HOOP.toFixed(2)} s (hoop ${hoopKg} kg).`
             : running
               ? "Racing (slow-mo)…"
-              : `Hoop is ${hoopKg} kg, disc 1 kg. Release them together.`;
+              : `Hoop is ${hoopKg} kg, disc 1 kg. Release them together.${raced.length ? "" : " Equal masses, as in the question."}`;
 
         return (
           <div className={s.wrap}>
@@ -162,6 +165,15 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
                       {sh.name} {sh.k === 1 ? `${hoopKg} kg` : "1 kg"}
                     </text>
                     {arrived && !locked && (
+                      <g>
+                        <rect x={4} y={lane.y0 + 9} width={SPIN_W * (1 - sh.k / (1 + sh.k))} height={5} className={s.moveBar} />
+                        <rect x={4 + SPIN_W * (1 - sh.k / (1 + sh.k))} y={lane.y0 + 9} width={SPIN_W * (sh.k / (1 + sh.k))} height={5} className={s.spinBar} />
+                        <text x={4} y={lane.y0 + 24} className={s.chip}>
+                          spin {Math.round((100 * sh.k) / (1 + sh.k))}%
+                        </text>
+                      </g>
+                    )}
+                    {arrived && !locked && (
                       <text x={x1 + 16} y={y1 - 4} className={s.time}>
                         {finish(sh.k).toFixed(2)} s
                       </text>
@@ -182,19 +194,20 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
             </p>
 
             <Row>
-              <Control disabled={locked || running} onClick={toggleMass}>
-                Make hoop {hoopKg === 1 ? 2 : 1} kg
-              </Control>
               <Control disabled={locked || running} onClick={release}>
                 {finished ? "Race again" : "Release"}
               </Control>
               <Control disabled={locked || finished} onClick={jump}>
                 Jump to finish
               </Control>
+              <Control disabled={locked || running} onClick={toggleMass}>
+                Race with hoop {hoopKg === 1 ? 2 : 1} kg
+              </Control>
             </Row>
             <Row>
-              <Readout label="Disc time" value={finished || (t >= T_DISC && t > 0) ? `${T_DISC.toFixed(2)} s` : "?"} />
-              <Readout label="Hoop time" value={finished ? `${T_HOOP.toFixed(2)} s` : "?"} />
+              <Readout label="Disc time" value={raced.length || (t >= T_DISC && t > 0) ? `${T_DISC.toFixed(2)} s` : "?"} />
+              <Readout label="Hoop, 1 kg" value={raced.includes(1) ? `${T_HOOP.toFixed(2)} s` : "?"} />
+              <Readout label="Hoop, 2 kg" value={raced.includes(2) ? `${T_HOOP.toFixed(2)} s` : "?"} />
             </Row>
           </div>
         );

@@ -9,6 +9,8 @@
 // Every 2 s, each kick lands as the swing moves forward through the bottom, so they
 // add up (25.5 degrees after 8). Every 1 s or 3 s, every other kick lands as the swing
 // comes back, stopping it, so it never gets past one kick's 3.9 degrees.
+// v2: the three runs' highest swings sit side by side as readouts; the rope readout is gone; the dot colours are
+// explained in the hint; the reveal only quotes rhythms the learner ran.
 // Runs play 8x faster than real time (1, 2 or 3 s). The reveal unlocks once a run at
 // the natural period has finished.
 
@@ -20,7 +22,6 @@ import s from "./styles.module.css";
 
 const G = 9.81;
 const T0 = 2.0; // natural period, s
-const ROPE = (G * T0 * T0) / (4 * Math.PI * Math.PI); // 0.994 m
 const OMEGA = (2 * Math.PI) / T0;
 const ZETA = 0.01;
 const KICK = (4 * Math.PI) / 180 * OMEGA; // rad/s: one kick from rest gives about 4 degrees
@@ -110,7 +111,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
         options: ["A shove every 2 s", "A shove every 1 s", "A shove every 3 s"],
         answer: 0,
       }}
-      exploreHint="Try each rhythm. Red dots are shoves that met the swing coming back."
+      exploreHint="Try each rhythm. Green dot: the shove added to the swing. Red dot: it met the swing coming back."
       minInteractions={1}
       reveal={() => {
         const b2 = (best[2] ?? runs[2].maxDeg).toFixed(0);
@@ -122,7 +123,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
               added.{" "}
               {others.length
                 ? `Every ${others.join(" s or every ")} s it never passed ${Math.round(best[others[0]])}°: every other shove hit it coming back and stopped it.`
-                : `Every 1 s or 3 s, every other shove hits it coming back and stops it; it never passes ${Math.round(runs[1].maxDeg)}°.`}
+                : "You did not try the other rhythms. In this model, with them every other shove hits the swing coming back and stops it."}
             </p>
             <p>
               A swing has its own rhythm, set by its length. Shoves in step with it pile up; shoves out of step undo each
@@ -138,9 +139,9 @@ export default function PushTheSwing({ slug }: { slug: string }) {
         const caption = locked
           ? "Make a prediction to start."
           : !run
-            ? "Swing period 2 s. Pick a rhythm. Played 8× fast."
+            ? "Swing takes 2 s out and back. Each button starts a new run from rest, played 8× fast."
             : playing
-              ? `Every ${run.period} s: shove ${pushesDone} of ${N_PUSH}`
+              ? `Every ${run.period} s: shove ${pushesDone} of ${N_PUSH}. Highest so far ${soFarDeg.toFixed(0)}°.`
               : `Every ${run.period} s: highest swing ${run.maxDeg.toFixed(0)}°.`;
         const bx = PX + LEN * Math.sin(theta);
         const by = PY + LEN * Math.cos(theta);
@@ -192,8 +193,9 @@ export default function PushTheSwing({ slug }: { slug: string }) {
               ))}
             </Row>
             <Row>
-              <Readout label="Highest swing" value={locked || !run ? "?" : `${soFarDeg.toFixed(0)}°`} />
-              <Readout label="Rope" value={`${ROPE.toFixed(2)} m`} />
+              {RHYTHMS.map((p) => (
+                <Readout key={p} label={`Every ${p} s`} value={best[p] !== undefined ? `${best[p].toFixed(0)}° high` : period === p ? "swinging…" : "not tried"} />
+              ))}
             </Row>
           </div>
         );

@@ -17,3 +17,11 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 - Orange dots unlabelled: the explore caption says "Dots: charge. Bright = full of energy; each bulb drains some." c5 text extended, reset to unverified.
 - Fact-check route 1 (3.8 + 3.8 is not 7.5): the battery now steps 2 V from 2 to 12 V, so the drops are whole volts (1-6 V) and always add up. c2 text updated to the new range, reset to unverified.
 - "No sense of the loop going round" in stills: not changed; the dots animate continuously in the browser and their fading now marks the direction too.
+
+## Revision v3
+
+Findings from 2026-10-13-learner-adult-beginner-v2.md (revise).
+
+Dots were too small and faint to show the fading: radius 2.4 to 3.4, outlined, faint end less faint. 'takes 3.0 V' came before volts were tied to energy: the explore caption now says 'Its V is the energy it takes.' Hook restating the misconception: kept (it is the question the learner holds; the reviewer called it fair). No claim text changed.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.

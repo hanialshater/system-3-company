@@ -19,3 +19,11 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 - Bathroom-scale line clashed with "1 kg stays 1 kg": the stage now shows the step itself (a kg-marked spring reading 0.17 kg); the line reads "A bathroom scale is a spring scale marked in kg for Earth: on the Moon it shows about a sixth." c5 text changed, reset to unverified.
 - Everyday "weight" never named as the source of confusion: the reveal now says "In everyday talk, weight is the kg a scale shows. Physics splits it in two."
 - Gate: kept "Moon visited", now as a <Milestones> milestone (Moon is the first enabled control on the QA path).
+
+## Revision v3
+
+Findings from 2026-10-13-learner-adult-beginner-v2.md (revise).
+
+Newton and mass-vs-weight were defined only in the reveal: the locked caption now says 'Mass: how much flour (1 kg). Pull: gravity's tug on it, in newtons (N).' Earth caption ties 9.81 N to the kg-marked spring. 'Only the spring moves': not changed; the level balance is the lesson's point (mass is unchanged). No claim text changed.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.

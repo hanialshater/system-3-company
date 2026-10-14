@@ -8,3 +8,11 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Departure from the brief: the brief had many shapes and no text; two shapes, a mass toggle and a one-line caption keep it to one comparison on a phone. "No slipping, no air drag" is on the locked stage.
 - Numbers (node): disc 3.270 m/s^2, 1.106 s; hoop 2.453 m/s^2, 1.277 s; a frictionless slide would take 0.903 s (not shown).
 - After screenshots: moved the finishing-time labels clear of the wheels and the ramp caption to the top left.
+
+## Revision v2
+
+Findings from 2026-10-13-learner-adult-beginner.md (revise).
+
+The predicted race (hoop 1 kg, equal masses) now runs first. The hoop-mass button races at the other mass at once; the gate needs a finished 1 kg and 2 kg race, and both hoop times stay as readouts. A bar under each lane shows the spin share of energy (disc 33%, hoop 50%); claim c4 reworded, unverified.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 2.

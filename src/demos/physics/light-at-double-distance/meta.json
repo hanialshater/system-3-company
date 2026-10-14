@@ -1,7 +1,7 @@
 {
   "slug": "light-at-double-distance",
   "title": "Twice as far from the lamp",
-  "hook": "Move your book twice as far from a lamp. How much of its light does it lose?",
+  "hook": "Move your book twice as far from a lamp. Does it get half as bright?",
   "domain": "physics",
   "concept": "inverse-square",
   "status": "review",
@@ -63,12 +63,10 @@
     },
     {
       "id": "physics.light-at-double-distance.c5",
-      "text": "The law holds for a small source with nothing reflecting light back; a large lamp, or a room's walls, make light fall off more slowly up close.",
+      "text": "The law holds for a small lamp with no walls bouncing light back; a large lamp, or a room's walls, make light fall off more slowly up close.",
       "support": "convention",
       "source": "Stated idealisation: point source in empty space. The inverse-square law is accurate for distances greater than about five times the source size (a common photometry rule of thumb: treat a source as a point beyond about five times its size).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -93,12 +91,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:inverse-square",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }
