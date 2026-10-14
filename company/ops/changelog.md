@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-14: tools-lead W-715 dispatch-check R2 matches COEs by incident id
+- `tools/dispatch-check.mjs` R2: a SEV1/SEV2 incident event is cleared only by a COE directly in `company/rituals/records/` that names its event id on an `incident:` line and has `status: final` (`tools/lib/coe-coverage.mjs`). Before, any file dated `YYYY-MM-DD-coe*` cleared every incident up to that date, so one stub cleared a whole day. The FAIL line lists the uncovered ids and why (draft only, or no record). `S3_COE_DIR` and `S3_EVENTS` override the inputs for tests.
+- Test: `npm run test:dispatch` (tests/dispatch/r2-coe.test.mjs, 9/9): a planted same-day stub clears nothing, a draft does not clear, a final COE clears only its own id, drafts/ is not read, the real deploy-bypass and host-exhaustion records clear theirs, and all three 10-14 records clear R2 end to end once final. The CI-queue COE (ev-c33bee719d, W-522) is still a draft, so R2 still blocks waves on it, as it should.
+
 ## 2026-10-14: platform-engineer scale-stage0 review fixes (W-076; review company/engineering/reviews/2026-10-14-scale-stage0-review.md)
 - Feed (finding 1, blocker): a failed `/api/feed/<filter>/<page>` fetch no longer loops. The list is marked `failed`, prefetch stops, and the sentinel shows "Couldn't load more lessons." and a "Tap to retry" button (`data-testid="feed-retry"`, 44 px, `aria-live` region). The subject-chip path (page 0) gets the same message and button instead of "Loading more lessons…" for ever.
 - Revisits (finding 3): inserted only after the card the learner is on when they arrive, so nothing shifts under them; the 12-per-visit cap (a product limit: at most 12 revisit cards per visit) applies after the status filter, fetching in batches of 12 until 12 are shown or the due list ends.

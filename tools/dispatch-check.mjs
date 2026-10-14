@@ -21,7 +21,9 @@
 //   C4  host guard: build/wave fails when the 1-minute load is above 2 x CPUs or / has under 10 GB free;
 //       check fails under 5 GB free.
 //   R1  rituals before new work: wave/build fails while the WBR, retro or founder digest is due (tools/rituals-due.mjs).
-//   R2  incidents before new work: wave/build fails while a SEV1/SEV2 incident has no COE record after it.
+//   R2  incidents before new work: wave/build fails while a SEV1/SEV2 incident event has no COE record in
+//       company/rituals/records/ that names its id on an `incident:` line and says `status: final`
+//       (tools/lib/coe-coverage.mjs; a same-day file no longer counts). S3_COE_DIR overrides the folder (tests).
 //   I1  founder intake: wave fails while a founder decision record dated 2026-10-15 or later has no
 //       `class:` line, no `route:` line or no "## Objections" section (company/decisions/_template-founder-intake.md).
 import fs from "node:fs";
@@ -29,6 +31,7 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { coeCoverage } from "./lib/coe-coverage.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -43,7 +46,7 @@ const builds = kind === "build" || kind === "wave";
 const fails = [], warns = [], info = [];
 
 // ---- in flight: event log (dispatch without report/stopped in the last STALE_H hours) vs the caller's count
-const evPath = path.join(ROOT, "company/ops/events.jsonl");
+const evPath = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl");
 const events = fs.existsSync(evPath)
   ? fs.readFileSync(evPath, "utf8").split("\n").filter(Boolean).flatMap((l) => { try { return [JSON.parse(l)]; } catch { return []; } }).sort((a, b) => a.ts.localeCompare(b.ts))
   : [];
@@ -101,14 +104,13 @@ try {
   if (other.length) warns.push(`also due: ${other.map((r) => r.ritual).join(", ")}`);
 } catch (e) { warns.push(`rituals-due failed: ${e.message}`); }
 
-// ---- R2 incidents without a COE
-const recDir = path.join(ROOT, "company/rituals/records");
-const coeDates = (fs.existsSync(recDir) ? fs.readdirSync(recDir) : []).filter((f) => /^\d{4}-\d{2}-\d{2}-coe/.test(f)).map((f) => f.slice(0, 10)).sort();
-const lastCoe = coeDates.at(-1) ?? "";
-const sev = events.filter((e) => e.type === "incident" && /SEV ?[12]\b/i.test(e.summary ?? "") && e.ts.slice(0, 10) > lastCoe);
-if (sev.length) {
-  const msg = `R2 incidents: ${sev.length} SEV1/SEV2 incident(s) after the last COE record (${lastCoe || "none"}), e.g. "${(sev[0].summary ?? "").slice(0, 80)}"`;
-  if (builds) fails.push(msg + "; write the COE first"); else warns.push(msg);
+// ---- R2 incidents without a final COE that names them (W-715: matched by incident id, not by date)
+const recDir = process.env.S3_COE_DIR ? path.resolve(process.env.S3_COE_DIR) : path.join(ROOT, "company/rituals/records");
+const { uncovered } = coeCoverage(events, recDir);
+if (uncovered.length) {
+  const first = uncovered[0];
+  const msg = `R2 incidents: ${uncovered.length} SEV1/SEV2 incident(s) without a final COE naming their id (${uncovered.map((e) => e.id ?? "no id").join(", ")}), e.g. ${first.id ?? "?"} "${(first.summary ?? "").slice(0, 80)}" (${first.why})`;
+  if (builds) fails.push(msg + "; finalise the COE first (incident: <id> and status: final)"); else warns.push(msg);
 }
 
 // ---- I1 founder intake
