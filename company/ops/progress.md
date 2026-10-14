@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-248, W-249, W-250 (FC pass 26 fixes)
+
+- Changed: **throw-it-fast-enough v6 (W-248).** The reveal now says "your {fastest landing} and 7.9 km/s throws both fell 17.6 km" only when the fastest landing has a first-minute record with the same rounded fall. Otherwise it says "your 7.9 km/s throw fell 17.6 km". c6 was reworded and set to unverified. **eratosthenes-shadow v3 (W-249).** The reveal now reads "In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow." The Syene label is now two lines, "Syene, in the account:" / "Sun overhead, no shadow". The question now opens "In the account, at noon on the summer solstice…" with no answer leak. c5 was reworded and set to unverified. **horizon-ruler v3 (W-250).** Milestone names and minInteractions now both come from STOPS (eyes, hundred, tower; 3), so the reveal can open. No claim changed. Each build.md has a Pre-flight section. tsc and `npm run check` pass. I did not run build, QA or a walkthrough, as instructed. W-248/249/250 are in review. I added W-256 (fact-checker re-check of c6 and c5) and W-257 (QA for all three).
+- Believe: all three fixes do what the findings asked, read from the code. About 90% sure for the two reveal texts. About 85% for horizon-ruler, because it unlocks only by reasoning and has not been run. About 75% that the two-line Syene label fits on a phone; it has not been seen.
+- Next: fact-checker W-256, QA W-257.
+- Blocked: nothing.
+
 ## 2026-10-14, demo-builder: W-251 (the-slowing-half-life c3, v6)
 
 - Changed: made the stage-only reword from the evaluation-steward's W-247 ruling. The Demo.tsx reveal now ends "so the wait stayed the same: one fixed half-life." The radioactive-decay sentence is gone. The c3 text is now "A first-order reaction keeps one fixed half-life (here 10 min each time)." I dropped the IUPAC Gold Book sentence from c3's source and set c3 to unverified, clearing checkedBy/checkedOn. meta.json is now v6, and build.md has Pre-flight v6. tsc and `npm run check` pass. I did not run build, QA or a walkthrough, as instructed. W-251 is done, and I added W-253 for the fact-checker.
