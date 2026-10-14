@@ -27,3 +27,8 @@ Today's work ran without any budget: up to 20 agents at once, with the host's li
 - Token usage figures must come from real records (agent run reports, the event log, `npm run metrics`), never estimated after the fact and presented as measured.
 - The approval forum does not override existing gates: deploy approval, protected paths, publish gates and the review independence rules.
 - The approval forum adds a gate only for work above the "major" threshold; small work (fixes, routine checks, publishes) must not wait on it.
+
+## Objections carried forward
+
+- **principal-engineer-ops (ops review):** measuring tokens per agent run needs a record that does not exist on disk today; any backfill of 2026-10-14 is partial and must say so.
+- **chief-of-staff:** a forum that meets on every project would slow small work; "major" must have a threshold, and everything under it skips the forum.

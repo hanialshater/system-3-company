@@ -1,6 +1,8 @@
 # Plan to 2,000 lessons: categories, verticals, waves, capacity
 
 owner: principal-pm-verticals (Selin) · date: 2026-10-14 · status: **proposed**. head-of-product decides the wave order and caps inside the roadmap. The founder decides the target, any new vertical and its budget, deploys, and web access for fact-checking.
+
+> **Revised 2026-10-14 (second pass, principal-pm-verticals)** for three decisions made after the first version: Books as decks (`2026-10-14-book-deck-format.md`: target counted in idea-lessons, a deck costs its ideas + 1 review slot, about 12 decks committed), Big Ideas at 170 with 72 committed through Wave M (`2026-10-14-books-big-ideas-strategy-review.md` Ruling 1), and the founder's History category (`2026-10-14-founder-history-category.md`). Sections 2, 3, 4 and 5 are re-run. The reasoning for History and the next-category ranking is in `company/product/verticals/2026-10-14-history-and-next-categories.md`. Tree today: 945 on disk, 608 published, 271 review, 66 draft (queue 337 against the W-556 gate of 160).
 inputs: `npm run company -- status` and `coverage` (2026-10-14), `content/curriculum/*.json`, `company/ops/waves.json`, `company/ops/progress.md` (Wave J entries), `company/decisions/2026-10-14-pr2-lifehacks-scope.md`, `company/decisions/2026-10-14-books-and-big-ideas.md`, `company/product/verticals/networks-crowds-markets.md`, `company/domains/books.md`, `company/domains/big-ideas.md`
 companion: `company/product/verticals/networks-crowds-markets.md` (the one vertical with a doc today)
 
@@ -34,21 +36,28 @@ The NCM vertical has 69 lessons that cite `easley-kleinberg-2010`, and every dem
 
 ## 2. Target per category (sums to 2,000)
 
-| Category | Target | After J | New needed | Where the new lessons come from | Saturation call |
-|---|---|---|---|---|---|
-| physics | 200 | 76 | 124 | **exam-prep syllabus** (intro mechanics, electricity, waves misconceptions); 7 unmet d3 | room: new concepts from a syllabus |
-| probability | 200 | 92 | 108 | **exam-prep syllabus** (intro statistics); data-literacy strand (6 concepts) | room: new concepts |
-| math | 200 | 93 | 107 | exam-prep (algebra, geometry: 8 and 5 concepts tagged today); 5 unmet d3 | room: new concepts |
-| cs | 200 | 167 | 33 | **systems (10 concepts) and security (5) only**; no new algorithms concepts | **saturating** in algorithms (91 concepts) |
-| economics | 175 | 109 | 66 | personal-finance and macro strands (7 each), with the refuse list | markets strand **crowding** (NCM put 5 more there, one near-duplicate) |
-| ai | 165 | 76 | 89 | 7 unmet d3; ai-society; the AI half of a later workplace path | room |
-| life | 160 | 81 | 79 | new concepts are needed (only 2 unmet d3) | concepts thinning: the CM must add concepts, not deepen |
-| chemistry | 150 | 75 | 75 | 4 unmet d3; the exam-prep chemistry layer later | room, modest |
-| geography | 110 | 70 | 40 | only if the data lands (gridded climate, population); 1 unmet d3 | **saturating**: demand-3 is nearly exhausted and data blocks the rest |
-| lifehacks | 150 | ~75 | 75 | kitchen, cleaning, study (demand-3 strands that hold 16 of the PR's 200) | curriculum inflated by concept-per-slug; grow by strand, not by concept |
-| big-ideas | 170 | 0 | 170 | 60 concepts now, about 110 later; 2 lessons on some ideas | new category, open |
-| books | 120 | 0 | 120 | about 40 books × 3 ideas (27 works listed today) | new category, **capped by verification**, not by ideas |
-| **total** | **2,000** | **~914** | **~1,086** | | |
+Revised 2026-10-14. Targets count **gated lessons** (for Books, published idea-lessons, per the deck-format record's Ruling 2; the unit is the founder's F4). A new column, **review slots**, counts review cost in lesson-equivalents, because that is what the waves spend: a Books deck costs its ideas + 1.
+
+| Category | Target | Was | After J | New needed | Review slots | Committed through M / conditional | Where the new lessons come from | Saturation call |
+|---|---|---|---|---|---|---|---|---|
+| physics | 200 | 200 | 76 | 124 | 124 | by wave (section 3) | **exam-prep syllabus** (W-582); 7 unmet d3 | room |
+| probability | 200 | 200 | 92 | 108 | 108 | by wave | **exam-prep syllabus** (intro statistics, which also absorbs the scout's "intro statistics course"); data-literacy strand | room |
+| math | 190 | 200 | 93 | 97 | 97 | by wave | exam-prep (algebra, geometry); 5 unmet d3 | room. −10 to fund History. |
+| cs | 185 | 200 | 167 | 18 | 18 | by wave | systems and security only (moved from L to N-Q) | **saturating**. −15 to fund History. |
+| economics | 165 | 175 | 109 | 56 | 56 | by wave | personal-finance and macro. **Dated economic history goes to History**; the mechanisms stay here | markets **crowding**. −10 to fund History. |
+| ai | 165 | 165 | 76 | 89 | 89 | by wave | 7 unmet d3; ai-society | room |
+| life | 150 | 160 | 81 | 69 | 69 | by wave | new concepts needed (2 unmet d3) | thinning. −10 to fund History. |
+| chemistry | 150 | 150 | 75 | 75 | 75 | by wave | 4 unmet d3; exam-prep chemistry later | room, modest |
+| geography | 95 | 110 | 70 | 25 | 25 | by wave | only if data lands. **Time-series map ideas go to History** (boundary in the History record, section 3) | **saturating**. −15 to fund History. |
+| lifehacks | 150 | 150 | ~75 | 75 | 75 | by wave | kitchen, cleaning, study strands | grow by strand |
+| big-ideas | 170 | 170 | 0 | 170 | 170 | **72 / 98** (K1 12, K2 12, L 24, M 24; 98 released per wave on the Ruling 1 triggers) | ideas that pass the section 1 bar (68 today) | open, idea-supply capped |
+| books | **120 idea-lessons** | 120 lessons | 0 | 120 | **~150** (30 decks × 5) | **60 slots ≈ 12 decks ≈ 48 ideas / 60 slots ≈ 48 ideas**; the last ~30 slots are unfunded | 3-4 tested ideas per book; about 12 committed books | **capped by verification and by slots**: the funded 120 slots buy ~96 ideas, not 120 |
+| **history** (new) | **60** | — | 0 | 60 | 60 | **40 / 20** (K 10 pilot, L 15, M 15; 20 in N-Q on triggers) | data-led, checkable, non-sensitive first; mechanism stays in the subject category | new, data-capped (most historical series cannot be opened here) |
+| **total** | **2,000** | 2,000 | **~914** | **~1,086** | **~1,116** | | | |
+
+**The Books gap, plainly.** The founder's 120 idea-lessons cost about 150 review slots. The head of product funded 120 (60 committed + 60 conditional), which buys about 96 idea-lessons in about 24 books. Either the founder funds the last ~30 slots from the N-Q pool at Wave N cycle-planning, or the Books target reads ~96 and the other ~24 lessons go back to the subject pool. **My recommendation: decide at Wave N cycle-planning, on the reference deck's completion and recall, not now.** The 2,000 holds either way, because unfunded Books slots return to the subject pool.
+
+**What funds History.** History's 60 comes out of the categories that are saturating or overlapping it: geography −15, cs −15, economics −10, life −10, math −10. Physics, probability and ai are not touched, because they have the most room and exam prep feeds them.
 
 **New concepts versus new categories.**
 - **New categories or new anchor sources needed:** NCM (section coverage is saturated, so stop briefing it), cs-algorithms, geography (blocked on data) and economics-markets. The next growth there is not more concepts in the same map. It is Big Ideas and Books, which are already being created, an exam-prep vertical (section 4), and, only if NCM's learner results are good, a second course with a new anchor work.
@@ -63,12 +72,13 @@ A wave is about 150-165 lessons, the size of Wave J. There are no dates, because
 |---|---|---|---|
 | **J** (in flight) | ~165 | 10 domains × ~15 plus 15 NCM | started |
 | **D: drain** (not a build wave) | 0 new | Clear review: Life Hacks PR triage to its cap, publish the 63 ready lessons, kit fit fixes W-287, W-332 and W-348 (the main cause of r8 revisions), one web-capable fact-check session for held claims, founder decision on a first deploy so that EXP-002 and metrics B can start | — |
-| **K** | ~150 | All 54 subject unmet demand-3 concepts; Big Ideas pilot of 30 (derivation-checkable ideas first, 5 for Domain Launch Review); Books pilot of 10 (arithmetic or logic ideas only, single card); Life Hacks kitchen, cleaning and study, 20; exam-prep gap lessons, 36 (physics and probability, from a mapped syllabus) | review queue ≤ 1 wave, excluding held Life Hacks; Wave J ≥ 60% published; 0 disputes older than 1 wave |
-| **L** | ~160 | Exam-prep build-out: physics 40, probability 30, math 30 (only if the vertical review approves K's mapping); cs systems and security 20; Big Ideas 40 | as K, plus the exam-prep vertical doc approved by head-of-product and the founder |
-| **M** | ~160 | ai 40, chemistry 30, life 30, economics personal-finance and macro 30, Big Ideas 30 | as K, plus the first deploy done (founder) and an EXP-002 result |
-| **N to Q** | ~620 | **Re-allocated on learner data.** The default if no data exists: the remaining per-category gaps in section 2, pro rata. Books are released only as fast as chapter checks clear. | as K, plus re-allocation at cycle-planning from commit rate and recall by category |
+| **K** | ~154 (was 150) | All 54 subject unmet demand-3 concepts; **Big Ideas 24** (K1 12 + K2 12, the 3 exempt builds included; was 30); **Books 10 slots** (the *Thinking, Fast and Slow* reference deck: wheel + 3 builds + deck review, plus the 5 kept drafts, which publish only inside their later decks); **History pilot 10** (new; 5 for the Domain Launch Review, entry rules in the History record section 1, no sensitive class, no W-556 exemption); Life Hacks kitchen, cleaning and study, 20; exam-prep gap lessons, 36 (W-582) | review queue ≤ 160 including unparked Life Hacks (W-556 Amendment 1); Wave J ≥ 60% published; 0 disputes older than 1 wave |
+| **L** | ~154 (was 160) | Exam-prep build-out: physics 40, probability 30, math 30 (only if the vertical review approves K's mapping); **Big Ideas 24** (was 40); **Books 15 slots** (3 decks; new here); **History 15** (released only on its DLR five and a held-claim rate ≤ 25%; otherwise 5); ~~cs systems and security 20~~ **moved to N-Q** | as K, plus the exam-prep vertical doc approved by head-of-product and the founder; for History, a data-package decision record if any L brief needs historical data |
+| **M** | ~160 | ai 40, chemistry **26** (was 30), life **20** (was 30), economics personal-finance and macro **20** (was 30), **Big Ideas 24** (was 30), **Books 15 slots** (3 decks; new here), **History 15** (same release rule as L) | as K, plus the first deploy done (founder) and an EXP-002 result |
+| **N to Q** | ~648 slots (was ~620) | **Re-allocated on learner data.** In the pool: Big Ideas' 98 conditional; Books' 20 committed + 60 conditional slots, plus the ~30 unfunded slots that 120 idea-lessons need (founder, at Wave N); History's 20 conditional; the 44 subject slots moved out of K-M (cs 20, life 10, economics 10, chemistry 4); and the remaining per-category gaps in section 2. Default without data: pro rata. **Earliest slot for the next new category (Astronomy, pilot 10) is here**, and only after a first deploy wave has commit and recall data (History record section 5). | as K, plus re-allocation at cycle-planning from commit rate and recall by category |
+Order rationale. Wave K goes to demand-3 gaps and the three new categories' pilots (Big Ideas, Books, History) before any depth. A category's first 5 lessons are what tell us whether the category works. Exam prep goes before more cs and geography because it supplies external, syllabus-defined demand, and cs and geography are saturating. Nothing beyond Wave M is committed by category, because the wave that should reshape the plan is the first one with real learners.
 
-Order rationale. Wave K goes to demand-3 gaps and the two new categories' pilots before any depth. A category's first 5 lessons are what tell us whether the category works. Exam prep goes before more cs and geography because it supplies external, syllabus-defined demand, and cs and geography are saturating. Nothing beyond Wave M is committed by category, because the wave that should reshape the plan is the first one with real learners.
+**What moved in K-M (2026-10-14 revision).** History adds 40 slots, and Books adds 30 slots that the first version did not schedule in L and M. Big Ideas' committed pacing frees 28. So 44 subject slots move to N-Q: cs systems and security 20 (L), life 10, economics 10 and chemistry 4 (M). K-M goes from 470 to 468 slots. **History is paid for by the saturating and thinning categories, not by exam prep or by the demand-3 gaps.**
 
 ## 4. Verticals: add, defer, or decline
 
@@ -78,8 +88,10 @@ Order rationale. Wave K goes to demand-3 gaps and the two new categories' pilots
 | **Exam prep** | **Add one: a pilot on two syllabi** (intro physics and intro statistics; candidates are AP Physics 1 and AP Statistics, both unconfirmed from here) | It is the clearest job to be done ("pass the course"), and it gives demand that a syllabus documents. Predict-and-see aims straight at the misconceptions that conceptual exam items test. About half of the lessons already exist, so the vertical mostly *organises* lessons across categories, which is this role's job. | Kill after 60 days deployed if path completion is under 15% or recall is no better than the feed median. Blocker: syllabus documents cannot be opened from this host, so topic codes stay "(unconfirmed)", as NCM sections do. |
 | **Workplace** | **Defer. No new category.** Revisit after Books has 5 launched lessons and we have deploy data. | It overlaps Life Hacks time, digital and office topics, which the PR #2 decision dropped as templated and low quality, and it overlaps Books business, data literacy and AI-society. At most it would be a *path* over existing lessons (Personalization's job), not new briefs. | Revisit if Books business and AI-society commit rates beat the feed median. |
 | **Parents** | **Decline for now.** | Child development and health run into the refuse list, and no safety reviewer covers them. "Help your child with maths" is a path over existing math lessons, and Personalization can build it with no new lessons. | Revisit only with a child-safety reviewer role and founder direction. |
+| **History through data and maps** (founder decision, 2026-10-14) | **Decided by the founder. Sized here:** 60 lessons (40 committed through M, 20 conditional), a K pilot of 10, no W-556 exemption | The founder chose it. My objections (review capacity, data that cannot be opened, the sensitive-topic route W-626 not yet existing, an org ahead of the evidence) are in the History record, section 4, and each is answered with a trigger rather than a "no". | Pause if 3 of the DLR five are duplicates or the held-claim rate exceeds 40%. Kill 60 days after deploy if 7-day recall is more than 10 points below the feed median and commit rate is below it. |
+| **Next new category** (scout list: astronomy, linguistics, engineering, music, psychology, health, second course) | **None until a first deploy wave has commit and recall data, and History's DLR five has passed.** Then Astronomy as a 10-lesson pilot from the N-Q pool, with no org before then. Linguistics in reserve. Engineering goes into physics as concepts. Music waits on an audio decision. Psychology and Health declined for now. Second course: none before NCM data (Thinking in Systems as anchor, documented only, once the Books Meadows boundary is set). | The domain scout's ranking is the input, and I agree with its order. I differ on timing: astronomy's nearest ground is already taught by geography, physics and Big Ideas, so it is a strand-sized gap that a path over existing lessons can test first. | Founder, W-685. |
 
-One new vertical, not three. "A vertical per week" is this role's first named failure mode.
+One new vertical, not three. "A vertical per week" is this role's first named failure mode. **Status after 2026-10-14:** the founder added one new category (History). Exam prep remains my one recommended vertical. It adds no org and no category, and it ranks above every new subject (History record, section 5). Nothing else starts before learner data.
 
 ## 5. What each wave needs from the pipeline
 
@@ -101,7 +113,19 @@ Per wave of 160 lessons:
 
 **Throughput rule.** Wave depth is set by review, not build. The board's healthy line is "review queue < 2 waves deep". Today it is 292 in review, plus 165 incoming from Wave J, so ~457 against a 2-wave limit of ~330. **No Wave K briefs go to builders until the drain wave brings the non-Life-Hacks review queue to ≤ 1 wave.** CMs may write Wave K briefs earlier, but builders do not claim them.
 
-**What the remaining ~1,086 lessons need in total.** About 7 waves, ~220 build runs plus ~200 revision runs, ~6,000 claims checked, ~1,800 learner reviews, ~80 h of walkthrough machine time and ~35 h of serialized release builds. Books add a further cost of about 120 lessons blocked until someone can open the books.
+**What the remaining ~1,086 lessons need in total (re-run 2026-10-14).** They need **~1,116 review slots**: 1,086 lessons, plus ~30 Books deck-review slots (30 decks if the full 120 idea-lessons is funded). K-M spend 468 of those slots (about 460 counted lessons and 8 deck reviews), which leaves **~648 slots for N-Q**, about 4 waves of 160. **That is still about 7 waves from K**, the same count as before. There is no slack: one wave lost to a stuck gate or a failed pilot pushes 2,000 out by a full wave. Totals: ~225 build runs plus ~205 revision runs, ~6,100 claims checked, ~1,800 learner reviews, ~84 h of walkthrough machine time, ~36 h of serialized release builds.
+
+**Held claims are now the larger risk, not build or walkthrough time.** At first check, these are expected to wait on a source nobody can open:
+
+| Group | Lessons | Held share (est.) | Lessons held |
+|---|---|---|---|
+| Subject categories incl. Life Hacks | ~736 | ~12% | ~90 |
+| Big Ideas | 170 | 30-40% | ~60 |
+| Books | 120 | ~100% until F1 | ~120 |
+| History | 60 | 30-50% (pilot measures it) | ~25 |
+| **Total** | | | **~295, about 2 waves' worth** |
+
+Without the founder's web-capable fact-check session (W-583, W-556 Ask 2) and a book source (F1), roughly 2 of the 7 waves are built but can never count. That makes Ask 2 and F1 worth more than any new category.
 
 ## 6. Risks to quality and guards
 
@@ -116,6 +140,7 @@ Per wave of 160 lessons:
 | **Simulated reviews mistaken for demand** | The demand ratings are estimates (books and big-ideas decision, objection 8) | Waves N to Q are re-allocated only on deployed commit rate and recall. Borrowed-mind verdicts never move a category's budget. (this role) |
 | **Machine contention** (disk, OOM, slow walkthroughs) | ENOSPC repeatedly today; builds killed at load 30-41 | 1 release build at a time, ≤ 4 builders, ≤ 2 walkthroughs at once, full QA sharded or overnight, scratch cleanup at the end of each session. (platform-engineer, chief-of-staff) |
 | **Big Ideas re-teaches subject lessons; Books overlap each other** | Charter "subject first" rule | Each brief names its nearest lesson and what it adds. The overlap tool runs before acceptance. (cm-big-ideas, cm-books) |
+| **History re-teaches geography, economics, Big Ideas or Books** | Snow's pump map (Big Ideas), `population-centre` (geography), `growth-rate-gap` (economics) and `ggs-continental-axes` (Books) are the obvious first History lessons, and other categories already own all four | "Mechanism in the subject, dated record in History." Concepts already ranked elsewhere stay where they are. New pairs need written sign-off. Disputes go to head-of-product. (History CM, with cm-geography, cm-economics, cm-big-ideas, cm-books) |
 | **Copyright (Books)** | Legal read open for the founder | Charter rules are binding, and a breach is a dispute. No Books publish before the founder rules on a legal read. (founder) |
 
 ## 7. Board items added by this plan
@@ -126,4 +151,5 @@ They are on `company/ops/board.json` under the CM owners (search "plan-to-2000")
 
 - *"Hold builders and we lose the pace."* The pace that matters is publishing. 192 lessons wait on review today. Building more raises the queue, not the count.
 - *"Exam prep is just another vertical."* It replaces the "new concepts" growth path for physics, probability and math with an external definition of what matters. It is the only proposal here that supplies demand evidence we did not invent. It has a kill rule.
+- *"History was decided, so why size it at all?"* The founder decided that it exists. The size, the slot and the triggers decide what it displaces, and that is this plan's job (History record, section 0).
 - *"Discounting Life Hacks to ~75 is too harsh."* That number is the head-of-product decision's cap and survivor estimate, not mine. If triage keeps more, the Life Hacks target is reached sooner and Wave K's Life Hacks slots shrink.

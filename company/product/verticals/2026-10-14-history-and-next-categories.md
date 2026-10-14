@@ -1,0 +1,99 @@
+# History in the portfolio, and what comes next
+
+owner: principal-pm-verticals (Selin) · date: 2026-10-14 · status: **proposed**. The founder decided History exists (`company/decisions/2026-10-14-founder-history-category.md`). Its target, budget and the next category are the founder's. The wave order inside the roadmap and the boundary disputes are head-of-product's. This record says what History costs, how to make it work, and which category comes next.
+inputs read: the founder History decision; `2026-10-14-founder-books-experience.md`; `2026-10-14-book-deck-format.md` (Ruling 2: slots against idea-lessons); `2026-10-14-books-big-ideas-strategy-review.md` (Ruling 1: committed and conditional tranches); `2026-10-14-w556-wave-gate.md` (gate and Amendment 3); my `plan-to-2000.md` (revised today alongside this record); `company/domains/proposals/2026-10-14-next-categories.md` (domain scout); `content/curriculum/{geography,economics,big-ideas,books,physics}.json`; `company/domains/geography.md`, `big-ideas-strategy.md`, `books.md`; `npm run company -- status` (2026-10-14: 945 on disk, 608 published, 271 review, 66 draft); board W-582, W-626, W-628, W-662, W-685.
+not read, on purpose: `company/domains/history.md`, `content/curriculum/history.json` and the HQ room. The History org agent is writing them now. Where this record sets a boundary, the History charter should adopt it or object in writing (board).
+
+## 0. How this went wrong, and the fix
+
+The founder's new-category decision went from the chief of staff straight to the CEO office, which is building an org before anyone has priced the category against review capacity. The founder decided correctly that History exists. What was skipped is the step that says how big it is, when it starts and what it displaces. That step is this role's job. **Fix (proposed, §6):** any new category or vertical gets a portfolio note from principal-pm-verticals (target, wave slot, pilot, overlaps, what it displaces) before the CEO office builds its org. It is a step in the order of work, not a veto. The founder still decides.
+
+## 1. History: target, wave slot, pilot
+
+| Item | Recommendation | Why |
+|---|---|---|
+| **Target to 2,000** | **60 counted lessons**: **40 committed through Wave M** (K 10, L 15, M 15) and **20 conditional** in N to Q | The supply of history concepts that are predict-and-see, checkable from this host and not already owned by another category is small today (§3). 60 is about what Big Ideas' bar would allow for a narrower map. The 20 conditional slots work like the Big Ideas and Books tranches: released on triggers, otherwise returned to the pool at Wave N cycle-planning. |
+| **Wave slot** | **Pilot in Wave K**, alongside the Big Ideas and Books pilots. **No W-556 exemption.** | A category's first 5 lessons tell us whether it works (plan §3), so pilots go before depth. The gate is shut (queue 337 against 160), so a K slot costs no calendar time today. Amendment 3 says "no further exemption without a new decision record", and I do not recommend asking for one. History briefs may be written now, because briefs are not gated. |
+| **Pilot size** | **10 lessons**, of which 5 form the Domain Launch Review five | The same as the Books pilot. It is enough for a DLR five plus 5 that test the hard parts (one data-led map, one dated-series lesson). |
+| **Pilot entry rules** (for the History CM to apply, the same as Ruling 2 of the strategy review) | (1) The predict answer rests on a derivation, a disclosed seeded simulation, the learner's own screen, or data **bundled in a package already in `node_modules`** (Natural Earth via `world-atlas`) or recomputed offline in `company/domains/briefs/checks/`. (2) At most 1 held citation per reveal, with its "cut if not checkable" fallback written. (3) **No sensitive class** (war, colonialism, slavery, genocide, borders, religion), because the W-626 review route does not exist yet. (4) An approved format, not CardSequence. (5) Each brief names its nearest lesson in geography, economics, Big Ideas or Books and says what it adds (§3). | These rules are what made the Big Ideas pilot buildable. History's risk is the same as Books': most "what happened" sentences are source claims, and no source opens from here. |
+| **Release of L and M slots (15 + 15)** | Only if (a) the DLR five passes, (b) **the pilot's held-claim rate at fact-check is ≤ 25%** of its claims, and (c) the History CM can show at least 30 concepts that pass the entry rules and §3. If (b) fails, L and M drop to 5 each and the freed 20 go back to the subject queue in that wave. | Held claims are the cost that does not show up in a build count. |
+| **Conditional 20 (N to Q)** | From Wave N, only if History's first-review launch rate is at or above the feed median and, once deployed, 7-day recall is at or above the feed median. If the W-626 cultural route has landed, sensitive-class briefs may compete for these slots. | Waves N to Q are re-allocated on learner data (plan §3), and History gets no exception. |
+| **Kill or pause rule** | **Pause** if 3 of the 5 DLR lessons are rejected as duplicates of geography, economics or Big Ideas (the boundary is wrong), or if the held-claim rate goes over 40%. **Kill** 60 days after deploy if 7-day recall is more than 10 points below the feed median and commit rate is below the median. | This is the same form as the NCM and exam-prep rules, so the categories can be compared. |
+
+### What the pilot could look like (illustration only; briefs are the History CM's)
+
+These lesson shapes pass the entry rules: calendar arithmetic (the 1582 Gregorian drop of 10 days, recomputed), clock drift becoming longitude error at sea (a derivation, as long as geography's `sun-time-from-longitude` is named as the doorway), a radiocarbon half-life read-off (a derivation, with chemistry or physics as the doorway), one of Minard's or Snow's public-domain tables replotted (Snow is Big Ideas' `germ-theory-pump`, so it is off limits; Minard is free), and a "centre of population moves over time" lesson that pairs with geography's `population-centre`. The point of the list is that **a checkable pilot exists without any sensitive topic**. Whether learners want this version of history is unknown, and that is what the pilot measures.
+
+## 2. What History displaces in waves K to M
+
+Wave depth is set by review, not by build (plan §5). A wave can hold about 160 review slots, so anything new has to push something else out. The three decisions since my plan change K to M as follows (full arithmetic in the revised `plan-to-2000.md` §3 and §5):
+
+| Wave | Old plan | Change | Revised |
+|---|---|---|---|
+| K | 150 | Big Ideas 30 → 24 (K1 12 + K2 12), **History +10** | **154**: the extra 4 come out of the slack under 160. Nothing is pushed out. |
+| L | 160 | Big Ideas 40 → 24, **Books +15** (3 decks), **History +15**, **cs systems and security 20 moved to N to Q** | **154** |
+| M | 160 | Big Ideas 30 → 24, **Books +15** (3 decks), **History +15**, **life 30 → 20, economics 30 → 20, chemistry 30 → 26** | **160** |
+
+**Net effect across K to M:** History adds 40 slots, Books adds 30 that my plan did not schedule, and Big Ideas' committed pacing frees 28. **44 slots of subject work move out of K to M**: cs 20, life 10, economics 10, chemistry 4. All of them go back into the N to Q pool, where they compete on learner data. So History is paid for mainly by the two saturating or thinning categories (cs, life) and by the economics strand it overlaps.
+
+**Hidden cost.** Slots understate History's cost. A History lesson will probably carry more source claims than a subject lesson does (21.7% source support across subject lessons; Big Ideas estimates 30-40% held). Those claims wait for the W-583 web-capable session, which the founder has not yet granted. With no web-capable session, History behaves like Books: lessons that are built but cannot be published. That is why the L and M release depends on the held-claim rate.
+
+**The org cost.** A full org of a CM plus strand managers for a 10-lesson pilot will sit idle. Idle roles are the CEO office's own named failure mode. I recommend the CEO office staffs the History CM now and **activates strand managers only after the DLR five passes** (board). This is a recommendation to the CEO office. It does not touch the History org files.
+
+## 3. Overlaps, and how to split each one
+
+**One rule covers all four: the mechanism lives in the subject category, the dated record lives in History.** It is the same as Big Ideas' "subject first" rule. Every History brief names the subject lesson that teaches the mechanism and does not re-run that stage. Disputes go to head-of-product, as Ruling 3 of the strategy review does for Books and Big Ideas.
+
+| Overlap | Who owns what | Specific collisions on disk today | Split |
+|---|---|---|---|
+| **Geography** (people-places, maps, projections) | Geography owns **how maps and places work**: projections, scale, distance, sun and climate, population distribution *now*, MAUP and choropleth bias. History owns **change over time read from dated data on a map**. History uses `@/kit/geo` and does not teach projection mechanics. | `population-centre` (geography, d1) against a "centre moves west" History lesson. `segregation-model-nyc` (sensitive; geography already has a cultural ruling). `latitude-longitude`, `sun-time-from-longitude` against a longitude-at-sea lesson. Geography's charter refuses "political claims about borders". | Geography keeps every concept now in `geography.json`. History may build "X over time" as a pair only with cm-geography's written sign-off in the brief. **Historical borders are a sensitive class for History** and wait for W-626. Geography's refuse line still binds geography. **Geography's target falls 110 → 95**: its remaining growth was "only if the data lands", and its time-series ideas now belong to History. |
+| **Economics** (growth, inflation) | Economics owns the mechanisms: `inflation`, `real-interest-rate`, `growth-rate-gap`, `per-capita-growth`, `quantity-theory-money`, `disinflation-vs-deflation`, all taught with toy or present-day numbers. History owns **dated series** (centuries of prices or output) when the series is openable. | A "Great Divergence" or "price of bread since 1300" lesson would re-run `growth-rate-gap` with real dates. The data (Maddison and similar) cannot be opened from here today. | History may not re-teach compounding. It shows the dated record and names the economics lesson as its doorway. Until an openable historical series exists, **History builds no economic-history lessons**. Economics macro loses 10 M slots (§2) and its target falls 175 → 165. |
+| **Big Ideas** (society; the `ht` history-and-technology tag) | Big Ideas owns **an idea that changed how people see**, history of science included: `germ-theory-pump` (Snow), `heliocentric-retrograde`, `demographic-transition`, `malthusian-trap`, `wrights-law`, `lindy-effect`, `survivors-look-better-made`, `war-sizes-heavy-tail` ⚑, `cumulative-culture-ratchet`. History owns **events and trends**, not ideas about them. | Snow's pump map is the most obvious "history through maps" lesson, and Big Ideas already ranks it (BI-3, Wave L). Demographic transition and Malthus are history read from data, and Big Ideas has them too. | **Big Ideas keeps every concept it has ranked today.** History does not brief them. Any **new** concept with the `ht` tag needs the History CM's written sign-off, and the reverse holds too (the named-pairs rule, Ruling 3 rule 7). `war-sizes-heavy-tail` stays with Big Ideas and waits for W-626 like any war topic. |
+| **Books** (*Guns, Germs, and Steel*, *Sapiens*, *Why Nations Fail*, *Factfulness*) | Books owns **"what the book argues" and "does it hold up?"** inside its deck. History owns **the data-led lesson that stands without the book**. | `ggs-continental-axes` (d3) is a map argument History would naturally want. `wnf-inclusive-extractive` (one town split by a border) is a sensitive border case. `fact-straight-line` / `fact-gap-instinct` overlap any population-over-time lesson. | History does not build a lesson whose stage tests a listed Books concept **while that book has a deck in the plan**. Books may name a History lesson as a deck idea's "nearest lesson", which is the useful direction: History supplies the evidence and Books supplies the verdict on the claim. *Why Nations Fail* and *Guns, Germs, and Steel* are already in Ruling 4's sensitive list, and History's versions of those topics would be too. |
+
+## 4. My objections, plainly
+
+1. **This is the second new category today, and "one new vertical, not three" was about review capacity, which has not grown.** The queue is 337 against a gate of 160, and Wave J is still far from 60% published. History does not cost calendar time today, because nothing builds until the gate opens. It does cost 40 slots of K to M, which pushes 44 subject slots into N to Q (§2). The founder should see that trade explicitly. *What I propose instead of objecting further:* the pilot and the triggers in §1.
+2. **The data History needs mostly cannot be opened from here.** Natural Earth is present-day. Historical borders, population and output series (HYDE, Maddison, historical basemaps) are not bundled in any package we hold. Adding a data package needs a decision record. Without that data, "history through data and maps" turns into dated arithmetic with a history costume. That is this role's third failure mode: choosing by what is easy to build, not by what learners need. *Mitigation:* the pilot measures whether that narrow version teaches. A data-package decision record (platform-engineer, with a licence check) should come before L.
+3. **The most-wanted history is sensitive, and the review route for it does not exist** (W-626, cultural-reviewer re-scope, is still open). Until it lands, History cannot touch war, empire, slavery or borders. That is most of what people mean by history. A category that can only do calendars and longitude for its first two waves may launch weak. *Mitigation:* W-626 becomes a precondition for History's conditional slots, and its priority rises (board).
+4. **The org is ahead of the evidence.** See §2: strand managers should wait for the DLR five.
+5. **No demand evidence exists for History, as for every category.** CM demand ratings are estimates. Borrowed-mind reviews are not market evidence, and I do not use them as such.
+
+None of these reverses the founder's decision. They set the size and the triggers.
+
+## 5. The next category: my ranking
+
+The domain scout's assessment is an input to this ranking, not the decision. I agree with most of it, and I differ on two points: **exam prep goes first**, and **no new subject category starts before the first learner data**.
+
+| Rank | Option | My call | Why, where I differ from the scout |
+|---|---|---|---|
+| **1** | **Exam prep** (W-582: intro physics + intro statistics pilot) | **Decide now. Yes to the mapping, which costs zero lessons.** The K 36 gap lessons are decided after the map shows how many gaps are real. | It is not a category and adds no org. It organises lessons we already hold and supplies the only external evidence of demand we can get without deploying: a syllabus. The scout reaches the same place from the other side by folding intro statistics into it (§2.2). It ranks ahead of every new subject because it replaces CM-invented concepts in physics, probability and math with syllabus-defined ones. **With History created, exam prep is still my one vertical. History is the founder's.** |
+| **2** | **Astronomy and space** | **Next new category, but not before (a) a first founder-approved deploy with commit-rate and recall data for at least one wave, and (b) History's DLR five passing.** Earliest slot: **Wave N**, from the N to Q pool, as a pilot of 10. **No CM and no org until then.** If it incubates earlier, it gets at most 2 lessons run by cm-physics, as the scout proposes. | I agree with the scout on fit, checkability (`astronomy-engine` and HYG are reachable; adding either needs a decision record) and safety. I differ on timing and size. Geography already teaches seasons, tides, sun path, midnight sun and equation of time. Physics teaches orbits and Kepler speed. Big Ideas has retrograde motion, the expanding universe and light delay. The new ground (phases, tidal locking, eclipses, scale, brightness) is about 10-15 concepts, which is a strand, not yet a category. Before any building, a **path** over the existing ~20 lessons (Personalization, zero new lessons) can test whether people want astronomy. |
+| 3 | Language and linguistics | Reserve, as the scout says. Revisit at Wave N cycle-planning. | AI and CS form a clean boundary. Etymology claims are held, which caps how fast it can grow. |
+| 4 | Engineering | **No category.** Its unmet mechanisms go to cm-physics as concepts. | Agreed with the scout. It would split physics' audience. |
+| 5 | Music and sound | Wait for an audio decision record (a kit change, touching protected paths). | Agreed. |
+| 6 | Psychology | Decline for now. | Books and Big Ideas' mind strand already cover the checkable part, and it has no safety reviewer. |
+| 7 | Health | Decline (refuse list). | Agreed. |
+| — | Second course | **None before NCM learner data** (plan §4). If the founder wants an anchor picked now, use Thinking in Systems, **documented only**, and settle the Books boundary first: `meadows-*` are Books concepts, and a Meadows course and a Meadows deck cannot both claim the same ideas. Intro statistics folds into exam prep. Game theory becomes a path. | Agreed with the scout. The Books boundary is the extra point. |
+
+**The rule I am applying:** after History, the next thing to add should be **evidence, not a category**. That means a deploy, EXP-002 and the exam-prep map. The first wave with real learners will re-rank all of this.
+
+## 6. Org fix (routed, not done)
+
+My role file is generated from `tools/org/roles.mjs`, which the CEO office owns. Editing the generated file would be overwritten at the next regenerate, so the change belongs in the data. Proposed rule for both my role and chief-of-staff-ceo-office:
+
+> **A new category or vertical gets a principal-pm-verticals portfolio note (target, wave slot, pilot size, overlaps, what it displaces) in `company/product/verticals/` before the CEO office builds its org; the founder's decision stands either way.**
+
+Board item to chief-of-staff-ceo-office. It also asks that the routing step go into `company/ops/operating-loop.md` (the chief of staff's file) so that founder decisions about categories reach this role first.
+
+## 7. Founder asks (on the board, each with my recommendation)
+
+1. **History size:** a target of 60 (40 committed through M, 20 conditional), a K pilot of 10, no W-556 exemption, and L and M release on the DLR five and a held-claim rate ≤ 25%. *Recommend yes.*
+2. **Next category (W-685, folded in):** none until the first deploy data. Then Astronomy as a 10-lesson pilot in Wave N, with no org before then. Exam prep (W-582) is ranked above it. *Recommend this order.*
+3. **W-582 exam prep:** unchanged. *Recommend yes to the mapping now.* It ranks first among everything on the table.
+
+## This would be wrong if
+
+- the History pilot's held-claim rate is low (≤ 10%) and its DLR five passes on the first review. Then the data objection was overstated, and History should get the conditional 20 sooner;
+- review capacity measurably grows (the W-556 "wrong if"). Then the displaced 44 slots come back into K to M;
+- the first deployed wave shows History or Astronomy-adjacent lessons (geography's sun and Earth set) far above the feed median on commit and recall. Then the ranking in §5 should move on that data, not on my judgement.

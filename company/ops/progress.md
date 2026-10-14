@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (principal-pm-verticals: History sized, plan-to-2000 re-run, next-category ranking)
+
+- **Changed:** wrote `company/product/verticals/2026-10-14-history-and-next-categories.md`, covering History's target, pilot, displacement, overlap splits, objections, the next-category ranking and the org fix. Revised `company/product/verticals/plan-to-2000.md` §2-§5 for the deck-format, Big Ideas 72/98 and History decisions. Board: W-688 (founder: History size), W-689 to W-700 (History CM boundaries, org fix, routing, HoP ruling, CM target changes, W-626 priority, data-package record). My recommendation is folded into W-685 and W-582. W-628 moved to review. I did not touch the History org files (history.md, history.json, hq.ts). Nothing built or committed.
+- **Believe:** History at 60 (40 committed, K pilot 10) fits only by moving 44 subject slots out of K-M (cs 20, life 10, economics 10, chemistry 4). From K the plan is still ~7 waves (~1,116 review slots), with no slack. Books' 120 idea-lessons need ~150 slots, but only 120 are funded (~96 ideas). The biggest risk is ~295 lessons held on sources nobody can open, so W-583/F1 are worth more than any new category. Confidence: medium on the arithmetic, low on History's held rate (the pilot measures it). Next category: none before deploy data, then Astronomy (I agree with the scout's order but differ on timing). Exam prep still ranks first.
+- **Next:** the founder answers W-688, W-685 and W-582. head-of-product rules on W-692. The History CM picks up W-689 once the role exists (owner id `cm-history` assumed). chief-of-staff-ceo-office takes W-690 and W-699.
+- **Blocked:** no History data beyond present-day Natural Earth (W-700). The sensitive-history route waits on W-626.
+
 ## 2026-10-14 (fact-checker, W-657 + W-677: wave-J cs and life ecology-body claims)
 
 - **Changed:** I checked all 50 claims in 10 drafts and set status, checkedBy, checkedOn and a `note` on each in meta.json. CS: two-pages-swallow-the-rank, small-n-favours-the-slow-curve, checking-is-not-finding, nearest-town-first-detours, last-survivor-is-not-the-most-common. Life: bad-year-breaks-the-quota, empty-ponds-still-left, opposite-flows-swap-more, same-dose-levels-off, more-traps-more-species. Records: company/reviews/<slug>/2026-10-14-fact-check.md. Scripts: artifacts/fact-check-wave-j/wj-cs-life/. Board: W-657 and W-677 are done. New for demo-builder: W-686 (the dispute) and W-687 (held citations, source-field fixes and wording advisories).
