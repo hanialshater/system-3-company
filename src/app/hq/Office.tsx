@@ -71,7 +71,7 @@ function Plant({ x, y }: { x: number; y: number }) {
   );
 }
 
-export default function Office({ rooms, people, activity, selected, onRoom, onPerson }: { rooms: Room[]; people: Person[]; activity: Record<string, number>; selected: string; onRoom: (id: string) => void; onPerson: (p: Person) => void }) {
+export default function Office({ rooms, people, activity, selected, onRoom, onPerson, kudos }: { rooms: Room[]; people: Person[]; activity: Record<string, number>; selected: string; onRoom: (id: string) => void; onPerson: (p: Person) => void; kudos?: Record<string, { week: number; recent: boolean }> }) {
   return (
     <svg className={s.plan} viewBox="0 0 1000 660" role="img" aria-label="Company floor plan">
       <defs>
@@ -139,9 +139,14 @@ export default function Office({ rooms, people, activity, selected, onRoom, onPe
               const color = teamColor(p.role);
               return (
                 <g key={p.key} className={s.person} onClick={(e) => (e.stopPropagation(), onPerson(p))}>
-                  <title>{`${p.name} — ${p.label ?? p.role} (${p.state})\n${p.summary}`}</title>
+                  <title>{`${p.name} — ${p.label ?? p.role} (${p.state})${kudos?.[p.role] ? `\n🎉 ${kudos[p.role].week} kudos this week` : ""}\n${p.summary}`}</title>
                   <Face cx={cx} cy={cy} r={13.5} seed={p.seed} color={color} dim={p.state === "idle" || p.state === "done"} ring={p.state === "stopped" ? "#ff6b6b" : undefined} />
                   {p.state !== "idle" && <circle cx={cx + 10} cy={cy - 10} r={3.8} fill={STATE_DOT[p.state]} stroke="var(--bg)" strokeWidth={1.4} />}
+                  {kudos?.[p.role]?.recent && (
+                    <text x={cx - 11} y={cy - 8} fontSize={10} textAnchor="middle" pointerEvents="none">
+                      🎉
+                    </text>
+                  )}
                   <rect x={cx - 23} y={cy + 15} width={46} height={13} rx={6.5} className={p.state === "idle" ? s.pillIdle : s.pill} />
                   <text x={cx} y={cy + 24.5} textAnchor="middle" className={s.pillText}>
                     {p.name}

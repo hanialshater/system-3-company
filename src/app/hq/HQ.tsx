@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { FounderItem, HqEvent, OrgRole, Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
+import { kudosRole } from "@/lib/hq-kudos";
 import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
 import Office from "./Office";
@@ -29,6 +30,7 @@ const TYPE_COLOR: Record<string, string> = {
   incident: "#ff6b6b",
   founder: "#ffd54f",
   note: "#9aa3b5",
+  kudos: "#ff7eb6",
   commit: "#5d6578",
 };
 const HOUR = 3_600_000;
@@ -100,6 +102,18 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
     return m;
   }, [upto, t]);
 
+  // Kudos received (week up to t) and the last hour, by role: a tiny 🎉 on the avatar, a count on hover.
+  const kudosBy = useMemo(() => {
+    const m: Record<string, { week: number; recent: boolean }> = {};
+    for (const e of upto) {
+      if (e.type !== "kudos" || !e.subjects?.[0] || t - Date.parse(e.ts) >= 7 * 24 * HOUR) continue;
+      const r = kudosRole(e.subjects[0]);
+      m[r] = { week: (m[r]?.week ?? 0) + 1, recent: (m[r]?.recent ?? false) || t - Date.parse(e.ts) < HOUR };
+    }
+    return m;
+  }, [upto, t]);
+  const kudosToday = useMemo(() => upto.filter((e) => e.type === "kudos" && e.ts.slice(0, 10) === new Date(t).toISOString().slice(0, 10)).length, [upto, t]);
+
   const roomEvents = useMemo(() => upto.filter((e) => e.room === room && e.type !== "usage").slice(-80).reverse(), [upto, room]);
   const feed = useMemo(() => upto.filter((e) => e.type !== "usage").slice(-25).reverse(), [upto]);
   const sel = rooms.find((r) => r.id === room);
@@ -155,6 +169,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           <button role="tab" aria-selected={view === "people"} className={view === "people" ? s.tabOn : s.tab} onClick={() => setView("people")}>
             People
           </button>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/kudos">
+            🎉 Kudos
+          </Link>
           <Link role="tab" aria-selected={false} className={s.tab} href="/hq/design">
             Design
           </Link>
@@ -214,7 +231,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
                   );
                 })}
               </div>
-              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (id.startsWith("to-floor-") ? setFloor(Number(id.slice(-1)) as 2 | 3 | 4) : setRoom(id))} onPerson={pickPerson} />
+              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (id.startsWith("to-floor-") ? setFloor(Number(id.slice(-1)) as 2 | 3 | 4) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />
@@ -229,12 +246,16 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
                 <span key={p.key} className={s.rosterItem} title={p.summary}>
                   <Avatar seed={p.seed} color={teamColor(p.role)} size={22} dim={p.state === "idle"} ring={p.state === "stopped" ? "#ff6b6b" : undefined} />
                   {p.name}
+                  {kudosBy[p.role] ? <span className={s.kudosCount} title="Kudos in the last 7 days">🎉 {kudosBy[p.role].week}</span> : null}
                 </span>
               ))}
             </div>
           )}
           {room === "lobby" && (
             <div className={s.queue}>
+              <Link className={s.kudosTicker} href="/hq/kudos">
+                🎉 {kudosToday} kudos today, see the board
+              </Link>
               <h3>Rituals due now</h3>
               {due.length ? (
                 <ul>
