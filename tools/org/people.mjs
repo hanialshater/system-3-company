@@ -10,6 +10,7 @@ export const PERSONA = {
   "portfolio-manager": "Odette",
   "principal-engineer-ops": "Rhea",
   "vp-rnd": "Vera",
+  "community-engineer": "Femi",
   "rnd-lead": "Bram",
   "research-lead": "Wen",
   "head-of-product": "Priya",
