@@ -85,3 +85,10 @@ Inputs: learner review `2026-10-14-learner-threshold-rule-only.md`, fact-check P
 ## Revision v3 (demo-builder, 2026-10-14, polish)
 
 - c4 vs code: the reveal quoted the current focus at any round on the 0,1 start. Code now quotes only a group member focused on the 0,1 final (`quoted = sawIn`, set by the effect when focus, start 0,1 and final coincide), as c4 says. Claim text unchanged, so c4 stays as the fact-checker left it.
+
+## Revision v4 (demo-builder, 2026-10-14, final-review polish)
+
+- Option 0 is now "Many more people adopting first, outside those four"; option 2 "Two people adopting first, among those four". Reveal: "Where the seeds are decides it, not how many ... Started at 8 and 9, inside the four ... More starters outside the four would not help, because none of them can be the first of the four to join." Node brute force over 4096 seed sets: {0,1,8,9} reaches 12; 0 of 256 outside-only sets reach 12; 2816 of 2816 sets with 2+ members in 8-11 reach 12 (one member plus 7 can also work, so the reveal claims only the outside-only case).
+- c6 text updated -> unverified. All other claims unchanged.
+- Clipped "Start 8,9 / Start 0,1" row on phone: stage width capped at min(340px, 33svh) so the chips fit in the explore card. Checked in the phone walkthrough frame.
+- QA (NEXT_DIST_DIR=.next-fin, QA_PORT=3971, QA_OUT=test-results-fin-a): contract passes phone and desktop. Walkthrough looked at (explore, reveal).

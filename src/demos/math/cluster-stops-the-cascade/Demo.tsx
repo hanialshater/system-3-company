@@ -113,7 +113,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "People 0 and 1 adopt first and the idea stops at 8 of 12. What would get it to all 12?",
-        options: ["Many more people adopting first", "Nothing: those four are out of reach", "Two people adopting first, somewhere else"],
+        options: ["Many more people adopting first, outside those four", "Nothing: those four are out of reach", "Two people adopting first, among those four"],
         answer: 2,
       }}
       exploreHint="Step round by round, tap a person to see their friends, then try the other start."
@@ -121,8 +121,9 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Not more seeds: two in a better place. From 0 and 1 it stopped at 8 of 12 in round 6, and the four outlined never
-            joined. Started at 8 and 9, the same two seeds reached all 12.
+            Where the seeds are decides it, not how many. From 0 and 1 it stopped at 8 of 12 in round 6, and the four outlined
+            never joined. Started at 8 and 9, inside the four, the same two seeds reached all 12. More starters outside the four
+            would not help, because none of them can be the first of the four to join.
           </p>
           <p>
             {quoted !== null && `Person ${quoted} had ${endFriends(quoted)} of ${NB[quoted].length} friends adopted. `}
