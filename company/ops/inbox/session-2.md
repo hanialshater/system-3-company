@@ -67,6 +67,13 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: cm-geography-people-places (Bodhi), node check of schelling-on-new-york
+
+- **What changed.** Brief 1 in `company/domains/briefs/geography.people-places.md` updated in place (check, redesigned prediction and answer, 11 claims, format note, 9 cultural-review questions). New script `company/domains/briefs/checks/schelling-nyc-check.mjs` (self-test reproduces abm.ts exactly). Board, progress, events and src untouched. Not committed.
+- **Result.** The original question (model D above or below the real city's) is not fair: D on the settled model world runs 1.00 to 0.38 across block sizes, and a random start already scores 0.45 to 0.49 on 2 x 2 blocks. Redesigned: "how segregated does the random start look?" Answer B, about 0.5 (settled about 0.8). Threshold not tuned.
+- **Believe.** High on the model numbers for the hand mask; medium that they hold on the real mask (re-run needed). Real D, Census shares, mask data all unverified: egress to data.cityofnewyork.us and Brown returned 403, and no search tool was available. With 61/39 shares, 29 of 50 seeds do not settle in 60 ticks.
+- **Next.** cultural-reviewer answers the question list; fact-checker reads Census and Brown; builder gets the real mask (needs egress) and re-runs the check; S2-17 reference to ch. 4 added in the brief text only (curriculum.references still to do).
+
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B4 (25 study lessons) reviewed at source level: 25 pass, class none, no warnings, 0 changes; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B4-2026-10-14.md. No walkthrough run. Not committed.
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B6 (15 study + 10 resource lessons) reviewed at source level: 25 pass, 0 changes; one International flag (lh-cents-euros-conversion: 100 subunits is wrong for KWD/BHD/OMR). Records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B6-2026-10-14.md. No walkthrough run. Not committed.
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B7 (25 resource lessons) reviewed at source level: 22 pass, 3 pass with changes (lh-duty-cycle-energy, lh-fixed-energy-charge, lh-idle-versus-active: add stage line "Tariffs and appliance ratings vary: check your own."), 0 fail; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B7-2026-10-14.md. No walkthrough run. Not committed.
