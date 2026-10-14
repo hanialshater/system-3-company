@@ -47,3 +47,34 @@ All 8 claims are `unverified`. c6 (Schelling 1971) says the DOI is from memory a
 - **Fact-checker:** c1–c8, especially the c6 DOI.
 - The format id in meta is `agent-based-simulation`. There is no `company/design/concepts/agent-based-simulation.md` yet (interaction designer / design lead).
 - Engine lift to `src/kit/abm` after schelling-on-new-york (platform engineer, tier 2 review).
+
+## Revision v2 (2026-10-14, session 2, branch ccr-rnd-ncm worktree)
+
+Inputs: `2026-10-14-learner-no-schelling.md` (verdict revise), fact-check Pass NCM-1 (8/8 verified, one advisory on c6).
+
+| Finding | Change |
+|---|---|
+| 5. Mechanism told, not shown | `abm.ts` now tracks agent ids, which move with their agents. The RNG is untouched, and frames are identical to v1 for seeds 1-100 at all four thresholds. `run()` returns `unsettled[t]`: agents that are unhappy after tick t and did not move in it. Every unhappy agent moves each tick, so these agents were content before the tick and someone else's move unsettled them. The stage draws each one with a **red ring** and counts them ("54 unsettled by a move" at tick 1, seed 2). New milestone `saw-unsettled`: a frame with rings is shown in explore. The QA path's first Step reaches it. Run now replays at most 20 frames, 120 ms apart (was 15 x 25 ms), so the rings can be seen; milestones still fire on press. The reveal quotes the learner's own run: "143 households content at the start were unsettled and moved too" (`run().cascade`, counting distinct agents; it matches the fact-checker's 137/143/142/100/95 for seeds 1-5). |
+| 6. "Sharp" not visible at 30% | Households whose occupied neighbours are all their own group get a cell-sized **tint** (group colour, 30% opacity), so block interiors read as solid regions. A count "N% all neighbours like" goes with it. At 30% the count goes from 1% to about 30% (seed 2: 0.6% -> 35.4%); at 10% it stays about 2%, and at 50% it reaches about 58%. The reveal quotes the learner's run. New claim c9. Frame 04 (tick 12 at 30%) now shows clear blocks. |
+| 1. "Hollow" before defined | The rule line uses glyphs instead of the word: "Toy model: [hollow square, hollow circle] under 30% like neighbours, moves to a random empty home." The ring and tint glyphs are on the second line. |
+| 4. "Happy 83%" at tick 0 | "Happy %" is gone. The readout is "Tick 0 · [hollow glyphs] 251", the count of hollow households, using the same glyph the rule line defines. It is visible in predict too, so the learner sees before committing that some households start unhappy by chance. c9 records "about 1 in 6". A run at the cap reads "Tick 60 limit · [glyphs] 25". |
+| 10. "city" | The question now says "A grid of homes". The hook is unchanged; see open issues. |
+| Fact-check advisory (c6) | c6 text: "The stage runs a simplified version of Thomas Schelling's model: ...". Reveal caveat: "A simplified version of Schelling's 1971 model: it shows what can happen, not what causes any real city's pattern." Recall why: "In a simplified version of Schelling's model, ...". |
+
+Not changed: finding 9 (after a finished run, chips jump to the end at the new threshold). Keeping it preserves the `other-threshold` milestone on the QA path; the learner can still Step or Run any threshold from a New mix.
+
+**Claims now unverified:** c6 (text changed) and c9 (new). c5 keeps its text; its source now names the engine bookkeeping that the rings draw. c1-c4, c7 and c8 are unchanged.
+
+**Numbers re-run in node** (a scratch script importing the lesson's `abm.ts` and the v1 engine from git; seeds 1-100): frames are identical to v1 at 10/30/50/70. Unhappy at tick 0 at 30%: 15.7-20.1%. All-like share at the start: 0.5-2.4%. All-like share at the end: 10%: 1.2-3.8 (mean 2.2); 30%: 23.6-38.8 (mean 30.6); 50%: 52.0-67.8 (mean 58.4); 70% at tick 60: 83.0-99.2 (mean 93.1). Cascade at 30%: 86-164. Unsettled at tick 1 at 30%: 44-78.
+
+**Stage words** (worst moment, 70% at the cap): rule line 12 (counting "30%"), legend 7 ("unsettled by a move", "all neighbours like"), seed line 4 and "Like neighbours" 2, for 25 in all, plus "Tick"/"limit" in the readout. I dropped the x-axis word "Ticks"; 0 and 60 remain. The reveal on the full QA path is about 111 words.
+
+**Size:** 10.3 KB of minified JS (engine included) + 1.7 KB of CSS.
+
+**QA:** the contract passes on phone and desktop (`NEXT_DIST_DIR=.next-mpsd2`, `QA_PORT=3613`, `QA_OUT=test-results-mpsd2`), recorded with `company qa-record`. Walkthrough via my own server on port 3614; I looked at all 9 phone frames and the sheet. The extra legend line costs grid height: on a 390x844 phone the grid shrinks further, though it stays above the 240 px floor. In the reveal frame the stage is scrolled, so the top of the pinned grid is cut (kit stage scroll, as in v1).
+
+**Open issues**
+- Accessibility reviewer: check the red ring (`--bad`) over a hollow shape at about 6 px cells, and the 30% tint on teal (weaker than on brown), in both themes.
+- The hook still says "city" (learner finding 10). The hook is the CM's or learning designer's call; suggested: "Nobody wants a majority. What does the grid do?"
+- Design lead: the Run replay is now about 2.4 s, not the spec's ≤ 400 ms, so the learner can watch the cascade. Either make this the ABM format default or reverse it.
+- Fact-checker: c6, c9.

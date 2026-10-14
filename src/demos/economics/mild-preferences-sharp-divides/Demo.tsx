@@ -9,12 +9,12 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
 import { Control } from "@/kit/controls";
-import { run, unhappy, CAP, SIZE, type Run } from "./abm";
+import { run, unhappy, neighbours, CAP, SIZE, type Run } from "./abm";
 import s from "./styles.module.css";
 
 const CHIPS = [10, 30, 50, 70];
 const MAIN = 30;
-const MILESTONES = ["settled-30", "other-threshold"] as const;
+const MILESTONES = ["saw-unsettled", "settled-30", "other-threshold"] as const;
 
 const cache = new Map<string, Run>();
 const key = (seed: number, pct: number) => `${seed}:${pct}`;
@@ -36,6 +36,9 @@ interface Done {
   end: number;
   settled: boolean;
   sad: number;
+  allStart: number;
+  allEnd: number;
+  cascade: number;
   n: number;
 }
 const toDone = (r: Run, n: number): Done => ({
@@ -46,17 +49,23 @@ const toDone = (r: Run, n: number): Done => ({
   end: pc(r.like[end(r)]),
   settled: r.settled,
   sad: pc(r.sad[end(r)] / r.agents),
+  allStart: pc(r.allLike[0]),
+  allEnd: pc(r.allLike[end(r)]),
+  cascade: r.cascade,
   n,
 });
 
-function paths(frame: Uint8Array, sad: Set<number>) {
-  const d = ["", "", "", ""]; // A filled, A hollow, B filled, B hollow
+/** A filled, A hollow, B filled, B hollow, A tint, B tint (all neighbours like), rings (unsettled). */
+function paths(frame: Uint8Array, sad: Set<number>, rings: number[]) {
+  const d = ["", "", "", "", "", "", ""];
   for (let i = 0; i < frame.length; i++) {
     const g = frame[i];
     if (!g) continue;
     const x = i % SIZE;
     const y = (i - x) / SIZE;
     const h = sad.has(i);
+    const [like, occ] = neighbours(frame, SIZE, i);
+    if (occ && like === occ) d[g === 1 ? 4 : 5] += `M${x} ${y}h1v1h-1z`;
     if (g === 1) {
       const o = h ? 0.19 : 0.11;
       const w = h ? 0.62 : 0.78;
@@ -66,8 +75,24 @@ function paths(frame: Uint8Array, sad: Set<number>) {
       d[h ? 3 : 2] += `M${x + 0.5 - r} ${y + 0.5}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 -${2 * r} 0`;
     }
   }
+  for (const i of rings) {
+    const x = i % SIZE;
+    const y = (i - x) / SIZE;
+    d[6] += `M${x - 0.15} ${y + 0.5}a0.65 0.65 0 1 0 1.3 0a0.65 0.65 0 1 0 -1.3 0`;
+  }
   return d;
 }
+
+/** Legend glyphs, drawn like the grid. */
+const G = ({ k }: { k: "hollow" | "ring" | "tint" }) => (
+  <svg viewBox={k === "hollow" ? "-0.1 -0.1 2.2 1.2" : "-0.25 -0.25 1.5 1.5"} className={`${s.glyph} ${k === "hollow" ? s.wide : ""}`} aria-hidden>
+    {k === "tint" && <rect width={1} height={1} className={`${s.a} ${s.tint}`} />}
+    {k === "tint" && <rect x={0.11} y={0.11} width={0.78} height={0.78} className={s.a} />}
+    {k !== "tint" && <rect x={0.19} y={0.19} width={0.62} height={0.62} className={`${s.a} ${s.hollow}`} />}
+    {k === "hollow" && <circle cx={1.5} cy={0.5} r={0.34} className={`${s.b} ${s.hollow}`} />}
+    {k === "ring" && <circle cx={0.5} cy={0.5} r={0.65} className={s.ring} />}
+  </svg>
+);
 
 // Chart geometry (viewBox units ~ CSS px at 390 width). Right gutter holds end labels.
 const W = 340;
@@ -105,9 +130,10 @@ function Fit({ phase, children }: { phase: string; children: (r: RefObject<HTMLD
   return <>{children(ref, px)}</>;
 }
 
-function Gate({ interact, done, phase, pin }: { interact: () => void; done: Done[]; phase: string; pin: () => void }) {
+function Gate({ interact, done, phase, pin, rings }: { interact: () => void; done: Done[]; phase: string; pin: () => void; rings: boolean }) {
   const { reach } = useMilestones(interact, MILESTONES);
   useEffect(() => {
+    if (rings && phase === "explore") reach("saw-unsettled");
     for (const d of done) {
       if (d.pct === MAIN && d.settled) reach("settled-30");
       if (d.pct !== MAIN) reach("other-threshold");
@@ -153,14 +179,15 @@ export default function MildPreferences({ slug }: { slug: string }) {
     stop();
     record(cur); // milestones fire on press, from the computed result
     const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const jump = Math.max(1, Math.ceil((last - tt) / 15));
+    // Slow enough to see the red rings tick by tick: at most 20 frames, 120 ms apart.
+    const jump = Math.max(1, Math.ceil((last - tt) / 20));
     if (reduce || last - tt <= 1) return setT(last);
     let k = tt;
     timer.current = setInterval(() => {
       k = Math.min(last, k + jump);
       setT(k);
       if (k >= last) stop();
-    }, 25);
+    }, 120);
   };
   const choose = (p: number) => {
     stop();
@@ -187,9 +214,10 @@ export default function MildPreferences({ slug }: { slug: string }) {
 
   const frame = cur.frames[tt];
   const sadNow = unhappy(frame, SIZE, pct);
-  const d = paths(frame, new Set(sadNow));
+  const rings = cur.unsettled[tt];
+  const d = paths(frame, new Set(sadNow), rings);
   const like = pc(cur.like[tt]);
-  const happy = pc(1 - sadNow.length / cur.agents);
+  const allLike = pc(cur.allLike[tt]);
   const finished = tt === last && isDone(seed, pct);
   const isPin = !!pinRun && seed === pinRun.seed && pct === MAIN && tt === pinRun.ticks;
 
@@ -203,20 +231,23 @@ export default function MildPreferences({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A city grid holds two groups in equal numbers, mixed at random, with some empty homes. A household moves if under 30% of its neighbours are like it, so it is happy as a minority on a street that is 70% the other group. Once nobody wants to move, what share of a typical household's neighbours are like it?",
+          "A grid of homes holds two groups in equal numbers, mixed at random, with some empty homes. A household moves if under 30% of its neighbours are like it, so it is happy as a minority on a street that is 70% the other group. Once nobody wants to move, what share of a typical household's neighbours are like it?",
         options: ["About 30%", "About 50% (no change from the start)", "About 75%"],
         answer: 2,
       }}
-      exploreHint="Run it at 30% until nobody wants to move, then try another threshold."
+      exploreHint="Step at 30% and watch the red rings, run it until nobody wants to move, then try another threshold."
       minInteractions={MILESTONES.length}
       reveal={() => <Reveal done={done} pinRun={pinRun} />}
     >
       {({ locked, interact, phase }) => (
         <Fit phase={phase}>{(fitRef, px) => (
         <div className={s.wrap} ref={fitRef}>
-          <Gate interact={interact} done={done} phase={phase} pin={pin} />
+          <Gate interact={interact} done={done} phase={phase} pin={pin} rings={rings.length > 0} />
           <p className={s.rule}>
-            Toy model. Hollow households have under {pct}% like neighbours; they move to a random empty home.
+            Toy model: <G k="hollow" /> under {pct}% like neighbours, moves to a random empty home.
+          </p>
+          <p className={s.rule}>
+            <G k="ring" /> {rings.length} unsettled by a move · <G k="tint" /> {allLike}% all neighbours like
           </p>
           <div className={s.seedRow}>
             <span>40×40 · 8 nearby cells · 10% empty · seed {seed}</span>
@@ -229,24 +260,26 @@ export default function MildPreferences({ slug }: { slug: string }) {
             className={`stage-svg ${s.grid}`}
             style={{ width: px }}
             role="img"
-            aria-label={`Tick ${tt}: ${like}% like neighbours${
-              locked ? "" : sadNow.length ? `, ${100 - happy}% unhappy` : ", everyone happy"
+            aria-label={`Tick ${tt}: ${like}% like neighbours, ${allLike}% with all neighbours like, ${
+              sadNow.length ? `${sadNow.length} want to move, ${rings.length} of them unsettled by a move` : "nobody wants to move"
             }`}
           >
             <rect x={-0.3} y={-0.3} width={SIZE + 0.6} height={SIZE + 0.6} className={s.frame} />
+            <path d={d[4]} className={`${s.a} ${s.tint}`} />
+            <path d={d[5]} className={`${s.b} ${s.tint}`} />
             <path d={d[0]} className={s.a} />
             <path d={d[1]} className={`${s.a} ${s.hollow}`} />
             <path d={d[2]} className={s.b} />
             <path d={d[3]} className={`${s.b} ${s.hollow}`} />
+            <path d={d[6]} className={s.ring} />
           </svg>
           <div className={s.head}>
-            <span>Like neighbours</span>
+            <span>
+              Like neighbours <b className={s.readout}>{like}%</b>
+            </span>
             <span className={s.readout} aria-live="polite">
-              {isPin && phase === "reveal"
-                ? `Your ${MAIN}% run · tick ${tt} · Like ${like}%`
-                : !locked && tt === last && !cur.settled
-                  ? `Tick ${tt} · Like ${like}% · ${100 - happy}% still unhappy`
-                  : `Tick ${tt} · Happy ${locked ? "?" : `${happy}%`} · Like ${like}%`}
+              {isPin && phase === "reveal" ? `Your ${MAIN}% run · ` : ""}Tick {tt}
+              {tt === last && !cur.settled ? " limit" : ""} · <G k="hollow" /> {sadNow.length}
             </span>
           </div>
           <svg viewBox={`0 0 ${W} 81`} className={`stage-svg ${s.chart}`} aria-hidden>
@@ -259,7 +292,6 @@ export default function MildPreferences({ slug }: { slug: string }) {
             <line x1={X0} x2={X1} y1={YB} y2={YB} className={s.axisLine} />
             <line x1={X0} x2={X1} y1={cy(0.5)} y2={cy(0.5)} className={s.ghost} />
             <text x={X0} y={78} textAnchor="middle" className={s.tick}>0</text>
-            <text x={(X0 + X1) / 2} y={78} textAnchor="middle" className={s.tick}>Ticks</text>
             <text x={X1} y={78} textAnchor="middle" className={s.tick}>{CAP}</text>
             {others.map((o) => (
               <path key={o.pct} d={line(getRun(seed, o.pct).like, o.ticks)} className={s.old} />
@@ -312,22 +344,26 @@ function Reveal({ done, pinRun }: { done: Done[]; pinRun?: Done }) {
     .filter((d, i, a) => a.findIndex((x) => x.pct === d.pct) === i);
   const say = (d: Done) =>
     `${d.end}% at ${d.pct}%${pinRun && d.seed !== pinRun.seed ? ` (seed ${d.seed})` : ""}${
-      d.settled ? "" : ` (still ${d.sad}% unhappy at tick ${d.ticks})`
+      d.settled ? "" : ` (${d.sad}% still want to move at tick ${d.ticks})`
     }`;
   return (
     <>
       <p>
         {pinRun
-          ? `Your ${MAIN}% run went from ${pinRun.start}% to ${pinRun.end}% like neighbours, everyone happy by tick ${pinRun.ticks}.`
+          ? `Your ${MAIN}% run went from ${pinRun.start}% to ${pinRun.end}% like neighbours, settling at tick ${pinRun.ticks}. Households whose neighbours are all like them: ${pinRun.allStart}% to ${pinRun.allEnd}%.`
           : "You did not finish a 30% run."}
         {others.length ? ` Other runs: ${others.map(say).join(", ")}.` : ""}
       </p>
       <p>
-        At 30%, a household accepts a street up to 70% the other group; nobody asks for a majority. Yet each
-        move changes other streets, unsettling happy households, and the grid sorts into blocks. Mild preferences can
-        add up to sharp divides (Schelling, 1971).
+        Nobody asked for a majority: at 30%, a household accepts a street up to 70% the other group. The red rings
+        show the rest. Each move changed someone else&apos;s street
+        {pinRun ? `, and ${pinRun.cascade} households content at the start were unsettled and moved too` : ""}. Mild
+        preferences can add up to sharp divides.
       </p>
-      <p className="muted">A toy model: it shows what can happen, not what causes any real city&apos;s pattern.</p>
+      <p className="muted">
+        A simplified version of Schelling&apos;s 1971 model: it shows what can happen, not what causes any real
+        city&apos;s pattern.
+      </p>
     </>
   );
 }

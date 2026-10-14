@@ -28,3 +28,9 @@
 .chips .chip { min-width: 44px; padding-left: 6px; padding-right: 6px; }
 /* Temporary 44 px tap targets until the kit's .control fix lands (design-lead decisions 2026-10-13 §2b). */
 .tap { min-height: 44px; }
+/* v2: all-neighbours-like tint (blocks), red ring = content household unsettled by a move, legend glyphs. */
+.tint { opacity: 0.3; }
+.ring { fill: none; stroke: var(--bad); stroke-width: 0.2; }
+.glyph { display: inline-block; width: 0.95em; height: 0.95em; vertical-align: -0.12em; overflow: visible; }
+.glyph.wide { width: 1.7em; height: 0.95em; }
+.head b { font-weight: 600; }

@@ -10,6 +10,11 @@
 // RNG), and move each in turn to a uniformly random empty cell (the cell it leaves becomes empty
 // after it has chosen). Metric: like share = mean over agents with >= 1 neighbour of like/occupied.
 // A run settles when nobody is unhappy; it stops at CAP ticks otherwise.
+//
+// Cascade bookkeeping (does not touch the RNG, so runs are unchanged): an agent that is unhappy
+// after a tick and did not move in it was happy before the tick (every unhappy agent moves), so a
+// move by someone else unsettled it. run() lists those cells per frame and counts the distinct
+// agents that were happy at tick 0 and became unhappy later.
 
 export const SIZE = 40;
 export const EMPTY = 0.1;
@@ -72,6 +77,21 @@ export function unhappy(c: Cells, size: number, pct: number): number[] {
   return out;
 }
 
+/** Share of agents with >= 1 neighbour whose occupied neighbours are all like them (0..1). */
+export function allLikeShare(c: Cells, size: number): number {
+  let all = 0;
+  let n = 0;
+  for (let i = 0; i < c.length; i++) {
+    if (!c[i]) continue;
+    const [like, occ] = neighbours(c, size, i);
+    if (occ > 0) {
+      n++;
+      if (like === occ) all++;
+    }
+  }
+  return n ? all / n : 0;
+}
+
 /** Mean like share over agents with at least one neighbour (0..1). */
 export function likeShare(c: Cells, size: number): number {
   let sum = 0;
@@ -96,8 +116,9 @@ export function place(r: () => number, size = SIZE, empty = EMPTY): Cells {
   return Uint8Array.from(shuffle(a, r));
 }
 
-/** One tick in place; returns how many agents moved. */
-export function tick(c: Cells, size: number, pct: number, r: () => number): number {
+/** One tick in place; returns how many agents moved. Optional `ids` (agent id per cell, 0 = empty)
+ * move with their agents; optional `landed` collects the cells movers arrived in. */
+export function tick(c: Cells, size: number, pct: number, r: () => number, ids?: Int32Array, landed?: number[]): number {
   const movers = shuffle(unhappy(c, size, pct), r);
   const empties: number[] = [];
   for (let i = 0; i < c.length; i++) if (!c[i]) empties.push(i);
@@ -107,6 +128,11 @@ export function tick(c: Cells, size: number, pct: number, r: () => number): numb
     c[to] = c[from];
     c[from] = 0;
     empties[k] = from;
+    if (ids) {
+      ids[to] = ids[from];
+      ids[from] = 0;
+    }
+    landed?.push(to);
   }
   return movers.length;
 }
@@ -120,6 +146,12 @@ export interface Run {
   like: number[];
   /** unhappy agents at frames[t] */
   sad: number[];
+  /** allLike[t]: share of agents whose neighbours are all like them, 0..1 */
+  allLike: number[];
+  /** unsettled[t]: cells of agents unhappy at frames[t] that did not move in tick t (happy before it) */
+  unsettled: number[][];
+  /** distinct agents happy at tick 0 that became unhappy at some later frame */
+  cascade: number;
   agents: number;
   settled: boolean;
 }
@@ -130,14 +162,31 @@ export function run(seed: number, pct: number, cap = CAP, size = SIZE, empty = E
   const c = place(r, size, empty);
   const frames = [c.slice()];
   const like = [likeShare(c, size)];
-  const sad = [unhappy(c, size, pct).length];
+  const ids = Int32Array.from(c, (v, i) => (v ? i + 1 : 0));
+  const sad0 = unhappy(c, size, pct);
+  const sad = [sad0.length];
+  const allLike = [allLikeShare(c, size)];
+  const unsettled: number[][] = [[]];
+  const content0 = new Set<number>();
+  for (let i = 0; i < c.length; i++) if (c[i]) content0.add(ids[i]);
+  for (const i of sad0) content0.delete(ids[i]);
+  const hit = new Set<number>();
   while (sad[sad.length - 1] > 0 && frames.length <= cap) {
-    tick(c, size, pct, r);
+    const landed: number[] = [];
+    tick(c, size, pct, r, ids, landed);
+    const arrived = new Set(landed);
+    const now = unhappy(c, size, pct);
     frames.push(c.slice());
     like.push(likeShare(c, size));
-    sad.push(unhappy(c, size, pct).length);
+    sad.push(now.length);
+    allLike.push(allLikeShare(c, size));
+    unsettled.push(now.filter((i) => !arrived.has(i)));
+    for (const i of now) if (content0.has(ids[i])) hit.add(ids[i]);
   }
-  let agents = 0;
-  for (let i = 0; i < c.length; i++) if (c[i]) agents++;
-  return { seed, pct, frames, like, sad, agents, settled: sad[sad.length - 1] === 0 };
+  return {
+    seed, pct, frames, like, sad, allLike, unsettled,
+    cascade: hit.size,
+    agents: ids.filter((v) => v > 0).length,
+    settled: sad[sad.length - 1] === 0,
+  };
 }
