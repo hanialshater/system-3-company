@@ -112,8 +112,65 @@ export function DemoCard({
  * the whole stage with a transform and broke it). An svg that holds a control is left alone. A picture
  * never goes below PICTURE_FLOOR of its natural height; what is still over is scrolled as before, so
  * the reveal stays fully visible either way. Shrunk pictures carry data-reveal-fit (the old height).
+ *
+ * W-287 (review 2026-10-14-W-237, changes 1-2): a uniform letterbox scale shrinks svg labels with the
+ * picture (347 lessons ended below 9 px), which breaks demo-standard's "never shrink text". So:
+ * - A labelled picture stops shrinking at the W-289 floors (company/design/system.md, "Accessibility:
+ *   minimum text size in lesson pictures"): floor = max(PICTURE_FLOOR, SVG_TEXT_FLOOR_PX / smallest
+ *   meaning-carrying label, SVG_DECOR_FLOOR_PX / smallest aria-hidden label). If that is >= 1 it is not
+ *   shrunk at all (a label already under 10 px is never shrunk). A text-free picture keeps PICTURE_FLOOR.
+ *   The letterbox scale is min(w/vbW, h/vbH), so capping the height at k * h scales the drawing by at least k: text never lands below the minimum.
+ * - A shrink that frees less than 1 px of overflow is undone (the picture sits in a row a sibling sizes).
+ * - Pictures that would distort or slip out of register are skipped: preserveAspectRatio="none",
+ *   an svg that is (or sits inside) position absolute/fixed within the stage, and an svg with absolutely
+ *   positioned siblings laid over it (overlays: HTML nodes drawn on top of the picture).
+ * W-288 (change 3): an svg holding untagged interactive elements ([tabindex], role button/slider,
+ * links, form fields, or any element with cursor: pointer) is skipped too, so a tap target the
+ * contract cannot see never shrinks.
  */
 const PICTURE_FLOOR = 0.4;
+/** W-289 floors (company/design/system.md): smallest rendered svg label (CSS px) the fit may produce. */
+export const SVG_TEXT_FLOOR_PX = 10; // meaning-carrying labels (anything not inside aria-hidden="true")
+export const SVG_DECOR_FLOOR_PX = 8; // decorative labels inside aria-hidden="true"
+const UNTAGGED_INTERACTIVE = '[tabindex],[role="button"],[role="slider"],a[href],button,input,select,textarea';
+const isOutOfFlow = (el: Element) => {
+  const p = getComputedStyle(el).position;
+  return p === "absolute" || p === "fixed";
+};
+/** Smallest rendered font size (px) of the svg's non-empty <text>, split meaning/decorative; null = none. */
+function smallestTextPx(svg: SVGSVGElement): { meaning: number | null; decor: number | null } {
+  let meaning = Infinity;
+  let decor = Infinity;
+  svg.querySelectorAll<SVGTextElement>("text").forEach((t) => {
+    if (!t.textContent?.trim()) return;
+    const ctm = t.getScreenCTM();
+    if (!ctm) return;
+    const px = parseFloat(getComputedStyle(t).fontSize) * Math.sqrt(Math.abs(ctm.a * ctm.d - ctm.b * ctm.c));
+    if (!(px > 0)) return;
+    if (t.closest('[aria-hidden="true"]')) decor = Math.min(decor, px);
+    else meaning = Math.min(meaning, px);
+  });
+  return { meaning: meaning === Infinity ? null : meaning, decor: decor === Infinity ? null : decor };
+}
+/** Smallest scale the picture may take so no label lands under its W-289 floor (PICTURE_FLOOR if text-free). */
+function pictureFloor({ meaning, decor }: { meaning: number | null; decor: number | null }): number {
+  return Math.max(
+    PICTURE_FLOOR,
+    meaning === null ? 0 : SVG_TEXT_FLOOR_PX / meaning,
+    decor === null ? 0 : SVG_DECOR_FLOOR_PX / decor,
+  );
+}
+/** W-287: skip pictures that a max-height would distort, misregister, or whose hidden targets would shrink. */
+function canShrink(svg: SVGSVGElement, stage: HTMLElement): boolean {
+  if (svg.getAttribute("preserveAspectRatio")?.trim().startsWith("none")) return false;
+  for (let el: Element | null = svg; el && el !== stage; el = el.parentElement) if (isOutOfFlow(el)) return false;
+  const parent = svg.parentElement;
+  if (parent && [...parent.children].some((c) => c !== svg && isOutOfFlow(c))) return false;
+  if (svg.querySelector(UNTAGGED_INTERACTIVE)) return false;
+  // Shapes with an onClick and only a pointer cursor (wheel-needs-four-colours, three-students-two-rooms)
+  for (const el of svg.querySelectorAll("*")) if (getComputedStyle(el).cursor === "pointer") return false;
+  return true;
+}
 function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
   useEffect(() => {
     const body = bodyRef.current;
@@ -142,15 +199,27 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
         .filter((svg) => !svg.parentElement?.closest("svg")) // outermost svgs only
         .map((svg) => ({ svg, h: svg.getBoundingClientRect().height }))
         .filter((p) => p.h >= 60)
-        .sort((x, y) => y.h - x.h);
-      for (const { svg, h } of pictures) {
+        .filter((p) => canShrink(p.svg, stage))
+        .sort((x, y) => y.h - x.h)
+        .map((p) => ({ ...p, text: smallestTextPx(p.svg) })); // measured at natural size, before any shrink
+      for (const { svg, h, text } of pictures) {
         if (over <= 1) break;
-        const target = Math.max(h * PICTURE_FLOOR, h - over - 4);
+        const floor = pictureFloor(text);
+        if (floor >= 1) continue; // labels already at or below the minimum: never shrink them
+        const target = Math.max(h * floor, h - over - 4);
         if (h - target < 1) continue;
         svg.style.setProperty("max-height", `${target.toFixed(1)}px`, "important");
         svg.style.setProperty("min-height", "0px", "important"); // a lesson min-height would win over max-height
         svg.dataset.revealFit = h.toFixed(0);
+        const before = over;
         over = body.scrollHeight - body.clientHeight;
+        if (before - over < 1) {
+          // W-287: freed nothing, so the shrink only cost legibility: undo it
+          svg.style.removeProperty("max-height");
+          svg.style.removeProperty("min-height");
+          delete svg.dataset.revealFit;
+          over = body.scrollHeight - body.clientHeight;
+        }
       }
     };
     const bringIntoView = () => {
