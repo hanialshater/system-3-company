@@ -1,0 +1,104 @@
+{
+  "slug": "more-copying-bigger-stars",
+  "title": "Copy a link, crown a giant",
+  "hook": "New pages copy each other's links. Does the top page get a bit bigger, or far bigger?",
+  "domain": "probability",
+  "concept": "preferential-attachment-exponent",
+  "format": "simulation-run",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "rich-get-richer: early popularity attracts more popularity (same-songs-different-hits)"
+    ],
+    "doesNotKnow": [
+      "how strongly the share of copying controls the size of the biggest winner"
+    ]
+  },
+  "misconception": "Copying other people's links changes the biggest page a little, perhaps doubling it.",
+  "objective": "The learner can explain that copying a random page's link lands on a page with chance proportional to the links it already has, so raising copying from 0% to 90% turns a biggest page of about a dozen links into one with thousands, out of 10,000.",
+  "claims": [
+    {
+      "id": "probability.more-copying-bigger-stars.c1",
+      "text": "In the stage's model, each of 10,000 new pages adds one link to an earlier page: with the copying share it picks a random earlier page and links to whatever that page links to, otherwise it links to a random earlier page.",
+      "support": "convention",
+      "source": "Lesson rule (Demo.tsx simulate). Page 0 starts the world; page i copies from pages 1..i-1 (pages that have a link) or links uniformly to pages 0..i-1. The copying model follows the brief (E&K ch. 18).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-copying-bigger-stars.c2",
+      "text": "In the stage's model of 10,000 pages, the biggest page ends with 12 to 18 links with no copying, 158 to 179 with 50% copying and 4,537 to 6,278 with 90% copying (seeds 1 to 3); per seed: 12/160/6,278, 18/179/4,537, 12/158/5,122.",
+      "support": "simulation",
+      "source": "Builder's node run of the lesson's own generator (Demo.tsx simulate: mulberry32(seed), two draws per page, the same draws for every copying share), 2026-10-14. Seeds 1-3 are the first three integers, not chosen to show the result. The brief's cm re-run gave 12/18/12 and 6277/4536/5121 (one off at 90%, likely a different start rule); the brief range 4,500-6,300 holds.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-copying-bigger-stars.c3",
+      "text": "In the same runs, the top 1% of pages hold about 7% of all links with no copying, 26 to 27% at 50% and 84 to 86% at 90%.",
+      "support": "simulation",
+      "source": "Builder's node run, seeds 1-3: top 100 of 10,001 pages hold 7.3/7.4/7.6% (c=0), 26.7/26.9/25.6% (c=0.5), 84.3/85.5/85.1% (c=0.9) of the 10,000 links. Readout on stage uses the top floor((i+1)/100) pages after i pages.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-copying-bigger-stars.c4",
+      "text": "A copier lands on a page with chance proportional to the links that page already has, so a page with 500 links is 500 times more likely to be copied than a page with one.",
+      "support": "derivation",
+      "source": "Copying picks one of the i-1 existing links uniformly and follows it; page j is the target of deg(j) of them, so P(copy lands on j) = c * deg(j)/(i-1). E&K ch. 18 describes the same rich-get-richer equivalence.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.more-copying-bigger-stars.c5",
+      "text": "Without copying, every earlier page has the same chance of getting the new link.",
+      "support": "derivation",
+      "source": "Lesson rule: with c = 0 the target is uniform on pages 0..i-1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a copying model, new pages copy an existing link 90% of the time instead of 0%. What happens to the most-linked page?",
+    "options": [
+      "It gets roughly twice as many links",
+      "It gets hundreds of times more links",
+      "It stays about the same"
+    ],
+    "answer": 1,
+    "why": "Copying a random link lands on a page in proportion to the links it already has, so the leader keeps pulling ahead: from about a dozen links to thousands out of 10,000."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:preferential-attachment-exponent",
+    "also": [],
+    "prerequisites": [
+      "probability:heavy-tails"
+    ],
+    "level": "stretch",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 18
+      }
+    ],
+    "tags": [
+      "power law",
+      "preferential attachment"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "scrubber-timeline",
+    "milestone-gate"
+  ]
+}
