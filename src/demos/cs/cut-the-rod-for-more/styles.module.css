@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
+.lab { fill: var(--muted); font-size: 12px; font-weight: 700; }
+.piece { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.pieceOn { fill: #0d0f14; font-size: 12px; font-weight: 800; }
+.best { fill: var(--fg); font-size: 16px; font-weight: 900; }
+.unknown { fill: var(--muted); font-size: 16px; font-weight: 900; }
+.choices {
+  list-style: none; margin: 0 auto; padding: 0; min-height: 5.6em;
+  font-family: ui-monospace, monospace; font-size: 0.85rem; font-weight: 600; text-align: center;
+}
+.choices li { color: var(--muted); line-height: 1.4; }
+.choices li.win { color: var(--fg); font-weight: 900; }
+.choices li.win::after { content: "  ← keep"; color: var(--good); }

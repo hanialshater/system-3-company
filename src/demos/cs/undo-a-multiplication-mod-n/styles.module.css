@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
+.eqs, .back {
+  list-style: none; margin: 0 auto; padding: 0; width: 100%; max-width: 340px;
+  font-family: ui-monospace, monospace; font-size: 0.88rem; font-weight: 600; text-align: center;
+}
+.eqs { min-height: 5.8em; }
+.eqs li, .back li { line-height: 1.45; padding: 0 4px; border-radius: 6px; }
+.used { background: color-mix(in srgb, var(--domain) 22%, transparent); }
+.one { color: var(--good); }
+.back { border-top: 1px dashed var(--line); padding-top: 4px; }
+.back li { color: var(--muted); }
+.back li.latest { color: var(--fg); }
+.use { font-size: 0.78rem; }
+.eq { font-weight: 900; white-space: nowrap; }
+.final { margin: 0; text-align: center; font-family: ui-monospace, monospace; font-weight: 900; color: var(--good); }

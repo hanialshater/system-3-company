@@ -1,0 +1,7 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 2.6em; }
+.ch { fill: var(--fg); font-size: 24px; font-weight: 900; font-family: ui-monospace, monospace; }
+.chOn { fill: #0d0f14; font-size: 24px; font-weight: 900; font-family: ui-monospace, monospace; }
+.centres { display: grid; gap: 2px; width: 100%; }
+.centres .centre { min-width: 24px; min-height: 36px; padding: 0 2px; font-family: ui-monospace, monospace; font-weight: 800; }
