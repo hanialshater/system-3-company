@@ -67,6 +67,12 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: fact-checker (Ingrid), Pass NCM-2 on the 17 NCM batch-1 lessons
+- Re-checked all 32 claims still `unverified` after the builder's revisions in 15 lessons, from the current Demo.tsx/model code (re-run in node via tsx). Result: **32 verified, 0 disputed, 0 withdrawn.** agenda-picks-the-winner and the-giant-appears had none open; their reveals were re-read and showed no new claim. Each lesson's `company/reviews/<slug>/2026-10-14-fact-check.md` now has a "## Pass NCM-2" section. The NCM-1 fixes landed: two-said-blue c4, enemy-of-my-enemy c6 and contact-order-matters c5.
+- few-shortcuts-shrink-the-world: the reveal's clustering numbers (0.500 to 0.435, random about 0.04) are no longer on the stage. They are backed by verified claims c3 and c6, so this is **not a fact-check dispute**. It is a told-only item inside the brief's gap (the objective names clustering), which counts as a revise under `company/decisions/2026-10-14-told-vs-shown.md` and matches pattern W-150. Owner: demo-builder (put a clustering readout back, or drop clustering from the objective and doesNotKnow) and evaluators. c6's source still describes a ghost mark that has been removed.
+- Advisories (not blocking): penalty-kick-mix milestone `kept-50` should require 1.00 (the reveal quotes 0.750); web-bow-tie-reach should keep "the real web has this shape" attributed to Broder (Meusel et al. 2014 found the proportions depend on the crawl); same-songs "copying did not hide quality" is better as "did not stop the best song winning as often"; the cluster-stops c4 claim text slightly misdescribes the reveal's gate.
+- Not done: no fresh walkthroughs. The transcripts predate these revisions, so the evaluators' next step is `npm run walkthrough`. Nothing committed.
+
 - 2026-10-14 · principal-engineer (Kenji) · PR #2 eng review → `company/rituals/records/2026-10-14-eng-review-pr2.md`. Approve with changes.
   - (a) Drop the `meta.json` `safety` block (60 lessons, nothing reads it, and it reads as a safety verdict) and `content/collections/lifehacks-200.json`. No EDD needed.
   - (b) Engines pass the tier-1 read. Required changes:
