@@ -13,3 +13,27 @@ v0 records what exists today, so later changes are deliberate:
   - overlapping labels;
   - floats printed unrounded (60.000000000000014);
   - colours that are too close for colour-blind learners.
+
+## Tokens and contrast (v1, 2026-10-14, K1/K6 of the a11y audit)
+
+Contrast is WCAG 2.x, computed from the hex values. Text needs 4.5:1; large text and graphics 3:1.
+
+| Token | Dark | Light | Dark on bg / bg-2 / bg-3 | Light on bg / bg-2 / bg-3 |
+|---|---|---|---|---|
+| `--bg` / `--bg-2` / `--bg-3` | #0d0f14 / #161a22 / #1f2430 | #f6f7fb / #ffffff / #eceff6 | | |
+| `--fg` | #eef1f7 | #141824 | 16.9 / 15.4 / 13.7 | about 16 or more |
+| `--muted` | #9aa3b5 | #5d6578 | 7.6 / 6.9 / 6.1 | 5.5 / 5.8 / 5.1 |
+| `--good` (text) | #4fd1a5 | #09704d | 10.0 / 9.1 / 8.1 | 5.3 / 5.7 / 4.9 |
+| `--warn` (text) | #f6c453 | #7d5200 | 11.8 / 10.7 / 9.6 | 6.1 / 6.5 / 5.7 |
+| `--bad` (text) | #ff7a7a | #b8222a | 7.6 / 6.9 / 6.2 | 5.9 / 6.3 / 5.5 |
+| `--good-fill`, `--warn-fill`, `--bad-fill` | #4fd1a5 / #f6c453 / #ff7a7a | same | fills, borders and tints only | |
+
+(Light values for good, warn and bad are estimates from the first candidates, #0b7a55 / #8a5a00 / #c0262d, which measured 4.6 to 5.5; the shipped values are slightly darker, so they are at least as high.)
+
+Rules:
+- `--good`, `--warn`, `--bad` are **text-safe**. Use `--*-fill` for shapes, borders and tints. In light mode the old bright values were 1.6 to 2.5:1 as text.
+- White text on the mid-green or yellow fills fails (about 2.9:1 and 1.4:1). Put dark ink (`--bg`) on bright fills, or use `--fg` outside the shape.
+- `--domain` is a pastel (1.1 to 2.4:1 on light). As text in light mode, mix it: `color-mix(in srgb, var(--domain) 45%, #000)` gives 5.8 to 7.9:1 on all ten domains (now also fixes Probability's 4.48). A `--domain-ink` token cannot be set on `:root`, since `--domain` is set per card; open item for the platform engineer.
+- `.chip.on` and `.primary` use #0d0f14 on `--domain`: 7.3 to 11.8:1.
+- The locked stage is no longer dimmed (K6). The old opacity .55 took `--fg` to 3.7:1 (light) and `--muted` to 2.2:1 and 2.8:1. Only disabled controls are dimmed, which WCAG exempts.
+- Stage SVG text should use `--fg`/`--muted` or the text-safe semantic colours, never `--domain` or a hard-coded pastel in light mode. Lessons still doing so are listed in the 2026-10-14 re-scan (builders).
