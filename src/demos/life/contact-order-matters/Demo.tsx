@@ -58,6 +58,18 @@ function Disc({ x, y, r, state }: { x: number; y: number; r: number; state: Disc
   );
 }
 
+function Rung({ hollow }: { hollow?: boolean }) {
+  const f = hollow ? "var(--bg)" : "var(--fg)";
+  const c = hollow ? "var(--muted)" : "var(--fg)";
+  return (
+    <svg width={10} height={16} viewBox="0 0 10 16" aria-hidden="true">
+      <line x1={5} y1={3} x2={5} y2={13} stroke={c} strokeWidth={2} />
+      <circle cx={5} cy={3} r={2.5} fill={f} stroke={c} strokeWidth={1.2} />
+      <circle cx={5} cy={13} r={2.5} fill={f} stroke={c} strokeWidth={1.2} />
+    </svg>
+  );
+}
+
 function Swatch({ state }: { state: DiscState }) {
   return (
     <svg width={14} height={14} viewBox="0 0 14 14" aria-hidden="true">
@@ -186,6 +198,9 @@ function Stage({ locked, interact, onOnlyD }: { locked: boolean; interact: () =>
         <span><Swatch state="first" /> first case</span>
         <span><Swatch state="infected" /> infected</span>
         <span><Swatch state="healthy" /> healthy</span>
+        <span><Rung /> meeting done</span>
+        <span><Rung hollow /> meeting to come</span>
+        <span><svg width={16} height={6} viewBox="0 0 16 6" aria-hidden="true"><line x1={2} y1={3} x2={14} y2={3} stroke="var(--fg)" strokeWidth={5} strokeLinecap="round" /></svg> infected stretch</span>
       </p>
       <p className={s.readout} aria-live="polite">
         Reached <b>{locked ? "?" : `${who.length} of 4`}</b>
@@ -202,24 +217,27 @@ export default function ContactOrderMatters({ slug }: { slug: string }) {
       predict={{
         question:
           "A is infected. Four contacts happen one at a time: A-B, B-C, C-D, D-E. If they happen in the order D-E, C-D, B-C, A-B, how many people other than A can get infected?",
-        options: ["0", "1", "4"],
-        answer: 1,
+        options: ["1", "0", "4"],
+        answer: 0,
       }}
       exploreHint="Take each order to day 4, then tap E."
       minInteractions={3}
       reveal={() => (
         <>
           <p>
-            In E→A, A met B only on day 4, after the other contacts were over, so only B was reached. In A→E, all four were. With
-            Overlap, all four were reached from E too.{onlyD && " From E, A→E reached only D."}
+            In E→A, A met B only on day 4, after the other contacts were over, so only B was reached. In A→E, all four were.
+            {onlyD && " From E, A→E reached only D."}
           </p>
           <p>
             Infection only moves forward in time, so the same contacts can expose or protect someone depending on their order. A
-            diagram of who met whom overstates who can be reached.
+            diagram of who met whom can overstate who can be reached.
+          </p>
+          <p>
+            Overlap is a different change, not another order: every pair meets every day, and from E all four were reached.
           </p>
           <p className="muted">
-            Overlapping partnerships can spread infection further than the same ones in sequence (Morris and Kretzschmar, 1997).
-            Real contacts are not certain to pass it on.
+            Partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and
+            Kretzschmar, 1997). Real contacts are not certain to pass it on.
           </p>
         </>
       )}
