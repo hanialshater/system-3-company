@@ -1,7 +1,7 @@
-// One concept for the HQ Design inspector: its lessons with verdicts, findings, design reviews,
+// One curriculum concept for the HQ Curriculum inspector (category management): its lessons with verdicts, findings, design reviews,
 // illustrations, board items and sheet status, plus the concept's design notes. Gated like HQ.
 import { hqEnabled } from "@/lib/hq";
-import { conceptDetail } from "@/lib/hq-design";
+import { conceptDetail } from "@/lib/hq-curriculum";
 
 export const dynamic = "force-dynamic";
 

@@ -1,270 +1,229 @@
 "use client";
 
-// HQ Design inspector: every curriculum concept, grouped by domain and sub-area, and every lesson for
-// it with the design evidence (learner verdicts, design reviews, illustrations, board items, contact
-// sheets). The index comes with the page; one concept's detail is fetched from
-// /api/hq/design/concept/<key>; sheets stream from /api/hq/sheet/<slug>. Owner: design-engineer.
+// HQ Design inspector: every UI concept (lesson formats, interaction patterns, visual styles) from
+// company/design/concepts/, with a live specimen, the lessons that use it (contact sheets in a grid),
+// the review findings that touch it, and its variants side by side. The index comes with the page;
+// one concept's findings are fetched from /api/hq/design/concept/<id>; sheets stream from
+// /api/hq/sheet/<slug>. Owner: design-engineer. (Curriculum concepts are at /hq/curriculum.)
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import type { ConceptDetail, ConceptRow, DesignIndex, LessonDetail, LessonRow, Verdict } from "@/lib/hq-design";
+import type { ConceptDetail, DesignIndex, Finding, FindingTag, Kind, LessonLite, Status, UiConcept } from "@/lib/hq-design";
+import { HqTop } from "../HqTop";
 import s from "../hq.module.css";
 import d from "./design.module.css";
+import { Specimen } from "./specimens";
 
-type VerdictFilter = "" | Verdict | "none";
+type View = "concepts" | "proposals";
+type Initial = { concept: string | null; lessons: string[]; vs: string | null; view: View };
+
+const KIND_LABEL: Record<Kind, string> = { format: "Formats", interaction: "Interaction patterns", visual: "Visual styles" };
+const KIND_ONE: Record<Kind, string> = { format: "format", interaction: "interaction", visual: "visual" };
+const STATUS_CLASS: Record<Status, string> = { proposed: d.stProposed, approved: d.stApproved, "kit-supported": d.stKit, retired: d.stRetired };
+const TAG_LABEL: Record<FindingTag, string> = { layout: "layout", "told-not-shown": "told, not shown", contrast: "contrast", "tap-size": "tap size", motion: "motion", pattern: "touches the pattern", code: "in the code" };
 const VERDICT_CLASS: Record<string, string> = { launch: d.vLaunch, revise: d.vRevise, fatal: d.vFatal };
+const PAGE = 24;
+const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 
-function VerdictBadge({ v }: { v: Verdict | null }) {
+function StatusChip({ st }: { st: Status }) {
+  return <span className={`${d.chip} ${STATUS_CLASS[st]}`}>{st}</span>;
+}
+function Verdict({ v }: { v: LessonLite["verdict"] }) {
   return <span className={`${d.verdict} ${v ? VERDICT_CLASS[v] : d.vNone}`}>{v ?? "no review"}</span>;
 }
 
-export default function Design({ index, initialConcept, initialCompare }: { index: DesignIndex; initialConcept: string | null; initialCompare: string[] }) {
-  const { domains, concepts, lessons } = index;
-  const byKey = useMemo(() => new Map(concepts.map((c) => [c.key, c])), [concepts]);
+export default function Design({ index, initial }: { index: DesignIndex; initial: Initial }) {
+  const { concepts, lessons, domains, errors } = index;
+  const byId = useMemo(() => new Map(concepts.map((c) => [c.id, c])), [concepts]);
   const lessonBySlug = useMemo(() => new Map(lessons.map((l) => [l.slug, l])), [lessons]);
-  const resolve = (k: string | null) => (k ? (byKey.get(k)?.key ?? concepts.find((c) => c.id === k)?.key ?? null) : null);
 
-  const [sel, setSel] = useState<string | null>(() => resolve(initialConcept));
-  const [compare, setCompare] = useState<string[]>(() => initialCompare.filter((x) => lessonBySlug.has(x)));
-  const [showCompare, setShowCompare] = useState(false);
+  const [sel, setSel] = useState<string | null>(initial.concept && byId.has(initial.concept) ? initial.concept : null);
+  const [vs, setVs] = useState<string | null>(initial.vs && byId.has(initial.vs) ? initial.vs : null);
+  const [view, setView] = useState<View>(initial.view);
+  const [picked, setPicked] = useState<string[]>(initial.lessons.filter((x) => lessonBySlug.has(x)));
+  const [showPicked, setShowPicked] = useState(false);
   const [q, setQ] = useState("");
-  const [domain, setDomain] = useState("");
-  const [sub, setSub] = useState("");
-  const [verdict, setVerdict] = useState<VerdictFilter>("");
-  const [layout, setLayout] = useState(false);
-  const [gaps, setGaps] = useState(false);
-  const [detail, setDetail] = useState<ConceptDetail | null>(null);
-  const [loading, setLoading] = useState(false);
-  const cache = useRef(new Map<string, ConceptDetail>());
+  const [kind, setKind] = useState<"" | Kind>("");
+  const [status, setStatus] = useState<"" | Status>("");
+  const [kit, setKit] = useState<"" | UiConcept["kitClass"]>("");
+  const [withFindings, setWithFindings] = useState(false);
   const detailRef = useRef<HTMLElement>(null);
 
-  // ?view=compare opens the comparison directly (read on mount so the first render matches the server).
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("view") === "compare") setShowCompare(true);
-    // Scroll the concept list (not the page) to a deep-linked concept.
-    const list = document.querySelector<HTMLElement>('[aria-label="Concepts"]');
-    const on = list?.querySelector<HTMLElement>('[aria-current="true"]');
-    if (list && on) list.scrollTop = on.getBoundingClientRect().top - list.getBoundingClientRect().top - list.clientHeight / 3;
-  }, []);
-
-  // Keep the URL linkable: ?concept=<id>&compare=a,b&view=compare
+  // Keep the URL linkable: ?concept=<id>&vs=<id>&lessons=a,b&view=proposals
   useEffect(() => {
     const u = new URLSearchParams();
-    const c = sel ? byKey.get(sel) : null;
-    if (c) u.set("concept", concepts.filter((x) => x.id === c.id).length > 1 ? c.key : c.id);
-    if (compare.length) u.set("compare", compare.join(","));
-    if (showCompare && compare.length) u.set("view", "compare");
-    const qs = u.toString().replace(/%3A/g, ":").replace(/%2C/g, ",");
+    if (view === "proposals") u.set("view", "proposals");
+    if (sel) u.set("concept", sel);
+    if (sel && vs) u.set("vs", vs);
+    if (picked.length) u.set("lessons", picked.join(","));
+    const qs = u.toString().replace(/%2C/g, ",");
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
-  }, [sel, compare, showCompare, byKey, concepts]);
-
-  useEffect(() => {
-    if (!sel) return setDetail(null);
-    const hit = cache.current.get(sel);
-    if (hit) return setDetail(hit);
-    let live = true;
-    setLoading(true);
-    fetch(`/api/hq/design/concept/${encodeURIComponent(sel)}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((x: ConceptDetail | null) => {
-        if (!live) return;
-        if (x) cache.current.set(sel, x);
-        setDetail(x);
-        setLoading(false);
-      })
-      .catch(() => live && (setDetail(null), setLoading(false)));
-    return () => {
-      live = false;
-    };
-  }, [sel]);
-
-  const hay = useMemo(() => {
-    const m = new Map<string, string>();
-    for (const c of concepts) m.set(c.key, [c.id, c.name, ...c.slugs, ...c.slugs.map((x) => lessonBySlug.get(x)?.title ?? "")].join(" ").toLowerCase());
-    return m;
-  }, [concepts, lessonBySlug]);
+  }, [sel, vs, picked, view]);
 
   const shown = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return concepts.filter((c) => {
-      if (domain && c.domain !== domain) return false;
-      if (sub && (sub === "untagged" ? c.subarea !== "untagged" : `${c.domain}/${c.subarea}` !== sub)) return false;
-      if (verdict === "none" && !c.counts.noReview) return false;
-      if (verdict && verdict !== "none" && !c.counts[verdict]) return false;
-      if (layout && !c.layoutFinding) return false;
-      if (gaps && c.counts.lessons) return false;
-      if (needle && !hay.get(c.key)!.includes(needle)) return false;
+      if (kind && c.kind !== kind) return false;
+      if (status && c.status !== status) return false;
+      if (kit && c.kitClass !== kit) return false;
+      if (withFindings && !c.findings) return false;
+      if (needle && ![c.id, c.name, c.summary, c.kit, c.owner].join(" ").toLowerCase().includes(needle)) return false;
       return true;
     });
-  }, [concepts, q, domain, sub, verdict, layout, gaps, hay]);
+  }, [concepts, q, kind, status, kit, withFindings]);
+  const proposals = concepts.filter((c) => c.status === "proposed");
+  const filtered = Boolean(q || kind || status || kit || withFindings);
 
-  const groups = useMemo(() => {
-    const out: { domain: (typeof domains)[number]; subs: { id: string; name: string; items: ConceptRow[] }[]; n: number }[] = [];
-    for (const dm of domains) {
-      const mine = shown.filter((c) => c.domain === dm.id);
-      if (!mine.length) continue;
-      const subIds = [...dm.subareas.map((x) => x.id), ...new Set(mine.map((c) => c.subarea))].filter((v, i, a) => a.indexOf(v) === i);
-      const subs = subIds
-        .map((id) => ({ id, name: id === "untagged" ? "Untagged" : (dm.subareas.find((x) => x.id === id)?.name ?? id), items: mine.filter((c) => c.subarea === id) }))
-        .filter((g) => g.items.length)
-        .sort((a, b) => Number(a.id === "untagged") - Number(b.id === "untagged"));
-      out.push({ domain: dm, subs, n: mine.length });
-    }
-    return out;
-  }, [domains, shown]);
-
-  const subOptions = useMemo(() => domains.filter((dm) => !domain || dm.id === domain).flatMap((dm) => dm.subareas.map((x) => ({ value: `${dm.id}/${x.id}`, label: domain ? x.name : `${dm.short} · ${x.name}` }))), [domains, domain]);
-  const totals = useMemo(() => ({ lessons: new Set(shown.flatMap((c) => c.slugs)).size, gaps: shown.filter((c) => !c.counts.lessons).length }), [shown]);
-
-  const pick = (key: string) => {
-    setSel(key);
-    setShowCompare(false);
-    // On a phone the list is replaced by the concept: start it at the top.
+  const pick = (id: string) => {
+    setSel(id);
+    setVs(null);
+    setShowPicked(false);
+    setView("concepts");
     if (window.matchMedia("(max-width: 900px)").matches) requestAnimationFrame(() => detailRef.current?.scrollIntoView({ block: "start" }));
   };
-  const toggleCompare = (slug: string) => setCompare((xs) => (xs.includes(slug) ? xs.filter((x) => x !== slug) : xs.length >= 3 ? xs : [...xs, slug]));
-  const filtered = Boolean(q || domain || sub || verdict || layout || gaps);
-  const clear = () => (setQ(""), setDomain(""), setSub(""), setVerdict(""), setLayout(false), setGaps(false));
-  const selRow = sel ? byKey.get(sel) : undefined;
+  const togglePick = (slug: string) => setPicked((xs) => (xs.includes(slug) ? xs.filter((x) => x !== slug) : xs.length >= 3 ? xs : [...xs, slug]));
+  const selC = sel ? byId.get(sel) : undefined;
+  const vsC = vs ? byId.get(vs) : undefined;
 
   return (
     <main className={s.hq}>
-      <nav className={s.top}>
-        <Link className="brand" href="/">
-          S3
-        </Link>
-        <div className={s.title}>
-          <strong>System 3 HQ</strong>
-          <span className={s.muted}>
-            Design inspector · {concepts.length} concepts · {lessons.length} lessons
-          </span>
-        </div>
-        <span className={s.spacer} />
-        <div className={s.tabs} role="tablist">
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq">
-            Office
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq?view=people">
-            People
-          </Link>
-          <span role="tab" aria-selected className={s.tabOn}>
-            Design
-          </span>
-        </div>
-        <Link className="brand-link" href="/catalog">
-          Map
-        </Link>
-      </nav>
+      <HqTop
+        on="design"
+        subtitle={
+          <>
+            Design inspector: formats, interactions, visual styles · {plural(concepts.length, "UI concept")} · {plural(lessons.length, "lesson")}
+          </>
+        }
+      />
+
+      {errors.length > 0 && (
+        <section className={d.errors} aria-label="Concept file problems">
+          <b>{plural(errors.length, "problem")} in company/design/concepts/</b>
+          <ul>
+            {errors.slice(0, 6).map((e) => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className={d.filters} aria-label="Filters">
-        <input className={d.search} type="search" placeholder="Search concepts, lessons, slugs…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search" />
-        <select className={d.select} value={domain} onChange={(e) => (setDomain(e.target.value), setSub(""))} aria-label="Domain">
-          <option value="">All domains</option>
-          {domains.map((dm) => (
-            <option key={dm.id} value={dm.id}>
-              {dm.name}
-            </option>
-          ))}
+        <div className={s.tabs} role="tablist" aria-label="View">
+          <button role="tab" aria-selected={view === "concepts"} className={view === "concepts" ? s.tabOn : s.tab} onClick={() => setView("concepts")}>
+            Concepts
+          </button>
+          <button role="tab" aria-selected={view === "proposals"} className={view === "proposals" ? s.tabOn : s.tab} onClick={() => setView("proposals")}>
+            Proposals · {proposals.length}
+          </button>
+        </div>
+        <input className={d.search} type="search" placeholder="Search UI concepts…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search" />
+        <select className={d.select} value={kind} onChange={(e) => setKind(e.target.value as "" | Kind)} aria-label="Kind">
+          <option value="">Any kind</option>
+          <option value="format">Formats</option>
+          <option value="interaction">Interactions</option>
+          <option value="visual">Visual</option>
         </select>
-        <select className={d.select} value={sub} onChange={(e) => setSub(e.target.value)} aria-label="Sub-area">
-          <option value="">All sub-areas</option>
-          {subOptions.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-          <option value="untagged">Untagged</option>
+        <select className={d.select} value={status} onChange={(e) => setStatus(e.target.value as "" | Status)} aria-label="Status">
+          <option value="">Any status</option>
+          <option value="proposed">Proposed</option>
+          <option value="approved">Approved</option>
+          <option value="kit-supported">Kit-supported</option>
+          <option value="retired">Retired</option>
         </select>
-        <select className={d.select} value={verdict} onChange={(e) => setVerdict(e.target.value as VerdictFilter)} aria-label="Verdict">
-          <option value="">Any verdict</option>
-          <option value="launch">Has a launch</option>
-          <option value="revise">Has a revise</option>
-          <option value="fatal">Has a fatal</option>
-          <option value="none">Has a lesson with no review</option>
+        <select className={d.select} value={kit} onChange={(e) => setKit(e.target.value as "" | UiConcept["kitClass"])} aria-label="Kit support">
+          <option value="">Any kit support</option>
+          <option value="kit">A kit component</option>
+          <option value="by hand">By hand</option>
+          <option value="none">Not buildable yet</option>
         </select>
         <label className={d.check}>
-          <input type="checkbox" checked={layout} onChange={(e) => setLayout(e.target.checked)} /> Layout finding
+          <input type="checkbox" checked={withFindings} onChange={(e) => setWithFindings(e.target.checked)} /> Has findings
         </label>
-        <label className={d.check}>
-          <input type="checkbox" checked={gaps} onChange={(e) => setGaps(e.target.checked)} /> No lessons yet
-        </label>
-        <span className={s.muted}>
-          {plural(shown.length, "concept")} · {plural(totals.lessons, "lesson")} · {plural(totals.gaps, "gap")}
-        </span>
+        <span className={s.muted}>{plural(shown.length, "concept")}</span>
         {filtered && (
-          <button className={s.roomLink} onClick={clear}>
+          <button className={s.roomLink} onClick={() => (setQ(""), setKind(""), setStatus(""), setKit(""), setWithFindings(false))}>
             Clear filters
           </button>
         )}
       </section>
 
-      {compare.length > 0 && (
-        <section className={d.compareBar} aria-label="Compare">
-          <b>Compare</b>
-          {compare.map((slug) => (
+      {picked.length > 0 && (
+        <section className={d.compareBar} aria-label="Compare lessons">
+          <b>Compare lessons</b>
+          {picked.map((slug) => (
             <span key={slug} className={d.pill}>
               {lessonBySlug.get(slug)?.title ?? slug}
-              <button aria-label={`Remove ${slug}`} onClick={() => toggleCompare(slug)}>
+              <button aria-label={`Remove ${slug}`} onClick={() => togglePick(slug)}>
                 ×
               </button>
             </span>
           ))}
-          <span className={s.muted}>{compare.length < 2 ? "tick one more lesson" : compare.length === 3 ? "3 of 3" : `${compare.length} of 3`}</span>
+          <span className={s.muted}>{picked.length < 2 ? "tick one more lesson" : `${picked.length} of 3`}</span>
           <span className={s.spacer} />
-          {compare.length >= 2 && (
-            <button className={`${s.btn} ${showCompare ? s.on : ""}`} onClick={() => setShowCompare((x) => !x)}>
-              {showCompare ? "Back to concept" : "Side by side"}
+          {picked.length >= 2 && (
+            <button className={`${s.btn} ${showPicked ? s.on : ""}`} onClick={() => setShowPicked((x) => !x)}>
+              {showPicked ? "Back to concept" : "Side by side"}
             </button>
           )}
         </section>
       )}
 
-      <div className={d.layout} data-sel={sel || showCompare ? "1" : "0"}>
-        <aside className={d.list} aria-label="Concepts">
-          {groups.length === 0 && <p className={s.muted}>No concept matches these filters.</p>}
-          {groups.map((g) => (
-            <section key={g.domain.id} className={d.group}>
-              <h2 className={d.domainHead} style={{ ["--dc" as string]: g.domain.color }}>
-                <span className={d.dot} /> {g.domain.name} <span className={s.muted}>{g.n}</span>
-              </h2>
-              {g.subs.map((sg) => (
-                <div key={sg.id}>
-                  <h3 className={d.subHead}>{sg.name}</h3>
-                  <ul className={d.concepts}>
-                    {sg.items.map((c) => (
-                      <li key={c.key}>
-                        <button className={c.key === sel ? d.conceptOn : d.concept} onClick={() => pick(c.key)} aria-current={c.key === sel}>
-                          <span className={d.cName}>{c.name}</span>
-                          <span className={c.counts.lessons ? d.count : d.countZero}>{c.counts.lessons}</span>
-                          <ConceptStats c={c} />
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </section>
-          ))}
+      <div className={d.layout} data-sel={sel || showPicked || view === "proposals" ? "1" : "0"}>
+        <aside className={d.list} aria-label="UI concepts">
+          {shown.length === 0 && <p className={s.muted}>No concept matches these filters.</p>}
+          {(["format", "interaction", "visual"] as Kind[]).map((k) => {
+            const mine = shown.filter((c) => c.kind === k);
+            if (!mine.length) return null;
+            return (
+              <section key={k} className={d.group}>
+                <h2 className={d.groupHead}>
+                  {KIND_LABEL[k]} <span className={s.muted}>{mine.length}</span>
+                </h2>
+                <ul className={d.items}>
+                  {mine.map((c) => (
+                    <li key={c.id}>
+                      <button className={c.id === sel && view === "concepts" ? d.itemOn : d.item} onClick={() => pick(c.id)} aria-current={c.id === sel}>
+                        <span className={d.iName}>{c.name}</span>
+                        <span className={c.usage.length ? d.count : d.countZero} title="lessons that use it">
+                          {c.usage.length}
+                        </span>
+                        <span className={d.iMeta}>
+                          <StatusChip st={c.status} />
+                          <span>{c.kitClass === "kit" ? c.kit.split(" (")[0] : c.kitClass}</span>
+                          {c.findings > 0 && <span className={d.tFind}>{plural(c.findings, "finding")}</span>}
+                          {c.seeded && <span title="seeded by design-engineer; design lead to confirm">seeded</span>}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
         </aside>
 
         <section className={d.detail} ref={detailRef} aria-live="polite">
-          <button className={d.back} onClick={() => (setSel(null), setShowCompare(false))}>
-            ← All concepts
+          <button className={d.back} onClick={() => (setSel(null), setShowPicked(false), setView("concepts"))}>
+            ← All UI concepts
           </button>
-          {showCompare && compare.length >= 2 ? (
-            <CompareView slugs={compare} lessons={lessonBySlug} byKey={byKey} onConcept={pick} onRemove={toggleCompare} />
-          ) : !selRow ? (
-            <div className={d.empty}>
-              <h2>Pick a concept</h2>
-              <p className={s.muted}>
-                Every concept in <code>content/curriculum/*.json</code>, grouped by domain and sub-area. Select one to see every lesson for it, its learner verdicts, design reviews, illustrations and walkthrough contact sheets. Tick up to three lessons to compare their sheets side by side.
-              </p>
-              <p className={s.muted}>
-                Link a concept with <code>/hq/design?concept=&lt;id&gt;</code>.
-              </p>
-            </div>
+          {showPicked && picked.length >= 2 ? (
+            <LessonCompare slugs={picked} lessons={lessonBySlug} concepts={concepts} onConcept={pick} onRemove={togglePick} />
+          ) : view === "proposals" ? (
+            <Proposals items={proposals} onConcept={pick} />
+          ) : selC && vsC ? (
+            <ConceptCompare a={selC} b={vsC} all={concepts} domains={domains} lessons={lessonBySlug} onClose={() => setVs(null)} onPickB={setVs} onConcept={pick} />
+          ) : selC ? (
+            <ConceptView key={selC.id} c={selC} byId={byId} domains={domains} lessons={lessonBySlug} picked={picked} onPick={togglePick} onConcept={pick} onVs={setVs} />
           ) : (
-            <ConceptView c={selRow} detail={detail?.concept.key === selRow.key ? detail : null} loading={loading} byKey={byKey} onConcept={pick} compare={compare} onCompare={toggleCompare} />
+            <div className={d.empty}>
+              <h2>Pick a UI concept</h2>
+              <p className={s.muted}>
+                Every lesson format, interaction pattern and visual style in <code>company/design/concepts/</code>. Each shows a live specimen, the lessons that use it (detected from their <code>Demo.tsx</code>) with their contact sheets, review findings that touch it, and its variants side by side.
+              </p>
+              <p className={s.muted}>
+                Link one with <code>/hq/design?concept=&lt;id&gt;</code>. Curriculum concepts moved to <a href="/hq/curriculum">/hq/curriculum</a>.
+              </p>
+              <Overview concepts={concepts} lessons={lessons.length} onConcept={pick} />
+            </div>
           )}
         </section>
       </div>
@@ -272,220 +231,413 @@ export default function Design({ index, initialConcept, initialCompare }: { inde
   );
 }
 
-const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
-
-function ConceptStats({ c }: { c: ConceptRow }) {
-  const k = c.counts;
-  if (!k.lessons) return <span className={d.stats}>no lessons yet</span>;
-  const parts: [string, number, string][] = [
-    ["published", k.published, ""],
-    ["launch", k.launch, d.tLaunch],
-    ["revise", k.revise, d.tRevise],
-    ["fatal", k.fatal, d.tFatal],
-    ["no review", k.noReview, ""],
-    ["illustrated", k.illustrated, ""],
-  ];
+function Overview({ concepts, lessons, onConcept }: { concepts: UiConcept[]; lessons: number; onConcept: (id: string) => void }) {
+  const formats = concepts.filter((c) => c.kind === "format").sort((a, b) => b.usage.length - a.usage.length);
   return (
-    <span className={d.stats}>
-      {parts
-        .filter(([, n]) => n)
-        .map(([label, n, cls]) => (
-          <span key={label} className={cls}>
-            {n} {label}
-          </span>
+    <>
+      <h3 className={d.h3}>Formats across {plural(lessons, "lesson")}</h3>
+      <div className={d.bars}>
+        {formats.map((c) => (
+          <button key={c.id} className={d.bar} onClick={() => onConcept(c.id)}>
+            <span>{c.name}</span>
+            <span className={d.barTrack}>
+              <i style={{ width: `${(c.usage.length / Math.max(1, lessons)) * 100}%` }} />
+            </span>
+            <b>{c.usage.length}</b>
+          </button>
         ))}
-      {c.layoutFinding && <span className={d.tLayout}>layout</span>}
-    </span>
+      </div>
+      <p className={s.muted}>Detected from code; formats overlap (a simulation can also be a storyboard). Single card counts lessons where no other format is detected.</p>
+    </>
   );
 }
 
-function ConceptView({ c, detail, loading, byKey, onConcept, compare, onCompare }: { c: ConceptRow; detail: ConceptDetail | null; loading: boolean; byKey: Map<string, ConceptRow>; onConcept: (k: string) => void; compare: string[]; onCompare: (slug: string) => void }) {
+function Facts({ c }: { c: UiConcept }) {
+  return (
+    <div className={d.facts}>
+      <span className={d.chip}>{KIND_ONE[c.kind]}</span>
+      <StatusChip st={c.status} />
+      <span>owner: {c.owner}</span>
+      <span>kit: {c.kit}</span>
+      <code>{c.path}</code>
+      {c.seeded && <span className={d.seeded}>seeded by design-engineer; design lead to confirm</span>}
+    </div>
+  );
+}
+
+function Sections({ c, only }: { c: UiConcept; only?: string[] }) {
+  return (
+    <div className={d.sections}>
+      {c.sections
+        .filter((x) => !only || only.includes(x.title))
+        .map((x) => (
+          <div key={x.title}>
+            <h4>{x.title}</h4>
+            <ul>
+              {x.items.map((it, i) => (
+                <li key={i}>{it}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+    </div>
+  );
+}
+
+function SpecimenCard({ c, domains }: { c: UiConcept; domains: DesignIndex["domains"] }) {
+  const [dom, setDom] = useState("");
+  const color = domains.find((x) => x.id === dom)?.color ?? "var(--accent)";
+  return (
+    <div className={d.specWrap}>
+      <div className={d.specHead}>
+        <h4>Specimen</h4>
+        <select className={d.selectSmall} value={dom} onChange={(e) => setDom(e.target.value)} aria-label="Domain colour">
+          <option value="">accent colour</option>
+          {domains.map((x) => (
+            <option key={x.id} value={x.id}>
+              {x.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <Specimen id={c.id} domains={domains} color={color} />
+      {c.mockups.length > 0 && <p className={d.path}>mockups: {c.mockups.join(", ")}</p>}
+    </div>
+  );
+}
+
+function ConceptView({ c, byId, domains, lessons, picked, onPick, onConcept, onVs }: { c: UiConcept; byId: Map<string, UiConcept>; domains: DesignIndex["domains"]; lessons: Map<string, LessonLite>; picked: string[]; onPick: (slug: string) => void; onConcept: (id: string) => void; onVs: (id: string) => void }) {
+  const [detail, setDetail] = useState<ConceptDetail | null>(null);
+  const [state, setState] = useState<"loading" | "ok" | "error">("loading");
+  useEffect(() => {
+    let live = true;
+    fetch(`/api/hq/design/concept/${encodeURIComponent(c.id)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((x: ConceptDetail | null) => live && (setDetail(x), setState(x ? "ok" : "error")))
+      .catch(() => live && setState("error"));
+    return () => {
+      live = false;
+    };
+  }, [c.id]);
+
+  const users = c.usage.map((u) => ({ ...u, l: lessons.get(u.slug) })).filter((u) => u.l);
+  const sum = {
+    published: users.filter((u) => u.l!.status === "published").length,
+    launch: users.filter((u) => u.l!.verdict === "launch").length,
+    revise: users.filter((u) => u.l!.verdict === "revise").length,
+    fatal: users.filter((u) => u.l!.verdict === "fatal").length,
+    sheets: users.filter((u) => u.l!.hasSheet).length,
+  };
+  const variants = c.variants.map((v) => byId.get(v)).filter((x): x is UiConcept => Boolean(x));
+  const siblings = [...byId.values()].filter((x) => x.kind === c.kind && x.id !== c.id && !c.variants.includes(x.id));
+
   return (
     <article>
       <header className={d.cHead}>
         <h2>{c.name}</h2>
-        <div className={d.facts}>
-          <code>{c.key}</code>
-          <span>sub-area: {c.subarea}</span>
-          <span>level: {c.level}</span>
-          <span title={`demand ${c.demand} of 3`}>demand: {"●".repeat(c.demand) + "○".repeat(Math.max(0, 3 - c.demand))}</span>
-        </div>
-        <div className={d.facts}>
-          <span>prerequisites:</span>
-          {c.prerequisites.length === 0 && <span className={s.muted}>none</span>}
-          {c.prerequisites.map((pq, i) =>
-            c.prereqKeys[i] ? (
-              <button key={pq} className={d.prereq} onClick={() => onConcept(c.prereqKeys[i]!)}>
-                {byKey.get(c.prereqKeys[i]!)?.name ?? pq}
-              </button>
-            ) : (
-              <span key={pq} className={s.muted} title="Not found in any curriculum">
-                {pq} (unknown)
-              </span>
-            ),
-          )}
-        </div>
-        <div className={d.facts}>
-          <span>
-            {plural(c.counts.lessons, "lesson")} · {c.counts.published} published · {c.counts.launch} launch · {c.counts.revise} revise · {c.counts.fatal} fatal · {c.counts.noReview} no review · {c.counts.illustrated} illustrated
-          </span>
-        </div>
+        <p className={d.summary}>{c.summary}</p>
+        <Facts c={c} />
+        {c.provenance && <p className={d.prov}>{c.provenance}</p>}
       </header>
 
-      <section className={d.card}>
-        <h3>Concept design notes</h3>
-        {!detail ? (
-          <p className={s.muted}>{loading ? "Loading…" : "Could not load."}</p>
-        ) : detail.notes.text ? (
-          <>
-            <pre className={s.body}>{detail.notes.text}</pre>
-            <p className={s.muted}>
-              <code>{detail.notes.path}</code>
-            </p>
-          </>
-        ) : (
-          <p className={s.muted}>
-            None yet. Designers write them at <code>{detail.notes.path}</code>.
-          </p>
-        )}
+      <section className={`${d.card} ${d.twoCol}`}>
+        <SpecimenCard c={c} domains={domains} />
+        <Sections c={c} />
       </section>
 
-      {c.counts.lessons === 0 ? (
-        <section className={d.card}>
-          <h3>No lessons yet</h3>
-          <p className={s.muted}>A coverage gap: no lesson in src/demos names this concept. Briefing one belongs to the {c.domain} category manager.</p>
-        </section>
-      ) : !detail ? null : (
-        detail.lessons.map((l) => <LessonCard key={l.slug} l={l} ticked={compare.includes(l.slug)} full={compare.length >= 3 && !compare.includes(l.slug)} onCompare={() => onCompare(l.slug)} />)
-      )}
+      <section className={d.card}>
+        <div className={d.lHead}>
+          <h3>Lessons that use it · {users.length}</h3>
+        </div>
+        <div className={d.facts}>
+          <span>{sum.published} published</span>
+          <span className={d.tLaunch}>{sum.launch} launch</span>
+          <span className={d.tRevise}>{sum.revise} revise</span>
+          <span className={d.tFatal}>{sum.fatal} fatal</span>
+          <span>{sum.sheets} with contact sheets</span>
+        </div>
+        <p className={d.small}>
+          <b>Detected by</b> {c.detect.how} · confidence <b className={d[`conf_${c.detect.confidence}`]}>{c.detect.confidence}</b>
+          {c.detect.note ? ` · ${c.detect.note}` : ""}
+        </p>
+        {c.detect.signals.length > 1 && (
+          <ul className={d.signals}>
+            {c.detect.signals.map((sg, i) => (
+              <li key={sg}>
+                {sg}: <b>{users.filter((u) => u.s.includes(i)).length}</b>
+              </li>
+            ))}
+          </ul>
+        )}
+        <SheetGrid users={users.map((u) => ({ slug: u.slug, l: u.l!, why: u.s.map((i) => (i === -1 ? "reference lesson" : c.detect.signals[i])).join(" · ") }))} domains={domains} picked={picked} onPick={onPick} />
+      </section>
+
+      <section className={d.card}>
+        <h3>Review findings that touch it{detail ? ` · ${detail.total}` : ""}</h3>
+        <p className={d.small}>
+          Sentences from the latest learner review, design reviews (<code>*-design.md</code>) and accessibility records (<code>*-a11y.md</code>, <code>*-accessibility.md</code>) of the lessons above, that mention this pattern with a problem word or carry a layout / told-not-shown / contrast / tap-size / motion tag, plus problems visible in the code.
+        </p>
+        {state === "loading" ? <p className={s.muted}>Loading…</p> : state === "error" || !detail ? <p className={s.muted}>Could not load.</p> : <Findings items={detail.findings} total={detail.total} lessons={lessons} />}
+      </section>
+
+      <section className={d.card}>
+        <h3>Variants side by side</h3>
+        <div className={d.facts}>
+          {variants.map((v) => (
+            <button key={v.id} className={d.prereq} onClick={() => onVs(v.id)}>
+              {c.name} vs {v.name}
+            </button>
+          ))}
+          {variants.length === 0 && <span className={s.muted}>No variants named in the file.</span>}
+        </div>
+        <div className={d.facts}>
+          <span>or compare with</span>
+          <select className={d.selectSmall} value="" onChange={(e) => e.target.value && onVs(e.target.value)} aria-label="Compare with another concept">
+            <option value="">another concept…</option>
+            {[...byId.values()]
+              .filter((x) => x.id !== c.id)
+              .map((x) => (
+                <option key={x.id} value={x.id}>
+                  {KIND_ONE[x.kind]} · {x.name}
+                </option>
+              ))}
+          </select>
+        </div>
+        <p className={d.small}>To compare lessons, tick 2 or 3 contact sheets above. Same kind: {siblings.slice(0, 6).map((x, i) => (
+          <span key={x.id}>
+            {i ? ", " : ""}
+            <button className={d.linkBtn} onClick={() => onConcept(x.id)}>
+              {x.name}
+            </button>
+          </span>
+        ))}
+        .</p>
+      </section>
     </article>
   );
 }
 
-function LessonCard({ l, ticked, full, onCompare }: { l: LessonDetail; ticked: boolean; full: boolean; onCompare: () => void }) {
+function SheetGrid({ users, domains, picked, onPick }: { users: { slug: string; l: LessonLite; why: string }[]; domains: DesignIndex["domains"]; picked: string[]; onPick: (slug: string) => void }) {
+  const [n, setN] = useState(PAGE);
+  const [dom, setDom] = useState("");
+  const [sheetsOnly, setSheetsOnly] = useState(true);
+  const list = users.filter((u) => (!dom || u.l.domain === dom) && (!sheetsOnly || u.l.hasSheet));
+  const noSheet = users.filter((u) => (!dom || u.l.domain === dom) && !u.l.hasSheet).length;
   return (
-    <section className={d.card}>
-      <div className={d.lHead}>
-        <h3>{l.title}</h3>
-        <VerdictBadge v={l.review?.verdict ?? null} />
-        <label className={d.check} title={full ? "Three lessons ticked already" : undefined}>
-          <input type="checkbox" checked={ticked} disabled={full} onChange={onCompare} /> Compare
-        </label>
-      </div>
+    <>
       <div className={d.facts}>
-        <a href={`/d/${l.slug}`}>
-          <code>{l.slug}</code>
-        </a>
-        <span>{l.domain}</span>
-        <span>v{l.version ?? "?"}</span>
-        <span className={l.status === "published" ? d.tLaunch : ""}>{l.status}</span>
-        <span>format: {l.format}</span>
+        <select className={d.selectSmall} value={dom} onChange={(e) => (setDom(e.target.value), setN(PAGE))} aria-label="Domain">
+          <option value="">All domains</option>
+          {domains
+            .filter((x) => users.some((u) => u.l.domain === x.id))
+            .map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.name} ({users.filter((u) => u.l.domain === x.id).length})
+              </option>
+            ))}
+        </select>
+        <label className={d.check}>
+          <input type="checkbox" checked={sheetsOnly} onChange={(e) => (setSheetsOnly(e.target.checked), setN(PAGE))} /> Only lessons with a sheet
+        </label>
+        <span>{plural(list.length, "lesson")} shown{sheetsOnly && noSheet ? ` · ${noSheet} without a sheet hidden` : ""}</span>
       </div>
-      {l.hook && <p className={d.hook}>{l.hook}</p>}
-
-      <div className={d.grid}>
-        <div>
-          <h4>Latest learner review</h4>
-          {l.review ? (
-            <>
-              <ol className={d.findings}>
-                {l.review.findings.length ? l.review.findings.map((f, i) => <li key={i}>{f}</li>) : <li className={s.muted}>No findings listed.</li>}
-              </ol>
-              {l.review.layout.length > 0 && (
-                <>
-                  <h4 className={d.tFatal}>Layout finding</h4>
-                  <ul className={d.findings}>
-                    {l.review.layout.map((x, i) => (
-                      <li key={i}>{x}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
-              <p className={d.path}>{l.review.file}</p>
-            </>
-          ) : (
-            <p className={s.muted}>No learner review yet.</p>
-          )}
-        </div>
-        <div>
-          <h4>Design reviews</h4>
-          {l.designReviews.length ? (
-            l.designReviews.map((r) => (
-              <details key={r.file}>
-                <summary className={d.path}>{r.file}</summary>
-                <pre className={s.body}>{r.text}</pre>
-              </details>
-            ))
-          ) : (
-            <p className={s.muted}>None (company/reviews/{l.slug}/*-design.md).</p>
-          )}
-          <h4>Illustration</h4>
-          <p className={d.small}>
-            {l.illustration.status}
-            {l.illustration.images ? ` · ${l.illustration.images} image(s)` : ""}
-            {l.illustration.request && <span className={d.path}> · {l.illustration.request}</span>}
-          </p>
-          <h4>Open board items</h4>
-          {l.board.length ? (
-            <ul className={d.findings}>
-              {l.board.map((b) => (
-                <li key={b.id}>
-                  <code>{b.id}</code> {b.title} <span className={s.muted}>({b.owner}, {b.state})</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className={s.muted}>None mention this slug.</p>
-          )}
-        </div>
-      </div>
-
-      <h4>Walkthrough contact sheet</h4>
-      {l.sheet.exists ? (
-        <a href={`/api/hq/sheet/${l.slug}`} target="_blank" rel="noreferrer">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={d.sheet} src={`/api/hq/sheet/${l.slug}`} alt={`Walkthrough frames of ${l.title}`} loading="lazy" />
-        </a>
+      {list.length === 0 ? (
+        <p className={s.muted}>{users.length ? "None with a contact sheet yet. Make one with npm run walkthrough -- <slug>." : "No lesson uses it yet."}</p>
       ) : (
-        <p className={s.muted}>
-          No sheet yet. Make one (needs a build, or WALKTHROUGH_URL set to a running server): <code className={d.cmd}>{l.sheet.command}</code>
-        </p>
+        <div className={d.sheetGrid}>
+          {list.slice(0, n).map((u) => {
+            const on = picked.includes(u.slug);
+            return (
+              <figure key={u.slug} className={on ? d.thumbOn : d.thumb}>
+                {u.l.hasSheet ? (
+                  <a href={`/api/hq/sheet/${u.slug}`} target="_blank" rel="noreferrer">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/api/hq/sheet/${u.slug}`} alt={`Walkthrough frames of ${u.l.title}`} loading="lazy" />
+                  </a>
+                ) : (
+                  <div className={d.noSheet}>
+                    no sheet · <code>npm run walkthrough -- {u.slug}</code>
+                  </div>
+                )}
+                <figcaption>
+                  <span className={d.thumbTitle}>
+                    <a href={`/d/${u.slug}`}>{u.l.title}</a>
+                  </span>
+                  <span className={d.thumbMeta}>
+                    <Verdict v={u.l.verdict} />
+                    <span>{u.l.status}</span>
+                    <label className={d.check} title={picked.length >= 3 && !on ? "Three lessons ticked already" : "Compare"}>
+                      <input type="checkbox" checked={on} disabled={picked.length >= 3 && !on} onChange={() => onPick(u.slug)} /> compare
+                    </label>
+                  </span>
+                  <span className={d.why} title={u.why}>
+                    {u.why}
+                  </span>
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
       )}
-    </section>
+      {list.length > n && (
+        <button className={s.btn} onClick={() => setN(n + PAGE * 2)}>
+          Show {Math.min(PAGE * 2, list.length - n)} more of {list.length - n}
+        </button>
+      )}
+    </>
   );
 }
 
-function CompareView({ slugs, lessons, byKey, onConcept, onRemove }: { slugs: string[]; lessons: Map<string, LessonRow>; byKey: Map<string, ConceptRow>; onConcept: (k: string) => void; onRemove: (slug: string) => void }) {
+function Findings({ items, total, lessons }: { items: Finding[]; total: number; lessons: Map<string, LessonLite> }) {
+  const [tag, setTag] = useState<FindingTag | "">("");
+  const [n, setN] = useState(12);
+  const tags = [...new Set(items.flatMap((f) => f.tags))];
+  const shown = items.filter((f) => !tag || f.tags.includes(tag));
+  if (!items.length) return <p className={s.muted}>None found in the lessons that use it.</p>;
+  return (
+    <>
+      <div className={d.facts}>
+        <button className={!tag ? d.tagOn : d.tag} onClick={() => (setTag(""), setN(12))}>
+          all {items.length}
+        </button>
+        {tags.map((t) => (
+          <button key={t} className={tag === t ? d.tagOn : d.tag} onClick={() => (setTag(t), setN(12))}>
+            {TAG_LABEL[t]} {items.filter((f) => f.tags.includes(t)).length}
+          </button>
+        ))}
+        {total > items.length && <span className={s.muted}>showing the first {items.length} of {total}</span>}
+      </div>
+      <ul className={d.findings}>
+        {shown.slice(0, n).map((f, i) => (
+          <li key={i}>
+            <span className={d.fMeta}>
+              {f.tags.map((t) => (
+                <span key={t} className={`${d.chip} ${t === "pattern" ? "" : d.fTag}`}>
+                  {TAG_LABEL[t]}
+                </span>
+              ))}
+              <span className={d.chip}>{f.source}</span>
+              <a href={`/d/${f.slug}`}>{lessons.get(f.slug)?.title ?? f.slug}</a>
+            </span>
+            <span className={d.fText}>{f.text}</span>
+            {f.href ? (
+              <a className={d.path} href={f.href} target="_blank" rel="noreferrer">
+                {f.file}
+              </a>
+            ) : (
+              <span className={d.path}>{f.file}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+      {shown.length > n && (
+        <button className={`${s.btn} ${d.more}`} onClick={() => setN(n + 24)}>
+          Show {Math.min(24, shown.length - n)} more of {shown.length - n}
+        </button>
+      )}
+    </>
+  );
+}
+
+function ConceptCompare({ a, b, all, domains, lessons, onClose, onPickB, onConcept }: { a: UiConcept; b: UiConcept; all: UiConcept[]; domains: DesignIndex["domains"]; lessons: Map<string, LessonLite>; onClose: () => void; onPickB: (id: string) => void; onConcept: (id: string) => void }) {
   return (
     <article>
       <header className={d.cHead}>
-        <h2>Side by side</h2>
-        <p className={s.muted}>Contact sheets of the ticked lessons, with their latest learner verdicts.</p>
+        <h2>
+          {a.name} vs {b.name}
+        </h2>
+        <div className={d.facts}>
+          <button className={s.roomLink} onClick={onClose}>
+            ← back to {a.name}
+          </button>
+          <span>compare with</span>
+          <select className={d.selectSmall} value={b.id} onChange={(e) => onPickB(e.target.value)} aria-label="Second concept">
+            {all
+              .filter((x) => x.id !== a.id)
+              .map((x) => (
+                <option key={x.id} value={x.id}>
+                  {KIND_ONE[x.kind]} · {x.name}
+                </option>
+              ))}
+          </select>
+        </div>
+      </header>
+      <div className={d.compare} style={{ ["--cols" as string]: 2 }}>
+        {[a, b].map((c) => {
+          const users = c.usage.map((u) => lessons.get(u.slug)).filter((x): x is LessonLite => Boolean(x));
+          const withSheet = users.filter((l) => l.hasSheet).slice(0, 4);
+          return (
+            <section key={c.id} className={d.card}>
+              <div className={d.lHead}>
+                <h3>
+                  <button className={d.linkBtn} onClick={() => onConcept(c.id)}>
+                    {c.name}
+                  </button>
+                </h3>
+                <StatusChip st={c.status} />
+              </div>
+              <p className={d.summary}>{c.summary}</p>
+              <div className={d.facts}>
+                <span>kit: {c.kit}</span>
+                <span>{plural(users.length, "lesson")}</span>
+                <span>{users.filter((l) => l.verdict === "launch").length} launch</span>
+                <span>{plural(c.findings, "finding")}</span>
+              </div>
+              <Specimen id={c.id} domains={domains} color="var(--accent)" />
+              <Sections c={c} only={["When to use", "When not to", "Anatomy"]} />
+              <h4 className={d.h4}>Sample lessons</h4>
+              {withSheet.length ? (
+                <div className={d.miniGrid}>
+                  {withSheet.map((l) => (
+                    <a key={l.slug} href={`/api/hq/sheet/${l.slug}`} target="_blank" rel="noreferrer" title={l.title}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`/api/hq/sheet/${l.slug}`} alt={`Walkthrough frames of ${l.title}`} loading="lazy" />
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p className={s.muted}>No lesson with a contact sheet uses it yet.</p>
+              )}
+            </section>
+          );
+        })}
+      </div>
+    </article>
+  );
+}
+
+function LessonCompare({ slugs, lessons, concepts, onConcept, onRemove }: { slugs: string[]; lessons: Map<string, LessonLite>; concepts: UiConcept[]; onConcept: (id: string) => void; onRemove: (slug: string) => void }) {
+  return (
+    <article>
+      <header className={d.cHead}>
+        <h2>Lessons side by side</h2>
+        <p className={s.muted}>Contact sheets of the ticked lessons, with the UI concepts each one uses.</p>
       </header>
       <div className={d.compare} style={{ ["--cols" as string]: slugs.length }}>
         {slugs.map((slug) => {
           const l = lessons.get(slug)!;
-          const c = [...byKey.values()].find((x) => x.id === l.concept && x.domain === l.domain) ?? [...byKey.values()].find((x) => x.id === l.concept);
+          const uses = concepts.filter((c) => c.kind !== "visual" && c.usage.some((u) => u.slug === slug));
           return (
             <section key={slug} className={d.card}>
               <div className={d.lHead}>
                 <h3>{l.title}</h3>
-                <VerdictBadge v={l.verdict} />
+                <Verdict v={l.verdict} />
               </div>
               <div className={d.facts}>
                 <a href={`/d/${slug}`}>
                   <code>{slug}</code>
                 </a>
-                <span>v{l.version ?? "?"}</span>
                 <span>{l.status}</span>
-                {c && (
-                  <button className={d.prereq} onClick={() => onConcept(c.key)}>
-                    {c.name}
-                  </button>
-                )}
                 <button className={s.roomLink} onClick={() => onRemove(slug)}>
                   remove
                 </button>
+              </div>
+              <div className={d.facts}>
+                {uses.map((c) => (
+                  <button key={c.id} className={d.prereq} onClick={() => onConcept(c.id)}>
+                    {c.name}
+                  </button>
+                ))}
               </div>
               {l.hasSheet ? (
                 <a href={`/api/hq/sheet/${slug}`} target="_blank" rel="noreferrer">
@@ -501,6 +653,51 @@ function CompareView({ slugs, lessons, byKey, onConcept, onRemove }: { slugs: st
           );
         })}
       </div>
+    </article>
+  );
+}
+
+function Proposals({ items, onConcept }: { items: UiConcept[]; onConcept: (id: string) => void }) {
+  return (
+    <article>
+      <header className={d.cHead}>
+        <h2>Proposals · {items.length}</h2>
+        <p className={d.summary}>UI concepts with status proposed: not yet approved by the design lead for builders to use.</p>
+      </header>
+      <section className={`${d.card} ${d.howTo}`}>
+        <h3>How to propose a UI concept</h3>
+        <ol className={d.steps}>
+          <li>
+            Add <code>company/design/concepts/&lt;id&gt;.md</code> with frontmatter <code>id</code>, <code>name</code>, <code>kind</code> (format | interaction | visual), <code>status: proposed</code>, <code>owner</code> and <code>kit</code> (a component or &quot;by hand&quot;), and the sections When to use, When not to, Anatomy, Rules, Open questions. The schema is in <code>company/design/concepts/README.md</code>.
+          </li>
+          <li>
+            Add a mockup in <code>company/design/specs/</code> named <code>&lt;id&gt;.svg</code> (or .png, .md). It is listed on the concept here.
+          </li>
+          <li>The design lead approves it in design review and changes the status. Kit support needs the platform engineer.</li>
+        </ol>
+        <p className={s.muted}>This page only reads files; there is nothing to click to propose.</p>
+      </section>
+      {items.length === 0 && <p className={s.muted}>No proposals right now.</p>}
+      {items.map((c) => (
+        <section key={c.id} className={d.card}>
+          <div className={d.lHead}>
+            <h3>
+              <button className={d.linkBtn} onClick={() => onConcept(c.id)}>
+                {c.name}
+              </button>
+            </h3>
+            <span className={d.chip}>{KIND_ONE[c.kind]}</span>
+          </div>
+          <p className={d.summary}>{c.summary}</p>
+          <div className={d.facts}>
+            <span>owner: {c.owner}</span>
+            <span>kit: {c.kit}</span>
+            <span>{plural(c.usage.length, "lesson")} already use it</span>
+            <span>{c.mockups.length ? `mockups: ${c.mockups.join(", ")}` : "no mockup in company/design/specs/ yet"}</span>
+          </div>
+          <Sections c={c} only={["Open questions"]} />
+        </section>
+      ))}
     </article>
   );
 }

@@ -175,6 +175,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           <Link role="tab" aria-selected={false} className={s.tab} href="/hq/design">
             Design
           </Link>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/curriculum">
+            Curriculum
+          </Link>
         </div>
         <Link className="brand-link" href="/catalog">
           Map
