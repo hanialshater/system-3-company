@@ -67,6 +67,14 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: interaction-designer (Rafael), S2-20 specs cluster-stops-the-cascade and contact-order-matters
+
+- **What changed.** Wrote `company/design/specs/cluster-stops-the-cascade.md` + `.svg` (4 frames) and `company/design/specs/contact-order-matters.md` + `.svg` (4 frames). Re-ran both briefs in node with each spec's exact rule and simulated each QA path.
+- **cluster-stops-the-cascade** (single card with Step, network stage, per the design-lead rulings §1–2). DOM: 12 person buttons (0–7, 9, 10, 11, 8; a tap shows "adopted friends / friends" on that person only), then Step, To the end, chips "Start 8,9", "Start 0,1". The QA path ends on start 0,1 final: 8 of 12, round 6, holdouts 8–11 outlined, pill "1/4" on 8. Both milestones are reached. 24 stage words. **Needs the design lead to accept two points:** (a) start chips replace the ruling's threshold chips (the brief fixes q = 1/2, and threshold chips would teach a different lesson); (b) after a final run, the other chip shows that set's final state (ABM comparison default), not round 0, because otherwise the QA path cannot run both sets. Brief problem: the graph has 14 edges, not 13 (7-8 omitted from the count); the numbers hold. The ruling's sample "7 of 12 · round 3" is really 8 of 12 · round 6.
+- **contact-order-matters** (storyboard / scrub). Dated timeline (rows A–E, days 0–4). DOM: Day slider, Day 4, chips A→E, E→A (default), Overlap, person buttons A, E. The QA path reaches the answer (E→A, only B) on its 2nd press and ends on Overlap from E, all 4 reached. 3 milestones. 24 stage words. Brief problems: Overlap timing was undefined (the spec fixes it: meets every day 1–4, no same-day relay); from A Overlap looks the same as A→E, so the two-way milestone needs E; the brief's control list lacked the first-case control (2 added, 7 controls); the 1/k! stretch is not reachable on the stage.
+- **Belief.** High on the numbers and QA paths (node). Medium on legibility: the "1/4" pill meaning and the 16-link Overlap ladder at 390 px go to the accessibility reviewer.
+- **Proposed board moves.** S2-20: both specs → design review (cascade: the design lead approves, chaired by the visual designer with the accessibility reviewer). cm-math-discrete: fix the edge count. cm-life-health-epidemiology: adopt the Overlap rule in claim 3. Learning designer: confirm the two-way milestone and the reveal lines.
+
 ### 2026-10-14: interaction-designer (Rafael), S2-20 specs: new-road-slower-trip, prices-sort-the-buyers
 
 - **What changed.**
