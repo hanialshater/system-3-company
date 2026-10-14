@@ -28,35 +28,47 @@
       "id": "cs.two-stacks-make-a-queue.c1",
       "text": "Adding 1, 2, 3, 4 to the in-stack and then removing four times (pop the out-stack; pour the whole in-stack over only when the out-stack is empty) takes exactly 1 pour; each of the 4 items is moved once, 4 moves in total, and the items leave in the order 1 2 3 4.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule.",
-      "status": "unverified"
+      "source": "Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule. | FACT-CHECK 2026-10-14 (pass 19): Own node sim of the rule: 1 pour, moved {1:1,2:1,3:1,4:1}, left 1 2 3 4; matches simulate() and the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c2",
       "text": "Each item is poured at most once in its life, so the average cost per operation stays constant (amortized O(1)).",
       "support": "source",
-      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in.",
-      "status": "unverified"
+      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in. | FACT-CHECK 2026-10-14 (pass 19): Derivation: items move only in->out, so moves <= adds (own random sim of 100,000 ops confirms). CLRS 3e exercise 10.1-6 and ch. 17 accounting method (4e: ch. 16).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c3",
       "text": "A removal that finds the out-stack not empty needs no pour.",
       "support": "derivation",
-      "source": "It follows from the rule in the question: the pour happens only when the out-stack is empty. Stage text 'out not empty: no pour' on removals 2 to 4.",
-      "status": "unverified"
+      "source": "It follows from the rule in the question: the pour happens only when the out-stack is empty. Stage text 'out not empty: no pour' on removals 2 to 4. | FACT-CHECK 2026-10-14 (pass 19): Direct from the rule; stage note 'out not empty: no pour' on removals 2-4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c4",
       "text": "This is the same accounting as list doubling.",
       "support": "derivation",
-      "source": "In list doubling (lesson list-doubling-copies) an occasional big copy is paid for by cheap adds in between; here an occasional pour is paid for by cheap removals. Both are the accounting method (CLRS ch. 17).",
-      "status": "unverified"
+      "source": "In list doubling (lesson list-doubling-copies) an occasional big copy is paid for by cheap adds in between; here an occasional pour is paid for by cheap removals. Both are the accounting method (CLRS ch. 17). | FACT-CHECK 2026-10-14 (pass 19): Both are the accounting method (CLRS 3e 17.2, dynamic tables 17.4); lesson list-doubling-copies exists in src/demos/cs.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A queue is built from two stacks. You add 1000 items, then remove them all. Roughly how many times is each item moved between stacks?",
-    "options": ["Once", "1000 times", "Once for every removal before it"],
+    "options": [
+      "Once",
+      "1000 times",
+      "Once for every removal before it"
+    ],
     "answer": 0,
     "why": "The first removal pours all 1000 items into the out-stack, once each. After that every removal just pops the out-stack, so no item moves again."
   },
@@ -69,12 +81,30 @@
   "version": 2,
   "curriculum": {
     "primary": "cs:queue-two-stacks",
-    "also": ["cs:dynamic-array-doubling"],
-    "prerequisites": ["cs:stack-and-queue", "cs:dynamic-array-doubling"],
+    "also": [
+      "cs:dynamic-array-doubling"
+    ],
+    "prerequisites": [
+      "cs:stack-and-queue",
+      "cs:dynamic-array-doubling"
+    ],
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["queue", "stack", "amortized", "data-structure"]
+    "tags": [
+      "queue",
+      "stack",
+      "amortized",
+      "data-structure"
+    ]
   },
-  "interactions": ["choice-before-reveal", "storyboard-scrub", "scrubber-timeline", "step-run-button", "locked-readouts", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "storyboard-scrub",
+    "scrubber-timeline",
+    "step-run-button",
+    "locked-readouts",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

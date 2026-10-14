@@ -45,15 +45,19 @@
       "id": "cs.route-explosion.c3",
       "text": "Adding city k multiplies the count by k, because the new city can go in k places in every old order.",
       "support": "derivation",
-      "source": "Insertion argument: an order of k-1 cities has k gaps (before the first, between, after the last), so k! = k × (k-1)!.",
-      "status": "unverified"
+      "source": "Insertion argument: an order of k-1 cities has k gaps (before the first, between, after the last), so k! = k × (k-1)!. | FACT-CHECK 2026-10-14 (pass 19): Derivation: an order of k-1 cities has k gaps, each giving a distinct order of k cities, and every k-order arises exactly once (delete city k), so count(k) = k x count(k-1). Matches the stage's 'fact(k-1) x k' readout.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.route-explosion.c4",
       "text": "With home plus 19 cities there are 121,645,100,408,832,000 orders: about 3.9 years at a billion checks a second.",
       "support": "derivation",
-      "source": "19! = 121,645,100,408,832,000 (BigInt in Node). 19! / 10^9 / 31,557,600 s per Julian year = 3.85 years. · Fact-check 2026-10-13: 19!/1e9/31,557,600 = 3.855 years.",
-      "status": "unverified"
+      "source": "19! = 121,645,100,408,832,000 (BigInt in Node). 19! / 10^9 / 31,557,600 s per Julian year = 3.85 years. · Fact-check 2026-10-13: 19!/1e9/31,557,600 = 3.855 years. | FACT-CHECK 2026-10-14 (pass 19): Node BigInt: 19! = 121,645,100,408,832,000; the stage's Number fact(19) is exact (odd part < 2^53) and prints the same string. 19! / 1e9 / 31,557,600 s = 3.855 years (3.857 with 365-day years): 'about 3.9'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.route-explosion.c5",

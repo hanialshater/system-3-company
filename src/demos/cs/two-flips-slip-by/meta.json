@@ -28,7 +28,9 @@
       "text": "An even-parity check bit is chosen so that the count of 1s, check bit included, is even; the receiver passes the message if the count it gets is even.",
       "support": "convention",
       "source": "Definition of even parity: Tanenbaum and Wetherall, Computer Networks, 5th ed., 3.2.2 'Error-detecting codes'. Demo.tsx CHECK and passes().",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-flips-slip-by.c2",
@@ -44,14 +46,18 @@
       "text": "Two flips anywhere in the message, check bit included, leave the count even again, so the check passes on a wrong message; in general parity catches any odd number of flips and misses any even number.",
       "support": "derivation",
       "source": "k flips change the count by k changes of parity; parity is restored iff k is even. The stage lets the learner test 1 to 8 flips on the message 1011010 + check bit 0. · Fact-check 2026-10-13: Exhaustively checked all 255 non-empty flip patterns of the 8 bits: pass iff the flip count is even.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-flips-slip-by.c5",
       "text": "In the stage's message the seven data bits hold four 1s, so the even-parity check bit is 0; the receiver passes a message when the count of 1s it gets is even. One check bit cannot guard a message against noise that flips several bits.",
       "support": "derivation",
       "source": "DATA = 1,0,1,1,0,1,0 in Demo.tsx: four 1s, check = 4 mod 2 = 0. Last clause follows from the claim that two flips pass the check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -28,42 +28,54 @@
       "text": "Toy quicksort with the first card as pivot, counting one comparison per other card in the group per split, takes 15 comparisons on the sorted hand 1 2 3 4 5 6.",
       "support": "simulation",
       "source": "Builder's node script (recursive first-card-pivot quicksort, comparisons = group size - 1 per split): sorted 1..6 gives 5 + 4 + 3 + 2 + 1 = 15. Same count as the stage's ladder (sumCost over the plan in Demo.tsx). Algorithm as CLRS ch. 7 (Quicksort, first element as pivot); TheAlgorithms/Python sorts/quick_sort.py consulted only to check how the algorithm runs.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.sorted-input-sinks-quicksort.c2",
       "text": "The same toy quicksort takes 9 comparisons on the shuffled hand 3 4 1 6 2 5 (split costs 5, 1, 2, 1).",
       "support": "simulation",
       "source": "Builder's node script: pivot 3 -> [1 2] | [4 6 5] (5); pivot 1 -> [] | [2] (1); pivot 4 -> [] | [6 5] (2); pivot 6 -> [5] | [] (1); total 9. The shuffled hand is a chosen example (not random); its cost is below the all-orders mean of 10.3 (c4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.sorted-input-sinks-quicksort.c3",
       "text": "On the sorted hand every split leaves 0 cards on one side, because the pivot is the smallest card in its group, so each split peels off only its pivot.",
       "support": "derivation",
       "source": "In a sorted group the first card is the smallest, so no other card is smaller: smaller side 0 cards, bigger side everything else. Group sizes go 6, 5, 4, 3, 2 with costs 5, 4, 3, 2, 1 (node, same script as c1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.sorted-input-sinks-quicksort.c4",
       "text": "Over all 720 orders of 6 cards, no order costs more than 15 comparisons.",
       "support": "simulation",
       "source": "Builder's node script over all 720 permutations of 1..6: maximum 15, minimum 8, total 7416 so mean 10.3 exactly. 32 of the 720 orders tie at 15 (including the reversed hand 6 5 4 3 2 1), so the sorted hand is a worst case, not the only one; the reveal says 'no order costs more' and does not say 'the only worst case'. Derivation: a split of a group of m cards costs m - 1 and leaves at most m - 1 cards, so the cost is at most (m-1) + (m-2) + ... + 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.sorted-input-sinks-quicksort.c5",
       "text": "For n cards the sorted-input cost is n(n - 1)/2 comparisons.",
       "support": "derivation",
       "source": "(n - 1) + (n - 2) + ... + 1 = n(n - 1)/2; n = 6 gives 15 (node). Quicksort's worst case is Theta(n^2) when every split is maximally unbalanced: CLRS ch. 7.2 (Performance of quicksort).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.sorted-input-sinks-quicksort.c6",
       "text": "Picking the pivot at random makes this bad case very unlikely on long hands.",
       "support": "source",
       "source": "Randomized quicksort runs in expected O(n log n) comparisons on every input: CLRS ch. 7.3 (A randomized version of quicksort) and 7.4 (Analysis of quicksort). For a 6-card hand the chance is not tiny; the sentence says 'long hands'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -95,9 +107,25 @@
     "level": "core",
     "strand": "algorithms",
     "references": [
-      { "work": "clrs-4e", "chapter": 7, "section": "7.2", "note": "Performance of quicksort; worst case" }
+      {
+        "work": "clrs-4e",
+        "chapter": 7,
+        "section": "7.2",
+        "note": "Performance of quicksort; worst case"
+      }
     ],
-    "tags": ["sorting", "worst-case", "pivot"]
+    "tags": [
+      "sorting",
+      "worst-case",
+      "pivot"
+    ]
   },
-  "interactions": ["choice-before-reveal", "toggle-before-after", "step-run-button", "tally-counters", "locked-readouts", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "step-run-button",
+    "tally-counters",
+    "locked-readouts",
+    "milestone-gate"
+  ]
 }

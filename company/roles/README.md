@@ -160,3 +160,10 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [R&D Engineering Lead](rnd-lead.md) | vp-rnd | Small, tested, dependency-free libraries that a builder can use in an afternoon.. |
 | [R&D Engineer](rnd-engineer.md) | rnd-lead | Correct first, then small, then easy to use in a 60-second lesson.. |
+
+## Courses
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Head of Courses (category management)](courses-lead.md) | head-of-product | A learner who is reading a book or taking a course finds a 60-second demo for every idea in it that can be shown, in the order the course teaches it.. |
+| [Course Manager — Networks, Crowds, and Markets (Easley & Kleinberg)](cm-course-ncm.md) | courses-lead | Every idea in Networks, Crowds, and Markets that a learner can predict and then see has a 60-second lesson, mapped to its chapter and section.. |

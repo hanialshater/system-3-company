@@ -10,3 +10,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c4 | verified | node, own play() with kit mulberry32, seeds 1-2000: greedy stuck (under 50 B pulls in its last 100) in 30.2%; stuck runs average 29.8 wins in the last 100 and 30.0 per 100 over all 500; 601 of 604 stuck runs began with B's first pull losing; greedy last-100 mean 57.7, explorer 67.95. The learner's default path (Play run 1, Next run, Watch 100 more = seeds 5-106, 102 runs): stuck 33 (32%), greedy 57, explorer 67, so the reveal's hard-coded 'about 3 in 10' sits next to a matching tally. |
 
 **Result:** c3 disputed (blocks publishing until the builder fixes the text and a fact-checker re-checks); the rest verified.
+
+## Pass 19
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx first (predict, stage, readouts, reveal), then re-derived or re-ran each claim in my own scripts (scratchpad fc1); sources corroborated by web search where the row says so.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node replay (fc1/greedy.mjs, same rng draw order): seed 5 first pulls A lost, B lost; both at 0/1, 'rb > ra' is false so greedy takes A; B pulled 1 of 500; wins per 100 40, 29, 23, 30, 41 (163/500 = 32.6, 'about 30'). Seeds 1-4 and 6: A lost, B won, B pulled 499 times. The stage line prints 'A lost, B lost', matching the claim. |
+
+**Result:** every claim verified or withdrawn.

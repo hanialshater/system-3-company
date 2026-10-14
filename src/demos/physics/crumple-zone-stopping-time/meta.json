@@ -63,8 +63,10 @@
       "id": "physics.crumple-zone-stopping-time.c5",
       "text": "The lesson uses a steady (average) force; real crash forces rise and fall during the stop.",
       "support": "convention",
-      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s. | Builder fix 2026-10-13 (pass 4): dropped 'crush less and stop faster'; now says real tests sit near the 0.1 s / 0.75 m case. Sources: nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406 (56 km/h = 15.6 m/s frontal barrier, 0.5-0.9 m, ~80-120 ms).",
-      "status": "unverified"
+      "source": "Stated idealisation. Fact-check 2026-10-13: a real 15 m/s frontal crash with about 0.6 m of crush lasts about 2 d / v = 0.08 s. | Builder fix 2026-10-13 (pass 4): dropped 'crush less and stop faster'; now says real tests sit near the 0.1 s / 0.75 m case. Sources: nhtsa.gov 18th ESV crash-pulse paper; pmc.ncbi.nlm.nih.gov/articles/PMC3503406 (56 km/h = 15.6 m/s frontal barrier, 0.5-0.9 m, ~80-120 ms). · Fact-check pass 19 2026-10-14: Demo.tsx reveal: 'Steady-force model; real crash forces rise and fall.' Matches the claim. Real frontal crash pulses are non-rectangular (peaked) per the cited NHTSA ESV crash-pulse work (not re-opened this pass); the claim makes no number-bearing statement.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.crumple-zone-stopping-time.c6",
@@ -79,8 +81,10 @@
       "id": "physics.crumple-zone-stopping-time.c7",
       "text": "The car's weight is about 9.8 kN, so 150 kN is about 15.3 car-weights and 75 kN about 7.6.",
       "support": "derivation",
-      "source": "Weight = 1000 kg x 9.81 m/s^2 = 9810 N. 150,000 / 9810 = 15.29; 75,000 / 9810 = 7.65 (shown 7.6 by toFixed(1) in Demo.tsx carWeights(); 7.645 rounds to 7.6). Slider: 300 kN = 30.6, 100 kN = 10.2, 60 kN = 6.1, 50 kN = 5.1. | FACT-CHECK 2026-10-13 (pass 4): Node: 1000 x 9.81 = 9810 N; 150000/9810 = 15.29 -> 15.3; 75000/9810 = 7.645 -> toFixed(1) shows 7.6 (matches Demo.tsx carWeights); slider values 30.6, 15.3, 10.2, 7.6, 6.1, 5.1.",
-      "status": "unverified"
+      "source": "Weight = 1000 kg x 9.81 m/s^2 = 9810 N. 150,000 / 9810 = 15.29; 75,000 / 9810 = 7.65 (shown 7.6 by toFixed(1) in Demo.tsx carWeights(); 7.645 rounds to 7.6). Slider: 300 kN = 30.6, 100 kN = 10.2, 60 kN = 6.1, 50 kN = 5.1. | FACT-CHECK 2026-10-13 (pass 4): Node: 1000 x 9.81 = 9810 N; 150000/9810 = 15.29 -> 15.3; 75000/9810 = 7.645 -> toFixed(1) shows 7.6 (matches Demo.tsx carWeights); slider values 30.6, 15.3, 10.2, 7.6, 6.1, 5.1. · Fact-check pass 19 2026-10-14: Own node: 1000 x 9.81 = 9810 N; carWeights() toFixed(1) gives 30.6, 15.3, 10.2, 7.6, 6.1, 5.1 for 0.05-0.30 s. Predict's 'about 10 kN' is consistent with 9.8 kN.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -28,36 +28,46 @@
       "id": "cs.a-star-heads-for-goal.c1",
       "text": "On an open 7 x 7 grid with 4-way moves, start in the middle of the left edge and goal in the middle of the right edge, ranking cells by steps so far plus Manhattan steps left settles 7 cells, goal included, and finds a 6-step route. With no guess, 31 cells are settled and the route is also 6 steps. Ties go to the cell with more steps taken, then to the cell added first.",
       "support": "simulation",
-      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): start (col 0, row 3), goal (col 6, row 3), goal counted when settled; guess 7 settled / route 6, no guess 31 / route 6. The spec reports the same 7 and 31 under three other tie-breaks (fewer steps taken, first-in-first-out), so the open-grid numbers do not depend on the rule.",
-      "status": "unverified"
+      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): start (col 0, row 3), goal (col 6, row 3), goal counted when settled; guess 7 settled / route 6, no guess 31 / route 6. The spec reports the same 7 and 31 under three other tie-breaks (fewer steps taken, first-in-first-out), so the open-grid numbers do not depend on the rule. | FACT-CHECK 2026-10-14 (pass 19): Own node re-implementation (fc1/astar.mjs) with the Demo.tsx rule (score, then more steps taken, then first added; goal counted when settled): open grid guess 7 settled / route 6 (settle order (0,3)..(6,3)), no guess 31 / route 6. Also 7 and 31 under fewer-steps-first, FIFO and LIFO. Source-text nit (not learner-facing): it says 'three other tie-breaks' but names two.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.a-star-heads-for-goal.c2",
       "text": "With a 3-cell wall (column 3, rows 2 to 4), the guided search settles 16 cells and finds a 10-step route; with no guess all 46 open cells are settled and the route is also 10 steps. The 16 depends on the tie-break (more steps taken first): first-in-first-out gives 32.",
       "support": "simulation",
-      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): guess + wall 16 / route 10; no guess + wall 46 / route 10. The spec's note gives 32 for first-in-first-out.",
-      "status": "unverified"
+      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): guess + wall 16 / route 10; no guess + wall 46 / route 10. The spec's note gives 32 for first-in-first-out. | FACT-CHECK 2026-10-14 (pass 19): Same script: wall col 3 rows 2-4, guess 16 / route 10, no guess 46 / route 10 (49 - 3 walls = 46 open). FIFO and fewer-steps-first give 32, LIFO 20, so the 16 is tie-break dependent, as the claim says. Route 10 = 6 across + 2 out + 2 back.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.a-star-heads-for-goal.c3",
       "text": "A* with a guess that never overestimates the steps left finds a shortest route.",
       "support": "source",
-      "source": "Hart, Nilsson & Raphael (1968), A formal basis for the heuristic determination of minimum cost paths, IEEE Trans. Systems Science and Cybernetics 4(2): optimality with an admissible heuristic.",
-      "status": "unverified"
+      "source": "Hart, Nilsson & Raphael (1968), A formal basis for the heuristic determination of minimum cost paths, IEEE Trans. Systems Science and Cybernetics 4(2): optimality with an admissible heuristic. | FACT-CHECK 2026-10-14 (pass 19): Hart, Nilsson & Raphael, IEEE Trans. SSC 4(2):100-107, July 1968 (DOI 10.1109/TSSC.1968.300136, confirmed by web search): admissible heuristic gives a minimum-cost path. Manhattan on this grid is also consistent, so the stage's no-reopen version is optimal too.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.a-star-heads-for-goal.c4",
       "text": "On a grid with 4-way moves, the count of columns plus rows between a cell and the goal never overestimates the steps left.",
       "support": "derivation",
-      "source": "Each step changes the column or the row by at most 1, so any route needs at least |dc| + |dr| steps. Walls can only add steps.",
-      "status": "unverified"
+      "source": "Each step changes the column or the row by at most 1, so any route needs at least |dc| + |dr| steps. Walls can only add steps. | FACT-CHECK 2026-10-14 (pass 19): Derivation: each 4-way move changes |dc| + |dr| by exactly 1, so any route needs at least |dc| + |dr| moves; walls only remove moves.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.a-star-heads-for-goal.c5",
       "text": "The guess ranks cells nearer the goal first, so the search runs at the goal instead of flooding every direction.",
       "support": "derivation",
-      "source": "On the open grid every cell on row 3 has score 6 (steps so far + steps left) and every other cell scores at least 8, so the search settles row 3 first. Seen on the stage as numbers 1 to 7 along one row.",
-      "status": "unverified"
+      "source": "On the open grid every cell on row 3 has score 6 (steps so far + steps left) and every other cell scores at least 8, so the search settles row 3 first. Seen on the stage as numbers 1 to 7 along one row. | FACT-CHECK 2026-10-14 (pass 19): Derivation: a cell (c,r) has g >= c + |r-3| and h = (6-c) + |r-3|, so f >= 6 + 2|r-3|: row 3 scores 6, every other cell >= 8. Node settle order is exactly the 7 row-3 cells, numbered 1 to 7 on the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -88,7 +98,11 @@
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["pathfinding", "heuristic", "grid"]
+    "tags": [
+      "pathfinding",
+      "heuristic",
+      "grid"
+    ]
   },
   "interactions": [
     "choice-before-reveal",

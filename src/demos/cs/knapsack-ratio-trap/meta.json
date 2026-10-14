@@ -27,42 +27,54 @@
       "text": "The 10 kg item is worth $6 per kg, the 20 kg item $5 per kg and the 30 kg item $4 per kg.",
       "support": "derivation",
       "source": "60 / 10 = 6, 100 / 20 = 5, 120 / 30 = 4 (builder, node). Printed on each shelf item in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.knapsack-ratio-trap.c2",
       "text": "Best value per kilo first with whole items packs the 10 kg and 20 kg items for $160, leaving 20 kg empty, and the 30 kg item no longer fits.",
       "support": "simulation",
       "source": "Builder's node script (company/reviews/knapsack-ratio-trap/verify.mjs): items sorted by value per kg, added while they fit: 10 kg, 20 kg, then 30 kg > 20 kg free. Total $160, 20 kg free. Stage starts in this state.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.knapsack-ratio-trap.c3",
       "text": "With whole items, the best bag that fits 50 kg is the 20 kg and 30 kg items for $220.",
       "support": "simulation",
       "source": "Builder's node script over all 8 subsets of the 3 items: fitting subsets are {} 0, {10} 60, {20} 100, {10,20} 160, {30} 120, {10,30} 180, {20,30} 220 (50 kg); {10,20,30} is 60 kg and does not fit. Maximum $220.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.knapsack-ratio-trap.c4",
       "text": "When items can be cut, best value per kilo first packs the 10 kg item, the 20 kg item and two thirds of the 30 kg item for $240.",
       "support": "simulation",
       "source": "Builder's node script: greedy by ratio taking min(weight, room) of each: 10 kg ($60) + 20 kg ($100) + 20 of 30 kg ($80) = $240 (20 / 30 = two thirds). Stage's cut bag starts in this state.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.knapsack-ratio-trap.c5",
       "text": "When items can be cut, no bag does better than best value per kilo first.",
       "support": "source",
-      "source": "Fractional knapsack: greedy by value per kilo is optimal (Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms; section 16.2 in the 3rd edition, with this 10 / 20 / 30 kg, $60 / $100 / $120 example in its Figure 16.2). Section number in the 4th edition (content/works.json clrs-4e) not checked by the builder.",
-      "status": "unverified"
+      "source": "Fractional knapsack: greedy by value per kilo is optimal (Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms; section 16.2 in the 3rd edition, with this 10 / 20 / 30 kg, $60 / $100 / $120 example in its Figure 16.2). Section number in the 4th edition (content/works.json clrs-4e) not checked by the builder. · Fact-check pass 19 2026-10-14: verified by derivation (exchange argument: any optimal fractional bag can swap weight toward a higher value-per-kg item without losing value) and own node grid search over fractional amounts (max $240). CLRS 3e numbering (§16.2, Fig. 16.2, Ex. 16.2-1) confirmed against exercise indexes; in 4e greedy is Chapter 15 (TOC confirmed), section number not opened, so cite 4e as ch. 15 or confirm §15.2 before using it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.knapsack-ratio-trap.c6",
       "text": "Dynamic programming finds the best whole-item bag without trying every combination.",
       "support": "source",
-      "source": "0/1 knapsack in O(nW) time by dynamic programming (CLRS 3rd edition exercise 16.2-2), against 2^n subsets by trying all of them. Told in the reveal, not shown.",
-      "status": "unverified"
+      "source": "0/1 knapsack in O(nW) time by dynamic programming (CLRS 3rd edition exercise 16.2-2), against 2^n subsets by trying all of them. Told in the reveal, not shown. · Fact-check pass 19 2026-10-14: verified by own 0/1 DP (n x W table, 93 cell updates for n = 3, W = 50, gives $220) against 2^3 = 8 subsets. CLRS 3e Ex. 16.2-2 (O(nW) DP) confirmed against exercise indexes; 4e number not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -99,7 +111,16 @@
         "note": "Greedy strategy; 0-1 vs fractional knapsack (3rd ed. 16.2, Figure 16.2); section number in 4th edition unchecked"
       }
     ],
-    "tags": ["greedy", "dynamic-programming", "knapsack"]
+    "tags": [
+      "greedy",
+      "dynamic-programming",
+      "knapsack"
+    ]
   },
-  "interactions": ["choice-before-reveal", "toggle-before-after", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

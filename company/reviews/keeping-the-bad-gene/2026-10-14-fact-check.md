@@ -10,3 +10,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c3 | verified | Readouts 'Young with 2 w' = q^2 and 'with 1 w' = 2pq: at q = 0.01, 0% and 2%; at q = 0.5, 25% and 50%. Direction follows from c1: below q*, w's marginal fitness exceeds A's. |
 
 **Result:** all open claims in this pass verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).
+
+## Pass 19 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including computed ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc3/: knap.mjs, interp.mjs, ways.mjs and one-liners). Sources checked by web search where a claim rests on one; sources not opened are marked.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node: q = 0.01 -> q^2 = 0.0001 (0%), 2pq = 0.0198 (2%), next q = 0.0116 (rises); q = 0.5 -> 25%, 50%, next q = 0.351 (falls). Readouts compute q^2 and 2pq. Direction follows from q* = s/(s + 1): dq > 0 iff q < q*. Hartl & Clark not relied on. |
+
+**Result:** all open claims verified; lesson has no unverified or disputed claims.

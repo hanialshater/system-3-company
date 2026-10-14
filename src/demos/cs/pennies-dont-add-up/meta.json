@@ -30,14 +30,18 @@
       "text": "In binary, 0.1 is 0.000110011001100… with the block 0011 repeating forever (the stage shows 0.000110011001100…).",
       "support": "derivation",
       "source": "Repeated doubling of the fractional part: 0.1 -> 0.2 (0) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 ...; the remainder 0.4 recurs, so the digits 0011 repeat. Builder ran it for 20 digits: 00011001100110011001.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pennies-dont-add-up.c2",
       "text": "No set of the 12 switches worth 1/2 to 1/4096 adds to exactly 0.1; the closest is 0.10009765625 (over), then 0.099853515625 (under). The reveal quotes the closest, 0.10009765625, as still over 0.1.",
       "support": "derivation",
       "source": "Any sum of these switches is k/4096 for a whole number k. 0.1 x 4096 = 409.6 is not whole, so no k works. The nearest are k = 410 (0.10009765625, gap 0.00009765625) and k = 409 (0.099853515625, gap 0.000146484375). In general k/2^n can never equal 1/10, because 10 has the factor 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pennies-dont-add-up.c3",
@@ -62,7 +66,9 @@
       "text": "As a double, 0.1 is stored as 0.1000000000000000055… and 0.2 as 0.2000000000000000111…, both a hair above the decimal value (the stage labels them 'above 0.1' and 'above 0.2').",
       "support": "simulation",
       "source": "node -e 'console.log((0.1).toPrecision(40), (0.2).toPrecision(40))' prints 0.1000000000000000055511151231257827021182 and 0.2000000000000000111022302462515654042363 (builder ran it). Python: from decimal import Decimal; Decimal(0.1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pennies-dont-add-up.c6",

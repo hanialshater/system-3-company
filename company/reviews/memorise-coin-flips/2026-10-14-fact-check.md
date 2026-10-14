@@ -10,3 +10,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c4 | verified | Demo.tsx: newLabel uses mulberry32(set x 7919 + 13), a stream separate from labelsFor(set), so P(call = label) = 1/2 whatever the curve. node (own least-squares fit): over sets 1-10,000 the degree-5 call at x = 0.5 is right in 49.6%; newLabel is +1 in 50.2%; on sets 1-22 (a typical learner path) it is right 12 of 22 (55%), so the stage shows 'about half'. |
 
 **Result:** c3 disputed (blocks publishing until the builder fixes the text and a fact-checker re-checks); the rest verified.
+
+## Pass 19
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx first (predict, stage, readouts, reveal), then re-derived or re-ran each claim in my own scripts (scratchpad fc1); sources corroborated by web search where the row says so.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own exact least squares (Python Fractions, fc1/ls.py) on set 1 labels -1,1,-1,-1,-1,1 (mulberry32(1) confirmed): degree 1 largest miss 158/105 = 1.5048 -> '1.50'; degree 3 16/21 = 0.7619 -> '0.76'; degree 5 exactly 0 -> '0.00'. Demo.tsx header comment now also says 1.50. |
+
+**Result:** every claim verified or withdrawn.

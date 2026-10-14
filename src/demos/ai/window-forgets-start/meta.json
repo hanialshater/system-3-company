@@ -26,14 +26,18 @@
       "text": "With a 20-token document and a window of the last 8 tokens, positions 13-20 are visible, so a fact at a random position is usable with chance 8/20 = 40%; a fact at position 5 is outside. The stage shows the window share as \"8 of 20 = 40%\".",
       "support": "derivation",
       "source": "share(w) = w / 20 and visible() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.window-forgets-start.c2",
       "text": "Dropping a fact at 20 random positions counts how many land inside the current window (mulberry32 seeds 1, 2, 3, ... in order, untuned; seed 1 at window 8 gives 7 of 20). The long-run share inside an 8-token window is 8/20 = 40%.",
       "support": "simulation",
-      "source": "spread(8, 500) in Demo.tsx, mulberry32 seeds 1-500, untuned. The stage's 'Drop at 20 random spots' uses seeds 1, 2, 3, ... in order (untuned; seed 1 gives 7 of 20). · Fact-check 2026-10-13: Mean over seeds 1-500 is 7.94.",
-      "status": "unverified"
+      "source": "spread(8, 500) in Demo.tsx, mulberry32 seeds 1-500, untuned. The stage's 'Drop at 20 random spots' uses seeds 1, 2, 3, ... in order (untuned; seed 1 gives 7 of 20). · Fact-check 2026-10-13: Mean over seeds 1-500 is 7.94. · Fact-check 2026-10-14 (pass 19): Demo.tsx has no spread(); re-ran hits(seed, 8) from the Demo.tsx model: seed 1 = 7 of 20; mean over seeds 1-500 = 7.938 (39.7%); seeds 1-20000 = 40.1%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.window-forgets-start.c3",

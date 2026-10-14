@@ -28,7 +28,9 @@
       "text": "In the lesson's run (seed 12), held-out error is 0.751 at step 0, lowest at 0.299 at step 67, 0.320 at step 100, 0.486 at step 1,000 and 0.693 at step 20,000, while training error falls from 0.793 to 0.170. A chart on the stage plots both errors against training steps (steps spaced on a log-like scale).",
       "support": "simulation",
       "source": "trainRun(12) in Demo.tsx (degree 7, powers of x, weights from 0, full-batch gradient descent on mean squared error, step 0.1; truth sin(2x), x uniform on [−1, 1], noise sd 0.3; 8 training and 200 held-out dots from mulberry32(12); RMS errors at 74 log-spaced checkpoints). Node, model block extracted from Demo.tsx: 0:0.793/0.751 67:0.238/0.299 100:0.204/0.320 1000:0.177/0.486 20000:0.170/0.693. Seed 12 was CHOSEN to show a clear dip (disclosed on the stage and in the reveal).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.stop-at-epoch-sixty.c2",

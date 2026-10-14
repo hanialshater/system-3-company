@@ -74,7 +74,9 @@
       "text": "A poll's accuracy comes from how many people it asks, not what share of the crowd they are, until the sample is a large share of the population.",
       "support": "derivation",
       "source": "The population size enters the standard error only through sqrt((N-n)/(N-1)), which is above 0.99 whenever n/N < 1% (c1, c2).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.city-poll-nation-poll.c7",
@@ -90,7 +92,9 @@
       "text": "In a nation of 300 million, a random poll of 250 people has a 95% margin of error of ±6.20 points and a poll of 4,000 has ±1.55 points (for a 50/50 question).",
       "support": "derivation",
       "source": "margin = 1.96 x sqrt(0.25 / n) x sqrt((N - n) / (N - 1)) x 100 in model.ts: n = 250 gives 6.198, n = 4000 gives 1.549.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

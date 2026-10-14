@@ -53,8 +53,10 @@
       "id": "probability.dice-that-chase-each-other.c4",
       "text": "In the learner's first four matches (shown in the reveal) A beat B 74, B beat C 64, C beat D 75 and D beat A 73 times of 100; rolls of 100 usually land within about ten of 67 (one standard deviation is 4.7), so a result like 57 is ordinary scatter.",
       "support": "simulation",
-      "source": "mulberry32(pair * 1000 + batch + 1), batch 0, pairs in order AB, BC, CD, DA; first seeds tried, untuned (node, same match() as Demo.tsx). Batch 1: 69 69 72 57; batch 2: 60 65 68 64. Binomial sd at p = 2/3, n = 100: 4.7. | FACT-CHECK 2026-10-13 (pass 9): node with own mulberry32 copy and seed pair*1000+batch+1: batch 0 = 74 64 75 73, batch 1 = 69 69 72 57, batch 2 = 60 65 68 64; binomial sd 4.71.",
-      "status": "unverified"
+      "source": "mulberry32(pair * 1000 + batch + 1), batch 0, pairs in order AB, BC, CD, DA; first seeds tried, untuned (node, same match() as Demo.tsx). Batch 1: 69 69 72 57; batch 2: 60 65 68 64. Binomial sd at p = 2/3, n = 100: 4.7. | FACT-CHECK 2026-10-13 (pass 9): node with own mulberry32 copy and seed pair*1000+batch+1: batch 0 = 74 64 75 73, batch 1 = 69 69 72 57, batch 2 = 60 65 68 64; binomial sd 4.71. · Fact-check pass 19 2026-10-14: Own node with independent mulberry32 and seed pair*1000+batch+1: batch 0 = 74 64 75 73, batch 1 = 69 69 72 57, batch 2 = 60 65 68 64. Binomial(100, 2/3) sd = 4.71; P(57..76) = 0.967 so 'usually within about ten' holds. Note: 57 is about 2 sd low (P(<=57) = 0.028), at the edge of the band; 'ordinary' is fair among the 12 seeded matches but borderline.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.dice-that-chase-each-other.c5",

@@ -58,7 +58,9 @@
       "text": "Hash tables handle collisions on purpose, for example by keeping a short list of keys in each slot (chaining).",
       "support": "source",
       "source": "CLRS 3rd ed., 11.2 'Hash tables', collision resolution by chaining.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.hash-bucket-pileup.c6",
@@ -74,7 +76,9 @@
       "text": "The stage shows the chance that k random keys all land in different slots of 10: 1, 0.9, 0.72, 0.504, 0.3024, 0.1512 and so on (each factor is the share of slots still empty). A hash table here means a row of 10 slots where each key goes to a random slot.",
       "support": "derivation",
       "source": "Product of (1 - i/10) for i = 0..k-1; noCol() in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

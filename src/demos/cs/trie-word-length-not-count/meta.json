@@ -27,49 +27,65 @@
       "id": "cs.trie-word-length-not-count.c1",
       "text": "Looking up \"cat\" takes 3 steps in a letter tree of 10 words and 3 steps in a letter tree of 1,000 words.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14): built a letter tree from the 10 starting words (cat car cap dog dot sun sea art ant bat), then from the 1,000-word list (the same 10 plus 990 seeded invented strings, mulberry32 seed 1000, lengths 3 to 8, all distinct). Walking c, a, t reaches an end-of-word mark in both: 3 steps and 3 steps. The same script confirms steps = length for all 1,000 words. The seed was not searched for; it was the first one tried.",
-      "status": "unverified"
+      "source": "Builder's node script (2026-10-14): built a letter tree from the 10 starting words (cat car cap dog dot sun sea art ant bat), then from the 1,000-word list (the same 10 plus 990 seeded invented strings, mulberry32 seed 1000, lengths 3 to 8, all distinct). Walking c, a, t reaches an end-of-word mark in both: 3 steps and 3 steps. The same script confirms steps = length for all 1,000 words. The seed was not searched for; it was the first one tried. | FACT-CHECK 2026-10-14 (pass 19): Own node rebuild (scratchpad fc1/trie.mjs, kit mulberry32 seed 1000, randInt 3..8): 1,000 distinct words; walking c,a,t ends on an end-of-word mark at depth 3 in the 10-word and the 1,000-word tree; steps = length for all 1,000 words.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.trie-word-length-not-count.c2",
       "text": "The 990 added words are invented letter strings of 3 to 8 letters, not a real dictionary; the stage's grey counts (for example 48 words start with c) are counted from that list.",
       "support": "simulation",
-      "source": "Generator in Demo.tsx (mulberry32 seed 1000, randInt length 3..8, letters a..z, duplicates and the 10 starters skipped until 1,000 words). Builder's node reimplementation: 1,000 distinct words; first-letter counts a 44, b 40, c 48, d 51, s 41 and so on, summing to 1,000.",
-      "status": "unverified"
+      "source": "Generator in Demo.tsx (mulberry32 seed 1000, randInt length 3..8, letters a..z, duplicates and the 10 starters skipped until 1,000 words). Builder's node reimplementation: 1,000 distinct words; first-letter counts a 44, b 40, c 48, d 51, s 41 and so on, summing to 1,000. | FACT-CHECK 2026-10-14 (pass 19): Same script: 990 added strings, lengths 3 to 8, letters a-z; first-letter counts c 48, d 51, s 41, a 44, b 40 ..., summing to 1,000; the stage prints FIRST[ch] from that same list.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.trie-word-length-not-count.c3",
       "text": "In a letter tree each step follows the next letter of the word, so the number of steps equals the word's length, however many words the tree holds (assuming a fixed alphabet and constant-time choice of child).",
       "support": "derivation",
-      "source": "A word of length L has one node per prefix, so a lookup visits L nodes. Choosing the child by letter is one array or map access for a fixed alphabet (26 letters). Knuth, TAOCP Vol. 3, 6.3 (digital searching). Reveal text: 'the cost is the length of the word, not how many words the tree holds'.",
-      "status": "unverified"
+      "source": "A word of length L has one node per prefix, so a lookup visits L nodes. Choosing the child by letter is one array or map access for a fixed alphabet (26 letters). Knuth, TAOCP Vol. 3, 6.3 (digital searching). Reveal text: 'the cost is the length of the word, not how many words the tree holds'. | FACT-CHECK 2026-10-14 (pass 19): Derivation: a successful lookup of a length-L word visits one node per prefix, L steps, with one child choice per step (constant for a fixed 26-letter alphabet); the number of stored words never enters. Knuth TAOCP Vol. 3 (2nd ed.) 6.3 digital searching. Node check: steps = length for all 1,000 words.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.trie-word-length-not-count.c4",
       "text": "The letter tree (trie) was described by Fredkin in 1960.",
       "support": "source",
-      "source": "E. Fredkin, 'Trie memory', Communications of the ACM 3(9), 1960. Not shown to the learner on the stage; recorded for the brief.",
-      "status": "unverified"
+      "source": "E. Fredkin, 'Trie memory', Communications of the ACM 3(9), 1960. Not shown to the learner on the stage; recorded for the brief. | FACT-CHECK 2026-10-14 (pass 19): Web search (Crossref DOI 10.1145/367390.367400; NIST DADS 'trie'; Wikipedia 'Trie'): E. Fredkin, 'Trie memory', CACM 3(9):490-499, Sept 1960. Note: de la Briandais (1959) described the structure independently; 'described by Fredkin' is still true.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.trie-word-length-not-count.c5",
       "text": "One step means following one letter down the tree.",
       "support": "convention",
-      "source": "Counting convention stated on the stage: the model line 'One step = follow one letter down the tree.' It ignores the cost of picking the child (see c3).",
-      "status": "unverified"
+      "source": "Counting convention stated on the stage: the model line 'One step = follow one letter down the tree.' It ignores the cost of picking the child (see c3). | FACT-CHECK 2026-10-14 (pass 19): Convention stated on the stage model line, 'One step = follow one letter down the tree.'; the readout counts exactly the letters walked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.trie-word-length-not-count.c6",
       "text": "The 990 new words grew branches beside the walked path; the path to cat stayed three hops long.",
       "support": "simulation",
-      "source": "Same script as c1: the cat node is at depth 3 in both trees; the 990 words add nodes elsewhere (the c branch alone holds 48 words in the 1,000-word list, 5 of them starting ca).",
-      "status": "unverified"
+      "source": "Same script as c1: the cat node is at depth 3 in both trees; the 990 words add nodes elsewhere (the c branch alone holds 48 words in the 1,000-word list, 5 of them starting ca). | FACT-CHECK 2026-10-14 (pass 19): Same script: cat is at depth 3 in both trees; c branch 48 words, 5 starting 'ca' (cat, car, cap, cavblpcu, cacruudt); the added words create nodes off the c-a-t path.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A letter tree holds 50,000 words. About how many steps does it take to look up a 6-letter word in it?",
-    "options": ["6", "About 16", "About 50,000"],
+    "options": [
+      "6",
+      "About 16",
+      "About 50,000"
+    ],
     "answer": 0,
     "why": "Each step follows the next letter, so a 6-letter word takes 6 steps whatever the tree holds. About 16 is the number of halvings of 50,000, which is binary search, not a letter tree."
   },
@@ -83,11 +99,24 @@
   "curriculum": {
     "primary": "cs:trie",
     "also": [],
-    "prerequisites": ["cs:binary-search-tree"],
+    "prerequisites": [
+      "cs:binary-search-tree"
+    ],
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["trie", "prefix-tree", "lookup", "autocomplete"]
+    "tags": [
+      "trie",
+      "prefix-tree",
+      "lookup",
+      "autocomplete"
+    ]
   },
-  "interactions": ["choice-before-reveal", "toggle-before-after", "step-run-button", "locked-readouts", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "step-run-button",
+    "locked-readouts",
+    "milestone-gate"
+  ]
 }

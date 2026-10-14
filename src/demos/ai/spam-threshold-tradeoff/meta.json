@@ -37,7 +37,9 @@
       "text": "At 0.50, 4 of 5 spam are caught and 1 real email (0.6) is flagged. At 0.25, all 5 spam are caught and 3 real emails (0.6, 0.4, 0.3) are flagged. At 0.65, no real mail is flagged and 2 spam get through.",
       "support": "derivation",
       "source": "Count the scores at or above each threshold. Reproduced by running counts() from Demo.tsx: t = 50 → 4, 1; t = 25 → 5, 3; t = 65 → 3, 0. | v2 (2026-10-14): stage now gates the reveal on visiting 0.25 and 0.65; question asks the count of real mail flagged at 0.25; previous verification void, needs re-check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.spam-threshold-tradeoff.c3",

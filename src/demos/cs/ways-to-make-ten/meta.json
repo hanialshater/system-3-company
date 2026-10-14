@@ -28,35 +28,45 @@
       "text": "With coins 1, 2 and 5 there are 10 ways to make 10 when the order of coins does not matter, and 128 when it does.",
       "support": "simulation",
       "source": "Builder's node script. Combinations: t[0]=1; for each coin c in 1,2,5, for i from c to 10, t[i] += t[i-c] gives t[10] = 10. Sequences: a[0]=1; a[i] = sum of a[i-c] over c in 1,2,5 with c <= i gives a[10] = 128 (row 1 1 2 3 5 9 15 26 44 75 128). Reference only: TheAlgorithms/Python dynamic_programming/minimum_coin_change.py family; not copied.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ways-to-make-ten.c2",
       "text": "The table rows are: coin 1 only: 1 1 1 1 1 1 1 1 1 1 1; coins 1 and 2: 1 1 2 2 3 3 4 4 5 5 6; coins 1, 2 and 5: 1 1 2 2 3 4 5 6 7 8 10 (totals 0 to 10).",
       "support": "simulation",
       "source": "Builder's node script (same recurrence as c1, printing each row). Matches the designer's re-run in company/design/specs/ways-to-make-ten.md.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ways-to-make-ten.c3",
       "text": "The 10 cell of the 5-coin row is 6 ways without a 5 (the cell above) plus 4 ways that use one more 5 (the cell five to the left).",
       "support": "derivation",
       "source": "Table rows in c2: above = 6 (coins 1, 2, total 10); five to the left = 4 (coins 1, 2, 5, total 5). 6 + 4 = 10. Mixes by (fives, twos, ones): (0,0,10) (0,1,8) (0,2,6) (0,3,4) (0,4,2) (0,5,0) (1,0,5) (1,1,3) (1,2,1) (2,0,0): 6 with no five, 4 with at least one.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ways-to-make-ten.c4",
       "text": "At total 3 the table counts 2 ways (1+1+1 and 1+2); counting order also counts 2+1, giving 3.",
       "support": "derivation",
       "source": "Listed by hand and by the sequence recurrence a[3] = a[2] + a[1] + 0 = 2 + 1 = 3 (a = 1 1 2 3 ...). Combinations table, coins 1 and 2, total 3: 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ways-to-make-ten.c5",
       "text": "Adding one coin kind per row counts each mix once, because each mix is built in one fixed order of coin kinds.",
       "support": "derivation",
-      "source": "Each cell splits the ways into those that use no coin of the new kind (the cell above) and those that use at least one (remove one coin: the cell c to the left), so a mix is counted in exactly one place. Method: the dynamic-programming table of CLRS ch. 15 style; generating-function view in Polya 1956, 'On picture-writing', Amer. Math. Monthly 63 (to be located by the verifier).",
-      "status": "unverified"
+      "source": "Each cell splits the ways into those that use no coin of the new kind (the cell above) and those that use at least one (remove one coin: the cell c to the left), so a mix is counted in exactly one place. Method: the dynamic-programming table of CLRS ch. 15 style; generating-function view in Polya 1956, 'On picture-writing', Amer. Math. Monthly 63 (to be located by the verifier). · Fact-check pass 19 2026-10-14: verified by derivation (each cell partitions mixes by whether they use the new kind; removing one coin of that kind is a bijection to the cell c to the left) and own brute-force enumeration of all mixes matching every row. Polya 1956 not opened and not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -86,7 +96,17 @@
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["dynamic-programming", "counting", "coin-change", "combinations"]
+    "tags": [
+      "dynamic-programming",
+      "counting",
+      "coin-change",
+      "combinations"
+    ]
   },
-  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate", "storyboard-scrub"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate",
+    "storyboard-scrub"
+  ]
 }

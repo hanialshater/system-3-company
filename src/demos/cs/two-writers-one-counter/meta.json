@@ -61,8 +61,10 @@
       "id": "cs.two-writers-one-counter.c5",
       "text": "Each thread keeps its own copy of the value it read (shown as 'copy'); the stage also lists the steps in the order they ran.",
       "support": "derivation",
-      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx run(): reg[t] is per thread; stage shows 'holds' from st.reg[t].",
-      "status": "unverified"
+      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx run(): reg[t] is per thread; stage shows 'holds' from st.reg[t]. · Fact-check pass 19 2026-10-14: Demo.tsx run(): reg[t] is per thread, shown as 'copy' in each lane; 'Order run:' line from orderText(seq) lists steps in run order. Own node: run(A,B,A,A,B,B) = 1, run(A,A,A,B,B,B) = 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

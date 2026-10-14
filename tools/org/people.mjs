@@ -11,6 +11,8 @@ export const PERSONA = {
   "principal-engineer-ops": "Rhea",
   "vp-rnd": "Vera",
   "community-engineer": "Femi",
+  "courses-lead": "Amara",
+  "cm-course-ncm": "Jonah",
   "rnd-lead": "Bram",
   "research-lead": "Wen",
   "head-of-product": "Priya",

@@ -29,42 +29,54 @@
       "text": "With Ann ranking X then Y, Bea Y then X, X ranking Bea then Ann, and Y ranking Ann then Bea, students proposing gives Ann-X and Bea-Y, and both students get their first choice.",
       "support": "simulation",
       "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c2",
       "text": "With the same rankings, hospitals proposing gives X-Bea and Y-Ann, and both hospitals get their first choice.",
       "support": "simulation",
       "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c3",
       "text": "Both matchings are stable: no student and hospital both prefer each other to their partners.",
       "support": "simulation",
       "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c4",
       "text": "Deferred acceptance always ends stable and gives the proposing side its best stable partner.",
       "support": "source",
       "source": "Gale and Shapley 1962, College admissions and the stability of marriage, Amer. Math. Monthly 69(1), theorems 1 and 2 (proposer-optimality).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c5",
       "text": "The US residency match moved to students proposing for this reason.",
       "support": "source",
       "source": "Roth and Peranson 1999, The redesign of the matching market for American physicians, Amer. Econ. Rev. 89(4). Check the 'for this reason' wording against the paper: the redesign adopted an applicant-proposing algorithm; the paper discusses applicant-optimality as a motive.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c6",
       "text": "In this example no offer is ever refused, so each person gets one of their two choices on a single offer.",
       "support": "simulation",
       "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -94,7 +106,17 @@
     "level": "stretch",
     "strand": "algorithms",
     "references": [],
-    "tags": ["matching", "gale-shapley", "deferred-acceptance", "stability"]
+    "tags": [
+      "matching",
+      "gale-shapley",
+      "deferred-acceptance",
+      "stability"
+    ]
   },
-  "interactions": ["choice-before-reveal", "milestone-gate", "toggle-before-after", "step-run-button"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after",
+    "step-run-button"
+  ]
 }

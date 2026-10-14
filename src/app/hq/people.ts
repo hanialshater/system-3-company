@@ -10,6 +10,8 @@ export const HOME: Record<string, string> = {
   "portfolio-manager": "ceo-office",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
+  "courses-lead": "courses",
+  "cm-course-ncm": "courses",
   "learning-designer": "studio",
   "mockup-artist": "design-studio",
   "design-lead": "design-studio",

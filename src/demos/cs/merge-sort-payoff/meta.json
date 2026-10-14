@@ -82,8 +82,10 @@
       "id": "cs.merge-sort-payoff.c7",
       "text": "Splitting the cards into piles costs no comparisons; all of Merge Sort's comparisons happen while merging.",
       "support": "derivation",
-      "source": "Top-down Merge Sort splits by position (first half / second half) without looking at values, so the split step makes zero comparisons; the comparison count W(n) = W(ceil(n/2)) + W(floor(n/2)) + (merge cost) has no split term. Hook (\"looks like extra work. It isn't.\") and reveal (\"The splitting is setup.\"). Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "unverified"
+      "source": "Top-down Merge Sort splits by position (first half / second half) without looking at values, so the split step makes zero comparisons; the comparison count W(n) = W(ceil(n/2)) + W(floor(n/2)) + (merge cost) has no split term. Hook (\"looks like extra work. It isn't.\") and reveal (\"The splitting is setup.\"). Added by fact-checker 2026-10-12; needs an independent check. · Fact-check pass 19 2026-10-14: VERIFIED by a different checker session from the 2026-10-12 author: own instrumented top-down merge sort over all 40,320 orders of 8 cards counts comparisons only in the merge loop; split is by slicing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.merge-sort-payoff.c8",
@@ -116,8 +118,10 @@
       "id": "cs.merge-sort-payoff.c11",
       "text": "Merge Sort on 8 cards needs at most 4 + 6 + 7 = 17 comparisons (four merges of 1+1 cards cost 1 each, two merges of 2+2 cost at most 3 each, one merge of 4+4 costs at most 7), against 28 for checking every pair.",
       "support": "derivation",
-      "source": "Merging two sorted lists with n cards in total takes at most n-1 comparisons (claim c1); 4*1 + 2*3 + 7 = 17; C(8,2) = 28.",
-      "status": "unverified"
+      "source": "Merging two sorted lists with n cards in total takes at most n-1 comparisons (claim c1); 4*1 + 2*3 + 7 = 17; C(8,2) = 28. · Fact-check pass 19 2026-10-14: VERIFIED: brute force over all 40,320 orders of 8 cards, worst case 17 comparisons; C(8,2) = 28.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

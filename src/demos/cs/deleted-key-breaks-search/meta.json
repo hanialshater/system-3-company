@@ -28,35 +28,45 @@
       "text": "In an 8-slot table where A, B, C all hash to slot 1 and sit in slots 1, 2, 3, emptying slot 2 and searching for C probes slot 1 (A) and slot 2 (empty), stops, and reports C not found.",
       "support": "simulation",
       "source": "Builder's node run of linear-probing search (scratchpad algo10-verify.mjs): probes [1 A, 2 empty], stop, not found.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.deleted-key-breaks-search.c2",
       "text": "With a gone marker in slot 2 instead, the same search probes slot 1 (A), slot 2 (gone), slot 3 (C) and finds C in slot 3.",
       "support": "simulation",
       "source": "Builder's node run: probes [1 A, 2 gone, 3 C], found in slot 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.deleted-key-breaks-search.c3",
       "text": "A linear-probing search treats an empty slot as the end of the run, so emptying B's slot breaks the search for every key stored past it.",
       "support": "derivation",
       "source": "Search stops at the first empty slot (CLRS 4th ed. 11.4, open addressing search); a key stored past a slot that later became empty is never reached.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.deleted-key-breaks-search.c4",
       "text": "Open-addressing deletion marks the slot with a special value (DELETED) instead of emptying it, so the search keeps looking past it.",
       "support": "source",
-      "source": "CLRS 4th ed. 11.4 (deleting from an open-addressing table by storing DELETED instead of NIL).",
-      "status": "unverified"
+      "source": "CLRS 4th ed. 11.4 (deleting from an open-addressing table by storing DELETED instead of NIL). · Fact-check pass 19 2026-10-14: VERIFIED as the standard open-addressing method (CLRS 11.4 DELETED marker). CLRS 4e also gives a marker-free deletion for linear probing (11.5.1), so \"the\" method is one of two; the stage does not claim it is the only one.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.deleted-key-breaks-search.c5",
       "text": "Markers pile up and slow searches, so tables get rebuilt now and then.",
       "support": "source",
-      "source": "CLRS 4th ed. 11.4: with DELETED markers the search time no longer depends on the load factor alone, which is why chaining is more common when keys are deleted. Rebuilding is general practice, not a CLRS claim; fact-checker to confirm wording.",
-      "status": "unverified"
+      "source": "CLRS 4th ed. 11.4: with DELETED markers the search time no longer depends on the load factor alone, which is why chaining is more common when keys are deleted. Rebuilding is general practice, not a CLRS claim; fact-checker to confirm wording. · Fact-check pass 19 2026-10-14: VERIFIED by derivation and own node run: deletes never make a slot empty again, so empties only fall; in a 64-slot table held at 32 keys with delete/insert churn, empty slots fell to 0 and every miss probed all 64 slots. Only a rebuild (or marker-free deletion) restores empty slots. Not a CLRS quote.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

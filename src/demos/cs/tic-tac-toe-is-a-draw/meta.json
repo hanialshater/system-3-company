@@ -26,43 +26,55 @@
       "id": "cs.tic-tac-toe-is-a-draw.c1",
       "text": "From the empty board, perfect play by both players ends in a draw.",
       "support": "simulation",
-      "source": "TOLD, NOT SHOWN: the stage scores a 3-empty-square endgame only. Builder's node script (company/reviews/tic-tac-toe-is-a-draw/verify.mjs): memoized minimax (X max, O min, win = +1, draw = 0, loss = -1) from the empty board gives 0; each first move for X (corner, edge, centre) also gives 0. Written without reference to library code.",
-      "status": "unverified"
+      "source": "TOLD, NOT SHOWN: the stage scores a 3-empty-square endgame only. Builder's node script (company/reviews/tic-tac-toe-is-a-draw/verify.mjs): memoized minimax (X max, O min, win = +1, draw = 0, loss = -1) from the empty board gives 0; each first move for X (corner, edge, centre) also gives 0. Written without reference to library code. | FACT-CHECK 2026-10-14 (pass 19): Own node minimax (fc19b6/ttt.mjs, not the builder's script): empty board 0; all 9 first moves 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c2",
       "text": "There are 255,168 complete games of tic-tac-toe from the empty board.",
       "support": "simulation",
-      "source": "Builder's node script: exhaustive count of move sequences from the empty board that end in a win or a full board, stopping a game at the first three in a row. Result 255,168. TOLD, NOT SHOWN.",
-      "status": "unverified"
+      "source": "Builder's node script: exhaustive count of move sequences from the empty board that end in a win or a full board, stopping a game at the first three in a row. Result 255,168. TOLD, NOT SHOWN. | FACT-CHECK 2026-10-14 (pass 19): Own exhaustive count: 255,168 games (131,184 X wins, 77,904 O wins, 46,080 draws), the published totals.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c3",
       "text": "From the stage's endgame (X O X / O O . / . X ., X to move), X playing right middle gives O the replies bottom left (then X's forced last move at bottom right wins for X) and bottom right (then X's forced last move at bottom left gives a draw); X playing bottom left gives O the replies right middle (O completes the middle row and wins) and bottom right (then X's forced last move gives a draw); X playing bottom right gives O the replies right middle (O wins) and bottom left (then X's forced last move at right middle wins for X).",
       "support": "simulation",
-      "source": "Builder's node script: all 6 lines played out and scored by the line-completion rule. Scores with O replying best: right middle = draw, bottom left = O wins, bottom right = O wins; X's best = draw. Matches the spec's table (company/design/specs/tic-tac-toe-is-a-draw.md). Demo.tsx computes the same values from the boards.",
-      "status": "unverified"
+      "source": "Builder's node script: all 6 lines played out and scored by the line-completion rule. Scores with O replying best: right middle = draw, bottom left = O wins, bottom right = O wins; X's best = draw. Matches the spec's table (company/design/specs/tic-tac-toe-is-a-draw.md). Demo.tsx computes the same values from the boards. | FACT-CHECK 2026-10-14 (pass 19): Hand play-out of all 6 lines on XOXOO..X. plus own minimax: right middle 0, bottom left -1, bottom right -1; matches MIDS in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c4",
       "text": "In that endgame X has two moves (right middle and bottom right) with a win underneath, but in each O's best reply takes it away.",
       "support": "simulation",
-      "source": "From c3's script: right middle has an X win after O bottom left but O's reply bottom right gives a draw; bottom right has an X win after O bottom left but O's reply right middle wins for O. O picks the lower of the two in each case. Stage scored values: draw, O wins, O wins.",
-      "status": "unverified"
+      "source": "From c3's script: right middle has an X win after O bottom left but O's reply bottom right gives a draw; bottom right has an X win after O bottom left but O's reply right middle wins for O. O picks the lower of the two in each case. Stage scored values: draw, O wins, O wins. | FACT-CHECK 2026-10-14 (pass 19): Follows from c3: X-win leaves exist under right middle and bottom right; O's min reply removes each; stage scores draw, O wins, O wins.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c5",
       "text": "To solve a game, score every ending, then let each player pick the best result for themselves moving upward: O picks the worst result for X, X picks the best.",
       "support": "source",
-      "source": "Minimax: von Neumann, Zur Theorie der Gesellschaftsspiele, Mathematische Annalen 100 (1928); Russell and Norvig, Artificial Intelligence: A Modern Approach, section 5.2 (page/section numbering not rechecked by the builder).",
-      "status": "unverified"
+      "source": "Minimax: von Neumann, Zur Theorie der Gesellschaftsspiele, Mathematische Annalen 100 (1928); Russell and Norvig, Artificial Intelligence: A Modern Approach, section 5.2 (page/section numbering not rechecked by the builder). | FACT-CHECK 2026-10-14 (pass 19): Minimax backup as stated is von Neumann 1928 (Math. Ann. 100, 295-320); Russell and Norvig 3e/4e section 5.2 'Optimal decisions in games'. Matches the stage's rule line.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c6",
       "text": "Chess has far too many games to finish this way.",
       "support": "source",
-      "source": "Shannon, Programming a computer for playing chess, Philosophical Magazine 41 (1950): about 10^120 possible games as a lower bound. Told in the reveal; builder has not rechecked the figure.",
-      "status": "unverified"
+      "source": "Shannon, Programming a computer for playing chess, Philosophical Magazine 41 (1950): about 10^120 possible games as a lower bound. Told in the reveal; builder has not rechecked the figure. | FACT-CHECK 2026-10-14 (pass 19): Shannon 1950 (Phil. Mag. ser. 7, 41(314)) estimates about 10^120 chess games (the Shannon number); 'far too many' is a safe reading.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -93,7 +105,15 @@
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["minimax", "game-tree", "tic-tac-toe"]
+    "tags": [
+      "minimax",
+      "game-tree",
+      "tic-tac-toe"
+    ]
   },
-  "interactions": ["choice-before-reveal", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }
