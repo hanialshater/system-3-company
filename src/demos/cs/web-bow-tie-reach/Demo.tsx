@@ -56,23 +56,27 @@ function arrow(a: string, b: string) {
   return { sx, sy, bx, by, head };
 }
 
+// Group labels, drawn once the learner has tried all three groups.
+const TAGS: [string, number, number][] = [
+  ["IN", 50, 22], ["CORE", 160, 70], ["OUT", 270, 36], ["TENDRIL", 50, 280], ["DETACHED", 165, 280],
+];
+
 type Firsts = { core?: string; in?: string; out?: string };
 
 export default function WebBowTieReach({ slug }: { slug: string }) {
   const [start, setStart] = useState<string | null>(null);
   const [firsts, setFirsts] = useState<Firsts>({});
-  const set = start ? reach(start) : new Set<string>();
-
+  
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
           "12 small pages with one-way links. Ignoring direction, 10 of them are joined to the central group. Start on page A in that group and click links the way they point. How many pages can you reach, counting A?",
-        options: ["10", "7", "4"],
-        answer: 1,
+        options: ["7", "10", "4"],
+        answer: 0,
       }}
-      exploreHint="Tap pages to start there. Try the middle, the left and the right."
+      exploreHint="Tap pages to start there. Try a page in the middle, one at the far left and one at the far right."
       minInteractions={3}
       reveal={() => {
         const said = (["core", "in", "out"] as const)
@@ -86,19 +90,21 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              {said} Links point one way, so &ldquo;joined&rdquo; is not &ldquo;reachable&rdquo;. From the middle group you can click out
-              to the right, but nothing leads back to the left, and the right end leads almost nowhere.
+              The stage shows the first core page you tried{firsts.core ? `, ${firsts.core}` : ""}; rings mark the first IN and OUT pages
+              you tried. {said} Links point one way, so &ldquo;joined&rdquo; is not &ldquo;reachable&rdquo;. From CORE you can click out
+              to OUT, but nothing leads back to IN, and OUT leads almost nowhere.
             </p>
             <p>
               The real web has this shape too. Broder and colleagues (2000) mapped about 200 million pages and found a tightly linked
-              core, pages that lead into it, pages it leads out to, and a few detached pieces. This 12-page graph is a toy, not to scale.
+              core, pages that lead into it, pages it leads out to, tendrils hanging off those, and disconnected pieces. This 12-page
+              graph is a toy, not to scale.
             </p>
             <p className="muted">Connected is not the same as reachable.</p>
           </>
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, phase, interact }) => (
         <Milestones interact={interact} names={["core", "in", "out"]}>
           {(reachM) => {
             const pick = (id: string) => {
@@ -110,19 +116,23 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                 reachM(g);
               }
             };
-            const label = start
-              ? `Start ${start}: reach ${set.size} of 12 pages.`
+            const showing = phase === "reveal" && firsts.core ? firsts.core : start;
+            const shown = showing ? reach(showing) : new Set<string>();
+            const quoted = phase === "reveal" ? [firsts.core, firsts.in, firsts.out] : [];
+            const tags = Object.keys(firsts).length === 3 || phase === "reveal";
+            const label = showing
+              ? `Start ${showing}: reach ${shown.size} of 12 pages.`
               : "12 pages, no start chosen.";
             return (
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">
-                  {start ? <>From {start}: reach <b>{set.size}</b> of 12</> : "Tap a page to start there."}
+                  {showing ? <>From {showing}: reach <b>{shown.size}</b> of 12</> : "Tap a page to start there."}
                 </p>
                 <div className={s.stage}>
                   <svg viewBox={`0 0 ${W} ${H}`} className="stage-svg" role="img" aria-label={label}>
                     {EDGES.map(([a, b]) => {
                       const { sx, sy, bx, by, head } = arrow(a, b);
-                      const live = set.has(a);
+                      const live = shown.has(a);
                       const col = live ? "var(--fg)" : "var(--line)";
                       return (
                         <g key={a + b}>
@@ -133,11 +143,13 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                     })}
                     {IDS.map((id) => {
                       const [x, y] = POS[id];
-                      const on = set.has(id);
-                      const isStart = id === start;
+                      const on = shown.has(id);
+                      const isStart = id === showing;
+                      const quotedRing = !isStart && quoted.includes(id);
                       return (
                         <g key={id}>
                           {isStart && <circle cx={x} cy={y} r={R + 5} fill="none" stroke="var(--fg)" strokeWidth={3} />}
+                          {quotedRing && <circle cx={x} cy={y} r={R + 5} fill="none" stroke="var(--fg)" strokeWidth={2} strokeDasharray="4 3" />}
                           <circle cx={x} cy={y} r={R} fill={on ? "var(--fg)" : "var(--bg-2)"} stroke="var(--fg)" strokeWidth={2} />
                           <text x={x} y={y + 5} textAnchor="middle" fontSize={14} fontWeight={800} fill={on ? "var(--bg)" : "var(--fg)"}>
                             {id}
@@ -145,6 +157,11 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                         </g>
                       );
                     })}
+                    {tags && TAGS.map(([txt, x, y]) => (
+                      <text key={txt} x={x} y={y} textAnchor="middle" fontSize={11} fontWeight={700} letterSpacing={1} fill="var(--muted, var(--fg))">
+                        {txt}
+                      </text>
+                    ))}
                   </svg>
                   {IDS.map((id) => (
                     <button
@@ -153,15 +170,15 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                       data-qa="control"
                       className={s.hit}
                       style={{ left: `calc(${(POS[id][0] / W) * 100}% - ${HIT / 2}px)`, top: `calc(${(POS[id][1] / H) * 100}% - ${HIT / 2}px)`, width: HIT, height: HIT }}
-                      disabled={locked}
-                      aria-pressed={id === start}
-                      aria-label={`Page ${id}${id === start ? `, start, reaches ${set.size} of 12` : ""}`}
+                      disabled={locked || phase === "reveal"}
+                      aria-pressed={id === showing}
+                      aria-label={`Page ${id}${id === showing ? `, start, reaches ${shown.size} of 12` : ""}`}
                       onClick={() => pick(id)}
                     />
                   ))}
                 </div>
                 <p className="muted small" style={{ margin: 0, textAlign: "center" }}>
-                  Ring: start. Filled: reachable.
+                  {phase === "reveal" ? "Ring: shown start. Dashed: other pages you tried. Filled: reachable." : "Ring: start. Filled: reachable."}
                 </p>
               </div>
             );
