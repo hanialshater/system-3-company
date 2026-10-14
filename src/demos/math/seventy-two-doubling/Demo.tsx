@@ -17,10 +17,9 @@ const X0 = 34;
 const X1 = 312;
 const Y0 = 170; // balance 0
 const Y1 = 14; // balance TOP
-const YEARS = 36;
+const MAX_YEARS = 36;
 const TOP = 230;
 
-const xOf = (t: number) => X0 + (t / YEARS) * (X1 - X0);
 const yOf = (v: number) => Y0 - (Math.min(v, TOP) / TOP) * (Y0 - Y1);
 const exactT = (r: number) => Math.log(2) / Math.log(1 + r / 100);
 
@@ -44,7 +43,7 @@ export default function SeventyTwoDoubling({ slug }: { slug: string }) {
             the bars pull away and hit 200 sooner.
           </p>
           <p>
-            The shortcut: 72 divided by the rate. At 8% that is 9, at 6% it is 12, at 12% it is 6. From 5% to 20% it
+            The shortcut: 72 divided by the rate. (72 is close to 100 × ln 2, about 69, and divides evenly by many rates.) At 8% that is 9, at 6% it is 12, at 12% it is 6. From 5% to 20% it
             stays within about 0.2 years of the exact answer you saw.
           </p>
         </>
@@ -67,6 +66,9 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
   const r = rate / 100;
   const T = exactT(rate);
   const simpleT = 100 / rate;
+  // Time axis fits the picture: long enough for the simple-interest answer, never cramped.
+  const YEARS = Math.min(MAX_YEARS, Math.max(10, Math.ceil(simpleT * 1.15)));
+  const xOf = (t: number) => X0 + (t / YEARS) * (X1 - X0);
   const flip = xOf(T) > W - 100;
   const bw = ((X1 - X0) / YEARS) * 0.72;
 
@@ -81,15 +83,15 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
             </text>
           </g>
         ))}
-        {[0, 10, 20, 30].map((t) => (
+        {[0, 10, 20, 30].filter((t) => t <= YEARS).map((t) => (
           <text key={t} x={xOf(t)} y={Y0 + 13} textAnchor="middle" className={s.axis}>
-            {t === 30 ? "30 yrs" : t}
+            {t === 0 ? "0 yrs" : t}
           </text>
         ))}
         <line x1={X0} y1={Y0} x2={X1} y2={Y0} className={s.base} />
 
         {/* bars stop at the first year that reaches 200: the question is when, not how high */}
-        {Array.from({ length: Math.min(YEARS, Math.ceil(T - 1e-9)) + 1 }, (_, t) => {
+        {!locked && Array.from({ length: Math.min(YEARS, Math.ceil(T - 1e-9)) + 1 }, (_, t) => {
           const v = 100 * (1 + r) ** t;
           return (
             <rect
@@ -103,7 +105,7 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
           );
         })}
         {/* simple interest */}
-        <line x1={xOf(0)} y1={yOf(100)} x2={xOf(Math.min(YEARS, simpleT))} y2={yOf(100 * (1 + r * Math.min(YEARS, simpleT)))} className={s.simple} />
+        {!locked && <line x1={xOf(0)} y1={yOf(100)} x2={xOf(Math.min(YEARS, simpleT))} y2={yOf(100 * (1 + r * Math.min(YEARS, simpleT)))} className={s.simple} />}
 
         {!locked && (
           <>
@@ -114,6 +116,11 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
               doubled: {T.toFixed(1)} yrs
             </text>
             {simpleT <= YEARS && <circle cx={xOf(simpleT)} cy={yOf(200)} r={3} className={s.simpleDot} />}
+            {simpleT <= YEARS && (
+              <text x={xOf(simpleT)} y={yOf(200) - 7} textAnchor={xOf(simpleT) > W - 50 ? "end" : "middle"} className={s.axis}>
+                simple: {simpleT.toFixed(1)}
+              </text>
+            )}
           </>
         )}
       </svg>
@@ -125,7 +132,7 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
       <Slider label="Growth per year" value={rate} min={2} max={20} disabled={locked} format={(v) => `${v}%`} onChange={setRate} />
       <Row>
         <Readout label="Doubles in" value={locked ? "?" : `${T.toFixed(1)} yrs`} />
-        <Readout label="72 ÷ rate" value={locked ? "?" : `${(72 / rate).toFixed(1)}`} />
+        <Readout label="Shortcut 72 ÷ rate" value={locked ? "?" : `${(72 / rate).toFixed(1)}`} />
         <Readout label="Simple" value={locked ? "?" : `${simpleT.toFixed(1)} yrs`} />
       </Row>
     </div>

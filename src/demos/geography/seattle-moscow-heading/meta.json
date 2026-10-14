@@ -1,7 +1,7 @@
 {
   "slug": "seattle-moscow-heading",
   "title": "Which way to Moscow?",
-  "hook": "Moscow is far east of Seattle. So why would you set off facing north?",
+  "hook": "Moscow is far east of Seattle. Which way do you set off?",
   "domain": "geography",
   "concept": "initial-bearing",
   "status": "review",
@@ -86,6 +86,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.seattle-moscow-heading.c8",
+      "text": "On an ordinary flat map the shortest route from Seattle to Moscow is drawn as a curve that bends north, not a straight line.",
+      "support": "derivation",
+      "source": "Great circles are not straight on equirectangular maps; Demo.tsx draws the same great-circle points with d3-geo geoEquirectangular. Needs a check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +116,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:initial-bearing",
     "prerequisites": [

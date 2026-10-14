@@ -64,18 +64,21 @@
       "text": "23 people make 253 pairs, but you are in only 23 of them; each comparison matches with chance 1 in 365.",
       "support": "derivation",
       "source": "23 x 22 / 2 = 253 pairs; you versus 23 others = 23 comparisons; each other person matches you with probability 1/365.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.a-birthday-like-mine.c6",
       "text": "It takes about 253 comparisons with you to reach even odds.",
       "support": "derivation",
       "source": "n = 253 gives 1 - (364/365)^n = 0.5005 (claim 4).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c7",
+      "text": "Each other person misses your birthday with chance 364/365; with 253 people the chance that none match is (364/365)^253, about 50%.",
+      "support": "derivation",
+      "source": "Independent misses multiply: (364/365)^253 = 0.4995. The 253 equals 23 x 22 / 2 by coincidence.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:specific-vs-any-match",
     "prerequisites": [

@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
-import { EARTH_RADIUS_KM, WorldMap, geoAzimuthalEquidistant, geoCircle, geoDistance } from "@/kit/geo";
+import { EARTH_RADIUS_KM, WorldMap, geoAzimuthalEquidistant, geoEquirectangular, geoCircle, geoDistance } from "@/kit/geo";
 import s from "./styles.module.css";
 
 const W = 320;
@@ -57,6 +57,13 @@ const projection = geoAzimuthalEquidistant()
   .clipAngle(100)
   .fitExtent([[6, 20], [W - 6, H - 6]], geoCircle().center(SEATTLE).radius(100)());
 
+// Ordinary flat map (equirectangular), centred on 42°W so Seattle and Moscow both show.
+const FLAT_SCALE = (W - 12) / (2 * Math.PI);
+const flatProjection = geoEquirectangular()
+  .rotate([42, 0])
+  .scale(FLAT_SCALE)
+  .translate([W / 2, H / 2 + FLAT_SCALE * ((52 * Math.PI) / 180)]);
+
 const fmtKm = (km: number) => `${(Math.round(km / 10) * 10).toLocaleString("en-US")} km`;
 const fmtDeg = (d: number) => `${d.toFixed(0)}°`;
 
@@ -64,6 +71,8 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
   const [heading, setHeading] = useState<number | null>(null);
   const [eastMiss, setEastMiss] = useState<number | null>(null);
   const [bestHit, setBestHit] = useState<number | null>(null);
+  const [flat, setFlat] = useState(false);
+  const [sawFlat, setSawFlat] = useState(false);
 
   const route = useMemo(() => {
     if (heading === null) return null;
@@ -83,7 +92,7 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
         options: ["East", "North-east", "Almost due north"],
         answer: 2,
       }}
-      exploreHint="Point east first, then turn until the route reaches Moscow."
+      exploreHint="Point east first, turn until the route reaches Moscow, then try the flat map."
       minInteractions={2}
       reveal={() => (
         <>
@@ -94,7 +103,7 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
           <p>
             Moscow lies far east of Seattle, but both are far north, and on a ball the shortest way between them climbs
             over the top: across Canada, the far north of Greenland and the Arctic Ocean, then down over Norway and Finland.
-            Real flights also bend for winds and airspace.
+            {sawFlat ? " On the flat map you saw that same route bend north." : " Show it on a flat map and the same route bends north."}
           </p>
         </>
       )}
@@ -114,14 +123,15 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                 setBestHit(h);
               }
             };
-            const at = (p: Pt) => projection(p)!;
+            const proj = flat ? flatProjection : projection;
+            const at = (p: Pt) => proj(p)!;
             const sea = at(SEATTLE);
             const mos = at(MOSCOW);
             const north = at([SEATTLE[0], SEATTLE[1] + 12]);
             return (
               <div className={s.wrap}>
                 <WorldMap
-                  projection={projection}
+                  projection={proj}
                   width={W}
                   height={H}
                   label={`Map centred on Seattle. ${heading === null ? "No heading yet." : `Heading ${fmtDeg(heading)} from north; the route passes ${fmtKm(miss!)} from Moscow.`}`}
@@ -129,10 +139,12 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                   {({ path }) => (
                     <>
                       {route && !locked && <path d={path(route)} className={onTarget ? s.hit : s.route} />}
-                      <line x1={sea[0]} y1={sea[1]} x2={north[0]} y2={north[1]} className={s.north} />
-                      <text x={north[0] + 3} y={north[1] + 3} className={s.lab}>
-                        N
-                      </text>
+                      {!flat && <line x1={sea[0]} y1={sea[1]} x2={north[0]} y2={north[1]} className={s.north} />}
+                      {!flat && (
+                        <text x={north[0] + 3} y={north[1] + 3} className={s.lab}>
+                          N
+                        </text>
+                      )}
                       <circle cx={sea[0]} cy={sea[1]} r={3.5} className={s.city} />
                       <text x={sea[0] + 5} y={sea[1] + 11} className={s.lab}>
                         Seattle
@@ -142,7 +154,7 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                         Moscow
                       </text>
                       <text x={6} y={12} className={s.lab}>
-                        Centred on Seattle: straight lines from it are shortest routes.
+                        {flat ? "Ordinary flat map: the same route." : "Centred on Seattle: straight lines from it are shortest routes."}
                       </text>
                     </>
                   )}
@@ -175,6 +187,18 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                     label="Route passes Moscow by"
                     value={locked || miss === null ? "?" : onTarget ? `${fmtKm(miss)} (within 2°)` : fmtKm(miss)}
                   />
+                </Row>
+                <Row>
+                  <Control
+                    disabled={locked}
+                    className={flat ? "active" : ""}
+                    onClick={() => {
+                      setFlat(!flat);
+                      if (!flat) setSawFlat(true);
+                    }}
+                  >
+                    {flat ? "Back to Seattle-centred map" : "Show on a flat map"}
+                  </Control>
                 </Row>
                 {!locked && bestHit !== null && (
                   <p className={s.note}>

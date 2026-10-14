@@ -75,8 +75,8 @@ export default function OneBadLabelKnn({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A new dot lands next to one wrongly labelled orange dot inside a blue group. With k = 1 it is labelled orange. With k = ${Q_K} (its ${Q_K} nearest dots: ${vQ.blue} blue, ${vQ.orange} orange) its label is:`,
-        options: ["Orange", "Blue", "Undecided"],
+        question: `A new dot takes the majority label among its k nearest dots. It lands next to one wrongly labelled orange dot inside a blue group. With k = 1 (one voter) it is labelled orange. With k = ${Q_K}, its label is:`,
+        options: ["Orange", "Blue", "A tie"],
         answer: 1,
       }}
       exploreHint="Change k and watch who votes. Then try k = 13 and move the dot."
@@ -95,7 +95,7 @@ export default function OneBadLabelKnn({ slug }: { slug: string }) {
             <p>
               Asking several neighbours averages out a single mistake.{" "}
               {v13
-                ? `But at k = 13 every dot voted (${v13.blue} blue, ${v13.orange} orange) and the new dot turned ${v13.label}, wherever it sat: too large a k erases real boundaries.`
+                ? `But at k = 13 every dot voted (${v13.blue} blue, ${v13.orange} orange: the six real orange dots plus the mistake) and the new dot turned ${v13.label}, wherever it sat: too large a k erases real boundaries.`
                 : "Push k to 13 and every dot votes, so every new dot gets the overall majority: too large a k erases real boundaries."}
             </p>
             <p>Choosing k trades following noise (small k) against blurring the borders (large k).</p>

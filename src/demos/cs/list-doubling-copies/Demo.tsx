@@ -44,11 +44,11 @@ export default function ListDoublingCopies({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A list starts with room for 1 item and doubles whenever it is full. After appending ${TARGET} items, how many item-copies did all resizes do in total?`,
+        question: `A list is a row of boxes a program fills one item at a time (an append). When the row is full, the program builds a row twice as long and copies every item across. Starting with room for 1, after ${TARGET} appends, how many item-copies did all those resizes do in total?`,
         options: [String(answer), String(2 * answer), String((TARGET * (TARGET - 1)) / 2)],
         answer: 0,
       }}
-      exploreHint={`Append until it is full, grow it by hand once, then go on to ${TARGET}.`}
+      exploreHint={`Append until it is full and grow it once. Then step through each doubling up to ${TARGET}.`}
       minInteractions={2}
       reveal={() => (
         <>
@@ -62,7 +62,7 @@ export default function ListDoublingCopies({ slug }: { slug: string }) {
           <p>
             Each big copy buys as many free appends as it cost: after copying 8 items there is room for 8 more. For any
             power of two, n appends cost n − 1 copies in total, so appending stays cheap on average even though a single
-            grow is slow. Real growable lists also grow by a factor (Java&apos;s ArrayList by 1.5×), not by a fixed amount.
+            grow is slow.
           </p>
         </>
       )}
@@ -100,6 +100,25 @@ export default function ListDoublingCopies({ slug }: { slug: string }) {
               setLog(l);
               setFresh(last);
               reach("reached-target");
+            };
+            const nextDoubling = () => {
+              if (locked || len >= TARGET) return;
+              let c = cap;
+              const l = [...log];
+              let last = 0;
+              let n = len;
+              if (n < c) n = c; // fill the current row
+              if (n < TARGET) {
+                l.push(n);
+                last = n;
+                c *= 2;
+              } else n = TARGET;
+              setLen(n);
+              setCap(c);
+              setLog(l);
+              setFresh(last);
+              if (l.length > log.length) reach("grew");
+              if (n >= TARGET) reach("reached-target");
             };
             const restart = () => {
               if (locked) return;
@@ -158,7 +177,7 @@ export default function ListDoublingCopies({ slug }: { slug: string }) {
                 <Row>
                   <Readout label="Appends" value={len} />
                   <Readout label="Copies" value={copies} />
-                  <Readout label="Per append" value={len ? (copies / len).toFixed(2) : "–"} />
+                  <Readout label="Copies per append" value={len ? (copies / len).toFixed(2) : "–"} />
                 </Row>
                 <Row>
                   <Control className="active" disabled={locked || full || len >= MAX} onClick={append}>
@@ -167,8 +186,11 @@ export default function ListDoublingCopies({ slug }: { slug: string }) {
                   <Control disabled={locked || !full || len >= MAX} onClick={grow}>
                     {full ? `Grow: copy ${len} into ${cap * 2}` : "Grow"}
                   </Control>
+                  <Control disabled={locked || len >= TARGET} onClick={nextDoubling}>
+                    Fill, then double
+                  </Control>
                   <Control disabled={locked || len >= TARGET} onClick={fill}>
-                    Append to {TARGET}
+                    Run to {TARGET}
                   </Control>
                   <Control disabled={locked || len === 0} onClick={restart}>
                     Start over

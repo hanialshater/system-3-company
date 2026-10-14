@@ -6,3 +6,12 @@
 - "Route passes Moscow by" is the closest approach of the drawn 9,500 km route, sampled every 10 km (the first draft used cross-track distance to the whole circle, which did not match the drawn line). Values: east 7,940 km, north-east 3,590, north 1,240, 10° 160 km, 11° and 12° about 50 km.
 - Key state: `east` (heading 90 tried) then `on-target` (within 2° of 11.5°). QA path: E, NE, N, +10 (10°, on target), +1, −1. The "Exact: 11.5°, 8,370 km" line appears only once on target, so the reveal quotes only numbers already shown. The east miss is quoted only if east was pressed.
 - c7 (winds and airspace) is general knowledge, from memory.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Hook no longer names north.
+- New control "Show on a flat map" redraws the same route on an ordinary map where it bends north; reveal points to it or recalls it.
+- Dropped the winds/airspace sentence from the reveal to keep it short. New claim c8 (flat-map bend), unverified.

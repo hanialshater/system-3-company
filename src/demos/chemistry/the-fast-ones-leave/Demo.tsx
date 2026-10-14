@@ -73,7 +73,7 @@ export default function TheFastOnesLeave({ slug }: { slug: string }) {
         options: ["Higher", "Lower", "Unchanged"],
         answer: 1,
       }}
-      exploreHint="Tap the fast columns on the right: each tap lets one molecule escape."
+      exploreHint="Each dot is a molecule; filled dots on the right are the fast ones. Tap a filled column: one molecule escapes."
       minInteractions={1}
       reveal={() => (
         <>

@@ -17,3 +17,11 @@
 
 Input: latest learner review (and fact-check). Hook leaked "one copy helps"; balance line visible early; mechanism told; reveal could sit on a reset stage. Hook rewritten; balance line and readout only appear at generation 60; two readout rows show young with 2 w (die) and 1 w (thrive) for both starts; Restart removed; reveal explains 15/(15+100). c1, c3 reworded, unverified.
 QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.
+
+
+## Revision v4
+
+From the latest learner review and fact-check (batch 03).
+
+- Generation-0 message now states that 25% of the 50% population's young get two w and die, and the reveal quotes that number instead of "a quarter or more" for a state the learner may not have reached.
+- c3 unverified.
