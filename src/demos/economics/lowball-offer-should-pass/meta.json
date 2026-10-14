@@ -1,0 +1,89 @@
+{
+  "slug": "lowball-offer-should-pass",
+  "title": "Is a lowball offer worth taking?",
+  "hook": "Say no and you both get nothing. Turning down an insult feels right. Does it pay?",
+  "domain": "economics",
+  "concept": "ultimatum-game",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e02"
+  },
+  "learner": {
+    "knows": [
+      "take-it-or-leave-it offers"
+    ],
+    "doesNotKnow": [
+      "that a money-only responder should accept any positive offer"
+    ]
+  },
+  "misconception": "A rational responder rejects an insulting offer.",
+  "objective": "The learner can explain why a responder who counts only money accepts any offer above $0, and so why a proposer facing one offers the smallest unit.",
+  "claims": [
+    {
+      "id": "economics.lowball-offer-should-pass.c1",
+      "text": "If you reject, you and the proposer both get $0; if you accept an offer of $X out of $10, you get $X and the proposer keeps $10 − X.",
+      "support": "convention",
+      "source": "The rules of the ultimatum game as set on the card (whole dollars, $10 pot).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lowball-offer-should-pass.c2",
+      "text": "A responder who cares only about money prefers $1 to $0, so accepts any positive offer; the smallest offer worth accepting is $1, and at $0 accepting and rejecting come out the same.",
+      "support": "derivation",
+      "source": "Compare accept ($X) with reject ($0): X > 0 for X ≥ 1; X = 0 is a tie. Demo.tsx accepts() and SMALLEST; re-run in node by the builder (ncm-e02).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lowball-offer-should-pass.c3",
+      "text": "Rejecting a $1 offer costs the proposer $9 but costs you the $1 too, so for a money-only responder it is a pure loss.",
+      "support": "derivation",
+      "source": "From c1 at X = 1: accept gives (1, 9), reject gives (0, 0).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lowball-offer-should-pass.c4",
+      "text": "A proposer who knows the responder counts only money offers $1 and keeps $9.",
+      "support": "derivation",
+      "source": "Backward induction: every offer of $1 or more is accepted (c2), so the proposer's best accepted offer is the smallest unit, $1 of $10, keeping $9. (Offering $0 leaves the responder indifferent, so it is not a sure acceptance.)",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.lowball-offer-should-pass.c5",
+      "text": "This is a model that counts only money; if a responder also cares about fairness, saying no can make sense, and that is a different model.",
+      "support": "convention",
+      "source": "Lesson framing; stage chip 'Model: you care only about money · whole dollars'. Experimental offer and rejection rates (brief claim 3: Güth, Schmittberger and Schwarze 1982; Camerer 2003) need a human source check and are kept out of learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A proposer splits $20 in whole dollars. If the responder says no, both get nothing. Against a responder who counts only money, what should the proposer offer?",
+    "options": [
+      "$10, half",
+      "$1",
+      "$5, so it doesn't feel insulting"
+    ],
+    "answer": 1,
+    "why": "Any amount above $0 beats the $0 from rejecting, so a money-only responder takes $1, and the proposer keeps $19."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:ultimatum-game",
+    "also": [],
+    "prerequisites": ["economics:prisoners-dilemma"],
+    "level": "intro",
+    "strand": "markets",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 12 }],
+    "tags": ["bargaining", "fairness", "game theory"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate"]
+}

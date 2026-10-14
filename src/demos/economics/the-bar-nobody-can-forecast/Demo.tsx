@@ -1,0 +1,176 @@
+"use client";
+
+// El Farol / minority game. 100 people; each goes only if they expect 60 or fewer.
+// A shared forecast at or below 60 sends all 100; above 60 sends none. Randomising (each goes with
+// probability 0.6, independently) averages 60 but is crowded (more than 60) on about 46.2% of nights.
+// One picture: attendance night by night (last 40 nights), the 60 line, crowded nights in the bad colour.
+// Seeded: mulberry32(1) for the random nights, 100 draws per night; seed 1 was the first tried, not chosen.
+// Key state: both forecasts tried, and 100+ random nights run.
+
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import { mulberry32 } from "@/kit/random";
+import s from "./styles.module.css";
+
+const PEOPLE = 100;
+const OK = 60;
+const P_GO = 0.6;
+const SEED = 1;
+const MAX_MIXED = 500;
+const SHOWN = 40;
+const MILESTONES = ["forecast-low", "forecast-high", "mixed-100"] as const;
+
+/** Everyone trusts the same forecast: all go if it says OK or fewer, none if more. */
+const attendanceFor = (forecast: number) => (forecast <= OK ? PEOPLE : 0);
+/** Random nights, precomputed from one seeded stream. */
+const MIXED: number[] = (() => {
+  const r = mulberry32(SEED);
+  return Array.from({ length: MAX_MIXED }, () => {
+    let k = 0;
+    for (let i = 0; i < PEOPLE; i++) if (r() < P_GO) k++;
+    return k;
+  });
+})();
+
+type Night = { kind: "forecast" | "mixed"; count: number; label: string };
+
+// Geometry (viewBox 320 × 200).
+const TOP = 20;
+const BOT = 170;
+const LEFT = 30;
+const RIGHT = 310;
+const yy = (v: number) => BOT - (v / PEOPLE) * (BOT - TOP);
+const slotW = (RIGHT - LEFT) / SHOWN;
+
+export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
+  const [nights, setNights] = useState<Night[]>([]);
+  const [mixedUsed, setMixedUsed] = useState(0);
+  const [total, setTotal] = useState(0);
+  const mixed = MIXED.slice(0, mixedUsed);
+  const crowded = mixed.filter((k) => k > OK).length;
+  const avg = mixedUsed ? mixed.reduce((a, b) => a + b, 0) / mixedUsed : 0;
+  const last = nights[nights.length - 1];
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question: "100 people go to a bar only if they expect 60 or fewer. All trust one forecast: 50 will come. How many come?",
+        options: ["About 50", "About 60", "All 100"],
+        answer: [50, 60, 100].indexOf(attendanceFor(50)),
+      }}
+      exploreHint="Try both forecasts, then let everyone flip a 60% coin for 100+ nights."
+      minInteractions={MILESTONES.length}
+      reveal={() => (
+        <>
+          <p>
+            The forecast of 50 sent all <strong>{attendanceFor(50)}</strong>: everyone expected room, so everyone went. The forecast of 70 sent{" "}
+            <strong>{attendanceFor(70)}</strong>. Any forecast everyone believes makes itself wrong.
+          </p>
+          <p>
+            When each person went 60% of the time, your {mixedUsed} random nights averaged <strong>{avg.toFixed(1)}</strong>, yet{" "}
+            <strong>{mixedUsed ? Math.round((100 * crowded) / mixedUsed) : 0}%</strong> were crowded. In the long run that share is 46.2%: the
+            average sits right at the limit, so nearly half the nights land above it.
+          </p>
+          <p className="muted">A model of Arthur&apos;s El Farol bar problem (1994): identical people, one shared forecast, no learning.</p>
+        </>
+      )}
+    >
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => {
+            const forecast = (f: number) => {
+              const count = attendanceFor(f);
+              setNights((ns) => [...ns, { kind: "forecast" as const, count, label: `forecast ${f}` }].slice(-SHOWN));
+              setTotal((t) => t + 1);
+              reach(f <= OK ? "forecast-low" : "forecast-high");
+            };
+            const runMixed = (k: number) => {
+              const to = Math.min(MAX_MIXED, mixedUsed + k);
+              const added: Night[] = MIXED.slice(mixedUsed, to).map((count) => ({ kind: "mixed" as const, count, label: "60% coin" }));
+              setNights((ns) => [...ns, ...added].slice(-SHOWN));
+              setMixedUsed(to);
+              setTotal((t) => t + (to - mixedUsed));
+              if (to >= 100) reach("mixed-100");
+            };
+            const reset = () => {
+              setNights([]);
+              setMixedUsed(0);
+              setTotal(0);
+            };
+            const shown = locked ? [] : nights.slice(-SHOWN);
+            const full = mixedUsed >= MAX_MIXED;
+            return (
+              <div className={s.wrap}>
+                <p className={s.chip}>Model: 100 people · fine up to 60 · seed {SEED}</p>
+                <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label="Attendance night by night, with the 60-person limit">
+                  <text x={LEFT} y={12} className={s.axis}>
+                    attendance by night
+                  </text>
+                  <line x1={LEFT} y1={BOT} x2={RIGHT} y2={BOT} stroke="var(--line)" />
+                  {[0, 50, 100].map((v) => (
+                    <text key={v} x={LEFT - 4} y={yy(v) + 4} textAnchor="end" className={s.small}>
+                      {v}
+                    </text>
+                  ))}
+                  {shown.map((nt, i) => (
+                    <rect
+                      key={i}
+                      x={LEFT + i * slotW + 1}
+                      y={yy(nt.count)}
+                      width={Math.max(1, slotW - 2)}
+                      height={Math.max(1, BOT - yy(nt.count))}
+                      className={nt.count > OK ? s.badFill : s.goodFill}
+                      stroke={nt.kind === "forecast" ? "var(--fg)" : "none"}
+                      strokeWidth={nt.kind === "forecast" ? 1.5 : 0}
+                    />
+                  ))}
+                  <line x1={LEFT} y1={yy(OK)} x2={RIGHT} y2={yy(OK)} className={s.ghost} />
+                  <text x={RIGHT} y={yy(OK) - 4} textAnchor="end" className={s.value}>
+                    60: crowded above
+                  </text>
+                  {!locked && last && (
+                    <text x={RIGHT} y={BOT + 18} textAnchor="end" className={s.value}>
+                      night {total} ({last.label}): {last.count} came
+                    </text>
+                  )}
+                </svg>
+
+                <Row>
+                  <Control disabled={locked} onClick={() => forecast(50)}>
+                    Forecast says 50
+                  </Control>
+                  <Control disabled={locked} onClick={() => forecast(70)}>
+                    Forecast says 70
+                  </Control>
+                </Row>
+                <Row>
+                  <span className={s.rowLabel}>Each goes 60%:</span>
+                  <Control disabled={locked || full} onClick={() => runMixed(1)}>
+                    1 night
+                  </Control>
+                  <Control disabled={locked || full} onClick={() => runMixed(10)}>
+                    +10
+                  </Control>
+                  <Control disabled={locked || full} onClick={() => runMixed(100)}>
+                    +100
+                  </Control>
+                  <Control disabled={locked || nights.length === 0} onClick={reset}>
+                    Reset
+                  </Control>
+                </Row>
+                <Row>
+                  <Readout label="Random nights" value={locked ? "?" : mixedUsed} />
+                  <Readout label="Average" value={locked || !mixedUsed ? "?" : avg.toFixed(1)} />
+                  <Readout label="Crowded" value={locked || !mixedUsed ? "?" : `${Math.round((100 * crowded) / mixedUsed)}%`} />
+                </Row>
+              </div>
+            );
+          }}
+        </Milestones>
+      )}
+    </Lesson>
+  );
+}
