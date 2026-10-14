@@ -1,8 +1,9 @@
-// A lesson's walkthrough contact sheet (artifacts/walkthroughs/<slug>/sheet.png) for the HQ Design
-// inspector. Gated like HQ. The slug must name a lesson on disk, so no path can escape the folder.
+// A lesson's walkthrough contact sheet (artifacts/walkthroughs/<slug>/sheet.png), shared by the HQ
+// inspectors (/hq/design and /hq/curriculum).
+// Gated like HQ. The slug must name a lesson on disk, so no path can escape the folder.
 import fs from "node:fs";
 import { hqEnabled } from "@/lib/hq";
-import { sheetFile } from "@/lib/hq-design";
+import { sheetFile } from "@/lib/hq-lessons";
 
 export const dynamic = "force-dynamic";
 

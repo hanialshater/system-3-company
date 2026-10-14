@@ -489,3 +489,12 @@
   letter-spacing: 0.04em;
   color: var(--muted);
 }
+
+/* Four tabs (Office, People, Design, Curriculum) must fit a 360 px phone. */
+@media (max-width: 520px) {
+  .tab,
+  .tabOn {
+    padding: 5px 9px;
+    font-size: 13px;
+  }
+}
