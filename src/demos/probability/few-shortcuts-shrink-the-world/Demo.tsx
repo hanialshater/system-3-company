@@ -68,6 +68,10 @@ function Stage({ locked, interact, count, setCount }: { locked: boolean; interac
           const [x, y] = pos(i);
           return <circle key={i} cx={x} cy={y} r={ends.has(i) ? 4.5 : 3} className={ends.has(i) ? s.dotEnd : s.dot} />;
         })}
+        {path.map((v) => {
+          const [x, y] = pos(v);
+          return <circle key={`p${v}`} cx={x} cy={y} r={5} className={s.routeDot} />;
+        })}
         {[A, B].map((v, i) => {
           const [x, y] = pos(v, R + 14);
           return (
@@ -77,7 +81,7 @@ function Stage({ locked, interact, count, setCount }: { locked: boolean; interac
           );
         })}
       </svg>
-      <p className={s.legend}>Thick line: the shortest route from A to B. Coloured lines are shortcuts.</p>
+      <p className={s.legend}>Thick line and big dots: the shortest route from A to B, one step per line between dots. Coloured lines are shortcuts.</p>
       <Row>
         <span className={s.chipLabel}>Shortcuts</span>
         {CHIPS.map((c) => (

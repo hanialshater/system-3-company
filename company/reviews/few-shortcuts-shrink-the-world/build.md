@@ -33,3 +33,8 @@ QA: contract spec, QA_PORT 3671, own NEXT_DIST_DIR: phone and desktop passed. Wa
 - Removed unused CSS: .bar, .fill, .ghost, .ghostNote, .ghostSwatch (and unused .center, .centerSmall).
 - Version 3 to 4. Claims whose text changed: none.
 - QA: contract spec for the slug, QA_PORT 3811, own NEXT_DIST_DIR: phone and desktop passed. Walkthrough (own server) looked at: all five phone frames fine; reveal frame still crops the top of the ring, as before.
+
+## Revision v5 (demo-builder, 2026-10-14, final learner review)
+- The A-to-B route is already a path through its intermediate people, but the steps were hard to count. Every person on the route now gets a big ringed dot, and the legend says one step per line between dots. Reveal step counts unchanged.
+- Claims: no claim text changed. QA: see below.
+- QA v5 (QA_PORT 3991): contract passes phone and desktop.
