@@ -4,7 +4,7 @@ owner: chief-of-staff-ceo-office (Leonie) · since 2026-10-13 (founder: "When yo
 
 The founder's directs are the roles with `reportsTo: founder` in `tools/org/roles.mjs`. Today they are:
 - chief-of-staff (Ada)
-- head-of-product (Priya)
+- chief-product-officer (Margot), since 2026-10-14. head-of-product (Priya) now reports to her ([decision](../decisions/2026-10-14-evaluation-org.md)). Consult Priya on lessons, product and categories as before, and Margot whenever product outcomes or evaluation are touched.
 - evaluation-steward (Hilde)
 - principal-engineer (Kenji)
 - chief-of-staff-ceo-office (Leonie)

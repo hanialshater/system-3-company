@@ -15,12 +15,13 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [VP of R&D (CEO Office)](vp-rnd.md) | founder | Turn 'we can't teach that in 60 seconds' into a library, an engine or a finding, and stop the bets that don't pay.. |
 | [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
 | [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
+| [Chief Product Officer (CEO Office)](chief-product-officer.md) | founder | Lessons get measurably better across the whole catalogue, and the company can say which ones, on which criteria, and how sure it is.. |
 
 ## Product
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Head of Product](head-of-product.md) | founder | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
+| [Head of Product](head-of-product.md) | chief-product-officer | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
 | [Domain Scout](domain-scout.md) | head-of-product | Find subjects worth adding and make the case for or against each with evidence, using the Domain Launch Review.. |
 | [Principal Product Manager — Strategic Verticals](principal-pm-verticals.md) | head-of-product | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
 
@@ -167,3 +168,11 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Head of Courses (category management)](courses-lead.md) | head-of-product | A learner who is reading a book or taking a course finds a 60-second demo for every idea in it that can be shown, in the order the course teaches it.. |
 | [Course Manager — Networks, Crowds, and Markets (Easley & Kleinberg)](cm-course-ncm.md) | courses-lead | Every idea in Networks, Crowds, and Markets that a learner can predict and then see has a 60-second lesson, mapped to its chapter and section.. |
+
+## Evaluation
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Head of Evaluation](head-of-evaluation.md) | chief-product-officer | A leaderboard on several criteria that the company can trust: every comparison blind and reasoned, every rank with its uncertainty, and judges whose agreement is measured, not assumed.. |
+| [Pairwise Judge (Evaluation)](pairwise-judge.md) | head-of-evaluation | For each criterion, say which of two lessons is better for a first-time learner on a phone, and why, in one sentence a builder could act on.. |
+| [Evaluation Engineer](evaluation-engineer.md) | head-of-evaluation | Turn blind pairwise records into a leaderboard per criterion whose uncertainty is honest and whose every number traces back to a record.. |

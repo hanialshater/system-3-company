@@ -27,6 +27,7 @@ Rituals also scar: a review added after one failure can outlive its reason by ye
 | [Offboarding](templates/offboarding.md) | when a role or worker leaves for good | the leaving role's manager | Ownership does not leave with the worker | — |
 | [Domain Launch Review](templates/domain-launch.md) | per proposal | domain scout | Decide whether a new domain enters, incubates or waits | — |
 | [Retirement Review](templates/retirement.md) | per candidate / quarterly sweep | category manager | Remove lessons that no longer relieve the problem they were made for | — |
+| [Pairwise Round](templates/pairwise-round.md) | per batch of new versions, or when leaderboard intervals are too wide to read | head of evaluation; judges are pairwise judges | Blind A/B judgements on each criterion → Bradley-Terry leaderboard; decides nothing | its ranks stop agreeing with demo-crit and real-learner results, or nobody reads the leaderboard |
 
 Amendments use [templates/amendment.md](templates/amendment.md) and are filed in `../constitution/amendments/`.
 

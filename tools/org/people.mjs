@@ -10,6 +10,9 @@ export const PERSONA = {
   "portfolio-manager": "Odette",
   "principal-engineer-ops": "Rhea",
   "vp-rnd": "Vera",
+  "chief-product-officer": "Margot",
+  "head-of-evaluation": "Tobias",
+  "evaluation-engineer": "Anya",
   "community-engineer": "Femi",
   "courses-lead": "Amara",
   "cm-course-ncm": "Jonah",
@@ -62,7 +65,7 @@ export const PERSONA = {
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.
-export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist"]);
+export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "pairwise-judge"]);
 
 export const POOL = [
   "Nia", "Theo", "Zara", "Felix", "Maya", "Leo", "Ines", "Kai", "Rumi", "Oskar",
