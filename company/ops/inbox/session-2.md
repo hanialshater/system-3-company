@@ -67,6 +67,15 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on same-songs-different-hits, contact-order-matters, new-road-slower-trip
+
+- **What changed.** Set status, checkedBy and checkedOn on every claim in the three meta.json files. Appended a "FACT-CHECK ... (pass NCM-1, session 2)" note to each source. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all three. Not committed. Demo.tsx, board, progress and events not touched.
+- **Counts.** songs 8/0/0 (verified/disputed/withdrawn). contact-order 6/1/0. new-road 10/0/0.
+- **Dispute (blocks contact-order-matters).** c5: the reveal says "A diagram of who met whom overstates who can be reached" as a rule, but the stage's own Overlap and A->E-from-A cases reach exactly what the diagram shows. Fix: "overstates" -> "can overstate" in the Demo.tsx reveal and the c5 text. Owner: demo-builder. Then fact-checker re-checks c5.
+- **Advisory (not blocking).** same-songs: the stage rule line "Pick chance = appeal x (1 + earlier picks)" gives a weight as a chance. Suggest "∝" or "Pick weight" (demo-builder).
+- **Sources.** MusicLab (Science 311(5762): 854-856), Morris & Kretzschmar (AIDS 11(5): 641-648, PMID 9108946) and Braess (Unternehmensforschung 12: 258-268) were confirmed through search-quoted abstracts and records. The primaries are unreachable through the proxy. E&K sections remain `section_unconfirmed`.
+- **Belief.** High on all model claims: I re-ran code extracted verbatim from Demo.tsx, and Braess also has a dominance proof. Medium on the three sources.
+
 ### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on five NCM lessons
 
 - **What changed.** Set every claim's status, checkedBy and checkedOn in the meta.json files for web-bow-tie-reach, one-good-link-beats-many, two-said-blue, few-shortcuts-shrink-the-world and news-comes-from-acquaintances. Appended a "FACT-CHECK ... (pass NCM-1)" note to each source. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all five. Not committed.

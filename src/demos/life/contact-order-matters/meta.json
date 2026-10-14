@@ -26,50 +26,64 @@
       "id": "life.contact-order-matters.c1",
       "text": "The lesson's rule: the first case is infected on day 0; infection crosses a contact on its day only if one side was infected on an earlier day, and every such contact passes it on. So infection only moves forward in time.",
       "support": "convention",
-      "source": "The lesson's toy rule (brief claim 1; spec company/design/specs/contact-order-matters.md 'The rule'). Stage rule line: 'Infection crosses a contact whenever one side was infected on an earlier day.' Implemented as spread() in Demo.tsx. Deliberately certain; see c7.",
-      "status": "unverified"
+      "source": "The lesson's toy rule (brief claim 1; spec company/design/specs/contact-order-matters.md 'The rule'). Stage rule line: 'Infection crosses a contact whenever one side was infected on an earlier day.' Implemented as spread() in Demo.tsx. Deliberately certain; see c7. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Code read: spread() sets first=0, iterates d=1..4 with prev = copy of the start-of-day state, infects across a contact on day d iff the other side had prev < d. Stage rule line says exactly this. Every contact transmits (no probability).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c2",
       "text": "With A as the first case, in the order E→A (D-E day 1, C-D day 2, B-C day 3, A-B day 4) only B is reached, on day 4; A met B only after the other contacts were over. In the order A→E (A-B day 1, B-C day 2, C-D day 3, D-E day 4) all four are reached, one per day.",
       "support": "simulation",
-      "source": "Node re-run 2026-10-14 by the builder with spread() copied from Demo.tsx: E→A from A reached by day 0..4 = 0,0,0,0,1 (B@4); A→E from A = 0,1,2,3,4 (B@1 C@2 D@3 E@4). Deterministic, no seed. Answers the prediction (D-E, C-D, B-C, A-B gives 1).",
-      "status": "unverified"
+      "source": "Node re-run 2026-10-14 by the builder with spread() copied from Demo.tsx: E→A from A reached by day 0..4 = 0,0,0,0,1 (B@4); A→E from A = 0,1,2,3,4 (B@1 C@2 D@3 E@4). Deterministic, no seed. Answers the prediction (D-E, C-D, B-C, A-B gives 1). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own re-run (scratchpad fc2/contact.mjs; PAIRS and spread() extracted verbatim from Demo.tsx): EA from A inf = A0,B4, C/D/E never; reached by day 0..4 = 0,0,0,0,1. AE from A = 0,1,2,3,4 (B1 C2 D3 E4). Predict answer \"1\" matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c3",
       "text": "Overlap: every pair meets on each of days 1 to 4, with no relay on the same day. Infection then reaches all four people from either end, one person per day.",
       "support": "simulation",
-      "source": "Rule from brief claim 3 and the spec (accepted as a drawing in company/design/reviews/2026-10-14-design-review-ncm-specs.md §5). Node re-run 2026-10-14 with spread() from Demo.tsx: from A, B@1 C@2 D@3 E@4; from E, D@1 C@2 B@3 A@4.",
-      "status": "unverified"
+      "source": "Rule from brief claim 3 and the spec (accepted as a drawing in company/design/reviews/2026-10-14-design-review-ncm-specs.md §5). Node re-run 2026-10-14 with spread() from Demo.tsx: from A, B@1 C@2 D@3 E@4; from E, D@1 C@2 B@3 A@4. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Same re-run: OV from A B1 C2 D3 E4; OV from E D1 C2 B3 A4; prev snapshot prevents same-day relay.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c4",
       "text": "With E as the first case, the order A→E reaches only D (on day 4). Shown in the reveal only if the learner reached that state.",
       "support": "simulation",
-      "source": "Node re-run 2026-10-14 with spread() from Demo.tsx: A→E from E reached by day 0..4 = 0,0,0,0,1 (D@4). (Also checked, not quoted: E→A from E reaches all four.)",
-      "status": "unverified"
+      "source": "Node re-run 2026-10-14 with spread() from Demo.tsx: A→E from E reached by day 0..4 = 0,0,0,0,1 (D@4). (Also checked, not quoted: E→A from E reaches all four.) | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Same re-run: AE from E reaches only D on day 4 (inf A,B,C never). Reveal line is gated by onOnlyD(), fired only when first=E, order=AE, day=4. (EA from E reaches all four: 4,3,2,1.)",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c5",
       "text": "The same contacts can expose or protect someone depending on their order, so a diagram of who met whom overstates who can be reached.",
       "support": "derivation",
-      "source": "From c1: a person is reached only along a chain of contacts with increasing days, which is a subset of the chains in the undated diagram; c2 shows the subset can be strictly smaller (1 of 4 vs 4 of 4) for the same contacts.",
-      "status": "unverified"
+      "source": "From c1: a person is reached only along a chain of contacts with increasing days, which is a subset of the chains in the undated diagram; c2 shows the subset can be strictly smaller (1 of 4 vs 4 of 4) for the same contacts. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): The first half is right (c2 shows 1 of 4 vs 4 of 4 for the same contacts). But the reveal and claim say \"A diagram of who met whom overstates who can be reached\" as a general rule. Time-respecting reach is a subset of diagram reach, so the diagram never understates, but it does not always overstate: the lesson's own Overlap order (and A->E from A) reach exactly the 4 the diagram shows. FIX (builder; Demo.tsx reveal paragraph 2 and this claim text): \"overstates\" -> \"can overstate\" (\"A diagram of who met whom can overstate who can be reached.\"). Then re-submit c5.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c6",
       "text": "Overlapping (concurrent) partnerships can spread infection further than the same partnerships in sequence (Morris and Kretzschmar, 1997).",
       "support": "source",
-      "source": "Morris M, Kretzschmar M (1997), 'Concurrent partnerships and the spread of HIV', AIDS 11(5). NEEDS A HUMAN SOURCE CHECK by the fact-checker, including the citation details (cited from the brief; the builder had no access to the paper). The disease is deliberately not named to learners.",
-      "status": "unverified"
+      "source": "Morris M, Kretzschmar M (1997), 'Concurrent partnerships and the spread of HIV', AIDS 11(5). NEEDS A HUMAN SOURCE CHECK by the fact-checker, including the citation details (cited from the brief; the builder had no access to the paper). The disease is deliberately not named to learners. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Citation confirmed via search-quoted abstract and reference lists: Morris M, Kretzschmar M (1997) \"Concurrent partnerships and the spread of HIV\", AIDS 11(5): 641-648, PMID 9108946, doi 10.1097/00002030-199705000-00012. Abstract: stochastic simulation comparing sequential monogamy with levels of concurrency, all other features of the infection process held constant; concurrency exponentially increases the number infected and the early growth rate. Supports \"can spread further than the same ones in sequence\". PubMed/LWW unreachable through the proxy, so medium confidence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.contact-order-matters.c7",
       "text": "Real contacts are not certain to pass an infection on (the lesson's every-contact-transmits rule is a deliberate simplification), and real contacts are not known in advance.",
       "support": "convention",
-      "source": "Brief claim 5: disclosure that the stage is a toy model. The reveal shows only the first half ('Real contacts are not certain to pass it on').",
-      "status": "unverified"
+      "source": "Brief claim 5: disclosure that the stage is a toy model. The reveal shows only the first half ('Real contacts are not certain to pass it on'). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Disclosure true of the model (spread() transmits on every eligible contact; real per-contact transmission is probabilistic). Reveal shows the first half only, as the source says.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

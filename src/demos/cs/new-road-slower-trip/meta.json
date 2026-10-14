@@ -27,71 +27,91 @@
       "id": "cs.new-road-slower-trip.c1",
       "text": "On the stage, 4,000 drivers go from S to E, each on the route that is fastest for them. Roads S to A and B to E take (cars on the road) / 100 minutes; roads A to E and S to B take 45 minutes; the new link A to B takes 0 minutes.",
       "support": "convention",
-      "source": "The lesson's model, stated on the stage rule line and in the question; the same numbers as Demo.tsx (busyCars, newRoute, oldRoute). Brief N1, company/domains/briefs/cs.systems.md.",
-      "status": "unverified"
+      "source": "The lesson's model, stated on the stage rule line and in the question; the same numbers as Demo.tsx (busyCars, newRoute, oldRoute). Brief N1, company/domains/briefs/cs.systems.md. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Code read: busyCars(k)=2000+k/2, newRoute=2*busy/100 (link 0), oldRoute=busy/100+45, N=4000. Stage rule line (\"Solid roads: cars / 100 min. Dashed: 45 min.\") and pills (S-A, B-E show cars/100; A-E, S-B 45; A-B 0) match the claim and the predict question.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c2",
       "text": "Before the link, 2,000 drivers take each route and every trip takes 2,000 / 100 + 45 = 65 minutes.",
       "support": "derivation",
-      "source": "Arithmetic from c1; builder's node check 2026-10-14 prints 'before 65'. Deterministic, no seed.",
-      "status": "unverified"
+      "source": "Arithmetic from c1; builder's node check 2026-10-14 prints 'before 65'. Deterministic, no seed. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): 2000/100+45 = 65 (BEFORE constant).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c3",
       "text": "With the link, if s drivers take S-A-B-E and the rest split evenly over the two old routes, roads S to A and B to E each carry 2,000 + s/2 cars, so the new route takes 40 + s/100 minutes and each old route 65 + s/200. At s = 0, 1,000, 2,000, 3,000 and 4,000 that is 40 vs 65, 50 vs 70, 60 vs 75, 70 vs 80 and 80 vs 85: the new route is faster at every step (it is faster while s < 5,000).",
       "support": "derivation",
-      "source": "Node check of the exact rule in Demo.tsx, run by the builder 2026-10-14 (script below in c4). Output rows: 0 40 65 / 1000 50 70 / 2000 60 75 / 3000 70 80 / 4000 80 85; 'new faster while s < 5000'. Matches the corrected brief N1 node check.",
-      "status": "unverified"
+      "source": "Node check of the exact rule in Demo.tsx, run by the builder 2026-10-14 (script below in c4). Output rows: 0 40 65 / 1000 50 70 / 2000 60 75 / 3000 70 80 / 4000 80 85; 'new faster while s < 5000'. Matches the corrected brief N1 node check. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own algebra: new = 2(2000+s/2)/100 = 40+s/100; old = 20+s/200+45 = 65+s/200; new < old iff s < 5,000. Rows 40/65, 50/70, 60/75, 70/80, 80/85 recomputed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c4",
       "text": "With the link, the only state where no driver gains by switching alone has all 4,000 drivers on the new route, each taking 80 minutes. Moving 1,000 drivers at a time while the new route is faster stops at 4,000 after 4 moves.",
       "support": "simulation",
-      "source": "Builder's node script 2026-10-14: for every integer split (a on S-A-E, b on S-B-E, c on S-A-B-E, a+b+c = 4,000), test every one-driver move; times sa/100+45, 45+be/100, sa/100+be/100 with sa = a+c, be = b+c. Output 'equilibria [[0,0,4000,80]]'. Step run with the Demo.tsx rule (while s < 4000 and new < old: s += 1000): 'run stops 4000 moves 4'. Deterministic, no seed.",
-      "status": "unverified"
+      "source": "Builder's node script 2026-10-14: for every integer split (a on S-A-E, b on S-B-E, c on S-A-B-E, a+b+c = 4,000), test every one-driver move; times sa/100+45, 45+be/100, sa/100+be/100 with sa = a+c, be = b+c. Output 'equilibria [[0,0,4000,80]]'. Step run with the Demo.tsx rule (while s < 4000 and new < old: s += 1000): 'run stops 4000 moves 4'. Deterministic, no seed. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own argument, stronger than the builder's search: with the link, S-A-B-E minus S-A-E = be/100 - 45 <= 40 - 45 < 0, and likewise vs S-B-E, so the new route is strictly dominant at every split; the unique equilibrium is all 4,000 on it (80 min), and a one-driver deviation takes 85. Demo.tsx run(): t=0->4000 in 4 steps of 1,000 (stops at N). Reveal is gated on \"nobody-gains\" (k>=4000), so furthest = 4,000 when shown.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c5",
       "text": "With all 4,000 on the new route, one driver who switches back to an old route takes 4,000 / 100 + 45 = 85 minutes, so nobody leaves.",
       "support": "derivation",
-      "source": "Arithmetic from c1: the busy road on either old route still carries all 4,000 and its 45-minute road is unchanged. Node check prints 'switch back from 4000: 85'.",
-      "status": "unverified"
+      "source": "Arithmetic from c1: the busy road on either old route still carries all 4,000 and its 45-minute road is unchanged. Node check prints 'switch back from 4000: 85'. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Deviating driver still on S-A (or B-E) with 4,000 cars: 40+45 = 85; oldRoute(4000) = 85 on the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c6",
       "text": "Each driver's move was the best choice for them, yet every driver ends 15 minutes slower than before the link (80 against 65): in this model the free road made every trip slower.",
       "support": "derivation",
-      "source": "c2, c3, c4: each move was to a strictly faster route at the moment it was made; 80 - 65 = 15.",
-      "status": "unverified"
+      "source": "c2, c3, c4: each move was to a strictly faster route at the moment it was made; 80 - 65 = 15. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): newRoute(4000)-BEFORE = 15, printed by the reveal. Each step was taken only while newRoute < oldRoute (canMove).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c7",
       "text": "This effect, where a new road raises everyone's travel time at equilibrium, is called Braess's paradox, and the stage network is the textbook example.",
       "support": "source",
-      "source": "Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 8 (section 8.1-8.2 per the brief, section unconfirmed); Braess, D. (1968), 'Uber ein Paradoxon aus der Verkehrsplanung', Unternehmensforschung 12: 258-268 (citation from the brief, from memory: the fact-checker confirms the citation or drops it).",
-      "status": "unverified"
+      "source": "Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 8 (section 8.1-8.2 per the brief, section unconfirmed); Braess, D. (1968), 'Uber ein Paradoxon aus der Verkehrsplanung', Unternehmensforschung 12: 258-268 (citation from the brief, from memory: the fact-checker confirms the citation or drops it). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Not learner-facing except the name \"Braess's paradox\" (reveal). Braess D (1968) \"Uber ein Paradoxon aus der Verkehrsplanung\", Unternehmensforschung 12: 258-268, doi 10.1007/BF01918335 (Springer record via search; English translation Transportation Science 39(4), 2005). E&K ch. 8 = \"Modeling network traffic using game theory\" (catalogue record). The 4,000-driver, x/100 and 45-minute network with 65 -> 80 and 85 is reproduced in course notes and summaries (search); the E&K page itself was unreachable, so \"the textbook example\" is medium confidence. Section stays unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c8",
       "text": "This is a model with these numbers: a new road does not slow every network, but it can.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 8 (section unconfirmed). Existence shown by c4/c6; that it is not universal: e.g. if the link cost 25 minutes instead of 0 in this network, nobody would use it (new route 65 at s = 0, not faster than 65), so the trip stays 65. Caveat from brief N1.",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010) ch. 8 (section unconfirmed). Existence shown by c4/c6; that it is not universal: e.g. if the link cost 25 minutes instead of 0 in this network, nobody would use it (new route 65 at s = 0, not faster than 65), so the trip stays 65. Caveat from brief N1. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own check: link cost 25 -> new route 65+s/100 vs old 65+s/200: never strictly faster, unique equilibrium the even split at 65. So the effect is not universal; the stage instance shows it can happen.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c9",
       "text": "Extra check, not shown to learners: a planner who assigns routes could get an average slightly under 65 (best average 64.69 minutes with 500 drivers on the new route), so the lesson does not say the link should be closed; it says only that the selfish outcome is 80.",
       "support": "simulation",
-      "source": "Builder's node script 2026-10-14: minimise (s(40 + s/100) + (4000 - s)(65 + s/200)) / 4000 over integer s; output 'planner best 64.6875 at 500'.",
-      "status": "unverified"
+      "source": "Builder's node script 2026-10-14: minimise (s(40 + s/100) + (4000 - s)(65 + s/200)) / 4000 over integer s; output 'planner best 64.6875 at 500'. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own algebra: total cost = sa^2/100 + be^2/100 + 45(a+b); symmetric convex, so optimum has even split; average = (260000 - 5s + s^2/200)/4000, min at s = 500: 64.6875. Not learner-facing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.new-road-slower-trip.c10",
       "text": "Recall card: when every driver picks the fastest route for themselves, adding a free shortcut can make every trip slower, because each driver's best move crowds the busy roads.",
       "support": "derivation",
-      "source": "General statement shown by the stage instance (c4, c6); Easley and Kleinberg (2010) ch. 8.",
-      "status": "unverified"
+      "source": "General statement shown by the stage instance (c4, c6); Easley and Kleinberg (2010) ch. 8. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): General \"can\" statement, shown by the stage instance (c4, c6). Recall answer and why match (65 -> 80, 85).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

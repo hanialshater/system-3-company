@@ -27,57 +27,73 @@
       "id": "probability.same-songs-different-hits.c1",
       "text": "In the lesson's 8 worlds (seeds 1 to 8, rule on the stage), with copying on the best song finishes 3rd, 1st, 7th, 1st, 4th, 1st, 1st, 3rd after 1,000 listeners, so its lowest finish is 7th (world 3); with copying off, same seeds and same draws, it finishes 2nd, 1st, 2nd, 1st, 2nd, 1st, 2nd, 1st, so its lowest finish is 2nd.",
       "support": "simulation",
-      "source": "Builder's node re-run 2026-10-14 of exactly the Demo.tsx rule (mulberry32(k) for world k; one u per listener; first song whose cumulative interval holds u x sum(w); finish = 1 + songs with strictly more picks). World 3 with copying: picks 33, 40, 7, 38, 214, 158, 482, 28. No ties for the best song's place in any of the 16 worlds. Matches the brief and the spec. Seeds 1 to 8 are the first eight, not searched for this result; robustness (spec, 500 blocks of 8 worlds, seeds 1000 + 8b + j): copying on, lowest finish 5th or lower in 70.2% of blocks, 7th or 8th in 36.8%; off, 4th or higher in 98.2%. So 7th is a fairly lucky-to-show draw, not the typical worst case.",
-      "status": "unverified"
+      "source": "Builder's node re-run 2026-10-14 of exactly the Demo.tsx rule (mulberry32(k) for world k; one u per listener; first song whose cumulative interval holds u x sum(w); finish = 1 + songs with strictly more picks). World 3 with copying: picks 33, 40, 7, 38, 214, 158, 482, 28. No ties for the best song's place in any of the 16 worlds. Matches the brief and the spec. Seeds 1 to 8 are the first eight, not searched for this result; robustness (spec, 500 blocks of 8 worlds, seeds 1000 + 8b + j): copying on, lowest finish 5th or lower in 70.2% of blocks, 7th or 8th in 36.8%; off, 4th or higher in 98.2%. So 7th is a fairly lucky-to-show draw, not the typical worst case. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Own re-run (scratchpad fc2/songs.mjs) that extracts APPEAL and simulate() verbatim from Demo.tsx and mulberry32 from src/kit/random.ts: copying on finishes 3,1,7,1,4,1,1,3; off 2,1,2,1,2,1,2,1; world 3 picks 33,40,7,38,214,158,482,28; no ties with the best song in any of the 16 worlds. Robustness (seeds 1000+8b+j, 500 blocks): on lowest >=5th 70.2%, >=7th 36.8%; off <=4th 98.2%. Matches. Predict answer \"7th of 8\" and the reveal (computed from RUNS) agree.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c2",
       "text": "After 1,000 listeners the top song in each world takes 35-48% of the picks with copying on (34.9, 38.7, 48.2, 46.3, 36.9, 44.5, 42.9, 43.9%) and 15-18% with copying off (15.5, 16.5, 16.0, 16.9, 14.7, 16.9, 17.6, 17.4%), so no song is above 18% without copying.",
       "support": "simulation",
-      "source": "Same node re-run as c1 (2026-10-14). The reveal computes the range from the stage's own runs and rounds to whole percent.",
-      "status": "unverified"
+      "source": "Same node re-run as c1 (2026-10-14). The reveal computes the range from the stage's own runs and rounds to whole percent. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Same re-run: top shares on 34.9,38.7,48.2,46.3,36.9,44.5,42.9,43.9% (rounds to 35-48%); off 15.5,16.5,16.0,16.9,14.7,16.9,17.6,17.4% (rounds to 15-18%; max 17.6% < 18, so \"no song above 18%\" holds). Reveal computes both from the stage runs.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c3",
       "text": "In the model, 8 songs have appeal 1.0, 1.1, ..., 1.7 (the best 70% more appealing than the worst); each of 1,000 listeners in turn picks a song with chance proportional to appeal x (1 + earlier picks of that song) with copying on, or to appeal only with copying off.",
       "support": "convention",
-      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate).",
-      "status": "unverified"
+      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Demo.tsx APPEAL = [1..1.7], w = a*(1+p[i]) or a, pick by cumulative interval of u*sum(w): proportional to the weight as stated. 1.7/1.0 = 70% more. ADVISORY (not blocking): the stage rule line reads \"Pick chance = appeal x (1 + earlier picks)\", which is a weight, not a chance (it exceeds 1 after one pick). Suggest \"Pick chance proportional to appeal x (1 + earlier picks)\" or \"Pick weight = ...\".",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c4",
       "text": "Copying on and copying off use the same 8 seeds and the same random draw for each listener, so only the pick rule differs between the two sets of worlds.",
       "support": "derivation",
-      "source": "Property of the code: Demo.tsx simulate(seed, copy) draws exactly one u = rng() per listener from mulberry32(seed) in both modes.",
-      "status": "unverified"
+      "source": "Property of the code: Demo.tsx simulate(seed, copy) draws exactly one u = rng() per listener from mulberry32(seed) in both modes. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Code read: simulate() calls r() exactly once per listener in both modes, before the copy branch; same seed k+1 for world k in RUNS.on and RUNS.off.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c5",
       "text": "In the copying worlds an early pick makes a song more likely to be picked again, so early leads compound: in world 3 the best song is already 7th after 100 listeners and stays 7th; quality still tilts the odds (the best song wins 4 of the 8 copying worlds) but does not decide the hit.",
       "support": "simulation",
-      "source": "Reveal paragraph 2. Node re-run 2026-10-14, copying on, best-song finishes at 100 / 200 / 300 / 500 / 1,000 listeners: world 3 is 7th at every checkpoint; finishes at 1,000 are 1st in worlds 2, 4, 6, 7. The brief reports the best song wins about 45% of copying worlds over 2,000 worlds.",
-      "status": "unverified"
+      "source": "Reveal paragraph 2. Node re-run 2026-10-14, copying on, best-song finishes at 100 / 200 / 300 / 500 / 1,000 listeners: world 3 is 7th at every checkpoint; finishes at 1,000 are 1st in worlds 2, 4, 6, 7. The brief reports the best song wins about 45% of copying worlds over 2,000 worlds. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Same re-run, copying on, best-song finish at 100..1,000: world 3 is 7th at all 10 checkpoints; best wins worlds 2,4,6,7 (4 of 8). \"Quality tilts the odds\": best wins 42.9% of copying worlds (seeds 1-2,000) and 43.3% (seeds 1,000-4,999) vs 12.5% for an equal song. Note: the source's \"about 45%\" (brief) is 43% in my runs; not learner-facing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c6",
       "text": "The lesson is a toy model with made-up appeal numbers, not a measurement of any real market.",
       "support": "convention",
-      "source": "Reveal caveat. The toy does not reproduce the MusicLab study (48 songs, many listeners) and the lesson does not say it does.",
-      "status": "unverified"
+      "source": "Reveal caveat. The toy does not reproduce the MusicLab study (48 songs, many listeners) and the lesson does not say it does. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Reveal caveat text matches; the lesson never cites MusicLab to learners (grep of Demo.tsx). True of the model (appeal values are invented constants).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c7",
       "text": "NOT SHOWN TO LEARNERS until a human source check: Salganik, Dodds and Watts (2006) found that when participants could see others' downloads, success was more unequal and less predictable, but the best songs rarely did very badly and the worst rarely did very well.",
       "support": "source",
-      "source": "Salganik, Dodds & Watts (2006), 'Experimental study of inequality and unpredictability in an artificial cultural market', Science 311(5762): 854-856. NEEDS A HUMAN SOURCE CHECK (brief claim 4); do not quote study sizes or percentages until checked. Kept out of all learner text by instruction.",
-      "status": "unverified"
+      "source": "Salganik, Dodds & Watts (2006), 'Experimental study of inequality and unpredictability in an artificial cultural market', Science 311(5762): 854-856. NEEDS A HUMAN SOURCE CHECK (brief claim 4); do not quote study sizes or percentages until checked. Kept out of all learner text by instruction. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Not in learner text. Citation confirmed via search-quoted abstract and records: Salganik MJ, Dodds PS, Watts DJ (2006) Science 311(5762): 854-856, doi 10.1126/science.1121066; 14,341 participants; abstract: more social influence increased both inequality and unpredictability of success; the best songs rarely did poorly and the worst rarely did well, but any other result was possible. Claim text matches the abstract. Primary PDF unreachable (proxy DNS-fails uvm.edu, toronto.edu), so medium confidence. If shown to learners later, keep to the abstract wording; do not add numbers unchecked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c8",
       "text": "NOT SHOWN TO LEARNERS: Easley and Kleinberg (2010) treat rich-get-richer popularity and its unpredictability in chapter 18, sections 18.3-18.4.",
       "support": "source",
-      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 18. Section numbers unconfirmed (brief: book site blocked by the proxy); fact-checker confirms against the free PDF. Used only in curriculum.references.",
-      "status": "unverified"
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 18. Section numbers unconfirmed (brief: book site blocked by the proxy); fact-checker confirms against the free PDF. Used only in curriculum.references. | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Not learner-facing. Chapter 18 = \"Power laws and rich-get-richer phenomena\" (search-quoted course page), whose sections are listed in order as popularity, power laws, rich-get-richer models, unpredictability of rich-get-richer effects, long tail, search tools: consistent with 18.3-18.4. Book PDF unreachable, so the section numbers stay in curriculum.references.section_unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
