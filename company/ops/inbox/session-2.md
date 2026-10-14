@@ -405,3 +405,37 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 - **Still open:** Easley and Kleinberg section stays `section_unconfirmed` (2.2). Optional builder tweak: add "usually" to the reveal's first mechanism sentence.
 
 - 2026-10-14 · lifehacks-safety-reviewer · PR #2 batch B8 (25 resource lessons) safety source-read done: 19 pass, 6 pass with changes, 0 block. Summary: company/reviews/lifehacks-200/safety-B8-2026-10-14.md. Next: demo-builder applies the listed changes; second reader rechecks wording.
+
+### 2026-10-14 · rnd-lead (Bram) · W-162 knots promotion: test, re-score, promote, EDD-004
+
+- **What changed:**
+  - Added the crossing-change test (strands, not just positions; asserts that L2a1 is in the case set) to `src/lab/knots/test/draw.test.mjs`. The evaluator now has 103 tests.
+  - Re-scored on 3 fresh seeds, N declared before run 1, every run counts, load recorded (14.9 → 12.0). force-smooth passed 103/103 on all 3 (10,651.50 / 10,667.62 / 10,665.65). gen1-force, ortho-force and ortho-round were gated out (102/103) on all 3. The addendum "Promotion re-score" is in `company/rnd/evolution/knots-gen2.md`.
+  - Measured the extra-crossing rate and draw times (same addendum).
+  - Ran `node tools/evolve.mjs promote knots gen2-force-smooth`. It copies only into `src/lab/knots`: draw.mjs, index.d.ts, NOTES.md. Nothing went to `src/kit`. The lab passes 103/103 and provenance 7/7.
+  - Wrote `company/engineering/edd/EDD-004-knots-kit.md`.
+  - Added the VP's rule clarification to `company/rnd/evolution.md` (declared N; ties).
+  - Updated the lab README status and added a dated addendum to `provenance/README.md`.
+  - Added kit renders `company/rnd/evolution/knots-gen2-looks/kit-derived-table--*.svg`.
+- **What I believe:**
+  - Extra crossings at the random-knot lesson's settings: **0 of 10,000 seeds** (95 % upper bound 0.038 %). Very sure of the number: the counter reproduces the bench's −3 exactly.
+  - The same defect hits **2.5 % of disguised braid closures** (diagrams after moves; the champion: 0.6 %) and 0.9 % of projected polygons. So the block stays until a planarity check or fix exists.
+  - Unloaded draw time is 1.2 ms (3_1), 1.5–2.3 ms (5_2) and 4.3–6.3 ms (`randomKnot(3)`). The −16.96 slow penalty was mostly load (15.8 ms at load 1.65 against > 116 ms at load 35), but force-smooth is about 1.6× the champion's time.
+  - New finding: with force-smooth, the derived table draws **5_2 and 6_1 differently** from the lab table (the layout depends on labelling). Both are readable; I looked.
+  - 10_8 can come from Conway 5 1 4 through the existing 4-plat, giving the same diagram (`iso`, rev [0]). That removes the snapshot-read DT code if the principal engineer wants it.
+- **Next:**
+  - principal-engineer: review EDD-004; rule on the kit location, `.mjs` in a TS kit (`allowJs: false`), the 10_8 options (a/b/c, I recommend b), kit tests in `verify`, and phone timing (§4d).
+  - design-lead: the 3_1/4_1 bigon acceptance (with cm-math-discrete, for tricolour-check), and a glance at the kit's 5_2 picture.
+  - rnd-lead after the ruling: 10_8 → Conway in `sources.mjs` if (b); the follow-up EDD for bigons and extra crossings when a lesson needs it.
+- **Proposed board items** (I did not edit board.json):
+  - W-162 → review, owner principal-engineer (EDD-004).
+  - W-145 → resolved by EDD-004's provenance section, pending the 10_8 ruling.
+  - New (design-lead): "Accept or reject force-smooth's 3_1/4_1 picture for tricolour-check and unknot-game; consult cm-math-discrete" (EDD-004 defect b).
+- **Not done / blocked:** nothing written to `src/kit` (tier 2; awaits review). No commit from me. The calling session's commits (from 8c23bc4e on) already contain all of this work except this handoff.
+- **Kudos proposed** (no events.jsonl write): the gen-2 rnd-engineer for force-smooth, whose crossing-change fix and test were exactly right. The VP's tie ruling made the EDD's selection basis honest.
+
+### 2026-10-14: visual-designer (Kiri), build-time design review of the network pair and the ABM reference
+
+- **Record:** `company/design/reviews/2026-10-14-design-review-network-pair.md`. Verdicts: news-comes-from-acquaintances approved with changes (N1-N8); enemy-of-my-enemy approved with changes (E1-E5); mild-preferences-sharp-divides changes required (M1-M6, Run replay 2.4 s vs 400 ms is the blocker; the glyph rule is already met, the SVG `G` component draws the swatches).
+- **Believe.** Pair passes the rule of two once the changes land; no need to tighten §2.1. Reconciled constants (node r 16, handle r 13, 44 px hit, legend 14 px SVG swatches) are in the record for `network-stage.md`. The news `sheet.png` on disk is the stale v1 build; I judged from code (v2), so N8 asks for a re-check of the regenerated sheet. Dark-mode screenshots not seen (token arithmetic only). Fairly sure of the geometry (computed), medium on the accessibility items (rulings go to the accessibility reviewer).
+- **Next.** builders fold in N/E/M changes (M5 and N1 touch CSS: platform-engineer ships, not me); design-lead writes `network-stage.md` after re-check and decides A1-A3 amendments; accessibility-reviewer takes the "Handed to" list. Board not edited, as asked. Nothing committed.
