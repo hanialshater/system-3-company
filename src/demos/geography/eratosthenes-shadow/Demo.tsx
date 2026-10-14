@@ -29,10 +29,16 @@ const TRUE_MERIDIAN_KM = 40008;
 const START = 20;
 
 const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+// The stage's own rounding for the arcs readout (one decimal, trailing .0 dropped).
+const arcsText = (a: number) => (Math.round((360 / a) * 10) / 10).toString();
+const SEEN_ACCOUNT = `${ACCOUNT.angle}° → ${arcsText(ACCOUNT.angle)} arcs, ${fmt((360 / ACCOUNT.angle) * ACCOUNT.dist)} stadia`;
+const SEEN_MODERN = `${MODERN.angle}° → ${arcsText(MODERN.angle)} arcs, ${fmt((360 / MODERN.angle) * MODERN.dist)} km`;
 
 export default function EratosthenesShadow({ slug }: { slug: string }) {
   const [angle, setAngle] = useState(START);
   const [modern, setModern] = useState(false);
+  // Recorded when each milestone fires; the stage keeps them on a "Seen:" line and the reveal quotes them.
+  const [seen, setSeen] = useState<{ account: boolean; modern: boolean }>({ account: false, modern: false });
   const d = modern ? MODERN : ACCOUNT;
   const arcs = 360 / angle;
   const circ = arcs * d.dist;
@@ -65,30 +71,37 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Set the shadow to 7.2° and count the arcs. Then try modern numbers."
-      minInteractions={1}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
-            <strong>50 times.</strong> The Sun is so far away that its rays arrive parallel, so the shadow&rsquo;s angle in
-            Alexandria is also the angle at the Earth&rsquo;s centre between the two cities. 7.2° is 1/50 of 360°, so the
-            whole circle is 50 × 5,000 = 250,000 stadia, as the account tells it.
+            <strong>50 times.</strong> The Sun is so far away that its rays arrive parallel (the dashed lines), so the
+            shadow&rsquo;s angle in Alexandria is also the angle at the Earth&rsquo;s centre. At Syene the Sun was straight
+            overhead, so the well had no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, as the account tells it.
           </p>
           <p>
-            Modern numbers give {MODERN.angle}° and {fmt(MODERN.dist)} km, so about {fmt(Math.round(modernCirc / 100) * 100)} km, within{" "}
-            {Math.round((modernCirc / TRUE_MERIDIAN_KM - 1) * 100)}% of the true {fmt(TRUE_MERIDIAN_KM)} km. Nobody knows
-            the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a
-            shadow and a distance.
+            With modern numbers you saw {SEEN_MODERN}, within {Math.round((modernCirc / TRUE_MERIDIAN_KM - 1) * 100)}% of
+            the true {fmt(TRUE_MERIDIAN_KM)} km. Nobody knows the exact length of a stadion, so we cannot say how close
+            Eratosthenes was in km. The method needed only a shadow and a distance.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["account"]}>
+        <Milestones interact={interact} names={["account", "modern"]}>
           {(reach) => {
             const set = (a: number, m: boolean) => {
               setAngle(a);
               setModern(m);
-              if (Math.abs(a - ACCOUNT.angle) < 0.05) reach("account");
+              // Exact matches only, so the readout showed the recorded values (50 arcs, 50.6 arcs).
+              if (!m && Math.abs(a - ACCOUNT.angle) < 0.005) {
+                setSeen((v) => ({ ...v, account: true }));
+                reach("account");
+              }
+              if (m && Math.abs(a - MODERN.angle) < 0.005) {
+                setSeen((v) => ({ ...v, modern: true }));
+                reach("modern");
+              }
             };
             return (
               <div className={s.wrap}>
@@ -115,8 +128,8 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                   {/* radii and the centre angle */}
                   <line x1={CX} y1={CY} x2={sx} y2={sy} className={s.radius} />
                   <line x1={CX} y1={CY} x2={ax} y2={ay} className={s.radius} />
-                  <path d={arcPath(18, 0, angle)} className={s.angle} />
-                  <text x={CX - 6} y={CY - 22} className={s.theta} textAnchor="end">
+                  <path d={arcPath(30, 0, angle)} className={s.angle} />
+                  <text x={CX - 4} y={CY - 34} className={s.theta} textAnchor="end">
                     {angle.toFixed(1)}°
                   </text>
                   {/* pole and its shadow angle */}
@@ -126,7 +139,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                     {angle.toFixed(1)}°
                   </text>
                   <text x={sx + 4} y={sy - 6} className={s.small}>
-                    Syene
+                    Syene: Sun overhead, no shadow
                   </text>
                   <text x={px - 8} y={py + 10} className={s.small} textAnchor="end">
                     Alexandria
@@ -152,6 +165,9 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                 </Row>
                 <p className="muted tiny">
                   Distance Syene to Alexandria: {fmt(d.dist)} {d.unit}.
+                </p>
+                <p className="tiny" data-testid="seen">
+                  Seen: {[seen.account ? SEEN_ACCOUNT : null, seen.modern ? SEEN_MODERN : null].filter(Boolean).join(" · ") || "nothing yet"}
                 </p>
               </div>
             );
