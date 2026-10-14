@@ -38,3 +38,15 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c7 | verified | Re-traced the Demo KMP loop in my own node copy: 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14. All 5 misses come at j = 3, after AAA matched. Each next comparison is at the same text index with j = FAIL[2] = 2, so the offset i - j rises by exactly 1. The text index never decreases, so 'never one to its left' is true. 3 + 2 x 5 + 1 = 14. The reveal paragraph 2 wording (lines 193-195) matches the claim. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v5 wave E revision. Method: read v5 Demo.tsx (lane label, boxed cell, captions per k, tallies, reveal; there is no Reset) before the sources, then re-traced both searches in my own node port with my own prefix function (scratchpad fc24/kmp.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own prefix function of AAAB = 0 1 2 0; label and boxed cell match FAIL. |
+| c7 | verified | KMP: 14 comparisons, misses at 4, 6, 8, 10, 12, all after AAA, each followed by the same text index at pattern index 2; 0 backs. 3 + 2 × 5 + 1 = 14. Restart: 24, 5 backs. |
+| c8 | verified | Captions match caption(k) at every k. Minor wording note: the after-miss caption says 'the same text letter is next' while that comparison is already on stage. |
+
+**Result:** every claim open at this pass is now verified.
