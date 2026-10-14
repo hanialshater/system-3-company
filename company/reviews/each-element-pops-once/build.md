@@ -34,3 +34,10 @@ W-234, c6 (disputed). The reveal said "the stack emptied box by box" even when t
 - "each new number met one bigger top" in the reveal and "each number's single comparison" in c6 now both say "each later number". c6 is set to unverified, with the new text "when the 9 is stepped or replayed the stack empties one box at a time".
 - Every control pressed once in DOM order: Next number (k=1), All the rest (animates "9 8 … 1" to the end, descending-done), the "9 8 … 1" chip (disabled), then the "8 … 1 9" chip (animated replay with pops, so sawEmpty is set and pops-seen is reached). Under reduced motion the last press jumps and the clause is omitted.
 - Note for the fact-checker: the reveal sentence that c2 addresses changed from "each new" to "each later". c2's own text ("each new number is compared once with the top") is unchanged and still verified, though by the same logic it should say "each later". Not run: build, QA, walkthrough.
+
+## Pre-flight v4 (demo-builder, 2026-10-14, fact-check pass 25 fixes, W-239)
+
+- c2 (disputed, off-by-one): the claim text now says "each later number is compared once with the top, which is bigger, and pushed (the first meets an empty stack)." No stage string in Demo.tsx used the old "each new number is compared once" wording, and the reveal already said "each later number", so only meta.json changed. Set to unverified.
+- c6 (1), replay: the claim now says "when the 9 is stepped, or replayed with motion on, the stack empties one box at a time ... (with reduced motion a replay jumps to the end)". The code is unchanged: with reduced motion, replay() still jumps (setK(N)) and leaves sawEmpty unset, so the reveal's "box by box" clause is still gated.
+- c6 (2), stage pointer: the reveal changed from present tense "look at the 9's row: 8 solid ticks" to past tense "the 9's row showed 8 solid ticks marked "8 pops"". It now reports the recorded 8 … 1 9 run, not whatever list is on stage. Path to check: chip 8 … 1 9, All the rest, then chip 9 8 … 1 (list 0 on stage); the sentence no longer points at the stage. Set to unverified.
+- meta.json version 3 -> 4. Not run: build, QA, walkthrough.

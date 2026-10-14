@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-14: release-manager wave F publish
+- Lifted 1 hold in company/ops/publish-holds.json (null-island-lat-lon): r6 learner verdict is launch for v1 with screenshots seen, all 5 claims verified, qa-tester record pass (phone and desktop). The other 7 geography holds stay until re-reviewed (eratosthenes-shadow, fingernail-ocean, half-of-humanity, horizon-ruler, mercator-greenland, ruler-on-mercator, shrinking-degree).
+- `node tools/publish-ready.mjs --publish`: 47 candidates (46 + the 1 lifted), 47 published, 0 refused by the gate. Not candidates: 8 verdict revise, 2 older-version verdict, 7 geography holds. Launch review records still to be written in company/rituals/records/.
+- Smoke: 11 newly published lessons across algorithms, economics, geography, game theory, physics and network domains return 200 at localhost:3480/d/<slug>. Served build bakes status at build time, so labels may be stale until the next build; no rebuild done.
+
 ## 2026-10-14: release-manager wave E publish
 - Lifted 2 stale holds in company/ops/publish-holds.json (salt-ions-count-double, cards-do-remember): all 6 claims in each meta.json are now verified. The 8 geography screenshot holds stay (re-review running).
 - `node tools/publish-ready.mjs --publish`: 97 candidates (95 + the 2 lifted), 97 published, 0 refused by the gate. Not candidates: 12 verdict revise, 3 fatal, 4 older-version verdict, 8 geography holds. Launch review records still to be written in company/rituals/records/.
