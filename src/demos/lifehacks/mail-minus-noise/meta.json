@@ -52,17 +52,25 @@
       "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
       "id": "lifehacks.mail-minus-noise.c4",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.mail-minus-noise.recall",
+      "text": "The minus sign excludes messages containing 'digest'; OR adds them, and 'budget digest' requires both words.",
+      "support": "source",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which query removes newsletter matches?",
+    "question": "You want messages about 'budget' but not the weekly digest. Which Gmail search fits?",
     "options": [
-      "Topic minus newsletter",
-      "Topic OR newsletter"
+      "budget -digest",
+      "budget OR digest",
+      "budget digest"
     ],
     "answer": 0,
-    "why": "The second query keeps topic matches that lack the excluded word. This local field matcher leaves Gmail’s conversation grouping out."
+    "why": "The minus sign excludes messages containing 'digest'; OR adds them, and 'budget digest' requires both words."
   },
   "evidence": {
     "qa": [],

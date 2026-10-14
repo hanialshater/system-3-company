@@ -30,9 +30,9 @@ const laundryGains = (offer: number) => -offer > -D;
 const X0 = 20;
 const PX = 0.8;
 const rx = (v: number) => X0 + PX * v;
-// Total bars: 0.4 px per $, one x-origin for both panels.
-const BAR0 = 64;
-const BAR = 0.4;
+// Total bars (on each panel's title row): 0.28 px per $, one x-origin for both panels.
+const BAR0 = 206;
+const BAR = 0.28;
 
 const money = (v: number) => (v > 0 ? `+$${v}` : v < 0 ? `−$${-v}` : "$0");
 
@@ -63,7 +63,7 @@ function Panel({
 }) {
   const total = factoryNet === null || laundryNet === null ? null : factoryNet + laundryNet;
   return (
-    <svg viewBox="0 0 340 190" className="stage-svg" role="img" aria-label={title}>
+    <svg viewBox="0 0 340 125" className="stage-svg" role="img" aria-label={title}>
       <defs>
         <pattern id={`${id}-mesh`} width="4" height="4" patternUnits="userSpaceOnUse">
           <path d="M0 0L4 4M4 0L0 4" className={s.meshLine} />
@@ -77,138 +77,137 @@ function Panel({
         {title}
       </text>
 
+      {/* Total, on the title row: one x-origin for both panels so the two bars line up */}
+      <text x={BAR0 - 6} y={13} className={s.name} textAnchor="end">
+        Total
+      </text>
+      {total !== null && <rect x={BAR0} y={3} width={BAR * Math.abs(total)} height={12} rx={2} className={s.totalBar} />}
+      <text x={total === null ? BAR0 : BAR0 + BAR * Math.abs(total) + 5} y={13} className={s.value}>
+        {total === null ? "?" : money(total)}
+      </text>
+
       {/* Factory, chimney and filter slot */}
-      <rect x={20} y={52} width={62} height={28} rx={3} className={s.block} />
-      <rect x={56} y={38} width={14} height={14} className={s.block} />
+      <rect x={20} y={50} width={62} height={24} rx={3} className={s.block} />
+      <text x={51} y={66} className={s.name} textAnchor="middle">
+        Factory
+      </text>
+      <rect x={56} y={38} width={14} height={12} className={s.block} />
       <rect
         x={53}
-        y={30}
+        y={31}
         width={20}
-        height={8}
+        height={7}
         rx={1.5}
         className={filtered ? s.filterOn : s.filterSlot}
         fill={filtered ? `url(#${id}-mesh)` : "none"}
       />
-      <text x={78} y={27} className={s.tag}>
+      <text x={78} y={30} className={s.tag}>
         filter $100 a year
       </text>
 
       {/* Smoke ribbon: drifts onto the laundry unless the filter is fitted */}
       {filtered ? (
-        <path d="M63 29 q-3 -4 0 -7" className={s.smokeStub} />
+        <path d="M63 30 q-3 -4 0 -7" className={s.smokeStub} />
       ) : (
-        <path d="M63 30 Q 90 50 125 48 T 185 54 T 246 64" className={s.smoke} />
+        <path d="M63 31 Q 90 48 125 46 T 185 50 T 246 56" className={s.smoke} />
       )}
 
       {/* Laundry with a washing line */}
-      <rect x={250} y={62} width={70} height={18} rx={3} className={s.block} />
-      <line x1={256} y1={62} x2={256} y2={50} className={s.pole} />
-      <line x1={314} y1={62} x2={314} y2={50} className={s.pole} />
-      <line x1={256} y1={51} x2={314} y2={51} className={s.pole} />
+      <rect x={250} y={55} width={70} height={19} rx={3} className={s.block} />
+      <text x={285} y={69} className={s.name} textAnchor="middle">
+        Laundry
+      </text>
+      <line x1={256} y1={55} x2={256} y2={43} className={s.pole} />
+      <line x1={314} y1={55} x2={314} y2={43} className={s.pole} />
+      <line x1={256} y1={44} x2={314} y2={44} className={s.pole} />
       {[266, 282, 298].map((x) => (
-        <path key={x} d={`M${x - 5} 51 h10 v8 h-10 z`} className={s.shirt} />
+        <path key={x} d={`M${x - 5} 44 h10 v7 h-10 z`} className={s.shirt} />
       ))}
-      <text x={320} y={44} className={s.tag} textAnchor="end">
+      <text x={320} y={38} className={s.tag} textAnchor="end">
         smoke $300 a year
       </text>
 
       {/* Money arrow */}
       {arrow?.kind === "to-factory" && (
         <g>
-          <line x1={246} y1={74} x2={86} y2={74} className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={166} y={70} className={s.arrowText} textAnchor="middle">
+          <line x1={246} y1={70} x2={86} y2={70} className={s.arrow} markerEnd={`url(#${id}-head)`} />
+          <text x={166} y={66} className={s.arrowText} textAnchor="middle">
             ${arrow.amount}
           </text>
         </g>
       )}
       {arrow?.kind === "to-laundry" && (
         <g>
-          <line x1={86} y1={74} x2={246} y2={74} className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={166} y={70} className={s.arrowText} textAnchor="middle">
+          <line x1={86} y1={70} x2={246} y2={70} className={s.arrow} markerEnd={`url(#${id}-head)`} />
+          <text x={166} y={66} className={s.arrowText} textAnchor="middle">
             ${arrow.amount}
           </text>
         </g>
       )}
       {arrow?.kind === "to-filter" && (
         <g>
-          <path d="M30 51 Q 32 34 50 34" className={s.arrow} markerEnd={`url(#${id}-head)`} />
+          <path d="M30 49 Q 32 34 50 34" className={s.arrow} markerEnd={`url(#${id}-head)`} />
           <text x={22} y={42} className={s.arrowText} textAnchor="end">
             ${arrow.amount}
           </text>
         </g>
       )}
 
-      {/* Names and nets */}
-      <text x={51} y={94} className={s.name} textAnchor="middle">
-        Factory
-      </text>
-      <text x={285} y={94} className={s.name} textAnchor="middle">
-        Laundry
-      </text>
-      <text x={51} y={108} className={s.value} textAnchor="middle">
+      {/* Nets under the blocks */}
+      <text x={51} y={87} className={s.value} textAnchor="middle">
         {factoryNet === null ? "?" : money(factoryNet)}
       </text>
-      <text x={285} y={108} className={s.value} textAnchor="middle">
+      <text x={285} y={87} className={s.value} textAnchor="middle">
         {laundryNet === null ? "?" : money(laundryNet)}
       </text>
       {flash && (
-        <text
-          key={flash.n}
-          x={flash.who === "factory" ? 92 : 240}
-          y={108}
-          className={s.flash}
-          textAnchor={flash.who === "factory" ? "start" : "end"}
-        >
-          {flash.text}
-        </text>
+        <g aria-hidden="true">
+          <text
+            key={flash.n}
+            x={flash.who === "factory" ? 92 : 240}
+            y={87}
+            className={s.flash}
+            textAnchor={flash.who === "factory" ? "start" : "end"}
+          >
+            {flash.text}
+          </text>
+        </g>
       )}
 
       {/* Ruler, $ a year */}
       {band && (
         <g>
-          <rect x={rx(F)} y={114} width={rx(D) - rx(F)} height={28} className={s.band} />
-          <text x={rx(F) + 4} y={139} className={s.bandText}>
+          <rect x={rx(F)} y={89} width={rx(D) - rx(F)} height={20} className={s.band} />
+          <text x={rx(F) + 4} y={105} className={s.bandText}>
             both gain
           </text>
         </g>
       )}
-      <line x1={rx(0)} y1={142} x2={rx(375)} y2={142} className={s.rule} />
+      <line x1={rx(0)} y1={109} x2={rx(375)} y2={109} className={s.rule} />
       {[0, 100, 200, 300].map((v) => (
         <g key={v}>
-          <line x1={rx(v)} y1={139} x2={rx(v)} y2={145} className={s.rule} />
-          <text x={rx(v)} y={155} className={s.tick} textAnchor="middle">
+          <line x1={rx(v)} y1={106} x2={rx(v)} y2={112} className={s.rule} />
+          <text x={rx(v)} y={123} className={s.tick} textAnchor="middle">
             ${v}
           </text>
         </g>
       ))}
-      {/* Filter glyph at $100, smoke glyph at $300 */}
-      <rect x={rx(F) - 6} y={158} width={12} height={5} fill={`url(#${id}-mesh)`} className={s.glyphFilter} />
-      <path d={`M${rx(D) - 7} 161 q3.5 -4 7 0 t7 0`} className={s.glyphSmoke} />
 
       {marks.map((m) => (
         <g key={m.at}>
-          <text x={rx(m.at)} y={124} className={m.ok ? s.markTextGood : s.markTextBad} textAnchor="middle">
+          <text x={rx(m.at)} y={98} className={m.ok ? s.markTextGood : s.markTextBad} textAnchor="middle">
             ${m.at}
           </text>
           {m.ok ? (
-            <circle cx={rx(m.at)} cy={133} r={5} className={s.markGood} />
+            <circle cx={rx(m.at)} cy={103} r={4.5} className={s.markGood} />
           ) : (
             <g className={s.markBad}>
-              <circle cx={rx(m.at)} cy={133} r={5} />
-              <path d={`M${rx(m.at) - 3} 130 l6 6 M${rx(m.at) + 3} 130 l-6 6`} />
+              <circle cx={rx(m.at)} cy={103} r={4.5} />
+              <path d={`M${rx(m.at) - 3} 100 l6 6 M${rx(m.at) + 3} 100 l-6 6`} />
             </g>
           )}
         </g>
       ))}
-
-      {/* Total */}
-      <text x={X0} y={182} className={s.name}>
-        Total
-      </text>
-      {total !== null && <rect x={BAR0} y={172} width={BAR * Math.abs(total)} height={12} rx={2} className={s.totalBar} />}
-      <text x={total === null ? BAR0 : BAR0 + BAR * Math.abs(total) + 6} y={182} className={s.value}>
-        {total === null ? "?" : money(total)}
-      </text>
     </svg>
   );
 }
@@ -275,9 +274,6 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           laundryNet={p1Laundry}
           flash={flash.panel === 1 ? flash.f : null}
         />
-        <p className={s.live} aria-live="polite">
-          {`Right to pollute: factory ${money(p1Factory)}, laundry ${money(p1Laundry)}, total ${money(p1Factory + p1Laundry)}.`}
-        </p>
         <Row>
           {OFFERS.map((o) => (
             <Control
@@ -303,11 +299,6 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           laundryNet={p2Laundry}
           flash={null}
         />
-        <p className={s.live} aria-live="polite">
-          {p2Factory === null || p2Laundry === null
-            ? "Right to clean air: the factory has not chosen."
-            : `Right to clean air: factory ${money(p2Factory)}, laundry ${money(p2Laundry)}, total ${money(p2Factory + p2Laundry)}.`}
-        </p>
         <Row>
           <Control
             className={`${s.half} ${paid ? "active" : ""}`}
@@ -328,6 +319,16 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           </Control>
         </Row>
       </div>
+      {/* Screen-reader ledgers sit outside the panels: an absolutely positioned sibling would stop the card's
+          phone fit from shrinking the panel pictures (W-287 canShrink). */}
+      <p className={s.live} aria-live="polite">
+        {`Right to pollute: factory ${money(p1Factory)}, laundry ${money(p1Laundry)}, total ${money(p1Factory + p1Laundry)}.`}
+      </p>
+      <p className={s.live} aria-live="polite">
+        {p2Factory === null || p2Laundry === null
+          ? "Right to clean air: the factory has not chosen."
+          : `Right to clean air: factory ${money(p2Factory)}, laundry ${money(p2Laundry)}, total ${money(p2Factory + p2Laundry)}.`}
+      </p>
     </div>
   );
 }
@@ -360,14 +361,13 @@ function Reveal() {
     <>
       <p>
         With the right to pollute, your $200 offer got the filter fitted: it sits in the shaded band, above the $100 filter, so the
-        factory gains, and below the $300 the smoke costs the laundry, so the laundry gains. With the factory liable, it fitted the
-        filter itself: $100 beats $300 of damages.
+        factory gains, and below the $300 of smoke, so the laundry gains. With the factory liable, it fitted the filter itself:
+        $100 beats $300 of damages.
       </p>
       <p>
-        Look at the two Totals: <strong>{"−"}$100 both times</strong>. The right decided only who pays, the laundry or the
-        factory. Economists call this idea the Coase theorem.
+        Look at the two Totals: <strong>{"−"}$100 both times</strong>. The right decided only who pays. Economists call this
+        the Coase theorem; with costly bargaining or many people, it can fail.
       </p>
-      <p>Here bargaining is free; with costly bargaining or many people, it can fail.</p>
     </>
   );
 }

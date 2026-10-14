@@ -40,18 +40,16 @@
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c3",
-      "text": "Every step back, some lines pick the same mother and join; joined lines never split, so with only 50 women to choose from, joins continue until one line is left.",
+      "text": "Every step back, some lines pick the same mother and join; joined lines never split, so with only 50 women, joins continue until one line is left.",
       "support": "derivation",
-      "source": "Each woman has exactly one mother, so two lines that share an ancestor share every earlier ancestor; with a finite population of 50 the number of lines can only fall, and falls with positive probability each generation while more than one line remains, so it reaches 1 with probability 1. · Fact-check pass 23 2026-10-14: Re-derived: one mother per woman, so joined lines share all earlier ancestors; line count is non-increasing and falls with positive probability whenever k > 1, so it reaches 1 almost surely (all 1,000 seeded runs did).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Each woman has exactly one mother, so two lines that share an ancestor share every earlier ancestor; with a finite population of 50 the number of lines can only fall, and falls with positive probability each generation while more than one line remains, so it reaches 1 with probability 1. · Fact-check pass 23 2026-10-14: Re-derived: one mother per woman, so joined lines share all earlier ancestors; line count is non-increasing and falls with positive probability whenever k > 1, so it reaches 1 almost surely (all 1,000 seeded runs did). | v3 (demo-builder, 2026-10-14): learner r8 phone fit: reveal now \"Every step back, some lines pick the same mother and join; joined lines never split. With only 50 women, joins continue until one line is left.\" ('to choose from' cut). Meaning unchanged. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c4",
       "text": "The common mother was not alone: 49 other women lived beside her, but their maternal lines did not reach today.",
       "support": "derivation",
-      "source": "The model keeps 50 women in every generation; at the meeting generation only one of them is a maternal ancestor of all of today's 50 women, and by definition no other woman of that generation has a maternal line to today. · Fact-check pass 23 2026-10-14: Re-derived: N = 50 in every generation; at the meeting generation every present-day maternal line passes through the one mother, so none of the other 49 has a maternal line to today. | v3 (demo-builder, 2026-10-14): learner r8: the '+ 49 others' row label is now 12 px in a 360-wide viewBox (about 10.7 px on a phone) and, at the reveal, the tree draws at least generation 99 so the row the reveal sentence points at is always on the stage. Text unchanged. Needs re-check of the stage behaviour.",
+      "source": "The model keeps 50 women in every generation; at the meeting generation only one of them is a maternal ancestor of all of today's 50 women, and by definition no other woman of that generation has a maternal line to today. · Fact-check pass 23 2026-10-14: Re-derived: N = 50 in every generation; at the meeting generation every present-day maternal line passes through the one mother, so none of the other 49 has a maternal line to today. | v3 (demo-builder, 2026-10-14): learner r8: the '+ 49 others' row label is now 12 px in a 360-wide viewBox (about 10.7 px on a phone) and, when the reveal opens the slider is set to at least generation 99 (the learner may move it again), so the row the reveal sentence points at is on the stage. Text unchanged. Needs re-check of the stage behaviour.",
       "status": "unverified"
     },
     {

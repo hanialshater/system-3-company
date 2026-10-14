@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.short-jobs-clear-a-queue.recall",
+      "text": "Total waiting is the sum of start times: 0 + 2 + 10 = 12 for 2, 8, 20, against 0 + 20 + 28 = 48 for 20, 8, 2.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "With all jobs ready, which reduces total waiting in this fixture?",
+    "question": "Three people wait at one desk with jobs of 2, 8 and 20 minutes, all ready now. Which order gives the least total waiting?",
     "options": [
-      "Short jobs first",
-      "Long jobs first"
+      "2, 8, 20",
+      "20, 8, 2",
+      "8, 2, 20"
     ],
     "answer": 0,
-    "why": "Total waiting is the sum of each start time. Moving a short job ahead reduces how long later jobs wait; this objective ignores deadlines."
+    "why": "Total waiting is the sum of start times: 0 + 2 + 10 = 12 for 2, 8, 20, against 0 + 20 + 28 = 48 for 20, 8, 2."
   },
   "evidence": {
     "qa": [],

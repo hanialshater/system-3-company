@@ -16,16 +16,15 @@
 }
 
 .panels :global(.stage-svg) {
-  flex: 1 1 0;
-  min-height: 120px;
+  flex: none;
   height: auto;
 }
 
 .panels > :global(.row) {
   flex: none;
   flex-wrap: nowrap;
-  margin-top: 2px;
-  margin-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .chip {
@@ -69,32 +68,32 @@
 }
 
 .title {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 800;
   fill: var(--fg);
 }
 
 .tag {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   fill: var(--muted);
 }
 
 .name {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   fill: var(--fg);
 }
 
 .value {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   fill: var(--fg);
 }
 
 .tick {
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   fill: var(--muted);
@@ -160,7 +159,7 @@
 }
 
 .arrowText {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 800;
   fill: var(--domain);
 }
@@ -178,7 +177,7 @@
 }
 
 .bandText {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   fill: var(--good);
 }
@@ -207,13 +206,13 @@
 }
 
 .markTextGood {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   fill: var(--good);
 }
 
 .markTextBad {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   fill: var(--bad);
 }
@@ -226,7 +225,7 @@
 
 /* Decoration only: the mark a press leaves stays; this label fades. */
 .flash {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   fill: var(--bad);
   animation: fadeOut 250ms ease-in 150ms forwards;

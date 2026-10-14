@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.zoom-does-not-rewrite.recall",
+      "text": "Zoom changes the view, not the stored text.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What remains unchanged when zooming?",
+    "question": "You zoom a document to 200%. What happens to its word count?",
     "options": [
-      "Stored text",
-      "Screen size of letters"
+      "It stays the same",
+      "It doubles as the letters grow",
+      "It drops as fewer words fit"
     ],
     "answer": 0,
-    "why": "The displayed scale changes while the stored tokens remain the same. View magnification and document content are separate state in this exercise."
+    "why": "Zoom changes the view, not the stored text."
   },
   "evidence": {
     "qa": [],

@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.file-modified-not-created.recall",
+      "text": "Editing updates the modified date; the created date stays in 2019.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "For recent edits, which field matters?",
+    "question": "Yesterday you edited a spreadsheet you created in 2019. Which filter finds it as yesterday's work?",
     "options": [
-      "Modified date",
-      "Created date"
+      "Created: yesterday",
+      "Modified: yesterday",
+      "Largest files first"
     ],
-    "answer": 0,
-    "why": "The fixture stores both dates. A recently modified file may have been created long before; the field must match the question."
+    "answer": 1,
+    "why": "Editing updates the modified date; the created date stays in 2019."
   },
   "evidence": {
     "qa": [],

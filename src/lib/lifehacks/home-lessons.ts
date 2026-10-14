@@ -718,7 +718,7 @@ export const homeLessons: HomeSpec[] = [
     "question": "Which number describes water released by all items?",
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
     "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
-    "warning": "Dry indoors with a window open or a vent on: the water ends up in the room.",
+    "warning": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
     "formula": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
     "recall": "Why should you count the whole wet load rather than one garment?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",

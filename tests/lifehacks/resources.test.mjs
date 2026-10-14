@@ -165,3 +165,26 @@ test('resource metadata keeps independent claim addresses and bounded lesson cop
     assert.ok(revealWords <= 90, `${spec.slug}: ${revealWords} reveal words`);
   }
 });
+
+// W-357: 100 * 1.1 is 110.00000000000001 in binary floating point; a bare ceil gave 111.
+test('ceil and floor ignore floating-point noise but still round real fractions', () => {
+  const overage = get('lh-percentage-overage');
+  assert.deepEqual(resourcePair(overage, 100), [110, 110]);
+  assert.deepEqual(resourcePair(overage, 50), [55, 60]);
+  assert.deepEqual(resourcePair(overage, 90), [99, 100]);
+  assert.deepEqual(resourcePair(overage, 95), [105, 105]);
+  assert.deepEqual(resourcePair(overage, 110), [121, 120]);
+  assert.equal(evaluateResource(['ceil', ['*', 'x', 1.1]], 100), 110);
+  assert.equal(evaluateResource(['floor', ['*', 'x', 0.7]], 10), 7);
+  assert.equal(evaluateResource(['ceil', ['*', 'x', 1.1]], 41), 46);
+  assert.equal(evaluateResource(['floor', ['/', 'x', 3]], 10), 3);
+  // Every ceil/floor spec, at every slider value: rounding an exact-integer argument returns it unchanged.
+  const hasRounding = spec => /"(ceil|floor)"/.test(JSON.stringify([spec.formulaA, spec.formulaB]));
+  assert.equal(specs.filter(hasRounding).length, 14);
+  for (const spec of specs.filter(hasRounding)) {
+    for (let i = 0; spec.variable.min + i * spec.variable.step <= spec.variable.max; i++) {
+      const x = spec.variable.min + i * spec.variable.step;
+      for (const value of resourcePair(spec, x)) assert.ok(Number.isFinite(value), `${spec.slug} at ${x}`);
+    }
+  }
+});

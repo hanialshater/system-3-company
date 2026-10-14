@@ -61,18 +61,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.humidity-evaporation-gap.recall",
+      "text": "Normalised gap = 1 − RH/100: 0.6 at 40% and 0.2 at 80%, three times larger. A smaller gap means less drive for evaporation. This is not a drying clock.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "At the same temperature, why can high humidity hinder evaporation?",
+    "question": "Two rooms are at the same temperature: one at 40% relative humidity, one at 80%. In the lesson's normalised model, how do their vapour-pressure gaps compare?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Equal, since both rooms are at the same temperature",
+      "Twice as large in the 40% room",
+      "Three times as large in the 40% room"
     ],
-    "answer": 0,
-    "why": "At equal temperature, higher relative humidity means a smaller difference between a wet surface’s saturation vapour pressure and surrounding water vapour. This model shows the gap, not a drying clock. Surface temperature, airflow and fabric also matter; no room-control advice is implied."
+    "answer": 2,
+    "why": "Normalised gap = 1 − RH/100: 0.6 at 40% and 0.2 at 80%, three times larger. A smaller gap means less drive for evaporation. This is not a drying clock."
   },
   "evidence": {
     "qa": [],

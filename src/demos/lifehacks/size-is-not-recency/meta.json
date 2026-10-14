@@ -56,17 +56,25 @@
       "status": "disputed",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.size-is-not-recency.recall",
+      "text": "Size and name do not record when a file changed; sort by the field that answers the question.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "To find the latest fixture file, which sort fits?",
+    "question": "You want the last file you worked on. Which sort puts it on top?",
     "options": [
-      "Modified day",
-      "Size"
+      "Size, largest file first",
+      "Name, alphabetical A to Z",
+      "Date modified, newest first"
     ],
-    "answer": 0,
-    "why": "The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file."
+    "answer": 2,
+    "why": "Size and name do not record when a file changed; sort by the field that answers the question."
   },
   "evidence": {
     "qa": [],

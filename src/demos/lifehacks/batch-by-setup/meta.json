@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.batch-by-setup.recall",
+      "text": "Grouping needs one switch (2 minutes); alternating needs three (6 minutes).",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which order needs fewer setup switches?",
+    "question": "Tasks: email, call, email, call. Each change between email and calls costs 2 minutes. Which order costs least switching?",
     "options": [
-      "Group equal tags",
-      "Alternate tags"
+      "email, email, call, call",
+      "email, call, email, call",
+      "call, email, call, email"
     ],
     "answer": 0,
-    "why": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost."
+    "why": "Grouping needs one switch (2 minutes); alternating needs three (6 minutes)."
   },
   "evidence": {
     "qa": [],

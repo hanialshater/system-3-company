@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.iso-date-filename-sort.recall",
+      "text": "Year-first names put the largest unit first; '05-01-2026' and 'Jan' sort ahead of 2025 as text.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which format sorts these dates chronologically as text?",
+    "question": "Which naming makes the 10 March 2025 file sort before the 5 January 2026 file alphabetically?",
     "options": [
-      "YYYY-MM-DD",
-      "DD-MM-YYYY"
+      "10-03-2025 and 05-01-2026",
+      "2025-03-10 and 2026-01-05",
+      "Mar 10 2025 and Jan 5 2026"
     ],
-    "answer": 0,
-    "why": "The year-month-day names put the largest time unit first. For these fixed-width dates, alphabetical and chronological order coincide."
+    "answer": 1,
+    "why": "Year-first names put the largest unit first; '05-01-2026' and 'Jan' sort ahead of 2025 as text."
   },
   "evidence": {
     "qa": [],

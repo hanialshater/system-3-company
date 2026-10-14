@@ -52,17 +52,25 @@
       "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
       "id": "lifehacks.mail-exact-phrase.c4",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.mail-exact-phrase.recall",
+      "text": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches.",
+      "support": "source",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What does a quoted phrase require in this fixture?",
+    "question": "You search for \"red car\" in quotes. Which message matches?",
     "options": [
-      "Same adjacent words",
-      "Words anywhere"
+      "'The car was red'",
+      "'Red paint, car keys'",
+      "'I saw a red car'"
     ],
-    "answer": 0,
-    "why": "The quoted phrase matches an adjacent sequence. Separate words would match a larger set; quotation changes the matching rule."
+    "answer": 2,
+    "why": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches."
   },
   "evidence": {
     "qa": [],

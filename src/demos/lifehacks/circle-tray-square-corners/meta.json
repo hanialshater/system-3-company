@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.circle-tray-square-corners.recall",
+      "text": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which kind of packing change can matter for circles when rotation cannot?",
+    "question": "Equal discs sit in a square grid on a tray. Which change could alter how many fit?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Rotating each disc a quarter-turn",
+      "Switching to staggered rows",
+      "Turning every disc upside down"
     ],
-    "answer": 0,
-    "why": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment. This is not an optimal circle-packing solver; staggered rows can behave differently."
+    "answer": 1,
+    "why": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can."
   },
   "evidence": {
     "qa": [],

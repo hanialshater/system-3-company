@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.handoff-after-finish.recall",
+      "text": "The review starts when the draft is released at 10:30, so it ends at 11:00 at the earliest.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "When can review start in this model?",
+    "question": "Ana drafts 9:00–10:30. Bo reviews for 30 minutes and cannot review a partial draft. When can the review end, at the earliest?",
     "options": [
-      "After draft finishes",
-      "When drafting starts"
+      "9:30",
+      "11:00",
+      "10:30"
     ],
-    "answer": 0,
-    "why": "Draft completion releases the input for review. Overlap may be possible in other workflows, but this fixture explicitly forbids partial handoffs."
+    "answer": 1,
+    "why": "The review starts when the draft is released at 10:30, so it ends at 11:00 at the earliest."
   },
   "evidence": {
     "qa": [],

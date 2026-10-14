@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.copy-keeps-the-original.recall",
+      "text": "Copy leaves the source in place and adds an instance at the destination.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What does copy preserve?",
+    "question": "You copy paragraph 2 and paste it at the end. How many instances of paragraph 2 does the document now have?",
     "options": [
-      "Original source",
-      "Only destination"
+      "One, at the end",
+      "One, in its old place",
+      "Two"
     ],
-    "answer": 0,
-    "why": "Copy leaves the source in place and creates destination content. This fixture models that command; operating-system clipboard rules are outside it."
+    "answer": 2,
+    "why": "Copy leaves the source in place and adds an instance at the destination."
   },
   "evidence": {
     "qa": [],

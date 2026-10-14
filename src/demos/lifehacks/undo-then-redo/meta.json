@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.undo-then-redo.recall",
+      "text": "Undo steps back to 'cat'; Redo reapplies the change to 'dog'.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which command returns to the prior edit state?",
+    "question": "A word reads 'cat'. In one edit you change it to 'dog', then press Undo, then Redo. What does it read?",
     "options": [
-      "Undo",
-      "Redo"
+      "dog",
+      "cat",
+      "Nothing; it was deleted"
     ],
     "answer": 0,
-    "why": "Undo returns to the previous stored state and redo reapplies that state transition. Apps differ in which operations and histories support these commands."
+    "why": "Undo steps back to 'cat'; Redo reapplies the change to 'dog'."
   },
   "evidence": {
     "qa": [],

@@ -125,3 +125,44 @@ export function homeRulerScene(spec: HomeSpec, p: number, after: boolean) {
     folds:cut&&after?[zero+a*scale,zero+(a+p)*scale]:[],
     marks:mark?Array.from({length:Math.round(p)},(_,i)=>({target:zero+(i+1)*a*scale,actual:zero+((i+1)*a+(after?b:(i+1)*b))*scale})):[]};
 }
+
+/**
+ * Geometry for the plain-cord stage (view 'cord', W-358). Before this, Scene had no cord branch and these
+ * lessons drew the default box. Counts match evaluateHome: drawn free ends = 2 x cords loose, 0 secured;
+ * drawn crossings = 1 or 0; coil radius and turns use the model's radius and declared length.
+ * Plain cord only: no plug, device, power or stretch is drawn.
+ */
+export function homeCordScene(spec: HomeSpec, p: number, after: boolean) {
+  const [a = 1] = spec.values;
+  if (spec.model === 'end-paths') {
+    const cords = Math.max(1, Math.round(p)), mid = 120;
+    const strands = Array.from({ length: cords }, (_, i) => {
+      const k = i - (cords - 1) / 2, tight = mid + k * 5;
+      if (after) return { d: `M50,${tight}H250`, ends: [] as { x: number; y: number }[] };
+      const left = mid + k * (110 / Math.max(1, cords - 1)) * (cords > 1 ? 1 : 0);
+      const right = mid + k * (100 / Math.max(1, cords - 1)) * (cords > 1 ? 1 : 0) + (i % 2 ? 9 : -9);
+      return { d: `M30,${left}C90,${left} 105,${tight} 150,${tight}S215,${right} 270,${right}`, ends: [{ x: 30, y: left }, { x: 270, y: right }] };
+    });
+    const span = (cords - 1) * 5 + 14;
+    const ties = (after ? [50, 150, 250] : [150]).map(x => ({ x: x - 6, y: mid - span / 2, width: 12, height: span }));
+    return { kind: 'end-paths' as const, strands, ties, ends: strands.flatMap(s => s.ends) };
+  }
+  if (spec.model === 'loop-release') {
+    const scale = 3, start = 190, end = start + p * scale;
+    const cord = after ? `M24,150H${end}` : `M24,150H110L170,100A30,30 0 1 0 130,100L190,150H${end}`;
+    return { kind: 'loop-release' as const, cord, end, start, scale, travel: a * scale,
+      crossings: after ? [] : [{ x: 150, y: 125 }] };
+  }
+  if (spec.model === 'coil-radius') {
+    const radius = after ? 2 * p : p, scale = 95 / 40, r = radius * scale;
+    const turns = a / (2 * Math.PI * radius), whole = Math.min(7, Math.floor(turns)), part = turns - Math.floor(turns);
+    const cx = 140, cy = 120;
+    const loops = Array.from({ length: whole }, (_, i) => ({ cx: cx + i * 3, cy, r }));
+    const angle = 2 * Math.PI * part, ox = cx + whole * 3;
+    const partial = part > 0.01 && whole < 7
+      ? `M${ox + r},${cy}A${r},${r} 0 ${angle > Math.PI ? 1 : 0} 1 ${ox + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`
+      : '';
+    return { kind: 'coil-radius' as const, cx, cy, r, radius, turns, loops, partial };
+  }
+  return null;
+}

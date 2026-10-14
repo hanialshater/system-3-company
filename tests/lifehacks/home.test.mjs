@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { evaluateHome, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene } from '../../src/lib/lifehacks/home-models.ts';
+import { evaluateHome, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene } from '../../src/lib/lifehacks/home-models.ts';
 const source=fs.readFileSync(new URL('../../src/lib/lifehacks/home-lessons.ts',import.meta.url),'utf8');
 const specs=JSON.parse(source.slice(source.indexOf('= [')+2,source.lastIndexOf(';')));
 const get=slug=>specs.find(s=>s.slug===slug);
@@ -126,4 +126,23 @@ test('fold allowances, conversion span and repeated mark bias use their own real
  const stepping=homeRulerScene(get('tape-mark-same-spacing'),5,false);
  close((origin.marks[4].actual-origin.marks[4].target)/origin.scale,0.2);
  close((stepping.marks[4].actual-stepping.marks[4].target)/stepping.scale,1);
+});
+
+// W-358: view 'cord' lessons on the generic stage had no drawing branch and showed the default box.
+test('every plain-cord lesson on the generic stage gets a cord drawing that matches its model',()=>{
+ const generic=specs.filter(s=>s.view==='cord'&&!['cord','bow','wobble'].includes(s.model));
+ assert.deepEqual(generic.map(s=>s.slug).sort(),['coiled-cord-bend-radius','elastic-loop-release','group-cables-with-ends']);
+ for(const s of generic) for(const p of [s.min,s.initial,s.max]) for(const after of [false,true]) assert.ok(homeCordScene(s,p,after),`${s.slug} ${p} ${after}`);
+ const ends=get('group-cables-with-ends');
+ for(let p=ends.min;p<=ends.max;p+=ends.step) {
+  assert.equal(homeCordScene(ends,p,false).ends.length,value('group-cables-with-ends',p,false));
+  assert.equal(homeCordScene(ends,p,true).ends.length,value('group-cables-with-ends',p,true));
+ }
+ const loop=get('elastic-loop-release');
+ assert.equal(homeCordScene(loop,20,false).crossings.length,value('elastic-loop-release',20,false));
+ assert.equal(homeCordScene(loop,20,true).crossings.length,value('elastic-loop-release',20,true));
+ assert.ok(homeCordScene(loop,loop.max,false).end<=300);
+ const coil=get('coiled-cord-bend-radius'),narrow=homeCordScene(coil,10,false),wide=homeCordScene(coil,10,true);
+ close(wide.r,2*narrow.r);close(narrow.turns,200/(2*Math.PI*10));close(wide.turns*2,narrow.turns);
+ assert.ok(homeCordScene(coil,coil.max,true).cy-homeCordScene(coil,coil.max,true).r>=20);
 });

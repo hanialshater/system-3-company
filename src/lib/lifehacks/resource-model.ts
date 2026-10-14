@@ -25,6 +25,17 @@ export interface ResourceSpec {
   recall: { question: string; options: string[]; answer: number; why: string };
 }
 
+/**
+ * Binary floating point leaves noise on products such as 100 * 1.1 = 110.00000000000001, and a bare
+ * Math.ceil turns that noise into a whole extra unit (111). Before ceil/floor, a value within a
+ * relative 1e-9 of an integer is snapped to that integer (W-357). No declared input in
+ * resource-specs.json carries a real fractional part that small, so genuine fractions still round.
+ */
+export function snapToInteger(value: number): number {
+  const nearest = Math.round(value);
+  return Math.abs(value - nearest) <= 1e-9 * Math.max(1, Math.abs(value)) ? nearest : value;
+}
+
 /** Small, deterministic arithmetic tree: no eval, network, random values or hidden prices. */
 export function evaluateResource(expression: ResourceExpression, x: number): number {
   if (expression === "x") return x;
@@ -36,8 +47,8 @@ export function evaluateResource(expression: ResourceExpression, x: number): num
     case "-": return values[0] - values[1];
     case "*": return values.reduce((a, b) => a * b, 1);
     case "/": return values[0] / values[1];
-    case "ceil": return Math.ceil(values[0]);
-    case "floor": return Math.floor(values[0]);
+    case "ceil": return Math.ceil(snapToInteger(values[0]));
+    case "floor": return Math.floor(snapToInteger(values[0]));
     case "sqrt": return Math.sqrt(values[0]);
     case "min": return Math.min(...values);
     case "max": return Math.max(...values);

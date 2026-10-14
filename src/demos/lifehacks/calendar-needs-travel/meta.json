@@ -49,25 +49,23 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "For a 14:30 meeting and a fixed 20-minute trip with no delay, latest departure is 14:10.",
+      "id": "lifehacks.calendar-needs-travel.recall",
+      "text": "The 25-minute trip occupies 10:05–10:30, so only five minutes remain before you leave.",
       "support": "derivation",
-      "source": "Arithmetic:14:30−00:20=14:10. A stipulated duration and no-delay assumption, not a real travel-time recommendation. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "id": "lifehacks.calendar-needs-travel.c4",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A meeting starts at 14:30. The trip takes 20 minutes with no delay. What is the latest departure?",
+    "question": "Your calendar is free 10:00–10:30, then a 10:30 meeting 25 minutes away (no delays). How much of that slot is really free?",
     "options": [
-      "14:10",
-      "14:30",
-      "14:50"
+      "10:00–10:05",
+      "All 30 minutes",
+      "10:25–10:30"
     ],
     "answer": 0,
-    "why": "Reserve the trip before arrival: 14:30 minus 20 minutes is 14:10. Real journey uncertainty is outside this fixed-duration exercise."
+    "why": "The 25-minute trip occupies 10:05–10:30, so only five minutes remain before you leave."
   },
   "evidence": {
     "qa": [],

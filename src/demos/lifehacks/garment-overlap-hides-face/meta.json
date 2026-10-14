@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.recall",
+      "text": "Both touching faces are hidden from the air: 2 × 20 × 60 = 2400 cm². The amount of cloth is unchanged; its exposed area is not.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why does hanging two sheets in the same outline not expose both fully?",
+    "question": "Two 100 × 60 cm sheets hang with a 20 cm overlap along their 60 cm edges. How much face area does the overlap hide?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "2400 cm²",
+      "1200 cm²",
+      "None: all the cloth is still there"
     ],
     "answer": 0,
-    "why": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same. Real draping and edge exposure differ; no universal time saving is claimed."
+    "why": "Both touching faces are hidden from the air: 2 × 20 × 60 = 2400 cm². The amount of cloth is unchanged; its exposed area is not."
   },
   "evidence": {
     "qa": [],

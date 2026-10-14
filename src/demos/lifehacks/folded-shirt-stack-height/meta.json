@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.folded-shirt-stack-height.recall",
+      "text": "Halving the footprint doubles the layers, which doubles the height: 5 × 0.4 × 4 = 8 cm. The material volume is unchanged; it moved upward. Real fabric compresses and traps air.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why can smaller folded shirts make a drawer too shallow?",
+    "question": "Five shirts folded into 2 layers make a 4 cm stack. Fold each once more, into 4 layers. How tall is the stack in the ideal sheet model?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "2 cm",
+      "4 cm",
+      "8 cm"
     ],
-    "answer": 0,
-    "why": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume. Real fabrics compress and trap air; these are sheet-model dimensions."
+    "answer": 2,
+    "why": "Halving the footprint doubles the layers, which doubles the height: 5 × 0.4 × 4 = 8 cm. The material volume is unchanged; it moved upward. Real fabric compresses and traps air."
   },
   "evidence": {
     "qa": [],

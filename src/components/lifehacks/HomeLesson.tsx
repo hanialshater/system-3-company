@@ -5,7 +5,7 @@ import type { LessonProps, StageContext } from '@/kit/Lesson';
 import { Control, Slider } from '@/kit/controls';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
-import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
+import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
 import s from './HomeLesson.module.css';
 
 function Scene({ spec, p, after, result, locked }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean }) {
@@ -96,6 +96,12 @@ function Scene({ spec, p, after, result, locked }: { spec:HomeSpec; p:number; af
     const envelope=model==='fit'?(after?v[1]:v[0]):model==='clearance'?(v[0]+(after?2*v[1]:0)):model==='inside-width'?(after?p-2*v[0]:p):model==='tolerance'?(after?p-2*v[1]:p):p;
     const width=Math.min(250,Math.max(30,envelope*3));
     art=<><path d="M45,35v155M255,35v155M45,35h210" className={s.line}/>{rect(150-width/2,65,width,105,'object',result.value<0)}{model==='clearance'&&after&&<><path d={`M${150-width/2},90h-12v45h12M${150+width/2},90h12v45h-12`} className={s.line}/></>}<line x1="45" x2="255" y1="205" y2="205" className={s.air}/><text x="150" y="222" textAnchor="middle">{fmt(p)}cm opening</text></>;
+  } else if(spec.view==='cord') {
+    // W-358: plain cord only (safety records forbid plugs, devices, power or snap-back).
+    const c=homeCordScene(spec,p,after);
+    if(c?.kind==='end-paths') art=<>{c.strands.map((strand,i)=><path key={i} d={strand.d} className={s.line}/>)}{c.ties.map((t,i)=><rect key={`tie${i}`} x={t.x} y={t.y} width={t.width} height={t.height} rx={3} className={s.object}/>)}{c.ends.map((e,i)=><circle key={`end${i}`} cx={e.x} cy={e.y} r={4} className={s.target}/>)}<text x="150" y="222" textAnchor="middle">{after?'Ends tucked into end ties':`${c.ends.length} loose ends`}</text></>;
+    else if(c?.kind==='loop-release') art=<><rect x="12" y="138" width="12" height="24" className={s.outline}/><path d={c.cord} className={s.line}/>{c.crossings.map((x,i)=><circle key={i} cx={x.x} cy={x.y} r={5} className={s.target}/>)}{after&&<><ellipse cx={c.end+14} cy={150} rx={8} ry={22} className={s.hidden}/><path d={`M150,118H${c.end+10}m-6,-4l6,4l-6,4`} className={s.air}/></>}<circle cx={c.end} cy={150} r={3} fill="var(--good)"/><path d={`M${c.start},180v6H${c.end}v-6`} className={s.line}/><text x={(c.start+c.end)/2} y="202" textAnchor="middle">free end {fmt(p)}cm</text></>;
+    else if(c?.kind==='coil-radius') art=<>{c.loops.map((l,i)=><circle key={i} cx={l.cx} cy={l.cy} r={l.r} className={s.line} fill="none"/>)}{c.partial&&<path d={c.partial} className={s.line}/>}<line x1={c.cx} y1={c.cy} x2={c.cx-c.r} y2={c.cy} className={s.air}/><circle cx={c.cx} cy={c.cy} r={2.5} fill="var(--good)"/><text x={c.cx} y={c.cy-c.r-8} textAnchor="middle">r={fmt(c.radius)}cm</text><text x="150" y="234" textAnchor="middle">{fmt(c.turns)} turns of {fmt(v[0])}cm</text></>;
   } else {
     if(model==='circle-area') art=<><rect x="60" y="30" width="180" height="180" className={s.outline}/>{after?<circle cx="150" cy="120" r="90" className={s.object}/>:rect(60,30,180,180,'square')}</>;
     else if(model==='diameter-match') art=<><circle cx="90" cy="120" r={Math.min(60,p*2.5)} className={s.outline}/><circle cx="215" cy="120" r={Math.min(60,(after?p:v[1])*2.5)} className={s.object}/></>;

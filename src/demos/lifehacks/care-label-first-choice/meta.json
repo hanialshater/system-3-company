@@ -61,18 +61,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.recall",
+      "text": "The label's instruction comes first; a convenient layout does not override it. Choose a compatible method, then optimise the space around it.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which information should you check before applying a generic drying hack?",
+    "question": "A sweater's label says dry flat. The quickest layout hangs everything on the line. What should you settle first?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Hang it with the rest, since the fastest layout wins",
+      "Lay it flat, then fit the rest around it",
+      "Hang it, but on a wider hanger"
     ],
-    "answer": 0,
-    "why": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space. Read the real label; different garments permit different processes. No care-symbol artwork is reproduced."
+    "answer": 1,
+    "why": "The label's instruction comes first; a convenient layout does not override it. Choose a compatible method, then optimise the space around it."
   },
   "evidence": {
     "qa": [],

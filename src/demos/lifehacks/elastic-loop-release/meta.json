@@ -55,18 +55,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.elastic-loop-release.recall",
+      "text": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why does the position of a free end matter when judging a tangle?",
+    "question": "A drawn cord crosses over itself, and the loop's free end is within reach. What does the lesson say about whether this is a knot?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Yes: one crossing is enough to prove a knot",
+      "Not if the loop slides off the free end",
+      "Yes: only cutting can remove the crossing"
     ],
-    "answer": 0,
-    "why": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord. Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius."
+    "answer": 1,
+    "why": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting."
   },
   "evidence": {
     "qa": [],

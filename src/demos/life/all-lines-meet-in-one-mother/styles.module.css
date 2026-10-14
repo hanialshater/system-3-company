@@ -24,5 +24,6 @@
 .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .full { grid-column: 1 / -1; }
 .tap { min-height: 44px; }
-/* v3: the readout above already says "N back: k lines", so the slider's own label row is not repeated. */
-.sliderWrap :global(.slider-label) { display: none; }
+/* v3: the slider's own label row is the readout ("Generations back  99 back: 1 line"). */
+.sliderWrap :global(.slider-label) { font-size: 0.9rem; }
+.sliderWrap :global(.slider-label output) { font-size: 0.9rem; }

@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.recall",
+      "text": "A top-access stack is last in, first out. Packing in reverse use order puts the jacket in last, so it is on top when you need it first.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why is the last thing packed sometimes the right first thing to use?",
+    "question": "You will need a jacket first, then a sweater, then a scarf. In what order should they go into a top-opening bag?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Scarf, sweater, jacket",
+      "Jacket, sweater, scarf",
+      "Sweater, jacket, scarf"
     ],
     "answer": 0,
-    "why": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible. Only this stack is modelled; side-opening bags behave differently."
+    "why": "A top-access stack is last in, first out. Packing in reverse use order puts the jacket in last, so it is on top when you need it first."
   },
   "evidence": {
     "qa": [],

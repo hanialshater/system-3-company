@@ -58,24 +58,22 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "lifehacks.laundry-sort-before-walk.c5",
-      "text": "Recall: Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances? Correct answer: 36 m and 12 m. Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
+      "id": "lifehacks.laundry-sort-before-walk.recall",
+      "text": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
       "support": "derivation",
-      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.laundry-sort-before-walk.c1–c3; Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances?",
     "options": [
+      "36 m and 6 m",
       "36 m and 12 m",
-      "18 m and 6 m",
-      "36 m and 6 m"
+      "18 m and 6 m"
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured."
   },
   "evidence": {

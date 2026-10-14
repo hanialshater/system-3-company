@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.bug-report-needs-reproduction.recall",
+      "text": "Input, expected and actual output let someone rerun the same case; a symptom alone does not.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which report supports a reproduction attempt?",
+    "question": "Which bug report lets someone try to reproduce the problem?",
     "options": [
-      "Input expected actual",
-      "It broke"
+      "'Total is wrong, please fix'",
+      "'Entered 3 × 4, expected 12, got 7'",
+      "'Calculator broken since the update'"
     ],
-    "answer": 0,
-    "why": "The three fields allow a reproduction attempt against the same input. Reproducing a symptom is evidence about that case, not proof of its root cause."
+    "answer": 1,
+    "why": "Input, expected and actual output let someone rerun the same case; a symptom alone does not."
   },
   "evidence": {
     "qa": [],

@@ -6,9 +6,11 @@
 // keeps the largest, reusing the shorter answers already on the stage.
 // One representation: four rods, each drawn cut the best way found so far.
 // v4 (learner r8): reveal cut to the 90-word budget (the told length-8 example, c5, is gone) and its reuse example
-// now names the outlined row, best(2) in "2 + best(2)".
+// now names the outlined row, best(2) in "2 + best(2)". Stage compacted: rows 36 apart (viewBox 340 × 152) and the
+// rule line shortened to one line, "best(n) = largest of: piece + best(rest)". When the reveal opens after best(4)
+// was seen, the table is filled again (Start over pressed last would otherwise hide the outlined row it names).
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -35,7 +37,15 @@ const choices = (n: number) =>
 
 const UNIT = 52;
 const X0 = 86;
-const ROW = 40;
+const ROW = 36; // v4: was 40 (phone fit)
+
+/** When the reveal opens after best(4) was seen, fill the table again so the outlined row the reveal names is on the stage. */
+function SyncOnReveal({ on, sync }: { on: boolean; sync: () => void }) {
+  useEffect(() => {
+    if (on) sync();
+  }, [on]); // only when the reveal opens; afterwards Start over still works
+  return null;
+}
 
 export default function CutTheRod({ slug }: { slug: string }) {
   const [filled, setFilled] = useState(0); // best(1)..best(filled) are known
@@ -69,7 +79,7 @@ export default function CutTheRod({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["first-fill", "best-4"]}>
           {(reach) => {
             const fill = () => {
@@ -100,12 +110,13 @@ export default function CutTheRod({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
+                <SyncOnReveal on={phase === "reveal" && seen} sync={() => setFilled(N)} />
                 <p className={s.note}>
                   {n === 0
                     ? "Prices: length 1 $1, 2 $5, 3 $8, 4 $9."
-                    : `best(${n}) = largest of: first piece + best of the rest`}
+                    : `best(${n}) = largest of: piece + best(rest)`}
                 </p>
-                <svg viewBox="0 0 340 172" className="stage-svg" role="img" aria-label={`Best prices filled up to length ${filled}`}>
+                <svg viewBox="0 0 340 152" className="stage-svg" role="img" aria-label={`Best prices filled up to length ${filled}`}>
                   {Array.from({ length: N }, (_, i) => i + 1).map((len) => {
                     const y = 10 + (len - 1) * ROW;
                     const known = len <= filled;

@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-357 ceil float fix, W-358 cord drawings, W-361 safety wording
+- **Changed:**
+  - **W-357:** `resource-model.ts` gets `snapToInteger`. Before ceil or floor, a value within a relative 1e-9 of an integer snaps to it, so 100×1.1 gives 110, not 111. I swept all 14 ceil/floor specs at every slider value, and only lh-percentage-overage changed (at x=50, 90, 100, 110). Its sentence "The formulas match only at that crossover." was false (A=B at 95 and 100). It now reads "Rounding up also ties them at 95; above 100 the percentage order is larger." That changes the principle, recall.why, c3 and c4. Version 2. New fixture in tests/lifehacks/resources.test.mjs.
+  - **W-358:** `Scene` in HomeLesson.tsx had no `view==='cord'` branch, so the lessons fell through to the default view's empty box. I added a pure `homeCordScene` in home-models.ts and a cord branch with plain cord only (no plug or snap-back). It fixes elastic-loop-release and group-cables-with-ends, and also coiled-cord-bend-radius, which had the same bug. All three are version 2. New fixture in tests/lifehacks/home.test.mjs. coiled-cord c1 to c4 lost their FC LH-1 verdicts, because those verdicts were given against the old box.
+  - **W-361 (a, b):** the drying-room-water-load warning now uses the reviewer's wording (c6 unverified, version 2). lh-scale-recipe-portions drops "no cooking guidance" from its assumptions (c1 unverified, version 2).
+  - Build notes: `## Pre-flight v2` in company/reviews/<slug>/build.md for all 6 lessons. W-357, W-358 and W-361 moved to review. Added W-368 (evaluation-steward: outside second read), W-369 (fact-checker: re-checks), W-370 (cm-lifehacks: overage wording) and W-371 (demo-builder: QA and walkthrough).
+- **Believe:** high confidence that the rounding fix is correct and scoped: the sweep found one lesson, and 53/53 lifehacks tests, tsc and check pass. High confidence the cords render: I looked at headless 390x844 screenshots before and after the control. Medium confidence on the drawing design (the coil is small at r=5 to 10 because of the fixed scale). No build or QA was run.
+- **Next:** W-369 fact-checker, W-368 outside reader, W-370 cm-lifehacks, W-371 QA. drying-room-water-load recall.why still waits on the session 2 recall patch.
+- **Blocked:** nothing.
+
 ## 2026-10-14: lifehacks-safety-reviewer, W-359 part 1 (second read of the 9 PR #2 stage lines)
 
 - Did: read the `warning` wiring (ResourceLesson.tsx line 165, HomeLesson.tsx line 188) and the 9 lines; appended a "Second read" to the 10 per-lesson safety records.

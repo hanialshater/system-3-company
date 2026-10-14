@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.recall",
+      "text": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Can empty space make a bag meet a weight limit?",
+    "question": "A bag's limit is 7 kg. The empty bag weighs 2 kg, the contents 6 kg, and a third of its space is still empty. Does it meet the limit?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Yes, because a third of it is empty",
+      "Yes, it is exactly 7 kg",
+      "No: at 8 kg it is 1 kg over"
     ],
-    "answer": 0,
-    "why": "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total. The five-kilogram limit is chosen for this example, not an airline or manufacturer rule."
+    "answer": 2,
+    "why": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule."
   },
   "evidence": {
     "qa": [],

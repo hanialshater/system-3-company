@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.select-before-replace.recall",
+      "text": "Typing over a selection replaces only that position; replace-all would change every match.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which limits the edit to the selected occurrence?",
+    "question": "Text: 'cat, cat, cat'. You select the second 'cat' and type 'dog'. What is the result?",
     "options": [
-      "Selected replacement",
-      "Replace all"
+      "dog, dog, dog",
+      "cat, dog, cat",
+      "dog, cat, cat"
     ],
-    "answer": 0,
-    "why": "The first replacement changes only the selected position. Replace-all changes every exact match; inspect that scope before applying a broad edit."
+    "answer": 1,
+    "why": "Typing over a selection replaces only that position; replace-all would change every match."
   },
   "evidence": {
     "qa": [],

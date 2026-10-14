@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.file-type-then-owner.recall",
+      "text": "Combined filters keep only files that match both conditions: a spreadsheet owned by Lee.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What does adding an owner filter to PDF mean?",
+    "question": "You filter by type = spreadsheet and owner = Lee. Which file matches?",
     "options": [
-      "Both conditions",
-      "Either condition"
+      "budget.xlsx, owner Lee",
+      "budget.xlsx, owner Kim",
+      "notes.docx, owner Lee"
     ],
     "answer": 0,
-    "why": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets."
+    "why": "Combined filters keep only files that match both conditions: a spreadsheet owned by Lee."
   },
   "evidence": {
     "qa": [],

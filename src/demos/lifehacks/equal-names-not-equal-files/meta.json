@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.equal-names-not-equal-files.recall",
+      "text": "Names can collide; only matching contents show a duplicate.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which comparison distinguishes the two report files?",
+    "question": "Two files are both named photo.jpg. How do you check whether they are duplicates?",
     "options": [
-      "Content identifier",
-      "Filename alone"
+      "The same name is enough",
+      "Compare their folder names",
+      "Compare their contents"
     ],
-    "answer": 0,
-    "why": "The two report files have different content identifiers. Names can collide; this fixture compares declared content, not a real cryptographic hash."
+    "answer": 2,
+    "why": "Names can collide; only matching contents show a duplicate."
   },
   "evidence": {
     "qa": [],

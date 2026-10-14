@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.earliest-deadline-first.recall",
+      "text": "A then B finishes A at 10 and B at 13, both on time; B first pushes A to minute 13, past its deadline.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which order respects the minute-15 deadline here?",
+    "question": "Job A takes 10 minutes and is due at minute 10. Job B takes 3 minutes and is due at minute 30. Which order misses no deadline?",
     "options": [
-      "Urgent job first",
-      "Short job first"
+      "B, then A",
+      "A, then B",
+      "Either order"
     ],
-    "answer": 0,
-    "why": "The red deadline markers compare completion with due time. This fixture rewards meeting due dates, rather than minimising average waiting."
+    "answer": 1,
+    "why": "A then B finishes A at 10 and B at 13, both on time; B first pushes A to minute 13, past its deadline."
   },
   "evidence": {
     "qa": [],

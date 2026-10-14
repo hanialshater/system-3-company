@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.breeze-is-not-extra-surface.recall",
+      "text": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Does improving airflow expose an inner towel face that is still folded shut?",
+    "question": "A towel exposes 1.5 m² in still air. A fan doubles the model flux. What happens in the model?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Area becomes 3 m² and the rate doubles",
+      "Area stays 1.5 m² and the rate doubles",
+      "Area stays 1.5 m² and the rate is unchanged"
     ],
-    "answer": 0,
-    "why": "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other. The doubled flux is an illustrative parameter, not a measured benefit from any fan."
+    "answer": 1,
+    "why": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement."
   },
   "evidence": {
     "qa": [],

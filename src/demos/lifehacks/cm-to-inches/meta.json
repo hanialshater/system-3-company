@@ -61,18 +61,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cm-to-inches.recall",
+      "text": "An inch is exactly 2.54 cm, so 127 ÷ 2.54 = 50 in. The 2.5 shortcut gives 50.8 in, and its error grows with length. The measurement itself still has its own uncertainty.",
+      "support": "source",
+      "source": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Does an exact conversion factor make an imprecise measurement exact?",
+    "question": "Convert 127 cm to inches using the exact definition of the inch.",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "50 in",
+      "50.8 in",
+      "317.5 in"
     ],
     "answer": 0,
-    "why": "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length. Measurement uncertainty remains even when the conversion factor is exact."
+    "why": "An inch is exactly 2.54 cm, so 127 ÷ 2.54 = 50 in. The 2.5 shortcut gives 50.8 in, and its error grows with length. The measurement itself still has its own uncertainty."
   },
   "evidence": {
     "qa": [],

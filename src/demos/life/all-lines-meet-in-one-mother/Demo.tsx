@@ -148,8 +148,8 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Every step back, some lines pick the same mother and join; joined lines never split. With only {N} women to
-            choose from, joins continue until one line is left.
+            Every step back, some lines pick the same mother and join; joined lines never split. With only {N} women,
+            joins continue until one line is left.
           </p>
           {mean !== null && (
             <p>

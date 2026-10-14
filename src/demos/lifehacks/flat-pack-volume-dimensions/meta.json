@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.flat-pack-volume-dimensions.recall",
+      "text": "Assembled, the envelope includes the empty hollow: about 40 × 40 × 40 = 64,000 cm³. Stacked, the panels take 40 × 40 × 6 = 9,600 cm³. The material is the same; the hollow is gone. Only dismantle furniture its instructions allow.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What disappears when an empty panel-built object becomes a flat stack?",
+    "question": "An empty cube is built from 6 panels, each 40 × 40 × 1 cm. Roughly what is its outside volume assembled, and with the panels stacked flat?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "9,600 cm³ both ways",
+      "64,000 and 9,600 cm³",
+      "64,000 cm³ both ways"
     ],
-    "answer": 0,
-    "why": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material. Real hardware and edges add volume; never dismantle furniture unless its instructions permit it."
+    "answer": 1,
+    "why": "Assembled, the envelope includes the empty hollow: about 40 × 40 × 40 = 64,000 cm³. Stacked, the panels take 40 × 40 × 6 = 9,600 cm³. The material is the same; the hollow is gone. Only dismantle furniture its instructions allow."
   },
   "evidence": {
     "qa": [],

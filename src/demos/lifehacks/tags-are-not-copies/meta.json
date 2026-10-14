@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.tags-are-not-copies.recall",
+      "text": "Both tags point to one document, so there is only one copy to edit.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "How many underlying documents have two labels here?",
+    "question": "A recipe is tagged 'dinner' and 'vegan'. You fix a typo after opening it from 'vegan'. What do you see when you open it from 'dinner'?",
     "options": [
-      "One",
-      "Two"
+      "The old typo",
+      "The fixed version",
+      "Nothing; the tag is gone"
     ],
-    "answer": 0,
-    "why": "Both labels point to the same fixture identifier. Multiple category links need not create separate copies with diverging contents."
+    "answer": 1,
+    "why": "Both tags point to one document, so there is only one copy to edit."
   },
   "evidence": {
     "qa": [],

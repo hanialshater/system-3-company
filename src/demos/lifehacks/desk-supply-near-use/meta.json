@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.recall",
+      "text": "Each fetch is a 10 m round trip: 8 × 10 = 80 m. A copy at the desk removes that route; the cost is one more item to store.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "When can a second storage location remove repeated travel?",
+    "question": "You fetch tape from a shelf 5 m away 8 times in a session. How far do you walk for it, and how far with a second roll kept at the desk?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "40 m and 0 m",
+      "80 m and 0 m",
+      "80 m and 5 m"
     ],
-    "answer": 0,
-    "why": "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location. The model ignores setup and clutter; it is not a productivity measurement."
+    "answer": 1,
+    "why": "Each fetch is a 10 m round trip: 8 × 10 = 80 m. A copy at the desk removes that route; the cost is one more item to store."
   },
   "evidence": {
     "qa": [],

@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.box-handle-clearance.recall",
+      "text": "The outer envelope includes both handles: 38 + 2 × 4 = 46 cm. The body width alone hides an 8 cm collision.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which parts should be included in the width of a storage box?",
+    "question": "A box body is 38 cm wide, with a 4 cm handle sticking out on each side. What width must the shelf opening exceed?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "38 cm",
+      "42 cm",
+      "46 cm"
     ],
-    "answer": 0,
-    "why": "The external envelope includes protrusions. Adding two handles to the body width changes the fit test even though the advertised box-body dimensions stay the same. Measure the real outermost points; soft handles may flex, which this rigid drawing does not model."
+    "answer": 2,
+    "why": "The outer envelope includes both handles: 38 + 2 × 4 = 46 cm. The body width alone hides an 8 cm collision."
   },
   "evidence": {
     "qa": [],

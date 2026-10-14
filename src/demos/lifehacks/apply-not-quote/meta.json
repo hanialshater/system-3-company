@@ -49,32 +49,30 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "For the fresh recall values 7,1,4, ascending order is 1,4,7 because 1<4<7.",
-      "support": "derivation",
-      "source": "Direct arithmetic comparison of the distinct recall fixture, independent of the stage values 2,5,9. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "id": "lifehacks.apply-not-quote.c4",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
-    },
-    {
       "id": "lifehacks.apply-not-quote.c5",
       "text": "One short reconstruction; not a retention experiment.",
       "support": "convention",
       "source": "Boundary caption rendered from src/lib/lifehacks/studyCatalog.ts (study_apply_not_quote.boundary). Recorded at the PR #2 merge because the stage shows it and no claim held it (claims-match fixture).",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.apply-not-quote.recall",
+      "text": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Arrange the new values 7,1,4 in ascending order. Which result applies the rule?",
+    "question": "Apply the ascending rule to 12, 3 and 8. Which order is correct?",
     "options": [
-      "1→4→7",
-      "7→1→4",
-      "4→7→1"
+      "12, 8, 3",
+      "12, 3, 8",
+      "3, 8, 12"
     ],
-    "answer": 0,
-    "why": "Ascending means smallest to largest: 1 is below 4, and 4 is below 7."
+    "answer": 2,
+    "why": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it."
   },
   "evidence": {
     "qa": [],

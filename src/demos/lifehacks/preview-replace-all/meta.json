@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.preview-replace-all.recall",
+      "text": "A preview shows the full scope of a replace-all, including matches you did not mean, like the title in 'Dr Smith'.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What should a broad edit preview expose?",
+    "question": "You plan to replace every 'Dr' with 'Drive' in an address list. What should you check in the preview first?",
     "options": [
-      "All affected matches",
-      "Only first match"
+      "Only the first 'Dr' found",
+      "The spelling of 'Drive'",
+      "Every match, e.g. 'Dr Smith'"
     ],
-    "answer": 0,
-    "why": "The preview marks every exact match. The applied edit changes each marked token, making its scope inspectable; it does not determine whether the replacement was appropriate."
+    "answer": 2,
+    "why": "A preview shows the full scope of a replace-all, including matches you did not mean, like the title in 'Dr Smith'."
   },
   "evidence": {
     "qa": [],

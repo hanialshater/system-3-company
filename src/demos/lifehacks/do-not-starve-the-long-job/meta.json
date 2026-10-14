@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.do-not-starve-the-long-job.recall",
+      "text": "5 + 5 + 5 + 20 = 35, past minute 22; starting the long job first would finish it at 20.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "For this long job due at minute 25, which order meets its deadline?",
+    "question": "Three 5-minute jobs and a 20-minute job due at minute 22 are all ready. If you do the short jobs first, when does the long job finish?",
     "options": [
-      "Long job first",
-      "Small jobs first"
+      "Minute 20, on time",
+      "Minute 35, late",
+      "Minute 22, just on time"
     ],
-    "answer": 0,
-    "why": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture."
+    "answer": 1,
+    "why": "5 + 5 + 5 + 20 = 35, past minute 22; starting the long job first would finish it at 20."
   },
   "evidence": {
     "qa": [],

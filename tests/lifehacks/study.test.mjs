@@ -140,9 +140,9 @@ test('a smaller target keeps the left interval; scanning stops at the found labe
 });
 test('fresh recall transfer requires sorting and fixed travel arithmetic',()=> {
   const load=slug=>JSON.parse(readFileSync(new URL(`../../src/demos/lifehacks/${slug}/meta.json`,import.meta.url)));
-  const ordering=load('apply-not-quote').recall;assert.equal(ordering.options[ordering.answer],'1→4→7');
-  assert.deepEqual([7,1,4].sort((a,b)=>a-b),[1,4,7]);
-  const travel=load('calendar-needs-travel').recall;assert.equal(travel.options[travel.answer],'14:10');
-  assert.equal(14*60+30-20,14*60+10);
+  const ordering=load('apply-not-quote').recall;assert.equal(ordering.options[ordering.answer],'3, 8, 12');
+  assert.deepEqual([12,3,8].sort((a,b)=>a-b),[3,8,12]);
+  const travel=load('calendar-needs-travel').recall;assert.equal(travel.options[travel.answer],'10:00–10:05');
+  assert.equal(10*60+30-25,10*60+5);
   const labels=load('alphabet-sort-search').recall;assert.equal(labels.options[labels.answer],'Put labels in alphabetical order');
 });

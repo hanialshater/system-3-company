@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.make-a-question-answerable.recall",
+      "text": "Named alternatives and a reply time bound the decision; open prompts can mean almost anything.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which request defines the decision being asked for?",
+    "question": "Which message asks for a decision someone can settle in one reply?",
     "options": [
-      "Choose A or B",
-      "What do you think?"
+      "'Venue: Hall A or Hall B? Reply by Friday'",
+      "'Any thoughts on the venue?'",
+      "'Let me know about the venue sometime'"
     ],
     "answer": 0,
-    "why": "The fixture asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections."
+    "why": "Named alternatives and a reply time bound the decision; open prompts can mean almost anything."
   },
   "evidence": {
     "qa": [],

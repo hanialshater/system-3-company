@@ -4063,25 +4063,27 @@
       "id": "W-357",
       "title": "lh-percentage-overage: at Required=100 the stage shows A=111, not 110 (Math.ceil(100*1.1) = ceil(110.00000000000001)); c3 says the formulas match at 100. Fix the ceil float error in evaluateResource (e.g. round to 1e-9 before ceil/floor), check every other ceil/floor spec in resource-specs.json, add a fixture, bump version, claims stay unverified. PR #2 known dispute.",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [
         "src/demos/lifehacks/lh-percentage-overage/meta.json",
         "src/lib/lifehacks/resource-model.ts"
-      ]
+      ],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-358",
       "title": "elastic-loop-release and group-cables-with-ends: stage is missing its cord drawing (PR #2 known dispute). Draw the plain cord the stage and claims describe; keep the 'Plain cord; storage only' caption and no plug, charger or snap-back (safety records company/reviews/<slug>/2026-10-14-safety.md, watch items). Re-run lesson QA and the walkthrough.",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [
         "company/reviews/elastic-loop-release/2026-10-14-safety.md",
         "company/reviews/group-cables-with-ends/2026-10-14-safety.md"
-      ]
+      ],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-359",
@@ -4114,10 +4116,11 @@
       "id": "W-361",
       "title": "W-359 part 1 follow-ups: (a) drying-room-water-load ventilation line contradicts itself, reword per company/reviews/drying-room-water-load/2026-10-14-safety.md; (b) lh-scale-recipe-portions assumptions 'no cooking guidance' contradicts the new warning; (c) all 9 stage lines need approval from a reader outside lifehacks-safety-reviewer (same-role wording). Then fact-checker sources.",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-362",
@@ -4170,6 +4173,42 @@
       "owner": "demo-builder",
       "state": "backlog",
       "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-368",
+      "title": "W-361(c): outside-role second read of the Life Hacks safety stage lines written in lifehacks-safety-reviewer's own words, starting with drying-room-water-load v2 warning and lh-scale-recipe-portions v2 assumptions (see company/reviews/<slug>/build.md Pre-flight v2 and 2026-10-14-safety.md); also judge recipe principle 'not cooking or nutritional advice' next to the warning",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-369",
+      "title": "Re-check claims reset by W-357/W-358/W-361: lh-percentage-overage c1-c4 (crossover sentence now 'Rounding up also ties them at 95; above 100 the percentage order is larger.'), coiled-cord-bend-radius c1-c4 (FC LH-1 verdicts were against the old box picture), elastic-loop-release and group-cables-with-ends c1-c5 (new cord drawing), drying-room-water-load c6, lh-scale-recipe-portions c1. Notes in company/reviews/<slug>/build.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-370",
+      "title": "Confirm lh-percentage-overage v2 learner wording change (W-357): with correct rounding A=B at 95 and 100, so 'The formulas match only at that crossover.' became 'Rounding up also ties them at 95; above 100 the percentage order is larger.' (principle, recall.why, c3, c4). See company/reviews/lh-percentage-overage/build.md",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-371",
+      "title": "Lesson QA + walkthrough for builder-changed Life Hacks lessons (no build/QA run in that session): lh-percentage-overage v2, elastic-loop-release v2, group-cables-with-ends v2, coiled-cord-bend-radius v2 (new cord drawing), drying-room-water-load v2, lh-scale-recipe-portions v2",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "lifehacks",
       "created": "2026-10-14",
       "links": []
     }

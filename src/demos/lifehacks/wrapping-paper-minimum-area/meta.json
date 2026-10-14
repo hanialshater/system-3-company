@@ -65,18 +65,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.recall",
+      "text": "A box has three pairs of faces: 2 × (30 × 20 + 30 × 10 + 20 × 10) = 2,200 cm². That is a lower bound; real wrapping needs overlap and folds.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why is a box’s surface area only a lower bound for wrapping paper?",
+    "question": "A closed box is 30 × 20 × 10 cm. What is the least paper area that could cover it, before overlaps?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "2,200 cm²",
+      "600 cm²",
+      "1,100 cm²"
     ],
     "answer": 0,
-    "why": "The box has three pairs of equal faces. A single footprint rectangle omits the top and sides; adding all six gives the ideal surface area before overlaps. Wrapping paper also needs overlaps, folds and trim; this is only a geometric lower bound."
+    "why": "A box has three pairs of faces: 2 × (30 × 20 + 30 × 10 + 20 × 10) = 2,200 cm². That is a lower bound; real wrapping needs overlap and folds."
   },
   "evidence": {
     "qa": [],

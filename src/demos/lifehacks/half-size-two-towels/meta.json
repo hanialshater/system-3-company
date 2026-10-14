@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.recall",
+      "text": "Each half has half the face area, so together they match the original: 2 × 0.8 × 1.2 = 1.92 m² either way. Cutting adds edges; only opening a folded sheet reveals hidden faces.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "How is cutting one flat sheet different from opening a folded one?",
+    "question": "A flat 80 × 120 cm sheet, fully exposed, is cut into two 80 × 60 cm halves. What happens to the total face area?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "It stays the same",
+      "It doubles",
+      "It halves"
     ],
     "answer": 0,
-    "why": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation. Edges and fabric thickness are omitted from this area comparison."
+    "why": "Each half has half the face area, so together they match the original: 2 × 0.8 × 1.2 = 1.92 m² either way. Cutting adds edges; only opening a folded sheet reveals hidden faces."
   },
   "evidence": {
     "qa": [],

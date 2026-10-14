@@ -52,17 +52,25 @@
       "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
       "id": "lifehacks.mail-or-vs-and.c4",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.mail-or-vs-and.recall",
+      "text": "OR counts the union: 5 + 8 − 2 shared = 11. AND would keep only the 2.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which includes every match to either condition?",
+    "question": "5 messages are from Ana, 8 have attachments, and 2 are both. How many messages match 'from Ana OR has an attachment'?",
     "options": [
-      "OR",
-      "AND"
+      "11",
+      "2",
+      "13"
     ],
     "answer": 0,
-    "why": "OR includes matches from either set. AND keeps only their intersection; this exercise counts individual records, not Gmail conversations."
+    "why": "OR counts the union: 5 + 8 − 2 shared = 11. AND would keep only the 2."
   },
   "evidence": {
     "qa": [],

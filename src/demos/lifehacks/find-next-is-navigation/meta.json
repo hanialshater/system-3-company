@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.find-next-is-navigation.recall",
+      "text": "Find moves the highlight between matches; the stored text is unchanged.",
+      "support": "convention",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What does Find change here?",
+    "question": "You search for 'tax' and press Find next three times. What has changed in the document's text?",
     "options": [
-      "Highlighted match",
-      "Stored text"
+      "Three 'tax' words were removed",
+      "Nothing",
+      "Each 'tax' is now bold"
     ],
-    "answer": 0,
-    "why": "Find changes the highlighted match while the tokens stay unchanged. Searching and editing are different operations in this local document fixture."
+    "answer": 1,
+    "why": "Find moves the highlight between matches; the stored text is unchanged."
   },
   "evidence": {
     "qa": [],

@@ -58,25 +58,23 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "lifehacks.long-cord-knots-itself.c5",
-      "text": "Recall: Suppose 11 of 20 trials knot a 3 m string in a 30 cm box turning once per second for 10 seconds. What does that show? Correct answer: A 55% observed frequency in that setup; other setups need their own checks. 11 ÷ 20 = 55% is the observed frequency in this stipulated test. It neither guarantees an exact count in another run nor transfers unchanged to a different box, string or motion. This recall example is hypothetical, not an additional reported experiment.",
-      "support": "derivation",
-      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.long-cord-knots-itself.c1–c3; 11 ÷ 20 = 55% is the observed frequency in this stipulated test. It neither guarantees an exact count in another run nor transfers unchanged to a different box, string or motion. This recall example is hypothetical, not an additional reported experiment. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "id": "lifehacks.long-cord-knots-itself.recall",
+      "text": "55% is the frequency observed in a 30 cm box turning once a second for 10 seconds. A drawer is a different box, string and motion, so that number does not transfer to it as a probability.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Suppose 11 of 20 trials knot a 3 m string in a 30 cm box turning once per second for 10 seconds. What does that show?",
+    "question": "In the tumbling-box study, 3 m strings knotted in 55% of trials. What does that tell you about a 3 m cable coiled in your drawer?",
     "options": [
-      "A 55% observed frequency in that setup; other setups need their own checks",
-      "The next 20 trials must produce exactly 11 knots",
-      "Every 3 m household cord has a 55% knot probability"
+      "It will knot 55% of the time too",
+      "The 55% belongs to that box setup only",
+      "It cannot knot at all unless something tumbles it"
     ],
-    "answer": 0,
-    "why": "11 ÷ 20 = 55% is the observed frequency in this stipulated test. It neither guarantees an exact count in another run nor transfers unchanged to a different box, string or motion. This recall example is hypothetical, not an additional reported experiment."
+    "answer": 1,
+    "why": "55% is the frequency observed in a 30 cm box turning once a second for 10 seconds. A drawer is a different box, string and motion, so that number does not transfer to it as a probability."
   },
   "evidence": {
     "qa": [],

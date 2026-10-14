@@ -52,17 +52,25 @@
       "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
       "id": "lifehacks.version-nine-and-ten.c4",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.version-nine-and-ten.recall",
+      "text": "Text sort compares character by character, so '10' comes before '2'; padding to equal width fixes it.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which names sort v9 before v10 alphabetically?",
+    "question": "A plain text sort lists draft1, draft10, draft2. Which names sort as 1, 2, 10?",
     "options": [
-      "v09 and v10",
-      "v9 and v10"
+      "draft1, draft2, draft10",
+      "draft-1, draft-2, draft-10",
+      "draft01, draft02, draft10"
     ],
-    "answer": 0,
-    "why": "The padded versions have the same width. This fixture demonstrates text sorting; many real file browsers already use natural numeric sorting."
+    "answer": 2,
+    "why": "Text sort compares character by character, so '10' comes before '2'; padding to equal width fixes it."
   },
   "evidence": {
     "qa": [],

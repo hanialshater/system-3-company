@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.furniture-through-door.recall",
+      "text": "Fit depends on the width that meets the opening, not on volume. 90 cm fails a 75 cm doorway; turning the box so a 70 cm or 50 cm side meets it leaves clearance. Corners and height need their own checks.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which measurements matter more than litres when checking a doorway?",
+    "question": "A rigid box is 90 × 70 × 50 cm. The doorway is 75 cm wide. Ignoring height and corners, what gets it through?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Turn it so a narrower side meets the opening",
+      "Nothing: the box's volume is too large",
+      "Push it with the 90 cm side across the opening"
     ],
     "answer": 0,
-    "why": "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension. Only a straight opening is modelled; corners, hands and trim need further measurements. Do not lift heavy furniture alone."
+    "why": "Fit depends on the width that meets the opening, not on volume. 90 cm fails a 75 cm doorway; turning the box so a 70 cm or 50 cm side meets it leaves clearance. Corners and height need their own checks."
   },
   "evidence": {
     "qa": [],

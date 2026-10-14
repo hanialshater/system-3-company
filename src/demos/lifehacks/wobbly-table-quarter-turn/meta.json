@@ -58,25 +58,23 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "lifehacks.wobbly-table-quarter-turn.c5",
-      "text": "Recall: A square equal-leg table on gentle continuous ground has four feet touching after a turn. What has been established? Correct answer: All four feet contact the ground; the top may still slope. Contact means the feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it.",
+      "id": "lifehacks.wobbly-table-quarter-turn.recall",
+      "text": "Contact means the four feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it.",
       "support": "source",
-      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.wobbly-table-quarter-turn.c1–c3; Contact means the feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Baritompa, Löwen, Polster & Ross, Mathematical table turning revisited, full text opened 2026-10-14 at https://arxiv.org/pdf/math/0511490. Square equal-leg table, continuous ground and slope/leg length conditions; proof of sign change and balanced position. Our cosine gap is an illustration, not a solution of the full contact geometry. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A square equal-leg table on gentle continuous ground has four feet touching after a turn. What has been established?",
+    "question": "You turn a square equal-leg table on gentle, continuous ground until all four feet touch. What do you now know?",
     "options": [
-      "All four feet contact the ground; the top may still slope",
-      "The tabletop must now be level",
-      "The same result is guaranteed with one short leg"
+      "The tabletop is now level",
+      "It has stopped rocking; the top may still slope",
+      "A table with one short leg would settle the same way"
     ],
-    "answer": 0,
-    "why": "Contact means the feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it."
+    "answer": 1,
+    "why": "Contact means the four feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it."
   },
   "evidence": {
     "qa": [],

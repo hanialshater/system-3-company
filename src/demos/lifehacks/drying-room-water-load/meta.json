@@ -66,22 +66,29 @@
     },
     {
       "id": "lifehacks.drying-room-water-load.c6",
-      "text": "Dry indoors with a window open or a vent on: the water ends up in the room.",
+      "text": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
       "support": "source",
       "source": "Safety-required stage line (company/reviews/drying-room-water-load/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a housing, public-health or energy-advice body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drying-room-water-load.recall",
+      "text": "Water leaving laundry enters the surroundings: 6 × 300 g = 1800 g. This is a mass balance; it does not predict the room's humidity or any health outcome.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Why should you count the whole wet load rather than one garment?",
+    "question": "Six towels each hold 300 g of water. If they dry completely indoors, how much water goes into the room?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "1.8 kg",
+      "300 g",
+      "None: it evaporates away"
     ],
     "answer": 0,
-    "why": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity. Ventilation, temperature and condensation affect the room; do not infer mould or health outcomes from this card."
+    "why": "Water leaving laundry enters the surroundings: 6 × 300 g = 1800 g. This is a mass balance; it does not predict the room's humidity or any health outcome."
   },
   "evidence": {
     "qa": [],
@@ -89,7 +96,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:drying-room-water-load",
     "prerequisites": [],

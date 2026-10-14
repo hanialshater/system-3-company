@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.one-person-two-jobs.recall",
+      "text": "One person runs one block at a time; 10:30–11:00 is booked twice whichever row it is drawn on.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "How many blocks can one person do simultaneously in this model?",
+    "question": "You put 'write report 10:00–11:00' and 'phone cover 10:30–11:00' on two calendar rows. Both are yours. How much time is double-booked?",
     "options": [
-      "One",
-      "Two"
+      "None; they are on separate rows",
+      "60 minutes",
+      "30 minutes"
     ],
-    "answer": 0,
-    "why": "All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity."
+    "answer": 2,
+    "why": "One person runs one block at a time; 10:30–11:00 is booked twice whichever row it is drawn on."
   },
   "evidence": {
     "qa": [],

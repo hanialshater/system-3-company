@@ -56,17 +56,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.estimate-a-range.recall",
+      "text": "At the upper end 13:00 + 35 minutes = 13:35, past the 13:30 call; the short estimate hides that.",
+      "support": "derivation",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which checks the stated worst duration?",
+    "question": "A task takes 20 to 35 minutes. You start at 13:00 and have a fixed call at 13:30. What does checking the longer estimate show?",
     "options": [
-      "Use 25 minutes",
-      "Use 15 minutes"
+      "It fits with 10 minutes to spare",
+      "Nothing; the midpoint is enough",
+      "It may run 5 minutes into the call"
     ],
-    "answer": 0,
-    "why": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough."
+    "answer": 2,
+    "why": "At the upper end 13:00 + 35 minutes = 13:35, past the 13:30 call; the short estimate hides that."
   },
   "evidence": {
     "qa": [],

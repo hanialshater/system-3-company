@@ -63,18 +63,25 @@
       "support": "convention",
       "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.door-swing-clearance.recall",
+      "text": "The door sweeps a quarter-circle whose radius is the door's width. In the model, anything closer to the hinge than 85 cm is inside that arc. Real handles and basket shapes need extra room, and exits must stay clear.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What area should you measure before putting a basket behind a door?",
+    "question": "A door is 85 cm wide. In the lesson's top-down model, how far from the hinge must a small basket sit to stay clear of the swing?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "More than 85 cm",
+      "More than 42.5 cm",
+      "Any distance, if it is against the wall"
     ],
     "answer": 0,
-    "why": "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed. Real handles and basket shapes need extra clearance. Keep exits unobstructed."
+    "why": "The door sweeps a quarter-circle whose radius is the door's width. In the model, anything closer to the hinge than 85 cm is inside that arc. Real handles and basket shapes need extra room, and exits must stay clear."
   },
   "evidence": {
     "qa": [],
