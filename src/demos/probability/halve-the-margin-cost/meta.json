@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "probability.halve-the-margin-cost.c1",
-      "text": "For a random poll of n people with support near 50%, the 95% margin of error is 1.96 x sqrt(0.25 / n): about 3.1 points at 1,000, 2.2 at 2,000 and 1.5 at 4,000.",
+      "text": "For a random poll of n people with support near 50%, the 95% margin of error is 1.96 x sqrt(0.25 / n): about 3.1 points at 1,000, 2.2 at 2,000 and 1.5 at 4,000, so the 4,000 band is half as wide as the dashed 1,000 band (the reveal opens only after a stop at 4,000).",
       "support": "derivation",
-      "source": "Normal approximation to the binomial; margin() in src/demos/probability/halve-the-margin-cost/model.ts gives 3.099, 2.191, 1.550 (also 6.2 at 250, 4.4 at 500, 1.1 at 8,000).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Normal approximation to the binomial; margin() in src/demos/probability/halve-the-margin-cost/model.ts gives 3.099, 2.191, 1.550 (also 6.2 at 250, 4.4 at 500, 1.1 at 8,000). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "probability.halve-the-margin-cost.c2",
@@ -81,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:poll-margin-of-error",
     "prerequisites": [

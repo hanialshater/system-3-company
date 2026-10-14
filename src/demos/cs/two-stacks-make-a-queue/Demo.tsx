@@ -1,6 +1,7 @@
 "use client";
 
-// A queue made of two stacks. The question fixes the script: add 1, 2, 3, 4, then remove four times.
+// A queue made of two stacks. The question fixes the script, interleaved so a second pour happens:
+// add 1, add 2, remove, add 3, add 4, remove, remove, remove (v3; v2 was all adds then all removes).
 // The script is an operation tape of 8 tiles. Only the next tile plays a new operation; played tiles scrub
 // back to the frame after that operation. Remove pops the out-stack; only when it is empty, the whole
 // in-stack is poured over. Every item carries a "moved" badge that counts how often it was poured.
@@ -23,6 +24,13 @@ type Frame = {
   mid?: Frame; // pour frames: the state after the pour, before the item leaves
 };
 
+const OPS = ["add", "add", "rem", "add", "add", "rem", "rem", "rem"] as const;
+const LABEL = (() => {
+  let a = 0;
+  let r = 0;
+  return OPS.map((o) => (o === "add" ? `Add ${++a}` : `Remove ${["1st", "2nd", "3rd", "4th"][r++]}`));
+})();
+
 function simulate(): Frame[] {
   const frames: Frame[] = [{ op: "start", waiting: [1, 2, 3, 4], inS: [], outS: [], left: [], moved: {}, pours: 0 }];
   const clone = (f: Frame): Frame => ({
@@ -36,7 +44,7 @@ function simulate(): Frame[] {
   });
   for (let i = 0; i < 8; i++) {
     const f = clone(frames[i]);
-    if (i < 4) {
+    if (OPS[i] === "add") {
       const x = f.waiting.shift()!;
       f.inS.push(x);
       f.moved[x] = 0;
@@ -59,12 +67,13 @@ function simulate(): Frame[] {
   return frames;
 }
 const FRAMES = simulate();
+// Indices of the tape tiles whose removal pours (first and second pour).
+const POURS = OPS.map((_, i) => i).filter((i) => FRAMES[i + 1].op === "pour");
 
 const SLOT_H = 44;
 const slotY = (slot: number) => 170 - slot * SLOT_H;
 const rowY = (idx: number) => 38 + idx * SLOT_H;
 const X = { wait: 34, in: 124, out: 234, left: 322 };
-const ORD = ["1st", "2nd", "3rd", "4th"];
 
 function where(f: Frame, k: number): { x: number; y: number; pourIdx: number } {
   let i = f.waiting.indexOf(k);
@@ -72,14 +81,14 @@ function where(f: Frame, k: number): { x: number; y: number; pourIdx: number } {
   i = f.inS.indexOf(k);
   if (i >= 0) return { x: X.in, y: slotY(i), pourIdx: 0 };
   i = f.outS.indexOf(k);
-  if (i >= 0) return { x: X.out, y: slotY(i), pourIdx: 4 - k };
+  if (i >= 0) return { x: X.out, y: slotY(i), pourIdx: i };
   i = f.left.indexOf(k);
   return { x: X.left, y: rowY(i), pourIdx: 0 };
 }
 
 function Stage({ locked, phase, interact }: { locked: boolean; phase: string; interact: () => void }) {
   return (
-    <Milestones interact={interact} names={["poured", "all-out"]}>
+    <Milestones interact={interact} names={["poured", "second-pour", "all-out"]}>
       {(reach) => <Tape locked={locked} phase={phase} reach={reach} />}
     </Milestones>
   );
@@ -112,8 +121,9 @@ function Tape({ locked, phase, reach }: { locked: boolean; phase: string; reach:
       setSettling(true);
       timer.current = setTimeout(() => setSettling(false), 330);
     }
-    if (i === 4) reach("poured");
-    if (i === 7) reach("all-out");
+    if (i === POURS[0]) reach("poured");
+    if (i === POURS[1]) reach("second-pour");
+    if (i === OPS.length - 1) reach("all-out");
   };
 
   const note =
@@ -187,7 +197,7 @@ function Tape({ locked, phase, reach }: { locked: boolean; phase: string; reach:
         })}
       </svg>
       <div className={s.tape}>
-        {Array.from({ length: 8 }, (_, i) => {
+        {OPS.map((_, i) => {
           const current = view === i + 1;
           return (
             <Control
@@ -196,11 +206,11 @@ function Tape({ locked, phase, reach }: { locked: boolean; phase: string; reach:
               disabled={locked || reveal || i > furthest || current}
               onClick={() => press(i)}
             >
-              {i < 4 ? (
-                `Add ${i + 1}`
+              {OPS[i] === "add" ? (
+                LABEL[i]
               ) : (
                 <>
-                  Remove <small>{ORD[i - 4]}</small>
+                  Remove <small>{LABEL[i].slice(7)}</small>
                 </>
               )}
             </Control>
@@ -211,27 +221,30 @@ function Tape({ locked, phase, reach }: { locked: boolean; phase: string; reach:
   );
 }
 
+const END = FRAMES[FRAMES.length - 1];
+
 export default function TwoStacksMakeAQueue({ slug }: { slug: string }) {
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Add 1, 2, 3, 4 to an in-stack. To remove, pop from an out-stack, and only when it is empty pour the whole in-stack into it. Removing all four, how many times is each item poured?",
-        options: ["Once", "Four times", "Once per removal before it"],
+          "Adds go on an in-stack. To remove, pop an out-stack; only when it is empty, pour the whole in-stack into it. Add 1, 2, remove, add 3, 4, remove three times. How often is each item poured?",
+        options: ["Once each", "Once per removal", "1 and 2 twice, 3 and 4 once"],
         answer: 0,
       }}
-      exploreHint="Play the tape: add 1 to 4, then remove four times."
-      minInteractions={2}
+      exploreHint="Play the tape left to right. Watch the moved badges on each pour."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            Your one pour moved <strong>4 items, each once</strong>. The next three removals moved nothing, and the items
-            left in order 1 2 3 4.
+            You saw <strong>{END.pours} pours</strong>: the first moved 2 and 1, the second moved 4 and 3. Every badge
+            stopped at <strong>moved {Math.max(...Object.values(END.moved))}</strong>, the other removals moved nothing,
+            and the items left in order {END.left.join(" ")}.
           </p>
           <p>
-            Each item is poured at most once in its life, so one slow removal pays for the fast ones around it and the
-            average cost per operation stays constant.
+            The second pour never touched 1 or 2: they were already in out. An item crosses from in to out once in its
+            life, so a slow removal pays for the fast ones around it and the average cost per operation stays constant.
           </p>
           <p className="muted">The same accounting as list doubling.</p>
         </>

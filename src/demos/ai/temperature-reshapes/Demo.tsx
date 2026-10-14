@@ -4,10 +4,13 @@
 // p = exp(score / T) / sum. Cooler (T = 0.5) sharpens the odds to 86.7% for the top
 // word; hotter flattens them toward a third each. The menu never changes: temperature
 // reweights the same three words and can never add a fourth.
+// v3: the stage shows score ÷ temperature per word (the cause), each temperature button draws
+// 20 words, and the reveal waits for both a cool (0.5) and a hot (4) visit.
 
 import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 // MODEL START
@@ -16,7 +19,7 @@ const WORDS = [
   { w: "sofa", score: 1 },
   { w: "moon", score: 0 },
 ];
-const TEMPS = [0.25, 0.5, 1, 2, 4];
+const TEMPS = [0.5, 1, 4];
 
 function probs(T: number) {
   const e = WORDS.map(({ score }) => Math.exp(score / T));
@@ -52,17 +55,23 @@ const BL = 64;
 const BR = 250;
 
 export default function TemperatureReshapes({ slug }: { slug: string }) {
-  const [ti, setTi] = useState(2); // T = 1
-  const [draws, setDraws] = useState<number[] | null>(null);
+  const [T, setT] = useState(1);
+  const [drawsAt, setDrawsAt] = useState<Record<number, number[]>>({});
   const rand = useRef(rng(31));
-  const T = TEMPS[ti];
   const p = probs(T);
+  const draws = drawsAt[T] ?? null;
 
-  const setTemp = (i: number, interact: () => void) => {
-    setTi(i);
-    setDraws(null);
-    if (TEMPS[i] === 0.5) interact(); // the reveal waits for the temperature in the question
+  // Each temperature button sets T and draws 20 words there, so a cool and a hot draw can be compared.
+  const pick = (t: number, reach: (name: string) => void) => {
+    setT(t);
+    setDrawsAt((d) => ({ ...d, [t]: draw20(probs(t), rand.current) }));
+    if (t === 0.5) reach("cool");
+    if (t === 4) reach("hot");
   };
+
+  const fmtDraw = (c: number[] | undefined) =>
+    c ? WORDS.map(({ w }, i) => `${c[i]} ${w}`).join(", ") : "none";
+  const div = (x: number) => String(Math.round((x / T) * 100) / 100);
 
   return (
     <Lesson
@@ -73,17 +82,20 @@ export default function TemperatureReshapes({ slug }: { slug: string }) {
         options: ["About 87%", "Still 67%", "About 50%"],
         answer: 0,
       }}
-      exploreHint="Go cooler to 0.5, then hotter. Draw 20 words at each."
+      exploreHint="Press 0.5, then 4. Each press draws 20 words. Watch the score ÷ temperature column."
+      minInteractions={TEMPS.length - 1}
       reveal={() => (
         <>
           <p>
             At temperature 1, “mat” had <strong>{pct(probs(1)[0])}</strong>. At 0.5 it rose to{" "}
-            <strong>{pct(probs(0.5)[0])}</strong>. Dividing the scores by 0.5 doubles the gaps between them, and bigger
-            gaps mean more lopsided odds. At 4 the three words drift toward a third each ({pct(probs(4)[0])} for mat).
+            <strong>{pct(probs(0.5)[0])}</strong>: dividing by 0.5 turned the scores 2, 1, 0 into 4, 2, 0, doubling
+            the gaps, and bigger gaps mean more lopsided odds. At 4 they shrank to 0.5, 0.25, 0, so the odds drifted
+            toward a third each ({pct(probs(4)[0])} for mat).
           </p>
           <p>
-            The menu never changed: mat, sofa, moon, at every temperature. Temperature only sets how strongly the model
-            favours its top choice. A hot model does not learn anything new; it only spreads its choices, picking unlikely words more often.
+            Your draws: {fmtDraw(drawsAt[0.5])} at 0.5; {fmtDraw(drawsAt[4])} at 4. The menu never changed: mat, sofa,
+            moon every time. A hot model does not learn anything new; it only spreads its choices, picking unlikely
+            words more often.
           </p>
           <p className="muted">
             The rule: chance ∝ e^(score ÷ temperature). Real language models use the same setting when they sample text.
@@ -92,53 +104,58 @@ export default function TemperatureReshapes({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <div className={s.wrap}>
-          <p className={s.prompt}>
-            The cat sat on the <span className={s.blank}>…</span>
-          </p>
-          <svg viewBox="0 0 320 150" className="stage-svg" role="img" aria-label="Chance of each next word">
-            {WORDS.map(({ w, score }, i) => {
-              const y = 14 + i * 46;
-              return (
-                <g key={w}>
-                  <text x={BL - 8} y={y + 15} textAnchor="end" className={s.word} fill="var(--fg)">
-                    {w}
-                  </text>
-                  <text x={BL - 8} y={y + 29} textAnchor="end" className={s.small} fill="var(--muted)">
-                    score {score}
-                  </text>
-                  <rect x={BL} y={y} width={BR - BL} height={26} rx={5} fill="var(--bg-2)" />
-                  <rect x={BL} y={y} width={(BR - BL) * p[i]} height={26} rx={5} fill={COLORS[i]} />
-                  <text x={BR + 6} y={y + 18} className={s.word} fill="var(--fg)">
-                    {pct(p[i])}
-                  </text>
-                  {draws && (
-                    <g>
-                      {Array.from({ length: draws[i] }, (_, k) => (
-                        <circle key={k} cx={BL + 5 + k * 9} cy={y + 34} r={3} fill={COLORS[i]} />
-                      ))}
+        <Milestones interact={interact} names={["cool", "hot"]}>
+          {(reach) => (
+            <div className={s.wrap}>
+              <p className={s.prompt}>
+                The cat sat on the <span className={s.blank}>…</span>
+              </p>
+              <svg viewBox="0 0 320 150" className="stage-svg" role="img" aria-label="Chance of each next word">
+                {WORDS.map(({ w, score }, i) => {
+                  const y = 14 + i * 46;
+                  return (
+                    <g key={w}>
+                      <text x={BL - 8} y={y + 15} textAnchor="end" className={s.word} fill="var(--fg)">
+                        {w}
+                      </text>
+                      <text x={BL - 8} y={y + 29} textAnchor="end" className={s.small} fill="var(--muted)">
+                        {score}÷{T}={div(score)}
+                      </text>
+                      <rect x={BL} y={y} width={BR - BL} height={26} rx={5} fill="var(--bg-2)" />
+                      <rect x={BL} y={y} width={(BR - BL) * p[i]} height={26} rx={5} fill={COLORS[i]} />
+                      <text x={BR + 6} y={y + 18} className={s.word} fill="var(--fg)">
+                        {pct(p[i])}
+                      </text>
+                      {draws && (
+                        <g>
+                          {Array.from({ length: draws[i] }, (_, k) => (
+                            <circle key={k} cx={BL + 5 + k * 9} cy={y + 34} r={3} fill={COLORS[i]} />
+                          ))}
+                        </g>
+                      )}
                     </g>
-                  )}
-                </g>
-              );
-            })}
-          </svg>
-          <p className={s.msg} aria-live="polite">
-            {locked ? "Lock in a guess to start." : draws ? `20 draws: ${draws.join(" · ")}` : " "}
-          </p>
-          <Row>
-            <Control disabled={locked || ti === 0} onClick={() => setTemp(ti - 1, interact)}>
-              Cooler
-            </Control>
-            <Readout label="Temperature" value={T} />
-            <Control disabled={locked || ti === TEMPS.length - 1} onClick={() => setTemp(ti + 1, interact)}>
-              Hotter
-            </Control>
-            <Control disabled={locked} onClick={() => setDraws(draw20(p, rand.current))}>
-              Draw 20
-            </Control>
-          </Row>
-        </div>
+                  );
+                })}
+              </svg>
+              <p className={s.msg} aria-live="polite">
+                {locked ? "Lock in a guess to start." : draws ? `20 draws at ${T}: ${draws.join(" · ")}` : "Pick a temperature."}
+              </p>
+              <Row>
+                {TEMPS.map((t) => (
+                  <Control
+                    key={t}
+                    disabled={locked}
+                    className={t === T ? "active" : ""}
+                    onClick={() => pick(t, reach)}
+                  >
+                    {t === 0.5 ? "Cool 0.5" : t === 1 ? "Warm 1" : "Hot 4"}
+                  </Control>
+                ))}
+                <Readout label="Temperature" value={T} />
+              </Row>
+            </div>
+          )}
+        </Milestones>
       )}
     </Lesson>
   );

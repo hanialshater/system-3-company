@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "geography.midnight-sun-line.c1",
-      "text": "On the June solstice the Sun does not set north of about 66.6 N, which is 90 degrees minus the tilt of about 23.4 degrees.",
+      "text": "On the June solstice the Sun does not set north of about 66.6 N, which is 90 degrees minus the tilt of about 23.4 degrees; the reveal places it between the highest latitude where the learner saw a sunset and the lowest where they saw none (computed by dayHours() in Demo.tsx).",
       "support": "derivation",
-      "source": "Day length from cos(H) = -tan(lat) tan(dec) with dec = 23.44 (obliquity, IAU / Astronomical Almanac, from memory): H reaches 180 degrees (24 h of day) when lat >= 90 - 23.44 = 66.56. Geometric centre of the Sun, airless spherical Earth. Computed in Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Day length from cos(H) = -tan(lat) tan(dec) with dec = 23.44 (obliquity, IAU / Astronomical Almanac, from memory): H reaches 180 degrees (24 h of day) when lat >= 90 - 23.44 = 66.56. Geometric centre of the Sun, airless spherical Earth. Computed in Demo.tsx. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "geography.midnight-sun-line.c2",
@@ -76,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.midnight-sun-line.c7",
+      "text": "In June the north pole leans 23.4 degrees toward the Sun, so the night side's edge stops 23.4 degrees short of the pole (the orange 'gap = tilt' arc on the globe, from the night edge to the pole along the midnight meridian); a place whose daily circle fits inside that gap stays in sunlight all day.",
+      "support": "derivation",
+      "source": "The night side is the 90-degree circle centred on the antisolar point at 23.44 S; along its meridian it reaches 90 − 23.44 = 66.56 N, leaving 23.44 degrees to the pole. Geometry in Demo.tsx (night, gap). Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +104,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:midnight-sun",
     "prerequisites": [

@@ -26,21 +26,17 @@
   "claims": [
     {
       "id": "cs.two-stacks-make-a-queue.c1",
-      "text": "Adding 1, 2, 3, 4 to the in-stack and then removing four times (pop the out-stack; pour the whole in-stack over only when the out-stack is empty) takes exactly 1 pour; each of the 4 items is moved once, 4 moves in total, and the items leave in the order 1 2 3 4.",
+      "text": "For the tape add 1, add 2, remove, add 3, add 4, remove, remove, remove (pop the out-stack; pour the whole in-stack over only when the out-stack is empty) there are exactly 2 pours: the first moves 2 then 1, the second moves 4 then 3; every item is moved once (each 'moved' badge stops at 1), 4 moves in total, and the items leave in the order 1 2 3 4.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule. | FACT-CHECK 2026-10-14 (pass 19): Own node sim of the rule: 1 pour, moved {1:1,2:1,3:1,4:1}, left 1 2 3 4; matches simulate() and the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "simulate() in Demo.tsx v3 with OPS = add, add, rem, add, add, rem, rem, rem; traced by hand 2026-10-14 by the builder (not a verification). | Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule. | FACT-CHECK 2026-10-14 (pass 19): Own node sim of the rule: 1 pour, moved {1:1,2:1,3:1,4:1}, left 1 2 3 4; matches simulate() and the reveal. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c2",
-      "text": "Each item is poured at most once in its life, so the average cost per operation stays constant (amortized O(1)).",
+      "text": "An item crosses from the in-stack to the out-stack at most once in its life, so a slow removal pays for the fast ones around it and the average cost per operation stays constant (amortized O(1)).",
       "support": "source",
-      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in. | FACT-CHECK 2026-10-14 (pass 19): Derivation: items move only in->out, so moves <= adds (own random sim of 100,000 ops confirms). CLRS 3e exercise 10.1-6 and ch. 17 accounting method (4e: ch. 16).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in. | FACT-CHECK 2026-10-14 (pass 19): Derivation: items move only in->out, so moves <= adds (own random sim of 100,000 ops confirms). CLRS 3e exercise 10.1-6 and ch. 17 accounting method (4e: ch. 16). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c3",
@@ -59,6 +55,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.two-stacks-make-a-queue.c5",
+      "text": "The second pour never touches items 1 or 2, because they are already in the out-stack (1 has left, 2 is in out).",
+      "support": "derivation",
+      "source": "Trace of simulate() in Demo.tsx: after the first removal out holds [2]; the second removal pops 2 without a pour; the third removal finds out empty and pours in = [3, 4]. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -78,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:queue-two-stacks",
     "also": [

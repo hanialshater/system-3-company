@@ -43,21 +43,17 @@
     },
     {
       "id": "ai.temperature-reshapes.c3",
-      "text": "For scores 2, 1, 0 the top word's chance is 98.2% at temperature 0.25, 86.7% at 0.5, 66.5% at 1, 50.6% at 2 and 41.9% at 4.",
+      "text": "For scores 2, 1, 0 the top word's chance is 86.7% at temperature 0.5, 66.5% at 1 and 41.9% at 4 (the three temperatures on the stage).",
       "support": "derivation",
-      "source": "e.g. T = 0.5: e⁴ : e² : e⁰ = 54.6 : 7.39 : 1, so 54.6 / 63.0 = 0.867. All five reproduced by running probs() from Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "e.g. T = 0.5: e⁴ : e² : e⁰ = 54.6 : 7.39 : 1, so 54.6 / 63.0 = 0.867. All five reproduced by running probs() from Demo.tsx. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "ai.temperature-reshapes.c4",
-      "text": "Dividing the scores by 0.5 doubles the gaps between them, and bigger gaps give more lopsided chances; as the temperature grows the chances approach a third each.",
+      "text": "Dividing the scores 2, 1, 0 by 0.5 gives 4, 2, 0, doubling the gaps, and bigger gaps give more lopsided chances; dividing by 4 gives 0.5, 0.25, 0, and the chances drift toward a third each.",
       "support": "derivation",
-      "source": "Ratios of chances are e^((s_i − s_j)/T), so halving T squares each ratio; as T → ∞ every ratio → 1.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Ratios of chances are e^((s_i − s_j)/T), so halving T squares each ratio; as T → ∞ every ratio → 1. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "ai.temperature-reshapes.c5",
@@ -70,12 +66,10 @@
     },
     {
       "id": "ai.temperature-reshapes.c6",
-      "text": "“Draw 20” samples 20 words using these chances (seeded random numbers).",
+      "text": "Each temperature button (0.5, 1, 4) samples 20 words using that temperature's chances (seeded random numbers), and the reveal reports the learner's own counts at 0.5 and at 4.",
       "support": "convention",
-      "source": "draw20() in Demo.tsx, seed 31.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "pick() and draw20() in Demo.tsx, seed 31; counts depend on press order but are deterministic for a given order. | draw20() in Demo.tsx, seed 31. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "ai.temperature-reshapes.c7",
@@ -94,6 +88,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.temperature-reshapes.c9",
+      "text": "Each word's row shows its score divided by the current temperature (for example 2÷0.5=4); those divided scores are what the softmax uses.",
+      "support": "derivation",
+      "source": "Stage label in Demo.tsx (score ÷ T), consistent with probs() and c2. | Added 2026-10-14 (v3) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -118,7 +119,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:temperature-sampling",
     "prerequisites": [

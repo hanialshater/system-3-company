@@ -4,6 +4,9 @@
 // it to halve, again and again, for a second-order reaction (rate ∝ [A]², needs two A to meet)
 // and for a first-order one with the same first half. Brackets under the curve show each wait:
 // second order 10, 20, 40 min; first order 10, 10, 10 min.
+// v3: the time axis has even ticks (no halving times before the lock), the gate needs one and
+// two halvings in 2nd order (rate 1/4, then 1/16), and a stage line shows the cause per halving:
+// half as much to lose, at 1/4 (2nd) or 1/2 (1st) the rate, so 2x (or the same) wait.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -22,7 +25,7 @@ const timeTo = (o: Order, n: number) => Math.round((o === 2 ? (Math.pow(2, n) / 
 const wait = (o: Order, n: number) => timeTo(o, n) - timeTo(o, n - 1);
 const MAXN = 3;
 const WAIT2 = wait(2, 2); // 20 min
-const NAMES = ["second-twice", "first-twice"] as const;
+const NAMES = ["second-once", "second-twice", "first-twice"] as const;
 
 const W = 320;
 const H = 210;
@@ -60,22 +63,23 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
         options: [`${wait(2, 1) / 2} min`, `${wait(2, 1)} min`, `${WAIT2} min`],
         answer: 2,
       }}
-      exploreHint="Wait for two halvings in 2nd order, then switch to 1st order. Watch the rate."
+      exploreHint="In 2nd order, step to one halving, then two. Then switch to 1st order. Watch the rate."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
-            {seen[2] >= 2 ? "You saw" : "Halve it twice and you see"} the second-order waits grow:{" "}
+            You saw the second-order waits grow:{" "}
             <strong>
               {Array.from({ length: Math.max(2, seen[2]) }, (_, i) => wait(2, i + 1)).join(", ")} min
             </strong>
-            . Each half takes twice as long as the last.{" "}
-            {seen[1] >= 2 ? "The first-order run kept" : "A first-order run keeps"} the same {T_HALF1} min every time.
+            . Each half takes twice as long as the last. The first-order run kept the same {T_HALF1} min every time.
           </p>
           <p>
-            A second-order reaction needs two reactant molecules to meet. Halve the crowd and meetings become four
-            times rarer (the Rate readout fell to 1/4), while half as many molecules are left to react, so the next
-            half takes twice as long. A first-order reaction (like radioactive decay) has one fixed half-life.
+            A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four
+            times rarer: your Rate readout read <strong>1/4</strong> after one halving and <strong>1/16</strong> after
+            two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
+            wait doubles. In 1st order the rate only halved, so the wait stayed the same. Radioactive decay is first
+            order: one fixed half-life.
           </p>
         </>
       )}
@@ -85,6 +89,7 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
           {(reach) => {
             const check = (o: Order, k: number) => {
               setSeen((p) => ({ ...p, [o]: Math.max(p[o], k) }));
+              if (o === 2 && k === 1) reach("second-once");
               if (k >= 2) reach(o === 2 ? "second-twice" : "first-twice");
             };
             return (
@@ -106,7 +111,7 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                   <text x={L - 4} y={TOP + 15} textAnchor="end" className={s.small}>
                     mmol/L
                   </text>
-                  {Array.from({ length: MAXN + 1 }, (_, k) => timeTo(order, k)).map((t) => (
+                  {[0, 20, 40, 60].map((t) => (
                     <text key={t} x={X(t)} y={BASE + 13} textAnchor="middle" className={s.small}>
                       {t}
                     </text>
@@ -164,9 +169,17 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Last wait" value={n ? `${wait(order, n)} min` : "none yet"} />
-                  <Readout label="Total" value={`${timeTo(order, n)} min`} />
                   <Readout label="Rate vs start" value={rate(order, n)} />
                 </Row>
+                <p className={s.why} aria-live="polite">
+                  {locked
+                    ? " "
+                    : n === 0
+                      ? "Step to a halving to compare waits."
+                      : order === 2
+                        ? "Each halving: ½ as much left to lose, at ¼ the rate → 2× the wait."
+                        : "Each halving: ½ as much left to lose, at ½ the rate → same wait."}
+                </p>
               </div>
             );
           }}

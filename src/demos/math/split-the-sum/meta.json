@@ -42,12 +42,10 @@
     },
     {
       "id": "math.split-the-sum.c3",
-      "text": "Whatever column the cut is placed at, the two pieces add to the same total, 91 (the learner's own visited cut is quoted).",
+      "text": "Whatever column the cut is placed at, the two pieces add to the same total, 91; the reveal quotes the last cut other than 10 that the learner stopped on (a −1/+1 press or the slider resting 300 ms), as a × 7 + (13 − a) × 7 = 91.",
       "support": "derivation",
-      "source": "a x 7 + (13 - a) x 7 = 13 x 7 for every a from 1 to 12; the stage computes both pieces from the slider value.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "a × 7 + (13 − a) × 7 = 13 × 7 for every a from 1 to 12; stop() and move() in Demo.tsx v3. | a x 7 + (13 - a) x 7 = 13 x 7 for every a from 1 to 12; the stage computes both pieces from the slider value. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "math.split-the-sum.c4",
@@ -78,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:multiplication-as-area",
     "prerequisites": [],

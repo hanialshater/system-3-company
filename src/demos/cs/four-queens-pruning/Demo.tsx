@@ -1,11 +1,14 @@
 "use client";
 
 // Backtracking on 4 queens. One queen per row; only safe squares can be tapped, and tapping a
-// queen backs up to that row. Step / Run continue a depth-first search from the board as it
-// stands, so hand play and the search share one board. From an empty board the full search
-// makes 16 placements and finds both solutions, out of 256 one-per-row boards.
+// queen backs up to that row. Step continues a depth-first search from the board as it stands,
+// so hand play and the search share one board. "Run from empty" clears the board and animates
+// the real search, one step every 150 ms: it makes 16 placements and finds both solutions, out
+// of 256 one-per-row boards.
+// v3: solutions appear only when the search reaches them; the reveal waits until a search from
+// an empty board has finished (the counter shows 16); the counter is called "Tries".
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import s from "./styles.module.css";
@@ -13,15 +16,24 @@ import s from "./styles.module.css";
 const N = 4;
 const safe = (qs: number[], r: number, c: number) => qs.slice(0, r).every((qc, qr) => qc !== c && Math.abs(qc - c) !== r - qr);
 
-type S = { qs: number[]; count: number; sols: string[]; done: boolean; firstAt: number | null; note: string };
-const EMPTY: S = { qs: [], count: 0, sols: [], done: false, firstAt: null, note: "" };
+// clean: no hand moves since the empty board, so the count is the search's own.
+type S = { qs: number[]; count: number; sols: string[]; done: boolean; firstAt: number | null; note: string; clean: boolean };
+const EMPTY: S = { qs: [], count: 0, sols: [], done: false, firstAt: null, note: "", clean: true };
 
 function record(st: S, qs: number[], count: number): S {
   const key = qs.join("");
   if (qs.length === N && !st.sols.includes(key))
-    return { ...st, qs, count, sols: [...st.sols, key], firstAt: st.firstAt ?? count, note: `Solution found after ${count} placements.` };
+    return { ...st, qs, count, sols: [...st.sols, key], firstAt: st.firstAt ?? count, note: `Solution found at try ${count}.` };
   return { ...st, qs, count };
 }
+const finish = (x: S): S => ({
+  ...x,
+  qs: [],
+  done: true,
+  note: x.clean
+    ? `Search done: ${x.count} tries (first solution at ${x.firstAt}).`
+    : `Search done: ${x.count} tries, counting your hand moves.`,
+});
 // One depth-first search action: place on the first safe square of the next row, or back up.
 function step(st: S): S {
   if (st.done) return st;
@@ -37,25 +49,33 @@ function step(st: S): S {
     qs = qs.slice(0, r);
     for (let c = from + 1; c < N; c++) if (safe(qs, r, c)) return record({ ...st, note: "" }, [...qs, c], st.count + 1);
   }
-  return { ...st, qs: [], done: true, note: "" };
+  return finish(st);
 }
 
 export default function FourQueensPruning({ slug }: { slug: string }) {
   const [st, setSt] = useState<S>(EMPTY);
-  // Replay of a finished search: the final state is already committed; this only walks the board through the trace.
-  const [replay, setReplay] = useState<{ states: S[]; i: number } | null>(null);
-  useEffect(() => {
-    if (!replay) return;
-    if (replay.i >= replay.states.length - 1) {
-      setReplay(null);
-      return;
+  const [running, setRunning] = useState(false);
+  const [result, setResult] = useState<{ count: number; firstAt: number | null } | null>(null);
+  const interactRef = useRef<() => void>(() => {});
+
+  // A finished search from an empty board is the state the reveal explains.
+  const settle = (next: S) => {
+    setSt(next);
+    if (!next.done) return;
+    setRunning(false);
+    if (next.clean && !result) {
+      setResult({ count: next.count, firstAt: next.firstAt });
+      interactRef.current();
     }
-    const id = setTimeout(() => setReplay({ ...replay, i: replay.i + 1 }), 170);
+  };
+  // Run: one real search step every 150 ms, so solutions appear only when the search reaches them.
+  useEffect(() => {
+    if (!running) return;
+    const id = setTimeout(() => settle(step(st)), 150);
     return () => clearTimeout(id);
-  }, [replay]);
-  const shown = replay ? replay.states[replay.i] : st;
-  const { qs, count } = shown;
-  const { sols, done } = st;
+  });
+
+  const { qs, count, sols, done } = st;
   const r = qs.length;
   const stuck = r < N && !Array.from({ length: N }, (_, c) => c).some((c) => safe(qs, r, c));
 
@@ -68,68 +88,56 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
         options: ["16", "64", "256"],
         answer: 0,
       }}
-      exploreHint="Place queens by hand, or let the search run. Find both solutions."
+      exploreHint="Place queens by hand, then run the search from empty to the end."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            A full search from an empty board makes <strong>16</strong> safe placements and finds both solutions; the
-            first comes after 8. A blind check would look at all 256 one-per-row boards.
+            Your search from an empty board made <strong>{result?.count ?? 16}</strong> tries and found both solutions;
+            the first came at try {result?.firstAt ?? 8}. A blind check would look at all 256 one-per-row boards.
           </p>
           <p>
-            Placing only on safe squares notices a clash the moment it happens, so every board that starts that way is
-            skipped at once. The saving grows fast: 8 queens have 16,777,216 one-per-row boards, but backtracking makes
-            2,056 placements to find all 92 solutions.
+            Placing only on safe squares notices a clash the moment it happens (the × marks), so every board that
+            starts that way is skipped at once. The saving grows fast: 8 queens have 16,777,216 one-per-row boards, but
+            backtracking makes 2,056 placements to find all 92 solutions. So 16 matching the board's 16 squares is a
+            coincidence.
           </p>
           <p className="muted">Pruning early is what makes search possible.</p>
         </>
       )}
     >
       {({ locked, interact }) => {
-        const commit = (next: S) => {
-          setSt(next);
-          if (next.sols.length === 2 && sols.length < 2) interact();
+        interactRef.current = interact;
+        const busy = locked || running;
+        const run = () => {
+          if (busy) return;
+          setSt(EMPTY);
+          setRunning(true);
         };
         const doStep = () => {
-          setReplay(null);
-          if (locked || done) return;
-          commit(step(st));
-        };
-        const run = () => {
-          if (locked || done) return;
-          let x = st;
-          const states: S[] = [x];
-          for (let i = 0; i < 200 && !x.done; i++) {
-            x = step(x);
-            states.push(x);
-          }
-          const fin = { ...x, note: `Search done: ${x.count} placements${x.firstAt ? ` (first solution at ${x.firstAt})` : ""}.` };
-          states[states.length - 1] = fin;
-          setReplay({ states, i: 0 });
-          commit(fin);
+          if (busy || done) return;
+          settle(step(st));
         };
         const startOver = () => {
-          setReplay(null);
-          if (locked) return;
-          setSt({ ...EMPTY, sols });
+          if (busy) return;
+          setSt(EMPTY);
         };
         const tap = (row: number, c: number) => {
-          setReplay(null);
           const sq = st.qs;
           const sr = sq.length;
-          if (locked || row > sr) return;
+          if (busy || row > sr) return;
           if (row < sr && sq[row] === c) {
-            setSt({ ...st, qs: sq.slice(0, row), done: false, note: `Backed up to row ${row + 1}.` });
+            setSt({ ...st, qs: sq.slice(0, row), done: false, clean: false, note: `Backed up to row ${row + 1}.` });
             return;
           }
           if (!safe(sq, row, c)) return;
-          commit(record({ ...st, done: false, note: "" }, [...sq.slice(0, row), c], st.count + 1));
+          setSt(record({ ...st, done: false, clean: false, note: "" }, [...sq.slice(0, row), c], st.count + 1));
         };
 
         const msg = locked
           ? "Make a prediction to start."
-          : shown.note
-            ? shown.note
+          : st.note
+            ? st.note
             : r === N
               ? "All four placed: a solution."
               : stuck
@@ -142,13 +150,13 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
               {msg}
             </p>
             <Row>
-              <Control className="active" disabled={locked || done} onClick={run}>
-                Run the search
+              <Control className="active" disabled={busy} onClick={run}>
+                Run from empty
               </Control>
-              <Control disabled={locked || done} onClick={doStep}>
+              <Control disabled={busy || done} onClick={doStep}>
                 Step
               </Control>
-              <Control disabled={locked || (count === 0 && r === 0)} onClick={startOver}>
+              <Control disabled={busy || (count === 0 && r === 0)} onClick={startOver}>
                 Start over
               </Control>
             </Row>
@@ -162,7 +170,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
                     <Control
                       key={`${row}-${c}`}
                       className={`${s.sq} ${(row + c) % 2 ? s.dark : ""} ${attacked ? s.attacked : ""} ${queen ? s.queen : ""} ${open ? s.open : ""}`}
-                      disabled={locked || !(queen || open || (row < r && safe(qs, row, c)))}
+                      disabled={busy || !(queen || open || (row < r && safe(qs, row, c)))}
                       aria-label={queen ? `Queen in row ${row + 1}, column ${c + 1}: back up` : `Row ${row + 1}, column ${c + 1}`}
                       onClick={() => tap(row, c)}
                     >
@@ -174,7 +182,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
             </div>
             <div className={s.readouts}>
               <span>
-                Placements put down <strong>{count}</strong> (blind: 256 boards)
+                Tries <strong>{count}</strong> (blind: 256 boards)
               </span>
               <span>
                 Solutions <strong>{sols.length}</strong> of 2

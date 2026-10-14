@@ -27,21 +27,17 @@
   "claims": [
     {
       "id": "cs.pennies-dont-add-up.c1",
-      "text": "In binary, 0.1 is 0.000110011001100… with the block 0011 repeating forever (the stage shows 0.000110011001100…).",
+      "text": "In binary, 0.1 is 0.000110011001100… with the block 0011 repeating forever; the 12-switch value just under 0.1, .000110011001, shows that repeat.",
       "support": "derivation",
-      "source": "Repeated doubling of the fractional part: 0.1 -> 0.2 (0) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 ...; the remainder 0.4 recurs, so the digits 0011 repeat. Builder ran it for 20 digits: 00011001100110011001.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Repeated doubling of the fractional part: 0.1 -> 0.2 (0) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 (0) -> 0.8 (0) -> 1.6 (1) -> 1.2 (1) -> 0.4 ...; the remainder 0.4 recurs, so the digits 0011 repeat. Builder ran it for 20 digits: 00011001100110011001. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.pennies-dont-add-up.c2",
-      "text": "No set of the 12 switches worth 1/2 to 1/4096 adds to exactly 0.1; the closest is 0.10009765625 (over), then 0.099853515625 (under). The reveal quotes the closest, 0.10009765625, as still over 0.1.",
+      "text": "No set of the 12 switches worth 1/2 to 1/4096 adds to exactly 0.1; the two closest are 0.099853515625 (.000110011001, under by 0.000146484375) and 0.10009765625 (.000110011010, over by 0.00009765625), so the nearer one is over. The stage's number line shows both with their gaps, and the hand-built 0.099853515625 is labelled 'Close, but under. One pattern just above is closer.'",
       "support": "derivation",
-      "source": "Any sum of these switches is k/4096 for a whole number k. 0.1 x 4096 = 409.6 is not whole, so no k works. The nearest are k = 410 (0.10009765625, gap 0.00009765625) and k = 409 (0.099853515625, gap 0.000146484375). In general k/2^n can never equal 1/10, because 10 has the factor 5.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Any sum of these switches is k/4096 for a whole number k. 0.1 x 4096 = 409.6 is not whole, so no k works. The nearest are k = 410 (0.10009765625, gap 0.00009765625) and k = 409 (0.099853515625, gap 0.000146484375). In general k/2^n can never equal 1/10, because 10 has the factor 5. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.pennies-dont-add-up.c3",
@@ -63,12 +59,10 @@
     },
     {
       "id": "cs.pennies-dont-add-up.c5",
-      "text": "As a double, 0.1 is stored as 0.1000000000000000055… and 0.2 as 0.2000000000000000111…, both a hair above the decimal value (the stage labels them 'above 0.1' and 'above 0.2').",
+      "text": "As a double, 0.1 is stored as 0.1000000000000000055… and 0.2 as 0.2000000000000000111…: the nearest 53-digit values happen to be a hair above the decimal values (the stage labels them 'above 0.1' and 'above 0.2').",
       "support": "simulation",
-      "source": "node -e 'console.log((0.1).toPrecision(40), (0.2).toPrecision(40))' prints 0.1000000000000000055511151231257827021182 and 0.2000000000000000111022302462515654042363 (builder ran it). Python: from decimal import Decimal; Decimal(0.1).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "node -e 'console.log((0.1).toPrecision(40), (0.2).toPrecision(40))' prints 0.1000000000000000055511151231257827021182 and 0.2000000000000000111022302462515654042363 (builder ran it). Python: from decimal import Decimal; Decimal(0.1). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "cs.pennies-dont-add-up.c6",
@@ -96,6 +90,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.pennies-dont-add-up.c9",
+      "text": "A computer keeps the nearest value it can store, as on the number line where the nearer of the two 12-switch neighbours is the one kept ('over: nearer, kept').",
+      "support": "source",
+      "source": "IEEE 754 (2008/2019): round-to-nearest (roundTiesToEven) is the default rounding for binary formats; section number not checked, fact-checker to confirm (same source family as c4). The 12-switch number line is an analogy computed by gapText() in Demo.tsx (409/4096 and 410/4096 against 409.6/4096). | Added 2026-10-14 (v3) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -119,7 +120,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:floating-point",
     "prerequisites": [
