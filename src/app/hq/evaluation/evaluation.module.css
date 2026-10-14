@@ -62,3 +62,20 @@
   .none::before { content: none; }
   .field { flex: 1 1 140px; }
 }
+
+/* Criterion flags (company/evaluation/flags.json): shown above the ranks they qualify. Same warn treatment as the HQ banner. */
+.flag {
+  border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--line));
+  background: color-mix(in srgb, var(--warn) 14%, var(--bg));
+  border-radius: 12px; padding: 8px 12px; margin: 0 0 10px; font-size: 14px; overflow-wrap: anywhere;
+}
+.flag p { margin: 0; }
+.flagHead { line-height: 1.4; }
+.flagBody { margin-top: 4px !important; font-size: 13px; line-height: 1.45; }
+.flagBody code { font-size: 12px; }
+.flagTag {
+  display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  border: 1px solid var(--warn); color: var(--fg); border-radius: 999px; padding: 0 6px; margin-right: 4px;
+}
+.flagList { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.noOverall { margin: 16px 0 0; font-size: 13px; line-height: 1.45; }

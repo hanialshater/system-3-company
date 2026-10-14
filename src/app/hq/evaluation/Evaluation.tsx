@@ -1,19 +1,39 @@
 "use client";
 
-// HQ Evaluation: Bradley-Terry leaderboard over pairwise lesson judgements, per criterion and overall.
+// HQ Evaluation: Bradley-Terry leaderboard over pairwise lesson judgements, one criterion at a time.
 // Data: leaderboard.generated.json from `npm run eval` (tools/eval/bt.mjs). Records: company/evaluation/pairwise/*.jsonl.
+// No "Overall" rank, as a default or a filter (head of evaluation's decision, company/evaluation/README.md
+// "Overall"): the pooled scope stays in the JSON as a diagnostic and is never rendered here. Defaults to
+// `learning`. Criterion flags (company/evaluation/flags.json) are shown next to the ranks.
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HqTop } from "../HqTop";
-import type { Leaderboard, Row } from "./types";
+import type { Flag, Leaderboard, Row } from "./types";
 import s from "../hq.module.css";
 import d from "./evaluation.module.css";
 
 type Sort = "rating" | "comparisons";
 
+const DEFAULT_CRITERION = "learning";
+
+// Criteria that may be shown: never "overall" or any scope the fit marks diagnostic (older files listed it).
+function shownCriteria(data: Leaderboard | null) {
+  if (!data) return [];
+  const diag = new Set(["overall", ...(data.diagnosticScopes ?? []), ...data.scopes.filter((x) => x.diagnostic).map((x) => x.id)]);
+  return data.criteria.filter((c) => !diag.has(c.id));
+}
+
+function flagsFor(data: Leaderboard | null, id: string): Flag[] {
+  if (!data) return [];
+  const scope = data.scopes.find((x) => x.id === id);
+  return scope?.flags ?? (data.flags ?? []).filter((f) => f.criterion === id);
+}
+
 export default function Evaluation({ data }: { data: Leaderboard | null }) {
-  const [criterion, setCriterion] = useState("overall");
+  const criteria = useMemo(() => shownCriteria(data), [data]);
+  const [picked, setCriterion] = useState(DEFAULT_CRITERION);
+  const criterion = criteria.some((c) => c.id === picked) ? picked : (criteria[0]?.id ?? DEFAULT_CRITERION);
   const [domain, setDomain] = useState("");
   const [status, setStatus] = useState("");
   const [strand, setStrand] = useState("");
@@ -57,6 +77,9 @@ export default function Evaluation({ data }: { data: Leaderboard | null }) {
     return r ? `${r.title} v${r.version}` : id;
   };
   const critName = (id: string) => data?.criteria.find((c) => c.id === id)?.name ?? id;
+  const flags = flagsFor(data, criterion);
+  const allFlags = criteria.flatMap((c) => flagsFor(data, c.id));
+  const excluded = data?.exclusions?.applied ?? [];
 
   return (
     <main className={s.hq}>
@@ -85,9 +108,10 @@ export default function Evaluation({ data }: { data: Leaderboard | null }) {
             <label className={d.field}>
               <span>Criterion</span>
               <select className={d.select} value={criterion} onChange={(e) => setCriterion(e.target.value)}>
-                {data.criteria.map((c) => (
+                {criteria.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
+                    {flagsFor(data, c.id).length ? " (flagged)" : ""}
                   </option>
                 ))}
               </select>
@@ -141,9 +165,28 @@ export default function Evaluation({ data }: { data: Leaderboard | null }) {
 
           <div className={d.layout}>
             <section aria-label="Leaderboard">
+              {flags.map((f) => (
+                <div key={f.text} className={d.flag} role="note" aria-label={`Flag on ${critName(criterion)}`}>
+                  <p className={d.flagHead}>
+                    <span className={d.flagTag}>Flag</span> <strong>{critName(criterion)}: {f.text}</strong>
+                  </p>
+                  {f.detail && <p className={d.flagBody}>{f.detail}</p>}
+                  {(f.records || f.source) && (
+                    <p className={`${d.flagBody} ${s.muted}`}>
+                      {f.records && <>Records: {f.records}. </>}
+                      {f.source && (
+                        <>
+                          Source: <code>{f.source}</code>
+                        </>
+                      )}
+                    </p>
+                  )}
+                </div>
+              ))}
               <table className={d.table}>
                 <caption className={d.caption}>
-                  {critName(criterion)}: {ranked.length} of {mine.length} lessons. Rating is Elo-like (mean 1000, 400 points = 10x strength); bar is the 95% interval.
+                  {critName(criterion)}
+                  {flags.length ? " (flagged, see above)" : ""}: {ranked.length} of {mine.length} lessons. Rating is Elo-like (mean 1000, 400 points = 10x strength); bar is the 95% interval. Lessons whose intervals overlap are not separated by the data.
                 </caption>
                 <thead>
                   <tr>
@@ -215,7 +258,24 @@ export default function Evaluation({ data }: { data: Leaderboard | null }) {
                 <dd>{data.lastRecordDate ?? "–"}</dd>
                 <dt>Judge agreement</dt>
                 <dd>{data.agreement.rate === null ? "no pair judged by two judges yet" : `${Math.round(data.agreement.rate * 100)}% (${data.agreement.agree} of ${data.agreement.comparable} shared pairs)`}</dd>
+                <dt>Excluded</dt>
+                <dd>{excluded.length ? `${excluded.length} record(s): ${excluded.map((e) => e.id).join(", ")}` : "none"}</dd>
               </dl>
+              <h3>Flags</h3>
+              {allFlags.length ? (
+                <ul className={d.flagList}>
+                  {allFlags.map((f) => (
+                    <li key={`${f.criterion}|${f.text}`}>
+                      <strong>{critName(f.criterion)}:</strong> {f.text}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={s.muted}>No criterion is flagged.</p>
+              )}
+              <p className={`${s.muted} ${d.noOverall}`}>
+                No overall rank, by decision: pooling the criteria is not an approved definition of best, and it would hide where they disagree. Compare lessons one criterion at a time.
+              </p>
               {data.errors.length > 0 && (
                 <details className={d.errBox} open>
                   <summary>{data.errors.length} rejected line(s)</summary>

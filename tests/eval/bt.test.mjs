@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fitBT, toRating, mulberry32, parseRecords, analyse, analyseScope, judgeAgreement, components } from "../../tools/eval/bt.mjs";
+import { fitBT, toRating, mulberry32, parseRecords, analyse, analyseScope, judgeAgreement, components, judgementKey, parseExclusions, parseFlags, OVERALL } from "../../tools/eval/bt.mjs";
 
 const TRUE = { "a@v1": 3, "b@v1": 1, "c@v1": 0.3, "d@v1": 0.1 }; // true strengths
 const items = Object.keys(TRUE);
@@ -126,4 +126,125 @@ test("analyse with no records gives an empty, valid result", () => {
   assert.equal(out.totalRecords, 0);
   assert.deepEqual(out.rows, []);
   assert.equal(out.lastRecordDate, null);
+});
+
+// ---------- E2: overall is diagnostic and resampled by judgement ----------
+const CRIT = [
+  { id: "learning", name: "Learning", question: "?" },
+  { id: "trust", name: "Trust", question: "?" },
+];
+// Each judgement (judge x shown pair) writes one line per criterion.
+function roundFile(name = "2026-10-14-rt.jsonl") {
+  const lines = [];
+  let n = 0;
+  const pairs = [["x@v1", "y@v1", "j1"], ["y@v1", "z@v1", "j2"], ["z@v1", "x@v1", "j3"], ["x@v1", "y@v1", "j4"], ["x@v1", "z@v1", "j5"]];
+  for (const [a, b, judge] of pairs)
+    for (const c of CRIT) lines.push(JSON.stringify({ id: `rt-${++n}`, date: "2026-10-14", judge, criterion: c.id, a, b, winner: n % 3 ? "a" : "tie", reason: "r", artifacts: [], blind: true }));
+  return [{ name, text: lines.join("\n") + "\n" }];
+}
+
+test("E2: overall is a diagnostic scope, not a criterion, with no suggestions", () => {
+  const out = analyse({ files: roundFile(), criteria: CRIT, resamples: 20 });
+  assert.deepEqual(out.criteria.map((c) => c.id), ["learning", "trust"]);
+  assert.deepEqual(out.diagnosticScopes, [OVERALL]);
+  const ov = out.scopes.find((s) => s.id === OVERALL);
+  assert.equal(ov.diagnostic, true);
+  assert.equal(ov.resampleUnit, "judgement");
+  assert.equal(ov.records, 10);
+  assert.equal(ov.judgements, 5);
+  assert.match(ov.note, /Diagnostic only/);
+  for (const s of out.scopes.filter((x) => x.id !== OVERALL)) {
+    assert.equal(s.diagnostic, false);
+    assert.equal(s.resampleUnit, "record");
+  }
+  assert.equal(out.suggestions.filter((s) => s.criterion === OVERALL).length, 0);
+  assert.ok(out.rows.some((r) => r.criterion === OVERALL), "overall rows still computed for diagnostics");
+});
+
+test("E2: judgement key groups one judge's lines on one shown pair within a run", () => {
+  const r = { id: "round-1-7", judge: "judge-2", a: "x@v1", b: "y@v1" };
+  assert.equal(judgementKey(r), judgementKey({ ...r, id: "round-1-12" }));
+  assert.notEqual(judgementKey(r), judgementKey({ ...r, id: "round-2-7" }));
+  assert.notEqual(judgementKey(r), judgementKey({ ...r, judge: "judge-3" }));
+  assert.notEqual(judgementKey(r), judgementKey({ ...r, a: "y@v1", b: "x@v1" }));
+});
+
+test("E2: cluster bootstrap keeps correlated lines together, so duplicated lines do not shrink the interval", () => {
+  // Every comparison written 6x inside one cluster (like one judge's lines on one pair). Resampling
+  // the copies as independent lines must understate the spread compared with resampling clusters.
+  const single = synth(3, 9).map((r, i) => ({ ...r, id: `s-${i}`, judge: `j${i}` }));
+  const six = single.flatMap((r) => Array.from({ length: 6 }, () => r));
+  const width = (rows) => rows.reduce((s, r) => s + (r.hi - r.lo), 0);
+  const clustered = analyseScope(six, { seed: 5, resamples: 100, cluster: (r) => r.id });
+  const lines = analyseScope(six, { seed: 5, resamples: 100 });
+  assert.ok(width(lines) < width(clustered), `line bootstrap ${width(lines)} should be narrower than cluster ${width(clustered)}`);
+  assert.deepEqual(clustered.map((r) => r.rating), lines.map((r) => r.rating), "point estimates do not depend on the resampling unit");
+});
+
+test("E2: per-criterion fits are unchanged by the overall change (no cluster = record bootstrap)", () => {
+  const recs = synth(8, 3, 0.1).map((r, i) => ({ ...r, id: `q-${i}`, judge: "j" }));
+  assert.deepEqual(analyseScope(recs, { seed: 42, resamples: 30 }), analyseScope(recs, { seed: 42, resamples: 30, cluster: null }));
+});
+
+// ---------- E3: exclusions ----------
+test("E3: excluded ids leave the fit but stay counted and listed", () => {
+  const files = roundFile();
+  const base = analyse({ files, criteria: CRIT, resamples: 20 });
+  const out = analyse({ files, criteria: CRIT, resamples: 20, exclusions: { exclude: [{ id: "rt-2", reason: "judge saw the key", round: "rt" }] } });
+  assert.equal(out.totalRecords, 10);
+  assert.equal(out.fittedRecords, 9);
+  assert.deepEqual(out.exclusions.applied, [{ id: "rt-2", reason: "judge saw the key", round: "rt", criterion: "trust", judge: "j1" }]);
+  assert.equal(out.scopes.find((s) => s.id === "trust").records, 4);
+  assert.equal(out.scopes.find((s) => s.id === "trust").excluded, 1);
+  assert.equal(out.scopes.find((s) => s.id === "learning").records, 5);
+  assert.equal(out.scopes.find((s) => s.id === OVERALL).records, 9);
+  assert.notDeepEqual(
+    out.rows.filter((r) => r.criterion === "trust").map((r) => r.rating),
+    base.rows.filter((r) => r.criterion === "trust").map((r) => r.rating),
+  );
+  assert.deepEqual(out.errors, []);
+});
+
+test("E3: an exclusion without a reason is not applied; unknown ids are reported", () => {
+  const { valid, invalid } = parseExclusions({ exclude: [{ id: "rt-1" }, { id: "rt-1", reason: " " }, { id: "rt-3", reason: "ok" }, { id: "rt-3", reason: "again" }] });
+  assert.deepEqual(valid.map((e) => e.id), ["rt-3"]);
+  assert.equal(invalid.length, 3);
+  const out = analyse({ files: roundFile(), criteria: CRIT, resamples: 5, exclusions: { exclude: [{ id: "nope-9", reason: "x" }, { id: "rt-1" }] } });
+  assert.equal(out.fittedRecords, 10);
+  assert.deepEqual(out.exclusions.unmatched, ["nope-9"]);
+  assert.equal(out.exclusions.invalid.length, 1);
+  assert.equal(out.warnings.length, 2);
+});
+
+test("E3: empty or missing exclusions file changes nothing", () => {
+  const a = analyse({ files: roundFile(), criteria: CRIT, resamples: 10 });
+  const b = analyse({ files: roundFile(), criteria: CRIT, resamples: 10, exclusions: { exclude: [] } });
+  assert.deepEqual(a.rows, b.rows);
+  assert.deepEqual(b.exclusions, { applied: [], unmatched: [], invalid: [] });
+});
+
+// ---------- E4: flags ----------
+test("E4: flags are attached to their criterion scope and listed top-level", () => {
+  const flags = { flags: [{ criterion: "trust", text: "possibly anchored on claim counts (round 1)", round: "rt", records: "rt trust lines", extra: "dropped" }] };
+  const out = analyse({ files: roundFile(), criteria: CRIT, resamples: 5, flags });
+  assert.deepEqual(out.flags, [{ criterion: "trust", text: "possibly anchored on claim counts (round 1)", records: "rt trust lines", round: "rt" }]);
+  assert.equal(out.scopes.find((s) => s.id === "trust").flags.length, 1);
+  assert.equal(out.scopes.find((s) => s.id === "learning").flags.length, 0);
+});
+
+test("E4: flags for unknown criteria or without text are rejected as warnings", () => {
+  const { valid, invalid } = parseFlags({ flags: [{ criterion: "vibes", text: "x" }, { criterion: "trust" }, { criterion: "trust", text: "ok" }] }, ["learning", "trust", OVERALL]);
+  assert.equal(valid.length, 1);
+  assert.equal(invalid.length, 2);
+  const out = analyse({ files: roundFile(), criteria: CRIT, resamples: 5, flags: { flags: [{ criterion: "vibes", text: "x" }] } });
+  assert.deepEqual(out.flags, []);
+  assert.match(out.warnings.join("\n"), /unknown criterion/);
+});
+
+test("E4: scope summary carries tie rate and first-shown (A) share", () => {
+  const out = analyse({ files: roundFile(), criteria: CRIT, resamples: 5 });
+  const ov = out.scopes.find((s) => s.id === OVERALL);
+  assert.equal(ov.ties, 3); // ids 3, 6, 9 are ties
+  assert.equal(ov.tieRate, 0.3);
+  assert.equal(ov.aWinRate, 1);
 });
