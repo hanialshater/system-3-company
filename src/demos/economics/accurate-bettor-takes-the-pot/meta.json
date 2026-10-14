@@ -1,6 +1,6 @@
 {
   "slug": "accurate-bettor-takes-the-pot",
-  "title": "60% or 50%: does a little error matter?",
+  "title": "60% or 50%: who ends with the money?",
   "hook": "Two bettors, nearly the same belief, the same money. Bet against each other for 500 races.",
   "domain": "economics",
   "concept": "market-selection-wealth",
@@ -33,21 +33,17 @@
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c2",
-      "text": "In run 2 (seed 2212) the 50% bettor held 88.6% of the money at race 200.",
+      "text": "Luck can lead for a long time: after race 50, the 50% bettor's best moment was 91.0% of the money at race 203 in run 2 (seed 2212) and 94.2% at race 176 in run 5 (seed 2215); runs 1, 3 and 4 never put the 50% bettor above half after race 50.",
       "support": "simulation",
-      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable. | REWORDED v2 (demo-builder, 2026-10-14): v2 quotes the circled low point of the run the learner is looking at (lowPoint() over races 51..t, computed from state), not race 200. Builder's node replay of run(): run 2 min share 0.090 at race 203 (50% bettor 91.0%), run 5 min 0.058 at race 176 (94.2%); other runs' minima after race 50 are 0.716, 0.655, 0.553 (above half). Seeds 2211-2215 fixed by the brief. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c3",
-      "text": "In this model each win multiplies the ratio of the 60% bettor's money to the 50% bettor's by 1.2, each loss by 0.8; three wins and two losses multiply it by 1.11.",
+      "text": "In this model each race multiplies the ratio of the 60% bettor's money to the 50% bettor's by 1.2 on a win and 0.8 on a loss; three wins and two losses multiply it by 1.11. In run 1 (seed 2211) race 1 is a loss, so the single-race step shows ×0.8.",
       "support": "derivation",
-      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X. · Fact-check pass 23 2026-10-14: Re-derived: winners split the pool by stake, so the money ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share (node check at a = 0.3 gives 1.2); 1.2^3 x 0.8^2 = 1.10592, shown as 1.11.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X. · Fact-check pass 23 2026-10-14: Re-derived: winners split the pool by stake, so the money ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share (node check at a = 0.3 gives 1.2); 1.2^3 x 0.8^2 = 1.10592, shown as 1.11. | REWORDED v2 (demo-builder, 2026-10-14): v2 adds the single-race step and its caption/readout. Builder's node replay: seed 2211's first rng() is not under 0.6, so race 1 is a loss; ratio a/(1-a) goes 1.00 -> 0.80. The reveal quotes the recorded first single race. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c4",
@@ -59,15 +55,6 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "economics.accurate-bettor-takes-the-pot.c5",
-      "text": "In such markets, wealth flows to the traders whose beliefs are closest to the truth.",
-      "support": "source",
-      "source": "Market selection: Blume and Easley (2006), 'If you're so smart, why aren't you rich?', Econometrica 74(4); Easley and Kleinberg (2010) ch. 22 (advanced section). Not stated as a general sentence in learner text beyond this model; the reveal speaks of this model. Fact-checker confirms. · Fact-check pass 23 2026-10-14: DISPUTED. Not a learner sentence (the reveal speaks only of 60% vs 50%), and false as a general statement if 'closest' means nearest in percentage points: in this same model the long-run winner is the belief with the smaller relative entropy from the truth. Own counterexample with the lesson's run(): truth 80%, beliefs 99% (19 points off) vs 60% (20 points off): the 99% bettor ends behind in 100 of 100 seeded 500-race runs (median share 4e-72). Blume and Easley (2006) not opened. Fix (builder): withdraw c5 (no learner sentence depends on it), or reword to 'in this model, money flows on average to the belief with the smaller relative-entropy gap from the truth; here that is the 60% bettor'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
-    },
-    {
       "id": "economics.accurate-bettor-takes-the-pot.c6",
       "text": "The market is a simplified model: two bettors, no fees, each bets all their money every race, split by belief.",
       "support": "convention",
@@ -75,6 +62,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.accurate-bettor-takes-the-pot.c7",
+      "text": "Stage captions: a single race reads 'Race t: win/loss, money ratio ×1.2/×0.8'; a jump reads 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×(1.2^w × 0.8^l)'. The money ratio readout is the 60% bettor's money divided by the 50% bettor's.",
+      "support": "derivation",
+      "source": "Demo.tsx v2 msg and Readout 'Money ratio, 60% : 50%' = share/(1-share). Product follows from c3 (each race multiplies the ratio by 1.2 or 0.8 whatever the shares). Values of 1,000 or more print as '1,000+'. Builder, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -98,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:market-selection-wealth",
     "also": [

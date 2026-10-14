@@ -1,7 +1,7 @@
 {
   "slug": "every-scale-equally-likely",
   "title": "Near or far: where do 1/d links land?",
-  "hook": "If nearer links are likelier, most links should be short. Are they?",
+  "hook": "If nearer links are likelier, where do most links land?",
   "domain": "probability",
   "concept": "distance-scales",
   "format": "single-card",
@@ -75,6 +75,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c7",
+      "text": "Under 1/d, band 2–3 holds 2 distances at about 0.42 each (relative to d = 1), about 0.83 in all, and band 256–512 holds 257 distances at about 0.0027 each, about 0.70 in all; their shares are 12.2% and 10.2%.",
+      "support": "derivation",
+      "source": "Builder's node sums (2026-10-14): sum_{d=2..3} 1/d = 0.8333, /2 = 0.4167; sum_{d=256..512} 1/d = 0.6961, /257 = 0.00271. Shown as sig2(): 0.42, 0.83, 0.0027, 0.70. Shares per c1 (the stage weights also count 2 people per distance except d = 512, which is why 0.83 : 0.70 matches 12.2 : 10.2 only approximately; the line uses ≈). Demo.tsx v2 compare line and reveal.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -98,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:distance-scales",
     "also": [],

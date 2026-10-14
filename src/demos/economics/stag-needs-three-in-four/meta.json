@@ -1,6 +1,6 @@
 {
   "slug": "stag-needs-three-in-four",
-  "title": "The stag needs three in four",
+  "title": "Stag or hare: how sure must you be?",
   "hook": "Both hunters prefer the stag. So why might both settle for a hare?",
   "domain": "economics",
   "concept": "coordination-stag-hunt",
@@ -32,12 +32,10 @@
     },
     {
       "id": "economics.stag-needs-three-in-four.c2",
-      "text": "Both 'both stag' and 'both hare' are stable (Nash equilibria): each is the best reply to itself; so although both prefer the stag outcome, doubt alone can lock them into hare.",
+      "text": "Each of 'both stag' and 'both hare' is the best reply to itself (both are Nash equilibria); so although both hunters prefer the stag, doubt alone can lock them into hare.",
       "support": "derivation",
-      "source": "Partner stag: stag 4 > hare 3. Partner hare: hare 3 > stag 0. Best-reply check over the 4 cells in node (ncm-e00): (S,S) and (H,H) only. | FACT-CHECK 2026-10-14 (pass 22): Own best-reply check of the 4 cells: partner S -> S (4 > 3), partner H -> H (3 > 0): (S,S) and (H,H) are the pure Nash equilibria; (S,S) Pareto-dominates.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Partner stag: stag 4 > hare 3. Partner hare: hare 3 > stag 0. Best-reply check over the 4 cells in node (ncm-e00): (S,S) and (H,H) only. | FACT-CHECK 2026-10-14 (pass 22): Own best-reply check of the 4 cells: partner S -> S (4 > 3), partner H -> H (3 > 0): (S,S) and (H,H) are the pure Nash equilibria; (S,S) Pareto-dominates. | REWORDED v2 (demo-builder, 2026-10-14): v2 wording; now shown by the two outcome boxes (ticked at 0% and 100%) rather than told alone. Same game-theory content as pass-checked v1. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.stag-needs-three-in-four.c3",
@@ -50,12 +48,17 @@
     },
     {
       "id": "economics.stag-needs-three-in-four.c4",
-      "text": "The payoffs are invented, in a simplified model with one partner where only the payoffs matter.",
+      "text": "The payoffs are invented, in a simplified model with one partner who is as sure of you as you are of them, where only the payoffs matter.",
       "support": "convention",
-      "source": "Assumptions of Demo.tsx; stage chip 'Model: invented payoffs, one partner' and the reveal's last line. | FACT-CHECK 2026-10-14 (pass 22): Chip 'Model: invented payoffs, one partner' and reveal muted line.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: invented payoffs, one partner' and the reveal's last line. | FACT-CHECK 2026-10-14 (pass 22): Chip 'Model: invented payoffs, one partner' and reveal muted line. | REWORDED v2 (demo-builder, 2026-10-14): v2 adds the symmetric-belief assumption the outcome boxes use (the partner's best reply at the same confidence equals yours). Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.stag-needs-three-in-four.c5",
+      "text": "At 0% sure, your best reply is hare, and a partner just as sure of you replies hare too: both hare, 3 each. At 100% it is both stag, 4 each.",
+      "support": "derivation",
+      "source": "At p = 0 stag is worth 4 x 0 = 0 < 3, so hare; by symmetry the partner's best reply to a hare-hunter is hare; payoffs (3, 3). At p = 1 stag is worth 4 > 3; payoffs (4, 4). Demo.tsx v2 bestAt(); boxes 'both hare: 3 each' and 'both stag: 4 each'. Builder, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:coordination-stag-hunt",
     "also": [],
