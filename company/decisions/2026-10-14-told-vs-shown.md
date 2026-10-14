@@ -167,5 +167,5 @@ told-only.
 Next moves (route, not done here): enemy-of-my-enemy and same-songs-different-hits go back to
 demo-builder (the early gate for same-songs is learning-designer's call on wording), and then
 fact-checker for the new claims. below-critical-mass and prices-sort-the-buyers go to
-launch-review with their review notes, subject to the fact-checker's open dispute on
-below-critical-mass c11.
+launch-review with their review notes. Its claims are the fact-checker's gate, not part of this ruling
+(NCM-3 recorded a dispute in below-critical-mass, and c11 now reads verified).
