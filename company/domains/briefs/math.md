@@ -486,3 +486,74 @@ must match the question. Nothing here is learning evidence. Briefs 23-55 on conc
 - Interaction: tap to shade half of what remains of a unit square; the shaded total shows as a fraction.
 - Payoff: the pieces always fit inside the square, so the total is at most 1.
 - Claims to check: (1) Sum of 2^-k, k=1..n, = 1 - 2^-n (recompute for n = 6: 63/64). (2) The infinite sum is 1 (limit of the above). (3) Brief 8 uses the same series; the angle here is the picture, not 0.999...
+
+## Batch 2026-10-14 (cm-math): close the last gap, then three demand-3 number-sense misconceptions
+
+Why these next: `proof-by-contradiction` was the only math concept with no lesson (coverage 64/65). The other three are new demand-3 concepts. Each one targets a misconception that is well documented in maths-education research and that a single stage can break. The research citations are the reason I ranked them. They are **not** learner claims, and no learner sentence depends on them. Every learner claim below is settled by a derivation a fact-checker can re-run in node. All numbers were re-run in node on 2026-10-14. Phone fit for all four: one representation on the stage, and the reveal (≤ 90 words, counted below) points only at things that are still on stage when it opens. Nothing here is learning evidence.
+
+### 56. two-right-angles-never-meet · concept: proof-by-contradiction · core · demand 2 · format: Single card
+- Learner knows: a flat triangle's corners add to 180° (tear-the-corners) / does not know: proof by contradiction as a method, that is, assuming the thing and following it until it breaks.
+- Misconception: "No triangle has two right angles" is a rule you are told, not something you can show. A tall enough triangle might manage it.
+- Prediction (stage text ≤ 25 words): "On a flat page, can a triangle have two right angles?" options: A. Yes, if it is tall enough / B. Yes, if its base is short enough / C. No, never (answer: C). All three options are worded at the same precision.
+- Check: base 1, right angle at the left end, angle B at the right end. The sides meet at height tan B, and the top corner is 90° − B. Re-run: B = 80° gives height 5.67 and top 10°; B = 85° gives 11.43 and 5°; B = 89° gives 57.29 and 1°; B = 89.9° gives 572.96 and 0.1°. At B = 90° the two sides are parallel.
+- Stage: a fixed base along the bottom, with its left corner locked at 90° and a vertical side. The learner drags one dial for the right corner's angle (60° to 90°). Its side tilts upward, and the meeting point climbs off the top of the card. A readout shows "meet at: N bases up" and "top corner: N°". At 90° the meeting readout reads "never" and the two sides stand parallel. The stage says "flat page". Controls: one dial.
+- Key state: right corner at 89° (meet at 57 bases up, top corner 1°), then 90° (sides parallel, top corner 0°).
+- Reveal (67 words): "Suppose a triangle had two right angles. Those two corners already use all 180°, leaving 0° for the third. You watched it happen: at 89° the sides met 57 bases up with a 1° tip; at 90° they stood parallel and never met. The assumption leads to an impossible triangle, so the assumption is false. That is proof by contradiction: assume it, follow it, hit a wall."
+- Planned claims:
+  1. The corners of a triangle on a flat plane add to 180°. support: derivation (draw the parallel through the top corner: alternate angles); source: Euclid, Elements I.32 (statement), checkable by derivation.
+  2. With a right angle at one end of a base of length b and angle B at the other, the sides meet at height b·tan B, and the top corner is 90° − B. support: derivation (right triangle: opposite/adjacent = tan B); source: node: tan(89°) = 57.29.
+  3. Two lines both perpendicular to the same line never meet on a flat plane. support: derivation (if they met, the triangle formed would have corners summing above 180°, against claim 1); source: Euclid I.27–28.
+  4. If an assumption leads to something impossible, the assumption is false (proof by contradiction). support: definition; source: any logic text (definition, no number to check).
+- Not claimed: anything about spheres. A triangle on a globe can have two or three right angles, so the stage text says "flat page". If the reviewer wants that contrast, it goes in recall, not in the reveal.
+- curriculum: `{"primary":"math:proof-by-contradiction","also":["math:angle-sum-triangle"],"prerequisites":["math:angle-sum-triangle"],"level":"core","strand":"discrete","references":[],"tags":["proof","contradiction","angles"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: tear-the-corners shows that the angle sum is 180°. This lesson uses that fact as the wall a contradiction hits. no-fraction-fits (sqrt2-irrational) and product-plus-one (infinitude-of-primes) are contradiction proofs carried out in algebra. Here the learner sees the contradiction itself: the meeting point runs away. overlap.mjs: check before build.
+
+### 57. times-can-shrink · concept: multiplying-below-one · intro · demand 3 · format: Single card
+- Learner knows: multiplication as a rectangle's area (split-the-sum); decimals as parts of 1 / does not know: that multiplying by a number below 1 gives a smaller result.
+- Misconception: Multiplying always makes bigger. (Rationale, not a learner claim: "multiplication makes bigger" is a documented intuitive model; Fischbein, Deri, Nello & Marino 1985, J. Research in Mathematics Education 16(1); Bell, Swan & Taylor 1981.)
+- Prediction (stage text ≤ 25 words): "Multiply 0.6 by 0.7. Where does the answer land?" options: A. Above 0.7 / B. Between 0.6 and 0.7 / C. Below 0.6 (answer: C). All three options are ranges, worded at the same precision.
+- Check: 0.6 × 0.7 = 0.42, which is below 0.6. In hundredths: 60 × 70 = 4,200 ten-thousandths = 0.42. Re-run: 0.6 × 0.5 = 0.3, 0.6 × 1 = 0.6, 0.6 × 1.5 = 0.9.
+- Stage: a 1-by-1 unit square outlined on a 2-by-2 grid. A shaded rectangle has width 0.6 (fixed, labelled) and a height the learner drags from 0 to 2 in 0.1 steps. A readout shows "0.6 × h = area". The 0.6-wide strip of the unit square stays outlined, so the learner sees the shaded part sit inside it (h < 1), fill it (h = 1) or overflow it (h > 1). Controls: one height handle, which is also a slider for keyboard.
+- Key state: h = 0.7, area 0.42, shaded rectangle inside the 0.6 strip. The learner also visits h = 1 (area 0.6) and h > 1.
+- Reveal (58 words): "You set the height to 0.7, and the shaded area read 0.42: smaller than 0.6 and smaller than 0.7. Multiplying by 0.7 keeps seven tenths of the 0.6 strip, so it shrinks it. At height 1 the area stayed 0.6; only above 1 did it grow. Times makes bigger only when the other number is bigger than 1."
+- Planned claims:
+  1. 0.6 × 0.7 = 0.42. support: derivation (60 × 70 = 4,200; ÷ 10,000); source: node.
+  2. For a positive number a, a × b is smaller than a exactly when b < 1, equal when b = 1, and larger when b > 1. support: derivation (a·b − a = a(b − 1), which has the sign of b − 1); source: algebra, re-run in node for b = 0.5, 1, 1.5.
+  3. The area of a rectangle with sides x and y is x × y, also when the sides are not whole numbers. support: derivation (cut into hundredth squares: 60 × 70 squares of 1/10,000); source: node.
+- curriculum: `{"primary":"math:multiplying-below-one","also":["math:multiplication-as-area"],"prerequisites":["math:multiplication-as-area"],"level":"intro","strand":"algebra","references":[],"tags":["multiplication","decimals","number sense"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: split-the-sum (multiplication-as-area) cuts whole-number rectangles to make easy products. scoops-in-three-cups (fraction-division) is division by a fraction. This lesson asks when a product grows or shrinks. The insight is the sign of b − 1, shown as the shaded part inside or outside the strip.
+
+### 58. more-digits-not-bigger · concept: decimal-magnitude · intro · demand 3 · format: Single card
+- Learner knows: place value for whole numbers (add-a-zero); that 0.5 is a half / does not know: how to compare decimals of different lengths.
+- Misconception: The decimal with more digits is bigger, so 0.125 > 0.25 > 0.3 ("longer is larger"). (Rationale, not a learner claim: Resnick, Nesher, Leonard, Magone, Omanson & Peled 1989, J. Research in Mathematics Education 20(1); Steinle & Stacey's decimal comparison test.)
+- Prediction (stage text ≤ 25 words): "Which of these is largest: 0.3, 0.25 or 0.125?" options: A. 0.125 / B. 0.25 / C. 0.3 (answer: C). Every option is an exact number from the question.
+- Check: in thousandths, 0.3 = 300, 0.25 = 250, 0.125 = 125, so 0.3 > 0.25 > 0.125. Re-run sort: [0.125, 0.25, 0.3]. 0.05 < 0.1.
+- Stage: three horizontal bars on one shared 0-to-1 scale, with tenth ticks. The learner taps a number's digits one at a time. The first digit after the point adds tenth-blocks, the second adds hundredth-slivers (one tenth as wide), and the third adds thousandth-hairlines. A tap builds one digit for one bar. Controls: three "build next digit" buttons, one per number, so six presses in total.
+- Key state: all three bars fully built. 0.3 is three tenth-blocks and is the longest; 0.25 is two blocks plus five slivers; 0.125 is one block, two slivers and five hairlines.
+- Reveal (57 words): "You built the bars digit by digit. 0.3 got three tenth-blocks. 0.25 got only two, and its five hundredth-slivers added 0.05, less than the one more block it needed. 0.125 got one block. Each place is worth a tenth of the one before, so compare from the first digit: extra digits only add smaller and smaller pieces."
+- Planned claims:
+  1. 0.3 = 3/10, 0.25 = 25/100 and 0.125 = 125/1000. support: definition (decimal notation); source: node.
+  2. 0.3 > 0.25 > 0.125 (300 > 250 > 125 thousandths). support: derivation; source: node.
+  3. Each decimal place is worth one tenth of the place to its left. support: definition (place value); source: definition.
+  4. Five hundredths (0.05) is less than one tenth (0.1). support: derivation; source: node.
+- curriculum: `{"primary":"math:decimal-magnitude","also":["math:place-value"],"prerequisites":["math:place-value"],"level":"intro","strand":"algebra","references":[],"tags":["decimals","place value","number sense"]}`
+- Needs interaction-designer spec: no. Tell the builder: the three bars share one scale and sit in one panel, so this is one representation.
+- Differs from nearest: add-a-zero (place-value) shifts digits when multiplying by 10. This lesson compares decimals of different lengths, and the insight is that later digits are worth less. nines-without-end is about one infinite decimal, not about comparing.
+
+### 59. six-students-per-professor · concept: equation-from-words · core · demand 3 · format: Single card
+- Learner knows: reading and evaluating an expression like 6 × P / does not know: how to turn a "times as many" sentence into an equation, or that letters stand for numbers of things, not for the things.
+- Misconception: "Six times as many students as professors" is written 6S = P, reading the letters as labels ("6 students, 1 professor"). (Rationale, not a learner claim: the students-and-professors problem; Clement, Lochhead & Monk 1981, American Mathematical Monthly 88(4), "Translation difficulties in learning mathematics".)
+- Prediction (stage text ≤ 25 words): "A college has six times as many students as professors. S = number of students, P = number of professors. Which equation is right?" options: A. 6S = P / B. S = 6P / C. 6S = 6P (answer: B). That is 24 words of stage text.
+- Check: P = 2, S = 12 (six per professor). S = 6P gives 12 = 12 (true); 6S = P gives 72 = 2 (false); 6S = 6P gives 72 = 12 (false). Re-run in node.
+- Stage: a row of professor icons (P slider 1 to 5) and a grid of student icons (S slider 0 to 30). Below them is one equation, which the learner switches between A, B and C with a three-way toggle. The equation is shown with today's counts substituted ("12 = 6 × 2") and lit true or false. Controls: P slider, S slider, equation toggle.
+- Key state: P = 2 and S = 12, with each equation visited. Only S = 6P is lit true, and it stays true when P changes and S is set to six per professor.
+- Reveal (60 words): "With 2 professors and 12 students you saw S = 6P read 12 = 12, while 6S = P read 72 = 2. The letters count people; they are not labels. 6S = P actually says professors outnumber students six to one. The smaller group gets the multiplier: multiply the professors by 6 and you get the number of students."
+- Planned claims:
+  1. With P = 2 and S = 12, S = 6P gives 12 = 12, and 6S = P gives 72 = 2. support: derivation; source: node.
+  2. "Six times as many students as professors" means S = 6P for every positive number of professors. support: definition (translation of "times as many"); source: derivation.
+  3. For positive counts, 6S = P means there are six professors for every student (P/S = 6). support: derivation; source: algebra.
+- curriculum: `{"primary":"math:equation-from-words","also":[],"prerequisites":[],"level":"core","strand":"algebra","references":[],"tags":["algebra","variables","equations"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: no math lesson teaches turning words into an equation. economics and cs lessons use formulas but never ask which way round a "times as many" sentence goes. The insight is that a letter is a count.

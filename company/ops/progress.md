@@ -16,6 +16,18 @@ Believe (high confidence, rendered pages walked at 390x844): the tariff line is 
 Next: demo-builder rewords the recipe line, a third reader confirms; learning-designer applies the water-meter recall patch; fact-checker owes sources for the unverified warning claims (energy c6, drying c6, recipe c5). Blocked: nothing.
 Note: walkthrough tool timed out on these pages (15s waitFor), so I used a direct Playwright read of the dev server instead.
 
+## 2026-10-14, demo-builder: W-367 FC LH-1 disputes (14 lessons), B7 hook claims, resource recall patch
+- **Changed:**
+  - **W-367:** fixed the FC LH-1 disputes in 14 lessons, all now version 2. Each has `## Pre-flight v2` in company/reviews/<slug>/build.md, and every changed claim is unverified.
+    - Engines: home-lessons.ts (flat-pack formula; suitcase 36 cm formula and slider max 35; rolled unit " sheets" and label Sheets; folded-shirt predict question), home-models.ts (flat-pack inputs line), studyCatalog.ts (4 hooks and 3 principles), StudyLesson.tsx (preview-replace-all step-1 reveal; size-is-not-recency caption), resource-specs.json (lh-subtract-openings-area Width min 3).
+    - fragmented-time-does-not-fit: the FC hook text is 110 characters, over the 90-character fixture bound, so I shortened it to "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap." and did not loosen the bound.
+  - **B7 hooks:** recorded 25 hooks as unverified claims (c5, or c6/c7 where those ids were taken), using derivation or convention support. Versions not bumped, because nothing a learner sees changed.
+  - **Resource recall patch (coordinator request):** applied all 60 lines to meta.json recall, resource-specs.json recall and c4 (unverified), with OVERRIDE for lh-percentage-overage. Removed 171 "recall at x=…" source clauses. The recall test in resources.test.mjs now checks keyed answers (150g, 26, 60, 91). No version bumps, matching how the study and home recall patches were handled.
+  - **Not done:** the curriculum-200 patch. content/ belongs to cm-lifehacks and the HoP co-sign is pending, so it is on the board as W-381. The meta-side half waits for that.
+- **Believe:** high confidence: test:lifehacks 53/53, tsc and check pass. Every fix matches its FC FIX text and agrees with the new recall. I took no screenshots and ran no build or QA, so the stage text is unseen.
+- **Next:** W-380 fact-checker re-check. W-381 cm-lifehacks curriculum. QA and the walkthrough for the 14 changed lessons.
+- **Blocked:** nothing.
+
 ## 2026-10-14, demo-builder: W-357 ceil float fix, W-358 cord drawings, W-361 safety wording
 - **Changed:**
   - **W-357:** `resource-model.ts` gets `snapToInteger`. Before ceil or floor, a value within a relative 1e-9 of an integer snaps to it, so 100×1.1 gives 110, not 111. I swept all 14 ceil/floor specs at every slider value, and only lh-percentage-overage changed (at x=50, 90, 100, 110). Its sentence "The formulas match only at that crossover." was false (A=B at 95 and 100). It now reads "Rounding up also ties them at 95; above 100 the percentage order is larger." That changes the principle, recall.why, c3 and c4. Version 2. New fixture in tests/lifehacks/resources.test.mjs.

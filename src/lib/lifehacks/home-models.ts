@@ -65,7 +65,7 @@ export function evaluateHome(s: HomeSpec, p: number, changed: boolean): HomeResu
     case 'circle-fit': value=Math.floor(p/a)**2;other=a;label='Grid count';unit='discs';inputs=`Diameter=${a}cm · square grid`;break;
     case 'circle-area': other=changed?Math.PI*(p/2)**2:p*p;value=p*p-other;label='Unused area';unit='cm²';inputs=`Square=${fmt(p)}cm · ${changed?'inscribed circle':'square insert'}`;break;
     case 'nested-wall': value=changed?a+(p-1)*b:p*a;other=p;label='Stack height';unit='cm';inputs=`Bin=${a}cm · rim=${b}cm`;break;
-    case 'flat-pack': value=changed?a*b*c*p:a*b*b;other=c;label='Outer envelope';unit='cm³';inputs=`${c}panels=${a}×${b}×${fmt(p)}cm`;break;
+    case 'flat-pack': value=changed?a*b*c*p:a*b*b;other=c;label='Outer envelope';unit='cm³';inputs=`4 panels ${a}×${b} + 2 panels ${b}×${b} · t=${fmt(p)}cm`;break;
     case 'rug-clearance': value=changed?p+2*a:p;other=a;label='Rug width';unit='cm';inputs=`Table=${fmt(p)}cm · pullback=${a}cm/side`;break;
     case 'shelf-height': other=changed?a+b:p;value=other-a;label='Unused height';unit='cm';inputs=`Box=${a}cm · hand allowance=${b}cm`;break;
     case 'reach': value=changed?Math.max(0,p-a):p;other=changed?a:0;label='Horizontal reach';unit='cm';inputs=`Travel=${fmt(other)}cm · depth=${fmt(p)}cm`;break;

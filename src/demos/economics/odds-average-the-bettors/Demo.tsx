@@ -12,10 +12,15 @@
 // $400, 70%; equal and richer runs with their money, odds and average), so slider play afterwards
 // cannot leave the reveal quoting a state that is gone. Simple-average readout hidden until the
 // commit. Bar segment labels on two lines so the $40 sliver is readable.
+// v4 (r8): fits beside the reveal on a phone. The four sliders are gone: the three preset buttons
+// are the explore (and the last one, "Start values", leaves the picture on the state the reveal's
+// first paragraph quotes). The readout row is gone (the picture's own "odds" and "simple average"
+// labels carry it). The picture is 110 px tall instead of 150, the Seen rows are two lines, and the
+// model note lives only on the stage chip.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -68,17 +73,11 @@ export default function OddsAverage({ slug }: { slug: string }) {
             </p>
           )}
           <p>
-            {eq
-              ? `With equal money (${usd(eq.w1)} each) the solid line sat on the dashed one: odds ${pct(eq.implied)}, simple average ${pct(eq.simple)}. `
-              : ""}
+            {eq ? `With equal money the solid line sat on the dashed one (${pct(eq.implied)}). ` : ""}
             {rich
-              ? `With bettor 2 holding ${usd(rich.w2)} to bettor 1's ${usd(rich.w1)}, the odds slid to ${pct(rich.implied)}, toward bettor 2's ${rich.p2}%, while the dashed average stayed at ${pct(rich.simple)}. `
+              ? `With bettor 2 richer (${usd(rich.w2)} to ${usd(rich.w1)}), the odds slid to ${pct(rich.implied)}, toward bettor 2's ${rich.p2}%, while the dashed average stayed at ${pct(rich.simple)}. `
               : ""}
             Each opinion counts in proportion to the money behind it: the implied chance is the wealth-weighted average belief.
-          </p>
-          <p className="muted">
-            A simplified model: no house cut, each bettor splits all their money by belief, as a bettor maximising the logarithm of their
-            wealth would.
           </p>
         </>
       )}
@@ -122,28 +121,28 @@ export default function OddsAverage({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.chip}>Model: no house cut; all money bet by belief</p>
                 <svg
-                  viewBox="0 0 320 150"
+                  viewBox="0 0 320 110"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "The betting pool on A and B" : `${usd(q.onA)} of ${usd(q.total)} on A: implied ${pct(q.implied)}`}
                 >
-                  <text x={X0} y={22} className={s.value}>
+                  <text x={X0} y={13} className={s.value}>
                     {locked ? "On A" : `On A: ${usd(q.onA)}`}
                   </text>
-                  <text x={X0 + W} y={22} className={s.value} textAnchor="end">
+                  <text x={X0 + W} y={13} className={s.value} textAnchor="end">
                     {locked ? "On B" : `On B: ${usd(q.total - q.onA)}`}
                   </text>
-                  <rect x={X0} y={34} width={W} height={44} rx={4} className={s.track} />
+                  <rect x={X0} y={20} width={W} height={36} rx={4} className={s.track} />
                   {!locked &&
                     segs.map((g, i) => {
                       const w = px(g.v);
                       const r = (
                         <g key={i}>
-                          <rect x={x} y={34} width={w} height={44} className={g.cls} />
+                          <rect x={x} y={20} width={w} height={36} className={g.cls} />
                           {w > 22 && (
-                            <text x={x + w / 2} y={52} className={s.small} textAnchor="middle">
+                            <text x={x + w / 2} y={34} className={s.small} textAnchor="middle">
                               <tspan x={x + w / 2}>{g.label}</tspan>
-                              <tspan x={x + w / 2} dy={14}>
+                              <tspan x={x + w / 2} dy={12}>
                                 {usd(g.v)}
                               </tspan>
                             </text>
@@ -155,12 +154,12 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     })}
                   {!locked && (
                     <g>
-                      <line x1={cut} y1={28} x2={cut} y2={96} stroke="var(--fg)" strokeWidth={3} />
-                      <text x={clamp(cut)} y={110} className={s.big} textAnchor="middle">
+                      <line x1={cut} y1={16} x2={cut} y2={70} stroke="var(--fg)" strokeWidth={3} />
+                      <text x={clamp(cut)} y={83} className={s.big} textAnchor="middle">
                         odds {pct(q.implied)}
                       </text>
-                      <line x1={avgX} y1={34} x2={avgX} y2={124} className={s.ghost} />
-                      <text x={clamp(avgX)} y={138} className={s.axis} textAnchor="middle">
+                      <line x1={avgX} y1={20} x2={avgX} y2={92} className={s.ghost} />
+                      <text x={clamp(avgX)} y={105} className={s.axis} textAnchor="middle">
                         simple average {pct(q.simple)}
                       </text>
                     </g>
@@ -174,18 +173,14 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     <>
                       {seenStart && (
                         <div>
-                          Seen, start: {usd(st.a1)} + {usd(st.a2)} = {usd(st.onA)} of {usd(st.total)} on A, odds {pct(st.implied)}, average{" "}
-                          {pct(st.simple)}
+                          Seen, start: {usd(st.a1)} + {usd(st.a2)} = {usd(st.onA)} of {usd(st.total)} on A, odds {pct(st.implied)}, average {pct(st.simple)}
                         </div>
                       )}
-                      {eq && (
+                      {(eq || rich) && (
                         <div>
-                          Seen, equal {usd(eq.w1)} each: odds {pct(eq.implied)}, average {pct(eq.simple)}
-                        </div>
-                      )}
-                      {rich && (
-                        <div>
-                          Seen, bettor 2 {usd(rich.w2)} at {rich.p2}% vs {usd(rich.w1)}: odds {pct(rich.implied)}, average {pct(rich.simple)}
+                          {eq ? `Equal ${usd(eq.w1)} each: ${pct(eq.implied)} (avg ${pct(eq.simple)})` : ""}
+                          {eq && rich ? " · " : ""}
+                          {rich ? `2 richer, ${usd(rich.w2)} at ${rich.p2}% vs ${usd(rich.w1)}: ${pct(rich.implied)} (avg ${pct(rich.simple)})` : ""}
                         </div>
                       )}
                     </>
@@ -193,10 +188,6 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     "Seen: nothing yet"
                   )}
                 </div>
-                <Row>
-                  <Readout label="Implied chance of A" value={locked ? "?" : pct(q.implied)} />
-                  {!locked && <Readout label="Simple average" value={pct(q.simple)} />}
-                </Row>
                 <Row>
                   <Control className={w1 === 200 && w2 === 200 ? "active" : ""} disabled={locked || (w1 === 200 && w2 === 200)} onClick={() => apply({ w1: 200, w2: 200 })}>
                     Equal money
@@ -210,14 +201,6 @@ export default function OddsAverage({ slug }: { slug: string }) {
                   >
                     Start values
                   </Control>
-                </Row>
-                <Row>
-                  <Slider label="Bettor 1 money" value={w1} min={50} max={400} step={50} format={usd} disabled={locked} onChange={(v) => apply({ w1: v })} />
-                  <Slider label="Bettor 1 belief" value={p1} min={0} max={100} step={10} format={(v) => `${v}%`} disabled={locked} onChange={(v) => apply({ p1: v })} />
-                </Row>
-                <Row>
-                  <Slider label="Bettor 2 money" value={w2} min={50} max={400} step={50} format={usd} disabled={locked} onChange={(v) => apply({ w2: v })} />
-                  <Slider label="Bettor 2 belief" value={p2} min={0} max={100} step={10} format={(v) => `${v}%`} disabled={locked} onChange={(v) => apply({ p2: v })} />
                 </Row>
               </div>
             );

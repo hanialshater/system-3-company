@@ -71,9 +71,11 @@
     {
       "id": "proof-by-contradiction",
       "name": "Proof by contradiction",
-      "level": "stretch",
-      "demand": 1,
-      "prerequisites": []
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "angle-sum-triangle"
+      ]
     },
     {
       "id": "percent-change-asymmetry",
@@ -562,6 +564,34 @@
       ],
       "subarea": "discrete",
       "course": "ncm"
+    },
+    {
+      "id": "multiplying-below-one",
+      "name": "Multiplying by less than 1 makes smaller",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "multiplication-as-area"
+      ],
+      "subarea": "algebra"
+    },
+    {
+      "id": "decimal-magnitude",
+      "name": "Comparing decimals: more digits is not bigger",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "place-value"
+      ],
+      "subarea": "algebra"
+    },
+    {
+      "id": "equation-from-words",
+      "name": "Letters count things: writing \"times as many\" as an equation",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "algebra"
     }
   ]
 }

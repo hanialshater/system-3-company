@@ -241,7 +241,7 @@ export const study_apply_not_quote = {
     "Any arrangement with all three"
   ],
   "answer": 0,
-  "principle": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",
+  "principle": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Quote the definition",
@@ -320,7 +320,7 @@ export const study_keep_the_error_feedback = {
   "family": "recall",
   "slug": "keep-the-error-feedback",
   "title": "Keep the correction",
-  "hook": "An answer attempt is useful evidence only if you compare it with the target.",
+  "hook": "Comparing your attempt with the target shows which item you got wrong.",
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
   "question": "Which feedback locates the mistake?",
   "options": [
@@ -693,7 +693,7 @@ export const study_fragmented_time_does_not_fit = {
   "family": "schedule",
   "slug": "fragmented-time-does-not-fit",
   "title": "Thirty scattered minutes",
-  "hook": "Three gaps total thirty minutes. A single thirty-minute task still may not fit.",
+  "hook": "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap.",
   "objective": "Distinguish total free time from one continuous interval.",
   "question": "What does an unsplittable 30-minute block require?",
   "options": [
@@ -1227,7 +1227,7 @@ export const study_work_in_process_limit = {
     "Split five minutes across jobs"
   ],
   "answer": 0,
-  "principle": "The bars represent whole-task execution. Starting everything would spread progress without completing the first job; completion and activity are different counts.",
+  "principle": "In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Split five minutes across jobs",
@@ -1427,7 +1427,7 @@ export const study_file_type_then_owner = {
   "family": "files",
   "slug": "file-type-then-owner",
   "title": "Narrow with two filters",
-  "hook": "Four files match one clue. Which one matches both?",
+  "hook": "Four files; two are PDFs and two are Ana's. Which one matches both?",
   "objective": "Intersect type and owner filters.",
   "question": "What does adding an owner filter to PDF mean?",
   "options": [
@@ -2111,7 +2111,7 @@ export const study_agenda_needs_an_outcome = {
   "family": "message",
   "slug": "agenda-needs-an-outcome",
   "title": "Give the meeting an outcome",
-  "hook": "Three discussion topics still do not name the decision needed.",
+  "hook": "A topic alone does not name the decision needed.",
   "objective": "Add a desired outcome and decision owner to an agenda.",
   "question": "Which agenda states the intended result?",
   "options": [
@@ -2317,7 +2317,7 @@ export const study_link_label_names_the_target = {
     "Click here"
   ],
   "answer": 0,
-  "principle": "The label states artifact, version and scope. This local example illustrates a descriptive label; it does not verify the real destination or link accessibility.",
+  "principle": "The label states artifact, version and section. This local example illustrates a descriptive label; it does not verify the real destination or link accessibility.",
   "boundary": "Exercise checklist; no promised communication outcome.",
   "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Click here",

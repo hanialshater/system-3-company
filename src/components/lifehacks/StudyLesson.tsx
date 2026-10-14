@@ -55,6 +55,8 @@ function observation(spec: StudySpec,state: State): string {
     return `Your note contains ${state.step+1} of ${spec.fields.length} checklist fields: ${spec.fields.slice(0,state.step+1).join(", ")}. The added values stay visible beside their labels.`;
   }
   const v=editResult(spec,state.step);
+  // FC LH-1 preview-replace-all.c3: both "red" tokens are highlighted at step 1, not only position 1.
+  if(spec.slug==="preview-replace-all"&&state.step===1) return `The local editor now contains ${v.tokens.join(" · ")}. The preview marks 2 exact matches, at positions 1 and 3; previewing did not rewrite the tokens.`;
   return `The local editor now contains ${v.tokens.join(" · ")}. ${v.highlight>=0?`The highlighted position is ${v.highlight+1}; finding did not rewrite the tokens.`:v.focus?`Focus is ${v.focus}; selection is ${v.selection}.`:v.scale!==1?`View scale is ${v.scale}; the stored words stay the same.`:"These are the displayed results of the two named commands."}`;
 }
 
@@ -247,7 +249,7 @@ function FileStage({spec,state,locked,step}:{spec:FilesSpec;state:State;locked:b
   const transforms=["dateNames","versions","prefix","extension","paths","sort"];
   const showRows=transforms.includes(spec.operation)?v.rows:candidates.map(c=>c.item);
   return <div className={s.wrap}>
-    <div className={s.caption}>{spec.operation==="date"?"C=created M=modified":"Exercise records"}</div>
+    <div className={s.caption}>{spec.operation==="date"?"C=created M=modified":spec.slug==="size-is-not-recency"?"d = day modified; higher = more recent":"Exercise records"}</div>
     <Frame label={`${state.step&&!locked?`${v.caption}: ${v.count}. Current selected records` : "Exercise records; results not yet tested"}: ${v.rows.map(r=>`${r.name}: ${r.value}`).join("; ")||"none"}.`}>
       {showRows.map((item,i)=> {
         const selected=transforms.includes(spec.operation)||v.rows.some(r=>r.name===item.name&&r.value===item.value);

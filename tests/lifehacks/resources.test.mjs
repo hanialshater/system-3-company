@@ -127,9 +127,14 @@ test('cylinder projected bases preserve fourfold area at doubled radius', () => 
 });
 
 test('revised transfer recalls require scaling, an equality and stock-at-ordering meaning', () => {
-  assert.equal(get('lh-scale-recipe-portions').recall.options[0], '750g');
-  assert.equal(get('lh-lead-time-stock').recall.options[0], '32 units');
-  assert.equal(get('lh-reuse-cost-per-use').recall.options[0], '90 uses');
+  // Session 2 resource recall patch (recall-patch-resources.lines.txt): new numbers, keyed answers spread over 0-2.
+  const keyed = slug => { const r = get(slug).recall; return r.options[r.answer]; };
+  assert.equal(keyed('lh-scale-recipe-portions'), '150g'); assert.equal(300 / 4 * 2, 150);
+  assert.equal(keyed('lh-lead-time-stock'), '26'); assert.equal(5 * 4 + 6, 26);
+  assert.equal(keyed('lh-reuse-cost-per-use'), '60'); near(15 / 60, 0.25);
+  assert.equal(keyed('lh-percentage-overage'), '91');
+  assert.deepEqual(resourcePair(get('lh-percentage-overage'), 90), [99, 100]);
+  assert.equal(evaluateResource(['ceil', ['*', 'x', 1.1]], 91), 101);
   assert.equal(get('lh-reuse-cost-per-use').variable.start, 50);
   near(resourcePair(get('lh-reuse-cost-per-use'), 50)[0], 0.24);
   assert.deepEqual(resourcePair(get('lh-reuse-cost-per-use'), 60), [0.2, 0.2]);

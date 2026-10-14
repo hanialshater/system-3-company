@@ -270,7 +270,7 @@ export const homeLessons: HomeSpec[] = [
     "view": "grid",
     "initial": 30,
     "min": 28,
-    "max": 40,
+    "max": 35,
     "step": 1,
     "values": [
       36,
@@ -284,7 +284,7 @@ export const homeLessons: HomeSpec[] = [
     "question": "Which orientation fits more identical blocks?",
     "idea": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block.",
     "limit": "No compression or overlapping is permitted; real clothes are not rigid rectangles.",
-    "formula": "Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm.",
+    "formula": "Count=floor(W/itemW)×floor(36/itemH), item=18×12 or 12×18 cm.",
     "recall": "Why does equal empty area not imply room for another packing block?",
     "source": null,
     "answer": 1,
@@ -407,8 +407,8 @@ export const homeLessons: HomeSpec[] = [
     "source": null,
     "answer": 2,
     "concept": "rolled-or-folded-volume",
-    "unit": "shirts",
-    "inputLabel": "Count",
+    "unit": " sheets",
+    "inputLabel": "Sheets",
     "hook": "With no compressed air, which uses less cloth volume?"
   },
   {
@@ -428,7 +428,7 @@ export const homeLessons: HomeSpec[] = [
       "One fold",
       "Two folds"
     ],
-    "question": "What changes when you halve the footprint again?",
+    "question": "Which fold count gives the taller stack of the same shirts?",
     "idea": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
     "limit": "Real fabrics compress and trap air; these are sheet-model dimensions.",
     "formula": "Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
@@ -1371,7 +1371,7 @@ export const homeLessons: HomeSpec[] = [
     "question": "Which empty-object envelope is smaller?",
     "idea": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
     "limit": "Real hardware and edges add volume; never dismantle furniture unless its instructions permit it.",
-    "formula": "Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³.",
+    "formula": "4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30.",
     "recall": "What disappears when an empty panel-built object becomes a flat stack?",
     "source": null,
     "answer": 1,
