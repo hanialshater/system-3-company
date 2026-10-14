@@ -7,6 +7,8 @@
 //   P(blue urn) = 1 / (1 + 2^(red - blue)),
 // computed from the chips on the table: 2 blue vs 1 red (yours) = 67%; 2 blue vs 3 red = 33%.
 // Milestones: counted, published-after-count (the toggle on while counted, in either order).
+// v2: the publish toggle keeps one label (pressed state shown by "active"/aria-pressed), and the log keeps
+// both values the reveal quotes (67% before, 33% after) even if the toggle is turned off again.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
@@ -37,7 +39,7 @@ export default function TwoPublicCluesBreakTheHerd({ slug }: { slug: string }) {
       predict={{
         question:
           "Two chose blue, then 98 followed. Now two new private clues are published: both red. Your own clue is red. Choose?",
-        options: ["Blue, with the 100", "Red", "Toss-up"],
+        options: ["Blue, with the crowd", "Red", "Toss-up"],
         answer: 1,
       }}
       exploreHint="Count the clues behind the crowd, then publish the two clues."
@@ -71,7 +73,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
   const [v, setV] = useState<View>({ counted: false, published: false, log: null });
 
   const update = (next: View) => {
-    const log = next.log ?? (next.counted && next.published ? `Before publishing: ${pct(BEFORE)} blue` : null);
+    const log = next.log ?? (next.counted && next.published ? `Blue: ${pct(BEFORE)} before publishing, ${pct(AFTER)} after` : null);
     setV({ ...next, log });
     if (next.counted) reach("counted");
     if (next.counted && next.published) reach("published-after-count");
@@ -187,7 +189,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           disabled={locked}
           onClick={() => update({ ...v, published: !v.published })}
         >
-          {v.published ? "Two clues published" : "Publish two clues"}
+          Publish two clues
         </Control>
       </div>
     </div>

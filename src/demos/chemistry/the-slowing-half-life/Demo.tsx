@@ -7,6 +7,9 @@
 // v3: the time axis has even ticks (no halving times before the lock), the gate needs one and
 // two halvings in 2nd order (rate 1/4, then 1/16), and a stage line shows the cause per halving:
 // half as much to lose, at 1/4 (2nd) or 1/2 (1st) the rate, so 2x (or the same) wait.
+// v4 (r6): the two slider presses pass one halving in ~450 ms, so the single "Rate vs start"
+// readout never showed 2nd-order 1/4 for long. Now a rate row per order keeps every halving
+// reached (1/4 → 1/16), and the reveal quotes those rows. Title no longer says "slows down".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -53,6 +56,10 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
   const [seen, setSeen] = useState<Record<Order, number>>({ 1: 0, 2: 0 });
 
   const other: Order = order === 2 ? 1 : 2;
+  // v4: a trace of the rate (vs start) after each halving the learner has reached, per order.
+  // The reveal quotes this trace, so every rate it names is still on the stage.
+  const rateRow = (o: Order) =>
+    seen[o] > 0 ? Array.from({ length: seen[o] }, (_, i) => rate(o, i + 1)).join(" → ") : "—";
   const brackets = Array.from({ length: n }, (_, i) => i + 1);
 
   return (
@@ -76,9 +83,9 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
           </p>
           <p>
             A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four
-            times rarer: your Rate readout read <strong>1/4</strong> after one halving and <strong>1/16</strong> after
-            two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
-            wait doubles. In 1st order the rate only halved, so the wait stayed the same. Radioactive decay is first
+            times rarer: your 2nd-order rate row reads <strong>{rate(2, 1)}</strong> after one halving and{" "}
+            <strong>{rate(2, 2)}</strong> after two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
+            wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the wait stayed the same. Radioactive decay is first
             order: one fixed half-life.
           </p>
         </>
@@ -169,7 +176,8 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Last wait" value={n ? `${wait(order, n)} min` : "none yet"} />
-                  <Readout label="Rate vs start" value={rate(order, n)} />
+                  <Readout label="2nd-order rate" value={rateRow(2)} />
+                  <Readout label="1st-order rate" value={rateRow(1)} />
                 </Row>
                 <p className={s.why} aria-live="polite">
                   {locked

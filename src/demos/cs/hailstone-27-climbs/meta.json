@@ -1,6 +1,6 @@
 {
   "slug": "hailstone-27-climbs",
-  "title": "Small start, long climb",
+  "title": "How many steps does 27 take?",
   "hook": "A tiny rule and a small number. How long can it run?",
   "domain": "cs",
   "concept": "collatz-steps",
@@ -66,6 +66,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c6",
+      "text": "97's run reaches 94, which is on 27's run, and from there follows 27's path down to 1 (so it also peaks at 9,232).",
+      "support": "derivation",
+      "source": "Rule applied in Demo.tsx hailstone(): 97 reaches 94 at step 13; 27 reaches 94 at step 6 (27, 82, 41, 124, 62, 31, 94). From 94 the runs are identical: 13 + (111 - 6) = 118 steps. JOIN97 = first value of SEQ[97] found in SEQ[27]. | Added 2026-10-14 (v2) by demo-builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c7",
+      "text": "No known formula gives a start's step count; to learn it you run the rule. (Stage: 'No known formula fills a ?. Run it.'; reveal: 'no known formula gives the count'.)",
+      "support": "source",
+      "source": "Lagarias, 'The 3x+1 problem and its generalizations', Amer. Math. Monthly 92 (1985) 3-23: stopping times are studied statistically and computed by iteration; no closed form is known (not opened by the builder in this session). Same open status as c5. | Added 2026-10-14 (v2) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -87,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:collatz-steps",
     "also": [],

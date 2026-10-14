@@ -6,6 +6,7 @@
 // then no change. The magnifier draws g, 2/g, sqrt(2) and the next g on a number line rescaled so g and 2/g sit
 // 240 px apart; positions use exact decimal expansions of the doubles (BigInt), so the last rungs are drawn
 // correctly. One representation: the ladder; the magnifier zooms into one rung of it.
+// v3 (r6): title no longer states "four steps"; the unsourceable Babylonian/Heron naming clause is dropped.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -94,7 +95,7 @@ export default function NewtonDoublesTheDigits({ slug }: { slug: string }) {
             {count >= RUNGS
               ? `The fifth update reached ${DIGITS[LAST_CHANGE]} digits, the limit of the computer's numbers, and the sixth changed nothing. `
               : ""}
-            This is Newton&apos;s method for g² = 2, the rule known as the Babylonian (or Heron&apos;s) method.
+            This is Newton&apos;s method for g² = 2.
           </p>
         </>
       )}
