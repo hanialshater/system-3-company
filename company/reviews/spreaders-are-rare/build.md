@@ -12,3 +12,8 @@
 - 199 / 200 / 201 totals unexplained -> the muted line says the counts are rounded (totals 199 to 201).
 - The chain-dies-out sentence was told, not shown -> removed from the reveal; reveal now says only that a few big spreaders can drive an outbreak (what the top-10 figure shows). In-between setting (33) is quoted because it is the stage's opening state. Reveal about 70 words.
 - Claims c3, c4, c5 reworded to match, unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). Even spread leaving 14 empty was unexplained, "very uneven" had no meaning, duplicate 83% / 165 of 200. Even-mode message explains random draws; question defines even spread; message drops the duplicate; reveal says the 14% option was the even-spread number and no longer says "drive an outbreak". c2, c3, c4 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

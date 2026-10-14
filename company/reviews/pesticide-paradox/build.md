@@ -11,3 +11,8 @@
 - The "average with no spray" label overlapped the curves -> shortened to "pests, no spray", moved to the left end with a halo.
 - Reveal quoted 20% numbers whatever the slider said -> reveal computes the numbers for the strength the learner set (>= 20%, the milestone "sprayed"), from the same run() as the stage. Reveal is about 70 words.
 - Volterra / Adriatic aside removed from the reveal; claim c4 marked withdrawn (not shown any more). c2 and c3 reworded, unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). "Break even" undefined, one spray level, reveal on reset stage, label overlap. Caption explains predators hold steady where food covers losses; presets Spray 20% / 40% and a milestone for each; reveal quotes both levels and the stage shows the strongest level in the reveal; "no spray" label moved into the key. c2, c3 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

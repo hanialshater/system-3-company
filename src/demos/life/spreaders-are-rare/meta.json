@@ -34,30 +34,24 @@
     },
     {
       "id": "life.spreaders-are-rare.c2",
-      "text": "With mean 2 and k = 0.1, the share of cases that infect no one is (k/(k+R))^k = (0.1/2.1)^0.1 = 0.74; with even (Poisson) spread it is e^-2 = 0.14.",
+      "text": "With mean 2 and k = 0.1, the share of cases that infect no one is (k/(k+R))^k = (0.1/2.1)^0.1 = 0.74; with even (Poisson) spread, each case a random draw around 2, it is e^-2 = 0.14, so even spread still leaves 14 in 100 who infect no one.",
       "support": "derivation",
       "source": "Negative binomial P(0) = (k/(k+R))^k = 0.7375; Poisson P(0) = e^-2 = 0.1353. Recomputed in node (artifacts/scratch/w2life/check.mjs).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.spreaders-are-rare.c3",
-      "text": "On the stage's 100 cases: very uneven spread gives 74 who infect no one and the top 10 causing 165 of 200 infections; even spread gives 14 who infect no one, a total of 199 and no case above 7 in this picture; the in-between setting (k = 1) gives 33 and a total of 201. The counts are rounded.",
+      "text": "On the stage's 100 cases: very uneven spread gives 74 who infect no one and the top 10 causing 165 of 200 infections (83%); even spread gives 14 who infect no one, a total of 199 and no case above 7 in this picture; the in-between setting (k = 1) gives 33 and a total of 201. The counts are rounded.",
       "support": "derivation",
       "source": "Each case gets the mean of its 1% slice of the distribution, rounded (expected shape, no random draw), replicated in artifacts/scratch/w2life/check2.mjs. Grid positions use an untuned seed (mulberry32(11)) and carry no information.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.spreaders-are-rare.c4",
-      "text": "When a few cases cause most spread, an average of 2 hides who drives an outbreak: the rare large spreaders can decide whether one takes off (most chains of transmission die out).",
+      "text": "When a few cases cause most infections, an average of 2 hides who does the spreading: with very uneven spread the top 10 of 100 cases cause most of the infections.",
       "support": "source",
       "source": "Lloyd-Smith et al. (2005) Nature 438:355-359 (higher extinction probability of introductions for small k).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.spreaders-are-rare.c5",
@@ -92,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "life:superspreading-dispersion",
     "prerequisites": [
@@ -101,5 +95,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

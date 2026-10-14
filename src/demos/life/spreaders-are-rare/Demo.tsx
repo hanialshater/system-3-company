@@ -116,7 +116,9 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Make a prediction to start. 100 cases (infected people), averaging 2 new infections each. Toy model."
-          : `${sum.zeros} of 100 cases infected no one. The top 10 caused ${sum.top10} of ${sum.total}. Circle area = people infected.`}
+          : mode === "even"
+            ? `${sum.zeros} of 100 infected no one, even though spread is even: each case is a random draw around 2, not exactly 2. Area = people infected.`
+            : `${sum.zeros} of 100 cases infected no one. Circle area = people infected.`}
       </p>
 
       <Row>
@@ -141,7 +143,7 @@ export default function SpreadersAreRare({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An outbreak averages 2 new infections per case, but spread is very uneven: a few people infect many, most infect few. What share of cases infect no one at all?",
+          "An outbreak averages 2 new infections per case, but spread is very uneven: a few people infect many, most infect few. What share of cases infect no one at all? (Even spread would be: everyone infects about 2, by chance.)",
         options: [`About ${P0(Infinity)}`, "About 40%", `About ${P0(0.1)}`],
         answer: 2,
       }}
@@ -151,10 +153,10 @@ export default function SpreadersAreRare({ slug }: { slug: string }) {
         <>
           <p>
             With very uneven spread, <strong>{U.zeros} of 100 cases infected no one</strong>, yet the average was still 2: the
-            top 10 cases caused {U.top10} of the {U.total} infections. With even spread only {E.zeros} infected no one, and
-            no case in this picture infected more than {E_MAX}. In between, {M.zeros} infected no one.
+            top 10 cases caused {Math.round((100 * U.top10) / U.total)}% of the infections. With even spread only {E.zeros} infected no one (the
+            14% option was the even-spread number), and no case in this picture infected more than {E_MAX}. In between, {M.zeros} infected no one.
           </p>
-          <p>An average of 2 does not mean each case infects 2: a few big spreaders can drive an outbreak.</p>
+          <p>An average of 2 does not mean each case infects 2: a few big spreaders cause most infections.</p>
           <p className="muted">
             &ldquo;Very uneven&rdquo; is an illustration, not a measured value for any disease. The 100 cases are an expected
             shape, rounded (totals 199 to 201), not one random outbreak.

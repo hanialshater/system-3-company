@@ -3,7 +3,7 @@
 // Two carrier plants (Pw x Pw). White flowers are recessive (ww). Every seed
 // draws one copy from each parent at random, so each seed is white with
 // chance 1/4, independently. The learner grows families of 4 seeds into a
-// 10 x 10 field of families. Seeded draws; "New batch" changes the seed.
+// 10 x 10 field of families. Seeded draws; One fixed field (seed 1), no reroll.
 
 import { useMemo, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -36,7 +36,7 @@ const label = (g: [boolean, boolean]) => `${g[0] ? "w" : "P"}${g[1] ? "w" : "P"}
 const isWhite = (g: [boolean, boolean]) => g[0] && g[1];
 
 export default function OneInFourSprouts({ slug }: { slug: string }) {
-  const [seed, setSeed] = useState(1);
+  const seed = 1;
   const [grown, setGrown] = useState(0);
   const hit = useRef(new Set<string>());
   // The 100-family result the learner actually saw (kept after "New field").
@@ -58,7 +58,7 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
         options: ["About 25%", "About 68%", "100%"],
         answer: 1,
       }}
-      exploreHint="Grow one family and read its seeds. Then grow all 100 families."
+      exploreHint="Grow one family and read its seeds (ww is white). Then grow all 100 families."
       minInteractions={2}
       reveal={() => (
         <>
@@ -70,8 +70,9 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
           </p>
           <p>
             &ldquo;1 in 4&rdquo; is a chance per seed, not a quota per family.{" "}
-            {full ? `Exactly one white happened in ${full.exactly} of your 100 families, ${full.none} had none. ` : ""}Averaged over
-            many fields, exactly one white is about 42% of families, about a third get none, and some get two or more.
+            {full ? `Exactly one white happened in ${full.exactly} of your 100 families, ${full.none} had none. ` : ""}Your field is one draw: another field
+            would give different counts. Averaged over many fields, exactly one white is about 42% of families, about a
+            third get none, and about a quarter get two or more.
           </p>
           <p className="muted">Made-up flower: one purple copy (P) gives purple; seeds are independent.</p>
         </>
@@ -98,9 +99,9 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
         const msg = locked
           ? "Make a prediction to start. Each square will hold one family of 4 seeds."
           : !last
-            ? "Each seed gets one copy from each parent."
+            ? "Each seed gets one copy from each parent, P or w."
           : grown === FAMILIES
-            ? `${FAMILIES} families: ${atLeast} with a white flower, ${exactly} with exactly one, ${none} with none.`
+            ? `${FAMILIES} families: ${atLeast} with a white flower, ${none} with none. Expected none: 3/4 × 3/4 × 3/4 × 3/4 = 32%.`
             : `Family ${grown}: seeds ${last.map(label).join(", ")}. ${lastWhite} white (only ww is white).`;
         return (
           <div className={s.wrap}>
@@ -127,7 +128,7 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
             </svg>
 
             <p className={s.msg} aria-live="polite">{msg}</p>
-            <p className={s.msg}>Each seed has two copies, P (purple) or w (white). Only ww is white.</p>
+            <p className={s.msg}>A seed has 2 copies, one per parent. ww is white; PP, Pw, wP are purple.</p>
 
             <Row>
               <Control disabled={locked || grown >= FAMILIES} onClick={() => grow(grown + 1)}>
@@ -139,20 +140,12 @@ export default function OneInFourSprouts({ slug }: { slug: string }) {
               <Control disabled={locked || grown >= FAMILIES} onClick={() => grow(FAMILIES)}>
                 Grow all 100
               </Control>
-              <Control
-                disabled={locked || grown === 0}
-                onClick={() => {
-                  setSeed((x) => x + 1);
-                  setGrown(0);
-                }}
-              >
-                New field
-              </Control>
             </Row>
             <Row>
               <Readout label="Families" value={grown} />
               <Readout label="1+ white" value={grown ? `${atLeast} (${Math.round((100 * atLeast) / grown)}%)` : "–"} />
               <Readout label="Exactly 1 white" value={grown ? exactly : "–"} />
+              <Readout label="None white" value={grown ? none : "–"} />
             </Row>
           </div>
         );

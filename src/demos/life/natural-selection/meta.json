@@ -90,12 +90,10 @@
     },
     {
       "id": "life.natural-selection.c8",
-      "text": "In the model, 1.1 multiplied by itself 100 times is about 14,000 (1.1^100 = 13,781), so a starting ratio of 1 dark to 99 pale becomes about 139 dark to 1 pale, which is about 99 in 100.",
+      "text": "In the model, 1.1 multiplied by itself 100 times is about 14,000 (1.1^100 = 13,781), so a starting ratio of 1 dark to 99 pale (the ratio shown on the stage) becomes about 139 dark to 1 pale, which is about 99 in 100. The stage message shows the dark-to-pale ratio and the 1.1 multiplier each generation.",
       "support": "derivation",
       "source": "1.1^100 = 13,780.6; (1/99) x 13,780.6 = 139.2; 139.2 / 140.2 = 0.9929. Demo.tsx computes GROWTH, RATIO_AT_100 and AT_100 from darkShare(), the function that draws the stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.natural-selection.c9",
@@ -158,12 +156,19 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "life:natural-selection",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

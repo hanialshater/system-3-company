@@ -99,10 +99,14 @@ function Stage({
         </text>
         {!locked && (
           <>
-            <line x1={X0} y1={py(star)} x2={X1} y2={py(star)} className={s.eq} />
-            <text x={X1} y={py(star) - 4} textAnchor="end" className={s.eqlab}>
-              balance {pct(star)}
-            </text>
+            {gen >= GENS && (
+              <>
+                <line x1={X0} y1={py(star)} x2={X1} y2={py(star)} className={s.eq} />
+                <text x={X1} y={py(star) - 4} textAnchor="end" className={s.eqlab}>
+                  balance {pct(star)}
+                </text>
+              </>
+            )}
             <path d={line(rare, gen)} className={s.rare} />
             <path d={line(common, gen)} className={s.common} />
             <circle cx={px(gen)} cy={py(rare[gen])} r={4} className={s.dotRare} />
@@ -140,11 +144,12 @@ function Stage({
       </Row>
       <Slider label="Survival with no w" value={noCopy} min={70} max={95} step={5} disabled={locked} format={(v) => `${v}%`} onChange={(v) => run(gen, v)} />
       <Row>
-        <Control className={s.chip} disabled={locked || gen === 0} onClick={() => run(0, noCopy)}>
-          Restart
-        </Control>
-        <Readout label="Now (1% / 50% starts)" value={locked ? "?" : `${pct(rare[gen])} / ${pct(common[gen])}`} />
-        <Readout label="Balance" value={locked ? "?" : pct(star)} />
+        <Readout label="w share now (1% / 50% starts)" value={locked ? "?" : `${pct(rare[gen])} / ${pct(common[gen])}`} />
+        <Readout label="Balance" value={locked || gen < GENS ? "?" : pct(star)} />
+      </Row>
+      <Row>
+        <Readout label="Young with 2 w (die)" value={locked ? "?" : `${pct(rare[gen] ** 2)} / ${pct(common[gen] ** 2)}`} />
+        <Readout label="Young with 1 w (thrive)" value={locked ? "?" : `${pct(2 * rare[gen] * (1 - rare[gen]))} / ${pct(2 * common[gen] * (1 - common[gen]))}`} />
       </Row>
     </div>
   );
@@ -162,14 +167,16 @@ export default function KeepingTheBadGene({ slug }: { slug: string }) {
         options: ["disappears", "settles at a steady share in between", "takes over"],
         answer: 1,
       }}
-      exploreHint="Press +10 generations until 60 and watch both curves. Then move the survival slider."
+      exploreHint="Press +10 generations until 60 and watch both curves and the young-animal rows. Then move the survival slider."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            Starting from 1% and from 50%, the curves met at <strong>{SETTLED_RARE} of 100 copies</strong>. Selection did not remove w, even though two copies kill. Rare w sits
-            mostly in carriers, who survive best, so it rises; common w makes more two-copy babies, who die, so it
-            falls. The balance is 0.15 &divide; 1.15 &asymp; {QSTAR}%.
+            Starting from 1% and from 50%, the curves met at <strong>{SETTLED_RARE} of 100 copies</strong>. Selection did not remove w, even though two copies kill. Look at the two
+            young-animal rows: when w is rare almost no young get two copies (nobody dies of it) while some get one, who
+            survive best, so w rises. When w is common, a quarter or more of young get two copies and die, so w falls.
+            The balance is where the two pulls match: animals with no w lose 15 of 100, animals with two w lose
+            100, so 15 &divide; (15 + 100) &asymp; {QSTAR}%.
           </p>
           {diff !== 0 && (
             <p>

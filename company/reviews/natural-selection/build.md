@@ -23,3 +23,8 @@ Key state: generation 100 or later at the question's 10% edge (`gen-100-at-10`).
 | Fact-check F4: non-overlapping generations | Added to c1's text and source. c1 goes back to unverified. |
 
 QA-path trade-off: the contract slides generations to 2, presses +1 and +10 (to 13), then "Go to 100" (milestone), then the edge chips and Start over. A real learner can take the slow path by sliding or tapping +10, or the one-tap path. The one-tap path skips watching each step, so the strip carries that history instead.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). Odds ratio appeared only in the reveal. Stage message now shows dark-to-pale ratio ("1 to 99" ... "139 to 1") and the multiplier. c8 reworded, unverified. I dropped the repeated "None changed colour" caption because it overlapped the slider (the model line and reveal still say it).
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

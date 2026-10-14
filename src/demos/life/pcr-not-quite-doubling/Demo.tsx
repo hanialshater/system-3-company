@@ -23,7 +23,8 @@ const px = (c: number) => L + ((W - L - R) * c) / CYCLES;
 const py = (n: number) => T + (H - T - B) * (1 - Math.log10(n) / YMAX);
 const line = (e: number) => Array.from({ length: CYCLES + 1 }, (_, c) => `${px(c).toFixed(1)},${py(count(e, c)).toFixed(1)}`).join(" ");
 
-function Stage({ locked, eff, setEff }: { locked: boolean; eff: number; setEff: (e: number) => void }) {
+function Stage({ locked, eff: effSet, setEff, revealing }: { locked: boolean; eff: number; setEff: (e: number) => void; revealing: boolean }) {
+  const eff = revealing ? Q_EFF : effSet;
   const msg = locked
     ? "Toy PCR: 1 DNA molecule, 30 cycles. A perfect cycle doubles the count. Efficiency stays fixed."
     : eff === 100
@@ -31,7 +32,19 @@ function Stage({ locked, eff, setEff }: { locked: boolean; eff: number; setEff: 
       : `${eff}% efficient: ×${(1 + eff / 100).toFixed(2)} per cycle, ${big(count(eff, CYCLES))} after ${CYCLES}. Perfect: ${big(count(100, CYCLES))}. That is ${pctOf(eff)}% of perfect.`;
   return (
     <div className={s.wrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={msg}>
+      <svg viewBox="0 0 320 60" className={`stage-svg ${s.bars}`} role="img" aria-label={`Copies after ${CYCLES} cycles on a straight scale: perfect is full length, ${eff}% efficient is ${pctOf(eff)}% of it`}>
+        <text x={4} y={11} className={s.axis}>After {CYCLES} cycles, straight scale</text>
+        <text x={4} y={30} className={s.axis}>Perfect</text>
+        <rect x={52} y={20} width={262} height={14} className={s.barPerfect} />
+        {!locked && (
+          <>
+            <text x={4} y={52} className={s.axis}>{eff}%</text>
+            <rect x={52} y={42} width={Math.max(1.5, 262 * ratio(eff))} height={14} className={s.barMine} />
+            <text x={ratio(eff) > 0.5 ? 52 + 262 * ratio(eff) - 4 : 52 + 262 * ratio(eff) + 4} y={53} textAnchor={ratio(eff) > 0.5 ? "end" : "start"} className={ratio(eff) > 0.5 ? s.axisOn : s.axis}>{pctOf(eff)}% of perfect</text>
+          </>
+        )}
+      </svg>
+      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`Log chart: ${msg}`}>
         {[0, 3, 6, 9].map((d) => (
           <g key={d}>
             <line x1={L} x2={W - R} y1={py(Math.pow(10, d))} y2={py(Math.pow(10, d))} className={s.grid} />
@@ -42,7 +55,7 @@ function Stage({ locked, eff, setEff }: { locked: boolean; eff: number; setEff: 
         <text x={px(CYCLES)} y={H - 8} textAnchor="end" className={s.axis}>{CYCLES} cycles</text>
         <polyline points={line(100)} className={s.perfect} />
         {!locked && eff !== 100 && <polyline points={line(eff)} className={s.mine} />}
-        <text x={L + 4} y={T + 8} className={s.axis}>copies (log scale)</text>
+        <text x={L + 4} y={T + 8} className={s.axis}>copies (each gridline is 1,000 times more)</text>
       </svg>
       <p className={s.msg} aria-live="polite">{msg}</p>
       <Row>
@@ -63,11 +76,11 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy PCR: 1 DNA molecule, ${CYCLES} cycles. A perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), the final count compared with perfect is about:`,
+        question: `PCR copies DNA in cycles. Toy PCR: 1 DNA molecule, ${CYCLES} cycles. A perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), the final count compared with perfect is about:`,
         options: ["90%", "50%", "20%"],
         answer: 2,
       }}
-      exploreHint={`Set the efficiency to ${Q_EFF}% and compare the two curves.`}
+      exploreHint={`Set the efficiency to ${Q_EFF}% and compare the bar with perfect. Then try 80%.`}
       minInteractions={1}
       reveal={() => (
         <>
@@ -80,10 +93,10 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ phase, locked, interact }) => (
         <Milestones interact={interact} names={["ninety"]}>
           {(reach) => (
-            <Stage locked={locked} eff={eff} setEff={(e) => { setEff(e); if (e === Q_EFF) reach("ninety"); }} />
+            <Stage locked={locked} revealing={phase === "reveal"} eff={eff} setEff={(e) => { setEff(e); if (e === Q_EFF) reach("ninety"); }} />
           )}
         </Milestones>
       )}

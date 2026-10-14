@@ -1,7 +1,7 @@
 {
   "slug": "keeping-the-bad-gene",
   "title": "A gene that kills in pairs",
-  "hook": "Two copies of this gene kill. One copy helps. What does selection do with it?",
+  "hook": "A gene kills animals that get two copies. What does selection do with it in the long run?",
   "domain": "life",
   "concept": "heterozygote-advantage",
   "status": "review",
@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "life.keeping-the-bad-gene.c1",
-      "text": "With survival AA = 1 - s, Aw = 1 and ww = 1 - t, selection holds w at a stable share q = s/(s + t); with s = 0.15 and t = 1 that is 0.15/1.15, about 13% of gene copies.",
+      "text": "With survival AA = 1 - s, Aw = 1 and ww = 1 - t, selection holds w at a stable share q = s/(s + t); with s = 0.15 and t = 1 that is 0.15/(0.15 + 1) = 15/115, about 13% of gene copies. The stage shows the balance line and value only once the curves reach generation 60.",
       "support": "source",
       "source": "Hartl D.L. & Clark A.G. (2007) Principles of Population Genetics, 4th ed., ch. 5 (overdominance). 0.15/1.15 = 0.1304, recomputed in node (artifacts/scratch/w2life/check.mjs).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.keeping-the-bad-gene.c2",
@@ -43,12 +41,10 @@
     },
     {
       "id": "life.keeping-the-bad-gene.c3",
-      "text": "When w is rare it sits mostly in carriers, who survive best, so it rises; when it is common more young get two copies and die, so it falls.",
+      "text": "When w is rare almost no young get two copies while some get one and survive best, so w rises; when w is common a large share of young get two copies and die, so w falls. On the stage the young with two copies are q^2 of the young and those with one copy 2pq (1% w: about 0% and 2%; 50% w: 25% and 50%).",
       "support": "derivation",
       "source": "Rare w: almost all w copies are in Aw (fitness 1 > mean fitness), so q rises; common w: the ww share q^2 grows, mean fitness of w copies falls below the mean (Hartl & Clark 2007 ch. 5).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.keeping-the-bad-gene.c4",
@@ -101,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "life:heterozygote-advantage",
     "prerequisites": [
@@ -111,5 +107,13 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "slider-live-chart",
+    "milestone-gate",
+    "tally-counters"
+  ]
 }

@@ -60,21 +60,24 @@
     },
     {
       "id": "life.potassium-battery.c5",
-      "text": "With 140 mM on both sides the balance voltage is 0 mV, because there is no concentration push to balance.",
+      "text": "With 140 mM on both sides the balance voltage is 0 mV, because there is no concentration push to balance. On the stage, changing the outside level starts a fresh cell with no charge built up.",
       "support": "derivation",
       "source": "ln(140/140) = 0, so E = 0 (node). | FACT-CHECK 2026-10-13 (pass 9): ln(1) = 0 (node); reveal prints MV(nernst(140)) = 0 mV.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.potassium-battery.c6",
-      "text": "Each leak press moves the voltage half of the remaining way to the balance voltage; real leaking takes milliseconds and moves a tiny fraction of the ions, so concentrations barely change.",
+      "text": "Each leak press moves the voltage half of the remaining way to the balance voltage; real leaking takes milliseconds and moves a tiny fraction of the ions, so concentrations barely change and very few ions have to cross to build the charge.",
       "support": "convention",
       "source": "Toy dynamics in Demo.tsx (v + (E - v)/2). The statement about a tiny fraction of ions is a standard physiology fact (verify); the dot counts are not redrawn as the voltage builds. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx leak(): v + (e - v)/2. Derivation of 'tiny fraction': a 10 um cell, 1 uF/cm2, 90 mV moves Q = CV = 2.8e-13 C = 2.9e-18 mol, vs 7.3e-14 mol K+ inside (0.14 M x 5.2e-13 L): about 4e-5. Membrane time constant RC is milliseconds.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
+    },
+    {
+      "id": "life.potassium-battery.c7",
+      "text": "The balance voltage follows the concentration ratio, about 61 mV for each factor of ten at 37 C; a 28 to 1 ratio (140 mM to 5 mM) gives about -89 mV.",
+      "support": "derivation",
+      "source": "E = (RT/F) ln(out/in) with RT/F = 26.7 mV: 26.7 x ln 10 = 61.5 mV per tenfold; 61.5 x log10(5/140) = -89 mV.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -96,7 +99,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:membrane-potential",
     "prerequisites": [
@@ -105,5 +108,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "slider-live-chart",
+    "milestone-gate"
+  ]
 }
