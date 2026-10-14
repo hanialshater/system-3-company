@@ -63,7 +63,9 @@ function camps(sg: Signs): string[] | null {
   return [...m.values()];
 }
 
-const MILESTONES = ["zero", "three", "mixed"] as const;
+const trioName = (q: number[]) => q.map((i) => NAMES[i]).join("");
+
+const MILESTONES =["zero", "three", "mixed"] as const;
 const mid = (k: number): [number, number] => {
   const [a, b] = EDGES[k];
   return [(POS[a][0] + POS[b][0]) / 2, (POS[a][1] + POS[b][1]) / 2];
@@ -71,7 +73,7 @@ const mid = (k: number): [number, number] => {
 
 interface Seen {
   zeros: string[]; // camp splits the learner reached with 0 unbalanced
-  three: { split: string; n: number } | null; // fewest unbalanced seen with exactly 3 camps
+  three: { split: string; n: number; trios: string[] } | null; // fewest unbalanced seen with exactly 3 camps
   mixed: number | null; // unbalanced count of the first "not camps" setting the learner reached by tapping
 }
 
@@ -126,7 +128,7 @@ function Stage({
       reach("mixed");
     }
     if (c && c.length === 3) {
-      setSeen((p) => (p.three && p.three.n <= n ? p : { ...p, three: { split, n } }));
+      setSeen((p) => (p.three && p.three.n <= n ? p : { ...p, three: { split, n, trios: unbalancedTrios(next).map(trioName) } }));
       if (fromTap) reach("three"); // built by hand; the chip alone does not count
     }
   };
@@ -218,6 +220,7 @@ function Stage({
       <p className={s.sr} aria-live="polite">
         {said}
       </p>
+      {!locked && bad.length > 0 && bad.length <= 4 && <p className={s.names}>{bad.map(trioName).join(" · ")}</p>}
       <Row>
         <Readout label="Unbalanced" value={locked ? "?" : `${bad.length} of 10`} />
         <Readout label="Camps" value={campText} />
@@ -266,13 +269,14 @@ export default function EnemyOfMyEnemy({ slug }: { slug: string }) {
             {seen.three && (
               <>
                 {" "}
-                Your three camps ({nb(seen.three.split)}) left <strong>{seen.three.n}</strong>.
+                Your three camps ({nb(seen.three.split)}) left <strong>{seen.three.n}</strong>
+                {seen.three.trios.length <= 4 && <>: {seen.three.trios.join(", ")}. Each takes one person from each camp, so all three pairs are −</>}.
               </>
             )}
           </p>
           <p>
-            For five people, all 16 balanced settings are camp splits. Three camps never balance: one person from each
-            makes three enemies, an unbalanced trio. Five people leave at least 3 such trios; all enemies leaves 10.
+            For five people, all 16 balanced settings are camp splits. Three camps never balance: a trio with one person
+            from each is an unbalanced trio of three enemies. Five people leave at least 3 such trios; all enemies leaves 10.
           </p>
           <p>
             So balanced means one camp or two. This is the balance theorem (Harary, 1953; Cartwright and Harary, 1956),
