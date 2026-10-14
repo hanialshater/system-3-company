@@ -1,0 +1,129 @@
+{
+  "slug": "few-shortcuts-shrink-the-world",
+  "title": "A few shortcuts shrink the world",
+  "hook": "Add a handful of long links to a ring of 100 people. How much closer does everyone get?",
+  "domain": "probability",
+  "concept": "small-world-shortcuts",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "people can be linked, and a step is one link"
+    ],
+    "doesNotKnow": [
+      "a handful of random long links cuts the typical distance by half or more while neighbourhoods stay tight"
+    ]
+  },
+  "misconception": "To shrink distances you must rewire a large part of the network.",
+  "objective": "The learner can explain that adding a few random long-distance links to a ring of local friendships cuts the average number of steps between two people by more than half (12.9 to 6.8 with 5 links, to 4.9 with 20) while clustering barely falls (0.500 to 0.435).",
+  "claims": [
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c1",
+      "text": "With no shortcuts the average is 12.9 steps; with 5 and with 20 shortcuts in the lesson's seed-1 world it is 6.8 and 4.9 steps (12.88, 6.78 and 4.85 before rounding; 1 shortcut: 10.34).",
+      "support": "simulation",
+      "source": "model.ts: ring of 100, each linked to the 2 people on each side (ring distance 1 and 2); shortcuts drawn by mulberry32(1): pick two people uniformly (randInt 0..99 twice), skip if equal or already linked, repeat; the first 1, 5, 20 pairs of that one sequence are nested. Average steps = exact all-pairs BFS over all 9,900 ordered pairs. Re-run in node 2026-10-14: 12.8788, 10.3436, 6.7810, 4.8539. Seed 1 is the first seed tried (not tuned).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c2",
+      "text": "Other seeds differ a little: over seeds 1 to 20 the average with 5 shortcuts is 7.38 steps (range 6.38 to 8.29) and with 20 shortcuts 4.69 (4.47 to 4.86).",
+      "support": "simulation",
+      "source": "Same rule as c1, seeds 1..20, mean of the average steps, re-run in node 2026-10-14. Reveal says only 'other seeds differ a little'; the figures are the evidence. Answer B (about 7) holds for the seed-1 world (6.78) and for the 20-seed mean (7.38).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c3",
+      "text": "Clustering (the share of a person's contacts who know each other, averaged over people) is 0.500 with no shortcuts and 0.435 with 20 shortcuts in the seed-1 world (0.496 with 1, 0.480 with 5).",
+      "support": "simulation",
+      "source": "model.ts clustering(): for each person, links among their contacts divided by pairs of contacts, averaged over the 100 people. Re-run in node 2026-10-14 for seed 1: 0.5000, 0.4960, 0.4800, 0.4350; seeds 1-20 means 0.500, 0.496, 0.482, 0.434.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c4",
+      "text": "Watts and Strogatz's small-world model rewired ring links rather than adding new ones; this lesson adds shortcuts.",
+      "support": "source",
+      "source": "D. J. Watts and S. H. Strogatz (1998), Collective dynamics of 'small-world' networks, Nature 393: 440-442; the added-link variant is Newman and Watts (1999). NEEDS A HUMAN SOURCE CHECK (empirical/model source, not checked from the paper by the builder). Easley and Kleinberg 2010, ch. 20 section 20.2 (section number unconfirmed) discusses the model. The lesson attributes only the effect (few long links, short paths, high clustering) to Watts and Strogatz, not the added-link rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c5",
+      "text": "The ring's average of 12.9 steps (12.88) is the exact all-pairs value for 100 people who each know the 2 people on each side.",
+      "support": "derivation",
+      "source": "Exact all-pairs BFS in model.ts averageSteps() over 100 x 99 ordered pairs gives 12.878787... = 1275/99. Check by hand: from one person the distance to the person k places away is ceil(k/2); k = 1..49 occurs twice (each side) and k = 50 once: 2 x 625 + 25 = 1275.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c6",
+      "text": "A random network of this size and number of contacts would have clustering near 0.04.",
+      "support": "derivation",
+      "source": "Approximation: in a random network the chance that two of a person's contacts know each other is about degree / N = 4 / 100 = 0.04. Each person in the ring has 4 contacts (2 each side), so degree = 4. Shown as a ghost mark, labelled 'Random network 0.04'. Approximation, not simulated by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c7",
+      "text": "100 people who each know the 2 people on each side make 200 links.",
+      "support": "derivation",
+      "source": "Each of 100 people has 2 links to the next people clockwise (ring distance 1 and 2): 100 x 2 = 200 links (ringEdges() length).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c8",
+      "text": "Every route that can use a shortcut gets shorter, and nobody has to rewire the local circles.",
+      "support": "derivation",
+      "source": "Adding a link never lengthens any shortest path (the old routes are still there), and a link between far-apart people gives every pair whose route can use it a shorter route. The lesson's model adds shortcuts to an unchanged ring (model.ts); it is a model, not a claim about real people.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a ring where everyone knows only their near neighbours, a few random long-distance links are added. What happens to the typical number of steps between two people?",
+    "options": [
+      "It falls a lot",
+      "It barely changes",
+      "It rises"
+    ],
+    "answer": 0,
+    "why": "Each long link is a bridge between far-apart neighbourhoods, so many routes get much shorter, while most local friendships stay as they were."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "probability:small-world-shortcuts",
+    "prerequisites": [
+      "probability:giant-component"
+    ],
+    "level": "core",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 20,
+        "section": "20.2",
+        "note": "section unconfirmed (book site blocked); small-world model"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "networks",
+      "small-world",
+      "shortcuts",
+      "clustering"
+    ]
+  },
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "locked-readouts"
+  ]
+}
