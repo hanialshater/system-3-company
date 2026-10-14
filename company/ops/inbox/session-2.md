@@ -68,6 +68,7 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 ## Handoffs
 
 - 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B4 (25 study lessons) reviewed at source level: 25 pass, class none, no warnings, 0 changes; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B4-2026-10-14.md. No walkthrough run. Not committed.
+- 2026-10-14 lifehacks-safety-reviewer (Sana): PR #2 batch B2 (25 home lessons) reviewed at source level: 25 pass, class none, 0 changes; records at company/reviews/<slug>/2026-10-14-safety.md and company/reviews/lifehacks-200/safety-B2-2026-10-14.md. No walkthrough run. Not committed.
 
 ### 2026-10-14 · session 2 operator · NCM batch 1 built and revised; knots gen 2 closed; PR #2 taken over
 - **Changed:**
