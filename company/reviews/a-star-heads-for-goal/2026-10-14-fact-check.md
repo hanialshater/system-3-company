@@ -50,3 +50,17 @@ Paths read: Settle next, Settle to goal, Wall toggle, No guess, With guess, rest
 | c6 | verified | GUESS_AT_S = /0-6/ + /3-3/ = 6; BFS with the wall 10. Line under the table "Guess at S: 6. Real route with the wall: 10." once the guided wall run is filled (wall-both guarantees it), "?" before; reveal "the wall route took 10" reads the same value. Legend "Numbers: settle order. Dashed: waiting to settle." matches num() and isFrontier. |
 
 **Result:** 3 verified, 1 disputed, 0 held (unverified), 0 withdrawn.
+
+
+## Pass 33 (2026-10-14, W-283 + W-286)
+
+Checker: fact-checker. I did not write or build these claims. Scope: c1 and c3, reopened by the W-282 fix (meta.json v6). Method: I read Demo.tsx v6 on every reachable path before the builder's notes. The paths: guided open first (the QA path), wall first (the pass 30 failure: Wall on, then Settle to goal, then No guess), restart mid-run vs at goal (replay), Settle next by hand to the goal, and reduced motion. There is no Reset. I re-ran the numbers in my own node scripts, not imported from Demo.tsx (session scratchpad fact-checker-w283/check.mjs and c3rand.mjs). Hart, Nilsson & Raphael was not opened, so no verdict rests on it.
+
+Reveal word count (own node count, the reveal() text): the reveal needs guided-at-goal (guess, open) and wall-both (both wall runs), so the only open-grid state left free is the optional no-guess open run. Without that run it is 79 words, with it 84 words. Adding the kit verdict line ("Your prediction held." or "Not quite: it was "7".") gives at most 88. That is at most 90 on every path.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own A*: open grid, guess 7 settled / route 6; no guess 31 / route 6; BFS open 6. Pass 30 path closed: finish() reaches guided-at-goal only when mode is guess and the wall is off. On the wall-first path the guided wall run and the no-guess wall run give plain-at-goal and wall-both but not guided-at-goal, so the reveal stays locked until the open guided run fills its cell ("7 cells · route 6"). So the verdict on the predict answer "7" always follows a run that showed 7. The no-guess 31 shows only if that optional run is made, and the reveal quotes it only then. The tie rule on the stage line matches search(). |
+| c3 | verified | Rests on derivation (support is now derivation). Manhattan is admissible and consistent on a 4-way unit grid, so the closed-set search with no reopening settles each cell at its minimum steps. Own runs: guided = flood on open (6) and with the wall (10). Over 15,348 solvable random layouts with 30% walls there were 0 mismatches. After the W-277 cut, the learner sees "The guess can be too low, never too high, so it never makes a shorter route look worse." plus "both routes N steps" where both runs exist (always with the wall). Non-blocking, for the builder: the claim text says the match shows "on the open grid and with the wall", but the open-grid match shows only on the optional no-guess open path. The claim is true but broader than what the stage always shows. Narrowing it is the builder's call, and it does not change this verdict. |
+
+**Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn. All six claims are now verified.

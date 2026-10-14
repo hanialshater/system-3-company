@@ -40,3 +40,14 @@ Paths read: loops before Try (walk drawn), Try before loops (no walk drawn: c4 d
 | c4 | disputed | Parity holds (own walk). DISPUTED on a stage path: once "Try all 64 splits" is pressed, tried never resets and w = null whenever result exists, so a learner who tries first and then picks Right or Left loop reaches odd-loop without any walk or clash ring drawn (caption still "0 of 64..."). The reveal then says "so those walks came back to A in the other camp", a state the stage never showed (demo-standard: the reveal quotes what you saw). Fix (builder): draw the walk when a loop is picked after Try (e.g. picking a loop shows its walk instead of the best split), or gate odd-loop on a drawn walk. Pass 24 noted this as non-blocking; W-276 asked for every path. |
 
 **Result:** 3 verified, 1 disputed, 0 held (unverified), 0 withdrawn.
+
+
+## Pass 33 (2026-10-14, W-283)
+
+Checker: fact-checker. I did not write or build this claim. Scope: c4, reopened by the W-281 fix (meta.json v4). Method: I read Demo.tsx v4 on every reachable path before the builder's notes. The paths: loops before Try, Try before loops (the pass 30 failure), re-picking the same loop while the split shows, enemy moved before and after Try, and back to D-E with a walk drawn and with the split drawn. There is no Reset and no animation. I re-ran the numbers in my own node script, not imported from Demo.tsx (session scratchpad fact-checker-w283/check.mjs). No source was needed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Own walk: in the given layout the ring has 2 enemies and comes back in the same camp. The right and left loops have 1 each and come back in the other camp. Moved: 2, 2 and 0, all back in the same camp. Own brute force: 0 of 64 work given (best breaks 1), 2 of 64 moved. Pass 30 path closed: after Try, picking Right or Left sets view = walk, so split = null and w is drawn (camp tints and the clash ring at A) in the same click that reaches odd-loop. The second route to odd-loop (Enemy on D-E) needs view === walk and a picked loop, and with both, split = null, so the walk is drawn. odd-loop can no longer be reached while the split is drawn. Every route records a right or left loop in the given row, so the reveal's "(right loop: 1...), each odd ... those walks came back to A in the other camp" always follows a clash walk the learner saw. |
+
+**Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn. All five claims are now verified.
