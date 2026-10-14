@@ -159,3 +159,138 @@ No further wording, seed or slider change is required from the builder. Advisory
 
 - Builder, v2 open item: "R3 asked for income; the clause went because no reachable source carries it." Answer: accepted, with R3 amended in (3) and the conditions above. Not noted.
 - Builder, v2 decision: "Lending wording: I did not use 'later lending patterns'." Answer: right, and my suggestion was wrong; I withdraw it in (2).
+
+# Pass 4 (v3 spec, pre-build). Rulings on `company/design/specs/schelling-on-new-york-v3.md`
+
+- Reviewer: cultural-reviewer (Amira). Date: 2026-10-14. Session 2.
+- Method: I read the v3 spec (all of it), the failed learner review, my R1 to R10 and passes 1 to 3. There is no v3 build, mockup or walkthrough, so every ruling below is on spec text and on my own earlier artifact reads. I did not re-run `engine.ts`, so I take the spec's numbers (35%, 70%, 0.49 and so on) as the spec author's, to be checked by the fact-checker. I did not open the HOLC area-description data. A ruling here is wording and picture-reading risk, not verification.
+- Not checked: any mockup, dark theme, screen reader, any human or borrowed-mind reader. Confidence is moderate to high on the wording rulings (they follow R1 to R10) and moderate on the picture-reading rulings (risk 3, the pair), because only a reader can show how a picture reads.
+
+## Verdict: GO to build, with the changes below. Nothing here is a block.
+
+The v3 diagnosis is right (the failure is the picture, not the words) and "two mixes, two maps" is the first fix I have seen that answers the probe with the picture instead of a longer disclaimer. Seven rulings, then the new-string check, then the carried conditions.
+
+## Rulings
+
+### 1. Risk 3: one-colour outlines on a sorted city. GO, with six conditions.
+
+What is reasonable in the spec: the outline is on a k x k box of the grid, in a neutral stroke, and it is a per-box test, not a per-region one. It is not a borough outline, a per-borough readout or a per-region colour (R2), and the box lattice is not geography. At the random start it is exactly the evidence the lesson needs ("40% of the small boxes are one group by luck").
+
+The risk is real at the other end. Settled at 30%, 70% to 75% of 2 x 2 boxes carry an outline. Drawn carelessly, the outlines merge into a "zone" picture of the city: territories, which is the R2 picture the probe failed on. So the outline must stay a box test and never become a region. Conditions:
+
+1. **Per box only, never merged.** Each outlined box is its own separate square. No joining of neighbours into a contour, no outer boundary around a run of outlined boxes, no fill, tint, shading or opacity change inside a box. Outline only.
+2. **Weight.** No heavier than the lattice lines plus a small step (1 px to 1.5 px at the 246 px floor, 2 px at most), and never visually heavier than anything that suggests land edges. Neutral `--fg` at reduced strength; never `--ga`, `--gb`, `--warn`, `--bad`, `--good` (R5, the spec already says this).
+3. **Clipped to land**, like the lattice (pass 1 note): no box edge drawn across water, so the outlines do not reproduce a coastline-plus-zone picture.
+4. **Not on the reveal pair.** The spec already says no overlay or outlines at 110 px. Keep that as a rule, not a default: outlines never appear in the reveal frames.
+5. **No label, legend or caption that names what an outlined box "is".** The readout "one-group boxes 75%" counts boxes. Nothing says "areas", "zones", "neighbourhoods" or "territories".
+6. **Probe it.** Add to the section 13 probe (see ruling 7): no persona describes the outlines as areas, neighbourhoods, zones or "the sorted parts of the city". If one does, the fix is to drop the outlines once round > 0 (keep the readout), not to add text.
+
+Fallback if the mockup shows the outlines merging visually on a settled map: outline only at round 0 and at the moment the learner changes box size, and show the readout alone after a run. That still carries "chance leaves boxes one colour" (the start is where the evidence is) and removes the settled-map risk. I will accept it without re-review.
+
+### 2. Risk 4: wording changes. GO on all four, one small change, one advisory.
+
+| String | Ruling | Why, against the rulings |
+|---|---|---|
+| "each A or B is one household" | **GO** | R4 names "households" as the word for an agent; it answers the learner review's "what is a square?". It states what a mark is in the model, so it claims nothing about the city. |
+| "Made-up model: ... Not New York's people." replacing "Made-up equal groups, A and B. Not New York's population." | **GO** | R1's binding meaning is "made-up, not the city's population". "Not New York's people" says the same in plainer words, and "people" reads better for a low-reading-stamina phone user (P5) than "population". "Equal" has moved to the question; I accept that because the stage prose budget is the constraint and R1 fixed the meaning, not the words (pass 2 (b)). Advisory: the stage has no word "groups" now. If the visual designer can fit "A or B" with a swatch, fine; do not add it back at the cost of "Not New York's people". |
+| "who was allowed to live where" (S4, was "could") | **GO. I withdraw my own pass-2 trim.** | In pass 2 (b) item 4 I wrote "who could live where" as a trim. The learner review found "could" reads as affordability, which is the wrong reading for R3 (income as an innocent substitute for discrimination). "Was allowed" is my R3 item 7 original wording. The past tense matches the reveal's "documented history". Accuracy: the engine lets any household move anywhere and the line says this is not modelled, so it is true as a statement about what is left out. |
+| "this model does not show why real cities look as they do" (was "any real city looks as it does") | **GO** | Same meaning as c9, "model" is still the subject (R3 item 2), and the plural moves the sentence a step away from New York as the target, which helps the probe. "In US cities" still follows in the same paragraph (R3 item 5). |
+
+Other strings I checked against R1 to R10 and passes 1 to 3:
+
+- Hook "Measure a random mix on New York's outline. What can the number tell you, and what not?" Pass. "Outline" is the right word (R2 asks for shape only, no labels). The hook accuses nobody and points to no answer (R9).
+- Question "Two made-up groups of households, equal in number ...". Pass. "Segregation index" in a predict question is acceptable: R4 restricts the stage and the claim gloss "share that would have to move", and pass 3 already accepted "segregation" in the reveal and recall.
+- Readout "Round", "would move N%", "mix N". Pass. "Would move" is the R4 word. "Mix N" is the seed disclosure R2 asked for.
+- S2 "Spread in boxes (0 even, 1 apart):" and S3 "A setting, not a measure of anyone." Pass (R6; S3 is verbatim from pass 2).
+- Reveal paragraph 2 (structural sentence and grades sentence verbatim from v2). Pass; see ruling 6 for the one change.
+- Banned words (R4): none in the new strings. "Sorted" has the rule as subject; "clumps" has the grid or mixes as subject; "households" throughout; no "residents" except inside claim c10f's claim text, which is a source description, not card text.
+- **Small change: "one-colour" becomes "one-group"** in the readout label ("one-group boxes 40%"), in the reveal ("chance alone left 35% one group") and in the recall proposal. Reason: R5 makes shape the second cue so that colour is never the only identity of a group; "one colour" makes colour the only identity in the one place the learner is told what to measure, and it fails for the colour-blind reader and in any theme where the hues come close. "Group" is the R4 word. Token count is unchanged (2 tokens either way). If the accessibility reviewer prefers "one-colour", they may overrule me; I do not block on it.
+- **Advisory: alt text.** The `aria-label` on the map and on the pair should say "made-up households" ("Two settled grids of made-up households, shaped like New York City ..."). The alt text is the one place a screen-reader user meets S1's meaning. The label must still never say which group is where (R2); the spec's text already respects that.
+
+### 3. Dropping "jobs" from the "Not modelled" line. GO.
+
+My pass-2 (b) binding meaning was "money, prices, history and who could live where", with "jobs" only in my example line. Dropping it is within the rulings. One watch item, not a condition: with "jobs" gone, two of four items are money words (money, prices). That strengthens the "money, I guess" reading the learner review recorded for P3. The item that carries the cultural point, "who was allowed to live where", is last in the line, which is the right place. The probe in ruling 7 therefore counts whether readers name that item.
+
+### 4. "Two mixes, two maps" reveal. GO, with changes.
+
+Why I accept it: it puts the "this is not New York" evidence in the picture a skimmer actually keeps. The result that the learner sees is "clumps in different places", and that contradicts "this explains why the city looks as it does" without a sentence. The numbers (0.49, 0.41 to 0.59) belong to the fact-checker (c16).
+
+Changes:
+
+1. **Identical frames.** The spec frames P in `--domain` and leaves Q unframed. Both maps are equal evidence, and singling one out reads as "the real one" or "the right one". Use the same neutral frame on both, and check that no frame colour is, or is close to, a group colour (R5). (`--domain` is lesson one's group A fill; this lesson's A is `--ga` teal. Do not let the frame sit near either.)
+2. **Do not pick P and Q by how they look.** The spec pins them by what the learner did, not by appearance, which is right. Keep it that way. Both come from the lesson's SEEDS list, which I scanned in pass 3 (no region over 90% one group at 0 to 30%), so no pair can show a whole borough as one group. The builder confirms in `check.mjs` that the 30% sweep covers every mix a pair can contain, including mix N when "New mix" cycles past the current list.
+3. **Keep S1 and S4 in the same container as the pair** so that a crop of the pair carries "Made-up model ... Not New York's people" and "Not modelled ..." (the spec's reveal layout does; keep it through any design-lead rearrangement).
+4. **Watch for the "random is the explanation" misreading.** "Clumps in different places" can be taken as "where segregation falls is chance", which would be a wrong and unkind reading of a history of deliberate exclusion (P4's likely reaction). The sentence that follows ("In US cities, households did not all have the same choices ...") is what answers it. Keep the two sentences in one paragraph and in this order. This is a probe item (ruling 7), not a text change.
+5. The pair above the text (spec risk 1) and the 110 px frame size (risk 2) are design-lead and accessibility calls; I have no cultural objection to either. At 3 px per cell, hue and lightness must carry the groups; if the accessibility reviewer cannot pass that, a larger cell is the fix, not a framing text.
+
+### 5. Moving the framing lines into the map's water area. GO, with four conditions.
+
+Right idea: it is R2's screenshot risk handled by position, which is stronger than my pass-1 position (the label travels less far than the picture). The top-left corner is wall cells in the mask, so nothing the lesson draws is covered. Conditions:
+
+1. **Caption, not annotation.** Plain text in the corner. No arrows, leader lines, brackets or highlight shapes that point from the text to any part of the grid, and S4 must never be placed near the sorted clumps as if it labelled them. "Not modelled:" stays as the opening words.
+2. **The corner is genuinely empty.** The text never overlaps a land cell or a lattice line at any scale including the 246 px floor. If it does not fit, use the spec's fallback (S4 full width directly under the map, above the readout row). S1 may stay in the corner alone.
+3. **S4 appears from the first round that moves anyone, not only "after the first finished run".** The spec's trigger (a finished run) leaves a hole: Step to round 5 and a sorted-looking city can be screenshotted without S4. R3 item 7 asked for the line beside the grid after the learner has run it; "has run it" includes Step. Show S4 once round > 0 on any mix, and keep it after Reset and New mix (records only grow). No layout shift: reserve the line's space from the start, or place it where it cannot move other things. This adds no words at round 0, so the predict and first-explore counts are unchanged; the after-run overrun applies from round 1 instead of from a finished run, so the learning-designer's pending decision must be worded for "once the grid has moved". This overrun exception stays limited to S4 (pass 2 (b)).
+4. **Accessibility of the overlay.** If the map has `role="img"`, its children are hidden from assistive tech. Put S1 and S4 outside the `role="img"` element (positioned over it), so they are read. This is the accessibility reviewer's to confirm; I note it because these two lines carry R1 and R3.
+
+### 6. New claim c10f and its place beside R7. GO on the claim, with a card change and four source rules.
+
+How it sits with R7 and the "research is mixed" clause: there is no conflict, and it makes the clause clearer. c10f is about what the maps recorded (race counted in the grades). c10d ("associated with later home values and ownership") and c10e ("research is mixed on whether the maps caused this or recorded earlier practice") are about the maps' effect. Whichever side of the dispute is right, race was counted. Nothing in c10f calls the maps "a cause" (R7), names a neighbourhood beside a grade (R7), or strengthens "associated with". Keep "associated with" and "research is mixed" exactly as they are; c10f must not be used to justify strengthening either.
+
+Problems and rulings:
+
+1. **The card does not say what c10f says.** The card names "housing and lending discrimination" and "maps grading neighbourhoods for lending risk", but nowhere says what the discrimination was based on. A card that has deliberately kept all race words off the stage (R1) can still say the word once in the history, and this is the one place it should. Without it, a reader (P2, P5, a non-US reader) can take "discrimination" as discrimination by income, which is the substitute R3 was written to prevent, and c10f's claim text is stronger than anything the learner sees. **Change: add "by race" (2 tokens) after "housing and lending discrimination"**, so the phrase reads "housing and lending discrimination by race". The spec rejected a longer version (about 4 words) for the 120-word cap; this one is two tokens. The cap stays: per R3 item 6, find the two tokens in model detail first (for example in paragraph 1) and never in the structural sentence or the grades sentence. The builder reports the cut. c10b's claim text moves with the phrase (it is Rothstein's subject). I re-read the new phrase here; no further cultural review is needed for exactly these two tokens. If the cap truly cannot absorb them, tell me and I will rule between "by race" and the "widening wealth gaps" clause; the answer will not be to drop "by race" silently. Why not "partly by residents' race" in the grades clause: it is longer and it only covers the maps; the broader phrase covers the maps (an instance of the discrimination, as I noted in pass 3).
+2. **Claim wording must not outrun the forms.** "Counted residents' race against a neighbourhood" is acceptable only if the fact-checker's count shows race named among the reasons in a substantial number of forms. Say "in many area descriptions" or give the count; do not state it as true of every form or every grade. Also write it as what the forms recorded, not as an inference about what the lenders did.
+3. **Trust sheet: describe the period terms, do not quote them** (the spec's own recommendation; I agree). The sheet is learner-visible and the forms use racial terms that are offensive now. Write "the forms' own racial terms" and cite field names and counts (`detrimental_influences`, `infiltration_of`, `clarifying_remarks`, N forms). If the fact-checker must quote to verify, quote only in the non-learner-facing fact-check file.
+4. **No neighbourhood names, no NYC form examples by name**, in the claim, the source note or the trust sheet (R7). The note may say the data include New York City forms without naming any area.
+
+### 7. Section 13 as the probe for publishing. GO, with additions. Necessary, not sufficient.
+
+It is the right test. It repeats the probe that failed, with the same six personas and the same boundary, and it adds the two checks I had no way to ask for before (the image kept by P2 and P5; the reveal quoting only what was seen). Its limit: a simulated-learner probe finds problems and does not show anyone learned (the learner review says so itself). I accept a borrowed-mind pass as the pre-publish check I recorded in passes 1 to 3, because no human reader is available. Additions:
+
+1. **A hedge counts as yes.** "Partly", "somewhat", "in a way", "it shows how neighbourhoods could split" all count as yes for criterion 1. (The boundary learner's v2 answer was "partly"; the criterion says "no" and must be read that strictly.)
+2. **Cultural items added to the blocking list:**
+   - (i) no persona calls the outlines areas, zones or neighbourhoods (ruling 1);
+   - (ii) P4 and the boundary learner do not read "clumps in different places" as "segregation happens by chance" (ruling 4);
+   - (iii) at least 3 of 6 personas, including P1 and P4, name "who was allowed to live where" (or discrimination in housing or lending) as left out, so that a reader who names only money does not count toward criterion 2's "at least two";
+   - (iv) P1 and P4 can say what the discrimination was based on (race) once "by race" is on the card; record the others' answers.
+3. **Independence.** Give the evaluator the personas, the questions and the walkthrough, and not the pass criteria, the persona expected answers in 13 ("P2 and P5 must answer no") or the spec's reasoning. Per CLAUDE.md the evaluator sees the artifact before the account; the spec text priming P2 and P5 to answer "no" would defeat the point. Use a fresh evaluator instance, one that did not write the v2 probe.
+4. **P2 and P5 "from the image alone":** the evaluator reports for each of them the last frame they relied on and the exact words they relied on, in the transcript. A pass that cites S1 or S4 text is still a pass; a pass that cannot cite any frame is "not shown".
+5. **Stop rule.** If criterion 1 fails a second time, do not add text. The spec's own next lever (the outline itself, a change to the brief) is the right one, owned by the category manager. I support it and will rule on any neutral-grid version.
+6. **Order of runs.** Run it on a build that has passed `npm run check` and the QA path, with the fact-checker's c10b (Rothstein page) still open as a separate publish blocker. The probe does not clear c10b.
+
+## Carried conditions for publish (unchanged unless named above)
+
+1. Stage after-run overrun: a recorded decision from the learning-designer with the design-lead, limited to S4, and now worded for "once the grid has moved" (ruling 5, item 3). Open.
+2. Fact-checker reads c10a, c10b, c10d, c10e, c10f, c15, c16, c17 from the sources. c10b needs the Rothstein page; if none is found, replace the source, not the order (pass 3). Cultural claims do not publish on memory.
+3. The probe in ruling 7 passes.
+4. Seeds 3 and 36 remain excluded and disclosed (c5). The slider stays capped at 30.
+5. Non-US and locale variants: unchanged. The card says "In US cities" and "by race" sits inside that sentence. Any locale variant needs its own review; I did not review one.
+
+## Open questions I do not own (routed, not ruled)
+
+- Pair above the text vs "below the text" (spec risk 1): design-lead.
+- Reveal cap 90 vs 120 (spec risk 6): head-of-product and design-lead. My "by race" addition assumes 120.
+- Title "Schelling on New York" priming the reading (spec risk 9): category manager. I have no cultural objection to the title, but I support asking.
+- Hue and lightness at 3 px per cell: accessibility reviewer.
+- Spec risk 8 ("New mix" changes behaviour by state): builder and learner probe. No cultural issue.
+
+## Objections and what happened to them
+
+- Spec author (section 12): "making race explicit on the card costs about 4 words the reveal does not have; it is a cultural ruling and a content change, not an interaction one." Answer: you were right to raise it and not do it yourself. I rule it in, in the shortest form (2 tokens, "by race"), because c10f's claim says race and the learner never sees the word; section 6, item 1. Not "noted".
+- Spec author (risk 3): "the outlines may read as highlighted territories." Answer: ruling 1 gives six conditions and a fallback, and the probe tests it.
+- Spec author (S4 trigger): "appears after the first finished run (R3 item 7)." Answer: R3 item 7 meant after the learner has run it; Step is running it. Changed to "once the grid has moved", ruling 5, item 3.
+- Learner review, last item ("could" reads as affordability): upheld; I withdraw my pass-2 trim, ruling 2.
+- Learner review, top issue 1 (the strongest image is the explanation it disowns): this spec's answer is the pair; ruling 4 accepts it with changes, and ruling 7 holds publish on a re-run, not on my reading of the spec.
+
+## Summary for the builder
+
+GO to build. Make these changes to the v3 spec's text and picture as you implement:
+
+1. Outlines: per box, never merged, thin neutral stroke, clipped to land, not on the reveal pair, no area-words; fallback in ruling 1.
+2. "one-colour" becomes "one-group" in the readout, the reveal and the recall (accessibility may overrule).
+3. Reveal pair: identical neutral frames, with no `--domain` framing on P.
+4. S1 and S4 stay as specced. S4 appears once the grid has moved (round > 0), not only after a finished run; both sit outside any `role="img"` element; no leader lines.
+5. Reveal paragraph 2: add "by race" after "housing and lending discrimination" and find the two tokens in model detail. Keep "associated with" and "research is mixed" exactly. c10b moves with the phrase.
+6. c10f: claim says "in many area descriptions" or a count; the trust sheet describes the racial terms and does not quote them; no neighbourhood names.
+7. Alt text for the map and the pair: add "made-up households".
+8. Section 13 probe: add the cultural items and the independence rule in ruling 7 before it is run.
