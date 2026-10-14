@@ -1,0 +1,102 @@
+{
+  "slug": "life-expectancy-gained-late",
+  "title": "When did we start living longer?",
+  "hook": "World life expectancy crept up 3 years in the 1800s. What did the next century add?",
+  "domain": "history",
+  "concept": "life-expectancy-century-gain",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-3"
+  },
+  "learner": {
+    "knows": [
+      "that people live longer now than in the past",
+      "that life expectancy at birth is an average over everyone born (history:life-expectancy-vs-lifespan)"
+    ],
+    "doesNotKnow": [
+      "that almost all the gain came in one century: about 3 years in the 1800s against about 35 in the 1900s"
+    ]
+  },
+  "misconception": "Life expectancy has risen gradually for centuries.",
+  "objective": "The learner can say that in Gapminder's world series life expectancy rose about 2.8 years over the 1800s (30.6 to 33.5) and about 34.7 years over the 1900s (to 68.2), about 12 times as much, and that the series is one source's estimate shown at one point every 25 years.",
+  "claims": [
+    {
+      "id": "history.life-expectancy-gained-late.c1",
+      "text": "Gapminder's world life expectancy at birth was 30.6 years in 1800, 33.5 in 1900, 68.2 in 2000 and 74.0 in 2023 (question; stage point labels; readout 'In 2023 74.0 yrs'; reveal).",
+      "support": "source",
+      "source": "history-data.mjs: gmlex, gapminder-lex-global.csv (Gapminder Fast Track, concept lex), row world, column lex: 1800 30.64173, 1900 33.48469, 2000 68.20445, 2023 74.04122. history-cycle2-check.mjs section 14 ('two centuries', 'stage points'). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.life-expectancy-gained-late.c2",
+      "text": "The stage line has one point every 25 years, 1800-2000, plus 2023: 30.6, 31.1, 31.4, 32.4, 33.5, 39.3, 51.8, 60.8, 68.2, 74.0 (stage caption 'one point every 25 years').",
+      "support": "source",
+      "source": "history-data.mjs: gmlex, column lex at 1800, 1825, 1850, 1875, 1900, 1925, 1950, 1975, 2000, 2023, typed into Demo.tsx PTS from the file at full precision. history-cycle2-check.mjs section 14 ('stage points').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.life-expectancy-gained-late.c3",
+      "text": "Over the 1800s world life expectancy rose 2.8 years; over the 1900s it rose 34.7 years, about 12 times as much; from 2000 to 2023 it rose 5.8 years (readouts '+2.8 yrs', '+34.7 yrs'; bars '+2.8', '+34.7', '+5.8'; reveal; hook 'crept up 3 years in the 1800s').",
+      "support": "derivation",
+      "source": "33.48469 - 30.64173 = 2.84; 68.20445 - 33.48469 = 34.72; 34.72 / 2.84 = 12.2, rounded to 12; 74.04122 - 68.20445 = 5.84. history-cycle2-check.mjs section 14 ('two centuries', '2000 to 2023'). Brief claim 2. The hook rounds 2.8 to 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.life-expectancy-gained-late.c4",
+      "text": "These are one source's world figures; the chart shows one year in every 25, and single years fell sharply (reveal, 'Where it stops').",
+      "support": "source",
+      "source": "One source: history-data.mjs: gmlex is Gapminder Fast Track only (concept file ddf--concepts.csv opened: estimates before 1950). Single-year falls: history-cycle2-check.mjs section 14 lists the years falling more than a year from the year before (1876, 1918, 1927, 1941, 1942, 1943, 1959, 1960, 2021). Not drawn or labelled on the stage (care line).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.life-expectancy-gained-late.c5",
+      "text": "The single years that fell were 'such as epidemic years' (reveal). HELD: the one held source sentence, it names a cause not in the file. Fallback if not checkable: cut 'such as epidemic years', leaving 'and single years fell sharply' (data, c4).",
+      "support": "source",
+      "source": "Not in the file. Would need a source on what caused the falls (for example 1918 influenza); not opened. Brief claim 3, held.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A country's life expectancy rose 3 years in one century and 30 in the next. What share of the two centuries' gain came in the second?",
+    "options": [
+      "About a tenth",
+      "About half",
+      "About 90%"
+    ],
+    "answer": 2,
+    "why": "30 of the 33 years gained is about 90%: when one century's gain is ten times the other's, nearly all of the rise sits in the later century, as with the world's 2.8 years in the 1800s against 34.7 in the 1900s."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:life-expectancy-century-gain",
+    "also": [],
+    "prerequisites": [
+      "history:life-expectancy-vs-lifespan"
+    ],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "life expectancy",
+      "Gapminder",
+      "demography",
+      "twentieth century"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

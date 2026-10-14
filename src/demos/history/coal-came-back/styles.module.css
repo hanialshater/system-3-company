@@ -1,0 +1,23 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 34dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.presets :global(.row) > :global(.control) { flex: 1 1 18%; min-width: 0; white-space: nowrap; padding: 6px 4px; min-height: 44px; }
+.presets :global(.row) > :global(.control).wide { flex: 1 1 100%; }
+.wrap :global(.readout) { flex: 1 1 auto; min-width: 0; padding-left: 8px; padding-right: 8px; }
+.wrap :global(.readout-label), .wrap :global(.readout-value) { white-space: nowrap; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.title { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.coal { fill: color-mix(in srgb, var(--fg) 70%, var(--bg-2)); stroke: var(--bg-2); stroke-width: 0.5; }
+.oil { fill: var(--domain); stroke: var(--bg-2); stroke-width: 0.5; }
+.gas { fill: color-mix(in srgb, #3a8fd8 70%, var(--bg-2)); stroke: var(--bg-2); stroke-width: 0.5; }
+.other { fill: color-mix(in srgb, var(--muted) 35%, var(--bg-2)); stroke: var(--bg-2); stroke-width: 0.5; }
+.patLine { stroke: var(--bg-2); stroke-width: 1.2; opacity: 0.55; }
+.patDot { fill: var(--bg-2); opacity: 0.7; }
+.cut { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.leader { stroke: var(--muted); stroke-width: 0.8; }
+.label { fill: var(--fg); font-size: 11px; font-variant-numeric: tabular-nums; }
+.labelStrong { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.bracket { fill: none; stroke: var(--fg); stroke-width: 1.2; }
+.bracketText { fill: var(--fg); font-size: 11px; font-weight: 600; }
