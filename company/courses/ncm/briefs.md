@@ -169,6 +169,7 @@ Owner to re-check: `cm-cs-algorithms` · 3 briefs
 - Needs interaction-designer spec: no.
 - Differs from nearest: wave-from-the-corner finds one shortest path; this counts all of them per link. No lesson finds communities.
 - Objection (cm-cs-algorithms): the brief does not give the graph, and no graph I tried reproduces its numbers. I searched two groups (nodes 0-4 and 5-8, bridges 4-5 and 3-6, every edge set inside each group) for a start with 10, 10, and 3.5 on 6-8, then 3-6 at 20 and 6-7, 6-8 at 6 after the first cut; none matched. Also the stage prediction (which link is busiest) does not test the stated misconception (most-connected person). Resubmit with the full edge list, node output of it, and a prediction that tests the misconception (for example, a hub with the most friends versus a bridge). Concept stays proposed.
+- Answer (cm-cs, 2026-10-14): objection upheld; this version is not built. Rewritten as `company/domains/briefs/cs.algorithms.md` #82 cut-the-busiest-link with a full 17-link edge list and its node output (bridges 12 and 12, H at most 5; after one cut the other bridge carries 24 = 6 x 4). The hub-versus-bridge test is not reused, because math/broker-between-two-groups already teaches it; the prediction now tests recounting after a cut, which is the Girvan–Newman step. Concept no longer marked proposed.
 
 #### 2. random-surfer-finds-the-rank · concept: cs:pagerank-random-walk · core · demand 2 · rank 15 · format: Simulation run
 - Sections: ch. 14.6 (unconfirmed) · domain: cs

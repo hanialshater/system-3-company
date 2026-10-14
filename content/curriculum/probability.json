@@ -126,7 +126,8 @@
       "demand": 2,
       "prerequisites": [
         "independence"
-      ]
+      ],
+      "subarea": "chance"
     },
     {
       "id": "sample-size-noise",
@@ -501,14 +502,14 @@
     {
       "id": "triadic-closure-probability",
       "name": "Chance of a new friendship grows with mutual friends (independent introductions)",
-      "level": "intro",
+      "level": "core",
       "demand": 2,
       "prerequisites": [
-        "at-least-once"
+        "at-least-once",
+        "independence"
       ],
       "subarea": "chance",
-      "course": "ncm",
-      "proposed": true
+      "course": "ncm"
     },
     {
       "id": "power-law-scaling",
@@ -597,6 +598,22 @@
       ],
       "subarea": "statistics",
       "course": "ncm"
+    },
+    {
+      "id": "conjunction-fallacy",
+      "name": "The conjunction fallacy: more detail is never more likely",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "chance"
+    },
+    {
+      "id": "tail-ratios",
+      "name": "Small gaps in averages, big ratios at the extremes",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
     }
   ]
 }

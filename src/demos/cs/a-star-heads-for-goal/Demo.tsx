@@ -214,10 +214,10 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                 setBusy(false);
                 finish(v.mode, v.wall);
               }
-              const done = atGoal || cut;
-              const ghost = done ? run.order : v.k > 0 ? run.order.slice(0, v.k) : v.ghost;
+              const ended = atGoal || cut;
+              const ghost = ended ? run.order : v.k > 0 ? run.order.slice(0, v.k) : v.ghost;
               const base = { mode, wall, ghost };
-              if (done) {
+              if (ended) {
                 setV({ ...base, k: 0 });
                 replay(mode, wall, 0, base);
               } else {

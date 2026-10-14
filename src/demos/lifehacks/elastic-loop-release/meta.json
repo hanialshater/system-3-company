@@ -24,8 +24,8 @@
     {
       "id": "lifehacks.elastic-loop-release.c1",
       "text": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
-      "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: support is \"source\" and its only source, Raymer & Smith 2007 (mit.edu PDF, pnas.org), could not be opened from this host (proxy 403, DNS fail). Not verified on an unopened source. The claim is true by topology without the paper: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink), which is never a knot, and sliding the loop along to the free end removes it without cutting. Fix: retype support to derivation with that argument (as FC LH-1 asked), then re-check.",
+      "support": "derivation",
+      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, which could not be opened from this host) to derivation, as FC LH-1 and FC LH-2 asked. Argument: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink). A one-crossing diagram is never a knot, so the crossing alone does not prove a knot. The cord has a free end, so the loop can be slid along the cord and off that end, which removes the crossing without cutting; on the stage the free end (15 to 35 cm on the slider) always exceeds the 10 cm loop travel (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable.",
       "status": "unverified"
     },
     {
@@ -41,7 +41,7 @@
       "id": "lifehacks.elastic-loop-release.c3",
       "text": "Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for p=15..35, both states: drawn crossings = value = 1 before, 0 after (0 mismatches); stage readout \"Loop travel=10cm · end=Ncm\" matches; slider min 15 cm > 10 cm travel, so the slide is always possible on this slider. Minor drawing note: the orange crossing dot is at y=125 but the two segments cross at y=116.7.",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for p=15..35, both states: drawn crossings = value = 1 before, 0 after (0 mismatches); stage readout \"Loop travel=10cm · end=Ncm\" matches; slider min 15 cm > 10 cm travel, so the slide is always possible on this slider. Minor drawing note: the orange crossing dot is at y=125 but the two segments cross at y=116.7. W-383 (2026-10-14, demo-builder): the crossing dot is now drawn at the true crossing (150, 350/3 ≈ 116.7) instead of (150,125); the count of drawn crossings is unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -54,13 +54,6 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
-    },
-    {
-      "id": "lifehacks.elastic-loop-release.c5",
-      "text": "Why does the position of a free end matter when judging a tangle?",
-      "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
-      "status": "unverified"
     },
     {
       "id": "lifehacks.elastic-loop-release.recall",
@@ -89,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:loop-is-not-a-knot",
     "prerequisites": [],

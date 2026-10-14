@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (cm-lifehacks, W-381, curriculum-200 applied)
+
+Changed: content/curriculum/lifehacks.json `concepts` replaced with the 136 from company/domains/lifehacks-scope/curriculum-200.compact.md (other fields kept; `subarea` carries the strand, omitted for viral-hack-debunk). In all 200 lifehacks meta.json files, a script changed only `concept`, `curriculum.primary` and, for the 15 D lessons, `curriculum.also` (economics:/math:/physics:/cs: ids). Diff check: no other field changed. Charter has a new "Curriculum applied as proposed, pending co-sign" section. Board: W-381 done; W-392 head-of-product co-sign; W-393 demo-builder re-derives level/prerequisites/strand.
+Believe (high): lint shows 0 lifehacks lessons missing v2 metadata and 0 unknown concepts; registry up to date; coverage 120/136 with 11 demand-3 concepts uncovered (matches the charter's prediction); check passes; test:lifehacks 53/53. Not ratified: the head of product has not co-signed.
+Next: W-392 (head-of-product), W-393 (demo-builder). lh-area-scales-square got no `also` (not on the decision list), so it waits on cm-math. Blocked: nothing.
+
 ## 2026-10-14 (fact-checker, FC LH-3B: recall claims, batch B)
 
 - **Changed:** checked the `lifehacks.<slug>.recall` claims for 63 lessons, measure-inside-not-outside to zoom-does-not-rewrite. 58 are now verified, 2 are disputed (mug-handle-packing, seasonal-bin-rotation) and 3 source claims stay unverified because their source was blocked (spaced-beats-cram, square-bow-stays-tied, wobbly-table-quarter-turn). The record is the "Batch B" section of `company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md`. `npm run check` passes.

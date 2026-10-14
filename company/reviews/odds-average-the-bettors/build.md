@@ -39,3 +39,20 @@ r7 top finding: the reveal opened on "$240 + $40 = $280 of $400, 70%" while, aft
 6. **Reset.** "Start values" is the reset; the Seen rows survive it and slider play. Reveal from that run: "$300 × 80% = $240 and $100 × 40% = $40 put $280 of the $400 pool on A, so the odds said 70%, not the simple average of 60%. With equal money ($200 each) the solid line sat on the dashed one: odds 60%, simple average 60%. With bettor 2 holding $300 to bettor 1's $100, the odds slid to 50%, toward bettor 2's 40%, while the dashed average stayed at 60%. Each opinion counts in proportion to the money behind it: the implied chance is the wealth-weighted average belief."
 
 Not seen in a browser (no build/QA this wave).
+
+## v4 (demo-builder, 2026-10-14, answering 2026-10-14-learner-odds-graduate-r8.md, board W-312)
+- Fit (top finding): at 390x844 the open reveal had the pool bar, both lines and all Seen rows off screen (tool: crop 423 px; "400", "simple average", "80%", "equal money" hidden; 116 words). Stage 684 -> 337 px:
+  - Removed the readout row ("Implied chance of A", "Simple average"): the picture's own "odds N%" and "simple average N%" labels carry the same numbers, and the readouts were what showed 87% / 80% beside a reveal quoting 70%.
+  - Removed three of the four sliders (bettor 1 money, both beliefs). Kept "Bettor 2 money" ($50-$400), the variable the lesson is about. Preset buttons on one row ("Equal money", "Bettor 2 richer", "Start").
+  - Picture 320x150 -> 320x110 (thinner bar, labels kept at 10-15 px). The "odds" label now sits on the side of the solid line away from the dashed one (it used to be crossed by it).
+  - Seen rows: the equal and richer records share one line ("Equal $200 each: 60% (avg 60%) · 2 richer, $300 at 40% vs $100: 50% (avg 60%)"); the start record is "Seen, start: $240 + $40 = $280 of $400: 70% (avg 60%)".
+- Reveal ~108 -> 80 words (tool 116 -> 84 with the verdict). Cut the muted model note (the chip states the model; claim c4, the log-wealth sentence, withdrawn) and shortened the equal / richer sentences. Every number kept in the reveal is on the Seen rows.
+- Not fixed: stage text is still over 25 words (chip, legend, Seen rows, about 45 words). The Seen rows are what make the reveal honest; folding them into the bar as marks is a picture redesign, put on the board for design-lead.
+- After the QA path the slider has moved bettor 2 to $200, so the live picture reads "odds 64%" while the reveal's first paragraph says "the odds said 70%" (past tense, on the Seen row). Learners who play see a live state the reveal does not describe; the record they need is on screen.
+
+## Pre-flight v4
+1-3. Unchanged from v3, except the locked stage has no readout ("Implied chance of A ?" is gone; the bar's "On A" / "On B" have no values until the commit).
+4. Reveal values: as v3, minus "$200 each" and "simple average 60%" in the equal sentence (now "(60%)"); all on the Seen rows.
+5. QA path: "Equal money" (equal), "Bettor 2 richer" (richer2), "Start" (start), then the slider two steps ($100 -> $200). Seen rows unchanged by the slider.
+6. Reveal from that run: "$300 × 80% = $240 and $100 × 40% = $40 put $280 of the $400 pool on A, so the odds said 70%, not the simple average of 60%. / With equal money the solid line sat on the dashed one (60%). With bettor 2 richer ($300 to $100), the odds slid to 50%, toward bettor 2's 40%, while the dashed average stayed at 60%. Each opinion counts in proportion to the money behind it: the implied chance is the wealth-weighted average belief."
+7. Phone fit (`node tools/reveal-fit.mjs --url http://localhost:3530 odds-average-the-bettors`, dev server, 2026-10-14): before crop 423 px, namedHidden 4, 116 words; after crop 0 px, hiddenBelow 0, namedHidden 0, 84 words (80 without the verdict). Stage 337 px (picture 110, controls 85, text 76), reveal 247 px, window 618 px (about 13 px spare). Chip, bar, both lines with their labels, the legend and both Seen lines are on screen with the reveal's last line.

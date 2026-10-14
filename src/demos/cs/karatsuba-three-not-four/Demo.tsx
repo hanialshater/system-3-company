@@ -62,8 +62,6 @@ const VIA = (TOP.a + TOP.b) * (TOP.c + TOP.d) - TOP.a * TOP.c - TOP.b * TOP.d;
 const AC = TOP.a * TOP.c;
 const BD = TOP.b * TOP.d;
 const SUMS = (TOP.a + TOP.b) * (TOP.c + TOP.d);
-const AD = TOP.a * TOP.d;
-const BC = TOP.b * TOP.c;
 
 const fmt = (v: bigint) => v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const reduced = () => typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;

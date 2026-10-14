@@ -1,7 +1,7 @@
 {
   "slug": "lh-percentage-overage",
   "title": "Ten extra or ten percent extra",
-  "hook": "A fixed spare count and a percentage spare count diverge as a job grows.",
+  "hook": "Ten extra or 10% extra: which order is bigger depends on the job size.",
   "domain": "lifehacks",
   "concept": "fixed-vs-percentage",
   "status": "draft",
@@ -60,12 +60,10 @@
     },
     {
       "id": "lifehacks.lh-percentage-overage.c5",
-      "text": "A fixed spare count and a percentage spare count diverge as a job grows.",
+      "text": "Ten extra or 10% extra: which order is bigger depends on the job size.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), learner-visible under the title, found unrecorded by FC LH-2 (2026-10-14, fresh fact-checker instance, W-369). Spare counts are 10 and ceil(0.1x): on the slider (20 to 120) the gap is 8 at x=20, shrinks to 0 at 95 and 100, and is 2 at 120. They converge over most of the range, then cross; they diverge only above 100. DISPUTED: on the stage the two spare counts converge and cross; they do not diverge as the job grows from 20. Fix (example wording, owner decides): \"A fixed spare count stays the same; a percentage spare count grows with the job, so the two cross.\"",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), reworded under W-384 on 2026-10-14 by demo-builder after FC LH-2 disputed the old hook \"A fixed spare count and a percentage spare count diverge as a job grows.\" (the spare counts converge, then cross, on the stage). Derivation: A=ceil(1.1x) (10% extra, rounded up) and B=x+10 (ten extra); on the slider (20 to 120, step 5) B>A below 95, A=B at 95 and 100, and A>B from 105 (src/lib/lifehacks/resource-model.ts with snapToInteger; same values as c3). So which order is bigger depends on the required count. The hook names no crossover value.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:fixed-vs-percentage",

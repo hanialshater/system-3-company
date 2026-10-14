@@ -6,10 +6,13 @@
 // one test of the moving number against a number already in the bucket, including the test that stops
 // the slide (spread hand: 1, in 61-70; clumped hand: 30, in 41-50; claim c1).
 // One representation: the bucket row. The readouts only count what the learner ran.
+// v4 (r8): compact for the phone reveal. The hand is a text line above the picture (dropped numbers
+// fade), the four buttons share one row, the comparisons count is the picture's bottom line, and the
+// Spread / Clumped readouts are gone (the Seen rows carry both results). Tile labels are at least 10 px.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -85,14 +88,14 @@ const START: View = { hand: "spread", k: 0, step: 0, sorted: false, flash: false
 const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// Layout (viewBox 340 x 260; compact so the whole tower of ten fits the phone stage).
-const TILE = 30;
+// Layout (viewBox 340 x 200; compact so the whole tower of ten fits beside the reveal on a phone).
 const COL = 32;
 const GAP = 2;
-const TOP = 44;
-const DEPTH = 166;
+const TOP = 2;
+const STACK = 15;
+const DEPTH = STACK * 10 + 2;
 const BOTTOM = TOP + DEPTH;
-const STACK = 16;
+const VH = BOTTOM + 44;
 const colX = (b: number) => 1 + b * (COL + GAP);
 
 export default function OneCrowdedBucket({ slug }: { slug: string }) {
@@ -121,18 +124,14 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
       reveal={() => {
         const sp = SUM.spread;
         const cl = SUM.clumped;
-        const sl = PLANS.clumped.slides;
-        const most = Math.max(...Array.from(sl.values()));
-        const late = HANDS.clumped.filter((x) => sl.get(x) === most);
         const shared = sp.shared.map((x) => x.join(" and ")).join(", ");
         return (
           <>
             <p>
-              Spread out, the ten numbers landed in {sp.used} buckets{shared ? `. Only ${shared} shared one` : ""}, so
-              sorting took {sp.total} comparison{sp.total === 1 ? "" : "s"}. Clumped, all ten fell into{" "}
-              {range(cl.full)}, and the &ldquo;tiny&rdquo; sorts became one insertion sort of ten numbers. Each
-              newcomer slid past every bigger number already there: {cl.terms.join(" + ")} = {cl.total} comparisons, and{" "}
-              {late.join(" and ")} made {most} tests each. Both runs are on the Seen rows.
+              Spread out, the ten numbers landed in {sp.used} buckets{shared ? `; only ${shared} shared one` : ""}, so
+              sorting took {sp.total} comparison{sp.total === 1 ? "" : "s"}. Clumped, all ten fell into {range(cl.full)},
+              and the &ldquo;tiny&rdquo; sorts became one insertion sort of ten numbers. Each newcomer slid past every
+              bigger number already there: {cl.terms.join(" + ")} = {cl.total} comparisons.
             </p>
             <p>
               Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it
@@ -241,36 +240,16 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.rule}>
-                  Drop each number in its bucket of ten, then insertion-sort inside each bucket. Count comparisons.
+                  {v.hand === "spread" ? "Spread" : "Clumped"} hand:{" "}
+                  {hand.map((x, i) => (
+                    <span key={`h${i}`} className={i < v.k ? s.gone : s.hnum}>
+                      {x}{" "}
+                    </span>
+                  ))}
+                  <br />
+                  <span className={s.how}>Drop into buckets of ten, then insertion-sort each bucket.</span>
                 </p>
-                <svg viewBox="0 0 340 260" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
-                  {hand.map((x, i) => {
-                    const gone = i < v.k;
-                    return (
-                      <g key={`h${i}`}>
-                        <rect
-                          x={2 + i * (TILE + 4)}
-                          y={1}
-                          width={TILE}
-                          height={TILE}
-                          rx={5}
-                          fill={gone ? "none" : "var(--bg-2)"}
-                          stroke={gone ? "var(--line)" : "var(--fg)"}
-                          strokeDasharray={gone ? "3 3" : undefined}
-                          strokeWidth={1}
-                        />
-                        <text
-                          x={2 + i * (TILE + 4) + TILE / 2}
-                          y={20}
-                          textAnchor="middle"
-                          className={s.hnum}
-                          fill={gone ? "var(--muted)" : "var(--fg)"}
-                        >
-                          {x}
-                        </text>
-                      </g>
-                    );
-                  })}
+                <svg viewBox={`0 0 340 ${VH}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
                   {buckets.map((col, b) => {
                     const x = colX(b);
                     return (
@@ -282,22 +261,22 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                           strokeWidth={1.5}
                         />
                         {col.map((val, i) => {
-                          const y = BOTTOM - (i + 1) * STACK + 1;
+                          const y = BOTTOM - (i + 1) * STACK;
                           const hot = flashPair !== null && (val === flashPair[0] || val === flashPair[1]);
                           return (
                             <g key={val}>
                               <rect
-                                x={x + 2}
+                                x={x + 1.5}
                                 y={y}
-                                width={COL - 4}
-                                height={STACK - 2}
+                                width={COL - 3}
+                                height={STACK - 1.5}
                                 rx={3}
                                 fill="var(--bg-2)"
                                 stroke={hot ? "var(--fg)" : "color-mix(in srgb, var(--domain) 60%, var(--line))"}
                                 strokeWidth={hot ? 2 : 1}
                               />
                               <text
-                                x={v.sorted ? x + 12 : x + COL / 2}
+                                x={v.sorted ? x + 11 : x + COL / 2}
                                 y={y + 11}
                                 textAnchor="middle"
                                 className={s.bnum}
@@ -305,41 +284,37 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                                 {val}
                               </text>
                               {v.sorted && (p.slides.get(val) ?? 0) > 0 && (
-                                <text x={x + COL - 4} y={y + 11} textAnchor="end" className={s.slide}>
+                                <text x={x + COL - 2.5} y={y + 11} textAnchor="end" className={s.slide}>
                                   {p.slides.get(val)}
                                 </text>
                               )}
                             </g>
                           );
                         })}
-                        <text x={x + COL / 2} y={BOTTOM + 14} textAnchor="middle" className={s.lo}>
+                        <text x={x + COL / 2} y={BOTTOM + 13} textAnchor="middle" className={s.lo}>
                           {b * 10 + 1}
                         </text>
                         {sortedAny && perBucket[b] > 0 && (
-                          <text x={x + COL / 2} y={BOTTOM + 31} textAnchor="middle" className={s.count}>
+                          <text x={x + COL / 2} y={BOTTOM + 27} textAnchor="middle" className={s.count}>
                             {perBucket[b]}
                           </text>
                         )}
                       </g>
                     );
                   })}
-                  <text x={170} y={256} textAnchor="middle" className={s.cap}>
-                    {v.sorted ? "small number on a tile: tests it made sliding into place" : "each bucket holds ten values"}
+                  <text x={170} y={VH - 3} textAnchor="middle" className={s.cap}>
+                    <tspan className={s.total}>Comparisons: {comps}</tspan>
+                    {v.sorted ? " · small number on a tile: its tests" : " · each bucket holds ten values"}
                   </text>
                 </svg>
                 <Row>
                   <Control className="tap" disabled={locked || busy || v.k >= 10} onClick={drop}>
-                    Drop into buckets
+                    Drop
                   </Control>
                   <Control className="tap" disabled={locked || busy || v.k < 10 || v.sorted} onClick={sortAll}>
-                    Sort buckets
+                    Sort
                   </Control>
-                </Row>
-                <Row>
-                  <span className={s.lab} id="hand-label">
-                    Hand
-                  </span>
-                  <span role="group" aria-labelledby="hand-label" className={s.chips}>
+                  <span role="group" aria-label="Hand" className={s.chips}>
                     {(["spread", "clumped"] as const).map((h) => (
                       <Control
                         key={h}
@@ -352,11 +327,6 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                       </Control>
                     ))}
                   </span>
-                </Row>
-                <Row>
-                  <Readout label="Comparisons" value={comps} />
-                  <Readout label="Spread" value={results.spread ?? "?"} />
-                  <Readout label="Clumped" value={results.clumped ?? "?"} />
                 </Row>
                 {(["spread", "clumped"] as const).map((h) =>
                   results[h] !== undefined ? (

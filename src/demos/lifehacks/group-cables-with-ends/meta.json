@@ -24,8 +24,8 @@
     {
       "id": "lifehacks.group-cables-with-ends.c1",
       "text": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
-      "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: support is \"source\" and its only source, Raymer & Smith 2007 (mit.edu PDF, pnas.org), could not be opened from this host (proxy 403, DNS fail). Not verified on an unopened source. The second sentence is true of the stage (middle tie with 2N orange end dots, versus ties at both ends and middle with none, 390x844 screenshots at N=2,4,8). Fix: retype to derivation/observation or cite an openable source, then re-check.",
+      "support": "derivation",
+      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, p.16435, which could not be opened from this host) to derivation, as FC LH-2 asked. Argument: if both ends of a cord are held, the cord is a fixed arc and no motion of its middle can change its knot type, so a new knot needs a free end to pass through a loop. A tie around the middle leaves every end free; ties that also secure the ends leave none. On the stage this is the drawing: one middle tie and 2N orange end dots, against ties at both ends and the middle with 0 end dots, for N=2..8 (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable.",
       "status": "unverified"
     },
     {
@@ -54,13 +54,6 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
-    },
-    {
-      "id": "lifehacks.group-cables-with-ends.c5",
-      "text": "Why might a tie around the middle leave an end-related tangle pathway?",
-      "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
-      "status": "unverified"
     },
     {
       "id": "lifehacks.group-cables-with-ends.recall",
