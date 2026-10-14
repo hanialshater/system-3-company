@@ -27,3 +27,17 @@ Changes: a sums line under the bars writes the totals the bracket rests on, comp
 W-236, c1 (disputed). The reveal pointed at the line under the bars, which shows the current bid, and on the hint's path that is not $7.
 - The reveal now says "At the honest $7, the line under the bars read: ..." and "That gap, $35, ..." (it was "The gap you saw"). The honest milestone is required, so the learner did see that line.
 - c1 is set to unverified and now names the honest-$7 state. No mechanics changed. Not run: build, QA, walkthrough.
+
+## Pre-flight v4
+
+builder: demo-builder (wave H revisions, batch 4) · 2026-10-14 · answers r8 learner review `2026-10-14-learner-knows-second-price-r8.md` (W-320)
+
+Changes: reveal 127 → 89 words (tool count). Cut "By the same rule Y pays $5 and Z $0" (c2 withdrawn) and the VCG name (c4 reworded: the reveal now ends "Honest bidding is a dominant strategy."); "and Z gets nothing" cut (the stage line still shows Z $0); the muted model line is gone and the chip now carries it: "Model: fixed clicks; Y, Z bid their values; ties to X" (c5). Stage compaction: the three readouts (X's slot / X pays / X keeps) are gone; the picture now has "X now: top slot, keeps $35" above the keep chart, and the payment is the bracket "harm = X pays $35"; the keep chart is 22 units shorter (viewBox 320×196). cm-economics still has to approve cutting the c2 sentence and the VCG name (board).
+
+1. **Title and hook.** Unchanged: "Pay for the harm you do" / "Two ad slots, three bidders. If the winner doesn't pay their own bid, what do they pay?"
+2. **Options.** Unchanged: "$70" / "$35" / "$60".
+3. **Locked stage.** Chip (model), empty value bars "without X" / "with X", empty keep chart with "$7 honest" under the axis, no "X now" line, no bracket, no sums line. Nothing at $35.
+4. **Reveal values.** "$65", "$30", "$35": outcome at the honest $7 (milestone honest), the same numbers the sums line and the bracket show at any top-slot bid; "$6 to $10 tied at $35", "$1 to $5 ... $30": the keep chart (all 11 bars drawn after the commit; shaded milestone required).
+5. **QA path.** Bid $7 (honest) → Bid $3 (shaded) → Bid $10 → slider to $8. At the reveal: both value bars with the dashed gap and "harm = X pays $35", the keep chart, "X now: top slot, keeps $35", the sums line.
+6. **Reset.** No Reset control. Reveal after the QA path: "At the honest $7, the line under the bars read: without X, Y and Z get $65; with X on top, Y drops a slot and they get $30. That gap, $35, is X's price, not the $70 X's own bid would charge. / No bid beat the honest $7: $6 to $10 tied at $35, while $1 to $5 dropped X to the second slot and $30. X's bid only picks the slot; the others set the price. Honest bidding is a dominant strategy."
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 pay-for-the-harm-you-do` (390×844): crop 222 px → **0 px**, hiddenBelow 0, namedHidden 2 → **0** ("without x", "with x", "35", "honest" visible); 89 words; stage 383 px, reveal 205 px, window 618 px; picture not shrunk. The dashed harm gap the reveal calls "That gap" is on screen.

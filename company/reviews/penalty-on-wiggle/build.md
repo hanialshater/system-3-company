@@ -29,3 +29,17 @@ r7 finding: the reveal quoted "penalty 0.0001" (one arrow press, never sat on sc
 6. **Reset.** No Reset control in this lesson; "New data" is the only state-changer that could erase things, and the recorded values survive it. Reveal from that run (node re-run of the MODEL block): "...On your data at penalty 10 the training miss is 0.72. Worse on training, by design. The held-out dots tell the other story: at penalty 0.001 on data set 1 you saw 0.41 against 0.44 with none. In 490 of 500 data sets ... on data set 2 you saw held-out 0.64 at 10 against 0.58 with none, so too much penalty lost again. A worse fit to training can be a better model."
 
 Not seen in a browser (no build/QA this wave).
+
+## Pre-flight v7
+
+builder: demo-builder (wave H revisions, batch 4) · 2026-10-14 · answers r8 learner review `2026-10-14-learner-adult-beginner-r8.md` (W-299)
+
+Changes: reveal 126 → 87 words (tool count). Cut "In 490 of 500 data sets some moderate penalty (the best of five, 0.0001 to 1) beat none on held-out dots" (c4 withdrawn; the "usually loses" clause in c5 now carries its own support); paragraph 1 merged ("..., worse by design"); paragraph 2 says "set N" like the Seen line and "vs" for "against". Stage compaction: "Held-out miss" and "No-penalty held-out" are one readout "Held-out (no penalty)" reading "0.64 (0.58)"; "Penalty 10" and "New data" have their own row (the old mixed row wrapped to three lines); the plot is 28 units shorter (viewBox 320×168, y scale 32/unit); "data set N" label 9 → 11 px. cm-ai still has to approve cutting the c4 sentence (board). Not changed: r8 point 6 (held-out story carried by numbers only).
+
+1. **Title and hook.** Unchanged: "What a penalty does to the fit" / "A curve hits every training dot. Add a penalty for wild bends: what happens to its miss?"
+2. **Options.** Unchanged: "Larger" / "Stays exactly 0" / "Larger on some data, 0 on others".
+3. **Locked stage.** Dots, no-penalty curve, "Training miss –", "Held-out (no penalty) – (0.44)", slider "0 (none)". Seen line hidden. Nothing matches "Larger".
+4. **Reveal values.** Training miss: (a) current state, as the readout. Moderate penalty/set/held-out vs none: (b) last moderate stop (milestone penalty-on), Seen line. λ 10 set/held-out vs none: (b) milestone too-much, Seen line. Fallback with no moderate stop: (a) best moderate on the current data set.
+5. **QA path.** Unchanged: slider two presses (0.001, set 1: 0.41 vs 0.44) → Penalty 10 → New data (set 2: 0.64 vs 0.58). The flat purple curve, the dashed no-penalty curve and the Seen line are on screen at the reveal.
+6. **Reset.** No Reset control; the records survive New data. Reveal after the QA path: "With no penalty the curve hit every training dot: miss 0. The penalty charges for big coefficients, so the curve stops threading the dots: at penalty 10 your training miss is 0.72, worse by design. / Held-out dots tell the other story: at 0.001 on set 1 you saw 0.41 vs 0.44 with none. At 10 the curve goes much flatter, and on set 2 held-out was 0.64 vs 0.58: too much penalty lost again. A worse fit to training can be a better model."
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 penalty-on-wiggle` (390×844): crop 186 px → **0 px**, hiddenBelow 0, namedHidden 0 ("penalty 10", "training miss" visible); 87 words; stage 367 px, reveal 226 px, window 618 px; plot fitted 162/168 px by the kit. The curve the reveal calls "much flatter" is on screen.
