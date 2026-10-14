@@ -14,3 +14,13 @@ Curriculum reference easley-kleinberg-2010 ch. 9 (auctions; first-price, second-
 | c4 | verified | Holds for this model by c2/c3. Myerson, Math. Oper. Res. 6(1):58-73 (1981) and Riley & Samuelson, AER 71(3):381-392 (1981) confirmed as publications by search-result text only (not opened); their revenue-equivalence attribution is from my own knowledge. Easley-Kleinberg ch. 9 (auctions) placement matches my knowledge. |
 | c5 | verified | Framing; chip 'Model: 2 bidders · values random $0-100 · seed 97' and reveal muted line match. |
 | c6 (new, unrecorded) | disputed | Reveal: 'First-price charges less, half the winner's value.' Average payments are equal (33.3 vs 33.3) and half the winner's value is below the lower value in 10,065 of 20,000 seeded auctions. Builder rewords; see the claim's source for a suggestion. |
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Reveal para 2 (line 86) reads this sentence word for word. Per Demo payments(): second-price makes the winner pay min(a, b), the lower value. First-price makes the winner, the higher-value bidder (hi = max), pay hi/2, half its own value. The sentence no longer says first-price charges less than second-price, so it no longer contradicts the averages. Own re-run (mulberry32(97), 20,000 auctions): 33.395 / 33.303 / 33.302. Optimal first-price bid v/2 rests on c3 (verified, own best-response check). |
+
+**Result:** every claim in this lesson is now verified.

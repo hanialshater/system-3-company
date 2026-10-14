@@ -24,3 +24,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | disputed | Own trace: at the second pour (the 3rd removal, tile 7) both 1 and 2 have already LEFT; out is empty, which is why it pours. So '(1 has left, 2 is in out)' is false at that moment, and the reveal's 'they were already in out' reads as if they sat in out during the pour. Fix (builder): 'The second pour never touched 1 or 2: they had already crossed to out and left.' |
 
 **Result:** 2 verified, 1 disputed, 0 withdrawn. Disputed claims block publishing until the builder fixes the sentence and the claim is re-checked.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Own node trace of the tape. Tile 3 pours 2 then 1, and 1 leaves. Tile 6 pops 2, no pour. Tile 7 pours 4 then 3, and at that moment 1 and 2 have both already left, so out is empty and holds only 3 and 4 after the pour. 'Crossed to out and left' is true for both: each crossed in the first pour. The reveal (line 246) uses the pass 22 wording word for word. |
+
+**Result:** every claim in this lesson is now verified.

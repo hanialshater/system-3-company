@@ -1,0 +1,16 @@
+# Fact-check: only-the-needed-trader-profits (2026-10-14)
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own copy of trades() (brute-force matching): full 2. Without T1, T2, T3: 2, 2, 1, so lost 0, 0, 1 and value created $2, $2, $1 (readout n x (1 - 0)). The reveal's 'Without T1, 2 of 2 ... Without T3, only 1' matches, and so do the stage badges '-0 trades' and '-1 trade'. |
+| c2 | verified | Demo.tsx TRADERS: each trader has one seller and one buyer, so two links each. Lines 104-105 draw exactly two edges per trader, which matches the reveal 'Every trader had two links'. |
+| c3 | verified | Verified by derivation, not by the sources: BEKT 2009 and E&K ch. 11 were NOT opened (cornell.edu, arxiv, sciencedirect and every scholarly host I tried were unreachable through the proxy). T1 and T2 have identical links to S1 and B1. If the trader carrying the trade keeps a margin ask - bid > 0, the rival can bid a little more to S1 or ask a little less of B1 and take the trade. So in equilibrium the margin is 0: classic Bertrand competition with identical routes and continuous prices. Neither earns anything. |
+| c4 | verified | Verified by derivation; sources not opened, as in c3. T3 is the only route from S2 to B2 (Demo TRADERS). Any bid in [0, 1) and ask in (bid, 1] leaves the seller and the buyer at least as well off as no trade, and no rival can undercut, so T3 can keep a positive margin. 'Can charge' is the modest form. This also covers the predict key 'T3' (the one who profits). |
+| c5 | held (unverified) | This rests on the general theorem in Blume, Easley, Kleinberg and Tardos (2009) (in equilibrium a trader earns a positive profit only if it is essential). I could not open BEKT or E&K ch. 11: every scholarly host I tried was unreachable through the proxy. For this stage's network I re-derived it myself (c3: T1 and T2 earn 0 and are not essential; c4: T3 is essential and can profit), but the sentence says 'in this model', which is general, and a general theorem cannot be re-derived from one example. Wording is fine and one-directional; the reveal (line 74) and the footnote match the claim. Needs: a checker with access opens BEKT 2009 (GEB 67(1)) or E&K 11.4. |
+| c6 | verified | Demo.tsx SELLER_VALUE = 0 and BUYER_VALUE = 1. The chip reads 'Model: sellers value an item $0, buyers $1', the predict question states the same values, and the reveal footnote reads 'A simplified model with invented values.' |
+
+**Result:** 5 verified, 0 disputed, 1 held this pass; the lesson cannot publish until c5 (unverified) is resolved.

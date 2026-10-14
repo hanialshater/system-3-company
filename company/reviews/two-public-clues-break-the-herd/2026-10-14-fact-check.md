@@ -1,0 +1,16 @@
+# Fact-check: two-public-clues-break-the-herd (2026-10-14)
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Verified by derivation, not by the sources: E&K ch. 16 and BHW 1992 were NOT opened (every scholarly host was unreachable through the proxy). With q = 2/3 and prior 1/2, person 3 holds 2 inferred blue clues. Own red gives P(blue) = 2/3 > 1/2, and own blue gives 8/9, so person 3 picks blue either way and the choice carries no clue. By induction every later person faces the same 2-clue lead (own node, persons 3-100, no break). The stage line 'Person 3 on: a lead of 2 wins' and reveal para 1 match. |
+| c2 | verified | Demo pBlue(b, r) = 1 / (1 + 2^(r - b)) equals the exact Bayes posterior for q = 2/3 and prior 1/2 (own node: both give 0.3333 for 2 blue and 3 red). The readout shows 33% and 'Best: red', and the reveal says 'blue falls to 33%, and red is the better choice'. Advisory: the prior of 1/2 ('even odds') is never stated to the learner; only the hook gives the 2-in-3 accuracy. |
+| c3 | verified | pBlue(2, 1) = 2/3, shown as 67%: the readout after counting and before publishing. The log 'Before publishing: 67% blue' and reveal 'With your red clue alone, blue stayed at 67%' match. Exact Bayes gives 0.6667. |
+| c4 | verified | Follows from c1-c3: persons 1-2 are the only ones who chose on their own clues, so the 100 choices hold 2 clues. The reveal puts 'overturned by two more' right after 'Two published red clues plus yours make 3 red to 2 blue', and with the learner's own red clue it flips to 33%. Note: without the learner's red clue, two red against two blue is 50%, a tie, not a reversal. The sentence holds only in its reveal context (see the new c6). |
+| c5 | verified | The hook (meta.json, learner-facing) reads 'Clues are right 2 times in 3.', and pBlue uses likelihood ratio 2 = (2/3)/(1/3). It is a stated model convention. |
+| c6 (new, unrecorded) | disputed | Recall card 'why' (meta.json recall.why), learner-visible after the lesson. In the lesson's own model (equally reliable clues, prior 1/2), two new clues against the two the crowd holds give 1 / (1 + 2^0) = 50%: they cancel it, they do not outweigh it. The recall scenario has no own clue to tip it, unlike the reveal. 'Can' would need critics more reliable than diners, which the card does not say. Fix (builder): 'two independent new ones can cancel it out, and one more would tip it', or 'two independent new ones count as much as the whole crowd'. |
+
+**Result:** 5 verified, 1 disputed, 0 held this pass; the lesson cannot publish until c6 (disputed) is resolved.
