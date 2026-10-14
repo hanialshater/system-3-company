@@ -51,18 +51,25 @@
     },
     {
       "id": "cs.wheel-needs-four-colours.c4",
-      "text": "With four regions round the centre, three colours are enough.",
+      "text": "With four regions round the centre, three colours are enough: the ring's two colours alternate all the way round, and because four is even the last region meets only one of them. Backtracking with four colours allowed (regions C, 1 to 4, colours in order) finds red, blue, yellow, blue, yellow, using 3.",
       "support": "simulation",
-      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours. | FACT-CHECK 2026-10-14 (pass 21): 4-wheel: backtrack(3) succeeds (1,2,3,2,3), exhaustive chromatic number 3.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours. | FACT-CHECK 2026-10-14 (pass 21): 4-wheel: backtrack(3) succeeds (1,2,3,2,3), exhaustive chromatic number 3. | Builder revision v2 (demo-builder, 2026-10-14): now shown on stage: a 'Ring of 4' control re-runs the same backtracking on a 4-ring; the stage line reads 'Ring of 4, 4 colours: backtracking found a colouring using 3.' and the runs line '4 ring: done, 3 used'. Builder trace of backtrack(4, 4) in Demo.tsx: C=0, 1=1, 2=2, 3=1, 4=2. | FACT-CHECK 2026-10-14 (pass 24): DISPUTED. Numbers hold: own node backtrack(4,3) and backtrack(4,4) both give red, blue, yellow, blue, yellow (3 used). But a reachable branch makes the reveal false: with 4 colours and Ring of 4 chosen while colouring by hand, paint C red, 1 blue, 2 yellow, 3 purple, 4 yellow (valid, 4 used). after() stores seen['4-4'] = {ok, used 4}; a later Run backtracking on that ring reaches ring-of-four (used 3) but setSeen keeps the first ok record. The reveal then says 'On the ring of four the two colours alternated all the way round: done with 4 colours' and the runs line '4 ring: done, 4 used'. Fix (builder): record only colourings using <= 3 colours for the ring-of-four record (or keep the smallest 'used' per key), so the quoted run is the one that reached the milestone. | Builder revision v3 (demo-builder, 2026-10-14, W-231): the ring-of-four record now keeps the finished run that used the fewest colours (a later 3-colour run replaces an earlier 4-colour hand colouring), and the reveal quotes the ring of four only when that record used 3 or fewer. The runs line shows the same fewest-colours record. Claim text unchanged.",
+      "status": "unverified"
     },
     {
       "id": "cs.wheel-needs-four-colours.c5",
       "text": "For big maps no fast method is known for finding the fewest colours, so trying and undoing is often the tool.",
       "support": "source",
       "source": "Deciding k-colourability (chromatic number) is NP-complete: Karp (1972), 'Reducibility among combinatorial problems' (chromatic number is one of the 21 problems); CLRS 4e ch. 34 (graph colouring as an NP-complete problem). Citations from the brief, check before verifying. 'Map' here means the regions-touching graph of the stage, not only planar maps; for planar maps 4 colours always suffice (four colour theorem), but finding the minimum (3-colourability of planar graphs) is still NP-complete (Garey, Johnson and Stockmeyer 1976; check). | FACT-CHECK 2026-10-14 (pass 21): Karp 1972 (chromatic number among the 21) and CLRS ch. 34 not opened; both match my knowledge. Garey, Johnson and Stockmeyer, 'Some simplified NP-complete graph problems', Theoretical Computer Science 1 (1976) 237-267, planar 3-colourability NP-complete: corroborated by web search (Academia record, TAMU lecture notes). 'No fast method is known' is an accurate reading of NP-hardness.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.wheel-needs-four-colours.c6",
+      "text": "On the ring of five with four colours, backtracking (same order) colours C, 1 to 5 red, blue, yellow, blue, yellow, purple, using all 4.",
+      "support": "simulation",
+      "source": "Demo.tsx backtrack(5, 4); matches the build note's node re-run (1,2,3,2,3,4). Stage text 'Ring of 5, 4 colours: backtracking found a colouring using 4.' Builder statement, not self-verified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node backtrack(5,4): C, 1..5 = red, blue, yellow, blue, yellow, purple, 0 dead ends, 4 used; backtrack(5,3): 6 dead ends, stuck at region 5. Any valid colouring of the 5-wheel uses 4, so the s54 record is 4 on every branch.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -80,12 +87,16 @@
     "why": "The centre takes one colour, so the ring must alternate two. Seven is odd, so the last ring region meets both and needs a fourth colour."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/wheel-needs-four-colours/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/wheel-needs-four-colours/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "cs:graph-colouring-backtracking",
     "also": [],

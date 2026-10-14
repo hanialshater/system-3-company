@@ -36,7 +36,8 @@ function box(lat: number): Polygon {
 
 export default function ShrinkingDegree({ slug }: { slug: string }) {
   const [lat, setLat] = useState(0);
-  const [reached, setReached] = useState(false);
+  // Recorded when the learner stops at 60°N (the milestone) and at 80°N: the readout's own text.
+  const [seen, setSeen] = useState<Record<number, string>>({});
   // The globe tilts to follow the box and is zoomed 1.4x (clipped), so the box stays near the centre.
   const projection = useMemo(() => {
     const g = geoOrthographic().rotate([-15, -lat * 0.6]).fitExtent([[6, 6], [W - 6, H - 6]], { type: "Sphere" });
@@ -46,11 +47,10 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
 
   const go = (v: number, interact: () => void) => {
     setLat(v);
-    if (!reached && v === 60) {
-      setReached(true);
-      interact();
-    }
+    if ((v === 60 || v === 80) && !(v in seen)) setSeen((a) => ({ ...a, [v]: degLonKm(v).toFixed(1) }));
+    if (v === 60) interact();
   };
+  const fmtLat = (l: number) => (l === 0 ? "the equator" : `${l}°N`);
 
   return (
     <Lesson
@@ -65,14 +65,17 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            About <strong>{Math.round(degLonKm(60))} km</strong>: at 60°N one degree of longitude is {degLonKm(60).toFixed(1)} km,
-            half of the {PER_DEG.toFixed(0)} km at the equator. You watched the box narrow as it went north, while
-            its north&ndash;south size on the ground stayed the same.
+            About <strong>{Math.round(degLonKm(60))} km</strong>. Your Seen line: at 60°N one degree of longitude read{" "}
+            {seen[60] ?? degLonKm(60).toFixed(1)} km, half of the {degLonKm(0).toFixed(1)} km at the equator. The box
+            narrowed as it went north, while its north&ndash;south size on the ground stayed the same.
           </p>
           <p>
-            Lines of longitude all meet at the poles, so the gap between them shrinks with latitude, by the cosine:
-            half at 60°, about {degLonKm(80).toFixed(0)} km at 80°N, zero at the pole. A degree of latitude stays about{" "}
-            {PER_DEG.toFixed(0)} km everywhere. So &ldquo;one degree&rdquo; east&ndash;west is not a fixed distance.
+            The thin lines running up the globe are lines of longitude, and they all meet at the poles, so the gap
+            between them shrinks with latitude
+            {seen[80] ? `: you saw ${seen[80]} km at 80°N` : ""}
+            {lat !== 60 && lat !== 80 ? `${seen[80] ? ", and" : ":"} ${km.toFixed(1)} km where the box is now, at ${fmtLat(lat)}` : ""}
+            . A degree of latitude stays {PER_DEG.toFixed(0)} km. So &ldquo;one degree&rdquo; east&ndash;west is not a
+            fixed distance.
           </p>
         </>
       )}
@@ -99,7 +102,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">Orthographic projection (a globe). Box: 10° by 10°. Dashed: the same box at the equator.</p>
+          <p className="muted tiny">A globe. Box: 10° by 10°. Dashed: the same box at the equator. Thin lines: longitude, latitude.</p>
           <Row>
             <Slider label="Box latitude" value={lat} min={0} max={80} disabled={locked} format={(v) => (v === 0 ? "equator" : `${v}°N`)} onChange={(v) => go(v, interact)} />
           </Row>
@@ -114,6 +117,15 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
             <Readout label="1° of longitude here" value={`${km.toFixed(1)} km`} />
             <Readout label="1° of latitude" value={`${PER_DEG.toFixed(0)} km`} />
           </Row>
+          <Row>
+            <Readout label="Box width, 10° of longitude" value={`${Math.round(10 * km).toLocaleString("en-US")} km`} />
+          </Row>
+          <p className="tiny" data-testid="seen">
+            Seen:{" "}
+            {Object.keys(seen).length
+              ? [60, 80].filter((v) => v in seen).map((v) => `1° of longitude at ${v}°N = ${seen[v]} km`).join(" · ")
+              : "nothing yet"}
+          </p>
         </div>
       )}
     </Lesson>

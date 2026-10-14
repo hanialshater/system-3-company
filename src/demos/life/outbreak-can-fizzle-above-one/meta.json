@@ -4,7 +4,7 @@
   "hook": "Each case infects 1.5 others on average. Is one arriving case sure to start an epidemic?",
   "domain": "life",
   "concept": "branching-extinction",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-life",
@@ -98,21 +98,43 @@
     "why": "R above 1 makes growth possible, not certain. Early on there are only a few cases, and each may infect nobody by chance; with Poisson spread and R = 2 about 20% of single introductions fizzle."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/outbreak-can-fizzle-above-one/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/outbreak-can-fizzle-above-one/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
   "version": 1,
   "curriculum": {
     "primary": "life:branching-extinction",
-    "also": ["probability:at-least-once"],
-    "prerequisites": ["life:reproduction-number-growth"],
+    "also": [
+      "probability:at-least-once"
+    ],
+    "prerequisites": [
+      "life:reproduction-number-growth"
+    ],
     "level": "core",
     "strand": "health-epidemiology",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 21 }],
-    "tags": ["epidemics", "branching process"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 21
+      }
+    ],
+    "tags": [
+      "epidemics",
+      "branching process"
+    ]
   },
   "format": "simulation-run",
-  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

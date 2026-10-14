@@ -14,3 +14,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c6 | verified | E&K ch. 4, section 4.1 (not opened; own knowledge): 'if the fraction of cross-gender edges is significantly less than 2pq, then there is evidence for homophily'. Learner sentence matches that test. |
 
 **Result:** all open claims verified; the lesson has no unverified or disputed claims.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I opened the builder's pre-flight only for count-the-out-of-order-pairs and each-element-pops-once, and only after reading the code. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node: 435 pairs, 200 cross (45.98%). The pairs view draws CROSS_PAIRS; the reveal's '10 x 20 = 200 lines you counted' is backed by the required 'pairs' milestone. |
+| c3 | verified | Own run with mulberry32(41): the first class has 26 crossing; 1,001 classes average 46.39%, 0 with 9 or fewer, fewest 11. rec is replaced only by a larger run and Start over reseeds 41, so the same 1,001 classes give the same record. Binomial mean 45 x 200/435 = 20.69 (46%). |
+
+**Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

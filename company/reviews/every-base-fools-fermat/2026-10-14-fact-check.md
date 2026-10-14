@@ -25,3 +25,14 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c7 | disputed | Number fixed: own BigInt check gives 10 strong liars among the 320 coprime bases (1, 50, 101, 103, 256, 305, 458, 460, 511, 560), matching LIARS. DISPUTED on 'never more than a quarter': counted the lesson's way (of the coprime bases), n = 9 has 2 strong liars (1, 8) of 6 = 1/3; the Rabin-Monier bound is phi(n)/4 for odd composite n > 9 (own scan of odd composites below 4,000: max 1/4 apart from n = 9). The papers were not opened. Fix (builder): 'never more than a quarter for odd numbers above 9', or 'never more than a quarter of the bases from 1 to n - 1' (n = 9: 2 of 8). |
 
 **Result:** 0 verified, 1 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v3 wave E revision. Method: read v3 Demo.tsx (note line, chain boxes, readouts, reveal quoting strongFor; no Reset) before the sources, then re-ran the numbers in my own BigInt script (scratchpad fc24/fer.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | All five chains match; each has the witness 67 (67^2 mod 561 = 1), so the reveal's quoted chain is right for any base the learner ran. |
+| c7 | verified | 10 strong liars of 320 coprime bases; 3%. The 'very unlikely' rests on (10/320)^k for 561 only; no unopened paper is relied on. |
+
+**Result:** every claim open at this pass is now verified.

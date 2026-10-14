@@ -7,6 +7,9 @@
 // undercut and no pair can both gain (the stable outcome).
 // Key states: three people chosen, and the asks run down to $0.
 // Model: one deal per person, 10-cent undercuts, two people alone split evenly (lesson rules).
+// v2 (r6): title no longer says "takes all". A trace under the bar keeps Bo's share for every round
+// reached in the 3-person run (it survives "2 people"), so each step of the bid-down is on stage and the
+// reveal quotes the trace. A left-out person's number is labelled as their last ask.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -35,6 +38,7 @@ const NY = 52;
 export default function MiddleOfThree({ slug }: { slug: string }) {
   const [three, setThree] = useState(false);
   const [k, setK] = useState(0);
+  const [best, setBest] = useState(-1); // furthest round reached with 3 people (kept through "2 people")
 
   const r = round(k);
   const partner = three ? r.partner : "Ann";
@@ -54,8 +58,9 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Each round, whoever Bo left out offered to take {CUT}¢ less, and Bo switched. The asks fell from {c$(START_ASK)} to $0.00,
-            and Bo&apos;s share rose to <strong>the whole $1</strong>.
+            Each round, whoever Bo left out offered to take {CUT}¢ less, and Bo switched. Your trace shows Bo&apos;s share
+            going {Array.from({ length: Math.max(best, LAST) + 1 }, (_, i) => c$(round(i).bo)).join(", ")}: the asks fell from{" "}
+            {c$(START_ASK)} to {c$(100 - round(Math.max(best, LAST)).bo)}, and Bo got <strong>the whole $1</strong>.
           </p>
           <p>
             There it stops: no one can ask less than nothing, and no pair can both do better by dealing together. That is the stable
@@ -71,6 +76,7 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
           {(reach) => {
             const goTo = (n: number) => {
               setK(n);
+              setBest((b) => Math.max(b, n));
               if (three && n === LAST) reach("settled");
             };
             const people = (three ? ["Ann", "Bo", "Cy"] : ["Ann", "Bo"]) as (keyof typeof NX)[];
@@ -78,7 +84,7 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.chip}>Model: each person makes one deal</p>
                 <svg
-                  viewBox="0 0 320 170"
+                  viewBox="0 0 320 222"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "People in a line splitting $1" : `Bo deals with ${partner}; Bo gets ${c$(boShare)}`}
@@ -96,7 +102,7 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
                         </text>
                         {ask !== null && !locked && (
                           <text x={NX[p]} y={NY + 38} className={on ? s.value : s.axis} textAnchor="middle">
-                            {on ? `asks ${c$(ask)}` : `left out: ${c$(ask)}`}
+                            {on ? `asks ${c$(ask)}` : `left out (last ask ${c$(ask)})`}
                           </text>
                         )}
                       </g>
@@ -119,6 +125,21 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
                       )}
                     </g>
                   )}
+                  <text x={20} y={166} className={s.axis}>
+                    {best >= 0 ? "3 people: Bo's share, round by round" : "3 people: no rounds yet"}
+                  </text>
+                  {Array.from({ length: best + 1 }, (_, i) => {
+                    const h = (round(i).bo / 100) * 28;
+                    const x = 20 + i * 47;
+                    return (
+                      <g key={i}>
+                        <rect x={x} y={214 - h} width={40} height={h} rx={3} className={three && i === k ? s.main : s.soft} />
+                        <text x={x + 20} y={210 - h} textAnchor="middle" className={s.small}>
+                          {c$(round(i).bo)}
+                        </text>
+                      </g>
+                    );
+                  })}
                 </svg>
                 <Row>
                   <Readout label="Round" value={locked ? "?" : three ? k : "–"} />
@@ -142,6 +163,7 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
                     onClick={() => {
                       setThree(true);
                       setK(0);
+                      setBest((b) => Math.max(b, 0));
                       reach("three");
                     }}
                   >

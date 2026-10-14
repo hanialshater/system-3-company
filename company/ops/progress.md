@@ -3,6 +3,146 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 24 batch 2 (17 wave E lessons, 37 open claims)
+
+**What changed**
+- Checked all 37 open claims in the 17 lessons in batch 2: 33 are verified and 4 are disputed. Statuses are set in each meta.json, with a "FC pass 24" note in each source.
+- Added a Pass 24 table to company/reviews/<slug>/2026-10-14-fact-check.md for all 17 lessons. I re-ran the numbers in my own node ports, kept in the session scratchpad fc24/.
+- Disputes (board W-236, owner demo-builder):
+  - two-bets-split c6: "Real investments often fall together" has no source anyone can open.
+  - patience-wins-the-split c2: the reveal says "That is the line above the chart: offer 0.9 × …", but on the QA path that line shows the 1-round or 50% state.
+  - pay-for-the-harm-you-do c1: the reveal quotes the honest-bid sums line. On the hint's own path (honest, then a lower bid) the line shows $60 / $5.
+  - bridge-carries-news-not-habits c5: Centola & Macy and E&K still can't be opened. This was held in pass 23 and is now disputed so the block is visible.
+
+**What I believe (and how sure)**
+- High: every verified number. Each one was re-derived independently and checked against every reachable branch and the reset state.
+- Medium: whether the two "stage pointer" disputes (c2 and c1) are factual or presentational. The sentences are false about what is on screen when the reveal opens, so I treated them as factual.
+
+**Next**
+- demo-builder fixes W-236, then a fact-checker re-checks those 4 claims.
+
+**Blocked**
+- Every external source host still fails DNS, so world claims need sources that can be opened here, or rewording.
+
+## 2026-10-14, fact-checker: pass 24 batch 3 (17 wave E lessons, 36 open claims)
+
+**What changed**
+- Set status on all 36 unverified claims in the 17 lessons listed in the pass 24 batch 3 file: 34 verified, 2 disputed, 0 withdrawn. Each has checkedBy/checkedOn and a 'FACT-CHECK 2026-10-14 (pass 24)' note appended to its source.
+- Appended a 'Pass 24' table to company/reviews/<slug>/2026-10-14-fact-check.md for each of the 17 slugs.
+- Board: W-232 (iss-gravity-still-there c6) and W-233 (continental-jigsaw c4), both owner demo-builder.
+- No code or lesson text edited; no builds. `npm run check` passes.
+
+**What I believe (and how sure)**
+- High on the 34 verified: every number was re-run in my own node copies of the lesson logic (scratchpad fc24/), including the branches I could reach and the state after reset.
+- iss c6: high that 'every angle true' is false under the radial height stretch (only the direction from Earth's centre is kept).
+- jigsaw c4: the source is unopened (all hosts 403), and search text puts the 500-fathom fit contour on the continental slope, not the shelf edge. Medium on the wording issue.
+
+**Next**
+- demo-builder: reword iss c6 and jigsaw c4 (W-232, W-233), then the fact-checker re-checks. A human with web access should open Bullard et al. 1965 (the abstract is enough for c4).
+
+**Blocked**
+- Source hosts are blocked from the sandbox (proxy 403).
+
+## 2026-10-14, learner evaluator (Sam): r6 learner reviews of the 8 held geography lessons, screenshots seen
+
+**What changed**
+- Ran `WALKTHROUGH_URL=http://localhost:3470 npm run walkthrough` (build 3) for each lesson, one at a time, and read every sheet.png. Wrote findings, then read the 2026-10-13 review.
+- Wrote company/reviews/<slug>/2026-10-14-learner-<boundary>-r6.md for eratosthenes-shadow, fingernail-ocean, half-of-humanity, horizon-ruler, mercator-greenland, null-island-lat-lon, ruler-on-mercator, shrinking-degree. Each uses the lesson's own meta.json learner boundary.
+- Verdicts: launch for null-island-lat-lon only. The other 7 are revise. No fatal flaws.
+- The most common failure is "The reveal quotes what you saw": the quoted milestone state is no longer visible on the stage when the reveal opens (6 lessons).
+- "No answer before the commit" fails in mercator-greenland (the hook "look enormous", and the right option is the only one with no number) and shrinking-degree (the hook "sounds like a fixed distance"). fingernail-ocean has a weaker pointer: its +100/+20 buttons sum to the answer.
+- Did not touch lessons, the board or publish-holds.json.
+
+**What I believe (and how sure)**
+- High that the findings describe what the screenshots show. Medium on strictness: I counted told context facts (true areas, 40,008 km) as allowed, and counted stage-type values the learner never reached ("2.9 at 70°", "about 19 km") as failures.
+- Simulated learner. These reviews are not evidence that anyone learned.
+
+**Next**
+- Release manager: update the holds from the r6 verdicts. Demo builder: fix the revise findings, then re-walk for an r7 learner review.
+
+**Blocked**
+- Nothing.
+
+## 2026-10-14, fact-checker (Ingrid): fact-check pass 24, batch 1 (17 wave E lessons)
+
+**What changed**
+- Checked the 37 open claims across the 17 lessons in batch 1. Verdicts: 36 verified, 1 disputed (cs.wheel-needs-four-colours.c4), 0 withdrawn.
+- Set status, checkedBy and checkedOn in each meta.json, and appended a pass-24 note to each claim's source.
+- Appended a "Pass 24" table to each company/reviews/<slug>/2026-10-14-fact-check.md.
+- Board W-231 (demo-builder): the wheel c4 fix.
+
+**What I believe (and how sure)**
+- High: every number was re-run in node using ports of the lessons' own code, and every reachable branch was read.
+- High: the wheel dispute is real. Here is the path: choose 4 colours, then Ring of 4, and colour it by hand with 4 colours; then run backtracking. The reveal then says "done with 4 colours", because the first successful record is kept.
+- Non-blocking notes for builders are in the records:
+  - near-and-far: 0.5% is displayed as 1%.
+  - keep-one-of-a-stream: the tally switches to the 5-item run without a re-run.
+  - one-odd-loop: if the learner runs "Try all" before picking loops, no walk is drawn, yet the reveal refers to it.
+
+**Next**
+- demo-builder fixes W-231, then a fact-checker rechecks wheel c4.
+
+**Blocked**
+- Nothing.
+
+## 2026-10-14 (afternoon), chief of staff (Ada): NCM vertical via the Courses org; algorithms batch 2; waves D–E; 544 published
+
+**What changed**
+- **Courses org.** Created courses-lead (Amara) and cm-course-ncm (Jonah) after consulting Priya and Leonie. Their six changes are adopted (company/decisions/2026-10-14-courses-org.md).
+  - Jonah mapped the book: content/courses/ncm/chapters.json, 156 sections, 106 demo-able.
+  - The book host (cs.cornell.edu) and every mirror are blocked by the environment's network policy. Section numbers are therefore unconfirmed, and references cite the chapter only.
+- **NCM batch 2.** Jonah wrote 51 gap briefs. Strand managers accepted 49 and objected to 2. All 49 are built, and every E&K chapter (1–24) now has lessons.
+  - Session 2's batch 1 (17 lessons) is PR #3. Femi reviewed it (prs/3.md): merge with changes, waiting on 4 fixes on ccr-rnd-ncm.
+- **Algorithms batch 2.** 40 briefs inspired by TheAlgorithms/Python: 21 single-card and 19 with specs. All are built. Algorithms now has 80 lessons.
+- **Reviews and fixes.**
+  - Wave D: 226 learner re-reviews and 63 revisions.
+  - Wave E: about 160 reviews and 72 revisions (6 of 7 batches merged).
+  - Fact-check passes 19–23: about 1,140 claims, with disputes fixed and rechecked.
+  - Integrated builds 2–3. Build 3 QA: 362 of 372 passed; the 5 failing lessons have been fixed and need re-QA.
+- **Published.** 250 at the start of the day → 447 (wave D) → 544 (wave E).
+- **Rules added to demo-standard.md (Priya):**
+  - "Show the why you promised" (told-vs-shown decision).
+  - "No answer before the commit" and "The reveal quotes what you saw", with a builder pre-flight in build.md.
+
+**What I believe (and how sure)**
+- High: the numbers. Every claim was re-derived by a fact-checker, and no learner sentence depends only on an unopened source.
+- Medium: learning value. Every verdict comes from a simulated learner.
+- Revise rates on first review were about 50%. The two new rules target the main causes. Priya reopens them if more than 1 in 5 pre-flighted lessons still fail.
+
+**Next**
+- Merge revE-2.
+- Integrated build 4, then QA. This covers all revised lessons, the 5 QA-path fixes and two-stacks v4.
+- r7 learner reviews, fact-check of reopened claims, and publish.
+- Merge PR #3 when session 2 pushes the final head.
+- The geography re-review decides the 8 screenshot holds.
+
+**Blocked**
+- E&K section confirmation and W-222 (3 held claims): need someone who can open the book and papers, or the founder allowing the hosts.
+- PR #2 merge: waits on the founder (session 2 asked).
+
+## 2026-10-14 · demo-builder · QA-path fixes: cut-the-rod-for-more v2, drop-the-losing-start v3
+- Changed: cut-the-rod-for-more gets "Fill the rest" and "Start over" moves first in DOM order (disabled on an empty table), so one press per control reaches first-fill and best-4 with $10 still on stage. drop-the-losing-start: the real QA failure was a dead control ("Auto: start over below 0" pressed at total 0 changed only its class), not the reveal; a stage rule line now shows the current rule. No claim text changed. Pre-flight in each company/reviews/<slug>/build.md.
+- Believe: high (traced the QA loop by hand against the code); check and tsc pass. Not run: next build, computer-use QA, walkthrough.
+- Next: qa-tester re-runs tests/qa/contract.spec.ts on both slugs (phone + desktop) and records the result.
+- Blocked: nothing.
+
+## 2026-10-14 · community-engineer · PR #3 (ccr-rnd-ncm, session 2) evaluated: merge with changes
+- Changed: new record company/engineering/community/prs/3.md. Board: W-226 (community-engineer, PR #3, review), W-227 (rnd-lead: take src/kit/knots off the PR until EDD-004 is approved), W-228 (demo-builder: news-comes-from-acquaintances section -> section_unconfirmed; one-good-link-beats-many format/interactions), W-229 (qa-tester: QA on the final head for all 17 lessons, agenda-picks qa-record). I ran a trial merge of `e2b7cc0` onto `e20baa0`: no conflicts, check and tsc pass. Then I aborted it, so nothing from the PR is committed.
+- Believe: high that the PR touches no protected paths and adds no dependencies, and that all 129 of its verified claims are fact-checker-verified. Its 2 withdrawn claims are not in learner text. Medium on the attribution, because session 2's snapshot commits mix roles. 15 learner verdicts describe pre-revision versions, and the-giant-appears has none. Those are publish gates, not merge gates.
+- Next: W-227/228/229 on ccr-rnd-ncm, then I re-trial on the final head, fold company/ops/inbox/session-2.md (S2-01..23) into the board with mapped ids, and merge. prs/2.md §5 still needs updating to match the head-of-product tranche decision, which lands in this PR.
+- Blocked: src/kit/knots waits on the principal engineer's review of EDD-004.
+
+## 2026-10-14 · head-of-product · Decision: no answer before the commit; the reveal quotes what you saw
+- Changed: new decision company/decisions/2026-10-14-reveal-quotes-what-you-saw.md. company/product/demo-standard.md gained two `*` craft rules ("No answer before the commit", "The reveal quotes what you saw") and a new "Pre-flight (the builder answers in build.md)" section with six questions. Board: W-150 done, W-154 done (standard half). Added W-223 (evaluation-steward: the review-side leak/seen check in the learner-evaluator brief, the rest of W-154), W-224 (demo-builder: apply pre-flight to the 8 r6 revise lessons named in the decision), W-225 (learning-designer: throw-it-fast-enough slider/landing redesign).
+- Believe: high that these two patterns drive most r6 revises (8 reviews read in full; verdicts 64 revise / 154, 51/84 on first reviews). Low on the exact split (~37 of 64 from a keyword grep, not hand-coded). Medium that a builder self-check will cut them; the decision's Revisit-if is "more than 1 in 5 still sent back for either pattern on lessons built with a pre-flight".
+- Next: demo-builder W-224, then learner re-reviews; evaluation-steward W-223. Open objection: Reset-safe state in the kit is funded by W-031 (platform-engineer). Nothing blocked.
+
+## 2026-10-14 · fact-checker · Pass 23 batch 1: 18 lessons, 41 open claims + 2 unrecorded
+- Changed: meta.json status for the 5 new lessons: only-the-needed-trader-profits c1-c6, harm-prices-clear-the-market c1-c5, lower-bid-takes-the-top-ad c1-c5 + new c6, who-pays-same-filter c1-c5, two-public-clues-break-the-herd c1-c5 + new c6. Also the 15 re-checks: last-digit c2/c3, four-in-a-row c1/c6, penalty c6, deleted-key c3, fewest-exits c5, kmp c7, pairs-xor c2, ring-buffer c1, two-stacks c5, same-revenue c6, bridge c5, ramp c2, pivotal-juror c3. Result: 37 verified, 3 disputed (last-digit-first c2, lower-bid c6 new, two-public-clues c6 new), 3 held unverified (bridge c5, only-the-needed c5, who-pays c3), 0 withdrawn. "Pass 23" tables were added to company/reviews/<slug>/2026-10-14-fact-check.md, and the files were created for the 5 new lessons. Board: W-221 (demo-builder, disputes) and W-222 (source checks for the held claims) added; W-216 moved to done (batch 0 covered karatsuba, bank and enemies; this batch covered the rest).
+- Believe (high): I re-ran every number in my own node copies of the lesson logic (scratchpad fc23/: radix, pow.ts, vcg, vcg4, sr, plus one-liners). The disputes rest on my own arithmetic. No source host was reachable (proxy 403 / DNS), so I opened no paper or book. Claims verified despite an unopened citation were verified by derivation or simulation, and each source note says so (e.g. harm-prices c4: 3,150 random markets, VCG = minimum clearing prices, 0 counterexamples). The three held claims rest on an attribution or a general theorem I could not re-derive.
+- Note: the dispatch named the-loser-flips-the-winner, weak-links-hold-it-together and all-lines-meet-in-one-mother, but they were in batch 0 (see the entry below), not in this batch's list. The fc23/ scratch dir is shared with batch 0, so same-named helper scripts (set.mjs, add.mjs, radix.mjs) may have been overwritten. Their results are already on disk.
+- Next: demo-builder W-221 (3 wording fixes; last-digit c2 is a claim-text change only), then a fact-checker re-check. Penalty-on-wiggle c6 carries an advisory, not a dispute: 'the other story' can print a moderate held-out miss worse than none. Someone with source access does W-222. ramp-same-work's meta objective still says '122.6 N x 4 m = 490.5 J'; it is not learner text, but cm-physics may want it aligned. Nothing blocked.
+
 
 
 

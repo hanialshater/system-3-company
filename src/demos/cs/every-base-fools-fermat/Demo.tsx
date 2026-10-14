@@ -4,6 +4,7 @@
 // composite, yet all 320 coprime bases give 1 (a Carmichael number). The stronger (Miller-Rabin) test
 // writes 560 = 35 x 2^4, computes a^35 and squares it four times; a value other than 1 or 560 whose
 // square is 1 proves n composite. For base 2 the chain is 263, 166, 67, 1, 1: 67^2 = 1 mod 561.
+// v2: the reveal quotes the chain of the base the learner last ran the stronger test on (that chain stays drawn).
 // One representation: the base chips feeding one result line, then the squaring chain for that base.
 
 import { useState } from "react";
@@ -60,17 +61,18 @@ const LIARS = COPRIME.filter((a) => {
 export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
   const [base, setBase] = useState<number | null>(null);
   const [tried, setTried] = useState<number[]>([]);
+  // The base the stronger test last ran on. Its chain stays on the stage until the test runs on another base,
+  // and the reveal quotes this chain (not a fixed base 2).
   const [strongFor, setStrongFor] = useState<number | null>(null);
-
-  const c2 = chain(2);
-  const w2 = witnessAt(c2);
+  const cr = strongFor !== null ? chain(strongFor) : null;
+  const wr = cr ? witnessAt(cr) : -1;
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question: `Fermat's test: for prime n, a^(n-1) mod n = 1. n = ${N} = 3 x 11 x 17. For how many of the ${COPRIME.length} bases coprime to ${N} does a^${N - 1} mod ${N} equal 1?`,
-        options: [`None, ${N} is composite`, "About half", `All ${COPRIME.length}`],
+        options: [`None of the ${COPRIME.length}`, `About ${COPRIME.length / 2} of the ${COPRIME.length}`, `All ${COPRIME.length}`],
         answer: 2,
       }}
       exploreHint={`Tap a few bases to run Fermat's test, then run the stronger test.`}
@@ -78,14 +80,15 @@ export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Every base you tried gave 1, and so do all {FERMAT_ONES} coprime bases. {N} is a Carmichael number, the smallest:
+            All {tried.length} bases you tried gave 1, and so do all {FERMAT_ONES} coprime bases. {N} is a Carmichael number, the smallest:
             Fermat&apos;s test cannot tell it from a prime.
           </p>
           <p>
-            The stronger test starts at a^{D} and squares {S} times. For base 2 that went {c2.slice(0, w2 + 2).join(", ")}:{" "}
-            {c2[w2]} squared leaves 1. Modulo a prime, only 1 and n − 1 square to 1, so {N} is caught. A few bases still slip
-            past ({LIARS} of {COPRIME.length} here), but never more than a quarter, so several random bases make an error very
-            unlikely.
+            The stronger test starts at a^{D} and squares {S} times. Your run on base {strongFor} went{" "}
+            {cr && wr >= 0 ? cr.slice(0, wr + 2).join(", ") : cr?.join(", ")}
+            {cr && wr >= 0 ? `: ${cr[wr]} squared leaves 1` : ""}. Modulo a prime, only 1 and n − 1 square to 1, so {N} is
+            caught. A few bases still slip past ({LIARS} of {COPRIME.length} here, about{" "}
+            {Math.round((100 * LIARS) / COPRIME.length)}%), so several random bases make a miss on {N} very unlikely.
           </p>
         </>
       )}
@@ -107,15 +110,15 @@ export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
             };
 
             const result = base === null ? null : powMod(base, N - 1, N);
-            const c = strongFor !== null && strongFor === base ? chain(base) : null;
-            const w = c ? witnessAt(c) : -1;
+            const c = cr;
+            const w = wr;
             const note =
               base === null
                 ? "Pick a base. A prime would give 1 every time."
-                : c
+                : c && strongFor === base
                   ? w >= 0
                     ? `${c[w]} squared is 1, but ${c[w]} is not 1 or ${N - 1}: composite.`
-                    : `No stray square root of 1: base ${base} is fooled.`
+                    : `No stray square root of 1: base ${strongFor} is fooled.`
                   : `${base}^${N - 1} mod ${N} = ${result}: looks prime.`;
 
             // chain boxes
@@ -135,7 +138,7 @@ export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
                 </Row>
                 <svg viewBox="0 0 320 100" className="stage-svg" role="img" aria-label={c ? `chain ${c.join(", ")}` : "squaring chain not run"}>
                   <text x={160} y={16} textAnchor="middle" className={s.label}>
-                    {c ? `stronger test: ${base}^${D}, then square ${S} times` : `stronger test: not run for this base`}
+                    {c ? `stronger test on ${strongFor}: ${strongFor}^${D}, then square ${S} times` : `stronger test: not run yet`}
                   </text>
                   {Array.from({ length: S + 1 }, (_, i) => {
                     const x = x0 + i * (bw + gap);
@@ -143,9 +146,14 @@ export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
                     return (
                       <g key={i}>
                         {i > 0 ? (
-                          <text x={x - gap / 2} y={58} textAnchor="middle" className={s.arrow}>
-                            →
-                          </text>
+                          <>
+                            <text x={x - gap / 2} y={44} textAnchor="middle" className={s.label}>
+                              ²
+                            </text>
+                            <text x={x - gap / 2} y={58} textAnchor="middle" className={s.arrow}>
+                              →
+                            </text>
+                          </>
                         ) : null}
                         <rect
                           x={x}
@@ -169,7 +177,7 @@ export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
                 </svg>
                 <Row>
                   <Control className="active" disabled={locked || base === null || strongFor === base} onClick={strong}>
-                    {base === null ? "Stronger test" : `Stronger test on ${base}`}
+                    Stronger test on this base
                   </Control>
                 </Row>
                 <Row>

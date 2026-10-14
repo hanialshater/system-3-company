@@ -16,3 +16,13 @@ Checker: fact-checker (wrote none of these claims; builder algo2-sc). Method: re
 | c8 | verified | Own count: "HERE IS A SIMPLE EXAMPLE".length = 24 (node). |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c9 | verified | Own Horspool run: offsets 0 (S, slide 7), 7 (P, 2), 9 (E L P M matched, miss on I, slide 6 by E), 15 (P, 2), found at 17; 15 comparisons. slideLabel log: 'Horspool slides: S 7 · P 2 · E 6 (miss on I) · P 2 · found'. 'Placement 9' is the 0-based text offset of the third placement (not shown on stage). |
+
+**Result:** all open claims verified; no disputes.

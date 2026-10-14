@@ -1,6 +1,6 @@
 {
   "slug": "merge-sort-payoff",
-  "title": "How cheap is merging?",
+  "title": "What does one merge cost?",
   "hook": "Two sorted piles must become one sorted row. How many comparisons can that cost?",
   "domain": "cs",
   "concept": "divide-and-conquer",
@@ -88,19 +88,10 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "cs.merge-sort-payoff.c8",
-      "text": "A single card is already a sorted pile.",
-      "support": "convention",
-      "source": "A list of length 0 or 1 is sorted by definition (no adjacent pair is out of order). Reveal: \"Single cards are already sorted piles.\" Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
       "id": "cs.merge-sort-payoff.c9",
-      "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons, while checking every pair would take 499,500.",
+      "text": "Halving 1,000 cards down to single cards takes 10 rounds, and each round of merges costs fewer than 1,000 comparisons (it places every card once), so Merge Sort needs fewer than 10,000 comparisons, while checking every pair would take 499,500.",
       "support": "derivation",
-      "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2). | FACT-CHECK 2026-10-14 (pass 22): Own node (fc22-5/ms.mjs): top-down recursion depth for 1,000 is 10 = ceil(log2 1000); worst case 8,977 < 10,000; 1000 x 999 / 2 = 499,500. Per-level cards placed: 1,000 at each of the first 9 levels and 976 at the 10th, so 'places every card once' is exact for 9 of 10 rounds and 'at most once' for the last; the bound (fewer comparisons than cards per round) holds either way. Non-blocking wording nit for the builder: 'places each card at most once'.",
+      "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2). | FACT-CHECK 2026-10-14 (pass 22): Own node (fc22-5/ms.mjs): top-down recursion depth for 1,000 is 10 = ceil(log2 1000); worst case 8,977 < 10,000; 1000 x 999 / 2 = 499,500. Per-level cards placed: 1,000 at each of the first 9 levels and 976 at the 10th, so 'places every card once' is exact for 9 of 10 rounds and 'at most once' for the last; the bound (fewer comparisons than cards per round) holds either way. Non-blocking wording nit for the builder: 'places each card at most once'. | REVISED v5 (demo-builder, 2026-10-14): reveal reworded: 'Halving 1,000 cards takes 10 rounds, each under 1,000 comparisons: fewer than 10,000, against 499,500 for every pair.'. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: top-down recursion depth for 1,000 = 10; worst case 8,977 < 10,000; 1000 x 999 / 2 = 499,500. Reveal 'each under 1,000 comparisons' holds for every level (pass 22 per-level counts).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -127,7 +118,7 @@
       "id": "cs.merge-sort-payoff.c12",
       "text": "On the stage the deck the piles came from is shown in three stacked rounds: split into 8 single cards (0 comparisons), merge singles into pairs (4), merge pairs into piles A and B (6). With the final merge's count added (7 for the first piles), the whole sort costs 0 + 4 + 6 + 7 = 17, against 28 for every pair.",
       "support": "simulation",
-      "source": "deal() in Demo.tsx computes the rounds with the same two-pointer merge the learner does. The deck order [l2, l0, l3, l1, r3, r1, r0, r2] is fixed, so every pair needs its 1 comparison (4) and each 2+2 merge interleaves to the end (3 + 3 = 6) for every seed; checked in node for seeds 7, 20, 33, 46. Seed 7 piles A 10 20 21 23 and B 4 5 18 36 interleave to the end, so the final merge is 7. 8 x 7 / 2 = 28 pairs (claim c10). | FACT-CHECK 2026-10-14 (pass 22): Own node port of deal(): pairCost 4 and fourCost 6 for all 200 seeds 7, 20, 33, ... (seed + 13 steps, as 'New piles' does); seed 7 piles A 10 20 21 23, B 4 5 18 36, final merge 7, so 0 + 4 + 6 + 7 = 17 against 28. RoundsStack draws three rows with those labels; roundLabel shows 'Whole sort: 0 + 4 + 6 + 7 = 17, against 28 for every pair.'",
+      "source": "deal() in Demo.tsx computes the rounds with the same two-pointer merge the learner does. The deck order [l2, l0, l3, l1, r3, r1, r0, r2] is fixed, so every pair needs its 1 comparison (4) and each 2+2 merge interleaves to the end (3 + 3 = 6) for every seed; checked in node for seeds 7, 20, 33, 46. Seed 7 piles A 10 20 21 23 and B 4 5 18 36 interleave to the end, so the final merge is 7. 8 x 7 / 2 = 28 pairs (claim c10). | FACT-CHECK 2026-10-14 (pass 22): Own node port of deal(): pairCost 4 and fourCost 6 for all 200 seeds 7, 20, 33, ... (seed + 13 steps, as 'New piles' does); seed 7 piles A 10 20 21 23, B 4 5 18 36, final merge 7, so 0 + 4 + 6 + 7 = 17 against 28. RoundsStack draws three rows with those labels; roundLabel shows 'Whole sort: 0 + 4 + 6 + 7 = 17, against 28 for every pair.' | REVISED v5 (demo-builder, 2026-10-14): v5: when the merge completes, the rounds' costs and the merge count are recorded and shown in a line 'Your sort: 0 + 4 + 6 + 7 = 17, against 28.' that New piles does not clear; the reveal quotes this record ('The rounds before the last merge cost 4 and 6; with the last merge's 7, the whole sort took 17'). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node port of deal(): seed 7 piles A 10 20 21 23, B 4 5 18 36; pairCost 4 and fourCost 6 for all 200 seeds 7 + 13k; seed 7 final merge 7, so 0 + 4 + 6 + 7 = 17 vs 28. The 'Your sort' record updates if the learner merges later piles (final merges 4-7 occur), and the reveal then quotes that sum, as the claim's '7 for the first piles' allows.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -147,17 +138,19 @@
   "evidence": {
     "qa": [
       "company/reviews/merge-sort-payoff/2026-10-12-qa.md",
-      "company/reviews/merge-sort-payoff/2026-10-13-qa.md"
+      "company/reviews/merge-sort-payoff/2026-10-13-qa.md",
+      "company/reviews/merge-sort-payoff/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/merge-sort-payoff/2026-10-12-learner-sorted-lists.md",
       "company/reviews/merge-sort-payoff/2026-10-13-learner-adult-beginner-v2.md",
-      "company/reviews/merge-sort-payoff/2026-10-14-learner-adult-beginner-r5.md"
+      "company/reviews/merge-sort-payoff/2026-10-14-learner-adult-beginner-r5.md",
+      "company/reviews/merge-sort-payoff/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "cs:divide-and-conquer",
     "prerequisites": [

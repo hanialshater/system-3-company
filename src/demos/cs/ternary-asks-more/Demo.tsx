@@ -4,6 +4,8 @@
 // number) in each lane. Halving leaves 500, 249, ...; thirds (both probes every round, as briefed) leaves 666, 333, ...
 // and some second probes cut nothing (hollow ticks). Halves finds 721 in 10, thirds in 13. "Try all 1,000 targets"
 // fills worst case and average for every target. Milestones: both-found, all-targets
+// v2: options carry no exact number; the table keeps "left after 2" (249 vs 333) once two questions have been asked,
+// so the reveal's two-question state stays on stage; the per-target histograms are gone (one view fewer).
 // (spec company/design/specs/ternary-asks-more.md; target 721 chosen by the spec and disclosed in claim c3).
 
 import { useEffect, useState } from "react";
@@ -102,7 +104,7 @@ const reduced = () => typeof window !== "undefined" && !!window.matchMedia?.("(p
 const X0 = 2;
 const W = 336;
 
-function Lane({ y, name, qs, k, hist, showHist }: { y: number; name: string; qs: Q[]; k: number; hist: number[]; showHist: boolean }) {
+function Lane({ y, name, qs, k }: { y: number; name: string; qs: Q[]; k: number }) {
   const n = Math.min(k, qs.length);
   const zoom = k >= ZOOM_AT;
   const [w0, w1] = zoom ? WINDOW : [1, N];
@@ -121,8 +123,6 @@ function Lane({ y, name, qs, k, hist, showHist }: { y: number; name: string; qs:
   const inWin = (v: number) => v >= w0 && v <= w1;
   const rounds = new Map<number, number[]>();
   for (const q of asked) rounds.set(q.round, [...(rounds.get(q.round) ?? []), q.p]);
-  const hmax = Math.max(...hist);
-  const peak = hist.indexOf(hmax);
   return (
     <g>
       <text x={X0} y={y + 10} className={s.title}>
@@ -173,31 +173,6 @@ function Lane({ y, name, qs, k, hist, showHist }: { y: number; name: string; qs:
       <text x={X0 + W} y={y + 56} textAnchor="end" className={s.axis}>
         {fmt(w1)}
       </text>
-      {showHist && (
-        <g>
-          <text x={X0} y={y + 84} className={s.axis}>
-            Targets by questions
-          </text>
-          {hist.map((c, q) =>
-            q === 0 ? null : (
-              <g key={q}>
-                <rect
-                  x={X0 + 104 + (q - 1) * 16}
-                  y={y + 86 - (c / hmax) * 14}
-                  width={12}
-                  height={Math.max(1, (c / hmax) * 14)}
-                  fill={q === peak ? "var(--domain)" : "var(--muted)"}
-                />
-                {q === peak && (
-                  <text x={X0 + 110 + (q - 1) * 16} y={y + 70} textAnchor="middle" className={s.axis}>
-                    {q}: {hmax}
-                  </text>
-                )}
-              </g>
-            ),
-          )}
-        </g>
-      )}
     </g>
   );
 }
@@ -229,18 +204,19 @@ function Stage({ locked, interact, k, setK, target, runTo, all, setAll }: {
     <div className={s.wrap}>
       <p className={s.rule}>{k >= ZOOM_AT ? "Find 721." : "Find 721 in 1 to 1,000. Each question compares 721 with one number."}</p>
       <svg
-        viewBox={`0 0 340 ${all ? 196 : 140}`}
+        viewBox="0 0 340 140"
         className="stage-svg"
         role="img"
         aria-label={`Halves: ${Math.min(k, HQ.length)} questions, ${left(HQ, k)} numbers left. Thirds: ${tn} questions, ${left(TQ, k)} numbers left, ${tlo} to ${thi}`}
       >
-        <Lane y={0} name="Halves" qs={HQ} k={k} hist={HS.hist} showHist={all} />
-        <Lane y={all ? 100 : 76} name="Thirds" qs={TQ} k={k} hist={TS.hist} showHist={all} />
+        <Lane y={0} name="Halves" qs={HQ} k={k} />
+        <Lane y={76} name="Thirds" qs={TQ} k={k} />
       </svg>
       <table className={s.table}>
         <thead>
           <tr>
             <th />
+            <th>left after 2</th>
             <th>721</th>
             <th>worst of 1,000</th>
             <th>average</th>
@@ -249,12 +225,14 @@ function Stage({ locked, interact, k, setK, target, runTo, all, setAll }: {
         <tbody>
           <tr>
             <th>Halves</th>
+            <td>{k >= 2 ? fmt(left(HQ, 2)) : "?"}</td>
             <td>{hFound ? HQ.length : "?"}</td>
             <td>{all ? HS.worst : "?"}</td>
             <td>{all ? HS.avg.toFixed(1) : "?"}</td>
           </tr>
           <tr>
             <th>Thirds</th>
+            <td>{k >= 2 ? fmt(left(TQ, 2)) : "?"}</td>
             <td>{tFound ? TQ.length : "?"}</td>
             <td>{all ? TS.worst : "?"}</td>
             <td>{all ? TS.avg.toFixed(1) : "?"}</td>
@@ -299,7 +277,7 @@ export default function TernaryAsksMore({ slug }: { slug: string }) {
       predict={{
         question:
           "Ternary search checks two points per round and keeps one third of the list. For 1,000 sorted numbers, how does its worst-case number of comparisons compare with binary search's 10?",
-        options: ["Fewer than 10", "About the same", "More: 13"],
+        options: ["Fewer than 10", "About 10", "More than 10"],
         answer: 2,
       }}
       exploreHint="Ask one question at a time and watch what is left."
@@ -312,7 +290,7 @@ export default function TernaryAsksMore({ slug }: { slug: string }) {
             {TS.avg.toFixed(1)}).
           </p>
           <p>
-            Look at &ldquo;left&rdquo; after two questions: halving had {left(HQ, 2)} numbers left, thirds {left(TQ, 2)}.
+            Look at &ldquo;left after 2&rdquo; in the table: halving had {left(HQ, 2)} numbers left, thirds {left(TQ, 2)}.
             A third sounds smaller than a half, but it costs two questions, and two halvings leave a quarter. Per
             question, halving wins.
           </p>

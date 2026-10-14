@@ -53,27 +53,18 @@
     },
     {
       "id": "cs.palindromes-grow-from-centres.c4",
-      "text": "Each palindrome is found exactly once, from its own middle, and each centre grows until the letters stop matching or the word ends, so a substring whose middle already failed is never tested.",
+      "text": "Each palindrome is found exactly once, from its own middle; each centre grows until the letters differ or the word ends, so a substring whose middle already failed is never tested.",
       "support": "derivation",
-      "source": "A substring has exactly one middle (letter or gap), so it is reached only from that centre. A substring is a palindrome iff its ends match and its inner substring (same centre, one step shorter) is a palindrome; so once the step at radius r fails, every longer substring around that centre fails too, and stopping loses nothing. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Derivation checked: each substring has one middle; a substring is a palindrome iff its ends match and its inner substring (same centre) is a palindrome, so stopping at the first mismatch loses nothing. Own random test: centre expansion equals brute force on 20,000 random a/b strings.",
+      "source": "Derivation: a palindrome [l, r] is grown only from centre l + r, and growth from that centre reaches [l, r] only through [l+1, r-1], [l+2, r-2], ..., all of which must match first. v2 shows the stop on stage in 'abaa' (red dashed bracket, 'letters differ'). | FC pass 24 (fact-checker, 2026-10-14): Own port of grow() (fc24/pal.mjs): over 20,000 random a/b words (length 1..9), every palindromic substring is grown exactly once (from centre l + r) and no non-palindrome is ever counted (0 failures). Growth from a centre reaches [l, r] only after [l+1, r-1] matched, so a substring whose middle failed is never tested. Stage: the red dashed bracket and note 'letters differ' appear for the abaa centres that fail (1, 3, 4).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "cs.palindromes-grow-from-centres.c5",
-      "text": "\"racecar\" has 28 substrings but only 10 palindromes.",
+      "id": "cs.palindromes-grow-from-centres.c7",
+      "text": "In \"abaa\" the same 7 centres find 6 palindromes (1, 0, 2, 0, 1, 1, 1) and 3 of them stop at a mismatch; the fingers look at 9 of its 10 substrings, and \"abaa\" itself is never tested because its middle, \"ba\", fails first.",
       "support": "simulation",
-      "source": "7 letters give 7 x 8 / 2 = 28 substrings. Demo.tsx brute(\"racecar\") = 10; builder's node script (2026-10-14): brute force 10, centre expansion 10 (7 single letters, 'cec', 'aceca', 'racecar'). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own node: racecar has 7 x 8 / 2 = 28 substrings, 10 palindromes (7 letters, cec, aceca, racecar); Demo brute('racecar') same logic.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
-    },
-    {
-      "id": "cs.palindromes-grow-from-centres.c6",
-      "text": "Manacher's algorithm reuses the mirror to make the whole count linear.",
-      "support": "source",
-      "source": "Manacher, 'A new linear-time \"on-line\" algorithm for finding the smallest initial palindrome of a string', J. ACM 22(3), 1975, 346-351, introduces the mirror-reuse technique; its standard extension computes the maximal palindrome radius at every centre in O(n) (e.g. Apostolico, Breslauer and Galil, 'Parallel detection of all palindromes in a string', Theoretical Computer Science 141, 1995, which credits Manacher). The count of palindromic substrings is the sum of the radii, so it is linear too. Builder note for the fact-checker: the brief cites Manacher 1975 for 'all maximal palindromes'; the 1975 paper's stated problem is the smallest initial palindrome, so please check the attribution wording. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Manacher, J. ACM 22(3) 1975, 346-351, title 'A new linear-time on-line algorithm for finding the smallest initial palindrome of a string': confirmed by web-search snippets (Wikipedia 'Longest palindromic substring'), which also say Apostolico, Breslauer and Galil (1995) observed the same algorithm finds all maximal palindromes in linear time. Sentence names 'Manacher's algorithm', the standard name for that linear all-centres method, and does not claim the 1975 paper counted palindromes; attribution acceptable. Papers themselves not opened.",
+      "source": "Demo.tsx grow('abaa', k) for k = 0..6; builder's Node run, 2026-10-14: counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also gives 6; fails at centres 1, 3, 4; tested = palindromes + failed comparisons = 6 + 3 = 9; the middle centre (gap 3) fails on [1, 2] = 'ba', so [0, 3] = 'abaa' is never reached. | FC pass 24 (fact-checker, 2026-10-14): Own port: abaa per-centre counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also 6; fails at centres 1, 3, 4; tested set (spans + fail cells) has 9 distinct substrings, the only untested one is [0, 3] = 'abaa'; middle centre (k = 3) fails on [1, 2] = 'ba'. Reveal needs all-centres, so the computed foundAlt/failsAlt/testedAlt equal these totals at reveal time (taps only add).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -91,12 +82,16 @@
     "why": "Every letter is a centre for the odd-length palindromes and every gap between two letters is a centre for the even-length ones: 6 + 5 = 11, which is 2n - 1."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/palindromes-grow-from-centres/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/palindromes-grow-from-centres/2026-10-14-learner-knows-two-pointers-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:palindrome-centres",
     "also": [],

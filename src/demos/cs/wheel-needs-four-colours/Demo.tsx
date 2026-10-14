@@ -1,10 +1,13 @@
 "use client";
 
-// Colouring a wheel: a centre region C touching five ring regions 1..5, each ring region also touching
-// its two ring neighbours (the 5-wheel). Neighbours must differ. C takes one colour, so the odd ring
-// has only two left and they cannot alternate round five regions: region 5 meets all three. Backtracking
-// (regions in order C,1..5, colours tried in order) hits 6 dead ends with 3 colours and finds no
-// colouring; with 4 it succeeds at once: C=1, 1..5 = 2 3 2 3 4.
+// Colouring a wheel: a centre region C touching the ring regions 1..n, each ring region also touching
+// its two ring neighbours. Neighbours must differ. C takes one colour, so the ring has only two left,
+// and two colours alternate only round an even ring. Ring of 5 (the question): backtracking (regions in
+// order C,1..5, colours tried in order) hits 6 dead ends with 3 colours and finds no colouring; with 4 it
+// succeeds at once: C=1, 1..5 = 2 3 2 3 4. Ring of 4 (the contrast): 3 colours are enough, 1 2 3 2 3.
+// Controls in DOM order: Run backtracking, 3 colours, 4 colours, Ring of 5, Ring of 4, regions, colours, Undo.
+// Changing the colour count or the ring re-runs backtracking if its result is on the wheel (a-star pattern),
+// so pressing each control once reaches: dead end (5, 3), complete (5, 4), ring of 4 done with 3 colours.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -12,21 +15,20 @@ import { Control, Readout, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-const RING = 5;
-const N = RING + 1; // region 0 is the centre, 1..5 the ring
 const NAME = (r: number) => (r === 0 ? "C" : String(r));
-const ADJ: number[][] = Array.from({ length: N }, (_, r) =>
-  r === 0
-    ? Array.from({ length: RING }, (_, i) => i + 1)
-    : [0, r === 1 ? RING : r - 1, r === RING ? 1 : r + 1],
-);
+const adjOf = (ring: number): number[][] =>
+  Array.from({ length: ring + 1 }, (_, r) =>
+    r === 0 ? Array.from({ length: ring }, (_, i) => i + 1) : [0, r === 1 ? ring : r - 1, r === ring ? 1 : r + 1],
+  );
 const COLOURS = ["#e4572e", "#2a9df4", "#f2c14e", "#9b5de5"];
 const COLOUR_NAMES = ["red", "blue", "yellow", "purple"];
 
 type Col = (number | null)[]; // colour index per region
 
 // backtracking colourer: regions in order, colours in order; counts dead ends, remembers the first
-function backtrack(k: number) {
+function backtrack(ring: number, k: number) {
+  const ADJ = adjOf(ring);
+  const N = ring + 1;
   const col: Col = Array(N).fill(null);
   let deadEnds = 0;
   let first: Col | null = null;
@@ -51,42 +53,57 @@ function backtrack(k: number) {
     return false;
   };
   const ok = go(0);
-  return { ok, col: ok ? [...col] : (first as Col | null) ?? [...col], deadEnds, stuckAt };
+  return { ok, col: ok ? [...col] : ((first as Col | null) ?? [...col]), deadEnds, stuckAt };
 }
-const THREE = backtrack(3); // fails: 6 dead ends, first stuck at region 5
-const FOUR = backtrack(4); // succeeds
 
-// geometry: centre disc and five ring sectors
+// geometry: centre disc and ring sectors
 const CX = 160;
 const CY = 98;
 const R_IN = 36;
 const R_OUT = 92;
-const ang = (i: number) => ((-90 + i * (360 / RING)) * Math.PI) / 180;
+const ang = (ring: number, i: number) => ((-90 + i * (360 / ring)) * Math.PI) / 180;
 const pt = (r: number, a: number) => `${(CX + r * Math.cos(a)).toFixed(1)} ${(CY + r * Math.sin(a)).toFixed(1)}`;
-const sector = (i: number) => {
-  const a0 = ang(i - 1);
-  const a1 = ang(i);
+const sector = (ring: number, i: number) => {
+  const a0 = ang(ring, i - 1);
+  const a1 = ang(ring, i);
   return `M ${pt(R_IN, a0)} L ${pt(R_OUT, a0)} A ${R_OUT} ${R_OUT} 0 0 1 ${pt(R_OUT, a1)} L ${pt(R_IN, a1)} A ${R_IN} ${R_IN} 0 0 0 ${pt(R_IN, a0)} Z`;
 };
-const labelAt = (r: number) => {
+const labelAt = (ring: number, r: number) => {
   if (r === 0) return [CX, CY];
-  const a = (ang(r - 1) + ang(r)) / 2;
+  const a = (ang(ring, r - 1) + ang(ring, r)) / 2;
   return [CX + ((R_IN + R_OUT) / 2) * Math.cos(a), CY + ((R_IN + R_OUT) / 2) * Math.sin(a)];
 };
 
+/** What the learner has seen for one (ring, colours) setting. */
+type Seen = { ok: boolean; used: number; stuck: number; deadEnds: number | null };
+const keyOf = (ring: number, k: number) => `${ring}-${k}`;
+
 export default function WheelNeedsFourColours({ slug }: { slug: string }) {
-  const [col, setCol] = useState<Col>(Array(N).fill(null));
+  const [ring, setRing] = useState(5);
   const [k, setK] = useState(3); // colours allowed
+  const [col, setCol] = useState<Col>(Array(6).fill(null));
+  const [auto, setAuto] = useState(false); // the wheel shows a backtracking result
   const [sel, setSel] = useState<number | null>(null);
   const [msg, setMsg] = useState<string>("");
   const [clash, setClash] = useState<number | null>(null); // region that clashed
   const [history, setHistory] = useState<Col[]>([]);
+  const [seen, setSeen] = useState<Record<string, Seen>>({});
 
+  const N = ring + 1;
+  const ADJ = adjOf(ring);
   const filled = col.filter((c) => c !== null).length;
   const used = new Set(col.filter((c) => c !== null)).size;
-  // a dead end: some empty region already sees every allowed colour among its neighbours
-  const stuck = col.findIndex((c, r) => c === null && Array.from({ length: k }, (_, x) => x).every((x) => ADJ[r].some((u) => col[u] === x)));
-  const complete = filled === N;
+  const stuckIn = (c: Col, adj: number[][], kk: number) =>
+    c.findIndex((x, r) => x === null && Array.from({ length: kk }, (_, q) => q).every((q) => adj[r].some((u) => c[u] === q)));
+  const stuck = stuckIn(col, ADJ, k);
+
+  const s53 = seen[keyOf(5, 3)];
+  const s54 = seen[keyOf(5, 4)];
+  // ring of four: the finished run that used the fewest colours; the reveal quotes it only if it used 3
+  const best4 = [seen[keyOf(4, 3)], seen[keyOf(4, 4)]]
+    .filter((x): x is Seen => !!x && x.ok)
+    .sort((a, b) => a.used - b.used)[0];
+  const ring4 = best4 && best4.used <= 3 ? best4 : undefined;
 
   return (
     <Lesson
@@ -97,56 +114,86 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
         options: ["2", "3", "4"],
         answer: 2,
       }}
-      exploreHint="Try with three colours first: pick a region, then a colour. Then allow a fourth."
-      minInteractions={2}
+      exploreHint="Run backtracking with three colours, then four. Then try a ring of four."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            With three colours, a region ran out: its neighbours held all three. The centre takes one colour, so the five ring regions
-            have only two left, and two colours must alternate round the ring. Five is odd, so the last region meets both.
+            {s53 && !s53.ok
+              ? `With three colours on the ring of five, region ${NAME(s53.stuck)} ran out: its neighbours held all three${
+                  s53.deadEnds !== null ? `, and backtracking hit ${s53.deadEnds} dead ends with no way through` : ""
+                }. `
+              : ""}
+            The centre takes one colour, so the ring regions have only two left, and two colours must alternate round the
+            ring. Five is odd, so the last region meets both.
+            {s54?.ok ? ` A fourth colour finished the ring of five: ${s54.used} colours used.` : ""}
           </p>
           <p>
-            Backtracking tried every other choice and hit {THREE.deadEnds} dead ends, with no way through. A fourth colour is the
-            only way out. With four regions round the centre, three colours are enough. For big maps no fast method is known for
-            finding the fewest colours, so trying and undoing is often the tool.
+            {ring4
+              ? `On the ring of four the two colours alternated all the way round: done with ${ring4.used} colours. Four is even, so the last region meets only one of them. `
+              : ""}
+            For big maps no fast method is known for finding the fewest colours, so trying and undoing is often the tool.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["dead-end", "complete"]}>
+        <Milestones interact={interact} names={["dead-end", "complete", "ring-of-four"]}>
           {(reach) => {
-            const after = (next: Col, kk: number) => {
-              const st = next.findIndex(
-                (c, r) => c === null && Array.from({ length: kk }, (_, x) => x).every((x) => ADJ[r].some((u) => next[u] === x)),
-              );
-              if (kk === 3 && st >= 0) reach("dead-end");
-              if (next.every((c) => c !== null)) reach("complete");
+            // Record what the wheel now shows and reach the milestones it earns.
+            const after = (next: Col, rr: number, kk: number, deadEnds: number | null) => {
+              const adj = adjOf(rr);
+              const st = stuckIn(next, adj, kk);
+              const done = next.every((c) => c !== null);
+              const u = new Set(next.filter((c) => c !== null)).size;
+              if (st >= 0 || done) {
+                setSeen((m) => {
+                  const key = keyOf(rr, kk);
+                  const prev = m[key];
+                  // keep the first dead end; keep a colouring only if it uses fewer colours than the one kept
+                  if (prev && (prev.ok ? !done || u >= prev.used : !done)) return m;
+                  return { ...m, [key]: { ok: done, used: u, stuck: st, deadEnds } };
+                });
+              }
+              if (rr === 5 && kk === 3 && st >= 0) reach("dead-end");
+              if (rr === 5 && done) reach("complete");
+              if (rr === 4 && done && u <= 3) reach("ring-of-four");
               return st;
             };
-            const autoFill = () => {
-              if (locked) return;
-              const r = k === 3 ? THREE : FOUR;
-              setHistory((h) => [...h, col]);
+            const run = (rr: number, kk: number) => {
+              const r = backtrack(rr, kk);
+              setHistory([]);
               setCol(r.col);
+              setAuto(true);
               setClash(r.ok ? null : r.stuckAt);
               setSel(r.ok ? null : r.stuckAt);
+              const u = new Set(r.col.filter((c) => c !== null)).size;
               setMsg(
                 r.ok
-                  ? `Backtracking found a colouring with ${k}.`
-                  : `Backtracking: ${r.deadEnds} dead ends, no colouring. Region ${NAME(r.stuckAt)} touches all 3 colours.`,
+                  ? `Ring of ${rr}, ${kk} colours: backtracking found a colouring using ${u}.`
+                  : `Ring of ${rr}, ${kk} colours: ${r.deadEnds} dead ends, no colouring. Region ${NAME(r.stuckAt)} touches all ${kk}.`,
               );
-              after(r.col, k);
+              after(r.col, rr, kk, r.ok ? null : r.deadEnds);
             };
-            const toggleK = () => {
-              if (locked) return;
-              const nk = k === 3 ? 4 : 3;
-              const next = nk === 3 ? col.map((c) => (c === 3 ? null : c)) : col;
-              setK(nk);
+            const setting = (rr: number, kk: number) => {
+              if (locked || (rr === ring && kk === k)) return;
+              setRing(rr);
+              setK(kk);
+              if (auto) {
+                run(rr, kk);
+                return;
+              }
+              // manual colouring: keep what still fits, drop colours no longer allowed or regions that left
+              const next: Col = Array.from({ length: rr + 1 }, (_, r) => {
+                const c = rr === ring ? col[r] : r === 0 ? col[0] : null;
+                return c !== null && c !== undefined && c < kk ? c : null;
+              });
               setCol(next);
+              setHistory([]);
+              setSel(null);
               setClash(null);
-              setMsg(nk === 4 ? "A fourth colour is allowed." : "Back to three colours.");
-              after(next, nk);
+              setMsg(`Ring of ${rr}, ${kk} colours allowed.`);
+              after(next, rr, kk, null);
             };
             const pick = (r: number) => {
               if (locked) return;
@@ -166,8 +213,9 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
               next[sel] = c;
               setHistory((h) => [...h, col]);
               setCol(next);
+              setAuto(false);
               setClash(null);
-              const st = after(next, k);
+              const st = after(next, ring, k, null);
               setMsg(
                 next.every((x) => x !== null)
                   ? `Every region coloured, no clashes.`
@@ -185,15 +233,20 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
             };
 
             const note = msg || "Touching regions must differ.";
+            const log = [
+              s53 ? `5 ring, 3 colours: ${s53.ok ? "done" : "dead end"}` : null,
+              s54 ? `5 ring, 4: done, ${s54.used} used` : null,
+              best4 ? `4 ring: done, ${best4.used} used` : null,
+            ].filter(Boolean);
             return (
               <div className={s.wrap}>
                 <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 320 210" className="stage-svg" role="img" aria-label={`Colours ${col.map((c) => (c === null ? "none" : COLOUR_NAMES[c])).join(", ")}`}>
-                  {Array.from({ length: RING }, (_, i) => i + 1).map((r) => (
+                <svg viewBox="0 0 320 210" className="stage-svg" role="img" aria-label={`Ring of ${ring}. Colours ${col.map((c) => (c === null ? "none" : COLOUR_NAMES[c])).join(", ")}`}>
+                  {Array.from({ length: ring }, (_, i) => i + 1).map((r) => (
                     <path
-                      key={`r${r}`}
-                      d={sector(r)}
-                      fill={col[r] === null ? "var(--bg-2)" : COLOURS[col[r] as number]}
+                      key={`r${ring}-${r}`}
+                      d={sector(ring, r)}
+                      fill={col[r] === null || col[r] === undefined ? "var(--bg-2)" : COLOURS[col[r] as number]}
                       stroke={clash === r ? "var(--bad)" : sel === r ? "var(--fg)" : "var(--line)"}
                       strokeWidth={clash === r || sel === r ? 4 : 2}
                       className={`${s.region} ${clash === r ? s.flash : ""}`}
@@ -211,7 +264,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                     onClick={() => pick(0)}
                   />
                   {Array.from({ length: N }, (_, r) => {
-                    const [x, y] = labelAt(r);
+                    const [x, y] = labelAt(ring, r);
                     return (
                       <text key={`l${r}`} x={x} y={y + 5} textAnchor="middle" className={`${s.lab} ${col[r] === null ? "" : s.labOn}`}>
                         {NAME(r)}
@@ -224,13 +277,37 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                     </text>
                   )}
                 </svg>
+                <p className={s.log} data-testid="runs">
+                  {log.length ? log.join(" · ") : "Runs: none yet"}
+                </p>
                 <Row>
-                  <Control disabled={locked} onClick={autoFill}>
-                    Let backtracking try {k}
+                  <Control disabled={locked} onClick={() => !locked && run(ring, k)}>
+                    Run backtracking
                   </Control>
-                  <Control className={k === 4 ? "active" : ""} disabled={locked} onClick={toggleK}>
-                    {k === 3 ? "Allow a 4th colour" : "Back to 3 colours"}
-                  </Control>
+                </Row>
+                <Row>
+                  {[3, 4].map((kk) => (
+                    <Control
+                      key={`k${kk}`}
+                      className={k === kk ? "active" : ""}
+                      aria-pressed={k === kk}
+                      disabled={locked || k === kk}
+                      onClick={() => setting(ring, kk)}
+                    >
+                      {kk} colours
+                    </Control>
+                  ))}
+                  {[5, 4].map((rr) => (
+                    <Control
+                      key={`g${rr}`}
+                      className={ring === rr ? "active" : ""}
+                      aria-pressed={ring === rr}
+                      disabled={locked || ring === rr}
+                      onClick={() => setting(rr, k)}
+                    >
+                      Ring of {rr}
+                    </Control>
+                  ))}
                 </Row>
                 <Row>
                   {Array.from({ length: N }, (_, r) => (
@@ -256,7 +333,6 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                   </Control>
                 </Row>
                 <Row>
-                  <Readout label="Colours allowed" value={k} />
                   <Readout label="Colours used" value={used} />
                   <Readout label="Coloured" value={`${filled} / ${N}`} />
                 </Row>

@@ -4,7 +4,10 @@
 // (nothing shared with an empty string). Each inner cell asks one question: do these two letters match? If so,
 // diagonal + 1; if not, the larger of up and left. The corner reads 4. Trace back from the corner: on a match take
 // the letter and go diagonal, otherwise step to the larger neighbour (up on a tie), which spells BCBA.
-// Fill buttons go cell, row, all (QA presses at most 16 controls once each).
+// Fill buttons go cell, row, all (QA presses at most 16 controls once each). "Fill the rest" stays off until the
+// learner has stepped onto one mismatch and one match (Next cell lands on A/B, Next row lands on A/A), so the cell
+// rule is seen on the stage before the grid can be skipped. Start over is off once traced, so the trace the reveal
+// quotes is still on the stage when the reveal opens.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -68,18 +71,32 @@ function note(k: number): string {
   const { i, j } = pos(k);
   const a = A[i - 1];
   const b = B[j - 1];
-  if (a === b) return `${a} = ${b}: match. Diagonal ${L[i - 1][j - 1]} + 1 = ${L[i][j]}.`;
-  return `${a} ≠ ${b}: larger of up (${L[i - 1][j]}) and left (${L[i][j - 1]}) = ${L[i][j]}.`;
+  const head = `Best for ${A.slice(0, i)} vs ${B.slice(0, j)}. `;
+  if (a === b) return `${head}${a} = ${b}: match. Diagonal ${L[i - 1][j - 1]} + 1 = ${L[i][j]}.`;
+  return `${head}${a} ≠ ${b}: larger of up (${L[i - 1][j]}) and left (${L[i][j - 1]}) = ${L[i][j]}.`;
 }
 
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [n, setN] = useState(0);
   const [traced, setTraced] = useState(false);
+  const [sawMatch, setSawMatch] = useState(false);
+  const [sawMiss, setSawMiss] = useState(false);
+  const canSkip = sawMatch && sawMiss;
 
   const fillTo = (m: number) => {
     if (locked) return;
     const next = Math.min(CELLS, Math.max(n, m));
     setN(next);
+    if (next > n && m !== CELLS) {
+      const { i, j } = pos(next - 1);
+      if (A[i - 1] === B[j - 1]) {
+        setSawMatch(true);
+        reach("match");
+      } else {
+        setSawMiss(true);
+        reach("mismatch");
+      }
+    }
     if (next === CELLS) reach("filled");
   };
   const nextRow = () => fillTo((Math.floor(n / C) + 1) * C);
@@ -105,7 +122,9 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         ? "Each cell: the best answer for the first letters of each string."
         : n === CELLS
           ? `The corner reads ${BEST}. Trace back to see which letters.`
-          : note(n - 1);
+          : canSkip
+            ? note(n - 1)
+            : `${note(n - 1)} Fill unlocks after a ${sawMatch ? "mismatch" : "match"}.`;
 
   return (
     <div className={s.wrap}>
@@ -161,13 +180,13 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <Control className={s.tap} disabled={locked || n >= CELLS} onClick={nextRow}>
           Next row
         </Control>
-        <Control className={s.tap} disabled={locked || n >= CELLS} onClick={() => fillTo(CELLS)}>
+        <Control className={s.tap} disabled={locked || n >= CELLS || !canSkip} onClick={() => fillTo(CELLS)}>
           Fill the rest
         </Control>
         <Control className={`${s.tap} active`} disabled={locked || n < CELLS || traced} onClick={trace}>
           Trace back from the corner
         </Control>
-        <Control className={s.tap} disabled={locked || n === 0} onClick={restart}>
+        <Control className={s.tap} disabled={locked || n === 0 || traced} onClick={restart}>
           Start over
         </Control>
       </Row>
@@ -201,8 +220,8 @@ export default function CommonLettersInOrder({ slug }: { slug: string }) {
         options: ["3 letters", "4 letters", "5 letters"],
         answer: 1,
       }}
-      exploreHint="Fill the grid, then trace back from the corner."
-      minInteractions={2}
+      exploreHint="Step a few cells, fill the grid, then trace back from the corner."
+      minInteractions={4}
       reveal={() => (
         <>
           <p>
@@ -211,7 +230,7 @@ export default function CommonLettersInOrder({ slug }: { slug: string }) {
             sequence is shared.
           </p>
           <p>
-            Each cell asked one small question: do these two letters match? If so, extend the answer from the diagonal; if
+            Your first steps showed it: each cell asked one small question: do these two letters match? If so, extend the answer from the diagonal; if
             not, take the better of dropping a letter from either string. Diff tools that show what changed between two
             files are built on this idea.
           </p>
@@ -219,7 +238,7 @@ export default function CommonLettersInOrder({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["filled", "traced"]}>
+        <Milestones interact={interact} names={["mismatch", "match", "filled", "traced"]}>
           {(reach) => <Stage locked={locked} reach={reach} />}
         </Milestones>
       )}

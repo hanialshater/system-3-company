@@ -1,6 +1,6 @@
 {
   "slug": "more-copying-bigger-stars",
-  "title": "Copy a link, crown a giant",
+  "title": "What does copying do to the top page?",
   "hook": "New pages copy each other's links. Does the top page get a bit bigger, or far bigger?",
   "domain": "probability",
   "concept": "preferential-attachment-exponent",
@@ -51,18 +51,18 @@
     },
     {
       "id": "probability.more-copying-bigger-stars.c4",
-      "text": "A copier lands on a page with chance proportional to the links that page already has, so a page with 500 links is 500 times more likely to be copied than a page with one.",
+      "text": "A copier links to whatever a random link points at, so it lands on a page with chance proportional to the links that page already has: a page with 500 links is 500 times more likely to be copied than a page with one.",
       "support": "derivation",
-      "source": "Copying picks one of the i-1 existing links uniformly and follows it; page j is the target of deg(j) of them, so P(copy lands on j) = c * deg(j)/(i-1). E&K ch. 18 describes the same rich-get-richer equivalence. · Fact-check pass 21 2026-10-14: Pages 1..i-1 each have exactly one out-link, so a uniform page is a uniform link; P(copy lands on j) = deg(j)/(i-1). 500 vs 1 gives a factor of 500 within the copy step.",
+      "source": "Derivation from the stage's rule: the copier picks one of the i - 1 existing links uniformly (target[1 + floor(r2 (i - 1))]), so page j is hit with chance deg(j) / (i - 1). Easley and Kleinberg, Networks, Crowds, and Markets, ch. 18 (cited from the brief, not opened; the sentence rests on the derivation). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. From the code: copier picks target[1 + floor(r2 (i - 1))], uniform over the i - 1 links, so page j is hit with chance deg(j) / (i - 1); 500 links -> 500 times a 1-link page. E&K ch. 18 not opened; sentence rests on the derivation.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "probability.more-copying-bigger-stars.c5",
-      "text": "Without copying, every earlier page has the same chance of getting the new link.",
-      "support": "derivation",
-      "source": "Lesson rule: with c = 0 the target is uniform on pages 0..i-1. · Fact-check pass 21 2026-10-14: With c = 0, j = floor(r2 i), uniform on 0..i-1.",
+      "id": "probability.more-copying-bigger-stars.c6",
+      "text": "Of the last 1,000 new links (pages 9,001 to 10,000), the number that went to the page leading at that moment: 0 with no copying, 9 with 50% and 576 with 90% in seed 1 (seeds 2 and 3: 0/9/416 and 0/9/468).",
+      "support": "simulation",
+      "source": "Demo.tsx simulate() lead[9]: the leader is updated after each link (the page with the most in-links so far), and a link counts if it lands on the current leader. Builder's Node run of the same generator (mulberry32, two draws per page), 2026-10-14; the max and top-1% values of the same runs match claims c2 and c3. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node replay of simulate() (mulberry32, two draws per page): lead[9] seed 1 = 0 / 9 / 576, seed 2 = 0 / 9 / 416, seed 3 = 0 / 9 / 468; max 12 / 160 / 6,278 (ratio 523) and top 1% 7% / 27% / 84% for seed 1 also reproduce.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -80,12 +80,16 @@
     "why": "Copying a random link lands on a page in proportion to the links it already has, so the leader keeps pulling ahead: from about a dozen links to thousands out of 10,000."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/more-copying-bigger-stars/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/more-copying-bigger-stars/2026-10-14-learner-knows-rich-get-richer-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:preferential-attachment-exponent",
     "also": [],

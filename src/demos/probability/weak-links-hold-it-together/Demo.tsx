@@ -156,8 +156,8 @@ export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
             groups were among them.
           </p>
           <p>
-            A link with few shared friends usually runs between groups, so cutting those first breaks the network apart.
-            Close ties sit inside groups, and the groups hold together without them.
+            Here the links between groups all have few shared friends, so cutting the weakest first removes them and
+            breaks the network apart. Close ties sit inside groups, and the groups hold together without them.
           </p>
         </>
       )}
@@ -292,14 +292,17 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
         />
       </div>
       <div className={s.controls}>
-        <Control
-          className={`${s.tap} ${view.order === "weak" ? "active" : ""}`}
-          aria-pressed={view.order === "weak"}
-          disabled={locked}
-          onClick={() => apply({ ...view, order: view.order === "weak" ? "strong" : "weak" })}
-        >
-          Cutting: {label(view.order)}
-        </Control>
+        {(["strong", "weak"] as Order[]).map((o) => (
+          <Control
+            key={o}
+            className={`${s.tap} ${view.order === o ? "active" : ""}`}
+            aria-pressed={view.order === o}
+            disabled={locked || view.order === o}
+            onClick={() => apply({ ...view, order: o })}
+          >
+            {o === "weak" ? "Weakest first" : "Strongest first"}
+          </Control>
+        ))}
         <Control
           className={s.tap}
           disabled={locked}

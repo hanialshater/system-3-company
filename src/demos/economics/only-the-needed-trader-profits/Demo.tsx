@@ -71,9 +71,9 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
           </p>
           <p>
             T1 and T2 compete for the same trade, so each undercuts the other until neither earns anything. T3 has no rival, so it can
-            charge for the trade only it makes. In this model a trader can earn a profit only if removing it loses value for the market.
+            charge for the trade only it makes. On this network, the only trader that can earn a profit is the one whose removal lost value: T3.
           </p>
-          <p className="muted">A simplified model with invented values. Being needed allows a profit; it does not guarantee one.</p>
+          <p className="muted">A simplified model with invented values.</p>
         </>
       )}
     >

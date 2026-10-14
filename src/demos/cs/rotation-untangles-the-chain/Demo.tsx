@@ -5,6 +5,10 @@
 // side of a node is two levels deeper than the other (AVL). Height is counted in levels (one node = 1).
 // Each key has its own column (in-order position), so a rotation moves keys up and down, never sideways:
 // the in-order rule is visible. Rotating: 4 single left rotations (at 1, 3, 2, 5), height 3, root 4 (claim c1).
+// v2: the stage opens with keys 1 and 2 placed, so the first "Insert next key" inserts 3 and the learner watches the
+// first rotation (2 lifted above 1 and 3) as a step. "Insert the rest" stays disabled until that step. The ghost
+// shows only the keys that moved, with an arrow up the lifted key's column. The reveal quotes the recorded first
+// rotation and the recorded results, so switching trees cannot change them.
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -18,6 +22,10 @@ type Depths = Record<number, number>;
 type Edge = [number, number];
 type Rot = { at: number; up: number; ghost: Depths; ghostEdges: Edge[] };
 type Snap = { depth: Depths; edges: Edge[]; pre: Depths; preEdges: Edge[]; height: number; rots: number; rot?: Rot };
+type Result = { height: number; rots: number };
+
+const START = 2; // keys 1 and 2 are already placed when the stage unlocks
+const lv = (n: number) => `${n} level${n === 1 ? "" : "s"}`;
 
 const KEYS = [1, 2, 3, 4, 5, 6, 7];
 const ht = (n: Node | null) => (n ? n.h : 0);
@@ -147,31 +155,22 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
   const label =
     i === 0
       ? `${mode === "rotating" ? "Rotating" : "Plain"} tree: empty`
-      : `${mode === "rotating" ? "Rotating" : "Plain"} tree: root ${keys.find((k) => snap.depth[k] === 0)}, height ${snap.height} levels, ${snap.rots} rotation${snap.rots === 1 ? "" : "s"}`;
+      : `${mode === "rotating" ? "Rotating" : "Plain"} tree: root ${keys.find((k) => snap.depth[k] === 0)}, height ${lv(snap.height)}, ${snap.rots} rotation${snap.rots === 1 ? "" : "s"}`;
 
   return (
     <svg viewBox="0 0 342 324" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-keys={i}>
       {snap.rot && (
         <g aria-hidden="true">
-          {snap.rot.ghostEdges.map(([a, b]) => (
-            <line
-              key={`ge${a}-${b}`}
-              x1={COLX(a)}
-              y1={LEVY(snap.rot!.ghost[a])}
-              x2={COLX(b)}
-              y2={LEVY(snap.rot!.ghost[b])}
-              stroke="var(--muted)"
-              strokeDasharray="3 3"
-            />
-          ))}
-          {Object.entries(snap.rot.ghost).map(([k, dd]) => (
+          {Object.entries(snap.rot.ghost)
+            .filter(([k, dd]) => snap.depth[Number(k)] !== dd)
+            .map(([k, dd]) => (
             <g key={`g${k}`}>
               <circle
                 cx={COLX(Number(k))}
                 cy={LEVY(dd)}
                 r={R - 1}
                 fill="none"
-                stroke="var(--muted)"
+                stroke="var(--domain)"
                 strokeDasharray="3 3"
               />
               <text x={COLX(Number(k))} y={LEVY(dd) + 4} textAnchor="middle" className={s.ghostKey}>
@@ -179,6 +178,26 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
               </text>
             </g>
           ))}
+          {p >= 1 && (
+            <g>
+              <line
+                x1={COLX(snap.rot.up) + R + 4}
+                y1={LEVY(snap.rot.ghost[snap.rot.up]) - 2}
+                x2={COLX(snap.rot.up) + R + 4}
+                y2={LEVY(snap.depth[snap.rot.up]) + 6}
+                stroke="var(--domain)"
+                strokeWidth={2.5}
+              />
+              <text
+                x={COLX(snap.rot.up) + R + 4}
+                y={LEVY(snap.depth[snap.rot.up]) + 4}
+                textAnchor="middle"
+                className={s.up}
+              >
+                ▲
+              </text>
+            </g>
+          )}
         </g>
       )}
       {edges.map(([a, b]) => (
@@ -233,9 +252,11 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
 
 export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
   const [mode, setMode] = useState<Mode>("rotating");
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(START);
   const [dur, setDur] = useState(300);
-  const [results, setResults] = useState<Partial<Record<Mode, number>>>({});
+  const [results, setResults] = useState<Partial<Record<Mode, Result>>>({});
+  // The first rotation the learner stepped through (recorded when the milestone fires).
+  const [first, setFirst] = useState<{ key: number; up: number; below: number[] } | null>(null);
   const [busy, setBusy] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(
@@ -252,24 +273,25 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Keys 1 to 7 arrive in order. A plain search tree becomes a chain of height 7 (levels). A tree that rotates whenever one side is two levels deeper than the other: what height?",
-        options: ["7", "5", "3"],
+          "Keys 1 to 7 arrive in order. A plain search tree becomes a chain 7 levels tall. A tree that rotates whenever one side is two levels deeper than the other: how many levels?",
+        options: ["7 levels", "5 levels", "3 levels"],
         answer: 2,
       }}
-      exploreHint="Insert the keys one at a time and watch key 3."
+      exploreHint="Insert key 3 and watch which key moves up."
       minInteractions={2}
       reveal={() => {
-        const rh = results.rotating ?? 3;
-        const ph = results.plain ?? 7;
+        const rt = results.rotating ?? SNAPS.rotating[7];
         return (
           <>
             <p>
-              Your tree took 1 to 7 in order and stayed {rh} levels tall. The plain tree was a chain of {ph}. Each time
-              one side got two levels deeper, a rotation lifted the middle key: at key 3, 2 rose above 1 and 3.
+              Your tree took 1 to 7 in order and stayed {lv(rt.height)} tall
+              {results.plain ? `; the plain tree was a chain of ${results.plain.height}` : ""}. Each time one side got two
+              levels deeper, a rotation lifted the middle key
+              {first ? `: at key ${first.key}, you saw ${first.up} rise above ${first.below.join(" and ")}` : ""}.
             </p>
             <p>
-              No key ever left its column, so the left-to-right order, and every search, stayed valid. Four rotations in
-              all. Doing this at every insert keeps the height close to log₂ of the number of keys.
+              No key ever left its column, so the left-to-right order, and every search, stayed valid. {rt.rots} rotations
+              in all. Doing this at every insert keeps the height close to log₂ of the number of keys.
             </p>
           </>
         );
@@ -279,9 +301,8 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
         <Milestones interact={interact} names={["first-rotation", "seven-rotating"]}>
           {(reach) => {
             const arrive = (m: Mode, k: number) => {
-              if (m === "rotating" && k >= 3) reach("first-rotation");
               if (k >= 7) {
-                setResults((r) => ({ ...r, [m]: SNAPS[m][7].height }));
+                setResults((r) => ({ ...r, [m]: { height: SNAPS[m][7].height, rots: SNAPS[m][7].rots } }));
                 if (m === "rotating") reach("seven-rotating");
               }
             };
@@ -313,6 +334,12 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
               setDur(reducedMotion() ? 0 : 300);
               setI(i + 1);
               arrive(mode, i + 1);
+              const rot = SNAPS[mode][i + 1].rot;
+              if (mode === "rotating" && rot && !first) {
+                const nxt = SNAPS.rotating[i + 1];
+                setFirst({ key: i + 1, up: rot.up, below: nxt.edges.filter(([a]) => a === rot.up).map(([, b]) => b) });
+                reach("first-rotation");
+              }
             };
             const insertRest = () => {
               if (locked || busy || i >= 7) return;
@@ -320,10 +347,13 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
             };
             const switchMode = (m: Mode) => {
               if (locked || busy || m === mode) return;
-              const wasFull = i >= 7;
+              // A full tree replays the new tree to full, except the rotating tree before its first rotation has
+              // been stepped: then it starts again from keys 1 and 2, so "Insert next key" can show that rotation
+              // (otherwise Plain-first, filled, then Rotating would lock the first-rotation milestone out).
+              const full = i >= 7 && !(m === "rotating" && !first);
               setMode(m);
-              setI(0);
-              if (wasFull) replay(m, 0);
+              setI(full ? 0 : START);
+              if (full) replay(m, 0);
               else if (timer.current) clearInterval(timer.current);
             };
 
@@ -336,21 +366,24 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
                 </p>
                 <Tree mode={mode} i={i} dur={dur} />
                 <p className={s.note} aria-live="polite">
-                  {snap.rot ? `Rotated at ${snap.rot.at}: ${snap.rot.up} moves up` : " "}
+                  {snap.rot ? `Key ${i} made ${snap.rot.at}'s side too deep: ${snap.rot.up} lifted up` : " "}
                 </p>
                 <Row>
-                  <Readout label="Height" value={`${snap.height} levels`} />
+                  <Readout label="Height" value={lv(snap.height)} />
                   <Readout label="Rotations" value={snap.rots} />
                 </Row>
                 <Row>
-                  <Readout label="Plain" value={results.plain ?? "?"} />
-                  <Readout label="Rotating" value={results.rotating ?? "?"} />
+                  <Readout label="Plain" value={results.plain ? lv(results.plain.height) : "?"} />
+                  <Readout
+                    label="Rotating"
+                    value={results.rotating ? `${lv(results.rotating.height)}, ${results.rotating.rots} rot.` : "?"}
+                  />
                 </Row>
                 <Row>
                   <Control className="tap" disabled={locked || busy || i >= 7} onClick={insertNext}>
                     Insert next key
                   </Control>
-                  <Control className="tap" disabled={locked || busy || i >= 7} onClick={insertRest}>
+                  <Control className="tap" disabled={locked || busy || i >= 7 || !first} onClick={insertRest}>
                     Insert the rest
                   </Control>
                 </Row>

@@ -13,3 +13,23 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | disputed | Centola & Macy, 'Complex Contagions and the Weakness of Long Ties', AJS 2007 confirmed by search snippet (UPenn repository, UVM preprint; volume/issue 113(3) not shown, matches my memory). But that paper's result is from network models and simulations ('as adoption thresholds increase, long ties can impede diffusion'), and E&K ch. 19 'Cascading Behavior in Networks' (placement from own knowledge, confident) is also a model treatment. Neither supports 'Researchers find the same split in real networks', an empirical claim. Fix (builder): 'Network researchers argue the same split holds in real networks: ...' or 'Models of real networks show ...', or cite an empirical source a checker can open (e.g. Centola 2010, Science 329, an online experiment) and keep the wording to what it found. |
 
 **Result:** 1 disputed claim(s); lesson cannot publish until the builder fixes the stage or the wording and a fact-checker re-checks.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | held (unverified) | The pass 22 wording objection is resolved: 'Network researchers argue ... holds' no longer claims an empirical finding, and the reveal (line 109) matches. But the claim rests only on Centola & Macy (AJS 113(3), 2007, 702-34 per search snippet) and E&K ch. 19, and I could not open either. The UPenn repository, the UVM pdf, the NDG page, the journal, crossref, openalex, semantic scholar and Wikipedia were all unreachable (DNS failure or proxy 403). Search-result summaries of the abstract match the sentence ('as adoption thresholds increase, long ties can impede diffusion'; complex contagions need reinforcement from multiple sources), but a snippet is not an opened source, so per rule I do not verify. Needs: a checker with access opens the abstract, or the builder adds a source a checker can open. |
+
+**Result:** 0 verified, 0 disputed, 1 held this pass; the lesson cannot publish until c5 (unverified) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim still open from pass 23. Method: read Demo.tsx (the reveal paragraph 3 still carries the sentence verbatim), then tried to open the sources again.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | Sourcing only. The sentence rests on Centola & Macy 2007 (AJS, doi 10.1086/521848) and E&K ch. 19. Neither could be opened (DNS fails for repository.upenn.edu and journals.uchicago.edu). Search snippets agree, but they are not an opened source. Fix: open the abstract, add an openable source, or drop the sentence (nothing else depends on it). |
+
+**Result:** 0 verified, 1 disputed (c5). Publishing stays blocked on c5.

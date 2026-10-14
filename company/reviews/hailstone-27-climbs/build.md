@@ -21,3 +21,14 @@ None. Claim c4 (Barina 2021, about 2^68) is still "check before building" in the
 
 ## Checks skipped
 next build, QA, walkthrough and tsc were not run (coordinator order). `npm run registry` and `npm run check` passed.
+
+## Pre-flight v2
+
+Revision for r6 (knows-repeated-rules): "111" was the only exact option; "nobody has proved" was only told; the stage cropped. Options are now three bands; title renamed (it said "long climb"); the table lists all four starts with "?" for steps and peak until each run reaches 1, under the stage line "No known formula fills a ?. Run it." The reveal points at those "?" and explains 97's overlap (it lands on 27's path at 94). Chart capped at 30dvh. c6, c7 added.
+
+1. **Title and hook.** "How many steps does 27 take?" / "A tiny rule and a small number. How long can it run?" Both ask; neither says long or short.
+2. **Options.** "Under 30", "30 to 100", "Over 100": three numbered bands, same precision.
+3. **Locked stage.** Rule line, "Start 27 · step 0 · value 27", one dot at 27 on a 0–100 y axis, no x tick labels, the table with all "?" (26, 27, 28, 97), the note. No 111, no band highlighted.
+4. **Reveal values.** 111 and 9,232: computed from SEQ[27], gated by milestone "27-at-1" and shown in the table's 27 column. 26/28/97 sentences: printed only if that start is in `done` (the learner ran it), and shown in its table column. 94 (the join): computed, printed only with 97's sentence; 97's trace overlaps 27's on the chart. "Each ? stayed a ? until you ran it": the table.
+5. **QA path.** Step (27 → 82), Run to 1 (~350 ms; "27-at-1"; x ticks appear), Step to show slider (cursor moves), chip 26 (runs out: "another-start"), 27, 28, 97 (each runs out in < 400 ms). Both milestones; the table is full when the reveal opens.
+6. **Reset.** There is no Reset; picking a start redraws that start only, and `done` never shrinks. Reveal from that run: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118: at 94 it lands on 27's path and follows it down. The start number tells you almost nothing about the run. Each ? in your table stayed a ? until you ran that start: no known formula gives the count. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."

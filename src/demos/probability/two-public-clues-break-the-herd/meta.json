@@ -1,6 +1,6 @@
 {
   "slug": "two-public-clues-break-the-herd",
-  "title": "Can two clues beat a crowd of 100?",
+  "title": "Follow 100 people, or two clues?",
   "hook": "Clues are right 2 times in 3. 100 people chose blue. How much do they know?",
   "domain": "probability",
   "concept": "cascade-fragility",
@@ -68,10 +68,10 @@
     },
     {
       "id": "probability.two-public-clues-break-the-herd.c6",
-      "text": "The packed room rests on two opinions, and two independent new ones can outweigh it.",
+      "text": "The packed room rests on two opinions, so two independent new ones count as much as the whole crowd, and one more would tip it.",
       "support": "derivation",
-      "source": "UNRECORDED CLAIM found by fact-checker (pass 23, 2026-10-14); the sentence is the builder's, recorded here word for word (meta.json recall.why, second sentence). | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. Recall card 'why' (meta.json recall.why), learner-visible after the lesson. In the lesson's own model (equally reliable clues, prior 1/2), two new clues against the two the crowd holds give 1 / (1 + 2^0) = 50%: they cancel it, they do not outweigh it. The recall scenario has no own clue to tip it, unlike the reveal. 'Can' would need critics more reliable than diners, which the card does not say. Fix (builder): 'two independent new ones can cancel it out, and one more would tip it', or 'two independent new ones count as much as the whole crowd'.",
-      "status": "disputed",
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 23, 2026-10-14); the sentence is the builder's, recorded here word for word (meta.json recall.why, second sentence). | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. Recall card 'why' (meta.json recall.why), learner-visible after the lesson. In the lesson's own model (equally reliable clues, prior 1/2), two new clues against the two the crowd holds give 1 / (1 + 2^0) = 50%: they cancel it, they do not outweigh it. The recall scenario has no own clue to tip it, unlike the reveal. 'Can' would need critics more reliable than diners, which the card does not say. Fix (builder): 'two independent new ones can cancel it out, and one more would tip it', or 'two independent new ones count as much as the whole crowd'. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reworded per pass 23: two equally reliable new clues cancel the crowd's two (50%), they do not outweigh it; a third tips it. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Lesson model P(blue) = 1 / (1 + 2^(red - blue)): crowd's 2 vs 2 new = 50% (count as much), 2 vs 3 = 33% (tips it). Pass 23 dispute resolved by the rewording. Assumes the new clues are as reliable as the diners' (the lesson's equal-reliability model).",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -85,7 +85,7 @@
       "Not at all: crowds are always wrong"
     ],
     "answer": 1,
-    "why": "Followers in a cascade copy the people ahead of them, so their choices add no new information. The packed room rests on two opinions, and two independent new ones can outweigh it."
+    "why": "Followers in a cascade copy the people ahead of them, so their choices add no new information. The packed room rests on two opinions, so two independent new ones count as much as the whole crowd, and one more would tip it."
   },
   "evidence": {
     "qa": [],
@@ -93,7 +93,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:cascade-fragility",
     "also": [

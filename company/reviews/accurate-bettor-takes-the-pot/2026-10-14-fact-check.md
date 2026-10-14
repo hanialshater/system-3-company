@@ -14,3 +14,15 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c6 | verified | Stage chip 'Model: each bets everything, split by belief' and reveal footnote 'two bettors, no fees, everyone bets everything each race' match run(). |
 
 **Result:** 5 verified, 1 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v2 wave E revision. Method: read v2 Demo.tsx (captions, single-race chip, circles, readouts, conditional reveal; no Reset, t only grows) before the sources, then replayed all five seeds in my own node port (scratchpad fc24/bet.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Run 2: 91.0% at race 203; run 5: 94.2% at race 176; runs 1, 3, 4 minima after race 50: 0.716, 0.655, 0.553. Reveal needs full-run, so the circle is the whole-run low. |
+| c3 | verified | Seed 2211 race 1 is a loss; ratio changes by 1.2^w × 0.8^l over every window checked; 1.2^3 × 0.8^2 = 1.106. |
+| c7 | verified | Captions and the ratio readout match the code; printed product equals the readout's change. Side note: Pool's win odds at race 500 read 59.9% in runs 2 and 5. |
+
+**Result:** every claim open at this pass is now verified.

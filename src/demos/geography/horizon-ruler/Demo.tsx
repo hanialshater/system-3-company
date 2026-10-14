@@ -22,7 +22,7 @@ const EXAG = (EARTH_RADIUS_KM * K) / RD; // curve and heights stretched by this
 const STOPS = [
   { label: "Your eyes, 1.7 m", m: 1.7, key: "eyes" },
   { label: "100× higher, 170 m", m: 170, key: "hundred" },
-  { label: "Burj Khalifa, 828 m", m: 828, key: "" },
+  { label: "Burj Khalifa, 828 m", m: 828, key: "tower" },
 ];
 const START_M = 30;
 const LOG_MAX = 3; // slider covers 1 m to 1,000 m
@@ -32,9 +32,13 @@ const fmtKm = (km: number) => (km < 10 ? km.toFixed(1) : Math.round(km).toString
 const fmtM = (m: number) => (m < 10 ? `${m.toFixed(1)} m` : `${Math.round(m)} m`);
 const toSlider = (m: number) => Math.round((Math.log10(m) / LOG_MAX) * 100);
 const fromSlider = (v: number) => Math.pow(10, (v / 100) * LOG_MAX);
+// What the stage showed for a stop, at the stage's rounding (the same text the readout printed).
+const stopText = (m: number) => `${fmtM(m)} → ${fmtKm(horizonKm(m))} km`;
 
 export default function HorizonRuler({ slug }: { slug: string }) {
   const [m, setM] = useState(START_M);
+  // Stops recorded when their milestone fires; kept on the stage's Seen line and quoted by the reveal.
+  const [seen, setSeen] = useState<string[]>([]);
   const d = horizonKm(m);
   const hd = (K * K * EARTH_RADIUS_KM * (m / 1000)) / RD; // drawn height, px
   const cy = Y0 + RD;
@@ -47,6 +51,11 @@ export default function HorizonRuler({ slug }: { slug: string }) {
   // Extend the sight line beyond the tangent point.
   const ux = (tx - ex) / Math.hypot(tx - ex, ty - ey);
   const uy = (ty - ey) / Math.hypot(tx - ex, ty - ey);
+  // Unit vector from the tangent point toward the Earth's centre.
+  const rx = (X0 - tx) / RD;
+  const ry = (cy - ty) / RD;
+  // Keep the stub above the caption line.
+  const stub = Math.max(8, Math.min(34, (H - 18 - ty) / ry));
   const ground = Array.from({ length: 41 }, (_, i) => {
     const a = (-0.05 + (i / 40) * 1.1) * 1.05;
     return `${(X0 + RD * Math.sin(a)).toFixed(1)},${(cy - RD * Math.cos(a)).toFixed(1)}`;
@@ -60,19 +69,20 @@ export default function HorizonRuler({ slug }: { slug: string }) {
         options: ["1.5 km", "4.7 km", "15 km"],
         answer: 1,
       }}
-      exploreHint="Try your own eye height, then go 100 times higher."
-      minInteractions={2}
+      exploreHint="Try your own eye height, then 100 times higher, then the tower."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            <strong>About {fmtKm(horizonKm(1.7))} km.</strong> Your line of sight grazes the curved sea and then leaves it;
-            the horizon is that grazing point, not the limit of your eyes. By Pythagoras on the tangent, the distance is
-            the square root of 2 × Earth&rsquo;s radius × your height.
+            <strong>{fmtKm(horizonKm(1.7))} km.</strong> Your Seen line: {stopText(1.7)}. Your line of sight grazes the
+            curved sea and then leaves it; the horizon is that grazing point, not the limit of your eyes. The sight line
+            meets the radius at a right angle there, so by Pythagoras the distance is the square root of 2 × Earth&rsquo;s
+            radius × your height.
           </p>
           <p>
-            Square root means slow growth: 170 m is 100 times higher but sees only {Math.round(horizonKm(170) / horizonKm(1.7))}{" "}
-            times farther, {fmtKm(horizonKm(170))} km. From the top of an 828 m tower it is about{" "}
-            {fmtKm(horizonKm(828))} km. Air bends light a little, so real horizons are a few per cent farther.
+            Square root means slow growth: you saw {stopText(170)}, 100 times higher but only{" "}
+            {Math.round(horizonKm(170) / horizonKm(1.7))} times farther, and {stopText(828)} from the tower. Air bends
+            light a little, so real horizons are a few per cent farther.
           </p>
         </>
       )}
@@ -83,7 +93,11 @@ export default function HorizonRuler({ slug }: { slug: string }) {
             const set = (v: number) => {
               setM(v);
               const stop = STOPS.find((st) => Math.abs(st.m - v) < 1e-9);
-              if (stop?.key) reach(stop.key);
+              const key = stop?.key;
+              if (key) {
+                setSeen((a) => (a.includes(key) ? a : [...a, key]));
+                reach(key);
+              }
             };
             return (
               <div className={s.wrap}>
@@ -93,13 +107,24 @@ export default function HorizonRuler({ slug }: { slug: string }) {
                   <line x1={ex} y1={ey} x2={tx} y2={ty} className={s.sight} />
                   <line x1={X0} y1={Y0} x2={ex} y2={ey} className={s.tower} />
                   <circle cx={ex} cy={ey} r={3} className={s.eye} />
+                  {/* A stub of the radius to the centre (far below) and the right angle it makes with the sight line. */}
+                  <line x1={tx} y1={ty} x2={tx + rx * stub} y2={ty + ry * stub} className={s.radius} />
+                  <polyline
+                    points={`${tx + ux * 7},${ty + uy * 7} ${tx + ux * 7 + rx * 7},${ty + uy * 7 + ry * 7} ${tx + rx * 7},${ty + ry * 7}`}
+                    className={s.rightAngle}
+                  />
+                  {stub >= 20 && (
+                    <text x={tx + rx * stub - 3} y={ty + ry * stub} className={s.smallOnSea} textAnchor="end">
+                      radius
+                    </text>
+                  )}
                   <circle cx={tx} cy={ty} r={3} className={s.tangent} />
                   {!locked && (
-                    <text x={(ex + tx) / 2} y={(ey + ty) / 2 - 6} className={s.dist} textAnchor="middle">
+                    <text x={(ex + tx) / 2 + uy * 12} y={(ey + ty) / 2 - ux * 12} className={s.dist} textAnchor="middle">
                       {fmtKm(d)} km
                     </text>
                   )}
-                  <text x={tx} y={ty + 14} className={s.small} textAnchor="middle">
+                  <text x={tx + 6} y={ty - 7} className={s.small} textAnchor="start">
                     horizon
                   </text>
                   <line x1={W - 12 - 50 * K} y1={18} x2={W - 12} y2={18} className={s.bar} />
@@ -123,6 +148,12 @@ export default function HorizonRuler({ slug }: { slug: string }) {
                 <Row>
                   <Readout label="Horizon" value={locked ? "?" : `${fmtKm(d)} km`} />
                 </Row>
+                <p className="tiny" data-testid="seen">
+                  Seen:{" "}
+                  {seen.length
+                    ? STOPS.filter((st) => seen.includes(st.key)).map((st) => stopText(st.m)).join(" · ")
+                    : "nothing yet"}
+                </p>
               </div>
             );
           }}

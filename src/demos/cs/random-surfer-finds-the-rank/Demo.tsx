@@ -5,6 +5,8 @@
 // The click stream is seeded (mulberry32 seed 146, two draws per click), so the totals after n clicks
 // are the same whatever buttons the learner pressed to get there. One representation: the link graph,
 // each page labelled with its share of visits so far.
+// v2.1 (lesson v3): each arrow's width and label show the share of all clicks that followed it, so the busy C->A
+// link is visibly heavy and D->C, E->C thin; the 100,000-click run is recorded so it stays on stage after Reset.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,19 +34,23 @@ const R = 24;
 function surf(n: number) {
   const rng = mulberry32(SEED);
   const visits = [0, 0, 0, 0, 0];
+  const follows = [0, 0, 0, 0, 0]; // clicks that followed page i's one link
   let at = 0;
   let jumped = false;
   for (let i = 0; i < n; i++) {
     const j = rng();
     const t = rng();
     jumped = j < JUMP;
+    if (!jumped) follows[at]++;
     at = jumped ? Math.floor(t * PAGES.length) : OUT[at];
     visits[at]++;
   }
-  return { visits, at, jumped };
+  return { visits, follows, at, jumped };
 }
 
-const FINAL = surf(MAX).visits;
+const FINAL_RUN = surf(MAX);
+const FINAL = FINAL_RUN.visits;
+const FINAL_FOLLOWS = FINAL_RUN.follows;
 const pct = (x: number, n: number) => (n ? `${((100 * x) / n).toFixed(1)}%` : "–");
 
 // arrow from page a to page b, trimmed to the circles
@@ -59,7 +65,8 @@ function edge(a: number, b: number) {
 
 export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
   const [clicks, setClicks] = useState(0);
-  const { visits, at, jumped } = useMemo(() => surf(clicks), [clicks]);
+  const [longRun, setLongRun] = useState(false); // recorded when the 100,000-click milestone fires
+  const { visits, follows, at, jumped } = useMemo(() => surf(clicks), [clicks]);
   const shareA = clicks ? visits[0] / clicks : 0;
   const shareC = clicks ? visits[2] / clicks : 0;
 
@@ -81,12 +88,13 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
             {pct(FINAL[2], MAX)} on C. Three in-links against one, yet almost the same share.
           </p>
           <p>
-            A&apos;s one link comes from C, the busiest page, so every visit to C is followed by a trip to A unless the surfer
-            jumps. D and E point at C, but the surfer only reaches them by jumping, so their links add little.
+            Look at the arrows: C to A carried {pct(FINAL_FOLLOWS[2], MAX)} of all clicks. A&apos;s one link comes from C, the
+            busiest page, so a visit to C is followed by a trip to A unless the surfer jumps. D to C and E to C carried{" "}
+            {pct(FINAL_FOLLOWS[3], MAX)} and {pct(FINAL_FOLLOWS[4], MAX)}: the surfer reaches D and E only by jumping.
           </p>
           <p>
             Those shares are PageRank: the long-run fraction of time a random surfer who sometimes jumps spends on each page.
-            Computed directly, A gets 0.312 and C 0.332.
+            Computed directly: A 0.312, C 0.332.
           </p>
         </>
       )}
@@ -100,7 +108,10 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
               if (next === clicks) return;
               setClicks(next);
               if (next > 0) hit("first-clicks");
-              if (next >= MAX) hit("long-run");
+              if (next >= MAX) {
+                setLongRun(true);
+                hit("long-run");
+              }
             };
             const note =
               clicks === 0
@@ -124,14 +135,22 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
                   </defs>
                   {OUT.map((b, a) => {
                     const e = edge(a, b);
+                    const used = clicks ? follows[a] / clicks : 0;
+                    // label beside the middle of the arrow, offset to its left
+                    const mx = (e.x1 + e.x2) / 2;
+                    const my = (e.y1 + e.y2) / 2;
+                    const d = Math.hypot(e.x2 - e.x1, e.y2 - e.y1);
+                    const lx = mx + ((e.y2 - e.y1) / d) * 12;
+                    const ly = my - ((e.x2 - e.x1) / d) * 12;
                     return (
-                      <line
-                        key={`${a}-${b}`}
-                        {...e}
-                        stroke="var(--muted)"
-                        strokeWidth={2.5}
-                        markerEnd="url(#rsf-arrow)"
-                      />
+                      <g key={`${a}-${b}`}>
+                        <line {...e} stroke="var(--muted)" strokeWidth={2 + used * 30} markerEnd="url(#rsf-arrow)" />
+                        {clicks > 0 && (
+                          <text x={lx} y={ly + 4} textAnchor="middle" className={s.edge}>
+                            {pct(follows[a], clicks)}
+                          </text>
+                        )}
+                      </g>
                     );
                   })}
                   {PAGES.map((p, i) => {
@@ -156,7 +175,12 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
                         <text x={x} y={y + R + 24} textAnchor="middle" className={s.share}>
                           {pct(visits[i], clicks)}
                         </text>
-                        <text x={x} y={y - R - 5} textAnchor="middle" className={s.label}>
+                        <text
+                          x={i === 1 ? x - R - 6 : x}
+                          y={i === 1 ? y + 4 : y - R - 5}
+                          textAnchor={i === 1 ? "end" : "middle"}
+                          className={s.label}
+                        >
                           {IN_LINKS[i]} in
                         </text>
                       </g>
@@ -182,7 +206,11 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
                   <Readout label="Time on A" value={clicks ? `${(100 * shareA).toFixed(1)}%` : "–"} />
                   <Readout label="Time on C" value={clicks ? `${(100 * shareC).toFixed(1)}%` : "–"} />
                 </Row>
-                <p className={s.seed}>Seed {SEED}: the same clicks every run.</p>
+                <p className={s.seed}>
+                  {longRun && clicks < MAX
+                    ? `Your 100,000 run: A ${pct(FINAL[0], MAX)}, C ${pct(FINAL[2], MAX)}. Arrows C→A ${pct(FINAL_FOLLOWS[2], MAX)}, D→C ${pct(FINAL_FOLLOWS[3], MAX)}, E→C ${pct(FINAL_FOLLOWS[4], MAX)}.`
+                    : `Seed ${SEED}: the same clicks every run. Arrow width: share of clicks.`}
+                </p>
               </div>
             );
           }}

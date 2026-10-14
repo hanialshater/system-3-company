@@ -1,6 +1,6 @@
 {
   "slug": "the-slowing-half-life",
-  "title": "The half-life that slows down",
+  "title": "Does the next half take as long?",
   "hook": "Half gone in 10 minutes. Is the next half gone in 10 more?",
   "domain": "chemistry",
   "concept": "reaction-order",
@@ -53,7 +53,7 @@
       "id": "chemistry.the-slowing-half-life.c4",
       "text": "In a second-order reaction of this kind, two reactant molecules must meet, so the rate goes with the concentration squared; halving the concentration makes meetings four times rarer (rate 1/4 of the start after one halving, 1/16 after two). In first order the rate halves each time.",
       "support": "source",
-      "source": "Rate = k[A]^2 for an elementary bimolecular step 2A -> products (Atkins & de Paula, ch. on kinetics). Order is measured, not always from the equation; the lesson's reaction is stated to be second order. | REVISION v2 2026-10-14: text edited to match stage; needs re-check. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: rate = k[A]^2: (1/2)^2 = 1/4, (1/4)^2 = 1/16; first order 1/2, 1/4. Matches rate() readout in Demo.tsx. Own integration of dA/dt = -kA^2 (k = 1/800): waits 10, 20, 40 min.",
+      "source": "Rate = k[A]^2 for an elementary bimolecular step 2A -> products (Atkins & de Paula, ch. on kinetics). Order is measured, not always from the equation; the lesson's reaction is stated to be second order. | REVISION v2 2026-10-14: text edited to match stage; needs re-check. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: rate = k[A]^2: (1/2)^2 = 1/4, (1/4)^2 = 1/16; first order 1/2, 1/4. Matches rate() readout in Demo.tsx. Own integration of dA/dt = -kA^2 (k = 1/800): waits 10, 20, 40 min. | REOPENED 2026-10-14 (v4, wave E r6 revision by demo-builder): rate values now shown as per-order rate rows (2nd: 1/4 → 1/16; 1st: 1/2 → 1/4) that the reveal quotes; needs a fresh check against the rows. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Derivation: second order in A means rate = k[A]^2 (mass action for a bimolecular step: meetings scale with [A]·[A]); halving gives (1/2)^2 = 1/4, then 1/16; first order 1/2, 1/4. Own node: waits 10, 20, 40 min (2nd) and 10, 10, 10 (1st). Rate rows rateRow() print '1/4 → 1/16' and '1/2 → 1/4'; gate guarantees seen[2] >= 2 and seen[1] >= 2 before reveal. Atkins not opened; not needed for the definition.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -81,16 +81,18 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/the-slowing-half-life/2026-10-13-qa.md"
+      "company/reviews/the-slowing-half-life/2026-10-13-qa.md",
+      "company/reviews/the-slowing-half-life/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/the-slowing-half-life/2026-10-13-learner-adult-beginner.md",
-      "company/reviews/the-slowing-half-life/2026-10-14-learner-adult-beginner-r5.md"
+      "company/reviews/the-slowing-half-life/2026-10-14-learner-adult-beginner-r5.md",
+      "company/reviews/the-slowing-half-life/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "chemistry:reaction-order",
     "prerequisites": [

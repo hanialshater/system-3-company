@@ -7,6 +7,10 @@
 // Generator: mulberry32(41) for random classes (not chosen for its result; builder's node run of the
 // default sequence: first class 26 crossing, 1,001 classes with none <= 9, fewest 11);
 // mulberry32(7) lays out the real class's friendships.
+// v2 (r6 fatal): the reveal read the live tally, so after Start over it said "your 0 random classes … 0% … the
+// fewest was 45". The largest run is now recorded when it is drawn and kept after Start over, in a "Your run"
+// row the reveal quotes. The pairs yardstick is shown: "Count possible pairs" draws all 200 cross-group pairs
+// (10 × 20) and keeps a "200 of 435 pairs" row; it is the first control and a milestone.
 
 import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -55,6 +59,7 @@ const POS = Array.from({ length: PEOPLE }, (_, i) => {
 });
 
 type Tally = { draws: number; sum: number; min: number; low: number; hist: number[] };
+type Rec = { draws: number; avg: number; min: number; low: number };
 const EMPTY: Tally = { draws: 0, sum: 0, min: F, low: 0, hist: Array(F + 1).fill(0) };
 
 const HX0 = 22;
@@ -65,11 +70,13 @@ const hx = (c: number) => HX0 + (c - H_LO) * HB;
 
 export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
   const rngRef = useRef(mulberry32(SEED));
-  const [view, setView] = useState<"real" | "random">("real");
+  const [view, setView] = useState<"real" | "random" | "pairs">("real");
+  const [rec, setRec] = useState<Rec | null>(null); // the largest run, kept after Start over
+  const [counted, setCounted] = useState(false);
   const [last, setLast] = useState<[number, number][]>([]);
   const [tally, setTally] = useState<Tally>(EMPTY);
 
-  const edges = view === "real" ? REAL : last;
+  const edges = view === "real" ? REAL : view === "pairs" ? CROSS_PAIRS : last;
   const nCross = edges.filter(crosses).length;
   const avg = tally.draws ? tally.sum / tally.draws / F : 0;
   const maxBin = Math.max(1, ...tally.hist);
@@ -84,24 +91,27 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Draw random classes where friendships ignore group, then compare them with the real one."
-      minInteractions={2}
+      minInteractions={3}
       reveal={() => (
         <>
+          {rec && (
+            <p>
+              Your {rec.draws.toLocaleString("en-US")} random classes crossed groups {Math.round(rec.avg * 100)}% of the time on
+              average, close to the {CROSS_PAIRS.length} of {PAIRS.length} possible pairs that cross (
+              {Math.round((100 * CROSS_PAIRS.length) / PAIRS.length)}%). The real class crosses 20%. {rec.low === 0 ? "None" : rec.low}{" "}
+              of your random classes had 9 or fewer; the fewest was {rec.min}. The exact chance is about 1 in 4,000.
+            </p>
+          )}
           <p>
-            Your {tally.draws.toLocaleString("en-US")} random classes crossed groups {Math.round(avg * 100)}% of the time on average,
-            close to the 200 of 435 possible pairs that cross (46%). The real class crosses 20%. {tally.low === 0 ? "None" : tally.low} of
-            your random classes had 9 or fewer; the fewest was {tally.min}. The exact chance is about 1 in 4,000.
-          </p>
-          <p>
-            The yardstick is pairs, not people: each of the 10 can pair with 20 people in the other group. For large groups of 2/3
-            and 1/3 it is 2 × 2/3 × 1/3, about 44%.
+            The yardstick is pairs, not people: each of the {NB} can pair with {NA} people in the other group, the{" "}
+            {NB} × {NA} = {CROSS_PAIRS.length} lines you counted. For large groups of 2/3 and 1/3 it is 2 × 2/3 × 1/3, about 44%.
           </p>
           <p>So the gap between 46% and 20%, not the 20% alone, is the evidence that friends sort by group.</p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["drew", "many"]}>
+        <Milestones interact={interact} names={["pairs", "drew", "many"]}>
           {(reach) => {
             const drawClasses = (n: number) => {
               if (locked) return;
@@ -124,6 +134,7 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
               }
               const draws = tally.draws + n;
               setTally({ draws, sum, min, low, hist });
+              if (!rec || draws > rec.draws) setRec({ draws, avg: sum / draws / F, min, low });
               setLast(e);
               setView("random");
               reach("drew");
@@ -136,11 +147,18 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
               setLast([]);
               setView("real");
             };
+            const countPairs = () => {
+              if (locked) return;
+              setView("pairs");
+              setCounted(true);
+              reach("pairs");
+            };
             return (
               <div className={s.wrap}>
                 <p className={s.note}>
-                  {view === "real" ? "Real class" : `Random class #${tally.draws.toLocaleString("en-US")}`}: {nCross} of {F} cross
-                  groups ({Math.round((nCross / F) * 100)}%)
+                  {view === "pairs"
+                    ? `Possible pairs across: each of the ${NB} with each of the ${NA} = ${CROSS_PAIRS.length} of ${PAIRS.length}`
+                    : `${view === "real" ? "Real class" : `Random class #${tally.draws.toLocaleString("en-US")}`}: ${nCross} of ${F} cross groups (${Math.round((nCross / F) * 100)}%)`}
                 </p>
                 <svg viewBox="0 0 320 136" className="stage-svg" role="img" aria-label={`${nCross} of ${F} friendships cross groups`}>
                   {edges.map(([a, b], i) => (
@@ -151,8 +169,8 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
                       x2={POS[b].x}
                       y2={POS[b].y}
                       stroke={crosses([a, b]) ? "var(--domain)" : "var(--muted)"}
-                      strokeWidth={crosses([a, b]) ? 2 : 1}
-                      opacity={crosses([a, b]) ? 0.95 : 0.55}
+                      strokeWidth={view === "pairs" ? 0.6 : crosses([a, b]) ? 2 : 1}
+                      opacity={view === "pairs" ? 0.5 : crosses([a, b]) ? 0.95 : 0.55}
                     />
                   ))}
                   {POS.map((p, i) =>
@@ -195,6 +213,9 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
                   ))}
                 </svg>
                 <Row>
+                  <Control disabled={locked || view === "pairs"} onClick={countPairs}>
+                    Count possible pairs
+                  </Control>
                   <Control disabled={locked} onClick={() => drawClasses(1)}>
                     Draw a random class
                   </Control>
@@ -213,6 +234,14 @@ export default function FriendsSplitMoreThanChance({ slug }: { slug: string }) {
                   <Readout label="Average crossing" value={tally.draws ? `${Math.round(avg * 100)}%` : "–"} />
                   <Readout label="With 9 or fewer" value={tally.low} />
                 </Row>
+                <p className={s.legend}>
+                  {locked
+                    ? ""
+                    : [
+                        ...(counted ? [`Pairs across: ${NB} × ${NA} = ${CROSS_PAIRS.length} of ${PAIRS.length} (${Math.round((100 * CROSS_PAIRS.length) / PAIRS.length)}%)`] : []),
+                        ...(rec ? [`Your run: ${rec.draws.toLocaleString("en-US")} classes, avg ${Math.round(rec.avg * 100)}%, ${rec.low} with 9 or fewer, fewest ${rec.min}`] : []),
+                      ].join(" · ")}
+                </p>
               </div>
             );
           }}

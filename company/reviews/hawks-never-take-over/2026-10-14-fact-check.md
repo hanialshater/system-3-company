@@ -13,3 +13,11 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c5 | verified | Demo model (deterministic shares, random pairing implicit, chosen payoffs) and the muted reveal paragraph say exactly this. |
 
 **Result:** 5 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Arithmetic (4 - 6) / 2 = -1 under the stated equal-chance assumption; matches the table and scoreH. Own node also: every start 1..99% ends at 67% after 150 generations. Maynard Smith 1982 not opened; the sentence rests on the arithmetic. |

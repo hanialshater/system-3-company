@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "round-robin-scheduling",
   "format": "side-by-side",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -89,8 +89,12 @@
     "why": "Turns let a short job slip out after a few slices instead of waiting behind a long one, and the scheduler does not need to know any lengths."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/turns-beat-first-come-first/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/turns-beat-first-come-first/2026-10-14-learner-knows-sjf-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

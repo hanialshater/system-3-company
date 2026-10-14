@@ -12,9 +12,13 @@
 // a red tick at one minute from that line down to the ball, and a caption comparing how far the ball
 // fell below the line in that minute (17.6 km for every throw) with how far the ground curved away
 // (13.9 km at 7.0 km/s up to 17.6 km at 7.9 km/s). The lap time is on the readout.
+// v4: controls in DOM order are Slower, the slider, Faster (one stop each), so pressing each once from the
+// 7.8 start visits 7.6 (lands), 7.8 and 7.85 (land), then 7.9 (the loop). The fastest landing the learner
+// moved to stays on stage as a text line (distance and how far the ground curved away in the first minute),
+// so the reveal's "your 7.85 km/s throw" is still visible when it opens.
 
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Slider } from "@/kit/controls";
+import { Control, Readout, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import { FLIGHTS, R_E, V_CIRC_SURFACE, lineHeight } from "./model";
@@ -50,6 +54,7 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
   const f = FLIGHTS[k];
   const near = FLIGHTS[tried.length ? Math.max(...tried) : DEFAULT];
   const loop = FLIGHTS[LOOP];
+  const fastest = tried.length ? FLIGHTS[Math.max(...tried)] : null;
 
   return (
     <Lesson
@@ -60,14 +65,14 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
         options: ["About 790 m/s", "About 7.9 km/s", "About 79 km/s"],
         answer: 1,
       }}
-      exploreHint="Throw faster, step by step. Compare the fall and the ground under the arc."
+      exploreHint="Throw slower, then faster, step by step. Compare the fall and the ground under the arc."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
             At <strong>{kms(loop.v)}</strong> your ball never landed: the readout showed it back round at the peak after{" "}
-            {Math.round(loop.time / 60)} minutes. Just a little slower, at {kms(near.v)}, it came down {km(near.dist)} km
-            away.
+            {Math.round(loop.time / 60)} minutes. Your fastest landing, at {kms(near.v)}, came down {km(near.dist)} km
+            away (the line under the readout).
           </p>
           <p>
             The ball was falling the whole time: in the first minute every throw fell {km1(loop.minute!.fell)} km below the
@@ -90,6 +95,17 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
             const [mx, my] = pt(0, 10_000);
             const m = f.minute;
             const tick = m ? [pt(m.ang, lineHeight(m.ang)), pt(m.ang, m.h)] : null;
+            const go = (v: number) => {
+              if (locked || v < 0 || v > FLIGHTS.length - 1) return;
+              setK(v);
+              if (FLIGHTS[v].lands) {
+                setTried((tr) => (tr.includes(v) ? tr : [...tr, v]));
+                reach("landed");
+              } else {
+                setLooped(true);
+                reach("loop");
+              }
+            };
             return (
               <div className={s.wrap}>
                 <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "Planet with a mountain peak" : f.lands ? `Ball lands ${km(f.dist)} km away` : "Ball circles the planet"}>
@@ -129,25 +145,24 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                   </text>
                 </svg>
 
-                <Slider
-                  label="Throw speed"
-                  value={k}
-                  min={0}
-                  max={FLIGHTS.length - 1}
-                  step={1}
-                  disabled={locked}
-                  format={(v) => (looped ? kms(FLIGHTS[v].v) : "?")}
-                  onChange={(v) => {
-                    setK(v);
-                    if (FLIGHTS[v].lands) {
-                      setTried((tr) => (tr.includes(v) ? tr : [...tr, v]));
-                      reach("landed");
-                    } else {
-                      setLooped(true);
-                      reach("loop");
-                    }
-                  }}
-                />
+                <div className={s.speedRow}>
+                  <Control className={s.step} disabled={locked || k === 0} onClick={() => go(k - 1)}>
+                    Slower
+                  </Control>
+                  <Slider
+                    label="Throw speed"
+                    value={k}
+                    min={0}
+                    max={FLIGHTS.length - 1}
+                    step={1}
+                    disabled={locked}
+                    format={(v) => (looped ? kms(FLIGHTS[v].v) : "?")}
+                    onChange={go}
+                  />
+                  <Control className={s.step} disabled={locked || k === FLIGHTS.length - 1} onClick={() => go(k + 1)}>
+                    Faster
+                  </Control>
+                </div>
                 <p className={s.caption} aria-live="polite">
                   {locked
                     ? "\u00a0"
@@ -159,6 +174,13 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                   label="Lands"
                   value={locked ? "?" : f.lands ? `${km(f.dist)} km away` : `never: back round in ${Math.round(f.time / 60)} min`}
                 />
+                <p className={s.caption} data-testid="fastest-landing">
+                  {fastest
+                    ? `Your fastest landing${looped ? `, ${kms(fastest.v)}` : ""}: ${km(fastest.dist)} km away${
+                        fastest.minute ? `; ground curved away ${km1(fastest.minute.groundAway)} km in 1 min` : ""
+                      }.`
+                    : "\u00a0"}
+                </p>
               </div>
             );
           }}

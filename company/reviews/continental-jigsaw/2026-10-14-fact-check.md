@@ -27,3 +27,14 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c1 | disputed | Still disputed, unchanged since pass 21 (claim and stage not edited). The source host (geologie.ens.fr) does not resolve from this sandbox, so Table 1 of Bullard, Everett and Smith (1965) is still unopened. To clear: a human opens Table 1, fit 9. |
 
 **Result:** 0 verified, 1 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Describes the stage only: POLE [-30.6, 44] (lon, lat), ANGLE 57 in Demo.tsx; 44°N 30.6°W is open North Atlantic. Own node Rodrigues rotation + countries-110m: bulge (34.8 W, 7.1 S) -> 7.27 E, 4.98 N, 61 km from an African vertex (2,928 km before); Brazil east-coast vertices (25) end mean 128 km, max 199 km from the West/South African coast. No longer attributes the parameters to Bullard et al. |
+| c4 | disputed | Rests only on Bullard, Everett and Smith (1965), not opened: royalsocietypublishing, pmc.ncbi.nlm.nih.gov, earthguide.ucsd.edu, open.edu all blocked (proxy 403). Search-result text (not opened) says the best fit was at the 500-fathom contour, 'on the steep part of the continental edge', i.e. on the continental slope (~900 m), not the shelf edge (~100-200 m). So the wording may also be off. Fix (builder): 'Published fits use the continental margin, a depth contour on the steep slope offshore, not today's shoreline'; to clear, a human opens the paper's abstract. |
+
+**Result:** disputed: c4 (blocks publishing; fix in the Basis column, builder owns it). Others verified.

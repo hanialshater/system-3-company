@@ -4,7 +4,7 @@
   "hook": "Build the cheapest roads first. Does every cheap road make the cut?",
   "domain": "cs",
   "concept": "kruskal-mst",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -80,8 +80,12 @@
     "why": "Kruskal skips a road exactly when its towns are already in the same group, however cheap it is: building it would only add a loop."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/skip-the-edge-that-loops/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/skip-the-edge-that-loops/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

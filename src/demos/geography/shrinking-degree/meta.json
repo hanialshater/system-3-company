@@ -1,7 +1,7 @@
 {
   "slug": "shrinking-degree",
   "title": "How wide is a degree?",
-  "hook": "A degree of longitude sounds like a fixed distance. Carry one north and measure it.",
+  "hook": "Carry one degree of longitude from the equator up to Oslo. How wide is it there?",
   "domain": "geography",
   "concept": "degree-length-by-latitude",
   "status": "review",
@@ -32,12 +32,10 @@
     },
     {
       "id": "geography.shrinking-degree.c2",
-      "text": "At 60°N one degree of longitude is 55.6 km, half the equator's; at 80°N it is about 19 km; at the pole, zero.",
+      "text": "At 60°N one degree of longitude is 55.6 km, half the equator's 111.2 km; at 80°N it is 19.3 km.",
       "support": "derivation",
-      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there.",
+      "status": "unverified"
     },
     {
       "id": "geography.shrinking-degree.c3",
@@ -74,6 +72,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.shrinking-degree.c7",
+      "text": "The 10-degree box is ten times as wide as one degree of longitude at its middle latitude (for example about 556 km at 60°N).",
+      "support": "derivation",
+      "source": "Demo.tsx: box width readout = 10 x pi R cos(lat) / 180 with R = 6,371.0088 km, measured along the box's middle parallel; 10 x 55.6 = 556 km at 60°N. The box's top and bottom parallels are slightly narrower and wider than its middle.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +94,8 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/shrinking-degree/2026-10-13-qa.md"
+      "company/reviews/shrinking-degree/2026-10-13-qa.md",
+      "company/reviews/shrinking-degree/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/shrinking-degree/2026-10-13-learner-adult-beginner.md"
@@ -97,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:degree-length-by-latitude",
     "prerequisites": [

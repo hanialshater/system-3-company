@@ -1,7 +1,7 @@
 {
   "slug": "every-scale-equally-likely",
   "title": "Near or far: where do 1/d links land?",
-  "hook": "If nearer links are likelier, most links should be short. Are they?",
+  "hook": "If nearer links are likelier, where do most links land?",
   "domain": "probability",
   "concept": "distance-scales",
   "format": "single-card",
@@ -75,6 +75,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c7",
+      "text": "Under 1/d, band 2–3 holds 2 distances at about 0.42 each (relative to d = 1), about 0.83 in all, and band 256–512 holds 257 distances at about 0.0027 each, about 0.70 in all; their shares are 12.2% and 10.2%.",
+      "support": "derivation",
+      "source": "Builder's node sums (2026-10-14): sum_{d=2..3} 1/d = 0.8333, /2 = 0.4167; sum_{d=256..512} 1/d = 0.6961, /257 = 0.00271. Shown as sig2(): 0.42, 0.83, 0.0027, 0.70. Shares per c1 (the stage weights also count 2 people per distance except d = 512, which is why 0.83 : 0.70 matches 12.2 : 10.2 only approximately; the line uses ≈). Demo.tsx v2 compare line and reveal. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own sums: sum_{d=2..3} 1/d = 0.833 (/2 = 0.42), sum_{d=256..512} 1/d = 0.696 (/257 = 0.0027), sig2 -> 0.42, 0.83, 0.0027, 0.70. The people-weighted shares (2 per distance, 1 at 512) are 12.2% and 10.2%. The compare line is shown under 1/d (milestone q1 is required).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -89,12 +98,16 @@
     "why": "The far band holds 32 times as many distances, but each is about 32 times less likely, so the two bands get about the same share (11.1% vs 10.2% on a ring of 1,024)."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/every-scale-equally-likely/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/every-scale-equally-likely/2026-10-14-learner-knows-1-over-d-routing-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:distance-scales",
     "also": [],

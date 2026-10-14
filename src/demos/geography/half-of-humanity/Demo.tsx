@@ -32,27 +32,46 @@ const POP: { label: string; ne: string; m: number }[] = [
 const W = 320;
 const H = 156;
 const pct = (m: number) => (m / WORLD_M) * 100;
+const RUSSIA = POP.findIndex((p) => p.label === "Russia");
+// The stage's own rounding: people to one decimal, land to whole percent.
+const ppl = (v: number) => `${v.toFixed(1)}%`;
+const lnd = (v: number) => `${v.toFixed(0)}%`;
+type Crossing = { count: number; before: string; after: string; land: string; inOrder: boolean };
+type Jump = { landBefore: string; landAfter: string; pplBefore: string; pplAfter: string };
 
 export default function HalfOfHumanity({ slug }: { slug: string }) {
   const [picked, setPicked] = useState<number[]>([]);
-  const [crossedAt, setCrossedAt] = useState<number | null>(null);
+  // Recorded when they happen, kept on the stage's Seen line, and quoted by the reveal.
+  const [crossed, setCrossed] = useState<Crossing | null>(null);
+  const [russia, setRussia] = useState<Jump | null>(null);
   const projection = useMemo(() => geoEqualEarth().fitSize([W, H], { type: "Sphere" }), []);
   const landArea = useMemo(
     () => world().countries.filter((c) => c.properties.name !== "Antarctica").reduce((a, c) => a + geoArea(c), 0),
     [],
   );
-  const share = pct(picked.reduce((a, i) => a + POP[i].m, 0));
-  const landShare = (picked.reduce((a, i) => a + geoArea(country(POP[i].ne)!), 0) / landArea) * 100;
+  const shareOf = (set: number[]) => pct(set.reduce((a, i) => a + POP[i].m, 0));
+  const landOf = (set: number[]) => (set.reduce((a, i) => a + geoArea(country(POP[i].ne)!), 0) / landArea) * 100;
+  const share = shareOf(picked);
+  const landShare = landOf(picked);
   const top7 = POP.slice(0, 7);
   const top7Share = pct(top7.reduce((a, p) => a + p.m, 0));
   const top6Share = pct(top7.slice(0, 6).reduce((a, p) => a + p.m, 0));
-  const top7Land = (top7.reduce((a, p) => a + geoArea(country(p.ne)!), 0) / landArea) * 100;
 
   const toggle = (i: number, interact: () => void) => {
-    const next = picked.includes(i) ? picked.filter((x) => x !== i) : [...picked, i];
+    const adding = !picked.includes(i);
+    const next = adding ? [...picked, i] : picked.filter((x) => x !== i);
     setPicked(next);
-    if (crossedAt === null && pct(next.reduce((a, j) => a + POP[j].m, 0)) >= 50) {
-      setCrossedAt(next.length);
+    if (adding && i === RUSSIA && russia === null) {
+      setRussia({ landBefore: lnd(landOf(picked)), landAfter: lnd(landOf(next)), pplBefore: ppl(shareOf(picked)), pplAfter: ppl(shareOf(next)) });
+    }
+    if (crossed === null && shareOf(next) >= 50) {
+      setCrossed({
+        count: next.length,
+        before: ppl(shareOf(picked)),
+        after: ppl(shareOf(next)),
+        land: lnd(landOf(next)),
+        inOrder: next.length === 7 && next.every((j) => j < 7),
+      });
       interact();
     }
   };
@@ -72,15 +91,22 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>Seven.</strong> India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil hold about{" "}
-            {top7Share.toFixed(1)}% of the world&rsquo;s {(WORLD_M / 1000).toFixed(1)} billion people (UN estimate for 2024).
-            The first six reach only {top6Share.toFixed(1)}%.
-            {crossedAt !== null && crossedAt !== 7 ? ` You crossed half with ${crossedAt} countries, because you did not add them strictly largest first.` : ""}
+            <strong>Seven.</strong> India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil hold{" "}
+            {ppl(top7Share)} of the world&rsquo;s {(WORLD_M / 1000).toFixed(1)} billion people (UN estimate for 2024); the
+            first six only {ppl(top6Share)}.
+            {crossed
+              ? crossed.inOrder
+                ? ` Your Seen line: the seventh took the bar from ${crossed.before} to ${crossed.after}.`
+                : ` You crossed half with ${crossed.count} countries (${crossed.before} to ${crossed.after}), because you did not add them strictly largest first.`
+              : ""}
           </p>
           <p>
-            People are not spread evenly over the land. On this equal-area map, where drawn size is real size, those seven
-            cover about {Math.round(top7Land)}% of the land outside Antarctica, yet hold half of everyone. A map that shows
-            area shows land, not people.
+            People are not spread evenly over the land. On this equal-area map, where drawn size is real size, your{" "}
+            {crossed?.count ?? 7} cover {crossed?.land ?? "25%"} of the land outside Antarctica, yet hold half of everyone.
+            {russia
+              ? ` Russia alone took land from ${russia.landBefore} to ${russia.landAfter}, people only from ${russia.pplBefore} to ${russia.pplAfter}.`
+              : ""}{" "}
+            A map that shows area shows land, not people.
           </p>
         </>
       )}
@@ -119,9 +145,14 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
           <Row>
             <Readout label="Countries" value={picked.length} />
             <Readout label="Share of people" value={`${share.toFixed(1)}%`} />
-            <Readout label="Share of land" value={`${landShare.toFixed(0)}%`} />
+            <Readout label="Land (outside Antarctica)" value={lnd(landShare)} />
           </Row>
-          <p className="muted tiny">Equal Earth projection. Largest first. People: UN, 2024.</p>
+          <p className="tiny" data-testid="seen">
+            Seen:{" "}
+            {crossed ? `half crossed at ${crossed.count} countries, ${crossed.before} → ${crossed.after} of people, ${crossed.land} of land` : "nothing yet"}
+            {russia ? ` · Russia: land ${russia.landBefore} → ${russia.landAfter}, people ${russia.pplBefore} → ${russia.pplAfter}` : ""}
+          </p>
+          <p className="muted tiny">Equal-area map. Largest first. People: UN, 2024.</p>
         </div>
       )}
     </Lesson>

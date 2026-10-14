@@ -1,7 +1,7 @@
 {
   "slug": "every-base-fools-fermat",
-  "title": "The number that fools every base",
-  "hook": "A quick test says 561 is prime, whatever base you try. It isn't. How is it caught?",
+  "title": "A quick prime test meets 561",
+  "hook": "561 = 3 × 11 × 17 is not prime. How often does Fermat's quick test notice?",
   "domain": "cs",
   "concept": "carmichael-fermat",
   "status": "draft",
@@ -52,9 +52,9 @@
     },
     {
       "id": "cs.every-base-fools-fermat.c4",
-      "text": "The stronger test writes 560 = 35 x 2^4, starts at a^35 and squares 4 times. For base 2 the chain is 263, 166, 67, 1, 1, so 67 squared leaves 1.",
+      "text": "The stronger test writes 560 = 35 x 2^4, starts at a^35 and squares 4 times. For the stage's bases the chains are 2: 263, 166, 67, 1, 1; 5: 23, 529, 463, 67, 1; 7: 241, 298, 166, 67, 1; 10: 439, 298, 166, 67, 1; 13: 208, 67, 1, 1, 1. In each, 67 squared leaves 1.",
       "support": "simulation",
-      "source": "Demo.tsx chain(); builder re-ran it in node (scratchpad algo2b0/check.mjs): base 2 gives [263, 166, 67, 1, 1]; 67^2 = 4489 = 8 x 561 + 1. Miller-Rabin as in CLRS 4e ch. 31 (WITNESS). | FACT-CHECK 2026-10-14 (pass 21): Own node check: 560 = 35 x 2^4; chain for base 2 = 263, 166, 67, 1, 1; 67^2 = 4489 = 8 x 561 + 1. Demo chain() gives the same; the reveal prints the chain up to the first 1 (263, 166, 67, 1), consistent.",
+      "source": "Demo.tsx chain(); builder re-ran it in node (scratchpad algo2b0/check.mjs): base 2 gives [263, 166, 67, 1, 1]; 67^2 = 4489 = 8 x 561 + 1. Miller-Rabin as in CLRS 4e ch. 31 (WITNESS). | FACT-CHECK 2026-10-14 (pass 21): Own node check: 560 = 35 x 2^4; chain for base 2 = 263, 166, 67, 1, 1; 67^2 = 4489 = 8 x 561 + 1. Demo chain() gives the same; the reveal prints the chain up to the first 1 (263, 166, 67, 1), consistent. | REWORDED v3 (demo-builder, 2026-10-14): The reveal now quotes the chain of the base the learner last ran (cut after the stray root), not base 2. Builder's node run of chain() for 2, 5, 7, 10, 13 gives the five chains above. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own BigInt check (fc24/fer.mjs): 560 = 35 × 2^4; chains 2: 263,166,67,1,1; 5: 23,529,463,67,1; 7: 241,298,166,67,1; 10: 439,298,166,67,1; 13: 208,67,1,1,1; 67^2 mod 561 = 1. Every stage base has a witness (67), so the reveal always prints the chain cut after the 1 and '67 squared leaves 1' for whichever base strongFor holds (no Reset clears it).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -79,10 +79,10 @@
     },
     {
       "id": "cs.every-base-fools-fermat.c7",
-      "text": "A few bases still slip past the stronger test (10 of the 320 here), but never more than a quarter, so several random bases make an error very unlikely.",
+      "text": "A few bases still slip past the stronger test (10 of the 320 here, about 3%), so several random bases make a miss on 561 very unlikely.",
       "support": "source",
-      "source": "9 strong liars among bases 2..560 coprime to 561 (50, 101, 103, 256, 305, 458, 460, 511, 560; base 1 excluded), Demo.tsx LIARS and builder's node script. Bound: at most 1/4 of bases are strong liars for any odd composite n > 9 (Rabin 1980, J. Number Theory 12; Monier 1980); CLRS 4e ch. 31 proves a 1/2 bound. Each extra independent random base multiplies the error chance by at most 1/4. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED. Own node check: counting all 320 coprime bases, 10 are strong liars: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560. Demo LIARS excludes base 1 (9) but divides by all 320, so '9 of the 320' is wrong. Fix (builder): either '10 of the 320' or '9 of the 319 bases from 2 to 560' (change LIARS or the denominator in the reveal). The quarter bound (Rabin 1980; Monier 1980) cited from memory, papers not opened; 10/320 is well under 1/4 here. | CLAIM FIX 2026-10-14 (demo-builder, W-192): Was '9 of the 320'. LIARS in Demo.tsx now counts all 320 coprime bases, base 1 included (base 1: a^35 = 1), giving 10: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560; reveal reads '10 of 320'. Needs an independent check. · Fact-check pass 23 2026-10-14: Number fixed: own BigInt check gives 10 strong liars among the 320 coprime bases (1, 50, 101, 103, 256, 305, 458, 460, 511, 560), matching LIARS. DISPUTED on 'never more than a quarter': counted the lesson's way (of the coprime bases), n = 9 has 2 strong liars (1, 8) of 6 = 1/3; the Rabin-Monier bound is phi(n)/4 for odd composite n > 9 (own scan of odd composites below 4,000: max 1/4 apart from n = 9). The papers were not opened. Fix (builder): 'never more than a quarter for odd numbers above 9', or 'never more than a quarter of the bases from 1 to n - 1' (n = 9: 2 of 8).",
-      "status": "disputed",
+      "source": "9 strong liars among bases 2..560 coprime to 561 (50, 101, 103, 256, 305, 458, 460, 511, 560; base 1 excluded), Demo.tsx LIARS and builder's node script. Bound: at most 1/4 of bases are strong liars for any odd composite n > 9 (Rabin 1980, J. Number Theory 12; Monier 1980); CLRS 4e ch. 31 proves a 1/2 bound. Each extra independent random base multiplies the error chance by at most 1/4. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED. Own node check: counting all 320 coprime bases, 10 are strong liars: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560. Demo LIARS excludes base 1 (9) but divides by all 320, so '9 of the 320' is wrong. Fix (builder): either '10 of the 320' or '9 of the 319 bases from 2 to 560' (change LIARS or the denominator in the reveal). The quarter bound (Rabin 1980; Monier 1980) cited from memory, papers not opened; 10/320 is well under 1/4 here. | CLAIM FIX 2026-10-14 (demo-builder, W-192): Was '9 of the 320'. LIARS in Demo.tsx now counts all 320 coprime bases, base 1 included (base 1: a^35 = 1), giving 10: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560; reveal reads '10 of 320'. Needs an independent check. · Fact-check pass 23 2026-10-14: Number fixed: own BigInt check gives 10 strong liars among the 320 coprime bases (1, 50, 101, 103, 256, 305, 458, 460, 511, 560), matching LIARS. DISPUTED on 'never more than a quarter': counted the lesson's way (of the coprime bases), n = 9 has 2 strong liars (1, 8) of 6 = 1/3; the Rabin-Monier bound is phi(n)/4 for odd composite n > 9 (own scan of odd composites below 4,000: max 1/4 apart from n = 9). The papers were not opened. Fix (builder): 'never more than a quarter for odd numbers above 9', or 'never more than a quarter of the bases from 1 to n - 1' (n = 9: 2 of 8). | REWORDED v3 (demo-builder, 2026-10-14): Disputed in pass 23 on 'never more than a quarter' (n = 9). The general bound rests on Rabin and Monier, which nobody could open, so it is dropped. What remains is 561-only: LIARS = 10 of 320 (pass 23 own BigInt count), 10/320 = 3.1%, shown as Math.round = 3%. If k bases are drawn at random from the coprime ones, the chance all are liars is (10/320)^k (derivation, independent draws with replacement). Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own BigInt count: 320 coprime bases, 10 strong liars (1, 50, 101, 103, 256, 305, 458, 460, 511, 560) = LIARS; 10/320 = 3.1%, Math.round -> 3%. 'Several random bases make a miss very unlikely' rests on the 561-only derivation (independent draws: (10/320)^k, e.g. 1e-3 for 2 bases, 3e-8 for 5); the dropped Rabin-Monier bound is no longer relied on.",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -99,12 +99,16 @@
     "why": "Carmichael numbers such as 561 pass Fermat's test for every coprime base. The Miller-Rabin test also looks for square roots of 1 other than 1 and n - 1, which only composites have."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/every-base-fools-fermat/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/every-base-fools-fermat/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:carmichael-fermat",
     "also": [],

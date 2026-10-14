@@ -4,6 +4,9 @@
 // they are kept equal in size (the lower half may hold one extra). The median is the lower top,
 // or the mean of both tops. Stream 5, 15, 1, 3 gives medians 5, 10, 5, 4.
 // One representation: the two little heap trees side by side with the median between them.
+// v2 (r6): the question asks how many stored numbers must cross when 3 arrives (the method), not the medians
+// (which sorting in your head answers). A log row records every arrival (side, what moved, median) and keeps the
+// last full run after Start over; the reveal quotes that record. "Next number" no longer relabels itself.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -49,13 +52,16 @@ function pop(h: number[], better: Better) {
   return { top, rest: a };
 }
 
-type State = { lo: number[]; hi: number[]; medians: number[]; note: string };
-const START: State = { lo: [], hi: [], medians: [], note: "Two halves of the stream. The median sits at their tops." };
+type Entry = { x: number; side: "lower" | "upper"; moved: number | null; median: number };
+type State = { lo: number[]; hi: number[]; medians: number[]; note: string; log: Entry[] };
+const START: State = { lo: [], hi: [], medians: [], note: "Two halves of the stream. The median sits at their tops.", log: [] };
 
 function feed(st: State, x: number): State {
   let { lo, hi } = st;
   let note: string;
-  if (!lo.length || x <= lo[0]) {
+  let moved: number | null = null;
+  const side: Entry["side"] = !lo.length || x <= lo[0] ? "lower" : "upper";
+  if (side === "lower") {
     lo = push(lo, x, maxFirst);
     note = lo.length === 1 ? `${x} starts the lower half.` : `${x} ≤ ${st.lo[0]}: into the lower half.`;
   } else {
@@ -67,17 +73,22 @@ function feed(st: State, x: number): State {
     lo = r.rest;
     hi = push(hi, r.top, minFirst);
     note += ` Lower is too big: ${r.top} moves up.`;
+    moved = r.top;
   } else if (hi.length > lo.length) {
     const r = pop(hi, minFirst);
     hi = r.rest;
     lo = push(lo, r.top, maxFirst);
     note += ` Upper is too big: ${r.top} moves down.`;
+    moved = r.top;
   }
   const median = lo.length > hi.length ? lo[0] : (lo[0] + hi[0]) / 2;
-  return { lo, hi, medians: [...st.medians, median], note };
+  return { lo, hi, medians: [...st.medians, median], note, log: [...st.log, { x, side, moved, median }] };
 }
 const FINAL = STREAM.reduce(feed, START);
-const MEDIANS = FINAL.medians; // 5, 10, 5, 4
+const LAST = STREAM[STREAM.length - 1]; // 3, the question's case
+const crossings = (e: Entry) => (e.moved === null ? 0 : 1);
+const AFTER3 = STREAM.slice(0, -1).reduce(feed, START); // 1 5 | 15
+const sorted = (xs: number[]) => [...xs].sort((a, b) => a - b).join(" ");
 const fmt = (xs: number[]) => xs.join(", ");
 const MILLION_LEVELS = Math.floor(Math.log2(500_000)) + 1; // each heap holds half a million: 19 levels
 
@@ -133,6 +144,9 @@ function Heap({ cx, items, label }: { cx: number; items: number[]; label: string
 
 export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
   const [st, setSt] = useState<State>(START);
+  const [lastRun, setLastRun] = useState<Entry[] | null>(null); // the last full run, kept after Start over
+  const shown = st.log.length === STREAM.length || !lastRun ? st.log : lastRun;
+  const qEntry = (lastRun ?? (st.log.length === STREAM.length ? st.log : null))?.[STREAM.length - 1] ?? null;
   const fed = st.medians.length;
   const done = fed === STREAM.length;
   const median = fed ? st.medians[fed - 1] : null;
@@ -141,18 +155,30 @@ export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Numbers arrive one at a time: ${fmt(STREAM)}. What is the median after each one?`,
-        options: [fmt(MEDIANS), fmt(STREAM), "5, 10, 7, 6"],
-        answer: 0,
+        question: `Lower half: biggest on top. Upper half: smallest on top. Sizes kept equal (lower may hold one extra). After ${fmt(STREAM.slice(0, -1))} the halves are ${sorted(AFTER3.lo)} | ${sorted(AFTER3.hi)}. When ${LAST} arrives, how many stored numbers must cross to the other half?`,
+        options: ["0", "1", "2", "3"],
+        answer: crossings(FINAL.log[STREAM.length - 1]),
       }}
       exploreHint="Feed the numbers in one at a time and read the median off the two tops."
       minInteractions={2}
-      reveal={() => (
+      reveal={() => {
+        const run = lastRun ?? st.log;
+        const q = qEntry ?? FINAL.log[STREAM.length - 1];
+        const quiet = run.filter((e) => e.moved === null).length;
+        return (
         <>
           <p>
-            The medians came out {fmt(MEDIANS)}. After {STREAM[3]} arrived, the lower half held {fmt([...FINAL.lo].sort((a, b) => a - b))}{" "}
-            and the upper half {fmt([...FINAL.hi].sort((a, b) => a - b))}, so the median was the mean of the two tops,{" "}
-            ({FINAL.lo[0]} + {FINAL.hi[0]}) / 2 = {MEDIANS[3]}. Nothing was ever re-sorted.
+            When {q.x} arrived it went into the {q.side} half.{" "}
+            {q.moved === null ? (
+              <>The sizes stayed balanced, so nothing crossed: 0 moves.</>
+            ) : (
+              <>
+                That half was then too big, so one number, <strong>{q.moved}</strong>, crossed: 1 move.
+              </>
+            )}{" "}
+            The other{" "}
+            {quiet} arrivals moved nothing across. Your medians, {fmt(run.map((e) => e.median))}, were read off the tops;
+            nothing was ever re-sorted.
           </p>
           <p>
             Keep the smaller half in a heap with its biggest on top and the larger half in a heap with its smallest on top,
@@ -160,15 +186,20 @@ export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
             move, about log n steps: around {MILLION_LEVELS} levels for a million numbers.
           </p>
         </>
-      )}
+        );
+      }}
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={["first-number", "all-fed"]}>
           {(reach) => {
             const goTo = (n: number) => {
-              setSt(STREAM.slice(0, n).reduce(feed, START));
+              const next = STREAM.slice(0, n).reduce(feed, START);
+              setSt(next);
               reach("first-number");
-              if (n === STREAM.length) reach("all-fed");
+              if (n === STREAM.length) {
+                setLastRun(next.log);
+                reach("all-fed");
+              }
             };
             const next = () => {
               if (locked || done) return;
@@ -205,7 +236,7 @@ export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
                 </svg>
                 <Row>
                   <Control className="active" disabled={locked || done} onClick={next}>
-                    {done ? "Stream done" : `Next number (${STREAM[fed]})`}
+                    Next number
                   </Control>
                   <Control disabled={locked || done} onClick={rest}>
                     Feed the rest
@@ -215,9 +246,17 @@ export default function RunningMedianTwoHeaps({ slug }: { slug: string }) {
                   </Control>
                 </Row>
                 <Row>
-                  <Readout label="Medians so far" value={fed ? fmt(st.medians) : "–"} />
                   <Readout label="Sizes" value={`${st.lo.length} | ${st.hi.length}`} />
                 </Row>
+                <ol className={s.log} aria-label={shown === st.log ? "arrivals" : "last full run"}>
+                  {!locked &&
+                    shown.map((e, i) => (
+                      <li key={i} className={e.moved !== null ? s.logMove : ""}>
+                        {e.x} → {e.side}
+                        {e.moved !== null ? `, ${e.moved} crosses` : ", nothing crosses"} · median {e.median}
+                      </li>
+                    ))}
+                </ol>
               </div>
             );
           }}

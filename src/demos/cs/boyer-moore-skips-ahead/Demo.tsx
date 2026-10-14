@@ -3,7 +3,10 @@
 // One button, one character comparison per press in each lane. Top: plain left-to-right search, sliding 1 on a miss
 // (27 comparisons, 18 placements, reads all 24 letters). Bottom: Horspool, comparing from the pattern's end and sliding
 // by the table entry of the text letter under the pattern's last position (15 comparisons, 5 placements, 11 letters
-// never read). Read letters keep a dot. Milestones: first-skip (the first 7-letter jump), both-matched
+// never read). Read letters keep a dot. A slide log under the lanes keeps every Horspool slide and its reason, so
+// the partial-match slide (E L P M matched, miss on I, slide 6 by the E) stays visible after a run.
+// Milestones (v2): first-skip (the first 7-letter jump, reached only by a single Compare press the learner watched;
+// "Compare to the match" unlocks after the first Compare), both-matched
 // (spec company/design/specs/boyer-moore-skips-ahead.md).
 
 import { useEffect, useState } from "react";
@@ -56,6 +59,9 @@ const HORS: Step[] = (() => {
   }
   return out;
 })();
+
+// The partial-match slide: four letters matched, then a miss on a letter that is not the one under the pattern's end.
+const EPARTIAL = HORS.find((x) => !x.ok && T[x.ti] !== x.key)!; // placement 9: miss on I, slide 6 by E
 
 const MAXK = Math.max(PLAIN.length, HORS.length); // 27
 
@@ -169,7 +175,13 @@ function Lane({
   );
 }
 
-function Stage({ locked, interact, k, step, runTo, busy, last }: {
+function slideLabel(x: Step) {
+  const sh = SHIFT[x.key!] ?? M;
+  const missed = T[x.ti] !== x.key ? ` (miss on ${T[x.ti] === " " ? "space" : T[x.ti]})` : "";
+  return `${x.key === " " ? "space" : x.key} ${sh}${missed}`;
+}
+
+function Stage({ locked, interact, k, step, runTo, busy, last, stepped }: {
   locked: boolean;
   interact: () => void;
   k: number;
@@ -177,21 +189,22 @@ function Stage({ locked, interact, k, step, runTo, busy, last }: {
   runTo: () => void;
   busy: boolean;
   last: number;
+  stepped: boolean;
 }) {
   const { reach } = useMilestones(interact, ["first-skip", "both-matched"]);
   const h = laneState(HORS, k);
   const p = laneState(PLAIN, k);
-  const skipped = HORS.slice(0, h.n).some((x) => !x.ok && x.next! - x.at === M);
   const both = h.matched && p.matched;
+  // The Horspool slide made by the latest press, if any.
+  const justSlid = h.cur && !h.cur.ok && h.n > Math.min(last, HORS.length) ? h.cur : null;
+  const watchedSkip = stepped && !!justSlid && SHIFT[justSlid.key!] === undefined;
   useEffect(() => {
-    if (skipped) reach("first-skip");
-  }, [skipped]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (watchedSkip) reach("first-skip");
+  }, [watchedSkip]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (both) reach("both-matched");
   }, [both]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // The Horspool slide made by the latest press, if any.
-  const justSlid = h.cur && !h.cur.ok && h.n > Math.min(last, HORS.length) ? h.cur : null;
+  const log = HORS.slice(0, h.n).filter((x) => !x.ok);
   const note = justSlid
     ? SHIFT[justSlid.key!] === undefined
       ? `${justSlid.key} is not in EXAMPLE: slide ${M}`
@@ -238,11 +251,16 @@ function Stage({ locked, interact, k, step, runTo, busy, last }: {
           Slide
         </text>
       </svg>
+      <p className={s.log} data-testid="slide-log">
+        {log.length === 0
+          ? "Horspool slides: none yet"
+          : `Horspool slides: ${log.map(slideLabel).join(" · ")}${h.matched ? " · found" : ""}`}
+      </p>
       <Row>
         <Control className={s.tap} disabled={locked || k >= MAXK || busy} onClick={step}>
           Compare
         </Control>
-        <Control className={s.tap} disabled={locked || k >= MAXK || busy} onClick={runTo}>
+        <Control className={s.tap} disabled={locked || k >= MAXK || busy || k === 0} onClick={runTo}>
           Compare to the match
         </Control>
       </Row>
@@ -254,6 +272,7 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
   const [target, setTarget] = useState(0);
   const [last, setLast] = useState(0); // k before the latest press or replay frame
+  const [stepped, setStepped] = useState(false); // true when the latest change came from a single Compare press
   useEffect(() => {
     if (k >= target) return;
     const t = setTimeout(() => {
@@ -263,11 +282,13 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
     return () => clearTimeout(t);
   }, [k, target]);
   const step = () => {
+    setStepped(true);
     setLast(k);
     setTarget(k + 1);
     setK(k + 1);
   };
   const runTo = () => {
+    setStepped(false);
     setTarget(MAXK);
     if (reduced()) {
       setLast(MAXK - 1);
@@ -282,8 +303,8 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          'Find EXAMPLE in "HERE IS A SIMPLE EXAMPLE" (24 characters). Compare the pattern right to left; on a mismatch, slide by the distance to the last copy of the text letter under the pattern\'s end in the pattern (or its full length). How many character comparisons?',
-        options: ["27, like the plain method", "24, one per text letter", "15"],
+          'Find EXAMPLE in "HERE IS A SIMPLE EXAMPLE" (24 characters). Compare from the pattern\'s end; on a miss, slide by the table entry for the text letter under the pattern\'s end. How many comparisons?',
+        options: ["27, like the plain method", "24, one per text letter", "15, fewer than the text has"],
         answer: 2,
       }}
       exploreHint="Compare one letter at a time and watch the bottom lane jump."
@@ -295,19 +316,23 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
             placement covering it could match, and the pattern jumped {HORS[0].next! - HORS[0].at}.
           </p>
           <p>
+            Look at the slide log: &ldquo;{slideLabel(EPARTIAL)}&rdquo;. After matching {M - 1 - EPARTIAL.pj} letters it missed on{" "}
+            {T[EPARTIAL.ti]}, but the slide used the {EPARTIAL.key} under the pattern&apos;s end, so it moved{" "}
+            {SHIFT[EPARTIAL.key!]}, not {M}.
+          </p>
+          <p>
             Your search made <strong>{HORS.length}</strong> comparisons in {laneState(HORS, MAXK).placements} placements
             and never read <strong>{T.length - laneState(HORS, MAXK).read.size}</strong> of the {T.length} letters. The
             plain method read every letter: {PLAIN.length} comparisons, {laneState(PLAIN, MAXK).placements} placements.
           </p>
           <p className="muted">
-            A search can skip text, as long as each skip is justified by a letter it did read. Longer patterns can skip
-            further.
+            A search can skip text, as long as each skip is justified by a letter it did read.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Stage locked={locked} interact={interact} k={k} step={step} runTo={runTo} busy={k < target} last={last} />
+        <Stage locked={locked} interact={interact} k={k} step={step} runTo={runTo} busy={k < target} last={last} stepped={stepped} />
       )}
     </Lesson>
   );

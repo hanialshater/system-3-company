@@ -44,9 +44,9 @@
     },
     {
       "id": "cs.proposers-get-the-best.c3",
-      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners.",
+      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners. In the students' matching (Ann-X, Bea-Y), Ann would not swap to Y and Bea would not swap to X (Y and X would); in the hospitals' matching (X-Bea, Y-Ann), X would not swap to Ann and Y would not swap to Bea (Ann and Bea would).",
       "support": "simulation",
-      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one.",
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -91,12 +91,16 @@
     "why": "Deferred acceptance gives the proposing side its best stable partner, so switching who proposes can change who is happy."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/proposers-get-the-best/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/proposers-get-the-best/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:stable-matching",
     "also": [],

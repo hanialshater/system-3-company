@@ -17,3 +17,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c9 | verified | Stage rule text 'Each question compares 721 with one number.'; halves()/thirds() push one Q per comparison. |
 
 **Result:** all open claims verified; lesson has no unverified or disputed claims.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim reopened by the v2 wave E revision. Method: read v2 Demo.tsx (lanes, table, buttons, reveal; no Reset) before the source, then re-implemented both searches in node.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | After 2 questions: halving 501-749 (249), thirds 668-1000 (333). The 'left after 2' column is filled on every path to the reveal. |
+
+**Result:** every claim open at this pass is now verified.

@@ -53,36 +53,36 @@
     },
     {
       "id": "cs.undo-a-multiplication-mod-n.c4",
-      "text": "The 3 x 26 part is a whole number of turns, so on the clock -11 x 7 is 1, and -11 + 26 = 15.",
+      "text": "The 3 x 26 part is whole turns of the clock, so -11 x 7 is 1, and -11 + 26 = 15: 7 x 15 = 105, 4 turns and 1 hour.",
       "support": "derivation",
-      "source": "Reduce 1 = 3 x 26 - 11 x 7 mod 26: 3 x 26 is 0 mod 26, so -11 x 7 = 1 (mod 26); -11 and -11 + 26 = 15 are the same hour. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: 3 x 26 = 0 mod 26, so -11 x 7 = 1 mod 26; ((-11 % 26) + 26) % 26 = 15 = Demo X.",
+      "source": "Reduce 1 = 3 x 26 - 11 x 7 mod 26: 3 x 26 is 0 mod 26, so -11 x 7 = 1 (mod 26); -11 and -11 + 26 = 15 are the same hour. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: 3 x 26 = 0 mod 26, so -11 x 7 = 1 mod 26; ((-11 % 26) + 26) % 26 = 15 = Demo X. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): stage now has a 26-hour ring and a ×13 chip; reveal reworded and shortened. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. v2 Demo: back-substitution gives (3, -11); 3 x 26 - 11 x 7 = 1; ((-11 % 26) + 26) % 26 = 15; 7 x 15 = 105 = 4 x 26 + 1. Reveal prints COEF_A = -11, X = 15, floor(105/26) = 4. All 4 milestones (incl. bezout, read-15) are required before the reveal.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-multiplication-mod-n.c5",
-      "text": "11 is the coefficient without its minus sign: 7 x 11 = 77 lands on 25 o'clock. 7 x 19 = 133 lands on 3 o'clock, not 1.",
+      "text": "11 is the coefficient without its minus sign: 7 x 11 = 77 lands on 25. 7 x 19 = 133 lands on 3, not 1. (Stage: 'your 7 × 11 = 77 → 25' on the ring and in the ×7 summary row.)",
       "support": "simulation",
-      "source": "77 = 2 x 26 + 25; 133 = 5 x 26 + 3 (builder's node script, 2026-10-14). Shown in the reveal only to learners who picked 11 or 19. · Fact-check pass 21 2026-10-14: VERIFIED: node: 77 % 26 = 25, 133 % 26 = 3 (133 = 5 x 26 + 3). Reveal branches on prediction 0 and 2 only.",
+      "source": "77 = 2 x 26 + 25; 133 = 5 x 26 + 3 (builder's node script, 2026-10-14). Shown in the reveal only to learners who picked 11 or 19. · Fact-check pass 21 2026-10-14: VERIFIED: node: 77 % 26 = 25, 133 % 26 = 3 (133 = 5 x 26 + 3). Reveal branches on prediction 0 and 2 only. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): stage now has a 26-hour ring and a ×13 chip; reveal reworded and shortened. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. node: 77 % 26 = 25, 133 % 26 = 3. Reveal branches on prediction 0 (11) and 2 (19) only. Ring label 'your 7 x 11 = 77 -> 25' shows when on x7 and x has been read off; the x13 view's summary row shows the same text once read.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-multiplication-mod-n.c6",
-      "text": "If 1 = a x 26 + b x 7, then b undoes multiplying by 7. Such a and b exist exactly when the gcd is 1.",
+      "text": "If 1 = a x 26 + b x 7, then b undoes multiplying by 7. An undo exists exactly when the gcd is 1.",
       "support": "source",
-      "source": "Derivation: reducing mod 26 gives b x 7 = 1 (mod 26). Conversely, if 7b = 1 (mod 26) then 7b - 1 = k x 26, so any common divisor of 7 and 26 divides 1. Existence when the gcd is 1 is Bezout's identity, produced by extended Euclid: CLRS 4e chapter 31 (section 31.2, EXTENDED-EUCLID; section 31.4, Corollary on the inverse mod n existing iff gcd(a, n) = 1). · Fact-check pass 21 2026-10-14: VERIFIED: Verdict rests on the derivation (both directions re-done; existence when gcd = 1 is exactly what extended Euclid constructs, as on the stage). CLRS 4e 31.2/31.4 cited from memory, not opened.",
+      "source": "Derivation: reducing mod 26 gives b x 7 = 1 (mod 26). Conversely, if 7b = 1 (mod 26) then 7b - 1 = k x 26, so any common divisor of 7 and 26 divides 1. Existence when the gcd is 1 is Bezout's identity, produced by extended Euclid: CLRS 4e chapter 31 (section 31.2, EXTENDED-EUCLID; section 31.4, Corollary on the inverse mod n existing iff gcd(a, n) = 1). · Fact-check pass 21 2026-10-14: VERIFIED: Verdict rests on the derivation (both directions re-done; existence when gcd = 1 is exactly what extended Euclid constructs, as on the stage). CLRS 4e 31.2/31.4 cited from memory, not opened. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): stage now has a 26-hour ring and a ×13 chip; reveal reworded and shortened. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Rests on the derivation, not on CLRS (not opened): b x 7 = 1 (mod 26) from reducing 1 = a x 26 + b x 7; conversely 7b - 1 = k x 26 means any common divisor of 7 and 26 divides 1; extended Euclid constructs a, b when gcd = 1. Reveal: 'An undo exists exactly when the gcd is 1'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-multiplication-mod-n.c7",
-      "text": "Only 12 of the 25 non-zero hours on a 26-hour clock have an undo, and 13 has none.",
+      "text": "12 of the 25 non-zero hours on a 26-hour clock have an undo.",
       "support": "simulation",
-      "source": "Demo.tsx INVERTIBLE counts a in 1..25 with gcd(a, 26) = 1: 12 (the odd numbers other than 13). Builder's node script (2026-10-14): 13x mod 26 is only ever 0 or 13, never 1. · Fact-check pass 21 2026-10-14: VERIFIED: node: a in 1..25 with gcd(a,26)=1 -> 12 (odd numbers except 13); 13x mod 26 takes only 0 and 13. Matches Demo INVERTIBLE.",
+      "source": "Demo.tsx INVERTIBLE counts a in 1..25 with gcd(a, 26) = 1: 12 (the odd numbers other than 13). Builder's node script (2026-10-14): 13x mod 26 is only ever 0 or 13, never 1. · Fact-check pass 21 2026-10-14: VERIFIED: node: a in 1..25 with gcd(a,26)=1 -> 12 (odd numbers except 13); 13x mod 26 takes only 0 and 13. Matches Demo INVERTIBLE. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): stage now has a 26-hour ring and a ×13 chip; reveal reworded and shortened. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. node: a in 1..25 with gcd(a, 26) = 1 -> 12 (odd numbers except 13) = Demo INVERTIBLE; reveal '12 of the 25 non-zero hours'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -91,7 +91,23 @@
       "id": "cs.undo-a-multiplication-mod-n.c8",
       "text": "This is the step RSA uses to make a private key.",
       "support": "source",
-      "source": "RSA's private exponent d is the multiplicative inverse of the public exponent e modulo phi(n), computed with extended Euclid: Rivest, Shamir and Adleman, 'A Method for Obtaining Digital Signatures and Public-Key Cryptosystems', CACM 21(2), 1978; CLRS 4e chapter 31 (section 31.7, the RSA public-key cryptosystem). · Fact-check pass 21 2026-10-14: VERIFIED: Rivest-Shamir-Adleman paper and CLRS not opened (hosts blocked). Web-search results (CACM 21(2):120-126, 1978; lecture notes e.g. Rosulek ch. 13, Grenet RSA slides) state d = e^-1 mod phi(n), computed by extended Euclid. Verified on those secondary sources; the learner sentence is general and does not quote the paper.",
+      "source": "RSA's private exponent d is the multiplicative inverse of the public exponent e modulo phi(n), computed with extended Euclid: Rivest, Shamir and Adleman, 'A Method for Obtaining Digital Signatures and Public-Key Cryptosystems', CACM 21(2), 1978; CLRS 4e chapter 31 (section 31.7, the RSA public-key cryptosystem). · Fact-check pass 21 2026-10-14: VERIFIED: Rivest-Shamir-Adleman paper and CLRS not opened (hosts blocked). Web-search results (CACM 21(2):120-126, 1978; lecture notes e.g. Rosulek ch. 13, Grenet RSA slides) state d = e^-1 mod phi(n), computed by extended Euclid. Verified on those secondary sources; the learner sentence is general and does not quote the paper. | WITHDRAWN 2026-10-14 (v2) by demo-builder: RSA context sentence cut to keep the reveal under budget after the ×13 sentence was added.",
+      "status": "withdrawn"
+    },
+    {
+      "id": "cs.undo-a-multiplication-mod-n.c9",
+      "text": "On a 26-hour clock, 7x for x = 0 to 25 lands on all 26 hours; 13x lands on only 0 and 13, so no x makes 13x land on 1. (Stage ring captions: '×7: x = 0…25 lands on all 26 hours' / '×13: x = 0…25 lands on only 0 and 13'.)",
+      "support": "derivation",
+      "source": "13x mod 26 is 0 for even x and 13 for odd x; gcd(7, 26) = 1 so x -> 7x mod 26 is a bijection. Demo.tsx hits(). | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own copy of hits(): x7 over x = 0..25 gives 26 distinct hours; x13 gives {0, 13}. Captions 'lands on all 26 hours' / 'lands on only 0 and 13' match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.undo-a-multiplication-mod-n.c10",
+      "text": "With 13, Euclid stops at 13, not 1: 26 = 2 x 13 + 0, so 1 cannot be written as a mix of 26 and 13 and x13 has no undo. (Stage: 'gcd = 13, not 1: no way to write 1. ×13 has no undo.')",
+      "support": "derivation",
+      "source": "Euclid(26, 13): one row, remainder 0, gcd 13. Any a x 26 + b x 13 is a multiple of 13, so never 1 (Demo.tsx euclid(N, B)). | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own euclid(26, 13): r = [26, 13, 0], q = [2]: one row '26 = 2 x 13 + 0', gcd 13. Any a x 26 + b x 13 is a multiple of 13, so never 1. Stage note 'gcd = 13, not 1: no way to write 1. x13 has no undo.' and readout 'Undo x13: none' after the no-undo milestone.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -110,11 +126,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/undo-a-multiplication-mod-n/2026-10-14-learner-euclid-knower-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:modular-inverse",
     "also": [],

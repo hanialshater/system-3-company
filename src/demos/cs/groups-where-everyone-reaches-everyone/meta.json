@@ -54,18 +54,18 @@
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c4",
-      "text": "Every town is on one map, but town 3 can reach 4 and 4 cannot reach back, so the two loops are different groups. Town 7 reaches the right loop, and nothing reaches 7, so it is a group on its own.",
+      "text": "In the roads as given, 3 reaches 4 but nothing leads from 4 back to 3, so the two loops are different groups. Town 7 reaches the right loop, and no road leads into 7, so it is a group on its own.",
       "support": "simulation",
-      "source": "Ignoring direction, a search from town 1 reaches all 7 towns (builder's node script). With direction, reach(4) = {4, 5, 6} excludes 3; no road ends at 7, so reach-back to 7 is impossible from any other town. | FACT-CHECK 2026-10-14 (pass 21): Own check: undirected search from 1 reaches all 7; reach(4) = {4,5,6}; no road ends at 7.",
+      "source": "Ignoring direction, a search from town 1 reaches all 7 towns (builder's node script). With direction, reach(4) = {4, 5, 6} excludes 3; no road ends at 7, so reach-back to 7 is impossible from any other town. | FACT-CHECK 2026-10-14 (pass 21): Own check: undirected search from 1 reaches all 7; reach(4) = {4,5,6}; no road ends at 7. | REWORDED v2 (builder, 2026-10-14): Now says 'in the roads as given' and the reveal opens after 'Shrink groups', which redraws the original directions (r6 finding 3). Same facts: reach(4) = {4,5,6}; no road ends at 7. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own reachability check: from 4 only 4, 5, 6 are reachable (no path to 3); no road ends at 7; brute-force SCCs {1,2,3}, {4,5,6}, {7}.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c5",
-      "text": "Shrinking each group to a point leaves 7 → {4, 5, 6} ← {1, 2, 3}: no loops left. That is why the groups can be put in order.",
+      "text": "Shrunk to blobs, the groups are joined only by 3 to 4 and 7 to 6: {7} → {4, 5, 6} ← {1, 2, 3}, no loops. That is why the groups can be put in order. (Stage: 'Roads as given, groups shrunk: {7} → {4, 5, 6} ← {1, 2, 3}. No loop.')",
       "support": "source",
-      "source": "The only roads between groups are 3 to 4 and 7 to 6 (builder's node script), giving the shrunk graph above with no cycle. In general the component graph is a directed acyclic graph: CLRS 4e section 20.5 (lemma that the component graph is acyclic; number not checked by the builder), so it has a topological order (CLRS 4e section 20.4). | FACT-CHECK 2026-10-14 (pass 21): Own check: inter-group roads are 3->4 and 7->6, so the shrunk graph is {1,2,3} -> {4,5,6} <- 7, acyclic. General fact re-derived: a cycle among components would make them mutually reachable, i.e. one component.",
+      "source": "The only roads between groups are 3 to 4 and 7 to 6 (builder's node script), giving the shrunk graph above with no cycle. In general the component graph is a directed acyclic graph: CLRS 4e section 20.5 (lemma that the component graph is acyclic; number not checked by the builder), so it has a topological order (CLRS 4e section 20.4). | FACT-CHECK 2026-10-14 (pass 21): Own check: inter-group roads are 3->4 and 7->6, so the shrunk graph is {1,2,3} -> {4,5,6} <- 7, acyclic. General fact re-derived: a cycle among components would make them mutually reachable, i.e. one component. | REWORDED v2 (builder, 2026-10-14): Now shown: 'Shrink groups' draws each group as a tinted blob and thickens the two roads between groups (Demo.tsx BETWEEN, computed from ROADS). Same derivation as pass 21. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own check: roads between groups are exactly 3>4 and 7>6; Kosaraju order gives GROUPS {7}, {1,2,3}, {4,5,6}, so SHRUNK = '{7} → {4, 5, 6} ← {1, 2, 3}'; condensation has no cycle. Note string 'Roads as given, groups shrunk: ... No loop.' matches.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -84,11 +84,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/groups-where-everyone-reaches-everyone/2026-10-14-learner-dfs-knower-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:strongly-connected-components",
     "also": [],

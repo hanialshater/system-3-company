@@ -24,3 +24,16 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c6 | verified | v2 Demo: see() is called only when all 20 triangles are checked in the current split (Next to 20, Check all, or a chip after checking all), and the reveal names only those as 'you saw'; the others are listed as 'give 0 too'. checked-all always calls see(), so 'seen' is never empty at the reveal. Own count: banned 0 for 2, 3 and 6 camps. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I opened the builder's pre-flight only for count-the-out-of-order-pairs and each-element-pops-once, and only after reading the code. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node over all 20 triangles, split [0,0,0,1,1,2], no link: banned 0, one friendly pair 13, all-enemy 6 (3 x 2 x 1), all-friends 1. First triangle in Demo order is A, B, C (all friends). Reveal's first sentence prints only when 3 camps is in 'seen'. |
+| c4 | verified | Same-camp is an equivalence relation, so no triangle has exactly two friendly links (own node: 0 banned in 2, 3 and 6 camps). verdict() for A, B, C finds mid = A and prints 'B and C are both A's friends, so same camp, so friends. Allowed.' |
+| c6 | verified | v3 Demo: see() runs only with all 20 checked and no B-D link; the reveal lists only 'seen' splits, sorted. Traced the edge path where checked-all is reached with the link on: 'seen' can then be empty, and the reveal falls back to 'any number of camps is stable.' with no 'you saw'. True on every path. Own counts: 0 banned for 2, 3 and 6 camps. |
+| c7 | verified | Own node with link (B, D): 3+3 -> 4 banned (ABD, BCD, BDE, BDF); 3+2+1 -> 3 (ABD, BCD, BDE); six camps -> 0 (caption 'nobody has two friends'). verdict(ABD) puts B in the middle: 'A and D are both B's friends but enemies. Banned.' The reveal's example is the first banned triangle, ABD, in both splits. |
+
+**Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

@@ -15,3 +15,12 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c7 | verified | 7 letters x 6 letters = 42 inner cells; Demo CELLS = R * C = 42 and stage reads 'Cell n of 42'; row 0 and column 0 are pre-filled zeros. |
 
 **Result:** all open claims verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node: recurrence fills the 8 x 7 grid, corner 4, trace BCBA; step note matches (e.g. cell 1,1 'A != B: larger of up (0) and left (0) = 0'; Next row lands on A vs A, 'Diagonal 0 + 1 = 1'). CLRS not opened; sentence rests on the derivation. |
+| c4 | verified | Own brute force over all subsequences of every prefix pair: L[i][j] equals the LCS length of the first i letters of ABCBDAB and first j of BDCABA for all 56 cells (0 mismatches). Stage label 'Best for ABC vs BD.' uses A.slice(0,i), B.slice(0,j). |

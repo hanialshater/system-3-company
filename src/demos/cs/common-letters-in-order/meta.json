@@ -44,7 +44,7 @@
       "id": "cs.common-letters-in-order.c3",
       "text": "Each cell asks whether its two letters match: if so, it is the diagonal + 1; if not, it is the larger of the cell above and the cell to the left.",
       "support": "source",
-      "source": "CLRS 4th ed. section 14.4 (longest common subsequence, recurrence for c[i, j]); 3rd ed. section 15.4. Unverified. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Recurrence re-derived (optimal substructure: if the last letters match, an LCS ends with that letter; if not, it drops a last letter from one string) and matches Demo.tsx L fill and the per-cell note. CLRS not opened (no copy reachable); placement 3e 15.4 confirmed only via course-notes search snippet (Bowdoin CS231 'LCS (CLRS 15.4)'); 4e 14.4 from memory. The sentence does not depend on the book.",
+      "source": "CLRS 4th ed. section 14.4 (longest common subsequence, recurrence for c[i, j]); 3rd ed. section 15.4. Unverified. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Recurrence re-derived (optimal substructure: if the last letters match, an LCS ends with that letter; if not, it drops a last letter from one string) and matches Demo.tsx L fill and the per-cell note. CLRS not opened (no copy reachable); placement 3e 15.4 confirmed only via course-notes search snippet (Bowdoin CS231 'LCS (CLRS 15.4)'); 4e 14.4 from memory. The sentence does not depend on the book. | REVISED v2 (demo-builder, 2026-10-14): step message now reads e.g. 'Best for A vs B. A ≠ B: larger of up (0) and left (0) = 0.'; reveal sentence now opens 'Your first steps showed it: each cell asked one small question'; rule text unchanged. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: recurrence fills the 8 x 7 grid, corner 4, trace BCBA; step note matches (e.g. cell 1,1 'A != B: larger of up (0) and left (0) = 0'; Next row lands on A vs A, 'Diagonal 0 + 1 = 1'). CLRS not opened; sentence rests on the derivation.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -53,7 +53,7 @@
       "id": "cs.common-letters-in-order.c4",
       "text": "Each cell holds the length of the longest shared sequence of the first letters of each string, so the corner answers for the whole strings.",
       "support": "source",
-      "source": "CLRS 4th ed. section 14.4: c[i, j] is the LCS length of the prefixes X_i and Y_j. Stage wording: 'Each cell: the best answer for the first letters of each string.' Unverified. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Follows from the recurrence by induction on i + j: L[i][j] is the LCS length of the first i letters of ABCBDAB and first j of BDCABA, so L[7][6] answers for the whole strings. Stage text 'Each cell: the best answer for the first letters of each string' matches. CLRS not opened (see c3).",
+      "source": "CLRS 4th ed. section 14.4: c[i, j] is the LCS length of the prefixes X_i and Y_j. Stage wording: 'Each cell: the best answer for the first letters of each string.' Unverified. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Follows from the recurrence by induction on i + j: L[i][j] is the LCS length of the first i letters of ABCBDAB and first j of BDCABA, so L[7][6] answers for the whole strings. Stage text 'Each cell: the best answer for the first letters of each string' matches. CLRS not opened (see c3). | REVISED v2 (demo-builder, 2026-10-14): stage now also labels each stepped cell with its prefixes, e.g. 'Best for ABC vs BD.' (first i letters of ABCBDAB vs first j letters of BDCABA). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own brute force over all subsequences of every prefix pair: L[i][j] equals the LCS length of the first i letters of ABCBDAB and first j of BDCABA for all 56 cells (0 mismatches). Stage label 'Best for ABC vs BD.' uses A.slice(0,i), B.slice(0,j).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -98,12 +98,16 @@
     "why": "A mismatch means one of the two letters is dropped, so the cell keeps the better of dropping it from either string: the larger of up and left. Gaps are allowed, so nothing resets to zero."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/common-letters-in-order/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/common-letters-in-order/2026-10-14-learner-knows-edit-distance-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:longest-common-subsequence",
     "also": [],

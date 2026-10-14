@@ -8,6 +8,9 @@
 // the last auction under the chosen rule (both values and who pays what), which is the "why".
 // Seeded: mulberry32(97), auction i uses draws 2i and 2i+1. Seed 97 is the brief's, not chosen for the result.
 // 20,000 auctions: 33.395 / 33.303 / 33.302. Key state: all 20,000 run, and the all-pay auction looked at.
+// v3: readouts show the running average of the higher and the lower value, so the cancelling is on stage
+// (second-price = average lower value; first-price = half the average higher value). The theory line appears only
+// after the full run (it hinted "the same" before the commit). The full run is recorded and stays on stage after Reset.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -42,9 +45,25 @@ const CUM: number[][] = ([0, 1, 2] as Rule[]).map((rule) => {
   for (let i = 0; i < N; i++) c.push(c[i] + revenue(rule, VALUES[i]));
   return c;
 });
+const CUM_HI = [0];
+const CUM_LO = [0];
+for (let i = 0; i < N; i++) {
+  CUM_HI.push(CUM_HI[i] + Math.max(...VALUES[i]));
+  CUM_LO.push(CUM_LO[i] + Math.min(...VALUES[i]));
+}
 const MILESTONES = ["all-run", "all-pay-seen"] as const;
+type Run = { m: number; avgs: string[]; hi: number; lo: number };
+const snapshot = (m: number): Run => ({
+  m,
+  avgs: ([0, 1, 2] as Rule[]).map((r) => usdOf(CUM[r][m] / m)),
+  hi: CUM_HI[m] / m,
+  lo: CUM_LO[m] / m,
+});
 
-const usd = (v: number) => `$${v.toFixed(1)}`;
+function usdOf(v: number) {
+  return `$${v.toFixed(1)}`;
+}
+const usd = usdOf;
 
 // Geometry (viewBox 320 × 236).
 const CH_TOP = 24;
@@ -62,6 +81,7 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
   const avg = (r: Rule) => (n === 0 ? 0 : CUM[r][n] / n);
   const last = n > 0 ? VALUES[n - 1] : null;
   const pay = last ? payments(rule, last) : null;
+  const [full, setFull] = useState<Run | null>(null); // recorded when all 20,000 have run
 
   return (
     <Lesson
@@ -74,18 +94,19 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
       exploreHint="Run all 20,000 auctions, then look at who pays what under each rule."
       minInteractions={MILESTONES.length}
       reveal={() => {
-        const m = n === 0 ? N : n;
-        const a = ([0, 1, 2] as Rule[]).map((r) => usd(CUM[r][m] / m));
+        const run = full ?? snapshot(N);
+        const one = last ? [revenue(0, last), revenue(1, last)] : null;
         return (
           <>
             <p>
-              Over your {m.toLocaleString("en-US")} auctions the seller averaged <strong>{a[0]}</strong> (second-price),{" "}
-              <strong>{a[1]}</strong> (first-price) and <strong>{a[2]}</strong> (all-pay). Theory says $33.3 for all three.
+              Over your {run.m.toLocaleString("en-US")} auctions the seller averaged <strong>{run.avgs[0]}</strong> (second-price),{" "}
+              <strong>{run.avgs[1]}</strong> (first-price) and <strong>{run.avgs[2]}</strong> (all-pay). Theory says $33.3 for all three.
             </p>
             <p>
-              Second-price charges the lower of the two values. First-price winners pay only half their own value, but the winner holds the higher value. All-pay charges
-              both bidders, but each bids only a little. Each rule changes how much bidders bid, and the changes cancel: on average the
-              seller collects the lower of the two values, $100 ÷ 3.
+              {one ? `In one auction either rule can charge more (your last: second-price ${usd(one[0])}, first-price ${usd(one[1])}). ` : ""}On
+              average they match. Second-price charges the lower value, which averaged {usd(run.lo)}. First-price charges half
+              the winner&apos;s value, and the higher value averaged {usd(run.hi)}, so half is {usd(run.hi / 2)}. All-pay
+              charges both bidders, but each bids only a little. Each rule changes the bids, and the changes cancel.
             </p>
             <p className="muted">A model: two bidders, values independent and uniform, everyone bidding optimally.</p>
           </>
@@ -97,7 +118,10 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
           {(reach) => {
             const run = (to: number) => {
               setN(to);
-              if (to >= N) reach("all-run");
+              if (to >= N) {
+                setFull(snapshot(N));
+                reach("all-run");
+              }
             };
             const pick = (r: Rule) => {
               setRule(r);
@@ -109,7 +133,7 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
                 <p className={s.chip}>Model: 2 bidders · values random $0–100 · seed {SEED}</p>
                 <svg viewBox="0 0 320 236" className="stage-svg" role="img" aria-label="Seller's average revenue under three auction rules, and the last auction">
                   <text x={20} y={14} className={s.axis}>
-                    seller&apos;s average per auction
+                    {full ? "seller's average per auction · dashed: theory $33.3" : "seller's average per auction"}
                   </text>
                   <line x1={20} y1={CH_BOT} x2={300} y2={CH_BOT} stroke="var(--line)" />
                   {RULES.map((name, i) => {
@@ -126,10 +150,7 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  <line x1={20} y1={y(THEORY)} x2={300} y2={y(THEORY)} className={s.ghost} />
-                  <text x={300} y={y(THEORY) - 4} textAnchor="end" className={s.small}>
-                    theory $33.3
-                  </text>
+                  {full && <line x1={20} y1={y(THEORY)} x2={300} y2={y(THEORY)} className={s.ghost} />}
 
                   {/* the last auction under the chosen rule */}
                   <text x={20} y={LINE_Y - 30} className={s.axis}>
@@ -187,6 +208,15 @@ export default function SameRevenueAnyRule({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </Row>
+                <Row>
+                  <Readout label="Avg higher value" value={show ? usd(CUM_HI[n] / n) : "?"} />
+                  <Readout label="Avg lower value" value={show ? usd(CUM_LO[n] / n) : "?"} />
+                </Row>
+                {full && n < N && (
+                  <p className={s.chip}>
+                    Your 20,000 run: {full.avgs.join(" / ")}; higher {usd(full.hi)}, lower {usd(full.lo)}
+                  </p>
+                )}
                 <Row>
                   <Readout label="Auctions" value={locked ? "?" : n.toLocaleString("en-US")} />
                   <Control disabled={locked || n === 0} onClick={() => run(0)}>

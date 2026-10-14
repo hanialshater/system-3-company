@@ -78,6 +78,12 @@ export default function CutTheRod({ slug }: { slug: string }) {
               reach("first-fill");
               if (n === N) reach("best-4");
             };
+            const fillRest = () => {
+              if (locked || filled >= N) return;
+              setFilled(N);
+              reach("first-fill");
+              reach("best-4");
+            };
             const restart = () => {
               if (locked || filled === 0) return;
               setFilled(0);
@@ -142,12 +148,17 @@ export default function CutTheRod({ slug }: { slug: string }) {
                     </li>
                   ))}
                 </ul>
+                {/* Start over comes first in DOM order: it is disabled on an empty table, so one press per
+                    control (Fill next, Fill the rest) ends with best(4) still on the stage. */}
                 <Row>
+                  <Control disabled={locked || filled === 0} onClick={restart}>
+                    Start over
+                  </Control>
                   <Control className="active" disabled={locked || filled >= N} onClick={fill}>
                     {filled >= N ? "All filled" : `Fill best(${filled + 1})`}
                   </Control>
-                  <Control disabled={locked || filled === 0} onClick={restart}>
-                    Start over
+                  <Control disabled={locked || filled >= N} onClick={fillRest}>
+                    Fill the rest
                   </Control>
                 </Row>
                 <Row>

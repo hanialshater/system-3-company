@@ -167,3 +167,8 @@
 .bad {
   color: var(--bad);
 }
+
+.key { margin: 0; text-align: center; font-size: 0.72rem; color: var(--muted); }
+.swatch1, .swatch2 { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin: 0 2px 0 6px; }
+.swatch1 { background: color-mix(in srgb, var(--domain) 35%, transparent); border: 1.5px solid var(--domain); }
+.swatch2 { background: color-mix(in srgb, var(--muted) 45%, transparent); }

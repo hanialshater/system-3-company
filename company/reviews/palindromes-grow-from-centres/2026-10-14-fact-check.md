@@ -14,3 +14,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c6 | verified | Manacher, J. ACM 22(3) 1975, 346-351, title 'A new linear-time on-line algorithm for finding the smallest initial palindrome of a string': confirmed by web-search snippets (Wikipedia 'Longest palindromic substring'), which also say Apostolico, Breslauer and Galil (1995) observed the same algorithm finds all maximal palindromes in linear time. Sentence names 'Manacher's algorithm', the standard name for that linear all-centres method, and does not claim the 1975 paper counted palindromes; attribution acceptable. Papers themselves not opened. |
 
 **Result:** all open claims verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v2 wave E revision. Method: read v2 Demo.tsx (two aligned words, brackets, +n rows, readouts, reveal; no Reset) before the sources, then re-ran grow() in my own node port with a brute-force cross-check (scratchpad fc24/pal.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | 20,000 random words: every palindrome found exactly once from its own centre, nothing else counted. Growth passes through the inner substring first. |
+| c7 | verified | abaa: 1+0+2+0+1+1+1 = 6 (brute force 6); 3 fails; 9 distinct substrings tested, only 'abaa' untested; middle 'ba' fails. Reveal values equal these once all-centres fires. |
+
+**Result:** every claim open at this pass is now verified.

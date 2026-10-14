@@ -13,11 +13,15 @@
 // contradicts the picture). The reveal quotes the last unbalanced spot the child rested at for 300 ms,
 // or 3.0 m, where the child sits on the tipped plank when the stage unlocks: both were on screen.
 // The bar caption now shows the sum (kg × 9.81 × m), so 785 N·m is explained on stage.
+// v4 (r6): the formula line, the 785 N·m bar and the 40 kg readout are hidden until the commit (they let a
+// learner compute 4.0 m). The last unbalanced slider spot is recorded at once (no 300 ms rest) and stays on
+// stage as a dashed bar with a "last tipped" label, so the reveal's unequal pair is still visible at 4.0 m.
+// Stage text is larger (it was ~7 px on a phone).
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import s from "./styles.module.css";
 
 const G = 9.81;
@@ -32,7 +36,6 @@ const MAX_TILT = Math.asin(PIVOT_H / HALF); // rad
 const tq = (d: number) => M_LIGHT * G * d;
 const nm = (v: number) => `${v.toFixed(0)} N·m`;
 const D_START = 3;
-const REST_MS = 300;
 
 const W = 320;
 const H = 196;
@@ -44,13 +47,9 @@ const BAR_K = 0.14; // px per N m
 
 export default function SeesawSitCloser({ slug }: { slug: string }) {
   const [d, setD] = useState(D_START);
-  // The unbalanced spot the reveal can quote: 3.0 m is on screen when the stage unlocks; a later spot counts once rested on.
-  const [other, setOther] = useState<number>(D_START);
-  useEffect(() => {
-    if (Math.abs(d - D_BAL) < 1e-9) return;
-    const t = setTimeout(() => setOther(d), REST_MS);
-    return () => clearTimeout(t);
-  }, [d]);
+  // The last unbalanced spot the learner slid to (milestone "tried-other"); drawn as a trace and quoted by the reveal.
+  const [other, setOther] = useState<number | null>(null);
+  const shownOther = other ?? D_START;
 
   return (
     <Lesson
@@ -67,7 +66,7 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
           <p>
             The plank sat level only at <strong>{D_BAL.toFixed(1)} m</strong>: 20 kg at {D_BAL.toFixed(1)} m turns the
             plank as hard as 40 kg at {D_HEAVY.toFixed(1)} m, {nm(T_HEAVY)} each way.
-            {` At ${other.toFixed(1)} m the bars were unequal (${nm(tq(other))} against ${nm(T_HEAVY)}) and the ${other < D_BAL ? "40 kg" : "20 kg"} side went down.`}
+            {` At ${shownOther.toFixed(1)} m the bars were unequal (${nm(tq(shownOther))} against ${nm(T_HEAVY)}) and the ${shownOther < D_BAL ? "40 kg" : "20 kg"} side went down${Math.abs(shownOther - d) > 1e-9 ? ": the dashed bar still shows it" : ""}.`}
           </p>
           <p>
             What turns a seesaw is weight times distance from the pivot (torque), not weight alone. Half the weight at twice
@@ -133,14 +132,18 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
                       </text>
                     </>
                   )}
-                  {/* torque bars: weight x distance */}
-                  <text x={PX} y={GROUND + 14} textAnchor="middle" className={s.chip}>
-                    turning effect = kg × 9.81 × m from the middle
-                  </text>
-                  <rect x={PX - T_HEAVY * BAR_K} y={GROUND + 20} width={T_HEAVY * BAR_K} height={10} className={s.barHeavy} />
-                  <text x={PX - T_HEAVY * BAR_K} y={GROUND + 42} className={s.barLabel}>
-                    {nm(T_HEAVY)}
-                  </text>
+                  {/* torque bars: weight x distance (hidden until the commit: they would answer the question) */}
+                  {!locked && (
+                    <>
+                      <text x={PX} y={GROUND + 14} textAnchor="middle" className={s.chip}>
+                        turning effect = kg × 9.81 × m from the middle
+                      </text>
+                      <rect x={PX - T_HEAVY * BAR_K} y={GROUND + 20} width={T_HEAVY * BAR_K} height={10} className={s.barHeavy} />
+                      <text x={PX - T_HEAVY * BAR_K} y={GROUND + 42} className={s.barLabel}>
+                        {nm(T_HEAVY)}
+                      </text>
+                    </>
+                  )}
                   {lb !== null && (
                     <>
                       <rect x={PX} y={GROUND + 20} width={lb * BAR_K} height={10} className={s.barLight} />
@@ -149,7 +152,15 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
                       </text>
                     </>
                   )}
-                  <line x1={PX} y1={GROUND + 17} x2={PX} y2={GROUND + 33} className={s.mid} />
+                  {!locked && other !== null && Math.abs(other - d) > 1e-9 && (
+                    <>
+                      <rect x={PX} y={GROUND + 20} width={tq(other) * BAR_K} height={10} className={s.trace} />
+                      <text x={W - 4} y={GROUND + 56} textAnchor="end" className={s.barLabel}>
+                        dashed: last tipped at {other.toFixed(1)} m, {nm(tq(other))}
+                      </text>
+                    </>
+                  )}
+                  {!locked && <line x1={PX} y1={GROUND + 17} x2={PX} y2={GROUND + 33} className={s.mid} />}
                   <text x={4} y={12} className={s.chip}>
                     Light plank, pivot in the middle. Kids in kg.
                   </text>
@@ -166,11 +177,14 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
                   onChange={(v) => {
                     setD(v);
                     if (Math.abs(v - D_BAL) < 1e-9) reach("balanced");
-                    else reach("tried-other");
+                    else {
+                      setOther(v);
+                      reach("tried-other");
+                    }
                   }}
                 />
                 <Row>
-                  <Readout label="40 kg side" value={nm(T_HEAVY)} />
+                  <Readout label="40 kg side" value={locked ? "?" : nm(T_HEAVY)} />
                   <Readout label="20 kg side" value={locked ? "?" : nm(tq(d))} />
                   <Readout label="Plank" value={locked ? "?" : tilt === 0 ? "level" : "tips"} />
                 </Row>

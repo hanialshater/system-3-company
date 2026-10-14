@@ -7,6 +7,9 @@
 // Offspring = 10 + score (a baseline of 10 keeps every count positive, since hawk vs hawk is -1).
 // Replicator update: x' = x * W_hawk / mean W. The slider sets the start; the chart redraws
 // the whole 150-generation run at once, and keeps the last few runs as faint lines.
+// v2 (r6): title and hook no longer rule out "all hawks"; four options, each with a share; the stage line
+// derives hawk vs hawk = (4 − 6) ÷ 2 = −1; the reveal's end share is computed from the learner's own
+// 10%-side and 90%-side starts; chart capped lower so it is not cropped on the reveal.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -42,6 +45,7 @@ const gx = (g: number) => X0 + ((X1 - X0) * g) / GENS;
 const py = (x: number) => Y1 - (Y1 - Y0) * x;
 const path = (tr: number[]) => tr.map((x, g) => `${gx(g).toFixed(1)},${py(x).toFixed(1)}`).join(" ");
 const pct = (x: number) => `${Math.round(100 * x)}%`;
+const endPct = (startPct: number) => pct(trajectory(startPct / 100)[GENS]);
 const sc = (v: number) => (v < 0 ? `−${Math.abs(v).toFixed(1)}` : v.toFixed(1));
 
 function Stage({ locked, interact, setSeen }: { locked: boolean; interact: () => void; setSeen: (f: (v: number[]) => number[]) => void }) {
@@ -84,7 +88,7 @@ function Stage({ locked, interact, setSeen }: { locked: boolean; interact: () =>
           </tr>
         </tbody>
       </table>
-      <p className={s.how}>Hawks fight: winner takes 4, injury costs 6. Offspring = 10 + score.</p>
+      <p className={s.how}>Two hawks: win 4 or lose 6, so (4 − 6) ÷ 2 = −1. Offspring = 10 + score.</p>
 
       <svg viewBox="0 0 300 124" className={`stage-svg ${s.chart}`} role="img" aria-label={locked ? "Chart of hawk share, hidden until you predict" : `Hawk share from a ${start}% start: ${pct(end)} at generation ${GENS}`}>
         <line x1={X0} y1={Y1} x2={X1} y2={Y1} className={s.axis} />
@@ -149,7 +153,7 @@ export default function HawksNeverTakeOver({ slug }: { slug: string }) {
       predict={{
         question:
           "Hawks fight (the winner takes 4, an injury costs 6); doves share. Start with 10% hawks, or with 90%. Where does the hawk share settle?",
-        options: ["100% hawks", "About 67% hawks, from either start", "It depends on the start"],
+        options: ["Nearly 100% hawks", "About 67% hawks", "About 33% hawks", "Near its start (10% or 90%)"],
         answer: 1,
       }}
       exploreHint="Start with few hawks, then with many. Watch where each run ends."
@@ -158,9 +162,9 @@ export default function HawksNeverTakeOver({ slug }: { slug: string }) {
         <>
           <p>
             {low.length && high.length
-              ? `From ${Math.min(...low)}% and from ${Math.max(...high)}% hawks, `
-              : "From few hawks and from many, "}
-            the share ended at <strong>67%</strong>, two hawks in three. Aggression did not take over.
+              ? `From ${Math.min(...low)}% and from ${Math.max(...high)}% hawks, the share ended at ${endPct(Math.min(...low))} and ${endPct(Math.max(...high))}`
+              : "From few hawks and from many, the share ended at the same place"}
+            : two hawks in three. Aggression did not take over.
           </p>
           <p>
             A hawk meeting a dove takes the whole prize (4 vs 0), so hawks grow while they are few. Two hawks

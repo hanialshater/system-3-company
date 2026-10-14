@@ -22,3 +22,13 @@ Checker: fact-checker (did not write these claims). Re-check of the builder rewo
 | c5 | verified | Demo.tsx reveal line 211 matches claim text. Year: primary pages unreachable this pass (stanford.edu, nrmp.org, natmatch.com, AER all blocked); corroborated by search results quoting Roth's Stanford NRMP page (board voted 5 May 1997 to adopt the new algorithm), Wikipedia (first applied March 1998), an NRMP press release of 8 May 1997 (change effective 1998) and medschoolinsiders (first used in the March 1998 Match). Roth and Peranson, AER 89(4): 748-780 (Sept 1999), reports the design and the computational study. Medium confidence: from search text, not a page I opened. |
 
 Sources for c5 (search-result text only; every page fetch was blocked): https://web.stanford.edu/~alroth/nrmp.html (board vote 5 May 1997), https://en.wikipedia.org/wiki/National_Resident_Matching_Program (first applied March 1998), https://courses.cs.duke.edu/cps130/fall98/lectures/lect13/node28.html (NRMP press release, 8 May 1997), https://medschoolinsiders.com/medical-student/nrmp-residency-match-algorithm-explained/ (first used in the 1998 Match). If a human can open Roth and Peranson (1999) or the NRMP history, confirm the year there.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim reopened by the v3 wave E revision. Method: read v3 Demo.tsx (cards, switch, log, swap-check lines, reveal; no Reset) before the source, then checked both matchings for blocking pairs in my own node script.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Students' matching: Ann and Bea say no, Y and X yes; hospitals' matching: X and Y say no, Ann and Bea yes; no blocking pair in either. Each mode has one outcome in any press order. Stage check lines and reveal match. |
+
+**Result:** every claim open at this pass is now verified.

@@ -3,6 +3,9 @@
 // Before / after toggle: the same four rankings, run twice. Press a free proposer to make
 // its next offer; the receiver keeps the better offer. A toggle swaps who proposes and
 // starts a fresh run; finished runs stay in the log so the two outcomes sit side by side.
+// v3: "stable" is shown, not told. "Would a pair rather swap?" checks every finished run on stage: for each
+// student and the hospital they did not get, does each side want the swap? A matching is stable when no pair
+// says yes twice. The reveal needs both runs and the check of both, and quotes the check lines.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -30,6 +33,25 @@ const FRESH: Run = { held: {}, next: { Ann: 0, Bea: 0, X: 0, Y: 0 }, refused: []
 
 const heldBy = (run: Run, p: Name) => (Object.keys(run.held) as Name[]).find((r) => run.held[r] === p);
 
+// For each student and the hospital they did not get: would each of the two rather be together?
+function swapRows(pairs: [Name, Name][]) {
+  const hospOf = (st: Name) => pairs.find(([a]) => a === st)![1];
+  const studOf = (h: Name) => pairs.find(([, b]) => b === h)![0];
+  return STUDENTS.map((st) => {
+    const h = HOSPITALS.find((x) => x !== hospOf(st))!;
+    const sw = PREF[st].indexOf(h) < PREF[st].indexOf(hospOf(st));
+    const hw = PREF[h].indexOf(st) < PREF[h].indexOf(studOf(h));
+    return { st, h, sw, hw };
+  });
+}
+const swapCheck = (pairs: [Name, Name][]) =>
+  swapRows(pairs).map(({ st, h, sw, hw }) => `${st}–${h}: ${st} ${sw ? "yes" : "no"}, ${h} ${hw ? "yes" : "no"}`);
+// Reveal wording, from the same check: who says no in each pair.
+const whoSaysNo = (pairs: [Name, Name][]) =>
+  swapRows(pairs)
+    .map(({ st, h, sw, hw }) => `${st}–${h}, ${[!sw ? st : null, !hw ? h : null].filter(Boolean).join(" and ")} said no`)
+    .join("; ");
+
 // A matching is stable if no student and hospital both prefer each other to their partners.
 function isStable(pairs: [Name, Name][]) {
   const hospOf = (st: Name) => pairs.find(([a]) => a === st)![1];
@@ -42,10 +64,21 @@ function isStable(pairs: [Name, Name][]) {
   );
 }
 
-function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
+function Stage({
+  locked,
+  reach,
+  onChecked,
+}: {
+  locked: boolean;
+  reach: (n: string) => void;
+  onChecked: (c: Partial<Record<Mode, [Name, Name][]>>) => void;
+}) {
   const [mode, setMode] = useState<Mode>("S");
   const [run, setRun] = useState<Run>(FRESH);
   const [log, setLog] = useState<Partial<Record<Mode, string>>>({});
+  const [found, setFound] = useState<Partial<Record<Mode, [Name, Name][]>>>({});
+  const [checked, setChecked] = useState<Partial<Record<Mode, string>>>({});
+  const unchecked = (["S", "H"] as Mode[]).filter((m) => found[m] && !checked[m]);
 
   const proposers = mode === "S" ? STUDENTS : HOSPITALS;
   const done = proposers.every((p) => heldBy(run, p));
@@ -73,12 +106,25 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       const pairs = proposers.map((q) => [q, heldBy(nr, q)!] as [Name, Name]);
       const asStudentHospital = pairs.map(([a, b]) => (mode === "S" ? [a, b] : [b, a]) as [Name, Name]);
       const text = pairs.map(([a, b]) => `${a}–${b}${PREF[a][0] === b ? " ★" : ""}`).join(", ");
+      setFound({ ...found, [mode]: asStudentHospital });
       setLog({
         ...log,
-        [mode]: `${mode === "S" ? "Students" : "Hospitals"} proposed: ${text}${isStable(asStudentHospital) ? " · stable" : " · unstable"}`,
+        [mode]: `${mode === "S" ? "Students" : "Hospitals"} proposed: ${text}`,
       });
       reach(mode === "S" ? "students-proposed" : "hospitals-proposed");
     }
+  };
+
+  const check = () => {
+    if (locked || unchecked.length === 0) return;
+    const next = { ...checked };
+    for (const m of unchecked) {
+      const pairs = found[m]!;
+      next[m] = `Swap? ${swapCheck(pairs).join(". ")}. ${isStable(pairs) ? "No double yes: stable." : "Unstable."}`;
+    }
+    setChecked(next);
+    onChecked(Object.fromEntries((Object.keys(next) as Mode[]).map((m) => [m, found[m]!])));
+    if (next.S && next.H) reach("checked-both");
   };
 
   const toggle = () => {
@@ -178,17 +224,29 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         {log.S || log.H ? (
           <>
             {log.S && <p>{log.S}</p>}
+            {checked.S && <p className={s.check}>{checked.S}</p>}
             {log.H && <p>{log.H}</p>}
+            {checked.H && <p className={s.check}>{checked.H}</p>}
           </>
         ) : (
           <p>First choices: ?</p>
         )}
       </div>
+      <button
+        type="button"
+        data-qa="control"
+        className={`control tap ${s.toggle}`}
+        disabled={locked || unchecked.length === 0}
+        onClick={check}
+      >
+        Would a pair rather swap?
+      </button>
     </div>
   );
 }
 
 export default function ProposersGetTheBest({ slug }: { slug: string }) {
+  const [checks, setChecks] = useState<Partial<Record<Mode, [Name, Name][]>>>({});
   return (
     <Lesson
       slug={slug}
@@ -198,13 +256,15 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
         options: ["Both students", "Both hospitals", "One of each"],
         answer: 0,
       }}
-      exploreHint="Run the proposals with students proposing, then flip the switch and run them again."
-      minInteractions={2}
+      exploreHint="Run it with students proposing, flip the switch, run it again, then check for a swap."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
             When students proposed, both students got their first choice. When hospitals proposed, both hospitals did.
-            Same four rankings; both matchings were stable, so neither answer was an error.
+            Same four rankings. Your swap check: in the students&apos; matching {checks.S ? whoSaysNo(checks.S) : "(not checked)"};
+            in the hospitals&apos; {checks.H ? whoSaysNo(checks.H) : "(not checked)"}. No pair wanted each other both ways,
+            so both matchings are stable and neither answer was an error.
           </p>
           <p>
             Deferred acceptance always ends stable and gives the proposing side its best stable partner (Gale and
@@ -215,8 +275,8 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["students-proposed", "hospitals-proposed"]}>
-          {(reach) => <Stage locked={locked} reach={reach} />}
+        <Milestones interact={interact} names={["students-proposed", "hospitals-proposed", "checked-both"]}>
+          {(reach) => <Stage locked={locked} reach={reach} onChecked={setChecks} />}
         </Milestones>
       )}
     </Lesson>

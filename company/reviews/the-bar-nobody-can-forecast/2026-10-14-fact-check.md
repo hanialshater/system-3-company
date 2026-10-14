@@ -14,3 +14,14 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx (stage
 | c6 | verified | Arthur, 'Inductive Reasoning and Bounded Rationality', AER 84(2) Papers and Proceedings, 406-411 (May 1994): confirmed bibliographically via search (JSTOR/IDEAS listings); full text host blocked, not opened. The 100-person, 60-seat setup is the well-known El Farol framing (from knowledge, consistent with secondary sources in search). 'Identical people, one shared forecast, no learning' is presented as the lesson's simplification, which is accurate. E&K placement: ch. 17 is 'Network Effects' (library catalogue TOC via search); El Farol as its closing advanced section on negative externalities is from memory (fairly sure, section number 17.7 not confirmed). Not shown to learners. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v2 wave E revision. Method: read v2 Demo.tsx (runs row, Reset, best record, conditional reveal) before the sources, then re-ran the numbers in my own node port (scratchpad fc24/bar.mjs, own mulberry32 copy and binomial sum).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Binomial(100, 0.6): mean 60, P(X > 60) = 0.46208. |
+| c4 | verified | Seed 1: 111 nights avg 60.1, 49% crowded; any recordable longest run (100..500) gives 59.9-60.5 and 44-52%. The record survives Reset and only grows. |
+
+**Result:** every claim open at this pass is now verified.

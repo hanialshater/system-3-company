@@ -324,6 +324,7 @@ function Stage({
       </svg>
 
       <p className={s.readout}>{readout}</p>
+      <p className={s.model}>{w.auto ? "Rule: start over whenever the total goes below 0." : "Rule: you choose when to start over."}</p>
       <p className={`${s.msg} ${atEnd && d.best === BEST_ALL ? s.good : ""}`} aria-live="polite">
         {msg}
       </p>

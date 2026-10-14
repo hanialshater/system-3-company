@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "boyer-moore-horspool",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -78,19 +78,19 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "cs.boyer-moore-skips-ahead.c7",
-      "text": "Longer patterns can skip further.",
+      "id": "cs.boyer-moore-skips-ahead.c8",
+      "text": "The text \"HERE IS A SIMPLE EXAMPLE\" has 24 characters, counting spaces.",
       "support": "derivation",
-      "source": "The largest slide equals the pattern length (for a text letter not in the pattern), so a longer pattern allows longer jumps; on typical text Horspool reads about n/m letters, while its worst case is O(nm) (Horspool 1980; from memory). | FACT-CHECK 2026-10-14 (pass 22): Derivation: the largest table entry is the pattern length m (letter absent from the pattern), so the maximum jump grows with m. The O(nm) worst case / ~n/m typical in the source note is not learner-visible and was not checked.",
+      "source": "Count: T.length = 24 in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): Own count: \"HERE IS A SIMPLE EXAMPLE\".length = 24 (node).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
-      "id": "cs.boyer-moore-skips-ahead.c8",
-      "text": "The text \"HERE IS A SIMPLE EXAMPLE\" has 24 characters, counting spaces.",
-      "support": "derivation",
-      "source": "Count: T.length = 24 in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): Own count: \"HERE IS A SIMPLE EXAMPLE\".length = 24 (node).",
+      "id": "cs.boyer-moore-skips-ahead.c9",
+      "text": "At placement 9 Horspool matched 4 letters (E, L, P, M), then missed on I; it slid 6, by the table entry for the E under the pattern's end, not 7. The stage log reads \"Horspool slides: S 7 · P 2 · E 6 (miss on I) · P 2 · found\".",
+      "support": "simulation",
+      "source": "HORS in Demo.tsx (v2) and the builder's trace: placement 9 puts the pattern over text[9..15] = \" SIMPLE\"; text[15]=E matches E, L, P, M match, text[11]=I vs pattern A misses; the key is text[15]=E, SHIFT[E]=6, next placement 15. The reveal sentence and the log are computed from HORS (EPARTIAL, slideLabel). Builder algo2-sc, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own Horspool run: offsets 0 (S, slide 7), 7 (P, 2), 9 (E L P M matched, miss on I, slide 6 by E), 15 (P, 2), found at 17; 15 comparisons. slideLabel log: 'Horspool slides: S 7 · P 2 · E 6 (miss on I) · P 2 · found'. 'Placement 9' is the 0-based text offset of the third placement (not shown on stage).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -108,8 +108,12 @@
     "why": "No placement that covers a letter missing from the pattern can match, so the whole pattern jumps past it and those letters are never read."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/boyer-moore-skips-ahead/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/boyer-moore-skips-ahead/2026-10-14-learner-knows-kmp-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

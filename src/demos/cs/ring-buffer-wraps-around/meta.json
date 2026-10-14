@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "circular-buffer",
   "format": "single-card",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -73,8 +73,12 @@
     "why": "The pointer is the count mod the capacity: 20 mod 8 = 4. Slot 4 last held item 13, the oldest of the 8 kept (13 to 20); nothing shifts."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/ring-buffer-wraps-around/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/ring-buffer-wraps-around/2026-10-14-learner-queue-graduate-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

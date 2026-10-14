@@ -3,7 +3,9 @@
 // Risk aversion. One curve: felt value = square root of wealth. A horizontal line marks the felt value
 // of a 50-50 coin ($0 or $100); the learner moves a sure amount along the curve until its height
 // meets the line.
-// Key state: the learner has tried a sure amount below and one above the coin's line; $25 meets it at height 5.
+// Key states: a sure amount below the coin's line, the amount that meets it ($25, height 5), and one above.
+// The slider comes first in DOM order and starts at $15, so two steps up reach $25; once met, a tick stays on the
+// curve and the two gains ($0 to $25: +5, $50 to $100: +2.93) are drawn, so the reveal can point at the bend.
 // Model: square-root felt value is one textbook choice, not a measure of any person.
 
 import { useState } from "react";
@@ -16,7 +18,10 @@ const HIGH = 100;
 const felt = (w: number) => Math.sqrt(w);
 const COIN = 0.5 * felt(0) + 0.5 * felt(HIGH); // 5
 const SURE = COIN * COIN; // 25: the sure amount whose felt value equals the coin's
-const MILESTONES = ["below", "above"] as const;
+const MILESTONES = ["below", "met", "above"] as const;
+const START_SURE = 15;
+const GAIN_LOW = felt(SURE) - felt(0); // 5
+const GAIN_HIGH = felt(HIGH) - felt(HIGH / 2); // 2.93
 const CHIPS = [10, HIGH / 2, HIGH * 0.75];
 
 const usd = (v: number) => `$${v}`;
@@ -32,7 +37,8 @@ const py = (f: number) => Y0 - (f / felt(HIGH)) * (Y0 - Y1);
 const CURVE = Array.from({ length: 51 }, (_, i) => `${i ? "L" : "M"}${px(i * 2).toFixed(1)} ${py(felt(i * 2)).toFixed(1)}`).join(" ");
 
 export default function SquareRootWealth({ slug }: { slug: string }) {
-  const [sure, setSure] = useState(50);
+  const [sure, setSure] = useState(START_SURE);
+  const [met, setMet] = useState(false); // the learner put the dot on the coin's line
 
   return (
     <Lesson
@@ -42,16 +48,22 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
         options: [usd(HIGH / 2), usd(SURE), usd(HIGH * 0.75)],
         answer: 1,
       }}
-      exploreHint="Try sure amounts below and above the coin's line, then slide to where the height meets it."
+      exploreHint="Slide the sure amount until its dot sits on the coin's line. Then try the amounts below."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            The coin&apos;s felt value is half of {felt(0)} plus half of {felt(HIGH)}, which is <strong>{COIN}</strong>. The curve
-            reaches {COIN} at <strong>{usd(SURE)}</strong>, so a sure {usd(SURE)} feels as good as the coin, though the coin pays{" "}
-            {usd(HIGH / 2)} on average.
+            The coin&apos;s felt value is half of √0 = {felt(0)} plus half of √{HIGH} = {felt(HIGH)}, which is{" "}
+            <strong>{COIN}</strong>.{" "}
+            {met
+              ? `You found the curve reaching ${COIN} at ${usd(SURE)} (the tick on the curve), so a sure ${usd(SURE)} feels as good as the coin, though the coin pays ${usd(HIGH / 2)} on average.`
+              : ""}
           </p>
-          <p>When each extra dollar matters less and less, a sure amount well below the average can equal a gamble.</p>
+          <p>
+            Look at the bend: from $0 to {usd(SURE)} the felt value rises {two(GAIN_LOW)}, but from {usd(HIGH / 2)} to {usd(HIGH)}{" "}
+            only {two(GAIN_HIGH)}. When each extra dollar matters less and less, a sure amount well below the average can
+            equal a gamble.
+          </p>
           <p className="muted">A model: square-root felt value is one textbook choice, not a measure of anyone. No advice.</p>
         </>
       )}
@@ -61,6 +73,10 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
           {(reach) => {
             const set = (v: number) => {
               setSure(v);
+              if (Math.abs(felt(v) - COIN) < 1e-9) {
+                setMet(true);
+                reach("met");
+              }
               if (v < SURE) reach("below");
               if (v > SURE) reach("above");
             };
@@ -80,6 +96,23 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                   <text x={X0 + 4} y={Y1 + 4} className={s.axis}>
                     felt value
                   </text>
+                  {met && (
+                    <g data-testid="gains">
+                      <line x1={px(SURE)} y1={py(0)} x2={px(SURE)} y2={py(COIN)} className={s.gain} />
+                      <text x={px(SURE) - 4} y={py(COIN / 2)} textAnchor="end" className={s.small}>
+                        +{two(GAIN_LOW)}
+                      </text>
+                      <line x1={px(HIGH) + 6} y1={py(felt(HIGH / 2))} x2={px(HIGH) + 6} y2={py(felt(HIGH))} className={s.gain} />
+                      <line x1={px(HIGH / 2)} y1={py(felt(HIGH / 2))} x2={px(HIGH) + 6} y2={py(felt(HIGH / 2))} className={s.ghost} />
+                      <text x={px(HIGH) + 2} y={py(felt(HIGH)) + 22} textAnchor="end" className={s.small}>
+                        +{two(GAIN_HIGH)}
+                      </text>
+                      <circle cx={px(SURE)} cy={py(COIN)} r={4} className={s.goodFill} />
+                      <text x={px(SURE)} y={py(COIN) - 8} textAnchor="middle" className={s.small}>
+                        ✓ {usd(SURE)}
+                      </text>
+                    </g>
+                  )}
                   {!locked && (
                     <>
                       <line x1={X0} y1={py(COIN)} x2={X1} y2={py(COIN)} className={s.ghost} />
@@ -101,6 +134,7 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                 </Row>
                 <p className={s.msg}>{locked ? "" : `Coin: half of \u221A0 plus half of \u221A${HIGH} = 0 + ${felt(HIGH) / 2} = ${COIN}`}</p>
                 <p className={s.msg}>{status}{!locked && Math.abs(diff) < 1e-9 ? `: the coin pays ${usd(HIGH / 2)} on average` : ""}</p>
+                <Slider label="Sure amount" value={sure} min={0} max={HIGH} step={5} format={usd} disabled={locked} onChange={set} />
                 <Row>
                   {CHIPS.map((v) => (
                     <Control key={v} className={sure === v ? "active" : ""} disabled={locked || sure === v} onClick={() => set(v)}>
@@ -108,7 +142,6 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </Row>
-                <Slider label="Sure amount" value={sure} min={0} max={HIGH} step={5} format={usd} disabled={locked} onChange={set} />
               </div>
             );
           }}

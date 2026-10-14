@@ -42,18 +42,18 @@
     },
     {
       "id": "math.the-grid-takes-up-to-three-eighths.c3",
-      "text": "Above 3/8 a newcomer needs 4 of 8 adopting neighbours, which nobody beside a square block has, so a bigger block stalls too.",
+      "text": "Above 3/8 a newcomer needs 4 of 8 adopting neighbours, which nobody beside a square block has, so a 7x7 block stalls too, at 49.",
       "support": "derivation",
-      "source": "For q in (3/8, 1/2] the rule needs ceil(8q) = 4; outside a square block every cell touches at most 3 block cells. Node run 2026-10-14: a 7x7 block stays at 49 for q = 2/5, 1/2, 3/5 and takes all 1,521 at 1/4 and 3/8. Stated for square blocks; the general claim is c5. | FACT-CHECK 2026-10-14 (pass 22): Own node: 7x7 stays at 49 at 2/5, 1/2, 3/5, takes all at 1/4 and 3/8. Any cell outside a rectangle touches at most 3 of its cells.",
+      "source": "Derivation: beside a square block a non-adopter sees at most 3 adopters (the 3 cells of the side it faces), so with need 4 nobody joins and the block stays at b x b. Builder's Node run of Demo.tsx simulate() (2026-10-14): 7x7 stays at 49 at 2/5, 1/2 and 3/5. v2 quotes the 7x7 count from the learner's results table, and only if a 7x7 run above 3/8 was finished. | FC pass 24 (fact-checker, 2026-10-14): Own independent sim (fc24/grid.mjs, own 41 x 41 framed grid): need = ceil(8q) = 4, 4, 5 at 2/5, 1/2, 3/5; 5x5 stays 25, 7x7 stays 49 (9x9 stays 81) at all three; at 1/4 and 3/8 every block takes 1,521. A cell beside a square block sees at most 3 adopters, so no block grows above 3/8. Reveal quotes the 7x7 count only if a 7x7 run above 3/8 is in the results table (survives Reset). Wording note (not a dispute): at 3/5 the need is 5, so 'needs 4' reads as 'at least 4'; the stage note at 3/5 correctly says 'they need 5'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "math.the-grid-takes-up-to-three-eighths.c4",
-      "text": "On a line two neighbouring adopters take everyone when q is at most 1/2 and no one else when q is above 1/2, since each newcomer sees 1 of 2 neighbours.",
+      "text": "On a line the two middle adopters take all 201 at q = 1/2, the q where the 5x5 grid stuck, because each newcomer sees 1 of 2 neighbours; above 1/2 no one else joins.",
       "support": "derivation",
-      "source": "Builder's node run on a 201-person path, middle two adopting, 2026-10-14: all 201 at q = 1/4, 3/8, 2/5, 1/2 (100 rounds); only the 2 at q = 3/5. Brief's own check: 0.4 and 0.5 all, 0.51 and 0.6 only 2. | FACT-CHECK 2026-10-14 (pass 22): Own node on 201-person path: all 201 at 1/4, 3/8, 2/5, 1/2 (100 rounds); only 2 at 0.51 and 3/5.",
+      "source": "Derivation: a waiting person next to the adopted run has 1 of 2 neighbours adopting, which meets q <= 1/2 and fails q > 1/2. Builder's Node run of simulate() on the 201-person line (2026-10-14): 201 at q = 1/4, 3/8, 2/5, 1/2; 2 at q = 3/5. v2: 'Line at 1/2' runs exactly this case (milestone line-half) and the results table keeps it. | FC pass 24 (fact-checker, 2026-10-14): Own sim of the 201-person line, starters 99 and 100: 201 at q = 1/4, 3/8, 2/5, 1/2; 2 at 3/5. A waiting person next to the run sees 1 of 2 (the two end people have a single neighbour, 1 of 1, still >= q). 'Line at 1/2' runs q = 1/2 to the end and milestone line-half requires it, so cell('line', 1/2) = 201 is always in the table at reveal; ', where the grid stuck,' prints only if the 5x5 at 1/2 is recorded as stuck (25).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -81,11 +81,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/the-grid-takes-up-to-three-eighths/2026-10-14-learner-knows-threshold-rule-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:cascade-capacity",
     "also": [],

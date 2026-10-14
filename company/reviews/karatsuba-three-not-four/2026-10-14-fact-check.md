@@ -25,3 +25,13 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c5 | verified | Reveal now says 'the ideal no-carry count is 59,049 products against 1,048,576 (3^10 against 4^10)': 1,024 = 2^10, T(n) = 3T(n/2) with T(1) = 1 gives 3^10 = 59,049, schoolbook 4^10 = 1,048,576. The pass-22 objection (real inputs carry) is met by 'ideal no-carry'. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim reopened by the v3 wave E revision. Method: read v3 Demo.tsx (check box both lines, reveal, no Reset) before the source, then recomputed in node BigInt.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Halves 1111 each; 2,468,642 both ways (4,937,284 - 1,234,321 - 1,234,321). Identity holds on 10,000 random quadruples. Stage lines and reveal print the same values. |
+
+**Result:** every claim open at this pass is now verified.

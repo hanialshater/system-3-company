@@ -20,3 +20,16 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | Tentative distance d[v] (CLRS 3rd ed. 24.1, 24.3 Theorem 24.6: with non-negative weights the extracted minimum's d equals the true distance). Stage default message and fmt(Infinity) = '∞' match; all road costs positive; ties allowed (tap rejects only label > smallest). |
 
 **Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node Dijkstra on ROADS: final S 0, A 3, B 7, G 9; S-A-B-G = 3+4+2 = 9 (three roads); S-G road 10; S-B-G 10. Matches runAll(). |
+| c2 | verified | Own node trace of settle(): S gives A 3, B 8, G 10; A: B 8 -> 7; B: G 10 -> 9; G: no changes. Labels never tie, so the tap order is forced (a larger label is refused) and every learner run matches; G history '10 then 9' kept in run after Start again. |
+| c3 | verified | Derivation: with non-negative costs every path to v leaves the settled set through an open town whose label is >= the minimum, so the minimum label is exact (Dijkstra 1959). Stage numbers from own trace: 'why' line at A lists B 8, G 10; at B lists G 10; backRoute at B: B-A 7+4 = 11 > 3; at G: G-B 9+2 = 11 > 7 (prefers non-S target). |
+| c5 | verified | Legend 'Label: cheapest cost from S found so far. ∞: not reached yet.'; default message 'Tap a town to settle it: its label is then final.'; START labels Infinity render as ∞. Same after Start again. |
+
+**Result:** all open claims verified; no disputes.

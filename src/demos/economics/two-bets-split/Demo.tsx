@@ -1,14 +1,19 @@
 "use client";
 
-// Splitting money across independent bets. Each bet returns +20% or −10% with equal chance;
-// money is split equally across n bets. One histogram of the exact outcome chances (binomial,
-// no randomness): losing bars red. The average stays +5% at every n; with 2 bets a loss needs
-// both to fall (25%). Key state: n = 2. The chance of any loss does not fall at every step
-// (4 bets: 31%), but the worst case shrinks: 1/2^n. Model: independent bets, made-up numbers.
+// Splitting money across bets. Each bet returns +20% or −10% with equal chance; money is split
+// equally across n bets. One histogram of the exact outcome chances (binomial, no randomness):
+// losing bars red. The average stays +5% at every n; with 2 independent bets a loss needs both to
+// fall (25%). The chance of any loss does not fall at every step (4 bets: 31%), but the worst case
+// shrinks: 1/2^n. Model: made-up numbers.
+//
+// v5 (wave E r6): independence is on stage. Two buttons switch the bets between moving
+// independently and moving together; together, any split is one bet again (50% / 50%). The stage
+// keeps a "seen" row of every state visited (n bets, independent or together, chance of a loss),
+// and the reveal quotes that row, so the stage no longer pins itself to 2 bets at the reveal.
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -16,21 +21,32 @@ const UP = 20;
 const DOWN = -10;
 const N_MAX = 6;
 const Q_N = 2;
-const MILESTONES = ["two-bets"] as const;
+const MILESTONES = ["two-bets", "together"] as const;
+type Mode = "indep" | "together";
 
 const choose = (n: number, k: number) => {
   let r = 1;
   for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i;
   return r;
 };
-/** Outcomes (percent return) and their chances when split equally across n independent bets. */
-const outcomes = (n: number) =>
-  Array.from({ length: n + 1 }, (_, k) => ({ r: (k * UP + (n - k) * DOWN) / n, p: choose(n, k) / 2 ** n }));
-const lossChance = (n: number) => outcomes(n).filter((o) => o.r < 0).reduce((a, o) => a + o.p, 0);
-const average = (n: number) => outcomes(n).reduce((a, o) => a + o.r * o.p, 0);
+/** Outcomes (percent return) and their chances when split equally across n bets. */
+const outcomes = (n: number, mode: Mode = "indep") =>
+  mode === "together" || n === 1
+    ? [
+        { r: DOWN, p: 0.5 },
+        { r: UP, p: 0.5 },
+      ]
+    : Array.from({ length: n + 1 }, (_, k) => ({ r: (k * UP + (n - k) * DOWN) / n, p: choose(n, k) / 2 ** n }));
+const lossChance = (n: number, mode: Mode = "indep") => outcomes(n, mode).filter((o) => o.r < 0).reduce((a, o) => a + o.p, 0);
+const average = (n: number, mode: Mode = "indep") => outcomes(n, mode).reduce((a, o) => a + o.r * o.p, 0);
+const worstChance = (n: number, mode: Mode) => (mode === "together" ? 0.5 : 0.5 ** n);
 const AVG = average(1); // 5
 const pct = (p: number) => `${Math.round(p * 1000) / 10}%`;
 const ret = (r: number) => `${r > 0 ? "+" : r < 0 ? "−" : ""}${Math.abs(Math.round(r * 10) / 10)}%`;
+
+type Seen = { n: number; mode: Mode };
+const key = (v: Seen) => `${v.mode}${v.n}`;
+const seenLabel = (v: Seen) => `${v.n} bet${v.n === 1 ? "" : "s"}${v.mode === "together" && v.n > 1 ? " together" : ""}: ${pct(lossChance(v.n, v.mode))}`;
 
 // Plot geometry (viewBox 320 × 200): return −10%..+20% across, chance 0..50% up.
 const L = 26;
@@ -41,25 +57,41 @@ const px = (r: number) => L + ((r - DOWN) / (UP - DOWN)) * (R - L);
 const py = (p: number) => BOT - (p / 0.5) * (BOT - TOP);
 const BW = 22;
 
-function Stage({ ctx, n: chosen, setN }: { ctx: StageContext; n: number; setN: (n: number) => void }) {
-  const { locked, interact, phase } = ctx;
-  // At the reveal the stage pins the 2-bet chart, the state the reveal explains, so its 25% is on screen.
-  const pinned = phase === "reveal";
-  const n = pinned ? Q_N : chosen;
+function Stage({
+  ctx,
+  n,
+  mode,
+  seen,
+  go,
+}: {
+  ctx: StageContext;
+  n: number;
+  mode: Mode;
+  seen: Seen[];
+  go: (v: Seen) => void;
+}) {
+  const { locked, interact } = ctx;
   const { reach } = useMilestones(interact, MILESTONES);
-  const set = (v: number) => {
-    setN(v);
-    if (v === Q_N) reach("two-bets");
+  const set = (v: Seen) => {
+    if (locked) return;
+    go(v);
+    if (v.n === Q_N && v.mode === "indep") reach("two-bets");
+    if (v.n > 1 && v.mode === "together") reach("together");
   };
-  const os = outcomes(n);
+  const os = outcomes(n, mode);
   // Ticks under every bar, plus 0% when no bar sits near it.
   const ticks = os.map((o) => o.r);
   if (!ticks.some((r) => Math.abs(r) < 4)) ticks.push(0);
 
   return (
     <div className={s.wrap}>
-      <p className={s.chip}>{pinned ? "Showing 2 bets, as the answer explains" : "Model: independent coin-flip bets"}</p>
-      <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={locked ? "Chances of each result" : `${n} bets: chance of a loss ${pct(lossChance(n))}`}>
+      <p className={s.chip}>{mode === "together" ? "Model: the bets rise and fall together" : "Model: independent coin-flip bets"}</p>
+      <svg
+        viewBox="0 0 320 200"
+        className="stage-svg"
+        role="img"
+        aria-label={locked ? "Chances of each result" : `${n} bets: chance of a loss ${pct(lossChance(n, mode))}`}
+      >
         <line x1={L} y1={BOT} x2={R} y2={BOT} stroke="var(--line)" />
         {ticks.map((r) => (
           <text key={r} x={px(r)} y={BOT + 14} textAnchor="middle" className={s.axis}>
@@ -95,25 +127,40 @@ function Stage({ ctx, n: chosen, setN }: { ctx: StageContext; n: number; setN: (
       </svg>
 
       <Row>
-        <Slider label="Bets the money is split across" value={n} min={1} max={N_MAX} disabled={locked || pinned} onChange={set} />
+        <Slider label="Bets the money is split across" value={n} min={1} max={N_MAX} disabled={locked} onChange={(v) => set({ n: v, mode })} />
       </Row>
       <Row>
-        <Readout label="Chance of a loss" value={locked ? "?" : pct(lossChance(n))} />
-        <Readout label="Average" value={locked ? "?" : ret(average(n))} />
-        <Readout label="Worst result" value={locked ? "?" : ret(DOWN)} />
-        <Readout label="Chance of it" value={locked ? "?" : pct(0.5 ** n)} />
+        <Control className={mode === "together" ? "active" : ""} disabled={locked || mode === "together"} onClick={() => set({ n, mode: "together" })}>
+          Bets move together
+        </Control>
+        <Control className={mode === "indep" ? "active" : ""} disabled={locked || mode === "indep"} onClick={() => set({ n, mode: "indep" })}>
+          Bets move independently
+        </Control>
       </Row>
+      <Row>
+        <Readout label="Chance of a loss" value={locked ? "?" : pct(lossChance(n, mode))} />
+        <Readout label="Average" value={locked ? "?" : ret(average(n, mode))} />
+        <Readout label="Worst result" value={locked ? "?" : ret(DOWN)} />
+        <Readout label="Chance of it" value={locked ? "?" : pct(worstChance(n, mode))} />
+      </Row>
+      <p className={s.msg}>{locked ? "" : `Chance of a loss seen: ${seen.map(seenLabel).join(" · ")}`}</p>
     </div>
   );
 }
 
 export default function TwoBetsSplit({ slug }: { slug: string }) {
   const [n, setN] = useState(1);
-  const [seen, setSeen] = useState<number[]>([]);
-  const visit = (v: number) => {
-    setN(v);
-    setSeen((x) => (x.includes(v) ? x : [...x, v]));
+  const [mode, setMode] = useState<Mode>("indep");
+  const [seen, setSeen] = useState<Seen[]>([{ n: 1, mode: "indep" }]);
+  const go = (v: Seen) => {
+    setN(v.n);
+    setMode(v.mode);
+    // one bet is the same either way, so record it once
+    const rec = v.n === 1 ? { n: 1, mode: "indep" as Mode } : v;
+    setSeen((xs) => (xs.some((x) => key(x) === key(rec)) ? xs : [...xs, rec]));
   };
+  const together = seen.filter((x) => x.mode === "together");
+  const indepSeen = (k: number) => seen.some((x) => x.mode === "indep" && x.n === k);
   return (
     <Lesson
       slug={slug}
@@ -122,27 +169,32 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
         options: ["50%", pct(lossChance(Q_N)), "0%"],
         answer: 1,
       }}
-      exploreHint="Split across 2 bets. Then keep adding bets and watch the red."
+      exploreHint="Split across 2 bets, then more. Then make the bets move together."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            On the stage now, two bets: you lose only if <strong>both</strong> fall: ½ × ½ = <strong>{pct(lossChance(Q_N))}</strong>.
-            Half the time one rises and one falls, for {ret(outcomes(2)[1].r)}. The average stayed {ret(AVG)}, as with one bet.
+            With two independent bets you lose only if <strong>both</strong> fall: ½ × ½ = <strong>{pct(lossChance(Q_N))}</strong>, as
+            in the row under the chart. Half the time one rises and one falls, for {ret(outcomes(2)[1].r)}. The average stayed{" "}
+            {ret(AVG)}, as with one bet.
           </p>
           <p>
-            Independent bets partly cancel. As you split further, the bars bunch around {ret(AVG)} and the worst case,
-            every bet falling, gets rarer: 50%, 25%, 12.5%… The chance of some loss does not fall at every step
-            {seen.includes(4)
-              ? ` (with 4 bets it is ${pct(lossChance(4))})`
-              : " (try 4 bets: it goes back up)"}
-            , but the worst case, every bet falling, gets rarer at every step.
+            Independent bets partly cancel: as you split further the bars bunched around {ret(AVG)}, and the worst case, every bet
+            falling, got rarer.
+            {indepSeen(4) ? ` The chance of some loss does not fall at every step: with 4 bets it was ${pct(lossChance(4))}.` : ""}
           </p>
-          <p className="muted">A model: truly independent bets, made-up numbers. Real investments often fall together. Not advice.</p>
+          {together.length > 0 && (
+            <p>
+              When you made the bets move together, {together.map((x) => `${x.n} bets`).join(" and ")} lost{" "}
+              {pct(lossChance(together[0].n, "together"))} of the time, the same as one bet. Splitting only cancels risk when the bets
+              do not fall together.
+            </p>
+          )}
+          <p className="muted">A model with made-up numbers: in it, bets either move independently or all together. Not advice.</p>
         </>
       )}
     >
-      {(ctx) => <Stage ctx={ctx} n={n} setN={visit} />}
+      {(ctx) => <Stage ctx={ctx} n={n} mode={mode} seen={seen} go={go} />}
     </Lesson>
   );
 }

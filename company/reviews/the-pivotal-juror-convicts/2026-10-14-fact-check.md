@@ -12,3 +12,24 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c4 | verified | Re-derived: under sincere voting a guilty vote occurs iff the clue says guilty, so pivotal implies both clues guilty. E&K (2010) ch. 23 (Voting; jury decisions and unanimity) placement from memory, confident; Feddersen & Pesendorfer (1998), APSR 92(1), from memory, not opened; the sentence rests on the derivation. |
 
 **Result:** 1 disputed (c3: stage bug, pGuilt = guilt(g, 1) shows 30% / 50% instead of 7% / 30%). Lesson blocked until Demo.tsx is fixed.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Demo.tsx now sets pGuilt = guilt(g, 3 - g), with g = the others' guilty votes, and innocent clues = your 1 + (2 - g) = 3 - g, which is correct under the 'votes own clue' assumption the stage states. Own node with the Demo guilt(): g = 0 gives 0.0730 = 7%, g = 1 gives 0.3000 = 30%, g = 2 gives 0.7000 = 70%. The bar label 'Chance of guilt from all three clues' now matches on all three states. The pass 21 bug is fixed. |
+
+**Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v3 wave E revision. Method: read v3 Demo.tsx (clue chips, vote tags, bar, post-commit line, buttons, reveal; no Reset) before the sources, then recomputed the posteriors by my own likelihood product in node.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Prior 1/2, r = 0.7: I alone 0.30; G, G, I 0.70; G alone 0.70; I, I, I 0.073 (locked 7%). |
+| c5 | verified | Bar depends only on the other jurors' clues; your vote enters only the verdict. Wording note: 'Votes are not clues.' is broader than the claim; 'Your vote is not a clue.' would match it. |
+
+**Result:** every claim open at this pass is now verified.

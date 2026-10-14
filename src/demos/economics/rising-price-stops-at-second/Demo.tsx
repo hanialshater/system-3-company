@@ -5,6 +5,8 @@
 // (or $5, or straight to the end). Key state: the auction is over, which happens when the $55 bidder quits at $56.
 // Model (a simplification): values are private and known to each bidder, nobody bids above their value, and the
 // auctioneer raises in whole dollars.
+// v2: neutral hook (the old one said she pays less than $70). Reset is off once the auction is over, so the end
+// state the reveal quotes is still on the stage when the reveal opens.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -130,7 +132,7 @@ export default function RisingPriceStopsAtSecond({ slug }: { slug: string }) {
                   <Control className={s.tap} disabled={locked || done} onClick={() => raiseTo(FINAL)}>
                     Run to the end
                   </Control>
-                  <Control className={s.tap} disabled={locked || price === START} onClick={() => setPrice(START)}>
+                  <Control className={s.tap} disabled={locked || done || price === START} onClick={() => setPrice(START)}>
                     Reset
                   </Control>
                 </Row>

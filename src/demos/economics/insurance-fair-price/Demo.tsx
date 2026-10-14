@@ -9,6 +9,9 @@
 // v2: the customer's side is on the stage too. "Your house" (house 1, outlined; it is the house hit in
 // year 1 under seed 1) shows premiums paid against the losses cover paid for it, and a tally of years
 // with 0 / 1 / 2+ losses shows how lumpy single years are. In the reveal the stage shows the longest run.
+// v3: "your house" is now house 0, which seed 1 never hits in the first 101 years (the commonest outcome: 40 of 100
+// houses), not the lucky house hit in year 1. A pool line counts how many houses were hit 0 / 1 / 2+ times, so one
+// house's record sits beside the pool's spread and the steady average. The weak "$0" option is now "$50".
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
@@ -26,7 +29,7 @@ const SEED = 1; // chosen: first year has exactly one loss
 const MAX_YEARS = 1001;
 const MANY = 50;
 const MILESTONES = ["one-year", "many-years"] as const;
-const YOURS = 1; // the house that loses in year 1 with seed 1 (disclosed in claim c7)
+const YOURS = 0; // never hit in the first 101 years with seed 1 (disclosed in claim c7)
 
 /** Which houses lose in each year, for the whole seeded run. */
 const HISTORY: number[][] = (() => {
@@ -37,6 +40,12 @@ const HISTORY: number[][] = (() => {
     return hit;
   });
 })();
+/** How many houses were hit 0, 1, and 2+ times in the first y years. */
+const houseSpread = (y: number) => {
+  const per = Array(HOUSES).fill(0);
+  HISTORY.slice(0, y).forEach((h) => h.forEach((i) => per[i]++));
+  return [0, 1, 2].map((k) => per.filter((x) => (k === 2 ? x >= 2 : x === k)).length);
+};
 const lossesUpTo = (y: number) => HISTORY.slice(0, y).reduce((a, h) => a + h.length, 0);
 /** Average payout per customer per year over the first y years. */
 const avgPayout = (y: number) => (y === 0 ? 0 : (lossesUpTo(y) * LOSS) / (HOUSES * y));
@@ -90,6 +99,7 @@ function Stage({
   const run0 = HISTORY.slice(0, years);
   const tally = [0, 1, 2].map((k) => run0.filter((h) => (k === 2 ? h.length >= 2 : h.length === k)).length);
   const myLosses = run0.filter((h) => h.includes(YOURS)).length;
+  const spread = houseSpread(years);
 
   return (
     <div className={s.wrap}>
@@ -109,7 +119,10 @@ function Stage({
           : `Your house (outlined): paid $${(PREMIUM * years).toLocaleString("en-US")}; cover paid it $${(myLosses * LOSS).toLocaleString("en-US")}.`}
       </p>
       <p className={s.msg}>
-        {locked || years < 2 ? "\u00a0" : `Years with 0 losses: ${tally[0]} · 1: ${tally[1]} · 2+: ${tally[2]}`}
+        {locked || years === 0 ? "\u00a0" : `Houses hit 0 / 1 / 2+ times: ${spread[0]} · ${spread[1]} · ${spread[2]}`}
+      </p>
+      <p className={s.msg}>
+        {locked || years < 2 ? "\u00a0" : `Years with 0 / 1 / 2+ losses: ${tally[0]} · ${tally[1]} · ${tally[2]}`}
       </p>
       <Row>
         <Readout label="Years run" value={locked ? "?" : years} />
@@ -141,13 +154,15 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
   const zeroYears = HISTORY.slice(0, longest).filter((h) => h.length === 0).length;
   const bigYears = HISTORY.slice(0, longest).filter((h) => h.length >= 2).length;
   const myLosses = HISTORY.slice(0, longest).filter((h) => h.includes(YOURS)).length;
+  const [never, , twicePlus] = houseSpread(longest);
+  const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question: `A house has a 1-in-100 chance a year of a $10,000 loss. An insurer charges $${PREMIUM} a year to cover it. On average, how much does it pay out per customer a year?`,
-        options: [`$${PREMIUM}`, `$${EXPECTED}`, "$0"],
+        options: [`$${PREMIUM}`, `$${EXPECTED}`, "$50"],
         answer: 1,
       }}
       exploreHint="Run one year, then 100 more, and watch the average payout."
@@ -160,10 +175,11 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
             no loss and {bigYears} with two or more.
           </p>
           <p>
-            So the ${PREMIUM} premium is ${PREMIUM - EXPECTED} above the average loss; in this model that covers the
-            insurer's costs. Look at your outlined house: it paid ${PREMIUM} every year, a small sure cost, and in year 1
-            it was hit, so cover paid its $10,000{myLosses > 1 ? ` (${myLosses} losses in ${longest} years)` : ""}. That is
-            the swap. The insurer can carry such losses because it pools 100 houses.
+            The ${PREMIUM} premium is ${PREMIUM - EXPECTED} above the average loss; in this model that covers the
+            insurer&apos;s costs. Your outlined house paid {usd(PREMIUM * longest)} over {longest} years and{" "}
+            {myLosses === 0 ? "was never hit" : `was hit ${myLosses === 1 ? "once" : `${myLosses} times`}, so cover paid it ${usd(myLosses * LOSS)}`}.
+            In the pool, {never} houses were never hit, but {twicePlus} were hit twice or more. No house knows which it will
+            be: each swaps a small sure cost for cover against a rare large loss, which the pool of 100 carries.
           </p>
           <p className="muted">A model: independent risks, no fraud, one seeded run. Not advice about buying cover.</p>
         </>

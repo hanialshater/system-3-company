@@ -1,6 +1,6 @@
 {
   "slug": "newton-doubles-the-digits",
-  "title": "Twelve digits of √2 in four steps",
+  "title": "Averaging your way to √2",
   "hook": "Average a guess with 2 ÷ guess, again and again. How fast do the right digits pile up?",
   "domain": "cs",
   "concept": "newton-sqrt",
@@ -60,10 +60,12 @@
     },
     {
       "id": "cs.newton-doubles-the-digits.c5",
-      "text": "This is Newton's method for g² = 2, the rule known as the Babylonian (or Heron's) method.",
+      "text": "This is Newton's method for g² = 2.",
       "support": "derivation",
-      "source": "Newton's update for f(g) = g² - 2 is g - f(g)/f'(g) = g - (g² - 2)/(2g) = (g + 2/g)/2, the same as averaging g and 2/g (derivation). The averaging rule is conventionally named the Babylonian (or Heron's) method; Heron of Alexandria describes it in Metrica (1st century AD; not opened by the builder). The sentence asserts only the name, not that any Babylonian tablet used this rule. · Fact-check pass 21 2026-10-14: c5 DISPUTED (historical half unchecked: YBC 7289 method not recorded); Fowler & Robson 1998 reconstruct a geometric method. · Builder 2026-10-14 (W-198): reworded per pass 21; awaiting re-check. · Fact-check pass 23 2026-10-14: HELD, not verified. Newton half re-derived: g - (g^2 - 2)/(2g) = (g + 2/g)/2. The naming half ('known as the Babylonian (or Heron's) method') is a historical-naming fact that only an outside source can establish, and every host was unreachable (wikipedia, mathpages, arxiv: DNS failure); only search-result summaries agree. Per the pass-23 rule I do not verify on a source I cannot open. To clear: a human opens any reference (e.g. Wikipedia 'Methods of computing square roots') or the builder drops the naming clause.",
-      "status": "unverified"
+      "source": "Newton's update for f(g) = g² - 2 is g - f(g)/f'(g) = g - (g² - 2)/(2g) = (g + 2/g)/2, the same as averaging g and 2/g (derivation). The averaging rule is conventionally named the Babylonian (or Heron's) method; Heron of Alexandria describes it in Metrica (1st century AD; not opened by the builder). The sentence asserts only the name, not that any Babylonian tablet used this rule. · Fact-check pass 21 2026-10-14: c5 DISPUTED (historical half unchecked: YBC 7289 method not recorded); Fowler & Robson 1998 reconstruct a geometric method. · Builder 2026-10-14 (W-198): reworded per pass 21; awaiting re-check. · Fact-check pass 23 2026-10-14: HELD, not verified. Newton half re-derived: g - (g^2 - 2)/(2g) = (g + 2/g)/2. The naming half ('known as the Babylonian (or Heron's) method') is a historical-naming fact that only an outside source can establish, and every host was unreachable (wikipedia, mathpages, arxiv: DNS failure); only search-result summaries agree. Per the pass-23 rule I do not verify on a source I cannot open. To clear: a human opens any reference (e.g. Wikipedia 'Methods of computing square roots') or the builder drops the naming clause. | REOPENED 2026-10-14 (v3, wave E r6 revision by demo-builder): naming clause ('known as the Babylonian (or Heron's) method') dropped per pass 23 (no openable source); only the derivation half remains. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. With the naming clause dropped, only the derivation remains: Newton's step for f(g) = g^2 - 2 is g - (g^2 - 2)/(2g) = (g + 2/g)/2, the same as Demo.tsx line 24, next = (g + 2/g)/2. Checked symbolically and numerically (g = 1 -> 1.5 -> 1.41666...).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -78,12 +80,16 @@
     "why": "Near the root the new error is about the old error squared, so an error near 10^-5 becomes about 10^-10: the correct digits roughly double, to about 10."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/newton-doubles-the-digits/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/newton-doubles-the-digits/2026-10-14-learner-adult-beginner-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:newton-sqrt",
     "also": [],

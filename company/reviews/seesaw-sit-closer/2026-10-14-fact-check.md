@@ -10,3 +10,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c6 | verified | Torque about the pivot = m g d for a weight at horizontal distance d; tilt multiplies both sides by cos(theta), so the comparison is unchanged. kg x m/s^2 x m = N·m. Stage caption 'turning effect = kg × 9.81 × m from the middle' matches. |
 
 **Result:** all open claims verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Own node: 20 × 9.81 × 3.5 = 686.7 -> '687 N·m'; 40 × 9.81 × 2.0 = 784.8 -> '785 N·m'; net < 0 tilts the 40 kg (left) end down. 'tried-other' sets other on every non-4.0 move, so at reveal other is set and the dashed label 'dashed: last tipped at 3.5 m, 687 N·m' shows whenever d differs. |
+
+**Result:** all open claims verified; no disputes.

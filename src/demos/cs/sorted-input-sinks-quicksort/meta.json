@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "quicksort-worst-case",
   "format": "Before / after toggle",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -90,7 +90,9 @@
     "why": "Each split peels off only the pivot: 99 + 98 + ... + 1 = 4,950. A balanced run would be near 700 (100 x log2 100)."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/sorted-input-sinks-quicksort/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
       "company/reviews/sorted-input-sinks-quicksort/2026-10-14-learner-adult-beginner-r5.md"
     ],

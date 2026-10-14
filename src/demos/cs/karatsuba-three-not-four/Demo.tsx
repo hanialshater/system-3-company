@@ -4,7 +4,7 @@
 // base case when either factor < 10). Schoolbook splits each product into 4 (a·c, a·d, b·c, b·d); Karatsuba into 3
 // (a·c, b·d, (a+b)(c+d)). One shared button splits both one level: 4 | 3, 16 | 9, 64 | 27 one-digit products. The
 // counts are the trees' real leaves, not constants. No half-sum carries for these numbers, so every leaf is 1-digit.
-// Milestone: one-digit-leaves (spec company/design/specs/karatsuba-three-not-four.md).
+// Milestones: one-digit-leaves and middle-checked (the check line prints both sides of the cross-term identity) (spec company/design/specs/karatsuba-three-not-four.md).
 
 import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -55,6 +55,9 @@ const DIGITS = COUNTS.map((_, d) => Math.max(...[...level(S, d), ...level(K, d)]
 const TOP = split(X, Y);
 const CROSS = TOP.a * TOP.d + TOP.b * TOP.c;
 const VIA = (TOP.a + TOP.b) * (TOP.c + TOP.d) - TOP.a * TOP.c - TOP.b * TOP.d;
+const AC = TOP.a * TOP.c;
+const BD = TOP.b * TOP.d;
+const SUMS = (TOP.a + TOP.b) * (TOP.c + TOP.d);
 
 const fmt = (v: bigint) => v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const reduced = () => typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -64,7 +67,7 @@ const COLS = [
   { x: 172, w: 166, tree: K, head: "Karatsuba: 3 per split" },
 ];
 const L1Y = 44;
-const L2Y = 86;
+const L2Y = 92;
 const L3Y = 156;
 
 function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number; middle: boolean }) {
@@ -85,17 +88,20 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
                 x={col.x + i * bw + 1}
                 y={L1Y}
                 width={bw - 2}
-                height={32}
+                height={40}
                 rx={4}
                 fill={isK ? "color-mix(in srgb, var(--domain) 18%, var(--bg-2))" : "var(--bg-2)"}
                 stroke={hi ? "var(--domain)" : "var(--line)"}
                 strokeWidth={hi ? 2.5 : 1}
               />
-              <text x={col.x + i * bw + bw / 2} y={L1Y + 13} textAnchor="middle" className={s.lab}>
-                {n.label === "(a+b)(c+d)" ? "+ (a+b)(c+d)" : n.label}
+              <text x={col.x + i * bw + bw / 2} y={L1Y + 11} textAnchor="middle" className={s.lab}>
+                {n.label}
               </text>
-              <text x={col.x + i * bw + bw / 2} y={L1Y + 26} textAnchor="middle" className={s.nums}>
-                {n.x.toString()}×{n.y.toString()}
+              <text x={col.x + i * bw + bw / 2} y={L1Y + 23} textAnchor="middle" className={s.nums}>
+                {n.x.toString()}
+              </text>
+              <text x={col.x + i * bw + bw / 2} y={L1Y + 34} textAnchor="middle" className={s.nums}>
+                ×{n.y.toString()}
               </text>
             </g>
           );
@@ -162,17 +168,16 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
   middle: boolean;
   toggle: () => void;
 }) {
-  const { reach } = useMilestones(interact, ["one-digit-leaves"]);
+  const { reach } = useMilestones(interact, ["one-digit-leaves", "middle-checked"]);
   useEffect(() => {
     if (lvl >= DEPTH) reach("one-digit-leaves");
   }, [lvl]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (middle) reach("middle-checked");
+  }, [middle]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={s.wrap}>
-      <p className={middle ? s.check : s.rule}>
-        {middle
-          ? `a·d + b·c = ${fmt(CROSS)} = (a+b)(c+d) − a·c − b·d = ${fmt(VIA)}`
-          : "Split each number into halves: a b and c d. Multiply the halves."}
-      </p>
+      <p className={s.rule}>Split each number into halves: a b and c d. Multiply the halves.</p>
       <svg
         viewBox="0 0 340 274"
         className="stage-svg"
@@ -205,6 +210,21 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
           ))}
         </tbody>
       </table>
+      <div className={s.checkBox} data-testid="middle-check">
+        {middle ? (
+          <>
+            <p className={s.check}>
+              Schoolbook&rsquo;s a·d + b·c: {TOP.a.toString()}·{TOP.d.toString()} + {TOP.b.toString()}·{TOP.c.toString()} ={" "}
+              {fmt(CROSS)}
+            </p>
+            <p className={s.check}>
+              Karatsuba&rsquo;s (a+b)(c+d) − a·c − b·d: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}
+            </p>
+          </>
+        ) : (
+          <p className={s.rule}>Where did a·d and b·c go? Check the middle.</p>
+        )}
+      </div>
       <Row>
         <Control className={s.tap} disabled={locked || lvl >= DEPTH || busy} onClick={splitOne}>
           Split one level
@@ -212,8 +232,13 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
         <Control className={s.tap} disabled={locked || lvl >= DEPTH || busy} onClick={splitAll}>
           Split down to 1 digit
         </Control>
-        <Control className={`${s.tap} ${middle ? "active" : ""}`} aria-pressed={middle} disabled={locked} onClick={toggle}>
-          Check the middle: {middle ? "on" : "off"}
+        <Control
+          className={`${s.tap} ${middle ? "active" : ""}`}
+          aria-pressed={middle}
+          disabled={locked || middle}
+          onClick={toggle}
+        >
+          Check the middle
         </Control>
       </Row>
     </div>
@@ -243,12 +268,12 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Split 11111111 and 11111111 into halves. Schoolbook multiplication uses 4 half-size products at each level; Karatsuba uses 3. Counting single-digit multiplications down to 1-digit pieces, how many does Karatsuba need for these 8-digit numbers, where no half-sum carries (schoolbook: 64)?",
+          "Multiply 11111111 × 11111111 by splitting each number in half, again and again, down to 1-digit pieces. Schoolbook makes 4 half-size products per split and ends with 64 one-digit products. Karatsuba makes 3 per split. How many does it end with?",
         options: ["16", "27", "48"],
         answer: 1,
       }}
       exploreHint="Split both ways and count the smallest products."
-      minInteractions={1}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -256,8 +281,9 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
             at each split: 4·4·4 against 3·3·3.
           </p>
           <p>
-            The trick is the third box: (a+b)(c+d) minus a·c and b·d leaves a·d + b·c, the two cross terms, so one
-            multiplication is saved at every split. Saved at every level, that compounds: for 1,024-digit numbers the ideal
+            The trick is the third box. Your check line showed it: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}, the
+            same as schoolbook&rsquo;s a·d + b·c. One product of the sums, minus two products Karatsuba already has, gives
+            both cross terms, so one multiplication is saved at every split. Saved at every level, that compounds: for 1,024-digit numbers the ideal
             no-carry count is 59,049 products against 1,048,576 (3<sup>10</sup> against 4<sup>10</sup>), and in general about n<sup>1.58</sup> instead of n<sup>2</sup> for n digits.
           </p>
         </>
@@ -272,7 +298,7 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
           splitAll={splitAll}
           busy={lvl < target}
           middle={middle}
-          toggle={() => setMiddle((m) => !m)}
+          toggle={() => setMiddle(true)}
         />
       )}
     </Lesson>

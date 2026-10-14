@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "hash-deletion-tombstones",
   "format": "Before / after toggle",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -90,9 +90,12 @@
     "why": "The search treats an empty slot as the end of the run. A gone marker in slot 5 would have told it to keep looking."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/deleted-key-breaks-search/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/deleted-key-breaks-search/2026-10-14-learner-adult-beginner-r5.md"
+      "company/reviews/deleted-key-breaks-search/2026-10-14-learner-adult-beginner-r5.md",
+      "company/reviews/deleted-key-breaks-search/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []

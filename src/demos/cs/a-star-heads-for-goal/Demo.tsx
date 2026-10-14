@@ -141,7 +141,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
             <p>{lines.join(" ")}</p>
             <p>
               The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every
-              direction. Look at the line above the grid: at S the guess said {GUESS_AT_S} steps left, and with the
+              direction. Look at the line under the table: at S the guess said {GUESS_AT_S} steps left, and with the
               wall the route took {filled("guess", true)?.route ?? "more"}. The guess can be too low, never too high, so it
               never makes a shorter route look worse. That is why the guided route matched the flood&rsquo;s length in
               your table.
@@ -226,7 +226,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.rule}>
                   {v.mode === "guess"
-                    ? `Score = steps so far + guess of steps left. Guess at S: ${GUESS_AT_S}.${done ? ` Route: ${done.route}.` : ""}`
+                    ? `Score = steps so far + guess of steps left. Guess at S: ${GUESS_AT_S}.`
                     : "Score = steps so far. Lowest score settles next."}
                 </p>
                 <svg
@@ -325,6 +325,11 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     </div>
                   ))}
                 </div>
+                <p className={s.guess} data-testid="guess-vs-route">
+                  {filled("guess", true)
+                    ? `Guess at S: ${GUESS_AT_S}. Real route with the wall: ${filled("guess", true)!.route}.`
+                    : `Guess at S: ${GUESS_AT_S}. Real route with the wall: ?`}
+                </p>
                 <Row>
                   <Control className="tap" disabled={locked || busy || atGoal} onClick={settleNext}>
                     Settle next

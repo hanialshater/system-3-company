@@ -8,17 +8,20 @@
   },
   "confidence": "",
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/last-digit-first/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/last-digit-first/2026-10-14-learner-sequence-learner-r5.md"
+      "company/reviews/last-digit-first/2026-10-14-learner-sequence-learner-r5.md",
+      "company/reviews/last-digit-first/2026-10-14-learner-sequence-learner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "slug": "last-digit-first",
   "title": "Sort by the last digit first?",
-  "hook": "Three passes, three digits. Which order works?",
+  "hook": "Three passes, one digit each. Does the order of the passes matter?",
   "concept": "radix-sort",
   "format": "storyboard-scrub",
   "learner": {
@@ -45,10 +48,10 @@
     },
     {
       "id": "cs.last-digit-first.c2",
-      "text": "Doing the same passes first digit to last (first digit, then middle, then last) ends 720 355 436 457 657 329 839, which is ordered by the last digit only; the reveal names the first out-of-order pair in the learner's run (657 comes before 329); the first digit went first, so the later passes overwrote its work.",
+      "text": "Doing the same passes first digit to last (first digit, then middle, then last) ends 720 355 436 457 657 329 839, which is ordered by the last digit only; the reveal names the first out-of-order pair in the learner's run (720 comes before 355); the first digit went first, so the later passes overwrote its work.",
       "support": "simulation",
-      "source": "Builder's node script: passes of place 2, 1, 0 give 329 355 457 436 657 720 839, then 329 720 436 839 355 457 657, then 720 355 436 457 657 329 839. The reveal says 'ordered by the last digit only' and the final pass is by last digit; the list is not sorted. | FACT-CHECK 2026-10-14 (pass 19): Own run places 2,1,0: 329 355 457 436 657 720 839 -> 329 720 436 839 355 457 657 -> 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ascending, list not sorted (436 after 355 fine but 329 after 657). Reveal branch in Demo.tsx shows this text only when not sorted. | v3 2026-10-14 (demo-builder): the first-digit-first run is now its own row of pass buttons and the gate requires finishing it, so the reveal quotes a run the learner did. Second clause reworded. Reopened. | FACT-CHECK 2026-10-14 (pass 21): Numbers verified (own node fc21/radix.mjs: places 2, 1, 0 end 720 355 436 457 657 329 839; last digits ascend, list not sorted; marks > < < < > <). DISPUTED on what the stage shows: the reveal adds 'with red > marks', but the stage shows only the run last touched and finished runs cannot be re-shown. A learner who finishes first-digit-first before last-digit-first sees the sorted run (all green <) while the reveal points to red > marks. Fix (builder): keep both final lists with their marks on stage (e.g. the 'ended' lines with marks) or drop the stage pointer. | v4 2026-10-14 (demo-builder): dropped the stage pointer 'with red > marks'; the reveal now names the first pair in the finished first-digit-first list with v > next (657 before 329), computed from ended.first, so it holds whichever run the stage shows. Reopened. | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. The run and 'ordered by the last digit only' check (own fc23/radix.mjs: places 2,1,0 end 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9). But the claim's example is not what the reveal prints. Demo.tsx fBad = the first i with f[i] > f[i+1], which is i = 0, so the reveal reads '(720 comes before 355)', not '(657 comes before 329)'. The run is deterministic (one start list, no reset), so every learner sees 720/355. Fix (builder): change the claim's parenthetical to '720 comes before 355'. The learner text is already true, so no Demo change is needed.",
-      "status": "disputed",
+      "source": "Demo.tsx deal() with places 2, 1, 0 from START; builder re-ran in Node (2026-10-14): 329 355 457 436 657 720 839 -> 329 720 436 839 355 457 657 -> 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ascend. fBad = first i with f[i] > f[i+1] = 0, so the reveal prints '(720 comes before 355)'. v5 corrects the parenthetical per fact-check pass 23 (the v4 claim said 657/329, which the reveal never prints). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own radix run first digit, middle, last: 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ordered, the list is not; first out-of-order pair found by the reveal's findIndex is 720 > 355. Each run can be done only once (no reset), so the ending is fixed.",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },

@@ -2058,10 +2058,11 @@
       "id": "W-150",
       "title": "Pattern seen across waves A/B: reveals quote states the learner never visited (milestones unlock too early: halve-the-margin-cost, spam-threshold, rule-of-72, snowshoe, exterior-turns, seesaw, window-forgets-start…). Add a demo-standard rule: every 'you saw' value in a reveal must be a milestone the learner reached, or quote the learner's own state",
       "owner": "head-of-product",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-151",
@@ -2094,10 +2095,11 @@
       "id": "W-154",
       "title": "Pattern: the locked (pre-predict) stage or title shows the answer (probing-clusters 4/10, union-find 3 hop rows, which-answer-wins curve, web-map 85.05° button, binary-fingers values, four-queens title 'sixteen'). Add a demo-standard rule + a pre-predict leak check in review",
       "owner": "head-of-product",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-155",
@@ -2673,10 +2675,11 @@
       "id": "W-216",
       "title": "Re-check Pass 22 builder fixes (W-207..W-215): karatsuba c5, ramp c2, kmp c7, bank c7, fewest-exits c5, same-revenue c6, enemies c6, two-stacks c5, four-in-a-row c1+c6, bridge c5, penalty-on-wiggle c6 (all unverified)",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-217",
@@ -2709,6 +2712,159 @@
       "id": "W-220",
       "title": "FC pass 23: newton-doubles-the-digits c5 held unverified: the 'known as the Babylonian (or Heron's) method' naming needs an opened source; a human opens one, or the builder drops the clause",
       "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-221",
+      "title": "Fix fact-check pass 23 disputes: last-digit-first c2 (claim text only: the reveal prints '720 comes before 355', not '657 before 329'); lower-bid-takes-the-top-ad new c6 ('A high bid cannot make up for low quality' is false under bid x quality: A wins above $3.00); two-public-clues-break-the-herd new c6 (recall why: two new clues cancel the crowd's two, 50%, they do not outweigh). Wording in each claim's source",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-222",
+      "title": "Open the sources for 3 claims held in fact-check pass 23 (all scholarly hosts blocked by the proxy): bridge-carries-news-not-habits c5 (Centola & Macy 2007 AJS abstract), only-the-needed-trader-profits c5 (Blume-Easley-Kleinberg-Tardos 2009 profit-only-if-essential theorem, or E&K 11), who-pays-same-filter c3 (Coase 1960 / E&K ch. 24 naming). The model parts are already verified; only the attribution is open",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-223",
+      "title": "Learner-evaluator brief: add a named pre-predict leak check (title, hook, options, locked frame) and a 'reveal quotes only what I saw, incl. after Reset' check, citing demo-standard rules 'No answer before the commit' / 'The reveal quotes what you saw' (decision 2026-10-14-reveal-quotes-what-you-saw.md; remainder of W-154)",
+      "owner": "evaluation-steward",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-224",
+      "title": "Apply demo-standard Pre-flight to r6 revise lessons: retitle range-min-in-four-nodes, middle-of-three-takes-all, newton-doubles-the-digits; drop locked ⅔ line in four-in-a-row-two-thirds; number all options in ternary-asks-more; make reveals quote seen/recorded state in ternary-asks-more, patience-wins-the-split (10% case as milestone), the-bar-nobody-can-forecast (survive Reset), four-in-a-row-two-thirds, range-min-in-four-nodes; build.md ## Pre-flight each (decision 2026-10-14-reveal-quotes-what-you-saw.md)",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-225",
+      "title": "throw-it-fast-enough: slider max is the answer and the 7.85 km/s landing is passed in one sweep with no mark the reviewer sees; needs a drawing that lets speeds pass 7.9 and a landing throw the learner stops on (decision 2026-10-14-reveal-quotes-what-you-saw.md)",
+      "owner": "learning-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-226",
+      "title": "PR #3 (ccr-rnd-ncm, session 2: NCM batch 1 + knots gen 2): merge with changes, see company/engineering/community/prs/3.md; re-trial and merge when changes 1-4 are on the head",
+      "owner": "community-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-227",
+      "title": "PR #3 change 1: take src/kit/knots (22 files) off ccr-rnd-ncm until the principal engineer approves EDD-004 (status proposed); land it later with the kit README import blocks and reconcile kit tests (96 run vs EDD's 102)",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-228",
+      "title": "PR #3 changes 2-3: news-comes-from-acquaintances curriculum.references use section 3.1/3.2, move to section_unconfirmed (head-of-product rule); one-good-link-beats-many is missing format and interactions (meta v2)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-229",
+      "title": "PR #3 change 4: QA contract on the final ccr-rnd-ncm head for all 17 NCM batch-1 lessons after the polish commits; file agenda-picks-the-winner with company qa-record (today builder-recorded, not in evidence.qa)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-230",
+      "title": "Re-run computer-use QA (phone+desktop) on cut-the-rod-for-more v2 and drop-the-losing-start v3 after QA-path fixes",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-231",
+      "title": "wheel-needs-four-colours c4 disputed (FC pass 24): hand-coloured 4-colour ring-of-4 run is kept as the record, so reveal can say 'done with 4 colours'; record only <=3-colour or smallest-used runs. See company/reviews/wheel-needs-four-colours/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-232",
+      "title": "iss-gravity-still-there c6 disputed (FC pass 24): 'every angle true' is false under the 6x radial stretch; reword to 'each point's direction from Earth's centre true'. See company/reviews/iss-gravity-still-there/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-233",
+      "title": "continental-jigsaw c4 disputed (FC pass 24): source unopened and 500-fathom contour lies on the continental slope, not the shelf edge; reword to 'continental margin' and get a human to open Bullard et al. 1965. See company/reviews/continental-jigsaw/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-234",
+      "title": "each-element-pops-once c6 DISPUTED (FC pass 24): reveal says the stack 'emptied box by box' but Next number x9 on '8 ... 1 9' (or reduced motion) jumps in one frame; step pops on Next number or condition the clause; see company/reviews/each-element-pops-once/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-235",
+      "title": "rotation-untangles-the-chain soft-lock (FC pass 24 observation): Plain filled by Insert next, then Rotating replays to 7 without setting 'first'; first-rotation milestone becomes unreachable, reveal never unlocks; see company/reviews/rotation-untangles-the-chain/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-236",
+      "title": "FC pass 24 batch 2 disputes (fix, then re-check): two-bets-split c6 (world claim 'real investments often fall together' has no openable source), patience-wins-the-split c2 and pay-for-the-harm-you-do c1 (reveal points at a stage line that shows a different state on reachable paths; tie the sentence to the recorded 10% / honest-bid state), bridge-carries-news-not-habits c5 (sources unopenable: open, replace, or drop). Details in company/reviews/<slug>/2026-10-14-fact-check.md Pass 24",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-237",
+      "title": "Engineering review (tier 2) of the reveal stage-crop fix: DemoCard useRevealFit now scales the stage (transform, floor 0.4) so stage + reveal fit at 390x844 instead of scrolling the stage top off. Note: company/engineering/notes/2026-10-14-reveal-stage-crop.md",
+      "owner": "principal-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

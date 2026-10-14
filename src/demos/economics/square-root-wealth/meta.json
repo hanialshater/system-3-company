@@ -65,6 +65,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.square-root-wealth.c6",
+      "text": "On the square-root curve, going from $0 to $25 raises the felt value by 5.00, but going from $50 to $100 raises it by only 2.93 (10 - 7.07): each extra dollar adds less than the one before.",
+      "support": "derivation",
+      "source": "sqrt(25) - sqrt(0) = 5; sqrt(100) - sqrt(50) = 10 - 7.0711 = 2.9289, shown to two decimals as 2.93 (same rounding as the stage readouts). Drawn on stage as two green rises once the learner meets the coin's line. Builder statement, not self-verified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: sqrt(25) - 0 = 5.00; sqrt(100) - sqrt(50) = 10 - 7.071 = 2.929 -> '2.93'. sqrt is strictly concave, so each extra dollar adds less. Gains drawn once met.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -80,16 +89,18 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/square-root-wealth/2026-10-13-qa.md"
+      "company/reviews/square-root-wealth/2026-10-13-qa.md",
+      "company/reviews/square-root-wealth/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/square-root-wealth/2026-10-13-learner-adult-beginner.md",
-      "company/reviews/square-root-wealth/2026-10-14-learner-adult-beginner-r2.md"
+      "company/reviews/square-root-wealth/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/square-root-wealth/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:risk-aversion",
     "prerequisites": [

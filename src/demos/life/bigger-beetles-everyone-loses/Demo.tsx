@@ -7,6 +7,9 @@
 // Replicator update: x' = x * W_large / mean W. Starts at 1% large.
 // The learner steps generations, can turn 5% of a mostly-large population back to small,
 // and reads the population's average score (6 when all small, 4 when all large).
+// v2: the curve is marked where it crosses 99% ("99% at gen 24"); "Turn 5% small, run 5" dips the share and then
+// runs 5 generations so the mutants are seen shrinking back (milestone "mutated"); Restart keeps the last run as a
+// faded trace with its mark, so the reveal's numbers stay on stage.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -19,7 +22,7 @@ const MAX_GEN = 60;
 const STEP = 5;
 const RUN_TO = 30;
 const MUTANTS = 0.05;
-const MILESTONES = ["stepped", "took-over"] as const;
+const MILESTONES = ["stepped", "took-over", "mutated"] as const;
 
 const wL = (x: number) => 8 * (1 - x) + 4 * x;
 const wS = (x: number) => 6 * (1 - x) + 2 * x;
@@ -30,6 +33,8 @@ const next = (x: number) => (x * wL(x)) / avg(x);
 const X0 = 34, X1 = 290, Y0 = 10, Y1 = 100;
 const gx = (g: number) => X0 + ((X1 - X0) * g) / MAX_GEN;
 const py = (x: number) => Y1 - (Y1 - Y0) * x;
+const first99 = (h: number[]) => h.findIndex((v) => v >= 0.99);
+type Mutation = { at: number; small: number; large: number; after: number };
 const pct = (x: number) => {
   const p = 100 * x;
   return p > 0 && p < 10 ? `${p.toFixed(1)}%` : `${Math.round(p)}%`;
@@ -37,7 +42,8 @@ const pct = (x: number) => {
 
 function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: () => void; onTakeover: (g: number) => void }) {
   const [hist, setHist] = useState<number[]>([START]);
-  const [mutated, setMutated] = useState(false);
+  const [mutated, setMutated] = useState<Mutation | null>(null);
+  const [ghost, setGhost] = useState<number[] | null>(null); // the run before the last Restart
   const { reach } = useMilestones(interact, MILESTONES);
   const gen = hist.length - 1;
   const x = hist[gen];
@@ -47,7 +53,7 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
     while (h.length - 1 < to) h.push(next(h[h.length - 1]));
     setHist(h);
     reach("stepped");
-    const g99 = h.findIndex((v) => v >= 0.99);
+    const g99 = first99(h);
     if (g99 >= 0) {
       reach("took-over");
       onTakeover(g99);
@@ -55,16 +61,33 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
   };
   const mutate = () => {
     const h = [...hist];
-    h[h.length - 1] = x * (1 - MUTANTS);
+    const dipped = x * (1 - MUTANTS);
+    h[h.length - 1] = dipped;
+    for (let i = 0; i < STEP; i++) h.push(next(h[h.length - 1]));
     setHist(h);
-    setMutated(true);
+    setMutated({ at: gen, small: wS(dipped), large: wL(dipped), after: h[h.length - 1] });
+    reach("mutated");
   };
   const restart = () => {
+    setGhost(hist);
     setHist([START]);
-    setMutated(false);
+    setMutated(null);
   };
 
-  const pts = hist.map((v, g) => `${gx(g).toFixed(1)},${py(v).toFixed(1)}`).join(" ");
+  const line = (h: number[]) => h.map((v, g) => `${gx(g).toFixed(1)},${py(v).toFixed(1)}`).join(" ");
+  const pts = line(hist);
+  const mark = (h: number[], faded: boolean) => {
+    const g = first99(h);
+    if (g < 0) return null;
+    return (
+      <g opacity={faded ? 0.5 : 1}>
+        <circle cx={gx(g)} cy={py(h[g])} r={3} className={s.dot} />
+        <text x={gx(g) + 4} y={py(h[g]) + 12} className={s.small}>
+          99% at gen {g}
+        </text>
+      </g>
+    );
+  };
   const ahead = wL(x) > wS(x);
 
   return (
@@ -103,9 +126,16 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
         ))}
         <text x={(X0 + X1) / 2} y={118} textAnchor="middle" className={s.small}>generation</text>
         <text x={X0 + 4} y={Y0 + 2} className={s.small}>share of large beetles</text>
+        {!locked && ghost && gen === 0 && (
+          <>
+            <polyline points={line(ghost)} className={s.line} opacity={0.35} />
+            {mark(ghost, true)}
+          </>
+        )}
         {!locked && (
           <>
             <polyline points={pts} className={s.line} />
+            {mark(hist, false)}
             <circle cx={gx(gen)} cy={py(x)} r={3.5} className={s.dot} />
           </>
         )}
@@ -114,7 +144,11 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Predict first. Then run the generations."
-          : x >= 0.99
+          : ghost && gen === 0
+            ? `Restarted. Faded: your last run, which ended at average ${avg(ghost[ghost.length - 1]).toFixed(1)}, not 6.`
+            : mutated && gen === mutated.at + STEP
+            ? `Mutants scored ${mutated.small.toFixed(1)} vs ${mutated.large.toFixed(1)}. ${STEP} generations on: ${pct(mutated.after)} large.`
+            : x >= 0.99
             ? `Generation ${gen}: ${pct(x)} large. Everyone now averages ${avg(x).toFixed(1)}, not 6.`
             : `Generation ${gen}: large ${wL(x).toFixed(1)}, small ${wS(x).toFixed(1)}. ${ahead ? "Large spread." : ""}`}
       </p>
@@ -126,8 +160,8 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
         <Control className={s.chip} disabled={locked || gen >= RUN_TO} onClick={() => advance(RUN_TO)}>
           Run to gen {RUN_TO}
         </Control>
-        <Control className={s.chip} disabled={locked || x < 0.9 || gen >= MAX_GEN} onClick={mutate}>
-          Turn {Math.round(MUTANTS * 100)}% small
+        <Control className={s.chip} disabled={locked || x < 0.9 || gen + STEP > MAX_GEN} onClick={mutate}>
+          Turn {Math.round(MUTANTS * 100)}% small, run {STEP}
         </Control>
         <Control className={s.chip} disabled={locked || gen === 0} onClick={restart}>
           Restart
@@ -137,7 +171,6 @@ function Stage({ locked, interact, onTakeover }: { locked: boolean; interact: ()
         <Readout label="Large beetles" value={locked ? "?" : pct(x)} />
         <Readout label="Average score" value={locked ? "?" : avg(x).toFixed(1)} />
       </Row>
-      {mutated && !locked && <p className={s.how}>Small mutants score less among large ones (2 vs 4).</p>}
     </div>
   );
 }
@@ -158,13 +191,13 @@ export default function BiggerBeetlesEveryoneLoses({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Large beetles went from 1% to 99% {g99 !== null ? `by generation ${g99}` : "in a few dozen generations"}, and the
-            average score fell from 6 to <strong>4</strong>. Everyone is worse off.
+            Large beetles went from 1% to 99% {g99 !== null ? `by generation ${g99}` : "in a few dozen generations"} (the mark on
+            the curve), and the average score fell from 6 to <strong>4</strong>. Everyone is worse off.
           </p>
           <p>
             Large beats small against either opponent (8 vs 6 against small, 4 vs 2 against large), so it spreads
-            whatever the mix. Once nearly everyone is large, a small mutant scores 2 where the large score 4, so it
-            cannot get back in. A strategy that, once common, no small group of mutants can invade is
+            whatever the mix. Once nearly everyone is large, a small mutant scores about 2 where the large score about 4, so
+            your 5% of mutants shrank back within {STEP} generations. A strategy that, once common, no small group of mutants can invade is
             evolutionarily stable, even when it leaves everyone with less: an arms race.
           </p>
           <p className="muted">Toy model with chosen payoffs and no baseline offspring; it is not a claim about real beetles.</p>

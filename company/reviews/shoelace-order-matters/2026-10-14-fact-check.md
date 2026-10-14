@@ -14,3 +14,11 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c6 | verified | Shoelace sum = sum of winding number x area over regions; c4 shows +3 and -3 lobes for the crossing path. |
 
 **Result:** 6 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Own node over all 24 tap orders: 4 give +12 (anticlockwise with y up), 4 give -12, 16 give 0. Go round ↺ = +12, Go round ↻ = -12; the reveal quotes the first logged positive and negative values, which can only be +12 and -12. |

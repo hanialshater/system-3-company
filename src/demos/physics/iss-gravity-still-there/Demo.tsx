@@ -13,6 +13,12 @@
 //
 // Earned reveal: "iss" (at 400 km), "far" (20,200 km or more), "fell-short" (a slow throw landed),
 // "orbit-throw" (the 7.67 km/s throw).
+//
+// v3: zoomed-in view keeps Earth's radius and each point's direction from Earth's centre true but stretches height
+// above the ground about 6x (v4: no longer says 'every angle': a path's angle to the ground is drawn steeper)
+// (disclosed on stage), so the 400 km gap is 30 px and paths are visible on a phone. Every throw stays drawn,
+// slow ones end at a "x" and the readout says when they hit the ground. Height buttons come before the throws in
+// DOM order, so the QA path ends on the ISS picture with all paths; a "Seen:" row keeps the far stops' values.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -76,8 +82,13 @@ const H = 272;
 const CX = 160;
 const CY = 125;
 const RMAX = 112; // px for the outermost radius drawn
-const FAR_KPX = RMAX / (R_KM + 35786); // zoomed out: out to geostationary
-const NEAR_KPX = RMAX / R0; // zoomed in: out to the ISS orbit
+const FAR_KPX = RMAX / (R_KM + 35786); // zoomed out: out to geostationary, one true scale
+// Zoomed in (ground and ISS height): Earth's radius to scale, height above the ground stretched so the
+// 400 km gap is 30 px. Each point's direction from Earth's centre is true, so every path lands where it
+// really lands; a path's angle to the ground is not true (drawn about 6x steeper).
+const E_PX = 82;
+const HPX = (RMAX - E_PX) / ISS_H; // px per km of height
+const STRETCH = Math.round(HPX / (E_PX / R_KM)); // about 6
 const GAUGE = 150; // px for 100% (ground value)
 
 export default function IssGravityStillThere({ slug }: { slug: string }) {
@@ -87,11 +98,18 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
   const [seen, setSeen] = useState<{ stops: number[]; throws: number[] }>({ stops: [0], throws: [] });
   const h = STOPS[k].h;
   const near = k <= 1;
-  const kpx = near ? NEAR_KPX : FAR_KPX;
-  const X = (x: number) => CX + x * kpx;
-  const Y = (y: number) => CY - y * kpx;
-  // The throw is drawn only at ISS height (the stop it is thrown from).
-  const flight = throwI === null || k !== 1 ? null : FLIGHTS[throwI];
+  // Map a point (km, Earth's centre at 0,0) to the picture.
+  const P = (x: number, y: number): [number, number] => {
+    if (!near) return [CX + x * FAR_KPX, CY - y * FAR_KPX];
+    const r = Math.hypot(x, y);
+    const a = Math.atan2(x, y);
+    const rp = E_PX + (r - R_KM) * HPX;
+    return [CX + rp * Math.sin(a), CY - rp * Math.cos(a)];
+  };
+  const ringPx = (hh: number) => (near ? E_PX + hh * HPX : (R_KM + hh) * FAR_KPX);
+  // Throws are drawn only at ISS height (the stop they are thrown from). Every throw made stays drawn.
+  const atIss = k === 1;
+  const flight = throwI === null || !atIss ? null : FLIGHTS[throwI];
 
   // Station on its circular orbit, starting at the top and moving clockwise.
   const th = (VC * t * 60) / R0;
@@ -104,8 +122,9 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
     : flight.landMin === null
       ? `${t} min: still missing`
       : landed
-        ? `landed ${Math.round(flight.landKm).toLocaleString("en-US")} km away`
-        : `${t} min: falling`;
+        ? `hit the ground ${Math.round(flight.landKm).toLocaleString("en-US")} km away`
+        : `${t} min: falling, hits ground at ${flight.landMin.toFixed(1)} min`;
+  const farSeen = seen.stops.filter((i) => i >= 2);
 
   return (
     <Lesson
@@ -115,15 +134,16 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
         options: ["0% (none)", "90%", "50%"],
         answer: 1,
       }}
-      exploreHint="Move the satellite to the ISS's height, then much further out. Throw a ball from 400 km, slow and at ISS speed, and step time."
+      exploreHint="Visit each height, then throw a ball from 400 km, slow and at ISS speed, and step time."
       minInteractions={4}
       reveal={() => {
         const slow = seen.throws.filter((i) => SPEEDS[i] !== VC).map((i) => `${fmtV(SPEEDS[i])} km/s`);
+        const fade = farSeen.filter((i) => i >= 3).map((i) => `${fmtPct(STOPS[i].h)} at ${i === 3 ? "GPS height" : "geostationary"}`);
         return (
           <>
             <p>
-              At 400 km the gravity bar barely shrank: <strong>{fmtPct(ISS_H)}</strong> of its ground value. Only far out did
-              it fade: {fmtPct(20200)} at GPS height, {fmtPct(35786)} at geostationary.
+              At 400 km the gravity bar barely shrank: <strong>{fmtPct(ISS_H)}</strong> of its ground value.
+              {fade.length ? ` Only far out did it fade: ${fade.join(", ")}.` : ""}
             </p>
             <p>
               {seen.stops.includes(2)
@@ -132,9 +152,9 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
               It weakens with the square of that distance, and 400 km adds only 6% to it.
             </p>
             <p>
-              {slow.length ? `Your ${slow.join(" and ")} throw curved down into the ground. ` : ""}
-              The {fmtV(VC)} km/s throw fell just as hard but kept missing the ground: its path was the station&apos;s orbit. The
-              station and astronauts move at that speed, so they fall together, round and round. That is why they float.
+              {slow.length ? `Your ${slow.join(" and ")} ${slow.length > 1 ? "throws" : "throw"} curved down and hit the ground (the × marks). ` : ""}
+              The {fmtV(VC)} km/s throw fell just as hard but kept missing the ground, on the station&apos;s orbit. Station and
+              astronauts move at that speed, so they fall together. That is why they float.
             </p>
           </>
         );
@@ -157,9 +177,14 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
               if (FLIGHTS[i].landMin !== null) reach("fell-short");
               else reach("orbit-throw");
             };
-            const tracePath = flight
-              ? flight.pts.map(([x, y], j) => `${j ? "L" : "M"}${X(x).toFixed(1)},${Y(y).toFixed(1)}`).join(" ")
-              : "";
+            const pathOf = (f: Flight) =>
+              f.pts
+                .map(([x, y], j) => {
+                  const [px, py] = P(x, y);
+                  return `${j ? "L" : "M"}${px.toFixed(1)},${py.toFixed(1)}`;
+                })
+                .join(" ");
+            const [sx, sy] = P(station[0], station[1]);
             return (
               <div className={s.wrap}>
                 <svg
@@ -169,22 +194,41 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
                   aria-label={`Satellite at ${STOPS[k].label}: gravity ${fmtPct(h)} of ground${flight && throwI !== null ? `; ball thrown at ${fmtV(SPEEDS[throwI])} km/s, ${ballText}` : ""}`}
                 >
                   {(near ? STOPS.slice(1, 2) : STOPS.slice(1)).map((st) => (
-                    <circle key={st.h} cx={CX} cy={CY} r={(R_KM + st.h) * kpx} className={st.h === h ? s.orbitOn : s.orbit} />
+                    <circle key={st.h} cx={CX} cy={CY} r={ringPx(st.h)} className={st.h === h ? s.orbitOn : s.orbit} />
                   ))}
-                  <circle cx={CX} cy={CY} r={R_KM * kpx} className={s.earth} />
-                  {flight && <path d={tracePath} className={s.trace} />}
+                  <circle cx={CX} cy={CY} r={near ? E_PX : R_KM * FAR_KPX} className={s.earth} />
+                  {atIss &&
+                    seen.throws.map((i) => {
+                      const f = FLIGHTS[i];
+                      const end = f.pts[f.pts.length - 1];
+                      const [ex, ey] = P(end[0], end[1]);
+                      return (
+                        <g key={i} opacity={i === throwI ? 1 : 0.45}>
+                          <path d={pathOf(f)} className={s.trace} />
+                          {f.landMin !== null && (
+                            <text x={ex} y={ey + 4} textAnchor="middle" className={s.hit}>
+                              ×
+                            </text>
+                          )}
+                        </g>
+                      );
+                    })}
                   {k === 0 ? (
-                    <circle cx={X(0)} cy={Y(R_KM)} r={4} className={s.sat} />
+                    <circle cx={P(0, R_KM)[0]} cy={P(0, R_KM)[1]} r={4} className={s.sat} />
                   ) : (
-                    <rect x={X(station[0]) - 5} y={Y(station[1]) - 5} width={10} height={10} className={s.sat} />
+                    <rect x={sx - 7} y={sy - 7} width={14} height={14} className={s.station} />
                   )}
-                  {ball && <circle cx={X(ball[0])} cy={Y(ball[1])} r={3} className={s.ball} />}
+                  {ball &&
+                    (() => {
+                      const [bx, by] = P(ball[0], ball[1]);
+                      return <circle cx={bx} cy={by} r={3.5} className={s.ball} />;
+                    })()}
                   <text x={W - 6} y={14} textAnchor="end" className={s.name}>
                     {STOPS[k].name}
                   </text>
-                  {k === 1 && !locked && (
+                  {atIss && !locked && (
                     <text x={6} y={14} className={s.key}>
-                      ■ station · ● ball
+                      □ station · ● ball · × hit ground
                     </text>
                   )}
                   <rect x={6} y={H - 30} width={GAUGE} height={12} rx={5} className={s.gaugeBg} />
@@ -193,17 +237,24 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
                     gravity {locked ? "?" : fmtPct(h)}
                   </text>
                   <text x={6} y={H - 6} className={s.chip}>
-                    {near ? "Zoomed in, to scale. Round Earth, no air." : "To scale. Round Earth, spin ignored."}
+                    {near ? `Heights stretched ${STRETCH}×. Round Earth, no air.` : "To scale. Round Earth, spin ignored."}
                   </text>
                 </svg>
 
+                <Row>
+                  {STOPS.map((st, i) => (
+                    <Control key={st.h} className={i === k ? "active" : ""} disabled={locked || i === k} onClick={() => goStop(i)}>
+                      {st.label}
+                    </Control>
+                  ))}
+                </Row>
                 <Row>
                   <span className={s.rowLabel}>Throw from 400 km</span>
                   {SPEEDS.map((v, i) => (
                     <Control
                       key={i}
-                      className={throwI === i && k === 1 ? "active" : ""}
-                      disabled={locked || (throwI === i && k === 1 && t === 0)}
+                      className={throwI === i && atIss ? "active" : ""}
+                      disabled={locked || (throwI === i && atIss && t === 0)}
                       aria-label={`Throw a ball sideways from 400 km at ${fmtV(v)} km/s`}
                       onClick={() => doThrow(i)}
                     >
@@ -219,16 +270,12 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
                   </Control>
                 </Row>
                 <Row>
-                  {STOPS.map((st, i) => (
-                    <Control key={st.h} className={i === k ? "active" : ""} disabled={locked || i === k} onClick={() => goStop(i)}>
-                      {st.label}
-                    </Control>
-                  ))}
-                </Row>
-                <Row>
                   <Readout label="Gravity vs ground" value={locked ? "?" : fmtPct(h)} />
                   <Readout label="Ball" value={locked ? "–" : ballText} />
                 </Row>
+                {!locked && farSeen.length > 0 && (
+                  <p className={s.seen}>Seen: {farSeen.map((i) => `${STOPS[i].label} ${fmtPct(STOPS[i].h)}`).join(" · ")}</p>
+                )}
               </div>
             );
           }}

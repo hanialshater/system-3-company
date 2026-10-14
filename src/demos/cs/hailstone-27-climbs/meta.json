@@ -1,6 +1,6 @@
 {
   "slug": "hailstone-27-climbs",
-  "title": "Small start, long climb",
+  "title": "How many steps does 27 take?",
   "hook": "A tiny rule and a small number. How long can it run?",
   "domain": "cs",
   "concept": "collatz-steps",
@@ -66,6 +66,22 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c6",
+      "text": "97's run reaches 94, which is on 27's run, and from there follows 27's path down to 1 (so it also peaks at 9,232).",
+      "support": "derivation",
+      "source": "Rule applied in Demo.tsx hailstone(): 97 reaches 94 at step 13; 27 reaches 94 at step 6 (27, 82, 41, 124, 62, 31, 94). From 94 the runs are identical: 13 + (111 - 6) = 118 steps. JOIN97 = first value of SEQ[97] found in SEQ[27]. | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own run: the first value of 97's run that is on 27's run is 94 (97's step 13; 27's step 6), and the tails from 94 are identical, so 13 + 105 = 118 steps. 97's peak before 94 is 376, so its 9,232 peak comes from 27's path.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c7",
+      "text": "On the stage, each start's step count stays a ? in the table until you run that start to 1; only running the rule fills it in. (Stage: 'Only running a start fills its ?.'; reveal: 'only running the rule filled it in'.)",
+      "support": "source",
+      "source": "Lagarias, 'The 3x+1 problem and its generalizations', Amer. Math. Monthly 92 (1985) 3-23: stopping times are studied statistically and computed by iteration; no closed form is known (not opened by the builder in this session). Same open status as c5. | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): HELD, not verified. Lagarias (1985) not opened; cecm.sfu.ca, arxiv.org and wikipedia all fail DNS. Search-result text found nothing that states 'no formula' (only that the map looks pseudorandom, Applegate-Lagarias). It is a state-of-knowledge claim, and only an openable source can settle it. To clear: a checker with access opens Lagarias 1985 or Lagarias (ed.) 2010, or the builder rewords it to something the stage shows ('each ? is filled only by running it'). | Builder revision v3 (demo-builder, 2026-10-14): reworded to rest only on the stage (pass 24 held it: Lagarias 1985 unopened, and no source here states 'no formula'). The state-of-knowledge 'no known formula' is gone from the stage note and the reveal. Demo.tsx: each start's table cell shows '?' until that start's run reaches 1; no other control fills it. The Lagarias reference is kept only as background, not as support.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,12 +96,16 @@
     "why": "26 takes 10 steps and 27 takes 111. A tiny rule can make run lengths that jump around, and no one has proved every run even ends."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/hailstone-27-climbs/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/hailstone-27-climbs/2026-10-14-learner-knows-repeated-rules-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "cs:collatz-steps",
     "also": [],

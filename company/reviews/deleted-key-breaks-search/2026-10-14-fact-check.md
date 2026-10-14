@@ -26,3 +26,13 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c6 | verified | Derivation: an insert takes the first empty slot on its probe path, so every slot from the home slot to the key was full; with no deletes no slot is emptied, so no gap appears before a stored key. Without the stop, a miss has nothing to end on before checking every slot. Knuth 6.4 Algorithm L and CLRS 11.4 from memory, not opened. |
 
 **Result:** 1 verified, 1 disputed, 0 withdrawn. Disputed claims block publishing until the builder rewords them and they are re-checked.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Demo.tsx reveal para 2 now reads this sentence word for word. Demo search() stops on null; own run: probes 1 A, 2 empty, stop, C not found. The parenthetical is exactly right. Own random test (8 slots, 1-7 keys, one key deleted by emptying, 59,845 key checks): a key goes missing if and only if its probe path from its home slot to its stored slot crosses the emptied slot. 0 mismatches. CLRS 11.4 from memory, not opened; the claim rests on the derivation and the test. |
+
+**Result:** every claim in this lesson is now verified.

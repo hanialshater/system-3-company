@@ -13,3 +13,13 @@ Checker: fact-checker (wrote none of these claims; builder algo2-sd). Method: re
 | c5 | verified | Verified independently of the unopened sources: own sim of the lesson's exact rule (fewest onward moves, ties to first in order) fails on 8x8 from (4,2) (60 of 64) and on 6x6 from (3,3) (34 of 36), boards where tours exist. Warnsdorff 1823 and Squirrel & Cull 1996 NOT opened (host blocked; search snippets only say tie-breaking matters and correctness is unproven). Learner text does not name them; builder should cite the counterexample instead. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 23 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; the two new claims are builder sentences recorded word for word). Method: read Demo.tsx (stage, every reachable branch, reveal, predict, plus the meta.json hook and recall card for new lessons) before claim sources; re-ran the numbers with my own node copies of the lesson logic (scratchpad fc23/). Sources: every scholarly host (cornell.edu, arxiv, journals, crossref, openalex, semantic scholar, Wikipedia, UPenn, UVM) was unreachable through the proxy, so no paper or book was opened. A claim that rests only on such a source is HELD as unverified, not verified; claims verified by derivation or simulation say so in their row.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Re-ran the counterexample with my own copy of the choose() rule (fewest onward moves to unvisited squares, ties to the first in MOVES order). 8x8 from (4,2) is stuck at 60 and 6x6 from (3,3) is stuck at 34, and (4,2) is the only failing 8x8 start of 64. Lesson starts check: 8x8 (0,0) 64, 5x5 (0,0) 25. 8x8 and 6x6 both have closed knight's tours, so a tour exists from every start; this is standard and confident, from memory. The source now rests only on the reproducible counterexample. Warnsdorff and Squirrel & Cull are background and were not opened. The reveal text (line 248) matches the claim. |
+
+**Result:** every claim in this lesson is now verified.

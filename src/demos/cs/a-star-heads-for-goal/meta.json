@@ -73,7 +73,7 @@
       "id": "cs.a-star-heads-for-goal.c6",
       "text": "At S the guess of steps left is 6 (6 columns, 0 rows to the goal); with the wall on, the shortest route takes 10 steps, so the guess there is lower than the real distance. Stage labels: the numbers on cells are settle order, and dashed cells are waiting to settle.",
       "support": "derivation",
-      "source": "GUESS_AT_S in Demo.tsx = |0 - 6| + |3 - 3| = 6. Wall route 10 from claim c2. Numbers drawn from settleIdx + 1; dashed outline = isFrontier (joined the frontier, not yet settled) in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): GUESS_AT_S = |0-6| + |3-3| = 6; own BFS with the wall gives 10. Stage line 'Guess at S: 6. Route: 10.' Legend 'Numbers: settle order. Dashed: waiting to settle.' matches num() = settleIdx+1 and isFrontier (joined frontier at disc <= k, not yet settled).",
+      "source": "GUESS_AT_S in Demo.tsx = |0 - 6| + |3 - 3| = 6. Wall route 10 from claim c2. Numbers drawn from settleIdx + 1; dashed outline = isFrontier (joined the frontier, not yet settled) in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): GUESS_AT_S = |0-6| + |3-3| = 6; own BFS with the wall gives 10. Stage line 'Guess at S: 6. Route: 10.' Legend 'Numbers: settle order. Dashed: waiting to settle.' matches num() = settleIdx+1 and isFrontier (joined frontier at disc <= k, not yet settled). | Builder revision v4 (demo-builder, 2026-10-14): the guess-vs-route numbers moved from the line above the grid to a line under the table, 'Guess at S: 6. Real route with the wall: 10.' (shown once the guided wall run finishes; '?' before). The rule line above the grid now reads 'Guess at S: 6.' only. The reveal points at the line under the table. Claim text unchanged; stage address changed. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. GUESS_AT_S = 6; own BFS with the wall at column 3, rows 2-4 gives 10. The line under the table 'Guess at S: 6. Real route with the wall: 10.' appears once the guided wall run is filled ('?' before). num() = settleIdx + 1. isFrontier = discovered at settled-count <= k and not yet settled, which matches 'Dashed: waiting to settle'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -91,14 +91,17 @@
     "why": "A guess that never overestimates cannot push a cell on a shortest route behind a worse one. A guess that is too big can."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/a-star-heads-for-goal/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/a-star-heads-for-goal/2026-10-14-learner-adult-beginner-r5.md"
+      "company/reviews/a-star-heads-for-goal/2026-10-14-learner-adult-beginner-r5.md",
+      "company/reviews/a-star-heads-for-goal/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:a-star-search",
     "also": [],

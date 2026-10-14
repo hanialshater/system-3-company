@@ -4,7 +4,7 @@
   "hook": "Finding anagrams sounds like checking every pair. What if each word named its own bin?",
   "domain": "cs",
   "concept": "anagram-grouping",
-  "status": "draft",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -71,8 +71,12 @@
     "why": "Anagrams have exactly the same letters, so sorting them gives the same string, and different letters give different strings. Use it as a hash key and each word goes straight to its family."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/same-letters-same-key/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/same-letters-same-key/2026-10-14-learner-knows-hash-buckets-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
