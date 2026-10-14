@@ -4,13 +4,14 @@
 // equal squares: one solid (the series term), one hatched, one dotted, one left over for the next level.
 // The three patterns always cover equal areas and the leftover shrinks, so each tends to 1/3.
 // Milestones: two or more levels drawn; level 6 reached (solid 0.3333, recorded with its level).
-// "Reset to level 1" keeps one split on the stage, and the level-6 trace line stays.
+// When the reveal opens the stage returns to level 6 (learner r10, W-822), so the leftover the reveal names
+// ("down to 0.0002") is the one on screen whatever was pressed last. "Start over" goes to level 0.
 // Brief: company/domains/briefs/math.algebra.md, Wave J, brief 5 (check A5).
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import s from "./styles.module.css";
 
 const TARGET = 6;
@@ -45,8 +46,9 @@ export default function QuartersAddToAThird({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            By level {TARGET} the solid pieces covered {seen.current.six ?? d4(solid(TARGET))} of the square. At every level
-            the corner split into four: one solid, one hatched, one dotted, one left over.
+            By level {TARGET} the solid pieces covered {seen.current.six ?? d4(solid(TARGET))} of the square, and the leftover
+            corner was down to {d4(1 / 4 ** TARGET)}. At every level the corner split into four: one solid, one hatched, one
+            dotted, one left over.
           </p>
           <p>
             The three patterns always matched, and the leftover corner shrank toward nothing, so each pattern ends with a
@@ -60,11 +62,15 @@ export default function QuartersAddToAThird({ slug }: { slug: string }) {
   );
 }
 
-function Stage({ locked, interact, level, setLevel, seen }: StageContext & { level: number; setLevel: (n: number) => void; seen: Seen }) {
+function Stage({ locked, phase, interact, level, setLevel, seen }: StageContext & { level: number; setLevel: (n: number) => void; seen: Seen }) {
   const { reach } = useMilestones(interact, MILESTONES);
   const uid = useId().replace(/:/g, "");
   const hatch = `hatch-${uid}`;
   const dots = `dots-${uid}`;
+
+  useEffect(() => {
+    if (phase === "reveal" && seen.six) setLevel(TARGET);
+  }, [phase, seen, setLevel]);
 
   const go = (n: number) => {
     setLevel(n);
@@ -93,6 +99,7 @@ function Stage({ locked, interact, level, setLevel, seen }: StageContext & { lev
 
   return (
     <div className={s.wrap}>
+      <p className={s.trace}>{locked ? " " : "Hatched and dotted pieces match the solid ones."}</p>
       <svg viewBox={`0 0 ${S + 2 * M} ${S + 2 * M}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Square split to level ${level}`}>
         <defs>
           <pattern id={hatch} width={5} height={5} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -110,10 +117,10 @@ function Stage({ locked, interact, level, setLevel, seen }: StageContext & { lev
       </svg>
 
       <p className={s.readout} aria-live="polite">
-        {locked || level === 0 ? "Level 0: the whole square" : `Level ${level} · solid: ${d4(sum)} of the square`}
+        {locked || level === 0 ? "Level 0: the whole square" : `Level ${level} · solid: ${d4(sum)}`}
       </p>
       <p className={s.trace}>
-        {seen.six ? `Level ${TARGET}: solid, hatched, dotted ${seen.six} each` : level > 0 ? `Left over: ${d4(1 / 4 ** level)}` : " "}
+        {!locked && level > 0 ? `hatched ${d4(sum)} · dotted ${d4(sum)} · left over ${d4(1 / 4 ** level)}` : " "}
       </p>
 
       <Row>
@@ -128,8 +135,8 @@ function Stage({ locked, interact, level, setLevel, seen }: StageContext & { lev
         >
           To level {TARGET}
         </Control>
-        <Control disabled={locked || level <= 1} className={s.tap} onClick={() => go(1)}>
-          Reset to level 1
+        <Control disabled={locked || level === 0} className={s.tap} onClick={() => go(0)}>
+          Start over
         </Control>
       </Row>
     </div>

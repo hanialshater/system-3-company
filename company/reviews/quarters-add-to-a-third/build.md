@@ -26,3 +26,24 @@ builder: demo-builder (builder-wavej-math) · 2026-10-14 · v1 draft · brief: c
 - QA: the official command (tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wavej-math) ran twice and timed out on both projects at "lesson renders" (15 s, page still "Loading…"/"Compiling"), so it is not a pass. A scratch copy of the spec with only the goto/render timeouts raised (and the test timeout) passed phone and desktop. Run the official QA on a quiet server or a build before review.
 - Labels: smallest SVG text is 11 px in its viewBox, drawn at 10.4 px or larger at 390 px wide (smallest: the "mirror" label in minus-one-flips-the-order, 11 px in a 360-wide viewBox); stage numbers 12 px. Targets: every control has min-height 44 px.
 - QA (official spec, run 3): `tests/qa/contract.spec.ts` unmodified, with the CLI flag `--timeout=600000` (test timeout only; the 15 s render wait is the spec's own), QA_OUT=artifacts/qa-wavej-math: phone and desktop passed.
+
+## v2: learner r10 fixes (W-822, demo-builder, 2026-10-14)
+
+Review: company/reviews/quarters-add-to-a-third/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- When the reveal opens the stage returns to level 6, whatever was pressed last, so the leftover the reveal names is on screen.
+- The second readout now shows, at every level, 'hatched x · dotted x · left over y' (level 6: hatched 0.3333 · dotted 0.3333 · left over 0.0002).
+- New caption above the square: 'Hatched and dotted pieces match the solid ones.' (the counting move, before the reveal).
+- 'Reset to level 1' became 'Start over' (level 0). Reveal p1 adds 'and the leftover corner was down to 0.0002'. c2 and c3 rewritten (unverified); c1 unchanged.
+
+## Pre-flight v2
+
+1. Title/hook unchanged; neither names 1/3.
+2. Options '1/2', '3/8', '1/3': same precision.
+3. Locked stage: the empty square, no caption text, no readout values.
+4. Reveal values: 0.3333 (b, level-six milestone, recorded); 0.0002 (a, 1/4^6, on the second readout at level 6, which the reveal restores).
+5. QA path: Step (level 1), To level 6 (milestones two-levels and level-six), Start over (level 0). The reveal restores level 6.
+6. Reset: after Start over the reveal shows level 6: 'By level 6 the solid pieces covered 0.3333 of the square, and the leftover corner was down to 0.0002. At every level the corner split into four: one solid, one hatched, one dotted, one left over. The three patterns always matched, and the leftover corner shrank toward nothing, so each pattern ends with a third of the square. That is 1/4 + 1/16 + 1/64 + … = 1/3, read straight off the picture.' (about 63 words)
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 74 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
