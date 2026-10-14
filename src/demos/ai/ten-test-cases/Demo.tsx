@@ -52,29 +52,34 @@ const scaleX = (width: number) => (pct: number) => X0 + ((pct - 30) / (70 + widt
 
 export default function TenTestCases({ slug }: { slug: string }) {
   const [size, setSize] = useState<number>(10);
-  const [scores, setScores] = useState<number[]>([]); // right counts at the current size
-  const rngRef = useRef(mulberry32(SEED));
+  // Each test size keeps its own runs and its own seeded stream, so switching never erases anything.
+  const [runs, setRuns] = useState<Record<number, number[]>>({ 10: [], 100: [], 1000: [] });
+  const rngs = useRef<Record<number, () => number>>({});
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["many-at-10"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["many-at-10", "big-tests"]);
 
-  // The learner's own 10-case runs, kept for the reveal even after switching size.
-  const [ten, setTen] = useState<number[]>([]);
-  const run = (k: number) => {
-    const next = [...scores];
-    for (let i = 0; i < k; i++) next.push(runTest(rngRef.current, size));
-    setScores(next);
-    if (size === 10) setTen(next);
-    if (size === 10 && next.length >= MANY) reach("many-at-10");
+  const scores = runs[size];
+  const ten = runs[10];
+  const add = (n: number, k: number) => {
+    rngs.current[n] = rngs.current[n] ?? mulberry32(SEED);
+    const next = [...runs[n]];
+    for (let i = 0; i < k; i++) next.push(runTest(rngs.current[n], n));
+    setRuns({ ...runs, [n]: next });
+    if (n === 10 && next.length >= MANY) reach("many-at-10");
+    if (n === 1000 && next.length >= MANY) reach("big-tests");
   };
+  const run = (k: number) => add(size, k);
+  // Choosing a bigger test also runs 100 of them, so the narrower histogram appears at once.
   const changeSize = (n: number) => {
-    // Restart the seeded stream; back at 10 cases, skip the draws the kept runs used (10 each).
-    const r = mulberry32(SEED);
-    if (n === 10) for (let i = 0; i < ten.length * 10; i++) r();
-    rngRef.current = r;
     setSize(n);
-    setScores(n === 10 ? ten : []);
+    if (runs[n].length === 0 && n !== 10) add(n, MANY);
   };
   const tenLow = ten.filter((r) => r <= 6).length;
+  const sdOf = (xs: number[], n: number) => {
+    const pts = xs.map((r) => (100 * r) / n);
+    const m = pts.reduce((a, b) => a + b, 0) / pts.length;
+    return Math.sqrt(pts.reduce((a, b) => a + (b - m) ** 2, 0) / pts.length);
+  };
 
   // Bins: one per possible count at size 10 (10% wide), 1% wide otherwise.
   const width = size === 10 ? 10 : 1;
@@ -96,8 +101,8 @@ export default function TenTestCases({ slug }: { slug: string }) {
         options: ["Almost never", "About 1 time in 8", "About half the time"],
         answer: 1,
       }}
-      exploreHint="Run the 10-case test at least 100 times. Then try bigger tests."
-      minInteractions={1}
+      exploreHint="Run the 10-case test 100 times. Then press 1,000 cases to see the same model tested bigger."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -116,8 +121,9 @@ export default function TenTestCases({ slug }: { slug: string }) {
           </p>
           <p>
             A score on a handful of cases is itself a noisy measurement. At 10 cases it typically wanders about{" "}
-            {spreadPts(10).toFixed(1)} points either way; at 1,000 cases about {spreadPts(1000).toFixed(1)}. Only more held-out
-            cases shrink the noise.
+            {spreadPts(10).toFixed(1)} points either way; at 1,000 cases about {spreadPts(1000).toFixed(1)}
+            {runs[1000].length >= 2 && <> (your 1,000-case tests: ±{sdOf(runs[1000], 1000).toFixed(1)})</>}. Only more
+            held-out cases shrink the noise.
           </p>
         </>
       )}
@@ -130,7 +136,7 @@ export default function TenTestCases({ slug }: { slug: string }) {
               <text x={160} y={14} textAnchor="middle" className={s.small} fill="var(--muted)">
                 Each bar: how many tests got that score. Truly right: 80%
               </text>
-              <rect x={X0} y={BASE - H - 4} width={sx(60 + width) - X0} height={H + 4} fill="var(--bad)" opacity={0.08} />
+              <rect x={X0} y={BASE - H - 4} width={sx(60 + width) - X0} height={H + 4} fill="var(--bad)" opacity={0.05} stroke="var(--bad)" strokeDasharray="2 3" strokeWidth={0.8} />
               <line x1={X0} y1={BASE} x2={X1} y2={BASE} stroke="var(--line)" strokeWidth={2} />
               {!locked && scores.length === 0 && (
                 <text x={160} y={BASE - 60} textAnchor="middle" className={s.label} fill="var(--muted)">
@@ -173,6 +179,7 @@ export default function TenTestCases({ slug }: { slug: string }) {
               </Control>
               <Readout label="Tests run" value={scores.length} />
               <Readout label="60% or less" value={scores.length ? `${low} (${((100 * low) / scores.length).toFixed(0)}%)` : "–"} />
+              <Readout label="Spread of scores" value={scores.length >= 2 ? `±${sdOf(scores, size).toFixed(1)} pts` : "–"} />
             </Row>
             <Row>
               <span className={s.small}>Cases per test:</span>

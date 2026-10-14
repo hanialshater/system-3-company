@@ -6,3 +6,8 @@
 - Known: the wrap-around probe arrow runs to the right edge instead of wrapping to slot 0.
 - Brief answer re-checked in node before building (scratchpad checks/all.mjs); it held.
 - QA: computer-use contract passed locally on phone and desktop (2026-10-14). Claims all unverified; nothing verified by the builder.
+
+## Revision v2 (batch 02, 2026-10-14)
+
+Catch-area bands and n/10 chances are hidden until the prediction is committed. A log shows every key as hash -> slot (probes), so the reveal's quoted hashes are on screen. Button renamed "Until a run of 5 or more". Title and hook rewritten so they do not state the idea.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

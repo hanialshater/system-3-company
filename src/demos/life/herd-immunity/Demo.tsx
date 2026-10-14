@@ -150,7 +150,7 @@ export default function HerdImmunity({ slug }: { slug: string }) {
 
   const message = done
     ? below && totalCaught <= TOOK_OFF * ob.unprotected
-      ? `Over: ${totalCaught} of ${ob.unprotected}. Fizzled by luck, even above 1 per case. Try a new one.`
+      ? `Over: ${totalCaught} of ${ob.unprotected}. Fizzled by luck. Try a new one.`
       : `Over. ${totalCaught} of ${ob.unprotected} unprotected caught it.`
     : t === 0
       ? "One unprotected person falls sick."
@@ -184,7 +184,7 @@ export default function HerdImmunity({ slug }: { slug: string }) {
           </p>
           <p>
             At <strong>{THRESHOLD}% immune</strong> each case infects 4 &times; 0.25 = exactly 1: it only replaces itself.
-            That is the threshold (1 &minus; 1/R0). Below it a case more than replaces itself and an outbreak can take
+            That is the threshold (1 &minus; 1/R0). Below {THRESHOLD}% immune a case more than replaces itself and an outbreak can take
             off, though it may still fizzle by luck. Above it, the immune mostly shield people with no immunity.
           </p>
           <p className="muted">
@@ -225,6 +225,11 @@ export default function HerdImmunity({ slug }: { slug: string }) {
 
           <p className={s.msg} aria-live="polite">{locked ? "Make a prediction to start." : message}</p>
 
+          <Row>
+            <Readout label="Each case infects" value={`4 × ${unprotectedShare}% = ${reff.toFixed(1)} (${reffNote})`} />
+            <Readout label={`Average, ${RUNS} runs`} value={locked ? "?" : `${Math.round(avg.mean)} of ${avg.unprotected}`} />
+          </Row>
+
           {/* DOM order is Next, Run, shares, New outbreak (so each control pressed once in order
               compares a finished outbreak across shares); CSS order puts New outbreak on the first line. */}
           <div className={s.controls}>
@@ -264,10 +269,6 @@ export default function HerdImmunity({ slug }: { slug: string }) {
               New outbreak
             </Control>
           </div>
-          <Row>
-            <Readout label="Each case infects" value={`4 × ${unprotectedShare}% = ${reff.toFixed(1)} (${reffNote})`} />
-            <Readout label={`Average, ${RUNS} runs`} value={locked ? "?" : `${Math.round(avg.mean)} of ${avg.unprotected}`} />
-          </Row>
         </div>
       )}
     </Lesson>

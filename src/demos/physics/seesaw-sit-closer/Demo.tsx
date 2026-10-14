@@ -71,7 +71,8 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
         <Milestones interact={interact} names={["tried-other", "balanced"]}>
           {(reach) => {
             const net = tq(d) - T_HEAVY; // positive: right side down
-            const tilt = locked || Math.abs(net) < 1e-6 ? 0 : Math.sign(net) * MAX_TILT;
+            // Locked: only the 40 kg child is aboard, so that side is down; no balance is shown before the guess.
+            const tilt = locked ? -MAX_TILT : Math.abs(net) < 1e-6 ? 0 : Math.sign(net) * MAX_TILT;
             const at = (x: number, up: number) => ({
               x: PX + x * K * Math.cos(tilt) + up * Math.sin(tilt),
               y: PY + x * K * Math.sin(tilt) - up * Math.cos(tilt),
@@ -83,7 +84,7 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
             const lb = locked ? null : tq(d);
             return (
               <div className={s.wrap}>
-                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`20 kg child at ${d} m; ${tilt === 0 ? "level" : "tipped"}`}>
+                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "40 kg child alone on a seesaw; its side is down" : `20 kg child at ${d} m; ${tilt === 0 ? "level" : "tipped"}`}>
                   <line x1={4} y1={GROUND} x2={W - 4} y2={GROUND} className={s.ground} />
                   <path d={`M${PX},${PY + 2} L${PX - 10},${GROUND} L${PX + 10},${GROUND} z`} className={s.pivot} />
                   <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} className={s.plank} />

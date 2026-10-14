@@ -12,3 +12,8 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - Square-root law told -> gate on milestones 100, 1,000, 10,000 flips in gap view, then heads share at 10,000; reveal shows the progression.
 - 'Share' undefined before the button -> stage key 'Gap = heads minus tails. Share = heads / flips.'.
 - 'Every run ended between' over-general (fact-check) -> 'in these 20 runs'; seed provenance stated in c4 (not recorded whether tuned). Claim c4 rewritten, unverified. Hook no longer ends in 'Right?'.
+
+## Revision v3 (batch 02, 2026-10-14)
+
+Gap defined in the question. Dashed theory curves (typical gap) are drawn on the gap chart and a "Typical (dashed)" readout sits beside the average gap, so the square-root row is on the stage next to the noisy 20-run average. Law of large numbers defined where named. New claim c6, unverified.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

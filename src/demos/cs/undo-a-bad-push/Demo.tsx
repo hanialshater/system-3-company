@@ -36,20 +36,23 @@ export default function UndoABadPush({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Pipes s–a, s–b, a–b, a–t, b–t each carry 1 unit. What is the most water that can flow from s to t?",
-        options: ["1", "2", "3"],
-        answer: 1,
+        question:
+          "Pipes s–a, s–b, a–b, a–t, b–t each carry 1 unit. You send 1 unit along s → a → b → t, then keep adding water along any route with room, never taking water back. How much reaches t in the end?",
+        options: ["1: stuck", "2", "3"],
+        answer: 0,
       }}
-      exploreHint="Push s → a → b → t first. Then find a way to a second unit."
+      exploreHint="Push s → a → b → t. Try the other routes. Then find a second unit."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            Pushing s → a → b → t first used the a–b pipe and left every forward route blocked: stuck at 1. Sending that
-            unit back along a–b undid the zig-zag and opened s → b → a → t: total <strong>2</strong>.
+            Pushing s → a → b → t first used the a–b pipe and left every forward route blocked: stuck at 1, so adding
+            water without ever taking any back falls short. A new route may run backwards along a pipe that carries water.
+            Going back along a–b undid the zig-zag and opened s → b → a → t: total <strong>2</strong>.
           </p>
           <p>
-            Both pipes out of s are now full, so nothing can beat 2: no flow is bigger than the smallest cut. Letting a new
+            Both pipes out of s are now full. Those two pipes are a cut: cut them and s is cut off from t. No flow is bigger
+            than the smallest cut, so nothing can beat 2. Letting a new
             route cancel an earlier push is how the Ford–Fulkerson method fixes greedy mistakes. When no route is left,
             the flow equals the smallest cut.
           </p>
@@ -71,7 +74,7 @@ export default function UndoABadPush({ slug }: { slug: string }) {
               r.pipes.forEach((p) => next[p]++);
               setF(next);
               const st = stuck(next) && total(next) < 2;
-              setNote(st ? `Total ${total(next)}. Every forward route now has a full pipe.` : `Pushed 1 unit along ${r.label}.`);
+              setNote(st ? `Total ${total(next)}. Every forward route has a full pipe. A route may go backwards along a loaded pipe.` : `Pushed 1 unit along ${r.label}.`);
               if (st) {
                 setWasStuck(true);
                 reach("stuck-at-1");
@@ -82,7 +85,7 @@ export default function UndoABadPush({ slug }: { slug: string }) {
               const next = { ...f, ab: f.ab - 1, sb: f.sb + 1, at: f.at + 1 };
               setF(next);
               setUsedBack(true);
-              setNote("s → b, back along a–b, a → t: total 2.");
+              setNote("Water went s → b, back along a–b, then a → t: total 2.");
               if (wasStuck && total(next) === 2) reach("two-by-sending-back");
             };
             const reset = () => {
@@ -148,7 +151,7 @@ export default function UndoABadPush({ slug }: { slug: string }) {
                       </text>
                     </g>
                   ))}
-                  <text x={316} y={14} textAnchor="end" className={`${s.total} ${tot === 2 ? s.good : ""}`}>
+                  <text x={312} y={16} textAnchor="end" className={`${s.total} ${tot === 2 ? s.good : ""}`}>
                     Total {tot}
                   </text>
                 </svg>
@@ -162,7 +165,7 @@ export default function UndoABadPush({ slug }: { slug: string }) {
                     </Control>
                   ))}
                   <Control disabled={locked || f.ab < 1 || f.sb >= 1 || f.at >= 1} onClick={sendBack}>
-                    s → b, send back a–b, a → t
+                    Route s → b → a → t (back along a–b)
                   </Control>
                 </div>
               </div>

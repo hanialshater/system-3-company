@@ -202,6 +202,17 @@ export default function MontyHall100({ slug }: { slug: string }) {
                 ))}
               </Row>
 
+              <Row>
+                <Readout label={`Stay won (${doors} doors)`} value={rate(tally.stayWins, tally.stayPlays)} />
+                <Readout label="Switch won" value={rate(tally.swapWins, tally.swapPlays)} />
+              </Row>
+              {guess.rounds > 0 && (
+                <Row>
+                  <Readout label="Rounds kept (he missed the car)" value={`${guess.kept} of ${fmtN(guess.rounds)}`} />
+                  <Readout label="Stay / switch won" value={`${guess.stay} / ${guess.swap}`} />
+                </Row>
+              )}
+
               <p className={s.msg} aria-live="polite">
                 {locked ? "Make a prediction to start." : message}
               </p>
@@ -227,16 +238,6 @@ export default function MontyHall100({ slug }: { slug: string }) {
                 })}
               </div>
 
-              <Row>
-                <Readout label={`Stay won (${doors} doors)`} value={rate(tally.stayWins, tally.stayPlays)} />
-                <Readout label="Switch won" value={rate(tally.swapWins, tally.swapPlays)} />
-              </Row>
-              {guess.rounds > 0 && (
-                <Row>
-                  <Readout label="Guessing host kept" value={`${guess.kept} of ${fmtN(guess.rounds)}`} />
-                  <Readout label="Stay / switch won" value={`${guess.stay} / ${guess.swap}`} />
-                </Row>
-              )}
             </div>
           )}
         </Milestones>

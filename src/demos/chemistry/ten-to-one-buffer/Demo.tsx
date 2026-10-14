@@ -21,7 +21,7 @@ const ASK_PH = pH(ASK_BASE, ASK_ACID); // 3.76
 const NAMES = ["ten-to-one"] as const;
 
 const W = 320;
-const H = 196;
+const H = 212;
 const COLS = 10;
 const GAP = 7.2;
 const BEAKER_Y = 8;
@@ -60,7 +60,7 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `An acetic acid / acetate buffer has pKa ${PKA}. It holds ${ASK_ACID / ASK_BASE} times as much acid (HA) as base (A−). Its pH is about…`,
+        question: `A buffer is a jar of a weak acid (HA, hollow dots) and its partner base (A−, filled dots). With equal amounts its pH is its pKa: ${PKA} for acetic acid. Now it holds ${ASK_ACID / ASK_BASE} times as much acid as base. Its pH is about…`,
         options: [f2(ASK_PH), f2(PKA), f2(PKA + 1)],
         answer: 0,
       }}
@@ -74,8 +74,8 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
             {sawAsk && base === acid && acid !== AMOUNTS[START] ? ` Then ${base} of each sat back at ${PKA}, as 10 of each had.` : ""}
           </p>
           <p>
-            A buffer&apos;s pH depends on the ratio of base to acid, through its logarithm: pH = pKa + log₁₀(base ÷
-            acid). Each tenfold change in the ratio moves pH by 1. Equal amounts give pH = pKa, however much buffer
+            A buffer&apos;s pH depends on the ratio of base to acid, through its logarithm (the number of tens in the ratio): pH = pKa + log₁₀(base ÷
+            acid). Each tenfold change in the ratio moves pH by 1, as on the ruler: one tick, one pH unit. Equal amounts give pH = pKa, however much buffer
             there is; more buffer only makes that pH harder to push.
           </p>
           <p className="muted">Holds well for moderate concentrations, about 0.01 to 1 mol/L.</p>
@@ -115,12 +115,15 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
                     <g key={k}>
                       <line x1={XR(k)} x2={XR(k)} y1={RULER_Y - 5} y2={RULER_Y + 5} className={s.ruler} />
                       <text x={XR(k)} y={RULER_Y + 17} textAnchor="middle" className={k === 0 ? s.label : s.small}>
-                        {f2(PKA + k)}
+                        {locked && k !== 0 ? "?" : k === 0 ? `pKa ${f2(PKA)}` : f2(PKA + k)}
+                      </text>
+                      <text x={XR(k)} y={RULER_Y + 28} textAnchor="middle" className={s.small}>
+                        {k === 0 ? "equal" : k < 0 ? `acid ×${10 ** -k}` : `base ×${10 ** k}`}
                       </text>
                     </g>
                   ))}
-                  <text x={RL} y={RULER_Y + 30} className={s.small}>
-                    pH · base:acid ratio ×10 per tick
+                  <text x={RL} y={RULER_Y + 44} className={s.small}>
+                    pH (top) · how much more of one than the other (below)
                   </text>
                   <path
                     d={`M ${XR(lr).toFixed(1)} ${RULER_Y - 3} l -6 -10 h 12 z`}

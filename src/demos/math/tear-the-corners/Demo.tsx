@@ -24,7 +24,7 @@ const MILESTONES = ["lined-up", "lined-up-again"] as const;
 const W = 320;
 const H = 200;
 const PAD = 18;
-const R = 26;
+const R = 34;
 
 type P = { x: number; y: number };
 const rad = (d: number) => (d * Math.PI) / 180;
@@ -81,8 +81,9 @@ export default function TearTheCorners({ slug }: { slug: string }) {
             filled the dashed line: 180°.
           </p>
           <p>
-            Why: the dashed line runs through the top corner, parallel to the base. Each bottom corner fits exactly in the
-            gap between that line and a side, so the three corners fill it with nothing over.
+            Why: the dashed line runs through the top corner, parallel to the base. Each bottom corner, moved up as you
+            saw, fits exactly in the gap between that line and a side, so the three corners fill it with nothing over.
+            A straight line is two right angles, not one.
           </p>
           <p>A fatter triangle does not gain turn: when one corner grows, the others shrink to pay for it.</p>
         </>
@@ -154,6 +155,13 @@ function Stage({
         <g className={s.move} style={flip(mB)} data-torn={torn ? "1" : "0"}>
           <path d={sector(B, A, C, R)} className={s.wb} />
         </g>
+        {!locked && !torn && (
+          <>
+            <text x={A.x + (C.x < A.x ? 4 : 36)} y={A.y - 5} className={s.lab}>{sh.a}°</text>
+            <text x={B.x - 36} y={B.y - 5} className={s.lab}>{sh.b}°</text>
+            <text x={C.x} y={C.y + 30} textAnchor="middle" className={s.lab}>{c}°</text>
+          </>
+        )}
       </svg>
 
       <p className={s.caption} aria-live="polite">
