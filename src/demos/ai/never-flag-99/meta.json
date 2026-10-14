@@ -1,6 +1,6 @@
 {
   "slug": "never-flag-99",
-  "title": "99% accurate, catches nothing",
+  "title": "A fraud model that never looks",
   "hook": "A fraud model that never looks at a payment. How accurate can it be?",
   "domain": "ai",
   "concept": "accuracy-paradox",
@@ -43,21 +43,17 @@
     },
     {
       "id": "ai.never-flag-99.c3",
-      "text": "The slider flags payments in order of an invented, fixed risk ranking. Flagging the riskiest 20 catches 8 of the 10 frauds and wrongly flags 12 genuine payments, for an accuracy of 98.6%, lower than approving everything.",
+      "text": "The slider flags payments in order of an invented, fixed risk ranking. Flagging the riskiest 20 catches 8 of the 10 frauds and wrongly flags 12 genuine payments, for an accuracy of 98.6%, lower than approving everything; the reveal quotes the first setting the learner reached where accuracy fell below 99.0%.",
       "support": "simulation",
       "source": "score(20) from Demo.tsx (FRAUD_RANKS = 0, 1, 3, 5, 8, 11, 15, 19, 28, 44): caught 8, false alarms 12, accuracy (8 + 978) / 1000 = 0.986. Reproduced with a separate script that runs the lesson's model code.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.never-flag-99.c4",
-      "text": "With any ranking, flagging only payments that turn out to be fraud raises accuracy, and every genuine payment flagged lowers it by 0.1 point; so catching fraud and keeping accuracy above 99% pull against each other in this toy.",
+      "text": "With any ranking, flagging only payments that turn out to be fraud raises accuracy, and every genuine payment flagged lowers it by 0.1 point; so catching fraud and keeping accuracy above 99% pull against each other in this toy. The stage says 'Catches still outnumber false alarms' while accuracy is above 99.0% with some payments flagged.",
       "support": "derivation",
       "source": "accuracy = (caught + 990 − false alarms) / 1000, from score() in Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.never-flag-99.c5",
@@ -91,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:accuracy-paradox",
     "prerequisites": [

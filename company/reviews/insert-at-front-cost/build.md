@@ -6,3 +6,7 @@
 - Numbers: 6, 0, 2, 3 and 4 come from ITEMS/TARGET constants. Reveal sentences about chain insert and row jump appear only if the learner did them.
 - Retitled: slug states the cost; title "Room at the front of the line".
 - After screenshots: arrowheads were oversized on thick hop lines; marker switched to userSpaceOnUse.
+
+## Revision v2
+
+Learner review 2026-10-13. Insert and "Go to item 4" now apply to the same list in both views, so switching shows N in place (it no longer vanishes with a 0 counter). Three milestones: inserted in the row, seen the chain with the insert, walked the chain. The reveal sentences about row jump or chain insert appear only if the learner saw them. Claims unchanged.

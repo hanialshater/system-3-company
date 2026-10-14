@@ -57,7 +57,7 @@ export default function ParallelVsArcShortHop({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two places 1,000 km apart, east-west along the 40°N parallel. How much shorter is the great-circle route than following the parallel?",
+          "Two places 1,000 km apart, east-west along the 40°N parallel. How much shorter is the shortest route on the globe (the great circle) than following the parallel?",
         options: ["About 0.7 km", "About 7 km", "About 70 km"],
         answer: 0,
       }}
@@ -67,7 +67,7 @@ export default function ParallelVsArcShortHop({ slug }: { slug: string }) {
         <p>
           About {s1000.toFixed(1)} km: at 1,000 km the two lines are almost the same. At 5,000 km along 40°N the saving is{" "}
           {km(s5000)} km: five times the distance, over {Math.floor(s5000 / s1000 / 10) * 10} times the saving. At 60°N the same
-          5,000 km saves {km(s5000n)} km. The parallel curves away from the shortest path more the longer it is and the
+          5,000 km saves {km(s5000n)} km. On the globe the parallel bends away from the shortest path more the longer it is and the
           nearer the pole, so short hops gain almost nothing. Sphere model, not a flight time.
         </p>
       )}
@@ -104,7 +104,7 @@ export default function ParallelVsArcShortHop({ slug }: { slug: string }) {
                     );
                   }}
                 </WorldMap>
-                <p className={s.note}>Mercator map. Red: due east along the parallel. Blue: shortest route.</p>
+                <p className={s.note}>Mercator map stretches the north, so blue looks longer but is shorter. Red: due east along the parallel.</p>
                 <div className={s.chips}>
                   <Control
                     disabled={locked || dist === 1000}

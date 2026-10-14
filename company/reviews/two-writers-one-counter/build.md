@@ -4,3 +4,7 @@
 - Milestones: "one" and "two", reached when a full run ends at 1 and at 2. QA presses the two presets first, so both are reached; the reveal names only those two outcomes, kept in the text, not in resettable state.
 - Question wording fixes the order (A reads, B reads, A adds and writes, B adds and writes), the same as the "Both read first" preset.
 - Of 20 interleavings, 18 give 1 and 2 give 2 (script).
+
+## Revision v2
+
+Learner review 2026-10-13. Added a line listing the steps in the order they ran ("A reads, B reads, A adds ..."), so the interleaving is visible after either preset. "holds" is now a larger "copy" so the private copy is the most visible number. Hook asks what the counter ends at. c5 back to unverified. The stale "0/5 claims checked" footer in the review was a build issue, not in the lesson.
