@@ -9,6 +9,8 @@
 // p² always has an even count (p's 2s twice), 2 × q² always an odd count (q's 2s twice, plus one).
 // Even never equals odd, at any q, so the close calls cannot ever close. The reveal points at the
 // counts and quotes the learner's own closest call.
+// v4: a "Tried q" trace under the caption keeps every q the learner visited (slider steps included) with its miss,
+// so the reveal's list of q is on the stage when it opens.
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -66,14 +68,14 @@ export default function NoFractionFits({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              <strong>No, never.</strong> {seen.length <= 6 ? `For q = ${seen.join(", ")}` : `In the ${seen.length} values of q you tried`},
+              <strong>No, never.</strong> {seen.length <= 6 ? `For your q = ${seen.join(", ")} (the Tried row)` : `In the ${seen.length} values of q you tried`},
               2 × q² never landed on a perfect square. Your closest call: 2 × {cq}² = {c.t} next to {c.p}² = {c.p * c.p}, off
               by {c.off}. Close calls keep coming, so closeness cannot settle it. The 2s can.
             </p>
             <p>
               Look at the count of 2s under each number. A square p² has each 2 of p twice, so its count is even: {c.p}² had{" "}
               {twos(c.p * c.p)}. 2 × q² has q&rsquo;s 2s twice plus one, so its count is odd: {c.t} had {twos(c.t)}. Even never
-              equals odd, so no whole p and q, however big, give p² = 2 × q². No fraction is √2.
+              equals odd, so no whole p and q give p² = 2 × q². No fraction is √2.
             </p>
           </>
         );
@@ -143,6 +145,16 @@ function Stage({
           ? "Make a prediction to start."
           : `Nearest square ${p}² = ${p * p}: off by ${off}. Its 2s: ${twos(p * p)}, even; ${t}'s: ${twos(t)}, odd.`}
       </p>
+
+      {!locked && (
+        <p className={s.caption} data-testid="tried">
+          Tried {seen.length} q: {seen.length > 6 ? "… " : ""}
+          {seen
+            .slice(-6)
+            .map((v) => `${v} (off ${near(v).off})`)
+            .join(" · ")}
+        </p>
+      )}
 
       <Slider label="q (bottom of the fraction)" value={q} min={1} max={QMAX} disabled={locked} onChange={(v) => go(v, false)} />
       <Row>

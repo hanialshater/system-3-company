@@ -1,11 +1,11 @@
 {
   "slug": "keep-one-of-a-stream",
-  "title": "Keep one, fairly, without looking ahead",
-  "hook": "Pick a fair item from a stream when you don't know how long it is.",
+  "title": "Keep one item, never look ahead",
+  "hook": "You can hold one item and can't see how long the stream is. Who ends up kept?",
   "domain": "cs",
   "concept": "reservoir-sampling",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -43,39 +43,38 @@
     },
     {
       "id": "cs.keep-one-of-a-stream.c3",
-      "text": "Each later item had a smaller chance to get in, but fewer draws left to survive.",
+      "text": "Item 3 got in with chance 1/3 and then stays with chance 3/4 after 4 items (3/5 after 5): each later item had a smaller chance to get in, but fewer draws left to survive. Every bar reached 1/4 at item 4.",
       "support": "derivation",
-      "source": "Item i enters with chance 1/i (smaller for larger i) and must then survive draws i+1..n, with chance i/n; the product is 1/n for every i. | FACT-CHECK 2026-10-14 (pass 22): Derivation holds: entry 1/i times survival i/n = 1/n; reveal sentence matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Item i enters with chance 1/i (smaller for larger i) and must then survive draws i+1..n, with chance i/n; the product is 1/n for every i. | FACT-CHECK 2026-10-14 (pass 22): Derivation holds: entry 1/i times survival i/n = 1/n; reveal sentence matches. | REWORDED v2 (demo-builder, 2026-10-14): v2 shows each item's two factors under its bar (gets in 1/i x stays i/k), so item 3's 1/3 x 3/4 is drawn, not told. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.keep-one-of-a-stream.c4",
-      "text": "1,000 seeded streams of 4 kept items 1, 2, 3 and 4 236, 250, 257 and 257 times.",
+      "text": "1,000 seeded streams (seed 1) of 4 kept items 1 to 4 236, 250, 257 and 257 times; 1,000 seeded streams of 5 kept items 1 to 5 195, 197, 191, 214 and 203 times.",
       "support": "simulation",
-      "source": "Builder's node script and TALLY in Demo.tsx: mulberry32(1), 1,000 streams, draw rng() < 1/i for i = 2, 3, 4. The reveal and stage quote the TALLY constant, not hard-coded numbers. Expected about 250 each, standard deviation about 13.7. | FACT-CHECK 2026-10-14 (pass 22): Own re-implementation of mulberry32(1) with Demo.tsx loop: TALLY 236, 250, 257, 257; chi-square 1.18; SD sqrt(1000 x 1/4 x 3/4) = 13.7. Reveal and stage quote TALLY.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node script and TALLY in Demo.tsx: mulberry32(1), 1,000 streams, draw rng() < 1/i for i = 2, 3, 4. The reveal and stage quote the TALLY constant, not hard-coded numbers. Expected about 250 each, standard deviation about 13.7. | FACT-CHECK 2026-10-14 (pass 22): Own re-implementation of mulberry32(1) with Demo.tsx loop: TALLY 236, 250, 257, 257; chi-square 1.18; SD sqrt(1000 x 1/4 x 3/4) = 13.7. Reveal and stage quote TALLY. | REWORDED v2 (demo-builder, 2026-10-14): v2: the run uses the current length (4, or 5 after 'A 5th item arrives'); the reveal quotes the tally drawn on stage. Builder's node replay of tally(4) and tally(5) with mulberry32(1). Seed 1 is the v1 seed, not chosen for the result. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.keep-one-of-a-stream.c5",
-      "text": "The shown stream uses seed 1: item 2 draws 0.627 (kept item stays 1), item 3 draws 0.003 (replaces it), item 4 draws 0.527 (item 3 stays).",
+      "text": "The shown stream uses seed 1: item 2 draws 0.627 (kept item stays 1), item 3 draws 0.003 (replaces it), item 4 draws 0.527 (item 3 stays), item 5 draws 0.981 (item 3 stays).",
       "support": "convention",
-      "source": "Disclosed seed (pattern disclose-chosen-seeds): seed 1 was the first seed tried and was not selected for its result. The spec's placeholder seed 7 was rejected because its tallies (257, 247, 249, 247; chi-square 0.27) look flatter than a typical run. Seed 1's chi-square is 1.18; across seeds 1-200 the median is 2.41 (builder's node script). The 1,000 streams start from the same seed, so the shown stream is the first of them. | FACT-CHECK 2026-10-14 (pass 22): Own node: seed 1 draws 0.627 (keep 1), 0.003 (keep 3), 0.527 (keep 3); stage shows 'seed 1'. Seed 7 tallies 257, 247, 249, 247 (chi-square 0.27) reproduce. Minor: my median chi-square over seeds 1-200 is 2.39, not 2.41 (source text only; not learner-facing).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Disclosed seed (pattern disclose-chosen-seeds): seed 1 was the first seed tried and was not selected for its result. The spec's placeholder seed 7 was rejected because its tallies (257, 247, 249, 247; chi-square 0.27) look flatter than a typical run. Seed 1's chi-square is 1.18; across seeds 1-200 the median is 2.41 (builder's node script). The 1,000 streams start from the same seed, so the shown stream is the first of them. | FACT-CHECK 2026-10-14 (pass 22): Own node: seed 1 draws 0.627 (keep 1), 0.003 (keep 3), 0.527 (keep 3); stage shows 'seed 1'. Seed 7 tallies 257, 247, 249, 247 (chi-square 0.27) reproduce. Minor: my median chi-square over seeds 1-200 is 2.39, not 2.41 (source text only; not learner-facing). | REWORDED v2 (demo-builder, 2026-10-14): v2 adds item 5's draw (4th mulberry32(1) value = 0.981, not under 1/5). Builder's node run. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.keep-one-of-a-stream.c6",
-      "text": "The rule holds one item in memory and never needs to know the stream's length.",
+      "text": "Then a 5th item came, and the same rule took every bar to 1/5. It held one item in memory and never needed to know the length.",
       "support": "derivation",
-      "source": "The state is the kept item and the count i of items seen; each step uses only i and the new item. Algorithm R with a reservoir of size 1: Vitter 1985, 'Random sampling with a reservoir', ACM TOMS 11(1); Knuth, TAOCP vol. 2, section 3.4.2 (citations from memory, not opened; check before publishing). | FACT-CHECK 2026-10-14 (pass 22): Holds from the code (state = kept item + count). Vitter, 'Random sampling with a reservoir', ACM TOMS 11(1):37-57, March 1985 confirmed by search-result text only (dl.acm.org blocked); Knuth TAOCP vol. 2 sec. 3.4.2 (Algorithm R) not opened, from my own knowledge. Learner sentence does not depend on either.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The state is the kept item and the count i of items seen; each step uses only i and the new item. Algorithm R with a reservoir of size 1: Vitter 1985, 'Random sampling with a reservoir', ACM TOMS 11(1); Knuth, TAOCP vol. 2, section 3.4.2 (citations from memory, not opened; check before publishing). | FACT-CHECK 2026-10-14 (pass 22): Holds from the code (state = kept item + count). Vitter, 'Random sampling with a reservoir', ACM TOMS 11(1):37-57, March 1985 confirmed by search-result text only (dl.acm.org blocked); Knuth TAOCP vol. 2 sec. 3.4.2 (Algorithm R) not opened, from my own knowledge. Learner sentence does not depend on either. | REWORDED v2 (demo-builder, 2026-10-14): v2 adds the 5th-item step: after k arrivals each item has chance 1/k (c2's argument with k = 5); the rule uses only i and one stored item. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.keep-one-of-a-stream.c7",
+      "text": "Under each bar: item i gets in with chance 1/i and then stays with chance i/k after k items, so every item's chance is 1/k (for example item 2 after 4: 1/2 x 2/4).",
+      "support": "derivation",
+      "source": "Item i enters with 1/i; it survives arrivals i+1..k with (i/(i+1)) x ... x ((k-1)/k) = i/k (telescoping product). 1/i x i/k = 1/k. Drawn unreduced as frac(1,i) x frac(i,k) in Demo.tsx v2. Builder, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

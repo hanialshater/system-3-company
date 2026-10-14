@@ -167,3 +167,15 @@
 .bad {
   color: var(--bad);
 }
+
+.box {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.boxOn {
+  fill: color-mix(in srgb, var(--domain) 25%, var(--bg-2));
+  stroke: var(--domain);
+  stroke-width: 2;
+}

@@ -1,11 +1,11 @@
 {
   "slug": "outside-option-sets-the-split",
   "title": "The offer you never take",
-  "hook": "A could walk away with $0.40 but never does. Does that $0.40 still change the deal?",
+  "hook": "A could walk away with $0.40 but never does. What does A end up with?",
   "domain": "economics",
   "concept": "nash-bargaining",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-economics",
@@ -74,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.outside-option-sets-the-split.c6",
+      "text": "Moving A's outside option from one value to another moves A's deal by half the change: for example from $0.70 to $0.80 takes A's deal from $0.85 to $0.90.",
+      "support": "derivation",
+      "source": "A = a + (1 - a)/2 = 1/2 + a/2 with B's option 0, so dA = da/2. Demo.tsx v2 reveal computes the learner's last change from split(prev) and split(a); the dashed 'before' line marks split(prev).A. Builder, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "recall": {

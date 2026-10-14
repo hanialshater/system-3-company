@@ -1,7 +1,7 @@
 {
   "slug": "rotation-untangles-the-chain",
-  "title": "A tree that fixes itself",
-  "hook": "Keys arrive in sorted order. Does the search tree have to become a chain?",
+  "title": "Sorted keys meet a rotating tree",
+  "hook": "Keys 1 to 7 arrive in sorted order. How tall does the search tree get?",
   "domain": "cs",
   "concept": "avl-rotation",
   "format": "before-after",
@@ -66,6 +66,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.rotation-untangles-the-chain.c6",
+      "text": "Stage note after each rotating insert: key 3 made 1's side too deep, 2 lifted up; key 5 at 3, 4 lifted up; key 6 at 2, 4 lifted up; key 7 at 5, 6 lifted up. After key 3, 2 sits above 1 and 3.",
+      "support": "simulation",
+      "source": "snapshots('rotating') in Demo.tsx v2: rot.at and rot.up per insert (first rotation on the path to the root); the 'below' list for key 3 is the edges out of 2 in SNAPS.rotating[3] = [2-1, 2-3]. Hand trace of AVL insertion of 1..7 agrees with c2. Builder, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:avl-rotation",
     "also": [],
