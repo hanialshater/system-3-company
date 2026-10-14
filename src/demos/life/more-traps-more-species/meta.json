@@ -23,13 +23,11 @@
   "claims": [
     {
       "id": "life.more-traps-more-species.c1",
-      "text": "In the lesson's forest (seed 2), 50 insects contain 20 species, 500 contain 34 and 5,000 contain all 40. Seeds 3 and 1 (reachable with 'New forest seed') give 17/34/40 and 18/37/40; the reveal reads its numbers from the current seed. Reveal (seed 2): \"Ten times the catch found 34 species, not 200: under twice the 20 at 50.\" \"5,000 insects found all 40.\" Stage: the curve's labelled points 20, 34, 40 and \"caught: 5,000 · species found: 40\".",
+      "text": "In the lesson's forest (seed 2), 50 insects contain 20 species, 500 contain 34 and 5,000 contain all 40. Seeds 3 and 1 (reachable with 'New forest seed') give 17/34/40 and 18/37/40; when the reveal opens the stage returns to seed 2 and the 5,000 catch, so the reveal's numbers match the question's 20 at 50. Reveal: \"Ten times the catch found 34 species, not 200: under twice the 20 at 50.\" \"5,000 insects found all 40.\" Stage: the linear-axis curve's labelled points '20 at 50', '34 at 500', 40, and \"caught: 5,000 · species found: 40\".",
       "support": "simulation",
       "source": "catchInsects() in Demo.tsx (kit mulberry32, one draw per insect, species by walking the shares in order). Builder re-run 2026-10-14 (node strip-types): seed 1 18/37/40, seed 2 20/34/40, seed 3 17/34/40. Matches check script E6 (company/domains/briefs/checks/life-wave-j-check.mjs). Seed 2 is the start because its 50-insect count (20) is near the expected 18.9 (chosen seed, disclosed; an illustration, not evidence). 'Under twice' / 'about twice' is computed: 34 < 2 x 20 and 34 < 2 x 17; 37 >= 2 x 18 gives 'about'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Re-ran catchInsects() copied from Demo.tsx with the kit's mulberry32. Seed 2: 20/34/40; seed 3: 17/34/40; seed 1: 18/37/40 (E6 re-run agrees). Rendered reveals: seed 2 'under twice the 20', seed 3 'about twice the 17', seed 1 'about twice the 18', and all 40 at 5,000 on every seed. All are true. Note-only slip in the source field: it says '34 < 2 x 17', but 34 = 2 x 17, so the code prints 'about' for seed 3, which is right. Builder: correct the note."
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): the reveal now returns to seed 2 (the question's 20 at 50) and the chart's catch axis is linear (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Re-ran catchInsects() copied from Demo.tsx with the kit's mulberry32. Seed 2: 20/34/40; seed 3: 17/34/40; seed 1: 18/37/40 (E6 re-run agrees). Rendered reveals: seed 2 'under twice the 20', seed 3 'about twice the 17', seed 1 'about twice the 18', and all 40 at 5,000 on every seed. All are true. Note-only slip in the source field: it says '34 < 2 x 17', but 34 = 2 x 17, so the code prints 'about' for seed 3, which is right. Builder: correct the note."
     },
     {
       "id": "life.more-traps-more-species.c2",
@@ -103,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:species-accumulation",
     "also": [

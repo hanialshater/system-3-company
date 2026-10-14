@@ -21,3 +21,23 @@ builder: demo-builder (demo-builder-wavej-life) · 2026-10-14 · v1 draft · bri
 7. **Phone fit.** Measured with the `tools/reveal-fit.mjs` logic on the :3530 dev server (a copy with longer page-load timeouts only, artifacts/wavej-life-tools/reveal-fit-slow.mjs, because the shared dev server took 30 s or more a page): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; revealWords 74 (tool count, verdict line included). Stage parts: picture 160, controls 70, text 94. Smallest rendered SVG label over the QA path and at the reveal: 10.8 px ("commonest species"). On screen with the reveal's last line: the labelled points 17, 34, 40 and the readout. Screenshot artifacts/reveal-fit/more-traps-more-species.png.
 
 QA: `tests/qa/contract.spec.ts` on :3530 (QA_ONLY, QA_OUT=artifacts/qa-wavej-life, `--timeout=300000` because page loads took 20 to 60 s): phone and desktop pass. An earlier run with the default 45 s timeout failed on page.goto only; one longer-timeout run logged the React "state update on a component that hasn't mounted yet" console error once (same-dose-levels-off, desktop), not reproduced in the next run; other builders attribute it to Fast Refresh rebuilds on the shared server.
+
+## v2: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/more-traps-more-species/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Catch axis is linear (0 to 5,000) so the slowing shows; points labelled '20 at 50', '34 at 500', '40'.
+- When the reveal opens the stage returns to seed 2 (the question's 20 at 50) and the 5,000 catch, so the reveal's numbers match the question.
+- Finding 5 checked, not a bug: 'New forest seed' re-runs all sizes; seeds 2 and 3 give 20/34/40 and 17/34/40 (coincidence at 500 and 5,000; recorded in c1). c1 rewritten (unverified).
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Locked: empty chart and strip.
+4. Reveal values: 34, 20, 40 from seed 2 (restored at the reveal), marked on the curve.
+5. QA path unchanged; New seed last, the reveal restores seed 2.
+6. Reset: n/a (about 60 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 74 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

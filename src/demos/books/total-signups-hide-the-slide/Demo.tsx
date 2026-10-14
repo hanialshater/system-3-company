@@ -5,8 +5,9 @@
 // Model (deterministic): 1,000 visitors a month for six months.
 //   getting worse:  10, 9, 8, 7, 6, 5% -> new 100, 90, 80, 70, 60, 50 -> total 100, 190, 270, 340, 400, 450
 //   getting better:  5, 6, 7, 8, 9, 10% -> new 50, 60, 70, 80, 90, 100 -> total 50, 110, 180, 260, 350, 450
-// Presets (DOM order, each sets the full state, no Reset): "Total: getting worse", "Each month: getting worse",
-// "Total: getting better". Milestones: cohort-seen (month-6 rate recorded), better-total-seen (final total
+// Presets (DOM order, each sets the full state, no Reset): "Total A" (getting worse), "Each month of A",
+// "Total B" (getting better). Neutral names and no line in the locked frame (learner r10, W-823), so the
+// curve's bend is not shown before the commit. Milestones: cohort-seen (month-6 rate recorded), better-total-seen (final total
 // recorded). The worse total is recorded too (Seen row) but does not gate. Once the worse total has been
 // seen, it stays on the chart as a dashed trace under the better total, so both lines end at 450 at the reveal.
 
@@ -56,14 +57,17 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
         options: ["It rose", "It stayed the same", "It fell", "The total can't tell you"],
         answer: 3,
       }}
-      exploreHint="Press the three views in order: the total, each month, then the other total."
+      exploreHint="Press the three views in order: total A, each month of A, then total B."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            Your total kept climbing while each month converted worse, down to <strong>{rec.conv ?? 5}%</strong> by month six. When
-            months got better instead, the total still ended at <strong>{rec.betterTotal ?? 450}</strong>. A running total
-            can&apos;t fall, so it can&apos;t tell you which way you are going.
+            Total A kept climbing while each month converted worse, down to <strong>{rec.conv ?? 5}%</strong> by month six.
+            B&apos;s months got better; its total also ended at <strong>{rec.betterTotal ?? 450}</strong>.
+          </p>
+          <p>
+            A total rises whenever a month adds anyone, so &ldquo;it rose&rdquo; can&apos;t tell you which way you are going.
+            Each step&apos;s size can: A&apos;s shrink, B&apos;s grow.
           </p>
           <p>
             <em>The Lean Startup</em> calls numbers like this vanity metrics and argues for watching each month&apos;s group.
@@ -97,9 +101,9 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
             const seen: string[] = [];
             if (rec.worseTotal !== undefined || rec.conv !== undefined) {
               const bits = [rec.worseTotal !== undefined ? `total ${rec.worseTotal}` : null, rec.conv !== undefined ? `month 6 at ${rec.conv}%` : null];
-              seen.push(`Worse: ${bits.filter(Boolean).join(", ")}`);
+              seen.push(`A: ${bits.filter(Boolean).join(", ")}`);
             }
-            if (rec.betterTotal !== undefined) seen.push(`Better: total ${rec.betterTotal}`);
+            if (rec.betterTotal !== undefined) seen.push(`B: total ${rec.betterTotal}`);
             const readout =
               !on || view === "none"
                 ? ""
@@ -117,8 +121,8 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
                     cohort
                       ? "Share of each month's visitors who joined: 10, 9, 8, 7, 6 and 5 percent"
                       : totalCase
-                        ? `Total customers by month, ${totalCase === "worse" ? "getting worse" : "getting better"}: ends at ${TOTAL[totalCase][5]}`
-                        : "Total customers, rising every month for six months"
+                        ? `Total customers by month, ${totalCase === "worse" ? "A" : "B"}: ends at ${TOTAL[totalCase][5]}`
+                        : "Total customers chart, empty until you pick a view"
                   }
                 >
                   <text x={XL - 34} y={14} className={s.axisTitle}>
@@ -158,7 +162,6 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
                       </g>
                     ))}
 
-                  {!cohort && !totalCase && <path d={path(TOTAL.worse)} className={s.idleLine} />}
 
                   {showTrace && (
                     <g>
@@ -167,7 +170,7 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
                         <circle key={i} cx={mx(i)} cy={yTot(v)} r={2.5} className={s.traceDot} />
                       ))}
                       <text x={mx(1) - 6} y={yTot(TOTAL.worse[1]) - 8} textAnchor="middle" className={`${s.tag} ${s.tagWorse}`}>
-                        worse
+                        A
                       </text>
                     </g>
                   )}
@@ -183,7 +186,7 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
                       </text>
                       {showTrace && (
                         <text x={mx(1) + 8} y={yTot(TOTAL.better[1]) + 16} textAnchor="middle" className={`${s.tag} ${s.tagBetter}`}>
-                          better
+                          B
                         </text>
                       )}
                     </g>
@@ -195,13 +198,13 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
                 <p className={s.seen}>{on && seen.length > 0 ? `Seen: ${seen.join(" · ")}` : ""}</p>
                 <Row foldAtReveal>
                   <Control className={view === "worseTotal" ? "active" : ""} disabled={locked || view === "worseTotal"} onClick={() => go("worseTotal")}>
-                    Total: getting worse
+                    Total A
                   </Control>
                   <Control className={view === "worseCohort" ? "active" : ""} disabled={locked || view === "worseCohort"} onClick={() => go("worseCohort")}>
-                    Each month: getting worse
+                    Each month of A
                   </Control>
                   <Control className={view === "betterTotal" ? "active" : ""} disabled={locked || view === "betterTotal"} onClick={() => go("betterTotal")}>
-                    Total: getting better
+                    Total B
                   </Control>
                 </Row>
               </div>

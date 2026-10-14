@@ -6,6 +6,8 @@
 // Sun line; at most one Earth radius), and the year's top-of-atmosphere sunlight as a share of the equator's:
 // daily-mean insolation (Berger 1978) averaged over a circular orbit, 3,600 steps, as in section
 // `insol-annual` of company/domains/briefs/checks/geography-wave-j.mjs.
+// The picture is equinox noon; the yearly share also needs the tilt (the pole's summer of all-day low sun), so the
+// pole case adds one line saying so and the reveal names it (learner r10, W-825; with no tilt the pole's share is 0).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -37,8 +39,8 @@ function annual(phi: number) {
 const START = 30;
 const PRESETS = [
   { lat: 0, label: "Equator", key: "eq" },
-  { lat: 51.5, label: "51.5 degrees N", key: "" },
-  { lat: 60, label: "60 degrees N", key: "" },
+  { lat: 51.5, label: "51.5° N", key: "" },
+  { lat: 60, label: "60° N", key: "" },
   { lat: 90, label: "North Pole", key: "pole" },
 ];
 const MILESTONES = ["eq", "pole"] as const;
@@ -92,7 +94,8 @@ export default function WhyThePolesGetLessSun({ slug }: { slug: string }) {
             of the way, worth less than 0.01% of the light.
           </p>
           <p>
-            The cause is the angle. Near the poles the same beam lands on more ground, so each square metre gets less.
+            The cause is the angle. Near the poles the same beam lands on more ground, so each square metre gets less. It
+            still gets {poleSeen?.share ?? fmtPct(SHARE.get(90)!)}, not nothing: the tilt gives it months of low, all-day summer sun.
           </p>
         </>
       )}
@@ -155,6 +158,11 @@ export default function WhyThePolesGetLessSun({ slug }: { slug: string }) {
                   <Readout label="Extra distance from the Sun" value={locked ? "—" : `${fmtKm(extraKm(lat))} (${fmtDistPct(extraKm(lat))})`} />
                   <Readout label="Year's sunlight vs equator" value={locked ? "—" : fmtPct(SHARE.get(lat)!)} />
                 </Row>
+                {!locked && lat === 90 && (
+                  <p className={`tiny ${s.seen}`} data-testid="tilt">
+                    Summer tilt: months of all-day sun, never above 23°.
+                  </p>
+                )}
                 {poleSeen && lat !== 90 && (
                   <p className={`tiny ${s.seen}`} data-testid="seen">
                     Seen at the pole: {poleSeen.share} of the equator&rsquo;s year, {poleSeen.km} ({poleSeen.pct}) farther.

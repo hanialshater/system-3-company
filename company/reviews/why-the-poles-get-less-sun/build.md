@@ -22,3 +22,23 @@ reveal-fit note: run through a preload that only raises Playwright's default nav
 ## Local QA (2026-10-14)
 
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J geography slugs> QA_OUT=artifacts/qa-wavej-geography npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=900000`. The `--timeout` flag is a time budget only, because the default 45 s test timeout expired in `page.goto` on the shared dev server in every run. No check was changed. Reports: artifacts/qa-wavej-geography/qa-report-5lessons.json (9 of 10 passed; the one failure was which-sea-gets-the-rain on desktop, a React "state update on a component that hasn't mounted yet" console warning, the dev-server Fast Refresh noise also seen in other wave J runs), qa-report-which-sea-rerun.json (phone and desktop pass), qa-report-which-way-rerun.json (phone and desktop pass, after the v1 sea-rectangle fix). No QA record was filed with `company qa-record`; that belongs to qa-tester.
+
+## v2: learner r10 fixes (W-825, demo-builder, 2026-10-14)
+
+Review: company/reviews/why-the-poles-get-less-sun/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Took the reviewer's first option (keep the yearly question, add the polar summer). At the North Pole case a stage line reads 'Summer tilt: months of all-day sun, never above 23°.'; the reveal adds 'It still gets 41%, not nothing: the tilt gives it months of low, all-day summer sun.' New claim c6 (unverified): node re-run shows the pole's yearly share is 0.415 with 23.44° obliquity and 0 with none.
+- Chips shortened to one row ('51.5° N', '60° N') so the extra line fits. c1-c5 unchanged.
+- For cm-geography: the alternative (ask the equinox-noon question) was not taken; this is a told sentence for a cause outside the brief's gap (decision 2026-10-14-told-vs-shown allows one claimed sentence).
+
+## Pre-flight v2
+
+1. Title/hook unchanged.
+2. Options 'About 99%', 'About 10%', 'About 40%': same precision.
+3. Locked stage: Earth, beam, 30° N, readouts '—'; no tilt line.
+4. Reveal values: 41%, 6,371 km, 0.004% (b, pole milestone, recorded; readouts at the pole).
+5. QA path: Equator (eq), 51.5° N, 60° N, North Pole (pole); the tilt line is on screen at the pole.
+6. Reset: no Reset control; reveal quotes the recorded pole values (79 tool words, about 67 in the reveal).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 79 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

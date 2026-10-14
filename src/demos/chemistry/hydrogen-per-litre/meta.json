@@ -35,23 +35,19 @@
     },
     {
       "id": "chemistry.hydrogen-per-litre.c2",
-      "text": "Burning octane (standing in for petrol) releases about 5,470 kJ/mol, about 48 MJ per kilogram; both heats are higher heating values, water formed as liquid (stage label 'petrol (octane): 48 MJ/kg', caption 'octane for petrol · water formed as liquid'; reveal: '48 MJ for petrol').",
+      "text": "Burning octane (standing in for petrol) releases about 5,470 kJ/mol, about 48 MJ per kilogram; both heats are higher heating values, water formed as liquid (stage label 'petrol (octane): 48 MJ/kg'; reveal: '48 MJ for petrol'). The higher-heating-value convention is not shown on the stage.",
       "support": "derivation",
       "source": "8(−393.51) + 9(−285.83) − (−250.1) = −5,470.5 kJ/mol: ΔfH CO2(g) −393.51 and H2O(l) −285.83 kJ/mol (CODATA), ΔfH n-octane(l) −250.1 kJ/mol (CRC, Standard thermodynamic properties of chemical substances); / 114.23 g/mol = 47.9 MJ/kg (node). Cross-check: CRC heat of combustion of n-octane about −5,470 kJ/mol. Ratio to hydrogen 141.8 / 47.9 = 2.96 (stage '×3.0' not shown; question 'about 3 times'). Brief claim 2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Opened: CRC table (n-octane(l) -250.1, CO2 -393.5, H2O(l) -285.8) and JANAF/ATcT (CO2 -393.522/-393.474, octane(l) -249.73). Node: 8(393.51) + 9(285.83) - 250.1 = 5,470.4 kJ/mol (5,470.1 to 5,470.9 across the tables); / 114.232 g/mol = 47.89 MJ/kg, shown as 48 MJ. 'Petrol' is a disclosed stand-in ('octane for petrol' on the stage). From the same CRC table, the common petrol hydrocarbons (C5-C8 alkanes, toluene, xylene) give 42-49 MJ/kg."
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): the stage footnote 'octane for petrol · water formed as liquid' was removed (learner r10: noise for a beginner); the label 'petrol (octane)' stays; previously verified by fact-checker on 2026-10-14. Earlier note: Opened: CRC table (n-octane(l) -250.1, CO2 -393.5, H2O(l) -285.8) and JANAF/ATcT (CO2 -393.522/-393.474, octane(l) -249.73). Node: 8(393.51) + 9(285.83) - 250.1 = 5,470.4 kJ/mol (5,470.1 to 5,470.9 across the tables); / 114.232 g/mol = 47.89 MJ/kg, shown as 48 MJ. 'Petrol' is a disclosed stand-in ('octane for petrol' on the stage). From the same CRC table, the common petrol hydrocarbons (C5-C8 alkanes, toluene, xylene) give 42-49 MJ/kg."
     },
     {
       "id": "chemistry.hydrogen-per-litre.c3",
-      "text": "Hydrogen gas at 25 °C and 1 atm has a density of about 0.082 g/L, so a litre of it carries about 12 kJ when burned (reveal: 'a litre of hydrogen gas at room pressure weighs only 0.08 g, so it carries about 12 kJ'; stage label 'hydrogen gas: 12 kJ/L').",
+      "text": "Hydrogen gas at 25 °C and 1 atm has a density of about 0.082 g/L, so a litre of it carries about 12 kJ (0.012 MJ) when burned (reveal: 'a litre of hydrogen gas at room pressure weighs only 0.08 g, so it carries about 12 kJ (0.012 MJ, the hairline)'; stage label 'hydrogen gas: 0.012 MJ/L (12 kJ), a hairline'; on the stage's linear 0-35 MJ axis its bar is drawn at the 1.5 px minimum).",
       "support": "derivation",
-      "source": "Ideal gas law ρ = PM/RT = 101,325 × 0.002016 / (8.314 × 298.15) = 0.0824 kg/m³ = 0.0824 g/L; hydrogen is close to ideal at 1 atm. × 141.8 MJ/kg = 11.7 kJ/L (node). Demo.tsx RHO_H2_GAS, H2_GAS_J_L. Brief claim 3.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Derivation re-run: PM/RT = 0.0824 g/L, x 141.78 MJ/kg = 11.68 kJ/L ('12 kJ', '0.08 g'). 'Close to ideal' checked against the CRC second virial coefficient of H2 at 298 K (+15.4 cm3/mol, chemicals 1.5.2): Z = 1.0006 at 1 atm."
+      "source": "Ideal gas law ρ = PM/RT = 101,325 × 0.002016 / (8.314 × 298.15) = 0.0824 kg/m³ = 0.0824 g/L; hydrogen is close to ideal at 1 atm. × 141.8 MJ/kg = 11.7 kJ/L (node). Demo.tsx RHO_H2_GAS, H2_GAS_J_L. Brief claim 3. Builder node re-run 2026-10-14: 141.78 MJ/kg x 8.24e-5 kg/L = 11,684 J/L = 0.0117 MJ/L; octane 47.89 MJ/kg x 0.703 = 33.67 MJ/L; ratio 2,881.",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): stage now uses a linear axis and writes the hydrogen-gas figure in MJ too (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation re-run: PM/RT = 0.0824 g/L, x 141.78 MJ/kg = 11.68 kJ/L ('12 kJ', '0.08 g'). 'Close to ideal' checked against the CRC second virial coefficient of H2 at 298 K (+15.4 cm3/mol, chemicals 1.5.2): Z = 1.0006 at 1 atm."
     },
     {
       "id": "chemistry.hydrogen-per-litre.c4",
@@ -105,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:energy-density",
     "also": [

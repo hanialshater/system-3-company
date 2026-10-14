@@ -7,7 +7,8 @@
 // Brief: company/domains/briefs/chemistry.matter-reactions.md #1 (format: before / after toggle).
 //
 // The stage is a schematic ring of six molecules at one instant (the dash count is illustrative, not
-// measured; claim c5). Heavy atoms only, plus the H on O; the H atoms on carbon are left out.
+// measured; claim c5). Heavy atoms only, plus the H on O; the H atoms on carbon are left out, and the legend says
+// so (learner r10, W-840: the ether looked as if it had no H at all).
 //
 // Earned reveal: milestones "ether-shown" (the O moved to the middle at least once) and "pulled-both"
 // (one molecule pulled out in each form; the number of dashes it broke is recorded per form). Both
@@ -25,9 +26,9 @@ type Form = "ethanol" | "ether";
 type P = { x: number; y: number };
 
 const W = 320;
-const H = 214;
+const H = 226;
 const CX = 160;
-const CY = 104;
+const CY = 116;
 const R = 50; // ring radius = O···O distance between neighbours
 const N = 6;
 const PULL = 36; // px the pulled molecule moves out
@@ -115,13 +116,12 @@ export default function EthanolAndItsTwin({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Same nine atoms, same 46 u, yet the boiling points sit about 100 °C apart: ethanol about 78 °C, dimethyl
-            ether about −24 °C.
+            Same nine atoms, same 46 u, yet ethanol boils at about 78 °C and dimethyl ether at about −24 °C.
           </p>
           <p>
-            In your ethanol ring, {rec.ethanol.dashes} dashes linked an O–H to a neighbour&apos;s O, and pulling one
-            molecule out broke {rec.ethanol.broke ?? "?"}. With the O in the middle, no H sits on oxygen:{" "}
-            {rec.ether ? rec.ether.dashes : "?"} dashes, nothing to break.
+            In your ethanol ring, {rec.ethanol.dashes} dashes each linked an O–H to a neighbour&apos;s O (the O pulls
+            electrons off its H, leaving it bare), and pulling one out broke {rec.ethanol.broke ?? "?"}. With the O in the
+            middle, no H sits on oxygen: {rec.ether ? rec.ether.dashes : "?"} dashes, only a weaker pull to break.
           </p>
           <p>
             Boiling pulls molecules apart, so that grip, the hydrogen bond, sets the temperature, not the weight.
@@ -204,7 +204,10 @@ function Stage({
         aria-label={`${NAME[form]}: six molecules, ${bonds.filter((b) => !b.broken).length} hydrogen bonds${pulled ? ", one molecule pulled out" : ""}`}
       >
         <text x={4} y={12} className={s.chip}>
-          <tspan className={s.oKey}>Red: O.</tspan> Dashes: hydrogen bonds.
+          <tspan className={s.oKey}>Red: O.</tspan> White: H on O. Dashes: hydrogen bonds.
+        </text>
+        <text x={4} y={26} className={s.chip}>
+          Grey: C, each with its own Hs (not drawn).
         </text>
         {bonds.map((b, i) => {
           const d = Math.hypot(b.to.x - b.from.x, b.to.y - b.from.y);

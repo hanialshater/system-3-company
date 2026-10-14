@@ -29,12 +29,11 @@
   "claims": [
     {
       "id": "ai.deleted-column-still-there.c1",
-      "text": "In the toy, 50 applicants are in group A and 50 in group B, and past lenders approved 80% of group A and 40% of group B in both neighbourhoods (stage header: 'Past lenders approved ○ A 80%, ▢ B 40%'). The toy model approves a whole neighbourhood if more than half of its past applicants were approved (explore hint).",
+      "text": "In the toy, 50 applicants are in group A and 50 in group B, and past lenders approved 80% of group A and 40% of group B in both neighbourhoods (stage header: 'Past lenders approved ○ A 80%, ▢ B 40%'). The toy model approves a whole neighbourhood if more than half of its past applicants there were approved (question: 'approves a whole one if most past applicants there were approved').",
       "support": "convention",
       "source": "The toy's own data and rule, world() in Demo.tsx (MODEL block), stated on the stage and in the explore hint. Dot positions inside each box are shuffled with mulberry32 seed 1 (first seed, untuned; positions change no number). | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. world() in Demo.tsx: PER_GROUP 50 per group; PAST A 0.8, B 0.4, the same in every neighbourhood; approve = past > 0.5. Stage header 'Past lenders approved ○ A 80%, ▢ B 40%' and explore hint ('approves a whole neighbourhood if most past applicants there were approved') match. layout() uses mulberry32(1) only to shuffle dot order.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): the model's rule moved from the explore hint into the question (learner r10); previously verified by fact-checker on 2026-10-14."
     },
     {
       "id": "ai.deleted-column-still-there.c2",
@@ -47,12 +46,11 @@
     },
     {
       "id": "ai.deleted-column-still-there.c3",
-      "text": "With mixed neighbourhoods (25 A + 25 B in each), both past rates are 60%, and the model approves everyone ('the same model approved both groups alike'; stage: A 100% · B 100%).",
+      "text": "With mixed neighbourhoods (25 A + 25 B in each), both past rates are 60%, so neighbourhood no longer tracks group and the model approves everyone ('When you mixed the neighbourhoods, neighbourhood no longer tracked group, so the model could not tell them apart: it approved everyone'; stage: A 100% · B 100%).",
       "support": "derivation",
       "source": "(20 + 10)/50 = 60% > 50% in both neighbourhoods. world(0.5) in Demo.tsx. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED. seg 0.5 -> 25 A + 25 B in each; past (20 + 10)/50 = 60% > 50% in both, so both approved: A 100%, B 100%. 'mixed-seen' is a required milestone, so the reveal's 'When you mixed the neighbourhoods' always follows a seen run.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal wording for the mixed case changed (learner r10); previously verified by fact-checker on 2026-10-14."
     },
     {
       "id": "ai.deleted-column-still-there.c4",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:proxy-discrimination",
     "also": [

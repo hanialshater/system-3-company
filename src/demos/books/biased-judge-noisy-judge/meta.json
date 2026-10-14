@@ -23,17 +23,19 @@
   "claims": [
     {
       "id": "books.biased-judge-noisy-judge.c1",
-      "text": "Both scored 4.0 on squared error, and Judge C, with both faults, scored 8.0. Squared error is bias² plus noise², exactly.",
+      "text": "Both scored 4.0 on squared error (the average of each miss squared: A's misses squared are 4 ten times; B's are 0, 0, 1, 1, 1, 1, 9, 9, 9, 9): a scatter of 2 costs as much as a bias of 2. Judge C, with both faults, scored 8.0 (1, 1, 1, 1, 4, 4, 9, 9, 25, 25). Squared error is bias² plus noise², exactly.",
       "support": "derivation",
-      "source": "Brief D1. Identity: mean squared error = (mean error)² + variance of errors (population variance). On the stage's values (Demo.tsx ERR): Judge A errors all +2 -> 4 + 0 = 4; Judge B errors -3, -3, -1, -1, 0, 0, 1, 1, 3, 3 -> mean 0, variance 4, sd 2 -> 0 + 4 = 4; Judge C = B + 2 -> 4 + 4 = 8. Recorded when each judge's preset fires (a-seen, b-seen, c-seen) and shown in the Seen row. Checked by node in company/domains/briefs/checks/books-strategy-wave1-check.mjs #14 (all pass, 2026-10-14).",
-      "status": "unverified"
+      "source": "Brief D1. Identity: mean squared error = (mean error)² + variance of errors (population variance). On the stage's values (Demo.tsx ERR): Judge A errors all +2 -> 4 + 0 = 4; Judge B errors -3, -3, -1, -1, 0, 0, 1, 1, 3, 3 -> mean 0, variance 4, sd 2 -> 0 + 4 = 4; Judge C = B + 2 -> 4 + 4 = 8. Recorded when each judge's preset fires (a-seen, b-seen, c-seen) and shown in the Seen row. Checked by node in company/domains/briefs/checks/books-strategy-wave1-check.mjs #14 (all pass, 2026-10-14). Builder node re-run 2026-10-14: A mean 2, sd 0, MSE 4; B mean 0, sd 2, MSE 4; C mean 2, sd 2, MSE 8.",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal wording changed and the stage now lists each judge's misses squared (learner r10); previously unverified."
     },
     {
       "id": "books.biased-judge-noisy-judge.c2",
-      "text": "Judge A was off by the same 2 years every time; Judge B was right on average but scattered.",
+      "text": "Judge A was off by 2 years every time; Judge B was right on average, with a typical miss (root mean square) of 2 years either way (question and reveal).",
       "support": "convention",
       "source": "Brief D2: the judges, the ten cases and their errors are the lesson's model, not real sentences (the strips plot years off a 'fair sentence' line). No claim about any real judge, group, policy or case.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): question and reveal now say 'typical miss of 2' instead of 'scattering 2 years either way' (learner r10); previously unverified."
     },
     {
       "id": "books.biased-judge-noisy-judge.c3",
@@ -92,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "books:noise-bias-vs-noise",
     "also": [

@@ -19,3 +19,23 @@ builder: wave-j-economics (demo-builder) · 2026-10-14 · brief: company/domains
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 flat-rate-costs-nearly-double` (shared dev server, 2026-10-14): verdict fit, **stage-top crop 0 px**, hiddenBelow 0, namedHidden 0 (named: interest, owed, 12, month, flat 10%, true 10%), phoneFit true, **78 words** (reveal incl. the kit's verdict line); picture fitted 149/176. Smallest svg label at the reveal 10.2 px or more (own probe: computed font-size × letterbox scale). Note on the run: the dev server was too loaded for the tool's fixed 30 s / 15 s waits, so it was run with a preload (`node --import <scratch>/patient.mjs`) that only raises Playwright's navigation and waitFor timeouts; the measuring code was not changed. A first run gave crop 1-4 px; the stage wrapper's flex gap was cut from 3 px to 1 px (no text or tap target changed).
 
 QA: `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J economics slugs> QA_OUT=artifacts/qa-wavej-economics npx playwright test tests/qa/contract.spec.ts --workers=1` (2026-10-14): phone and desktop pass (10 of 10 for the batch). A first batch run failed winning-bid-overpays on phone only, with React's dev-mode warning "Can't perform a React state update on a component that hasn't mounted yet" (the same warning shows in the shared dev server's log for other lessons while files change); reruns passed. Status left draft; next build and walkthrough not run (shared machine).
+
+## v2: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/flat-rate-costs-nearly-double/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- $5,449 removed from the stage and reveal: the dot at half the term now reads 'about half owed', and the reveal says 'by month 12 you owed only about half'. c3 keeps both figures ($5,449 at the true rate, $5,000 counting $417 of each $500 as repayment).
+- One colour per loan: flat always red (solid when shown, dashed red ghost when the true loan is shown), true always teal. The ghost follows the term slider, and the term returns to 2 years when the reveal opens.
+- c3, c4 rewritten (unverified). Node re-run: 18.16%, $461.45, $1,074.78; half-term balances 52/54/57%.
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Options '10%', '14%', '18%'.
+3. Locked unchanged.
+4. Reveal values: $2,000 and 18.2% (b, flat milestone), $1,075 (b, true milestone); 'about half' (dot label).
+5. QA path: Flat 10%, True 10%, Term slider; reveal resets the term to 2 yr.
+6. Reset: no Reset (about 70 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 81 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

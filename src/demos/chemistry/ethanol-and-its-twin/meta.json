@@ -35,23 +35,19 @@
     },
     {
       "id": "chemistry.ethanol-and-its-twin.c2",
-      "text": "At 1 atm ethanol boils at about 78 °C and dimethyl ether at about −24 °C, about 100 °C apart (question; stage record lines 'Ethanol boils 78 °C', 'Dimethyl ether boils −24 °C'; reveal: 'about 100 °C apart: ethanol about 78 °C, dimethyl ether about −24 °C').",
+      "text": "At 1 atm ethanol boils at about 78 °C and dimethyl ether at about −24 °C (question; stage record lines 'Ethanol boils 78 °C', 'Dimethyl ether boils −24 °C'; reveal: 'ethanol boils at about 78 °C and dimethyl ether at about −24 °C').",
       "support": "source",
       "source": "CRC Handbook of Chemistry and Physics, 'Physical Constants of Organic Compounds': ethanol 78.29 °C, dimethyl ether −24.8 °C (brief claim 2); cross-check PubChem CID 702 and CID 8254. Flag for the fact-checker: −24.8 rounds to −25; the brief and the lesson say 'about −24 °C' (other references list −24 °C). Gap 78.3 − (−24.8) = 103 °C, 'about 100 °C'.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened CRC Handbook Heat of Vaporization table as transcribed in PyPI chemicals 1.5.2: ethanol Tb 351.44 K = 78.29 °C, dimethyl ether Tb 248.35 K = -24.80 °C (Yaws table in the same package: 248.31 K). OpenStax Chemistry 2e section 10.1 (m68761) worked example: dimethylether -24.8 °C, ethanol 78.5 °C. Gap 103 °C, 'about 100 °C' holds. Non-blocking: -24.8 rounds to -25; 'about -25 °C' would be the more accurate rounding (cm-chemistry's call).",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal no longer says '100 °C apart'; previously unverified."
     },
     {
       "id": "chemistry.ethanol-and-its-twin.c3",
-      "text": "A hydrogen bond needs an H bonded to a strongly electronegative atom (N, O or F) on the donor; ethanol has one H on its O, dimethyl ether has none, so ether molecules cannot hydrogen-bond to each other (stage: H drawn only on ethanol's O; reveal: 'With the O in the middle, no H sits on oxygen: 0 dashes, nothing to break').",
+      "text": "A hydrogen bond needs an H bonded to a strongly electronegative atom (N, O or F) on the donor: the O pulls electrons off its H, leaving it bare (partly positive) to cling to a neighbour's O. Ethanol has one H on its O; dimethyl ether has six H, all on carbon and none on O, so ether molecules cannot hydrogen-bond to each other and are held only by weaker attractions (dipole and dispersion), which still make it a liquid below −24 °C (stage legend 'White: H on O', 'Grey: C, each with its own Hs (not drawn)'; reveal: 'With the O in the middle, no H sits on oxygen: 0 dashes, only a weaker pull to break').",
       "support": "source",
       "source": "Arunan et al., 'Definition of the hydrogen bond (IUPAC Recommendations 2011)', Pure Appl. Chem. 83(8), 1637-1641; Atkins & de Paula, Physical Chemistry, intermolecular interactions. Structure: CH3-CH2-O-H vs CH3-O-CH3. Brief claim 3.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened OpenStax Chemistry 2e section 10.1 (m68761): 'Molecules with F-H, O-H, or N-H moieties are very strongly attracted to similar moieties in nearby molecules ... called hydrogen bonding'; its worked example says CH3OCH3 is polar (dipole-dipole) while CH3CH2OH 'has an -OH group' and so hydrogen-bonds. Dimethyl ether has no O-H, so it cannot donate. The cited IUPAC 2011 definition was not opened; this verdict rests on OpenStax.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): learner r10: 'nothing to break' implied ether molecules have no attraction; now 'only a weaker pull', and the O-H polarity clause added; legend says C atoms carry Hs not drawn; previously unverified."
     },
     {
       "id": "chemistry.ethanol-and-its-twin.c4",
@@ -65,13 +61,11 @@
     },
     {
       "id": "chemistry.ethanol-and-its-twin.c5",
-      "text": "The ring of six molecules and its dashes are a schematic of one instant, not a measured count: 6 dashes in the ethanol ring, 2 broken when one molecule is pulled out, 0 for the ether (stage record lines; reveal: 'In your ethanol ring, 6 dashes linked an O–H to a neighbour's O, and pulling one molecule out broke 2').",
+      "text": "The ring of six molecules and its dashes are a schematic of one instant, not a measured count: 6 dashes in the ethanol ring, 2 broken when one molecule is pulled out, 0 for the ether (stage record lines; reveal: 'In your ethanol ring, 6 dashes each linked an O–H to a neighbour's O ... and pulling one out broke 2').",
       "support": "convention",
       "source": "The lesson's own drawing (Demo.tsx hBonds(): each ethanol donates one H-bond to its neighbour; pulling molecule 0 breaks the two bonds it takes part in). Cyclic hydrogen-bonded clusters of alcohols exist, but the ring here is illustrative. Brief claim 5. The stage shows only heavy atoms and the H on O; the H atoms on carbon are omitted.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Convention, checked against the code: hBonds() gives 6 dashes in the ethanol ring; pulling molecule 0 breaks donor 0->1 and donor 5->0 = 2; ether ring 0 dashes and 0 broken. Transcript reveal reads '6 dashes ... broke 2 ... 0 dashes'. One donated and one accepted H-bond per ethanol is consistent with OpenStax 10.1's O-H donor/acceptor picture. Note: the stage does not say 'schematic'; the reveal frames it as 'your ethanol ring', which does not overclaim.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal wording changed; previously unverified."
     }
   ],
   "confidence": "",
@@ -95,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:hydrogen-bonding",
     "also": [

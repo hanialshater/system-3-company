@@ -5,7 +5,8 @@
 // 0.08%). Insects are caught one at a time: each draw u = rand() picks the species by walking the shares in
 // order, as in the check script. One cumulative catch of 5,000 per seed, from mulberry32(seed).
 // Seed 2 is the start, chosen because its 50-insect count (20) is near the average 18.9 (disclosed in claim c1);
-// "New forest seed" steps 2 -> 3 -> 1 -> 2 and re-runs the current catch size.
+// "New forest seed" steps 2 -> 3 -> 1 -> 2 and re-runs the current catch size (seeds 2 and 3 share 34 at 500 and 40
+// at 5,000 by coincidence: 20/34/40 and 17/34/40). The reveal returns to seed 2.
 // The strip under the chart shows the 40 species from commonest to rarest, filled when found: the commonest
 // fill in the first few dozen insects, the rare tail last.
 // Milestones: "c500" (500 caught, the question's case) and "c5000". At the reveal the catch is set to 5,000, so
@@ -60,17 +61,19 @@ export function catchInsects(seed: number): Catch {
 const CATCHES: Record<number, Catch> = { 1: catchInsects(1), 2: catchInsects(2), 3: catchInsects(3) };
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-// Chart geometry (log x from 1 to 5,000).
+// Chart geometry (linear x from 0 to 5,000; learner r10, W-840: the old log axis drew the slowing as a steady ramp).
 const W = 356, H = 178;
 const X0 = 34, X1 = 340, Y0 = 10, Y1 = 150;
 const YMAX = 50;
-const X = (n: number) => X0 + (Math.log10(Math.max(1, n)) / Math.log10(MAX)) * (X1 - X0);
+const X = (n: number) => X0 + (n / MAX) * (X1 - X0);
 const Y = (k: number) => Y1 - (k / YMAX) * (Y1 - Y0);
 const samples = (() => {
   const out: number[] = [];
-  for (let e = 0; e <= Math.log10(MAX) + 1e-9; e += 0.02) out.push(Math.min(MAX, Math.round(Math.pow(10, e))));
-  return [...new Set(out)];
+  for (let m = 0; m <= 200; m += 2) out.push(m);
+  for (let m = 225; m <= MAX; m += 25) out.push(m);
+  return out;
 })();
+const TICKS = [0, 1000, 2000, 3000, 4000, 5000];
 
 function Stage({ locked, size, seed, onSize, onSeed }: { locked: boolean; size: Size | null; seed: number; onSize: (n: Size) => void; onSeed: () => void }) {
   const c = CATCHES[seed];
@@ -99,21 +102,20 @@ function Stage({ locked, size, seed, onSize, onSeed }: { locked: boolean; size: 
             <text x={X0 - 4} y={Y(v) + 4} textAnchor="end" className={s.tick}>{v}</text>
           </g>
         ))}
-        {SIZES.map((m) => (
+        {TICKS.map((m) => (
           <g key={m}>
             <line x1={X(m)} x2={X(m)} y1={Y1} y2={Y1 + 4} className={s.axis} />
-            <text x={X(m)} y={Y1 + 15} textAnchor={m === MAX ? "end" : "middle"} className={s.tick}>{fmt(m)}</text>
+            <text x={X(m)} y={Y1 + 15} textAnchor={m === MAX ? "end" : m === 0 ? "start" : "middle"} className={s.tick}>{fmt(m)}</text>
           </g>
         ))}
-        <text x={X0} y={Y1 + 15} className={s.tick}>1</text>
-        <text x={X(5)} y={Y1 + 26} className={s.tick}>insects caught (log scale)</text>
+        <text x={X(2500)} y={Y1 + 27.5} textAnchor="middle" className={s.tick}>insects caught</text>
         {size !== null && <path d={d} className={s.curve} />}
         {size !== null &&
           SIZES.filter((m) => m <= n).map((m) => (
             <g key={m}>
               <circle cx={X(m)} cy={Y(c.found[m])} r={3.5} className={s.dot} />
-              <text x={X(m) - (m === MAX ? 6 : 0)} y={Y(c.found[m]) - 7} textAnchor={m === MAX ? "end" : "middle"} className={s.count}>
-                {c.found[m]}
+              <text x={X(m) + (m === MAX ? -6 : 6)} y={Y(c.found[m]) + (m === 50 ? 4 : m === 500 ? 15 : -7)} textAnchor={m === MAX ? "end" : "start"} className={s.count}>
+                {m === MAX ? c.found[m] : `${c.found[m]} at ${fmt(m)}`}
               </text>
             </g>
           ))}
@@ -175,7 +177,7 @@ export default function MoreTrapsMoreSpecies({ slug }: { slug: string }) {
       {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => (
-            <RevealSync atReveal={phase === "reveal"} onOpen={() => setSize(5000)}>
+            <RevealSync atReveal={phase === "reveal"} onOpen={() => { setSize(5000); setSeed(2); }}>
               <Stage
                 locked={locked}
                 size={size}
@@ -195,7 +197,8 @@ export default function MoreTrapsMoreSpecies({ slug }: { slug: string }) {
   );
 }
 
-/** When the reveal opens, show the full 5,000 catch so every count the reveal quotes is marked. */
+/** When the reveal opens, show the full 5,000 catch of the question's forest (seed 2: 20 at 50, as the question
+ *  says) so every count the reveal quotes is marked and matches the question (learner r10, W-840). */
 function RevealSync({ atReveal, onOpen, children }: { atReveal: boolean; onOpen: () => void; children: ReactNode }) {
   const open = useRef(onOpen);
   open.current = onOpen;

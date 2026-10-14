@@ -5,8 +5,10 @@
 // binary counting order up to the 21st, the hit), Search for 13 (fills all 64, none found), Add a 7th number
 // (grid doubles to 128), Reset. Each of the first four is a milestone. The trace line keeps
 // "check 1 · find 9: 21 · no 13: 64 · 7 numbers: 128" and survives Reset, so the reveal's numbers stay on the stage.
+// Learner r10 (W-839): the Groups readout says why (each number in or out: 2⁶ = 64), the question frames the search as
+// one by one (this list has shortcuts: 34 and 12 cannot be in a 13), and the reveal restores the all-64 grid.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -21,10 +23,15 @@ const CHECK_PAIR = [2, 4]; // indices of 4 and 5
 const CHIP_W = 40, CHIP_PITCH = 46;
 const CELL = 12, PITCH = 14, GRID_Y0 = 54;
 
-function Stage({ locked, interact, mode, setMode, seen }: {
-  locked: boolean; interact: () => void; mode: Mode; setMode: (m: Mode) => void; seen: Set<Mode>;
+function Stage({ locked, reveal, interact, mode, setMode, seen }: {
+  locked: boolean; reveal: boolean; interact: () => void; mode: Mode; setMode: (m: Mode) => void; seen: Set<Mode>;
 }) {
   const { reach } = useMilestones(interact, ["check", "find9", "none13", "seven"]);
+  // Learner r10 (W-839): after Reset the reveal opened on an empty grid. At the reveal, bring back the question's
+  // case (all 64 tried, none makes 13) so the dark squares the reveal names are on screen.
+  useEffect(() => {
+    if (reveal && mode === "idle" && seen.has("none13")) setMode("none13");
+  }, [reveal, mode, seen, setMode]);
   const go = (m: Mode) => { setMode(m); reach(m); };
   const nums: number[] = mode === "seven" ? [...NUMBERS, SEVENTH] : [...NUMBERS];
   const groups = 2 ** nums.length;
@@ -34,7 +41,7 @@ function Stage({ locked, interact, mode, setMode, seen }: {
   const lit = mode === "check" ? CHECK_PAIR : mode === "find9" ? members(FIND9.hit, NUMBERS.length) : [];
   const status = mode === "check" ? "4 + 5 = 9 · 1 addition"
     : mode === "find9" ? `4 + 5 = 9 · found at group ${FIND9.tried}`
-    : mode === "none13" ? `Nothing makes 13 · all ${NONE13.tried} tried`
+    : mode === "none13" ? `Nothing makes 13 · all ${NONE13.tried} tried, one by one`
     : mode === "seven" ? `7 numbers · groups: ${groups}`
     : " ";
   const trace = [
@@ -70,8 +77,7 @@ function Stage({ locked, interact, mode, setMode, seen }: {
         <Control disabled={locked || mode === "idle"} onClick={() => setMode("idle")}>Reset</Control>
       </Row>
       <Row>
-        <Readout label="Groups tried" value={tried} />
-        <Readout label="Groups" value={seen.size > 0 ? groups : "–"} />
+        <Readout label="Groups: each number in or out" value={seen.size > 0 ? `2${nums.length === 7 ? "⁷" : "⁶"} = ${groups}` : "–"} />
       </Row>
       <p className={s.trace}>{trace || " "}</p>
     </div>
@@ -97,7 +103,7 @@ export default function CheckingIsNotFinding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "3, 34, 4, 12, 5, 2. Checking 4 + 5 = 9: one addition. Proving no group sums to 13: how many groups to try?",
+        question: "3, 34, 4, 12, 5, 2. Checking 4 + 5 = 9: one addition. Trying groups one by one, how many to prove none sums to 13?",
         options: ["6", "12", "64"],
         answer: 2,
       }}
@@ -109,12 +115,12 @@ export default function CheckingIsNotFinding({ slug }: { slug: string }) {
             Checking 4 + 5 took one addition. Finding a group meant trying them: the <strong>{FIND9.tried}st</strong> group made 9, and proving that nothing makes 13 took all <strong>{NONE13.tried}</strong>. One more number doubled the squares to 128.
           </p>
           <p>
-            For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that finds one quickly in every case. Whether such a method exists is the P versus NP question.
+            A shortcut can help on one list, but for problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that finds one quickly in every case. Whether such a method exists is the P versus NP question.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} mode={mode} setMode={setMode} seen={seen} />}
+      {({ locked, phase, interact }) => <Stage locked={locked} reveal={phase === "reveal"} interact={interact} mode={mode} setMode={setMode} seen={seen} />}
     </Lesson>
   );
 }

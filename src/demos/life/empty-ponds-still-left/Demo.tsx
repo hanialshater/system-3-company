@@ -10,6 +10,8 @@
 // learner has tried, so the run log always shows one seed. In seeds 1-12, drain 70 always dies out by
 // year 100 and drain 30 never does (claim c2, disclosed).
 // Milestones: "smaller" (drain 30 or 50 seen) and "d70" (drain 70 seen, the question's case).
+// Learner r10 (W-839): the refill formula moved off the stage (claim c5 source); the reveal's 60% line is now the
+// average-model line, with drain 50's chance extinctions said (about half of runs die out).
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -125,7 +127,7 @@ function Stage({
         <p className={s.msg}>
           {locked
             ? "100 ponds. Each year frogs die out in some ponds, and frogs from occupied ponds settle empty ones."
-            : "Each year a frog pond empties with chance 20%; an empty pond refills with chance 1 − 0.995ⁿ, n = frog ponds."}
+            : "Each year a frog pond empties with chance 20%; an empty pond refills more often when more ponds have frogs."}
         </p>
       )}
       {!atReveal && <p className={s.head} data-testid="pond-head">{head}</p>}
@@ -192,12 +194,10 @@ export default function EmptyPondsStillLeft({ slug }: { slug: string }) {
             </p>
           )}
           <p>
-            Each pond&apos;s frogs die out now and then, and only frogs from other ponds refill it. With few occupied ponds,
-            refills come too slowly to keep up.
-          </p>
-          <p>
-            In the simplest version of this model, the species is lost once the drained share reaches the share that had
-            frogs before: 60% here. Habitat can outlast its species. Toy model.
+            Ponds lose their frogs now and then, and only other ponds&apos; frogs refill them: with few frog ponds, refills
+            come too slowly. Averaged out, frogs vanish once 60% are drained, the share that had them. Short of that, bad luck can
+            still end them: drained 50, half the runs die out. Habitat can outlast its
+            species. Toy model.
           </p>
         </>
       )}

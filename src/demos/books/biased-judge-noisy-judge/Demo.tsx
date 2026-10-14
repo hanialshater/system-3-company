@@ -7,9 +7,10 @@
 //   Judge B: -3,-3,-1,-1,0,0,1,1,3,3   -> bias² 0 + noise² 4 = squared error 4 (mean 0, sd 2)
 //   Judge C: B's errors + 2            -> bias² 4 + noise² 4 = squared error 8
 // noise² is the population variance of the errors; squared error is the mean of the squared errors.
-// Presets (DOM order, each sets the full state, no Reset): "Judge A: biased", "Judge B: noisy", "Judge C: both".
-// Milestones a-seen, b-seen, c-seen: each judge's squared error is recorded when its preset fires and stays in the
-// Seen row and on its strip. The brief gates on a and b; c is gated too, because the reveal quotes C's score.
+// Presets (DOM order, each sets the full state, no Reset): "A: biased", "B: noisy", "C: both".
+// Milestones a-seen, b-seen, c-seen: each judge's squared error is recorded when its preset fires and stays on its
+// strip ("error 4.0"). Under the readout, the focused judge's misses squared and their average show how the score is
+// made (learner r10, W-839). The brief gates on a and b; c is gated too, because the reveal quotes C's score.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -27,7 +28,7 @@ const ERR: Record<Judge, number[]> = {
   B: B_ERR,
   C: B_ERR.map((e) => e + 2),
 };
-const LABEL: Record<Judge, string> = { A: "Judge A: biased", B: "Judge B: noisy", C: "Judge C: both" };
+const LABEL: Record<Judge, string> = { A: "A: biased", B: "B: noisy", C: "C: both" };
 const MILESTONES = ["a-seen", "b-seen", "c-seen"] as const;
 
 function stats(e: number[]) {
@@ -64,7 +65,7 @@ export default function BiasedJudgeNoisyJudge({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Judge A gives every sentence 2 years too long. Judge B is right on average, scattering 2 years either way. Whose squared error is bigger?",
+          "Judge A gives every sentence 2 years too long. Judge B is right on average, with a typical miss of 2 years either way. Whose squared error (the average of each miss squared) is bigger?",
         options: ["Judge A's", "Judge B's", "They are the same"],
         answer: 2,
       }}
@@ -73,9 +74,9 @@ export default function BiasedJudgeNoisyJudge({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Judge A was off by the same 2 years every time; Judge B was right on average but scattered. Both scored{" "}
-            <strong>{fmtErr(rec.A ?? STATS.A.mse)}</strong> on squared error, and Judge C, with both faults, scored{" "}
-            <strong>{fmtErr(rec.C ?? STATS.C.mse)}</strong>.
+            Judge A was off by 2 years every time; Judge B was right on average, with a typical miss of 2. Both scored{" "}
+            <strong>{fmtErr(rec.A ?? STATS.A.mse)}</strong> on squared error: a scatter of 2 costs as much as a bias of 2. Judge
+            C, with both faults, scored <strong>{fmtErr(rec.C ?? STATS.C.mse)}</strong>.
           </p>
           <p>
             <em>Noise</em> argues that scatter is an error as costly as bias, and that it can be measured even when nobody knows the
@@ -99,7 +100,8 @@ export default function BiasedJudgeNoisyJudge({ slug }: { slug: string }) {
             const on = !locked;
             const rows: Judge[] = on && rec.C !== undefined ? ["A", "B", "C"] : ["A", "B"];
             const f = focus ? STATS[focus] : null;
-            const seen = JUDGES.filter((j) => rec[j] !== undefined).map((j) => `${j} ${fmtErr(rec[j] as number)}`);
+            // How the score is made (learner r10, W-839): each case's miss squared, then their average.
+            const how = focus ? `Misses²: ${[...ERR[focus]].sort((a, b) => a - b).map((e) => e * e).join(", ")} → average ${fmtErr(STATS[focus].mse)}` : "";
             return (
               <div className={s.wrap}>
                 <svg
@@ -149,7 +151,7 @@ export default function BiasedJudgeNoisyJudge({ slug }: { slug: string }) {
                     ? `Judge ${focus}: error ${fmtErr(f.mse)} = bias² ${fmt(f.bias2)} + noise² ${fmt(f.noise2)}`
                     : ""}
                 </p>
-                <p className={s.seen}>{on && seen.length > 0 ? `Seen: ${seen.join(" · ")}` : ""}</p>
+                <p className={s.seen}>{on ? how : ""}</p>
                 <Row>
                   {JUDGES.map((j) => (
                     <Control key={j} className={focus === j ? "active" : ""} disabled={locked || focus === j} onClick={() => go(j)}>

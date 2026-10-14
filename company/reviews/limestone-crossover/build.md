@@ -23,3 +23,22 @@ Computer-use QA 2026-10-14 against the shared dev server :3530: `QA_BASE_URL=htt
 Fact-check 2026-10-14 held c5 (W-675): the 'measured decomposition about 890 °C' sentence had no openable source. Withdrawn from the claim (it was never shown to the learner); the claim keeps only the 845 °C estimate, which was verified on derivation. Took the non-blocking note too: the recall why now reads 'Limestone switches near 850 °C (an estimate from 25 °C data).' c5 reset to unverified; no stage change.
 
 Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. No stage change, so reveal-fit was not re-run.
+
+## v3: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/limestone-crossover/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Rule on the stage: 'ΔG = ΔH − TΔS. Negative ΔG: it goes by itself.'
+- TΔS glossed and in kelvin: locked label 'TΔS = T in kelvin × entropy gain'; at a chip 'TΔS at 900 °C (1,173 K): 188 kJ'. Switch caveat '(25 °C data)' became '(estimate)'. c3, c4, c5 rewritten (unverified).
+
+## Pre-flight v3
+
+1. Unchanged.
+2. Unchanged (all numbered).
+3. Locked: ΔH bar and an empty TΔS slot; no switch line.
+4. Reveal values unchanged (milestones t25, t900, switch).
+5. QA path unchanged.
+6. Reset: no Reset (about 69 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 83 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

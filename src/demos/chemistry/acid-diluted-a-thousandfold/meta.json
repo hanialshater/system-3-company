@@ -35,13 +35,11 @@
     },
     {
       "id": "chemistry.acid-diluted-a-thousandfold.c2",
-      "text": "At 25 °C the ion product of water is [H+][OH−] = about 10^-14, so neutral water holds about 10^-7 mol/L of each, and pure water at 25 °C is pH 7 (stage line 'pH 7 neutral'; reveal: 'at 25 °C, [H⁺] × [OH⁻] stays 10⁻¹⁴, so neutral water holds 10⁻⁷ mol/L of each').",
+      "text": "At 25 °C the ion product of water is [H+][OH−] = about 10^-14, and water splits into equal amounts of H+ and OH−, so neutral water holds about 10^-7 mol/L of each, and pure water at 25 °C is pH 7 (stage line 'pH 7 neutral'; reveal: 'Water splits into equal H⁺ and OH⁻, and at 25 °C [H⁺] × [OH⁻] stays 10⁻¹⁴ ... water's share grew toward 10⁻⁷ mol/L each: pH 7').",
       "support": "source",
       "source": "CRC Handbook, 'Ionization constant of water as a function of temperature and pressure' (pKw = 13.99-14.00 at 25 °C); Atkins & de Paula, Physical Chemistry. Brief claim 1.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Opened OpenStax Chemistry 2e (2019; git clone of github.com/openstax/osbooks-chemistry-bundle), section 14.1 (module m68803): 'at 25 °C, Kw has a value of 1.0 × 10^-14' and in pure water [H3O+] = [OH-] = 1.0 × 10^-7 M; section 14.2 (m68804): neutral solution at 25 °C has pH = 7.00. The cited CRC table was not opened; this verdict rests on OpenStax.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal wording changed (learner r10); previously unverified."
     },
     {
       "id": "chemistry.acid-diluted-a-thousandfold.c3",
@@ -75,23 +73,27 @@
     },
     {
       "id": "chemistry.acid-diluted-a-thousandfold.c6",
-      "text": "Adding pure water to an acid brings it toward pH 7 but never past it, because water adds equal amounts of H+ and OH− (reveal: 'Adding water brings an acid toward pH 7, never past it'; stage: the total bar stops at the pH 7 line).",
+      "text": "Adding pure water to an acid brings it toward pH 7 but never past it, because water adds equal amounts of H+ and OH− (reveal: 'water's share grew toward 10⁻⁷ mol/L each: pH 7, never past it'; stage: the total bar stops at the pH 7 line). Dilution does move pH (reveal line shown to a learner who chose 'about 5').",
       "support": "derivation",
       "source": "From the charge balance in c3: [H+] = c + [OH−] >= [OH−] for any c >= 0, so [H+] >= 10^-7 and pH <= 7 at 25 °C; as c -> 0, pH -> 7.00 from below (x100,000: 7.000). Brief claim 5.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Derivation: [H+] = c + [OH-] >= [OH-] with [H+][OH-] = Kw gives [H+]^2 >= Kw, so pH <= 7.00 at 25 °C for any c >= 0. Node: x100,000 pH 6.9998, approaching 7 from below. The stage total bar never crosses the pH 7 line on any preset.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal wording changed (learner r10); previously unverified."
     },
     {
       "id": "chemistry.acid-diluted-a-thousandfold.c7",
-      "text": "On the bars, the water's share of the H+ grows as the acid's shrinks; the reveal quotes the ratio on the stage when it opens, e.g. at ×10,000 water itself supplies about 100 times more H+ than the acid, at ×1,000 about 9.5 times (reveal: 'On your bars now (×10,000), water itself supplies 100 times more H⁺ than the acid'; 'As the acid's share shrank, water's grew').",
+      "text": "On the bars, the water's share of the H+ grows as the acid's shrinks; the reveal quotes the ratio on the stage when it opens, e.g. at ×10,000 water itself supplies about 100 times more H+ than the acid, at ×1,000 about 9.5 times (reveal: 'On your bars now (×10,000), water itself supplies 100 times more H⁺ than the acid'; 'As the acid thinned, water's share grew').",
       "support": "derivation",
       "source": "Water's H+ = Kw/[H+]: 1.0e-9 (x1), 9.9e-9 (x10), 6.2e-8 (x100), 9.5e-8 (x1,000), 9.95e-8 (x10,000), while the acid's falls 1e-5 to 1e-9 (node; Demo.tsx solve(), ratio rounded to 2 significant figures: 99.5 -> 100, 9.51 -> 9.5). Below x100 the acid supplies more (x10: about 100 times more). The acid at higher concentration suppresses water's own ionisation (common-ion effect, Le Chatelier); not named on stage.",
-      "status": "verified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): Node (scratch acid.mjs) with the reveal's rounding (toPrecision(2)): x10 'acid supplies 100 times more', x100 'acid still supplies 1.6 times more', x1,000 'water supplies 9.5 times more', x10,000 'water supplies 100 times more' (99.5 -> 100). Water's H+ 9.9e-9, 6.18e-8, 9.51e-8, 9.95e-8. Minor wording in the source field: 'Below x100 the acid supplies more' should read 'up to and including x100' (x100 is 1.6 to 1); learner text unaffected.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal wording changed (learner r10); previously unverified."
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c8",
+      "text": "In strong acid the H+ squeezes OH− down (product fixed at 10^-14), and water's own H+ comes paired with that OH−, so water's bar starts tiny: at pH 5 water supplies about 1.0 x 10^-9 mol/L of H+ (reveal: 'Strong acid squeezes OH⁻ down, and water's H⁺ comes paired with it, so water's bar started tiny').",
+      "support": "derivation",
+      "source": "Charge and mass balance for strong acid c in water: [H+] = c/2 + sqrt(c^2/4 + Kw), water's share = [OH−] = Kw/[H+]. Builder node re-run 2026-10-14 (Kw = 1e-14): water H+ 1.00e-9, 9.90e-9, 6.18e-8, 9.51e-8, 9.95e-8 mol/L at x1, x10, x100, x1,000, x10,000; pH 5.00, 6.00, 6.79, 6.98, 7.00. Textbook common-ion effect on water autoionisation (e.g. Atkins, Chemical Principles); source not opened by the builder.",
+      "status": "unverified",
+      "note": "Added by demo-builder (W-839, 2026-10-14); needs the fact-checker."
     }
   ],
   "confidence": "",
@@ -115,7 +117,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:water-autoionization",
     "also": [

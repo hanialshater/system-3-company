@@ -2,16 +2,17 @@
 
 // Random assignment. 40 patient dots, shaded by recovery chance (30% frail, dark .. 90% fit, pale). The drug does
 // nothing (stated on the card), so a box's expected recoveries are the sum of its members' chances (model.ts).
-// Presets in DOM order: Coin chooses (mulberry32(58)), Coin again (seeds 59, 60, ...), Doctor chooses (20 fittest).
-// Doctor: 15.1 vs 8.9 of 20. Coin seed 58: 11.8 vs 12.2; seed 59: 11.8 vs 12.2 (values from model.ts, not chosen).
-// Milestones: coin, doctor. Both results are recorded when they fire; whichever is not on the boxes stays in the
-// trace line, so every value the reveal quotes is on the stage when it opens.
+// Presets in DOM order: Coin picks (the next seed: 58, 59, ...), +20 coins (the next 20 seeds), Doctor picks
+// (20 fittest). Every coin gap is kept and drawn as a tick on a gap line, with the doctor's gap as a red mark, so
+// repeated coin presses visibly add up (learner r10, W-821). A coin box draws its dots in the shuffled order.
+// QA path: seed 58 (gap -0.4), seeds 59-78 (21 gaps, -2.0 to +1.6), doctor (+6.2). Values from model.ts, not chosen.
+// Milestones: coin, doctor. The reveal quotes the gap range and the doctor's gap, both on the line when it opens.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Row } from "@/kit/controls";
-import { N, chance, coinSplit, doctorSplit, result, type Result } from "./model";
+import { N, coinOrder, coinSplit, doctorSplit, result, type Result } from "./model";
 import s from "./styles.module.css";
 
 const MILESTONES = ["coin", "doctor"] as const;
@@ -24,17 +25,23 @@ const shade = (i: number) => 1 - (0.82 * i) / (N - 1);
 
 type Mode = { kind: "none" } | { kind: "coin"; k: number } | { kind: "doctor" };
 
-function positions(split: boolean[] | null) {
+/** Dot positions. A coin box fills in the coin's shuffled order (coinOrder), so every coin press visibly re-deals
+ *  the dots; the doctor's box fills in patient order. Dots stay keyed by patient, so they move between presses. */
+function positions(split: boolean[] | null, order: number[] | null) {
   if (!split) return Array.from({ length: N }, (_, i) => ({ x: 25 + (i % 10) * 30, y: 52 + Math.floor(i / 10) * 22 }));
   const slot = [0, 0];
-  return split.map((d) => {
-    const b = d ? 0 : 1;
+  const out = Array.from({ length: N }, () => ({ x: 0, y: 0 }));
+  for (const i of order ?? Array.from({ length: N }, (_, j) => j)) {
+    const b = split[i] ? 0 : 1;
     const t = slot[b]++;
-    return { x: BOX[b] + 16 + (t % 5) * 28, y: 52 + Math.floor(t / 5) * 22 };
-  });
+    out[i] = { x: BOX[b] + 16 + (t % 5) * 28, y: 52 + Math.floor(t / 5) * 22 };
+  }
+  return out;
 }
 
-type Seen = { coin: Result | null; doctor: Result | null };
+type Seen = { gaps: number[]; doctor: Result | null };
+const gx = (g: number) => W / 2 + Math.max(-7, Math.min(7, g)) * 20;
+const range = (gaps: number[]) => ({ lo: Math.min(...gaps), hi: Math.max(...gaps) });
 
 function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
   locked: boolean;
@@ -47,11 +54,13 @@ function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
   const m: Mode = locked ? { kind: "none" } : mode;
   const split = m.kind === "coin" ? coinSplit(m.k) : m.kind === "doctor" ? doctorSplit() : null;
   const r = split ? result(split) : null;
-  const pos = positions(split);
-  const coin = (k: number) => {
+  const pos = positions(split, m.kind === "coin" ? coinOrder(m.k) : null);
+  const coins = (count: number) => {
     if (locked) return;
-    setMode({ kind: "coin", k });
-    setSeen({ ...seen, coin: result(coinSplit(k)) });
+    const first = seen.gaps.length;
+    const ks = Array.from({ length: count }, (_, j) => first + j);
+    setMode({ kind: "coin", k: ks[ks.length - 1] });
+    setSeen({ ...seen, gaps: [...seen.gaps, ...ks.map((k) => result(coinSplit(k)).gap)] });
     reach("coin");
   };
   const doctor = () => {
@@ -60,18 +69,14 @@ function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
     setSeen({ ...seen, doctor: result(doctorSplit()) });
     reach("doctor");
   };
-  const nextK = mode.kind === "coin" ? mode.k + 1 : seen.coin ? 1 : 0;
-  const trace =
-    m.kind === "doctor" && seen.coin
-      ? `Last coin split: ${fmt(seen.coin.drug)} vs ${fmt(seen.coin.none)}`
-      : m.kind === "coin" && seen.doctor
-        ? `Doctor's split: ${fmt(seen.doctor.drug)} vs ${fmt(seen.doctor.none)}`
-        : "";
+  const trace = m.kind === "coin" && seen.doctor ? ` · Doctor's split: ${fmt(seen.doctor.drug)} vs ${fmt(seen.doctor.none)}` : "";
+  const n = seen.gaps.length;
+  const rg = n ? range(seen.gaps) : null;
 
   return (
     <div className={s.wrap}>
       <p className={s.msg}>{locked ? "Make a prediction to start." : "In this model the drug does nothing."}</p>
-      <svg viewBox={`0 0 ${W} 166`} className={`stage-svg ${s.svg}`} role="img" aria-label={r ? `Drug box ${fmt(r.drug)}, no-drug box ${fmt(r.none)} expected recoveries of 20` : "40 patients, not yet assigned"}>
+      <svg viewBox={`0 0 ${W} ${split ? 212 : 166}`} className={`stage-svg ${s.svg}`} role="img" aria-label={r ? `Drug box ${fmt(r.drug)}, no-drug box ${fmt(r.none)} expected recoveries of 20` : "40 patients, not yet assigned"}>
         <defs>
           <linearGradient id="dpp-legend">
             <stop offset="0" stopColor="var(--domain)" stopOpacity={1} />
@@ -97,20 +102,38 @@ function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
           <circle key={i} cx={p.x} cy={p.y} r={8} className={s.dot} style={{ fillOpacity: shade(i) }} />
         ))}
         {r && (
-          <text x={W / 2} y={164} textAnchor="middle" className={s.gap}>
-            Gap: {signed(r.gap)} recoveries{trace ? ` · ${trace}` : ""}
+          <text x={W / 2} y={166} textAnchor="middle" className={s.gap}>
+            Gap: {signed(r.gap)} recoveries{trace}
           </text>
+        )}
+        {split && (
+          <g aria-label="Gaps seen so far">
+            <line x1={gx(-7)} x2={gx(7)} y1={188} y2={188} className={s.axis} />
+            <line x1={gx(0)} x2={gx(0)} y1={183} y2={193} className={s.axis} />
+            {seen.gaps.map((g, j) => (
+              <line key={j} x1={gx(g)} x2={gx(g)} y1={181} y2={195} className={s.tick} />
+            ))}
+            {seen.doctor && <line x1={gx(seen.doctor.gap)} x2={gx(seen.doctor.gap)} y1={177} y2={199} className={s.doc} />}
+            <text x={8} y={209} className={s.gap}>
+              {rg ? `${n} coin gap${n === 1 ? "" : "s"}: ${rg.lo === rg.hi ? signed(rg.lo) : `${signed(rg.lo)} to ${signed(rg.hi)}`}` : "No coin gaps yet"}
+            </text>
+            {seen.doctor && (
+              <text x={W - 8} y={209} textAnchor="end" className={s.docLabel}>
+                Doctor {signed(seen.doctor.gap)}
+              </text>
+            )}
+          </g>
         )}
       </svg>
       <Row>
-        <Control disabled={locked} className={!locked && mode.kind === "coin" && mode.k === 0 ? "active" : ""} onClick={() => coin(0)}>
-          Coin chooses
+        <Control disabled={locked} className={!locked && mode.kind === "coin" ? "active" : ""} onClick={() => coins(1)}>
+          Coin picks
         </Control>
-        <Control disabled={locked} onClick={() => coin(nextK)}>
-          Coin again
+        <Control disabled={locked} onClick={() => coins(20)}>
+          +20 coins
         </Control>
         <Control disabled={locked} className={!locked && mode.kind === "doctor" ? "active" : ""} aria-pressed={!locked && mode.kind === "doctor"} onClick={doctor}>
-          Doctor chooses
+          Doctor picks
         </Control>
       </Row>
     </div>
@@ -119,9 +142,10 @@ function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
 
 export default function TheDoctorPicksThePatients({ slug }: { slug: string }) {
   const [mode, setMode] = useState<Mode>({ kind: "none" });
-  const [seen, setSeen] = useState<Seen>({ coin: null, doctor: null });
+  const [seen, setSeen] = useState<Seen>({ gaps: [], doctor: null });
   const doc = seen.doctor ?? result(doctorSplit());
-  const coin = seen.coin ?? result(coinSplit(0));
+  const gaps = seen.gaps.length ? seen.gaps : [result(coinSplit(0)).gap];
+  const rg = range(gaps);
   return (
     <Lesson
       slug={slug}
@@ -130,7 +154,7 @@ export default function TheDoctorPicksThePatients({ slug }: { slug: string }) {
         options: ["The doctor, who knows the patients", "A coin flip for each", "Either: with 20 per group it evens out"],
         answer: 1,
       }}
-      exploreHint="Let the coin choose (twice), then let the doctor choose."
+      exploreHint="Let the coin choose a few times, then let the doctor choose."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -139,7 +163,7 @@ export default function TheDoctorPicksThePatients({ slug }: { slug: string }) {
             against {fmt(doc.none)}. She picked the fittest, so fitness passes for a cure.
           </p>
           <p>
-            Your coin split gave {fmt(coin.drug)} against {fmt(coin.none)}. A coin knows nothing about the patients, so fit
+            Your {gaps.length === 1 ? "coin split gave a gap of " + signed(rg.lo) : `${gaps.length} coin splits gave gaps from ${signed(rg.lo)} to ${signed(rg.hi)}`}, against the doctor&apos;s {signed(doc.gap)}. A coin knows nothing about the patients, so fit
             and frail land on both sides about equally. A gap as big as the doctor&apos;s turns up by coin less than 1 time in
             100.
           </p>

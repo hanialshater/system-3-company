@@ -23,17 +23,19 @@
   "claims": [
     {
       "id": "books.total-signups-hide-the-slide.c1",
-      "text": "A running total can't fall, so it can't tell you which way you are going.",
+      "text": "A total rises whenever a month adds anyone, so “it rose” can't tell you which way you are going. Each step's size can: A's shrink, B's grow.",
       "support": "derivation",
       "source": "Identity (brief D1): a cumulative sum of non-negative monthly additions is non-decreasing whatever each month's conversion is, so a rising total is consistent with both falling and rising conversion (the stage shows one of each ending at the same total). Brief company/domains/briefs/books.md #8; check company/domains/briefs/checks/books-cycle1-check.mjs #8.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-823, 2026-10-14): learner r10: the old sentence over-reached (the curves' bend does show the monthly rate); narrowed to 'it rose' alone, and points at the step sizes. Fact-checker: please re-check the scope; previously unverified."
     },
     {
       "id": "books.total-signups-hide-the-slide.c2",
-      "text": "Your total kept climbing while each month converted worse, down to 5% by month six. When months got better instead, the total still ended at 450.",
+      "text": "Total A kept climbing while each month converted worse, down to 5% by month six. B's months got better; its total also ended at 450.",
       "support": "derivation",
-      "source": "Brief D2. Demo.tsx RATES: 1,000 visitors a month; 'getting worse' 10, 9, 8, 7, 6, 5% gives 100, 90, 80, 70, 60, 50 new customers, cumulative 100, 190, 270, 340, 400, 450; 'getting better' 5, 6, 7, 8, 9, 10% gives cumulative 50, 110, 180, 260, 350, 450. Both values are recorded when their milestone fires (cohort-seen: month-6 rate; better-total-seen: final total) and shown in the Seen row. Checked by node in books-cycle1-check.mjs #8 (all pass, 2026-10-14).",
-      "status": "unverified"
+      "source": "Brief D2. Demo.tsx RATES: 1,000 visitors a month; 'getting worse' 10, 9, 8, 7, 6, 5% gives 100, 90, 80, 70, 60, 50 new customers, cumulative 100, 190, 270, 340, 400, 450; 'getting better' 5, 6, 7, 8, 9, 10% gives cumulative 50, 110, 180, 260, 350, 450. Both values are recorded when their milestone fires (cohort-seen: month-6 rate; better-total-seen: final total) and shown in the Seen row. Checked by node in books-cycle1-check.mjs #8 (all pass, 2026-10-14). Steps: A adds 100, 90, 80, 70, 60, 50; B adds 50, 60, 70, 80, 90, 100 (builder node re-run 2026-10-14).",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-823, 2026-10-14): presets renamed A and B; wording follows; previously unverified."
     },
     {
       "id": "books.total-signups-hide-the-slide.c3",
@@ -92,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "books:lean-vanity-metrics",
     "also": [],

@@ -8,13 +8,19 @@ import { mulberry32 } from "@/kit/random";
 export const N = 40;
 export const chance = (i: number) => 30 + (60 * i) / 39;
 
-export function coinSplit(k: number): boolean[] {
+/** The shuffled patient order of coin split k (the stage draws each box's dots in this order, not sorted). */
+export function coinOrder(k: number): number[] {
   const rng = mulberry32(58 + k);
   const idx = Array.from({ length: N }, (_, i) => i);
   for (let i = N - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [idx[i], idx[j]] = [idx[j], idx[i]];
   }
+  return idx;
+}
+
+export function coinSplit(k: number): boolean[] {
+  const idx = coinOrder(k);
   const drug = Array(N).fill(false);
   for (let t = 0; t < N / 2; t++) drug[idx[t]] = true;
   return drug;

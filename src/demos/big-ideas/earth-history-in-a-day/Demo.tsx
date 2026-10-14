@@ -6,12 +6,14 @@
 // has passed them, and each lit event is written in the "found" list with its clock time.
 // Zooming in moves the hand to the start of the new view if it was earlier (it never moves the hand back).
 // "Next event" steps the hand to the next event, zooming in if the event is too close to midnight to see.
-// Controls (DOM order = QA order): slider, Whole day (active at start, disabled), Last hour, Last minute, Next event.
+// Controls (DOM order = QA order): slider, Day (active at start, disabled), Last hour, Last min, Next (event).
 // QA path: slider → 00:10; Last hour → 23:00; Last minute → 23:59:00 (dinosaurs' end passed: milestone);
 // Next event → 23:59:54 in the minute view (Homo sapiens: milestone).
 // v2 (W-635, W-537 re-check): held claims cut back. Writing is gone from the stage and the reveal (c4 withdrawn);
 // the reveal keeps one dated event (Homo sapiens, c2), Hutton (c6, public domain, cut if not checkable) and a
 // limit that rests on the clock itself (c8), not on the asteroid. The recall is now a transfer case (a river).
+// v3 (learner r10, W-839): one slow-process event on the clock (Grand Canyon, about 6 million years ago, 23:58:05,
+// c9) so the Hutton sentence quotes something on the stage; the question says 4.54 billion, as the readout does.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -27,6 +29,7 @@ type Ev = { id: string; name: string; t: number };
 const EVENTS: Ev[] = [
   { id: "life", name: "Earliest life (debated)", t: at(3.7e9) },
   { id: "dinos", name: "Non-bird dinosaurs end", t: at(66e6) },
+  { id: "canyon", name: "Grand Canyon carved, 1.8 km", t: at(6e6) },
   { id: "humans", name: "Homo sapiens", t: at(300e3) },
 ];
 
@@ -37,6 +40,8 @@ const VIEW: Record<Zoom, { start: number; step: number; label: string; scale: st
   minute: { start: DAY - 60, step: 0.1, label: "Last minute", scale: "1 second ≈ 52,500 years" },
 };
 const ORDER: Zoom[] = ["day", "hour", "minute"];
+/** Short button labels so the four controls share one row on a phone (the header keeps the full view name). */
+const BUTTON: Record<Zoom, string> = { day: "Day", hour: "Last hour", minute: "Last min" };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 function clock(t: number, tenths = false) {
@@ -72,13 +77,14 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
 
   const ws = VIEW[zoom].start;
   const frac = (x: number) => (x - ws) / (DAY - ws);
-  const humansAt = clock(humansSeen ?? EVENTS[2].t);
+  const HUMANS = EVENTS[EVENTS.length - 1];
+  const humansAt = clock(humansSeen ?? HUMANS.t);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "Squeeze Earth’s 4.5 billion years into one day, starting at midnight. When does our species, Homo sapiens, appear?",
+        question: "Squeeze Earth’s 4.54 billion years into one day, starting at midnight. When does our species, Homo sapiens, appear?",
         options: ["About 6:00:00 pm", "About 11:30:00 pm", "About 11:59:54 pm"],
         answer: 2,
       }}
@@ -87,12 +93,11 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Our species appeared at {humansAt}, about six seconds before midnight. On this clock, one second is about 52,500
-            years.
+            Our species appeared at {humansAt}, about six seconds before midnight; one second here is about 52,500 years.
           </p>
           <p>
-            From James Hutton in the 1780s, geologists argued that slow processes, given this much time, carve valleys and raise
-            mountains.
+            From Hutton in the 1780s, geologists argued that slow processes, given this much time, do big things: a river
+            cutting about 0.3 mm a year carved the Grand Canyon&rsquo;s 1.8 km in the last two minutes.
           </p>
           <p>
             Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide
@@ -106,8 +111,8 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
           {(reach) => {
             const check = (nt: number, nz: Zoom) => {
               if (nt >= EVENTS[1].t) reach("dinos");
-              if (nt >= EVENTS[2].t && nz === "minute") {
-                if (humansSeen === null) setHumansSeen(EVENTS[2].t);
+              if (nt >= HUMANS.t && nz === "minute") {
+                if (humansSeen === null) setHumansSeen(HUMANS.t);
                 reach("humans");
               }
             };
@@ -220,11 +225,11 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                 <div className={s.controls}>
                   {ORDER.map((z) => (
                     <Control key={z} className={zoom === z ? "active" : ""} aria-pressed={zoom === z} disabled={locked || zoom === z} onClick={() => move(t, z)}>
-                      {VIEW[z].label}
+                      {BUTTON[z]}
                     </Control>
                   ))}
                   <Control disabled={locked || !next} onClick={() => next && move(next.t, ORDER.indexOf(viewFor(next.t)) > ORDER.indexOf(zoom) ? viewFor(next.t) : zoom)}>
-                    Next event ▸
+                    Next ▸
                   </Control>
                 </div>
               </div>

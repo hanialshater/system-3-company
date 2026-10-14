@@ -20,3 +20,23 @@ This pre-flight describes the v1 build. Board items W-633 to W-636 (from cm-big-
 5. **QA path.** Run (seed 42, w 0: noise), track 0 (disabled, skipped), track 0.3, track 1 (meet), +15 (shift). Every press changed the stage (own Playwright walk on :3530, before the layout pass).
 6. **Reset.** No Reset; "New run" changes the seed but not the recorded value. Reveal on the QA path: "With pure-noise guesses, the bottom quarter still guessed the 49th percentile on average: the famous pattern from randomness alone. When guesses matched skill, the lines met. Kruger and Dunning’s 1999 chart had this shape. A better-than-average shift lifts every guess, so the bottom looks even more overconfident. Where it stops: noise drawing the shape doesn’t prove there is no effect. Some analyses call it mostly a statistical artefact; others find a smaller real effect."
 7. **Phone fit.** verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 82 words with the verdict; stage 244 px (picture 121, controls 44, text 47), window 618 px. (The first layout cropped the chart; fixed by one control row, a 136 px chart and a one-line trace.) Measured 2026-10-14 ~17:35 UTC on the shared dev server :3530 with tools/reveal-fit.mjs logic, but run from a scratch copy whose only changes raise the page.goto timeout (30 s → 600 s) and the lesson-render wait (15 s → 900 s): the unmodified tool failed 20+ times on page.goto/render timeouts (the server took 73 s to DOMContentLoaded and 217 s to hydrate). Screenshot artifacts/reveal-fit/noise-draws-dunning-kruger.png. The run measured the files as they stood then, which already included another builder's in-flight v2 edits (none yet; W-636 waits on W-622).
+
+## v2: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/noise-draws-dunning-kruger/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- A dotted ghost of the 1999 chart's shape is on the stage once a run exists ('1999 chart (approx.)', bottom quarter about 60th, top about 75th). New claim c6: these values are the builder's approximation, NOT read from the paper; the fact-checker must check them against Kruger & Dunning 1999 Figures 1-4, and correct or remove the ghost if they do not hold.
+- When the reveal opens the stage shows the noise run with the shift (track 0, +15): bottom guess 63. Reveal p2: 'Add a better-than-average shift and the noise line sits near the dotted 1999 chart of Kruger and Dunning: the bottom quarter now guessed the 63rd, looking even more overconfident.' Ordinals fixed (63rd).
+- Not done: rewording the question to ask about the shape (finding 1, optional). c2, c3 rewritten (unverified).
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Locked: empty axes; the ghost appears only after a run.
+4. Reveal values: 49 (b, noise milestone; trace), 63 (a, current run at reveal; 'guess 63' label).
+5. QA path unchanged; reveal switches to track 0 + shift.
+6. Reset: n/a (about 75 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 90 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

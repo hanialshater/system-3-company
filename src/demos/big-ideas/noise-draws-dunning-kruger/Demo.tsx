@@ -9,8 +9,10 @@
 // Controls (DOM order = QA order): Run (then "New 1,000 people", seed + 1), track 0 / 0.3 / 1, shift toggle.
 // QA path: Run (seed 42, w 0: noise), 0 is active (disabled), 0.3, 1 (meet), shift on (shift).
 // Milestones: noise (a run with w = 0, shift off: bottom guess recorded), meet (w = 1, shift off), shift (shift on).
+// Learner r10 (W-840): a dotted ghost of the 1999 chart's shape (approximate, claim c6) is on the stage, and when the
+// reveal opens the stage shows the noise run with the shift (track 0, +15), which is what the reveal describes.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -35,6 +37,25 @@ function simulate(seed: number, w: number, shift: number) {
   }
   return { real, guess };
 }
+
+/** Approximate shape of Kruger and Dunning's 1999 chart (bottom quarter's self-estimate about the 60th percentile,
+ *  top quarter's about the 75th), drawn as a dotted ghost between the end quarters. Claim c6, for the fact-checker. */
+const PUBLISHED = { bottom: 60, top: 75 };
+
+/** Runs once when the reveal opens. */
+function OnReveal({ reveal, run }: { reveal: boolean; run: () => void }) {
+  useEffect(() => {
+    if (reveal) run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reveal]);
+  return null;
+}
+
+const ord = (n: number) => {
+  const t = n % 100;
+  const suf = t >= 11 && t <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] ?? "th";
+  return `${n}${suf}`;
+};
 
 const X0 = 92;
 const DX = 74;
@@ -67,12 +88,13 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With pure-noise guesses, the bottom quarter still guessed the {g}th percentile on average: the famous pattern from
+            With pure-noise guesses, the bottom quarter still guessed the {ord(g)} percentile on average: the famous pattern from
             randomness alone. When guesses matched skill, the lines met.
           </p>
           <p>
-            Kruger and Dunning’s 1999 chart had this shape. A better-than-average shift lifts every guess, so the bottom looks
-            even more overconfident.
+            Add a better-than-average shift and the noise line sits near the dotted 1999 chart of Kruger and Dunning: the
+            bottom quarter now guessed the {ord(Math.round(simulate(seed ?? 42, 0, SHIFT).guess[0]))}, looking even more
+            overconfident.
           </p>
           <p>
             Where it stops: noise drawing the shape doesn’t prove there is no effect. Some analyses call it mostly a statistical
@@ -81,7 +103,7 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, phase, interact }) => (
         <Milestones interact={interact} names={["noise", "meet", "shift"]}>
           {(reach) => {
             const apply = (nSeed: number | null, nW: number, nShift: boolean) => {
@@ -108,6 +130,15 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
                 : `Seed ${seed} · guesses track skill ${w} · shift ${shift ? `+${SHIFT}` : "off"}`;
             return (
               <div className={s.wrap}>
+                <OnReveal
+                  reveal={phase === "reveal"}
+                  run={() => {
+                    // Learner r10 (W-840): the reveal describes the noise run with the shift, so show that run.
+                    setW(0);
+                    setShift(true);
+                    if (seed === null) setSeed(42);
+                  }}
+                />
                 <p className={s.msg} aria-live="polite">
                   {msg}
                 </p>
@@ -127,6 +158,10 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
                   ))}
                   {data && !locked ? (
                     <>
+                      <line x1={xOf(0)} y1={yOf(PUBLISHED.bottom)} x2={xOf(3)} y2={yOf(PUBLISHED.top)} stroke="var(--muted)" strokeWidth={2} strokeDasharray="2 4" strokeLinecap="round" />
+                      <text x={xOf(0) + 2} y={yOf(76)} textAnchor="start" className={s.lab}>
+                        1999 chart (approx.)
+                      </text>
                       <path d={line(data.real)} fill="none" stroke="var(--fg)" strokeWidth={2.5} strokeDasharray="6 4" />
                       <path d={line(data.guess)} fill="none" stroke="var(--domain)" strokeWidth={3.5} />
                       {data.real.map((v, q) => (
