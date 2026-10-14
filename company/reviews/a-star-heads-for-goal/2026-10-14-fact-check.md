@@ -34,3 +34,19 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c6 | verified | GUESS_AT_S = 6; own BFS with the wall at column 3, rows 2-4 gives 10. The line under the table 'Guess at S: 6. Real route with the wall: 10.' appears once the guided wall run is filled ('?' before). num() = settleIdx + 1. isFrontier = discovered at settled-count <= k and not yet settled, which matches 'Dashed: waiting to settle'. |
 
 **Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+
+## Pass 30 (2026-10-14, W-276)
+
+Checker: fact-checker. I did not write or build these claims. Scope: claims reopened by the W-265/W-267 phone-fit trims (meta.json v5). Method: read Demo.tsx on every reachable path (predict, explore controls, steps back, Reset where one exists, prefers-reduced-motion branch, reveal gates) and checked that each value the reveal names is on the stage when it opens; re-ran the numbers in my own node scripts (session scratchpad fact-checker-w276/). No source was opened (web fetch: DNS failure; proxy 403), so no verdict below rests on a cited text.
+
+Paths read: Settle next, Settle to goal, Wall toggle, No guess, With guess, restart mid-run vs at goal (replay), wall-first path (c1 dispute), reduced motion (replay fills the table at once). No Reset control. Non-blocking for W-278/qa: the reveal on the path that fills all four table cells is 94 words (node count), over the 90 budget; Pre-flight v5 quotes 89 for the QA path only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | disputed | Numbers hold (own independent A*, fact-checker-w276/astar.mjs): open guess 7 / route 6, no guess 31 / route 6; tie rule matches the stage line "Ties: more steps taken first." DISPUTED on a stage path: milestone guided-at-goal fires on ANY guided finish, including the wall run. Path: Wall: off -> Settle to goal (guided wall) -> No guess (replays no-guess wall) reaches all 3 milestones with the open grid never run, so the reveal verdict "it was 7" / "Your prediction held" answers a case the stage never showed, and Pre-flight v5 item 4 is wrong to call open grid 7 gated (b). Demo-standard: the question own case is a milestone. Fix (builder): reach guided-at-goal only when mode is guess and the wall is off. |
+| c2 | verified | Own A*: wall col 3 rows 2-4, guess 16 / route 10, no guess 46 / route 10 (49 - 3 open); BFS shortest 10; FIFO gives 32. Reveal wall line needs both wall runs (milestone wall-both) and reads the table cells "16 cells - route 10", "46 cells - route 10". Reduced motion fills the same table. |
+| c3 | verified | Rests on own derivation and simulation, not on Hart, Nilsson & Raphael 1968 (not opened; web blocked): Manhattan is admissible and consistent on a 4-way unit grid, so the closed-set search in Demo.tsx (no reopening) settles each cell at its minimal steps; own runs give guided = flood length on open (6) and wall (10). Note: the general sentence "never too high" alone suffices for A* that may reopen cells; this stage does not reopen, and is still optimal because its guess is consistent. Support could be derivation. |
+| c6 | verified | GUESS_AT_S = /0-6/ + /3-3/ = 6; BFS with the wall 10. Line under the table "Guess at S: 6. Real route with the wall: 10." once the guided wall run is filled (wall-both guarantees it), "?" before; reveal "the wall route took 10" reads the same value. Legend "Numbers: settle order. Dashed: waiting to settle." matches num() and isFrontier. |
+
+**Result:** 3 verified, 1 disputed, 0 held (unverified), 0 withdrawn.

@@ -24,3 +24,19 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 |---|---|---|
 | c2 | verified | Own brute force over 64 labellings, 7 links: 0 valid, minimum 1 broken (best camp 0,1,1,1,0,0 breaks A-D); moved enemy: 2 valid. Caption names filled vs dotted camps and the thick link. |
 | c4 | verified | Parity re-derived; own node walk(): given layout ring 2 enemies back 0, right loop 1 back 1, left loop 1 back 1; moved: right 2 back 0, left 0 back 0. Non-blocking note: after 'Try all 64 splits' the stage shows the best split, not the walk, so a learner who tries all first and then picks loops never sees a walk drawn, though the reveal says 'On those walks'. Demo-standard question for the builder, not a fact error. |
+
+
+## Pass 30 (2026-10-14, W-276)
+
+Checker: fact-checker. I did not write or build these claims. Scope: claims reopened by the W-265/W-267 phone-fit trims (meta.json v3). Method: read Demo.tsx on every reachable path (predict, explore controls, steps back, Reset where one exists, prefers-reduced-motion branch, reveal gates) and checked that each value the reveal names is on the stage when it opens; re-ran the numbers in my own node scripts (session scratchpad fact-checker-w276/). No source was opened (web fetch: DNS failure; proxy 403), so no verdict below rests on a cited text.
+
+Paths read: loops before Try (walk drawn), Try before loops (no walk drawn: c4 dispute), enemy moved before/after Try, back to D-E after Try (records given 0/64). No Reset control; no animation. Reveal on the full path: 81 words. Non-blocking: the ring "2" fallback and "each odd" for an unpicked small loop are not from the learner row but are visible as red dashes on the always-drawn ring.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own brute force (scratchpad fact-checker-w276/ol.mjs): ring 2, right loop A-B-C-D 1, left loop A-D-E-F 1. Reveal counts come from the layout row when picked; the ring 2 is a fallback when the ring is never picked and "each odd" covers an unpicked loop, both readable off the always-drawn picture (red dashes). Non-blocking. |
+| c2 | verified | Own brute force over 64 labellings, 7 links: 0 valid, min 1 broken (best 0,1,1,1,0,0 breaks A-D). Reveal "0 of 64 splits worked" = given.working, recorded on every route to milestone tried-all (Try in given, or back to D-E after Try). Caption names filled vs dotted camps and the thick link. |
+| c3 | verified | Own brute force, enemies A-B and C-D: loops 2, 2, 0; 2 valid labellings, {B,C} vs {A,D,E,F} and swap. Reveal past tense only if tried on that layout (row shows 2/64), else present tense. 128 signings of this frame: balanced iff all 3 cycles even, 0 mismatches. |
+| c4 | disputed | Parity holds (own walk). DISPUTED on a stage path: once "Try all 64 splits" is pressed, tried never resets and w = null whenever result exists, so a learner who tries first and then picks Right or Left loop reaches odd-loop without any walk or clash ring drawn (caption still "0 of 64..."). The reveal then says "so those walks came back to A in the other camp", a state the stage never showed (demo-standard: the reveal quotes what you saw). Fix (builder): draw the walk when a loop is picked after Try (e.g. picking a loop shows its walk instead of the best split), or gate odd-loop on a drawn walk. Pass 24 noted this as non-blocking; W-276 asked for every path. |
+
+**Result:** 3 verified, 1 disputed, 0 held (unverified), 0 withdrawn.

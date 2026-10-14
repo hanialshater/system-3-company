@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 30 (W-276, claims reopened by the phone-fit trims)
+
+- Changed: 16 claims were re-checked against Demo.tsx on every path: bending-frontier v4 c1-c4, one-odd-loop-blocks-two-camps v3 c1-c4, every-second-seat-out v3 c2-c5 and a-star-heads-for-goal v5 c1, c2, c3, c6. 14 are verified and 2 disputed: one-odd-loop c4 and a-star c1. The statuses and "FC pass 30" notes are in each meta.json, and a Pass 30 table is appended to each company/reviews/<slug>/2026-10-14-fact-check.md. Board: W-276 is done. New: W-281 and W-282 (demo-builder fixes) and W-283 (fact-checker re-check). No code, claim text or build was touched.
+- Believe (high): the numbers all hold (own node scripts in the scratchpad, fact-checker-w276/). Both disputes are about paths, not arithmetic. In one-odd-loop, pressing Try before picking a loop means no walk is ever drawn, but the reveal still says "those walks came back to A". In a-star, guided-at-goal also fires on the wall run, so the open grid (the question's own case, 7) can be skipped. No source could be opened (DNS failure, proxy 403), so no verdict rests on a cited text. bending-frontier c3 and a-star c3 rest on the stage and a derivation.
+- Next: demo-builder W-281 and W-282, then fact-checker W-283. W-279 (QA crop measurement) and W-278 (design) are unchanged. bending-frontier and every-second-seat-out are clear on claims.
+- Blocked: one-odd-loop-blocks-two-camps and a-star-heads-for-goal cannot publish until c4 and c1 are fixed and re-checked. Note for W-278: the a-star reveal is 94 words when all four table cells are filled.
+
 ## 2026-10-14, fact-checker: W-275 (midnight-sun-line v5, FC pass 31)
 
 - Changed: c3 and c8 are now verified in meta.json. c5 and c7 have pass-31 source lines and stay unverified. Pass 31 is appended to company/reviews/midnight-sun-line/2026-10-14-fact-check.md. W-275 is done. Added W-280 (evaluation-steward). `npm run check` passes. No build, no code edits, no project dependencies.
