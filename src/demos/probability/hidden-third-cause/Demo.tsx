@@ -17,8 +17,6 @@ const MILESTONES = ["banded", "three-bands"] as const;
 const DAYS = town(SEED);
 const ALL_R = correlation(DAYS);
 const bandR = (start: number) => correlation(DAYS.filter((d) => inBand(d, start)));
-const BAND_RS = BAND_STARTS.map(bandR);
-const MEAN_R = BAND_RS.reduce((a, b) => a + b, 0) / BAND_RS.length;
 const LO = -4;
 const HI = 46;
 const W = 320;
@@ -26,7 +24,7 @@ const H = 250;
 const PAD = 26;
 const sx = (v: number) => PAD + ((v - LO) / (HI - LO)) * (W - PAD - 8);
 const sy = (v: number) => H - PAD - ((v - LO) / (HI - LO)) * (H - PAD - 8);
-const word = (r: number) => (Math.abs(r) >= 0.6 ? "strong" : Math.abs(r) >= 0.3 ? "weak" : "almost none");
+const word = (r: number) => (Math.abs(r) >= 0.6 ? "strong" : Math.abs(r) >= 0.3 ? "weak" : Math.abs(r) >= 0.1 ? "very weak" : "none");
 const sgn = (r: number) => r.toFixed(2).replace("-", "−");
 
 function Stage({
@@ -84,8 +82,7 @@ function Stage({
         {!locked && <line x1={sx(line.x1)} y1={sy(line.y1)} x2={sx(line.x2)} y2={sy(line.y2)} className={s.fit} />}
       </svg>
       <p className={s.key}>
-        Each dot is a day; red is hot. Correlation: +1 rise together, 0 no link.{" "}
-        {banded ? `Only ${start}–${start + BAND}°C days.` : "All days."}
+        Dot = day, red = hot. Correlation: +1 rise together, 0 no link. {banded ? `Only ${start}–${start + BAND}°C.` : "All days."}
       </p>
       <Row>
         <Control
@@ -150,8 +147,7 @@ export default function HiddenThirdCause({ slug }: { slug: string }) {
           <p>
             Across all 365 days the link is strong (correlation {ALL_R.toFixed(2)}). In the bands you held still in (
             {mine.slice(0, 4).map((b) => `${b}–${b + BAND}°C: ${sgn(bandR(b))}`).join("; ")}) it{" "}
-            <strong>mostly disappears</strong>. Across all {BAND_STARTS.length} bands it averages {sgn(MEAN_R)} and ranges
-            from {sgn(Math.min(...BAND_RS))} to {sgn(Math.max(...BAND_RS))} by chance, with roughly 35 days each.
+            <strong>mostly disappears</strong>.
           </p>
           <p>
             Hot days sell more ice cream <em>and</em> burn more skin. Line up all days and the two rise together; hold

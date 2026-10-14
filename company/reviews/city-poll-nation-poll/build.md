@@ -5,3 +5,7 @@
 - Gate: 2 milestones, "city" (100,000) and "half-the-crowd" (2,000). Margin readout and dots hidden while locked.
 - Numbers: margin() in model.ts gives 3.099 / 3.097 / 3.084 / 2.940 / 2.192; question, readouts and reveal all call it.
 - Seed 2026 is luckier than typical (40/40 inside at 300M; median over seeds 1-200 is 38/40): stated in c5; the reveal does not quote inside-counts.
+
+## Revision v2
+
+Learner review 2026-10-13. The stage varied only the population, so "it is how many are asked" was told. Added three buttons (nation, ask 250 / 1,000 / 4,000) as milestones; the reveal quotes the margins from them. The key now says "Red: missed". New claim c8 (the 250 and 4,000 margins), unverified; c6 back to unverified. Not done: an explanation of why +-3 comes from 1,000 people.

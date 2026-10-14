@@ -34,7 +34,6 @@ function gapText(k: number): string {
 export default function PenniesDontAddUp({ slug }: { slug: string }) {
   const [k, setK] = useState(0); // switches as a 12-bit number: bit 11 is worth 1/2
   const [toggles, setToggles] = useState(0);
-  const [best, setBest] = useState<number | null>(null); // closest k found
   const [shown, setShown] = useState(false);
 
   const on = (i: number) => (k & (1 << (BITS - 1 - i))) !== 0;
@@ -53,10 +52,7 @@ export default function PenniesDontAddUp({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {best !== null
-              ? `Your closest try was ${exact(best)}. `
-              : ""}
-            No set of switches makes exactly 0.1. In binary, 0.1 is 0.000110011001100… with &quot;0011&quot; repeating
+            No set of the 12 switches makes exactly 0.1: the closest, {exact(NEAREST)}, is still over. In binary, 0.1 is 0.000110011001100… with &quot;0011&quot; repeating
             forever, the way 1/3 is 0.333… in decimal. So the computer keeps the nearest value it can.
           </p>
           <p>
@@ -74,7 +70,6 @@ export default function PenniesDontAddUp({ slug }: { slug: string }) {
           const next = k ^ (1 << (BITS - 1 - i));
           setK(next);
           setToggles((t) => t + 1);
-          if (next > 0 && (best === null || Math.abs(next - TARGET) < Math.abs(best - TARGET))) setBest(next);
         };
         const showComputer = () => {
           if (locked) return;
@@ -86,7 +81,7 @@ export default function PenniesDontAddUp({ slug }: { slug: string }) {
         const msg = locked
           ? "Make a prediction to start."
           : k === 0
-            ? "Aim for 0.1. Try 1/16 first."
+            ? "Each switch adds its fraction. Aim for 0.1: try 1/16 first."
             : k === NEAREST
               ? "Closest 12 switches can get: still over."
               : k === NEAREST - 1
@@ -124,11 +119,12 @@ export default function PenniesDontAddUp({ slug }: { slug: string }) {
               <div className={s.computer} aria-live="polite">
                 <span className="muted small">A computer, with 53 binary digits:</span>
                 <span>
-                  0.1 → 0.1000000000000000055… <b className={s.up}>high</b>
+                  0.1 → 0.1000000000000000055… <b className={s.up}>above 0.1</b>
                 </span>
                 <span>
-                  0.2 → 0.2000000000000000111… <b className={s.up}>high</b>
+                  0.2 → 0.2000000000000000111… <b className={s.up}>above 0.2</b>
                 </span>
+                <span>0.1 in binary: 0.000110011001100…</span>
                 <span>
                   0.1 + 0.2 → <b>0.30000000000000004</b> <b className={s.up}>over 0.3</b>
                 </span>

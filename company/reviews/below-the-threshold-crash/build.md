@@ -7,3 +7,7 @@
 - Gate: milestones "released-40" and "released-60" (both on the QA path). Trails are hidden while locked. The reveal quotes the learner's released starts and their outcomes, computed from the same simulation.
 - Option text rewritten into parallel wording ("Both grow to 1,000" / "The group of 40 dies out; 60 grows" / "Both die out").
 - Claims all unverified.
+
+## Revision v2
+
+Learner review round 2. The question no longer states the rule ("These animals need mates nearby to breed"); the locked stage no longer shows the threshold line or the 50, which appear when the stage unlocks. The reveal redraws the lines for every group the learner released, even after Clear. c3 back to unverified. Not changed: the recall question still states the rule.

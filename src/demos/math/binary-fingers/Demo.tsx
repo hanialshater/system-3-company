@@ -86,10 +86,10 @@ function Stage({ locked, up, onFlip, onClear }: { locked: boolean; up: boolean[]
                   disabled={locked}
                   className={`${s.finger} ${up[i] ? s.up : ""}`}
                   aria-pressed={up[i]}
-                  aria-label={`Finger worth ${v}: ${up[i] ? "up" : "down"}`}
+                  aria-label={locked ? "Finger" : `Finger worth ${v}: ${up[i] ? "up" : "down"}`}
                   onClick={() => onFlip(i)}
                 >
-                  <span className={s.val}>{v}</span>
+                  <span className={s.val}>{locked ? "" : v}</span>
                 </Control>
               );
             })}

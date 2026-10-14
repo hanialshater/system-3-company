@@ -1,7 +1,7 @@
 {
   "slug": "hidden-third-cause",
   "title": "Ice cream and sunburns climb together",
-  "hook": "Ice-cream sales and sunburns climb together. Is one feeding the other?",
+  "hook": "Look only at days with the same temperature. What happens to the link?",
   "domain": "probability",
   "concept": "confounding",
   "status": "review",
@@ -44,12 +44,10 @@
     },
     {
       "id": "probability.hidden-third-cause.c3",
-      "text": "Inside a 3-degree temperature band the link mostly disappears: over the 28 bands the correlation averages about 0.05 and ranges from about -0.2 to 0.3, with roughly 35 days per band.",
+      "text": "Inside a 3-degree temperature band the link mostly disappears; the reveal quotes the correlation in each band the learner held still in.",
       "support": "simulation",
       "source": "model.ts, bands [s, s+3) for s = 5..32, seed 2024: mean 0.047, min -0.19, max 0.30, 30-45 days per band. Theory: within a band var(temp) = 3^2/12 = 0.75, so r = 0.75/(0.75+15) = 0.048; with about 36 days the sampling spread is about +/- 0.17. The seed was not tuned (of seeds 1-2000, 67 keep every band within +/- 0.25).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.hidden-third-cause.c4",
@@ -62,12 +60,10 @@
     },
     {
       "id": "probability.hidden-third-cause.c5",
-      "text": "Correlation runs from -1 to +1: +1 means two quantities rise together perfectly, 0 means no straight-line link.",
+      "text": "Correlation runs from -1 to +1: +1 means two quantities rise together perfectly, 0 means no straight-line link. The stage labels |correlation| of 0.6 or more strong, 0.3 to 0.6 weak, 0.1 to 0.3 very weak and under 0.1 none.",
       "support": "convention",
       "source": "Standard definition of Pearson's correlation coefficient; stated in the stage key. Added by the builder 2026-10-13 in revision v2; needs an independent check. | FACT-CHECK 2026-10-13 (pass 4): Pearson's r lies in [-1, +1] (Cauchy-Schwarz); +1 = perfect increasing straight-line relation, 0 = no linear association. Stage key reads 'Correlation: +1 rise together, 0 no link', consistent. (Minor: the readout word 'weak' covers |r| 0.3-0.6, which many texts call moderate; labelling, not a recorded claim.)",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -93,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:confounding",
     "prerequisites": [],

@@ -71,11 +71,11 @@ export default function TwoTugsRightAngle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A crate on ice is pulled with 3 N east and 4 N north at the same time. The single force with the same effect is…",
-        options: ["5 N, at an angle", "7 N", "1 N"],
+        question: "A crate on ice is pulled with 3 N east and 4 N north at the same time. The size of the single force with the same effect is…",
+        options: ["5 N", "7 N", "1 N"],
         answer: 0,
       }}
-      exploreHint="Turn the 4 N pull and watch the single force."
+      exploreHint="Read the single force at 90°, then turn the 4 N pull."
       reveal={() => {
         const o = other === null ? null : sum(other);
         return (
@@ -155,7 +155,7 @@ export default function TwoTugsRightAngle({ slug }: { slug: string }) {
                     </>
                   )}
                   <text x={6} y={14} className={s.chip}>
-                    Top view, on ice. North is up.
+                    {swap ? "Order swapped: same single force." : "Top view, on ice. North is up."}
                   </text>
                 </svg>
 
@@ -180,7 +180,7 @@ export default function TwoTugsRightAngle({ slug }: { slug: string }) {
                     Swap order
                   </Control>
                   <Readout label="Single force" value={locked ? "?" : `${n1(v.r)} N`} />
-                  <Readout label="Points" value={locked ? "?" : `${Math.round(v.dir)}° from E`} />
+                  <Readout label="Direction" value={locked ? "?" : `${Math.round(v.dir)}° from E`} />
                 </Row>
               </div>
             );

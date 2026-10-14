@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const DOTS = 20;
@@ -39,7 +39,6 @@ const conc = (ml: number) => SUGAR_MOL / (ml / 1000);
 
 export default function SameSugarMoreWater({ slug }: { slug: string }) {
   const [ml, setMl] = useState(100);
-  const [maxMl, setMaxMl] = useState(100);
 
   const level = FLOOR - ml * PX_PER_ML;
   const liquidH = ml * PX_PER_ML;
@@ -51,20 +50,16 @@ export default function SameSugarMoreWater({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "100 mL of sugar syrup at 1.0 mol/L is poured into 400 mL of extra water. The mixture is now about…",
+          "100 mL of sugar syrup at 1.0 mol/L (1 mol of sugar in each litre) is poured into 400 mL of extra water. The mixture is now about…",
         options: ["0.20 mol/L", "0.80 mol/L", "0.25 mol/L"],
         answer: 0,
       }}
       exploreHint="Pour in water all the way to 500 mL. Count the dots in the bottom 100 mL."
-      minInteractions={2}
       reveal={() => (
         <>
           <p>
-            {maxMl >= MAX_ML
-              ? "You poured all the way to 500 mL."
-              : `You poured to ${maxMl} mL; at 500 mL the same thing goes further.`}{" "}
-            The jar always held the same <strong>20 dots</strong> (0.10 mol of sugar). Water only gave them more room:
-            the bottom 100 mL went from 20 dots to {maxMl >= MAX_ML ? "4" : "fewer and fewer"}.
+            You poured all the way to 500 mL. The jar always held the same <strong>20 dots</strong> (0.10 mol of sugar).
+            Water only gave them more room: the bottom 100 mL went from 20 dots to 4.
           </p>
           <p>
             Concentration is amount divided by volume: 0.10 mol ÷ 0.500 L = <strong>0.20 mol/L</strong>, one fifth of
@@ -120,6 +115,17 @@ export default function SameSugarMoreWater({ slug }: { slug: string }) {
             <path d={`M ${BX} 8 L ${BX} ${FLOOR} L ${BX + BW} ${FLOOR} L ${BX + BW} 8`} className={s.glass} />
           </svg>
 
+          <Row>
+            <Control
+              disabled={locked || ml === MAX_ML}
+              onClick={() => {
+                setMl(MAX_ML);
+                interact();
+              }}
+            >
+              Add all 400 mL of water
+            </Control>
+          </Row>
           <Slider
             label="Mixture volume"
             value={ml}
@@ -130,8 +136,7 @@ export default function SameSugarMoreWater({ slug }: { slug: string }) {
             disabled={locked}
             onChange={(v) => {
               setMl(v);
-              setMaxMl((m) => Math.max(m, v));
-              interact();
+              if (v === MAX_ML) interact();
             }}
           />
           <Row>

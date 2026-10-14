@@ -87,6 +87,8 @@ const run = () => (cache ??= trainRun(SEED));
 
 const PX = (x: number) => 160 + x * 140;
 const PY = (y: number) => 95 - y * 58;
+const EX = (i: number) => 10 + (i * 300) / (run().snaps.length - 1);
+const EY = (v: number) => 60 - (v / 0.85) * 54;
 const f3 = (v: number) => v.toFixed(3);
 const fmtStep = (t: number) => t.toLocaleString("en-US");
 
@@ -108,8 +110,8 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A degree-7 curve is trained by gradient descent on 8 noisy dots and checked on 200 held-out dots it never trains on. In this run, held-out error is lowest:`,
-        options: [`At the end (step ${fmtStep(N_STEPS)})`, "Early, before step 100", "At step 0, before any training"],
+        question: `A degree-7 curve (a flexible, wiggly line) is trained by gradient descent on 8 noisy dots and checked on 200 held-out dots it never trains on. In this run, held-out error is lowest:`,
+        options: [`At the end (step ${fmtStep(N_STEPS)})`, "Early, within the first 100 steps", "At step 0, before any training"],
         answer,
       }}
       exploreHint="Train for longer and watch both errors. Where is held-out error lowest?"
@@ -163,6 +165,25 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
                   ))}
                 </svg>
                 <p className={s.caption}>Black: 8 training dots. Grey: 200 held-out dots.</p>
+                {!locked && (
+                  <svg viewBox="0 0 320 64" className={`stage-svg ${s.chart}`} role="img" aria-label="Error against training steps">
+                    {(["train", "held"] as const).map((k) => (
+                      <path
+                        key={k}
+                        d={R.snaps.map((x, i) => `${i ? "L" : "M"}${EX(i).toFixed(1)},${EY(x[k]).toFixed(1)}`).join(" ")}
+                        fill="none"
+                        stroke={k === "held" ? "var(--bad)" : "var(--fg)"}
+                        strokeWidth={1.8}
+                        strokeDasharray={k === "held" ? undefined : "4 3"}
+                      />
+                    ))}
+                    <line x1={EX(idx)} y1={4} x2={EX(idx)} y2={60} stroke="var(--muted)" />
+                    <circle cx={EX(idx)} cy={EY(sn.held)} r={4} fill="var(--bad)" />
+                    <circle cx={EX(idx)} cy={EY(sn.train)} r={4} fill="var(--fg)" />
+                    <text x={14} y={12} fontSize={9} fill="var(--bad)">held-out error</text>
+                    <text x={14} y={60} fontSize={9} fill="var(--fg)">training error</text>
+                  </svg>
+                )}
                 <Row>
                   {PRESETS.map((p) => {
                     const i = R.snaps.findIndex((x) => x.t === p);

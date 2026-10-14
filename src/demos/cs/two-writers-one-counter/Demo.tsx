@@ -29,6 +29,12 @@ function run(seq: T[]) {
   return { counter, reg, done, finished: seq.length === 6 };
 }
 
+// "A read, B read, A add, ..." in the order the learner ran the steps.
+function orderText(seq: T[]) {
+  const n: Record<T, number> = { A: 0, B: 0 };
+  return seq.map((t) => `${t} ${["reads", "adds", "writes"][n[t]++]}`).join(", ");
+}
+
 const ONE = run(BOTH_READ_FIRST).counter; // 1
 const TWO = run(ONE_AT_A_TIME).counter; // 2
 
@@ -72,7 +78,7 @@ export default function TwoWritersOneCounter({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : seq.length === 0
-                ? "Run the steps in any order. Each thread keeps its own copy of what it read."
+                ? "Run the steps in any order. Each thread works on its own copy of what it read."
                 : st.finished
                   ? `Done: the counter is ${st.counter}.`
                   : `${seq.length} of 6 steps run.`;
@@ -87,6 +93,9 @@ export default function TwoWritersOneCounter({ slug }: { slug: string }) {
                     One at a time
                   </Control>
                 </div>
+                <p className={s.order} aria-live="polite">
+                  {locked || seq.length === 0 ? "Order run: none yet" : `Order run: ${orderText(seq)}`}
+                </p>
                 <div className={s.lanes}>
                   {(["A", "B"] as T[]).map((t) => (
                     <div key={t} className={s.lane}>
@@ -94,7 +103,7 @@ export default function TwoWritersOneCounter({ slug }: { slug: string }) {
                       {STEPS.map((label, i) => (
                         <span key={i} className={`${s.cell} ${i < st.done[t] ? s.on : ""}`}>{label}</span>
                       ))}
-                      <span className={s.reg}>holds {locked || st.done[t] === 0 ? "–" : st.reg[t]}</span>
+                      <span className={s.reg}>copy {locked || st.done[t] === 0 ? "–" : st.reg[t]}</span>
                     </div>
                   ))}
                 </div>

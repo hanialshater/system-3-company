@@ -12,3 +12,7 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - All-days value never shown / only one band seen -> all-days correlation is on the readout from unlock; gate = same-temperature view plus three different bands visited (state lifted so the reveal quotes the learner's own bands).
 - 28-band statistic told -> computed from the model (mean, min, max) and set beside the learner's bands.
 - Title/hook gave answer away -> title 'Ice cream and sunburns climb together', hook 'Is one feeding the other?'.
+
+## Revision v3
+
+Learner review v2. Hook no longer repeats the answer (it asks what happens at the same temperature). The correlation key is shorter so it is not cut off. The reveal no longer quotes the 28-band statistics, only the bands the learner held still in; the labels are now strong / weak / very weak / none, so 0.18 is not "almost none". c3, c5 back to unverified. The question still states that warm weather drives both; that premise is needed to predict.

@@ -13,16 +13,23 @@ import { Control, Readout, Row } from "@/kit/controls";
 import { CITY, NATION, POLLS, POPS, SAMPLE, margin, polls } from "./model";
 import s from "./styles.module.css";
 
-const MILESTONES = ["city", "half-the-crowd"] as const;
+const MILESTONES = ["city", "half-the-crowd", "ask-fewer", "ask-more"] as const;
+const FEW = 250;
+const MANY = 4000;
 const SMALL = POPS[POPS.length - 1];
 const n = (v: number) => v.toLocaleString("en-US");
 const label = (N: number) => (N >= 1_000_000 ? `${n(N / 1_000_000)} million` : n(N));
-const m2 = (N: number) => `±${margin(N).toFixed(2)}`;
-const share = (N: number) => {
-  const p = (SAMPLE / N) * 100;
+const m2 = (N: number, k = SAMPLE) => `±${margin(N, k).toFixed(2)}`;
+const share = (N: number, k = SAMPLE) => {
+  const p = (k / N) * 100;
   return p >= 1 ? `${Math.round(p)}%` : `${p.toPrecision(2)}%`;
 };
-const POLLS_BY_N = new Map(POPS.map((N) => [N, polls(N)] as const));
+const cache = new Map<string, number[]>();
+const pollsFor = (N: number, k: number) => {
+  const key = `${N}:${k}`;
+  if (!cache.has(key)) cache.set(key, polls(N, undefined, undefined, k));
+  return cache.get(key)!;
+};
 
 const LO = 44;
 const HI = 56;
@@ -31,13 +38,13 @@ const X1 = 320;
 const BASE = 150;
 const x = (p: number) => X0 + ((p - LO) / (HI - LO)) * (X1 - X0);
 
-function Stage({ locked, interact, pop, setPop }: { locked: boolean; interact: () => void; pop: number; setPop: (N: number) => void }) {
+function Stage({ locked, interact, pop, setPop, size, setSize }: { locked: boolean; interact: () => void; pop: number; setPop: (N: number) => void; size: number; setSize: (k: number) => void }) {
   const { reach } = useMilestones(interact, MILESTONES);
-  const ps = POLLS_BY_N.get(pop) ?? [];
-  const mg = margin(pop);
+  const ps = pollsFor(pop, size);
+  const mg = margin(pop, size);
   const stacks = new Map<number, number>();
   const dots = ps.map((p) => {
-    const bin = Math.round(p * 2) / 2;
+    const bin = Math.min(HI, Math.max(LO, Math.round(p * 2) / 2));
     const k = stacks.get(bin) ?? 0;
     stacks.set(bin, k + 1);
     return { cx: x(bin), cy: BASE - 6 - k * 8, inside: Math.abs(p - 50) <= mg };
@@ -48,16 +55,16 @@ function Stage({ locked, interact, pop, setPop }: { locked: boolean; interact: (
       <p className={s.msg}>
         {locked
           ? "Make a prediction to start."
-          : `Dot: one poll of ${n(SAMPLE)} random people (truth 50% yes). Shaded: margin of error, where 95% of polls land.`}
+          : `Each dot: a poll of ${n(size)} (truth 50% yes). Shaded: where 95% land. Red: missed.`}
       </p>
-      <svg viewBox="0 0 340 172" className={`stage-svg ${s.svg}`} role="img" aria-label={`${POLLS} polls of ${n(SAMPLE)} people in a population of ${label(pop)}`}>
+      <svg viewBox="0 0 340 172" className={`stage-svg ${s.svg}`} role="img" aria-label={`${POLLS} polls of ${n(size)} people in a population of ${label(pop)}`}>
         {!locked && (
           <>
             <rect x={x(50 - mg)} y={30} width={x(50 + mg) - x(50 - mg)} height={BASE - 30} className={s.band} />
             <line x1={x(50 - mg)} y1={30} x2={x(50 - mg)} y2={BASE} className={s.bandEdge} />
             <line x1={x(50 + mg)} y1={30} x2={x(50 + mg)} y2={BASE} className={s.bandEdge} />
             <text x={x(50)} y={22} textAnchor="middle" className={s.bandLabel}>
-              {m2(pop)} points
+              {m2(pop, size)} points
             </text>
           </>
         )}
@@ -78,6 +85,7 @@ function Stage({ locked, interact, pop, setPop }: { locked: boolean; interact: (
             disabled={locked || pop === N}
             onClick={() => {
               setPop(N);
+              setSize(SAMPLE);
               if (N === CITY) reach("city");
               if (N === SMALL) reach("half-the-crowd");
             }}
@@ -87,8 +95,25 @@ function Stage({ locked, interact, pop, setPop }: { locked: boolean; interact: (
         ))}
       </Row>
       <Row>
-        <Readout label="Share polled" value={share(pop)} />
-        <Readout label="Margin of error" value={locked ? "?" : m2(pop)} />
+        {[FEW, SAMPLE, MANY].map((k) => (
+          <Control
+            key={k}
+            className={size === k ? "active" : ""}
+            disabled={locked || size === k}
+            onClick={() => {
+              setSize(k);
+              setPop(NATION);
+              if (k === FEW) reach("ask-fewer");
+              if (k === MANY) reach("ask-more");
+            }}
+          >
+            Nation, ask {n(k)}
+          </Control>
+        ))}
+      </Row>
+      <Row>
+        <Readout label="Share polled" value={share(pop, size)} />
+        <Readout label="Margin of error" value={locked ? "?" : m2(pop, size)} />
       </Row>
     </div>
   );
@@ -96,6 +121,7 @@ function Stage({ locked, interact, pop, setPop }: { locked: boolean; interact: (
 
 export default function CityPollNationPoll({ slug }: { slug: string }) {
   const [pop, setPop] = useState<number>(NATION);
+  const [size, setSize] = useState<number>(SAMPLE);
 
   return (
     <Lesson
@@ -105,7 +131,7 @@ export default function CityPollNationPoll({ slug }: { slug: string }) {
         options: ["The city's", "The nation's", "About the same"],
         answer: 2,
       }}
-      exploreHint={`Change who lives there: try ${n(CITY)}, then ${n(SMALL)}.`}
+      exploreHint={`Change who lives there: try ${n(CITY)}, then ${n(SMALL)}. Then change how many are asked.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -114,14 +140,15 @@ export default function CityPollNationPoll({ slug }: { slug: string }) {
             {share(CITY)} of the city instead of {share(NATION)} of the nation changed almost nothing.
           </p>
           <p>
-            A poll&apos;s accuracy comes from how many people it asks, not what share of the crowd they are. Only at {n(SMALL)}{" "}
-            people, where your poll was {share(SMALL)} of everyone, did the margin shrink, to {m2(SMALL)}. This assumes truly random
+            A poll&apos;s accuracy comes from how many people it asks, not what share of the crowd they are. In the nation, asking{" "}
+            {n(FEW)} gave {m2(NATION, FEW)} and asking {n(MANY)} gave {m2(NATION, MANY)}. Only at {n(SMALL)} people, where your
+            poll was {share(SMALL)} of everyone, did the margin shrink without asking more, to {m2(SMALL)}. This assumes truly random
             picks; real polls only approximate that.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} pop={pop} setPop={setPop} />}
+      {({ locked, interact }) => <Stage locked={locked} interact={interact} pop={pop} setPop={setPop} size={size} setSize={setSize} />}
     </Lesson>
   );
 }

@@ -7,3 +7,7 @@ Built by demo-builder (sonnet build, EXP-003). Kept from evaluators until they r
 - Numbers from TARGET_E, TARGET_N and lRoute/straight/saved. Straight length is rounded to whole metres everywhere (500 exactly at the target).
 - Retitled to "Corner or diagonal: how much walk?" (hook does not give 200 m).
 - Screenshot looked at: phone-2-explore.png (bars 700 and 500, saved 200). Fine on first pass.
+
+## Revision v2
+
+Learner review 2026-10-13. The stage caption now shows east² + north² and its square root for the chosen destination, so the Pythagoras step is seen, not only told. Shortened the reveal's last line (clipping). c3, c4 back to unverified. Not done: squares drawn on the legs.
