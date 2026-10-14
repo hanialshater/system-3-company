@@ -1,13 +1,15 @@
 "use client";
 
-// News comes from acquaintances. Two groups of four (circles A C D E, squares B F G H), every pair
-// inside a group linked and close (K4 + K4), plus the one link A–B. Rule (strong triadic closure):
-// any two of your close friends are linked. After the prediction A–B starts at the learner's
-// guess ("either" starts close); its pill switches close / acquaintance. Close breaks the rule
-// (A close to B and C, no B–C link: drawn red). Two check pills show the rule holding in a
-// triangle (A–C–E, B–F–H). Send news: H tells its group, B tells A over A–B, A tells C, D, E.
+// The tie between two groups (slug news-comes-from-acquaintances). Two groups of four (circles
+// A C D E, squares B F G H), every pair inside a group tied and close (K4 + K4), plus the one tie
+// A–B. Rule (strong triadic closure): two people you're close to must have a tie.
+// v2: after the prediction A–B always starts close, so every learner (and the QA path) sees the
+// rule break first (A close to B and C, no B–C tie: drawn red). DOM order is C–E check, F–H check,
+// A–B pill (close / acquaintance), Send news: the scripted path photographs the broken state at the
+// two checks, then switches A–B to an acquaintance and sends news over it.
+// Send news: H tells its group, B tells A over A–B, A tells C, D, E.
 // Hand-built to the interim network-stage rules (company/design/reviews/2026-10-14-design-lead-ncm-rulings.md §2).
-// Key states: A–B seen both ways; news sent with A–B an acquaintance.
+// Legend and A–B pill use inline SVG swatches drawn with the stage's own classes (no glyph fonts).
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
@@ -48,31 +50,40 @@ export default function NewsComesFromAcquaintances({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Rule: any two of your close friends are linked. A and B both have close friends in their own groups. Their link must be…",
-        options: ["a close friend", "an acquaintance", "either could be"],
-        answer: 1,
+          "Every tie is close or an acquaintance. A and B each have close ties in their group. Under the rule, their tie A–B must be…",
+        options: ["an acquaintance", "close", "either could be"],
+        answer: 0,
       }}
-      exploreHint="Switch the A–B tie with its pill, then send news."
+      exploreHint="Check the triangles, switch A–B with its pill, then send news."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            With A–B close, the rule broke: A was close to B and to C, but B and C have no link. As an
+            With A–B close, the rule broke: A was close to B and to C, but B and C had no tie. As an
             acquaintance, A–B broke nothing{checked.length > 0 ? ", and the triangles you checked held" : ""}.
           </p>
           <p>
-            A–B could only be close if A and B had no other close friends. When people have close friends in their own
-            group, the one link between two groups must be an acquaintance.
+            The same break hits D and E, and on B&rsquo;s side F, G and H. So while A or B has a close friend in their
+            own group, the one tie between the groups must be an acquaintance.
           </p>
-          <p>So news from outside your group, like H&rsquo;s, reaches you over a weak tie: you saw it cross A–B.</p>
+          <p>
+            News from outside your group, like H&rsquo;s, comes in over that tie: you saw it reach A&rsquo;s group
+            across the acquaintance A–B.
+          </p>
         </>
       )}
     >
-      {({ locked, interact, prediction }) => (
+      {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
-            const start: Tie = prediction === 1 ? "weak" : "close";
-            const ab: Tie | null = locked ? null : (tie ?? start);
+            const ab: Tie | null = locked ? null : (tie ?? "close");
+            const shown = locked
+              ? "locked"
+              : msg === "start"
+                ? (ab ?? "locked")
+                : msg === "CE" || msg === "FH"
+                  ? `${msg}-${ab}`
+                  : msg;
             return (
               <Stage
                 locked={locked}
@@ -80,7 +91,7 @@ export default function NewsComesFromAcquaintances({ slug }: { slug: string }) {
                 check={check}
                 checked={checked}
                 news={news}
-                msg={locked ? "locked" : msg === "start" ? (ab ?? "locked") : msg}
+                msg={shown}
                 onTie={() => {
                   const next: Tie = ab === "close" ? "weak" : "close";
                   setTie(next);
@@ -110,13 +121,28 @@ export default function NewsComesFromAcquaintances({ slug }: { slug: string }) {
 
 const CAPTION: Record<string, string> = {
   locked: "Predict first.",
-  close: "Broken: B and C, both close to A, aren't linked.",
-  weak: "A–B acquaintance: the rule holds everywhere.",
-  CE: "A is close to C and E: C–E exists ✓",
-  FH: "B is close to F and H: F–H exists ✓",
-  "news-weak": "News from H crossed the acquaintance A–B.",
+  close: "Broken: A's close friends B, C have no tie.",
+  weak: "A–B is an acquaintance: the rule holds everywhere.",
+  "CE-weak": "A is close to C and E: C–E tie ✓",
+  "FH-weak": "B is close to F and H: F–H tie ✓",
+  "CE-close": "C–E tie ✓, but no B–C tie ✗",
+  "FH-close": "F–H tie ✓, but still no B–C tie ✗",
+  "news-weak": "H's news reached A's group over the acquaintance A–B.",
   "news-close": "News crossed, but a close A–B breaks the rule.",
 };
+
+// Legend and pill marks, drawn with the stage's own classes (design review: swatches, not glyphs).
+function Swatch({ kind }: { kind: Tie | "heard" }) {
+  return (
+    <svg className={s.sw} width={kind === "heard" ? 14 : 22} height={14} aria-hidden="true">
+      {kind === "heard" ? (
+        <circle cx={7} cy={7} r={5.5} className={s.heardSw} />
+      ) : (
+        <line x1={0} y1={7} x2={22} y2={7} className={kind === "close" ? s.bridgeStrong : s.weak} />
+      )}
+    </svg>
+  );
+}
 
 function Stage({
   locked, ab, check, checked, news, msg, onTie, onCheck, onNews,
@@ -142,14 +168,14 @@ function Stage({
     />
   );
   const abWord = ab === null ? "unknown" : ab === "close" ? "close" : "acquaintance";
-  const label = `Two groups of four, all close inside. A–B ${abWord}${broken ? ", rule broken" : ""}${news ? ", news from H reached everyone" : ""}.`;
+  const label = `Two groups of four, all close inside. A–B ${abWord}${broken ? ", rule broken: B and C have no tie" : ""}${news ? ", news from H reached everyone" : ""}.`;
   const handle = (c: "CE" | "FH", a: string, b: string) => (
     <Control
       key={c}
       disabled={locked}
       className={`${s.handle} ${check === c ? s.on : ""}`}
       style={pct(mid(a, b))}
-      aria-label={`Check the rule on edge ${a}–${b}`}
+      aria-label={`Check the rule on tie ${a}–${b}`}
       aria-pressed={check === c}
       onClick={() => onCheck(c)}
     >
@@ -159,7 +185,7 @@ function Stage({
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>Rule: any two of your close friends are linked.</p>
+      <p className={s.rule}>Rule: two people you&rsquo;re close to must have a tie.</p>
       <div className={s.box}>
         <svg viewBox={`0 0 ${W} ${H}`} className={s.svg} role="img" aria-label={label}>
           {tri.map((k) => {
@@ -184,9 +210,8 @@ function Stage({
           )}
           {[...G1, ...G2].map((n) => {
             const [x, y] = P[n];
-            const heard = news;
-            const cls = heard ? s.heard : s.node;
-            const st = heard ? { animationDelay: `${(NODE_HOP[n] + 1) * 90}ms` } : undefined;
+            const cls = news ? s.heard : s.node;
+            const st = news ? { animationDelay: `${(NODE_HOP[n] + 1) * 90}ms` } : undefined;
             return (
               <g key={n}>
                 {G1.includes(n) ? (
@@ -194,26 +219,26 @@ function Stage({
                 ) : (
                   <rect x={x - 14} y={y - 14} width={28} height={28} rx={4} className={cls} style={st} />
                 )}
-                <text x={x} y={y + 5} className={heard ? s.nameOn : s.name}>{n}</text>
+                <text x={x} y={y + 5} className={news ? s.nameOn : s.name}>{n}</text>
               </g>
             );
           })}
         </svg>
+        {handle("CE", "C", "E")}
+        {handle("FH", "F", "H")}
         <Control
           disabled={locked}
           className={`${s.handle} ${s.ab}`}
           style={pct(mid("A", "B"))}
-          aria-label={`Edge A–B, ${abWord}. Tap to switch.`}
+          aria-label={`Tie A–B, ${abWord}. Tap to switch.`}
           aria-pressed={ab === "close"}
           onClick={onTie}
         >
-          <span className={`${s.pill} ${ab === "close" ? s.pillOn : ""}`}>{ab === null ? "?" : ab === "close" ? "♥" : "♡"}</span>
+          <span className={`${s.pill} ${s.abPill}`}>{ab === null ? "?" : <Swatch kind={ab} />}</span>
         </Control>
-        {handle("CE", "C", "E")}
-        {handle("FH", "F", "H")}
       </div>
       <p className={s.legend} aria-hidden="true">
-        <span className={s.sw}>━ ♥</span> close · <span className={s.sw}>╌ ♡</span> acquaintance · <span className={s.sw}>●</span> heard news
+        <Swatch kind="close" /> close · <Swatch kind="weak" /> acquaintance · <Swatch kind="heard" /> heard news
       </p>
       <p className={s.caption} aria-live="polite">{CAPTION[msg]}</p>
       <Row>

@@ -42,3 +42,23 @@ Kept from evaluators until they have written their findings (company/reviews/REA
 - c5 (Granovetter 1973) is empirical and needs a human source check; it stays out of learner text until then.
 - ♥ / ♡ glyphs depend on the system font; checked in the phone screenshots of this build only.
 - All claims unverified, for the fact-checker. Design review (visual designer + accessibility reviewer) should check §2 at 390 px.
+
+## Revision v2 (demo-builder, 2026-10-14)
+
+Inputs: learner review `2026-10-14-learner-adult-beginner.md`, fact-check pass NCM-1, design review swatch rule (`company/design/reviews/2026-10-14-design-review-ncm-specs.md`, "legend swatches").
+
+- **"Linked" ambiguous; the two kinds of tie never named.** The predict question now opens "Every tie is close or an acquaintance." (24 words in total). The stage rule line is "Rule: two people you're close to must have a tie." Every "link" in learner text is now "tie". Options: an acquaintance (answer, now **first**, index 0) / close / either could be.
+- **The title gave the answer away and the hook overpromised.** The title "News comes from acquaintances" stated the answer before the prediction. It is now "The one tie between two groups" (the slug is unchanged). The hook "Your closest friends bring you the most news" claimed something the stage never shows. It is now "News from another friend group has one way in. What kind of tie is it?", which the stage does show (A–B is the only cross-group tie). The reveal no longer suggests acquaintances are better news carriers. It says that news from outside comes in over *that* tie, which must be an acquaintance. A close A–B still carries news in the toy, and the caption keeps saying so ("News crossed, but a close A–B breaks the rule.").
+- **Told, not shown (reveal ¶2).** The reveal now points back at the drawn break and extends it to the cases it stands for: "The same break hits D and E, and on B's side F, G and H. So while A or B has a close friend in their own group, the one tie between the groups must be an acquaintance."
+- **The broken state was missing from the scripted path.** A–B now **always starts close** after the prediction, whatever the guess. The learner's guess is no longer the start state. That costs a little of the "your own guess breaks" effect for the "close" guessers, but now every learner, including the acquaintance guessers, sees close fail first. DOM order is now C–E check, F–H check, A–B pill, Send news. The QA/walkthrough path therefore shows the broken state (red tint, red dotted C–B with ✗) at steps 1 and 2, with state-aware captions "C–E tie ✓, but no B–C tie ✗" and "F–H tie ✓, but still no B–C tie ✗". Step 3 switches A–B to an acquaintance and step 4 sends news over it. Both milestones are reached on every path. Seen in walkthrough frames 02 and 03 (phone).
+- **♥/♡ glyphs.** The legend entries and the A–B pill are now inline SVG swatches (`Swatch`), drawn with the stage's own classes: `bridgeStrong` solid line, `weak` dashed line, and a filled disc for heard news. There are no glyph fonts left except ✓/✗.
+- **c5 (Granovetter, withdrawn)** stays out of all learner text.
+- **References:** left exactly as they were, as instructed. The fact-checker asked for `section` to move to `section_unconfirmed`. That is still open (owner: cm-math / builder on a later pass).
+
+Stage words at any moment: rule 10 + legend 4 + caption ≤ 9 + button 2 = 25. Reveal: 93 words.
+
+Numbers re-run in node with the lesson's rule: 13 ties; local bridges = [A–B]; all close → 6 broken triples (A: CB, DB, EB; B: FA, GA, HA); A–B acquaintance → 0; 8,192 labellings → 4,160 OK, 64 with A–B close, 0 of them giving A or B another close tie.
+
+Claims: c1, c3 and c4 have new text and are back to **unverified**. c2 is unchanged (verified). c5 is withdrawn.
+
+QA: contract passed on phone and desktop (QA_PORT 3683, own dist dir), recorded with `company qa-record`. In the same run, `feed.spec.ts › subject chips filter the feed` failed on both viewports. That test belongs to the feed, not this lesson, and I did not investigate it. Walkthrough (phone, option 1): I looked at all 6 frames. The caption "A–B is an acquaintance: the rule holds everywhere." wraps to two lines on a Pixel 7. That is acceptable, but it is the longest line.
