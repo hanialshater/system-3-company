@@ -76,6 +76,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.fenwick-hops-by-lowest-bit.c7",
+      "text": "Stage line after 'Change position 1': an update hops up by adding the lowest 1 bit: 1=00001 → 2=00010 → 4=00100 → 8=01000 → 16=10000.",
+      "support": "derivation",
+      "source": "Standard Fenwick update rule i += i & -i (Fenwick 1994, 'A new data structure for cumulative frequency tables'); the line is computed by hopsUp(1) and bin5 in Demo.tsx. Added v3 2026-10-14 (demo-builder, wave G) for the r7 finding that the up hop was not shown in binary.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -100,7 +107,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:fenwick-tree",
     "also": [],

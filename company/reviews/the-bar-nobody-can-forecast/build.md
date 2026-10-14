@@ -25,3 +25,16 @@ builder: ncm-e02 (demo-builder) · 2026-10-14 · brief: company/domains/briefs/e
 4. Reveal values: "forecast of 50 sent all 100" and "forecast of 70 sent 0": recorded at milestones forecast-low and forecast-high (b), shown in the runs row. "your 111 random nights averaged 60.1, yet 49% were crowded": the longest-run record, milestone mixed-100 (b), in the runs row. "46.2% in the long run": told context (c3).
 5. QA path: Forecast says 50 → Forecast says 70 → 1 night → +10 → +100 (111 nights: mixed-100) → Reset. The runs row with all three records is on stage when the reveal opens.
 6. Reset: pressed last; chart and readouts empty, runs row kept. Reveal from that run: "The forecast of 50 sent all 100: everyone expected room, so everyone went. The forecast of 70 sent 0. Any forecast everyone believes makes itself wrong. / When each person went 60% of the time (so on average 60 come), your 111 random nights averaged 60.1, yet 49% were crowded. In the long run that share is 46.2%: the average sits right at the limit, so nearly half the nights land above it. / A model of Arthur's El Farol bar problem (1994): identical people, one shared forecast, no learning."
+
+## Pre-flight v3
+
+r7 blocking finding: the title "Why can't anyone forecast this bar?" assumed the forecast fails and so ruled out "50" (the misconception option) before the commit. Fix: title "Will the forecast come true?" (meta.json; 28 chars). Also "longest run: 1 nights" now reads "1 night". Stage, milestones and reveal otherwise unchanged; no claim text changed.
+
+1. **Title and hook.** "Will the forecast come true?" / "A bar is fun with 60 people and awful with more. Everyone trusts one good forecast. Then?" Both leave 50 (it comes true), 60 and 100 open.
+2. **Options.** "50" / "60" / "100": bare numbers, same precision.
+3. **Locked stage.** Empty night chart with the dashed "60: crowded above" line (comes from the question's limit; it matches the wrong option 60, not the answer 100), readouts "?", empty trace row.
+4. **Reveal values.** "sent all 100" and "sent 0": (b) recorded in `fc` at milestones "forecast-low" / "forecast-high", on stage in the trace row ("forecast 50 → 100 came · forecast 70 → 0 came"). "your N random nights averaged A, P% crowded": (b) recorded in `best` at milestone "mixed-100", in the trace row with the same toFixed(1) and rounding. "46.2%": long-run value, claimed, told context.
+5. **QA path.** DOM order "Forecast says 50" (forecast-low), "Forecast says 70" (forecast-high), "1 night", "+10", "+100" (111 nights, mixed-100), "Reset": all 3 milestones within 5 presses; trace row on the stage at the reveal.
+6. **Reset.** Reset clears the chart and live readouts but not `fc` or `best`. Reveal after Reset (r7's walk): "The forecast of 50 sent all 100: everyone expected room, so everyone went. The forecast of 70 sent 0. Any forecast everyone believes makes itself wrong. When each person went 60% of the time (so on average 60 come), your 111 random nights averaged 60.1, yet 49% were crowded. In the long run that share is 46.2%: the average sits right at the limit, so nearly half the nights land above it."
+
+Not seen in a browser (no build/QA this wave).

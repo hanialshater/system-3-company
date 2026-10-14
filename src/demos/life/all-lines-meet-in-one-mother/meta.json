@@ -1,6 +1,6 @@
 {
   "slug": "all-lines-meet-in-one-mother",
-  "title": "Do all family lines meet in one mother?",
+  "title": "What happens to 50 family lines?",
   "hook": "Trace 50 women's mothers back, generation after generation. Do their lines ever meet?",
   "domain": "life",
   "concept": "coalescent-mrca",
@@ -33,12 +33,10 @@
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c2",
-      "text": "Theory for this model expects about 97 generations; the formula 2N(1 − 1/N) = 98 is an approximation.",
+      "text": "Theory for this model with 50 women expects about 97 generations; 2N(1 − 1/N) = 98 is an approximation.",
       "support": "derivation",
-      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6). · Fact-check pass 23 2026-10-14: Own exact expectation by value iteration on the lines Markov chain (occupancy transitions, 20,000 sweeps): 96.971, rounds to 97; 2N(1 - 1/N) = 98 for N = 50.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6). · Fact-check pass 23 2026-10-14: Own exact expectation by value iteration on the lines Markov chain (occupancy transitions, 20,000 sweeps): 96.971, rounds to 97; 2N(1 - 1/N) = 98 for N = 50. | REVISED v2 2026-10-14 (demo-builder, wave G): Reveal wording shortened to 'Theory for 50 expects about 97; 2N(1 − 1/N) = 98 is an approximation.' Same numbers (exactExpectation() and APPROX).",
+      "status": "unverified"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c3",
@@ -62,8 +60,8 @@
       "id": "life.all-lines-meet-in-one-mother.c5",
       "text": "It is the drift from 'Nobody wins, one colour takes over', run backward.",
       "support": "derivation",
-      "source": "Same haploid Wright–Fisher sampling (each generation a random draw of parents from the last), traced backward instead of forward. Source: the published lesson life/same-genes-different-drift, claim life.same-genes-different-drift.c1. · Fact-check pass 23 2026-10-14: life/same-genes-different-drift (published, title 'Nobody wins, one colour takes over') is haploid Wright-Fisher: each new individual copies a parent drawn at random from the last generation; this lesson traces the same draw backward.",
-      "status": "verified",
+      "source": "Same haploid Wright–Fisher sampling (each generation a random draw of parents from the last), traced backward instead of forward. Source: the published lesson life/same-genes-different-drift, claim life.same-genes-different-drift.c1. · Fact-check pass 23 2026-10-14: life/same-genes-different-drift (published, title 'Nobody wins, one colour takes over') is haploid Wright-Fisher: each new individual copies a parent drawn at random from the last generation; this lesson traces the same draw backward. | WITHDRAWN v2 2026-10-14 (demo-builder, wave G): sentence removed from the reveal (r7: dangling reference to another lesson for learners who did not take it).",
+      "status": "withdrawn",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -75,6 +73,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c7",
+      "text": "Over the same 1,000 seeds (7001-8000) with the same draw rule, all lines met on average 46 generations back with 25 women and 197 with 100 (96 with 50): double the women, roughly double the wait, about 2N generations.",
+      "support": "simulation",
+      "source": "meanFor(n) in Demo.tsx (meetTime with n women per generation, seeds 7001-8000), shown on the stage as 'Mean wait: 25 women 46 · 50 women 96 · 100 women 197' after 'Same with 25 and 100 women'. Builder run 2026-10-14 (node strip-types, same function): 25 -> 46.17 (median 39), 50 -> 96.03 (median 84), 100 -> 197.43 (median 171); 2N(1 − 1/N) gives 48, 98, 198. Seeds are the existing run block, not chosen for these sizes. Added v2 (demo-builder, wave G) for the r7 finding that 'about 2N' was told with one N.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -98,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:coalescent-mrca",
     "also": [

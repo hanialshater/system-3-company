@@ -99,14 +99,15 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
   const { reach } = useMilestones(() => interactRef.current(), ["penalty-on", "too-much"]);
   // What the learner saw at the strongest penalty (lambda 10): the reveal quotes only this.
   const [big, setBig] = useState<{ seed: number; held: number; none: number } | null>(null);
-  // The moderate penalty (0.0001..1) that did best against no penalty among those the learner visited.
+  // The last moderate penalty (0.0001..1) the learner stopped on. Shown on the stage as a "Seen" line,
+  // so a value that flashed past for one arrow press is overwritten by the one that sat on screen.
   const [mod, setMod] = useState<{ seed: number; li: number; held: number; none: number } | null>(null);
   const visit = (nextLi: number, nextSeed: number) => {
     if (nextLi > 0) reach("penalty-on");
     if (nextLi > 0 && nextLi < LAMBDAS.length - 1) {
       const d = makeData(nextSeed);
       const seen = { seed: nextSeed, li: nextLi, held: rms(fit(d.train, LAMBDAS[nextLi]), d.held), none: rms(fit(d.train, 0), d.held) };
-      setMod((m) => (m && m.held - m.none <= seen.held - seen.none ? m : seen));
+      setMod(seen);
     }
     if (nextLi === LAMBDAS.length - 1) {
       const d = makeData(nextSeed);
@@ -167,7 +168,7 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             <p>
               The held-out dots tell the other story:{" "}
               {mod
-                ? `at penalty ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none.`
+                ? `at penalty ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none${mod.held < mod.none ? "" : " (that one did not win)"}.`
                 : (() => {
                     // No moderate penalty visited (e.g. a jump straight to 10): quote the best moderate one on this data set.
                     const d = makeData(seed);
@@ -245,6 +246,13 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
                 New data
               </Control>
             </Row>
+            {!locked && (mod || big) && (
+              <p className={s.msg} data-testid="seen">
+                Seen held-out (vs none):
+                {mod ? ` λ ${fmtL(mod.li)}, set ${mod.seed}: ${mod.held.toFixed(2)} vs ${mod.none.toFixed(2)}.` : ""}
+                {big ? ` λ 10, set ${big.seed}: ${big.held.toFixed(2)} vs ${big.none.toFixed(2)}.` : ""}
+              </p>
+            )}
           </div>
         );
       }}

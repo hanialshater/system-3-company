@@ -8,6 +8,7 @@
 // Key state: both forecasts tried, and 100+ random nights run.
 // v2 (r6): the forecast results and the longest random run are recorded when they happen and shown in a
 // "Your runs" row that Reset does not clear; the reveal quotes those records (never "your 0 nights").
+// v3 (wave G r7): title no longer assumes the forecast fails ("Will the forecast come true?"); "1 night" grammar.
 // A zero-attendance night gets a "0" mark. Options are all bare numbers.
 
 import { useState } from "react";
@@ -193,7 +194,7 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                     ? ""
                     : [
                         ...Object.entries(fc).map(([f, c]) => `forecast ${f} → ${c} came`),
-                        ...(best ? [`longest run: ${best.n} nights, avg ${best.avg.toFixed(1)}, ${best.pct}% crowded`] : []),
+                        ...(best ? [`longest run: ${best.n} night${best.n === 1 ? "" : "s"}, avg ${best.avg.toFixed(1)}, ${best.pct}% crowded`] : []),
                       ].join(" · ")}
                 </p>
               </div>

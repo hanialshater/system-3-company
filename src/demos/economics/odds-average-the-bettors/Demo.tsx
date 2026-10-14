@@ -8,6 +8,10 @@
 // Key states: equal money (the odds land on the simple average) and bettor 2 richer (odds move
 // toward bettor 2's belief).
 // Model: two bettors, no house cut, everyone bets all their money by belief.
+// v3 (wave G r7): the "Seen" rows carry every number the reveal quotes (start: $240 + $40 = $280 of
+// $400, 70%; equal and richer runs with their money, odds and average), so slider play afterwards
+// cannot leave the reveal quoting a state that is gone. Simple-average readout hidden until the
+// commit. Bar segment labels on two lines so the $40 sliver is readable.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -59,7 +63,7 @@ export default function OddsAverage({ slug }: { slug: string }) {
         <>
           {seenStart && (
             <p>
-              $300 × 80% = $240 and $100 × 40% = $40 put <strong>{usd(st.onA)} of the {usd(st.total)} pool</strong> on A, so the odds said{" "}
+              {usd(START.w1)} × {START.p1}% = {usd(st.a1)} and {usd(START.w2)} × {START.p2}% = {usd(st.a2)} put <strong>{usd(st.onA)} of the {usd(st.total)} pool</strong> on A, so the odds said{" "}
               {pct(st.implied)}, not the simple average of {pct(st.simple)}.
             </p>
           )}
@@ -136,9 +140,12 @@ export default function OddsAverage({ slug }: { slug: string }) {
                       const r = (
                         <g key={i}>
                           <rect x={x} y={34} width={w} height={44} className={g.cls} />
-                          {w > 26 && (
-                            <text x={x + w / 2} y={60} className={s.small} textAnchor="middle">
-                              {g.label}: {usd(g.v)}
+                          {w > 22 && (
+                            <text x={x + w / 2} y={52} className={s.small} textAnchor="middle">
+                              <tspan x={x + w / 2}>{g.label}</tspan>
+                              <tspan x={x + w / 2} dy={14}>
+                                {usd(g.v)}
+                              </tspan>
                             </text>
                           )}
                         </g>
@@ -162,20 +169,33 @@ export default function OddsAverage({ slug }: { slug: string }) {
                 <p className={s.key}>
                   <span className={s.swatch1} /> bettor 1&apos;s money <span className={s.swatch2} /> bettor 2&apos;s · left of the line: on A
                 </p>
-                <p className={s.key} data-testid="seen">
-                  {eq || rich || seenStart
-                    ? `Seen: ${[
-                        eq ? `equal money ${pct(eq.implied)}` : null,
-                        rich ? `bettor 2 richer ${pct(rich.implied)}` : null,
-                        seenStart ? `start ${pct(st.implied)}` : null,
-                      ]
-                        .filter(Boolean)
-                        .join(" · ")}`
-                    : "Seen: nothing yet"}
-                </p>
+                <div className={s.key} data-testid="seen">
+                  {eq || rich || seenStart ? (
+                    <>
+                      {seenStart && (
+                        <div>
+                          Seen, start: {usd(st.a1)} + {usd(st.a2)} = {usd(st.onA)} of {usd(st.total)} on A, odds {pct(st.implied)}, average{" "}
+                          {pct(st.simple)}
+                        </div>
+                      )}
+                      {eq && (
+                        <div>
+                          Seen, equal {usd(eq.w1)} each: odds {pct(eq.implied)}, average {pct(eq.simple)}
+                        </div>
+                      )}
+                      {rich && (
+                        <div>
+                          Seen, bettor 2 {usd(rich.w2)} at {rich.p2}% vs {usd(rich.w1)}: odds {pct(rich.implied)}, average {pct(rich.simple)}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    "Seen: nothing yet"
+                  )}
+                </div>
                 <Row>
                   <Readout label="Implied chance of A" value={locked ? "?" : pct(q.implied)} />
-                  <Readout label="Simple average" value={locked ? "?" : pct(q.simple)} />
+                  {!locked && <Readout label="Simple average" value={pct(q.simple)} />}
                 </Row>
                 <Row>
                   <Control className={w1 === 200 && w2 === 200 ? "active" : ""} disabled={locked || (w1 === 200 && w2 === 200)} onClick={() => apply({ w1: 200, w2: 200 })}>

@@ -6,6 +6,8 @@
 // crosses x = 4 and x = 6: 2, outside. (1,4): 3, inside. (5,4): 1. (3,1): 1. (7,4): 0.
 // Edge test is the half-open rule (an edge counts if exactly one end is above the ray's height), and
 // the stage keeps the point off the boundary and off corner heights (y = 0, 2, 6), so no ties arise.
+// v3 (wave G r7): the two points the reveal quotes (first gap point, first odd point) sit in their own
+// "Seen" line that never drops them; the "Tried" trace keeps the last five (all presets fit).
 
 import { useRef, useState, type PointerEvent } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -125,7 +127,7 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
               setLog((l) => {
                 const last = l[l.length - 1];
                 if (last && last.p[0] === p[0] && last.p[1] === p[1]) return l;
-                return [...l.filter((x) => x.p[0] !== p[0] || x.p[1] !== p[1]), seen].slice(-4);
+                return [...l.filter((x) => x.p[0] !== p[0] || x.p[1] !== p[1]), seen].slice(-5);
               });
               if (k % 2 === 1) {
                 setOdd((o) => o ?? seen);
@@ -262,6 +264,15 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                   <Readout label="Crossings" value={locked ? "?" : n} />
                   <Readout label="Verdict" value={locked ? "?" : inside ? "inside" : "outside"} />
                 </Row>
+                {(notch || odd) && (
+                  <p className={s.log} data-testid="seen">
+                    Seen:{" "}
+                    {[notch, odd]
+                      .filter((x): x is Seen => x !== null)
+                      .map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} crossing${x.n === 1 ? "" : "s"}, ${x.n % 2 ? "inside" : "outside"}`)
+                      .join(" · ")}
+                  </p>
+                )}
                 <p className={s.log} data-testid="tried">
                   {log.length
                     ? `Tried: ${log.map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} ${x.n % 2 ? "in" : "out"}`).join(" · ")}`
