@@ -18,6 +18,8 @@ Every service, data store and known deficit has a tier, an owner and a status, i
 - Post-mortems: COE quality and whether their action items close
 - The Operational Health Review (rituals/templates/ops-review.md), with each tech team's point of contact reporting
 - Health metrics: agent productivity and token burn rate, stop rate, open issues and PRs, untriaged and aged P1/P2 items, open deficits by tier, CI and build health (`node tools/ops-health.mjs`)
+- The risk register (company/ops/risks.json, company/ops/risks.md), re-scored at every Operational Health Review
+- Operational readiness: the template, and approval of tier-2 changes and of any change touching deploy, the event API, auth or learner data
 
 ## Out of scope
 
@@ -34,11 +36,13 @@ May:
 - Require a COE, and its owner, for a SEV1/SEV2
 - Require each tech team's point of contact to report at the ops review
 - Hold a launch or deploy while a SEV1 is open
+- Approve, approve with conditions, or refuse a tier-2 readiness record
 
 May not:
 - Write the COE for an incident in their own area (another engineer does)
 - Change protected paths without an amendment
 - Dispatch production work
+- Approve readiness for a change in its own area (principal-engineer does)
 
 ## Inputs
 
@@ -56,6 +60,8 @@ May not:
 - Incident records and COEs
 - Ops review records with a health scorecard
 - Health items on the board, with owners
+- The risk register
+- Readiness approvals
 
 ## Rituals
 

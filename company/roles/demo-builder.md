@@ -19,6 +19,9 @@ Make the design executable: the picture has to pay its debts. Every control does
 - src/demos/<domain>/<slug>/Demo.tsx, styles.module.css, meta.json (mechanics and claim text)
 - Running `npm run check`, `npm run typecheck`, build and QA for own lessons
 - Looking at own screenshots and fixing what a beginner would trip on
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file. Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 
 ## Out of scope
 
@@ -34,6 +37,8 @@ May:
 May not:
 - Edit protected paths
 - Read evaluator rubrics before building (they would become the target)
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -50,6 +55,7 @@ May not:
 ## Rituals
 
 - demo-crit (answers questions after evaluators report)
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 

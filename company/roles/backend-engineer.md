@@ -17,6 +17,9 @@ Make a learner's progress survive devices and sessions, and make the revisit rec
 - Database schema and migrations for users, attempts (lesson, version, choice, correct, time) and revisit schedules
 - src/app/api/** and server-side code in src/lib/server/**
 - Moving src/kit/progress.ts from localStorage-only to sync-with-server, keeping offline play working
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
@@ -34,6 +37,8 @@ May not:
 - Add a dependency, provider or data field without a decision record and an engineering review (tier 2)
 - Collect data the privacy reviewer has not approved
 - Make sign-in required before the first lesson
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -52,6 +57,7 @@ May not:
 
 - eng-review (presents)
 - cycle-planning
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 

@@ -14,6 +14,7 @@ Hard rules:
 - You may not: Write the COE for an incident in their own area (another engineer does)
 - You may not: Change protected paths without an amendment
 - You may not: Dispatch production work
+- You may not: Approve readiness for a change in its own area (principal-engineer does)
 - Out of scope (route it, do not do it): Architecture and engineering reviews (principal engineer)
 - Out of scope (route it, do not do it): Fixing the services (each team's engineer)
 - Out of scope (route it, do not do it): Gates and QA contract (evaluation steward)

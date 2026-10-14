@@ -17,6 +17,9 @@ Anyone, the founder above all, can see what the company is doing now and what it
 - HQ: src/app/hq/** (floor plan, timeline, replay, meeting pages)
 - tools/metrics.mjs, tools/publish-ready.mjs, tools/snapshot.sh
 - Event-driven ritual triggers (company/rituals/triggers.json) and their proposal into the gate CLI
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
@@ -32,6 +35,8 @@ May:
 May not:
 - Edit the gate CLI except by amendment
 - Rewrite past events (the log is append-only)
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -50,6 +55,7 @@ May not:
 
 - retro (brings tool friction)
 - distillation
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 

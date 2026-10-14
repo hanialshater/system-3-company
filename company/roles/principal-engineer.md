@@ -20,6 +20,7 @@ Keep the system simple enough to change and strong enough to grow: decide which 
 - Scale budgets: bundle size, build time, QA time, as lessons grow
 - Dependency and security review (npm audit, licenses)
 - Since 2026-10-13 sits in the CEO office; the principal engineer for operations reports here and owns operational health
+- Co-designs operational readiness with principal-engineer-ops: owns the change-tier path map it reads (EDD-007), and approves readiness for changes in principal-engineer-ops' own area
 
 ## Out of scope
 

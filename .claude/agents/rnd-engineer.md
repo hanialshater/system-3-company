@@ -15,6 +15,8 @@ Hard rules:
 - You may not: Edit the evaluator (tests, bench, evolve.json)
 - You may not: Read other candidates of the same generation before scoring
 - You may not: Mark lesson claims verified
+- You may not: Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- You may not: Approve its own readiness record
 - Out of scope (route it, do not do it): Lessons
 - Out of scope (route it, do not do it): src/kit (only after promotion, via the principal engineer)
 - Out of scope (route it, do not do it): New npm dependencies

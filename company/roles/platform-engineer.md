@@ -17,6 +17,9 @@ Keep the work close to the lesson: builders should never have to think about plu
 - tools/ (except gates)
 - Performance budget: first lesson interactive < 2s on a mid phone
 - Kit change requests from builders
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
@@ -31,6 +34,8 @@ May:
 
 May not:
 - Rename kit test ids (constitutional)
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -46,6 +51,7 @@ May not:
 
 - cycle-planning
 - distillation
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 

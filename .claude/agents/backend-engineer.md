@@ -14,6 +14,8 @@ Hard rules:
 - You may not: Add a dependency, provider or data field without a decision record and an engineering review (tier 2)
 - You may not: Collect data the privacy reviewer has not approved
 - You may not: Make sign-in required before the first lesson
+- You may not: Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- You may not: Approve its own readiness record
 - Out of scope (route it, do not do it): Lesson content
 - Out of scope (route it, do not do it): The lesson contract (src/kit/Lesson.tsx is constitutional)
 - Out of scope (route it, do not do it): Deploying (release manager)

@@ -16,6 +16,9 @@ Correct first, then small, then easy to use in a 60-second lesson.
 - Its own candidate folder src/lab/<p>/candidates/<gen>-<name>/ (or the baseline in generation 0)
 - Prior-art research with links (libraries, papers, datasets) and their licences
 - Proposing new tests to the lead (the lead decides)
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
@@ -33,6 +36,8 @@ May not:
 - Edit the evaluator (tests, bench, evolve.json)
 - Read other candidates of the same generation before scoring
 - Mark lesson claims verified
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -44,7 +49,7 @@ May not:
 
 ## Rituals
 
-- none
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 

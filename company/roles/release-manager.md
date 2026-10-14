@@ -17,6 +17,9 @@ Ship only what passed its gates, and be able to undo it in one command.
 - `npm run deploy -- preview|production` (verification, target check, staged production, smoke tests, release record)
 - Vercel rollbacks (company/ops/runbook-deploy.md)
 - Release notes in company/ops/changelog.md
+- Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
+- Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
+- Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 
 ## Out of scope
 
@@ -31,6 +34,8 @@ May:
 
 May not:
 - Publish around a gate
+- Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
+- Approve its own readiness record
 
 ## Inputs
 
@@ -47,6 +52,7 @@ May not:
 ## Rituals
 
 - launch-review (executes)
+- ops-review (reports on its services and risks, through its own engineer)
 
 ## Failure modes to watch
 
