@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (principal-engineer, W-477 (W-582 on main): EDD-006 engineering review)
+
+- **Changed (branch only, not merged):** `company/engineering/reviews/2026-10-14-edd-006-review.md`; branch W-477 moved to done.
+- **Believe:** **approve with changes.** The QA path, milestones and reveal-card switch are correct as read (high confidence for the QA path, medium for the reveal switch: no run exercises it). JS cost about 3.4 KB gz. Contract QA, reveal-fit and typecheck numbers are the author's; I ran `npm run check` only (pass).
+- **Next:** at merge, renumber W-477..W-480 to main's next IDs (W-582..W-585 today), regenerate the registry, `npm run verify`, then file C1/C2 (design-engineer), C3 (evaluation-steward) and S1 (platform-engineer: home chunk carries every lesson's code, 911 KB gz). No `[deploy]`.
+- **Blocked:** none for the merge. The first non-reference lesson in the format waits on C1, W-583, W-584 and a real-phone check.
+
 ## 2026-10-14 (design-engineer, W-477: multi-card sequence format in the kit, EDD-006)
 
 - **Changed (branch `design/multi-card-sequence`, worktree /home/user/s3c-cards, not merged):** `src/kit/sequence.tsx` + `sequence.module.css` (`<CardSequence>`, `<SubCard>`, `useSubCard`); EDD `company/engineering/edd/EDD-006-multi-card-sequence.md`; draft reference lesson `src/demos/math/euclid-three-steps/` (Euclid IX.20 in three sub-cards; all 6 claims unverified; under math because no books domain existed); HQ Design inspector detects `<CardSequence>` (`src/lib/hq-design.ts`); concept file `company/design/concepts/multi-card-sequence.md` kit line. Board: W-477 principal-engineer review, W-478 interaction-designer design review, W-479 accessibility review, W-480 cm-math (the reference duplicates concept infinitude-of-primes, already covered by product-plus-one).
