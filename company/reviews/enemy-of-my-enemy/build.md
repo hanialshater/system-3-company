@@ -45,3 +45,16 @@ Inputs: learner review saying-only, fact-check pass NCM-1 (c6 disputed).
 - **Not done:** finding 4 (overlapping tints) needs a design decision; the count carries it.
 - Version 2. Reveal about 100 words. No new numbers (same rule).
 - QA: the slug's contract passed on phone and desktop with QA_PORT 3721; the 2 failures in that run are the feed spec "subject chips filter the feed" (not this lesson). Walkthrough (phone, 14 frames) viewed.
+
+## Revision v3 (2026-10-14, session 2, demo-builder): polish from the network-pair design review
+
+Inputs: company/design/reviews/2026-10-14-design-review-network-pair.md, findings E1-E5, and its reconciled network-stage constants. No claim text, predict, reveal or mechanics changed; all 6 claims keep their verified status. Version 3.
+
+- **E1 legend swatches:** the three legend marks are now 14 px inline SVG (aria-hidden) reusing the stage's own classes (`.handleOn` + `.glyphOn`, `.handleOff` + `.glyphOff`, `.trio`), drawn from a 28-unit viewBox. The CSS-span keys are gone, and the "+" and "−" now use the stage's font.
+- **E2 trio tint:** `fill-opacity` 0.16 to 0.12 plus a 1 px `--bad-fill` stroke at 0.5 opacity, so overlapping trios keep their outlines.
+- **Reconciled constants applied (enemy column):** handle r 12 to 13 (26 px), glyph 17 to 15 px, border 1.5 to 2 px. Ring r 16 to 17 so it still clears the larger disc. Node r 16, label 15 px, dash `6 5`, R = 135 unchanged. Handle-to-handle spacing stays 49.0 (the hit buttons are 44 px).
+- **E3 known limit at 320 px:** handle spacing is 49 px at scale 1. The 44 px `.hit` circles overlap by 2 to 3 px below scale 0.9 (card inner width under about 306 px, i.e. 320 px phones). Accepted, no code change; the nearer handle wins the tap. The 320 px frame still needs the accessibility reviewer's check.
+- **E4 accent ring:** left as is (`--accent`, about 2.6:1 on white in light mode). It is a recency cue only: the sign glyph also changed. Non-essential; for the accessibility reviewer to rule on.
+- **E5 live announcement:** a visually hidden `aria-live="polite"` line (`.sr`) repeats "N of 10 trios unbalanced; camps ABC, D, E" after every flip or preset (same text as the SVG's aria-label). Handles keep both `aria-label` ("Pair A–B, friends") and `aria-pressed`, so the state is stated twice. The rule asks for both; left for the accessibility reviewer to rule on.
+- **QA:** the slug's contract passed on phone and desktop (QA_PORT 3841, own dist .next-eme3, QA_BASE_URL against that server). Walkthrough (phone, 14 frames) run against it; sheet and one full frame viewed: swatches match the stage's look, tints keep outlines, the ring clears the disc. 320 px and dark mode were not screenshotted.
+- `npm run check` and typecheck pass. The build's tsconfig.json change was reverted.
