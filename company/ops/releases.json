@@ -1,0 +1,431 @@
+{
+  "owner": "release-manager",
+  "scheme": "YYYY.MM.DD.n (UTC date; n counts releases that day, from 1). Append-only, oldest first.",
+  "releases": [
+    {
+      "version": "2026.10.14.1",
+      "date": "2026-10-14T12:58:35.000Z",
+      "commit": "f86812702b53ca2af71f05e72a5677b3678a0f1f",
+      "target": "production",
+      "approved_by": {
+        "who": "not recorded",
+        "record": "none found; the deploy-approval rule was written afterwards in 8daad2d (company/decisions/2026-10-14-deploy-needs-founder-approval.md) (inferred)"
+      },
+      "summary": "Vercel builds only commits marked [deploy]; first release under that filter.",
+      "added": {
+        "features": [
+          "Vercel: build only commits whose message contains [deploy] (vercel.json ignoreCommand) so WIP pushes stop using the 100-a-day deployment quota; runbook-deploy.md updated (f868127)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "No deployment record exists for this commit (company/ops/deployments/ holds only a README). Whether Vercel built it is not recorded (inferred: it carried the filter itself and no feed change)."
+        ]
+      },
+      "backfill": "drafted by hq-engineer, to be confirmed by release-manager"
+    },
+    {
+      "version": "2026.10.14.2",
+      "date": "2026-10-14T13:01:09.000Z",
+      "commit": "6b45ea02c5367aa6823264907a1257925afb8e31",
+      "target": "production",
+      "approved_by": {
+        "who": "not recorded",
+        "record": "none found; the deploy-approval rule was written afterwards in 8daad2d (company/decisions/2026-10-14-deploy-needs-founder-approval.md) (inferred)"
+      },
+      "summary": "Life Hacks: 200 lessons on the feed, tagged In review.",
+      "added": {
+        "features": [
+          "200 Life Hacks lessons moved from draft to review, so the feed shows them tagged \"In review\" (6b45ea0).",
+          "Life Hacks fixes W-403/W-404 (9cc527d)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 200,
+            "slugs": [
+              "agenda-needs-an-outcome",
+              "alphabet-sort-search",
+              "apply-not-quote",
+              "arrival-is-not-departure",
+              "bag-weight-before-volume",
+              "batch-by-setup",
+              "box-handle-clearance",
+              "breeze-is-not-extra-surface",
+              "buffer-for-a-late-finish",
+              "bug-report-needs-reproduction",
+              "calendar-needs-travel",
+              "care-label-first-choice",
+              "check-confidence-with-output",
+              "choose-the-metric-first",
+              "circle-tray-square-corners",
+              "cm-to-inches",
+              "coiled-cord-bend-radius",
+              "copy-keeps-the-original",
+              "count-setup-in-the-block",
+              "cover-before-recall",
+              "cue-needs-a-boundary",
+              "cut-moves-the-selection",
+              "deadline-needs-a-reference",
+              "delegate-the-whole-handoff",
+              "deleted-is-a-search-state",
+              "dependency-before-priority",
+              "desk-supply-near-use",
+              "do-not-starve-the-long-job",
+              "door-swing-clearance",
+              "drawer-divider-cost",
+              "drying-room-water-load",
+              "duplicate-before-experiment",
+              "duplicates-two-stations",
+              "earliest-deadline-first",
+              "elastic-loop-release",
+              "equal-names-not-equal-files",
+              "estimate-a-range",
+              "explain-the-link",
+              "file-fold-see-each-shirt",
+              "file-modified-not-created",
+              "file-type-then-owner",
+              "find-next-is-navigation",
+              "fit-before-fixed-slot",
+              "fitted-sheet-corners-nest",
+              "flat-pack-volume-dimensions",
+              "folded-shirt-stack-height",
+              "fragmented-time-does-not-fit",
+              "furniture-through-door",
+              "garment-overlap-hides-face",
+              "group-cables-with-ends",
+              "half-size-two-towels",
+              "handoff-after-finish",
+              "handoff-needs-a-checkpoint",
+              "heavy-book-close-to-back",
+              "humidity-evaporation-gap",
+              "include-the-wrap-up",
+              "iso-date-filename-sort",
+              "jacket-last-first",
+              "keep-the-error-feedback",
+              "keys-fixed-drop-zone",
+              "labels-specific-address",
+              "laundry-gap-air-path",
+              "laundry-sort-before-walk",
+              "lh-align-price-units",
+              "lh-annual-label-cost",
+              "lh-area-scales-square",
+              "lh-around-versus-across",
+              "lh-big-pack-price",
+              "lh-billing-rounds-hours",
+              "lh-buy-only-stock-gap",
+              "lh-capacity-batch-count",
+              "lh-cents-euros-conversion",
+              "lh-committed-stock",
+              "lh-count-before-dispatch",
+              "lh-count-sheets-not-rolls",
+              "lh-coverage-whole-cans",
+              "lh-deposit-checkout-net",
+              "lh-discount-round-trip",
+              "lh-double-container-radius",
+              "lh-duplex-sheet-rounding",
+              "lh-duty-cycle-energy",
+              "lh-each-cut-allowance",
+              "lh-fixed-coupon-percent",
+              "lh-fixed-energy-charge",
+              "lh-fixed-volume-fill",
+              "lh-flow-duration-offset",
+              "lh-flow-times-minutes",
+              "lh-free-shipping-gap",
+              "lh-idle-versus-active",
+              "lh-indivisible-shares",
+              "lh-jug-rounding-extra",
+              "lh-lead-time-stock",
+              "lh-material-reuse-account",
+              "lh-merge-overlapping-lists",
+              "lh-offcuts-not-one-piece",
+              "lh-overlap-material-area",
+              "lh-parcel-fee-repeats",
+              "lh-pay-for-used-quantity",
+              "lh-percentage-overage",
+              "lh-pool-spare-stock",
+              "lh-purchase-plus-running",
+              "lh-reuse-cost-per-use",
+              "lh-round-lines-versus-total",
+              "lh-round-replenishment",
+              "lh-round-snack-packs",
+              "lh-same-energy-new-tariff",
+              "lh-scale-recipe-portions",
+              "lh-sequential-discounts",
+              "lh-small-leak-large-duration",
+              "lh-split-order-fixed-fee",
+              "lh-standby-days-add-up",
+              "lh-subtract-openings-area",
+              "lh-ticket-bundle-unused",
+              "lh-turn-container-volume",
+              "lh-two-for-one-boundary",
+              "lh-use-deadline-tickets",
+              "lh-visit-fee-crossover",
+              "lh-voucher-minimum",
+              "lh-water-meter-units",
+              "lh-watts-hours-trade",
+              "lh-weighted-bill-share",
+              "lh-weighted-unit-average",
+              "lh-weighted-volume-allocation",
+              "lids-match-by-size",
+              "link-label-names-the-target",
+              "long-cord-knots-itself",
+              "mail-exact-phrase",
+              "mail-minus-noise",
+              "mail-or-vs-and",
+              "make-a-question-answerable",
+              "margin-before-cut",
+              "measure-diagonal-for-square",
+              "measure-inside-not-outside",
+              "meeting-and-preparation",
+              "mug-handle-packing",
+              "name-the-next-owner",
+              "nested-box-retrieval",
+              "note-gap-check",
+              "one-person-two-jobs",
+              "one-question-one-card",
+              "packing-cube-walls",
+              "pillowcase-set-kit",
+              "plain-text-paste-scope",
+              "preview-replace-all",
+              "project-prefix-filenames",
+              "rebuild-the-procedure",
+              "record-the-reason",
+              "rectangular-bin-nesting",
+              "request-needs-the-object",
+              "reserve-an-unassigned-slot",
+              "resize-photo-frame-ratio",
+              "reverse-the-flashcard",
+              "ribbon-around-box-length",
+              "rolled-or-folded-volume",
+              "round-box-leftover-gap",
+              "rug-chair-pullback",
+              "ruler-start-not-zero",
+              "search-the-document-body",
+              "seasonal-bin-rotation",
+              "select-before-replace",
+              "selection-not-focus",
+              "separate-confusable-pairs",
+              "separate-ready-from-blocked",
+              "shelf-front-labels",
+              "shelf-gap-wasted-height",
+              "shoes-opposite-ends",
+              "short-jobs-clear-a-queue",
+              "shorter-folder-path",
+              "show-the-file-extension",
+              "size-is-not-recency",
+              "small-items-in-mesh",
+              "sock-pairing-by-pattern",
+              "sock-pairs-not-all-combinations",
+              "socks-use-shoe-space",
+              "sofa-diagonal-room",
+              "spaced-beats-cram",
+              "spacer-protects-clearance",
+              "square-bow-stays-tied",
+              "status-and-blocker-differ",
+              "suitcase-layer-access",
+              "suitcase-rotate-block",
+              "tags-are-not-copies",
+              "tape-mark-same-spacing",
+              "tote-balance-sides",
+              "towel-over-two-bars",
+              "towel-spread-dries-first",
+              "towel-thickness-hidden-volume",
+              "transparent-box-visibility",
+              "trays-slide-out-reach",
+              "undo-then-redo",
+              "unlock-the-following-work",
+              "version-nine-and-ten",
+              "weight-spread-on-table",
+              "wet-knit-hang-stretch",
+              "wetter-cloth-more-water",
+              "wobbly-table-quarter-turn",
+              "work-back-from-a-deadline",
+              "work-in-process-limit",
+              "wrapping-paper-minimum-area",
+              "zoom-does-not-rewrite"
+            ]
+          }
+        },
+        "fixes": [
+          "W-403 and W-404 Life Hacks fixes (9cc527d)."
+        ],
+        "known_issues": [
+          "The same session's note says all 200 passed the safety source review and fact-check LH-1..LH-4 verified most claims; publishing still requires every gate. QA contract on build 7 was in progress at commit time (finished 400/400 in de22974, after this release).",
+          "Whether Vercel built this commit is not recorded (the 5e8608d message says a later [deploy] commit was skipped). (inferred)"
+        ]
+      },
+      "backfill": "drafted by hq-engineer, to be confirmed by release-manager"
+    },
+    {
+      "version": "2026.10.14.3",
+      "date": "2026-10-14T13:51:11.000Z",
+      "commit": "91274b8164065d3a753d3de54058b1e6f73fa27d",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/ops/progress.md entry \"Release: Life Hacks and NCM lessons to the live feed (founder-approved deploy)\"; quote: \"please deploy new demos of life hacks and ncm!! This is top priority\""
+      },
+      "summary": "Release: Life Hacks (200) and NCM (49) on the live feed, tagged In review.",
+      "added": {
+        "features": [
+          "Deploy-approval rule: every deploy needs the founder's approval (CLAUDE.md, runbook, decision record) (8daad2d).",
+          "AMD-002 ratified: CI cancels superseded verify runs on the same ref (71aa854, a674a7a).",
+          "HQ Library tab: search and read company/ docs, floor-plan search, tests (2666844); review changes W-460 to W-464 (f73e5c7). HQ is off in production builds, so this is dev-only.",
+          "Design fixes W-447/448/449 to every-second-seat-out v5, a-star v8, who-pays v5 (141b1af).",
+          "Life Hacks QA contract on build 7: 400/400 on phone and desktop (de22974)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Design fixes W-447/448/449: labels at least 10 px, no overflow, crop 0 (141b1af).",
+          "Fact-check pass 34: 11 verified, 0 disputed across 6 phone-fit lessons (cf31383)."
+        ],
+        "known_issues": [
+          "Built and smoke-tested from a clean checkout of b803a9a (877 pages; lesson pages 200). The note \"Not claimed: that Vercel built it\".",
+          "Production showed review lessons with no Article 4.1 override record, and [deploy] commits went out with no CI result (CI queue incident), per company/ops/progress.md ops-review entries."
+        ]
+      },
+      "backfill": "drafted by hq-engineer, to be confirmed by release-manager"
+    },
+    {
+      "version": "2026.10.14.4",
+      "date": "2026-10-14T14:27:19.000Z",
+      "commit": "f4537d7dd507a5f02c9fbae71cecf9cda7102ee5",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "commit message f4537d7: \"Founder-approved deploy\""
+      },
+      "summary": "54 new and revised lessons on the feed, tagged In review.",
+      "added": {
+        "features": [
+          "Moves 54 lessons from draft to review and files their QA records; built from a clean checkout of 8d8a56b (893 pages), contract QA 108/108 on phone and desktop (f4537d7)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 54,
+            "slugs": [
+              "accurate-bettor-takes-the-pot",
+              "all-lines-meet-in-one-mother",
+              "asthma-looks-safe",
+              "best-of-twenty-on-one-test",
+              "bird-on-the-wire",
+              "bridge-carries-news-not-habits",
+              "calibrated-but-unequal-alarms",
+              "cut-the-busiest-link",
+              "cut-the-rod-for-more",
+              "debt-grows-ratio-falls",
+              "each-element-pops-once",
+              "enemies-allow-three-camps",
+              "every-scale-equally-likely",
+              "everyone-saves-nobody-does",
+              "fenwick-hops-by-lowest-bit",
+              "four-in-a-row-two-thirds",
+              "hailstone-27-climbs",
+              "head-on-is-a-wall",
+              "karatsuba-three-not-four",
+              "long-answers-lose-the-product",
+              "metal-feels-colder",
+              "more-detail-less-likely",
+              "more-digits-not-bigger",
+              "odds-average-the-bettors",
+              "one-circle-fewer-introductions",
+              "one-crowded-bucket",
+              "one-road-cuts-the-map",
+              "only-the-needed-trader-profits",
+              "order-of-the-bad-year",
+              "outside-option-sets-the-split",
+              "palindromes-grow-from-centres",
+              "patience-wins-the-split",
+              "pay-for-the-harm-you-do",
+              "proposers-get-the-best",
+              "range-min-in-four-nodes",
+              "ray-counts-crossings",
+              "rotation-untangles-the-chain",
+              "selfish-routes-cost-a-third-more",
+              "shake-faster-same-speed",
+              "six-students-per-professor",
+              "small-gap-big-extremes",
+              "stag-needs-three-in-four",
+              "tax-now-or-tax-later",
+              "the-bar-nobody-can-forecast",
+              "the-loser-flips-the-winner",
+              "times-can-shrink",
+              "twenty-flips-run-of-five",
+              "two-cells-sum-any-range",
+              "two-locks-wait-forever",
+              "two-right-angles-never-meet",
+              "weak-links-hold-it-together",
+              "wheel-needs-four-colours",
+              "who-pays-same-filter",
+              "zebra-sorts-before-apple"
+            ]
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "Per the 5e8608d message, this [deploy] commit was skipped by Vercel (the build filter read the wrong message source); 5e8608d redeployed it."
+        ]
+      },
+      "backfill": "drafted by hq-engineer, to be confirmed by release-manager"
+    },
+    {
+      "version": "2026.10.14.5",
+      "date": "2026-10-14T14:43:16.000Z",
+      "commit": "5e8608df196f09d4eb05e235257fd00c564e3a19",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "commit message 5e8608d: \"Founder-approved deploy (the previous [deploy] commit was skipped)\""
+      },
+      "summary": "Build filter reads VERCEL_GIT_COMMIT_MESSAGE; redeploys Life Hacks, NCM and the 54 new lessons.",
+      "added": {
+        "features": [
+          "vercel.json ignoreCommand now reads the commit message from VERCEL_GIT_COMMIT_MESSAGE, falling back to git log (5e8608d)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Vercel skipped the f4537d7 [deploy] commit; the filter fix lets [deploy] commits build (5e8608d)."
+        ],
+        "known_issues": [
+          "Feed after this release, from lesson metadata at this commit: 587 published, 292 in review. The 54 lessons from f4537d7 first reached the live feed here (inferred from the commit message), so their slugs are listed under 2026.10.14.4."
+        ]
+      },
+      "backfill": "drafted by hq-engineer, to be confirmed by release-manager"
+    }
+  ]
+}
