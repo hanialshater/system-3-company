@@ -5,6 +5,8 @@
 // ($10) than whole ($9). The learner fills best(1)..best(4) in order; each fill lists every first cut and
 // keeps the largest, reusing the shorter answers already on the stage.
 // One representation: four rods, each drawn cut the best way found so far.
+// v4 (learner r8): reveal cut to the 90-word budget (the told length-8 example, c5, is gone) and its reuse example
+// now names the outlined row, best(2) in "2 + best(2)".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -30,8 +32,6 @@ function solve(price: number[]) {
 const TABLE = solve(PRICE);
 const choices = (n: number) =>
   Array.from({ length: n }, (_, i) => i + 1).map((k) => ({ k, piece: PRICE[k - 1], rest: TABLE[n - k].best, total: PRICE[k - 1] + TABLE[n - k].best }));
-// Reveal's bigger rod: CLRS-style prices for lengths 1..8.
-const BIG = solve([1, 5, 8, 9, 10, 17, 17, 20]);
 
 const UNIT = 52;
 const X0 = 86;
@@ -63,8 +63,8 @@ export default function CutTheRod({ slug }: { slug: string }) {
           </p>
           <p>
             The best price of a rod is the best over first-cut sizes of (piece price + best price of the rest). Each
-            cut line read a filled row, like best(3) in &quot;1 + best(3)&quot;: each shorter rod is solved once and reused. With prices 1, 5, 8, 9, 10, 17, 17, 20 for lengths 1 to 8, a length-8 rod
-            sells for ${BIG[8].best} (pieces {BIG[8].pieces.join(" + ")}), not $20 whole.
+            cut line read a filled row, like best(2) in &quot;2 + best(2)&quot; (the outlined row): each shorter rod is solved
+            once and reused.
           </p>
         </>
       )}

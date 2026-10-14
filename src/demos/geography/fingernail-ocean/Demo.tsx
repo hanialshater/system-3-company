@@ -83,8 +83,7 @@ export default function FingernailOcean({ slug }: { slug: string }) {
           </p>
           <p>
             A speed you could never see in a lifetime, about 2 metres in one, becomes an ocean once geological time
-            multiplies it. Real spreading in the Atlantic varies along the ridge and over time, about 2 to 4 cm a year;
-            this stage is a toy that slides one continent due west at an average rate.
+            multiplies it.
           </p>
         </>
       )}
@@ -121,7 +120,9 @@ export default function FingernailOcean({ slug }: { slug: string }) {
                   ))}
                 </svg>
                 <p className="muted tiny">
-                  Toy: South America slides west at {RATE_CM_YR} cm a year = {fmt(gapKm(1))} km per million years. Dashed: today.
+                  {/* r8: the km-per-million-years conversion is the step the question tests, so it appears only after the commit. */}
+                  Toy: South America rides its plate west at {RATE_CM_YR} cm a year
+                  {locked ? "" : ` = ${fmt(gapKm(1))} km per million years`}. Dashed: today.
                 </p>
                 <div className={s.chips} role="group" aria-label="Add time">
                   <Control disabled={locked || myr === TARGET_MYR} onClick={() => go(TARGET_MYR)}>

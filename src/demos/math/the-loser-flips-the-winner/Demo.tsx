@@ -9,6 +9,8 @@
 // v2 (wave G r7): neutral title/hook (meta.json); the toggle names its action ("Remove C" / "Put C back");
 // once the gap chips are on, a "Lead sums" row adds the chips for both ballots (with C: B 2 + 2 = 4,
 // A 1 + 1 + 1 = 3; without C: A 3, B 1 + 1 = 2), so the reveal's "4 beats 3" is a reading, not a sum.
+// v3 (phone fit, build 6): score bars pitch 24 -> 21 and the viewBox 232 -> 219 tall, stage gaps 6 -> 3 px and
+// tighter button padding, so the rule line stays on screen at the reveal on a 390x844 phone. Text unchanged.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
@@ -129,8 +131,8 @@ const CARD_GAP = 8;
 const CARD_X0 = 4;
 const TILE_Y0 = 26;
 const TILE_PITCH = 26;
-const BAR_Y0 = 162;
-const BAR_PITCH = 24;
+const BAR_Y0 = 158;
+const BAR_PITCH = 21;
 const PX_PER_POINT = 36;
 
 function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => void }) {
@@ -173,7 +175,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
         <span>{rule}</span>
         <span className={s.voters}>voters 1–5</span>
       </p>
-      <svg viewBox="0 0 340 232" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
+      <svg viewBox="0 0 340 219" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
         {BALLOTS.map((b, i) => {
           const x = CARD_X0 + i * (CARD_W + CARD_GAP);
           const pts = ballotPoints(b, cOn);
@@ -246,7 +248,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
                 </text>
               ) : counted ? (
                 <>
-                  <rect x={26} y={y} width={Math.max(2, t[c] * PX_PER_POINT)} height={18} rx={4} className={s.bar} />
+                  <rect x={26} y={y} width={Math.max(2, t[c] * PX_PER_POINT)} height={17} rx={4} className={s.bar} />
                   <text x={32 + t[c] * PX_PER_POINT} y={y + 14} className={s.total}>
                     {t[c]}
                   </text>
@@ -258,7 +260,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
                 </>
               ) : (
                 <>
-                  <rect x={26} y={y} width={90} height={18} rx={4} className={s.barUnknown} />
+                  <rect x={26} y={y} width={90} height={17} rx={4} className={s.barUnknown} />
                   <text x={124} y={y + 14} className={s.total}>
                     ?
                   </text>

@@ -116,6 +116,17 @@ function snapshots(mode: Mode): Snap[] {
   return out;
 }
 const SNAPS: Record<Mode, Snap[]> = { plain: snapshots("plain"), rotating: snapshots("rotating") };
+/** Levels the picture needs for each tree: every depth drawn in any of its frames (tree, pre-rotation shape, ghosts). */
+const LEVELS: Record<Mode, number> = {
+  plain: 0,
+  rotating: 0,
+};
+for (const m of ["plain", "rotating"] as const) {
+  for (const sn of SNAPS[m]) {
+    const ds = [...Object.values(sn.depth), ...Object.values(sn.pre), ...Object.values(sn.rot?.ghost ?? {})];
+    LEVELS[m] = Math.max(LEVELS[m], 1 + Math.max(0, ...ds));
+  }
+}
 
 const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -157,8 +168,11 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
       ? `${mode === "rotating" ? "Rotating" : "Plain"} tree: empty`
       : `${mode === "rotating" ? "Rotating" : "Plain"} tree: root ${keys.find((k) => snap.depth[k] === 0)}, height ${lv(snap.height)}, ${snap.rots} rotation${snap.rots === 1 ? "" : "s"}`;
 
+  // The key row sits under the deepest level this tree ever uses, so the rotating tree (4 levels) is drawn
+  // shorter than the plain chain (7 levels).
+  const rowY = LEVY(LEVELS[mode] - 1) + 26;
   return (
-    <svg viewBox="0 0 342 324" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-keys={i}>
+    <svg viewBox={`0 0 342 ${rowY + 36}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-keys={i}>
       {snap.rot && (
         <g aria-hidden="true">
           {Object.entries(snap.rot.ghost)
@@ -225,14 +239,14 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
           </text>
         </g>
       ))}
-      <line x1={10} y1={300} x2={332} y2={300} stroke="var(--line)" />
+      <line x1={10} y1={rowY + 12} x2={332} y2={rowY + 12} stroke="var(--line)" />
       {KEYS.map((k) => {
         const inserted = k <= i;
         return (
           <g key={`row${k}`}>
             <rect
               x={COLX(k) - 12}
-              y={288}
+              y={rowY}
               width={24}
               height={24}
               rx={4}
@@ -240,7 +254,7 @@ function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
               stroke={inserted ? "var(--fg)" : "var(--line)"}
               strokeDasharray={inserted ? undefined : "3 2"}
             />
-            <text x={COLX(k)} y={304} textAnchor="middle" className={inserted ? s.rowKey : s.rowWait}>
+            <text x={COLX(k)} y={rowY + 16.5} textAnchor="middle" className={inserted ? s.rowKey : s.rowWait}>
               {k}
             </text>
           </g>
@@ -379,19 +393,14 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
                     value={results.rotating ? `${lv(results.rotating.height)}, ${results.rotating.rots} rot.` : "?"}
                   />
                 </Row>
-                <Row>
+                <div className={s.controls}>
                   <Control className="tap" disabled={locked || busy || i >= 7} onClick={insertNext}>
                     Insert next key
                   </Control>
                   <Control className="tap" disabled={locked || busy || i >= 7 || !first} onClick={insertRest}>
                     Insert the rest
                   </Control>
-                </Row>
-                <Row>
-                  <span className={s.lab} id="tree-label">
-                    Tree
-                  </span>
-                  <span role="group" aria-labelledby="tree-label" className={s.chips}>
+                  <span role="group" aria-label="Tree" className={s.chips}>
                     {(["plain", "rotating"] as const).map((m) => (
                       <Control
                         key={m}
@@ -404,7 +413,7 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
                       </Control>
                     ))}
                   </span>
-                </Row>
+                </div>
               </div>
             );
           }}

@@ -194,11 +194,10 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
             <Readout label="Turned" value={`${deg(pct)}°`} />
             <Readout label="Size on the globe" value={`${area} million km²`} />
           </Row>
-          {phase !== "reveal" && (
-          <>
           <Row>
             <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${deg(v)}°`} onChange={(v) => set(v, interact)} />
           </Row>
+          {phase !== "reveal" && (
           <Row>
             <Control disabled={locked || pct === 100} onClick={() => set(100, interact)}>
               Close it all the way
@@ -207,7 +206,6 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
               Back to today
             </Control>
           </Row>
-          </>
           )}
         </div>
         );

@@ -74,7 +74,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
   const trail = read.length === 0 ? "" : [...read, cur].map((i) => `${i}=${bin(i)}`).join(" → ");
 
   const qSum = sums.find((x) => x.start === Q);
-  const upLine = up.length > 0 ? `Up: add the lowest 1 bit: ${up.map(bin5).join(" → ")}` : "";
+  const upLine = up.length > 0 ? up.map((i) => `${i}=${bin5(i)}`).join(" → ") : "";
 
   return (
     <Lesson
@@ -133,7 +133,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={`Cells read ${read.join(", ") || "none"}`}>
+                <svg viewBox="0 0 320 212" className="stage-svg" role="img" aria-label={`Cells read ${read.join(", ") || "none"}`}>
                   {Array.from({ length: N }, (_, k) => k + 1).map((i) => {
                     const isRead = read.includes(i);
                     const isUp = up.includes(i);
@@ -192,10 +192,13 @@ export default function FenwickHops({ slug }: { slug: string }) {
                   <text x={X0} y={26} className={s.lab}>
                     1–{start}: {read.length} {read.length === 1 ? "cell" : "cells"} read, sum {sum}
                   </text>
-                  <text x={320 - X0 + CW - 18} y={26} textAnchor="end" className={up.length ? s.labBad : s.lab}>
-                    cells changed: {up.length}
+                  <text x={304} y={26} textAnchor="end" className={up.length ? s.labBad : s.lab}>
+                    Fenwick cells changed: {up.length}
                   </text>
                   <text x={X0} y={BASE + 92} className={s.hdrBad}>
+                    {upLine && "Change position 1: hop up by adding the lowest 1 bit"}
+                  </text>
+                  <text x={X0} y={BASE + 106} className={s.hdrBad}>
                     {upLine}
                   </text>
                   <text x={4} y={BASE + 30} className={s.pos}>

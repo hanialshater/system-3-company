@@ -22,3 +22,17 @@ r7 findings: title "Drop the loser, change the winner?" and hook "Could the winn
 6. **Reset.** No Reset; "Put C back" keeps both log lines and the Lead sums row (it covers both states). Reveal from that run: "Nobody changed their mind about A versus B: voters 1–3 put A above B, voters 4–5 put B above A, before and after. With C on the ballot, C sat between B and A on ballots 4 and 5, so each gave B a 2-point lead; A's voters gave A 1 each. 4 beats 3: B won 7–6. Without C every lead is 1: A wins 3–2. Points voting like this can let a last-placed option pick the winner."
 
 Not seen in a browser (no build/QA this wave).
+
+## Revision v3 (phone fit, build 6 measurement, 2026-10-14)
+
+- Build 6 (W-287 10 px label floor) measured crop 122 px at 390×844 with the reveal open, 84 words. Re-measured on the dev server (localhost:3530) before editing: 23 px; parts picture 218 (not fitted), controls 52, text 80; reveal 232 px of a 618 px window. Demo.tsx and styles.module.css were last written at 11:55 today with no build note for that change, which may explain the gap to build 6; I did not trace it. What was off screen: the rule line ("C removed: 1 point for 1st, 0 for 2nd." / "voters 1–5").
+- Changes (geometry only, no text):
+  - Score bars: BAR_PITCH 24 → 21, BAR_Y0 162 → 158, bar height 18 → 17, viewBox 340×232 → 340×219.
+  - Stage gaps 6 → 3 px; button padding 4px 6px so "Count points" and "A vs B gaps" stay on one line (row 52 → 44 px; min-height 44 px kept).
+- Reveal unchanged, 84 words with the verdict line. No claim text or described behaviour changed, so no claims reopened.
+- Not changed: r8 kit finding (ballot labels small after the kit shrink). At the reveal the picture is no longer shrunk (fitted: none, drawn at scale 1).
+
+## Pre-flight v3
+
+1-6. Unchanged from Pre-flight v2 (title, hook, options, locked stage, reveal values, QA path, reset and reveal text are the same).
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 the-loser-flips-the-winner`, dev server): crop 0 px (dev-server baseline 23; build 6 reported 122), hiddenBelow 0, phoneFit true. Stage 359 px (picture 206 at scale 1, controls 44, text 80), reveal 232 px, 84 words. Named and visible: "wins"; ballots 4 and 5, both log lines and the lead-sums row are on screen.
