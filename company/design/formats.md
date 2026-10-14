@@ -21,9 +21,27 @@ All formats keep the lesson contract (`src/kit/Lesson.tsx`, constitutional): **p
 ## Rules for every format
 - Every value named in the question or reveal is reachable on the QA path (each control pressed once in DOM order). Controls exist from the first render.
 - The stage at reveal time shows what the reveal describes. No reset that empties it.
-- ≤ 25 words of stage text. The reveal is ≤ 90 words and fits a phone card.
+- ≤ 25 words of stage text at any moment. The reveal text is ≤ 120 words (`demo-standard.md` is the gate). Aim for ≤ 90. At 390 × 844 it must pass `tools/reveal-fit.mjs`: fit or scroll, and no thumb. (Design review 2026-10-14, `reviews/2026-10-14-design-review-schelling-v3.md` D3.)
+- **Counting stage words** (same review, D4a). Count every word that contains a letter in:
+  - captions;
+  - rule lines, including a rule written as a slider or toggle label;
+  - legends, axis titles, and headers over controls.
+
+  Do not count:
+  - numerals and values;
+  - button labels;
+  - chips that name a value (`2×2`, `30%`);
+  - readout labels of ≤ 3 words attached to a number (`Round`, `would move`);
+  - the explore hint panel.
+
+  An exception for one lesson is a recorded decision that names the exact lines it covers.
 - The visual style follows `company/design/system.md`.
-- **Illustrations** (design lead, 2026-10-13): the 1:1 hero shows during predict only (≤ 96×96, top right of the stage, removed on unlock; it never covers the question's object or a label). Before/after and comparison pairs (4:3) go **in the reveal**, below the text, two frames ≤ 160 px wide side by side. Never two pictures beside a live diagram.
+- **Illustrations** (design lead, 2026-10-13): the 1:1 hero shows during predict only (≤ 96×96, top right of the stage, removed on unlock; it never covers the question's object or a label). Before/after and comparison pairs (4:3) go **in the reveal**, below the text, two frames ≤ 160 px wide side by side. Never two pictures beside a live diagram. This rule covers illustration files placed in the `reveal` slot. Some stages pin two of the learner's own runs side by side at the reveal, replacing the live picture. That pair is the stage, not an illustration pair, so it sits where the stage sits (above the text):
+  - draw it as one SVG with one `viewBox`;
+  - show no other picture beside it;
+  - it must pass reveal-fit with no thumb.
+
+  (Design review 2026-10-14, schelling v3, D1.)
 - **Tap targets ≥ 44 px.** The kit's `.control` is about 34 px today; the fix is requested from the platform engineer. Until it lands, lessons add the shared module class `.tap { min-height: 44px; }` and nothing else.
 - Labels on charts never overlap or clip at 390 px: nudge, move into a gutter, or use a legend.
 - **ABM boundary** (design lead, 2026-10-14): a lesson is agent-based only if it has > 20 agents or a grid world, re-rolled randomness in the agent rule or placement, or an outcome read off an aggregate metric over ticks. Otherwise it is single card (with Step) or simulation run. A deterministic threshold cascade on ≤ 12 nodes is single card with Step.
