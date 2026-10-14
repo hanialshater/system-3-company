@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, interaction-designer: W-335 design review of "fold at the reveal" (spec): approved with changes
+
+- Changed: verdict and two worked examples (midnight-sun-line, gradient-descent) in the Consulted section of company/decisions/2026-10-14-reveal-fits-with-its-picture.md; two objection rows added (open, routed). Board: W-347 (design-lead: spec changes), W-348 (platform-engineer: EDD constraints for W-332), W-349 (platform-engineer: re-sweep charges the toggle, excludes Readout rows), W-350 (visual-designer: the toggle must look like a control), W-351 (interaction-designer: review of the built toggle after W-332). W-335 done. Nothing built.
+- Believe: the mechanism is sound (high confidence). Five changes: an evidence test, not a quote test (no Readout rows, every reveal branch, state shown in the picture); "Show more controls" when other controls stay visible; the fold decided once, before the reveal paints (never from the 400 ms or resize re-fit); focus and scroll anchoring rules; a net-saving gate of at least the toggle height. The fold will fix far fewer than 174 lessons. In gradient-descent nothing may fold, and in midnight-sun-line one row may, which probably saves too little (medium-high confidence, from code reading and estimates, no build).
+- Next: design-lead W-347, then platform-engineer W-332 and W-333 with W-348 and W-349; accessibility-reviewer W-336; visual-designer W-350; then W-351 and W-338.
+- Blocked: W-332 still waits on W-287.
+
 ## 2026-10-14: principal-engineer: W-339 review of f244779 (W-287/W-288 legibility floor)
 - Changed: added "Follow-up: f244779" to company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md. Verdict: approve. Release-blocking changes 1 and 2 are met in code. The author's probe is now saved as company/engineering/reviews/2026-10-14-W-339-postfix-probe.mjs. W-339 is done. Added W-352 (platform-engineer: measure tspan, update the change note, re-probe) and W-353 (accessibility-reviewer: does a root aria-hidden make labels decorative?).
 - Believe (high confidence on the code, medium on the numbers): the floor is a provable lower bound for meet-scaled svgs, and the skips cover all 7 overlays and all 3 pointer lessons. Gap: <tspan> sizes are not measured. 5 lessons give tspan a class, so the "0 labels under 10 px" figure has a blind spot. This does not block release.
