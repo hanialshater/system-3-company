@@ -152,7 +152,7 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Prices start at $0 and rise $1 on houses too many buyers want. When none is over-wanted, buyers take houses they want. Among the six possible matches, that one has",
+          "A match's total value adds up what its three buyers value their houses (the first number in each square, no prices). Prices start at $0 and rise $1 on houses too many buyers want. When none is over-wanted, buyers take houses they want. Among the six possible matches, that one has",
         options: ["the highest total value", "a middling total value", "the lowest total value"],
         answer: 0,
       }}
@@ -208,8 +208,9 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 {phase !== "predict" && <p className={s.rule}>
+                  {showCmp ? "Each chip: who gets which house (xa = x gets a), then that match's total value." : <>
                   Buyers want the best value minus price. Raise $1 on the smallest group{" "}
-                  <Sw>{groupRect(1, 1, 12, 12, 1)}</Sw> too many want.
+                  <Sw>{groupRect(1, 1, 12, 12, 1)}</Sw> too many want.</>}
                 </p>}
                 <Grid st={view} />
                 {phase === "predict" ? null : showCmp ? (
