@@ -1,0 +1,101 @@
+{
+  "slug": "two-locks-wait-forever",
+  "title": "Two workers, two locks, opposite orders",
+  "hook": "Each waits politely when a lock is taken. Does someone always get to finish?",
+  "domain": "cs",
+  "concept": "deadlock-lock-order",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "two tasks can interleave and clash on shared data (two-writers-one-counter)",
+      "a lock makes others wait"
+    ],
+    "doesNotKnow": [
+      "that locks themselves can freeze two tasks for ever when each holds what the other needs",
+      "that one agreed lock order prevents it"
+    ]
+  },
+  "misconception": "If each worker takes the locks it needs and politely waits when one is busy, someone always finishes eventually.",
+  "objective": "The learner can explain that when P takes A then B and Q takes B then A, some orders leave each holding the lock the other waits for (a circle of waiting, deadlock), and that taking locks in one agreed order prevents the circle.",
+  "claims": [
+    {
+      "id": "cs.two-locks-wait-forever.c1",
+      "text": "With opposite lock orders, some runs end with both workers waiting for ever: P holds A and waits for B while Q holds B and waits for A (2 of the 4 possible runs); others finish (e.g. P all three steps, then Q).",
+      "support": "simulation",
+      "source": "Builder's node enumeration 2026-10-14 of every scheduler choice under the model (take first lock, take second lock, release both; a worker whose next lock is held cannot step): opposite orders give 4 runs, PPPQQQ, PQ (jam), QP (jam), QQQPPP. Demo.tsx play() uses the same model. Small enough to re-run by hand.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-locks-wait-forever.c2",
+      "text": "With opposite orders the jam happens whenever both take their first lock before either takes its second.",
+      "support": "derivation",
+      "source": "If P holds A and Q holds B, P's next lock B and Q's next lock A are both held by the other, so neither can step; if either takes its second lock first, it can finish and release. Node enumeration as in c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-locks-wait-forever.c3",
+      "text": "When Q also takes A first, whoever gets A can always get B, so no circle can form; one worker may wait for A, then both finish.",
+      "support": "derivation",
+      "source": "Same-order model: B is only ever taken by the holder of A, so the holder of A never waits. Builder's node enumeration 2026-10-14: 2 runs, 0 jammed. Demo.tsx 'Take turns' with the toggle on: Q waits for A, then both finish.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-locks-wait-forever.c4",
+      "text": "Each waiting for the other in a circle is what freezes them (deadlock), and taking locks in one agreed order everywhere is a standard cure for deadlock.",
+      "support": "source",
+      "source": "Coffman, Elphick and Shoshani (1971), 'System Deadlocks', ACM Computing Surveys 3(2): four conditions incl. circular wait; Silberschatz, Galvin and Gagne, Operating System Concepts, deadlock chapter (prevention of circular wait by a total order on resources). Derivation: in any cycle of waits some worker holds a later lock while waiting for an earlier one, which one global order forbids. Not opened by the builder; fact-checker to confirm attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-locks-wait-forever.c5",
+      "text": "A worker who finds a lock taken waits until it is released; each worker takes its first lock, takes its second, then releases both.",
+      "support": "convention",
+      "source": "The lesson's model, stated in the question stem and drawn as each worker's three steps. Idealised: no time-outs, no lock stealing (no preemption).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three tasks share locks X, Y and Z. Which rule makes sure they can never all freeze waiting for each other?",
+    "options": [
+      "Every task takes the locks it needs in the same order, X before Y before Z",
+      "Every task waits politely when a lock is taken",
+      "Every task takes its locks as fast as it can"
+    ],
+    "answer": 0,
+    "why": "A freeze needs a circle of tasks, each holding a lock the next one waits for. If everyone takes locks in one order, nobody holding a later lock waits for an earlier one, so no circle can form."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:deadlock-lock-order",
+    "also": [],
+    "prerequisites": [
+      "cs:race-condition"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "concurrency",
+      "locks",
+      "deadlock"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

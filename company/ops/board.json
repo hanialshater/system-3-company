@@ -4846,10 +4846,11 @@
       "id": "W-435",
       "title": "W-332 engineering review of EDD-005 / fold-at-reveal (d981bfc); open risk: flushSync from a MutationObserver microtask",
       "owner": "principal-engineer",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-436",
@@ -4891,6 +4892,33 @@
       "id": "W-440",
       "title": "Walkthrough + QA at 390x844 for work-in-process-limit v3 (three controls in one row: Run queue / Whole jobs / 5-min turns) and flat-pack-volume-dimensions v3 ('Assembled box' label); not built in W-403/W-404",
       "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-441",
+      "title": "EDD-005 C1 (gates first opt-in): run the folded state under an automated check with console-error capture (toggle at first frame, no flushSync warning, rows display:none, expand + hide) on a lesson that folds at 390x844; fold into W-333's expand check. Review: company/engineering/reviews/2026-10-14-EDD-005-review.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-442",
+      "title": "EDD-005 C2 (tier 1, before first opt-in): (D1) use lastFocus only if it is now :disabled or disconnected, else do not move focus; (D2) bound scrollParent in FoldToggle at .card-body so it never scrolls .feed. Review: company/engineering/reviews/2026-10-14-EDD-005-review.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-443",
+      "title": "EDD-005 O1: should a small overflow (a few px the W-287 picture shrink absorbs above the 10px floor) fold controls? Spec item 2 folds at over>1 if it pays. Decide and answer in the decision's Objections. Review: company/engineering/reviews/2026-10-14-EDD-005-review.md",
+      "owner": "design-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

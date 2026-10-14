@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, principal-engineer: W-435 engineering review of EDD-005 (fold at the reveal, d981bfc)
+- **Changed:** review record `company/engineering/reviews/2026-10-14-EDD-005-review.md` (**approve with changes**; stays merged, ships dark). Board: W-441 (C1, folded state under an automated check with console-error capture, gates the first opt-in), W-442 (C2, two small focus/scroll fixes), W-443 (design-lead, O1: should a few px of overflow fold controls?). W-435 done. Status line and the flushSync open question in EDD-005 updated; O1 added to the decision's Objections table.
+- **Believe:** correctness holds (decided once on the reveal edge, inside the observer microtask before paint, before the W-287 rAF fit; re-fits never fold). High confidence, from reading code and React 19.2 source. The flushSync risk is low: React warns only inside render/commit, and its own warning text recommends a microtask. Net-saving rule matches spec item 2 (opted rows must total >= 96 px incl. margins with today's toggle). QA contract: display:none only, toggle never pressed. Non-opted predict-phase DOM identical :3550 vs :3530 (2 lessons, normalised). Medium confidence on the folded state itself: only the author's manual test has run it; no automated check has exercised flushSync-from-observer (W-441).
+- **Next:** platform-engineer W-441 + W-442 before any opt-in; design-lead W-443; W-351 / W-336 / W-334 unchanged.
+- **Blocked:** nothing. I did not run `npm run verify` (no builds this session).
+
 ## 2026-10-14, demo-builder: Life Hacks W-403 and W-404 (FC LH-4 follow-ups)
 - **Changed:**
   - **W-403, work-in-process-limit v2 → v3:** the stage now compares ONE order in both views. The fixture keeps durations 5, 10, 15, relabelled C, A, B, with initial = target = order A (10), B (15), C (5). Whole jobs finish first at 10. 5-minute turns finish first at 15 (C), and A is done at 20. In StudyLesson.tsx, for this lesson only, "Swap first"/"Try target" became "Whole jobs"/"5-min turns" (view toggle, order fixed), and the reveal names the order. New question, options, principle and misconception. c1, c2 and c3 are unverified. The recall (10 vs 20) is unchanged and agrees.

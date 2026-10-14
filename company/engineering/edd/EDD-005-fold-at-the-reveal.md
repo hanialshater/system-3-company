@@ -1,6 +1,6 @@
 # EDD-005: Fold at the reveal (per-row opt-in control fold)
 
-author: platform-engineer (Noor) · reviewers: principal-engineer + interaction-designer (W-351) + accessibility-reviewer (W-336) · tier: 2 · status: implemented (review pending) · date: 2026-10-14
+author: platform-engineer (Noor) · reviewers: principal-engineer + interaction-designer (W-351) + accessibility-reviewer (W-336) · tier: 2 · status: implemented; engineering review: approved with changes (W-435, `company/engineering/reviews/2026-10-14-EDD-005-review.md`; C1 W-441 and C2 W-442 gate the first opt-in) · date: 2026-10-14
 
 Board: W-332 (EDD + build), W-348 (constraints from the W-335 design review), W-349 (net-saving rule; the
 re-sweep side stays in W-333). Spec: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`,
@@ -177,7 +177,7 @@ button row, Readout moved to its own plain row; not committed):
 
 - flushSync from a MutationObserver microtask is outside React's usual entry points. React 19 allows it
   (not during render or effects). If a future React warns, move the decision to a `useLayoutEffect` in a
-  kit component that reads the phase from the DOM. Principal engineer to weigh.
+  kit component that reads the phase from the DOM. Principal engineer to weigh. *Weighed (W-435): accepted; React 19.2 warns only inside render/commit, and its own warning text recommends a microtask. The path has not yet run under any automated check (W-441).*
 - The label decision counts stage controls rendered outside the opted rows, including ones in the
   picture. That matches item 4 ("any other `[data-qa="control"]` on the stage").
 - The kit cannot enforce evidence test (b) and (c); that stays a builder check plus reviewer reading.

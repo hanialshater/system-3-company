@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 100px; max-height: 30dvh; }
+.count { fill: var(--fg); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.small { fill: var(--muted); font-size: 11px; }
+.prof { fill: var(--domain); stroke: var(--fg); stroke-width: 1.2; }
+.profLab { fill: var(--bg); font-size: 12px; font-weight: 800; }
+.stud { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 1.4em; }
+.eqs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.eqs li { display: grid; grid-template-columns: 5.5em 1fr 3.5em; align-items: center; gap: 8px; padding: 3px 10px; border-radius: 8px; background: var(--bg-2); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.eq { font-weight: 800; }
+.sub { color: var(--muted); }
+.verdict { text-align: right; font-weight: 700; font-size: 0.85rem; }
+.on { border-color: var(--good) !important; }
+.on .verdict { color: var(--good); }
+.off .verdict { color: var(--bad); }
