@@ -1367,6 +1367,185 @@
         "graph-shortest-path"
       ],
       "subarea": "algorithms"
+    },
+    {
+      "id": "asymptotic-crossover",
+      "name": "Constant factors: a slower-growing method can win on small inputs",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "big-o-growth",
+        "insertion-sort",
+        "divide-and-conquer"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "verify-vs-search",
+      "name": "Checking an answer vs finding one (NP, subset sum)",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "combinatorial-explosion"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "nearest-neighbour-tour",
+      "name": "Nearest-neighbour tours: greedy routes can be the worst",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "greedy-failure",
+        "combinatorial-explosion"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "majority-vote",
+      "name": "Majority vote with one counter (Boyer-Moore)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "power-of-two-choices",
+      "name": "Power of two choices: two random looks balance load",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "password-salting",
+      "name": "Salted password hashes",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "cryptographic-hash"
+      ],
+      "subarea": "security"
+    },
+    {
+      "id": "key-stretching",
+      "name": "Key stretching: slow hashes make guessing expensive",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "password-salting",
+        "password-search-space"
+      ],
+      "subarea": "security"
+    },
+    {
+      "id": "ecb-pattern-leak",
+      "name": "Block cipher modes: why block-by-block (ECB) leaks patterns",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "one-time-pad"
+      ],
+      "subarea": "security"
+    },
+    {
+      "id": "birthday-bound-digest",
+      "name": "Birthday bound: n-bit tags collide after about 2^(n/2)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "cryptographic-hash",
+        "probability:birthday-paradox"
+      ],
+      "subarea": "security"
+    },
+    {
+      "id": "secret-sharing",
+      "name": "Secret sharing: any 2 of 3 shares rebuild a secret, 1 reveals nothing",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "security"
+    },
+    {
+      "id": "cache-locality",
+      "name": "Cache lines and locality: visit order changes cost",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "lru-cache"
+      ],
+      "subarea": "systems"
+    },
+    {
+      "id": "amdahls-law",
+      "name": "Amdahl's law: the serial part limits parallel speed-up",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "systems"
+    },
+    {
+      "id": "latency-vs-bandwidth",
+      "name": "Latency vs bandwidth: waiting for replies, not link speed, sets the time",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "systems"
+    },
+    {
+      "id": "belady-anomaly",
+      "name": "Belady's anomaly: more cache slots, more misses (FIFO)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "lru-cache"
+      ],
+      "subarea": "systems"
+    },
+    {
+      "id": "quorum-overlap",
+      "name": "Quorums: W + R > N makes every read meet the newest write",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "systems"
+    },
+    {
+      "id": "rank-sink-scaled-pagerank",
+      "name": "Rank sinks: why PageRank needs random jumps",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "pagerank"
+      ],
+      "subarea": "algorithms",
+      "course": "ncm"
+    },
+    {
+      "id": "core-grows-by-one-link",
+      "name": "One link back merges the pages on its loop into the web's core",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "web-bow-tie",
+        "strongly-connected-components"
+      ],
+      "subarea": "systems",
+      "course": "ncm"
+    },
+    {
+      "id": "best-response-convergence",
+      "name": "Selfish route switching always settles (a potential that only falls)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "braess-paradox"
+      ],
+      "subarea": "systems",
+      "course": "ncm"
     }
   ]
 }

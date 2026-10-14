@@ -61,22 +61,28 @@
       "id": "lifehacks.flat-pack-volume-dimensions.c5",
       "text": "What disappears when an empty panel-built object becomes a flat stack?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall. No component renders spec.recall (only the Feed renders meta.json recall), so it does not reach the learner. Its presupposition (the hollow disappears) matches the model (assembled 40×30×30 envelope vs stack 40×30×6t). Convention. Owner may withdraw it as unrendered.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.flat-pack-volume-dimensions.c6",
       "text": "The two choices (prediction options and stage toggle) are \"Assembled box\", the closed 40×30×30 box, and \"Panels stacked\".",
       "support": "convention",
-      "source": "Choice labels in src/lib/lifehacks/home-lessons.ts (flat-pack-volume-dimensions.choices), rendered by HomeLesson.tsx as the predict options and the two toggle controls. W-404 (2026-10-14, demo-builder): \"Assembled cube\" renamed \"Assembled box\" because 40×30×30 is not a cube (FC LH-4, company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md, found on the way). The label was unrecorded; recorded now.",
-      "status": "unverified"
+      "source": "Choice labels in src/lib/lifehacks/home-lessons.ts (flat-pack-volume-dimensions.choices), rendered by HomeLesson.tsx as the predict options and the two toggle controls. W-404 (2026-10-14, demo-builder): \"Assembled cube\" renamed \"Assembled box\" because 40×30×30 is not a cube (FC LH-4, company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md, found on the way). The label was unrecorded; recorded now. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. home-lessons.ts choices = ['Assembled box', 'Panels stacked']; HomeLesson renders them as predict options 1-2 (plus 'Same outcome') and as the two toggle controls. Unchanged evaluateHome 'flat-pack' gives a·b·b = 40×30×30 = 36,000 cm³, the closed box.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.flat-pack-volume-dimensions.recall",
       "text": "Assembled, the envelope includes the empty hollow: about 40 × 40 × 40 = 64,000 cm³. Stacked, the panels take 40 × 40 × 6 = 9,600 cm³. The material is the same; the hollow is gone. Only dismantle furniture its instructions allow.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own arithmetic: six 40×40×1 panels assembled enclose about 40³ = 64,000 cm³; stacked 40×40×6 = 9,600 cm³ = the panel material (6 × 1,600), so the hollow is what goes. Keyed option '64,000 and 9,600 cm³' is the only correct one. The dismantling caution matches the lesson's limit line.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

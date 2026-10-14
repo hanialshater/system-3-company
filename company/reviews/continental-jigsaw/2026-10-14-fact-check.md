@@ -59,3 +59,16 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c8 | verified | Same script: geoArea x R^2 (R 6371.0088) of the 12 countries + French Guiana = 17.886 million km^2, '17.9' at every integer slider value 0..100 (min = max to float precision), as a rotation must give. Squash: orthographic radial scale = cos c (rho = R sin c, d rho/dc = R cos c; tangential scale 1), so drawn area scales by cos c; the piece centroid moves from 41.7 deg to 12.1 deg off the view centre, predicted ratio cos12.1/cos41.7 = 1.31, measured projected path area 9,264 -> 12,128 px^2 (x1.31). Re-derived, not resting on the unopened Snyder text. |
 
 **Result:** 2 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v6 first (slider 0-100 with its degree label, 'Close it all the way', 'Back to today', the fitted flag and SyncOnReveal that returns the stage to 57° at the reveal, pivot marker in both branches, trail, size readout, legend; hook and recall), then claim text and support, then source fields. Re-ran the lesson's own rotation (Rodrigues, copied), d3-geo area and the orthographic projection on the repo's Natural Earth 1:110m countries file with the repo's d3-geo and topojson-client (fc35/cj.mjs). No external source needed; none opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own run: POLE (44°N, 30.6°W) projects to (129.2, -6.1) in the stage projection, y < 8, so the stage draws the top-edge arrow 'pivot just above (44°N)'. The tip's distance to the pole is 5,697.7 km at 0° and at 57° (the trail is a small-circle arc about the pivot). Slider format deg(pct) = round(57*pct/100) reads 57° at 100. At 57° the rotated outline closes on Africa: Brazil's east-coast vertices sit a median 133 km (max 199 km) from the nearest African vertex, and only 4 of 937 rotated vertices fall inside African countries. |
+| c2 | verified | Own run: rotating TIP (-34.8, -7.1) by 57° gives 7.27°E, 4.98°N, the Niger Delta coast at the head of the Gulf of Guinea (Bight of Biafra), inside Nigeria's coarse polygon, 61 km from its nearest vertex and 138 km from Cameroon's. Fair as 'lands in the Gulf of Guinea, near Nigeria and Cameroon' at this resolution; the 'Gulf of Guinea' label point (2°E, 1.5°N) is about 21 px away on the stage. |
+| c3 | verified | Supported by the same run: gaps of tens to about 200 km between the coasts and a few overlapping vertices at 57°, using 1:110m outlines (geo kit header: 'coarse on purpose'). 'Rough' is the right word. |
+| c8 | verified | Own run: geoArea of the 12 countries plus French Guiana (1 polygon west of 40°W from France's MultiPolygon) times R² (6371.0088 km) = 17.8856 million km² -> '17.9', identical at 0, 7, 14, 29, 44, 56 and 57°. The reveal prints areaM(sa) = 17.9. The legend line 'The globe squashes shapes near its edge' is on the stage before the reveal; an orthographic view foreshortens near the limb, so a shape looks larger as it moves toward the centre. |
+
+**Result:** all four open claims verified. No disputes.

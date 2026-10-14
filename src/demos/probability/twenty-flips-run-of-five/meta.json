@@ -34,42 +34,52 @@
       "id": "probability.twenty-flips-run-of-five.c1",
       "text": "In 20 fair coin flips, the chance of a run of 5 or more of the same face somewhere is 45.8% (shown as 'the exact chance is 45.8%').",
       "support": "derivation",
-      "source": "model.ts exactAtLeast(5): DP over the current run length, n = 20; node 2026-10-14 gives 0.4584 (k=3 0.9791, k=4 0.7684, k=6 0.2369, k=7 0.1151), matching the brief (company/domains/briefs/probability.chance.md Round 3 item 1). Cross-check: model.ts runMore over seeds 1..100,000 gives 45.85%.",
-      "status": "unverified"
+      "source": "model.ts exactAtLeast(5): DP over the current run length, n = 20; node 2026-10-14 gives 0.4584 (k=3 0.9791, k=4 0.7684, k=6 0.2369, k=7 0.1151), matching the brief (company/domains/briefs/probability.chance.md Round 3 item 1). Cross-check: model.ts runMore over seeds 1..100,000 gives 45.85%. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Independent brute force over all 2^20 sequences (not the DP): P(longest run ≥ 5) = 0.4584 → '45.8%'; ≥3 0.9791, ≥4 0.7684, ≥6 0.2369, ≥7 0.1151, matching model.ts exactAtLeast. Own mulberry32 port over seeds 1..100,000: 45.85%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c2",
       "text": "Real sequence k on the stage is 20 flips from mulberry32(k), for k = 1, 2, 3, ... in order (seeds not chosen; not shown to the learner); Run 1,000 real adds the next 1,000, Step one real adds one, and the stage draws the latest. The tally's share differs from 45.8% by sampling noise.",
       "support": "simulation",
-      "source": "model.ts sequence() and runMore(); Demo.tsx run(). Node 2026-10-14: seeds 1..1,000 give 475 with a run of 5+ (47.5%), bins (<=2,3,4,5,6,7,8+) = 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6%); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest run 5.",
-      "status": "unverified"
+      "source": "model.ts sequence() and runMore(); Demo.tsx run(). Node 2026-10-14: seeds 1..1,000 give 475 with a run of 5+ (47.5%), bins (<=2,3,4,5,6,7,8+) = 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6%); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest run 5. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port of mulberry32 and sequence(): seeds 1..1,000 give 475 runs of 5+ (47.5%), bins 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6% after rounding); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest 5. runMore adds seeds n+1..n+count in order; the stage draws sequence(tally.n), the latest. Seeds are not chosen.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c3",
       "text": "The most likely longest run in 20 fair flips is 4 (31.0%); the reveal names the tallest bar of the learner's own tally.",
       "support": "derivation",
-      "source": "Same DP: P(longest = 4) = 0.7684 - 0.4584 = 0.310; P(=3) = 0.211, P(=5) = 0.222. On the QA path the tallest bar is 4 (292 of 1,000).",
-      "status": "unverified"
+      "source": "Same DP: P(longest = 4) = 0.7684 - 0.4584 = 0.310; P(=3) = 0.211, P(=5) = 0.222. On the QA path the tallest bar is 4 (292 of 1,000). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Brute force: P(longest = 4) = 0.3100, P(=3) = 0.2107, P(=5) = 0.2215; 4 is the mode. The reveal's 'tallest bar' is computed from the learner's tally: own run over every reachable tally size n = 1,000..30,000 (seeds in order) puts the tallest bar at 4 every time (0 exceptions); the first-max tie rule never fires.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c4",
       "text": "Each flip of a fair coin repeats the previous face with probability 1/2, because the coin has no memory, so long runs build up.",
       "support": "derivation",
-      "source": "Independence: P(flip i = flip i-1) = P(H)P(H) + P(T)P(T) = 1/2. Reveal: 'Each flip repeats the last face half the time, because the coin has no memory, so long runs pile up.'",
-      "status": "unverified"
+      "source": "Independence: P(flip i = flip i-1) = P(H)P(H) + P(T)P(T) = 1/2. Reveal: 'Each flip repeats the last face half the time, because the coin has no memory, so long runs pile up.' | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Independence: P(flip i = flip i-1) = P(H)P(H) + P(T)P(T) = 1/4 + 1/4 = 1/2. Reveal sentence matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c5",
       "text": "When the learner has tapped all 20 flips, the reveal gives their longest run k and the share of their real sequences with a longest run of k or less (computed from the tally, model.ts atMost).",
       "support": "simulation",
-      "source": "Demo.tsx reveal; model.ts atMost(t, k) = t.n - atLeast(t, k+1). Node: seeds 1..1,001 give 14 / 233 / 525 / 743 with longest run <= 2 / 3 / 4 / 5.",
-      "status": "unverified"
+      "source": "Demo.tsx reveal; model.ts atMost(t, k) = t.n - atLeast(t, k+1). Node: seeds 1..1,001 give 14 / 233 / 525 / 743 with longest run <= 2 / 3 / 4 / 5. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Wrong number on a reachable path. The tally bins longest runs as ≤2, 3, …, 7, 8+, so atMost(t, k) cannot count 'k or less' for k ≥ 8: atLeast(t, k+1) is 0 for k ≥ 8, and atMost returns t.n, which counts the 9+ runs in the 8+ bin as 'that short'. Own run at n = 1,001 (QA path): learner taps with a longest run of 8 → reveal says '100.0% of real sequences stayed that short'; the true share of seeds 1..1,001 is 97.5% (exact 97.46%). Run 9 → shown 100.0%, true 99.0%; 12 → 100.0% vs 99.9%. k ≤ 7 is exact (k = 7: 94.6% both). Taps of 8+ in a row are reachable with the H/T buttons. Fix (builder): keep each longest run (or bins up to 20) so atMost is exact for every k, or word the k ≥ 8 case as '8 or more'. Blocks publishing.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c6",
       "text": "(Not shown to the learner.) People asked to write down random sequences switch faces more often than chance and produce too few long runs.",
       "support": "source",
-      "source": "Brief planned claim 5: Bar-Hillel and Wagenaar (1991), 'The perception of randomness', Advances in Applied Mathematics 12(4). NEEDS A HUMAN SOURCE CHECK by the fact-checker. Kept out of learner text (the brief's fallback); the reveal compares the learner's own taps with the tally instead.",
+      "source": "Brief planned claim 5: Bar-Hillel and Wagenaar (1991), 'The perception of randomness', Advances in Applied Mathematics 12(4). NEEDS A HUMAN SOURCE CHECK by the fact-checker. Kept out of learner text (the brief's fallback); the reveal compares the learner's own taps with the tally instead. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Not learner-facing. Rests only on Bar-Hillel & Wagenaar (1991), Advances in Applied Mathematics 12(4), which could not be opened from this host (web fetch DNS failure, proxy 403). Left unverified; re-check from a host that can open it.",
       "status": "unverified"
     }
   ],

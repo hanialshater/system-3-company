@@ -1,3 +1,98 @@
 # Data, Security & Cryptography briefs (cm-cs-security)
 
 Ranked briefs for this strand, in the same format as `cs.md` (`### N. slug · concept: <id> · level · demand N`). `tools/claim.mjs next cs` hands these out after the domain's own list. Check every brief's answer in node before adding it.
+
+## Wave J (cm-cs, 2026-10-14): first briefs for this strand, demand 3 first
+
+Written by cm-cs for Wave J; the strand had no briefs. Every concept below is new to `content/curriculum/cs.json` (`subarea: security`) and has no lesson. The strand teaches how protection works (hashing, salting, block modes, tag length, secret sharing); it does not teach how to attack live systems. Same rules as the Wave J section of `cs.algorithms.md`: stage text <= 25 words, reveal <= 90 words (count given), labels >= 10 px, preset buttons in DOM order reaching every milestone with Reset last, answers re-run in node on 2026-10-14 (node `crypto` for hashes, so a fact-checker can re-run every value offline). No simulated review counts as learning evidence.
+
+### 1. same-password-same-hash · concept: password-salting · intro · demand 3
+- Format: Before / after toggle
+- Audience and knowledge boundary: learner knows: a hash turns text into a fixed-length scramble, and one changed letter changes it completely (one-bit-avalanche) / does not know: that the same password always gives the same hash, so stored hashes show who shares a password and match a list of hashes of common passwords, and that a random per-user salt stops both.
+- Misconception: If a site stores only password hashes, nothing can be learned from them.
+- Prediction (stage text, 22 words): "A site stores SHA-256 hashes of passwords. Ana and Raj both chose 'sunshine'. Looking only at the stored hashes, can you tell?" options: A) No, hashes look random / B) Yes, their hashes are identical / C) Only if you know the password (answer: B). The locked stage shows three user cards with their stored lines hidden.
+- Check (node `crypto.createHash("sha256")`, first 8 hex digits, 2026-10-14): "sunshine" a941a4c4; "dragon7" (Lee) b3ef006c; common list "123456" 8d969eef, "password" 5e884898, "sunshine" a941a4c4. Salt written in front of the password: "k3sunshine" (Ana) 16132121, "q9sunshine" (Raj) e81c6595, "m5dragon7" (Lee) 39fa4eab.
+- What the stage shows: three user cards (Ana, Raj, Lee) each with a stored-hash line in monospace (>= 12 px); a "common passwords" card with three hashes. Controls in DOM order: Show stored hashes (Ana's and Raj's lines match and are linked by a bracket), Check the common list (matches light up: 2 users), Add salt (the before/after toggle: each card gains its salt and new hash; the list check re-runs: 0 matches), Reset (4). The "before" lines stay as a faint row under each card after salting.
+- Key state (milestones): twins-seen (a941a4c4 shown twice), list-matched (2 matches recorded), salted (two different hashes and 0 matches recorded). Reveal unlocks after all three.
+- Reveal payoff (draft, 72 words): "The same password always gives the same hash, so Ana's and Raj's stored lines were identical: a941a4c4. A list of hashes of common passwords matched both of them at once. With a random salt added in front of each password before hashing, they became 16132121 and e81c6595, and the list matched nobody. The salt is stored openly beside the hash. It does not need to be secret, only different for every user."
+- Phone fit (390x844): the reveal points at the two salted lines and the faint "before" row. Three cards plus one list card in a 2 x 2 grid; stage-top crop 0 px.
+- Planned claims:
+  1. SHA-256 of "sunshine" begins a941a4c4, and of "k3sunshine" and "q9sunshine" begins 16132121 and e81c6595. support: simulation (runnable); source: node `crypto` (any SHA-256 tool gives the same).
+  2. A hash function gives the same output every time for the same input. support: definition; source: FIPS 180-4 (Secure Hash Standard) defines SHA-256 as a fixed function.
+  3. Salts are stored with the hash, need not be secret, and must differ per user. support: citation; source: NIST SP 800-63B, section 5.1.1.2 (memorized secret verifiers; salt of at least 32 bits). Attribution: fact-checker confirms the section number.
+  4. Salting defeats precomputed lists of hashes. support: derivation (the list would need one entry per salt per password) + citation: Morris and Thompson (1979), "Password Security: A Case History", CACM 22(11).
+- Curriculum (new concept): `{"id":"password-salting","name":"Salted password hashes","level":"intro","demand":3,"prerequisites":["cryptographic-hash"],"subarea":"security"}`; also none; references none; tags passwords, hashing, salt.
+- Differs from nearest: one-bit-avalanche (cryptographic-hash) shows that small changes scramble the hash; this shows the other side: equal inputs give equal hashes. four-words-beat-eight-letters (password-search-space) is about choosing passwords, not storing them. lifehacks/equal-names-not-equal-files uses hashes to tell files apart.
+
+### 2. slow-hash-hurts-guessers · concept: key-stretching · core · demand 2
+- Format: Single card
+- Audience and knowledge boundary: learner knows: guessing a password means trying many candidates (four-words-beat-eight-letters) and that sites store salted hashes (same-password-same-hash) / does not know: that making each check deliberately slow costs a user one small delay but multiplies the cost of every guess.
+- Misconception: Making the password check 100,000 times slower costs everyone the same tiny delay, so it cannot make much difference.
+- Prediction (stage text, 25 words): "One password check takes 1 microsecond. A site repeats the hash 100,000 times, so a login takes 0.1 s. A million guesses now take about:" options: A) 1 second / B) 1 minute / C) 1 day (answer: C, 100,000 s = 27.8 h). The locked stage shows the two lanes with blank times.
+- Check (derivation, node arithmetic, 2026-10-14): x1: login 1 µs, a million guesses 1 s; x1,000: 1 ms and 1,000 s (16.7 min); x100,000: 0.1 s and 100,000 s (27.8 h). Model: one guess checked at a time, 1 µs per hash (a chosen round number, stated in the caption).
+- What the stage shows: two lanes, "you: 1 login" and "guesser: 1,000,000 tries", each with a time readout and a bar on a log scale (tick labels 1 s, 1 h, 1 day, >= 10 px). Controls in DOM order: x1, x1,000, x100,000, Reset (4). A trace keeps each visited setting's pair of times.
+- Key state (milestones): fast (x1: 1 µs, 1 s), middle (x1,000), slow (x100,000: 0.1 s, 27.8 h recorded). Reveal unlocks after all three.
+- Reveal payoff (draft, 69 words): "At x100,000 your login took 0.1 seconds, a delay you barely notice. The guesser pays the same factor on every try: a million guesses went from 1 second to 100,000 seconds, about 28 hours. You check one password; a guesser checks millions, so slowness is cheap for you and costly for them. Password-hashing methods such as PBKDF2 repeat the hash on purpose, and the site picks how many times."
+- Phone fit (390x844): the reveal points at the guesser lane's 27.8 h and the trace. Two lanes and one trace; stage-top crop 0 px.
+- Planned claims:
+  1. At 1 µs per hash, x100,000 makes a login 0.1 s and a million guesses 100,000 s, about 27.8 hours. support: derivation (arithmetic); the 1 µs figure is a model number, stated on the stage.
+  2. The work for many guesses grows in proportion to the cost of one check. support: derivation (the model checks one guess at a time; the claim does not depend on how many machines the guesser has, only on the factor).
+  3. PBKDF2 applies a pseudorandom function a chosen number of times (the iteration count) to slow each check. support: citation; source: RFC 8018 (PKCS #5 v2.1), section 5.2. Attribution: fact-checker confirms from the RFC text (rfc-editor.org may be blocked; the RFC number and section are checkable in any offline copy, else cut the PBKDF2 name and keep "repeat the hash on purpose").
+- Curriculum (new concept): `{"id":"key-stretching","name":"Key stretching: slow hashes make guessing expensive","level":"core","demand":2,"prerequisites":["password-salting","password-search-space"],"subarea":"security"}`; also none; references none; tags passwords, hashing, PBKDF2.
+- Differs from nearest: four-words-beat-eight-letters (password-search-space) raises the number of guesses needed; this raises the cost of each guess. same-password-same-hash (brief 1) stops reuse of work across users; this slows each check. Build after brief 1.
+
+### 3. same-block-same-secret · concept: ecb-pattern-leak · core · demand 2
+- Format: Before / after toggle
+- Audience and knowledge boundary: learner knows: encryption scrambles data with a key (every-message-is-possible) and a picture is a grid of pixels (light-adds-to-yellow) / does not know: that encrypting each block on its own maps equal blocks to equal cipher blocks, so shapes survive, and that chaining each block to the previous one hides them.
+- Misconception: If every block is encrypted with a strong secret key, the whole picture is hidden.
+- Prediction (stage text, 25 words): "A heart picture is cut into 4-pixel blocks. Each block is encrypted on its own with the same key. Can you still see the heart?" options: A) No, it looks like noise / B) Yes, its outline survives / C) Only with the key (answer: B). The locked stage shows the plain heart.
+- Toy model (node, 2026-10-14): an 8 x 8 black-and-white heart, rows 01100110, 11111111, 11111111, 11111111, 01111110, 00111100, 00011000, 00000000; each row is two 4-pixel blocks (16 blocks, values 0-15). The "key" is a fixed shuffle of the 16 block values (mulberry32 seed 42, Fisher-Yates from the top): [12, 7, 0, 15, 4, 1, 3, 14, 10, 13, 5, 2, 8, 11, 6, 9]. Block by block: c = key[b]. Chained: c_i = key[b_i XOR c_(i-1)], with c_0 = 1010 (a start value). Each cipher block is drawn as its 4 bits, tinted by its value (equal values, equal tint).
+- Check (node): the 6 all-black blocks (1111) all become 1001 (9) block by block; the 2 empty blocks (0000) both become 1100 (12); chained, the same 6 black blocks become 0, 9, 3, 8, 14, 7, all different. Distinct cipher blocks: 9 block by block (same as the plain picture), 10 chained.
+- What the stage shows: one 8 x 8 grid (cells >= 24 px) and a mode label. Controls in DOM order: Encrypt block by block (grid shows cipher blocks; readout "6 black blocks → 1 cipher block"), Encrypt chained ("6 black blocks → 6 cipher blocks"), Show plain, Reset (4). The two readouts stay as a trace.
+- Key state (milestones): blocks-seen (6 → 1 recorded), chained-seen (6 → 6 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 80 words): "Encrypted block by block, the six solid black blocks of the heart all became the same cipher block, 1001, and the two blank ones became 1100. Equal in, equal out: the key hides what each block is, not which blocks match, so the heart's shape showed through. Chained, each block was mixed with the cipher block before it, and those six came out as six different blocks. The block-by-block mode is called ECB; real systems use chained or counter modes."
+- Phone fit (390x844): the reveal points at the grid and the two trace readouts. One grid (8 x 24 px = 192 px) plus two lines; stage-top crop 0 px. Caption: "toy 4-bit cipher, not a real one".
+- Planned claims:
+  1. In the toy model the six 1111 blocks all encrypt to 1001 block by block and to six different blocks chained. support: simulation; source: the lesson's script (key and start value disclosed above).
+  2. Encrypting blocks independently with one key maps equal plaintext blocks to equal ciphertext blocks. support: derivation (the same key and input give the same output).
+  3. ECB encrypts each block independently; CBC XORs each plaintext block with the previous ciphertext block before encrypting. support: citation; source: NIST SP 800-38A (2001), sections 6.1 and 6.2. Attribution: fact-checker confirms.
+  4. The stage cipher is a 4-bit substitution for teaching, not a secure cipher. support: definition (caption).
+- Curriculum (new concept): `{"id":"ecb-pattern-leak","name":"Block cipher modes: why block-by-block (ECB) leaks patterns","level":"core","demand":2,"prerequisites":["one-time-pad"],"subarea":"security"}`; also none; references none; tags encryption, block cipher, modes.
+- Differs from nearest: caesar-falls-to-frequency (frequency-analysis) leaks through letter counts; this leaks through equal blocks even with a strong key. every-message-is-possible (one-time-pad) is perfectly hiding because the key never repeats; here the key is reused on every block.
+
+### 4. sixteen-bits-collide-at-300 · concept: birthday-bound-digest · core · demand 2
+- Format: Simulation run
+- Audience and knowledge boundary: learner knows: shared birthdays come early (probability/birthday-paradox) and what a hash or tag is (one-bit-avalanche) / does not know: that an n-bit tag repeats after about 2^(n/2) items, so a hash needs twice the bits to resist collisions as to resist guessing one value.
+- Misconception: With 65,536 possible tags, you need tens of thousands of items before two share a tag.
+- Prediction (stage text, 22 words): "Each file gets a random 16-bit tag: 65,536 possible values. After how many files is a repeated tag more likely than not?" options: A) About 32,768 / B) About 3,000 / C) About 300 (answer: C, 302).
+- Check (node, 2026-10-14): exact chance of a repeat among n tags, 1 − product of (65,536 − i)/65,536 for i < n: 49.6% at 300, 50.07% at 302 (first n past one half). Seeded runs (mulberry32(seed), tag = floor(r() × 65,536), count files until the first repeat): seed 1 repeats at file 285; seeds 1-10,000 average 321.5, matching the formula √(π × 65,536 / 2) + 2/3 = 321.5. 302 files make 45,451 pairs.
+- What the stage shows: a file counter and a strip that marks the repeat; a readout. Controls in DOM order: Add files until a repeat (seed 1: 285), Run 10,000 trials (computes at once; "average first repeat: 321.5"), Exact chance at 302 ("50.07%"), Reset (4). A trace keeps the three values.
+- Key state (milestones): first-repeat (285), many-trials (321.5), exact (302: 50.07%). Reveal unlocks after all three.
+- Reveal payoff (draft, 78 words): "Your seeded run repeated a tag at file 285, and 10,000 runs averaged about 322. The exact chance passes one half at 302 files. Each new file can clash with every earlier one, so pairs, not files, are what grow: 302 files make 45,451 pairs. Repeats arrive near the square root of the number of tags, 256 here. That is why a hash needs twice as many bits to resist collisions as to resist someone guessing one value."
+- Phone fit (390x844): the reveal points at the trace line. One counter, one strip, one trace; stage-top crop 0 px.
+- Planned claims:
+  1. With 65,536 equally likely tags the chance of a repeat first passes 1/2 at 302 items (50.07%). support: derivation; source: node product formula.
+  2. Seed 1 repeats at file 285; 10,000 seeded runs average 321.5, matching √(πN/2) + 2/3. support: simulation (seed 1 is the first seed, not chosen); source: lesson script; the formula is a standard derivation (expected first repeat).
+  3. 302 items form 302 × 301 / 2 = 45,451 pairs. support: derivation.
+  4. Finding a collision in an n-bit hash takes about 2^(n/2) tries by this method, so collision resistance needs twice the bits. support: derivation + citation; source: Menezes, van Oorschot and Vanstone, Handbook of Applied Cryptography (1996), ch. 9 (birthday attacks on hash functions). Attribution: fact-checker confirms the chapter.
+- Curriculum (new concept): `{"id":"birthday-bound-digest","name":"Birthday bound: n-bit tags collide after about 2^(n/2)","level":"core","demand":2,"prerequisites":["cryptographic-hash","probability:birthday-paradox"],"subarea":"security"}`; also probability:birthday-paradox; references none; tags hashing, collisions, birthday bound.
+- Differs from nearest: probability/birthday-paradox (23 people, 365 days) teaches the surprise; this applies it to tag length and the square-root rule, and asks what it means for hash size. hash-bucket-pileup is about uneven buckets, not the first repeat.
+
+### 5. one-share-tells-nothing · concept: secret-sharing · core · demand 2
+- Format: Single card
+- Audience and knowledge boundary: learner knows: two points fix a straight line; clock (remainder) arithmetic (assumed, shown on the stage) / does not know: that a secret can be split as points on a hidden line so that any 2 of 3 holders rebuild it, while 1 share alone rules out nothing.
+- Misconception: Splitting a secret among three people gives each a piece of it, so one share leaks part of the secret.
+- Prediction (stage text, 24 words): "A secret from 0 to 10 is split into 3 shares; any 2 rebuild it. Holding one share, how many secrets are still possible?" options: A) 11, all of them / B) About 4 / C) Just 1 (answer: A). The locked stage shows 11 lit secret chips and three face-down share cards.
+- Model and check (node, 2026-10-14): arithmetic on an 11-hour clock (mod 11). Secret s = 7, hidden slope m = 3; the share at x is (x, 7 + 3x mod 11): (1, 10), (2, 2), (3, 5). With share 1 alone, every s from 0 to 10 fits with exactly one slope (m = 10 − s mod 11): 11 candidates. Shares 1 and 2 together: only s = 7, m = 3 fits (one of 121 pairs). Shares 1 and 3: also s = 7.
+- What the stage shows: 11 secret chips (0-10) that dim when ruled out, each lit chip showing the slope that would fit under it (>= 10 px); three share cards. Controls in DOM order: Hold share 1 (11 lit), Add share 2 (1 lit: 7), Use shares 1 and 3 instead (1 lit: 7), Reset (4). A trace keeps "1 share: 11 · shares 1+2: 7 · shares 1+3: 7".
+- Key state (milestones): one-share (11 recorded), two-shares (7), other-pair (7). Reveal unlocks after all three.
+- Reveal payoff (draft, 79 words): "With share 1 alone, (1, 10), all 11 secrets stayed lit: each has its own slope that fits the share, so the share rules nothing out. A second share fixed the line: only 7 fitted both, and shares 1 and 3 gave 7 as well. On an 11-hour clock every slope is equally likely, so one share leaks nothing at all. This is Shamir's secret sharing, used to split a key so that no single holder can use it."
+- Phone fit (390x844): the reveal points at the chip row and the trace. One chip row (11 chips >= 30 px wide), three small cards, one trace; stage-top crop 0 px.
+- Planned claims:
+  1. The shares of secret 7 with slope 3 on an 11-hour clock are (1, 10), (2, 2), (3, 5). support: derivation.
+  2. One share is consistent with all 11 secrets, each with exactly one slope. support: derivation + simulation (node enumeration of 121 secret-slope pairs).
+  3. Any two shares fix the secret (7 here). support: derivation (two points fix a line mod a prime).
+  4. If the slope is chosen uniformly at random, one share gives no information about the secret. support: derivation (each secret has exactly one matching slope, all equally likely).
+  5. The scheme is Shamir's. support: citation; source: Shamir (1979), "How to share a secret", CACM 22(11): 612-613. Attribution: fact-checker confirms.
+- Curriculum (new concept): `{"id":"secret-sharing","name":"Secret sharing: any 2 of 3 shares rebuild a secret, 1 reveals nothing","level":"core","demand":2,"prerequisites":[],"subarea":"security"}`; also none; references none; tags cryptography, secret sharing, threshold.
+- Differs from nearest: every-message-is-possible (one-time-pad) also shows "every answer still possible", but for one ciphertext and one key; this splits a secret so a threshold of holders is needed. paint-mix-shared-secret (public-key-crypto) agrees a key between two people; it does not split one.

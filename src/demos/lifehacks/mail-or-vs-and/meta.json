@@ -33,9 +33,11 @@
     {
       "text": "OR includes matches from either set. AND keeps only their intersection; this exercise counts individual records, not Gmail conversations.",
       "support": "derivation",
-      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation on the fixture: fileResult operation \"boolean\" gives, at \"Use OR\", owner Ana or type pdf = m1, m2, m3 (3 records), and at \"Use AND\", owner Ana and type pdf = m1 (1 record), the union and the intersection; count = rows.length, i.e. individual records, with no conversation grouping. Own node agrees.",
       "id": "lifehacks.mail-or-vs-and.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",

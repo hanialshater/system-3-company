@@ -44,7 +44,7 @@
       "id": "physics.ruler-catch.c3",
       "text": "Typical human visual reaction time is about 0.2 to 0.25 s.",
       "support": "source",
-      "source": "Woods et al. 2015, Factors influencing the latency of simple reaction time, Front. Hum. Neurosci. 9:131; Kosinski 2008, A Literature Review on Reaction Time (Clemson University). Not in the reveal text; informs the simulated catcher's mean of 0.20 s. | Earlier text: 'TO CITE: a measured-reaction-time reference (for example a physiology or ruler-drop practical text). Not in the reveal text; informs the simulated catcher's mean of 0.20 s.' | FACT-CHECK 2026-10-13: Support found: Kosinski, A Literature Review on Reaction Time (Clemson, 2008, quoting Galton and others) gives visual reaction times of 180-200 ms; Woods et al. 2015, Front. Hum. Neurosci. 9:131 report Galton's visual simple RT below 190 ms and longer, hardware-dependent values in modern samples; screen-based medians for ages 15-24 are about 220-250 ms. Suggested source text: cite Woods et al. 2015 and Kosinski 2008 instead of 'TO CITE'. · v4 (2026-10-14, demo-builder, W-095): the fact-checker's suggested references now replace 'TO CITE'; builder did not open the papers. Previous verdict void; needs re-check.",
+      "source": "Woods et al. 2015, Factors influencing the latency of simple reaction time, Front. Hum. Neurosci. 9:131; Kosinski 2008, A Literature Review on Reaction Time (Clemson University). Not in the reveal text; informs the simulated catcher's mean of 0.20 s. | Earlier text: 'TO CITE: a measured-reaction-time reference (for example a physiology or ruler-drop practical text). Not in the reveal text; informs the simulated catcher's mean of 0.20 s.' | FACT-CHECK 2026-10-13: Support found: Kosinski, A Literature Review on Reaction Time (Clemson, 2008, quoting Galton and others) gives visual reaction times of 180-200 ms; Woods et al. 2015, Front. Hum. Neurosci. 9:131 report Galton's visual simple RT below 190 ms and longer, hardware-dependent values in modern samples; screen-based medians for ages 15-24 are about 220-250 ms. Suggested source text: cite Woods et al. 2015 and Kosinski 2008 instead of 'TO CITE'. · v4 (2026-10-14, demo-builder, W-095): the fact-checker's suggested references now replace 'TO CITE'; builder did not open the papers. Previous verdict void; needs re-check. | FC pass 35 (fact-checker, 2026-10-14): HELD. Woods et al. 2015 and Kosinski 2008 could not be opened from this host (web blocked). Not in learner text; it informs the simulated mean of 0.20 s.",
       "status": "unverified"
     },
     {
@@ -76,8 +76,10 @@
       "id": "physics.ruler-catch.c7",
       "text": "The simulated ruler falls from rest with no air drag (stage caption: 'Simulated catcher, not your reflex. The ruler falls from rest, no air drag.').",
       "support": "simulation",
-      "source": "Demo.tsx fallCm(t) = 50 g t² (d = ½ g t², no drag term). v4 (2026-10-14, demo-builder): 'no air drag' moved from the reveal ('No air drag; the catcher here is simulated.', cut for the word budget) into the stage caption. Needs check.",
-      "status": "unverified"
+      "source": "Demo.tsx fallCm(t) = 50 g t² (d = ½ g t², no drag term). v4 (2026-10-14, demo-builder): 'no air drag' moved from the reveal ('No air drag; the catcher here is simulated.', cut for the word budget) into the stage caption. Needs check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. fallCm(t) = 50 g t^2 = 100 x g t^2/2, no drag term; caption after the commit reads exactly 'Simulated catcher, not your reflex. The ruler falls from rest, no air drag.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

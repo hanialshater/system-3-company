@@ -44,3 +44,13 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c7 | verified | Both pass 26 mismatches fixed. (1) seenMin is written only while null. 200,000 random action sequences gave 'minimum 2' whenever no Change preceded the first 3..12 combine, and the row was never rewritten. (2) The dash is now independent of onPath: on the pass 26 path (combine, widen to 0..15, Change), [8 to 11] is drawn dashed '4 3' in green, width 3. cover(3,12) gives 4 nodes; the first Change goes 2 to 8. The reveal needs 'combined', so the Seen row is present. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v5 first (range buttons and sliders, Combine, 'Change the value at 9' cycling 2/8/4, message in every branch, green path, Seen row, compact reveal layout; hook and recall), then the claim text and support, then source fields. Brute-forced segment-tree query costs for n = 16 (all ranges) and n = 1,024 (sampled ranges) in node.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Own count: the blocks containing position 9 are one per level, 5 levels for 16 positions (log2 16 + 1), so PATH_LEN = 5 and only those 5 minimums can change when value 9 changes; the message and green path show exactly these. Query cost: combined nodes at most 6 for n = 16 (16 for n = 1,024 over sampled ranges, bound 2 log2 n), visited nodes at most 15 and 39. So both operations are O(log n). 'About log n' is right as an order of growth, with constants of about 2 to 4; at n = 16 the visit count is not much below n, and the contrast with n shows only for large n, which is what 'for n positions, not n' claims. |
+
+**Result:** the one open claim verified. No disputes.

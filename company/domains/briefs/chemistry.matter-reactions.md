@@ -48,3 +48,114 @@ Phone fit (every brief, `company/product/demo-standard.md`): stage text <= 25 wo
 - curriculum: `{"id":"nuclear-vs-chemical-energy","name":"Nuclear energy is millions of times chemical energy","level":"core","demand":3,"prerequisites":["bond-energy-enthalpy","isotopes"]}`
 - Needs interaction-designer spec: no.
 - Differs from: `pay-first-then-profit` (bond-energy-enthalpy) balances bond energies inside one reaction; `paper-stops-alpha` is about radiation, not energy yield; physics `filament-vs-led-heat` is about efficiency. Check `node tools/overlap.mjs` against physics before build; no physics or chemistry lesson today compares per-gram nuclear and chemical energy (grep for "fission" and "MeV" in src/demos and content/curriculum on 2026-10-14 found none).
+
+## Wave J round (cm-chemistry, 2026-10-14)
+
+Ranking, phone-fit, QA-path, claims and safety rules for this round are at the top of the Wave J section in `chemistry.energy-rates.md` (global rank #5-#19). This file holds #5, #6, #9, #14 and #16.
+
+### 5. balance-without-new-molecules · concept: balancing-equations · intro · demand 3 · format: Single card
+- Learner knows: that atoms are not created or destroyed in a reaction (steel-wool-gains-weight); that H2O is water / does not know: that an equation is balanced by changing how many molecules take part (coefficients), never the formulas, because a new formula is a different substance.
+- Misconception: to balance H2 + O2 → H2O, write H2O2 (or change any small number) until the atom counts match.
+- Prediction (stage text <= 25 words): "H2 + O2 → H2O has 2 oxygen atoms in, 1 out. To make only water, how many H2 molecules does each O2 need?" options: A. 1 / B. 2 / C. 3 / D. 4 (answer: B, 2H2 + O2 → 2H2O).
+- Check (node): 2H2 + O2 → 2H2O: H 4 = 4, O 2 = 2. Mass 2(2.016) + 31.998 = 36.030 g = 2(18.015) = 36.030 g per mole of O2.
+- Locked stage: the equation drawn as molecules (ball models, H small, O large, labels 10 px) with a coefficient above each formula (1, 1, 1), and an atom tally row under each side: "in: H 2 · O 2" / "out: H 2 · O 1" with the O mismatch marked. Four unpressed controls.
+- What the stage shows (explore): control 1 "+1 H2O" adds a water molecule on the right (tally out: H 4 · O 2; now H is off). Control 2 "+1 H2" adds a hydrogen molecule on the left (in: H 4 · O 2): both tallies match and a "balanced" tick appears with the coefficient line 2 · 1 · 2. Control 3 "Shortcut: write H2O2" swaps the right side of the original 1 · 1 · 1 equation for H2O2, shown in a separate strip below: its tallies match too, and its label reads "hydrogen peroxide: a different substance". Control 4 "Back to water" closes the strip, leaving the balanced equation. Milestones: (1) balanced 2 · 1 · 2 reached (coefficients recorded), (2) shortcut strip seen. QA path: controls 1-4 once each in DOM order end on the balanced water equation.
+- Key state: 2H2 + O2 → 2H2O with both tallies equal, after the H2O2 strip has been seen.
+- Reveal draft (69 words): "Each O2 needed {2} H2: 2H2 + O2 → 2H2O, with 4 hydrogen and 2 oxygen atoms on each side. You balanced it by adding whole molecules, the big numbers in front. The shortcut H2O2 also balanced the atoms, but it is hydrogen peroxide, a different substance. Small numbers say what a molecule is; big numbers say how many take part. Only the big ones are yours to change."
+- Phone fit: the reveal names the coefficients, the two tallies and the H2O2 strip (seen earlier, its label still listed as a closed chip "H2O2 tried"); equation, tallies and chip on screen with stage-top crop 0. At most 6 molecule models on the stage at once; labels 10 px.
+- Planned claims:
+  1. 2H2 + O2 → 2H2O has 4 H and 2 O atoms on each side. support: derivation; source: atom count.
+  2. The masses balance: 2(2.016) + 31.998 = 36.03 g = 2(18.015) g. support: derivation; source: IUPAC 2021 standard atomic weights (H 1.008, O 15.999).
+  3. H2O2 is hydrogen peroxide, a different compound from water. support: citation; source: any general chemistry text or CRC (H2O2 entry).
+  4. Equations are balanced by coefficients; subscripts are fixed by the formula of each substance. support: citation; source: any general chemistry text (e.g. Atkins & Jones, *Chemical Principles*, stoichiometry chapter).
+- Metadata for meta.json: `also`: ["chemistry:conservation-of-mass", "chemistry:moles-counting"]; references: none.
+- curriculum: `{"id":"balancing-equations","name":"Balance equations with molecules, not formulas","level":"intro","demand":3,"prerequisites":["conservation-of-mass","atomic-number-identity"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `steel-wool-gains-weight` (conservation-of-mass) weighs a reaction; `who-runs-out-first` (limiting-reagent) starts from a balanced equation. No lesson teaches coefficients against subscripts (grep "subscript" in src/demos, 2026-10-14: none).
+- Safety: hydrogen burning and hydrogen peroxide appear only on the stage; nothing to try.
+
+### 6. one-kilo-of-fuel-burned · concept: reaction-mass-ratios · core · demand 3 · format: Single card
+- Learner knows: that mass is conserved (steel-wool-gains-weight); that burning a fuel makes CO2 and water / does not know: that the fuel's carbon picks up oxygen from the air, so the CO2 out weighs about three times the fuel in.
+- Misconception: burnt fuel turns into less stuff than it was, so 1 kg of petrol makes well under 1 kg of CO2.
+- Prediction (stage text <= 25 words): "Burn 1 kg of octane (a main part of petrol) completely. The carbon dioxide it makes weighs about..." options: A. about 0.1 kg / B. about 1 kg / C. about 3 kg / D. about 10 kg (answer: C, 3.08 kg).
+- Check (node): C8H18 + 12.5 O2 → 8 CO2 + 9 H2O. Molar masses (IUPAC 2021): octane 114.23, O2 31.998, CO2 44.009, H2O 18.015 g/mol. Per kg octane: O2 used 3.50 kg, CO2 3.08 kg, H2O 1.42 kg; 1 + 3.50 = 4.50 = 3.08 + 1.42. Per atom: each C (12.011 u) leaves as CO2 (44.009 u), x3.66. Per litre (density about 0.703 kg/L): 2.17 kg CO2.
+- Locked stage: a two-pan balance: left pan "1 kg octane" (a fuel block), right pan empty, caption "air supplies the oxygen". Three unpressed controls. No product mass shown.
+- What the stage shows (explore): control 1 "Burn it" puts the products on the right pan, a CO2 cloud block (3.08 kg) and a water block (1.42 kg); the balance tips hard right and the readout shows both masses. Control 2 "Add the oxygen used" puts a 3.50 kg O2 block beside the fuel on the left pan; the balance levels at 4.50 kg each side. Control 3 "Zoom to one carbon" shows one C atom (12 u) leaving as CO2 (44 u), readout "x3.7". Milestones: (1) products weighed (the question's case, CO2 mass recorded), (2) balance levelled with oxygen, (3) one-carbon zoom. QA path: controls 1-3 once each in DOM order.
+- Key state: level balance, 1 + 3.50 kg left against 3.08 + 1.42 kg right, the CO2 block labelled.
+- Reveal draft (69 words): "Your 1 kg of octane made about {3.08} kg of CO2, plus {1.42} kg of water. Nothing appeared from nowhere: the fire took {3.50} kg of oxygen from the air, and with it on the pan the balance levelled at 4.5 kg. Each carbon atom, 12 units of mass, leaves wearing two oxygens, 44 units. The gas you never see weighs about three times the fuel you poured in."
+- Phone fit: the reveal names the three blocks, the level balance and the one-carbon zoom readout; balance, blocks and readout row on screen with stage-top crop 0. Block labels 10 px inside or beside the blocks.
+- Planned claims:
+  1. Complete combustion of octane is C8H18 + 12.5 O2 → 8 CO2 + 9 H2O. support: derivation; source: atom balance.
+  2. Burning 1 kg of octane uses about 3.50 kg of O2 and makes about 3.08 kg of CO2 and 1.42 kg of water. support: derivation; source: IUPAC 2021 atomic weights, node arithmetic.
+  3. A carbon atom (about 12.01 u) leaves as CO2 (about 44.01 u), 3.66 times its mass. support: derivation; source: atomic weights.
+  4. Octane is one of the main hydrocarbons of petrol; petrol is a mixture with a similar CO2 per kilogram (about 3 kg). support: citation; source: any fuels text; if no source is reachable, the lesson says only "octane, a petrol-like fuel" and drops the petrol comparison. Model disclosure: complete combustion assumed.
+- Metadata for meta.json: `also`: ["chemistry:conservation-of-mass", "chemistry:moles-counting", "chemistry:balancing-equations"]; references: none.
+- curriculum: `{"id":"reaction-mass-ratios","name":"Mass ratios: products can outweigh the fuel","level":"core","demand":3,"prerequisites":["conservation-of-mass","moles-counting"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `steel-wool-gains-weight` weighs a solid product on the pan (the oxide stays visible); `yield-not-mass-in-mass-out` is percent yield; `find-the-co2-in-air` is the ppm share. Here the product is an invisible gas and the point is the mole-to-mass ratio. No climate-effect claim; per-car figures need their own sources.
+- Safety: burning appears only on the stage.
+
+### 9. bent-or-straight-dipole · concept: molecular-shape-polarity · core · demand 2 · format: Single card
+- Learner knows: that in a C=O or O-H bond the oxygen pulls electrons harder (who-grabs-the-electrons) / does not know: that bond pulls add as arrows, so a straight molecule with two equal polar bonds can have no overall polarity, while a bent one keeps it.
+- Misconception: a molecule made of polar bonds is polar, so CO2 is as polar as water (or more, with two strong C=O bonds).
+- Prediction (stage text <= 25 words): "Each C=O bond in carbon dioxide is polar: oxygen pulls the electrons. Is the whole CO2 molecule polar?" options: A. yes, more than water / B. yes, about like water / C. no, the pulls cancel (answer: C; CO2 dipole moment 0 D, water 1.85 D).
+- Check (node): two equal bond dipoles μ at angle θ add to 2μ cos(θ/2): 180° → 0.000μ; 150° → 0.518μ; 120° → 1.000μ; 104.5° → 1.224μ. Water: 1.85 D / 1.224 = 1.51 D per O-H bond. CO2 is linear (180°), dipole 0.
+- Locked stage: a model X-A-X molecule with two equal bond arrows (pointing toward the outer atoms, labelled "pull"), a net-arrow readout "net pull: —" in units of one bond's pull, four unpressed angle presets. No angle selected.
+- What the stage shows (explore): angle presets "180°", "150°", "120°", "104.5°" bend the molecule and draw the head-to-tail sum of the two arrows, with the net arrow and its length (0.00, 0.52, 1.00, 1.22 bonds). At 180° the molecule is labelled "CO2 shape" and the net arrow vanishes; at 104.5° it is labelled "water shape". Milestones: (1) 180° seen (net 0 recorded), (2) 104.5° seen (net 1.22 recorded). QA path: the four presets once each in DOM order; the stage ends on water with a small CO2 thumbnail (180°, net 0) kept in the corner from milestone 1.
+- Key state: water shape with net 1.22 drawn, CO2 thumbnail with net 0.
+- Reveal draft (74 words): "CO2's two pulls point opposite ways, so at {180°} the net arrow was {0}: the molecule is not polar, though each bond is. Bend the same pair to water's {104.5°} and they add to {1.22} times one bond's pull. Measured, water's dipole is 1.85 debye and CO2's is zero. Shape decides: polar bonds make a polar molecule only when they do not cancel. That is why water clings to charges and CO2 does not."
+- Phone fit: the reveal names both angles, both net values and the thumbnail; molecule, net arrow, thumbnail and readout on screen with stage-top crop 0. Labels 10 px; arrows thick enough to read at 390 px.
+- Planned claims:
+  1. CO2 is linear (180°) and has no net dipole moment. support: citation; source: CRC dipole moments table (CO2 0 D); structure in any general chemistry text.
+  2. Water is bent, with an H-O-H angle of about 104.5°, and has a dipole moment of about 1.85 D in the gas phase. support: citation; source: CRC, "Dipole moments" and molecular geometry tables.
+  3. Two equal bond dipoles at angle θ add to 2μ cos(θ/2). support: derivation; source: vector addition.
+  4. The stage's equal arrows are a bond-dipole model; real molecular dipoles also include lone pairs, folded into the measured values. support: model disclosure; source: Atkins (bond dipoles as an approximation).
+  5. The "clings to charges" sentence is told context; if a reviewer asks for support, cut it rather than add a claim. support: n/a.
+- Metadata for meta.json: `also`: ["chemistry:bond-polarity", "chemistry:like-dissolves-like"]; references: none.
+- curriculum: `{"id":"molecular-shape-polarity","name":"Shape decides polarity: bond pulls add as arrows","level":"core","demand":2,"prerequisites":["bond-polarity"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `who-grabs-the-electrons` shows one bond; `which-dissolves-in-oil` uses polarity as given; physics vector lessons add forces, not bond dipoles.
+- Safety: none needed.
+
+### 14. lithium-or-neon-bigger · concept: atomic-radius-trend · core · demand 2 · format: Single card
+- Learner knows: that the atomic number counts protons (which-particle-names-it); that atoms are about 0.1 nm across (atoms-across-a-hair) / does not know: that across a row the extra electrons go into the same shell while the nucleus pulls harder, so atoms shrink.
+- Misconception: more protons and electrons make a bigger atom, so neon (10) is larger than lithium (3).
+- Prediction (stage text <= 25 words): "Lithium has 3 electrons; neon has 10, filling the same outer shell. Which atom is bigger?" options: A. neon, about 3 times / B. about the same / C. lithium, about 2 times (answer: C; covalent radii 128 pm and 58 pm).
+- Check (node): Slater's rules for the outer (n = 2) electron: Zeff = Z − 1.70 − 0.35(number of other n = 2 electrons): Li 1.30, C 3.25, Ne 5.85. Sodium's 3s electron: 11 − 8(0.85) − 2(1.00) = 2.20. Covalent radii (Cordero et al. 2008): Li 128, C 76 (sp3), Ne 58, Na 166 pm. Ratio Li/Ne 2.2.
+- Locked stage: an outer-shell circle (unlabelled size), a nucleus with charge "+?" and four unpressed element chips "Li (3)", "C (6)", "Ne (10)", "Na (11)". No radii shown.
+- What the stage shows (explore): each chip draws that atom's outer shell at its covalent radius to scale (1 px per pm on a 200 px field), the nucleus with its proton count, inner electrons as a grey core and an arrow "pull felt by an outer electron" whose length is the Slater Zeff, with readouts "radius about N pm · pull about Zeff". Earlier atoms stay as faint outlines. Milestones: (1) Li drawn, (2) Ne drawn (the question's case, both radii recorded), (3) Na drawn (new shell). QA path: four chips once each in DOM order.
+- Key state: nested outlines Li > C > Ne, with Na's larger outline around them.
+- Reveal draft (67 words): "Neon came out smaller: about {58} pm against lithium's {128}. Its 10 electrons fill the same second shell, but its nucleus has 10 protons, and the inner 2 electrons shield only part of that charge. The pull on an outer electron rose from about {1.3} to about {5.9}, drawing the shell in. Sodium jumped to {166} pm because its eleventh electron starts a new shell farther out."
+- Phone fit: the reveal names the radii, the pull arrows and Na's outline; the four outlines (Na's 166 px radius fits a 340 px field) and the readout on screen with stage-top crop 0. Labels 10 px; outlines distinguished by line style.
+- Planned claims:
+  1. Covalent radii of about 128 pm (Li), 76 pm (C), 58 pm (Ne) and 166 pm (Na). support: citation; source: Cordero et al., "Covalent radii revisited", Dalton Trans. 2008, 2832-2838 (Table 2); CRC atomic radii table as a cross-check. The stage says "covalent radius"; noble-gas values are estimates, disclosed.
+  2. Slater's rules give the effective nuclear charge on an outer electron: about 1.30 (Li), 3.25 (C), 5.85 (Ne), 2.20 (Na). support: derivation; source: Slater's shielding constants (0.35 same shell, 0.85 one shell in, 1.00 deeper; Slater 1930, Phys. Rev. 36, 57; Atkins).
+  3. Across a period, atomic radius decreases because nuclear charge rises while the outer shell stays the same; it jumps when a new shell starts. support: citation; source: any general chemistry text (periodic trends).
+  4. The pull arrow is Slater's Zeff, an approximation, not a measured force. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:atomic-number-identity", "chemistry:atom-scale-size"]; references: none.
+- curriculum: `{"id":"atomic-radius-trend","name":"More protons, smaller atom: radius across a row","level":"core","demand":2,"prerequisites":["atomic-number-identity","atom-scale-size"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `atoms-across-a-hair` is the absolute scale of one atom; `which-particle-names-it` mentions radius only in passing (grep "atomic radius"); no lesson shows the trend.
+- Safety: none needed.
+
+### 16. hydrogen-light-through-a-prism · concept: emission-spectra · core · demand 2 · format: Before / after toggle
+- Learner knows: that a prism spreads white light into a rainbow; that electrons sit around a nucleus (which-particle-names-it) / does not know: that a glowing gas gives only a few exact colours, because its electrons can only drop between fixed energy levels.
+- Misconception: anything glowing gives a rainbow when spread out, so glowing hydrogen gives a continuous spectrum (perhaps tinted pink).
+- Prediction (stage text <= 25 words): "Light from a tube of glowing hydrogen gas goes through a prism onto a screen. You'd see..." options: A. a full rainbow / B. a few thin coloured lines / C. one wide pink band (answer: B).
+- Check (node): Rydberg formula 1/λ = R_H(1/2^2 − 1/n^2), R_H = 1.09678 x 10^7 /m: n = 3, 4, 5, 6 → 656.5, 486.3, 434.2, 410.3 nm (vacuum; about 656.3, 486.1, 434.0, 410.2 nm in air); n = 7 → 397.1 nm, at the violet edge of vision. So four lines in the visible range of about 400-700 nm.
+- Locked stage: a light source box (unlabelled glow), a prism and a screen strip with a wavelength scale 400-700 nm (labels at 400, 500, 600, 700, 10 px). The screen is dark. Three unpressed controls.
+- What the stage shows (explore): control 1 "Hot filament" fills the screen with a continuous rainbow; control 2 "Hydrogen tube" swaps it for four thin lines at 410, 434, 486 and 656 nm, labelled; control 3 "Show the drops" draws an energy-level ladder (n = 2 to 6) beside the screen, with an arrow from each upper level to n = 2 linked to its line. Milestones: (1) filament seen, (2) hydrogen lines seen, (3) drops shown. QA path: three controls once each in DOM order; the stage ends on the hydrogen lines with the ladder (the "after" state persists into the reveal).
+- Key state: four hydrogen lines on the screen, each joined to its drop on the ladder.
+- Reveal draft (68 words): "The filament gave a full rainbow; hydrogen gave just {four} thin lines, near 410, 434, 486 and 656 nm. An electron in hydrogen can only sit on certain energy levels. Each line is one drop to the second level, and each drop has one exact energy, so one exact colour. Every element has its own set of lines, which is how astronomers read what stars are made of."
+- Phone fit: the reveal names the rainbow, the four lines and the drops; the screen strip with lines and the ladder on screen with stage-top crop 0. Ladder to the left of the screen strip, not below it; labels 10 px.
+- Planned claims:
+  1. Hydrogen's visible lines are at about 656, 486, 434 and 410 nm (the Balmer series, drops to n = 2). support: derivation plus citation; source: Rydberg formula with R_H = 1.09678 x 10^7 /m (node); CRC, "Line spectra of the elements" (hydrogen, air wavelengths).
+  2. A hot solid filament gives a continuous spectrum. support: citation; source: any physics or chemistry text (blackbody radiation).
+  3. Each spectral line comes from one electron drop between two energy levels, with photon energy equal to the level difference. support: citation; source: Atkins, atomic structure (hydrogen spectrum).
+  4. Each element has its own line spectrum, used to identify elements in stars. support: citation; source: any astronomy text (e.g. Carroll & Ostlie, *An Introduction to Modern Astrophysics*, spectral lines). If not checkable, cut the last reveal sentence.
+  5. Line widths and the drawn tube are schematic. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:atomic-number-identity", "physics:colour-filters"]; references: none.
+- curriculum: `{"id":"emission-spectra","name":"Glowing gases give lines, not rainbows","level":"core","demand":2,"prerequisites":["atomic-number-identity"]}`
+- Needs interaction-designer spec: no (before/after toggle, the after persisting).
+- Differs from: physics `red-apple-green-light` is colour by reflection; no lesson has line spectra (grep "Balmer", "spectr", 2026-10-14).
+- Safety: discharge tubes run at high voltage; they appear only on the stage.

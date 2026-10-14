@@ -41,6 +41,26 @@ Accepted by cm-cs-algorithms from `company/courses/ncm/briefs.md` (### cs.algori
 - Needs interaction-designer spec: no.
 - Differs from: one-good-link-beats-many (batch 1, PageRank) passes rank page to page; HITS keeps two scores. Build after it and after #1; the stage can reuse the graph idea. Edited: the stage text said X's in-links all come from one-link pages, but h5 lists X and W; it now says "mostly".
 
+**Wave J additions (2026-10-14).** 1 more NCM brief from `company/courses/ncm/briefs.md` (§ cs.algorithms (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `cs` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 88. two-pages-swallow-the-rank · concept: cs:rank-sink-scaled-pagerank · core · demand 2 · format: Single card with step-run button (round chips + jump toggle)
+- Sections: E&K ch. 14 (section 14.3, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: PageRank passes a page's score along its links (one-good-link-beats-many) / does not know: that without random jumps a group of pages that links only to itself soaks up every page's score.
+- Misconception: Passing score along links shares it out fairly, so every page keeps some.
+- Prediction (stage text ≤ 25 words): "E and F link only to each other. Each round every page splits its score among its links. After 50 rounds, E and F hold:" options: A. About 33% / B. About 67% / C. About 100% (answer: C (100.0% to one decimal)).
+- Check: Links A→B, B→C, C→A, C→D, D→E, E→F, F→E; start 1/6 each. Node `J4 {"basic":{"r5":0.7917,"r10":0.9375,"r20":0.9935,"r50":1},"scaled085":{"r50":0.6985,"r200":0.6985,"A":0.064,"C":0.093}}` (scaled: each page passes 85% along links, 15% spread evenly over all 6).
+- Stage and controls: Six page nodes with score bars; E and F outlined as one group, readout "E + F: N%". Controls in DOM order: [5 rounds] [50 rounds] [Add 15% random jumps] [No jumps]. The active chip is disabled. Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 5 rounds (79.2%), 50 rounds (milestone 1: 100.0%, the question's case), Add jumps (milestone 2: 69.9% at 50 rounds, A–D above zero), No jumps (back to 100.0%).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Score that reaches E or F never leaves, so round by round it drains in: your 50 rounds left E and F with 100.0% and A to D with nothing. That is a rank sink. Scaled PageRank sends 15% of every page's score to a random page each round; with it E and F keep 69.9% and every page keeps some. (≤ 90 words.)
+- Planned claims:
+  1. Under the basic rule (each page splits its whole score among its links), E and F hold 79.2% of the score after 5 rounds, 93.8% after 10, 99.4% after 20 and 100.0% (to one decimal) after 50. support: derivation; source: node power iteration.
+  2. With 15% of every score spread evenly each round (s = 0.85), E and F hold 69.9% (the same at 50 and 200 rounds), A 0.064 and C 0.093. support: derivation; source: node.
+  3. Scaled PageRank (random jumps) is the fix for score draining into groups of pages with no links out. support: citation; source: E&K ch. 14 (section unconfirmed); Brin and Page (1998). Attribution: fact-checker confirms.
+- Format: Single card with step-run button (round chips + jump toggle)
+- Curriculum: `{"primary": "cs:rank-sink-scaled-pagerank", "also": ["cs:pagerank-random-walk"], "prerequisites": ["cs:pagerank"], "level": "core", "strand": "algorithms", "references": [{"work": "easley-kleinberg-2010", "chapter": 14, "section_unconfirmed": "14.3"}], "tags": ["web", "PageRank", "link analysis"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/one-good-link-beats-many already uses the scaled rule (1.5% free per page) without saying why; cs/random-surfer-finds-the-rank reads the jumps as a surfer. This one shows what breaks without the jump. Build after one-good-link-beats-many (built).
+
 ### 1. ties-keep-their-order · concept: sort-stability · intro · demand 3
 - Learner knows: sorting a hand by sliding cards left (insertion-by-hand) / does not know: that two sorting methods can give different results when items tie
 - Misconception: Sorted is sorted: any correct sort of the same list gives the same list.
@@ -514,6 +534,7 @@ Accepted by cm-cs-algorithms from `company/courses/ncm/briefs.md` (### cs.algori
 - Format: Storyboard / scrub
 - Differs from: no existing lesson. Cross-category neighbour: math geometry lessons (polygon-angle-sum); none compute hulls.
 - Reference: TheAlgorithms/Python geometry/graham_scan.py
+
 
 ## Networks, Crowds, and Markets, batch 1 (session 2, 2026-10-14)
 
@@ -1107,3 +1128,95 @@ Written by cm-cs with the two briefs at the end of `cs.md` (ranking and rules ar
 - Curriculum: `{"primary":"cs:edge-betweenness-communities","also":["cs:graph-shortest-path"],"prerequisites":["cs:graph-shortest-path"],"level":"stretch","strand":"algorithms","references":[{"work":"easley-kleinberg-2010","chapter":3,"section":"3.6"}],"tags":["networks","betweenness","communities"]}`
 - Differs from nearest: broker-between-two-groups (math, structural-holes) already teaches that the person with most friends is not the busiest; so this lesson does not re-test that, and asks instead what happens after a cut (recount) and how cutting finds groups. wave-from-the-corner finds one shortest path; no lesson finds communities.
 - Answers the objection on the course's proposed version (company/courses/ncm/briefs.md, ### cs.algorithms #1): the full edge list and its node output are given above; the prediction tests the stated misconception; the hub-versus-bridge misconception is left to broker-between-two-groups, which owns it.
+
+## Wave J (cm-cs, 2026-10-14): five new concepts, demand 3 first
+
+Written by cm-cs for Wave J (the company grows from 879 to 2,000 lessons). Coverage was 142/142, so each concept below is new to `content/curriculum/cs.json` and has no lesson. Ranking: demand 3 first, then demand 2. Every brief follows `company/product/demo-standard.md`: prediction stage text <= 25 words, a reveal draft <= 90 words (word count given), labels >= 10 px rendered, and **preset buttons in DOM order** so pressing each control once (the QA contract) reaches every milestone, with Reset last. Every answer was re-run in node on 2026-10-14 (scripts in the cm-cs session scratchpad; the check inside each brief is enough to rebuild them, and builders re-run their own). Support is derivation or simulation wherever possible, because many web hosts are blocked from here; each citation says what the fact-checker confirms, or what to cut if it cannot. No simulated review counts as learning evidence for any of these.
+
+### 83. small-n-favours-the-slow-curve · concept: asymptotic-crossover · core · demand 3
+- Format: Single card
+- Audience and knowledge boundary: learner knows: n² grows faster than n log n (quadratic-wall) and merge sort splits and merges (merge-sort-payoff) / does not know: that constant factors decide which method is cheaper for small inputs, so there is a crossover size below which the "slower-growing" method loses.
+- Misconception: A method with a better growth rate is faster for every input size.
+- Prediction (stage text, 17 words): "Insertion sort costs 8·n² steps. Merge sort costs 64·n·log₂n. To sort 20 items, which costs fewer steps?" options: A) Insertion sort / B) Merge sort / C) They tie (answer: A). The locked stage shows two empty bars and the n readout blank.
+- Check (node, 2026-10-14): n = 20: 3,200 vs 5,532; n = 43: 14,792 vs 14,933; n = 44: 15,488 vs 15,374; n = 100: 80,000 vs 42,521 (merge sort rounded to whole steps). Insertion sort is cheaper for every n from 2 to 43 and merge sort for every n from 44 to 1,000. These cost formulas are CLRS 3e exercise 1.2-2 (answer n <= 43).
+- What the stage shows: two horizontal bars (insertion, merge) with their step counts printed at the bar ends (>= 12 px); the cheaper bar is outlined. A trace strip of four chips records each visited n and its winner ("20: insertion"). Controls in DOM order: n = 20, n = 43, n = 44, n = 100, Reset (5). Reset clears the bars, not the trace.
+- Key state (milestones): question-case (n = 20; 3,200 and 5,532 recorded), last-win (n = 43), crossover (n = 44), large (n = 100; 80,000 and 42,521 recorded). Reveal unlocks after all four.
+- Reveal payoff (draft, 71 words): "At 20 items insertion sort cost 3,200 steps and merge sort 5,532. The 64 in front of merge sort's cost outweighs its slower growth while n is small. Insertion sort still won at 43 and lost at 44, and at 100 it cost 80,000 against 42,521. Growth rate tells you who wins eventually, not who wins at your size. That is why fast merge sorts hand short pieces to insertion sort."
+- Phone fit (390x844): the reveal points at the two bars and the four-chip trace. One picture: two bars plus one chip row; stage-top crop 0 px with the trace visible when the reveal opens.
+- Planned claims:
+  1. With costs 8n² and 64 n log₂ n, n = 20 gives 3,200 and 5,532; n = 100 gives 80,000 and 42,521. support: derivation; source: arithmetic, node.
+  2. Insertion sort is cheaper for n <= 43 and merge sort for n >= 44. support: derivation; source: node loop n = 2..1,000; CLRS 3e exercise 1.2-2.
+  3. Merge sort can be sped up by sorting short sublists with insertion sort. support: citation + derivation; source: CLRS 3e Problem 2-1 (coarsening the leaves of merge sort). Attribution: fact-checker confirms the problem number from the book.
+  4. The cost formulas are a model with chosen constants, not timings of real code (caption on the stage). support: definition.
+- Curriculum (new concept): `{"id":"asymptotic-crossover","name":"Constant factors: a slower-growing method can win on small inputs","level":"core","demand":3,"prerequisites":["big-o-growth","insertion-sort","divide-and-conquer"],"subarea":"algorithms"}`; also none; references none; tags big-O, constants, crossover.
+- Differs from nearest: quadratic-wall (big-o-growth) shows n² pulling away at large n; this lesson is the small-n side, where the constant wins, and the exact crossover. merge-sort-payoff shows why merging pays; it does not compare costs at small n.
+
+### 84. checking-is-not-finding · concept: verify-vs-search · core · demand 3
+- Format: Single card
+- Audience and knowledge boundary: learner knows: the number of choices multiplies fast (route-explosion) / does not know: that checking a proposed answer can take one step while finding one, or proving none exists, can mean trying every group, and that this gap is the P versus NP question.
+- Misconception: If checking an answer is quick, finding an answer must be about as quick.
+- Prediction (stage text, 25 words): "3, 34, 4, 12, 5, 2. Checking 4 + 5 = 9: one addition. Proving no group sums to 13: how many groups to try?" options: A) 6 / B) 12 / C) 64 (answer: C). The locked stage shows the six number chips only.
+- Check (node, 2026-10-14): 2^6 = 64 groups including the empty one. Groups summing to 9: {4, 5} and {3, 4, 2}. Trying groups in binary counting order (number i in or out by bit i, the list order above), the first group summing to 9 is the 21st tried, {4, 5}. No group sums to 13 (also none for 1, 25, 27-33, 35, 47, 59), so the search tries all 64. A 7th number doubles the groups to 128.
+- What the stage shows: six chips; tried groups light the chips in turn (the run shows its final state at once, no animation needed for the milestone) and a counter "groups tried: N". Controls in DOM order: Check 4 + 5 (shows "4 + 5 = 9 · 1 addition"), Search for 9 (stops at the first hit, 21 tried), Search for 13 (64 tried, none found), Add a 7th number (adds a chip 7; readout "groups: 128"), Reset (5). A trace line keeps "check: 1 · find 9: 21 · prove no 13: 64".
+- Key state (milestones): checked (1 addition), found (21 tried), none (64 tried, 0 found), doubled (128). Reveal unlocks after all four.
+- Reveal payoff (draft, 76 words): "Checking 4 + 5 took one addition. Finding a group meant trying them: the 21st group made 9, and proving that nothing makes 13 took all 64. One more number doubled the groups to 128. For problems like this, called NP problems, a proposed answer is quick to check, yet nobody knows a method that always finds one without a search that grows this fast. Whether such a method exists is the P versus NP question."
+- Phone fit (390x844): the reveal points at the trace line and the 128 readout. One chip row, one counter, one trace line; stage-top crop 0 px.
+- Planned claims:
+  1. Six numbers form 2^6 = 64 groups (including the empty group); seven form 128. support: derivation.
+  2. In binary counting order the first group summing to 9 is the 21st, {4, 5}; no group sums to 13. support: simulation; source: node enumeration of all 64 groups (fact-checker can redo by hand: list sums).
+  3. Checking a proposed group takes one addition per extra number in it. support: derivation.
+  4. Subset sum is NP-complete, and no known algorithm solves every case in time polynomial in the size of the input (its numbers' digits); whether one exists is the P versus NP question. support: citation; source: CLRS 3e section 34.5.5 (subset-sum is NP-complete); Karp (1972), "Reducibility among combinatorial problems". Attribution: fact-checker confirms. Do not say "impossible" or "always exponential": a table method is fast when the numbers are small (CLRS 3e exercise 34.5-5 context), so the reveal says "nobody knows".
+- Curriculum (new concept): `{"id":"verify-vs-search","name":"Checking an answer vs finding one (NP, subset sum)","level":"core","demand":3,"prerequisites":["combinatorial-explosion"],"subarea":"algorithms"}`; also none; references none; tags complexity, P vs NP, subset sum.
+- Differs from nearest: route-explosion (combinatorial-explosion) counts routes; it does not contrast checking with finding. the-contrary-program (halting-problem) is about problems no program can decide; this one is decidable, only slow to search.
+
+### 85. nearest-town-first-detours · concept: nearest-neighbour-tour · core · demand 2
+- Format: Single card
+- Audience and knowledge boundary: learner knows: a greedy rule can fail (coin-greedy-trap) and the number of routes explodes (route-explosion) / does not know: that "always go to the nearest unvisited town" can build a long round trip, because the hops it skips pile up at the end.
+- Misconception: Always driving to the nearest unvisited town gives the shortest round trip.
+- Prediction (stage text, 24 words): "Towns on one road at km −15, −3, 2 and 8. Start at 0, always drive to the nearest unvisited town, then return. Shortest?" options: A) Yes / B) No, a tour about 5 km shorter exists / C) No, a tour about 10 km shorter exists (answer: C). The locked stage shows the road and five dots, no route.
+- Check (node, 2026-10-14): nearest-first from 0 visits 2 (2 km), −3 (5; 8 is 6 away), 8 (11; −15 is 12 away), −15 (23), then 0 (15): 56 km. No step has a tie. All 24 visiting orders: shortest 46 (8 orders tie, e.g. 2, 8, −3, −15), longest 56. Nearest-first is the longest tour of all 24.
+- What the stage shows: a number line from −15 to 8 with km labels (>= 10 px); a tour is drawn as arcs above the line, each labelled with its length; a total readout. Controls in DOM order: Nearest-first tour (draws all five hops, 56), Out to 8 first (2, 8, −3, −15, 0: 46), Try all 24 orders (readout "shortest 46 · longest 56"), Step (one nearest-first hop at a time, for learners who want it), Reset (5). A trace keeps "nearest-first 56 · sweep 46 · all 24: 46-56".
+- Key state (milestones): greedy (56), sweep (46), all-orders (46 and 56 recorded). Reveal unlocks after all three.
+- Reveal payoff (draft, 83 words): "Nearest-first took cheap hops of 2, 5 and 11 km, then had to cross the whole road, 23 km from 8 to −15, and come back 15: 56 km. Driving out to 8 first and sweeping back cost 46. Of all 24 orders, nearest-first was the longest. Each greedy hop was the cheapest at that moment, but the far towns it put off all came due at the end. Route planners use tours like this only as a start and then repair them."
+- Phone fit (390x844): the reveal points at the 23 km arc and the trace line. One line diagram (390 px wide, km labels >= 10 px), one trace; stage-top crop 0 px.
+- Planned claims:
+  1. Nearest-first from 0 gives 2 + 5 + 11 + 23 + 15 = 56 km. support: derivation.
+  2. Over all 24 orders the shortest round trip is 46 km and the longest is 56. support: simulation; source: node enumeration (fact-checker: on a line any tour reaching both ends costs at least 2 × (8 + 15) = 46, derivation).
+  3. Tours built greedily are commonly improved afterwards by swapping pairs of links (2-opt). support: citation; source: Croes (1958), "A method for solving traveling-salesman problems", Operations Research 6(6). Attribution: fact-checker confirms; if it cannot, cut the last reveal sentence.
+- Curriculum (new concept): `{"id":"nearest-neighbour-tour","name":"Nearest-neighbour tours: greedy routes can be the worst","level":"core","demand":2,"prerequisites":["greedy-failure","combinatorial-explosion"],"subarea":"algorithms"}`; also none; references none; tags travelling salesman, greedy, heuristics.
+- Differs from nearest: coin-greedy-trap (greedy-failure) fails on coins; this is a route where greedy is the worst of all orders. route-explosion counts orders; it does not judge a rule. ai/one-bad-label-knn is nearest-neighbour classification, a different idea with the same name.
+
+### 86. last-survivor-is-not-the-most-common · concept: majority-vote · core · demand 2
+- Format: Single card
+- Audience and knowledge boundary: learner knows: keeping a running count / does not know: that one candidate and one counter find an item filling more than half a stream, and only that: with no such item the survivor means nothing until a second pass checks it.
+- Misconception: The item left standing after cancelling pairs of different items is the most common one.
+- Prediction (stage text, 25 words): "Candidate plus counter: same item +1, different −1; at 0 the next item becomes candidate. Stream: A A A B B C C. Final candidate?" options: A) A / B) B / C) C (answer: C). The locked stage shows the stream tiles and an empty candidate box.
+- Check (node, 2026-10-14): stream 1, A A A B B C C: counter 1, 2, 3, 2, 1, 0, then C becomes candidate with 1; final C. Counts: A 3, B 2, C 2; no item fills more than half (needs 4 of 7). Stream 2, A A B A C A A: final A with counter 3; A fills 5 of 7.
+- What the stage shows: the stream as tiles; a candidate box and a counter; each processed tile dims. A second-pass readout counts the candidate. Controls in DOM order: Run stream 1 (final C), Count again (readout "C: 2 of 7 · not a majority · A had 3"), Run stream 2 (final A; "A: 5 of 7 · majority"), Step (one tile, for learners), Reset (5). A trace keeps "stream 1 → C (2 of 7) · stream 2 → A (5 of 7)".
+- Key state (milestones): survivor-C, checked-none, majority-found. Reveal unlocks after all three.
+- Reveal payoff (draft, 82 words): "Stream 1 left C as the candidate, though A appeared 3 times and C only 2. Each −1 cancels two different items. With no item in more than half the stream, whatever survives proves nothing, and the second count showed C in only 2 of 7. In stream 2, A filled 5 of 7 places, and that many copies cannot all be cancelled, so A survived. One counter finds a majority if there is one; a second pass checks that there is."
+- Phone fit (390x844): the reveal points at the trace line and the candidate box. One tile row, one box, one trace; stage-top crop 0 px.
+- Planned claims:
+  1. Stream 1 ends with candidate C; stream 2 with candidate A. support: simulation; source: node (fact-checker can redo by hand, 7 steps each).
+  2. If an item fills more than half the stream, it is the final candidate. support: derivation (each decrement removes at most one copy of it together with one other item, so more than half cannot all be cancelled).
+  3. If no item fills more than half, the candidate can be any item, so a second pass is needed. support: derivation (stream 1 is a counterexample).
+  4. The method is Boyer and Moore's majority vote algorithm (MJRTY). support: citation; source: Boyer and Moore (1991), "MJRTY: A Fast Majority Vote Algorithm", in Automated Reasoning: Essays in Honor of Woody Bledsoe. Attribution: fact-checker confirms; the lesson can drop the name if not.
+- Curriculum (new concept): `{"id":"majority-vote","name":"Majority vote with one counter (Boyer-Moore)","level":"core","demand":2,"prerequisites":[],"subarea":"algorithms"}`; also none; references none; tags streaming, counting, majority.
+- Differs from nearest: pairs-cancel-under-xor (xor-cancel) cancels equal items to find the odd one out; this cancels different items to find the majority. sketch-the-counts (count-min-sketch) estimates every count; this keeps one candidate and must check it.
+
+### 87. two-choices-flatten-the-load · concept: power-of-two-choices · core · demand 2
+- Format: Simulation run
+- Audience and knowledge boundary: learner knows: random placement makes uneven piles (hash-bucket-pileup) / does not know: that looking at just two random servers and using the emptier one cuts the busiest pile sharply, with no need to check them all.
+- Misconception: Checking two random servers instead of one barely helps; to even out the load you must look at every server.
+- Prediction (stage text, 24 words): "100 jobs, 100 servers. Over 1,000 runs, one random pick averages 4.2 jobs on the busiest server. Picking two and using the emptier averages:" options: A) 4.0 / B) 2.6 / C) 1.0 (answer: B). The locked stage shows 100 empty columns.
+- Check (node, 2026-10-14): model: mulberry32(seed); each job draws a server floor(r() × 100); with two picks it draws a second the same way and joins the one with fewer jobs (ties: the first). Seeds 1-1,000: one pick averages 4.21 (busiest 3: 125, 4: 585, 5: 249, 6: 37, 7: 4 runs); two picks average 2.57 (2: 435, 3: 564, 4: 1). Seed 2 gives 4 and 3, the commonest values; seed chosen for that, disclosed in the claim.
+- What the stage shows: 100 thin columns (10 rows of 10 to fit 390 px) whose heights are job counts, the busiest outlined, readout "busiest: N". Controls in DOM order: Drop 100, one pick (seed 2: 4), Drop 100, two picks (seed 2: 3), Run 1,000 of each (readout "average busiest: 4.21 vs 2.57", a small two-row tally of busiest values), Reset (4). Run 1,000 computes at once (no animation) so the milestone fires inside the QA wait. The seed is shown on the stage.
+- Key state (milestones): one-pick (4 recorded), two-picks (3 recorded), many-runs (4.21 and 2.57 recorded). Reveal unlocks after all three.
+- Reveal payoff (draft, 74 words): "In your seed-2 run the busiest server held 4 jobs with one random pick and 3 with two. Over 1,000 runs the averages were 4.21 and 2.57, and two picks went above 3 only once. One pick lets unlucky servers keep collecting jobs. With two, a server grows only when it is the emptier of the pair, so tall piles stop growing. As systems grow, the gap widens: the second look is worth more."
+- Phone fit (390x844): the reveal points at the averages readout and the tally. Columns grid plus one readout and a two-row tally (labels >= 10 px); stage-top crop 0 px.
+- Planned claims:
+  1. With seed 2 the busiest server holds 4 jobs (one pick) and 3 (two picks). support: simulation; source: the lesson's script; seed 2 was chosen to show the most common values (disclose-chosen-seeds).
+  2. Over seeds 1-1,000 the average busiest load is 4.21 (one pick) and 2.57 (two picks); two picks reached 4 in 1 run. support: simulation; source: node, model above (builder records its own run if its draw order differs).
+  3. With n jobs and n servers the busiest load grows like ln n / ln ln n with one random pick and like ln ln n / ln 2 with two. support: citation; source: Azar, Broder, Karlin and Upfal (1999), "Balanced allocations", SIAM J. Computing 29(1); Mitzenmacher (2001), "The power of two choices in randomized load balancing", IEEE TPDS 12(10). Attribution: fact-checker confirms; the reveal states only "the gap widens".
+- Curriculum (new concept): `{"id":"power-of-two-choices","name":"Power of two choices: two random looks balance load","level":"core","demand":2,"prerequisites":["hashing-collisions"],"subarea":"algorithms"}`; also none; references none; tags load balancing, randomness, hashing.
+- Differs from nearest: hash-bucket-pileup and bad-hash-one-bucket (hashing-collisions) show piles with one placement; this changes the placement rule. new-server-moves-few-keys (consistent-hashing) is about adding servers, not balancing them. probability/birthday-paradox counts first collisions, not the tallest pile.

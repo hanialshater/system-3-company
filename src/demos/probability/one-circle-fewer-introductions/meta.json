@@ -33,36 +33,46 @@
       "id": "probability.one-circle-fewer-introductions.c1",
       "text": "Five independent 10% chances give 1 - 0.9^5 = 41% of at least one success; you miss only if all five fail, and 0.9^5 = 59%.",
       "support": "derivation",
-      "source": "Arithmetic: 0.9^5 = 0.59049; model.ts separate() = 0.40951. Stage tick '41%: 5 separate circles'.",
-      "status": "unverified"
+      "source": "Arithmetic: 0.9^5 = 0.59049; model.ts separate() = 0.40951. Stage tick '41%: 5 separate circles'. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. 0.9^5 = 0.59049; 1 - 0.9^5 = 0.40951 -> 41% and 59%. Tick '41%: 5 separate circles' after the first chip.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.one-circle-fewer-introductions.c2",
       "text": "Stage model (stated on the card): the five friends' one circle meets in a share q of weeks; only in a meeting week can a friend introduce you, each independently with chance 10%/q, so each friend alone is still 10% a week. The chance you are introduced in a week is q(1 - (1 - 0.1/q)^5): 41% at q = 100%, 34% at 50%, 23% at 25%, 10% at 10%.",
       "support": "derivation",
-      "source": "model.ts oneCircle(); node 2026-10-14: 0.40951, 0.33616, 0.23056, 0.1. Seeded cross-check mulberry32(7), 10,000 weeks at q = 50%: 34.0%. Stage labels: 'Weeks the circle meets: n of 20 · then 20% each' (inMeetingWeek = 0.1/q).",
-      "status": "unverified"
+      "source": "model.ts oneCircle(); node 2026-10-14: 0.40951, 0.33616, 0.23056, 0.1. Seeded cross-check mulberry32(7), 10,000 weeks at q = 50%: 34.0%. Stage labels: 'Weeks the circle meets: n of 20 · then 20% each' (inMeetingWeek = 0.1/q). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: q(1 - (1 - 0.1/q)^5) = 0.40951, 0.33616, 0.23056, 0.1 at q = 1, .5, .25, .1 -> 41, 34, 23, 10%; meeting weeks 20, 10, 5, 2 of 20; 'then 20% each' at q = .5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.one-circle-fewer-introductions.c3",
       "text": "When the circle meets in 10% of weeks, every friend introduces you in a meeting week (10%/10% = 100%), so the five act as one try: 10%.",
       "support": "derivation",
-      "source": "Same formula at q = 0.1: 0.1 * (1 - 0^5) = 0.1.",
-      "status": "unverified"
+      "source": "Same formula at q = 0.1: 0.1 * (1 - 0^5) = 0.1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. q = 0.1: 0.1/0.1 = 1, so 0.1 x (1 - 0^5) = 0.1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.one-circle-fewer-introductions.c4",
       "text": "Friends who share a circle are not independent tries: in the weeks the circle does not meet, all five fail at once, so counting them as separate tries overstates the chance.",
       "support": "derivation",
-      "source": "Under the stage model, P(all five fail) = (1 - q) + q(1 - 0.1/q)^5 > 0.9^5 for q < 1 (node: 0.664 at q = 0.5 vs 0.590), while each friend's marginal stays 0.1.",
-      "status": "unverified"
+      "source": "Under the stage model, P(all five fail) = (1 - q) + q(1 - 0.1/q)^5 > 0.9^5 for q < 1 (node: 0.664 at q = 0.5 vs 0.590), while each friend's marginal stays 0.1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: P(all fail) = (1 - q) + q(1 - 0.1/q)^5 = 0.664 at q = .5 vs 0.590 independent; the marginal stays 0.1. Verified in the stage model; the general sentence is the model's moral.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.one-circle-fewer-introductions.c5",
       "text": "The meeting-share model is a teaching model, not data about real friendships.",
       "support": "convention",
-      "source": "Lesson rule (brief Round 3 item 2, planned claim 4). The card states the model in the question and the stage labels; no real-world rate appears in learner text.",
-      "status": "unverified"
+      "source": "Lesson rule (brief Round 3 item 2, planned claim 4). The card states the model in the question and the stage labels; no real-world rate appears in learner text. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Lesson rule; model.ts header says 'A teaching model, not data'; no real-world rate in learner text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

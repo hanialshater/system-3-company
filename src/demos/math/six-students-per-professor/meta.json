@@ -26,36 +26,46 @@
       "id": "math.six-students-per-professor.c1",
       "text": "With P professors each having 6 students, S = 6P reads S = 6 × P (true), 6S = P reads 6 × S = P (false) and 6S = 6P is false; for example P = 2, S = 12: 12 = 12, 72 = 2 and 72 = 12; P = 4, S = 24: 24 = 24, 144 = 4.",
       "support": "derivation",
-      "source": "Substitute S = 6P: 6P = 6P holds; 6(6P) = 36P ≠ P for P ≥ 1; 6(6P) = 36P ≠ 6P for P ≥ 1. node: [[2,12],[4,24]].map(([P,S])=>[S===6*P,6*S===P,6*S===6*P]) gives [true,false,false] twice. The stage computes S = k × P and prints each side from EQS.",
-      "status": "unverified"
+      "source": "Substitute S = 6P: 6P = 6P holds; 6(6P) = 36P ≠ P for P ≥ 1; 6(6P) = 36P ≠ 6P for P ≥ 1. node: [[2,12],[4,24]].map(([P,S])=>[S===6*P,6*S===P,6*S===6*P]) gives [true,false,false] twice. The stage computes S = k × P and prints each side from EQS. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: P = 2, S = 12: S = 6P '12 = 12' true, 6S = P '72 = 2' false, 6S = 6P '72 = 12' false; P = 4, S = 24: 24 = 24, 144 = 4, 144 = 24. EQS show() prints those sides; S = k x p.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.six-students-per-professor.c2",
       "text": "\"Six times as many students as professors\" means S = 6P for every positive number of professors, so it stays true when the number of professors changes.",
       "support": "derivation",
-      "source": "Definition of \"a times as many X as Y\": X = a × Y. With k = 6 the stage makes S = 6P for P = 1..5.",
-      "status": "unverified"
+      "source": "Definition of \"a times as many X as Y\": X = a × Y. With k = 6 the stage makes S = 6P for P = 1..5. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Definition 'a times as many X as Y' -> X = aY. At k = 6 the stage gives S = 6P for P = 1..5; milestone resize needs two P values at k = 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.six-students-per-professor.c3",
       "text": "For positive counts, 6S = P says there are six professors for every student (professors outnumber students six to one).",
       "support": "derivation",
-      "source": "6S = P ⇔ P / S = 6 for S > 0.",
-      "status": "unverified"
+      "source": "6S = P ⇔ P / S = 6 for S > 0. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. 6S = P with S > 0 gives P/S = 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.six-students-per-professor.c4",
       "text": "In these equations the letters S and P stand for counts (numbers of students and professors), not for the people themselves; the multiplier goes on the smaller group: 6 × P gives the number of students.",
       "support": "convention",
-      "source": "Algebra convention: a variable stands for a number. Follows from c2 (S = 6P, and P < S for P ≥ 1).",
-      "status": "unverified"
+      "source": "Algebra convention: a variable stands for a number. Follows from c2 (S = 6P, and P < S for P ≥ 1). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention; the reveal's 'Multiply the smaller group by 6 to get the bigger one' matches S = 6P with P < S for P >= 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.six-students-per-professor.c5",
       "text": "When there are not 6 students per professor, S = 6P is false (stage: e.g. 4 per professor with P = 2 reads 8 = 12).",
       "support": "derivation",
-      "source": "S = kP = 6P only if k = 6 (P ≥ 1). The k ≠ 6 reveal branch quotes the stage's current values.",
-      "status": "unverified"
+      "source": "S = kP = 6P only if k = 6 (P ≥ 1). The k ≠ 6 reveal branch quotes the stage's current values. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. S = kP = 6P only if k = 6; at k = 4, P = 2: '8 = 12', false. The k != 6 reveal branch prints the current values; 'at six per professor it was the only true one' holds (36P != 6P, 36P != P).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

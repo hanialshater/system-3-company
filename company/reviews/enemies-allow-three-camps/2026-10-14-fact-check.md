@@ -57,3 +57,17 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c5 | verified | The claim text now equals the reveal string. Own brute force over 2^15 graphs on 6 people: 203 weakly balanced (all camp splits, Bell 6), and the all-enemy ban leaves 32 (at most 2 camps). An all-enemy triangle exists iff there are 3 or more camps. Rests on derivation, not Easley-Kleinberg or Davis (not opened). Advisory: 'the strict rule' is undefined on stage (W-255, learning-designer; pedagogy, not mine). |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v6 first (Next triangle wrap-around, Check all 20, camp chips 6/3/2 with checked carried across splits, B–D friends toggle, captions in every branch, Seen rows, B–D record row, reveal in all its conditional forms; hook and recall), then claim text and support, then source fields. Re-counted every split with and without the link, and brute-forced all 2^15 friend/enemy signings of six people, in my own node script (fc35/enem.mjs). No source host opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own count, 3 + 2 + 1, no link: 20 triangles = 0 banned, 13 one friendly pair, 6 all-enemy (ADF AEF BDF BEF CDF CEF, one from each camp), 1 all-friends (ABC). Matches tally(3) used by the reveal and the Seen row. |
+| c4 | verified | Derivation: if friendship is 'same camp', it is transitive, so two friends of one person share that person's camp and are friends; a banned triangle cannot occur for any partition. Brute force over all 2^15 signings of K6: the 203 with no banned triangle are exactly the 203 camp partitions (Bell(6) = 203). Reveal quote 'B and C share A's, so they are friends' matches Demo.tsx. |
+| c5 | verified | Verified as a derivation, not on a source (none opened). Brute force: the signings with no all-enemy and no two-friends-one-enemy triangle number 32, and every one is a split into at most two friendly sides (2^6 / 2 = 32), so banning all-enemy triangles forces two sides. Fine print: 'two sides' includes the case where one side is empty (everyone friends); the stage's 3 + 3 split shows the two-sided case. 'The balance rule' names the strong rule the lesson contrasts with c1's weaker rule. |
+| c6 | verified | Code path: see(c) runs when all 20 are checked with the link off (Next to 20, Check all, or switching camps while checked = 20, which recounts the new split in full via tally(c)). Seen row prints '<c> camps banned / all-enemy': own counts 3 camps 0 / 6, 6 camps 0 / 20, 2 camps 0 / 0. Reveal lists seen sorted ascending via listOf ('2, 3 and 6'), and every listed split has 0 banned (c4). |
+| c7 | verified | Own count with B–D friends: 3 + 3 gives 4 banned (ABD BCD BDE BDF); 3 + 2 + 1 gives 3 (ABD BCD BDE); six of one gives 0 (only the B–D pair is friendly, so nobody has two friends; caption 'B–D friends, but nobody has two friends.'). verdict() on ABD in 3 + 2 + 1: mid = B, 'A and D are both B's friends but enemies. Banned.' The first banned triangle found is ABD in both splits, matching the reveal's 'such as A, B, D'. |
+
+**Result:** all five open claims verified (c5 by brute-force derivation, not by source). No disputes.

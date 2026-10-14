@@ -32,28 +32,34 @@
       "id": "probability.more-detail-less-likely.c1",
       "text": "Every librarian who runs a book club is a librarian, so the people who are both are a subset of the librarians: P(A and B) <= P(A), equal only if every librarian runs a club. Each added detail can only remove people, so a more specific story is never more likely.",
       "support": "derivation",
-      "source": "P(A and B) = P(A) P(B | A) and P(B | A) <= 1. On the stage the inner ring is built from the first clubbers(lib, club) dots of the librarians (model.ts), so inner <= outer for every slider setting; the club slider stops at 90%.",
-      "status": "unverified"
+      "source": "P(A and B) = P(A) P(B | A) and P(B | A) <= 1. On the stage the inner ring is built from the first clubbers(lib, club) dots of the librarians (model.ts), so inner <= outer for every slider setting; the club slider stops at 90%. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. P(A and B) = P(A)P(B|A) <= P(A). Own check of model.ts over every slider setting (lib 5..50 step 5, club 10..90 step 20): inner < outer in all 50, since the club slider stops at 90%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.more-detail-less-likely.c2",
       "text": "The stage's town (1,000 people who fit Sam's description) and its shares are a model chosen for the card, not data about librarians.",
       "support": "convention",
-      "source": "Lesson rule (brief Round 3 item 3, planned claim 2). model.ts: librarians = round(1000 * lib%), clubbers = round(librarians * club%); lib 5-50%, club 10-90%.",
-      "status": "unverified"
+      "source": "Lesson rule (brief Round 3 item 3, planned claim 2). model.ts: librarians = round(1000 * lib%), clubbers = round(librarians * club%); lib 5-50%, club 10-90%. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. model.ts: librarians = round(1000 lib%), clubbers = round(librarians club%); header states the shares are a model chosen for the card.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.more-detail-less-likely.c3",
       "text": "The reveal quotes the current club share and the dots in each ring, and the counts recorded when the club share reached 90% (e.g. 180 of 200 at 20% librarians on the QA path).",
       "support": "derivation",
-      "source": "Demo.tsx reveal and note(); model.ts librarians(20) = 200, clubbers(20, 90) = 180; librarians(10) = 100, clubbers(10, 90) = 90 (the brief's check).",
-      "status": "unverified"
+      "source": "Demo.tsx reveal and note(); model.ts librarians(20) = 200, clubbers(20, 90) = 180; librarians(10) = 100, clubbers(10, 90) = 90 (the brief's check). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: librarians(20) = 200, clubbers(20, 90) = 180; librarians(10) = 100, clubbers(10, 90) = 90. Reveal quotes current club share and rings, plus the record at 90% only when it differs from the current state.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.more-detail-less-likely.c4",
       "text": "(Not shown to the learner.) Ranking a conjunction above one of its parts is called the conjunction fallacy; in the 'Linda' problem most respondents made it.",
       "support": "source",
-      "source": "Brief planned claim 3: Tversky and Kahneman (1983), 'Extensional versus intuitive reasoning: the conjunction fallacy in probability judgment', Psychological Review 90(4). NEEDS A HUMAN SOURCE CHECK. Neither the name nor any percentage is in learner text.",
+      "source": "Brief planned claim 3: Tversky and Kahneman (1983), 'Extensional versus intuitive reasoning: the conjunction fallacy in probability judgment', Psychological Review 90(4). NEEDS A HUMAN SOURCE CHECK. Neither the name nor any percentage is in learner text. | FC pass 35 (fact-checker, 2026-10-14): HELD (not learner-visible). Tversky and Kahneman 1983 not opened (web blocked); the name and the Linda result need an opened source.",
       "status": "unverified"
     }
   ],

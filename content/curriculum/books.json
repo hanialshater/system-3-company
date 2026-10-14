@@ -1,0 +1,619 @@
+{
+  "domain": "books",
+  "owner": "cm-books",
+  "note": "Owned by the category manager (cm-books); strands in subarea, owned by cm-books-<strand>. A concept is one book plus one idea (2 to 4 ideas per book); work is the book's id in content/works.json. demand: 1 low, 3 high. level: intro | core | stretch. Drafted 2026-10-14 by chief-of-staff-ceo-office at the founder's request (company/decisions/2026-10-14-books-and-big-ideas.md); demand ratings are a first estimate for cm-books to confirm, not learner data.",
+  "concepts": [
+    {
+      "id": "goal-bottleneck-sets-pace",
+      "name": "The Goal: the slowest step sets the pace of the whole line",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "goldratt-the-goal-1984"
+    },
+    {
+      "id": "goal-dependent-fluctuations",
+      "name": "The Goal: dependent steps plus random swings lose output",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "goal-bottleneck-sets-pace"
+      ],
+      "subarea": "business",
+      "work": "goldratt-the-goal-1984"
+    },
+    {
+      "id": "goal-local-efficiency-trap",
+      "name": "The Goal: busy non-bottlenecks only pile up inventory",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "goal-bottleneck-sets-pace"
+      ],
+      "subarea": "business",
+      "work": "goldratt-the-goal-1984"
+    },
+    {
+      "id": "innovators-overshoot-crossing",
+      "name": "The Innovator's Dilemma: a worse product that improves faster crosses 'good enough'",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "economics:growth-rate-gap"
+      ],
+      "subarea": "business",
+      "work": "christensen-innovators-dilemma-1997"
+    },
+    {
+      "id": "innovators-small-markets",
+      "name": "The Innovator's Dilemma: small new markets cannot feed a big firm's growth",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "innovators-overshoot-crossing"
+      ],
+      "subarea": "business",
+      "work": "christensen-innovators-dilemma-1997"
+    },
+    {
+      "id": "mmm-brooks-law",
+      "name": "The Mythical Man-Month: adding people to a late project can make it later",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "brooks-mythical-man-month-1975"
+    },
+    {
+      "id": "mmm-plan-to-throw-one-away",
+      "name": "The Mythical Man-Month: the first version is a prototype whether you plan it or not",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "mmm-brooks-law"
+      ],
+      "subarea": "business",
+      "work": "brooks-mythical-man-month-1975"
+    },
+    {
+      "id": "zero-power-law-returns",
+      "name": "Zero to One: one investment can return more than all the others combined",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:power-law-scaling"
+      ],
+      "subarea": "business",
+      "work": "thiel-zero-to-one-2014"
+    },
+    {
+      "id": "zero-competition-erodes-profit",
+      "name": "Zero to One: competition competes profits away; a monopoly keeps them",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "thiel-zero-to-one-2014"
+    },
+    {
+      "id": "lean-vanity-metrics",
+      "name": "The Lean Startup: cumulative totals always rise; cohorts tell the truth",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "ries-lean-startup-2011"
+    },
+    {
+      "id": "lean-mvp-learning",
+      "name": "The Lean Startup: the smallest test that could prove you wrong",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "lean-vanity-metrics"
+      ],
+      "subarea": "business",
+      "work": "ries-lean-startup-2011"
+    },
+    {
+      "id": "bets-resulting",
+      "name": "Thinking in Bets: do not judge a decision by one outcome",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:law-of-large-numbers"
+      ],
+      "subarea": "business",
+      "work": "duke-thinking-in-bets-2018"
+    },
+    {
+      "id": "bets-beliefs-as-odds",
+      "name": "Thinking in Bets: say how sure you are as a number",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "ai:calibration"
+      ],
+      "subarea": "business",
+      "work": "duke-thinking-in-bets-2018"
+    },
+    {
+      "id": "yes-batna",
+      "name": "Getting to Yes: your best alternative sets your real bottom line",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "fisher-ury-getting-to-yes-1981"
+    },
+    {
+      "id": "yes-interests-not-positions",
+      "name": "Getting to Yes: argue about interests, not positions",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "fisher-ury-getting-to-yes-1981"
+    },
+    {
+      "id": "money-tails-drive-everything",
+      "name": "The Psychology of Money: a few rare wins drive most results",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:heavy-tails"
+      ],
+      "subarea": "business",
+      "work": "housel-psychology-of-money-2020"
+    },
+    {
+      "id": "money-time-in-compounding",
+      "name": "The Psychology of Money: most of a compounder's wealth comes late",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "economics:compound-interest"
+      ],
+      "subarea": "business",
+      "work": "housel-psychology-of-money-2020"
+    },
+    {
+      "id": "checklist-steps-compound",
+      "name": "The Checklist Manifesto: many reliable steps still fail together",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "business",
+      "work": "gawande-checklist-manifesto-2009"
+    },
+    {
+      "id": "checklist-pause-points",
+      "name": "The Checklist Manifesto: short checklists at pause points, not manuals",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "checklist-steps-compound"
+      ],
+      "subarea": "business",
+      "work": "gawande-checklist-manifesto-2009"
+    },
+    {
+      "id": "tfs-anchoring",
+      "name": "Thinking, Fast and Slow: an arbitrary number pulls your estimate",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "kahneman-thinking-fast-slow-2011"
+    },
+    {
+      "id": "tfs-loss-aversion",
+      "name": "Thinking, Fast and Slow: losses weigh about twice as much as gains",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:expected-value"
+      ],
+      "subarea": "psychology",
+      "work": "kahneman-thinking-fast-slow-2011"
+    },
+    {
+      "id": "tfs-planning-fallacy",
+      "name": "Thinking, Fast and Slow: the outside view beats your own plan",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:base-rates"
+      ],
+      "subarea": "psychology",
+      "work": "kahneman-thinking-fast-slow-2011"
+    },
+    {
+      "id": "tfs-peak-end",
+      "name": "Thinking, Fast and Slow: memory keeps the peak and the end, not the length",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "kahneman-thinking-fast-slow-2011"
+    },
+    {
+      "id": "nudge-defaults",
+      "name": "Nudge: the default option wins most choices",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "thaler-sunstein-nudge-2008"
+    },
+    {
+      "id": "nudge-order-effects",
+      "name": "Nudge: what comes first or at eye level gets chosen more",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "nudge-defaults"
+      ],
+      "subarea": "psychology",
+      "work": "thaler-sunstein-nudge-2008"
+    },
+    {
+      "id": "irrational-decoy",
+      "name": "Predictably Irrational: a decoy option you'd never pick changes your choice",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "ariely-predictably-irrational-2008"
+    },
+    {
+      "id": "irrational-zero-price",
+      "name": "Predictably Irrational: free is not just a low price",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "ariely-predictably-irrational-2008"
+    },
+    {
+      "id": "habits-one-percent",
+      "name": "Atomic Habits: 1% a day compounds to 37x, if gains really compound",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "economics:compound-interest"
+      ],
+      "subarea": "psychology",
+      "work": "clear-atomic-habits-2018"
+    },
+    {
+      "id": "habits-plateau",
+      "name": "Atomic Habits: results lag effort, then seem to arrive at once",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "habits-one-percent"
+      ],
+      "subarea": "psychology",
+      "work": "clear-atomic-habits-2018"
+    },
+    {
+      "id": "habit-loop",
+      "name": "The Power of Habit: cue, routine, reward",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "duhigg-power-of-habit-2012"
+    },
+    {
+      "id": "habit-keystone",
+      "name": "The Power of Habit: one keystone habit that changes others",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "habit-loop"
+      ],
+      "subarea": "psychology",
+      "work": "duhigg-power-of-habit-2012"
+    },
+    {
+      "id": "influence-reciprocity",
+      "name": "Influence: a small gift creates a pull to give back",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "cialdini-influence-1984"
+    },
+    {
+      "id": "influence-social-proof",
+      "name": "Influence: when unsure, we copy what others do",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:information-cascade"
+      ],
+      "subarea": "psychology",
+      "work": "cialdini-influence-1984"
+    },
+    {
+      "id": "influence-commitment",
+      "name": "Influence: a small yes makes a bigger yes more likely",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "cialdini-influence-1984"
+    },
+    {
+      "id": "noise-bias-vs-noise",
+      "name": "Noise: scatter is an error too, not only being off-centre",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "ai:bias-variance"
+      ],
+      "subarea": "psychology",
+      "work": "kahneman-sibony-sunstein-noise-2021"
+    },
+    {
+      "id": "noise-independent-judges",
+      "name": "Noise: averaging independent judgments cuts noise",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "noise-bias-vs-noise"
+      ],
+      "subarea": "psychology",
+      "work": "kahneman-sibony-sunstein-noise-2021"
+    },
+    {
+      "id": "outliers-relative-age",
+      "name": "Outliers: an age cutoff decides who gets picked",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "gladwell-outliers-2008"
+    },
+    {
+      "id": "outliers-ten-thousand-hours",
+      "name": "Outliers: the 10,000-hour rule, and what practice data say",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "gladwell-outliers-2008"
+    },
+    {
+      "id": "mindset-praise-effort",
+      "name": "Mindset: praise for effort versus praise for ability",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "dweck-mindset-2006"
+    },
+    {
+      "id": "mindset-effect-size",
+      "name": "Mindset: how big growth-mindset effects turn out to be",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "mindset-praise-effort"
+      ],
+      "subarea": "psychology",
+      "work": "dweck-mindset-2006"
+    },
+    {
+      "id": "ggs-continental-axes",
+      "name": "Guns, Germs, and Steel: crops spread faster east-west than north-south",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "geography:climate-zones"
+      ],
+      "subarea": "science-history",
+      "work": "diamond-guns-germs-steel-1997"
+    },
+    {
+      "id": "ggs-anna-karenina",
+      "name": "Guns, Germs, and Steel: one missing trait rules a species out of domestication",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "diamond-guns-germs-steel-1997"
+    },
+    {
+      "id": "ggs-livestock-germs",
+      "name": "Guns, Germs, and Steel: crowd diseases came from livestock",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "life:sir-epidemic-curve"
+      ],
+      "subarea": "science-history",
+      "work": "diamond-guns-germs-steel-1997"
+    },
+    {
+      "id": "sapiens-agriculture-trap",
+      "name": "Sapiens: more food, more people, harder lives",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "life:logistic-growth"
+      ],
+      "subarea": "science-history",
+      "work": "harari-sapiens-2014"
+    },
+    {
+      "id": "sapiens-group-size",
+      "name": "Sapiens: gossip holds groups of about 150; stories hold millions",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "harari-sapiens-2014"
+    },
+    {
+      "id": "fact-gap-instinct",
+      "name": "Factfulness: most people live in the middle, not in two camps",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "rosling-factfulness-2018"
+    },
+    {
+      "id": "fact-straight-line",
+      "name": "Factfulness: world population is bending toward a peak, not a straight line",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "life:logistic-growth"
+      ],
+      "subarea": "science-history",
+      "work": "rosling-factfulness-2018"
+    },
+    {
+      "id": "fact-size-per-capita",
+      "name": "Factfulness: compare per person, not country totals",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "rosling-factfulness-2018"
+    },
+    {
+      "id": "swan-turkey",
+      "name": "The Black Swan: the turkey is most confident the day before",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "taleb-black-swan-2007"
+    },
+    {
+      "id": "swan-silent-evidence",
+      "name": "The Black Swan: the cemetery of failures you never see",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:sampling-bias"
+      ],
+      "subarea": "science-history",
+      "work": "taleb-black-swan-2007"
+    },
+    {
+      "id": "axelrod-tit-for-tat",
+      "name": "The Evolution of Cooperation: tit for tat wins the tournament",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "life:evolution-of-cooperation"
+      ],
+      "subarea": "science-history",
+      "work": "axelrod-evolution-of-cooperation-1984"
+    },
+    {
+      "id": "axelrod-shadow-of-future",
+      "name": "The Evolution of Cooperation: cooperation needs a long enough future",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "axelrod-tit-for-tat"
+      ],
+      "subarea": "science-history",
+      "work": "axelrod-evolution-of-cooperation-1984"
+    },
+    {
+      "id": "wnf-inclusive-extractive",
+      "name": "Why Nations Fail: one town split by a border, two outcomes",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science-history",
+      "work": "acemoglu-robinson-why-nations-fail-2012"
+    },
+    {
+      "id": "wnf-critical-junctures",
+      "name": "Why Nations Fail: small differences plus a shock diverge",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "wnf-inclusive-extractive"
+      ],
+      "subarea": "science-history",
+      "work": "acemoglu-robinson-why-nations-fail-2012"
+    },
+    {
+      "id": "signal-calibrated-weather",
+      "name": "The Signal and the Noise: when a forecast says 30%, does it rain 30% of the time?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "ai:calibration"
+      ],
+      "subarea": "science-history",
+      "work": "silver-signal-and-noise-2012"
+    },
+    {
+      "id": "signal-bayes-update",
+      "name": "The Signal and the Noise: update a little, often",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:bayesian-updating"
+      ],
+      "subarea": "science-history",
+      "work": "silver-signal-and-noise-2012"
+    },
+    {
+      "id": "meadows-delay-oscillation",
+      "name": "Thinking in Systems: a delay in the loop makes you overshoot",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "life:negative-feedback"
+      ],
+      "subarea": "science-history",
+      "work": "meadows-thinking-in-systems-2008"
+    },
+    {
+      "id": "meadows-stock-and-flow",
+      "name": "Thinking in Systems: a stock changes only through its flows",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "economics:stock-vs-flow"
+      ],
+      "subarea": "science-history",
+      "work": "meadows-thinking-in-systems-2008"
+    },
+    {
+      "id": "spring-biomagnification",
+      "name": "Silent Spring: a trace in the water, a dose at the top of the food chain",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "life:energy-pyramid"
+      ],
+      "subarea": "science-history",
+      "work": "carson-silent-spring-1962"
+    },
+    {
+      "id": "spring-resistance",
+      "name": "Silent Spring: spraying breeds resistant insects",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "life:natural-selection"
+      ],
+      "subarea": "science-history",
+      "work": "carson-silent-spring-1962"
+    }
+  ]
+}

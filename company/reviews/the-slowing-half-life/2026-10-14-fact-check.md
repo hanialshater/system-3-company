@@ -72,3 +72,14 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c3 | verified | v6 text and reveal ('so the wait stayed the same: one fixed half-life') are now stage-only, per the W-247 ruling. Own node: waitRow(1) = '10, 10 min' / '10, 10, 10 min'. Independent Euler of dA/dt = -kA reaches 40, 20, 10 at 10, 20, 30 min. t1/2 = ln2/k has no concentration term. The reveal needs first-twice, so the row always has at least 2 entries. Rests on derivation, not Atkins (not opened). Nit (builder): support field still says 'source'. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14, batch 3)
+
+Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: chemistry/the-slowing-half-life v7. Method: read Demo.tsx first, tracing every reachable path, Reset (where present) and reduced motion; re-ran the numbers in node/Python with independent re-implementations; checked how-chosen notes. Web sources could not be opened from this host (web fetch DNS failure, proxy 403), so nothing here is verified on an unopened source. No screenshots: the dev server at localhost:3530 did not respond. Scripts: scratchpad fc35-3/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Re-derived (Atkins not opened, not needed): rate = k[A]^2 integrates to 1/[A] = 1/[A]0 + kt, so t½ = 1/(k[A]0), which doubles each time [A]0 halves. Own RK4 integration of dA/dt = −A²/800 from 80: waits 10, 20, 40 min. Reveal reads waitRow(2) ('10, 20 min' or '10, 20, 40 min'); reveal needs second-twice, so ≥ 2 entries. Nit (builder): support could be 'derivation'. |
+| c3 | verified | Own RK4 of dA/dt = −(ln2/10)A from 80: waits 10, 10, 10 min; t½ = ln2/k has no concentration term. Reveal reads waitRow(1) ('10, 10 min' or '10, 10, 10 min') then 'the same 10 min every time'; first-twice required. |
+| c4 | verified | Mass action for a bimolecular step: rate ∝ [A]·[A]; halving gives (1/2)² = 1/4, then 1/16; first order 1/2, 1/4 (own node). Reveal prints rate(2,1) = 1/4 and rate(2,2) = 1/16 and rateRow(1) = '1/2 → 1/4' (or with → 1/8); the table rows show the same. Atkins not opened; the claim rests on the rate-law definition and the derivation. |
+| c5 | verified | Each halving of a power-law decay is the previous one rescaled: time scales by (1/2)/(1/2)^m = 2^(m−1), ×2 for m = 2, ×1 for m = 1 (matches the RK4 waits). The .why line strings match the claim; at the reveal the why line is not rendered but the reveal carries the same reasoning ('half as much left to lose at a quarter of the rate, each wait doubles'). |

@@ -33,9 +33,11 @@
     {
       "text": "The second query keeps topic matches that lack the excluded word. This local field matcher leaves Gmail’s conversation grouping out.",
       "support": "derivation",
-      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation on the fixture: fileResult operation \"exclude\" keeps rows containing \"train\" at step 1 (m1, m2, m4) and rows containing \"train\" but not \"newsletter\" at step 2 (m1, m4), i.e. topic matches lacking the excluded word; matching is per record (r.value.includes), so no conversation grouping is modelled. Own node agrees.",
       "id": "lifehacks.mail-minus-noise.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,7 +52,7 @@
       "id": "lifehacks.mail-minus-noise.recall",
       "text": "The minus sign excludes messages containing 'digest'; OR adds them, and 'budget digest' requires both words.",
       "support": "source",
-      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Key 0 unique under the fixture rules. Source Gmail Help 7190 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Key 0 unique under the fixture rules. Source Gmail Help 7190 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): UNVERIFIED. HELD. The recall asks \"Which Gmail search fits?\" and the why states real Gmail operator semantics (minus excludes, OR unions, a space requires both words). That rests on Google Gmail Help 7190, which I could not open (support.google.com unreachable). The logic is consistent with the lesson fixture, and the key (index 0) is the only option that excludes the digest, but the Gmail behaviour itself needs the opened page.",
       "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"

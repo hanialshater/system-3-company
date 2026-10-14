@@ -31,3 +31,11 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c6 | verified | plan() tests 0,1,1,3,3,2,6,3,6,5 = 30, equal to the independent count; Seen row and reveal terms match; 42 and 44 at 6. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14, batch 3)
+
+Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: cs/one-crowded-bucket v4. Method: read Demo.tsx first, tracing every reachable path, Reset (where present) and reduced motion; re-ran the numbers in node/Python with independent re-implementations; checked how-chosen notes. Web sources could not be opened from this host (web fetch DNS failure, proxy 403), so nothing here is verified on an unopened source. No screenshots: the dev server at localhost:3530 did not respond. Scripts: scratchpad fc35-3/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own independent count, not plan(): tests per number = (# bigger earlier in the bucket) + (1 if any smaller earlier) gives 0, 1, 1, 3, 3, 2, 6, 3, 6, 5 = 30 in arrival order, nonzero terms 1+1+3+3+2+6+3+6+5. The v4 Seen row is 'Seen, clumped: all 10 in 41-50; 1+1+3+3+2+6+3+6+5 = 30 comparisons' (results.clumped set by finishSort, survives switching hands); the reveal prints the same terms. Tile tallies render as p.slides.get(val) only when v.sorted and > 0 (47 shows none); the picture's bottom line reads 'Comparisons: 30 · small number on a tile: its tests'. Reduced motion jumps to the last frame and still calls finishSort. Not screenshotted (dev server at :3530 not responding), so the 14 px tile legibility was not checked visually; that is a QA matter. |

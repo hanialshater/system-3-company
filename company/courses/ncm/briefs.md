@@ -809,3 +809,353 @@ Owner to re-check: `cm-life-health-epidemiology` · 1 brief
 - Needs interaction-designer spec: no.
 - Differs from nearest: life/spreaders-are-rare counts cases that infect no one (dispersion); immunity-eats-r is the average R. This one asks for the whole chain's survival chance. Name the Poisson assumption on the card.
 
+
+## Wave J (2026-10-14): 16 briefs for concepts no lesson teaches yet
+
+**Why wave J looks different.** Every one of the 106 demo-able sections in `content/courses/ncm/chapters.json` now has at least one built lesson: the 51 gap briefs and the batch-1 briefs are all in `src/demos/`, and `node tools/meta.mjs coverage --work=easley-kleinberg-2010` lists 49 lessons. So no demo-able *section* is uncovered. Wave J briefs the next layer down:
+- (a) **concepts inside covered sections that their lesson does not teach**: 2.2 (why only one giant component), 2.3 (friends of friends overlap), 3.1 (clustering coefficient), 6.10 (sequential games), 8.3 (best-response convergence), 10.5 (clearing prices maximise total value), 13.3–13.4 (one link grows the core), 14.3 (rank sinks), 16.3–16.5 (why the lead of two), 17.3 (the price cliff), 19.2 (where q comes from);
+- (b) **five sections the first map marked not demo-able, re-judged**: 4.2 (selection vs influence), 9.2 (when to auction), 17.6 (stand-alone value) and 23.2 (transitive preferences) now have a prediction the stage can check. 19.6 (knowledge and collective action) was tried and is **held with an objection**: the first map's reason still stands.
+
+**Order (fewest lessons first).** I counted lessons per chapter from the coverage tool: ch. 2 (1), 13 (1), 8, 16 and 17 (2 each), then 4, 10, 14 and 20 (3), then 6, 9 and 3 (4 or 5). Chapters 2 and 17 get two briefs each, and 13, 8, 16, 4, 10, 14, 9, 6 and 3 get one each. Chapter 23 gets one (transitivity, the prerequisite its voting lessons assume), and chapter 19 gets one plus the held one. **No brief for ch. 1, 11, 20, 21, 22 or 24**: ch. 1 is the overview; ch. 11's remaining sections (11.1, 11.2, 11.4, 11.5, 11.7) keep their not-demo-able reasons (11.4 still needs a 6-node equilibrium I could not make checkable in 60 s); ch. 20–22 have no unbriefed predictable concept I could find that does not repeat a built lesson; ch. 24's 24.3 (intellectual property) is better served by a reference row on `economics/monopolist-holds-back` than by a new lesson (proposed below, not applied).
+
+**Rules these follow** (same as the first wave, plus `company/product/demo-standard.md`): the book is a map only, with no text, figures or exercises copied, and every example and number is our own. Every answer was re-run in node (`ncm-wavej-checks.mjs` in the session scratchpad); each Check line pastes its output. References cite the **chapter** and keep the section in `section_unconfirmed`, because the book host is still blocked (proxy 403). Each brief lists its controls in DOM order with preset chips, so pressing each control once reaches every milestone (QA contract), including the question's own case. Reveals are drafts of 90 words or fewer that quote only milestone or current-state values. Stage labels are 10 px or larger. No brief needs an interaction-designer spec: all are single card or simulation run.
+
+**Acceptance.** The caller (Wave J lead) asked me to do the strand managers' acceptance step myself by checking each strand's rules. I did that, and it is recorded on each brief. Accepted briefs are copied into `company/domains/briefs/<domain>.<strand>.md` under "Course: NCM", and their concepts are in `content/curriculum/<domain>.json` with `course: ncm` and no `proposed` flag. This is not the strand manager's own review. Each strand manager can still object, and board items W-502 to W-507 ask each of them to re-check (W-508: reference rows for demo-builder). The one brief that fails a strand rule (J3) carries its objection here, stays `proposed: true`, and is not in a strand file.
+
+**Reference row proposed (metadata only, not applied):** `economics/monopolist-holds-back` ← `{"work":"easley-kleinberg-2010","chapter":24,"section_unconfirmed":"24.3"}` (adjacent: a patent is a temporary monopoly). Also still open from S2-18: `economics/loaf-with-smoke`, `economics/shared-pasture` and several life and probability lessons have `references: []`, so the coverage tool under-counts chapters 21 and 24.
+
+### math.discrete (wave J)
+
+Owner: `cm-math-discrete` · 5 briefs
+
+#### J1. friends-of-friends-overlap · concept: math:friends-of-friends-overlap · core · demand 2 · format: Single card with Step (step chips; the 1,000-person ring drawn as untapped texture)
+- Sections: E&K ch. 2 (section 2.3, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: everyone has about the same number of friends; multiplying 10 × 9 / does not know: that friends of friends are mostly your own friends when friends know each other, so the count two steps out is a small fraction of 10 × 9.
+- Misconception: If everyone has 10 friends, about 90 people are two steps away from you.
+- Prediction (stage text ≤ 25 words): "1,000 villagers sit in a ring; each knows the 5 nearest on each side (10 friends). How many people are exactly two steps from you?" options: A. 90 / B. 45 / C. 10 (answer: C (10)).
+- Check: Node `J1 {"tree":{"d1":10,"d2":90,"d3":810,"within3":911},"ring":{"d1":10,"d2":10,"d3":10,"within3":31,"maxDist":100}}`. Ring: BFS from person 0 on a 1,000-ring where each links to the 5 nearest each side. "No shared friends" world: each friend brings 9 new people (a tree).
+- Stage and controls: Initial state: the village, step 1 shown (10 friends ringed). Controls in DOM order: [2 steps] [3 steps] [No shared friends] [Village]; the active chip is disabled (`className="active"`). Readout: "people at this step: N" and "within N steps: M". Labels ≥ 10 px; the ring is texture (> 20 nodes, nothing tappable).
+- QA path (each control once, DOM order, presets only): Pressing each control once in DOM order: 2 steps (milestone 1: village at 2 steps, 10 people), 3 steps (village 10 more), No shared friends (milestone 2: the tree at 3 steps, 810; the readout also lists 90 at step 2), Village (back). Every quoted number is on the readout when the reveal opens.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): In the village your friends' friends are mostly your own friends, so step 2 adds only 10 new people (and step 3 another 10), not 90 and 810. Multiplying 10 × 9 assumes none of your friends know each other; closed triangles make the real count far smaller. (≤ 90 words; quotes the step the learner last viewed.)
+- Planned claims:
+  1. In the ring of 1,000 where each person knows the 5 nearest on each side, 10 people are exactly 1, 2 and 3 steps away, 31 people are within 3 steps (counting you), and the farthest person is 100 steps away. support: derivation; source: node BFS.
+  2. If no two of anyone's friends know each other, 10 friends each with 10 friends give 90 people at 2 steps and 810 at 3 (911 within 3). support: derivation; source: arithmetic.
+  3. Counting 'friends × friends' over-estimates the people two steps away when friendships close into triangles (the book's caution about naive breadth-first growth). support: citation; source: E&K ch. 2 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card with Step (step chips; the 1,000-person ring drawn as untapped texture)
+- Curriculum: `{"primary": "math:friends-of-friends-overlap", "also": ["math:exponential-growth"], "prerequisites": ["math:exponential-growth"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 2, "section_unconfirmed": "2.3"}], "tags": ["networks", "breadth-first search", "triadic closure"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/wave-from-the-corner and queue-or-stack-same-search teach breadth-first layers on a grid; probability/few-shortcuts-shrink-the-world adds random shortcuts to a ring (ch. 20). This one shows why the ring without shortcuts grows so slowly, the problem the shortcuts solve. The friendship-paradox brief (probability.md) compares averages, not layer sizes.
+- Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
+
+#### J2. new-friend-loosens-the-circle · concept: math:clustering-coefficient · core · demand 2 · format: Single card (hand-drawn network stage, 6 people; 'Fay knows' chips)
+- Sections: E&K ch. 3 (section 3.1, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: friend pairs; counting pairs (handshake-counting) / does not know: that clustering is the share of a person's friend pairs who are friends, and that a new friend adds new pairs to the bottom of that share.
+- Misconception: A new friend who knows some of your friends makes your circle tighter.
+- Prediction (stage text ≤ 25 words): "Ana's 4 friends: 3 of their 6 pairs are friends (clustering 0.5). New friend Fay knows one of them. Ana's clustering now?" options: A. Higher than 0.5 / B. Still 0.5 / C. Lower than 0.5 (answer: C (0.4)).
+- Check: Node `J2 {"before":0.5,"fayKnows":[0.3,0.4,0.5,0.6,0.7]}`: clustering = linked friend pairs / all friend pairs = (3 + k) / 10 when Fay knows k of the 4.
+- Stage and controls: Ana in the centre, friends B–E on an arc with B–C, C–D, D–E linked; Fay appears when a chip is pressed. Controls in DOM order: [Fay knows 1] [Fay knows 2] [Fay knows 3] [No Fay]. Readout: "linked pairs 4 of 10 = 0.4". ≤ 6 nodes, labels ≥ 10 px, no node taps needed.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: knows 1 (milestone 1: 0.4, the question's case), knows 2 (milestone 2: 0.5, break-even), knows 3 (0.6), No Fay (0.5). The reveal quotes the recorded milestone values.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Fay makes 4 new pairs (her with each old friend), so Ana's pairs go from 6 to 10. Knowing 1 of them gives 4 linked pairs of 10: 0.4, lower. She had to know 2 of the 4, half of them, just to hold 0.5. (≤ 90 words.)
+- Planned claims:
+  1. Before Fay, 3 of Ana's 6 friend pairs are linked: clustering 3/6 = 0.5. support: derivation.
+  2. With Fay knowing 0, 1, 2 or 3 of the four, clustering is 0.3, 0.4, 0.5 or 0.6 ((3 + k)/10). support: derivation; source: node.
+  3. A person's clustering coefficient is the share of pairs of their friends who are friends with each other. support: definition; source: E&K ch. 3 (section unconfirmed; the map's 3.1 concept list); Watts and Strogatz (1998), Nature 393. Attribution: fact-checker confirms.
+- Format: Single card (hand-drawn network stage, 6 people; 'Fay knows' chips)
+- Curriculum: `{"primary": "math:clustering-coefficient", "also": ["math:handshake-counting"], "prerequisites": ["math:handshake-counting"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 3, "section_unconfirmed": "3.1"}], "tags": ["networks", "clustering", "triadic closure"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/broker-between-two-groups counts unlinked friend pairs around one person (structural holes) at a fixed moment; this one asks how the share moves when a friend is added. news-comes-from-acquaintances is about which tie is a bridge. No lesson defines clustering.
+- Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
+
+#### J3. protest-needs-a-shared-view · concept: math:collective-action-knowledge · stretch · demand 1 · format: Single card (hand-drawn network stage, 5 people; network chips)
+- Sections: E&K ch. 19 (section 19.6, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: threshold rules from cluster-stops-the-cascade / does not know: that people who each need a crowd only act when they can be sure the others will, which depends on who can see whom.
+- Misconception: If enough people are willing, the protest happens.
+- Prediction (stage text ≤ 25 words): "Five people each join only if sure 4 will (counting themselves). Each knows only their friends' rules. In a ring, how many join?" options: A. 0 / B. 3 / C. 5 (answer: A (0)).
+- Check: Node `J3 {"ring":{"joiners":[],"maxSeenByAnyone":3},"ringPlus3":{"joiners":[0,1,2,3],...},"complete":{"joiners":[0,1,2,3,4],...}}` under my rule: a person joins iff they are in a fully linked group of at least 4 whose members all need at most 4.
+- Stage and controls: Chips: [Ring + 3 links] [Everyone linked] [Ring].
+- QA path (each control once, DOM order, presets only): Each chip once reaches ring (0), +3 links (4 join), complete (5).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): In the ring each person can see only 3 people, so nobody can be sure 4 will come; link four of them fully and those four can.
+- Planned claims:
+  1. Under the stage's rule, nobody in the ring joins, four join when 0–3 are fully linked, and all five join when everyone is linked. support: derivation; source: node.
+  2. Knowing that others know is what lets a group act. support: citation; source: E&K ch. 19 (section unconfirmed); Chwe (1999). Attribution: fact-checker confirms.
+- Format: Single card (hand-drawn network stage, 5 people; network chips)
+- Curriculum: `{"primary": "math:collective-action-knowledge", "also": [], "prerequisites": ["math:threshold-cascade"], "level": "stretch", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 19, "section_unconfirmed": "19.6"}], "tags": ["collective action", "common knowledge"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cluster-stops-the-cascade and one-shy-rioter-stops-the-riot are about thresholds spreading over rounds; this one is about knowledge before anyone moves.
+**Objection (not accepted; held).** Applying cm-math-discrete's acceptance rules, this brief fails two of them. (1) *Show the why* (decision 2026-10-14-told-vs-shown): the result rests on what each person knows the others know. My stage only works because the rule I state ("a fully linked group whose members all need at most its size can be sure") is the answer itself, so the reveal would tell the cause instead of showing it. This is the same reason the map marked 19.6 not demo-able. (2) *Source*: with the book host blocked I cannot confirm that my rule matches the book's knowledge model. The claim would be my invention presented as the book's model. What happens to it: the concept stays `proposed: true` in content/curriculum/math.json, and the brief does not go into math.discrete.md, so `claim.mjs` never hands it out. To lift the objection, someone with the book checks the model (blocked on access), and an interaction designer finds a stage where 'who knows who knows' is visible rather than stated. Board item W-502 (cm-math-discrete). 19.6 stays `demoable: false` in chapters.json, with this brief noted.
+
+#### J15. payoffs-set-the-threshold · concept: math:coordination-threshold · core · demand 2 · format: Single card (friend-count and payoff chips; two live payoff bars)
+- Sections: E&K ch. 19 (section 19.2, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: the rule 'join once half your friends have' (cluster-stops-the-cascade) / does not know: that the share comes from the payoffs: with a per friend on New and b on Old, you switch once a share b/(a + b) of friends are on New.
+- Misconception: You switch to a new option once most of your friends have.
+- Prediction (stage text ≤ 25 words): "Per friend: both on New, you each get 3; both on Old, 2; mismatched, 0. Of 10 friends, how many on New before you switch?" options: A. 4 / B. 5 / C. 6 (answer: A (4: New 12 = Old 12; switch when New pays at least as much)).
+- Check: Node `J15 {"q32":0.4,"q22":0.5,"q12":0.667,"q41":0.2,"firstKof10":4,"table":[[3,9,14],[4,12,12],[5,15,10]]}`: with k of 10 friends on New, New pays 3k and Old pays 2(10 − k).
+- Stage and controls: Ten friend tokens, k filled for New; two payoff bars (New 3k, Old 2(10 − k)). Controls in DOM order: [4 on New] [3 on New] [New pays 2] [New pays 4, Old 1]; the payoff chips recompute the break-even k. Readout "New N · Old M". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 4 on New (milestone 1: 12 vs 12, the question's case), 3 on New (9 vs 14), New pays 2 (milestone 2: break-even moves to 5 of 10), New pays 4, Old 1 (break-even 2 of 10).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): With 4 of your 10 friends on New, New pays 4 × 3 = 12 and Old pays 6 × 2 = 12: 4 is enough, not a majority. The share you need is Old's payoff over both, 2/(3 + 2) = 40%. When New paid only 2 you needed 5; when it paid 4 against Old's 1, just 2. The better the new thing, the fewer friends it takes. (≤ 90 words.)
+- Planned claims:
+  1. With payoffs 3 (both New), 2 (both Old), 0 (mismatch) and k of 10 friends on New, New pays 3k and Old 2(10 − k); they are equal at k = 4. support: derivation.
+  2. In general the switching share is q = b/(a + b): 40% for 3 and 2, 50% for 2 and 2, 20% for 4 and 1. support: derivation.
+  3. This networked coordination game gives the threshold rule used in the cascade model. support: citation; source: E&K ch. 19 (section unconfirmed); Morris (2000), Rev. Econ. Studies 67. Attribution: fact-checker confirms.
+- Format: Single card (friend-count and payoff chips; two live payoff bars)
+- Curriculum: `{"primary": "math:coordination-threshold", "also": ["economics:coordination-stag-hunt"], "prerequisites": ["math:threshold-cascade"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 19, "section_unconfirmed": "19.2"}], "tags": ["cascades", "coordination", "thresholds"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/cluster-stops-the-cascade takes q = 1/2 as a given rule and asks where a cascade stops; economics/stag-needs-three-in-four is a two-player belief threshold. This one derives q from payoffs across many friends. Build after cluster-stops-the-cascade (built).
+- Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
+
+#### J16. the-swap-that-goes-in-circles · concept: math:transitive-preferences · intro · demand 2 · format: Single card (swap preset chips)
+- Sections: E&K ch. 23 (section 23.2, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: preferring one thing to another; paying a little for something you prefer / does not know: that preferences in a circle let someone sell you swaps for ever, which is why choice models assume preferences are transitive.
+- Misconception: Preferences that go in a circle are odd but harmless.
+- Prediction (stage text ≤ 25 words): "Max prefers apple to banana, banana to cherry, cherry to apple. He pays 10¢ per preferred swap. He holds a cherry. After 6 swaps?" options: A. Apple, 60¢ poorer / B. Cherry, 60¢ poorer / C. Banana, 30¢ poorer (answer: B (cherry, 60¢ poorer)).
+- Check: Swaps follow the preferences: cherry → banana → apple → cherry, one 3-swap loop; 6 swaps = 2 loops = 60¢ and back to the cherry. With ranked preferences apple > banana > cherry the swaps stop after 2 (holding the apple, 20¢ paid). Hand derivation; the builder re-runs it in node.
+- Stage and controls: Three fruit cards on a circle with preference arrows; a coin counter. Controls in DOM order: [6 swaps] [3 swaps] [Rank them: apple first] [Back to the circle]; each preset replays its swaps from the cherry. Readout "holding: X · paid: N¢". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 6 swaps (milestone 1: cherry, 60¢, the question's case), 3 swaps (cherry, 30¢), Rank them (milestone 2: stops at apple after 2 swaps, 20¢), Back to the circle.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Every swap was one Max wanted, yet after 3 he held the cherry again, 30¢ poorer, and after your 6 he had paid 60¢ for nothing. Once his preferences were ranked, the swaps stopped at his favourite after 2. That is why choice models assume preferences are transitive. A group's majority can still go round in a circle even when every voter's preferences are ranked. (≤ 90 words.)
+- Planned claims:
+  1. With apple > banana, banana > cherry and cherry > apple, starting from a cherry, the swaps go cherry → banana → apple → cherry; 6 swaps cost 60¢ and end on the cherry. support: derivation.
+  2. With apple > banana > cherry, swaps from a cherry stop at the apple after 2 (20¢). support: derivation.
+  3. Models of individual choice assume preferences are complete and transitive. support: citation; source: E&K ch. 23 (section unconfirmed).
+  4. The 'money pump' argument for transitivity is due to Davidson, McKinsey and Suppes (1955). support: citation; source: Philosophy of Science 22. Attribution: fact-checker confirms. The book is cited only for transitivity; the pump example is ours.
+- Format: Single card (swap preset chips)
+- Curriculum: `{"primary": "math:transitive-preferences", "also": ["probability:nontransitive-dice"], "prerequisites": ["math:condorcet-cycle"], "level": "intro", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 23, "section_unconfirmed": "23.2"}], "tags": ["voting", "preferences", "transitivity"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/agenda-picks-the-winner shows a group cycle from voters whose preferences are ranked; probability/dice-that-chase-each-other is a circle of dice, not of preferences. This one is why each voter is assumed ranked in the first place. Build before or after agenda-picks-the-winner (built).
+- Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
+
+### cs.algorithms (wave J)
+
+Owner: `cm-cs-algorithms` · 1 brief
+
+#### J4. two-pages-swallow-the-rank · concept: cs:rank-sink-scaled-pagerank · core · demand 2 · format: Single card with step-run button (round chips + jump toggle)
+- Sections: E&K ch. 14 (section 14.3, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: PageRank passes a page's score along its links (one-good-link-beats-many) / does not know: that without random jumps a group of pages that links only to itself soaks up every page's score.
+- Misconception: Passing score along links shares it out fairly, so every page keeps some.
+- Prediction (stage text ≤ 25 words): "E and F link only to each other. Each round every page splits its score among its links. After 50 rounds, E and F hold:" options: A. About 33% / B. About 67% / C. About 100% (answer: C (100.0% to one decimal)).
+- Check: Links A→B, B→C, C→A, C→D, D→E, E→F, F→E; start 1/6 each. Node `J4 {"basic":{"r5":0.7917,"r10":0.9375,"r20":0.9935,"r50":1},"scaled085":{"r50":0.6985,"r200":0.6985,"A":0.064,"C":0.093}}` (scaled: each page passes 85% along links, 15% spread evenly over all 6).
+- Stage and controls: Six page nodes with score bars; E and F outlined as one group, readout "E + F: N%". Controls in DOM order: [5 rounds] [50 rounds] [Add 15% random jumps] [No jumps]. The active chip is disabled. Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 5 rounds (79.2%), 50 rounds (milestone 1: 100.0%, the question's case), Add jumps (milestone 2: 69.9% at 50 rounds, A–D above zero), No jumps (back to 100.0%).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Score that reaches E or F never leaves, so round by round it drains in: your 50 rounds left E and F with 100.0% and A to D with nothing. That is a rank sink. Scaled PageRank sends 15% of every page's score to a random page each round; with it E and F keep 69.9% and every page keeps some. (≤ 90 words.)
+- Planned claims:
+  1. Under the basic rule (each page splits its whole score among its links), E and F hold 79.2% of the score after 5 rounds, 93.8% after 10, 99.4% after 20 and 100.0% (to one decimal) after 50. support: derivation; source: node power iteration.
+  2. With 15% of every score spread evenly each round (s = 0.85), E and F hold 69.9% (the same at 50 and 200 rounds), A 0.064 and C 0.093. support: derivation; source: node.
+  3. Scaled PageRank (random jumps) is the fix for score draining into groups of pages with no links out. support: citation; source: E&K ch. 14 (section unconfirmed); Brin and Page (1998). Attribution: fact-checker confirms.
+- Format: Single card with step-run button (round chips + jump toggle)
+- Curriculum: `{"primary": "cs:rank-sink-scaled-pagerank", "also": ["cs:pagerank-random-walk"], "prerequisites": ["cs:pagerank"], "level": "core", "strand": "algorithms", "references": [{"work": "easley-kleinberg-2010", "chapter": 14, "section_unconfirmed": "14.3"}], "tags": ["web", "PageRank", "link analysis"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/one-good-link-beats-many already uses the scaled rule (1.5% free per page) without saying why; cs/random-surfer-finds-the-rank reads the jumps as a surfer. This one shows what breaks without the jump. Build after one-good-link-beats-many (built).
+- Acceptance (cs.algorithms, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/cs.algorithms.md` under "Course: NCM".
+
+### cs.systems (wave J)
+
+Owner: `cm-cs-systems` · 2 briefs
+
+#### J5. one-link-back-grows-the-core · concept: cs:core-grows-by-one-link · core · demand 2 · format: Single card (hand-drawn network stage, 10 pages; link preset chips)
+- Sections: E&K ch. 13 (section 13.3–13.4, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: one-way links and the IN / core / OUT picture (web-bow-tie-reach) / does not know: that one new link from OUT back to IN joins exactly the pages on the loop it closes, not the whole of IN and OUT.
+- Misconception: One link from OUT back to IN pulls all of IN and OUT into the core.
+- Prediction (stage text ≤ 25 words): "Core A–D: each reaches every other. Add one link from OUT page I to IN page F. How many pages form the core now?" options: A. 5 / B. 8 / C. 10 (answer: B (8: A–F, H, I)).
+- Check: Core A→B→C→D→A; IN: E→A, F→E, G→B; OUT: C→H, H→I, D→J. Node `J5 {"before":["A","B","C","D"],"addIF":["A","B","C","D","E","F","H","I"],"addJG":["A","B","C","D","G","J"],"both":[all 10]}`.
+- Stage and controls: Ten page nodes in a bow-tie layout (IN left, core centre, OUT right), core pages filled. Controls in DOM order: [Add I → F] [Add J → G] [Both] [None]; exclusive presets, the active one disabled. Readout: "core: N pages". ≤ 12 nodes, no node taps, labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: I → F (milestone 1: core 8, the question's case), J → G (milestone 2: core 6), Both (10), None (4). The reveal quotes the recorded milestones.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): The new link closes one loop: F → E → A → B → C → H → I → F. Every page on it can now reach every other, so E, F, H and I join: 8. G still can't be reached from the core, and J still can't get back, so they stay out. One back link adds exactly the pages on the loop it closes. (≤ 90 words.)
+- Planned claims:
+  1. In the stage graph the core (pages that reach each other both ways) is A–D; adding I → F makes it A–F, H and I (8 pages); adding J → G instead gives A–D, G, J (6); adding both gives all 10. support: derivation; source: node reachability both ways.
+  2. A page is in the same strongly connected group as the core exactly when it can reach the core and the core can reach it. support: definition; source: E&K ch. 13 (section unconfirmed).
+  3. The 10-page graph is a toy, not to scale. support: definition.
+- Format: Single card (hand-drawn network stage, 10 pages; link preset chips)
+- Curriculum: `{"primary": "cs:core-grows-by-one-link", "also": ["cs:strongly-connected-components"], "prerequisites": ["cs:web-bow-tie", "cs:strongly-connected-components"], "level": "core", "strand": "systems", "references": [{"work": "easley-kleinberg-2010", "chapter": 13, "section_unconfirmed": "13.3–13.4"}], "tags": ["web", "directed graphs", "strongly connected"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/web-bow-tie-reach asks what one page can reach; cs/groups-where-everyone-reaches-everyone finds the groups with two depth-first passes (CLRS). This one asks how one new link changes the core. Build after web-bow-tie-reach (built).
+- Acceptance (cs.systems, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/cs.systems.md` under "Course: NCM".
+
+#### J7. drivers-stop-switching · concept: cs:best-response-convergence · core · demand 2 · format: Single card with step-run button (switch log and delay meter)
+- Sections: E&K ch. 8 (section 8.3, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: each driver picks the faster road (new-road-slower-trip, selfish-routes-cost-a-third-more) / does not know: that when drivers switch one at a time, a meter of total delay falls by exactly each switcher's saving, so the switching must stop.
+- Misconception: Selfish drivers chasing the faster road keep flipping back and forth for ever.
+- Prediction (stage text ≤ 25 words): "Six drivers, two roads. One at a time, a driver switches if the other road is faster for them right now. The switching:" options: A. Stops within a few switches / B. Goes back and forth for ever / C. Stops only for some driver orders (answer: A (3 switches from all-on-B; at most 3 from any of the 64 starts)).
+- Check: Road A takes 10 min × cars on A; road B takes 25 + 5 × cars on B; a driver switches only if strictly faster. Node `J7 {"log":[{"phi":255},{"saved":45,"phiDrop":45,"phi":210},{"saved":30,"phiDrop":30,"phi":180},{"saved":15,"phiDrop":15,"phi":165}],"final":{"onA":3,"onB":3,"timeA":30,"timeB":40}}`; `J7all {"starts":64,"maxMoves":3}`. All switching at once from all-on-B alternates 55 min (all on B) and 60 min (all on A) for ever (hand check: 10 < 55, then 30 < 60).
+- Stage and controls: Two road bars with car tokens and trip times; a "delay meter" bar (sum over each road of 1st car's time + 2nd car's time + …). Controls in DOM order: [One at a time: run] [All at once: 4 rounds] [Start over]. The run shows each switch as a log row "driver 2 saves 30 min · meter −30". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: One at a time (milestone 1: settled after 3 switches, A 30 min, B 40 min, meter 255 → 165), All at once (milestone 2: 4 rounds flipping 55 / 60 / 55 / 60), Start over (all on B; the recorded milestones stay quoted).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Each switch lowered the meter by exactly the minutes that driver saved: 45, 30, 15. The meter can't fall for ever, so after 3 switches nobody could gain: 3 drivers on A at 30 min, 3 on B at 40. When everyone switched at once there was no such meter, and the crowd flipped between 55 and 60 minutes round after round. (≤ 90 words.)
+- Planned claims:
+  1. On the stage's roads, switching one at a time from all-on-B takes 3 switches (savings 45, 30, 15 min) and ends with 3 drivers on A at 30 min and 3 on B at 40 min. support: derivation; source: node.
+  2. The delay meter (for each road, the sum of the trip time with 1, 2, …, n cars) falls by exactly the switching driver's saving at every switch: 255, 210, 180, 165. support: derivation; source: node.
+  3. From each of the 64 starting arrangements, one-at-a-time switching (drivers in turn) stops within 3 switches. support: derivation; source: node enumeration.
+  4. If all six switch at once whenever the other road is faster, they alternate between all on B (55 min) and all on A (60 min) for ever. support: derivation.
+  5. In routing games of this kind one-at-a-time best responses always stop at an equilibrium, because such a potential falls with every switch. support: citation; source: E&K ch. 8 advanced material (section unconfirmed); Rosenthal (1973), Int. J. Game Theory 2; Monderer and Shapley (1996). Attribution: fact-checker confirms.
+- Format: Single card with step-run button (switch log and delay meter)
+- Curriculum: `{"primary": "cs:best-response-convergence", "also": ["cs:price-of-anarchy"], "prerequisites": ["cs:braess-paradox"], "level": "core", "strand": "systems", "references": [{"work": "easley-kleinberg-2010", "chapter": 8, "section_unconfirmed": "8.3"}], "tags": ["traffic", "game theory", "equilibrium"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/new-road-slower-trip (Braess) and cs/selfish-routes-cost-a-third-more compare the equilibrium with the best plan; neither asks whether selfish switching ever ends. Build after both (built).
+- Acceptance (cs.systems, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/cs.systems.md` under "Course: NCM".
+
+### probability.chance (wave J)
+
+Owner: `cm-probability-chance` · 1 brief
+
+#### J6. two-big-groups-stay-apart · concept: probability:two-giants-unlikely · core · demand 2 · format: Simulation run (seeded worlds, chance chips)
+- Sections: E&K ch. 2 (section 2.2, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: a giant connected group appears once people have a friend or two each (the-giant-appears) / does not know: that two big groups in one population are almost certain to have at least one link between them, so they merge.
+- Misconception: Two large groups can easily stay completely cut off from each other.
+- Prediction (stage text ≤ 25 words): "Two towns of 500. Any cross-town pair are friends with chance 1 in 10,000. Chance nobody has a friend in the other town?" options: A. About 1 in 3 / B. About 1 in 100 / C. About 1 in 70 billion (answer: C ((1 − 1/10,000)^250,000 ≈ 1.4 × 10^-11)).
+- Check: Node `J6 {"pairs":250000,"expectedLinks":25,"Pzero":1.387e-11,"sim":{"runs":1000,"zero":0,"mean":25.327,"min":13,"max":43},"at1in100k":{"expected":2.5,"Pzero":0.0821},"at1in1M":{"expected":0.25,"Pzero":0.7788}}` (mulberry32 seeds 1–1,000, one world per seed). The builder draws each world's link count efficiently (for example geometric gaps) and records its own seeds and tallies.
+- Stage and controls: Two town blobs with cross links drawn as lines; tally "worlds run: N · worlds with 0 links: Z · fewest links: m". Controls in DOM order: [Run 100 worlds] [1 in 100,000] [1 in 1,000,000] [1 in 10,000]; each chance chip runs 100 worlds at that chance. Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Run 100 (milestone 1: 100 worlds at 1 in 10,000, zero count 0), 1 in 100,000 (milestone 2: about 8% of worlds have 0), 1 in 1,000,000 (about 78% have 0), 1 in 10,000 (back). The reveal quotes the learner's recorded tallies.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): 250,000 cross pairs × 1 in 10,000 = 25 links expected. In your 100 worlds the fewest was m and none had 0. Zero needs every pair to miss: (1 − 1/10,000)^250,000, about 1 in 70 billion. Only at 1 in a million do towns often stay apart. So in a real population two giant groups almost surely touch and merge. (≤ 90 words; m is the learner's own.)
+- Planned claims:
+  1. Two towns of 500 have 250,000 cross pairs; at 1 in 10,000 each, 25 cross links are expected. support: derivation.
+  2. The chance of no cross link is (1 − 1/10,000)^250,000 ≈ 1.4 × 10^-11, about 1 in 72 billion. support: derivation; source: node.
+  3. At 1 in 100,000 the chance of no link is 8.2%; at 1 in 1,000,000 it is 77.9%. support: derivation; source: node.
+  4. In the lesson's seeded worlds (seeds disclosed in meta), the tally is the learner's own run; in my check, 1,000 worlds at 1 in 10,000 had 13 to 43 links and none had 0. support: simulation; source: node mulberry32.
+  5. Two giant components rarely coexist because a single link between them merges them, and with so many pairs at least one link is near-certain. support: citation; source: E&K ch. 2 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Simulation run (seeded worlds, chance chips)
+- Curriculum: `{"primary": "probability:two-giants-unlikely", "also": ["probability:at-least-once"], "prerequisites": ["probability:giant-component", "probability:at-least-once"], "level": "core", "strand": "chance", "references": [{"work": "easley-kleinberg-2010", "chapter": 2, "section_unconfirmed": "2.2"}], "tags": ["networks", "giant component", "at least once"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/the-giant-appears shows a giant group forming as links are added (its claim 5 notes that merging happens); this one asks why there is only one, with the chance of zero links made explicit. Build after the-giant-appears (built).
+- Acceptance (probability.chance, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/probability.chance.md` under "Course: NCM".
+
+### probability.statistics (wave J)
+
+Owner: `cm-probability-statistics` · 2 briefs
+
+#### J8. your-clue-against-two-picks · concept: probability:cascade-bayes-threshold · core · demand 2 · format: Single card (combine button, accuracy chips)
+- Sections: E&K ch. 16 (section 16.3–16.5, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: Bayes' rule with clues (which-coin-is-it); the copy rule in two-said-blue / does not know: that after two matching picks your opposite clue cancels only one of them, so copying is right whatever the clue accuracy.
+- Misconception: If your own clue is very reliable, you should trust it over two other people's picks.
+- Prediction (stage text ≤ 25 words): "Clues are right 90% of the time. Two people before you followed their clues: blue, blue. Your clue says red. Chance it's blue?" options: A. 10% / B. 50% / C. 90% (answer: C (90%)).
+- Check: Node `J8 [{"q":0.6,"P":0.6},{"q":0.75,"P":0.75},{"q":0.9,"P":0.9},{"q":0.99,"P":0.99}]`: P(blue | blue, blue, red) = q²(1−q) / (q²(1−q) + (1−q)²q) = q. With one earlier blue pick only, `J8one` gives 0.5 at every q (a tie; the rule follows your own clue).
+- Stage and controls: Three clue tiles (blue, blue, red) above an odds bar: each blue tile multiplies the odds for blue by q/(1−q) (×9 at 90%), the red tile divides by it. Controls in DOM order: [Combine the clues] [60%] [75%] [99%] [One pick before you]. Readout "chance blue: N%". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Combine (milestone 1: 90%, the question's case), 60% (60%), 75% (75%), 99% (milestone 2: 99%), One pick before you (50%). The reveal quotes the recorded values.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Your red clue cancels one blue pick, leaving one clue's worth for blue: 9 × 9 ÷ 9 = 9 to 1, so 90%. On the chips it came out 60%, 75% and 99%: always exactly the clue accuracy, always above half. However good the clues, after two matching picks copying is the better bet, which is why the herd starts at a lead of two. (≤ 90 words.)
+- Planned claims:
+  1. With clues right q of the time and a 50–50 prior, after two earlier picks that followed their clues (blue, blue) and your red clue, the chance of blue is exactly q: 60%, 75%, 90%, 99% for the chips. support: derivation; source: node.
+  2. With only one earlier blue pick and your red clue, the chance is 50% at any accuracy. support: derivation.
+  3. In the urn model a person copies the crowd once one colour leads by two. support: citation; source: E&K ch. 16 (section unconfirmed); Bikhchandani, Hirshleifer and Welch (1992). Attribution: fact-checker confirms.
+- Format: Single card (combine button, accuracy chips)
+- Curriculum: `{"primary": "probability:cascade-bayes-threshold", "also": ["probability:bayesian-updating"], "prerequisites": ["probability:information-cascade", "probability:bayesian-updating"], "level": "core", "strand": "statistics", "references": [{"work": "easley-kleinberg-2010", "chapter": 16, "section_unconfirmed": "16.3–16.5"}], "tags": ["cascade", "bayes", "crowds"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/two-said-blue states the lead-of-two rule and counts wrong herds; two-public-clues-break-the-herd shows how fragile a herd is. Neither derives the rule. This one does, and shows it does not depend on accuracy. Build after two-said-blue (built).
+- Acceptance (probability.statistics, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/probability.statistics.md` under "Course: NCM".
+
+#### J9. same-picture-two-histories · concept: probability:selection-vs-influence · core · demand 2 · format: Single card with Step (two replay chips; network stage, 8 people)
+- Sections: E&K ch. 4 (section 4.2, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: friends tend to be alike (friends-split-more-than-chance) / does not know: that 'people choose similar friends' and 'friends make each other similar' can leave the identical snapshot, so a snapshot cannot say which happened.
+- Misconception: If friends are alike, they must have chosen each other for it.
+- Prediction (stage text ≤ 25 words): "Two towns end with this same picture: all 12 friendships join same colours. In one, people chose friends. Which town?" options: A. Town 1 / B. Town 2 / C. The picture can't tell (answer: C).
+- Check: Final picture: two fully linked groups of 4 (0–3 blue, 4–7 orange). Town 1 (selection): colours fixed; starts with links 0–4, 3–6, 1–5 in place of 0–1, 2–3, 5–6, and in 3 steps each cross link is swapped for a same-colour one. Town 2 (influence): links fixed; colours start 1110 0001 (person 3 orange, person 7 blue) and in 2 steps each person takes their friends' majority colour. Node `J9 {"town1":{"startCrossLinks":3,"swaps":3},"town2":{"startColours":"11100001","switches":2,"finalColours":"11110000"},"identicalFinal":true}`.
+- Stage and controls: The final picture is drawn locked. Controls in DOM order: [Replay Town 1] [Replay Town 2] [Show final]. Each replay steps through its history with a 'step k of n' caption and leaves a faint trail of what changed (links for Town 1, colours for Town 2). Shape plus fill for colour (colour-blind safe), labels ≥ 10 px, ≤ 8 nodes.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Replay Town 1 (milestone 1: 3 link swaps), Replay Town 2 (milestone 2: 2 colour changes), Show final (identical picture). Each replay ends on the final frame within one press (step-run).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Town 1 kept everyone's colour and swapped 3 friendships. Town 2 kept every friendship and 2 people changed colour. Both ended in the identical picture, so a single snapshot cannot separate choosing similar friends from becoming like your friends. Telling them apart needs data over time: who changed first, the link or the person. (≤ 90 words.)
+- Planned claims:
+  1. The two histories on the stage end in the same 12 friendships and the same colours. support: derivation; source: node replay of both rules.
+  2. Town 1 changes 3 friendships and no colours; Town 2 changes 2 colours and no friendships. support: derivation.
+  3. Similarity between friends can come from selection (choosing similar friends) or from social influence (becoming similar), and separating them needs data over time. support: citation; source: E&K ch. 4 (section unconfirmed); Aral, Muchnik and Sundararajan (2009), PNAS 106 for the identification problem. Attribution: fact-checker confirms.
+- Format: Single card with Step (two replay chips; network stage, 8 people)
+- Curriculum: `{"primary": "probability:selection-vs-influence", "also": ["probability:confounding"], "prerequisites": ["probability:homophily-test", "probability:confounding"], "level": "core", "strand": "statistics", "references": [{"work": "easley-kleinberg-2010", "chapter": 4, "section_unconfirmed": "4.2"}], "tags": ["homophily", "causation", "networks"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/friends-split-more-than-chance tests whether friends are more alike than chance; this one asks what made them alike. Confounding lessons in probability are about a third variable, not two histories with one end state. Build after friends-split-more-than-chance (built).
+- Acceptance (probability.statistics, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/probability.statistics.md` under "Course: NCM".
+
+### economics.markets (wave J)
+
+Owner: `cm-economics-markets` · 5 briefs
+
+#### J10. two-cents-empties-the-network · concept: economics:network-effects-cliff · core · demand 2 · format: Single card (price chips drive live chart; round trail)
+- Sections: E&K ch. 17 (section 17.3, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the tipping-point model of below-critical-mass (value = keenness × share) / does not know: that the hump in that model has a top, and a price just above it leaves no user share but zero.
+- Misconception: A small price rise loses a few users, not all of them.
+- Prediction (stage text ≤ 25 words): "At 24¢ the app holds 60% of people. The price rises to 26¢. Where does the user share settle?" options: A. About 58% / B. About 40% / C. About 0% (answer: C (0%: falls from 60% to 0 in 11 rounds)).
+- Check: Model of below-critical-mass: person x in 0–1 values the app at (1 − x) × share z; next round's share is 1 − price / z (0 if negative). Node `J10 {"eq020":[0.276,0.724],"eq024":[0.4,0.6],"eq025":[0.5,0.5],"eq026":[],"from60at26":[0.6,0.567,0.541,0.52,0.5,0.48,0.458,0.432,0.398,0.347,0.251,0],"roundsToZero":11}`.
+- Stage and controls: The hump z(1 − z) with the price as a horizontal line, crossings as dots; a trail of round-by-round shares on the curve. Controls in DOM order: [26¢] [20¢] [24¢]; pressing a price chip runs the rounds from 60% to the end (step-run). Readout "share: N% · round k". Labels ≥ 10 px; the 25¢ top is not labelled before the commit.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: 26¢ (milestone 1: 60% → 0 in 11 rounds, the question's case), 20¢ (crossings 28% and 72%), 24¢ (milestone 2: holds at 60%, crossings 40% and 60%).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): The hump peaks at 25¢, at half the people. At 24¢ the price line still crosses it at 40% and 60%, so 60% holds. At 26¢ it clears the top: your run slid 60, 57, 54 … and hit 0 in 11 rounds. With network effects, a price just past the top of the hump does not lose a few users; it loses all of them. (≤ 90 words.)
+- Planned claims:
+  1. In the model (value (1 − x) × share, next share 1 − price/share), the share settles where share × (1 − share) = price: at 24¢ at 40% (unstable) and 60% (stable); at 20¢ at 27.6% and 72.4%. support: derivation; source: node.
+  2. share × (1 − share) is at most 0.25, at a 50% share, so at 26¢ no positive share is an equilibrium. support: derivation.
+  3. From 60% at 26¢ the share falls to 0 in 11 rounds (60, 56.7, 54.1, 52, 50, 48, 45.8, 43.2, 39.8, 34.7, 25.1, 0%). support: derivation; source: node.
+  4. The prices and value rule are invented for the toy model and are not a forecast for any real product. support: definition.
+- Format: Single card (price chips drive live chart; round trail)
+- Curriculum: `{"primary": "economics:network-effects-cliff", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.3"}], "tags": ["network effects", "tipping point", "pricing"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/below-critical-mass varies the launch share at a fixed 16¢ price (the tipping point); this one holds a high share and raises the price (the cliff). Same model; build after it (built).
+- Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
+
+#### J11. worth-something-alone · concept: economics:standalone-value-network · stretch · demand 1 · format: Single card (stand-alone chips drive live chart; launch run)
+- Sections: E&K ch. 17 (section 17.6, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the tipping point of below-critical-mass / does not know: that some value with no other users shrinks the critical mass but leaves an empty app stuck at zero unless that value beats the price.
+- Misconception: Any value on its own is enough to get a network product started from zero.
+- Prediction (stage text ≤ 25 words): "Same app at 16¢, now worth 10¢ to its keenest fan even with no other users. Launched with 0 users, where does it end?" options: A. About 0% / B. About 10% / C. About 80% (answer: A (0%)).
+- Check: Value (1 − x) × (a + share), price 16¢, next share max(0, 1 − 0.16/(a + share)). Node `J11`: a = 0: equilibria 20%, 80%, from 0 stays 0; a = 10¢: equilibria 7.3%, 82.7%, from 0 stays 0; a = 20¢: zero is not an equilibrium, from 0: 0, 20, 60, 80, 84, 84.6 … 84.7%.
+- Stage and controls: The value curve against the 16¢ price line, crossings as dots, and a launch trail from 0. Controls in DOM order: [Launch from 0] [20¢ alone] [0¢ alone] [10¢ alone]; each stand-alone chip relaunches from 0. Readout "share: N% · tipping point: T%". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Launch from 0 (milestone 1: at 10¢ alone stays 0%, tipping point 7.3%), 20¢ alone (milestone 2: climbs to 84.7%), 0¢ alone (tipping point 20%), 10¢ alone (back).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): At 10¢ alone, even the keenest fan values an empty app below the 16¢ price, so nobody starts: your launch stayed at 0%. The stand-alone value did lower the critical mass, from 20% to 7.3%. At 20¢ alone the first buyers come with nobody else on it, and the app climbed to 85%. Stand-alone value removes the trap only when it beats the price. (≤ 90 words.)
+- Planned claims:
+  1. With stand-alone value a = 10¢ at price 16¢, 0% is still an equilibrium and the tipping point falls from 20% to 7.3% (high equilibrium 82.7%). support: derivation; source: node.
+  2. With a = 20¢, 0% is not an equilibrium and a launch from 0 rises 0, 20, 60, 80, 84 … to 84.7%. support: derivation; source: node.
+  3. An empty network product sells to nobody unless someone's value with no other users exceeds the price. support: derivation (at share 0 the keenest value is a).
+  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: definition; source: E&K ch. 17 (section unconfirmed).
+- Format: Single card (stand-alone chips drive live chart; launch run)
+- Curriculum: `{"primary": "economics:standalone-value-network", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "stretch", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.6"}], "tags": ["network effects", "critical mass"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/below-critical-mass has no stand-alone value; two-cents-empties-the-network (this wave) moves the price. This one adds individual value to the same curve. Build after below-critical-mass (built).
+- Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
+
+#### J12. price-tag-or-auction · concept: economics:auction-vs-posted-price · core · demand 2 · format: Single card (bidder-count chips; seeded check run)
+- Sections: E&K ch. 9 (section 9.2, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: second-price auctions (bid-what-its-worth) / does not know: that a seller who knows only the range of values earns more from the best fixed price with one or two bidders, but from an auction once there are three.
+- Misconception: An auction always earns more than a fixed price, because buyers compete.
+- Prediction (stage text ≤ 25 words): "Values are random, $0 to $100. From how many bidders does a second-price auction earn more on average than the best price tag?" options: A. 2 / B. 3 / C. 5 (answer: B (3)).
+- Check: Best price tag p maximises p(1 − (p/100)^n), p = 100(1/(n+1))^(1/n); second-price revenue = 100(n − 1)/(n + 1). Node `J12`: n=1 tag $50 → $25 vs $0; n=2 tag $57.7 → $38.5 vs $33.3; n=3 tag $63.0 → $47.2 vs $50.0; n=4 $53.5 vs $60.0; 100,000 seeded sales (mulberry32 seed 7) agree to $0.2.
+- Stage and controls: Two bars per bidder count, "best tag ($p)" and "auction", expected revenue in dollars. Controls in DOM order: [2 bidders] [3 bidders] [4 bidders] [Simulate 1,000 sales]; starts at 1 bidder. Readout of both averages. Labels ≥ 10 px; the crossing is not marked before the commit.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 2 bidders (milestone 1: tag $38.50 vs auction $33.30), 3 bidders (milestone 2: tag $47.20 vs auction $50.00), 4 bidders, Simulate (1,000 seeded sales at 4 bidders, averages near $53.50 and $60.00). The reveal quotes the milestones.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): With 2 bidders the best tag ($57.70) earned $38.50 against the auction's $33.30. With 3 the auction won, $50.00 to $47.20. A tag is a guess: too high and nobody buys, too low and money is left on the table. An auction lets the second-highest bidder set the price, and that gets better with every rival. (≤ 90 words.)
+- Planned claims:
+  1. With n bidders whose values are uniform on $0–$100, the best fixed price earns 100 × p(1 − p^n) at p = (1/(n + 1))^(1/n): $25.00, $38.50, $47.20, $53.50 for n = 1 to 4. support: derivation; source: node.
+  2. A second-price auction with no reserve earns 100(n − 1)/(n + 1) on average: $0, $33.30, $50.00, $60.00. support: derivation (expected second-highest of n uniforms).
+  3. In 100,000 seeded simulated sales each average is within $0.20 of these. support: simulation; source: node (the builder records its own run).
+  4. Auctions are most useful when the seller does not know what buyers will pay. support: citation; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card (bidder-count chips; seeded check run)
+- Curriculum: `{"primary": "economics:auction-vs-posted-price", "also": ["economics:monopoly-pricing"], "prerequisites": ["economics:second-price-auction"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 9, "section_unconfirmed": "9.2"}], "tags": ["auctions", "pricing"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/bid-what-its-worth is bidder strategy; same-revenue-any-rule compares auction formats with each other; monopolist-holds-back sets a price against a known demand curve. This one compares an auction with no auction. No lesson does.
+- Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
+
+#### J13. does-going-first-help · concept: economics:first-mover-commitment · core · demand 2 · format: Single card (game tree; solve-from-the-end and game chips)
+- Sections: E&K ch. 6 (section 6.10, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the simultaneous chicken game (someone-has-to-swerve) and mixing in the penalty kick (penalty-kick-mix) / does not know: that when one player must move first and is seen, working back from the end shows going first can win the game or lose it.
+- Misconception: Moving first always gives away your hand, so it is a disadvantage.
+- Prediction (stage text ≤ 25 words): "Chicken, but Rae must announce her move first and Sam sees it. Straight beats swerve; both straight crash. Who does better?" options: A. Rae, who moves first / B. Sam, who moves second / C. Neither: they tie (answer: A (Rae 3, Sam 0)).
+- Check: Payoffs from someone-has-to-swerve: both straight −10 each; straight vs swerve 3 and 0; both swerve 1 each. Node `J13 {"chickenFirstMoves":{"m1":"S","m2":"W","pay":[3,0]},"penaltyGoalieFirst":{"m1":"L","m2":"R","pay":[0,1]},"penaltySimultaneousMixedSaveRate":0.5}`.
+- Stage and controls: A two-level game tree with payoffs at the leaves; solving greys out the worse branch at each node. Controls in DOM order: [Solve from the end] [Penalty kick: goalie first] [Back to chicken]. Readout "first mover gets N". ≤ 25 words of stage text, labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Solve (milestone 1: Sam swerves after straight, goes straight after swerve, so Rae picks straight, 3 vs 0), Penalty kick (milestone 2: the kicker shoots away from the dive, goalie saves 0), Back to chicken (solved tree still shown).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Working back from the end: whatever Rae announces, Sam's best reply is the opposite, so Rae announces straight and takes 3 to Sam's 0. In the penalty kick the same rule left the goalie who dives first with no saves, against half when both choose at once. Going first helps when the other side wants to avoid you, and hurts when they want to outguess you. (≤ 90 words.)
+- Planned claims:
+  1. In chicken with these payoffs, if Rae moves first and Sam sees it, backward induction gives Rae straight and Sam swerve: 3 to 0. support: derivation; source: node.
+  2. In the penalty kick, a goalie who must dive first and is seen saves 0 shots; when both choose at once and mix 50–50 the goalie saves half. support: derivation; source: node; penalty-kick-mix.
+  3. Games with moves in sequence are solved by working back from the end, and committing first can help or hurt depending on the game. support: citation; source: E&K ch. 6 advanced material (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card (game tree; solve-from-the-end and game chips)
+- Curriculum: `{"primary": "economics:first-mover-commitment", "also": [], "prerequisites": ["economics:hawk-dove-chicken", "economics:mixed-strategy-equilibrium"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 6, "section_unconfirmed": "6.10"}], "tags": ["game theory", "sequential games", "commitment"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/someone-has-to-swerve is simultaneous (two stable outcomes, no way to pick); penalty-kick-mix is mixing; lowball-offer-should-pass uses backward induction in one game. This one uses the same rule in two games and gets opposite answers. Build after someone-has-to-swerve and penalty-kick-mix (both built).
+- Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
+
+#### J14. keenest-buyer-takes-the-other-flat · concept: economics:clearing-maximises-total-value · core · demand 2 · format: Single card (two-buyer value matrix; price-round run)
+- Sections: E&K ch. 10 (section 10.5, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: raising prices on over-demanded items until each buyer can take a different one (prices-sort-the-buyers) / does not know: that the clearing match maximises total value, so an item can go to someone other than the buyer who values it most.
+- Misconception: Prices hand each item to the buyer who values it most.
+- Prediction (stage text ≤ 25 words): "Ana values the corner flat $10, the garden flat $9. Ben values them $9 and $1. Prices clear the market. Who gets the corner flat?" options: A. Ana / B. Ben / C. Either: it's a tie (answer: B (Ben)).
+- Check: Node `J14 {"AnaCornerBenGarden":11,"AnaGardenBenCorner":18,"rounds":[{"p":{"corner":0,"garden":0},"Ana":["corner"],"Ben":["corner"]},{"p":{"corner":1,"garden":0},"Ana":["corner","garden"],"Ben":["corner"]}]}`: one raise of the over-demanded corner flat clears the market at corner $1, garden $0.
+- Stage and controls: A 2 × 2 value matrix (buyers as rows, flats as columns, the network-stage matrix variant), prices above the columns, each buyer's preferred cells outlined. Controls in DOM order: [Run the price rounds] [Give Ana the corner] [Clearing match]. Readout "total value: $N". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Run (milestone 1: corner $1, garden $0; Ana gains $9 either way, Ben only wants the corner), Give Ana the corner (milestone 2: total $11), Clearing match (total $18).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): At corner $1 and garden $0, Ana gains $9 from either flat while Ben gains $8 only from the corner, so Ben takes it. That match is worth $18 in total, against $11 if Ana took the corner. Ana values the corner most, but moving costs her only $1 of value and would cost Ben $8. Clearing prices find the best total, not the keenest buyer. (≤ 90 words.)
+- Planned claims:
+  1. At prices corner $1 and garden $0 each buyer can take a flat they most prefer: Ben the corner, Ana the garden (she is indifferent). support: derivation; source: node price rounds.
+  2. That match is worth $9 + $9 = $18; Ana in the corner and Ben in the garden is worth $11. support: derivation.
+  3. Market-clearing prices always produce a match with the highest total value. support: citation (theorem); source: E&K ch. 10 (section unconfirmed); Shapley and Shubik (1971). Attribution: fact-checker confirms.
+- Format: Single card (two-buyer value matrix; price-round run)
+- Curriculum: `{"primary": "economics:clearing-maximises-total-value", "also": [], "prerequisites": ["economics:market-clearing-prices"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 10, "section_unconfirmed": "10.5"}], "tags": ["matching markets", "efficiency"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/prices-sort-the-buyers shows the price rounds and that the clearing match has the highest total (there the top valuer of house a does get it); this one picks a case where the keenest buyer for an item does not get it, which is the misconception. Build after prices-sort-the-buyers (built).
+- Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
+

@@ -61,8 +61,10 @@
       "id": "lifehacks.breeze-is-not-extra-surface.c5",
       "text": "Does improving airflow expose an inner towel face that is still folded shut?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt). The text is spec.recall in home-lessons.ts. HomeLesson.tsx never renders spec.recall; the Feed recall card uses meta.recall, a different question. So this prompt is not learner-visible as written. Its presupposition matches the model: 'flux' changes only the flux (rate 1.5 → 3 at area 1.5 in an own run), never the area, so a folded face stays folded. Nothing false is implied.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.breeze-is-not-extra-surface.recall",

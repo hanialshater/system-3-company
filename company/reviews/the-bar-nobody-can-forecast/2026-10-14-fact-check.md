@@ -25,3 +25,15 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c4 | verified | Seed 1: 111 nights avg 60.1, 49% crowded; any recordable longest run (100..500) gives 59.9-60.5 and 44-52%. The record survives Reset and only grows. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v4 first (both forecast buttons, 1 night / +10 / +100 random nights up to 500, Reset (clears the chart and counters, not the records), the replay of the longest run in the reveal when the chart is empty, readouts, record row, reveal; hook and recall), then claim text and support, then source fields. Exact binomial sum and the seeded nights re-run in my own node script with the kit's mulberry32 (scratchpad fc35-b0-ingrid/bar.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Exact: X ~ Binomial(100, 0.6), E[X] = 60, P(X > 60) = 0.462075 -> 46.2%. Reveal prints '46.2% in the long run'. |
+| c4 | verified | Own run of MIXED (mulberry32(1), 100 draws per night): best.n is always >= 100 when the reveal opens (milestone mixed-100), and for every reachable n from 100 to 500 the average is 59.9-60.5 and the crowded share 44-52%. At 111 nights: average 60.1, 49% crowded. Reset leaves best untouched, and the reveal replays the last nights of that run if the chart is empty. |
+| c5 | verified | Derivation: mean 60 equals the limit; the distribution is near-symmetric about 60 with P(X = 60) = 8.1%, so P(X > 60) = 46.2%, just under half. |
+
+**Result:** all three open claims verified. No disputes.

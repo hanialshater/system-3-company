@@ -36,8 +36,10 @@
       "id": "geography.half-of-humanity.c2",
       "text": "The seven most populous countries hold about 51.4% of humanity; the first six hold 48.8%.",
       "support": "derivation",
-      "source": "Cumulative sums of c1 over 8,161.97 million: 6 countries 3,983.13 (48.80%), 7 countries 4,195.12 (51.40%) (artifacts/scratch/w1-pop.mjs). The margin is small, so the order of Indonesia, Pakistan and Nigeria is not claimed beyond c1. | Builder (demo-builder, 2026-10-14, wave H, v3): reveal paragraph 1 changed: when the learner adds the seven largest in order it now reads 'India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil: your Seen line shows the seventh took the bar from 48.8% to 51.4% of the world's 8.2 billion people (UN, 2024).' (both values recorded at the crossing); otherwise 'hold 51.4% ...; the first six only 48.8%.' plus the learner's own crossing. Reopened: unverified.",
-      "status": "unverified"
+      "source": "Cumulative sums of c1 over 8,161.97 million: 6 countries 3,983.13 (48.80%), 7 countries 4,195.12 (51.40%) (artifacts/scratch/w1-pop.mjs). The margin is small, so the order of Indonesia, Pakistan and Nigeria is not claimed beyond c1. | Builder (demo-builder, 2026-10-14, wave H, v3): reveal paragraph 1 changed: when the learner adds the seven largest in order it now reads 'India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil: your Seen line shows the seventh took the bar from 48.8% to 51.4% of the world's 8.2 billion people (UN, 2024).' (both values recorded at the crossing); otherwise 'hold 51.4% ...; the first six only 48.8%.' plus the learner's own crossing. Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read v3 Demo.tsx first. Own node sum of POP (UN WPP 2024 values as in Demo.tsx) over WORLD_M = 8161.97: cumulative 17.78, 35.17, 39.40, 42.87, 45.95, 48.80, 51.40%, so the first six give 48.8% and the seven give 51.4%. ppl() prints one decimal. The values themselves rest on the UN figures (covered by the lesson's other claims); this claim is the arithmetic.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.half-of-humanity.c3",
@@ -52,15 +54,19 @@
       "id": "geography.half-of-humanity.c4",
       "text": "Equal Earth is an equal-area projection, so drawn size is real size.",
       "support": "source",
-      "source": "Savric, Patterson and Jenny (2018), The Equal Earth map projection, IJGIS 33(3): 454-465. | Builder (demo-builder, 2026-10-14, wave H, v3): reveal wording changed to 'On this equal-area map, drawn size is real size:'; the stage footnote 'Equal-area map. ...' now hides when the reveal opens, and the map stays on screen at the reveal (66% of natural height). Reopened: unverified.",
-      "status": "unverified"
+      "source": "Savric, Patterson and Jenny (2018), The Equal Earth map projection, IJGIS 33(3): 454-465. | Builder (demo-builder, 2026-10-14, wave H, v3): reveal wording changed to 'On this equal-area map, drawn size is real size:'; the stage footnote 'Equal-area map. ...' now hides when the reveal opens, and the map stays on screen at the reveal (66% of natural height). Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Checked as a property of the map drawn, not from Šavrič et al. (not opened). Own run of d3-geo 3.1.1 geoEqualEarth().fitSize([320,156], Sphere): planar area / spherical area for 116 countries (geoArea > 0.002 sr) is 3489 to 3511, a 0.64% spread; 10° cells at latitudes −80 to 80 give 3482 to 3506. That is constant up to edge resampling. As a control, Mercator gives 23,574 at the equator vs 133,371 at 60°. So drawn area is proportional to real area on this stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.half-of-humanity.c5",
       "text": "Those seven countries cover about 25% of the land outside Antarctica.",
       "support": "simulation",
-      "source": "geoArea of the seven 1:110m country shapes over the sum for all countries except Antarctica: 34.2M / 135.0M km2 = 25.3% (w1-pop.mjs). 1:110m shapes are generalised; the share moves by well under a point at finer resolution (not checked). | Builder (demo-builder, 2026-10-14, wave H, v3): reveal sentence changed to 'your 7 cover 25% of the land outside Antarctica, yet hold half of everyone.' The three readout tiles are now one status line '<n> countries · <x>% of people · land outside Antarctica <y>%'. Reopened: unverified.",
-      "status": "unverified"
+      "source": "geoArea of the seven 1:110m country shapes over the sum for all countries except Antarctica: 34.2M / 135.0M km2 = 25.3% (w1-pop.mjs). 1:110m shapes are generalised; the share moves by well under a point at finer resolution (not checked). | Builder (demo-builder, 2026-10-14, wave H, v3): reveal sentence changed to 'your 7 cover 25% of the land outside Antarctica, yet hold half of everyone.' The three readout tiles are now one status line '<n> countries · <x>% of people · land outside Antarctica <y>%'. Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own run with the lesson's own shapes (kit/geo countries-110m.json via topojson-client, d3 geoArea): the 7 countries / all countries except Antarctica = 25.33%, which lnd() prints as '25%'. This matches the reveal fallback '25%' and the crossed.land recorded when half is crossed in order. At 1:110m resolution it is 'about', as the claim says.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.half-of-humanity.c6",

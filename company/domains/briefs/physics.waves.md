@@ -23,3 +23,7 @@ New demand-3 concept `wave-speed-medium` added to `content/curriculum/physics.js
 - curriculum: `{"primary":"physics:wave-speed-medium","also":[],"prerequisites":[],"level":"core","strand":"waves","tags":["waves","wavelength","frequency"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: press-the-string (standing-wave-pitch) teaches that string length sets pitch through standing waves; two-ripples-cancel is superposition; count-the-thunder (sound-vs-light-delay) compares two media's speeds but does not separate speed from frequency. None shows that frequency changes wavelength, not speed.
+
+## Round 4 (2026-10-14, cm-physics)
+
+Wave J briefs for this strand are in `physics.md` round 4 (#56–#70; strand named on each brief), so the claim queue hands out demand-3 concepts first across all strands.

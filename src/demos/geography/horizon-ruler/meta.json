@@ -27,8 +27,10 @@
       "id": "geography.horizon-ruler.c1",
       "text": "At the horizon the sight line meets the Earth's radius at a right angle, so by Pythagoras the distance is the square root of 2 x Earth's radius x your height.",
       "support": "derivation",
-      "source": "(R + h)^2 = R^2 + d^2, so d = sqrt(2 R h + h^2), which is about sqrt(2 R h) since h << R. R = 6,371.0088 km (EARTH_RADIUS_KM). Computed in Demo.tsx. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. (R + h)^2 = R^2 + d^2 gives d = sqrt(2Rh + h^2); sqrt(2Rh) is off by under 0.004% up to 1,000 m (own node: 828 m: 102.715 vs 102.718 km; ground arc 102.710 km). Stage geometry checked: cosA = RD/(RD + hd) puts the eye directly above the centre and the sight direction is proportional to (cosA, sinA), whose dot product with the radius direction (-sinA, cosA) is 0, so the drawn right-angle mark is a true right angle. Separate, non-claim finding routed to demo-builder: Milestones names are ['eyes', 'hundred'] but minInteractions is 3, so interact() can fire only twice and the reveal cannot unlock (the 'tower' reach is ignored). | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence now reads 'Your sight line grazes the curved sea at the horizon and meets the radius there at a right angle (the tick), so by Pythagoras ...'. The radius stub and its 'radius' label are now drawn at every eye height (before, the label was hidden when the stub was under 20 px, e.g. at 933 m). Reopened: unverified.",
-      "status": "unverified"
+      "source": "(R + h)^2 = R^2 + d^2, so d = sqrt(2 R h + h^2), which is about sqrt(2 R h) since h << R. R = 6,371.0088 km (EARTH_RADIUS_KM). Computed in Demo.tsx. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. (R + h)^2 = R^2 + d^2 gives d = sqrt(2Rh + h^2); sqrt(2Rh) is off by under 0.004% up to 1,000 m (own node: 828 m: 102.715 vs 102.718 km; ground arc 102.710 km). Stage geometry checked: cosA = RD/(RD + hd) puts the eye directly above the centre and the sight direction is proportional to (cosA, sinA), whose dot product with the radius direction (-sinA, cosA) is 0, so the drawn right-angle mark is a true right angle. Separate, non-claim finding routed to demo-builder: Milestones names are ['eyes', 'hundred'] but minInteractions is 3, so interact() can fire only twice and the reveal cannot unlock (the 'tower' reach is ignored). | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence now reads 'Your sight line grazes the curved sea at the horizon and meets the radius there at a right angle (the tick), so by Pythagoras ...'. The radius stub and its 'radius' label are now drawn at every eye height (before, the label was hidden when the stub was under 20 px, e.g. at 933 m). Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. (R + h)^2 = R^2 + d^2 -> d = sqrt(2Rh + h^2) ~ sqrt(2Rh); own node R = 6,371.0088 (src/kit/geo): 1.7 m 4.654 km, 170 m 46.542, 828 m 102.715 vs exact 102.718. The tick is drawn at the tangent point between sight direction and radius stub (orthogonal by construction); v4 draws the stub and 'radius' label at every height.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.horizon-ruler.c2",
@@ -43,14 +45,16 @@
       "id": "geography.horizon-ruler.c3",
       "text": "From the top of an 828 m tower the horizon is about 103 km away.",
       "support": "source",
-      "source": "Height 828 m (Council on Tall Buildings and Urban Habitat; from memory, not checked online). sqrt(2 x 6,371.0088 x 0.828) = 102.7 km. This is the sea-level horizon from the tip, not a claim about what can actually be seen. | Builder (demo-builder, 2026-10-14, wave H, v4): the chip label is now 'Tower: 828 m' (was 'Burj Khalifa, 828 m'), so the learner no longer sees the tower's name; the claim text drops it. Reopened: unverified.",
-      "status": "unverified"
+      "source": "Height 828 m (Council on Tall Buildings and Urban Habitat; from memory, not checked online). sqrt(2 x 6,371.0088 x 0.828) = 102.7 km. This is the sea-level horizon from the tip, not a claim about what can actually be seen. | Builder (demo-builder, 2026-10-14, wave H, v4): the chip label is now 'Tower: 828 m' (was 'Burj Khalifa, 828 m'), so the learner no longer sees the tower's name; the claim text drops it. Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Rests on derivation now: the stage no longer names the tower ('Tower: 828 m' is stipulated), so the CTBUH height is not needed. sqrt(2 x 6,371.0088 x 0.828) = 102.7 -> '103 km' (fmtKm rounds above 10). Support could be derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.horizon-ruler.c4",
       "text": "Air bends light, so real horizons are a little farther.",
       "support": "source",
-      "source": "Standard atmospheric refraction (k about 0.13) gives d of about 3.86 sqrt(h) km instead of 3.57 sqrt(h), about 8% farther (e.g. Young, 'Distance to the horizon', SDSU; from memory, not checked online). The stage says 'No refraction'. | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence shortened from 'Air bends light a little, so real horizons are a few per cent farther.' Reopened: unverified.",
+      "source": "Standard atmospheric refraction (k about 0.13) gives d of about 3.86 sqrt(h) km instead of 3.57 sqrt(h), about 8% farther (e.g. Young, 'Distance to the horizon', SDSU; from memory, not checked online). The stage says 'No refraction'. | Builder (demo-builder, 2026-10-14, wave H, v4): reveal sentence shortened from 'Air bends light a little, so real horizons are a few per cent farther.' Reopened: unverified. | FC pass 35 (fact-checker, 2026-10-14): HELD. Atmospheric refraction lengthening the horizon (k ~ 0.13, ~8%) needs an opened source (Young, SDSU, not reachable; web blocked). Not derivable from the stage.",
       "status": "unverified"
     }
   ],

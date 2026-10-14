@@ -84,3 +84,108 @@ Batch notes and ranking: see the same-named section in `life.ecology-body.md`. T
 - curriculum: `{"primary":"life:lead-time-survival","also":[],"prerequisites":[],"level":"core","strand":"health-epidemiology","tags":["screening","survival statistics","bias"]}`
 - Needs interaction-designer spec: no (Single card, two controls). If the toggle and slider are judged two controls of one change, the builder may merge them into the slider alone (0 = test off).
 - Differs from nearest: `probability/base-rates` is about what a positive test result means (predictive value), not about survival after diagnosis. `stale-case-counts` and `early-fatality-count` are delays in outbreak counts. No lesson in any category teaches lead time.
+
+## Wave J batch (cm-life, 2026-10-14)
+
+Batch notes, ranking and QA conventions: see the same-named section in `life.ecology-body.md`. Numbers: `node company/domains/briefs/checks/life-wave-j-check.mjs`, labels H4 to H8. Every card here teaches how to read a spread or a health number in a toy; none says what anyone should do.
+
+### 4. friends-of-friends-slow-spread · concept: life:network-clustering-spread · stretch · demand 1 · rank 2 · format: Simulation run (town preset buttons, seeded, 60-person ring as untapped texture)
+- Why this one next: `network-clustering-spread` is uncovered and was parked under "Later" above until someone checked how far `pockets-below-threshold` covers clustering. Checked: that lesson is about vaccination coverage varying between groups; it never holds contacts per person fixed and changes only who knows whom. This one does.
+- Audience / knowledge boundary: has seen `herd-immunity` and `immunity-eats-r` (R as contacts × chance). Does not know that with the same number of contacts, a town where contacts know each other spreads far more slowly, because new cases keep landing on people already exposed.
+- Misconception: "Same number of contacts each, same chance per contact, so the same outbreak."
+- Prediction (stage text, 24 words): "Two towns of 60. Everyone has exactly 4 contacts. Town A: your 4 are neighbours who also know each other. Town B: 4 strangers." Question: "One person catches a bug, with the same chance of passing it to each contact. After 10 days, which town has more cases?" options: A. About the same / B. Town A / C. Town B (answer: C). The locked stage shows the 60 people on a circle with no contact lines.
+- Model (on the card): Town A: each person's contacts are the 2 nearest on each side of the circle (half of a person's contact pairs know each other). Town B: 4 random contacts each (a seeded random pairing, seed 42; 7.5% of contact pairs know each other). One person (index 0 in the check script) is sick on day 0; a sick person is sick for 1 day and passes the bug to each healthy contact with chance 1/2, then is immune. Seeded (mulberry32, seed 1 at start; shown).
+- What the stage shows: one circle of 60 dots (healthy outline, sick filled, immune crossed: shape and fill, not hue alone), contact lines as faint texture (Town A short chords, Town B long chords; > 20 nodes, nothing tappable), day counter and readout "ever sick by day 10: k of 60". Controls in DOM order (3 buttons): "Town A", "Town B", "New seed". Each town button runs 10 days on the current seed and replays within 400 ms.
+- Milestones (minInteractions 2): m1 "Town A run" (17 on seed 1), m2 "Town B run" (44 on seed 1). QA path: A, B, New seed. Both towns' day-10 counts are recorded at the milestones and shown as a small "A: 17 · B: 44" line under the readout, so they survive the last press.
+- Check (H4): clustering A 0.50, B 0.075. Seed 1, ever sick by days 0 to 10: A 1, 2, 3, 4, 6, 8, 10, 12, 13, 15, 17; B 1, 2, 3, 4, 7, 13, 21, 31, 36, 41, 44. Seeds 1 to 2,000, mean by day 10: A 12.4, B 37.7.
+- Reveal draft (84 words, counted by script): "In your run, Town B reached 44 cases by day 10 and Town A only 17, with 4 contacts each. In Town A your contacts know each other, so the person who infected you has often already met your other contacts. The bug keeps landing on people already exposed, and creeps around the circle. In Town B each new case meets fresh people. Counting contacts is not enough: who knows whom matters. Toy rule: 1 sick day, a 1 in 2 chance per contact."
+- Phone fit (390×844): the circle (≥ 300 px) with the readout above fits the stage top; one button row. The reveal points at the circle and the two-count line.
+- Planned claims:
+  1. In the lesson's model (seed 1), 17 of 60 have been sick by day 10 in Town A and 44 in Town B; over 2,000 seeds the means are 12.4 and 37.7. support: simulation; source: check script H4, seeds disclosed.
+  2. Everyone has exactly 4 contacts in both towns; in Town A half of each person's contact pairs are contacts of each other (clustering 0.50), in Town B 7.5%. support: derivation / count; source: H4.
+  3. Optional context, not on the card: clustering slows epidemic spread on networks compared with random networks of the same degree (e.g. Keeling 1999, Proc. R. Soc. B 266; Easley and Kleinberg 2010, ch. 21). **Unverified, needs a human source check; the lesson stands on claims 1 and 2.**
+  4. One sick day, certain immunity and a 1 in 2 chance are toy rules (convention, on the card).
+- curriculum: `{"primary":"life:network-clustering-spread","also":["probability:small-world-shortcuts","life:effective-reproduction"],"prerequisites":["life:herd-immunity"],"level":"stretch","strand":"health-epidemiology","references":[{"work":"easley-kleinberg-2010","chapter":21}],"tags":["networks","clustering","epidemics"]}`
+- Needs interaction-designer spec: no (Simulation run; network drawn as untapped texture under the interim network-stage rules).
+- Differs from nearest: `pockets-below-threshold` varies immunity between groups; `spreaders-are-rare` varies how many each person infects; `contact-order-matters` is timing; `probability/few-shortcuts-shrink-the-world` measures path lengths on a ring with shortcuts, with no epidemic. This one holds contacts per person fixed and changes only clustering.
+
+### 5. who-has-it-today · concept: life:prevalence-incidence · intro · demand 3 · rank 5 · format: Single card (week preset buttons, two filling tanks)
+- Why this one next: demand 3. "How many have it" and "how many catch it" are quoted interchangeably in health news, and the stock-and-flow link between them is a misconception two tanks show in three presses.
+- Audience / knowledge boundary: knows what a weekly case count is (`stale-case-counts`). Does not know that how many people have an illness on a given day is new cases per week × weeks it lasts, so a rare long illness can outnumber a common short one.
+- Misconception: "The illness more people catch is the one more people have."
+- Prediction (stage text, 20 words): "Each week, 50 people catch illness S, which lasts 1 week. 5 people catch illness L, which lasts 20 weeks." Question: "On a day next year, which illness do more people have?" options: A. S, about 10 times as many / B. About the same / C. L, about twice as many (answer: C, 100 vs 50). The locked stage shows two empty tanks labelled S and L with their in-flow arrows ("+50 a week", "+5 a week").
+- Model (on the card): both illnesses start in week 1; in week w, 50 people have S and 5 × min(w, 20) have L. Made-up illnesses; deterministic.
+- What the stage shows: two tanks of dots (1 dot = 5 people), each with an in-flow and an out-flow arrow, and the readout "week w · have S: a · have L: b". Controls in DOM order (3 buttons): "Week 5", "Week 10", "Week 52".
+- Milestones (minInteractions 2): m1 "week 5 seen" (S 50, L 25: S leads early); m2 "week 52 seen" (S 50, L 100), the question's case. QA path: 5, 10, 52.
+- Check (H5): week 5: S 50, L 25; week 10: 50, 50; week 20 onward: 50, 100.
+- Reveal draft (77 words, counted by script): "In week 52, 100 people had L and 50 had S, though S had 10 times as many new cases. How many have an illness on a day is new cases a week × weeks it lasts: 50 × 1 for S, 5 × 20 for L. In week 5, S led: L's tank was still filling. Epidemiologists call the two numbers incidence and prevalence. A survey of who is ill today over-counts long illnesses. Made-up illnesses."
+- Phone fit (390×844): two tanks side by side (≤ 20 rows of dots each) with the readout above; one button row. The reveal points at the tanks and readout.
+- Planned claims:
+  1. In the model, in week 52, 100 people have L and 50 have S; in week 5, 25 have L. support: arithmetic; source: check script H5.
+  2. At steady state, the number who have an illness = new cases per week × weeks it lasts (50 × 1, 5 × 20). support: derivation (stock = inflow × duration, Little's law). 
+  3. "Incidence" means new cases in a period and "prevalence" means people who have it at a time (definition; **needs a human check against an epidemiology glossary, e.g. a CDC or WHO glossary**; cut the sentence if it fails).
+  4. A one-day survey of who is ill counts long illnesses more than their share of new cases (derivation from claim 2).
+  5. Both illnesses are invented (convention, on the card).
+- curriculum: `{"primary":"life:prevalence-incidence","also":["economics:stock-vs-flow","probability:base-rates"],"prerequisites":[],"level":"intro","strand":"health-epidemiology","tags":["prevalence","incidence","stock and flow"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `economics/bathtub-deficit-debt` is the same stock-and-flow idea with money, not two competing durations; `probability/base-rates` uses prevalence as an input; `stale-case-counts` is a reporting delay. No lesson compares incidence with prevalence.
+
+### 6. trace-back-finds-the-cluster · concept: life:backward-contact-tracing · core · demand 2 · rank 8 · format: Single card (trace preset buttons, 10 spreaders and 15 cases)
+- Why this one next: it is the useful consequence of `spreaders-are-rare`: if spread is uneven, the person who infected a random case is usually a big spreader. The size-biased average is a misconception a tap shows.
+- Audience / knowledge boundary: has seen `spreaders-are-rare` (most cases infect nobody, a few infect many). Does not know that a randomly chosen case's infector infected far more than the average person did.
+- Misconception: "The person who infected a random case infected about the average number, 1.5."
+- Prediction (stage text, 15 words): "Last week 10 people had a bug. Between them they infected 15 others, very unevenly." Question: "Pick one of the 15 at random and find who infected them. On average, how many did that infector infect?" options: A. 1.5 / B. About 3 / C. About 10 (answer: C, 10.2). All options are numbers. The locked stage shows the 10 spreaders in a row and the 15 cases below them, with no lines between them.
+- Model (on the card): spreaders infected 12, 3 and 0 (eight people) = 15 cases; "Even spread": 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 = 15 cases. Deterministic: averages are over all cases or all spreaders, no sampling.
+- What the stage shows: one panel, spreaders as circles, cases as dots, lines drawn as they are traced; readout "average infected by the infector of a case: X · by a spreader: Y". Controls in DOM order (3 buttons): "Trace back from all 15 cases", "Trace forward from all 10", "Even spread" (a toggle that redraws the uneven/even town and keeps the traces).
+- Milestones (minInteractions 2): m1 "traced back, uneven" (10.2), the question's case; m2 "traced forward, uneven" (1.5). Optional m3 "even spread seen" (1.67 back, 1.5 forward). QA path: back, forward, even; m1 and m2 values recorded before the even toggle.
+- Check (H6): uneven: mean per spreader 1.5; mean for the infector of a random case (12² + 3²)/15 = 10.2. Even: 1.5 and (5 × 4 + 5 × 1)/15 = 1.67.
+- Reveal draft (72 words, counted by script): "Traced back from all 15 cases, the infector had infected 10.2 on average; traced forward, a spreader infected 1.5. Twelve of the 15 cases came from one person, so a random case usually points back to that big spreader. When spread is uneven, asking who infected a case, and whom else that person met, finds more cases than asking whom the case infected. With even spread, both are near 1.5. Toy numbers."
+- Phone fit (390×844): 10 circles (≥ 34 px) in one row with 15 dots below fits 390 px; readout above; one button row. The reveal points at the traced lines and the readout.
+- Planned claims:
+  1. In the toy town, spreaders infected 1.5 people on average, but the infector of a randomly chosen case infected 10.2 on average ((12² + 3²)/15). support: arithmetic; source: check script H6.
+  2. In general the average for the infector of a random case is mean + variance/mean, which equals the plain mean only when everyone infects the same number. support: derivation (size-biased sampling, as in the friendship paradox).
+  3. With even spread (2, 2, 2, 2, 2, 1, 1, 1, 1, 1) the two averages are 1.67 and 1.5. support: arithmetic; source: H6.
+  4. Optional context, not on the card: backward tracing was proposed for overdispersed infections (e.g. Endo et al. 2020, Wellcome Open Research 5:239). **Unverified, needs a human source check.** No advice about any real tracing programme.
+- curriculum: `{"primary":"life:backward-contact-tracing","also":["probability:friendship-paradox","life:superspreading-dispersion"],"prerequisites":["life:superspreading-dispersion"],"level":"core","strand":"health-epidemiology","tags":["contact tracing","size bias","superspreading"]}`
+- Needs interaction-designer spec: no (Single card; a 10 + 15 node diagram with no tappable nodes).
+- Differs from nearest: `spreaders-are-rare` shows the uneven spread itself; `probability/friends-have-more-friends` is the same size-biased maths on friendships; this one applies it to which direction tracing finds more cases.
+
+### 7. screening-finds-slow-ones · concept: life:length-bias-screening · core · demand 2 · rank 9 · format: Single card (screening-year preset buttons, 20 timeline rows)
+- Why this one next: it is the second trap in "screen-found cases do better", after lead time (`screening-survival-clock`, brief 3 above). A single screening line on 20 timelines shows it without any medical claim.
+- Audience / knowledge boundary: has seen or will see `screening-survival-clock` (lead time). Does not know that one screening day is more likely to catch slow-growing cases, because they spend longer in the silent phase.
+- Misconception: "A screening test finds a fair sample of cases."
+- Prediction (stage text, 22 words): "20 people with a made-up illness. 10 grow fast: silent for 1 year before symptoms. 10 grow slowly: silent for 4 years." Question: "One screening day finds everyone in the silent phase that day. Of the cases it finds, what share are slow ones?" options: A. 50% / B. 80% / C. 100% (answer: B, 4 of 5). The locked stage shows the 20 rows (silent phases as bars) with no screening line.
+- Model (on the card): slow person i (i = 0 to 9) is silent from year i to i + 4; fast person i from year i + 0.5 to i + 1.5. A screen in year y finds whoever is silent at y. Deterministic.
+- What the stage shows: 20 rows on one time axis (years 0 to 14), slow bars long, fast bars short (pattern plus label, not hue alone); a vertical screening line; found rows outlined. Readout: "found: k slow, m fast". Controls in DOM order (3 buttons): "Screen in year 4", "Screen in year 6", "Screen in year 8".
+- Milestones (minInteractions 2): any two screening years seen (each gives 4 slow, 1 fast). QA path: 4, 6, 8.
+- Check (H7): years 4, 6 and 8 each find 4 slow and 1 fast: 80% slow.
+- Reveal draft (77 words, counted by script): "Every screening day you tried found 4 slow cases and 1 fast one: 80% slow, though only half of the 20 are slow. A slow case spends 4 years in the silent phase, so a single day is 4 times as likely to land in it. Screen-found cases are mostly the slow kind, so they look better than symptom-found cases even if finding them changed nothing. That is length bias. Toy model, not about any real test."
+- Phone fit (390×844): 20 rows at ≥ 14 px fit the top half of the stage with a 10 px axis; readout above; one button row.
+- Planned claims:
+  1. In the model, a screen in year 4, 6 or 8 finds 4 slow and 1 fast case (80% slow) out of 10 slow and 10 fast. support: arithmetic; source: check script H7.
+  2. A single screen finds a case with a chance proportional to the length of its silent phase, so slow cases are over-represented by the ratio of the lengths (4 to 1). support: derivation (length-biased sampling).
+  3. Optional context, not on the card: "length bias" is the standard name for this in screening research. **Unverified, needs a human source check; keep the name only if it passes.**
+  4. The illness, the 20 people and the phase lengths are invented; no claim about any real test, and no advice about screening (convention, on the card).
+- curriculum: `{"primary":"life:length-bias-screening","also":["probability:waiting-time-paradox","life:lead-time-survival"],"prerequisites":["life:lead-time-survival"],"level":"core","strand":"health-epidemiology","tags":["screening","sampling bias","statistics"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `screening-survival-clock` is lead time (the clock starts earlier); this is which cases a screen catches at all. `probability/bus-wait-longer-than-half` is the same length-biased sampling with buses. `probability/base-rates` is what a positive result means.
+
+### 8. bites-count-twice · concept: life:vector-transmission · stretch · demand 1 · rank 15 · format: Single card (preset buttons, one person → mosquito → person chain) [exploration]
+- Why this one next: the exploration slot. A bite appears in both legs of a mosquito-borne chain, so halving bites cuts R to a quarter while halving mosquitoes only halves it: a counterintuitive product a chain diagram shows in two presses.
+- Audience / knowledge boundary: has seen `five-day-generations` (R as cases per case). Does not know that for a bug carried by mosquitoes, R is a product of two legs and a bite rate enters both.
+- Misconception: "Halving bites halves R, the same as halving the number of mosquitoes."
+- Prediction (stage text, 25 words): "A made-up bug spreads only by mosquito: person → mosquito → person. Each sick person now leads to 4 new sick people: R = 4." Question: "Mosquitoes bite people half as often. What is R now?" options: A. 3 / B. 2 / C. 1 (answer: C). The locked stage shows the chain with the two legs labelled but no leg values.
+- Model (on the card): leg 1 (mosquitoes infected per sick person) = 4 mosquitoes per person × 0.2 bites per mosquito per day × 10 sick days × 1/2 chance per bite = 4. Leg 2 (people infected per infected mosquito) = 0.2 bites a day × 10-day mosquito life × 1/2 = 1. R = leg 1 × leg 2. No delay before a mosquito can pass the bug on. Deterministic.
+- What the stage shows: one chain: a person, a row of mosquito icons (leg 1), a row of person icons (R), with readouts "leg 1: a · leg 2: b · R = a × b". Controls in DOM order (3 buttons): "Half the mosquitoes", "Half the bites", "Both".
+- Milestones (minInteractions 2): m1 "half the mosquitoes" (R = 2); m2 "half the bites" (R = 1), the question's case. QA path: mosquitoes, bites, both (R = 0.5).
+- Check (H8): now 4 × 1 = 4; half the mosquitoes 2 × 1 = 2; half the bites 2 × 0.5 = 1; both 1 × 0.5 = 0.5.
+- Reveal draft (73 words, counted by script): "Half the mosquitoes took R from 4 to 2. Half the bites took it to 1. A bite happens twice in the chain: once when a mosquito picks the bug up from a sick person, once when it passes it on. Halving bites halves both legs, so R falls to a quarter; fewer mosquitoes cut only the first leg. Both together gave 0.5. Made-up bug and numbers, not advice about any real one."
+- Phone fit (390×844): the chain fits one row of icons per leg (≤ 4 icons each); readouts above; one button row.
+- Planned claims:
+  1. In the model, R = 4 now, 2 with half the mosquitoes, 1 with half the bites, 0.5 with both. support: arithmetic; source: check script H8.
+  2. The bite rate appears in both legs, so R is proportional to its square, while mosquito numbers appear once. support: derivation from the model.
+  3. Optional context, not on the card: in the Ross–Macdonald model of malaria the biting rate also enters squared (Macdonald 1957; Smith et al. 2012, PLoS Pathogens 8). **Unverified, needs a human source check.**
+  4. The bug and every rate are invented, and real models add the days a mosquito needs before it can pass the bug on (convention; the second half is context, **unverified, keep it off the card unless checked**).
+- curriculum: `{"primary":"life:vector-transmission","also":["life:reproduction-number-growth"],"prerequisites":["life:reproduction-number-growth"],"level":"stretch","strand":"health-epidemiology","tags":["mosquitoes","R","two-host chain"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `five-day-generations` and `immunity-eats-r` treat R as one number with one host; `virulence-sweet-spot` is a trade-off in one host. No lesson splits R across two hosts.

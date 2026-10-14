@@ -62,8 +62,10 @@
       "id": "lifehacks.lh-percentage-overage.c5",
       "text": "Ten extra or 10% extra: which order is bigger depends on the job size.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), reworded under W-384 on 2026-10-14 by demo-builder after FC LH-2 disputed the old hook \"A fixed spare count and a percentage spare count diverge as a job grows.\" (the spare counts converge, then cross, on the stage). Derivation: A=ceil(1.1x) (10% extra, rounded up) and B=x+10 (ten extra); on the slider (20 to 120, step 5) B>A below 95, A=B at 95 and 100, and A>B from 105 (src/lib/lifehacks/resource-model.ts with snapToInteger; same values as c3). So which order is bigger depends on the required count. The hook names no crossover value.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), reworded under W-384 on 2026-10-14 by demo-builder after FC LH-2 disputed the old hook \"A fixed spare count and a percentage spare count diverge as a job grows.\" (the spare counts converge, then cross, on the stage). Derivation: A=ceil(1.1x) (10% extra, rounded up) and B=x+10 (ten extra); on the slider (20 to 120, step 5) B>A below 95, A=B at 95 and 100, and A>B from 105 (src/lib/lifehacks/resource-model.ts with snapToInteger; same values as c3). So which order is bigger depends on the required count. The hook names no crossover value. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own run of the transpiled resource-model.ts on the spec (A = ceil(1.1x) with snapToInteger, B = x + 10), slider 20 to 120 step 5: B > A from 20 to 90, A = B at 95 (105/105) and 100 (110/110), A > B from 105 (116/115) to 120 (132/130). So which order is bigger depends on the job size, as the hook says. The hook names no crossover, so no off-by-one risk.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -25,36 +25,46 @@
       "id": "economics.order-of-the-bad-year.c1",
       "text": "With no withdrawals, $100k with one year of +25% and one of −20% ends at $100k in either order: ×1.25 then ×0.8 equals ×0.8 then ×1.25.",
       "support": "derivation",
-      "source": "1.25 × 0.8 = 0.8 × 1.25 = 1 (multiplication commutes). Demo.tsx path(): flow 0 gives 100 for both orders (builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #56.",
-      "status": "unverified"
+      "source": "1.25 × 0.8 = 0.8 × 1.25 = 1 (multiplication commutes). Demo.tsx path(): flow 0 gives 100 for both orders (builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #56. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. 1.25 x 0.8 = 0.8 x 1.25 = 1; own port of path(): flow 0 gives 100 both orders; stage record 'none: both $100k'. Milestone noflow is required.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.order-of-the-bad-year.c2",
       "text": "Withdrawing $20k at each year-end, gain first ends at $64k and loss first at $55k.",
       "support": "derivation",
-      "source": "v = v × (1 + r) + flow: gain first 100 × 1.25 − 20 = 105, × 0.8 − 20 = 64; loss first 100 × 0.8 − 20 = 60, × 1.25 − 20 = 55 (Demo.tsx path(); builder node run, 2026-10-14).",
-      "status": "unverified"
+      "source": "v = v × (1 + r) + flow: gain first 100 × 1.25 − 20 = 105, × 0.8 − 20 = 64; loss first 100 × 0.8 − 20 = 60, × 1.25 − 20 = 55 (Demo.tsx path(); builder node run, 2026-10-14). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: gain first 100 x 1.25 - 20 = 105, x 0.8 - 20 = 64; loss first 60, then 55. Reveal quotes the record (milestone withdraw required).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.order-of-the-bad-year.c3",
       "text": "A withdrawal after the loss comes out of a smaller pot, and that money is not there for the recovery.",
       "support": "derivation",
-      "source": "Loss first: the $20k leaves a $80k pot (25% of it), so only $60k earns the +25%; gain first: the $20k leaves a $125k pot and $105k takes the −20%. The withdrawn $20k after the loss would have grown by 25% (Demo.tsx path()).",
-      "status": "unverified"
+      "source": "Loss first: the $20k leaves a $80k pot (25% of it), so only $60k earns the +25%; gain first: the $20k leaves a $125k pot and $105k takes the −20%. The withdrawn $20k after the loss would have grown by 25% (Demo.tsx path()). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: final = 100 + f(1 + r2) + f, so the orders differ only by what the first withdrawal would have earned in year 2: after the loss it misses the +25% recovery (45k taken in all vs 36k). 'Smaller pot' is true (80 vs 125) but descriptive; the cause is the missed recovery, which the sentence also says.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.order-of-the-bad-year.c4",
       "text": "Adding $20k at each year-end flips it: loss first ends at $145k and gain first at $136k, because the deposit went in low.",
       "support": "derivation",
-      "source": "Loss first 80 + 20 = 100, × 1.25 + 20 = 145; gain first 125 + 20 = 145, × 0.8 + 20 = 136 (Demo.tsx path(); builder node run). Shown only if the learner reached deposit $20k with both orders shown; the stage record row then reads 'deposit $20k: gain first $136k, loss first $145k'.",
-      "status": "unverified"
+      "source": "Loss first 80 + 20 = 100, × 1.25 + 20 = 145; gain first 125 + 20 = 145, × 0.8 + 20 = 136 (Demo.tsx path(); builder node run). Shown only if the learner reached deposit $20k with both orders shown; the stage record row then reads 'deposit $20k: gain first $136k, loss first $145k'. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own: loss first 80 + 20 = 100, x 1.25 + 20 = 145; gain first 145, x 0.8 + 20 = 136. Sentence prints only if the deposit record exists (d).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.order-of-the-bad-year.c5",
       "text": "The lesson is a two-year toy model: returns +25% and −20%, money moves at each year-end, no fees, taxes or inflation; not a forecast or advice.",
       "support": "convention",
-      "source": "Stage chip 'Model: returns +25% and −20%; money moves at each year-end'; Demo.tsx RET and path(). Lesson rule, not an empirical claim.",
-      "status": "unverified"
+      "source": "Stage chip 'Model: returns +25% and −20%; money moves at each year-end'; Demo.tsx RET and path(). Lesson rule, not an empirical claim. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Stage chip 'Model: returns +25% and −20%; money moves at each year-end'; RET and path() have no fees, taxes or inflation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

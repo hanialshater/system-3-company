@@ -43,3 +43,14 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c6 | verified | Own run(): on 8 ... 1 9 the 9 makes 8 comparisons, all 8 pops (stack empty after the eighth, no ninth test); ticks t < popped.length are filled (pop), the rest hollow with stroke 1.8 (stop); label '8 pops'. Own port of next(): presses 1-8 place 8..1, press 9 arrival (stack 8 boxes, pk 0), presses 10-17 pop one box each (7..0, label 1 pop..8 pops), press 18 pushes 9; next() has no motion branch, so reduced motion steps the same way. play() frames for the 9: q = 0..8 then push, each q frame held POP_MS = 260 ms. replay() under reduced motion calls setK(N) (jump), sawEmpty unchanged. On 9 ... 1 numbers 2-9 make 1 comparison, 0 pops (hollow tick). 'Down to the 9' = the stack reaches 0 boxes, then [9] is pushed. |
 
 **Result:** 2 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Each stack comparison either pops (at most n - 1 pops) or is the one failing test that ends a turn (at most n - 1), so comparisons <= 2n - 2. Own exhaustive check over all 40,320 orders of 1..8: comparisons = pops + stops in every case, max 13 < 16. On 9..1: 8 (0 pops, 8 stops); on 8..1 9: 15 (8 pops, 7 stops). CLRS not needed. |
+| c6 | verified | v6 code read: next() on the 9 of 8..1 9 gives the arrival frame (pk 0, 8 boxes), then one pop per press (7..0 boxes, labels '1 pop'..'8 pops'), then the push of 9; play() holds each pop frame POP_MS = 260 ms; replay() under reduced motion jumps (setK(N)); OnReveal calls snapToEnd, which clears the timer and finish()es the list if a replay is running. Ticks t < popped.length are filled ('pop'), the rest hollow with stroke 1.8 ('stop'). On 9..1 each later number makes 1 comparison, 0 pops. Nit, non-blocking: if both lists are done and the learner picks 9 8 … 1 again (a replay) and opens the reveal, the '8 pops' row is not on stage; the reveal sentence is past tense and the readouts '36 · 8' and '36 · 15' are, so nothing false is shown. |
+
+**Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

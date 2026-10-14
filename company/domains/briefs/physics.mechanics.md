@@ -23,3 +23,7 @@ New demand-3 concept `head-on-equals-wall` added to `content/curriculum/physics.
 - curriculum: `{"primary":"physics:head-on-equals-wall","also":["physics:kinetic-energy-speed-squared"],"prerequisites":["physics:momentum-collisions"],"level":"core","strand":"mechanics","tags":["collisions","momentum","energy","road safety"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: crumple-zone-stopping-time teaches that longer stopping time lowers force; truck-hits-car-force teaches equal and opposite forces; sticky-cart-merge teaches momentum sharing with one cart at rest; doubling-speed-braking teaches v^2 in braking distance. None asks what a head-on crash is equivalent to, which is the misconception here.
+
+## Round 4 (2026-10-14, cm-physics)
+
+Wave J briefs for this strand are in `physics.md` round 4 (#56–#70; strand named on each brief), so the claim queue hands out demand-3 concepts first across all strands.

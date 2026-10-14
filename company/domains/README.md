@@ -17,6 +17,9 @@ teach yet. **Unmet demand** is the roadmap's raw material: `npm run company -- c
 | Life Sciences | [life.md](life.md) | active |
 | Chemistry | [chemistry.md](chemistry.md) | active |
 | Geography & Maps | [geography.md](geography.md) | active |
+| Life Hacks | [lifehacks.md](lifehacks.md) | incubating |
+| Book Summaries | [books.md](books.md) | incubating (2026-10-14, founder request) |
+| Big Ideas | [big-ideas.md](big-ideas.md) | incubating (2026-10-14, founder request) |
 
 ## Expanding into a new domain
 

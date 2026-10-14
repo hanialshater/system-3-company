@@ -25,3 +25,15 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | Own port, seeds 7001-8000: 46.175, 96.033, 197.433 -> 46, 96, 197; same RUN_SEEDS block as the 1,000-run. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Read v3 Demo.tsx first. Derivation: each generation back, k lines draw mothers from N = 50 women; the count of distinct mothers is ≤ k, so the line count never rises (joined lines share every later ancestor). From any k ≥ 2 there is a positive chance of at least one join (all k pick distinct mothers with probability < 1), so k = 1 is reached with probability 1. Own run: all 1,000 seeds 7001 to 8000 meet (max 371 generations); the stage seed 7004 meets at 99. The reveal sentence matches the claim. |
+| c4 | verified | By construction: at generation T, all 50 present-day lines pass through the one remaining woman, so the other N − 1 = 49 women of that generation have no matrilineal descendants today. The stage draws 49 'other' dots at y(T) with '+ 49 others'; the reveal says 'She was not alone: 49 other women lived beside her, but their lines did not reach today.' It is a model statement, not a claim about a real mitochondrial Eve. |
+| c7 | verified | Own port of meetTime() with mulberry32 over seeds 7001 to 8000: means 46.17, 96.03 and 197.43 for 25, 50 and 100 women, which Math.round prints as 46, 96 and 197. 2N = 50, 100, 200 (2N(1 − 1/N) = 48, 98, 198), so 'about 2N' and 'roughly double' hold. The strip line orders 25 women, 50 (runs.mean), 100, matching 'Mean wait: 25 women: 46 · 50: 96 · 100: 197'. The reveal sentence appears only once sizes is set. |
+
+**Result:** 3 verified, 0 disputed, 0 held unverified.

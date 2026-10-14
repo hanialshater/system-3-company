@@ -50,3 +50,135 @@ Accepted by cm-cs-systems: answer re-run in node (grid search: share 0.5 on B, a
 - curriculum: `{"primary":"cs:price-of-anarchy","also":["economics:externality"],"prerequisites":["cs:weighted-shortest-path"],"level":"core","strand":"systems","references":[{"work":"easley-kleinberg-2010","chapter":8}],"tags":["traffic","equilibrium","price of anarchy"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: new-road-slower-trip (batch 1, Braess) adds a road and everyone gets slower; this one has no new road and asks how far selfish routing is from the best split.
+
+**Wave J additions (2026-10-14).** 2 more NCM briefs from `company/courses/ncm/briefs.md` (§ cs.systems (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `cs` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 8. one-link-back-grows-the-core · concept: cs:core-grows-by-one-link · core · demand 2 · format: Single card (hand-drawn network stage, 10 pages; link preset chips)
+- Sections: E&K ch. 13 (section 13.3–13.4, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: one-way links and the IN / core / OUT picture (web-bow-tie-reach) / does not know: that one new link from OUT back to IN joins exactly the pages on the loop it closes, not the whole of IN and OUT.
+- Misconception: One link from OUT back to IN pulls all of IN and OUT into the core.
+- Prediction (stage text ≤ 25 words): "Core A–D: each reaches every other. Add one link from OUT page I to IN page F. How many pages form the core now?" options: A. 5 / B. 8 / C. 10 (answer: B (8: A–F, H, I)).
+- Check: Core A→B→C→D→A; IN: E→A, F→E, G→B; OUT: C→H, H→I, D→J. Node `J5 {"before":["A","B","C","D"],"addIF":["A","B","C","D","E","F","H","I"],"addJG":["A","B","C","D","G","J"],"both":[all 10]}`.
+- Stage and controls: Ten page nodes in a bow-tie layout (IN left, core centre, OUT right), core pages filled. Controls in DOM order: [Add I → F] [Add J → G] [Both] [None]; exclusive presets, the active one disabled. Readout: "core: N pages". ≤ 12 nodes, no node taps, labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: I → F (milestone 1: core 8, the question's case), J → G (milestone 2: core 6), Both (10), None (4). The reveal quotes the recorded milestones.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): The new link closes one loop: F → E → A → B → C → H → I → F. Every page on it can now reach every other, so E, F, H and I join: 8. G still can't be reached from the core, and J still can't get back, so they stay out. One back link adds exactly the pages on the loop it closes. (≤ 90 words.)
+- Planned claims:
+  1. In the stage graph the core (pages that reach each other both ways) is A–D; adding I → F makes it A–F, H and I (8 pages); adding J → G instead gives A–D, G, J (6); adding both gives all 10. support: derivation; source: node reachability both ways.
+  2. A page is in the same strongly connected group as the core exactly when it can reach the core and the core can reach it. support: definition; source: E&K ch. 13 (section unconfirmed).
+  3. The 10-page graph is a toy, not to scale. support: definition.
+- Format: Single card (hand-drawn network stage, 10 pages; link preset chips)
+- Curriculum: `{"primary": "cs:core-grows-by-one-link", "also": ["cs:strongly-connected-components"], "prerequisites": ["cs:web-bow-tie", "cs:strongly-connected-components"], "level": "core", "strand": "systems", "references": [{"work": "easley-kleinberg-2010", "chapter": 13, "section_unconfirmed": "13.3–13.4"}], "tags": ["web", "directed graphs", "strongly connected"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/web-bow-tie-reach asks what one page can reach; cs/groups-where-everyone-reaches-everyone finds the groups with two depth-first passes (CLRS). This one asks how one new link changes the core. Build after web-bow-tie-reach (built).
+
+### 9. drivers-stop-switching · concept: cs:best-response-convergence · core · demand 2 · format: Single card with step-run button (switch log and delay meter)
+- Sections: E&K ch. 8 (section 8.3, unconfirmed) · domain: cs · course: ncm (wave J)
+- Learner knows: each driver picks the faster road (new-road-slower-trip, selfish-routes-cost-a-third-more) / does not know: that when drivers switch one at a time, a meter of total delay falls by exactly each switcher's saving, so the switching must stop.
+- Misconception: Selfish drivers chasing the faster road keep flipping back and forth for ever.
+- Prediction (stage text ≤ 25 words): "Six drivers, two roads. One at a time, a driver switches if the other road is faster for them right now. The switching:" options: A. Stops within a few switches / B. Goes back and forth for ever / C. Stops only for some driver orders (answer: A (3 switches from all-on-B; at most 3 from any of the 64 starts)).
+- Check: Road A takes 10 min × cars on A; road B takes 25 + 5 × cars on B; a driver switches only if strictly faster. Node `J7 {"log":[{"phi":255},{"saved":45,"phiDrop":45,"phi":210},{"saved":30,"phiDrop":30,"phi":180},{"saved":15,"phiDrop":15,"phi":165}],"final":{"onA":3,"onB":3,"timeA":30,"timeB":40}}`; `J7all {"starts":64,"maxMoves":3}`. All switching at once from all-on-B alternates 55 min (all on B) and 60 min (all on A) for ever (hand check: 10 < 55, then 30 < 60).
+- Stage and controls: Two road bars with car tokens and trip times; a "delay meter" bar (sum over each road of 1st car's time + 2nd car's time + …). Controls in DOM order: [One at a time: run] [All at once: 4 rounds] [Start over]. The run shows each switch as a log row "driver 2 saves 30 min · meter −30". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: One at a time (milestone 1: settled after 3 switches, A 30 min, B 40 min, meter 255 → 165), All at once (milestone 2: 4 rounds flipping 55 / 60 / 55 / 60), Start over (all on B; the recorded milestones stay quoted).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Each switch lowered the meter by exactly the minutes that driver saved: 45, 30, 15. The meter can't fall for ever, so after 3 switches nobody could gain: 3 drivers on A at 30 min, 3 on B at 40. When everyone switched at once there was no such meter, and the crowd flipped between 55 and 60 minutes round after round. (≤ 90 words.)
+- Planned claims:
+  1. On the stage's roads, switching one at a time from all-on-B takes 3 switches (savings 45, 30, 15 min) and ends with 3 drivers on A at 30 min and 3 on B at 40 min. support: derivation; source: node.
+  2. The delay meter (for each road, the sum of the trip time with 1, 2, …, n cars) falls by exactly the switching driver's saving at every switch: 255, 210, 180, 165. support: derivation; source: node.
+  3. From each of the 64 starting arrangements, one-at-a-time switching (drivers in turn) stops within 3 switches. support: derivation; source: node enumeration.
+  4. If all six switch at once whenever the other road is faster, they alternate between all on B (55 min) and all on A (60 min) for ever. support: derivation.
+  5. In routing games of this kind one-at-a-time best responses always stop at an equilibrium, because such a potential falls with every switch. support: citation; source: E&K ch. 8 advanced material (section unconfirmed); Rosenthal (1973), Int. J. Game Theory 2; Monderer and Shapley (1996). Attribution: fact-checker confirms.
+- Format: Single card with step-run button (switch log and delay meter)
+- Curriculum: `{"primary": "cs:best-response-convergence", "also": ["cs:price-of-anarchy"], "prerequisites": ["cs:braess-paradox"], "level": "core", "strand": "systems", "references": [{"work": "easley-kleinberg-2010", "chapter": 8, "section_unconfirmed": "8.3"}], "tags": ["traffic", "game theory", "equilibrium"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/new-road-slower-trip (Braess) and cs/selfish-routes-cost-a-third-more compare the equilibrium with the best plan; neither asks whether selfish switching ever ends. Build after both (built).
+
+
+## Wave J (cm-cs, 2026-10-14): five new concepts, demand 3 first
+
+Written by cm-cs for Wave J. Every concept below is new to `content/curriculum/cs.json` (`subarea: systems`) and has no lesson. Same rules as the Wave J section of `cs.algorithms.md`: stage text <= 25 words, reveal <= 90 words (count given), labels >= 10 px, preset buttons in DOM order reaching every milestone with Reset last, every answer re-run in node on 2026-10-14 and checkable by derivation or simulation. Each lesson's numbers come from a stated toy model; the stage caption names the model so no claim pretends to be a hardware measurement. No simulated review counts as learning evidence.
+
+### 3. same-sum-different-speed · concept: cache-locality · core · demand 3
+- Format: Side-by-side comparison
+- Audience and knowledge boundary: learner knows: a small cache keeps recently used items and evicts the least recently used (lru-eviction-order) / does not know: that memory arrives in lines of neighbouring cells, so the order you visit data decides how many slow fetches you pay.
+- Misconception: Adding up the same 64 numbers costs the same whatever order you visit them in.
+- Prediction (stage text, 23 words): "An 8×8 grid is stored row by row. Each fetch brings 4 neighbouring cells; 2 fetches stay nearby. Rows take 16 fetches. Columns?" options: A) 16 / B) 32 / C) 64 (answer: C). The locked stage shows both grids, no fetch counts.
+- Check (node, 2026-10-14): model: cell (r, c) is at r × 8 + c; a line is 4 consecutive cells (16 lines); the near memory keeps 2 lines, evicting the least recently used. Row order: 16 fetches. Column order: 64 (each step down a column is 8 cells on, in a new line, and the 2 kept lines are gone before the next column returns to them). Column order with 8 lines kept: 16; with 7 kept: 64.
+- What the stage shows: two 8 x 8 grids side by side (cells 18 px; each grid 144 px), "rows" and "columns"; each fetched line flashes as a 4-cell bar; fetch counters under each grid. Controls in DOM order: Add by rows (16), Add by columns (64), Columns, keep 8 lines (16), Reset (4). Each run completes at once (final counts shown; a Step button is optional after Reset). A trace keeps the three counts.
+- Key state (milestones): rows (16), columns (64), columns-kept (16). Reveal unlocks after all three.
+- Reveal payoff (draft, 84 words): "Row by row, each fetch brought 4 cells you used next, so 64 cells cost 16 fetches. Column by column, the next cell was 8 cells further on, in a different line, and the 2 kept lines were pushed out before you came back: 64 fetches, four times as many, for the same sum. When 8 lines could stay nearby, columns also needed only 16. Processors fetch memory in lines like this, which is why swapping two loops can make a program much faster."
+- Phone fit (390x844): the reveal points at the two grids' counters and the trace. Two 144 px grids fit side by side at 390 px with labels >= 10 px; stage-top crop 0 px.
+- Planned claims:
+  1. In the model, row order costs 16 fetches and column order 64; column order with 8 kept lines costs 16 (with 7, 64). support: simulation; source: node (fact-checker can derive: rows touch each of 16 lines once; a column touches 8 lines, more than 2 kept).
+  2. Processors move memory between main memory and cache in fixed-size blocks (cache lines), so nearby accesses are cheaper. support: citation; source: Hennessy and Patterson, Computer Architecture: A Quantitative Approach, memory-hierarchy chapter (spatial locality; loop interchange as a compiler optimisation). Attribution: fact-checker confirms from the book; the reveal gives no real-hardware speed-up number.
+- Curriculum (new concept): `{"id":"cache-locality","name":"Cache lines and locality: visit order changes cost","level":"core","demand":3,"prerequisites":["lru-cache"],"subarea":"systems"}`; also none; references none; tags memory, cache, locality.
+- Differs from nearest: lru-eviction-order (lru-cache) asks which item an LRU cache evicts; this asks how the visit order and line size decide the fetch count. more-memory-more-misses (brief 6 below) compares eviction rules; build this first.
+
+### 4. eight-cores-not-eight-times · concept: amdahls-law · intro · demand 3
+- Format: Single card
+- Audience and knowledge boundary: learner knows: splitting work among helpers saves time / does not know: that the part that cannot be split sets a hard limit, so 8 cores give far less than 8 times the speed.
+- Misconception: With 8 cores a job runs 8 times faster.
+- Prediction (stage text, 21 words): "A 60-minute job: 45 minutes can be split across cores, 15 minutes cannot. With 8 cores, how long does it take?" options: A) 7.5 min / B) About 21 min / C) 30 min (answer: B, 20.6). The locked stage shows the job bar at 1 core, unlabelled.
+- Check (derivation, node, 2026-10-14): time = 15 + 45 / cores: 1 core 60 (1x), 2 cores 37.5 (1.6x), 4 cores 26.25 (2.29x), 8 cores 20.6 (2.91x), unlimited 15 (4x). Model: the splittable part divides perfectly, no overhead (caption).
+- What the stage shows: one job bar: a grey 15-minute block that cannot split, and the 45-minute part drawn as stacked lanes, one per core; readouts "time" and "speed-up". Controls in DOM order: 2 cores, 4 cores, 8 cores, Unlimited cores, Reset (5). A trace keeps each visited setting's time.
+- Key state (milestones): question-case (8 cores: 20.6 min, 2.91x), limit (unlimited: 15 min, 4x). Reveal unlocks after both (the QA path visits 2 and 4 on the way).
+- Reveal payoff (draft, 68 words): "With 8 cores the 45 splittable minutes shrank to under 6, but the 15 that cannot be split stayed 15: 20.6 minutes, 2.9 times faster, not 8. Unlimited cores still left the 15 minutes, so this job can never run more than 4 times faster. The part that must run on one core sets the limit. This is Amdahl's law: more cores help only the part that splits."
+- Phone fit (390x844): the reveal points at the grey block and the trace. One bar, two readouts, one trace; stage-top crop 0 px.
+- Planned claims:
+  1. 15 + 45/8 = 20.6 minutes, a speed-up of 2.91. support: derivation.
+  2. With unlimited cores the time approaches 15 minutes, a speed-up of at most 4. support: derivation.
+  3. The limit is Amdahl's law: speed-up = 1 / (serial share + parallel share / cores). support: citation + derivation; source: Amdahl (1967), "Validity of the single processor approach to achieving large scale computing capabilities", AFIPS Conference Proceedings 30; Hennessy and Patterson (any edition, quantitative principles chapter). Attribution: fact-checker confirms.
+  4. The model ignores the cost of splitting and coordinating work (caption). support: definition.
+- Curriculum (new concept): `{"id":"amdahls-law","name":"Amdahl's law: the serial part limits parallel speed-up","level":"intro","demand":3,"prerequisites":[],"subarea":"systems"}`; also none; references none; tags parallelism, cores, speed-up.
+- Differs from nearest: no lesson in any category covers parallel speed-up. lifehacks/work-in-process-limit is about queues of tasks, not splitting one task.
+
+### 5. faster-link-same-wait · concept: latency-vs-bandwidth · core · demand 3
+- Format: Single card
+- Audience and knowledge boundary: learner knows: data travels as packets / does not know: that when each packet waits for a reply, the round-trip time, not the link speed, decides the transfer time, and that sending several before waiting removes most of the wait.
+- Misconception: Doubling the link speed halves the transfer time.
+- Prediction (stage text, 24 words): "10 packets. Each takes 1 ms to send, then waits for a reply (50 ms round trip). Total: 510 ms. Double the link speed:" options: A) About 255 ms / B) About 505 ms / C) About 60 ms (answer: B). The locked stage shows the 510 ms timeline.
+- Check (derivation, node, 2026-10-14): model: each round sends k packets (k × send time) then waits one round trip. One at a time: 10 × (1 + 50) = 510 ms. Double speed: 10 × (0.5 + 50) = 505 ms. 5 per round: 2 × (5 + 50) = 110 ms. All 10 per round: 10 + 50 = 60 ms.
+- What the stage shows: one timeline 0-520 ms (tick labels >= 10 px): sending as dark ticks, waiting as grey gaps; total readout. Controls in DOM order: Double speed (505), Send 5 before waiting (110), Send all 10 before waiting (60), Reset (4). A trace keeps each total.
+- Key state (milestones): doubled (505 recorded), window-all (60 recorded). The 110 state is on the QA path and quoted only if visited. Reveal unlocks after both.
+- Reveal payoff (draft, 79 words): "Doubling the speed saved only 5 ms, 510 down to 505, because each packet spent 1 ms being sent and 50 ms waiting for its reply. Waiting, not sending, was the cost. Sending all 10 before waiting took 60 ms on the original link, more than eight times faster. The wait is latency: it depends on distance and signal speed, so a faster link cannot remove it. Protocols such as TCP keep many packets in flight for this reason."
+- Phone fit (390x844): the reveal points at the grey gaps and the trace. One timeline and one trace; stage-top crop 0 px.
+- Planned claims:
+  1. One at a time: 510 ms; double speed: 505 ms; all 10 then one wait: 60 ms. support: derivation (model above, stated in the caption).
+  2. Round-trip time is set by distance and propagation speed, not by link bandwidth. support: derivation (time = distance / signal speed; bandwidth changes only the send time).
+  3. TCP lets a sender have many unacknowledged bytes in flight (a sliding window). support: citation; source: RFC 9293 (2022), Transmission Control Protocol, section 3.8 (window management). Attribution: fact-checker confirms the section; if not checkable, cut the last reveal sentence.
+- Curriculum (new concept): `{"id":"latency-vs-bandwidth","name":"Latency vs bandwidth: waiting for replies, not link speed, sets the time","level":"core","demand":3,"prerequisites":[],"subarea":"systems"}`; also none; references none; tags networks, latency, bandwidth, TCP.
+- Differs from nearest: no lesson covers latency. turns-beat-first-come-first (round-robin-scheduling) is about waiting in a queue for a processor, not waiting for a reply.
+
+### 6. more-memory-more-misses · concept: belady-anomaly · core · demand 2
+- Format: Side-by-side comparison
+- Audience and knowledge boundary: learner knows: an LRU cache evicts the least recently used item (lru-eviction-order) / does not know: that with "evict the oldest arrival" (FIFO) a bigger cache can miss more often, while LRU never does.
+- Misconception: Giving a cache more slots can never make it miss more often.
+- Prediction (stage text, 25 words): "Full cache? Evict the oldest arrival. Requests: 1 2 3 4 1 2 5 1 2 3 4 5. 3 slots: 9 misses. 4 slots?" options: A) Fewer than 9 / B) 9 / C) More than 9 (answer: C, 10). The locked stage shows two empty lanes (3 slots, 4 slots) and the request strip.
+- Check (node, 2026-10-14): FIFO: 3 slots 9 misses, 4 slots 10. LRU on the same requests: 3 slots 10, 4 slots 8. With 4 slots FIFO, 1 and 2 are hits at requests 5 and 6 but hits do not change arrival order, so 5 evicts 1, then 1 evicts 2, and so on: every one of the last 6 requests misses.
+- What the stage shows: two lanes (3 slots, 4 slots) under one request strip; each request marks hit (outline) or miss (filled, red and a cross, not colour alone) in both lanes; miss counters. Controls in DOM order: Run FIFO (9 vs 10), Run LRU (10 vs 8), Step (one request in both lanes, current rule), Reset (4). Runs complete at once. A trace keeps "FIFO 9 / 10 · LRU 10 / 8".
+- Key state (milestones): fifo-anomaly (9 and 10 recorded), lru (10 and 8 recorded). Reveal unlocks after both.
+- Reveal payoff (draft, 81 words): "With 3 slots, throwing out the oldest arrival missed 9 times; with 4 slots it missed 10. The bigger cache had hits on 1 and 2 early, but a hit does not change arrival order, so when 5 came, 1 and 2 were the oldest and were thrown out just before they were needed. Evicting the least recently used instead gave 10 and 8: more slots, fewer misses. That rule never loses from more room; oldest-first can. This is Belady's anomaly."
+- Phone fit (390x844): the reveal points at the two lanes' counters and the trace. Two lanes of 12 request cells (each >= 28 px; wrap to two rows of 6 if needed) plus one trace; stage-top crop 0 px.
+- Planned claims:
+  1. On 1 2 3 4 1 2 5 1 2 3 4 5, FIFO misses 9 times with 3 slots and 10 with 4. support: simulation; source: node (fact-checker can redo by hand, 12 steps per lane).
+  2. LRU misses 10 times with 3 slots and 8 with 4 on the same requests. support: simulation; source: node.
+  3. LRU never misses more with more slots (it is a stack algorithm: the contents with k slots are always a subset of those with k + 1). support: derivation + citation; source: Mattson, Gecsei, Slutz and Traiger (1970), "Evaluation techniques for storage hierarchies", IBM Systems Journal 9(2). Attribution: fact-checker confirms.
+  4. The FIFO effect is Belady's anomaly. support: citation; source: Belady, Nelson and Shedler (1969), "An anomaly in space-time characteristics of certain programs running in a paging machine", CACM 12(6); Silberschatz, Galvin and Gagne, Operating System Concepts, virtual-memory chapter (this exact reference string). Attribution: fact-checker confirms.
+- Curriculum (new concept): `{"id":"belady-anomaly","name":"Belady's anomaly: more cache slots, more misses (FIFO)","level":"core","demand":2,"prerequisites":["lru-cache"],"subarea":"systems"}`; also none; references none; tags caching, paging, eviction.
+- Differs from nearest: lru-eviction-order (lru-cache) asks which item LRU evicts at one size; this compares sizes and two rules and shows a bigger cache losing. same-sum-different-speed (brief 3) is about visit order, not eviction rule.
+
+### 7. overlap-means-fresh-reads · concept: quorum-overlap · core · demand 2
+- Format: Single card
+- Audience and knowledge boundary: learner knows: data can be copied onto several machines / does not know: that if every write reaches W of N copies and every read asks R copies with W + R > N, each read meets at least one copy holding the newest write, without updating every copy.
+- Misconception: To be sure a read sees the latest value, every write must reach every copy.
+- Prediction (stage text, 25 words): "Data has 5 copies. A write updates any 3; a read asks any 3 and keeps the newest. Can a read miss the latest write?" options: A) Yes, often / B) Yes, rarely / C) Never (answer: C). The locked stage shows 5 server dots.
+- Check (node, 2026-10-14): all 10 write groups x 10 read groups of 3: 0 of 100 pairs miss. Write 2, read 3: 10 of 100 pairs miss (for each write pair, exactly the other 3 servers). Write 2, read 4: 0 of 50. Write 5, read 1: 0 of 5.
+- What the stage shows: 5 server dots; the write group filled, the read group ringed, a shared dot starred; readout "pairs tried · misses". Controls in DOM order: Try all 3 + 3 pairs (100 · 0), Write to 2 only (100 · 10; one missing pair is left drawn), Write 2, read 4 (50 · 0), Reset (4). Runs complete at once. A trace keeps the three results.
+- Key state (milestones): all-3-3 (0 of 100), write-2 (10 of 100, one miss drawn), read-4 (0 of 50). Reveal unlocks after all three.
+- Reveal payoff (draft, 82 words): "With writes to 3 copies and reads from 3, all 100 pairs you tried shared a copy, and none missed: 3 + 3 is more than 5, so two groups of 3 cannot avoid each other, and the shared copy holds the new value. Writing to only 2 let 10 of 100 reads miss it. Reading 4 instead closed the gap: 2 + 4 is more than 5. Some replicated databases let you tune these two numbers instead of updating every copy."
+- Phone fit (390x844): the reveal points at the drawn missing pair and the trace. Five dots (>= 44 px apart) and one trace; stage-top crop 0 px.
+- Planned claims:
+  1. With 5 copies, every write group of 3 and read group of 3 share a copy (0 misses of 100 pairs). support: derivation (pigeonhole: 3 + 3 > 5) + simulation (node enumeration).
+  2. Writing 2 and reading 3, 10 of the 100 pairs share no copy. support: simulation; derivation: each write pair misses exactly one read group, the other 3 servers.
+  3. Writing 2 and reading 4 never misses (2 + 4 > 5). support: derivation.
+  4. Quorum systems with W + R > N for replicated data. support: citation; source: Gifford (1979), "Weighted voting for replicated data", SOSP; DeCandia et al. (2007), "Dynamo: Amazon's highly available key-value store", SOSP (configurable N, R, W). Attribution: fact-checker confirms; if neither is checkable, cut the last reveal sentence.
+- Curriculum (new concept): `{"id":"quorum-overlap","name":"Quorums: W + R > N makes every read meet the newest write","level":"core","demand":2,"prerequisites":[],"subarea":"systems"}`; also none; references none; tags distributed systems, replication, quorum.
+- Differs from nearest: two-writers-one-counter (race-condition) loses an update on one machine; this keeps copies on many machines consistent enough to read. No lesson covers replication.

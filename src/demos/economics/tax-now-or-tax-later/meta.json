@@ -26,29 +26,37 @@
       "id": "economics.tax-now-or-tax-later.c1",
       "text": "At 25% tax now and 25% later with 4× growth, both accounts end at $30,000: A pays $2,500 up front and its $7,500 grows to $30,000; B grows $10,000 to $40,000, then hands a quarter back.",
       "support": "derivation",
-      "source": "A = 10,000 × 0.75 × 4 = 30,000; B = 10,000 × 4 × 0.75 = 30,000; B's tax = 40,000 × 0.25 = 10,000 (Demo.tsx accA(), accB(); builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #57.",
-      "status": "unverified"
+      "source": "A = 10,000 × 0.75 × 4 = 30,000; B = 10,000 × 4 × 0.75 = 30,000; B's tax = 40,000 × 0.25 = 10,000 (Demo.tsx accA(), accB(); builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #57. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: A = 10,000 × 0.75 × 4 = 30,000 (tax 2,500 up front, 7,500 grows to 30,000); B = 10,000 × 4 = 40,000, tax 10,000 (a quarter), keeps 30,000. Reveal needs milestone question (×4, 25%); q = accA(4) = 30,000.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.tax-now-or-tax-later.c2",
       "text": "Both are $10,000 × 0.75 × 4, multiplied in a different order; for any growth, equal flat rates give equal results.",
       "support": "derivation",
-      "source": "(1 − t) × G = G × (1 − t) for any growth factor G (commutativity). The stage's ×2 chip shows the same tie at $15,000.",
-      "status": "unverified"
+      "source": "(1 − t) × G = G × (1 − t) for any growth factor G (commutativity). The stage's ×2 chip shows the same tie at $15,000. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. (1 − t) × G = G × (1 − t) for any G: equal flat rates tie at every growth. Stage ×2 at 25% shows A $15,000 and B $15,000.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.tax-now-or-tax-later.c3",
       "text": "Only a change of rate decides it: with 4× growth, at a 35% later rate B ends at $26,000 and at 15% at $34,000, against A's $30,000 (the reveal quotes the learner's own recorded rate and growth).",
       "support": "derivation",
-      "source": "B = 10,000 × G × (1 − later): ×4 at 35% = 26,000, at 15% = 34,000, at 30% = 28,000; ×2 at 35% = 13,000 vs A 15,000 (Demo.tsx accB(); builder node run). The reveal prints the record set at milestone 'rate', which the record row under the chart also shows. QA path ends at 35%, ×4.",
-      "status": "unverified"
+      "source": "B = 10,000 × G × (1 − later): ×4 at 35% = 26,000, at 15% = 34,000, at 30% = 28,000; ×2 at 35% = 13,000 vs A 15,000 (Demo.tsx accB(); builder node run). The reveal prints the record set at milestone 'rate', which the record row under the chart also shows. QA path ends at 35%, ×4. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Numbers hold (own node: ×4 at 35% B = 26,000, at 15% 34,000; ×2 at 35% B = 13,000 vs A 15,000). But the claim says the reveal quotes the learner's recorded rate and growth, and it prints only the rate: 'at a {rec.later}% later rate, B ended at {rec.b} against A's {rec.a}'. rec is the latest state with a later rate ≠ 25%, at whatever growth was set. The stage opens at ×2, and a learner who moves the slider at ×2, or switches growth after moving it, gets e.g. 'at a 35% later rate, B ended at $13,000 against A's $15,000'. That comes right after 'Both ended at $30,000 … $10,000 × 0.75 × 4', with no ×2 shown, so it reads as if A were $15,000 at ×4. Fix (builder): print the growth in the reveal (e.g. 'at ×{rec.g} and a {rec.later}% later rate'), or record the rate milestone only at ×4. Blocks publishing.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.tax-now-or-tax-later.c4",
       "text": "The tax system is made up: flat rates, today 25%, no contribution limits, fees or penalties; not advice about any real account.",
       "support": "convention",
-      "source": "Stage chip 'Model: made-up flat tax. Today 25%. Later: slider.' and the reveal's last sentence. Lesson rule. No real account (e.g. any national tax-advantaged account) is named, per the brief.",
-      "status": "unverified"
+      "source": "Stage chip 'Model: made-up flat tax. Today 25%. Later: slider.' and the reveal's last sentence. Lesson rule. No real account (e.g. any national tax-advantaged account) is named, per the brief. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Stage chip reads 'Model: made-up flat tax. Today 25%. Later: slider.'; the reveal ends 'Not advice about any real account.'; accA/accB contain no limits, fees or penalties; no real account named. Convention.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -537,6 +537,158 @@
         "greedy-decoding"
       ],
       "subarea": "neural-language"
+    },
+    {
+      "id": "vanishing-gradients",
+      "name": "Vanishing gradients: deep layers starve the first ones",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "backprop-chain"
+      ],
+      "subarea": "neural-language"
+    },
+    {
+      "id": "emergence-metric-artifact",
+      "name": "Emergence or metric? All-or-nothing scores make smooth progress look sudden",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "next-token",
+        "sequence-length-bias"
+      ],
+      "subarea": "neural-language"
+    },
+    {
+      "id": "proxy-discrimination",
+      "name": "Proxies: deleting the group column does not delete the bias",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "training-data-bias"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "training-data-extraction",
+      "name": "Memorised secrets: models can repeat private training text",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "next-token"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "sycophancy",
+      "name": "Sycophancy: preference training can reward agreeing over being right",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "preference-ranking"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "prompt-injection",
+      "name": "Prompt injection: text the model reads can act as orders",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "context-window"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "scaling-laws",
+      "name": "Scaling laws: each tenfold of compute buys the same small fraction",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "cross-entropy-loss"
+      ],
+      "subarea": "neural-language"
+    },
+    {
+      "id": "zero-failure-testing",
+      "name": "Zero failures in testing: the rule of three",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:at-least-once"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "loss-choice-mean-median",
+      "name": "The loss chooses the answer: squared error gives the mean, absolute the median",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "categorical-encoding",
+      "name": "Categories are not numbers: codes invent an order",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "linear-regression-fit"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "pca-ignores-labels",
+      "name": "PCA keeps spread, not meaning: the widest direction can hide the classes",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "decision-boundary"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "gradient-boosting-residuals",
+      "name": "Boosting: each new model fits what is left",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "decision-tree-splits",
+        "ensemble-wisdom"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "discount-factor",
+      "name": "Discounting: how far ahead an agent cares",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "exploration-exploitation"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "attention-quadratic-cost",
+      "name": "Attention cost grows with the square of the text",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "attention-weights"
+      ],
+      "subarea": "neural-language"
+    },
+    {
+      "id": "convolution-weight-sharing",
+      "name": "Convolution: one filter slid over every place",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "perceptron-learning"
+      ],
+      "subarea": "neural-language"
     }
   ]
 }

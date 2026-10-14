@@ -25,3 +25,14 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c4 | verified | Rows fill in order (Fill / Fill the rest), so every "k + best(m)" line at length n reads a row m < n that is already filled; TABLE is computed once. Outline: reused = n - first only when the kept cut is not whole, which is row 2 at length 4 (lengths 1-3 keep the whole piece, no outline). "1 + best(3)" is the first line of the length-4 list, on stage at best-4 (needed for the reveal); after Start over the reveal's past tense holds. |
 
 **Result:** 3 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Verified by derivation and enumeration; CLRS was not opened. Proof: any cutting of n has some first piece k, and its rest must itself be cut at its best (otherwise swapping in a better cut of the rest raises the total), so best(n) = max over k of price(k) + best(n − k), with best(0) = 0. Own brute force over every composition matches the recurrence for this price list (1, 5, 8, 10) and for 2,000 random price lists of length 1 to 9 (0 mismatches). Stage text: 'best(n) = largest of: piece + best(rest)'. The list renders 'k + best(n−k): $p + $r = $t' and 'whole n: $p + $0 = $p' (own render of n = 1..4). |
+| c4 | verified | In Demo.tsx, choices(n) reads TABLE[n − k].best for k = 1..n, and the list shows only n = filled, so every row it reads (length < n) is filled. The outlined row is reused = n − TABLE[n].first: for n = 4 the kept cut is k = 2 (first strict max), so row 2 is outlined, matching the reveal's 'best(2) in "2 + best(2)"'. SyncOnReveal refills to 4 when the reveal opens after best(4) was seen, so the outlined row is on stage even if Start over was pressed last. |
+
+**Result:** 2 verified, 0 disputed, 0 held unverified.

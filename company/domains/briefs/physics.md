@@ -481,3 +481,332 @@ Written 2026-10-12 for the 500+ lesson target. Same ranking logic as round 1. Ev
 - Interaction: pump slider (air pressure 100% to 1%); animated molecule density, bell visibly moving, loudness bar. One representation: the jar.
 - Payoff: Sound is a push passed from molecule to molecule, so with nothing to pass it, it stops.
 - Claims to check: (1) Sound needs a medium (the bell-jar experiment, any acoustics text). (2) Intensity falls as air density falls (impedance rho c); residual faint sound remains at low pressure: stated. (3) Density ratio 1% gives 100x fewer molecules: arithmetic. Verifier should avoid a numeric loudness claim beyond "fades to near silence".
+
+## Round 4 (briefs #56–#70, Wave J, 2026-10-14, cm-physics)
+
+Written for Wave J (879 → 2,000 lessons). Physics coverage was 61/61, so all 15 briefs open **new concepts** (added to `content/curriculum/physics.json` the same day): 5 mechanics, 5 waves, 5 electricity & energy, strand named on each brief. They sit in this file, not the strand files, so `node tools/claim.mjs next physics` hands them out in rank order across strands: the 7 demand-3 concepts first (#56–#62), then demand 2, then demand 1. Two candidates were dropped because another category already teaches them: average speed over a round trip (math `harmonic-average-speed`) and red + green light (cs `pixels-rgb`).
+
+Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (derivations, plus a ray trace, a wave-particle simulation and a dipole-chain force sum). A fact-checker can re-run it with `node`; the textbook sources are standard ones that need no web access. Rules that apply to every brief here:
+- **QA path.** The controls are listed in DOM order. Pressing each once (about 450 ms apart) reaches every milestone, the question's own case included. Each is a preset button that changes the stage on every press. The stage starts in a state none of the presets produce (empty holder, slack rope, no voltage picked), so no first press is a no-op. Animations replay in ≤ 400 ms; milestones fire on the computed result, not when the animation ends.
+- **Text and labels.** Stage text stays ≤ 25 words at any moment; the reveal drafts are ≤ 90 words (counted). Every SVG label and readout is at least 10 px at 390 px width; tap targets use `.tap` (44 px).
+- **Reveal fit.** Each brief has one picture. The quoted values sit in that picture as labels or a single Seen row, which survives Reset. Stage-top crop must be 0 px at 390×844 with the reveal open.
+- No human-learner data exists for any brief. Simulated reviews will not count as learning evidence.
+
+### 56. tug-of-war-scale · concept: rope-tension · intro · demand 3 · format: Single card
+- Strand: mechanics.
+- Learner knows: a pull is a force in newtons; a spring scale measures a pull. / does not know: that a scale reads the tension passed through it, so two equal opposite 100 N pulls give 100 N, and a wall pulls back exactly as hard as a second person would.
+- Misconception: Two people each pulling 100 N on a rope make the scale in the middle read 200 N (or 0 N, because the pulls cancel).
+- Prediction (stage text ≤ 25 words): "Two friends pull the ends of a rope, each with 100 N. A spring scale in the middle reads..." options: A. 0 N / B. 100 N / C. 200 N (answer: B).
+- Check: massless scale at rest: T_left = T_right (net force 0 = m a with m ≈ 0). The spring carries that one tension, so it reads 100 N. With the wall: the wall's reaction is 100 N (third law), so 100 N again. Both pulling 200 N: 200 N.
+- What the stage shows: one horizontal rope with a dial scale in the middle. Force arrows at each end are labelled in N, and two equal arrows on the scale's spring stand for the tension, which is the cause. The rope starts slack and the dial reads 0.
+- Controls (DOM order = QA path): 1. "Both pull 100 N" → dial 100 N (milestone 1, the question's case). 2. "Tie right end to a wall" → the right person is replaced by a wall with a 100 N reaction arrow; dial 100 N (milestone 2). 3. "Both pull 200 N" → dial 200 N (milestone 3).
+- Seen row (recorded at each milestone): "100 + 100: 100 N · wall: 100 N · 200 + 200: 200 N".
+- Reveal payoff (draft, 75 words): "With each friend pulling 100 N, your scale read 100 N, not 200. Tied to a wall, one friend's 100 N pull also read 100 N: the wall pulls back exactly as hard, just as the second friend did. A scale measures the tension in the rope, the pull passed through it, and it can only be stretched if both ends are pulled equally. Only when both pulled 200 N did it read 200 N."
+- Phone fit: rope band plus one Seen row; no table.
+- Planned claims:
+  1. A massless scale at rest has equal pulls on its two ends (Newton's second law with a = 0), and it reads that common tension. support: derivation; source: check.mjs; any mechanics text (Halliday, Resnick and Walker, *Fundamentals of Physics*, chapter on Newton's laws, tension).
+  2. A wall holding the rope pulls back with the same 100 N (Newton's third law). support: derivation; source: same.
+  3. 100 + 100 gives 100 N; wall gives 100 N; 200 + 200 gives 200 N. support: arithmetic; source: check.mjs.
+  4. Idealisations stated: massless rope and scale, everything at rest.
+- Recall: "A 50 N weight hangs from each end of a string over two pulleys, with a scale in the middle. What does the scale read?" (50 N.)
+- curriculum: `{"primary":"physics:rope-tension","also":["physics:action-reaction"],"prerequisites":["physics:action-reaction"],"level":"intro","strand":"mechanics","tags":["forces","tension","newton's laws"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: two-tugs-right-angle adds two pulls at an angle on one object. truck-hits-car-force shows equal forces between two colliding bodies. two-springs-end-to-end is about stiffness in series. None asks what a scale reads when it is pulled from both ends.
+
+### 57. drop-on-the-train · concept: moving-frame-drop · intro · demand 3 · format: Single card
+- Strand: mechanics.
+- Learner knows: things fall; a moving thing keeps moving unless pushed (puck-on-ice-no-push). / does not know: that a ball dropped in a steadily moving train already has the train's speed, so it lands at your feet, and that from the platform the same fall is a 12 m curve.
+- Misconception: A ball dropped in a fast train lands behind you, because the train moves forward while the ball falls.
+- Prediction: "A smooth train cruises at a steady 20 m/s. Standing inside, you drop a ball from your hand. It lands..." options: A. Behind your feet / B. At your feet / C. Ahead of your feet (answer: B).
+- Check: drop height 1.8 m, fall time sqrt(2h/g) = 0.606 s. At 20 m/s the train and the ball both move 12.12 m forward, so the offset is 0 cm. At 40 m/s both move 24.23 m and the offset is again 0. (Assumptions only, not on the stage: braking at 2 m/s² during the fall would make it land 36.7 cm ahead.)
+- What the stage shows: a carriage side view with a passenger, a ball and a floor marker under the hand. A dotted trace of the ball's path stays on the stage. The ball's own forward-velocity arrow (equal to the train's) is drawn at release; it is the cause.
+- Controls (DOM order): 1. "Drop at 20 m/s" → straight-down trace, "lands 0 cm from below your hand" (milestone 1, the question's case). 2. "View from the platform" → the same drop redrawn as a curve, labelled "train moved 12.1 m · ball moved 12.1 m" (milestone 2). 3. "Drop at 40 m/s" → still 0 cm; platform label 24.2 m (milestone 3).
+- Seen row: "20 m/s: 0 cm · platform: 12.1 m curve · 40 m/s: 0 cm".
+- Reveal payoff (draft, 79 words): "Your ball fell straight down beside your legs and landed at your feet, at 20 m/s and again at 40 m/s. From the platform the same drop was a long curve: in the 0.61 s fall the train moved 12.1 m, and so did the ball. It left your hand already moving at the train's speed, and nothing slowed it, so it kept pace with you. Inside a steadily moving train, things fall just as they do standing still."
+- Phone fit: the carriage band holds the trace and the platform label; one Seen row.
+- Planned claims:
+  1. A dropped object keeps the horizontal velocity it had at release (inertia; Galilean relativity: the laws of motion are the same in any frame moving at constant velocity). support: textbook + derivation; source: Halliday, Resnick and Walker, chapter on motion in two dimensions / relative motion; check.mjs.
+  2. A 1.8 m fall takes 0.606 s (t = sqrt(2h/g)). support: derivation; source: check.mjs.
+  3. At 20 m/s the train and ball each move 12.1 m during the fall (24.2 m at 40 m/s), so the ball lands 0 cm from below the hand. support: arithmetic; source: check.mjs.
+  4. Idealisations stated: constant velocity in a straight line, sealed carriage (the air moves with the train), no air resistance relative to the carriage. If the train braked during the fall, the ball would land ahead: one claimed sentence, in assumptions only (36.7 cm at 2 m/s²).
+- Recall: "On a plane cruising at 250 m/s, you drop your phone. Where does it land?" (At your feet, directly below.)
+- curriculum: `{"primary":"physics:moving-frame-drop","also":["physics:inertia"],"prerequisites":["physics:inertia"],"level":"intro","strand":"mechanics","tags":["inertia","frames of reference","relative motion"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: dropped-vs-fired-ball teaches that the fall time ignores horizontal speed, seen from the ground. puck-on-ice-no-push teaches inertia with no push. river-crossing-time adds velocities. None teaches that the same motion looks different from two frames, or the "it lands behind" misconception.
+
+### 58. duck-rides-the-wave · concept: waves-carry-energy · intro · demand 3 · format: Single card
+- Strand: waves.
+- Learner knows: waves roll across the sea; a floating thing bobs. / does not know: that a wave carries energy across the water while each bit of water only circles in place, so a floating duck stays roughly where it is.
+- Misconception: Waves carry the water, and anything floating on it, along with them.
+- Prediction: "Ocean waves roll past a floating duck for 40 seconds. No wind, no current. Where does the duck end up?" options: A. Carried along with the crests / B. Close to where it started / C. Pulled back against the waves (answer: B).
+- Check: deep-water wave, period 4 s, height 0.2 m (amplitude a = 0.1 m). From ω² = g k: wavelength 25.0 m, crest speed 6.25 m/s. Each surface particle circles with radius 0.1 m. Second-order Stokes drift is ω k a² = 0.004 m/s, so 0.16 m in 40 s. The Lagrangian simulation in check.mjs gives 0.15 m, against 250 m of crest travel (0.06%). A buoy 100 m away starts moving at 100 / 6.25 = 16 s.
+- What the stage shows: one side-view band of sea with a duck, one tinted crest, a ruler and a buoy at 100 m. The duck leaves a loop trace, which is the cause: the water circles and hands the motion on.
+- Controls (DOM order): 1. "1 wave passes" (simulated 4 s) → the duck traces a loop about 0.2 m across and returns; label "crest moved 25 m" (milestone 1). 2. "10 waves pass" (40 s) → "crests moved 250 m · duck moved 0.15 m" (milestone 2, the question's case). 3. "Watch the buoy" → replays the first 16 s; the buoy at 100 m starts to bob as the first crest arrives, label "16 s" (milestone 3).
+- Seen row: "1 wave: loop 0.2 m · 10 waves: duck 0.15 m, crests 250 m · buoy: 16 s".
+- Reveal payoff (draft, 81 words): "During one wave your duck went round a loop about 0.2 m across and came back, while the crest moved on 25 m. After ten waves the crests had travelled 250 m and your duck had shifted only about 0.15 m. The buoy 100 m away began to bob at 16 s: the wave carried energy there, not water. Each bit of water just circles and hands the motion on. Near the shore, where waves break, the water does rush forward."
+- Phone fit: the sea band is wide and short. The duck's loop is drawn in an inset circle on the duck itself (not a second panel), so the 0.2 m loop is visible.
+- Planned claims:
+  1. Deep-water waves obey ω² = g k: at a 4 s period the wavelength is 25.0 m and the crest speed 6.25 m/s. support: derivation; source: check.mjs; linear wave theory in any fluids text (e.g. Kundu and Cohen, *Fluid Mechanics*, chapter on surface waves).
+  2. In linear theory each surface water particle moves in a circle with radius equal to the amplitude and returns to its start each period. support: derivation; source: same.
+  3. The net forward drift (Stokes drift, ω k a²) is about 0.004 m/s at this height, about 0.15 m in 40 s. support: derivation + simulation; source: check.mjs.
+  4. Breaking waves near the shore move water forward. support: textbook; source: same chapter. One told sentence.
+  5. Idealisations stated: deep water, small waves, no wind or current, the duck moves with the surface water. Taller waves drift more (∝ a²).
+- Recall: "A football floats in a calm sea as long low swells pass. After a minute, where is it?" (About where it was.)
+- curriculum: `{"primary":"physics:waves-carry-energy","also":[],"prerequisites":[],"level":"intro","strand":"waves","tags":["waves","energy","water"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: shake-faster-same-speed teaches that speed is set by the medium. two-ripples-cancel is superposition. press-the-string is standing waves. None teaches that a wave moves energy while the medium stays put.
+
+### 59. snap-the-magnet · concept: magnet-poles-pair · intro · demand 3 · format: Single card
+- Strand: electricity (magnetism).
+- Learner knows: magnets have a north and a south end; opposites attract. / does not know: that a magnet is made of countless tiny atomic magnets lined up, so every piece, however small, has both poles; there is no lone north pole.
+- Misconception: Snapping a bar magnet in half separates its north pole from its south pole.
+- Prediction: "You snap a bar magnet in half. The half that held the north end now has..." options: A. Only a north pole / B. A north and a south pole / C. No poles at all (answer: B).
+- Check: model the bar as a uniformly magnetised chain of coaxial point dipoles (check.mjs). The halves, as cut, attract: the summed dipole–dipole force is attractive, so the cut faces are opposite poles. Turn the right half round and they repel. In the pole model each piece carries +σA on one face and −σA on the other, so its net pole strength is 0.
+- What the stage shows: one bar magnet (N at left) with a row of tiny arrows drawn inside it, standing for the aligned atomic magnets (the cause), and a small compass beside each end and beside the middle. The N/S letters appear only on faces a compass has read.
+- Controls (DOM order): 1. "Snap in the middle" → two halves with a gap; the compasses at the break read "S" on the left half's new face and "N" on the right half's (milestone 1, the question's case). 2. "Turn the right half round" → its arrows flip, the facing poles become S–S, and the halves push apart (milestone 2). 3. "Snap each half again" → four pieces, each with an N and an S read by compasses (milestone 3).
+- Seen row: "north half: N + S · turned: push apart · quarters: N + S each".
+- Reveal payoff (draft, 75 words): "When you snapped it, the compass at the break found a new south pole on the north half and a new north pole on the other. Turned round, the halves pushed apart, and after snapping again every quarter still had both poles. A magnet is built from countless tiny atomic magnets lined up head to tail, so any piece has a north end and a south end. Nobody has ever found a lone north pole."
+- Phone fit: one horizontal band with the pieces and compasses; the N/S letters are labels on the faces.
+- Planned claims:
+  1. Every piece of a magnet has both a north and a south pole; magnetic field lines have no start or end (Gauss's law for magnetism, ∇·B = 0). support: textbook; source: Griffiths, *Introduction to Electrodynamics*, chapter on magnetostatics.
+  2. A bar magnet's magnetism comes from aligned atomic magnetic moments (domains in a ferromagnet). support: textbook; source: same, chapter on magnetic fields in matter.
+  3. The two halves attract as cut and repel when one is turned round. support: simulation (dipole-chain force sum); source: check.mjs.
+  4. No isolated magnetic monopole has been observed. support: textbook; source: Griffiths (same chapter), which states that no monopoles have been found. The fact-checker may also cite the Particle Data Group review of monopole searches.
+  5. Idealisations stated: uniformly magnetised bar, clean break, no loss of magnetism from the snap.
+- Recall: "You cut a fridge magnet into ten strips. How many have a north pole?" (All ten.)
+- curriculum: `{"primary":"physics:magnet-poles-pair","also":[],"prerequisites":[],"level":"intro","strand":"electricity","tags":["magnetism","poles","domains"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: magnet-still-in-coil (induction) teaches that only a changing field drives current. No other lesson in any category teaches magnetic poles.
+
+### 60. coat-on-the-ice · concept: insulation-slows-heat-flow · intro · demand 3 · format: Single card
+- Strand: electricity & energy (heat).
+- Learner knows: coats keep people warm; ice melts in a warm room. / does not know: that a coat makes no heat. It only slows heat crossing it, in either direction, so ice wrapped in a coat lasts longer.
+- Misconception: A warm coat wrapped round ice will melt it faster, because coats warm things up.
+- Prediction: "Two identical ice blocks sit in a 25 °C room. One is wrapped in a wool coat. Which melts first?" options: A. The wrapped block / B. The bare block / C. Both at the same time (answer: B).
+- Check: 10 cm ice cube (0.917 kg, area 0.06 m²), room 25 °C, ice at 0 °C. Surface transfer coefficient h = 10 W/m²K gives R = 1.667 K/W; 1 cm of wool (k = 0.04 W/mK) adds 4.167 K/W. Bare: 15.0 W in, melts in 5.7 h. Wrapped: 4.3 W in, melts in 19.9 h (3.5× slower). Person (skin 34 °C, room 5 °C, 1.8 m², same layers): 522 W out bare, 149 W out with the coat.
+- What the stage shows: one block on a table. Heat-flow arrows point into it, with thickness set by the watts (the cause), plus a melt clock. A third preset swaps the block for a person, and the arrows then point outward.
+- Controls (DOM order): 1. "Bare block" → arrows 15 W in, clock "melts in 5.7 h" (milestone 1). 2. "Wrap it in the coat" → thin arrows 4.3 W, "melts in 19.9 h" (milestone 2, the question's case). 3. "Person in the coat" → outward arrows, "149 W out (bare: 522 W)" (milestone 3).
+- Seen row: "bare: 15 W, 5.7 h · coat: 4.3 W, 19.9 h · person: 149 W out".
+- Reveal payoff (draft, 81 words): "Your bare block took in heat at 15 W and melted in about 5.7 hours. Wrapped in the coat, it took in only 4.3 W and lasted about 20 hours. The coat makes no heat. It is a layer of trapped air that slows heat crossing it in either direction: on the person it cut the heat flowing out from 522 W to 149 W. Heat flows from warm to cold, and insulation only slows it. Your body is the heater."
+- Phone fit: one table scene with arrows and a clock; one Seen row.
+- Planned claims:
+  1. Steady heat flow through layers is Q̇ = ΔT / ΣR, with R = 1/(hA) at a surface and L/(kA) for a layer. support: derivation; source: Incropera et al., *Fundamentals of Heat and Mass Transfer*, chapter 3; check.mjs.
+  2. Values: h = 10 W/m²K (natural convection plus radiation, illustrative), wool k ≈ 0.04 W/mK, ice latent heat 334 kJ/kg, ice density 917 kg/m³. support: textbook tables; source: Incropera appendix A; any physics text for latent heat. Labelled illustrative.
+  3. Bare 15 W / 5.7 h; wrapped 4.3 W / 19.9 h; person 522 W / 149 W. support: derivation; source: check.mjs.
+  4. A coat produces no heat; a warm body is the source. support: derivation (the coat has no energy source); source: first law of thermodynamics.
+  5. Idealisations stated: the ice stays at 0 °C, the area stays constant, the coat fits closely, radiation is folded into h.
+- Recall: "You want a cold drink to stay cold at a picnic. Wrap it in a towel or leave it bare?" (Wrap it.)
+- curriculum: `{"primary":"physics:insulation-slows-heat-flow","also":["physics:heat-flow-feels-cold"],"prerequisites":[],"level":"intro","strand":"electricity","tags":["heat","insulation","conduction"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: metal-feels-colder teaches that touch senses the rate of heat flow, not temperature. chemistry heat-capacity-water teaches how much heat water stores. filament-vs-led-heat is waste heat. None teaches that insulation slows flow in both directions and makes no heat.
+
+### 61. electron-speed-in-a-wire · concept: drift-velocity-slow · core · demand 3 · format: Single card
+- Strand: electricity.
+- Learner knows: current flows round a loop (current-same-around-loop); a lamp lights the moment you switch it on. / does not know: that each electron drifts at well under a millimetre a second, and the lamp lights at once because the wire is already full of electrons that all start moving together.
+- Misconception: Electrons rush from the switch to the bulb almost at the speed of light.
+- Prediction: "A lamp's wire runs 2 m from switch to bulb. How long does one electron at the switch take to reach the bulb?" options: A. Under a millionth of a second / B. About one second / C. Several hours (answer: C).
+- Check: a DC lamp (12 V, 1 A) on 1 mm² copper wire. Free electrons n = 8.49×10²⁸ m⁻³ (one per atom, from density and molar mass); 8.5×10²⁸ is used. Drift v = I/(nAe) = 0.073 mm/s. So in 1 s it moves 0.073 mm, in 1 min 4.4 mm, in 1 h 26.4 cm; the 2 m trip takes 7.6 h. At 2 A it is twice as fast (3.8 h). The switch-on signal crosses 2 m in about 10 ns (taking about 2×10⁸ m/s, illustrative).
+- What the stage shows: a battery, a switch, a 2 m wire drawn as one loop, and a bulb. Under the wire is a ruler strip of its first 30 cm, with a tinted electron marker. Faint dots fill the whole wire; they are the free electrons and stand for the cause. Every dot nudges together when the switch closes.
+- Controls (DOM order): 1. "Switch on" → the bulb lights and the label reads "lit after ~10 ns"; all dots start to drift (milestone 1). 2. "Wait 1 s" → the marker moves 0.07 mm (zoom label). 3. "Wait 1 min" → 4.4 mm (milestone 2). 4. "Wait 1 h" → 26 cm on the ruler; "2 m trip: 7.6 h" (milestone 3).
+- Seen row: "lit: ~10 ns · 1 min: 4.4 mm · 1 h: 26 cm · trip: 7.6 h".
+- Reveal payoff (draft, 76 words): "Your bulb lit about 10 billionths of a second after the switch, but your tinted electron had crept only 4.4 mm after a minute and 26 cm after an hour. At 1 A it drifts about 0.07 mm a second, so the 2 m trip takes over 7 hours. The wire is already full of free electrons. Closing the switch pushes on all of them at once, so electrons in the bulb start moving straight away."
+- Phone fit: one circuit picture with the ruler strip folded under the wire; the times are labels.
+- Planned claims:
+  1. Drift velocity v = I/(nAe). support: derivation; source: Halliday, Resnick and Walker, chapter on current and resistance; check.mjs.
+  2. Copper has about 8.5×10²⁸ free electrons per m³ (one per atom: 8,960 kg/m³ ÷ 0.06355 kg/mol × 6.022×10²³). support: derivation; source: check.mjs.
+  3. At 1 A in 1 mm² copper the drift is 0.073 mm/s: 4.4 mm a minute, 26 cm an hour, 7.6 h for 2 m. support: arithmetic; source: check.mjs.
+  4. The switching signal travels along the wire at a large fraction of light speed (about 10 ns for 2 m here, illustrative). support: textbook; source: Purcell and Morin, *Electricity and Magnetism*, on fields in conductors / transmission lines. "About" is stated.
+  5. Idealisations stated: steady DC from a battery. On AC mains, electrons only jiggle back and forth and never make the trip: one told sentence, in assumptions only.
+- Recall: "If electrons in a wire move slower than a snail, why does a light come on instantly?" (The wire is full of electrons, and all of them start moving together.)
+- curriculum: `{"primary":"physics:drift-velocity-slow","also":["physics:current-not-used-up"],"prerequisites":["physics:current-not-used-up"],"level":"core","strand":"electricity","tags":["current","electrons","circuits"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: current-same-around-loop teaches that current is not used up. bird-on-the-wire teaches voltage as a difference. None separates the electrons' speed from the signal's speed.
+
+### 62. second-speaker-decibels · concept: decibels-logarithmic · core · demand 3 · format: Single card
+- Strand: waves (sound).
+- Learner knows: decibels measure loudness; more speakers are louder. / does not know: that decibels count multiplications of sound power, so doubling the power adds only 3 dB and ten times the power adds 10 dB.
+- Misconception: Two 60 dB speakers together make 120 dB.
+- Prediction: "One speaker plays at 60 dB where you sit. An identical second speaker, same distance, joins in. The level becomes..." options: A. 63 dB / B. 90 dB / C. 120 dB (answer: A).
+- Check: L = 10 log10(I / 10⁻¹² W/m²). 60 dB is 1 µW/m². Incoherent sources add intensities: 2 speakers give 63.0 dB, 4 give 66.0 dB, 10 give 70.0 dB. 120 dB is 10⁶ times the intensity of 60 dB.
+- What the stage shows: a listener, a row of speaker slots, a dB meter, and a sound-power bar in µW/m². The bar is the cause: it grows in proportion to the number of speakers. It starts with one speaker: bar 1 µW/m², meter 60 dB.
+- Controls (DOM order): 1. "2 speakers" → bar 2, meter 63 dB (milestone 1, the question's case). 2. "4 speakers" → bar 4, 66 dB (milestone 2). 3. "10 speakers" → bar 10, 70 dB (milestone 3).
+- Seen row: "power ×2: 63 dB · ×4: 66 dB · ×10: 70 dB".
+- Reveal payoff (draft, 68 words): "Your second speaker doubled the sound power reaching you, and the meter went from 60 to only 63 dB. Four speakers read 66 dB and ten read 70 dB: ten times the power adds just 10 dB. Decibels count multiplications, not amounts: every doubling adds 3 dB and every tenfold adds 10. So 120 dB is not two 60 dB speakers; it is a million times their power."
+- Phone fit: one row of speakers plus the meter and bar; the bar's scale labels are ≥ 10 px.
+- Planned claims:
+  1. Sound intensity level is L = 10 log10(I/I0), with I0 = 10⁻¹² W/m². support: textbook; source: Halliday, Resnick and Walker, chapter on sound waves.
+  2. Uncorrelated sources add intensities, so 2, 4 and 10 equal speakers give 63, 66 and 70 dB. support: derivation; source: check.mjs.
+  3. 120 dB is 10⁶ times the intensity of 60 dB. support: arithmetic; source: check.mjs.
+  4. Idealisations stated: uncorrelated signals at equal distance (identical in-phase tones can reach up to +6 dB at some spots and less at others), no room echoes. Perceived loudness is not claimed.
+- Recall: "A 70 dB vacuum cleaner and another identical one run together. About how many dB?" (73 dB.)
+- curriculum: `{"primary":"physics:decibels-logarithmic","also":["math:logarithm-as-digit-count"],"prerequisites":[],"level":"core","strand":"waves","tags":["sound","decibels","logarithms"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: light-at-double-distance teaches the inverse square law. math logarithm-as-digit-count teaches logs as digit counts. chemistry ph-log-scale is a log scale for acidity. None teaches adding sound sources in decibels.
+
+### 63. what-pushes-the-car · concept: friction-drives-forward · core · demand 2 · format: Single card
+- Strand: mechanics.
+- Learner knows: friction resists sliding (crate-wont-budge); action and reaction (truck-hits-car-force). / does not know: that a car's forward force comes from the road gripping the tyres. The engine only turns the wheels, and internal forces cannot move the car.
+- Misconception: The engine pushes the car forward; friction only ever slows things down.
+- Prediction: "A car speeds up along a flat road. What pushes the car forward?" options: A. Its engine / B. The road / C. The air behind it (answer: B).
+- Check: a 1,200 kg car with all-wheel drive asks for 2 m/s². That needs 2,400 N from the road, and it reaches 50 km/h in 6.9 s. Maximum grip is μ m g: on a dry road (μ 0.8) 9,418 N, more than enough; on ice (μ 0.1) 1,177 N, so the wheels slip and the car manages 0.98 m/s²; on a frictionless road 0 N, the wheels spin and the car stays put.
+- What the stage shows: a side view of the car on one road strip. A forward arrow at each tyre's contact patch is labelled "road on tyre" (the cause), with a backward "tyre on road" arrow beside it. Readouts show acceleration, and spin marks appear when the wheels slip.
+- Controls (DOM order): 1. "Dry road: accelerate" → 2,400 N forward, 2.0 m/s² (milestone 1). 2. "Ice: accelerate" → arrow capped at about 1,200 N, slip marks, 0.98 m/s² (milestone 2). 3. "Frictionless: accelerate" → wheels spin, 0 N, car stays put (milestone 3).
+- Seen row: "dry: 2,400 N, 2.0 m/s² · ice: ~1,200 N, slips · frictionless: 0 N, stays put".
+- Reveal payoff (draft, 77 words): "On the dry road your car gained speed at 2.0 m/s², pushed by the road's 2,400 N grip on the tyres. On ice the road could give only about 1,200 N and the wheels slipped. On a frictionless road the engine spun the wheels just as hard and the car went nowhere. The engine turns the wheels and the tyres push back on the road; the road pushing forward on the tyres is what moves the car."
+- Phone fit: one road band, with the arrows at the tyres as labels.
+- Planned claims:
+  1. Internal forces (engine on wheels) cancel in pairs and cannot change the car's momentum; only external forces can (Newton's second and third laws). support: derivation; source: Halliday, Resnick and Walker, chapters on Newton's laws and systems of particles.
+  2. The forward external force on a driven car is static friction from the road on the tyres. support: textbook; source: same, friction chapter (rolling without slipping).
+  3. 2,400 N for 2 m/s² on 1,200 kg; 6.9 s to 50 km/h; maximum grip μ m g = 9,418 N dry (μ 0.8) and 1,177 N on ice (μ 0.1). support: arithmetic; source: check.mjs. The μ values are illustrative (typical textbook ranges).
+  4. Idealisations stated: all-wheel drive, no air drag, the maximum static grip also used while slipping (real sliding grip is a little lower).
+- Recall: "Why can't a car pull away on perfectly smooth ice, however powerful its engine?" (Nothing outside pushes it forward; the road's grip is the push.)
+- curriculum: `{"primary":"physics:friction-drives-forward","also":["physics:action-reaction","physics:static-friction"],"prerequisites":["physics:static-friction","physics:action-reaction"],"level":"core","strand":"mechanics","tags":["friction","forces","cars"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: crate-wont-budge teaches static friction holding a crate still. brick-on-its-side teaches that friction ignores area. wrench-throw-recoil teaches pushing off with nothing to push on. None shows friction as the force that drives motion forward.
+
+### 64. two-batteries-side-by-side · concept: cells-series-parallel · core · demand 2 · format: Single card
+- Strand: electricity.
+- Learner knows: a battery's label says 1.5 V; batteries in a torch go end to end. / does not know: that cells end to end add their voltages, while cells side by side keep 1.5 V and only last longer.
+- Misconception: Two 1.5 V batteries always make 3 V, however they are connected.
+- Prediction: "Two 1.5 V batteries are joined side by side: plus to plus, minus to minus. The voltage across the pair is..." options: A. 0 V / B. 1.5 V / C. 3.0 V (answer: B).
+- Check: ideal 1.5 V cells of 2,000 mAh each and a 5 Ω bulb. One cell: 1.5 V, 0.3 A, 0.45 W, 6.7 h. Side by side: 1.5 V, 0.3 A, 0.45 W, 13.3 h. End to end: 3.0 V, 0.6 A, 1.8 W (4×), 3.3 h.
+- What the stage shows: a battery holder (empty at first), a voltmeter, a bulb whose glow follows the power, and a fuel gauge for run time. Inside each cell an arrow labelled "lifts 1.5 V" stands for the cause; end to end the arrows stack, side by side they sit in parallel.
+- Controls (DOM order): 1. "Side by side" → 1.5 V, 0.45 W, "runs 13.3 h" (milestone 1, the question's case). 2. "End to end" → 3.0 V, 1.8 W, "runs 3.3 h" (milestone 2). 3. "One battery" → 1.5 V, 0.45 W, "runs 6.7 h" (milestone 3).
+- Seen row: "side by side: 1.5 V, 13.3 h · end to end: 3.0 V, 3.3 h · one: 1.5 V, 6.7 h".
+- Reveal payoff (draft, 74 words): "Side by side, your voltmeter read 1.5 V, the same as one battery. The bulb glowed as brightly as with one, but for 13.3 hours instead of 6.7. End to end it read 3.0 V: the bulb drew twice the current at twice the voltage, four times the power, and lasted only 3.3 hours. Each battery lifts charge through 1.5 V. In a row the lifts add; side by side they share the work."
+- Phone fit: one circuit band with the readouts as labels.
+- Planned claims:
+  1. Cell voltages in series add; identical cells in parallel keep one cell's voltage (Kirchhoff's voltage law). support: derivation; source: Halliday, Resnick and Walker, chapter on circuits.
+  2. With a 5 Ω bulb: 0.3 A and 0.45 W at 1.5 V; 0.6 A and 1.8 W at 3.0 V. support: arithmetic (I = V/R, P = VI); source: check.mjs.
+  3. Run times 6.7 h, 13.3 h and 3.3 h from 2,000 mAh per cell. support: arithmetic; source: check.mjs. The capacity is labelled illustrative (real AA capacity falls at higher current).
+  4. Idealisations stated: identical ideal cells with no internal resistance, and a constant-resistance bulb (a real filament's resistance rises as it heats).
+- Recall: "A toy needs 3 V. You have two 1.5 V cells. How must they go in?" (End to end, plus to minus.)
+- curriculum: `{"primary":"physics:cells-series-parallel","also":["physics:series-parallel"],"prerequisites":["physics:series-parallel"],"level":"core","strand":"electricity","tags":["batteries","voltage","circuits"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: add-a-parallel-bulb puts loads in parallel, not sources. chemistry potassium-battery and galvanic-cell-voltage teach where a cell's voltage comes from. lifehacks battery-partial-charging is charging habits. None teaches combining cells.
+
+### 65. clap-at-the-cliff · concept: echo-round-trip · intro · demand 2 · format: Single card
+- Strand: waves (sound).
+- Learner knows: sound takes time to travel (count-the-thunder); echoes bounce off walls. / does not know: that an echo's delay covers the trip there and back, so the distance is half of speed × time.
+- Misconception: An echo 1 s later means the cliff is 343 m away (one sound-second).
+- Prediction: "You clap facing a cliff and hear the echo 1.0 s later. Sound travels 343 m each second. The cliff is about..." options: A. 170 m away / B. 340 m away / C. 690 m away (answer: A).
+- Check: c = sqrt(γRT/M) = 343.2 m/s at 20 °C. Echo time = 2d/c: 85 m gives 0.50 s, 170 m gives 0.99 s, 340 m gives 1.98 s. A 1.0 s echo means 171.5 m.
+- What the stage shows: one side-view band with a person and a cliff. A sound pulse travels out and back (replayed in ≤ 400 ms, reporting simulated seconds). A path readout, "sound travelled 340 m", stands for the cause: the round trip.
+- Controls (DOM order): 1. "Cliff at 85 m: clap" → echo 0.50 s (milestone 1). 2. "Cliff at 170 m: clap" → echo 0.99 s, path 340 m (milestone 2, the question's case). 3. "Cliff at 340 m: clap" → echo 1.98 s, path 680 m (milestone 3).
+- Seen row: "85 m: 0.50 s · 170 m: 0.99 s · 340 m: 1.98 s".
+- Reveal payoff (draft, 70 words): "With the cliff 170 m away, your echo came back after 0.99 s, close to the 1.0 s in the question. At 340 m it took 1.98 s. The clap has to reach the cliff and come back, so in 1 s the sound covered 343 m in total: half out, half back. The distance to a cliff is the speed of sound times the echo time, divided by two."
+- Phone fit: one band with readouts on the cliff; one Seen row.
+- Planned claims:
+  1. The speed of sound in air is c = sqrt(γRT/M), about 343 m/s at 20 °C. support: derivation; source: check.mjs; Halliday, Resnick and Walker, chapter on sound waves.
+  2. Echo delay is 2d/c: 0.50 s, 0.99 s and 1.98 s for 85, 170 and 340 m; a 1.0 s echo means about 171 m. support: arithmetic; source: check.mjs.
+  3. Idealisations stated: still air at 20 °C, a flat cliff face, no reaction time.
+- Recall: "A ship's sonar ping returns from the seabed after 2 s; sound in sea water travels 1,500 m/s. How deep is it?" (1,500 m.)
+- curriculum: `{"primary":"physics:echo-round-trip","also":["physics:sound-vs-light-delay"],"prerequisites":["physics:sound-vs-light-delay"],"level":"intro","strand":"waves","tags":["sound","echo","speed"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: count-the-thunder teaches a one-way delay between light and sound. sound-in-the-jar teaches that sound needs a medium. None teaches the round-trip halving.
+
+### 66. scale-on-a-slope · concept: normal-force-incline · core · demand 2 · format: Single card
+- Strand: mechanics.
+- Learner knows: a bathroom scale reads your weight on the floor; elevator-scale (apparent weight). / does not know: that a scale measures only the push straight into its surface, which on a slope is m g cos θ. The rest of your weight pulls you along the slope and is held by friction.
+- Misconception: A scale always reads your full weight, whatever it is resting on.
+- Prediction: "On flat ground your bathroom scale reads 70 kg. You stand on it on a 30° ramp, not slipping. It reads about..." options: A. 35 kg / B. 61 kg / C. 70 kg (answer: B).
+- Check: reading = m cos θ (the scale shows N/g in kg). At 0° it reads 70.0 kg, at 30° 60.6 kg, at 60° 35.0 kg. Friction needed is m g sin θ = 343 N at 30° (μ ≥ 0.58). At 60°, μ ≥ 1.73, so the scale is drawn against a rubber stop block (labelled).
+- What the stage shows: one ramp with a person on a scale. The weight arrow is split into "into the ramp" and "along the ramp" parts; the "into the ramp" arrow is the cause, and the scale shows its value. The stage starts on the flat at 70 kg, with that chip shown active and disabled.
+- Controls (DOM order): 1. "Tilt 30°" → 60.6 kg (milestone 1, the question's case). 2. "Tilt 60°" → 35.0 kg, stop block shown (milestone 2). 3. "Back to flat" → 70.0 kg (milestone 3).
+- Seen row: "30°: 60.6 kg · 60°: 35.0 kg · flat: 70.0 kg".
+- Reveal payoff (draft, 69 words): "On the 30° ramp your scale read 60.6 kg, and at 60° only 35.0 kg, though you still weighed 70 kg. A scale measures only the push straight into its surface. On a slope your weight splits in two: part presses into the scale (the arrow into the ramp), and part pulls you down the slope, held by friction. The steeper the slope, the smaller the push into it."
+- Phone fit: one ramp picture with the arrow labels; one Seen row.
+- Planned claims:
+  1. On a slope the normal force is N = m g cos θ, and the along-slope part m g sin θ is balanced by friction (or a stop). support: derivation; source: Halliday, Resnick and Walker, chapter on Newton's laws (inclined planes); check.mjs.
+  2. 70 kg reads 60.6 kg at 30° and 35.0 kg at 60°. support: arithmetic; source: check.mjs.
+  3. A bathroom scale measures the force perpendicular to its platform. support: textbook (a spring or load cell under the platform); idealisation stated.
+  4. Idealisations stated: a rigid scale that measures only the perpendicular force, the person at rest, a stop block at 60°.
+- Recall: "A crate rests on a steep ramp. Is the ramp pushing up on it with more, less or the same force as its weight?" (Less.)
+- curriculum: `{"primary":"physics:normal-force-incline","also":["physics:force-vectors-add"],"prerequisites":["physics:apparent-weight"],"level":"core","strand":"mechanics","tags":["forces","normal force","slopes"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: elevator-scale changes the reading through acceleration. ramp-same-work is about work along a slope. two-tugs-right-angle adds vectors. None splits weight into components to explain a scale reading.
+
+### 67. longest-drinking-straw · concept: atmospheric-pressure-push · core · demand 2 · format: Single card
+- Strand: mechanics (fluids).
+- Learner knows: you drink through a straw by sucking; pressure grows with depth (dam-depth-not-width). / does not know: that suction does not pull. The air pressing on the open water pushes it up the straw, and that push can hold only about 10 m of water.
+- Misconception: With a strong enough pump you can suck water up a straw of any height.
+- Prediction: "A perfect pump sucks on a very tall straw standing in water at sea level. Water can rise up the straw by at most..." options: A. About 1 m / B. About 10 m / C. Any height, with enough pull (answer: B).
+- Check: h = (P_atm − P_vapour)/(ρ g). At sea level (101,325 Pa, water at 20 °C with vapour pressure 2,339 Pa) h = 10.11 m; ignoring vapour it is 10.35 m. On the summit of Everest (about 33,700 Pa) h = 3.20 m.
+- What the stage shows: a glass with a tall straw against a 0–14 m height scale (labels ≥ 10 px) and a pump at the top. Down-arrows of air pressure press on the open water in the glass; they are the cause. When the column stops, the empty space above it is labelled "no air: nothing to push".
+- Controls (DOM order): 1. "5 m straw: pump" → water reaches the top (milestone 1). 2. "12 m straw: pump" → the column stops at 10.1 m with a gap above (milestone 2, the question's case). 3. "Same, on Everest" → the column falls to 3.2 m and the air arrows thin (milestone 3).
+- Seen row: "5 m: reaches top · 12 m: stops at 10.1 m · Everest: 3.2 m".
+- Reveal payoff (draft, 77 words): "In your 5 m straw the water reached the top, but in the 12 m straw it stopped at 10.1 m, with empty space above, however hard the pump worked. Suction does not pull water. The pump only removes air from the straw; the air pressing on the water in the glass pushes it up, and that push can hold up only about 10 m of water. On Everest, under thinner air, it held just 3.2 m."
+- Phone fit: the tall straw is drawn compressed against its scale, in one picture; the heights are labels on the scale.
+- Planned claims:
+  1. A column of liquid held by a pressure difference ΔP has height h = ΔP/(ρ g). support: derivation (hydrostatics); source: Halliday, Resnick and Walker, chapter on fluids; check.mjs.
+  2. Standard sea-level pressure is 101,325 Pa; water's vapour pressure at 20 °C is about 2.34 kPa. support: textbook tables; source: CRC Handbook (vapour pressure of water). The column reaches 10.1 m (10.3 m ignoring vapour).
+  3. Air pressure on the summit of Everest is about 33.7 kPa, giving 3.2 m. support: citation; source: West, J. B., "Barometric pressures on Mt. Everest", *J. Appl. Physiol.* 86 (1999). Cross-check: an isothermal atmosphere model (scale height about 7.4 km) gives about 31 kPa, also "about 3 m".
+  4. Suction is air pressure pushing into a region of lower pressure; a pump cannot pull on water. support: derivation; source: same fluids chapter.
+  5. Idealisations stated: a perfect pump, water at 20 °C, a rigid straw, no dissolved gas coming out.
+- Recall: "Why can't a pump at the top of a 15 m well lift water, while one at the bottom can?" (Air can push water up only about 10 m; a pump at the bottom pushes.)
+- curriculum: `{"primary":"physics:atmospheric-pressure-push","also":["physics:fluid-pressure-depth"],"prerequisites":["physics:fluid-pressure-depth"],"level":"core","strand":"mechanics","tags":["pressure","fluids","atmosphere"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: dam-depth-not-width teaches that pressure depends on depth, not width. snowshoe-pressure teaches force over area. sound-in-the-jar uses a vacuum for sound. None teaches that air pressure, not suction, lifts the liquid.
+
+### 68. power-line-voltage-loss · concept: transmission-voltage-loss · core · demand 2 · format: Single card
+- Strand: electricity.
+- Learner knows: P = V I (toaster-trips-breaker); wires have resistance (wire-eight-times). / does not know: that cable heating goes as I²R, so delivering the same power at 10× the voltage needs a tenth of the current and wastes a hundredth of the heat.
+- Misconception: Higher voltage on a power line means more energy wasted (or makes no difference).
+- Prediction: "A village draws the same 10 kW through the same cable. Send it at 10 times the voltage. The cable's heat loss becomes..." options: A. 10 times more / B. About the same / C. 100 times less (answer: C).
+- Check: 10 kW through a cable of 0.5 Ω in total. At 230 V: 43.48 A, 945 W lost (9.5%). At 2,300 V: 4.35 A, 9.45 W (0.09%). At 23,000 V: 0.43 A, 0.09 W.
+- What the stage shows: a station, one cable and a village. The cable's glow follows the heat loss, with readouts for current and watts lost. Moving dots in the cable stand for the current, the cause: fewer dots means less heating. No voltage is picked at first, the cable is dark, and the readouts show "–".
+- Controls (DOM order): 1. "Send at 230 V" → 43.5 A, 945 W lost (milestone 1). 2. "Send at 2,300 V" → 4.35 A, 9.5 W lost (milestone 2, the question's case). 3. "Send at 23,000 V" → 0.43 A, 0.09 W (milestone 3).
+- Seen row: "230 V: 43.5 A, 945 W · 2,300 V: 4.35 A, 9.5 W · 23,000 V: 0.09 W".
+- Reveal payoff (draft, 77 words): "At 230 V your cable carried 43.5 A and wasted 945 W as heat. At 2,300 V the same 10 kW needed only 4.35 A, and the cable wasted 9.5 W: 100 times less. Power is voltage times current, so a higher voltage delivers the same power with less current. Cable heating goes as current squared, so a tenth of the current wastes a hundredth of the heat. That is why long-distance lines run at high voltage."
+- Phone fit: one horizontal band; readouts sit on the cable.
+- Planned claims:
+  1. Delivered power P = V I, so I = P/V for a fixed power. support: derivation; source: Halliday, Resnick and Walker, chapter on current and resistance.
+  2. Power lost in a cable is I² R. support: derivation (Joule heating); source: same.
+  3. 945 W, 9.45 W and 0.09 W at 230, 2,300 and 23,000 V for 10 kW through 0.5 Ω. support: arithmetic; source: check.mjs.
+  4. Long-distance power lines run at high voltage (tens to hundreds of kilovolts) to cut these losses, with transformers stepping the voltage up and down. support: textbook; source: same text, chapter on AC circuits / transformers.
+  5. Idealisations stated: a resistive load, current computed at the village voltage (the cable's own voltage drop ignored), ideal transformers, values illustrative.
+- Recall: "Why do power companies step voltage up before sending electricity across the country?" (Less current for the same power, and the losses go as current squared.)
+- curriculum: `{"primary":"physics:transmission-voltage-loss","also":["physics:electric-power-vi","physics:wire-resistance"],"prerequisites":["physics:electric-power-vi"],"level":"core","strand":"electricity","tags":["power","transmission","resistance"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: toaster-trips-breaker teaches P = V I in a home circuit. wire-eight-times teaches how resistance scales with a wire's shape. bird-on-the-wire is potential difference. None teaches the I²R reason for high-voltage transmission.
+
+### 69. cover-half-the-lens · concept: lens-whole-image · core · demand 2 · format: Single card
+- Strand: waves (light).
+- Learner knows: a magnifying lens can project an image onto paper; pinhole-flips-the-world. / does not know: that every point of the object sends light through the whole lens, so covering part of the lens dims the whole image without cutting any of it away.
+- Misconception: Covering the top half of a lens removes half of the image.
+- Prediction: "A lens casts a sharp image of a candle onto a screen. You cover the lens's top half with card. The image now..." options: A. Loses its top half / B. Loses its bottom half / C. Stays whole, but dimmer (answer: C).
+- Check: thin lens, f = 10 cm, a 2 cm candle 30 cm away: image at 15 cm, magnification −0.5 (1 cm, inverted). The ray trace in check.mjs, with 20 rays per object point across the aperture, puts every ray from a point on the same image point whether the top half is covered or not. Brightness equals the open fraction: 100%, 50% for either half, 10% for a slit.
+- What the stage shows: candle, lens and screen in one band. Three rays from the flame tip and three from the base are drawn (the cause): each point's rays spread over the whole lens and meet again on the screen. A brightness readout sits on the screen.
+- Controls (DOM order): 1. "Cover top half" → the top rays stop at the card; the image stays whole, 50% (milestone 1, the question's case). 2. "Cover bottom half" → whole, 50% (milestone 2). 3. "Leave a thin slit" → whole, 10% (milestone 3).
+- Seen row: "top covered: whole, 50% · bottom covered: whole, 50% · slit: whole, 10%".
+- Reveal payoff (draft, 75 words): "With the top half covered, your candle's image stayed whole and upside down at 50% brightness. Covering the bottom half did the same, and a thin slit still gave the whole image at 10%. Every point of the flame sends light through every part of the lens, and the lens bends all of it to the same image point. Covering part of the lens removes some of each point's light, not part of the picture."
+- Phone fit: one optical band, with a ray count of ≤ 6 so the lines stay readable at 390 px.
+- Planned claims:
+  1. Thin-lens equation 1/f = 1/u + 1/v: v = 15 cm and m = −0.5 for f = 10 cm, u = 30 cm. support: derivation; source: Hecht, *Optics*, chapter on geometrical optics; check.mjs.
+  2. For an ideal lens, every ray from an object point that passes through the lens meets at one image point, wherever it crosses the lens. support: simulation (paraxial ray trace); source: check.mjs.
+  3. Image brightness scales with the open area of the lens: 50% for half, 10% for the slit. support: derivation; source: same chapter (aperture and irradiance).
+  4. Idealisations stated: an ideal thin lens with no aberrations, uniform brightness across the aperture, the card right at the lens.
+- Recall: "A fly lands on the middle of a projector lens. What happens on the screen?" (The whole picture dims slightly; no fly-shaped hole.)
+- curriculum: `{"primary":"physics:lens-whole-image","also":["physics:pinhole-images"],"prerequisites":["physics:pinhole-images"],"level":"core","strand":"waves","tags":["light","lenses","images"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: pinhole-flips-the-world forms an image by letting one ray per point through. Here a wider opening is just brighter, the same image. mirror-half-height is about mirror size. None covers part of a lens.
+
+### 70. third-polariser · concept: polariser-third-filter · stretch · demand 1 · format: Single card
+- Strand: waves (light).
+- Learner knows: polarised sunglasses cut glare; two crossed polarising filters look black. / does not know: that a polariser passes the part of the light lined up with it and re-aims it, so a third filter at 45° between crossed ones lets light through.
+- Misconception: Adding a filter can only block more light, so a third filter between two crossed ones keeps everything dark.
+- Prediction: "Two polarising filters, crossed at 90°, let no light through. You slide a third filter between them, at 45°. Now..." options: A. Still no light gets through / B. Some light gets through / C. As bright as with no filters (answer: B).
+- Check: unpolarised light drops to 1/2 at the first filter; then Malus's law I = I₀ cos² θ applies. Crossed pair alone: 0%. Middle filter at 45°: 0.5 × cos² 45° × cos² 45° = 12.5%. At 30°: 0.5 × 0.75 × 0.25 = 9.4%.
+- What the stage shows: a lamp, filter 1 (0°), a middle slot, filter 3 (90°) and a light meter in one band. Between the filters a short double-headed line shows the light's direction of vibration, with length following its strength (the cause): the middle filter turns it, so some lines up with the last filter. The middle slot starts empty and the meter reads 0%.
+- Controls (DOM order): 1. "Insert middle at 45°" → 12.5% (milestone 1, the question's case). 2. "Turn middle to 30°" → 9.4% (milestone 2). 3. "Remove middle" → 0% (milestone 3).
+- Seen row: "45°: 12.5% · 30°: 9.4% · removed: 0%".
+- Reveal payoff (draft, 69 words): "With only the crossed pair, your meter read 0%. Sliding in the middle filter at 45° raised it to 12.5%, and at 30° it read 9.4%. A filter does not just block: it passes the part of the light lined up with it, turned to its own direction. The first filter passes half; the 45° filter passes half of that, now tilted; the last passes half again: one eighth."
+- Phone fit: one band; the vibration lines are labels inside it.
+- Planned claims:
+  1. An ideal polariser passes half of unpolarised light, and polarised light at angle θ to it is passed as I₀ cos² θ (Malus's law), leaving along the filter's own axis. support: textbook + derivation (projecting the electric field; intensity ∝ E²); source: Hecht, *Optics*, chapter on polarisation.
+  2. 0%, 12.5% and 9.4% for no middle filter, 45° and 30°. support: arithmetic; source: check.mjs.
+  3. Idealisations stated: ideal polarisers (real ones pass a little less than half), an unpolarised lamp.
+- Recall: "Can adding a third filter ever let more light through two others? When?" (Yes, when it sits between crossed polarisers at an angle.)
+- curriculum: `{"primary":"physics:polariser-third-filter","also":[],"prerequisites":[],"level":"stretch","strand":"waves","tags":["light","polarisation"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: red-apple-green-light (colour-filters) teaches filtering by colour (absorption). No lesson teaches polarisation.

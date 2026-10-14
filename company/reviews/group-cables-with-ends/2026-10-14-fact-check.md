@@ -17,3 +17,13 @@ Records by the fact-checker. Each pass is appended.
 | c4 | verified | Key "Secure bundle ends" is the only layout with 0 drawn ends. |
 | c5 | unverified (held) | Not rendered and superseded by .recall. **Builder deletes it.** |
 | recall | verified | With both ends held, an arc cannot change its knot type, so knotting needs an end to pass through a loop. A middle tie leaves the ends free. The key is right, and "in the drawing" scopes the last sentence. |
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read the lesson Demo.tsx (thin wrapper) and the shared engine first: src/components/lifehacks/HomeLesson.tsx (Stage or WobbleStage, buttons, slider, readout, caption, reveal; Scene cord branch) and src/lib/lifehacks/home-models.ts (evaluateHome and homeCordScene), with the spec in src/lib/lifehacks/home-lessons.ts; then meta.json claims and the recall card (src/components/Feed.tsx renders meta.recall), then source fields. No Reset control and no animation on this path.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Derivation checked; Raymer and Smith not opened and not needed. Argument: a cord whose ends are both held (by hands, or by ties that also hold the ends) forms, with the holder, a closed loop, so moving the middle cannot change its knot type; a new knot needs a free end to pass through a loop (the classic fact that you cannot tie an overhand knot without letting go of an end). A tie around the middle restricts nothing at the ends. Stage: evaluateHome end-paths gives Accessible ends = 2 × cords before, 0 after; homeCordScene draws one middle tie and 2N end dots ("N loose ends") before, and ties at x = 50, 150, 250 with no end dots ("Ends tucked into end ties") after, for every slider value 2-8. The claim says the drawing distinguishes the two; it does, and it does not claim a tangle probability. |
+
+**Result:** the one open claim verified, as a derivation (the source is not relied on). No disputes.

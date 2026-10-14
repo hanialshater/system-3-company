@@ -4,6 +4,20 @@ owner: cm-course-ncm (Jonah) · refreshed 2026-10-14 (first map) · map `content
 
 **Coverage is an input metric.** It counts which demo-able sections have a lesson. It says nothing about whether learners recall, finish or value anything, and it is not Surface Value. The WBR reports it next to learner results (7-day recall, path completion), never instead of them (head-of-product, 2026-10-14). The denominator is sections I marked demo-able myself; each `demoable: false` has its reason in `chapters.json` for a strand manager or Selin to spot-check at vertical review.
 
+## Refresh after wave J (2026-10-14)
+
+**The first-map tables below are stale.** Every brief from the first map has now been built. `chapters.json` was refreshed on 2026-10-14: 4.4 is covered by `one-circle-fewer-introductions` and 19.7 by `the-grid-takes-up-to-three-eighths` (both renamed at build).
+
+| | Sections | Demo-able | Covered (built) | Coverage |
+|---|---|---|---|---|
+| Before wave J (first-map denominator) | 156 | 106 | 106 | 100% |
+| After wave J re-judging (4.2, 9.2, 17.6, 23.2 now demo-able) | 156 | 110 | 106 | 96.4% → 100% when the four are built |
+
+- **Wave J briefs: 16 written, 15 accepted, 1 held.** Accepted: math.discrete 4, cs.algorithms 1, cs.systems 2, probability.chance 1, probability.statistics 2, economics.markets 5. Held: `protest-needs-a-shared-view` (19.6), objection in briefs.md J3.
+- **Section coverage is now saturated as a metric.** 11 of the 15 accepted briefs add a second concept to an already-covered section, so they do not move the percentage. They are there because the section's lesson does not teach that concept. Per head-of-product, coverage is an input metric, and from here the WBR should read learner results, not this number.
+- **Lessons per chapter before wave J → after** (from `node tools/meta.mjs coverage`; this counts only lessons that carry a reference row): ch. 2: 1 → 3; 3: 4 → 5; 4: 3 → 4; 6: 5 → 6; 8: 2 → 3; 9: 4 → 5; 10: 3 → 4; 13: 1 → 2; 14: 3 → 4; 16: 2 → 3; 17: 2 → 4; 19: 4 → 5; 23: 4 → 5. There are none for ch. 1 (overview), 11 (the rest is not demo-able), or 20, 21, 22 and 24 (no new predictable concept that is not already a lesson). Ch. 21 and 24 look thin in the tool only because several built lessons still have `references: []` (S2-18 rows not applied).
+- **Belief:** high that every demo-able section in my map has a built lesson (checked against `src/demos/*/*/meta.json`). Medium on the four re-judged sections: they are demo-able by our rule, but the book's own emphasis in 4.2, 9.2, 17.6 and 23.2 is unconfirmed while the host is blocked.
+
 ## How the book was acquired
 - cs.cornell.edu and the PDF mirrors return a proxy 403 from this environment, so I did not read the book.
 - The table of contents comes from three sources: `content/works.json` (24 chapter titles), web-search snippets, and my own knowledge of the 2010 edition.

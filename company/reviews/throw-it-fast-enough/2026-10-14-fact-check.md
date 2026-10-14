@@ -31,3 +31,16 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c6 | verified | Pass 26 dispute resolved. Ran model.ts fly() in node: fell 17.638 to 17.643 km (17.6) for 7.0 to 7.9 km/s; groundAway 13.858, 16.333, 17.202, 17.423, 17.646 km. 0.79 and 4.0 km/s land at 46 s and 53 s (minute = null). I ran the v6 reveal for every possible fastest landing: 0.79 and 4.0 give 'your 7.9 km/s throw fell 17.6 km'; 7.0 to 7.85 give 'your X and 7.9 km/s throws both fell 17.6 km'. The failing path (Home to 0.79, track click on 7.9) now reads correctly. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified. W-248 (demo-builder) can close.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Read v7 Demo.tsx and model.ts first. Derivation: for a circular orbit, v²/R = g, so v = √(gR) = √(9.81 × 6.371e6) = 7905.7 m/s, which rounds to 7.9 km/s. The reveal prints kms(V_CIRC_SURFACE) = '7.91 km/s', also about 7.9. Own run of the transpiled model.ts: the 7.9 km/s stop (circular speed at the peak 7899.5 m/s) never lands and comes back round in 85 min. |
+| c2 | verified | Own run of the transpiled model.ts FLIGHTS (velocity Verlet, dt 1 s, GM = gR²): landings at 36, 212, 686, 1,269, 2,245 and 3,209 km for 0.79, 4.0, 7.0, 7.6, 7.8 and 7.85 km/s; 7.9 km/s gives lands = false, time 85 min ('never: back round in 85 min'). The slider format shows kms(v) whenever the stage is unlocked, so every throw's speed is visible after the commit. |
+| c4 | verified | SVG text: 'No air. 10 km peak.' and 'Heights ×40.' (two lines; the claim joins them). hPx uses EXAG = 40. model.ts: a spherical R_E, central 1/r² gravity, no rotation term and no drag term. There is no stage or reveal text about spin or shape in v7, matching 'no longer told'. |
+| c6 | verified | Own run of model.ts: minute.fell = 17.6 km for 7.0, 7.6, 7.8, 7.85 and 7.9 km/s; groundAway = 13.9, 16.3, 17.2, 17.4 and 17.6 km. minute is null for 0.79 and 4.0 km/s (both land before t = 60 s). The reveal branch: near = the fastest landing tried (the 'landed' milestone guarantees one). With near.minute and an equal km1(fell), it says 'your X and 7.9 km/s throws both fell'; otherwise 'your 7.9 km/s throw fell'. Both branches match the claim. |
+
+**Result:** 4 verified, 0 disputed, 0 held unverified.

@@ -62,15 +62,19 @@
       "id": "lifehacks.lh-fixed-energy-charge.c5",
       "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
       "support": "source",
-      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
-      "status": "unverified"
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read Demo.tsx, ResourceLesson.tsx and resource-model.ts first. The claim is the unit definition and the model's bill arithmetic, and needs no outside page: 1 kWh = 1000 W × 1 h, so kWh = W × h ÷ 1000; cost = kWh × price + fixed charge. That is formulaA = 0.2x + 10 and formulaB = 0.3x in resource-specs.json, own run at 40 kWh: €18 and €12. Verified on the definition. energy.gov.au was not opened (DNS), and nothing here rests on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c6",
       "text": "Tariffs and appliance ratings vary: check your own.",
       "support": "source",
-      "source": "Safety-required stage line (company/reviews/lh-fixed-energy-charge/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
-      "status": "unverified"
+      "source": "Safety-required stage line (company/reviews/lh-fixed-energy-charge/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The stage line is spec.warning, rendered under the assumptions line exactly as claimed. 'Tariffs and appliance ratings vary' is a claim about the world. Its source is still owed (the safety review named none), and I could not open any energy-regulator page (WebFetch DNS failure, proxy 403). Left unverified: it needs a citable source that can be opened here, or a ruling that a safety hedge is not a factual claim (evaluation-steward).",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c7",

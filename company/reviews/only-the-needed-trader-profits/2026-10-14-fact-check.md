@@ -34,3 +34,11 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c5 | verified | (this network only). Own node port (fc25/trade.mjs) of trades(): full 2 trades; LOST = [0, 0, 1], so T3 is the only trader whose removal loses value. On this network T1 and T2 share the S1-B1 route, so price-undercutting drives both spreads to 0 (c3; own best-response iteration on a $0.01 grid ends at 0 / 0), and T3 has no rival on S2-B2, so it can charge up to the $1 gap (c4). Together these give the sentence for this stage, with no general theorem needed. BEKT 2009 is no longer support; the general 'only if' and 'does not guarantee one' are gone from the reveal. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14, batch 3)
+
+Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: economics/only-the-needed-trader-profits v3. Method: read Demo.tsx first, tracing every reachable path, Reset (where present) and reduced motion; re-ran the numbers in node/Python with independent re-implementations; checked how-chosen notes. Web sources could not be opened from this host (web fetch DNS failure, proxy 403), so nothing here is verified on an unopened source. No screenshots: the dev server at localhost:3530 did not respond. Scripts: scratchpad fc35-3/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Demo.tsx SELLER_VALUE = 0, BUYER_VALUE = 1; the chip renders in every phase as 'Model: sellers value an item $0, buyers $1' (usd = '$' + v); the predict question states the same values. Convention. |

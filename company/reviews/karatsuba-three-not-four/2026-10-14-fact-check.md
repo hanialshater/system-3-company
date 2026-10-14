@@ -49,3 +49,15 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c5 | verified | 1,024 = 2^10; with no half-sum carry every split gives 3 half-size products, T(n) = 3T(n/2), T(1) = 1, so 3^10 = 59,049; schoolbook 4^10 = 1,048,576 (node). Reveal wording 'if no half-sum like a+b gains a digit' states the same no-carry condition that pass 23 accepted. |
 
 **Result:** 5 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14, batch 3)
+
+Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: cs/karatsuba-three-not-four v5. Method: read Demo.tsx first, tracing every reachable path, Reset (where present) and reduced motion; re-ran the numbers in node/Python with independent re-implementations; checked how-chosen notes. Web sources could not be opened from this host (web fetch DNS failure, proxy 403), so nothing here is verified on an unopened source. No screenshots: the dev server at localhost:3530 did not respond. Scripts: scratchpad fc35-3/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own BigInt port of split/school/kara: 11141313 × 13111224 gives 64 schoolbook leaves and 27 Karatsuba leaves, all with ≤ 1-digit factors; both trees recombine to X·Y. v5 reveal 'Schoolbook needed 64 one-digit products; Karatsuba 27: 4·4·4 against 3·3·3' prints COUNTS[DEPTH]; reveal needs one-digit-leaves, so lvl = DEPTH. Reduced motion: Split to 1 digit jumps to DEPTH, same counts. Example disclosed as chosen. |
+| c2 | verified | Own port: nodes per depth 1\|1, 4\|3, 16\|9, 64\|27; largest factor length per depth 8, 4, 2, 1. v5 table columns read 4-digit / 2-digit / 1-digit (DIGITS[1..3]) with rows Schoolbook 4 16 64 and Karatsuba 3 9 27, '?' until lvl > i. |
+| c3 | verified | BigInt 11141313n * 13111224n = 146076250397112n; fmt gives 146,076,250,397,112. Top box appends ' = 146,076,250,397,112 (both)' only when lvl ≥ DEPTH and S.value === K.value; own port confirms both trees' values are equal. |
+| c4 | verified | Own BigInt from split(X, Y), h = 4: a 1114, b 1313, c 1311, d 1224; a·d + b·c = 3,084,879; (a+b)(c+d) = 6,152,445; a·c 1,460,454; b·d 1,607,112; 6,152,445 − 1,460,454 − 1,607,112 = 3,084,879. The identity (a+b)(c+d) = ac + ad + bc + bd is algebra. v5 check lines and reveal print exactly these constants; Check middle disables after one press and is required (middle-checked). |
+| c6 | verified | Re-derived, not from the unopened sources: T(n) = 3T(n/2) + O(n) gives Θ(n^log2 3), log2 3 = 1.58496 (node); schoolbook T(n) = 4T(n/2) + O(n) gives Θ(n^2). Reveal 'about n^1.58 instead of n^2' accurate. Karatsuba & Ofman 1962 and CLRS not opened; the claim does not depend on them. Nit (builder): support could be 'derivation'. |

@@ -649,6 +649,184 @@
       "demand": 2,
       "prerequisites": [],
       "subarea": "chance"
+    },
+    {
+      "id": "false-discovery-rate",
+      "name": "False discoveries: how many significant results are flukes",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "p-values",
+        "base-rates"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "control-groups",
+      "name": "Control groups: better after the pill is not because of the pill",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "statistics"
+    },
+    {
+      "id": "random-assignment",
+      "name": "Random assignment: why a coin beats a careful doctor",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "confounding"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "self-selection-bias",
+      "name": "Self-selection: a bigger biased poll is still biased",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "sample-vs-population"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "truncated-axis",
+      "name": "Truncated axes: bar heights that exaggerate",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "per-capita-rates",
+      "name": "Totals vs rates: the biggest place is not the riskiest",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "pattern-waiting-times",
+      "name": "Waiting for HH vs HT: equally likely patterns, unequal waits",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "geometric-waiting"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "record-values",
+      "name": "Records in random data: rarer but never done",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "draw-order-fairness",
+      "name": "Drawing straws: order does not change your chance",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "drawing-without-replacement"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "stopping-rules",
+      "name": "Stopping rules cannot tilt fair odds",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "independence",
+        "expected-value"
+      ],
+      "subarea": "chance"
+    },
+    {
+      "id": "group-testing",
+      "name": "Pooled testing: finding the few with fewer tests",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "at-least-once"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "serial-number-estimation",
+      "name": "Estimating a total from serial numbers",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "sample-vs-population"
+      ],
+      "subarea": "statistics"
+    },
+    {
+      "id": "correlation-strength",
+      "name": "What a correlation of 0.5 buys you",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "dual-axis-charts",
+      "name": "Dual-axis charts: the crossing is a choice",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "truncated-axis"
+      ],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "cherry-picked-window",
+      "name": "Cherry-picked windows: the start year sets the trend",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "data-literacy"
+    },
+    {
+      "id": "two-giants-unlikely",
+      "name": "Why a network has one giant component, not two",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "giant-component",
+        "at-least-once"
+      ],
+      "subarea": "chance",
+      "course": "ncm"
+    },
+    {
+      "id": "cascade-bayes-threshold",
+      "name": "Why a lead of two starts a cascade at any clue accuracy",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "information-cascade",
+        "bayesian-updating"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
+    },
+    {
+      "id": "selection-vs-influence",
+      "name": "Selection or influence? One snapshot cannot tell",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "homophily-test",
+        "confounding"
+      ],
+      "subarea": "statistics",
+      "course": "ncm"
     }
   ]
 }

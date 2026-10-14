@@ -25,29 +25,37 @@
       "id": "economics.debt-grows-ratio-falls.c1",
       "text": "At 3% borrowing and 5% growth, from debt $100 and GDP $100, after 10 years debt is $140 (139.6), GDP $163 (162.9) and debt-to-GDP 85.7%; debt rises every year.",
       "support": "derivation",
-      "source": "GDP_t = GDP_{t−1} × 1.05; debt_t = debt_{t−1} + 0.03 × GDP_t (Demo.tsx run(); builder node run, 2026-10-14): year 1 103.2 / 105.0 = 98.2%; year 10 139.6 / 162.9 = 85.7%. Debt increases each year because borrowing is positive. Brief: company/domains/briefs/economics.md #59.",
-      "status": "unverified"
+      "source": "GDP_t = GDP_{t−1} × 1.05; debt_t = debt_{t−1} + 0.03 × GDP_t (Demo.tsx run(); builder node run, 2026-10-14): year 1 103.2 / 105.0 = 98.2%; year 10 139.6 / 162.9 = 85.7%. Debt increases each year because borrowing is positive. Brief: company/domains/briefs/economics.md #59. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read Demo.tsx first. Own port of run(3, 5): year 10 debt 139.62, GDP 162.89, ratio 85.71%. usd() and pct() render '$140', '$163', '85.7%' in the readouts, the record row and the reveal (from qr, recorded at year 10 at 3%/5%, the 'question' milestone). Debt rises in every year 1 to 10 (borrowing > 0) and the ratio falls in every year.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.debt-grows-ratio-falls.c2",
       "text": "The ratio is a fraction: borrowing adds to the top, growth enlarges the bottom.",
       "support": "derivation",
-      "source": "Debt-to-GDP = debt / GDP; in the model borrowing increases debt (numerator) and growth increases GDP (denominator).",
-      "status": "unverified"
+      "source": "Debt-to-GDP = debt / GDP; in the model borrowing increases debt (numerator) and growth increases GDP (denominator). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Definition: ratio = 100 × debt / GDP (Demo.tsx run()). Borrowing adds b% × GDP_t to the numerator; growth multiplies the denominator by 1 + g. The reveal sentence matches the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.debt-grows-ratio-falls.c3",
       "text": "With borrowing raised to 5% at 5% growth, the year-10 ratio climbs to 101.9% (the reveal quotes the learner's own recorded rates and ratio).",
       "support": "derivation",
-      "source": "Demo.tsx run(5, 5): year 10 debt 166.0, GDP 162.9, ratio 101.9%; other climbing cases: run(3, 2) 109.5%, run(3, 3) 100.8%, run(6, 0) 160.0% (builder node run). The record is set the first time a year-10 state has a ratio above 100.0% (milestone 'climb'); the QA path reaches it at 5%/5%. The record row shows the same value.",
-      "status": "unverified"
+      "source": "Demo.tsx run(5, 5): year 10 debt 166.0, GDP 162.9, ratio 101.9%; other climbing cases: run(3, 2) 109.5%, run(3, 3) 100.8%, run(6, 0) 160.0% (builder node run). The record is set the first time a year-10 state has a ratio above 100.0% (milestone 'climb'); the QA path reaches it at 5%/5%. The record row shows the same value. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port: run(5, 5) year 10 = 101.93%, shown as '101.9%'. Every slider pair whose year-10 ratio rounds above 100.0% (27 pairs, e.g. 3/3 100.8%, 6/0 160.0%) can set the 'climb' record. The reveal and the record row both print cr (the first such state), so the quoted rates and ratio are the learner's own and the word 'climbed' is always true (above 100%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.debt-grows-ratio-falls.c4",
       "text": "The lesson is a toy model: start debt $100 and GDP $100, money GDP grows first each year, then borrowing (a % of that year's GDP, interest included) adds to the debt; fixed rates, no recessions; not any real country.",
       "support": "convention",
-      "source": "Stage chip 'Model: start debt $100, GDP $100. Each year GDP grows, then borrowing adds a % of that GDP.' and the reveal's last sentence. Lesson rule. No real-country fiscal rule is named, per the brief.",
-      "status": "unverified"
+      "source": "Stage chip 'Model: start debt $100, GDP $100. Each year GDP grows, then borrowing adds a % of that GDP.' and the reveal's last sentence. Lesson rule. No real-country fiscal rule is named, per the brief. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Stage chip: 'Model: start debt $100, GDP $100. Each year GDP grows, then borrowing adds a % of it.' The reveal: 'A toy model with fixed rates, not any real country.' run() grows GDP first, then adds b% of the new GDP. There is no separate interest term, so 'interest included' is the model's reading of b, and fixed non-negative g means no recessions. The source field quotes the chip as '...a % of that GDP'; the stage says '...a % of it'. Same meaning; the source note is stale, not the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
