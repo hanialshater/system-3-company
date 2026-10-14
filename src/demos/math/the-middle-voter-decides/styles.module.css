@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.4em; }
+.axis { stroke: var(--muted); stroke-width: 2; }
+.tick { fill: var(--muted); font-size: 11px; }
+.half { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.halfLab { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.voter { fill: var(--bg-2); stroke: var(--fg); }
+.voterT { fill: color-mix(in srgb, var(--domain) 70%, var(--bg-2)); stroke: var(--fg); }
+.voterR { fill: color-mix(in srgb, var(--warn-fill) 75%, var(--bg-2)); stroke: var(--fg); }
+.vLab { fill: var(--fg); font-size: 12px; font-weight: 800; pointer-events: none; }
+.midLab { fill: var(--fg); font-size: 10px; font-weight: 700; }
+.markT { fill: var(--domain); }
+.markR { fill: var(--warn-fill); stroke: var(--fg); stroke-width: 1; }
+.markLabT { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.markLabR { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.stripLab { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.win { fill: color-mix(in srgb, var(--good-fill) 35%, var(--bg-2)); stroke: var(--good); }
+.lose { fill: color-mix(in srgb, var(--bad-fill) 35%, var(--bg-2)); stroke: var(--bad); }
+.tie { fill: var(--bg-2); stroke: var(--muted); }
+.cellLab { fill: var(--fg); font-size: 12px; font-weight: 800; }

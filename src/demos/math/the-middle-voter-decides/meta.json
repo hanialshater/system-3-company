@@ -1,0 +1,114 @@
+{
+  "slug": "the-middle-voter-decides",
+  "title": "Which spot wins every vote?",
+  "hook": "Five voters on a left-right line. Surely the average position wins every head-to-head?",
+  "domain": "math",
+  "concept": "median-voter",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "majority votes between two options",
+      "a left-right line"
+    ],
+    "doesNotKnow": [
+      "that with single-peaked preferences the median voter's favourite beats every rival in a two-way vote"
+    ]
+  },
+  "misconception": "The position that wins every head-to-head vote is the average voter's position.",
+  "objective": "The learner can explain that a two-way vote splits the voters at the halfway point between the two positions, so the middle voter (at 3) is always on the winning side of 3; with favourites 1, 2, 3, 8 and 10 the average 4.8 loses to 4 and the centre 5 loses to 3, while 3 beats every rival.",
+  "claims": [
+    {
+      "id": "math.the-middle-voter-decides.c1",
+      "text": "With favourites at 1, 2, 3, 8 and 10, position 3 beats every other whole-number position from 0 to 10 in a two-way majority vote, and it is the only one that does.",
+      "support": "derivation",
+      "source": "Builder's node pairwise check, 2026-10-14 (each voter votes for the nearer position, equidistant voters abstain): whole-number positions beat 4, 6, 8, 10, 8, 6, 4, 3, 2, 1, 0 of the other 10 for positions 0..10; only 3 beats all 10. Same duel() as Demo.tsx, which draws the strip.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-middle-voter-decides.c2",
+      "text": "The average of the favourites is 4.8, and 3 beats 5 by 3 votes to 2.",
+      "support": "derivation",
+      "source": "(1 + 2 + 3 + 8 + 10) / 5 = 24 / 5 = 4.8. Against 5 the halfway point is 4: voters 1, 2, 3 are nearer 3, voters 8 and 10 nearer 5. Re-run in node 2026-10-14.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-middle-voter-decides.c3",
+      "text": "A rival at 4 beats the average, 4.8, by 3 votes to 2: voters 1, 2 and 3 are nearer 4.",
+      "support": "derivation",
+      "source": "Halfway point 4.4; voters 1, 2, 3 lie below it, 8 and 10 above. node duel(40, 48) = [3, 2] for 4, 2026-10-14.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-middle-voter-decides.c4",
+      "text": "Any rival to the right of 3 loses voters 1, 2 and 3 to position 3, and any rival to the left loses voters 3, 8 and 10, so the middle voter is on the winning side of every split.",
+      "support": "derivation",
+      "source": "For a rival r > 3 the halfway point (3 + r) / 2 is above 3, so voters at 1, 2, 3 are strictly nearer 3; for r < 3 the halfway point is below 3, so voters at 3, 8, 10 are nearer 3. Three of five is a majority.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-middle-voter-decides.c5",
+      "text": "The average is pulled by how far away 8 and 10 sit, while a two-way vote only asks which side of the halfway point each voter is on.",
+      "support": "derivation",
+      "source": "The mean depends on the values (moving 10 to 100 moves it), while the vote count depends only on each voter's side of (a + b) / 2, i.e. on order. Definition-level argument.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.the-middle-voter-decides.c6",
+      "text": "When each voter prefers positions nearer their favourite (single-peaked preferences), the median voter's favourite beats every rival in a two-way majority vote (median voter theorem).",
+      "support": "source",
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 23; D. Black, 'On the Rationale of Group Decision-making', J. Political Economy 56 (1948). Citation from the brief; attribution for the fact-checker to confirm. Stated for an odd number of voters; the lesson has five.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Seven voters' favourites sit at 0, 1, 2, 4, 9, 9 and 10 on a line; each prefers nearer. Which position beats every rival one-on-one?",
+    "options": [
+      "4",
+      "5",
+      "9"
+    ],
+    "answer": 0,
+    "why": "4 is the middle (fourth) favourite. Any rival to its right loses the four voters at 0, 1, 2 and 4; any to its left loses 4, 9, 9 and 10. The average, 5, does not matter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:median-voter",
+    "also": [
+      "math:mean-vs-median"
+    ],
+    "prerequisites": [
+      "math:mean-vs-median"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 23
+      }
+    ],
+    "tags": [
+      "voting",
+      "median"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
+}
