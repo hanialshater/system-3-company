@@ -24,7 +24,7 @@
     ]
   },
   "misconception": "Strong segregation needs strong prejudice.",
-  "objective": "The learner can explain that in Schelling's model households who are content as a minority (they move only when under 30% of their neighbours are like them) still sort the grid into blocks, raising the like-neighbour share from about 50% to about 75%, because each move changes other households' streets; and that a toy model shows what can happen, not what causes any real city's pattern.",
+  "objective": "The learner can explain that in Schelling's model households who are content as a minority (they move only when under 30% of their neighbours are like them) still sort the grid into blocks, raising the like-neighbour share from about 50% to about 75%, because each move changes other households' streets and unsettles households that were content (shown as red rings); and that a toy model shows what can happen, not what causes any real city's pattern.",
   "claims": [
     {
       "id": "economics.mild-preferences-sharp-divides.c1",
@@ -66,19 +66,17 @@
       "id": "economics.mild-preferences-sharp-divides.c5",
       "text": "In the stage model, each move changes other households' streets: households that were happy at the start become unhappy and move too, and the grid sorts into same-group blocks.",
       "support": "simulation",
-      "source": "Builder rerun 2026-10-14 tracking agent identities with the engine's exact RNG sequence (a scratch script mirroring abm.ts tick() with an id array), threshold 30%: seeds 1-5 had 239-263 of 1,440 households unhappy at tick 0, and 95-143 households that were happy at tick 0 later became unhappy and moved (339-394 distinct movers, 550-664 moves). Blocks: like-neighbour share rises from about 50% to about 75% (c1), visible on the grid.",
+      "source": "Engine bookkeeping in abm.ts run() (2026-10-14 v2): agent ids move with their agents; 'unsettled[t]' lists agents unhappy after tick t that did not move in it (every unhappy agent moves, so these were happy before the tick); 'cascade' counts distinct agents happy at tick 0 that became unhappy later. Frames are identical to v1 (checked for seeds 1-100 at 10/30/50/70). Threshold 30%, seeds 1-5: 239-263 of 1,440 unhappy at tick 0; cascade 137/143/142/100/95 (matches the fact-checker's NCM-1 tracking); seeds 1-100: cascade 86-164; unsettled at tick 1: 44-78. On the stage each such household gets a red ring for the frame it is unsettled, with a count ('N unsettled by a move'); the reveal quotes the learner's own run's cascade. Blocks: like share ~50% -> ~75% (c1) and all-like share (c9).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.mild-preferences-sharp-divides.c6",
-      "text": "The model is Thomas Schelling's: T. C. Schelling, 'Dynamic models of segregation', Journal of Mathematical Sociology 1(2), 143-186 (1971).",
+      "text": "The stage runs a simplified version of Thomas Schelling's model: T. C. Schelling, 'Dynamic models of segregation', Journal of Mathematical Sociology 1(2), 143-186 (1971).",
       "support": "source",
-      "source": "Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186. doi:10.1080/0022250X.1971.9989794. THE DOI IS FROM MEMORY (brief, cm-economics-markets) AND NEEDS CONFIRMING BY THE FACT-CHECKER, as do volume, issue and pages. Also Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 4, sec. 4.5. The stage rule is a common simplified variant (moves to a random empty cell), not Schelling's exact 1971 procedure.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186. doi:10.1080/0022250X.1971.9989794. Fact-check NCM-1 confirmed journal, volume, pages and year from secondary records (issue and DOI moderately high; publisher page not opened). Also Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 4, sec. 4.5. The stage rule is a common simplified variant (moves to a random empty cell), not Schelling's exact 1971 procedure. v2 text adds 'a simplified version' at the fact-checker's suggestion (NCM-1); the reveal's caveat says 'A simplified version of Schelling's 1971 model'.",
+      "status": "unverified"
     },
     {
       "id": "economics.mild-preferences-sharp-divides.c7",
@@ -97,6 +95,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c9",
+      "text": "In the stage model at a 30% threshold, about 1 in 6 households start with under 30% like neighbours by chance, and the share of households whose neighbours are all like them rises from about 1% at the random start to about 30% when nobody wants to move (about 2% at 10%, about 58% at 50%).",
+      "support": "simulation",
+      "source": "abm.ts run(seed, pct) with allLikeShare (agents with >= 1 neighbour whose occupied neighbours are all their group). Builder rerun 2026-10-14 (v2), seeds 1-100: unhappy at tick 0 at 30%: 15.7-20.1% (seeds 1-5: 247/251/250/239/263 of 1,440). All-like share at tick 0: 0.5-2.4%. End at 30%: 23.6-38.8%, mean 30.6% (seed 1: 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%). End at 10%: 1.2-3.8%, mean 2.2%. End at 50%: 52.0-67.8%, mean 58.4%. At 70% (tick 60, mostly not settled): 83.0-99.2%, mean 93.1%. Shown on the stage as a tint behind those households and a count ('N% all neighbours like'); the readout shows the count of households that want to move (hollow). The reveal quotes the learner's own 30% run.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -108,7 +113,7 @@
       "Only if someone forces people to move"
     ],
     "answer": 1,
-    "why": "In Schelling's model, households who only want a few like neighbours still sort into blocks, because each move changes other households' streets and unsettles some of them."
+    "why": "In a simplified version of Schelling's model, households who only want a few like neighbours still sort into blocks, because each move changes other households' streets and unsettles some of them."
   },
   "evidence": {
     "qa": [
@@ -118,7 +123,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:schelling-segregation",
     "also": [],
