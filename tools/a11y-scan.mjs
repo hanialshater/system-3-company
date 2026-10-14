@@ -366,8 +366,9 @@ async function keyboardRun(page, findings, add) {
     const f = await focusDesc(page);
     if (f.body) { if (i > 3) break; continue; }
     if (f.id != null) { seenExplore.add(f.id); if (!f.ring) ringless.add(f.sel); }
-    if (f.sel === lastSel) { same++; if (same > 3) { trap = true; break; } } else same = 0;
-    lastSel = f.sel;
+    const ident = f.id != null ? "id" + f.id : f.sel; // identity, not selector: sibling chips can share a selector
+    if (ident === lastSel) { same++; if (same > 3) { trap = true; break; } } else same = 0;
+    lastSel = ident;
   }
   const unreachable = enabled.filter((i) => !seenExplore.has(String(i.id)) && i.tabindex !== "-1");
   for (const u of unreachable) add("fail", u.origin, "keyboard", `Enabled control not reached by Tab: ${u.sel} "${u.name}"`);
