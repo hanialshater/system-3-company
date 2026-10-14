@@ -43,3 +43,7 @@ Inputs: learner review r2 (2026-10-14-learner-adult-beginner-r2.md).
 - Layout: while locked the empty grid is shrunk (7dvh) and the second legend line hidden so all controls incl. "Pool the clues" show on the phone predict frame; chips renamed "60% right / 80% right / 2 in 3 right" (one row). "exact: 20.0%" now "the exact chance is 20.0%".
 - Claims: c2 text changed (stage marker) -> unverified; c9 new, unverified; c3 source note only. meta version 3.
 - QA: contract passes phone and desktop (QA_PORT 3891, own dist .next-tsb2); all phone frames viewed; check and typecheck pass.
+
+## Revision (v4, 2026-10-14, fact-check NCM-3)
+
+Reveal paragraph 2 prints the plain-vote wrong chance for the accuracy run most (new plainWrong in model.ts, exact binomial, ties excluded) instead of "almost never"; the "Look at crowd N on the stage" paragraph now shows only when the selected accuracy chip has a run, so it never points at an empty stage. c9 text extended and reset to unverified. meta version 4.
