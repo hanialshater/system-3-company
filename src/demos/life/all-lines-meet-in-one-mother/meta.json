@@ -1,0 +1,97 @@
+{
+  "slug": "all-lines-meet-in-one-mother",
+  "title": "Do all family lines meet in one mother?",
+  "hook": "Trace 50 women's mothers back, generation after generation. Do their lines ever meet?",
+  "domain": "life",
+  "concept": "coalescent-mrca",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "everyone has one mother",
+      "random drift (same-genes-different-drift)"
+    ],
+    "doesNotKnow": [
+      "that tracing mothers back, all lines must merge into one woman, after about 2N generations, and she had many contemporaries"
+    ]
+  },
+  "misconception": "A single common maternal ancestor means there was once only one woman.",
+  "objective": "The learner can explain that maternal lines join whenever two women share a mother and never split again, so all 50 lines must meet in one woman (about 97 generations back on average here), and that she lived among 49 other women whose lines died out.",
+  "claims": [
+    {
+      "id": "life.all-lines-meet-in-one-mother.c1",
+      "text": "In 1,000 seeded runs with 50 women per generation, all maternal lines met in one ancestor, on average 96 generations back (median 84); the stage's family met 99 generations back.",
+      "support": "simulation",
+      "source": "Builder's own code (meetTime/family in Demo.tsx), re-run in node 2026-10-14 via a transpile-only harness. Haploid Wright–Fisher, N = 50, each generation every distinct line draws mother = floor(rand × 50) from mulberry32(seed). 1,000 runs use seeds 7001–8000 as briefed: all met; mean 96.03, median 84, min 18, max 371, 10th–90th percentile 44–169. The stage's family uses seed 7004, chosen because its meeting time (99) is near the mean and fits the 0–120 axis; it is an illustration, not evidence. Seed 7004 lines: 50 today → 32 one generation back → 23 at 2 → 9 at 12 → 3 at 50 → 2 at 89 → 1 at 99.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c2",
+      "text": "Theory for this model expects about 97 generations; the formula 2N(1 − 1/N) = 98 is an approximation.",
+      "support": "derivation",
+      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c3",
+      "text": "Every step back, some lines pick the same mother and join; joined lines never split, so with only 50 women to choose from, joins continue until one line is left.",
+      "support": "derivation",
+      "source": "Each woman has exactly one mother, so two lines that share an ancestor share every earlier ancestor; with a finite population of 50 the number of lines can only fall, and falls with positive probability each generation while more than one line remains, so it reaches 1 with probability 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c4",
+      "text": "The common mother was not alone: 49 other women lived beside her, but their maternal lines did not reach today.",
+      "support": "derivation",
+      "source": "The model keeps 50 women in every generation; at the meeting generation only one of them is a maternal ancestor of all of today's 50 women, and by definition no other woman of that generation has a maternal line to today.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c5",
+      "text": "It is the drift from 'Nobody wins, one colour takes over', run backward.",
+      "support": "derivation",
+      "source": "Same haploid Wright–Fisher sampling (each generation a random draw of parents from the last), traced backward instead of forward. Source: the published lesson life/same-genes-different-drift, claim life.same-genes-different-drift.c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.all-lines-meet-in-one-mother.c6",
+      "text": "Stage rule: 50 women per generation; each has a random mother from the one before.",
+      "support": "convention",
+      "source": "The lesson's model (brief all-lines-meet-in-one-mother, company/courses/ncm/briefs.md, life.genetics-evolution #3); a toy model, not human data.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Everyone alive today descends, mother to mother, from one woman who lived long ago. What does that say about her time?",
+    "options": [
+      "She was the only woman alive then",
+      "She lived among many other women whose maternal lines later died out",
+      "She must have lived only a few generations ago"
+    ],
+    "answer": 1,
+    "why": "Traced back, maternal lines keep joining whenever two people share a mother, until one line is left. That woman had many contemporaries; their lines simply did not survive to today."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:coalescent-mrca",
+    "also": ["life:genetic-drift"],
+    "prerequisites": ["life:genetic-drift"],
+    "level": "core",
+    "strand": "genetics-evolution",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 21 }],
+    "tags": ["genealogy", "coalescent", "drift"]
+  },
+  "format": "storyboard-scrub",
+  "interactions": ["choice-before-reveal", "scrubber-timeline", "step-run-button", "tally-counters", "milestone-gate"]
+}

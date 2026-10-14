@@ -1,0 +1,26 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 160px; max-height: 44dvh; }
+.rule { margin: 0; display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 0.84rem; }
+.voters { font-size: 0.72rem; white-space: nowrap; }
+.card { fill: none; stroke: var(--line); stroke-width: 1.2; }
+.cardNum { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+.tile { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.letter { font-size: 13px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.ghostLetter { font-size: 13px; fill: var(--muted); text-anchor: middle; opacity: 0.7; }
+.pts { font-size: 13px; font-weight: 700; fill: var(--domain); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.chipA { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.chipB { fill: color-mix(in srgb, var(--bad) 14%, var(--bg-2)); stroke: var(--bad); stroke-width: 2; }
+.chipText { font-size: 14px; font-weight: 800; fill: var(--fg); text-anchor: middle; }
+.note { font-size: 10px; fill: var(--muted); text-anchor: middle; }
+.barName { font-size: 13px; font-weight: 700; fill: var(--fg); }
+.bar { fill: var(--domain); }
+.barUnknown { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+.total { font-size: 13px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.wins { font-size: 12px; font-weight: 800; fill: var(--good); }
+.removed { font-size: 12px; fill: var(--muted); font-style: italic; }
+.log { min-height: 2.6em; font-size: 0.84rem; color: var(--muted); text-align: center; }
+.log p { margin: 0; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.full { grid-column: 1 / -1; }
+.tap { min-height: 44px; }

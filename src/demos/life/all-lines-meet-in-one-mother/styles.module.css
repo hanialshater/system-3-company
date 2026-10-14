@@ -1,0 +1,26 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.rule { margin: 0; color: var(--muted); font-size: 0.84rem; text-align: center; }
+.fit { flex: 0 1 auto; min-height: 170px; max-height: 40dvh; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.tick { font-size: 9px; fill: var(--muted); }
+.lineage { stroke: var(--domain); stroke-width: 1.2; stroke-linecap: round; }
+.join { fill: var(--fg); }
+.today { fill: var(--domain); stroke: var(--fg); stroke-width: 0.6; }
+.other { fill: none; stroke: var(--muted); stroke-width: 0.9; }
+.mother { fill: var(--fg); stroke: var(--domain); stroke-width: 1.5; }
+.label { font-size: 10px; fill: var(--fg); font-weight: 700; text-anchor: middle; }
+.labelEnd { font-size: 10px; fill: var(--muted); text-anchor: end; }
+.readout { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 0.9rem; padding: 0 4px; }
+.readout strong { font-variant-numeric: tabular-nums; }
+.seed { font-size: 0.72rem; color: var(--muted); }
+.stripHead { margin: 0; font-size: 0.8rem; font-weight: 700; }
+.strip { width: 100%; height: auto; max-height: 10dvh; display: block; }
+.bin { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.binTick { font-size: 8px; fill: var(--muted); text-anchor: middle; }
+.meanTick { stroke: var(--fg); stroke-width: 1.6; }
+.yoursTick { stroke: var(--bad); stroke-width: 1.6; stroke-dasharray: 3 2; }
+.yours { font-size: 9px; fill: var(--bad); font-weight: 700; }
+.sliderWrap input { min-height: 44px; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.full { grid-column: 1 / -1; }
+.tap { min-height: 44px; }
