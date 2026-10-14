@@ -2921,10 +2921,11 @@
       "id": "W-242",
       "title": "tools/reveal-fit.mjs: measure stage-top crop and report data-reveal-scale; the thumb flag compares against the unscaled stage, so every scaled stage now reads thumb",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-243",
@@ -3138,10 +3139,11 @@
       "id": "W-264",
       "title": "W-259 follow-on, after W-242: run tools/reveal-fit.mjs stage-top crop at 390x844 over all lessons (feed and /d), write the list of lessons with crop > 0 px (and whether the element the reveal names is on screen) to company/engineering/notes/, then add one demo-builder board item per category. Do NOT change useRevealFit's scroll order (the reveal's last line stays on screen) or make the reveal an inner scroller; see company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-265",
@@ -3396,6 +3398,375 @@
       "owner": "qa-tester",
       "state": "backlog",
       "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-291",
+      "title": "the-slowing-half-life v6 (learner r8): reveal ~107 words (>90) and at 390x844 the stage top is cropped when the reveal opens (curve and wait bars off screen). Cut reveal to <=90 words so stage-top crop = 0 (candidate: the 'As the line under it said...' sentence repeats the why line; cm decides which sentence goes); add Pre-flight 7. See company/reviews/the-slowing-half-life/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-292",
+      "title": "karatsuba-three-not-four v4 (learner r8): reveal names 'the third box' ((a+b)(c+d) 2427x2535), which is off screen when the reveal opens at 390x844 (only table, check lines, buttons visible); reveal ~101 words (>90). Point only at the check lines or cut to <=90 words with stage-top crop 0 (1,024-digit sentence is told context; cm decides). Also: explore frames clip the box row at the stage top. See company/reviews/karatsuba-three-not-four/2026-10-14-learner-cs-learner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-293",
+      "title": "range-min-in-four-nodes v4 (learner r8): reveal ~128 words (>90); at 390x844 the whole tree is off screen when the reveal opens, but the reveal names the dashed nodes, the small end nodes and 'the 5 nodes on its path'. Cut to <=90 words and get stage-top crop 0 with the tree visible (told context first: 2 log2 n, 'no range needs more than 6', 'maximum or sum'; cm decides). See company/reviews/range-min-in-four-nodes/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-294",
+      "title": "accurate-bettor-takes-the-pot v3 (learner r8): reveal still points at 'the circle' (run 5 low, 94.2% race 176), which is off screen when the reveal opens at 390x844 (r7 top finding, not fixed); reveal ~109 words (>90). Drop 'the circle' and quote the Seen line only, or cut to <=90 with stage-top crop 0 and the chart visible (cm decides cuts). See company/reviews/accurate-bettor-takes-the-pot/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-295",
+      "title": "patience-wins-the-split v4 (learner r8): reveal ~118 words (>90) and at 390x844 the chart is off screen when the reveal opens (stage-top crop > 0). Cut to <=90 words so stage-top crop = 0 (para 1 restates the Seen row; model caveat could move to the stage caption; cm decides). See company/reviews/patience-wins-the-split/2026-10-14-learner-ncm-learner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-296",
+      "title": "two-bets-split v6 (learner r8): reveal names 'the bars bunched around +5%', but the chart is off screen when the reveal opens at 390x844; reveal ~105 words (>90). Cut to <=90 with stage-top crop 0 and bars visible (candidate: muted model line onto the stage chip; cm decides). See company/reviews/two-bets-split/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-297",
+      "title": "horizon-ruler v3 (learner r8): reveal says 'The sight line meets the radius at a right angle', but no radius is drawn at the slider's final state (933 m, and whenever the slider is the last move); draw the radius at every height or word it from the right-angle tick. Also reveal ~100 words (>90 on a new version): cut to <=90 (cm decides). Picture label size at reveal is kit W-287, not this item. See company/reviews/horizon-ruler/2026-10-14-learner-curved-earth-knower-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-298",
+      "title": "vaccinate-at-the-peak v4 (learner r8): reveal ~109 words (>90 on a new version); the dot grid only fits by being shrunk to a strip. Cut to <=90 (candidates: 'Your other date, day 2, ended at 70%' and the random-people 29% clause; cm decides). Minor: Seen row drops 'day 40 94%' once another date is tried. Grid shrink itself is kit W-287. See company/reviews/vaccinate-at-the-peak/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-299",
+      "title": "r8 penalty-on-wiggle v6 revise: at 390x844 reveal the chart is scrolled above the card (only dot bottoms + 'data set 2' left) while the reveal says 'the curve goes much flatter'; reveal is ~123 words. Bring reveal <=90 words and stage-top crop 0 with the curve on screen; answer Pre-flight 7 with measured px. Cutting c4 (490/500 sentence) needs cm-ai. See company/reviews/penalty-on-wiggle/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "ai",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-300",
+      "title": "r8 hailstone-27-climbs v5 revise: at 390x844 reveal the rule line, 'Start 97 · step 118' status and the top of the 9,232 spike are above the card; the ring the reveal names is a few px on the shrunk chart; reveal ~100 words. Reveal <=90 words, stage-top crop 0 with peak and ring visible; answer Pre-flight 7. See company/reviews/hailstone-27-climbs/2026-10-14-learner-knows-repeated-rules-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-301",
+      "title": "r8 proposers-get-the-best v4 revise: at 390x844 reveal the student cards, 'Hospitals propose' switch and the dashed clash ✕ are above the card while the reveal says 'Each run had a clash'; reveal ~105 words. Reveal <=90 words, crop 0 with the clash visible (likely needs a compact card/arrow area); cm-cs approves claimed-sentence cuts; answer Pre-flight 7. See company/reviews/proposers-get-the-best/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-302",
+      "title": "r8 wheel-needs-four-colours v3 revise: at 390x844 reveal the whole wheel and the runs line are off screen (only control rows + COLOURS USED/COLOURED left) while the reveal argues from region 5 and the ring; reveal ~118 words. Large crop (W-267 class): compact stage (e.g. tap regions on the wheel, colour chips in one row), reveal <=90 words, crop 0 with wheel visible; design-lead review before learner re-review. See company/reviews/wheel-needs-four-colours/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-303",
+      "title": "r8 outside-option-sets-the-split v3 revise: reveal ~111 words; at 390x844 the stage-top chip 'Split $1 · B's outside option $0' is clipped above the card, and the fit relies on the kit shrinking the bar to ~40% (W-287 will undo it). Reveal <=90 words (candidates: model line to the stage caption, 'every 10 cents' restatement; cm-economics approves), crop 0 measured after W-287; answer Pre-flight 7. See company/reviews/outside-option-sets-the-split/2026-10-14-learner-knows-opportunity-cost-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-304",
+      "title": "r8 half-of-humanity v2 revise: at 390x844 reveal the Equal Earth map is entirely above the card while paragraph 2 says 'On this equal-area map ... your 7 cover 25%'; reveal ~94 words. Map on screen at reveal (crop 0), e.g. fold the 4 chip rows or let the map be the control; reveal <=90 words, cm-geography picks the cut; answer Pre-flight 7. See company/reviews/half-of-humanity/2026-10-14-learner-big-country-knower-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-305",
+      "title": "r8 all-lines-meet-in-one-mother v2 revise: (1) tree labels ('common mother', '+ 49 others', 'same mother', 'today: 50 women', axis) render ~4-5 px on a phone even during explore: make them >=10 px rendered at 390 px; (2) at the reveal the tree is off screen while the reveal ends on 'She was not alone: 49 other women' - crop 0 with '+ 49 others' visible; (3) reveal ~93 words to <=90 (cm-life-genetics-evolution picks; theory sentence is the candidate, see W-184). See company/reviews/all-lines-meet-in-one-mother/2026-10-14-learner-knows-random-drift-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "life",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-306",
+      "title": "r8 no-fraction-fits v5 revise: reveal ~109 words vs 90 budget for a new version (text unchanged since v4); fit at 390x844 currently relies on kit shrink of the number line. Cut reveal <=90 words with no claim meaning changed (candidates: repeated 'No, never.' opener, 'Close calls keep coming...' sentence; cm-math approves); re-check crop 0 after W-287; answer Pre-flight 7. See company/reviews/no-fraction-fits/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-307",
+      "title": "r8 weak-links-hold-it-together v3 revise: at 390x844 reveal the stage caption 'Link strength = share of friends the two have in common.' has its first line clipped above the card (crop ~1 line, not 0); reveal itself is 71 words. Make the caption one line or move it into the chart so crop is 0, measured after W-287; answer Pre-flight 7. See company/reviews/weak-links-hold-it-together/2026-10-14-learner-knows-weak-ties-between-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "probability",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-308",
+      "title": "r8 twenty-then-ten-off: W-124 (float artefact 28.000000000000004%) looks fixed in build 5 (every readout shows 28%); verify and close W-124. See company/reviews/twenty-then-ten-off/2026-10-14-learner-knows-percent-discount-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-309",
+      "title": "each-element-pops-once v5 (learner r8): reveal never unlocked on the walkthrough's DOM-order path. Milestone pops-seen fires only at the end of a ~2.7 s replay started by the last control (chip '8 … 1 9', 260 ms per pop frame); frame 04 at +1.2 s shows '3 pops', 'scan ? · stack ?', 'Try it first'. demo-standard: an animation-gated milestone must be reachable within the 450 ms wait or by a step button. Make pops-seen reachable on that path so the reveal can be walked. See company/reviews/each-element-pops-once/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-310",
+      "title": "tools/walkthrough.mjs checks reveal-button isEnabled() immediately after the last step; contract.spec.ts uses expect().toBeEnabled() (auto-wait ~5 s). Lessons with a replay on the last control (each-element-pops-once v5) get 'reveal never unlocked' in walkthroughs while QA passes. Make the walkthrough wait like QA. See company/reviews/each-element-pops-once/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-311",
+      "title": "one-road-cuts-the-map v4 (learner r8): at 390x844 the open reveal crops the stage top (towns 1, 3, 4, the 3-4 road and the DFS legend off screen) while paragraph 2 points at 'town 4 #3 (↩#3). Town 3, #2' and 3-4; reveal is 116 words (>90 on a new version). Cut told context (category manager picks the sentence) and fold stage text so stage top and last reveal line are both on screen; add Pre-flight 7. Label shrink at reveal is kit W-287, not this item. See company/reviews/one-road-cuts-the-map/2026-10-14-learner-knows-dfs-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-312",
+      "title": "odds-average-the-bettors v3 (learner r8): at 390x844 the open reveal scrolls off the pool bar, solid/dashed lines and all three 'Seen' rows, while live readouts show 87% / 80% beside a reveal that says 'odds said 70%' and 'the solid line sat on the dashed one'; reveal 113 words (>90 on a new version); stage text ~55 words with the Seen rows (>25). Cut told context (category manager picks; the model note repeats the stage chip) and fold stage text so the bar, lines and Seen record show with the reveal's last line; answer Pre-flight 7. See company/reviews/odds-average-the-bettors/2026-10-14-learner-odds-graduate-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-313",
+      "title": "stag-needs-three-in-four v3 (learner r8): reveal is 105 words on a new version (>90), and at 390x844 the stage top (model chip) is clipped when the reveal opens. Cut told context first (the grey 'Invented payoffs ... Rousseau's' note repeats the stage chip; category manager picks), then confirm stage-top crop 0 px; answer Pre-flight 7. Picture label shrink at reveal (and at frame 04 mid-explore) is kit W-287, not this item. See company/reviews/stag-needs-three-in-four/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-314",
+      "title": "continental-jigsaw v5 (learner r8): reveal is 99 words on a new version (>90), and at 390x844 the globe top and the 'pivot just above (44°N)' marker are off screen while the reveal says the red dot's trail 'is an arc around it' [the pivot]. Cut told context (category manager picks; 'small gaps and overlaps' is told, nothing marks them) and fold caption/readouts so the pivot and the reveal's last line are both on screen; answer Pre-flight 7. Label shrink at reveal and at predict is kit W-287, not this item. See company/reviews/continental-jigsaw/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-315",
+      "title": "ruler-on-mercator v2 (learner r8): reveal is 97 words on the QA path (>90 on a new version), longer on the Equator-last path (extra clause). Cut told context to <=90 on every path (category manager picks; candidate: 'It is the same north-south as east-west, which is why shapes look right while sizes do not.'). Fit otherwise holds (stage-top crop 0). Minor: the 'yellow' bar renders dark gold in light theme. Label shrink is kit W-287, not this item. See company/reviews/ruler-on-mercator/2026-10-14-learner-scale-bar-knower-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-316",
+      "title": "r8 cut-the-rod-for-more v3 revise: reveal ~113 words (>90 on a new version); fit at 390x844 passes only via the kit shrink (W-287). Cut to <=90 (the told length-8 CLRS sentence, c5, is ~26 words; cm-cs approves). Minor: reveal names 'best(3) in 1 + best(3)' but the dashed outline is on row 2; quote the outlined row or outline the named one. Answer Pre-flight 7. See company/reviews/cut-the-rod-for-more/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-317",
+      "title": "r8 one-crowded-bucket v3 revise: at 390x844 the open reveal crops the stage top (instruction line, hand row, tower tiles 49-50 off screen) and the reveal is ~111 words; it names '42 and 44 made 6 tests each' (tile tallies, 3 px at reveal). Reveal <=90 (cm-cs picks the cut), fold stage text, measure stage-top crop 0 in Pre-flight 7. See company/reviews/one-crowded-bucket/2026-10-14-learner-knows-counting-sort-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-318",
+      "title": "r8 ray-counts-crossings v3 revise: reveal P2 'Look at the ray: at each numbered crossing it switches...' but at reveal the stage is at (7,4) with 0 crossings and no numbered crossing; point at a state on stage (e.g. show the recorded (1,4) ray when the reveal opens) or reword to the Seen line. Reveal ~108 words (>90; tie-rule sentence is told context, cm-cs decides). Answer Pre-flight 7. See company/reviews/ray-counts-crossings/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-319",
+      "title": "r8 four-in-a-row-two-thirds v4 revise: at 390x844 the open reveal crops the stage top (header chip and A-D nodes off screen) and the reveal is ~108 words incl. model line. Reveal <=90 (model line to stage caption, shorten line-of-three paragraph; cm-economics decides), stage-top crop 0 measured in Pre-flight 7. Should fix: after Reset 'B GETS $0.500' sits above 'it was About $0.67'. See company/reviews/four-in-a-row-two-thirds/2026-10-14-learner-ncm-learner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-320",
+      "title": "r8 pay-for-the-harm-you-do v3 revise: at 390x844 the open reveal crops the stage top, so the dashed harm gap (Y $60 vs Y $30) the reveal calls 'That gap, $35' is off screen; reveal ~122 words. Reveal <=90 (Y/Z payments sentence, VCG naming, model caveat to the stage chip; cm-economics decides) and stage-top crop 0 with the harm bars visible, measured in Pre-flight 7. See company/reviews/pay-for-the-harm-you-do/2026-10-14-learner-knows-second-price-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-321",
+      "title": "r8 mercator-greenland v4 revise (blocks launch; on ready-to-publish list): at 390x844 the open reveal has the whole map off screen (stage starts at 'Slide to the equator') while P2 points at 'the orange line ... straight on it and bent on the equal-area map'; reveal ~113 words. Reveal <=90 (cm-geography picks the cut) and stage-top crop 0 with map + orange line visible; Pre-flight 7 with px. Minor: explore caption cut at stage bottom. See company/reviews/mercator-greenland/2026-10-14-learner-no-projections-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-322",
+      "title": "r8 bridge-carries-news-not-habits v3 revise: reveal quotes 'Ben had 1 of his 5 friends adopting', but at reveal the stage shows the news end state (all of B green, Ben '5 of 5 friends'); the habit's 1-of-5 has no trace. Keep it on stage (e.g. Seen row 'Habit stuck: 5/10, Ben 1 of 5 friends' recorded at the stuck milestone). Add Pre-flight list incl. item 7. See company/reviews/bridge-carries-news-not-habits/2026-10-14-learner-ncm-learner-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-323",
+      "title": "r8 ruler-catch v3 revise (only blocker; on ready-to-publish list): reveal ~99 words (>90 on a new version). 'No air drag; the catcher here is simulated.' repeats the stage caption; trim one more clause (cm-physics decides). Fit passes only via kit shrink (W-287). Answer Pre-flight 7. See company/reviews/ruler-catch/2026-10-14-learner-knows-reflexes-and-falling-r8.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "physics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-324",
+      "title": "enemies-allow-three-camps v5 (learner r8): reveal is 113 words on a new version (>90), and at 390x844 the hexagon (with the 4 red banned triangles) is scrolled off when the reveal opens, while the reveal points at 'in A, B, C ...' and 'such as A, B, D'. Cut told context (category manager picks) and fold stage text (Seen rows, caption; stage ~45 words at step 6, >25) so hexagon top and the reveal's last line are both on screen; answer Pre-flight 7. Label shrink is kit W-287, not this item. See company/reviews/enemies-allow-three-camps/2026-10-14-learner-knows-balance-rule-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-325",
+      "title": "W-264 reveal crop, cause REVEAL LENGTH (76 lessons, median 26 px, max 112): a trim to <= 90 words alone closes the stage-top crop at 390x844. Lessons with cause 'reveal length' in company/engineering/notes/2026-10-14-reveal-crop-sweep.md. Category manager picks which teaching sentence goes (demo-standard); re-measure with tools/reveal-fit.mjs (crop 0 px) and quote it in Pre-flight 7. Batch by domain",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-326",
+      "title": "W-264 reveal crop, cause CONTROLS (88 lessons, median 90 px, max 333): control blocks are what is left after a 90-word trim. Lessons with cause 'controls' in company/engineering/notes/2026-10-14-reveal-crop-sweep.md. Merge control rows per demo-standard order; HOLD until the design lead answers the option (a) revisit (W-330), since a kit-level compact control row could fix most of these at once",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-327",
+      "title": "W-264 reveal crop, cause STAGE TEXT (31 lessons, median 106 px, max 319): stage text and readout blocks hold the remaining height. Lessons with cause 'stage text' in company/engineering/notes/2026-10-14-reveal-crop-sweep.md. Fold stage text into the picture or caption and trim the reveal to <= 90 words; re-measure crop 0 px",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-328",
+      "title": "W-264 reveal crop, cause TABLE (12 lessons, median 86 px, max 185): four-queens-pruning hidden-carriers one-in-four-sprouts tissot-circles diagonal-escapes-the-list compound-interest cut-the-cube-surface square-root-wealth a-birthday-like-mine spreaders-are-rare loaf-with-smoke twins-never-split. Fold the table into the picture; see company/engineering/notes/2026-10-14-reveal-crop-sweep.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-329",
+      "title": "W-264 reveal crop, cause PICTURE (5 lessons, median 182 px, max 221): near-and-far-links-find-the-way karatsuba-three-not-four strategy-builder fenwick-hops-by-lowest-bit paths-by-adding. Picture already at the 40% fit floor or holds controls; needs a compact stage, then a design-lead design review. See company/engineering/notes/2026-10-14-reveal-crop-sweep.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-330",
+      "title": "Option (a) revisit trigger met by W-264 (read literally): 217/624 lessons (35%) crop at the reveal; controls are the tallest stage block in 121/217 (56%) and hiding control blocks alone would close 174/217. Decide whether the platform engineer writes an EDD for a kit-level compact control row at the reveal; record it in company/decisions/2026-10-14-reveal-fits-with-its-picture.md. Data and caveats: company/engineering/notes/2026-10-14-reveal-crop-sweep.md",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-331",
+      "title": "throw-it-fast-enough v6 (learner r8): reveal is 118 words on a new version (>90), and at 390x844 the planet top with the peak, '1 min' marker and dashed straight line is off screen while the reveal says 'fell 17.6 km below the dashed straight line'. Cut told context (category manager picks; grey 'No air ... ISS' note is a candidate) and fold stage text (first-minute caption, fastest-landing line) so planet top and the reveal's last line are both on screen; answer Pre-flight 7. Build.md defers the crop to a kit fix; the fit rule puts it on the lesson. Label shrink is kit W-287, not this item. See company/reviews/throw-it-fast-enough/2026-10-14-learner-adult-beginner-r8.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "physics",
       "created": "2026-10-14",
       "links": []
     }
