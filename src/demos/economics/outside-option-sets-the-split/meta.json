@@ -5,7 +5,7 @@
   "domain": "economics",
   "concept": "nash-bargaining",
   "status": "draft",
-  "version": 3,
+  "version": 4,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-economics",
@@ -58,10 +58,8 @@
       "id": "economics.outside-option-sets-the-split.c3",
       "text": "Every 10 cents added to A's outside option moves 5 cents of the deal to A.",
       "support": "derivation",
-      "source": "With B's option 0, A = a + (1 - a)/2 = 0.5 + a/2, so dA/da = 1/2. Builder's node table: a = 0, 0.1, ..., 1 gives A = 0.50, 0.55, ..., 1.00. | FACT-CHECK 2026-10-14 (pass 22): A = 0.5 + a/2: own node table a = 0..80 gives 50, 55, ..., 90 cents.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "With B's option 0, A = a + (1 - a)/2 = 0.5 + a/2, so dA/da = 1/2. Builder's node table: a = 0, 0.1, ..., 1 gives A = 0.50, 0.55, ..., 1.00. | FACT-CHECK 2026-10-14 (pass 22): A = 0.5 + a/2: own node table a = 0..80 gives 50, 55, ..., 90 cents. | v4 (demo-builder, 2026-10-14): withdrawn: the sentence was cut from the reveal (r8 phone fit, 90-word budget); the Tried row and the reveal Tried-row sentence (c6) still show the half-the-change rule. Cutting a claimed sentence needs cm-economics approval (board).",
+      "status": "withdrawn"
     },
     {
       "id": "economics.outside-option-sets-the-split.c4",
@@ -74,12 +72,10 @@
     },
     {
       "id": "economics.outside-option-sets-the-split.c5",
-      "text": "The stage is a model: money payoffs, both sides value a dollar the same, and the deal is sure to happen.",
+      "text": "The stage is a model: money payoffs, and the deal always happens.",
       "support": "convention",
-      "source": "Modelling choice stated in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Matches the reveal's muted model line.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Modelling choice stated in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Matches the reveal's muted model line. | v4 (demo-builder, 2026-10-14): moved from the reveal muted line to the stage chip, worded \"Model: money payoffs; the deal always happens\"; the clause \"both value a dollar the same\" was dropped to keep the chip on one line.",
+      "status": "unverified"
     },
     {
       "id": "economics.outside-option-sets-the-split.c6",

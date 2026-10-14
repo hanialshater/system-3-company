@@ -183,10 +183,11 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                 return;
               }
               setBusy(true);
-              let k = from;
               const ms = Math.max(4, Math.min(13, Math.floor(400 / (n - from))));
+              // Paced by the clock, not by tick count, so a slow device still ends the replay on time (<= 400 ms).
+              const t0 = performance.now();
               timer.current = setInterval(() => {
-                k += 1;
+                const k = Math.min(n, from + Math.max(1, Math.floor((performance.now() - t0) / ms)));
                 setV({ ...base, k });
                 if (k >= n) {
                   if (timer.current) clearInterval(timer.current);

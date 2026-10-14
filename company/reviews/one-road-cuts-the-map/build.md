@@ -48,3 +48,18 @@ W-246 (FC pass 26, c6 disputed): pressing "Walk depth-first" with a road still c
 6. **Reset.** "Reopen all" after a post-walk closure brings the marks and legend back; tallies and Walk row stay.
 
 Not seen in a browser (no build/QA this wave; tsc and check only).
+
+## v5 (demo-builder, 2026-10-14, answering 2026-10-14-learner-knows-dfs-r8.md, board W-311)
+- Fit (top finding): at 390x844 the open reveal cropped the stage top by 270 px (tool; 123 words with the verdict), with towns 1, 3, 4, road 3-4 and the legend off screen. Stage 555 -> 328 px:
+  - Picture viewBox 320x266 -> 360x214 (circle radius 84 -> 70, towns r 17 -> 15, badges pushed further out so they no longer touch the circles). Labels 12.5 px in the viewBox (about 11 px drawn), town numbers 15.
+  - The readout row (Map stays whole / Map splits / Roads tested) became picture labels in the top corners; "N of 6 reachable from 1" moved to the bottom-right corner.
+  - "Reopen all" is gone: tapping the closed road's button again reopens it (the locked-out "disabled when closed" state is gone too; aria-pressed and the aria-label say which). The road buttons and "Walk depth-first" share one wrapping row (two lines).
+  - The "Walk:" text row shows only while a road is closed after the walk, i.e. exactly when the badges it repeats are hidden. On the QA path the badges, dotted roads, green 3-4 and legend are on screen with the reveal.
+- Reveal ~117 -> 82 words (tool 123 -> 88 with the verdict). Cut "A road on a loop has a detour;" (c3 narrowed), "from 1, 2 and 3", "closing any of their other roads changed nothing"; the DFS sentence is reworded with the same numbers (c4). Kept the busy-town sentence (r8: it earns its place). cm-cs may still choose a different cut. c3, c4, c6 reopened.
+
+## Pre-flight v5
+1-3. Unchanged from v4 (the locked note now reads "Tap a road below to close it; tap again to reopen."; the tallies read 0 / 0 / 0 of 7 in the top corners).
+4. Reveal values: 7 roads, 6 whole, 3-4 (tallies in the picture corners, road buttons marked ✓ / ✕); town 4 #3, ↩#3, town 3 #2, 3-4: milestone dfs-walk, on the badges and the green road (Walk row if a road is closed afterwards).
+5. QA path: the seven road buttons, then "Walk depth-first" (reopens the last closed road): all three milestones in 8 presses.
+6. Reveal on that path: "You closed all 7 roads. 6 left the map whole; only 3–4 cut towns 4, 5 and 6 off. Towns 3 and 4 each touch three roads, but their other roads sit on loops, so traffic went the other way round. / A bridge is a road on no loop. Your depth-first walk found it in one pass: from town 4 (#3) on, nothing loops back earlier than #3 (↩#3); town 3 (#2) is earlier, so no other road gets around 3–4."
+7. Phone fit (`node tools/reveal-fit.mjs --url http://localhost:3530 one-road-cuts-the-map`, dev server, 2026-10-14): before crop 270 px, 123 words; after crop 0 px, hiddenBelow 0, namedHidden 0, 88 words (82 without the verdict). Stage 328 px (picture 190, controls 76, text 34), reveal 205 px, window 594 px (about 40 px spare, enough for the Walk row on the closed-road path). Legend, all six towns with badges, green 3-4, tallies and the reveal's last line are on screen.

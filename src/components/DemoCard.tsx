@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
+import { flushSync } from "react-dom";
 import type { DemoMeta } from "@/kit/types";
+import { createFoldStore, FoldScope, FOLD_TOGGLE_MIN_PX, type FoldStore } from "@/kit/controls";
 import { DemoHost } from "./DemoHost";
 
 export interface DomainInfo {
@@ -26,7 +28,8 @@ export function DemoCard({
   const [trustOpen, setTrustOpen] = useState(false);
   const verified = meta.claims.filter((c) => c.status === "verified").length;
   const bodyRef = useRef<HTMLDivElement>(null);
-  useRevealFit(bodyRef, active);
+  const [fold] = useState(createFoldStore);
+  useRevealFit(bodyRef, active, fold);
 
   return (
     <article
@@ -46,7 +49,7 @@ export function DemoCard({
         <p className="card-hook">{meta.hook}</p>
       </header>
 
-      <div className="card-body" ref={bodyRef}>{active ? <DemoHost slug={meta.slug} /> : <div className="loading">Swipe here to start</div>}</div>
+      <div className="card-body" ref={bodyRef}>{active ? <FoldScope store={fold}><DemoHost slug={meta.slug} /></FoldScope> : <div className="loading">Swipe here to start</div>}</div>
 
       <footer className="card-foot">
         <button type="button" className="link" data-testid="trust-button" onClick={() => setTrustOpen(true)}>
@@ -171,7 +174,54 @@ function canShrink(svg: SVGSVGElement, stage: HTMLElement): boolean {
   for (const el of svg.querySelectorAll("*")) if (getComputedStyle(el).cursor === "pointer") return false;
   return true;
 }
-function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
+/**
+ * EDD-005 (W-332/W-348/W-349): fold at the reveal. Runs once, inside the MutationObserver callback that
+ * sees data-phase become "reveal": a microtask after React's commit and before the browser paints, so the
+ * learner never sees rows vanish. It is the first step of the fit (before the W-287 picture shrink, which
+ * runs on the next animation frame). Re-fits never call it, so they never fold or unfold.
+ * Folds every opted-in Row (<Row foldAtReveal>) that holds no Readout, is not inside an svg and is not
+ * nested in another opted row, only if stage + reveal overflow the body and the fold saves at least the
+ * toggle's own height after paying for the toggle. Rows are hidden with display: none (never unmounted).
+ */
+function decideFold(body: HTMLElement, stage: HTMLElement, fold: FoldStore, lastFocus: Element | null) {
+  if (body.scrollHeight - body.clientHeight <= 1) return;
+  const opted = [...stage.querySelectorAll<HTMLElement>("[data-fold-row]")];
+  const rows = opted.filter((row) => {
+    const refused = row.querySelector('[data-qa="readout"]')
+      ? "readout"
+      : row.closest("svg")
+        ? "picture"
+        : row.parentElement?.closest("[data-fold-row]")
+          ? "nested"
+          : null;
+    if (refused) row.dataset.foldRefused = refused;
+    else delete row.dataset.foldRefused;
+    return !refused;
+  });
+  if (rows.length === 0) return;
+  const others = [...stage.querySelectorAll<HTMLElement>('[data-qa="control"]')].filter(
+    (c) => !rows.some((r) => r.contains(c)) && c.getClientRects().length > 0,
+  );
+  // Focus inside a folding row moves to the toggle. A lesson may disable its controls in the same commit
+  // that shows the reveal, which drops focus to <body> first, so fall back to the last focused element.
+  const active = document.activeElement && document.activeElement !== document.body ? document.activeElement : lastFocus;
+  const hadFocus = !!active && rows.some((r) => r.contains(active));
+  const before = stage.getBoundingClientRect().height;
+  flushSync(() =>
+    fold.set({ ids: rows.map((r) => r.id), toggleAt: rows[0].id, label: others.length > 0 ? "more" : "all", expanded: false, touched: false }),
+  );
+  const toggle = stage.querySelector<HTMLElement>("[data-fold-toggle]");
+  const saved = before - stage.getBoundingClientRect().height; // the toggle is already paid for
+  // Spec item 2 / W-348: (folded rows incl. margins) - (toggle incl. margin) >= the toggle's own height.
+  const bar = Math.max(FOLD_TOGGLE_MIN_PX, toggle?.getBoundingClientRect().height ?? Infinity);
+  if (!toggle || saved < bar) {
+    flushSync(() => fold.reset()); // does not pay: nothing folds
+    return;
+  }
+  if (hadFocus) toggle.focus({ preventScroll: true });
+}
+
+function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean, fold: FoldStore) {
   useEffect(() => {
     const body = bodyRef.current;
     if (!body || !active || typeof MutationObserver === "undefined") return;
@@ -179,6 +229,10 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
     let userScrolled = false;
     let expectedTop = -1; // the scrollTop we set last; any other scroll position is the learner's
     let lastWidth = body.clientWidth;
+    let lastFocus: Element | null = null; // EDD-005: last element focused inside the card body
+    const onFocusIn = (e: FocusEvent) => {
+      lastFocus = e.target instanceof Element ? e.target : null;
+    };
     const timers: number[] = [];
     const stageOf = () => body.querySelector<HTMLElement>('[data-testid="stage"]');
     const unscale = (stage: HTMLElement | null) => {
@@ -223,7 +277,7 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       }
     };
     const bringIntoView = () => {
-      if (!revealed || userScrolled) return;
+      if (!revealed || userScrolled || fold.get().touched) return; // EDD-005: a toggle press is learner intent
       scaleStage();
       expectedTop = body.scrollTop; // the fit may have clamped scrollTop; that is not the learner
       const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
@@ -249,12 +303,14 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       revealed = isReveal;
       if (!isReveal) {
         unscale(stageOf());
+        fold.reset(); // EDD-005 item 7: leaving the reveal unfolds everything and removes the toggle
         return;
       }
       userScrolled = false;
-      expectedTop = body.scrollTop;
       // Stage crop fix: a stage or reveal that grows after the tap (animation, late annotations) re-fits too.
       const stage = stageOf();
+      if (stage) decideFold(body, stage, fold, lastFocus); // EDD-005: once, before first paint, before the picture fit
+      expectedTop = body.scrollTop;
       const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
       if (stage) ro?.observe(stage);
       if (reveal) ro?.observe(reveal);
@@ -274,6 +330,7 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
     ro?.observe(body);
     window.addEventListener("orientationchange", onResize);
     body.addEventListener("scroll", onScroll, { passive: true });
+    body.addEventListener("focusin", onFocusIn);
     body.addEventListener("wheel", onIntent, { passive: true });
     body.addEventListener("touchmove", onIntent, { passive: true });
     onChange();
@@ -282,9 +339,11 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       ro?.disconnect();
       window.removeEventListener("orientationchange", onResize);
       body.removeEventListener("scroll", onScroll);
+      body.removeEventListener("focusin", onFocusIn);
       body.removeEventListener("wheel", onIntent);
       body.removeEventListener("touchmove", onIntent);
       timers.forEach((t) => clearTimeout(t));
+      fold.reset();
     };
-  }, [bodyRef, active]);
+  }, [bodyRef, active, fold]);
 }

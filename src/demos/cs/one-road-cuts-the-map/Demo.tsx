@@ -15,8 +15,8 @@
 // a road afterwards hides the marks (the note says so) instead of drawing badges that belong to a different map.
 // v5 (r8): compact for the phone reveal. viewBox 360 x 214 (was 320 x 266), the tallies are picture labels
 // (top corners) instead of a readout row, "Reopen all" is gone (tap the closed road again to reopen it), the road
-// buttons and "Walk depth-first" share one wrapping row, and the Walk text row is gone (the badges it repeated
-// are on screen with the reveal now).
+// buttons and "Walk depth-first" share one wrapping row, and the Walk text row shows only while a road is closed
+// after the walk (when the badges it repeats are hidden).
 // One representation: the map; reachable towns from town 1 in the domain colour, cut-off towns red.
 
 import { useState } from "react";
@@ -256,6 +256,11 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                     Walk depth-first
                   </Control>
                 </Row>
+                {walked && !marks && (
+                  <p className={s.note} data-testid="seen-walk">
+                    Walk: town {BR[1]} #{DFS.disc[BR[1]]} ↩#{DFS.low[BR[1]]}, town {BR[0]} #{DFS.disc[BR[0]]}. Bridge: {name(BR)}.
+                  </p>
+                )}
               </div>
             );
           }}

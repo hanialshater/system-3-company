@@ -7,6 +7,10 @@
 // needed one (T3) have both been taken out.
 // Model: each seller has one item worth $0 to them; each buyer values one item at $1; a trade
 // needs a trader linked to both sides. Profit itself is not simulated: the reveal states the theorem.
+// v3 (r8): reveal cut to 90 words or fewer (the hook-restating sentence and the muted model line went; the
+// chip states the model). The take-out buttons are one row: "Take out:" T1 T2 T3, All back. The
+// "All three traders in." / "T3 is out." line is now for screen readers only (the ghosted trader and the
+// pressed button show it).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -19,10 +23,10 @@ const BUYER_VALUE = 1;
 type TraderId = 0 | 1 | 2;
 const TRADERS: { name: string; seller: number; buyer: number; y: number }[] = [
   { name: "T1", seller: 0, buyer: 0, y: 34 },
-  { name: "T2", seller: 0, buyer: 0, y: 96 },
-  { name: "T3", seller: 1, buyer: 1, y: 170 },
+  { name: "T2", seller: 0, buyer: 0, y: 88 },
+  { name: "T3", seller: 1, buyer: 1, y: 150 },
 ];
-const SIDE_Y = [65, 170];
+const SIDE_Y = [61, 150];
 const NPAIRS = SIDE_Y.length;
 const MILESTONES = ["spare-out", "needed-out"] as const;
 
@@ -67,13 +71,12 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
         <>
           <p>
             Without T1, {trades(0)} of {FULL} trades still happened: T2 linked seller 1 to buyer 1. Without T3, only {trades(2)} did:
-            nobody else links seller 2 to buyer 2. Every trader had two links; what mattered was whether a trade needed it.
+            nobody else links seller 2 to buyer 2.
           </p>
           <p>
             T1 and T2 compete for the same trade, so each undercuts the other until neither earns anything. T3 has no rival, so it can
             charge for the trade only it makes. On this network, the only trader that can earn a profit is the one whose removal lost value: T3.
           </p>
-          <p className="muted">A simplified model with invented values.</p>
         </>
       )}
     >
@@ -90,7 +93,7 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.chip}>Model: sellers value an item {usd(SELLER_VALUE)}, buyers {usd(BUYER_VALUE)}</p>
-                <svg viewBox="0 0 320 214" className="stage-svg" role="img" aria-label="Two sellers, three traders and two buyers, linked through the traders">
+                <svg viewBox="0 0 320 186" className="stage-svg" role="img" aria-label="Two sellers, three traders and two buyers, linked through the traders">
                   <text x={SX} y={14} textAnchor="middle" className={s.label}>sellers</text>
                   <text x={TX} y={14} textAnchor="middle" className={s.label}>traders</text>
                   <text x={BX} y={14} textAnchor="middle" className={s.label}>buyers</text>
@@ -123,7 +126,7 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
                           {t.name}
                         </text>
                         {!locked && tested[i] && (
-                          <text x={TX} y={t.y + 30} textAnchor="middle" className={LOST[i] > 0 ? s.badText : s.goodText}>
+                          <text x={TX} y={t.y + 29} textAnchor="middle" className={LOST[i] > 0 ? s.badText : s.goodText}>
                             −{LOST[i]} trade{LOST[i] === 1 ? "" : "s"}
                           </text>
                         )}
@@ -131,10 +134,11 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
                     );
                   })}
                 </svg>
-                <p className={s.msg} aria-live="polite">
+                <p className={s.live} aria-live="polite">
                   {locked ? "Predict first." : live === null ? "All three traders in." : `${TRADERS[live].name} is out.`}
                 </p>
                 <Row>
+                  <span className={s.lab}>Take out:</span>
                   {TRADERS.map((t, i) => (
                     <Control
                       key={t.name}
@@ -142,8 +146,9 @@ export default function OnlyTheNeededTraderProfits({ slug }: { slug: string }) {
                       disabled={locked || out === i}
                       aria-pressed={out === i}
                       onClick={() => take(i as TraderId)}
+                      aria-label={`Take out ${t.name}`}
                     >
-                      Take out {t.name}
+                      {t.name}
                     </Control>
                   ))}
                   <Control disabled={locked || out === null} onClick={() => setOut(null)}>

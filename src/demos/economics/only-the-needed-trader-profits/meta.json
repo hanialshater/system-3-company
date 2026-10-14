@@ -69,12 +69,10 @@
     },
     {
       "id": "economics.only-the-needed-trader-profits.c6",
-      "text": "The market is a simplified model with invented values: sellers value an item $0, buyers $1.",
+      "text": "The market is a simplified model: sellers value an item $0, buyers $1 (stage chip 'Model: sellers value an item $0, buyers $1').",
       "support": "convention",
-      "source": "Stage chip and reveal footnote; Demo.tsx SELLER_VALUE, BUYER_VALUE. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo.tsx SELLER_VALUE = 0 and BUYER_VALUE = 1. The chip reads 'Model: sellers value an item $0, buyers $1', the predict question states the same values, and the reveal footnote reads 'A simplified model with invented values.'",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Stage chip and reveal footnote; Demo.tsx SELLER_VALUE, BUYER_VALUE. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo.tsx SELLER_VALUE = 0 and BUYER_VALUE = 1. The chip reads 'Model: sellers value an item $0, buyers $1', the predict question states the same values, and the reveal footnote reads 'A simplified model with invented values.' | v3 (demo-builder, 2026-10-14): The reveal's muted line 'A simplified model with invented values.' was cut for the 90-word budget; the stage chip still states the model, so the claim text now matches the chip. Reopened; needs a fresh check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:essential-trader-profit",
     "also": [],

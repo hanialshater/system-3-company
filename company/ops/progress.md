@@ -3,6 +3,18 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (fact-checker, W-380, FC LH-4: Life Hacks re-checks)
+
+- **Changed:** set status on 100 lifehacks claims (98 verified, 2 disputed), each with checkedBy, checkedOn and an "FC LH-4" source note. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.
+  - (a) 17 claims reopened by W-367 (the brief said 18; W-380 lists 17): 15 verified, work-in-process-limit c2 and c4 disputed.
+  - (b) 25 B7 hooks: all verified.
+  - (c) 58 open lh-* c4 recall claims: all verified. The other 2 of the 60 had already been verified by LH-2.
+  - Board: W-403 (the wip dispute) and W-404 (found on the way: flat-pack "Assembled cube" label, apply-not-quote boundary not rendered, recipe c4 stale source), both for demo-builder. W-380 is done.
+- **Believe:** high confidence on every number. I re-ran each one in node against the lessons' own code, and every keyed recall option is the only correct one. Medium confidence on stage text, which I read from the code and did not see rendered.
+- **Concurrent edits:** another session removed the c4 claims of link-label, size-is-not-recency and work-in-process-limit after my write. The wip dispute is still on c2.
+- **Next:** demo-builder takes W-403 and W-404. QA and the walkthrough for the 14 W-367 lessons are still owed.
+- **Blocked:** nothing.
+
 ## 2026-10-14, demo-builder: Life Hacks follow-ups W-388, W-389, W-391, W-393
 - **Changed:**
   - W-388/W-389: rewrote the `recall` question in `mug-handle-packing` ("…with a 3 cm handle pointing along the row…") and `seasonal-bin-rotation` ("…front and back of a cupboard 5 deep, with 3 other boxes between them…"). Tightened both whys to match ("along the row"; "4 blockers (the 3 boxes and the other bin)"). Set the `.recall` claims to unverified, dropped checkedBy/On, version 1 → 2. `recall-patch-home.lines.txt` updated, and an Amendments note added to `recall-patch-home.md`.
