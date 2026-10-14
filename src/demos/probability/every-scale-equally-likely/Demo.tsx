@@ -57,9 +57,9 @@ const frac = (n: number) => (n === 1 ? "1" : `1/${n.toLocaleString("en-US")}`);
 
 // chart
 const W = 320;
-const H = 158;
+const H = 170;
 const L = 10;
-const B = 128;
+const B = 140;
 const TOP = 20;
 const YMAX = 0.65;
 const bw = (W - 2 * L) / BANDS.length;

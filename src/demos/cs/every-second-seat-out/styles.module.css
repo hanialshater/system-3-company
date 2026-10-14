@@ -1,7 +1,6 @@
 .wrap { display: flex; flex-direction: column; gap: 2px; align-items: center; }
 .wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
 .wrap :global(.tap) { min-height: 44px; }
-.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 1.4em; }
 .top { display: flex; gap: 6px; align-items: center; justify-content: center; width: 100%; max-width: 360px; }
 .svg { width: 250px; flex: 0 1 250px; min-width: 0; height: auto; }
 .col { display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 96px; max-width: 120px; }
@@ -24,6 +23,6 @@
 .range::-moz-range-track { height: 6px; border-radius: 3px; background: var(--line); }
 .range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%; background: var(--domain); border: 2px solid var(--fg); }
 .range::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--domain); border: 2px solid var(--fg); }
-.ticks { position: relative; height: 1.3em; margin-left: calc(6.2rem + 8px); margin-top: -8px; pointer-events: none; }
+.ticks { position: relative; height: 15px; margin-left: calc(6.2rem + 8px); margin-top: -8px; pointer-events: none; }
 .tick { position: absolute; top: 0; font-size: 0.7rem; color: var(--muted); white-space: nowrap; border-left: 2px solid var(--fg); padding-left: 3px; line-height: 1.2; }
 .formula { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }

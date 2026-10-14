@@ -62,3 +62,18 @@ builder: demo-builder (ncm-m2) · 2026-10-14 · v1 draft · brief: company/domai
 5. QA path: Big ring → Right loop (walk, clash: odd-loop) → Left loop → Try all 64 splits (split, tried-all) → Enemy on D-E (disabled) → Enemy on C-D. Unchanged by this fix. Path from the dispute: Try (split) → Right loop (walk drawn: A-B-C-D, clash ring at A; odd-loop) → reveal.
 6. Reset: no reset. Reveal on the QA path unchanged from Pre-flight v3.
 7. Phone fit: no layout change; reveal 81 words.
+
+## Revision v5 (build 6 phone fit, W-287 10px label floor, 2026-10-14)
+
+- Build 6 measured, at 390×844 with the reveal open: stage-top crop 36 px, reveal 86 words (as measured, with the kit's verdict line). The v3 estimate (45 → 0 px) was wrong. Since W-287 the kit's picture shrink stops at the node labels' 10 px floor (fitted 151/184 in build 6), so the stage had to lose a row.
+- Stage: the readout row ("Loop's enemy links" / "Splits that work") is removed. It repeated the caption and the layout row. The parity it showed moved into the walk caption ("Right loop: 1 enemy link, odd. Walk from A, switching at each: back at A in the other camp: clash"). The split counts stay in the split caption ("0 of 64 splits work …") and the layout row ("0/64 work"), which is what the reveal quotes. Picture, legend, buttons and the layout row are unchanged.
+- Reveal text unchanged. Claims: no text changed, nothing reopened. Notes on c1 and c2 say where their stage values now show.
+
+## Pre-flight v5
+
+1–2. Title, hook and options unchanged.
+3. Locked stage: ring, legend, "Make a prediction to start.", six disabled buttons, empty layout row (no readouts now). Nothing leaks.
+4. Reveal values unchanged from v4 (layout row, tried-all, walk view on odd-loop).
+5. QA path unchanged.
+6. Reset: none. Reveal unchanged from Pre-flight v3.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 one-odd-loop-blocks-two-camps`, dev server, 390×844): **stage-top crop 0 px** (build 6: 36 px), hidden below 0 px, reveal 86 words / 10 lines, stage 367 px (picture 159 of 184 natural, controls 94, text 64) fully visible in a 618 px window. Named "big ring", "right loop", "left loop", "enemy on c-d" all visible; A and B (cut in r7's frame) are on screen. phoneFit true. Screenshot: artifacts/reveal-fit/one-odd-loop-blocks-two-camps.png.

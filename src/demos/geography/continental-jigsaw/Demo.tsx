@@ -122,8 +122,8 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
           <p>
             It tucks into the <strong>Gulf of Guinea</strong>, near Nigeria and Cameroon.
             You turned South America as one solid piece, {ANGLE}° about the pivot in the North Atlantic: the red
-            dot&rsquo;s trail is an arc around it. It looked bigger as it moved toward the middle of the globe, but its size
-            stayed {areaM(sa)} million km² the whole way.
+            dot&rsquo;s trail is an arc around it. It looked bigger near the middle of the globe, but its size stayed{" "}
+            {areaM(sa)} million km² throughout.
           </p>
           <p>
             The fit here is rough: these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents

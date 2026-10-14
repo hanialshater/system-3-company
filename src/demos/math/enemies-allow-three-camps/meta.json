@@ -35,9 +35,7 @@
       "text": "Six people in camps of 3 + 2 + 1 (A B C, D E, F) form 20 triangles: 0 banned, 13 with one friendly pair, 6 all-enemy triangles (one person from each camp), and 1 all-friends triangle (A, B, C).",
       "support": "derivation",
       "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2). | FACT-CHECK 2026-10-14 (pass 22): Own node over 20 triangles, split [0,0,1,1,2,2]: banned 0, one-friend 12, all-enemy 8. | Builder revision v3 (demo-builder, 2026-10-14): the question's split changed from three pairs [0,0,1,1,2,2] (where nobody had two friends, so 0 banned was trivially true) to 3 + 2 + 1 [0,0,0,1,1,2]. Builder node re-run over all 20 triangles: all-enemy 6 (3 x 2 x 1), one friendly pair 13, banned 0, all friends 1. Old counts (12, 8) no longer appear anywhere. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own node over all 20 triangles, split [0,0,0,1,1,2], no link: banned 0, one friendly pair 13, all-enemy 6 (3 x 2 x 1), all-friends 1. First triangle in Demo order is A, B, C (all friends). Reveal's first sentence prints only when 3 camps is in 'seen'. | v6 (demo-builder, 2026-10-14, wave H r8 fit): reveal/stage wording changed; reopened, unverified.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c3",
@@ -53,36 +51,28 @@
       "text": "When friends are exactly the people in your camp, any two friends of yours are friends too (reveal: 'Banned needs two friends of one person to be enemies, but friends share a camp: B and C share A's, so they are friends'), so no split into camps has a banned triangle, whatever the number of camps.",
       "support": "derivation",
       "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links. | FACT-CHECK 2026-10-14 (pass 22): Same-camp is an equivalence relation, so no triangle has exactly two friendly links. | Builder revision v3 (demo-builder, 2026-10-14): added the A, B, C instance; the stage caption for that triangle reads 'B and C are both A's friends, so same camp, so friends. Allowed.' | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Same-camp is an equivalence relation, so no triangle has exactly two friendly links (own node: 0 banned in 2, 3 and 6 camps). verdict() for A, B, C finds mid = A and prints 'B and C are both A's friends, so same camp, so friends. Allowed.' | v6 (demo-builder, 2026-10-14, wave H r8 fit): reveal/stage wording changed; reopened, unverified.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c5",
       "text": "The balance rule also bans all-enemy triangles, which forces two sides.",
       "support": "source",
       "source": "Easley and Kleinberg (2010) ch. 5 (structural balance: at most two camps); weak balance relaxes exactly the all-enemy triangle (Davis 1967). Attribution: fact-checker confirms (flag carried from the brief). | FACT-CHECK 2026-10-14 (pass 22): Strong balance bans triangles with one or three hostile links; complete strongly balanced graphs split into at most two groups (balance theorem, Easley-Kleinberg ch. 5, not opened); weak balance allows k clusters (Davis 1967, search-result text). · v4 (2026-10-14): reveal shortened for the 120-word budget (parenthetical dropped); same fact. Needs re-check of the wording. | FC pass 26 (fact-checker, 2026-10-14): Re-derived, not resting on the unopened texts: brute force over all 2^15 friend/enemy assignments on 6 people: no two-friends-one-enemy triangle = 203 graphs, exactly the camp splits (Bell 6); adding the all-enemy ban leaves 32, exactly the splits into at most 2 camps, and an all-enemy triangle exists iff there are 3 or more camps. The all-enemy triangle breaks 'the enemy of my enemy is my friend'. Wording drift, not blocking: the reveal now says 'the strict rule forbids, and it is what forces two sides' without the parenthetical the claim text still carries; the claim text should be updated to the reveal string (builder). | Builder revision v5 (demo-builder, 2026-10-14, W-245, answering the FC pass 26 wording nit): claim text set to the reveal string in Demo.tsx verbatim ('The all-enemy triangle is what the strict rule forbids, and it is what forces two sides.'); the parenthetical '(the enemy of my enemy is my friend)' is no longer on the learner's screen at this point. No code changed. Builder statement, not self-verified. | FC pass 27 (fact-checker, 2026-10-14): VERIFIED on derivation, not on Easley-Kleinberg or Davis (neither opened). Claim text equals the reveal string in Demo.tsx line 113-114. Own brute force over all 2^15 friend/enemy graphs on 6 people: 203 with no two-friends-one-enemy triangle, all exactly camp splits (Bell 6 = 203); adding a ban on the all-enemy triangle leaves 32 (1 one-camp + 31 two-camp), and an all-enemy triangle exists iff there are 3+ camps. So the rule that also forbids the all-enemy triangle is exactly what forces at most two sides. Advisory, not a fact issue: 'the strict rule' is not defined on stage (W-255, learning-designer). | v6 (demo-builder, 2026-10-14, wave H r8 fit): reveal/stage wording changed; reopened, unverified.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c6",
       "text": "Allow them, and any number of camps is stable: you saw [the splits the learner viewed with all 20 triangles checked and no cross link, listed in ascending order, e.g. 2, 3 and 6], each with 0 banned (stage Seen line: 'Seen, banned / all-enemy: 3 camps 0 / 6 · 6 camps 0 / 20 · 2 camps 0 / 0').",
       "support": "derivation",
       "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'. | Builder fix (demo-builder, 2026-10-14): W-212: Demo.tsx now records a split as seen only when it is displayed with all 20 triangles checked (Check all / last Next in that split, or switching to it after all are checked), and the reveal quotes only those; unseen splits are stated without 'you saw' (counts from c3: 0 banned for 2, 3 and 6 camps). Fallback with nothing seen (unreachable, checked-all is required): '2, 3 and 6 camps each give 0 banned triangles.' · Fact-check pass 23 2026-10-14: v2 Demo: see() is called only when all 20 triangles are checked in the current split (Next to 20, Check all, or a chip after checking all), and the reveal names only those as 'you saw'; the others are listed as 'give 0 too'. checked-all always calls see(), so 'seen' is never empty at the reveal. Own count: banned 0 for 2, 3 and 6 camps. | Builder revision v3 (demo-builder, 2026-10-14): the unguaranteed second clause ('and the remaining ... camps give 0 too') is dropped; the sentence now lists only splits recorded as seen (all 20 checked, no B-D link), and the stage keeps them on the line '0 banned in: 3 camps · 6 camps · 2 camps'. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. v3 Demo: see() runs only with all 20 checked and no B-D link; the reveal lists only 'seen' splits, sorted. Traced the edge path where checked-all is reached with the link on: 'seen' can then be empty, and the reveal falls back to 'any number of camps is stable.' with no 'you saw'. True on every path. Own counts: 0 banned for 2, 3 and 6 camps. | v6 (demo-builder, 2026-10-14, wave H r8 fit): reveal/stage wording changed; reopened, unverified.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c7",
       "text": "Making B and D friends across camps creates banned triangles: with camps 3 + 3 there are 4 (A B D, B C D, B D E, B D F), with 3 + 2 + 1 there are 3 (A B D, B C D, B D E), and with six camps of one there are 0, because nobody else is anyone's friend. In A, B, D, A and D are both B's friends but enemies.",
       "support": "simulation",
       "source": "Demo.tsx friendly() with link = true adds the pair (B, D); builder node re-run over all 20 triangles for each split. Stage caption 'B and D are friends across camps: N banned triangles (red)' and the per-triangle verdict 'A and D are both B's friends but enemies. Banned.' Builder statement, not self-verified. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own node with link (B, D): 3+3 -> 4 banned (ABD, BCD, BDE, BDF); 3+2+1 -> 3 (ABD, BCD, BDE); six camps -> 0 (caption 'nobody has two friends'). verdict(ABD) puts B in the middle: 'A and D are both B's friends but enemies. Banned.' The reveal's example is the first banned triangle, ABD, in both splits. | v6 (demo-builder, 2026-10-14, wave H r8 fit): reveal/stage wording changed; reopened, unverified.",
-      "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     }
   ],
   "confidence": "",

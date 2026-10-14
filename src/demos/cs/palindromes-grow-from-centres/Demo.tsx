@@ -14,6 +14,8 @@
 // v3 (r7): the locked readouts showed "0 / 7" and "0 / 10", two of the three options, as denominators.
 // Before the commit the readouts now show bare counts; the totals appear after the commit. Once every
 // centre is grown, the "abaa tested" readout also names the one substring never tested ("not abaa").
+// v4 (build 6 phone fit, W-287 10px floor): measured crop 31px at 390x844. Each word block is 86 viewBox units tall
+// (was 104): at most two brackets are ever drawn under a word, so the +n row moves up under them; stage gaps 6 -> 4.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -49,7 +51,7 @@ const MID_FAIL = PER_ALT[MID].fail; // [1, 2] -> "ba"
 
 const COL = 50; // viewBox column per centre; letters sit on even columns
 const cx = (k: number) => COL / 2 + k * COL;
-const ROW = 104; // viewBox height per word block
+const ROW = 86; // viewBox height per word block (tiles, at most two brackets, the +n row)
 
 export default function PalindromesFromCentres({ slug }: { slug: string }) {
   const [done, setDone] = useState<number[]>([]); // centres tapped, in order
@@ -148,7 +150,7 @@ export default function PalindromesFromCentres({ slug }: { slug: string }) {
                   {cur && cur.spans.map(([l, r], j) => bracket(l, r, j, false))}
                   {cur && cur.fail && bracket(cur.fail[0], cur.fail[1], cur.spans.length, true)}
                   {done.map((k) => (
-                    <text key={`n${k}`} x={cx(k)} y={top + 100} textAnchor="middle" className={per[k].fail ? s.cntBad : s.cnt}>
+                    <text key={`n${k}`} x={cx(k)} y={top + 84} textAnchor="middle" className={per[k].fail ? s.cntBad : s.cnt}>
                       +{per[k].spans.length}
                     </text>
                   ))}
