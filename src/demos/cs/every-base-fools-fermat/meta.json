@@ -27,50 +27,64 @@
       "id": "cs.every-base-fools-fermat.c1",
       "text": "For a prime n, a^(n-1) mod n = 1 for every base a coprime to n.",
       "support": "source",
-      "source": "Fermat's little theorem; CLRS 4e ch. 31 (Theorem 31.31 in 3rd ed. numbering).",
-      "status": "unverified"
+      "source": "Fermat's little theorem; CLRS 4e ch. 31 (Theorem 31.31 in 3rd ed. numbering). | FACT-CHECK 2026-10-14 (pass 21): Own node check (fc21b/flt.mjs): a^(p-1) mod p = 1 for every a in 1..p-1 for all primes p < 2000, 0 failures; the theorem itself is Fermat's little theorem (standard proof via a, 2a, ..., (p-1)a permuting the residues). CLRS theorem number from memory, not opened; the sentence does not rest on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c2",
       "text": "561 = 3 x 11 x 17, and all 320 bases coprime to 561 give a^560 mod 561 = 1.",
       "support": "simulation",
-      "source": "Demo.tsx COPRIME / FERMAT_ONES computed in the lesson; builder re-ran it with BigInt in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: 320 coprime bases, 320 give 1. phi(561) = 2 x 10 x 16 = 320. Matches brief cs.algorithms #69.",
-      "status": "unverified"
+      "source": "Demo.tsx COPRIME / FERMAT_ONES computed in the lesson; builder re-ran it with BigInt in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: 320 coprime bases, 320 give 1. phi(561) = 2 x 10 x 16 = 320. Matches brief cs.algorithms #69. | FACT-CHECK 2026-10-14 (pass 21): Own BigInt node check (fc21b/fermat.mjs): 3*11*17 = 561; 320 bases in 1..560 coprime to 561; all 320 give a^560 mod 561 = 1. Matches Demo COPRIME / FERMAT_ONES.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c3",
       "text": "561 is a Carmichael number, and the smallest one: Fermat's test cannot tell it from a prime.",
       "support": "source",
-      "source": "Carmichael (1910), 'Note on a new number theory function', Bull. AMS 16; OEIS A002997 (first term 561). Builder checked in node that no composite below 561 passes for every coprime base (scratchpad algo2b0/check.mjs).",
-      "status": "unverified"
+      "source": "Carmichael (1910), 'Note on a new number theory function', Bull. AMS 16; OEIS A002997 (first term 561). Builder checked in node that no composite below 561 passes for every coprime base (scratchpad algo2b0/check.mjs). | FACT-CHECK 2026-10-14 (pass 21): Own brute force (fc21b/fermat.mjs): no composite n in 4..560 has a^(n-1) = 1 mod n for every coprime a; 561 does, so it is the smallest Carmichael number. Carmichael 1910 and OEIS A002997 not opened (oeis.org blocked by proxy); the sentence is verified by the computation, not the citation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c4",
       "text": "The stronger test writes 560 = 35 x 2^4, starts at a^35 and squares 4 times. For base 2 the chain is 263, 166, 67, 1, 1, so 67 squared leaves 1.",
       "support": "simulation",
-      "source": "Demo.tsx chain(); builder re-ran it in node (scratchpad algo2b0/check.mjs): base 2 gives [263, 166, 67, 1, 1]; 67^2 = 4489 = 8 x 561 + 1. Miller-Rabin as in CLRS 4e ch. 31 (WITNESS).",
-      "status": "unverified"
+      "source": "Demo.tsx chain(); builder re-ran it in node (scratchpad algo2b0/check.mjs): base 2 gives [263, 166, 67, 1, 1]; 67^2 = 4489 = 8 x 561 + 1. Miller-Rabin as in CLRS 4e ch. 31 (WITNESS). | FACT-CHECK 2026-10-14 (pass 21): Own node check: 560 = 35 x 2^4; chain for base 2 = 263, 166, 67, 1, 1; 67^2 = 4489 = 8 x 561 + 1. Demo chain() gives the same; the reveal prints the chain up to the first 1 (263, 166, 67, 1), consistent.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c5",
       "text": "Modulo a prime, only 1 and n - 1 square to 1, so a different square root of 1 proves the number composite.",
       "support": "derivation",
-      "source": "x^2 = 1 mod p means p divides (x - 1)(x + 1), so p divides one factor: x = 1 or x = p - 1. CLRS 4e ch. 31 (Corollary 31.35 in 3rd ed. numbering).",
-      "status": "unverified"
+      "source": "x^2 = 1 mod p means p divides (x - 1)(x + 1), so p divides one factor: x = 1 or x = p - 1. CLRS 4e ch. 31 (Corollary 31.35 in 3rd ed. numbering). | FACT-CHECK 2026-10-14 (pass 21): Re-derived: x^2 = 1 mod p means p | (x-1)(x+1), so x = 1 or p-1. Own node check: no nontrivial square root of 1 modulo any prime < 2000. CLRS corollary number from memory, not opened; not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c6",
       "text": "The stage offers bases 2, 5, 7, 10 and 13; each gives a^560 mod 561 = 1, and the stronger test catches 561 with each of them.",
       "support": "simulation",
-      "source": "Chosen bases (disclosed per pattern disclose-chosen-seeds): picked as small coprime bases that are not strong liars. Chains from node: 5: 23, 529, 463, 67, 1; 7: 241, 298, 166, 67, 1; 10: 439, 298, 166, 67, 1; 13: 208, 67, 1, 1, 1 (scratchpad algo2b0/check.mjs).",
-      "status": "unverified"
+      "source": "Chosen bases (disclosed per pattern disclose-chosen-seeds): picked as small coprime bases that are not strong liars. Chains from node: 5: 23, 529, 463, 67, 1; 7: 241, 298, 166, 67, 1; 10: 439, 298, 166, 67, 1; 13: 208, 67, 1, 1, 1 (scratchpad algo2b0/check.mjs). | FACT-CHECK 2026-10-14 (pass 21): Own node chains: 5: 23,529,463,67,1; 7: 241,298,166,67,1; 10: 439,298,166,67,1; 13: 208,67,1,1,1. Each has a value other than 1 or 560 squaring to 1 (witness), and each gives a^560 = 1 (Fermat). Matches Demo BASES and witnessAt().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.every-base-fools-fermat.c7",
       "text": "A few bases still slip past the stronger test (9 of the 320 here), but never more than a quarter, so several random bases make an error very unlikely.",
       "support": "source",
-      "source": "9 strong liars among bases 2..560 coprime to 561 (50, 101, 103, 256, 305, 458, 460, 511, 560; base 1 excluded), Demo.tsx LIARS and builder's node script. Bound: at most 1/4 of bases are strong liars for any odd composite n > 9 (Rabin 1980, J. Number Theory 12; Monier 1980); CLRS 4e ch. 31 proves a 1/2 bound. Each extra independent random base multiplies the error chance by at most 1/4.",
-      "status": "unverified"
+      "source": "9 strong liars among bases 2..560 coprime to 561 (50, 101, 103, 256, 305, 458, 460, 511, 560; base 1 excluded), Demo.tsx LIARS and builder's node script. Bound: at most 1/4 of bases are strong liars for any odd composite n > 9 (Rabin 1980, J. Number Theory 12; Monier 1980); CLRS 4e ch. 31 proves a 1/2 bound. Each extra independent random base multiplies the error chance by at most 1/4. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED. Own node check: counting all 320 coprime bases, 10 are strong liars: 1, 50, 101, 103, 256, 305, 458, 460, 511, 560. Demo LIARS excludes base 1 (9) but divides by all 320, so '9 of the 320' is wrong. Fix (builder): either '10 of the 320' or '9 of the 319 bases from 2 to 560' (change LIARS or the denominator in the reveal). The quarter bound (Rabin 1980; Monier 1980) cited from memory, papers not opened; 10/320 is well under 1/4 here.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

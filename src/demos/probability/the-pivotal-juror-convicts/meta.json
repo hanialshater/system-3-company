@@ -27,29 +27,37 @@
       "id": "probability.the-pivotal-juror-convicts.c1",
       "text": "Under unanimity, your vote changes the verdict only when both other jurors vote guilty; otherwise one innocent vote already acquits.",
       "support": "derivation",
-      "source": "Rule: convict only if all three vote guilty. If either other juror votes innocent the verdict is acquit whatever you vote.",
-      "status": "unverified"
+      "source": "Rule: convict only if all three vote guilty. If either other juror votes innocent the verdict is acquit whatever you vote. | FACT-CHECK 2026-10-14 (pass 21): Rule check over all 8 vote patterns: verdict depends on your vote only when both others vote guilty.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c2",
       "text": "With clues right 70% of the time and an even prior, one innocent clue alone gives a 30% chance of guilt; two guilty clues and one innocent give 70%, the same as one guilty clue alone.",
       "support": "derivation",
-      "source": "Bayes, builder's node check 2026-10-14: P(G | g guilty, i innocent) = 0.7^g 0.3^i / (0.7^g 0.3^i + 0.3^g 0.7^i). (g,i) = (0,1): 0.3; (2,1): 0.147/0.21 = 0.7; (1,0): 0.7. Matches the brief's check line.",
-      "status": "unverified"
+      "source": "Bayes, builder's node check 2026-10-14: P(G | g guilty, i innocent) = 0.7^g 0.3^i / (0.7^g 0.3^i + 0.3^g 0.7^i). (g,i) = (0,1): 0.3; (2,1): 0.147/0.21 = 0.7; (1,0): 0.7. Matches the brief's check line. | FACT-CHECK 2026-10-14 (pass 21): Own node: P(G|g,i) with r = 0.7, prior 1/2: (0,1) = 0.30, (2,1) = 0.70, (1,0) = 0.70.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c3",
       "text": "On the stage the bar shows 7% guilt when both others vote innocent and 30% when they split.",
       "support": "derivation",
-      "source": "Same formula: (0,3) = 0.027/0.37 = 0.073; (1,2) = 0.3. Assumes the other two vote their own clues (stage note 'votes own clue'), so their votes reveal their clues.",
-      "status": "unverified"
+      "source": "Same formula: (0,3) = 0.027/0.37 = 0.073; (1,2) = 0.3. Assumes the other two vote their own clues (stage note 'votes own clue'), so their votes reveal their clues. | FACT-CHECK 2026-10-14 (pass 21): DISPUTED: the stage does not show this. Demo.tsx sets pGuilt = guilt(g, 1), counting only your innocent clue and ignoring the others' innocent clues, so the bar labelled 'Chance of guilt from all three clues' reads 30% when both others vote innocent and 50% when they split (own node run of the Demo function). The correct values with sincere voting are guilt(g, 3 - g): 7% and 30%, as the claim and the Demo header comment say. Only the pivotal case (70%) is right. Fix (builder): pGuilt = guilt(g, 3 - g).",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c4",
       "text": "Because the other jurors vote their clues, being pivotal tells you that both of their clues said guilty, evidence a juror who just votes their own clue throws away.",
       "support": "derivation",
-      "source": "Under sincere voting a guilty vote occurs exactly when the clue says guilty; pivotal = both others guilty = both clues guilty. E&K ch. 23 (pivotal-voter reasoning); Feddersen and Pesendorfer (1998), Am. Political Science Rev. 92(1), from the brief, not opened by builder.",
-      "status": "unverified"
+      "source": "Under sincere voting a guilty vote occurs exactly when the clue says guilty; pivotal = both others guilty = both clues guilty. E&K ch. 23 (pivotal-voter reasoning); Feddersen and Pesendorfer (1998), Am. Political Science Rev. 92(1), from the brief, not opened by builder. | FACT-CHECK 2026-10-14 (pass 21): Re-derived: under sincere voting a guilty vote occurs iff the clue says guilty, so pivotal implies both clues guilty. E&K (2010) ch. 23 (Voting; jury decisions and unanimity) placement from memory, confident; Feddersen & Pesendorfer (1998), APSR 92(1), from memory, not opened; the sentence rests on the derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

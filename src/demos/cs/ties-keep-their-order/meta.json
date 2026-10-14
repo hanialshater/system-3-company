@@ -36,8 +36,10 @@
       "id": "cs.ties-keep-their-order.c2",
       "text": "On swap 2 (made by the learner), swapping Dee with Ana sends Ana from slot 2 to slot 4, past Cal, who has the same grade; Cal stays put on slide step 2 because Ana is not a higher grade.",
       "support": "derivation",
-      "source": "Rows above: before swap 2 the order is Ben Ana Cal Dee; swapping slot 2 (Ana) with slot 4 (Dee) gives Ben Dee Cal Ana, so Ana moves from before Cal to after it. Slide step 2: Cal's left neighbour Ana has grade B, not higher than B, so Cal does not move.",
-      "status": "unverified"
+      "source": "Rows above: before swap 2 the order is Ben Ana Cal Dee; swapping slot 2 (Ana) with slot 4 (Dee) gives Ben Dee Cal Ana, so Ana moves from before Cal to after it. Slide step 2: Cal's left neighbour Ana has grade B, not higher than B, so Cal does not move. | FACT-CHECK 2026-10-14 (pass 21): Own node selection sort: before swap 2 order Ben Ana Cal Dee; swap slots 2 and 4 gives Ben Dee Cal Ana, Ana passes Cal (both B). Own insertion: slide step 2 mover Cal, left neighbour Ana (B, not higher), Cal stays. Demo KEY_SWAP = 2, button 'Swap 2: watch Ana' is learner-pressed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ties-keep-their-order.c3",

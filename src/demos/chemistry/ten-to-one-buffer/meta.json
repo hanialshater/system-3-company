@@ -44,8 +44,10 @@
       "id": "chemistry.ten-to-one-buffer.c3",
       "text": "Each tenfold change in the base-to-acid ratio moves the pH by 1; equal amounts give pH = pKa however much buffer there is (on stage, after 100 acid : 10 base, the learner sets equal amounts other than 10 of each, e.g. 100 of each, and the marker sits back at 4.76).",
       "support": "derivation",
-      "source": "From c2: log10(10) = 1; log10(1) = 0 for any equal amounts (10:10, 100:100, 1:1 all give 4.76 on the stage). Demo.tsx v3: milestone scaled-equal requires equal amounts different from the start after the 10:1 state; the reveal quotes the amount the learner set.",
-      "status": "unverified"
+      "source": "From c2: log10(10) = 1; log10(1) = 0 for any equal amounts (10:10, 100:100, 1:1 all give 4.76 on the stage). Demo.tsx v3: milestone scaled-equal requires equal amounts different from the start after the 10:1 state; the reveal quotes the amount the learner set. | FACT-CHECK 2026-10-14 (pass 21): Own node: pH(b, a) = 4.76 + log10(b/a); 10:10, 100:100, 1:1, 3:3, 30:30 all give 4.76; 100:10 gives 3.76; ratio x10 changes pH by exactly 1. Demo v3 milestone 'scaled-equal' fires only for equal amounts other than 10 after the 100:10 state; reveal quotes that amount.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.ten-to-one-buffer.c4",
