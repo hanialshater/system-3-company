@@ -13,3 +13,13 @@ Session 2 (branch ccr-rnd-ncm), Networks, Crowds, and Markets batch 1. Brief: `c
 - Rounding on stage: 9/200 = 4.5% shows as "5%", 183/200 = 91.5% shows as "92%". The brief's 4.5 / 91.5 are in c1.
 - Not done by me: no claim marked verified; claims c1-c6 are `unverified`.
 - Node modules were copied from a sibling worktree for building (not committed).
+
+## Revision v2 (polish, 2026-10-14, demo-builder)
+
+From learner r2 (`2026-10-14-learner-adult-beginner-r2.md`). Version 1 to 2.
+- Merging on stage: the second-biggest group is drawn green (dots and edges) beside the gold giant, with a "Second" readout (9, 12, 23, 21, 3, 3 people at 50, 100, 125, 150, 200, 300 links). The learner watches the green group shrink to 3 as the giant swallows it. Explore hint says "Watch the green group". New claim c7 (unverified).
+- 1.25 chip added (125 links: 76 people, 38%; 36 to 76 in 25 links). 6 chips. c1 and c4 updated; claims c1, c4, c5, c7 now unverified. Re-run in node (tsx on model.ts). Label formatting: 1.25 shown with two decimals, others one.
+- Hairball: non-giant, non-second edges are 0.6 px at 45% opacity; giant and second edges 1.4 px in colour. Still a dense picture at 2.0+; the readouts carry the numbers.
+- Hook rewritten to not leak "not doubling": "Add random friendships among 200 people. How big does the biggest friend group get?" (86 chars).
+- Reveal: about 80 words at worst case (all six chips pressed); sizes list shortened. "seed 1" jargon removed from legend; legend now "Gold: biggest group · Green: second biggest"; stage graph max-height 17dvh so the six chips are not clipped when locked on a phone.
+- QA: contract spec for the-giant-appears passes on phone and desktop (QA_PORT 3881, own dist .next-giant). Walkthrough frames read on phone. The feed spec (not this lesson) failed in an unfiltered run; not investigated.
