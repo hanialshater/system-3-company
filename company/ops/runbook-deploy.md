@@ -114,3 +114,7 @@ QA_BASE_URL=https://<deployment> npx playwright test tests/qa/feed.spec.ts
 ```
 
 (`QA_BASE_URL` skips the local web server.)
+
+## Git-integration builds only on `[deploy]` commits (2026-10-14)
+
+Vercel's GitHub integration used to build a preview for every push to the working branch. Agents push work-in-progress snapshots dozens of times a day, which spent the free plan's 100 deployments a day (`api-deployments-free-per-day`) and blocked real releases. `vercel.json` now has an `ignoreCommand`: Vercel skips the build unless the latest commit message contains `[deploy]`. The release manager (or chief of staff) makes one `[deploy]` commit per publish wave, after `npm run check` and QA on that tree. Deliberate releases through `npm run deploy` are unaffected.
