@@ -1,7 +1,7 @@
 {
   "slug": "connect-the-towns-cheaply",
   "title": "Cheapest cables to join four towns",
-  "hook": "Greedy failed with coins. Should you trust 'cheapest cable first' to wire up four towns?",
+  "hook": "Should you always lay the cheapest cable first? Try it on four towns.",
   "domain": "cs",
   "concept": "minimum-spanning-tree",
   "status": "review",
@@ -24,30 +24,24 @@
   "claims": [
     {
       "id": "cs.connect-the-towns-cheaply.c1",
-      "text": "With cables AB 1, BC 2, CD 1, AD 5, AC 4 and BD 3, the lowest total cost that connects all four towns is 4 (AB, CD, BC).",
+      "text": "With cables AB 1, BC 2, AC 2, CD 3, BD 4 and AD 5, the lowest total cost that connects all four towns is 6 (AB, BC, CD).",
       "support": "simulation",
-      "source": "Demo.tsx bruteMin(): all 20 three-cable sets, minimum over those joining all towns = 4. Builder re-ran in Node: 4.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Brute force over every 3-cable set in Demo.tsx (bruteMin), and Kruskal by hand: AB 1, BC 2, CD 3.",
+      "status": "unverified"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c2",
-      "text": "Once AB, CD and BC are laid, BD, AC and AD would each close a loop.",
+      "text": "AC would close a loop with AB and BC, so it is refused mid-build; once AB, BC and CD are laid, BD and AD would also each close a loop.",
       "support": "derivation",
-      "source": "After AB, CD, BC all four towns are joined, so any further cable joins two already-joined towns and closes a loop. Demo.tsx joined().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Demo.tsx joined(): AC joins A and C, already connected through B.",
+      "status": "unverified"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c3",
-      "text": "Joining four towns takes at least 3 cables, and the three cheapest cost 1 + 1 + 2 = 4, so nothing beats it.",
+      "text": "Joining four towns takes 3 cables. The three cheapest here cost 1 + 2 + 2 = 5, but they form a loop of A, B and C and leave D out, so 5 cannot join everyone; the cheapest network that does costs 6.",
       "support": "derivation",
-      "source": "A connected graph on n nodes has at least n − 1 edges (CLRS B.5.1, Theorem B.2). Any 3 cables cost at least the 3 smallest costs, 1 + 1 + 2 = 4, and those 3 do join all towns.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Arithmetic on the cable list; bruteMin in Demo.tsx.",
+      "status": "unverified"
     },
     {
       "id": "cs.connect-the-towns-cheaply.c4",
@@ -60,12 +54,10 @@
     },
     {
       "id": "cs.connect-the-towns-cheaply.c5",
-      "text": "Unlike coins, a skipped loop never blocks a better choice later.",
+      "text": "A skipped loop never blocks a better choice later.",
       "support": "derivation",
       "source": "Cut property / exchange argument (CLRS 23.1, Theorem 23.1): the cheapest cable across any cut is in some cheapest network, so a greedy choice can always be extended to an optimum. A refused cable joins already-joined towns, so it can never be needed. Contrast: coins 1, 5, 6 making 10 (coin-greedy-trap: greedy 6+1+1+1+1 vs 5+5).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -87,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:minimum-spanning-tree",
     "prerequisites": [
@@ -96,5 +88,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

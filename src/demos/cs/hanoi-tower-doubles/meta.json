@@ -1,7 +1,7 @@
 {
   "slug": "hanoi-tower-doubles",
   "title": "One more disk, twice the work",
-  "hook": "3 disks take 7 moves. Does each new disk add a few more, or something worse?",
+  "hook": "Each extra disk makes the tower puzzle longer. By how much?",
   "domain": "cs",
   "concept": "recursion",
   "status": "review",
@@ -36,30 +36,17 @@
     },
     {
       "id": "cs.hanoi-tower-doubles.c2",
-      "text": "The fewest moves for n disks is 2^n - 1: 3 disks take 7, 4 take 15, 5 take 31 and 6 take 63.",
+      "text": "The fewest moves is 7 for 3 disks, 15 for 4, 31 for 5 and 63 for 6: each extra disk doubles the work and adds one.",
       "support": "derivation",
       "source": "T(n) = 2T(n-1) + 1, T(1) = 1, so T(n) = 2^n - 1 by induction (Concrete Mathematics, 1.1, eq. 1.1-1.3). Builder computed 2^n - 1 for n = 3..6: 7, 15, 31, 63.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
-      "id": "cs.hanoi-tower-doubles.c3",
-      "text": "10 disks need 1,023 moves and 64 disks need 18,446,744,073,709,551,615 moves (over 18 quintillion).",
-      "support": "derivation",
-      "source": "2^10 - 1 = 1,023; 2^64 - 1 = 18,446,744,073,709,551,615 (builder computed with BigInt in Node).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.hanoi-tower-doubles.c4",
-      "text": "The stage shortcut moves the top n-1 disks as one block and charges 2^(n-1) - 1 moves, the fewest that smaller puzzle needs.",
+      "text": "The stage shortcut moves the top n-1 disks as one block and charges 2^(n-1) - 1 moves, the fewest that smaller puzzle needs; adding a disk shows the sum: the smaller puzzle, the big disk (1), the smaller puzzle again.",
       "support": "convention",
       "source": "Demo.tsx carry(): adds cost(n-1) = 2^(n-1) - 1 to the move counter, per claim c2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -83,12 +70,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:recursion",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

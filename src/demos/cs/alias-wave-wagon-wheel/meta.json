@@ -32,12 +32,10 @@
     },
     {
       "id": "cs.alias-wave-wagon-wheel.c2",
-      "text": "A wave faster than half the sample rate (2.5 Hz at 5 samples a second) looks like a slower wave.",
+      "text": "At or below 2.5 Hz (half the sample rate) no slower wave fits the dots; above it, a slower wave does (3 Hz looks like 2 Hz, 3.5 Hz like 1.5 Hz, 4 Hz like 1 Hz).",
       "support": "source",
       "source": "Nyquist-Shannon sampling theorem (Shannon 1949, 'Communication in the presence of noise'): frequencies above half the sampling rate alias to lower frequencies. Stage alias = |f - 5 round(f/5)|, node-checked for f = 3 (2 Hz) and 3.5 (1.5 Hz). | FACT-CHECK 2026-10-13 (pass 9): node over every slider value 0.5..4: alias(f) = f for f <= 2.5 and 2, 1.5, 1 Hz for f = 3, 3.5, 4, each passing through the same 6 dots (< 1e-9). Nyquist-Shannon: Shannon (1949), Proc. IRE 37(1): 10-21.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.alias-wave-wagon-wheel.c3",
@@ -50,12 +48,17 @@
     },
     {
       "id": "cs.alias-wave-wagon-wheel.c4",
-      "text": "The stage uses 5 samples per second and waves from 0.5 to 4 Hz, an idealised cosine wave, not a real recording.",
+      "text": "The stage samples 5 times a second (one dot per sample), names half the sample rate as 2.5 Hz, and shows waves from 0.5 to 4 Hz: an idealised cosine wave, not a real recording.",
       "support": "derivation",
       "source": "Stage constants FS = 5 and the slider range 0.5 to 4 Hz in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: FS = 5, Slider min 0.5 max 4 step 0.5, curves from Math.cos (idealised).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
+    },
+    {
+      "id": "cs.alias-wave-wagon-wheel.c5",
+      "support": "source",
+      "text": "Hz means full ups and downs of a wave per second.",
+      "source": "Definition of hertz (SI): one cycle per second.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -77,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:audio-sampling",
     "prerequisites": [
@@ -86,5 +89,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

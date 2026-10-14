@@ -37,7 +37,7 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `In JavaScript, ${big(P)} + 1 is worked out. What comes out?`,
+        question: `A JavaScript program (JavaScript is a programming language) stores each number in a fixed amount of space. It holds ${big(P)}, which is 2^53 (2 multiplied by itself 53 times), and adds 1. What comes out?`,
         options: [String(BigInt(P) + 1n), big(P + 1), "An error"],
         answer: 1,
       }}
@@ -54,10 +54,10 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
               No error and no warning: the 1 was simply rounded away.
             </p>
             <p>
-              A JavaScript number is a double with 53 bits of precision. Every whole number up to 2^53 = {big(P)} fits exactly
-              (which is why Number.MAX_SAFE_INTEGER is 2^53 − 1), but just beyond it (up to 2^54) only every second whole number exists. Adding 1
-              lands exactly halfway between two of them and is rounded to the even one, so it either does nothing or jumps by
-              2. For exact big integers, JavaScript has BigInt.
+              A JavaScript number has room for only 53 binary digits (bits) of detail. Every whole number up to 2^53 ={" "}
+              {big(P)} fits exactly, but just beyond it only every second whole number can be stored: those are the hollow
+              rings. Adding 1 lands halfway between two storable numbers and is rounded to one of them, so it either does
+              nothing or jumps by 2. For exact big whole numbers, programmers use BigInt.
             </p>
           </>
         );
@@ -115,7 +115,7 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
                   </text>
                   <path d={`M${xOf(v)} 20l-6 -10h12z`} fill="var(--fg)" />
                 </svg>
-                <p className={s.key}>{locked ? "Last 3 digits shown" : "● a JavaScript number can hold it · ○ it can't"}</p>
+                <p className={s.key}>{locked ? "Last 3 digits of each number shown." : "● the program can store it · ○ it can't"}</p>
                 <div className={s.tape}>
                   {tape.map((t, i) => (
                     <div key={i} className={t.to === t.from ? s.same : ""}>

@@ -34,39 +34,31 @@
     },
     {
       "id": "cs.big-number-swallows-one.c2",
-      "text": "A JavaScript number is a double (IEEE 754 binary64) with 53 bits of precision.",
+      "text": "A JavaScript number has room for only 53 binary digits (bits) of detail (a double, IEEE 754 binary64), and 2^53 is 2 multiplied by itself 53 times.",
       "support": "source",
       "source": "ECMAScript 2024 Language Specification, 6.1.6.1 The Number Type (IEEE 754-2019 binary64); IEEE 754 binary64 has a 53-bit significand (52 stored + 1 implicit).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.big-number-swallows-one.c3",
-      "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but just beyond it (up to 2^54) only every second whole number exists; Number.MAX_SAFE_INTEGER is 2^53 − 1.",
+      "text": "Every whole number up to 2^53 = 9007199254740992 fits exactly, but just beyond it only every second whole number can be stored.",
       "support": "source",
       "source": "ECMAScript 2024, 21.1.2.6 Number.MAX_SAFE_INTEGER (2^53 - 1); spacing of binary64 values in [2^53, 2^54) is 2. Builder checked: Number.MAX_SAFE_INTEGER === 2**53 - 1; the stage's dots come from a BigInt round trip (Demo.tsx exact()). | Builder fix 2026-10-13 (pass 4): reworded to 'just beyond it (up to 2^54)' per fact-check; spacing is 2 on [2^53, 2^54), 4 on [2^54, 2^55).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.big-number-swallows-one.c4",
-      "text": "Past 2^53, adding 1 lands exactly halfway between two numbers and is rounded to the even one, so it either does nothing or jumps by 2; adding 2 moves 9007199254740992 to 9007199254740994.",
+      "text": "Past 2^53, adding 1 lands halfway between two storable numbers and is rounded to one of them, so it either does nothing or jumps by 2; adding 2 moves 9007199254740992 to 9007199254740994.",
       "support": "simulation",
       "source": "Round-half-to-even is IEEE 754's default rounding (roundTiesToEven, 4.3.1). Builder ran in Node: 2**53 + 2 = 9007199254740994; (2**53 + 2) + 1 = 9007199254740996; (2**53 + 4) + 1 = 9007199254740996.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.big-number-swallows-one.c5",
-      "text": "For exact big integers, JavaScript has BigInt.",
+      "text": "For exact big whole numbers, JavaScript programmers use BigInt.",
       "support": "source",
       "source": "ECMAScript 2020+ BigInt type (ECMAScript 2024, 6.1.6.2). Builder checked: 9007199254740992n + 1n === 9007199254740993n.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:floating-point",
     "prerequisites": [
@@ -100,5 +92,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

@@ -5,3 +5,12 @@
 - The shortcut's cost is hidden while locked so it does not hint the doubling before the prediction.
 - After screenshots: the shortcut row wrapped with '→ C' alone on a second line; the label now has its own line above the three target buttons.
 - Open risk: a learner may reveal after 3 or 4 disks without reaching 6; the reveal then states 31 and 63 rather than showing them.
+
+## Revision v2 (wave C, learner review)
+
+- Doubling control optional: 'Add a disk' is always enabled and is the third required step (minInteractions 3); on adding, the stage shows 'the 3-disk puzzle (7), the big disk (1), again (7) = 15 at best' (c4).
+- '+3' was declared: the shortcut now says '2 disks take 3 moves at best'.
+- Told-only 2^n, 1,023 and 18 quintillion removed with claim c3; the reveal lists only up to the disks the learner reached.
+- Hook no longer says 'worse'.
+
+All changed claims are unverified, awaiting a fact-checker.

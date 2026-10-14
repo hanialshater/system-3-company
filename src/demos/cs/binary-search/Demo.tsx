@@ -170,7 +170,9 @@ export default function BinarySearch({ slug }: { slug: string }) {
                     ? `${last.guess} was already ruled out. A wasted guess.`
                     : `${last.verdict === "higher" ? "Higher" : "Lower"} than ${last.guess}: ${fmt(
                         last.before - last.after,
-                      )} ruled out, ${fmt(last.after)} left.`;
+                      )} ruled out, ${fmt(last.after)} left.${
+                        last.after * 2 > last.before + 1 ? " Weak guess: the middle always rules out at least half." : ""
+                      }`;
 
             const segW = Math.max(3, xOf(hi) - xOf(lo));
             const segX = Math.min(xOf(lo), X1 - segW);

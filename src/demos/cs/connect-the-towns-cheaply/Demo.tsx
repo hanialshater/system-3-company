@@ -17,12 +17,12 @@ const TOWNS: Town[] = ["A", "B", "C", "D"];
 const CABLES_RAW: Cable[] = [
   { a: "A", b: "B", cost: 1 },
   { a: "B", b: "C", cost: 2 },
-  { a: "C", b: "D", cost: 1 },
+  { a: "A", b: "C", cost: 2 },
+  { a: "C", b: "D", cost: 3 },
+  { a: "B", b: "D", cost: 4 },
   { a: "A", b: "D", cost: 5 },
-  { a: "A", b: "C", cost: 4 },
-  { a: "B", b: "D", cost: 3 },
 ];
-const CABLES = [...CABLES_RAW].sort((x, y) => x.cost - y.cost); // stable: AB, CD, BC, BD, AC, AD
+const CABLES = [...CABLES_RAW].sort((x, y) => x.cost - y.cost); // stable: AB, BC, AC, CD, BD, AD
 const name = (c: Cable) => `${c.a}${c.b}`;
 const POS: Record<Town, { x: number; y: number }> = { A: { x: 50, y: 30 }, B: { x: 250, y: 30 }, C: { x: 250, y: 150 }, D: { x: 50, y: 150 } };
 
@@ -51,7 +51,8 @@ function bruteMin() {
   }
   return best;
 }
-const MIN = bruteMin(); // 4
+const MIN = bruteMin(); // 6
+const TRAP = CABLES.slice(0, 3).reduce((n, c) => n + c.cost, 0); // 5: the three cheapest, but they close a loop
 const LIST = CABLES_RAW.map((c) => `${name(c)} ${c.cost}`).join(", ");
 
 export default function ConnectTheTownsCheaply({ slug }: { slug: string }) {
@@ -68,7 +69,7 @@ export default function ConnectTheTownsCheaply({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Possible cables between four towns, with costs: ${LIST}. What is the lowest total cost that connects all four towns?`,
-        options: [String(MIN), "5", "7"],
+        options: [String(MIN), String(TRAP), "7"],
         answer: 0,
       }}
       exploreHint="Take the cheapest cable left, unless it closes a loop."
@@ -80,9 +81,10 @@ export default function ConnectTheTownsCheaply({ slug }: { slug: string }) {
             joined.{refused.length ? ` ${refused.map(name).join(", ")} would each have closed a loop, so they were refused.` : ""}
           </p>
           <p>
-            Joining four towns takes at least 3 cables, and the three cheapest cost 1 + 1 + 2 = {MIN}, so nothing beats
-            it. Cheapest first, skipping loops, always gives the cheapest network (Kruskal&apos;s algorithm): unlike
-            coins, a skipped loop never blocks a better choice later.
+            Joining four towns takes 3 cables. The three cheapest here cost 1 + 2 + 2 = {TRAP}, but they form a loop of A,
+            B and C and leave D out, so {TRAP} cannot join everyone. The cheapest network that does costs {MIN}. Cheapest
+            first, skipping loops, always finds it (Kruskal&apos;s algorithm): a skipped loop never blocks a
+            better choice later.
           </p>
         </>
       )}
@@ -117,7 +119,7 @@ export default function ConnectTheTownsCheaply({ slug }: { slug: string }) {
               setRefused([]);
               setNote(null);
             };
-            const msg = locked ? "Make a prediction to start." : note ?? "Tap the cheapest cable left. A cable that closes a loop is refused.";
+            const msg = locked ? "Make a prediction to start." : note ?? "Tap the cheapest cable left. A cable between two towns already joined would close a loop, so it is refused.";
             return (
               <div className={s.wrap}>
                 <Control className={s.reset} disabled={locked || (laid.length === 0 && refused.length === 0)} onClick={reset}>
