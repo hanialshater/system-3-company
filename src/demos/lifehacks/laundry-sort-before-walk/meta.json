@@ -51,22 +51,22 @@
     },
     {
       "id": "lifehacks.laundry-sort-before-walk.c5",
-      "text": "What assumption can make one large batch infeasible?",
-      "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "text": "Recall: Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances? Correct answer: 36 m and 12 m. Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
+      "support": "derivation",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.laundry-sort-before-walk.c1–c3; Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What assumption can make one large batch infeasible?",
+    "question": "Six items are 3 m away. You return after every delivery. Carry one per trip, or three per trip: what are the two total distances?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "36 m and 12 m",
+      "18 m and 6 m",
+      "36 m and 6 m"
     ],
     "answer": 0,
-    "why": "For a fixed route and unlimited carrying capacity, one grouped trip pays the distance once instead of once per item. The picture compares repeated travel with a single batch. Capacity and urgency may rule out batching; the result is route arithmetic, not measured chore time."
+    "why": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured."
   },
   "evidence": {
     "qa": [],

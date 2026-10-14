@@ -110,3 +110,36 @@ test('application sorts new visible values rather than recalling a hidden target
   assert.deepEqual(edited,ascending);
   assert.deepEqual(input,['5','9','2'], 'editing the attempt must preserve the input');
 });
+
+// The search fixture checks individual letters; no logarithm formula supplies the observed trace.
+import { compareLabel, shuffledLabels, scanLabels } from '../../src/lib/lifehacks/studySearch.ts';
+test('ten labels: observed scan and midpoint elimination have an independent four-check trace',()=> {
+  const {sorted,shuffled,target}=shuffledLabels(10);
+  assert.deepEqual(shuffled,['I','H','G','F','E','D','C','B','A','J']);
+  assert.equal(target,'J');
+  assert.equal(scanLabels(shuffled,target).checked.length,10);
+  const first=compareLabel(sorted,target,0,9);
+  assert.equal(first.value,'E');assert.equal(first.verdict,'right');
+  assert.deepEqual(sorted.slice(first.keptLo,first.keptHi+1),['F','G','H','I','J']);
+  const second=compareLabel(sorted,target,first.keptLo,first.keptHi);
+  const third=compareLabel(sorted,target,second.keptLo,second.keptHi);
+  const last=compareLabel(sorted,target,third.keptLo,third.keptHi);
+  assert.deepEqual([first.value,second.value,third.value,last.value],['E','H','I','J']);
+  assert.equal(last.verdict,'found');
+});
+test('a smaller target keeps the left interval; scanning stops at the found label',()=> {
+  const sorted=['A','B','C','D','E','F','G','H'];
+  const first=compareLabel(sorted,'B',0,7);
+  assert.equal(first.value,'D');assert.equal(first.verdict,'left');
+  assert.deepEqual(sorted.slice(first.keptLo,first.keptHi+1),['A','B','C']);
+  assert.deepEqual(scanLabels(['D','B','A'],'B'),{checked:['D','B'],found:true});
+  assert.deepEqual(scanLabels(['D','A'],'B'),{checked:['D','A'],found:false});
+});
+test('fresh recall transfer requires sorting and fixed travel arithmetic',()=> {
+  const load=slug=>JSON.parse(readFileSync(new URL(`../../src/demos/lifehacks/${slug}/meta.json`,import.meta.url)));
+  const ordering=load('apply-not-quote').recall;assert.equal(ordering.options[ordering.answer],'1→4→7');
+  assert.deepEqual([7,1,4].sort((a,b)=>a-b),[1,4,7]);
+  const travel=load('calendar-needs-travel').recall;assert.equal(travel.options[travel.answer],'14:10');
+  assert.equal(14*60+30-20,14*60+10);
+  const labels=load('alphabet-sort-search').recall;assert.equal(labels.options[labels.answer],'Put labels in alphabetical order');
+});

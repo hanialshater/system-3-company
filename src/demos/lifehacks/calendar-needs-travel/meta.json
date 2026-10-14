@@ -43,22 +43,23 @@
       "status": "unverified"
     },
     {
-      "text": "Recall question answer and rationale: Travel before meeting. Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
+      "text": "For a 14:30 meeting and a fixed 20-minute trip with no delay, latest departure is 14:10.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "source": "Arithmetic:14:30−00:20=14:10. A stipulated duration and no-delay assumption, not a real travel-time recommendation.",
       "id": "lifehacks.calendar-needs-travel.c4",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Which layout includes the journey?",
+    "question": "A meeting starts at 14:30. The trip takes 20 minutes with no delay. What is the latest departure?",
     "options": [
-      "Travel before meeting",
-      "Meeting only"
+      "14:10",
+      "14:30",
+      "14:50"
     ],
     "answer": 0,
-    "why": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice."
+    "why": "Reserve the trip before arrival: 14:30 minus 20 minutes is 14:10. Real journey uncertainty is outside this fixed-duration exercise."
   },
   "evidence": {
     "qa": [],

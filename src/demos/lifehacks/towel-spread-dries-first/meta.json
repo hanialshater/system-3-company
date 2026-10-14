@@ -51,22 +51,22 @@
     },
     {
       "id": "lifehacks.towel-spread-dries-first.c5",
-      "text": "What should you change before comparing the drying speed of two towel layouts?",
-      "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "text": "Recall: Same water and constant model flux: layout A exposes 1 m² and layout B exposes 2 m². How do their model drying times compare? Correct answer: B takes half as long. In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
+      "support": "derivation",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.towel-spread-dries-first.c1–c3; In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What should you change before comparing the drying speed of two towel layouts?",
+    "question": "Same water and constant model flux: layout A exposes 1 m² and layout B exposes 2 m². How do their model drying times compare?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "B takes twice as long",
+      "They take the same time",
+      "B takes half as long"
     ],
-    "answer": 0,
-    "why": "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time. Real drying depends on fabric, temperature, humidity and airflow; this is not a twelve-hour promise."
+    "answer": 2,
+    "why": "In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio."
   },
   "evidence": {
     "qa": [],

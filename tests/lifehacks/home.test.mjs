@@ -27,6 +27,9 @@ test('equal-leg contact illustration crosses zero rather than proving a level ta
  close(value('wobbly-table-quarter-turn',90,true),-4);
 });
 test('twenty illustrative walking steps can reduce both bow loops',()=>{
+ assert.equal(get('square-bow-stays-tied').initial,0);
+ close(value('square-bow-stays-tied',0,false),20);
+ close(value('square-bow-stays-tied',0,true),20);
  close(value('square-bow-stays-tied',20,false),4);close(value('square-bow-stays-tied',20,true),14);
  assert.equal(value('square-bow-stays-tied',40,false),0);
  assert.equal(value('square-bow-stays-tied',40,true),8);
@@ -84,8 +87,10 @@ test('metadata retains independent gates and complete model addresses',()=>{
   const meta=JSON.parse(fs.readFileSync(new URL(`../../src/demos/lifehacks/${s.slug}/meta.json`,import.meta.url),'utf8'));
   assert.equal(meta.status,'review');assert.equal(meta.confidence,'');
   for(const c of meta.claims)assert.equal(c.status,'unverified');
-  assert.equal(meta.claims[2].text,s.formula);
-  assert.ok(Object.values(meta.evidence).every(e=>e.length===0));
+  assert.equal(new Set(meta.claims.map(c=>c.id)).size,meta.claims.length);
+  assert.ok(meta.claims.every(c=>c.id.startsWith(`lifehacks.${s.slug}.`)&&c.text.trim()&&c.source.trim()));
+  assert.ok(['simulatedLearner','pairwise','humanLearners'].every(k=>meta.evidence[k].length===0));
+  assert.ok(Array.isArray(meta.evidence.qa));
  }
 });
 

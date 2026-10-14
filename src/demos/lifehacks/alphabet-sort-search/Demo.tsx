@@ -1,9 +1,4 @@
 "use client";
-
-import { Lesson } from "@/kit/Lesson";
-import { Controls, useHomeLesson } from "@/components/lifehacks/HomeLesson";
-
-export default function Demo({ slug }: { slug: string }) {
-  const { lessonProps, stage } = useHomeLesson(slug);
-  return <Lesson {...lessonProps}>{(context) => <Controls {...stage} {...context} />}</Lesson>;
-}
+import { AlphabetSearchLesson as Lesson } from "@/components/lifehacks/AlphabetSearchLesson";
+// The shared search stage implements locked <Control> and <Slider> operations.
+export default function Demo({slug}:{slug:string}) {return <Lesson slug={slug}/>;}

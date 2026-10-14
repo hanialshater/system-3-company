@@ -233,12 +233,12 @@ export const study_apply_not_quote = {
   "family": "recall",
   "slug": "apply-not-quote",
   "title": "Apply the rule",
-  "hook": "Quoting “sort ascending” is easier than applying it to new values.",
-  "objective": "Use a stated sorting rule on a fresh set rather than repeat its wording.",
-  "question": "What checks application of ascending order?",
+  "hook": "Can you put the values in ascending order without quoting the rule?",
+  "objective": "Apply a stated sorting rule to visible values rather than repeat its wording.",
+  "question": "If all three numbers appear, is every arrangement ascending?",
   "options": [
-    "Order new values",
-    "Quote the definition"
+    "Only smallest-to-largest",
+    "Any arrangement with all three"
   ],
   "answer": 0,
   "principle": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",

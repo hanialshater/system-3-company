@@ -64,7 +64,7 @@ export function StudyLesson({slug,spec}:{slug:string;spec:StudySpec}) {
     slug={slug}
     predict={{question:spec.question,options:spec.options,answer:spec.answer}}
     minInteractions={2}
-    exploreHint={spec.slug==="apply-not-quote"?"Try the new values. Rearrange them into ascending order, then check.":spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":"Try both labelled operations; inspect what changes in the fixture."}
+    exploreHint={spec.slug==="apply-not-quote"?"Try the visible values. Rearrange them into ascending order, then check.":spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":"Try both labelled operations; inspect what changes in the fixture."}
     reveal={()=> <><p>{observation(spec,state)}</p><p>{spec.principle}</p></>}
   >
     {({locked,interact})=> <Stage spec={spec} state={state} setState={setState} locked={locked} interact={interact}/>}
@@ -166,7 +166,7 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const matches=reconstructionMatches(spec.words,state.order);
     const refinement: Record<string,string> = {
       "one-question-one-card":"Split prompt", "cue-needs-a-boundary":"Add country", "reverse-the-flashcard":"Reverse",
-      "note-gap-check":"Remove field", "apply-not-quote":"New values", "separate-confusable-pairs":"Add digits"
+      "note-gap-check":"Remove field", "apply-not-quote":"Try values", "separate-confusable-pairs":"Add digits"
     };
     const needsRefinement=Boolean(refinement[spec.slug]);
     const reverse=spec.slug==="reverse-the-flashcard"&&!state.refined;

@@ -1,7 +1,7 @@
 {
   "slug": "alphabet-sort-search",
-  "title": "Sorted labels allow a halving search",
-  "hook": "Which method has fewer worst-case comparisons here?",
+  "title": "Rule out half the labels",
+  "hook": "Find the same target by scanning shuffled labels and halving a sorted list.",
   "domain": "lifehacks",
   "concept": "alphabet-sort-search",
   "status": "review",
@@ -15,58 +15,65 @@
       "Everyday objects have sizes, positions and amounts"
     ],
     "doesNotKnow": [
-      "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan."
+      "Use a sorted comparison to eliminate impossible labels and compare observed checks with a target-last shuffled scan."
     ]
   },
-  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
-  "objective": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan.",
+  "misconception": "A middle comparison can discard half an arbitrary unordered list.",
+  "objective": "Use a sorted comparison to eliminate impossible labels and compare observed checks with a target-last shuffled scan.",
   "claims": [
     {
       "id": "lifehacks.alphabet-sort-search.c1",
-      "text": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan.",
+      "text": "A sorted comparison can rule out all labels earlier than the middle when the middle label is less than the target. Unsorted positions do not supply this guarantee.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "source": "src/lib/lifehacks/studySearch.ts: sorted distinct A–J keys; value<target implies all keys at positions≤mid are also<target.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c2",
-      "text": "Only comparison count is modelled; organising the list has a setup cost.",
+      "text": "The exercise deliberately puts the largest label last in a shuffled scan list. The scan inspects every label and finds that target on check N. This chosen hard case is not typical search data.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "source": "shuffledLabels in src/lib/lifehacks/studySearch.ts; reverse the first N−1 distinct letters and leave the largest last. Count is 4..10.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c3",
-      "text": "Worst-case comparisons=N scan or floor(log2(N))+1 binary search for distinct sorted keys.",
+      "text": "Each sorted-search step compares one midpoint label with the target and shows the remaining inclusive interval. The trace and two counts are actual performed operations.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "source": "compareLabel in src/lib/lifehacks/studySearch.ts and SearchStage in AlphabetSearchLesson.tsx; midpoint=floor((lo+hi)/2), retained bounds follow the three-way comparison. Scan counts one checked label per item.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c4",
-      "text": "Which method has fewer worst-case comparisons here?",
-      "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "text": "For the disclosed count-10 path, the scan checks 10 labels; the sorted search compares E,J then H,J then I,J then J,J, using 4 checks. Discarded labels fade and are crossed out.",
+      "support": "derivation",
+      "source": "Manually reasoned A..J search: lo0,hi9→mid4E→lo5→mid7H→lo8→mid8I→lo9→mid9J.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c5",
-      "text": "What condition must hold before halving a label search?",
+      "text": "Only comparisons are counted. Sorting has setup work; this exercise does not measure total organisation time or typical search time.",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "source": "Stated scope of the local fixture. No empirical efficiency guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.alphabet-sort-search.c6",
+      "text": "The recall requires alphabetical sorting before a midpoint comparison can discard earlier labels.",
+      "support": "derivation",
+      "source": "The earlier-position implication requires sortedness; shuffled A..J does not satisfy it.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "What condition must hold before halving a label search?",
+    "question": "A box has shuffled A–J labels. Before a middle comparison can rule out earlier labels, what must you do?",
     "options": [
-      "Check the mechanism and its stated constraints",
-      "Assume the layout always works",
-      "Ignore the stated inputs"
+      "Put labels in alphabetical order",
+      "Choose the middle of the shuffled box",
+      "Remove every second label"
     ],
     "answer": 0,
-    "why": "A sorted list permits a comparison to discard roughly half the remaining addresses. An unsorted list lacks that ordering information and may need a full scan. Only comparison count is modelled; organising the list has a setup cost."
+    "why": "Only sorted order makes every earlier label smaller than the middle label. Shuffled position supplies no such guarantee."
   },
   "evidence": {
     "qa": [],
@@ -82,12 +89,12 @@
     "references": [],
     "also": []
   },
-  "format": "before-after",
+  "format": "single-card",
   "interactions": [
     "choice-before-reveal",
     "locked-readouts",
     "milestone-gate",
-    "toggle-before-after",
-    "slider-drives-live-chart"
+    "slider-drives-live-chart",
+    "step-run-button"
   ]
 }
