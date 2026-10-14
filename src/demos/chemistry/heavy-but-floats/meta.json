@@ -64,8 +64,10 @@
       "id": "chemistry.heavy-but-floats.c5",
       "text": "A floating object has the same fraction of its volume under water as its density divided by water's: 0.625, five eighths (62.5%), for this ball.",
       "support": "derivation",
-      "source": "Floating: weight = buoyancy, so rho_obj x V = rho_water x V_under, V_under / V = 0.625 / 1.0. The stage solves the spherical-cap depth h for (h/r)^2 (3 - h/r)/4 = 0.625 by bisection. | CLAIM FIX 2026-10-13: Stage drawing was wrong (cap sign mirrored: ball drawn 37.5% under at 800 cm3). Fixed Demo.tsx: cy = SURF + (capDepth(rho/RHO_W) - 1) * r, so 62.5% is under water at 800 cm3. Claim text unchanged.",
-      "status": "unverified"
+      "source": "Floating: weight = buoyancy, so rho_obj x V = rho_water x V_under, V_under / V = 0.625 / 1.0. The stage solves the spherical-cap depth h for (h/r)^2 (3 - h/r)/4 = 0.625 by bisection. | CLAIM FIX 2026-10-13: Stage drawing was wrong (cap sign mirrored: ball drawn 37.5% under at 800 cm3). Fixed Demo.tsx: cy = SURF + (capDepth(rho/RHO_W) - 1) * r, so 62.5% is under water at 800 cm3. Claim text unchanged. | FACT-CHECK 2026-10-14 (pass 13): Archimedes: V_under/V = rho_obj/rho_w = 500/800 = 0.625. Re-checked the 2026-10-13 stage fix: cap fraction h^2(3r-h)/(4r^3) is correct; own bisection gives h/r = 1.168; cy = SURF + (h/r - 1) r puts the ball bottom at SURF + h, so 62.5% is under water. Stage now matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.heavy-but-floats.c6",
