@@ -59,6 +59,17 @@ The head of evaluation chooses pairs to tighten the fit where it matters, in thi
 ### Calibration and judge bias
 Track per round: agreement between judges, the position-bias rate (how often the verdict flips when A/B swap), the tie rate, and the share of wins that went to the lesson with the longer transcript (length bias). Judges are models from the same family as the builders, so the leaderboard measures *model* preference until real-learner results corroborate it. Report it that way.
 
+### Packet chrome (from round 2)
+Packets blank the card's **status tag** ("In review" or any status) and the **"Why trust this? (k/n claims checked)" counter** in every screenshot and `sheet.png`, and strip them from transcripts if they appear. The counter is fact-check process state, not something the card states. In round 1 it differed between lessons and was cited in `trust` reasons. Once some lessons are published, the status tag becomes a status/recency signal. The duration tag stays. Mechanism: evaluation-engineer (task E1 in [`rounds/2026-10-14-round-1.md`](rounds/2026-10-14-round-1.md)).
+
+### Overall (decision, head of evaluation, 2026-10-14)
+HQ shows **no "Overall" rank**, neither as a default nor as a filter. `tools/eval` may compute the pooled scope as a diagnostic only. Reasons: it treats a judge's 6 lines on one pair as 6 independent comparisons, so its intervals overstate certainty. Its equal weighting is an unapproved definition of "best". It hides the disagreement between criteria. And it is the number most likely to become a gate. HQ shows per-criterion leaderboards with intervals, defaulting to `learning`. Revisit only if the chief product officer approves a defined aggregate in a decision record **and** the fit resamples by judgement. Full reasoning: [`rounds/2026-10-14-round-1.md`](rounds/2026-10-14-round-1.md) section 6. This answers objection 4 of [`2026-10-14-evaluation-org`](../decisions/2026-10-14-evaluation-org.md).
+
+### Round flags (read ranks with these)
+| round | criterion | flag | records | detail |
+|---|---|---|---|---|
+| round-1 (2026-10-14) | trust | **possibly anchored on claim counts** | `pairwise/2026-10-14-round-1.jsonl`, trust lines (judge-1 cites counts in `round-1-42`, `round-1-108`) | Screens showed differing "k/n claims checked" counters. All lines kept, `blind: true`, none excluded. A sensitivity refit without the two citing lines moves ranks only inside their intervals. See the round record, section 3. |
+
 ## The record format (fixed; tools/eval depends on it)
 
 One JSON object per line in `company/evaluation/pairwise/<YYYY-MM-DD>-<run>.jsonl`:
@@ -86,6 +97,7 @@ A pair judged on six criteria produces six lines. The validator and fit live in 
 | `pairwise/<date>-<run>.jsonl` | pairwise records, append-only | head-of-evaluation writes them from judges' verdicts |
 | `rounds/<date>-<run>.md` | round record: pairs and why, judges, exclusions with reasons, what moved | head-of-evaluation |
 | `calibration/<date>-<run>.md` | agreement, position bias, length bias | head-of-evaluation |
+| `rounds/<run>/` | round plan, packet builder, **secret** A/B key and dispatch (judges never read `rounds/**`) | head-of-evaluation |
 | `tools/eval/**` | validator, Bradley-Terry fit, leaderboard | evaluation-engineer |
 
 A round runs by [`../rituals/templates/pairwise-round.md`](../rituals/templates/pairwise-round.md).
