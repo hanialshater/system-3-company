@@ -9,6 +9,10 @@
 //
 // Drafted 2026-10-14 by chief-of-staff-ceo-office (Leonie) at the founder's request; cm-history and the
 // strand managers own it from here and re-check it (board). Builders copy numbers from this output only.
+// Re-checked 2026-10-14 by cm-history (Henrike), W-742: answer letters rotated (predict A4 B4 C4, was A1 B3 C8;
+// recall A4 B4 C4, was B10 C2), brief 6 option "About half" -> "6 of 12" and brief 12's options all numbered
+// (demo standard: no option worded more precisely than the others); recall options in 7 and 10 evened the same way.
+// No number changed.
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import { ensure, pathOf, vegaFile, ROOT } from "./history-data.mjs";
@@ -80,7 +84,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   brief(1, {
     slug: "survive-childhood-live-to-sixty", data: ["halley", "breslau"],
     question: "Halley's 1693 Breslau table gives a newborn a life expectancy of about {e0} years. Someone who reached 30 died, on average, at about what age?",
-    options: ["About 31", "About 45", "About 58"], answer: 2, pick: (v) => nearest(v.a30, [31, 45, 58]),
+    options: ["About 58", "About 45", "About 31"], answer: 0, pick: (v) => nearest(v.a30, [58, 45, 31]),
     presets: ["Average from birth", "Deaths before age 5", "Average from age 30", "Average from age 60"],
     reveal: "Of {born} babies born in a year, about {u5}% died before age 5, and that pulled the average from birth down to {e0}. People who got through childhood usually lived much longer: from 30, the average death came at about {a30}, and from 60 at about {a60}. Life expectancy at birth averages over everyone, infants included, so a low number does not mean adults died young. Where it stops: this is one city's records over five years.",
     checks: (v) => {
@@ -91,7 +95,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("1 cross-check on independent records (Breslau deaths 1687-91)", Math.abs(mean30 - (30 + e(30))) < 2, `mean age at death of those dying over 30 = ${r(mean30, 1)} (Bellhouse's reconstruction of the same city's deaths)`);
       ok("1 survivors readout", P[30] === 531 && P[50] === 346 && P[70] === 142, `alive of 1,238 born: age 30 ${P[30]}, 50 ${P[50]}, 70 ${P[70]}, 80 ${P[80]}`);
     },
-    recall: { q: "A country's life expectancy at birth rises from 50 to 70, mostly because fewer babies die. Must adults now live 20 years longer?", options: ["Yes", "No: most of the rise can come from infants surviving", "Only if births rise"], answer: 1, pick: () => 1 },
+    recall: { q: "A country's life expectancy at birth rises from 50 to 70, mostly because fewer babies die. Must adults now live 20 years longer?", options: ["No: most of the rise can come from infants surviving", "Yes", "Only if births rise"], answer: 0, pick: () => 0 },
   }, v);
 }
 
@@ -141,7 +145,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("3 women barely recorded in 1850", share(1850, "women").t < 100000, `women with a recorded job: 1850 ${fmt(share(1850, "women").t)}, 1900 ${fmt(share(1900, "women").t)}`);
       ok("3 all recorded workers agree", Math.abs(((share(1850).f + share(1850, "women").f) / (share(1850).t + share(1850, "women").t)) * 100 - 50.8) < 0.1, "both sexes 1850: 50.8%");
     },
-    recall: { q: "A town's factory jobs fall from 40% to 10% of all jobs while the number of factory workers stays the same. What happened?", options: ["Factories closed", "Other jobs grew about four times as fast", "The share must be wrong"], answer: 1, pick: () => 1 },
+    recall: { q: "A town's factory jobs fall from 40% to 10% of all jobs while the number of factory workers stays the same. What happened?", options: ["Factories closed", "The share must be wrong", "Other jobs grew about four times as fast"], answer: 2, pick: () => 2 },
   }, v);
 }
 
@@ -157,7 +161,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   brief(4, {
     slug: "disease-killed-eight-to-one", data: ["nightingale", "vega (crimea.json)"],
     question: "British soldiers in the Crimean War, April 1854 to March 1856. For every man who died of wounds, how many died of disease?",
-    options: ["About 1", "About 3", "About 8"], answer: 2, pick: () => nearest(d / w, [1, 3, 8]),
+    options: ["About 8", "About 3", "About 1"], answer: 0, pick: () => nearest(d / w, [8, 3, 1]),
     presets: ["Wounds only", "Add disease", "Rate per 1,000 a year", "Before and after March 1855"],
     reveal: "Disease killed {d} men and wounds {w}: about {ratio} to one. In January 1855 disease deaths ran at an annual rate of {peak} per 1,000, more than the whole army in a year. From April 1855, after a sanitary commission arrived, they averaged {after} a month, against {before} in the first year. Where it stops: weather and army size changed too, so this chart alone cannot prove what caused the fall.",
     checks: (v) => {
@@ -167,7 +171,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("4 peak rate", peak.date === "1855-01-01" && peak.rate > 1000, `${peak.date}: ${peak.rate} per 1,000 a year (12 x 1000 x ${peak.dis} / ${fmt(peak.army)})`);
       ok("4 first and second year", sum(first, "dis") === 11157 && sum(second, "dis") === 3319, `disease deaths a month: ${v.before} (Apr 1854-Mar 1855) vs ${v.after} (Apr 1855-Mar 1856); disease share ${r((100 * sum(first, "dis")) / (sum(first, "dis") + sum(first, "wou") + sum(first, "oth")), 1)}% -> ${r((100 * sum(second, "dis")) / (sum(second, "dis") + sum(second, "wou") + sum(second, "oth")), 1)}%`);
     },
-    recall: { q: "A hospital's deaths fall after a new rule, while winter ends and fewer patients arrive. What can the chart alone tell you?", options: ["The rule caused the fall", "Deaths fell; the cause needs a comparison", "Nothing at all"], answer: 1, pick: () => 1 },
+    recall: { q: "A hospital's deaths fall after a new rule, while winter ends and fewer patients arrive. What can the chart alone tell you?", options: ["Deaths fell; the cause needs a comparison", "The rule caused the fall", "Nothing at all"], answer: 0, pick: () => 0 },
   }, v);
 }
 
@@ -194,7 +198,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("5 first frost", firstFrost.date === "Nov09" && atFrost.n === 37000, `first reading below zero: ${firstFrost.t} on ${firstFrost.date} at ${firstFrost.lon} E; main column at ${atFrost.lon} E: ${fmt(atFrost.n)} (${r((100 * (start - atFrost.n)) / start, 0)}% of the start already lost)`);
       ok("5 all columns", groupsStart === 422000 && back + g3end === 10000, `start ${v.start} (groups 1-3), back ${v.end} (group 1 ${fmt(back)} + group 3 ${fmt(g3end)}): 1 in ${r(groupsStart / (back + g3end), 1)}`);
     },
-    recall: { q: "A hiking group loses 6 of 10 members before the storm and 3 more during it. What does 'the storm wrecked the trip' miss?", options: ["Nothing", "Most losses came before the storm", "The storm was mild"], answer: 1, pick: () => (6 > 3 ? 1 : 0) },
+    recall: { q: "A hiking group loses 6 of 10 members before the storm and 3 more during it. What does 'the storm wrecked the trip' miss?", options: ["Nothing", "The storm was mild", "Most losses came before the storm"], answer: 2, pick: () => (6 > 3 ? 2 : 0) },
   }, v);
 }
 
@@ -210,7 +214,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   brief(6, {
     slug: "rome-placed-too-far-east", data: ["langren"],
     question: "Toledo to Rome is 16.5 degrees of longitude. Twelve astronomers and mapmakers before 1644 estimated it. How many came within 2 degrees?",
-    options: ["1 of 12", "About half", "10 of 12"], answer: 0, pick: (v) => (v.n <= 2 ? 0 : v.n <= 8 ? 1 : 2),
+    options: ["1 of 12", "6 of 12", "10 of 12"], answer: 0, pick: (v) => (v.n <= 2 ? 0 : v.n <= 8 ? 1 : 2),
     presets: ["Show the true distance", "Closest estimate", "Middle estimate in km", "Sort by year"],
     reveal: "Only {n} of 12 came within 2 degrees, and every one put Rome too far east: the estimates ran from {lo} to {hi} degrees. The middle one was {med}, about {km} km too far. Latitude can be read from the Sun or a star, but longitude needs the difference in local time between two places, which nobody could then measure well. Where it stops: some estimates may copy others, so these are not 12 independent measurements.",
     checks: (v) => {
@@ -243,7 +247,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("7 wheat per week's wage", r(b.w / b.p / (a.w / a.p), 2) === 2.48, `${r(a.w / a.p, 3)} -> ${r(b.w / b.p, 3)} quarters a week: x${r(b.w / b.p / (a.w / a.p), 2)}`);
       ok("7 best and worst", best.y === 1785 && worst.y === 1595, `best ${best.y} (${r(best.q, 3)}), worst ${worst.y} (${r(worst.q, 3)}); wages stop at ${W.at(-1).y}`);
     },
-    recall: { q: "Your pay doubles while rent triples. Can you afford more rent or less?", options: ["More", "The same", "Less: about two-thirds as much"], answer: 2, pick: () => (2 / 3 < 1 ? 2 : 0) },
+    recall: { q: "Your pay doubles while rent triples. Can you afford more rent or less?", options: ["More: about 1.5 times as much", "The same", "Less: about two-thirds as much"], answer: 2, pick: () => (2 / 3 < 1 ? 2 : 0) },
   }, v);
 }
 
@@ -317,7 +321,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       console.log(Object.entries(maps).map(([k, e]) => `     ${k}: N-S ${r(mean(e, "ns"), 0)} km, E-W ${r(mean(e, "ew"), 0)} km`).join("\n"));
       ok("10 maps where east-west is worse", v.n >= 7, `${v.n} of ${Object.keys(maps).length}`);
     },
-    recall: { q: "A sailor in 1700 knows her latitude exactly but her clock is 20 minutes wrong. Which way is her position uncertain?", options: ["North-south", "East-west, by 5 degrees", "Neither"], answer: 1, pick: () => ((20 / 60) * 15 === 5 ? 1 : 0) },
+    recall: { q: "A sailor in 1700 knows her latitude exactly but her clock is 20 minutes wrong. Which way is her position uncertain?", options: ["North-south", "East-west", "Both equally"], answer: 1, pick: () => ((20 / 60) * 15 === 5 ? 1 : 0) },
   }, v);
 }
 
@@ -337,7 +341,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   brief(11, {
     slug: "disaster-deaths-fell", data: ["vega (disasters.csv)", "gmpop"],
     question: "Natural disasters killed about 870,000 people a year worldwide in the 1920s. About how many a year in 2010 to 2017?",
-    options: ["About 1.5 million", "About 500,000", "About 60,000"], answer: 2, pick: () => nearest(s10.m, [1.5e6, 5e5, 6e4]),
+    options: ["About 60,000", "About 500,000", "About 1.5 million"], answer: 0, pick: () => nearest(s10.m, [6e4, 5e5, 1.5e6]),
     presets: ["1920s", "2010 to 2017", "Per million people", "By type", "Biggest single year"],
     reveal: "In the 1920s disasters killed about {a} people a year; in 2010 to 2017 about {b}, {x} times fewer, while the world's population grew {pop} times. Per person, that is about {pm} times fewer. Most of the 1920s deaths were recorded under drought and epidemics. Where it stops: early records are less complete, and one year can swing a decade: {maxyear} alone recorded {maxdeaths}. This counts deaths, not how many disasters happened.",
     checks: (v) => {
@@ -351,7 +355,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("11 biggest year", maxYear[0] === "1931", `${maxYear[0]}: ${fmt(maxYear[1])}`);
       ok("11 world totals only", !R.some((x) => /China|India|Russia/.test(x.e)), "the file has world totals by type, no country: the lesson names none");
     },
-    recall: { q: "Deaths from a cause fell from 100 to 50 a year while the population doubled. Per person, the risk fell to about what?", options: ["Half", "A quarter", "The same"], answer: 1, pick: () => (50 / 2 / 100 === 0.25 ? 1 : 0) },
+    recall: { q: "Deaths from a cause fell from 100 to 50 a year while the population doubled. Per person, the risk fell to about what?", options: ["A quarter", "Half", "The same"], answer: 0, pick: () => (50 / 2 / 100 === 0.25 ? 0 : 1) },
   }, v);
 }
 
@@ -376,7 +380,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
   brief(12, {
     slug: "khanates-outsize-russia", data: ["basemap1279", "necountries", "neland"],
     question: "Russia, today's largest country, covers about 1 in {ru8} of Earth's land outside Antarctica. How did the Mongol khanates of 1279 compare?",
-    options: ["Smaller than Russia", "About the same", "About 1.4 times as big"], answer: 2, pick: () => (aCore / aRu > 1.2 ? 2 : aCore / aRu > 0.85 ? 1 : 0),
+    options: ["About half of Russia", "About 1.4 times Russia", "About 3 times Russia"], answer: 1, pick: () => nearest(aCore / aRu, [0.5, 1.4, 3]),
     presets: ["The four khanates, 1279", "Add states that paid tribute", "Russia today", "How precise are these borders?"],
     reveal: "On this 1279 map the four Mongol khanates cover about {core} million km², {r} times today's Russia, or {rv} times if you count the states that paid them tribute. Which lands count as the empire is a choice the mapmaker made, and every border on this 1279 map is marked approximate. Where it stops: the map's own makers call it work in progress, so treat these areas as rough.",
     checks: (v) => {
@@ -387,7 +391,7 @@ const nearest = (x, targets) => targets.reduce((bi, t, i) => (Math.abs(Math.log(
       ok("12 precision", mong.every((f) => f.properties.BORDERPRECISION === 1), "every Mongol polygon has BORDERPRECISION 1 (approximate)");
       ok("12 equal-area", true, "areas on the sphere (d3-geo geoArea, R = 6,371 km); the stage must use an equal-area projection (geography:equal-area-vs-conformal)");
     },
-    recall: { q: "Two maps of the same empire differ by a third in area. Both are carefully drawn. What most likely differs?", options: ["One is wrong", "Which lands each counts as part of the empire", "The size of the Earth"], answer: 1, pick: () => 1 },
+    recall: { q: "Two maps of the same empire differ by a third in area. Both are carefully drawn. What most likely differs?", options: ["Which lands each counts as part of the empire", "One is wrong", "The size of the Earth"], answer: 0, pick: () => 0 },
   }, v);
 }
 
