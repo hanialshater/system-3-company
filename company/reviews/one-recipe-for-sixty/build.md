@@ -9,3 +9,7 @@
 
 From the adult-beginner learner review. Prime defined in the question and caption. Reveal quotes the learner's own first splits, not fixed examples. Added 'Try 84 instead' (5 starts, same shelf) to show it is not special to 60. c4 edited, c5, c6 added.
 All new or edited claims are unverified, for the fact-checker.
+
+## Revision v3
+
+Fact-check c5: prime is 'a whole number above 1 that cannot be split into smaller whole factors' in the claim, the predict text and the caption. The '60 or 84' clause appears only if the learner split 84.

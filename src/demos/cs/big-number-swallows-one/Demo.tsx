@@ -37,7 +37,7 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A JavaScript program (JavaScript is a programming language) stores each number in a fixed amount of space. It holds ${big(P)}, which is 2^53 (2 multiplied by itself 53 times), and adds 1. What comes out?`,
+        question: `A JavaScript program (JavaScript is a programming language) stores each number in a fixed amount of space. It holds ${big(P)}, which is 2^53 (53 twos multiplied together), and adds 1. What comes out?`,
         options: [String(BigInt(P) + 1n), big(P + 1), "An error"],
         answer: 1,
       }}
@@ -55,9 +55,9 @@ export default function BigNumberSwallowsOne({ slug }: { slug: string }) {
             </p>
             <p>
               A JavaScript number has room for only 53 binary digits (bits) of detail. Every whole number up to 2^53 ={" "}
-              {big(P)} fits exactly, but just beyond it only every second whole number can be stored: those are the hollow
-              rings. Adding 1 lands halfway between two storable numbers and is rounded to one of them, so it either does
-              nothing or jumps by 2. For exact big whole numbers, programmers use BigInt.
+              {big(P)} fits exactly, but just beyond it only every second whole number can be stored: those are the filled
+              dots; the red dashed marks cannot be. Adding 1 lands halfway between two storable numbers and is rounded to
+              one of them, so the 1 can vanish. For exact big whole numbers, programmers use BigInt.
             </p>
           </>
         );

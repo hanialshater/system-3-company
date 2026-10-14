@@ -1,6 +1,6 @@
 "use client";
 
-// Two fingers on a sorted list, looking for a pair that adds to 19. The list runs across the
+// Two fingers on a sorted list, looking for a pair that adds to 24 (the run takes all 7 sums). The list runs across the
 // top; under it, the 28 possible pairs as a triangle grid (row = left number, column = right
 // number). Each sum that is too small rules out a whole row at once; too big, a whole column.
 // One representation: the list is the grid's top edge.
@@ -12,7 +12,7 @@ import s from "./styles.module.css";
 
 const LIST = [1, 3, 4, 6, 8, 11, 13, 15];
 const N = LIST.length;
-const TARGET = 19;
+const TARGET = 24; // takes all 7 sums on this list: 11 + 13 is found last
 const PAIRS = (N * (N - 1)) / 2;
 
 const X0 = 34;
@@ -41,21 +41,22 @@ export default function TwoPointersMeet({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Sorted list: 1 3 4 6 8 11 13 15. You look for two that add to 19, one finger at each end, moving the left finger right if the sum is too small and the right finger left if too big. At most how many sums could this ever take on 8 numbers?",
+          "Sorted list: 1 3 4 6 8 11 13 15. You look for two that add to 24, one finger at each end, moving the left finger right if the sum is too small and the right finger left if too big. At most how many sums could this ever take on 8 numbers?",
         options: ["28", "7", "3"],
         answer: 1,
       }}
-      exploreHint="Move the fingers by the rule until the sum is 19."
+      exploreHint="Move the fingers by the rule until the sum is 24."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            You found 4 + 15 = 19 in <strong>{checks}</strong> sums. Each sum that was too small ruled out a whole row of
-            the grid at once: {ruledCount} of the 28 pairs, never looked at.
+            You found {LIST[i]} + {LIST[j]} = 24 in <strong>{checks}</strong> sums. Each too-small sum ruled out a whole
+            row of the grid, each too-big sum a whole column: {ruledCount} of the 28 pairs are grey, and{" "}
+            {ruledCount - (checks - 1)} of them were never looked at.
           </p>
           <p>
             Because the list is sorted, 1 + 15 being too small means 1 is too small with every partner. Each sum moves a
-            finger one step inward, so 8 numbers need at most <strong>7</strong> sums, not 28.
+            finger one step inward, so 8 numbers need at most <strong>7</strong> sums, not 28. This search used all 7.
           </p>
           <p className="muted">Sorted order lets one check throw away a whole row of possibilities.</p>
         </>
@@ -100,7 +101,7 @@ export default function TwoPointersMeet({ slug }: { slug: string }) {
         const msg = locked
           ? "Make a prediction to start."
           : found
-            ? `${LIST[i]} + ${LIST[j]} = 19. Found in ${checks} sums.`
+            ? `${LIST[i]} + ${LIST[j]} = 24. Found in ${checks} sums.`
             : st.note || `${LIST[i]} + ${LIST[j]} = ${sum}: ${sum < TARGET ? "too small" : "too big"}.`;
 
         return (

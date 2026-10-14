@@ -109,7 +109,7 @@ export default function CheapestIsNotShortest({ slug }: { slug: string }) {
             };
             const msg = locked
               ? "Make a prediction to start."
-              : note ?? "A label is the cheapest cost from S found so far; ∞ means not reached yet. Settle the smallest unsettled label.";
+              : note ?? "Label: cheapest cost from S found so far (∞ = not reached yet). Settle the town with the smallest label: that label is then final.";
             return (
               <div className={s.wrap}>
                 <Control className={s.reset} disabled={locked || st.settled.length === 0} onClick={reset}>Start again</Control>

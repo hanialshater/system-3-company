@@ -5,3 +5,7 @@
 - Claim c5 (3,465 vs 11,003 on 1,000 cards) re-run over mulberry32 seeds 1-50 in node.
 - Brief answer re-checked in node before building (scratchpad checks/all.mjs); it held.
 - QA: computer-use contract passed locally on phone and desktop (2026-10-14). Claims all unverified; nothing verified by the builder.
+
+## Revision v2
+
+Fact-check c5: 'about 3,300 comparisons against about 11,000' (claim and reveal), with the expectation formulas as the source. Hook no longer states the method.

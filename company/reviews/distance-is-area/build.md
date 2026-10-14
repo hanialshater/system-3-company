@@ -9,3 +9,7 @@
 
 From the adult-beginner learner review. Reveal quotes only strip counts the learner tried (tracked low and high). Caption shows the first strip as speed x time = metres; readout renamed 'Strips add up to'; reveal says speed x time is metres. Float-safe rounding in the caption. c2 edited, c4 added. Not changed: the triangle stays (the reveal makes strips the route).
 All new or edited claims are unverified, for the fact-checker.
+
+## Revision v3
+
+r2: the slider steps through 1, 3, 10, 20 strips (two arrow presses reach 3 then 10); the reveal needs 3 and 10 strips and the triangle; a 'Tried' line shows each count with its total (200, 133.3, 110 m) and the reveal quotes only those. c2 rewritten, unverified.

@@ -110,7 +110,7 @@ export default function BinarySearch({ slug }: { slug: string }) {
               : ""}
             A guess in the middle of what is still possible rules out at least half of it, whichever way the answer
             goes. At worst what is left goes 1,000 → 500 → 250 → 125 → 62 → 31 → 15 → 7 → 3 → 1 (sometimes one fewer:
-            "lower than 500" leaves 499). Nine wrong guesses, so the <strong>tenth</strong> must be right.
+            "lower than 500" leaves 499). Nine wrong guesses, so the <strong>tenth</strong> must be right: never more than 10.
           </p>
           <p>
             Size barely matters. Doubling the range adds one guess: a million numbers need at most 20, a billion at most
@@ -170,8 +170,8 @@ export default function BinarySearch({ slug }: { slug: string }) {
                     ? `${last.guess} was already ruled out. A wasted guess.`
                     : `${last.verdict === "higher" ? "Higher" : "Lower"} than ${last.guess}: ${fmt(
                         last.before - last.after,
-                      )} ruled out, ${fmt(last.after)} left.${
-                        last.after * 2 > last.before + 1 ? " Weak guess: the middle always rules out at least half." : ""
+                      )} numbers ruled out,${fmt(last.after)} left.${
+                        last.after * 2 > last.before ? " Weak guess: the middle always rules out at least half." : ""
                       }`;
 
             const segW = Math.max(3, xOf(hi) - xOf(lo));

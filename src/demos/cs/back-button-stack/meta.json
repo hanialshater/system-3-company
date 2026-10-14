@@ -1,7 +1,7 @@
 {
   "slug": "back-button-stack",
   "title": "Where does Back take you?",
-  "hook": "Back, back, then a new page. Where does Back take you now?",
+  "hook": "Back, then a new page. Where does Back take you now?",
   "domain": "cs",
   "concept": "stack-and-queue",
   "status": "review",
@@ -22,25 +22,21 @@
     ]
   },
   "misconception": "Back always returns to the page you looked at just before, retracing the order you visited them.",
-  "objective": "The learner can explain that browser history behaves like a stack: Back steps down the pile, and visiting a new page after going back throws away the pages above, so after A, B, C, D, Back twice and E, Back lands on B.",
+  "objective": "The learner can explain that browser history behaves like a stack: Back steps down the pile, and visiting a new page after going back throws away the pages above, so after A, B, C, Back once and D, Back lands on B.",
   "claims": [
     {
       "id": "cs.back-button-stack.c1",
-      "text": "After visiting A, B, C, D, pressing Back twice, visiting E and pressing Back once, you are on B.",
+      "text": "After visiting A, B, C, pressing Back once, visiting D and pressing Back once more, you are on B.",
       "support": "simulation",
-      "source": "Pile A, B, C, D (on D) -> Back -> C -> Back -> B -> visit E discards C and D, pile A, B, E -> Back -> B. Builder ran the stack trace in Node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Stack model: Back moves down one entry (A, B, C -> on B); visiting D from B discards everything above B (C), giving A, B, D; Back from D goes to B. Revision v4: the question was shortened from two Backs to one so the stage can reach it with one press per control.",
+      "status": "unverified"
     },
     {
       "id": "cs.back-button-stack.c2",
       "text": "After going back, the later pages stay in the pile, marked ahead, until you visit a new page, which throws them away.",
       "support": "source",
-      "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry. | FACT-CHECK 2026-10-14 (pass 12): Matches observable browser behaviour and the WHATWG session-history model (navigating after traversal clears forward entries); spec page not opened (network blocked). Stage visit() truncates pages above the index and lists them as thrown away; pages above stay tagged 'ahead' after Back.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Unchanged text; stage behaviour in Demo.tsx visit(): pages after the current one are dropped. Revision v4 (START is now A, B, C).",
+      "status": "unverified"
     },
     {
       "id": "cs.back-button-stack.c3",
@@ -55,10 +51,8 @@
       "id": "cs.back-button-stack.c4",
       "text": "The stage models history as one pile and has no Forward button; it marks pages above the current page as ahead and the page just below it as where Back goes.",
       "support": "convention",
-      "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2). | FACT-CHECK 2026-10-14 (pass 12): Demo.tsx: only Back / Visit / Start over controls (no Forward); tags 'ahead' for i > at and 'Back goes here' for i = at - 1 (after prediction).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Unchanged text; Demo.tsx draws 'ahead' for i > at and 'Back goes here' for i = at - 1. Revision v4.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -83,7 +77,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:stack-and-queue",
     "prerequisites": [],

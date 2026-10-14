@@ -14,3 +14,7 @@
 - Hook no longer says 'worse'.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v3
+
+r2: when the move count reaches the best number without the tower on C, the stage says so ('7 moves, but the tower is not on C yet...'). I did not gate 'Add a disk' on solving: the QA presses each control once and cannot solve the puzzle that way.

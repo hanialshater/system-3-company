@@ -18,3 +18,7 @@ Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the f
 - Not changed: round-to-even is no longer told, but the stage still does not walk a +1 from 994; the 'either nothing or jumps by 2' line is shown only if the learner tries it.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v4
+
+Fact-check c2: '53 twos multiplied together' in the claim and the predict text. Reveal: storable numbers are the filled dots, the red dashed marks cannot be stored (the old 'hollow rings' matched nothing); the unshown 'or jumps by 2' is dropped (c4 rewritten, unverified).

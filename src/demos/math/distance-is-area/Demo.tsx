@@ -4,7 +4,7 @@
 // acceleration). Strips (1 to 20) cut time into equal slices; each bar uses the speed at the
 // end of its slice, so the bars' area is a right sum, 100 (n + 1) / n m, which overshoots and
 // closes in on the triangle under the line, 1/2 x T x VMAX = 100 m.
-// Key state: more than two strips seen, then the triangle shown.
+// Key state: 3 and 10 strips seen (slider steps 1, 3, 10, 20), then the triangle shown.
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -15,7 +15,8 @@ import s from "./styles.module.css";
 const T = 10; // s
 const VMAX = 20; // m/s
 const EXACT = 0.5 * T * VMAX;
-const MILESTONES = ["more-strips", "triangle"] as const;
+const MILESTONES = ["three-strips", "ten-strips", "triangle"] as const;
+const COUNTS = [1, 3, 10, 20]; // strip counts on the slider; two arrow presses reach 3 then 10
 
 const W = 320;
 const H = 200;
@@ -32,10 +33,10 @@ const m = (v: number) => `${Math.round(v * 10) / 10} m`;
 export default function DistanceIsArea({ slug }: { slug: string }) {
   const [n, setN] = useState(1);
   const [tri, setTri] = useState(false);
-  const [seen, setSeen] = useState({ lo: 1, hi: 1 }); // fewest and most strips the learner tried
+  const [seen, setSeen] = useState<number[]>([1]); // strip counts the learner has shown (1 is on screen at the start)
   const setStrips = (v: number) => {
     setN(v);
-    setSeen((p) => ({ lo: Math.min(p.lo, v), hi: Math.max(p.hi, v) }));
+    setSeen((p) => (p.includes(v) ? p : [...p, v]));
   };
 
   return (
@@ -46,16 +47,14 @@ export default function DistanceIsArea({ slug }: { slug: string }) {
         options: [`${VMAX * T} m`, `${EXACT} m`, `${VMAX} m`],
         answer: 1,
       }}
-      exploreHint="Cut time into more strips, then show the triangle."
+      exploreHint="Cut time into 3, then 10 strips and watch the total, then show the triangle."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             <strong>{EXACT} m.</strong> Each strip is speed × a short time, which is metres: a small distance. Adding
             strips adds distances.{" "}
-            {seen.hi > seen.lo
-              ? `You saw ${seen.lo} strip${seen.lo === 1 ? "" : "s"} give ${m(rightSum(seen.lo))} and ${seen.hi} give ${m(rightSum(seen.hi))}, each bar poking a little above the line.`
-              : `You saw ${seen.lo} strip${seen.lo === 1 ? "" : "s"} give ${m(rightSum(seen.lo))}.`}
+            {`You saw ${[...seen].sort((a, b) => a - b).map((c) => `${c} strip${c === 1 ? "" : "s"} give ${m(rightSum(c))}`).join(", ")}: always above the line, and falling.`}
           </p>
           <p>
             The thinner the strips, the closer they get to the triangle under the speed line: ½ × {T} s × {VMAX} m/s ={" "}
@@ -65,7 +64,7 @@ export default function DistanceIsArea({ slug }: { slug: string }) {
         </>
       )}
     >
-      {(ctx) => <Stage {...ctx} n={n} setN={setStrips} tri={tri} setTri={setTri} />}
+      {(ctx) => <Stage {...ctx} n={n} setN={setStrips} tri={tri} setTri={setTri} seen={seen} />}
     </Lesson>
   );
 }
@@ -77,14 +76,16 @@ function Stage({
   setN,
   tri,
   setTri,
-}: StageContext & { n: number; setN: (v: number) => void; tri: boolean; setTri: (v: boolean) => void }) {
+  seen,
+}: StageContext & { n: number; setN: (v: number) => void; tri: boolean; setTri: (v: boolean) => void; seen: number[] }) {
   const { reach } = useMilestones(interact, MILESTONES);
   const area = rightSum(n);
   const dt = T / n;
 
   const strips = (v: number) => {
     setN(v);
-    if (v >= 3) reach("more-strips");
+    if (v >= 3) reach("three-strips");
+    if (v >= 10) reach("ten-strips");
   };
   const toggle = () => {
     setTri(!tri);
@@ -142,7 +143,21 @@ function Stage({
               : `${n} strips. The first is ${Math.round(speed(dt) * 100) / 100} m/s × ${Math.round(dt * 100) / 100} s ≈ ${m(speed(dt) * dt)}. Bars poke above the line.`}
       </p>
 
-      <Slider label="Strips" value={n} min={1} max={20} disabled={locked} onChange={strips} />
+      {!locked && (
+        <p className={s.caption}>
+          Tried: {[...seen].sort((a, b) => a - b).map((c) => `${c} → ${m(rightSum(c))}`).join(" · ")}
+        </p>
+      )}
+
+      <Slider
+        label="Strips"
+        value={COUNTS.indexOf(n)}
+        min={0}
+        max={COUNTS.length - 1}
+        disabled={locked}
+        format={(i) => `${COUNTS[i]}`}
+        onChange={(i) => strips(COUNTS[i])}
+      />
       <Row>
         <Control disabled={locked} onClick={toggle} className={tri ? "active" : ""} aria-pressed={tri}>
           {tri ? "Hide the triangle" : "Show the triangle"}

@@ -2,7 +2,8 @@
 
 // The back button as a stack. History is a pile: Back steps down it, and visiting a
 // new page after going back throws away everything above you. The payoff is that
-// discard: after Back, Back, visit E, the old C and D are gone, so Back lands on B.
+// discard: after Back, visit D, the old C is gone, so Back lands on B. One Back is enough, so
+// the question's own sequence is reachable by one tap per control (QA contract).
 // One representation: the history pile.
 
 import { useState } from "react";
@@ -11,7 +12,7 @@ import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-const START = ["A", "B", "C", "D"];
+const START = ["A", "B", "C"];
 const LETTERS = "ABCDEFGHIJKL";
 const MAX = 8;
 
@@ -30,11 +31,11 @@ export default function BackButtonStack({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You visit pages A, B, C, D in that order. You press Back twice, then visit a new page E. You press Back once. Where are you?",
-        options: ["C", "B", "D"],
+        question: "You visit pages A, B, C in that order. You press Back once, then visit a new page D. You press Back once more. Where are you?",
+        options: ["C", "B", "A"],
         answer: 1,
       }}
-      exploreHint="Try the puzzle: Back, Back, visit a new page, then look at where Back goes."
+      exploreHint="Try the puzzle: Back once, visit a new page, then look at where Back goes."
       minInteractions={1}
       reveal={() => (
         <>
@@ -42,14 +43,14 @@ export default function BackButtonStack({ slug }: { slug: string }) {
             History is a pile of pages. Back steps down the pile; pages above you stay, marked ahead, until you visit
             something new. {rec ? (
               <>
-                You visited {rec.page} from {rec.from}, so {rec.dropped.join(" and ")} were thrown away, and Back from
-                {rec.page} goes to <strong>{rec.from}</strong>.
+                You visited {rec.page} from {rec.from}, so {rec.dropped.join(" and ")} {rec.dropped.length === 1 ? "was" : "were"}{" "}
+                thrown away, and Back from {rec.page} goes to <strong>{rec.from}</strong>.
               </>
             ) : null}
           </p>
           <p>
-            The question works the same way. Back twice leaves you on B, visiting E throws away C and D, and the pile
-            is A, B, E. So Back goes to <strong>B</strong>. A pile where the last page added is the first one you get
+            The question works the same way. Back once leaves you on B, visiting D throws away C, and the pile
+            is A, B, D. So Back goes to <strong>B</strong>. A pile where the last page added is the first one you get
             back is called a stack.
           </p>
           <p className="muted">Back means &quot;one step down the pile&quot;, not &quot;the page you saw before this one&quot;.</p>

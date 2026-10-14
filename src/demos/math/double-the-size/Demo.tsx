@@ -17,6 +17,12 @@ const TOPPAD = 16; // room for the width label above the box
 
 export default function DoubleTheSize({ slug }: { slug: string }) {
   const [k, setK] = useState(1);
+  const [seen, setSeen] = useState<number[]>([1]);
+  const setSize = (v: number) => {
+    setK(v);
+    setSeen((a) => (a.includes(v) ? a : [...a, v]));
+  };
+  const todo = [3, 4].filter((v) => !seen.includes(v));
 
   return (
     <Lesson
@@ -35,17 +41,17 @@ export default function DoubleTheSize({ slug }: { slug: string }) {
           </p>
           <p>
             Scale every length by k and the area grows by k × k: three times as wide is 9 times the pizza, four times is
-            16. Slide to 18 and 24 inches to see 9 and 16 boxes.
+            16.{todo.length ? ` Slide to ${todo.map((v) => 6 * v).join(" and ")} inches to see ${todo.map((v) => v * v).join(" and ")} boxes.` : ""}
           </p>
         </>
       )}
     >
-      {(ctx) => <Stage {...ctx} k={k} setK={setK} />}
+      {(ctx) => <Stage {...ctx} k={k} setK={setSize} seen={seen} />}
     </Lesson>
   );
 }
 
-function Stage({ locked, interact, k, setK }: StageContext & { k: number; setK: (v: number) => void }) {
+function Stage({ locked, interact, k, setK, seen }: StageContext & { k: number; setK: (v: number) => void; seen: number[] }) {
   const fired = useRef(false);
   useEffect(() => {
     if (!locked && k === 2 && !fired.current) {
@@ -88,6 +94,12 @@ function Stage({ locked, interact, k, setK }: StageContext & { k: number; setK: 
               ? `${k * k} six-inch pizzas, each leaving the same corners empty, hold as much pizza as one ${6 * k}-inch.`
               : `${k}× as wide and ${k}× as tall: ${k} × ${k} = ${k * k} six-inch boxes.`}
       </p>
+
+      {!locked && (
+        <p className={s.caption}>
+          Seen: {[...seen].sort((a, b) => a - b).map((v) => `${6 * v} in = ${v * v} box${v === 1 ? "" : "es"}`).join(" · ")}
+        </p>
+      )}
 
       <Slider label="Pizza width" value={k} min={1} max={4} disabled={locked} format={(v) => `${6 * v} inches`} onChange={setK} />
       <Row>
