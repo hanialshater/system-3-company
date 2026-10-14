@@ -23,12 +23,10 @@
   "claims": [
     {
       "id": "economics.pay-for-the-harm-you-do.c1",
-      "text": "Without X, Y and Z get $65 of value (Y takes the top slot, 10 x $6 = $60, Z the second, 5 x $1 = $5); with X on top, Y gets 5 x $6 = $30 and Z gets nothing; so X pays the $35 gap, not the $70 its own bid would charge.",
+      "text": "Without X, Y and Z get $65 of value (Y takes the top slot, 10 x $6 = $60, Z the second, 5 x $1 = $5); with X on top, Y gets 5 x $6 = $30 and Z gets nothing; so X pays the $35 gap, not the $70 its own bid would charge. The stage writes both sums: 'Without X: Y $60 + Z $5 = $65 · With X: Y $30 + Z $0 = $30'.",
       "support": "derivation",
-      "source": "Others' best value without X: 60 + 5 = 65; with X in slot 1: 30; payment 65 - 30 = 35. Demo.tsx outcome(7); re-run in node (scratch check, ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own independent VCG script: others' welfare without X 60 + 5 = 65, with X on top 30, X pays 35, keeps 70 - 35 = 35. Reveal computes from outcome(7).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx outcome(7) and sums(): othersWithout = 60 + 5 = 65, othersWith = 30, pay = 35; X's own bid x clicks = 7 x 10 = 70. Builder's Node run, 2026-10-14. v2 adds the sums line under the bars (shown for whatever bid is current; the honest bid is milestone honest).",
+      "status": "unverified"
     },
     {
       "id": "economics.pay-for-the-harm-you-do.c2",
@@ -84,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:vcg-mechanism",
     "also": [

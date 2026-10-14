@@ -8,6 +8,11 @@
 // only the 2 starters above. A cell beside a side of a block sees 3 of 8 adopters, a cell off a corner 1.
 // The stage shows the middle 11 x 11 of the grid (or 12 people of the line) with each waiting
 // person's count of adopting neighbours.
+// v2 (wave E r6): the line half is now a milestone: "Line at 1/2" switches to the line at q = 1/2,
+// the q where the 5x5 grid stalls, and the gate needs that run to finish. A results table records
+// every finished run (5x5, 7x7, line by q) and survives Reset; the reveal quotes it. The block
+// button keeps one label (an active state shows 7x7). The corner-timing sentence, which only Step
+// could show, is gone.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -90,6 +95,15 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
   const [qi, setQi] = useState(3); // 1/2
   const [block, setBlock] = useState(5);
   const [t, setT] = useState(0);
+  // finished runs: key "grid5" | "grid7" | "line" -> q index -> adopted count
+  const [res, setRes] = useState<Record<string, Record<number, number>>>({});
+  const rowKey = (n: Net, b: number) => (n === "line" ? "line" : `grid${b}`);
+  const cell = (k: string, i: number) => res[k]?.[i];
+  const Q38 = QS.findIndex((q) => q.label === "3/8");
+  const QHALF = QS.findIndex((q) => q.label === "1/2");
+  const GRID_TOTAL = (G - 2) * (G - 2);
+  const stuckAbove = QS.map((q, i) => ({ q, i })).filter(({ q, i }) => q.v > 3 / 8 && cell("grid5", i) !== undefined && cell("grid5", i)! < GRID_TOTAL);
+  const big = QS.map((q, i) => ({ q, i })).filter(({ q, i }) => q.v > 3 / 8 && cell("grid7", i) !== undefined && cell("grid7", i)! < GRID_TOTAL);
 
   const S = sim(net, qi, block);
   // a spread that stops is only known to have stopped after one round in which nobody new adopts
@@ -118,25 +132,33 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
       reveal={() => (
         <>
           <p>
-            On the grid, 3/8 took all 1,521 people and anything above it left the block at 25. The numbers beside the block show why:
-            a person facing the middle of a side sees 3 adopters among 8 neighbours, one near a corner 2, one off a corner 1. At
-            3/8, 3 is enough: the sides grow, and then the corners see 3 too.
+            On the grid, 3/8 took all {(cell("grid5", Q38) ?? cell("grid7", Q38) ?? GRID_TOTAL).toLocaleString("en-GB")} people
+            {stuckAbove.length ? `, while ${stuckAbove.map((x) => x.q.label).join(", ")} left the block at ${cell("grid5", stuckAbove[0].i)}` : ""}.
+            The numbers beside the block show why: a person facing the middle of a side sees 3 adopters among 8 neighbours, one near
+            a corner 2, one off a corner 1. At 3/8, 3 is enough.
           </p>
           <p>
-            Above 3/8 a newcomer needs 4 of 8, which nobody beside a block has, so a bigger block stalls too. On the line each
-            newcomer sees 1 of 2, so it spread for any q up to 1/2. That largest q is the network&apos;s cascade capacity: 1/2 for a
-            line, 3/8 for this grid.
+            Above 3/8 a newcomer needs 4 of 8, which nobody beside a block has
+            {big.length ? `, so your 7x7 block stalled too, at ${cell("grid7", big[0].i)}` : ""}. Your line at 1/2
+            {(cell("grid5", QHALF) ?? GRID_TOTAL) < GRID_TOTAL ? ", where the grid stuck," : ""} took all {cell("line", QHALF)}: each
+            newcomer sees 1 of 2. That largest q is the network&apos;s cascade capacity: 1/2
+            for a line, 3/8 for this grid.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["grid-full", "grid-stuck", "line-seen"]}>
+        <Milestones interact={interact} names={["grid-full", "grid-stuck", "line-half"]}>
           {(reach) => {
             const check = (n: Net, q: number, b: number, nt: number) => {
               const R = sim(n, q, b);
               if (nt < endOf(R)) return;
-              if (n === "line") reach("line-seen");
+              const got = R.round.filter((r) => r < Infinity).length;
+              const k = rowKey(n, b);
+              setRes((x) => ({ ...x, [k]: { ...x[k], [q]: got } }));
+              if (n === "line") {
+                if (q === QHALF && fullAt(R)) reach("line-half");
+              }
               else if (QS[q].v === 3 / 8 && fullAt(R)) reach("grid-full");
               else if (QS[q].v > 3 / 8) reach("grid-stuck");
             };
@@ -166,6 +188,13 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
               setNet(n);
               check(n, qi, block, t);
             };
+            const lineAtHalf = () => {
+              if (locked) return;
+              setNet("line");
+              setQi(QHALF);
+              setT(END);
+              check("line", QHALF, block, END);
+            };
             const reset = () => {
               if (locked) return;
               setT(0);
@@ -175,10 +204,10 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
             const note = locked
               ? "A 5x5 block has adopted."
               : all
-              ? `Everyone adopted: ${S.total.toLocaleString("en-GB")}.`
+              ? `q = ${QS[qi].label}: everyone adopted, ${S.total.toLocaleString("en-GB")}.`
               : atEnd
-                ? `Stuck: newcomers see at most ${bestSeen} ${unit}; they need ${need}.`
-                : `Adopt once ${need} ${unit} neighbours have. Round ${shownT}.`;
+                ? `q = ${QS[qi].label}, stuck: newcomers see at most ${bestSeen} ${unit}; they need ${need}.`
+                : `q = ${QS[qi].label}: adopt once ${need} ${unit} neighbours have. Round ${shownT}.`;
 
             return (
               <div className={s.wrap}>
@@ -254,14 +283,23 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
                   ))}
                 </Row>
                 <Row>
-                  <Control className={block === 7 ? "active" : ""} disabled={locked || net !== "grid"} onClick={toggleBlock}>
-                    {block === 5 ? "Bigger block: 7x7" : "Back to 5x5"}
+                  <Control
+                    className={block === 7 ? "active" : ""}
+                    disabled={locked || net !== "grid"}
+                    onClick={toggleBlock}
+                    aria-pressed={block === 7}
+                  >
+                    7x7 block
                   </Control>
                   <Control className={net === "grid" ? "active" : ""} disabled={locked || net === "grid"} onClick={() => chooseNet("grid")}>
                     Grid
                   </Control>
-                  <Control className={net === "line" ? "active" : ""} disabled={locked || net === "line"} onClick={() => chooseNet("line")}>
-                    Line
+                  <Control
+                    className={net === "line" && qi === QHALF ? "active" : ""}
+                    disabled={locked || (net === "line" && qi === QHALF && atEnd)}
+                    onClick={lineAtHalf}
+                  >
+                    Line at 1/2
                   </Control>
                   <Control disabled={locked || t === 0} onClick={reset}>
                     Reset
@@ -271,6 +309,40 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
                   <Readout label="Adopted" value={`${adopted.toLocaleString("en-GB")} / ${S.total.toLocaleString("en-GB")}`} />
                   <Readout label="Round" value={shownT} />
                 </Row>
+                {Object.keys(res).length > 0 && (
+                  <table className={s.res} aria-label="Finished runs: people adopted">
+                    <thead>
+                      <tr>
+                        <th>q</th>
+                        {QS.map((q) => (
+                          <th key={q.label}>{q.label}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ["grid5", "5x5"],
+                        ["grid7", "7x7"],
+                        ["line", "Line"],
+                      ]
+                        .filter(([k]) => res[k])
+                        .map(([k, name]) => (
+                          <tr key={k}>
+                            <th>{name}</th>
+                            {QS.map((q, i) => {
+                              const v = res[k]?.[i];
+                              const full = v !== undefined && v === (k === "line" ? L : GRID_TOTAL);
+                              return (
+                                <td key={q.label} className={v === undefined ? "" : full ? s.full : s.stuck}>
+                                  {v === undefined ? "" : full ? "all" : v}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                )}
               </div>
             );
           }}

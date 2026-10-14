@@ -1,7 +1,7 @@
 {
   "slug": "clear-the-lowest-one",
   "title": "Minus one, then AND",
-  "hook": "Subtract 1 from x, then AND the two. Which bits of x survive?",
+  "hook": "Subtract 1, AND the two, and repeat until x is 0. What does the count of repeats measure?",
   "domain": "cs",
   "concept": "clear-lowest-bit",
   "format": "single-card",
@@ -33,30 +33,24 @@
     },
     {
       "id": "cs.clear-the-lowest-one.c2",
-      "text": "Subtracting 1 turns the lowest 1 bit into 0 and every 0 below it into 1 (10110 - 1 = 10101), so the AND keeps only the bits the two share and clears exactly that one bit.",
+      "text": "Minus 1 is not a last-digit change: 10100 - 1 = 10011, three digits flipped. The lowest 1 becomes 0 and every 0 below it becomes 1, so the AND keeps only the bits the two share and clears that one bit.",
       "support": "derivation",
-      "source": "Write x = w1 0...0 (k trailing zeros). Then x - 1 = w0 1...1: bits above the lowest 1 are unchanged, so x & (x - 1) = w0 0...0. Node: (22 - 1).toString(2) = '10101'. | FACT-CHECK 2026-10-14 (pass 21): verified. Derivation re-checked; (22-1).toString(2) = 10101.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Write x = w1 0...0 (k trailing zeros). Then x - 1 = w0 1...1: bits above the lowest 1 are unchanged, so x & (x - 1) = w0 0...0. Node (v2, 2026-10-14): (20 - 1).toString(2) = '10011'; 10100 and 10011 differ in the last three digits. 10100 is the value the learner's first press produces from 10110 (milestone one-clear).",
+      "status": "unverified"
     },
     {
       "id": "cs.clear-the-lowest-one.c3",
-      "text": "255 (11111111) takes 8 repeats to reach 0.",
+      "text": "11111111 (255) takes 8 repeats to reach 0, one per 1 bit.",
       "support": "simulation",
-      "source": "Builder's Node run, 2026-10-14 (Demo.tsx R255). | FACT-CHECK 2026-10-14 (pass 21): verified. repeatsToZero(255) = 8.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx chainFrom(255) has 9 entries (8 repeats); 255 has eight 1 bits. Reached by 'Run from 11111111' (milestone long-run) and listed in the stage's finished-runs list. Builder's Node run, 2026-10-14.",
+      "status": "unverified"
     },
     {
       "id": "cs.clear-the-lowest-one.c4",
-      "text": "If one repeat gives 0, x was a power of two: 2^30 takes 1 repeat, while shifting right one place at a time needs 31 shifts to reach 0.",
-      "support": "simulation",
-      "source": "Builder's Node run, 2026-10-14: repeatsToZero(2^30) = 1; shifting 2^30 right until 0 takes 31 shifts (bit 30 must pass 30 places, then one more to drop off). Derivation for the test: x > 0 has exactly one 1 bit iff clearing the lowest leaves 0. The repeat-count loop is Kernighan and Ritchie, The C Programming Language (2nd ed.), exercise 2-9 (citation from the brief: check before verifying). | FACT-CHECK 2026-10-14 (pass 21): verified. repeatsToZero(2^30) = 1; 31 right shifts to 0; power-of-two test x & (x-1) = 0 checked for 1..4999. K&R 2e exercise 2-9 cited from memory, not opened; the sentence does not depend on it.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "10000 has one 1 bit and one repeat takes it to 0; x > 0 is a power of two exactly when one repeat of x & (x - 1) gives 0.",
+      "support": "derivation",
+      "source": "x & (x - 1) clears only the lowest 1 bit (c2), so the result is 0 iff x had exactly one 1 bit, i.e. x is a power of two. Demo.tsx chainFrom(16) = [16, 0]; the stage labels such runs '(power of two)'. Builder checked x & (x - 1) === 0 against Number.isInteger(Math.log2(x)) for x = 1..4999 in Node, 2026-10-14. The v1 sentence about 2^30 and right shifts is dropped.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -76,7 +70,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:clear-lowest-bit",
     "also": [],

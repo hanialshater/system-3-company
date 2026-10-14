@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "economics.two-bets-split.c1",
-      "text": "On the stage now, two bets: you lose only if both fall: ½ × ½ = 25% (split equally across two independent bets that each pay +20% or −10% with equal chance, the loss is −10%).",
+      "text": "With two independent bets you lose only if both fall: ½ × ½ = 25% (split equally across two independent bets that each pay +20% or −10% with equal chance, the loss is −10%).",
       "support": "derivation",
-      "source": "Four equally likely cases: both up +20%, one each (2 cases) (20 − 10)/2 = +5%, both down −10%. P(loss) = 1/4. | REVISED v4 2026-10-14 (demo-builder, wave D r5): At the reveal the stage now pins the 2-bet chart (chip: 'Showing 2 bets, as the answer explains'), so the 25% and +5% the reveal explains are on screen even if the learner's slider passed 2 quickly (r5: 1 → 3 unlocked the reveal without the 2-bet state in view). Numbers unchanged. | FC pass 22 (fact-checker, 2026-10-14): node outcomes(2): -10% 0.25, +5% 0.5, +20% 0.25; loss = 25%, the loss value is -10%. Reveal pins n = 2 (pinned = phase === 'reveal'), chip text matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "outcomes(2): returns −10%, +5%, +20% with chances 1/4, 1/2, 1/4; only −10% is a loss. Builder's Node run, 2026-10-14. v5: the stage no longer pins itself to 2 bets; the 25% is in the 'Chance of a loss seen' row (milestone two-bets).",
+      "status": "unverified"
     },
     {
       "id": "economics.two-bets-split.c2",
@@ -61,30 +59,24 @@
     },
     {
       "id": "economics.two-bets-split.c5",
-      "text": "The chance of some loss does not fall at every step: with 4 bets it is 31.3%, more than the 25% with 2.",
+      "text": "The chance of some loss does not fall at every step: with 4 bets it was 31.3%, more than the 25% with 2. (Shown in the reveal only if the learner visited 4 bets.)",
       "support": "derivation",
-      "source": "Loss iff the return (20k − 10(n − k))/n < 0, i.e. k < n/3. n = 1: 50%; 2: 25%; 3: 12.5% (k = 1 gives exactly 0%, not a loss); 4: (1 + 4)/16 = 31.25%; 5: 6/32 = 18.75%; 6: 7/64 = 10.9%.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "outcomes(4): returns −10, −2.5, +5, +12.5, +20 with chances 1, 4, 6, 4, 1 /16; losses −10 and −2.5 give 5/16 = 31.25%, which pct() renders 31.3%. Builder's Node run, 2026-10-14.",
+      "status": "unverified"
     },
     {
       "id": "economics.two-bets-split.c6",
-      "text": "The lesson is a model: truly independent bets with made-up numbers; real investments often fall together, and it is not advice.",
+      "text": "A model with made-up numbers. Real investments often fall together. Not advice.",
       "support": "source",
-      "source": "Diversification reduces risk only to the extent assets are not perfectly correlated; market-wide (systematic) risk cannot be diversified away (Mankiw, Principles of Economics, ch. 27). Shown on the stage chip and in the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Disclosure. The numbers (+20% / −10%, equal chance) are invented. That real assets' returns are often positively correlated is general context; the lesson's own evidence for what correlation does is the 'together' state on stage (c9), not an external source.",
+      "status": "unverified"
     },
     {
       "id": "economics.two-bets-split.c7",
-      "text": "As you split across more bets, the chance of some loss does not fall at every step, but the worst case, every bet falling, gets rarer at every step.",
+      "text": "Independent bets partly cancel: as you split further the bars bunch around +5%, and the worst case, every bet falling, gets rarer.",
       "support": "derivation",
-      "source": "Reveal paragraph 3. Exact check (bets.mjs): average loss when there is a loss is -10.0% for 1, 2 and 3 bets (the only losing outcome is the worst case), then -4.0%, -5.0%, -5.7% for 4, 5, 6 bets. So the second half is true from 4 bets on, but not at 2 or 3 bets, where every loss is the full -10%. The sentence is also silent on 'small compared with what'. Consider 'and the big loss gets rarer' or restricting to 4+ bets. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: node: exact loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6; the average loss when there is a loss is -10% for n=1,2,3 and only -4.0, -5.0, -5.7% for n=4,5,6. So 'the losses left are small ones' is false at 2-3 bets (the loss is the full -10%) and 'small' is unanchored. Fix: restrict to 4+ bets or say 'and the big loss gets rarer: 50%, 25%, 12.5%'. | CLAIM FIX 2026-10-13: Was '... but the losses left are small ones' (disputed: at 2-3 bets the loss is the full -10%; 'small' unanchored). Worst-case chance is 0.5^n, true at every step. | FACT-CHECK 2026-10-13 (pass 4): Re-derived in node: loss chance 50, 25, 12.5, 31.25, 18.75, 10.94% for n=1..6 (not monotone); worst case 0.5^n halves each step. Matches reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Binomial: the spread of the average return shrinks like 1/sqrt(n); the worst case has chance 1/2^n (c4). Builder's Node run, 2026-10-14, for n = 1..6.",
+      "status": "unverified"
     },
     {
       "id": "economics.two-bets-split.c8",
@@ -94,6 +86,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.two-bets-split.c9",
+      "text": "When the bets move together, any split loses 50% of the time, the same as one bet; splitting only cancels risk when the bets do not fall together.",
+      "support": "derivation",
+      "source": "Perfectly correlated bets all return the same, so an equal split returns +20% or −10% with chance 1/2 each, whatever n (Demo.tsx outcomes(n, 'together')). This is the extreme case (correlation 1); for partly correlated bets the cancelling is partial. Builder's derivation, 2026-10-14.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -119,7 +118,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "economics:diversification",
     "prerequisites": [

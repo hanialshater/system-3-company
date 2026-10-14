@@ -42,21 +42,17 @@
     },
     {
       "id": "math.the-grid-takes-up-to-three-eighths.c3",
-      "text": "Above 3/8 a newcomer needs 4 of 8 adopting neighbours, which nobody beside a square block has, so a bigger block stalls too.",
+      "text": "Above 3/8 a newcomer needs 4 of 8 adopting neighbours, which nobody beside a square block has, so a 7x7 block stalls too, at 49.",
       "support": "derivation",
-      "source": "For q in (3/8, 1/2] the rule needs ceil(8q) = 4; outside a square block every cell touches at most 3 block cells. Node run 2026-10-14: a 7x7 block stays at 49 for q = 2/5, 1/2, 3/5 and takes all 1,521 at 1/4 and 3/8. Stated for square blocks; the general claim is c5. | FACT-CHECK 2026-10-14 (pass 22): Own node: 7x7 stays at 49 at 2/5, 1/2, 3/5, takes all at 1/4 and 3/8. Any cell outside a rectangle touches at most 3 of its cells.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Derivation: beside a square block a non-adopter sees at most 3 adopters (the 3 cells of the side it faces), so with need 4 nobody joins and the block stays at b x b. Builder's Node run of Demo.tsx simulate() (2026-10-14): 7x7 stays at 49 at 2/5, 1/2 and 3/5. v2 quotes the 7x7 count from the learner's results table, and only if a 7x7 run above 3/8 was finished.",
+      "status": "unverified"
     },
     {
       "id": "math.the-grid-takes-up-to-three-eighths.c4",
-      "text": "On a line two neighbouring adopters take everyone when q is at most 1/2 and no one else when q is above 1/2, since each newcomer sees 1 of 2 neighbours.",
+      "text": "On a line the two middle adopters take all 201 at q = 1/2, the q where the 5x5 grid stuck, because each newcomer sees 1 of 2 neighbours; above 1/2 no one else joins.",
       "support": "derivation",
-      "source": "Builder's node run on a 201-person path, middle two adopting, 2026-10-14: all 201 at q = 1/4, 3/8, 2/5, 1/2 (100 rounds); only the 2 at q = 3/5. Brief's own check: 0.4 and 0.5 all, 0.51 and 0.6 only 2. | FACT-CHECK 2026-10-14 (pass 22): Own node on 201-person path: all 201 at 1/4, 3/8, 2/5, 1/2 (100 rounds); only 2 at 0.51 and 3/5.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Derivation: a waiting person next to the adopted run has 1 of 2 neighbours adopting, which meets q <= 1/2 and fails q > 1/2. Builder's Node run of simulate() on the 201-person line (2026-10-14): 201 at q = 1/4, 3/8, 2/5, 1/2; 2 at q = 3/5. v2: 'Line at 1/2' runs exactly this case (milestone line-half) and the results table keeps it.",
+      "status": "unverified"
     },
     {
       "id": "math.the-grid-takes-up-to-three-eighths.c5",
@@ -85,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:cascade-capacity",
     "also": [],
