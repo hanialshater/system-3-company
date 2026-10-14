@@ -9,7 +9,14 @@
     ],
     "answer": 2,
     "why": "In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
-    "where": "src/demos/lifehacks/towel-spread-dries-first/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.towel-spread-dries-first.c5 text and source to match; optionally sync the unrendered recall string for towel-spread-dries-first in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/towel-spread-dries-first/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.towel-spread-dries-first.c5",
+    "claim": {
+      "id": "lifehacks.towel-spread-dries-first.recall",
+      "text": "In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "wobbly-table-quarter-turn",
@@ -21,7 +28,14 @@
     ],
     "answer": 1,
     "why": "Contact means the four feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it.",
-    "where": "src/demos/lifehacks/wobbly-table-quarter-turn/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.wobbly-table-quarter-turn.c5 text and source to match; optionally sync the unrendered recall string for wobbly-table-quarter-turn in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/wobbly-table-quarter-turn/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.wobbly-table-quarter-turn.c5",
+    "claim": {
+      "id": "lifehacks.wobbly-table-quarter-turn.recall",
+      "text": "Contact means the four feet touch the ground. It does not mean the tabletop is level. Equal legs and suitably gentle continuous ground belong to the stated model; unequal legs fall outside it.",
+      "support": "source",
+      "source": "Baritompa, Löwen, Polster & Ross, Mathematical table turning revisited, full text opened 2026-10-14 at https://arxiv.org/pdf/math/0511490. Square equal-leg table, continuous ground and slope/leg length conditions; proof of sign change and balanced position. Our cosine gap is an illustration, not a solution of the full contact geometry. Scenario values in the recall question are stipulated.",
+      "status": "unverified"
+    }
   },
   {
     "slug": "square-bow-stays-tied",
@@ -33,7 +47,14 @@
     ],
     "answer": 2,
     "why": "A bow lying along the shoe is the sign of matching stages. Making the second stage right-over-left opposes the first and gives the balanced bow that tends to sit across the shoe. It can still fail; the drawing is not a tying tutorial.",
-    "where": "src/demos/lifehacks/square-bow-stays-tied/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.square-bow-stays-tied.c5 text and source to match; optionally sync the unrendered recall string for square-bow-stays-tied in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/square-bow-stays-tied/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.square-bow-stays-tied.c5",
+    "claim": {
+      "id": "lifehacks.square-bow-stays-tied.recall",
+      "text": "A bow lying along the shoe is the sign of matching stages. Making the second stage right-over-left opposes the first and gives the balanced bow that tends to sit across the shoe. It can still fail; the drawing is not a tying tutorial.",
+      "support": "source",
+      "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data. Scenario values in the recall question are stipulated.",
+      "status": "unverified"
+    }
   },
   {
     "slug": "long-cord-knots-itself",
@@ -45,7 +66,14 @@
     ],
     "answer": 1,
     "why": "55% is the frequency observed in a 30 cm box turning once a second for 10 seconds. A drawer is a different box, string and motion, so that number does not transfer to it as a probability.",
-    "where": "src/demos/lifehacks/long-cord-knots-itself/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.long-cord-knots-itself.c5 text and source to match; optionally sync the unrendered recall string for long-cord-knots-itself in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/long-cord-knots-itself/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.long-cord-knots-itself.c5",
+    "claim": {
+      "id": "lifehacks.long-cord-knots-itself.recall",
+      "text": "55% is the frequency observed in a 30 cm box turning once a second for 10 seconds. A drawer is a different box, string and motion, so that number does not transfer to it as a probability.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. Scenario values in the recall question are stipulated.",
+      "status": "unverified"
+    }
   },
   {
     "slug": "door-swing-clearance",
@@ -57,7 +85,14 @@
     ],
     "answer": 0,
     "why": "The door sweeps a quarter-circle whose radius is the door's width. In the model, anything closer to the hinge than 85 cm is inside that arc. Real handles and basket shapes need extra room, and exits must stay clear.",
-    "where": "src/demos/lifehacks/door-swing-clearance/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.door-swing-clearance.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for door-swing-clearance in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/door-swing-clearance/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.door-swing-clearance.recall",
+      "text": "The door sweeps a quarter-circle whose radius is the door's width. In the model, anything closer to the hinge than 85 cm is inside that arc. Real handles and basket shapes need extra room, and exits must stay clear.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "furniture-through-door",
@@ -69,7 +104,14 @@
     ],
     "answer": 0,
     "why": "Fit depends on the width that meets the opening, not on volume. 90 cm fails a 75 cm doorway; turning the box so a 70 cm or 50 cm side meets it leaves clearance. Corners and height need their own checks.",
-    "where": "src/demos/lifehacks/furniture-through-door/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.furniture-through-door.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for furniture-through-door in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/furniture-through-door/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.furniture-through-door.recall",
+      "text": "Fit depends on the width that meets the opening, not on volume. 90 cm fails a 75 cm doorway; turning the box so a 70 cm or 50 cm side meets it leaves clearance. Corners and height need their own checks.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "sofa-diagonal-room",
@@ -81,7 +123,14 @@
     ],
     "answer": 2,
     "why": "The diagonal is √(60² + 80²) = 100 cm, longer than either edge, so a thin 95 cm rod fits along it. Area does not answer a length question, and a thick object is a different problem.",
-    "where": "src/demos/lifehacks/sofa-diagonal-room/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.sofa-diagonal-room.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for sofa-diagonal-room in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/sofa-diagonal-room/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.sofa-diagonal-room.recall",
+      "text": "The diagonal is √(60² + 80²) = 100 cm, longer than either edge, so a thin 95 cm rod fits along it. Area does not answer a length question, and a thick object is a different problem.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "box-handle-clearance",
@@ -93,7 +142,14 @@
     ],
     "answer": 2,
     "why": "The outer envelope includes both handles: 38 + 2 × 4 = 46 cm. The body width alone hides an 8 cm collision.",
-    "where": "src/demos/lifehacks/box-handle-clearance/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.box-handle-clearance.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for box-handle-clearance in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/box-handle-clearance/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.box-handle-clearance.recall",
+      "text": "The outer envelope includes both handles: 38 + 2 × 4 = 46 cm. The body width alone hides an 8 cm collision.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "drawer-divider-cost",
@@ -105,7 +161,14 @@
     ],
     "answer": 0,
     "why": "Five compartments need four dividers: (50 − 4 × 1) ÷ 5 = 9.2 cm. 10 cm forgets that the walls take up width.",
-    "where": "src/demos/lifehacks/drawer-divider-cost/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.drawer-divider-cost.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for drawer-divider-cost in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/drawer-divider-cost/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.drawer-divider-cost.recall",
+      "text": "Five compartments need four dividers: (50 − 4 × 1) ÷ 5 = 9.2 cm. 10 cm forgets that the walls take up width.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "suitcase-rotate-block",
@@ -117,7 +180,14 @@
     ],
     "answer": 2,
     "why": "Turned, 3 blocks fit across 30 cm (10 cm each) and 2 rows fit along 40 cm (20 cm each): 3 × 2 = 6. Rotation changed which leftover strips are usable. Real clothes are not rigid blocks.",
-    "where": "src/demos/lifehacks/suitcase-rotate-block/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.suitcase-rotate-block.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for suitcase-rotate-block in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/suitcase-rotate-block/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.suitcase-rotate-block.recall",
+      "text": "Turned, 3 blocks fit across 30 cm (10 cm each) and 2 rows fit along 40 cm (20 cm each): 3 × 2 = 6. Rotation changed which leftover strips are usable. Real clothes are not rigid blocks.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "shoes-opposite-ends",
@@ -129,7 +199,14 @@
     ],
     "answer": 0,
     "why": "Reversing one shoe puts a wide toe beside a narrow heel: 11 + 5 = 16 cm, against 11 + 11 = 22 cm with toes together. Neither shoe shrank; the widest section did.",
-    "where": "src/demos/lifehacks/shoes-opposite-ends/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.shoes-opposite-ends.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for shoes-opposite-ends in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/shoes-opposite-ends/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.shoes-opposite-ends.recall",
+      "text": "Reversing one shoe puts a wide toe beside a narrow heel: 11 + 5 = 16 cm, against 11 + 11 = 22 cm with toes together. Neither shoe shrank; the widest section did.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "socks-use-shoe-space",
@@ -141,7 +218,14 @@
     ],
     "answer": 0,
     "why": "In the ideal hollow model, socks that fit within the existing hollow add max(0, 300 − 500) = 0 cm³ outside. Packed beside the shoe they add all 300 cm³. Use clean, dry items and do not force the shoe.",
-    "where": "src/demos/lifehacks/socks-use-shoe-space/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.socks-use-shoe-space.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for socks-use-shoe-space in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/socks-use-shoe-space/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.socks-use-shoe-space.recall",
+      "text": "In the ideal hollow model, socks that fit within the existing hollow add max(0, 300 − 500) = 0 cm³ outside. Packed beside the shoe they add all 300 cm³. Use clean, dry items and do not force the shoe.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "packing-cube-walls",
@@ -153,7 +237,14 @@
     ],
     "answer": 0,
     "why": "Subtract a wall from both sides in each direction: 28 × 18 × 8 = 4032 cm³. 6000 cm³ counts the walls as storage. Seams and curved corners reduce real space further.",
-    "where": "src/demos/lifehacks/packing-cube-walls/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.packing-cube-walls.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for packing-cube-walls in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/packing-cube-walls/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.packing-cube-walls.recall",
+      "text": "Subtract a wall from both sides in each direction: 28 × 18 × 8 = 4032 cm³. 6000 cm³ counts the walls as storage. Seams and curved corners reduce real space further.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "rolled-or-folded-volume",
@@ -165,7 +256,14 @@
     ],
     "answer": 2,
     "why": "Changing shape does not remove material: the cloth's volume is the same rolled or folded. Real differences come from air gaps, compression and how the shapes share the bag.",
-    "where": "src/demos/lifehacks/rolled-or-folded-volume/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.rolled-or-folded-volume.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for rolled-or-folded-volume in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/rolled-or-folded-volume/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.rolled-or-folded-volume.recall",
+      "text": "Changing shape does not remove material: the cloth's volume is the same rolled or folded. Real differences come from air gaps, compression and how the shapes share the bag.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "folded-shirt-stack-height",
@@ -177,7 +275,14 @@
     ],
     "answer": 2,
     "why": "Halving the footprint doubles the layers, which doubles the height: 5 × 0.4 × 4 = 8 cm. The material volume is unchanged; it moved upward. Real fabric compresses and traps air.",
-    "where": "src/demos/lifehacks/folded-shirt-stack-height/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.folded-shirt-stack-height.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for folded-shirt-stack-height in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/folded-shirt-stack-height/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.folded-shirt-stack-height.recall",
+      "text": "Halving the footprint doubles the layers, which doubles the height: 5 × 0.4 × 4 = 8 cm. The material volume is unchanged; it moved upward. Real fabric compresses and traps air.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "file-fold-see-each-shirt",
@@ -189,7 +294,14 @@
     ],
     "answer": 0,
     "why": "A flat stack shows only the top shirt; a standing row shows every edge. The gain is in choosing a shirt, not in saving volume.",
-    "where": "src/demos/lifehacks/file-fold-see-each-shirt/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.file-fold-see-each-shirt.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for file-fold-see-each-shirt in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/file-fold-see-each-shirt/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.file-fold-see-each-shirt.recall",
+      "text": "A flat stack shows only the top shirt; a standing row shows every edge. The gain is in choosing a shirt, not in saving volume.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "suitcase-layer-access",
@@ -201,7 +313,14 @@
     ],
     "answer": 0,
     "why": "With top access, a bottom item has N − 1 = 7 layers above it; on top, it has 0. The bag fits the same either way; access does not. Pockets and side openings change the count.",
-    "where": "src/demos/lifehacks/suitcase-layer-access/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.suitcase-layer-access.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for suitcase-layer-access in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/suitcase-layer-access/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.suitcase-layer-access.recall",
+      "text": "With top access, a bottom item has N − 1 = 7 layers above it; on top, it has 0. The bag fits the same either way; access does not. Pockets and side openings change the count.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "jacket-last-first",
@@ -213,7 +332,14 @@
     ],
     "answer": 0,
     "why": "A top-access stack is last in, first out. Packing in reverse use order puts the jacket in last, so it is on top when you need it first.",
-    "where": "src/demos/lifehacks/jacket-last-first/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.jacket-last-first.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for jacket-last-first in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/jacket-last-first/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.jacket-last-first.recall",
+      "text": "A top-access stack is last in, first out. Packing in reverse use order puts the jacket in last, so it is on top when you need it first.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "heavy-book-close-to-back",
@@ -225,7 +351,14 @@
     ],
     "answer": 2,
     "why": "Moment = mass × g × distance. Same mass, distance from 25 cm to 5 cm, so the moment is one fifth as large. This simple model says nothing about comfort or injury.",
-    "where": "src/demos/lifehacks/heavy-book-close-to-back/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.heavy-book-close-to-back.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for heavy-book-close-to-back in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/heavy-book-close-to-back/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.heavy-book-close-to-back.recall",
+      "text": "Moment = mass × g × distance. Same mass, distance from 25 cm to 5 cm, so the moment is one fifth as large. This simple model says nothing about comfort or injury.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "tote-balance-sides",
@@ -237,7 +370,14 @@
     ],
     "answer": 0,
     "why": "The centre is a mass-weighted average of positions. With 3 kg on each side at equal distances it sits under the handle, and the total is still 6 kg. Centred is not the same as strong enough.",
-    "where": "src/demos/lifehacks/tote-balance-sides/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.tote-balance-sides.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for tote-balance-sides in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/tote-balance-sides/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.tote-balance-sides.recall",
+      "text": "The centre is a mass-weighted average of positions. With 3 kg on each side at equal distances it sits under the handle, and the total is still 6 kg. Centred is not the same as strong enough.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "bag-weight-before-volume",
@@ -249,7 +389,14 @@
     ],
     "answer": 2,
     "why": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule.",
-    "where": "src/demos/lifehacks/bag-weight-before-volume/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.bag-weight-before-volume.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for bag-weight-before-volume in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/bag-weight-before-volume/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.bag-weight-before-volume.recall",
+      "text": "Weight is the sum of the masses: 2 + 6 = 8 kg, 1 kg over. Unused space subtracts nothing. The 7 kg limit is an example, not a carrier's rule.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "towel-over-two-bars",
@@ -261,7 +408,14 @@
     ],
     "answer": 0,
     "why": "Faces pressed together are hidden from the air. Separating them restores those faces: the exposed fraction goes from 0.5 to 1, a doubling. This is area bookkeeping, not a drying time.",
-    "where": "src/demos/lifehacks/towel-over-two-bars/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.towel-over-two-bars.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for towel-over-two-bars in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/towel-over-two-bars/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.towel-over-two-bars.recall",
+      "text": "Faces pressed together are hidden from the air. Separating them restores those faces: the exposed fraction goes from 0.5 to 1, a doubling. This is area bookkeeping, not a drying time.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "laundry-gap-air-path",
@@ -273,7 +427,14 @@
     ],
     "answer": 1,
     "why": "Five garments use 5 × 8 = 40 cm, leaving 12 cm for 4 gaps: 3 cm each. Add more garments and the gaps close to zero, and the open air paths go with them. The diagram does not compute airflow.",
-    "where": "src/demos/lifehacks/laundry-gap-air-path/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.laundry-gap-air-path.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for laundry-gap-air-path in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/laundry-gap-air-path/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.laundry-gap-air-path.recall",
+      "text": "Five garments use 5 × 8 = 40 cm, leaving 12 cm for 4 gaps: 3 cm each. Add more garments and the gaps close to zero, and the open air paths go with them. The diagram does not compute airflow.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "garment-overlap-hides-face",
@@ -285,7 +446,14 @@
     ],
     "answer": 0,
     "why": "Both touching faces are hidden from the air: 2 × 20 × 60 = 2400 cm². The amount of cloth is unchanged; its exposed area is not.",
-    "where": "src/demos/lifehacks/garment-overlap-hides-face/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.garment-overlap-hides-face.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for garment-overlap-hides-face in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/garment-overlap-hides-face/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.garment-overlap-hides-face.recall",
+      "text": "Both touching faces are hidden from the air: 2 × 20 × 60 = 2400 cm². The amount of cloth is unchanged; its exposed area is not.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "drying-room-water-load",
@@ -297,7 +465,14 @@
     ],
     "answer": 0,
     "why": "Water leaving laundry enters the surroundings: 6 × 300 g = 1800 g. This is a mass balance; it does not predict the room's humidity or any health outcome.",
-    "where": "src/demos/lifehacks/drying-room-water-load/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.drying-room-water-load.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for drying-room-water-load in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/drying-room-water-load/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.drying-room-water-load.recall",
+      "text": "Water leaving laundry enters the surroundings: 6 × 300 g = 1800 g. This is a mass balance; it does not predict the room's humidity or any health outcome.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "humidity-evaporation-gap",
@@ -309,7 +484,14 @@
     ],
     "answer": 2,
     "why": "Normalised gap = 1 − RH/100: 0.6 at 40% and 0.2 at 80%, three times larger. A smaller gap means less drive for evaporation. This is not a drying clock.",
-    "where": "src/demos/lifehacks/humidity-evaporation-gap/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.humidity-evaporation-gap.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for humidity-evaporation-gap in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/humidity-evaporation-gap/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.humidity-evaporation-gap.recall",
+      "text": "Normalised gap = 1 − RH/100: 0.6 at 40% and 0.2 at 80%, three times larger. A smaller gap means less drive for evaporation. This is not a drying clock.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. Scenario values in the recall question are stipulated.",
+      "status": "unverified"
+    }
   },
   {
     "slug": "breeze-is-not-extra-surface",
@@ -321,7 +503,14 @@
     ],
     "answer": 1,
     "why": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement.",
-    "where": "src/demos/lifehacks/breeze-is-not-extra-surface/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.breeze-is-not-extra-surface.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for breeze-is-not-extra-surface in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/breeze-is-not-extra-surface/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.breeze-is-not-extra-surface.recall",
+      "text": "Rate = exposed area × flux. The fan changes flux, not area, so the rate doubles while the area stays 1.5 m². A face folded shut stays hidden however the air moves. The doubling is illustrative, not a fan measurement.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "wetter-cloth-more-water",
@@ -333,7 +522,14 @@
     ],
     "answer": 2,
     "why": "Steps = water ÷ rate. Same rate, twice the water: 500 ÷ 100 = 5 steps. Wringing out water and spreading the cloth act on different parts of that equation. Real rates change over time.",
-    "where": "src/demos/lifehacks/wetter-cloth-more-water/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.wetter-cloth-more-water.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for wetter-cloth-more-water in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/wetter-cloth-more-water/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.wetter-cloth-more-water.recall",
+      "text": "Steps = water ÷ rate. Same rate, twice the water: 500 ÷ 100 = 5 steps. Wringing out water and spreading the cloth act on different parts of that equation. Real rates change over time.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "half-size-two-towels",
@@ -345,7 +541,14 @@
     ],
     "answer": 0,
     "why": "Each half has half the face area, so together they match the original: 2 × 0.8 × 1.2 = 1.92 m² either way. Cutting adds edges; only opening a folded sheet reveals hidden faces.",
-    "where": "src/demos/lifehacks/half-size-two-towels/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.half-size-two-towels.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for half-size-two-towels in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/half-size-two-towels/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.half-size-two-towels.recall",
+      "text": "Each half has half the face area, so together they match the original: 2 × 0.8 × 1.2 = 1.92 m² either way. Cutting adds edges; only opening a folded sheet reveals hidden faces.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "wet-knit-hang-stretch",
@@ -357,7 +560,14 @@
     ],
     "answer": 0,
     "why": "Equal sharing divides the load: 900 ÷ 2 = 450 g, and 900 ÷ 6 = 150 g. The model does not predict stretch; if the label says dry flat, follow the label.",
-    "where": "src/demos/lifehacks/wet-knit-hang-stretch/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.wet-knit-hang-stretch.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for wet-knit-hang-stretch in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/wet-knit-hang-stretch/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.wet-knit-hang-stretch.recall",
+      "text": "Equal sharing divides the load: 900 ÷ 2 = 450 g, and 900 ÷ 6 = 150 g. The model does not predict stretch; if the label says dry flat, follow the label.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "towel-thickness-hidden-volume",
@@ -369,7 +579,14 @@
     ],
     "answer": 2,
     "why": "The two large faces stay 50 × 100 cm each while the volume doubles with thickness, so the ratio halves. The ratio alone does not set a drying time.",
-    "where": "src/demos/lifehacks/towel-thickness-hidden-volume/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.towel-thickness-hidden-volume.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for towel-thickness-hidden-volume in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/towel-thickness-hidden-volume/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.towel-thickness-hidden-volume.recall",
+      "text": "The two large faces stay 50 × 100 cm each while the volume doubles with thickness, so the ratio halves. The ratio alone does not set a drying time.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "fitted-sheet-corners-nest",
@@ -381,7 +598,14 @@
     ],
     "answer": 1,
     "why": "Nesting shares the hollow: 8 + 3 × 2 = 14 cm. Kept separate, each pocket needs its own 8 cm: 4 × 8 = 32 cm. No material was removed. Real elastic and seams change the numbers.",
-    "where": "src/demos/lifehacks/fitted-sheet-corners-nest/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.fitted-sheet-corners-nest.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for fitted-sheet-corners-nest in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/fitted-sheet-corners-nest/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.fitted-sheet-corners-nest.recall",
+      "text": "Nesting shares the hollow: 8 + 3 × 2 = 14 cm. Kept separate, each pocket needs its own 8 cm: 4 × 8 = 32 cm. No material was removed. Real elastic and seams change the numbers.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "pillowcase-set-kit",
@@ -393,7 +617,14 @@
     ],
     "answer": 2,
     "why": "Scattered, you visit each of the 3 places; kept as one set, you visit 1. This counts places, not seconds, and grouping by set helps only when the pieces are used together.",
-    "where": "src/demos/lifehacks/pillowcase-set-kit/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.pillowcase-set-kit.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for pillowcase-set-kit in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/pillowcase-set-kit/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.pillowcase-set-kit.recall",
+      "text": "Scattered, you visit each of the 3 places; kept as one set, you visit 1. This counts places, not seconds, and grouping by set helps only when the pieces are used together.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "sock-pairing-by-pattern",
@@ -405,7 +636,14 @@
     ],
     "answer": 1,
     "why": "In a mixed pile every other sock is a candidate: 10 − 1 = 9. In its pattern bin of 5, only 4 remain. The model counts candidates, not seconds, and assumes both socks are there.",
-    "where": "src/demos/lifehacks/sock-pairing-by-pattern/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.sock-pairing-by-pattern.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for sock-pairing-by-pattern in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/sock-pairing-by-pattern/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.sock-pairing-by-pattern.recall",
+      "text": "In a mixed pile every other sock is a candidate: 10 − 1 = 9. In its pattern bin of 5, only 4 remain. The model counts candidates, not seconds, and assumes both socks are there.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "sock-pairs-not-all-combinations",
@@ -417,7 +655,14 @@
     ],
     "answer": 2,
     "why": "Without marks every unordered pair is a candidate: 8 × 7 ÷ 2 = 28. Unique marks leave one match per pair: 4. The candidate count grows much faster than the sock count.",
-    "where": "src/demos/lifehacks/sock-pairs-not-all-combinations/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.sock-pairs-not-all-combinations.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for sock-pairs-not-all-combinations in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/sock-pairs-not-all-combinations/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.sock-pairs-not-all-combinations.recall",
+      "text": "Without marks every unordered pair is a candidate: 8 × 7 ÷ 2 = 28. Unique marks leave one match per pair: 4. The candidate count grows much faster than the sock count.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "laundry-sort-before-walk",
@@ -429,7 +674,14 @@
     ],
     "answer": 1,
     "why": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
-    "where": "src/demos/lifehacks/laundry-sort-before-walk/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.laundry-sort-before-walk.c5 text and source to match; optionally sync the unrendered recall string for laundry-sort-before-walk in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/laundry-sort-before-walk/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.laundry-sort-before-walk.c5",
+    "claim": {
+      "id": "lifehacks.laundry-sort-before-walk.recall",
+      "text": "Each round trip is 3 + 3 = 6 m. One item per trip requires six trips: 6 × 6 = 36 m. Three per trip requires two trips: 2 × 6 = 12 m. The carrying capacity is stipulated, not measured.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "small-items-in-mesh",
@@ -441,7 +693,14 @@
     ],
     "answer": 2,
     "why": "The model keeps items together only inside a closed bag whose openings are smaller than the items. Sitting near each other adds no boundary, and an open zip breaks the closure.",
-    "where": "src/demos/lifehacks/small-items-in-mesh/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.small-items-in-mesh.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for small-items-in-mesh in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/small-items-in-mesh/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.small-items-in-mesh.recall",
+      "text": "The model keeps items together only inside a closed bag whose openings are smaller than the items. Sitting near each other adds no boundary, and an open zip breaks the closure.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "care-label-first-choice",
@@ -453,7 +712,14 @@
     ],
     "answer": 1,
     "why": "The label's instruction comes first; a convenient layout does not override it. Choose a compatible method, then optimise the space around it.",
-    "where": "src/demos/lifehacks/care-label-first-choice/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.care-label-first-choice.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for care-label-first-choice in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/care-label-first-choice/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.care-label-first-choice.recall",
+      "text": "The label's instruction comes first; a convenient layout does not override it. Choose a compatible method, then optimise the space around it.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "shelf-front-labels",
@@ -465,7 +731,14 @@
     ],
     "answer": 0,
     "why": "Opaque boxes hide their rear faces from the front view, so 0 labels are visible. Turned to the front, all 6 are. Where the label sits is part of the address.",
-    "where": "src/demos/lifehacks/shelf-front-labels/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.shelf-front-labels.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for shelf-front-labels in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/shelf-front-labels/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.shelf-front-labels.recall",
+      "text": "Opaque boxes hide their rear faces from the front view, so 0 labels are visible. Turned to the front, all 6 are. Where the label sits is part of the address.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "transparent-box-visibility",
@@ -477,7 +750,14 @@
     ],
     "answer": 1,
     "why": "Transparency changes what you can observe, not where things are. Crowding, translucent plastic or poor light can still hide an item, so an address label still helps.",
-    "where": "src/demos/lifehacks/transparent-box-visibility/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.transparent-box-visibility.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for transparent-box-visibility in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/transparent-box-visibility/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.transparent-box-visibility.recall",
+      "text": "Transparency changes what you can observe, not where things are. Crowding, translucent plastic or poor light can still hide an item, so an address label still helps.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "group-cables-with-ends",
@@ -489,7 +769,14 @@
     ],
     "answer": 1,
     "why": "Bundling the middle keeps the strands together but leaves the ends free, and free ends weaving through loops are the tangle path. Securing the ends removes that path in the drawing.",
-    "where": "src/demos/lifehacks/group-cables-with-ends/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.group-cables-with-ends.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for group-cables-with-ends in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/group-cables-with-ends/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.group-cables-with-ends.recall",
+      "text": "Bundling the middle keeps the strands together but leaves the ends free, and free ends weaving through loops are the tangle path. Securing the ends removes that path in the drawing.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "elastic-loop-release",
@@ -501,7 +788,14 @@
     ],
     "answer": 1,
     "why": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting.",
-    "where": "src/demos/lifehacks/elastic-loop-release/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.elastic-loop-release.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for elastic-loop-release in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/elastic-loop-release/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.elastic-loop-release.recall",
+      "text": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "coiled-cord-bend-radius",
@@ -513,7 +807,14 @@
     ],
     "answer": 0,
     "why": "Curvature = 1 ÷ radius. Half the radius gives twice the curvature, a sharper bend, and each turn uses less cord. The card gives no product-specific bend limit.",
-    "where": "src/demos/lifehacks/coiled-cord-bend-radius/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.coiled-cord-bend-radius.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for coiled-cord-bend-radius in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/coiled-cord-bend-radius/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.coiled-cord-bend-radius.recall",
+      "text": "Curvature = 1 ÷ radius. Half the radius gives twice the curvature, a sharper bend, and each turn uses less cord. The card gives no product-specific bend limit.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "mug-handle-packing",
@@ -525,7 +826,14 @@
     ],
     "answer": 2,
     "why": "Each cup needs its full envelope, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles.",
-    "where": "src/demos/lifehacks/mug-handle-packing/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.mug-handle-packing.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for mug-handle-packing in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/mug-handle-packing/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.mug-handle-packing.recall",
+      "text": "Each cup needs its full envelope, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "circle-tray-square-corners",
@@ -537,7 +845,14 @@
     ],
     "answer": 1,
     "why": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can.",
-    "where": "src/demos/lifehacks/circle-tray-square-corners/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.circle-tray-square-corners.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for circle-tray-square-corners in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/circle-tray-square-corners/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.circle-tray-square-corners.recall",
+      "text": "A circle looks the same after any rotation, so rotating or flipping discs cannot change the count. Changing the arrangement, such as staggered rows, is a different experiment that can.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "round-box-leftover-gap",
@@ -549,7 +864,14 @@
     ],
     "answer": 1,
     "why": "The square is 900 cm²; the circle is π × 15² ≈ 707 cm². About 193 cm², roughly 21%, sits in the corners. Touching the sides is not filling the space.",
-    "where": "src/demos/lifehacks/round-box-leftover-gap/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.round-box-leftover-gap.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for round-box-leftover-gap in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/round-box-leftover-gap/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.round-box-leftover-gap.recall",
+      "text": "The square is 900 cm²; the circle is π × 15² ≈ 707 cm². About 193 cm², roughly 21%, sits in the corners. Touching the sides is not filling the space.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "rectangular-bin-nesting",
@@ -561,7 +883,14 @@
     ],
     "answer": 2,
     "why": "Tapered walls let the hollows share height: 10 + 4 × 1 = 14 cm. Stacked separately: 5 × 10 = 50 cm. Straight-sided solid boxes would not nest like this.",
-    "where": "src/demos/lifehacks/rectangular-bin-nesting/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.rectangular-bin-nesting.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for rectangular-bin-nesting in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/rectangular-bin-nesting/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.rectangular-bin-nesting.recall",
+      "text": "Tapered walls let the hollows share height: 10 + 4 × 1 = 14 cm. Stacked separately: 5 × 10 = 50 cm. Straight-sided solid boxes would not nest like this.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "flat-pack-volume-dimensions",
@@ -573,7 +902,14 @@
     ],
     "answer": 1,
     "why": "Assembled, the envelope includes the empty hollow: about 40 × 40 × 40 = 64,000 cm³. Stacked, the panels take 40 × 40 × 6 = 9,600 cm³. The material is the same; the hollow is gone. Only dismantle furniture its instructions allow.",
-    "where": "src/demos/lifehacks/flat-pack-volume-dimensions/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.flat-pack-volume-dimensions.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for flat-pack-volume-dimensions in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/flat-pack-volume-dimensions/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.flat-pack-volume-dimensions.recall",
+      "text": "Assembled, the envelope includes the empty hollow: about 40 × 40 × 40 = 64,000 cm³. Stacked, the panels take 40 × 40 × 6 = 9,600 cm³. The material is the same; the hollow is gone. Only dismantle furniture its instructions allow.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "rug-chair-pullback",
@@ -585,7 +921,14 @@
     ],
     "answer": 2,
     "why": "Add the pullback on both sides: 90 + 2 × 60 = 210 cm. A rug sized to the table leaves the chairs dropping off its edge. The 60 cm is an example, not an ergonomic rule.",
-    "where": "src/demos/lifehacks/rug-chair-pullback/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.rug-chair-pullback.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for rug-chair-pullback in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/rug-chair-pullback/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.rug-chair-pullback.recall",
+      "text": "Add the pullback on both sides: 90 + 2 × 60 = 210 cm. A rug sized to the table leaves the chairs dropping off its edge. The 60 cm is an example, not an ergonomic rule.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "shelf-gap-wasted-height",
@@ -597,7 +940,14 @@
     ],
     "answer": 0,
     "why": "The box and hand need 20 + 3 = 23 cm, so 40 − 23 = 17 cm is unused. Lowering the shelf further would take away the hand allowance. Shelf strength and mounting are outside this card.",
-    "where": "src/demos/lifehacks/shelf-gap-wasted-height/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.shelf-gap-wasted-height.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for shelf-gap-wasted-height in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/shelf-gap-wasted-height/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.shelf-gap-wasted-height.recall",
+      "text": "The box and hand need 20 + 3 = 23 cm, so 40 − 23 = 17 cm is unused. Lowering the shelf further would take away the hand allowance. Shelf strength and mounting are outside this card.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "trays-slide-out-reach",
@@ -609,7 +959,14 @@
     ],
     "answer": 2,
     "why": "Sliding brings the rear item forward by the tray's travel: 60 − 40 = 20 cm. The cupboard holds the same amount; only the reach changed.",
-    "where": "src/demos/lifehacks/trays-slide-out-reach/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.trays-slide-out-reach.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for trays-slide-out-reach in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/trays-slide-out-reach/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.trays-slide-out-reach.recall",
+      "text": "Sliding brings the rear item forward by the tray's travel: 60 − 40 = 20 cm. The cupboard holds the same amount; only the reach changed.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "desk-supply-near-use",
@@ -621,7 +978,14 @@
     ],
     "answer": 1,
     "why": "Each fetch is a 10 m round trip: 8 × 10 = 80 m. A copy at the desk removes that route; the cost is one more item to store.",
-    "where": "src/demos/lifehacks/desk-supply-near-use/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.desk-supply-near-use.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for desk-supply-near-use in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/desk-supply-near-use/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.desk-supply-near-use.recall",
+      "text": "Each fetch is a 10 m round trip: 8 × 10 = 80 m. A copy at the desk removes that route; the cost is one more item to store.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "keys-fixed-drop-zone",
@@ -633,7 +997,14 @@
     ],
     "answer": 2,
     "why": "An address cuts the worst case from 6 checks to 1 only if the keys go back to it. Leave them elsewhere once and the search can be all 6 places again.",
-    "where": "src/demos/lifehacks/keys-fixed-drop-zone/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.keys-fixed-drop-zone.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for keys-fixed-drop-zone in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/keys-fixed-drop-zone/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.keys-fixed-drop-zone.recall",
+      "text": "An address cuts the worst case from 6 checks to 1 only if the keys go back to it. Leave them elsewhere once and the search can be all 6 places again.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "duplicates-two-stations",
@@ -645,7 +1016,14 @@
     ],
     "answer": 0,
     "why": "Duplicates trade travel for storage: the 30 m route goes, and you store 2 tools instead of 1. The lesson does not claim duplicates always win.",
-    "where": "src/demos/lifehacks/duplicates-two-stations/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.duplicates-two-stations.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for duplicates-two-stations in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/duplicates-two-stations/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.duplicates-two-stations.recall",
+      "text": "Duplicates trade travel for storage: the 30 m route goes, and you store 2 tools instead of 1. The lesson does not claim duplicates always win.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "labels-specific-address",
@@ -657,19 +1035,33 @@
     ],
     "answer": 2,
     "why": "A category still covers 5 boxes; a unique box address names 1 location. Category and location labels answer different questions, and both need the item put back.",
-    "where": "src/demos/lifehacks/labels-specific-address/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.labels-specific-address.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for labels-specific-address in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/labels-specific-address/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.labels-specific-address.recall",
+      "text": "A category still covers 5 boxes; a unique box address names 1 location. Category and location labels answer different questions, and both need the item put back.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "alphabet-sort-search",
     "question": "A box has shuffled A–J labels. Before a middle comparison can rule out earlier labels, what must you do?",
     "options": [
       "Choose the middle of the shuffled box",
-      "Put the labels in alphabetical order",
+      "Put labels in alphabetical order",
       "Remove every second label"
     ],
     "answer": 1,
     "why": "Only sorted order makes every earlier label smaller than the middle label. Shuffled position supplies no such guarantee.",
-    "where": "src/demos/lifehacks/alphabet-sort-search/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.alphabet-sort-search.c7 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for alphabet-sort-search in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/alphabet-sort-search/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.alphabet-sort-search.recall",
+      "text": "Only sorted order makes every earlier label smaller than the middle label. Shuffled position supplies no such guarantee.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "seasonal-bin-rotation",
@@ -681,7 +1073,14 @@
     ],
     "answer": 0,
     "why": "At the back, each of the 4 uses moves 4 blockers: 16. At the front, only the once-a-season request pays the 4: total 4. Count access cost across uses, not one retrieval. The frequencies are examples.",
-    "where": "src/demos/lifehacks/seasonal-bin-rotation/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.seasonal-bin-rotation.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for seasonal-bin-rotation in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/seasonal-bin-rotation/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.seasonal-bin-rotation.recall",
+      "text": "At the back, each of the 4 uses moves 4 blockers: 16. At the front, only the once-a-season request pays the 4: total 4. Count access cost across uses, not one retrieval. The frequencies are examples.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "lids-match-by-size",
@@ -693,7 +1092,14 @@
     ],
     "answer": 1,
     "why": "The fit test compares diameters; colour adds no geometric constraint. Real lids also need the right rim and seal, so equal diameter is needed but not enough.",
-    "where": "src/demos/lifehacks/lids-match-by-size/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.lids-match-by-size.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for lids-match-by-size in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/lids-match-by-size/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.lids-match-by-size.recall",
+      "text": "The fit test compares diameters; colour adds no geometric constraint. Real lids also need the right rim and seal, so equal diameter is needed but not enough.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "nested-box-retrieval",
@@ -705,7 +1111,14 @@
     ],
     "answer": 1,
     "why": "Nesting saves envelope space but puts N − 1 = 4 containers in the way of the inner target. Separate boxes take more room and give immediate access.",
-    "where": "src/demos/lifehacks/nested-box-retrieval/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.nested-box-retrieval.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for nested-box-retrieval in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/nested-box-retrieval/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.nested-box-retrieval.recall",
+      "text": "Nesting saves envelope space but puts N − 1 = 4 containers in the way of the inner target. Separate boxes take more room and give immediate access.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "spacer-protects-clearance",
@@ -717,7 +1130,14 @@
     ],
     "answer": 2,
     "why": "Compare the smallest possible opening with the largest possible object: 39 − 39 = 0 cm. The nominal 2 cm margin can disappear entirely. The 1 cm bounds are an example.",
-    "where": "src/demos/lifehacks/spacer-protects-clearance/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.spacer-protects-clearance.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for spacer-protects-clearance in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/spacer-protects-clearance/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.spacer-protects-clearance.recall",
+      "text": "Compare the smallest possible opening with the largest possible object: 39 − 39 = 0 cm. The nominal 2 cm margin can disappear entirely. The 1 cm bounds are an example.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "wrapping-paper-minimum-area",
@@ -729,7 +1149,14 @@
     ],
     "answer": 0,
     "why": "A box has three pairs of faces: 2 × (30 × 20 + 30 × 10 + 20 × 10) = 2,200 cm². That is a lower bound; real wrapping needs overlap and folds.",
-    "where": "src/demos/lifehacks/wrapping-paper-minimum-area/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.wrapping-paper-minimum-area.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for wrapping-paper-minimum-area in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/wrapping-paper-minimum-area/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.wrapping-paper-minimum-area.recall",
+      "text": "A box has three pairs of faces: 2 × (30 × 20 + 30 × 10 + 20 × 10) = 2,200 cm². That is a lower bound; real wrapping needs overlap and folds.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "ribbon-around-box-length",
@@ -741,7 +1168,14 @@
     ],
     "answer": 1,
     "why": "Each loop goes around one horizontal side and the height: 2 × (30 + 10) + 2 × (20 + 10) = 140 cm, so the height counts four times. Add the 25 cm bow: 165 cm.",
-    "where": "src/demos/lifehacks/ribbon-around-box-length/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.ribbon-around-box-length.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for ribbon-around-box-length in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/ribbon-around-box-length/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.ribbon-around-box-length.recall",
+      "text": "Each loop goes around one horizontal side and the height: 2 × (30 + 10) + 2 × (20 + 10) = 140 cm, so the height counts four times. Add the 25 cm bow: 165 cm.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "tape-mark-same-spacing",
@@ -753,7 +1187,14 @@
     ],
     "answer": 1,
     "why": "Stepping from the last mark adds the bias every time: 6 × 0.3 = 1.8 cm. Reading each position from one origin keeps a single 0.3 cm error. The bias is hypothetical.",
-    "where": "src/demos/lifehacks/tape-mark-same-spacing/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.tape-mark-same-spacing.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for tape-mark-same-spacing in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/tape-mark-same-spacing/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.tape-mark-same-spacing.recall",
+      "text": "Stepping from the last mark adds the bias every time: 6 × 0.3 = 1.8 cm. Reading each position from one origin keeps a single 0.3 cm error. The bias is hypothetical.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "measure-diagonal-for-square",
@@ -765,7 +1206,14 @@
     ],
     "answer": 1,
     "why": "Equal opposite sides make a parallelogram, which can still skew. Its diagonals are equal only when the corners are 90°; these differ, so the frame is out of square.",
-    "where": "src/demos/lifehacks/measure-diagonal-for-square/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.measure-diagonal-for-square.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for measure-diagonal-for-square in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/measure-diagonal-for-square/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.measure-diagonal-for-square.recall",
+      "text": "Equal opposite sides make a parallelogram, which can still skew. Its diagonals are equal only when the corners are 90°; these differ, so the frame is out of square.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "ruler-start-not-zero",
@@ -777,7 +1225,14 @@
     ],
     "answer": 2,
     "why": "Length is the endpoint minus the starting mark: 19 − 4 = 15 cm. Reading 19 cm alone includes the unused four centimetres before the object.",
-    "where": "src/demos/lifehacks/ruler-start-not-zero/meta.json: replace .recall (question, options, answer, why); rewrite claim lifehacks.ruler-start-not-zero.c5 text and source to match; optionally sync the unrendered recall string for ruler-start-not-zero in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/ruler-start-not-zero/meta.json -> recall (replace question, options, answer, why); add `claim` to claims; delete old recall claim lifehacks.ruler-start-not-zero.c5",
+    "claim": {
+      "id": "lifehacks.ruler-start-not-zero.recall",
+      "text": "Length is the endpoint minus the starting mark: 19 − 4 = 15 cm. Reading 19 cm alone includes the unused four centimetres before the object.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "measure-inside-not-outside",
@@ -789,7 +1244,14 @@
     ],
     "answer": 1,
     "why": "The insert must fit the clear inside width: 50 − 2 × 1.5 = 47 cm. A 48 cm insert is 1 cm too wide, though the outside measurement looked roomy. Corners and tapers may narrow it further.",
-    "where": "src/demos/lifehacks/measure-inside-not-outside/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.measure-inside-not-outside.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for measure-inside-not-outside in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/measure-inside-not-outside/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.measure-inside-not-outside.recall",
+      "text": "The insert must fit the clear inside width: 50 − 2 × 1.5 = 47 cm. A 48 cm insert is 1 cm too wide, though the outside measurement looked roomy. Corners and tapers may narrow it further.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "cm-to-inches",
@@ -801,7 +1263,14 @@
     ],
     "answer": 0,
     "why": "An inch is exactly 2.54 cm, so 127 ÷ 2.54 = 50 in. The 2.5 shortcut gives 50.8 in, and its error grows with length. The measurement itself still has its own uncertainty.",
-    "where": "src/demos/lifehacks/cm-to-inches/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.cm-to-inches.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for cm-to-inches in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/cm-to-inches/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.cm-to-inches.recall",
+      "text": "An inch is exactly 2.54 cm, so 127 ÷ 2.54 = 50 in. The 2.5 shortcut gives 50.8 in, and its error grows with length. The measurement itself still has its own uncertainty.",
+      "support": "source",
+      "source": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm. Scenario values in the recall question are stipulated.",
+      "status": "unverified"
+    }
   },
   {
     "slug": "margin-before-cut",
@@ -813,7 +1282,14 @@
     ],
     "answer": 2,
     "why": "Each side fold uses material: 25 + 2 × 1.5 = 28 cm. Cutting at 25 cm leaves nothing to fold.",
-    "where": "src/demos/lifehacks/margin-before-cut/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.margin-before-cut.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for margin-before-cut in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/margin-before-cut/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.margin-before-cut.recall",
+      "text": "Each side fold uses material: 25 + 2 × 1.5 = 28 cm. Cutting at 25 cm leaves nothing to fold.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "resize-photo-frame-ratio",
@@ -825,7 +1301,14 @@
     ],
     "answer": 0,
     "why": "Uniform scaling keeps the 4:3 ratio, so the width limits it: 30 × 22.5 cm, leaving 7.5 cm of margin. 30 × 30 cm would stretch it; 40 × 30 cm overflows the frame.",
-    "where": "src/demos/lifehacks/resize-photo-frame-ratio/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.resize-photo-frame-ratio.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for resize-photo-frame-ratio in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/resize-photo-frame-ratio/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.resize-photo-frame-ratio.recall",
+      "text": "Uniform scaling keeps the 4:3 ratio, so the width limits it: 30 × 22.5 cm, leaving 7.5 cm of margin. 30 × 30 cm would stretch it; 40 × 30 cm overflows the frame.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   },
   {
     "slug": "weight-spread-on-table",
@@ -837,6 +1320,13 @@
     ],
     "answer": 1,
     "why": "Pressure = force ÷ area. Three times the area gives a third of the average pressure, but the table still carries all 6 kg. This is not a safe-load rating.",
-    "where": "src/demos/lifehacks/weight-spread-on-table/meta.json: replace .recall (question, options, answer, why); add claim lifehacks.weight-spread-on-table.c6 (support: derivation, status: unverified) carrying the question, correct option and why; optionally sync the unrendered recall string for weight-spread-on-table in src/lib/lifehacks/home-lessons.ts"
+    "where": "src/demos/lifehacks/weight-spread-on-table/meta.json -> recall (replace question, options, answer, why); add `claim` to claims",
+    "claim": {
+      "id": "lifehacks.weight-spread-on-table.recall",
+      "text": "Pressure = force ÷ area. Three times the area gives a third of the average pressure, but the table still carries all 6 kg. This is not a safe-load rating.",
+      "support": "derivation",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims).",
+      "status": "unverified"
+    }
   }
 ]
