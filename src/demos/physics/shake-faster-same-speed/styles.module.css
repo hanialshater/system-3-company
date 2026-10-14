@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 38dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.row) > :global(.control) { flex: 1 1 0; min-width: 0; white-space: nowrap; padding-left: 6px; padding-right: 6px; }
+.label { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.post { fill: color-mix(in srgb, var(--fg) 35%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.rope { fill: none; stroke: var(--fg); stroke-width: 2.4; stroke-linejoin: round; }
+.ropeTight { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-linejoin: round; }
+.hand { fill: color-mix(in srgb, #e7a77c 70%, var(--bg-2)); stroke: var(--fg); stroke-width: 1; }
+.crest { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.ruler line { stroke: var(--domain); stroke-width: 1.6; }
+.rulerLabel { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.chip { fill: var(--muted); font-size: 10.5px; }
+.seen { fill: var(--fg); font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums; }

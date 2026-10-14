@@ -44,21 +44,17 @@
     },
     {
       "id": "cs.proposers-get-the-best.c3",
-      "text": "Both matchings are stable: of the 6 other student-hospital pairs in each, 0 say yes both ways to a swap (the stage counts them).",
+      "text": "Both matchings are stable: of the 6 other student-hospital pairs in each, 0 say yes both ways to a swap (the stage counts them: 'Stable: 0 of 6 other pairs say yes both ways.').",
       "support": "simulation",
-      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks. · v4: builder Python checked all 6 matchings of the new example: only Ann-X/Bea-Y/Cal-Z and Ann-Y/Bea-Z/Cal-X have no blocking pair; each has 5 other pairs with one yes and 0 with two. Stage swapCount() computes it live. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own swapCount() port on both matchings: 6 other pairs each, 5 with one yes, 0 with two. Brute force over all 6 matchings: only these two have 0 double-yes pairs (others 1, 1, 2, 3). Check line prints 'Swap? 0 of 6 other pairs say yes both ways: stable.'; checked-both needs both runs checked and is one of 3 required milestones, so the reveal's '0 and 0' and 'both matchings are stable' are always the recorded values.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks. · v4: builder Python checked all 6 matchings of the new example: only Ann-X/Bea-Y/Cal-Z and Ann-Y/Bea-Z/Cal-X have no blocking pair; each has 5 other pairs with one yes and 0 with two. Stage swapCount() computes it live. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own swapCount() port on both matchings: 6 other pairs each, 5 with one yes, 0 with two. Brute force over all 6 matchings: only these two have 0 double-yes pairs (others 1, 1, 2, 3). Check line prints 'Swap? 0 of 6 other pairs say yes both ways: stable.'; checked-both needs both runs checked and is one of 3 required milestones, so the reveal's '0 and 0' and 'both matchings are stable' are always the recorded values. · v5 (2026-10-14, demo-builder, learner r8 fit): stage check line reworded from 'Swap? 0 of 6 other pairs say yes both ways: stable.' to 'Stable: 0 of 6 other pairs say yes both ways.' (fits one line at 390 px); reveal sentence now 'Your swap check found 0 and 0 pairs wanting each other both ways, so both are stable'. swapCount() unchanged. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c4",
-      "text": "Deferred acceptance always ends stable and gives the proposing side its best stable partner.",
+      "text": "Deferred acceptance always ends stable.",
       "support": "source",
-      "source": "Gale and Shapley 1962, College admissions and the stability of marriage, Amer. Math. Monthly 69(1), theorems 1 and 2 (proposer-optimality).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Gale and Shapley 1962, College admissions and the stability of marriage, Amer. Math. Monthly 69(1), theorems 1 and 2 (proposer-optimality). · v5 (2026-10-14, demo-builder, learner r8 fit): reveal sentence cut to 'deferred acceptance always ends stable (Gale and Shapley 1962)'; 'gives the proposing side its best stable partner' dropped (learner r8 finding 5: told, not shown; and the word budget). Same source, theorem 1. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c5",
@@ -69,12 +65,10 @@
     },
     {
       "id": "cs.proposers-get-the-best.c6",
-      "text": "Each run has a clash: two offers reach one receiver, it keeps the one it ranks higher, and the other moves down its list (students proposing: Ann and Bea both offer to X, which keeps Ann; hospitals proposing: Y and Z both offer to Ann, who keeps Y).",
+      "text": "Each run has a clash: two offers reach one receiver, and it keeps the one it ranks higher (students proposing: Ann and Bea both offer to X, which keeps Ann; hospitals proposing: Y and Z both offer to Ann, who keeps Y). The refused offer is drawn as a dashed line with a ✕ for the current run.",
       "support": "simulation",
-      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text. · v4: builder Python traced all 6 press orders per run: the clash at X (students) and at Ann (hospitals) happens in every order, as a refusal or as a bump. Now shown to the learner (reveal paragraph 1; dashed ✕ lines on the stage). | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Every press path records exactly one refusal per run: students [Bea, X] (X keeps Ann, by refusal or by bumping Bea), hospitals [Z, Ann] (Ann keeps Y). No path has X and another hospital reach the same student, so the named clashes are the only ones. Reveal sentence is unconditional and true for every reachable run; dashed lines show only the current run (the toggle clears them), which the claim does not contradict.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text. · v4: builder Python traced all 6 press orders per run: the clash at X (students) and at Ann (hospitals) happens in every order, as a refusal or as a bump. Now shown to the learner (reveal paragraph 1; dashed ✕ lines on the stage). | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Every press path records exactly one refusal per run: students [Bea, X] (X keeps Ann, by refusal or by bumping Bea), hospitals [Z, Ann] (Ann keeps Y). No path has X and another hospital reach the same student, so the named clashes are the only ones. Reveal sentence is unconditional and true for every reachable run; dashed lines show only the current run (the toggle clears them), which the claim does not contradict. · v5 (2026-10-14, demo-builder, learner r8 fit): reveal sentence now 'Each run had a clash (dashed ✕): the receiver kept its higher-ranked offer.' ('the other moved down its list' cut). At the reveal the offer strip is 44 units tall instead of 80 (the ✕ sits at mid-height, 16 px); geometry only, refusal logic unchanged. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c7",
@@ -109,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "cs:stable-matching",
     "also": [],

@@ -1,9 +1,9 @@
 {
   "slug": "shake-faster-same-speed",
-  "title": "TODO title (≤ 40 chars)",
-  "hook": "TODO one-line hook (≤ 90 chars)",
+  "title": "Shake the rope twice as often",
+  "hook": "Shake a rope's end harder and faster. Does that change how quickly the waves travel?",
   "domain": "physics",
-  "concept": "TODO concept id from content/curriculum/<domain>.json",
+  "concept": "wave-speed-medium",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -12,32 +12,63 @@
   },
   "learner": {
     "knows": [
-      "TODO"
+      "waves travel along a rope or a slinky",
+      "shaking harder makes bigger waves"
     ],
     "doesNotKnow": [
-      "TODO"
+      "that wave speed on a rope is set by its tension and mass per length (v = sqrt(T/mu))",
+      "that shaking faster only shortens the wavelength (lambda = v / f)"
     ]
   },
-  "misconception": "TODO the wrong idea this lesson is designed to break",
-  "objective": "TODO what the learner can explain afterwards",
+  "misconception": "Shaking the rope faster makes the waves travel faster.",
+  "objective": "The learner can explain that the rope, not the hand, sets the wave speed: shaking twice as often halves the distance between crests but each crest still takes the same time to cross, while a tighter rope makes it faster.",
   "claims": [
     {
       "id": "physics.shake-faster-same-speed.c1",
-      "text": "TODO every factual statement the lesson makes",
+      "text": "The speed of a wave on a stretched rope is v = sqrt(T/mu), whatever the shaking rate; here 0.4 N on 0.1 kg/m gives 2 m/s, so a crest takes 2.0 s to cross the 4 m rope at 1/2, 1 and 2 shakes a second (stage: 'crest trip 2.0 s', '1/s: 2.0 s', '2/s: 2.0 s'; reveal: 'your crest took the same 2.0 s to cross the 4 m rope: 2 m/s both times').",
       "support": "derivation",
-      "source": "TODO",
+      "source": "Wave equation from Newton's second law on a string element (ideal flexible string, small amplitude): any introductory waves text, e.g. Halliday, Resnick and Walker, Fundamentals of Physics, chapter on waves (fact-checker picks the edition). sqrt(0.4/0.1) = 2 m/s; 4 / 2 = 2.0 s. artifacts/scratch/cm-physics-r3/check.mjs. Demo.tsx times the trip from when the tinted crest leaves the hand (a quarter shake after the hand starts) to when it reaches the far end.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.shake-faster-same-speed.c2",
+      "text": "Shaking faster only packs the crests closer: wavelength = speed / frequency, 2 m apart at 1 shake a second and 1 m apart at 2 (4 m at 1/2) for 2 m/s (stage ruler: '2 m apart', '1 m apart'; reveal: 'Wavelength equals speed divided by frequency').",
+      "support": "derivation",
+      "source": "lambda = v / f: 2/1 = 2 m, 2/2 = 1 m, 2/0.5 = 4 m. check.mjs. The ruler spans the first two crests at the moment the first reaches the far end.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.shake-faster-same-speed.c3",
+      "text": "Four times the tension doubles the speed: sqrt(1.6/0.1) = 4 m/s, so the crest crosses the 4 m rope in 1.0 s, twice as fast (stage: 'tight: 1.0 s'; reveal: 'when you made the rope four times tighter, the crest arrived in 1.0 s, twice as fast').",
+      "support": "derivation",
+      "source": "v = sqrt(T/mu) with T = 1.6 N: 4 m/s; 4 / 4 = 1.0 s. check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.shake-faster-same-speed.c4",
+      "text": "Speed is set by the rope, not your hand.",
+      "support": "derivation",
+      "source": "Follows from c1: v depends only on the rope's tension and mass per length, not on the source's frequency (non-dispersive ideal string).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.shake-faster-same-speed.c5",
+      "text": "Model: an ideal rope with no damping and no dispersion; rope length, mass per length and tensions are illustrative.",
+      "support": "convention",
+      "source": "Brief claim 4. Stated in Demo.tsx; the stage shows only '4 m rope'. Real ropes have some damping and stiffness, which do not change the speed's independence from the shaking rate at these scales.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "TODO asked days later without the stage",
+    "question": "A guitarist plucks one string to play a higher note, which vibrates more times a second. On that same string, what happens to the speed of the waves?",
     "options": [
-      "TODO",
-      "TODO"
+      "It goes up",
+      "It stays the same; the waves get shorter",
+      "It goes down"
     ],
-    "answer": 0,
-    "why": "TODO"
+    "answer": 1,
+    "why": "Wave speed is set by the string's tension and mass per length. More vibrations a second only shorten the wavelength (wavelength = speed / frequency)."
   },
   "evidence": {
     "qa": [],
@@ -45,5 +76,16 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:wave-speed-medium",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "waves",
+    "references": [],
+    "tags": ["waves", "wavelength", "frequency"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "simulation-run"]
 }

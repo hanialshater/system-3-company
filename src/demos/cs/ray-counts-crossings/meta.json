@@ -35,28 +35,22 @@
       "id": "cs.ray-counts-crossings.c2",
       "text": "Far to the right is always outside, and every crossing flips inside and outside, so an odd count means inside and an even count means outside, for any simple polygon, notched or not.",
       "support": "source",
-      "source": "Jordan curve theorem for polygons (derivation: the boundary separates the plane; a ray beyond the polygon's extent is in the outside region; each proper crossing switches region). Shimrat (1962), 'Algorithm 112: Position of point relative to polygon', Communications of the ACM 5(8); Haines (1994), 'Point in polygon strategies', Graphics Gems IV (citations from the brief: check before verifying). | FACT-CHECK 2026-10-14 (pass 21): verified. Parity of crossings() equals an independent inside test for the U on 25,521 snapped stage points (0 mismatches). Derivation from the Jordan curve theorem for polygons; Shimrat 1962 and Haines 1994 cited from memory, not opened; sentence rests on the derivation.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Jordan curve theorem for polygons (derivation: the boundary separates the plane; a ray beyond the polygon's extent is in the outside region; each proper crossing switches region). Shimrat (1962), 'Algorithm 112: Position of point relative to polygon', Communications of the ACM 5(8); Haines (1994), 'Point in polygon strategies', Graphics Gems IV (citations from the brief: check before verifying). | FACT-CHECK 2026-10-14 (pass 21): verified. Parity of crossings() equals an independent inside test for the U on 25,521 snapped stage points (0 mismatches). Derivation from the Jordan curve theorem for polygons; Shimrat 1962 and Haines 1994 cited from memory, not opened; sentence rests on the derivation. · v4 (2026-10-14, demo-builder, learner r8 fit): reveal sentence reworded to 'So odd means inside and even means outside, however central the point looks, with any number of notches.' after 'past the last crossing it is always outside'. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.ray-counts-crossings.c3",
       "text": "A ray that passes exactly through a corner needs a tie rule; this stage keeps the point off corner heights.",
       "support": "derivation",
-      "source": "At a vertex two edges meet the ray at one point; counting both or neither can be wrong. The half-open rule (count an edge only if exactly one endpoint lies above the ray's height) fixes it. The stage snaps dragged points to a half-unit grid, moves y off 0, 2 and 6 (the corner heights) and moves points off the boundary, so the drawn count never meets a tie. | FACT-CHECK 2026-10-14 (pass 21): verified. snap() never returns y in {0, 2, 6} or a boundary point (checked on the same 25,521 points).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "At a vertex two edges meet the ray at one point; counting both or neither can be wrong. The half-open rule (count an edge only if exactly one endpoint lies above the ray's height) fixes it. The stage snaps dragged points to a half-unit grid, moves y off 0, 2 and 6 (the corner heights) and moves points off the boundary, so the drawn count never meets a tie. | FACT-CHECK 2026-10-14 (pass 21): verified. snap() never returns y in {0, 2, 6} or a boundary point (checked on the same 25,521 points). · v4 (2026-10-14, demo-builder, learner r8): sentence cut from the reveal ('A ray through a corner exactly needs a tie rule; this stage keeps the point off corner heights'); told context, word budget (learner r8). The snap() behaviour is unchanged. Withdrawn, not learner-visible.",
+      "status": "withdrawn"
     },
     {
       "id": "cs.ray-counts-crossings.c4",
-      "text": "The ray drawn from the point is split at each crossing: a stretch with an odd number of crossings still to its right lies inside the U (solid, 'in'), one with an even number lies outside (dashed, 'out'), so it switches at every numbered crossing and is always outside past the last one. From any point in the gap (2 < x < 4, 2 < y < 6) the ray crosses exactly the edges at x = 4 and x = 6.",
+      "text": "The ray drawn from the point is split at each crossing: a stretch with an odd number of crossings still to its right lies inside the U (solid, 'in'), one with an even number lies outside (dashed, 'out'), so it switches at every numbered crossing and is always outside past the last one. From any point in the gap (2 < x < 4, 2 < y < 6) the ray crosses exactly the edges at x = 4 and x = 6. When the reveal opens, the stage draws the ray of the first odd-count point the learner tried again (readout 'Point (again)'), until the learner taps a preset or drags.",
       "support": "derivation",
-      "source": "Demo.tsx stretches: stretch i runs from stop i to stop i+1 and is drawn inside when (hits.length - i) is odd, which is the c2 parity rule applied to the stretch. Gap: for 2 < y < 6 the vertical edges at x = 0, 2, 4, 6 all span the ray's height; from 2 < x < 4 only x = 4 and x = 6 lie to the right; the horizontal edges are never crossed at non-corner heights. Builder statement, not self-verified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node over a 0.1 grid of points: for every stretch the label (crossings to the right odd = in) matches true inside/outside of the U, 0 mismatches; last stretch always 0 to the right = out. All 800 gap points (2<x<4, 2<y<6) cross exactly x = 4 and x = 6.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx stretches: stretch i runs from stop i to stop i+1 and is drawn inside when (hits.length - i) is odd, which is the c2 parity rule applied to the stretch. Gap: for 2 < y < 6 the vertical edges at x = 0, 2, 4, 6 all span the ray's height; from 2 < x < 4 only x = 4 and x = 6 lie to the right; the horizontal edges are never crossed at non-corner heights. Builder statement, not self-verified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node over a 0.1 grid of points: for every stretch the label (crossings to the right odd = in) matches true inside/outside of the U, 0 mismatches; last stretch always 0 to the right = out. All 800 gap points (2<x<4, 2<y<6) cross exactly x = 4 and x = 6. · v4 (2026-10-14, demo-builder, learner r8 fit): new stage behaviour: replay of the recorded odd point at the reveal (learner r8 top finding: at (7, 4) there was no numbered crossing to look at); reveal now says 'Look at the ray from (1, 4), drawn again above'. The note line and the Tried trace step aside at the reveal; a Point readout was added. Previous verdict void; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:point-in-polygon",
     "also": [],

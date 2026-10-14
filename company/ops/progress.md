@@ -17,6 +17,28 @@ who no longer exists: check what you rely on.
 - **Next:** tools-lead reviews W-455. Open question: a real markdown library would render edge cases better, but needs a decision record.
 - **Blocked:** nothing. `npm run check` currently fails on 6 errors in builders' in-progress lessons (concept "TODO ..."), not in HQ. I also created and dropped W-454 by mistake (an empty `board add --help`).
 
+## 2026-10-14 (demo-builder, W-447 / W-448 / W-449: design-review changes)
+
+- **Changed:**
+  - every-second-seat-out v5 (W-447): the circle is a fixed 232 px in every phase, set in the lesson CSS (width, max-width, flex: none). globals.css is untouched; the kit rule is W-450. Seat labels went from 14 to 15.5 units and the star from 14 to 16. Replays are now paced by the clock, which fixes "reveal never unlocked" on the slow dev server.
+  - a-star-heads-for-goal v8 (W-448): the drawing order is now route, then S/G markers, then settle numbers with a --bg-2 halo. The S/G markers sit lower in their cells, with "1" and "46" above them. Toggles that are pressed get the kit's active class. The grid is a fixed 234 px.
+  - who-pays-same-filter v5 (W-449): the "$100" filter-arrow label moved to x 10, y 30. The tick labels moved up 1.4 units. The Total bar is filled with --bad-fill.
+  - No text changes, so no claims changed. Pre-flight v5/v8 (with q7 in px) is in each company/reviews/<slug>/build.md.
+  - Board: W-447, W-448 and W-449 are done. Added W-456 (design-lead re-check).
+- **Believe:**
+  - High confidence in the DOM measures (headless Chromium, QA path, 390 and 1280):
+    - every-second: labels 11.1 px in predict, explore and reveal. The stage's scrollWidth equals its clientWidth.
+    - a-star: 12.2 px in explore and 10.0 px at the reveal (card fit 193/234). No overflow.
+    - who-pays: no svg text box goes past its svg.
+  - reveal-fit: crop 0 and namedHidden 0 on every run that measured. every-second passed 3 of 3. a-star passed 3 of 4 and who-pays 3 of 4. Each of those two failures was a dev-server timeout, not a measurement.
+  - Medium confidence that "no collisions" holds for two-digit seat labels at 15.5 units. I checked by eye and by arithmetic, not by measuring.
+- **Next:**
+  - design-lead: W-456 re-check.
+  - Then learner re-review for a-star and every-second.
+  - QA: W-378.
+  - platform-engineer: W-450.
+- **Blocked:** `npm run check` fails on one error that is not mine: src/demos/physics/shake-faster-same-speed has a TODO concept id. tsc is clean.
+
 ## 2026-10-14 (design-lead, W-377: design review of four phone-fit stages)
 
 - **Changed:**

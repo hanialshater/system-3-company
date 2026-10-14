@@ -16,7 +16,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -50,7 +50,7 @@ const path = (o: Order, n: number) => {
   }).join(" ");
 };
 const name = (o: Order) => (o === 2 ? "2nd order" : "1st order");
-const btn = (o: Order) => (o === 2 ? "Pairs must meet (2nd order)" : "Steady (1st order)");
+const btn = (o: Order) => (o === 2 ? "Pairs meet (2nd order)" : "Steady (1st order)");
 const rate = (o: Order, n: number) => `1/${Math.pow(o === 2 ? 4 : 2, n)}`;
 
 export default function TheSlowingHalfLife({ slug }: { slug: string }) {
@@ -80,20 +80,19 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your 2nd-order waits row reads <strong>{waitRow(2)}</strong>: each half takes twice as long as the
-            last. Your 1st-order waits row reads <strong>{waitRow(1)}</strong>: the same {T_HALF1} min every time.
+            Your 2nd-order waits read <strong>{waitRow(2)}</strong>: each half takes twice as long as the last. Your
+            1st-order waits read <strong>{waitRow(1)}</strong>: the same {T_HALF1} min every time.
           </p>
           <p>
-            A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four
-            times rarer: your 2nd-order rate row (vs the start) reads <strong>{rate(2, 1)}</strong> after one halving and{" "}
-            <strong>{rate(2, 2)}</strong> after two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
-            wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the wait stayed the same: one fixed
-            half-life.
+            Second order needs two molecules to meet, so halving the crowd makes meetings four times rarer: your 2nd-order
+            rate reads <strong>{rate(2, 1)}</strong>, then <strong>{rate(2, 2)}</strong>. With half as much left to lose at a
+            quarter of the rate, each wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the half-life stays
+            fixed.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={NAMES}>
           {(reach) => {
             const check = (o: Order, k: number) => {
@@ -149,6 +148,9 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                     {name(order)}
                   </text>
                 </svg>
+                {/* v6 -> v7 (r8, phone fit): slider and order buttons share one row the card may fold at the reveal;
+                    the waits/rate table below keeps everything they produced. */}
+                <Row foldAtReveal>
                 <Slider
                   label="Halvings waited"
                   value={n}
@@ -161,7 +163,7 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                     check(order, v);
                   }}
                 />
-                <Row>
+                <div className={s.orders}>
                   {([2, 1] as Order[]).map((o) => (
                     <Control
                       key={o}
@@ -175,15 +177,28 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                       {btn(o)}
                     </Control>
                   ))}
+                </div>
                 </Row>
-                <Row>
-                  <Readout label="2nd-order waits" value={waitRow(2)} />
-                  <Readout label="2nd-order rate vs start" value={rateRow(2)} />
-                </Row>
-                <Row>
-                  <Readout label="1st-order waits" value={waitRow(1)} />
-                  <Readout label="1st-order rate vs start" value={rateRow(1)} />
-                </Row>
+                <table className={s.trace}>
+                  <thead>
+                    <tr>
+                      <th />
+                      <th scope="col">waits</th>
+                      <th scope="col">rate vs start</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {([2, 1] as Order[]).map((o) => (
+                      <tr key={o}>
+                        <th scope="row">{name(o)}</th>
+                        <td>{waitRow(o)}</td>
+                        <td>{rateRow(o)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {/* At the reveal the reveal text carries this line's reasoning for both orders. */}
+                {phase !== "reveal" && (
                 <p className={s.why} aria-live="polite">
                   {locked
                     ? " "
@@ -193,6 +208,7 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                         ? "Each halving: ½ as much left to lose, at ¼ the rate → 2× the wait."
                         : "Each halving: ½ as much left to lose, at ½ the rate → same wait."}
                 </p>
+                )}
               </div>
             );
           }}

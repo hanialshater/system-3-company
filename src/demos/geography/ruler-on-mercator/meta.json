@@ -41,30 +41,31 @@
     },
     {
       "id": "geography.ruler-on-mercator.c3",
-      "text": "Mercator's stretch is 1 / cos(latitude): it grows the farther north you go, and is 2 at 60°.",
+      "text": "Mercator's stretch is 1 / cos(latitude): it grows toward the poles, and is 2 at 60°.",
       "support": "source",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: Mercator scale factor k = h = sec(latitude). sec 60 = 2.000; sec 70 = 2.924. v2: the reveal no longer names 70° (never gated); it quotes the recorded 60°N readouts and, if the bar has moved, the learner's current Map stretch readout. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED on derivation (Snyder not opened). Own d3-geo run on the lesson projection (rotate -40, its scale): screen length per ground km, relative to the equator, both east-west and north-south, is 1.1547, 1.4142, 2.0000, 2.3662 at 30, 45, 60, 65°, equal to 1/cos(lat) to 4 decimals; it rises with latitude and is 2.00 at 60°. The stage readout stretchText(60) = \"2.00×\", and the Seen line records it at the 60°N milestone.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: Mercator scale factor k = h = sec(latitude). sec 60 = 2.000; sec 70 = 2.924. v2: the reveal no longer names 70° (never gated); it quotes the recorded 60°N readouts and, if the bar has moved, the learner's current Map stretch readout. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED on derivation (Snyder not opened). Own d3-geo run on the lesson projection (rotate -40, its scale): screen length per ground km, relative to the equator, both east-west and north-south, is 1.1547, 1.4142, 2.0000, 2.3662 at 30, 45, 60, 65°, equal to 1/cos(lat) to 4 decimals; it rises with latitude and is 2.00 at 60°. The stage readout stretchText(60) = \"2.00×\", and the Seen line records it at the 60°N milestone. · v3 (2026-10-14, demo-builder, learner r8 fit): reveal sentence now 'The stretch grows toward the poles' (was 'the farther north you go'). Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.ruler-on-mercator.c4",
       "text": "Mercator's stretch is the same north-south as east-west, which is why shapes look right while sizes do not.",
       "support": "source",
-      "source": "Snyder (1987) ch. 7: Mercator is conformal (h = k), so small shapes are preserved while areas scale by sec^2(latitude).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Snyder (1987) ch. 7: Mercator is conformal (h = k), so small shapes are preserved while areas scale by sec^2(latitude). · v3 (2026-10-14, demo-builder, learner r8): sentence cut from the reveal ('It is the same north-south as east-west, which is why shapes look right while sizes do not'); told context, word budget (learner r8, the reviewer's named candidate). Withdrawn, not learner-visible.",
+      "status": "withdrawn"
     },
     {
       "id": "geography.ruler-on-mercator.c5",
-      "text": "A single scale bar on a world map is only true along one line.",
+      "text": "One scale bar on a world map is true along only one line.",
       "support": "source",
-      "source": "On Mercator the scale is true only along the equator (or two standard parallels for secant forms) (Snyder 1987 ch. 7). No flat map has constant scale everywhere (Snyder ch. 1). The lesson's statement is about this world map.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "On Mercator the scale is true only along the equator (or two standard parallels for secant forms) (Snyder 1987 ch. 7). No flat map has constant scale everywhere (Snyder ch. 1). The lesson's statement is about this world map. · v3 (2026-10-14, demo-builder, learner r8 fit): reveal sentence now 'so one scale bar is true along only one line'. Previous verdict void; needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.ruler-on-mercator.c6",
+      "text": "The dashed line labelled 'equator' on the map is latitude 0°, drawn by the same Mercator projection as the bar.",
+      "support": "simulation",
+      "source": "Demo.tsx: eqY = projection([40, 0])[1]; line across the map at that y with the label 'equator'. v3 (2026-10-14, demo-builder): added so the reveal's 'as at the equator' points at something on the map. Needs check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:map-scale-varies",
     "prerequisites": [

@@ -18,6 +18,18 @@ const X0 = 10;
 const Y0 = 6;
 const fmt = (v: number) => v.toLocaleString("en-US");
 
+const R = 2.6;
+/** One path of dots i in [from, to), column by column (cheaper than 1,000 circle elements). */
+function dots(from: number, to: number): string {
+  let d = "";
+  for (let i = from; i < to; i++) {
+    const cx = X0 + Math.floor(i / ROWS) * PITCH + PITCH / 2;
+    const cy = Y0 + (i % ROWS) * PITCH + PITCH / 2;
+    d += `M${cx - R},${cy}a${R},${R} 0 1,0 ${2 * R},0a${R},${R} 0 1,0 ${-2 * R},0`;
+  }
+  return d;
+}
+
 type Seen = { lib: number; club: number; inner: number; outer: number } | null;
 
 function Stage({ locked, reach, lib, setLib, club, setClub, seen, setSeen }: {
@@ -49,12 +61,9 @@ function Stage({ locked, reach, lib, setLib, club, setClub, seen, setSeen }: {
             : "1,000 people like Sam. Outer ring: librarians. Inner ring: librarians with a book club."}
       </p>
       <svg viewBox={`0 0 ${COLS * PITCH + 20} ${ROWS * PITCH + 12}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`${outer} librarians, ${inner} of them run a book club, of ${PEOPLE} people`}>
-        {Array.from({ length: PEOPLE }, (_, i) => {
-          const c = Math.floor(i / ROWS);
-          const r = i % ROWS;
-          const cls = locked ? s.dot : i < inner ? s.club : i < outer ? s.lib : s.dot;
-          return <circle key={i} cx={X0 + c * PITCH + PITCH / 2} cy={Y0 + r * PITCH + PITCH / 2} r={2.6} className={cls} />;
-        })}
+        <path d={dots(0, locked ? 0 : inner)} className={s.club} />
+        <path d={dots(locked ? 0 : inner, locked ? 0 : outer)} className={s.lib} />
+        <path d={dots(locked ? 0 : outer, PEOPLE)} className={s.dot} />
         {!locked && (
           <>
             <path d={outline(outer)} transform={`translate(${X0} ${Y0}) scale(${PITCH})`} className={s.outer} />

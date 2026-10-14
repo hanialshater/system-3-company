@@ -4976,28 +4976,31 @@
       "id": "W-447",
       "title": "every-second-seat-out v4 design review REVISE (W-377): (1) seat labels render 9.4 px at 390 in predict/explore (svg 218 px wide beside the step column), under the W-289 10 px floor; make them >=10 (aim 11) in every phase, measured in explore; (2) at the reveal the svg grows 218->250 px and the row overflows the stage by 6 px each side (scrollWidth 346 > 340; step column and seats 31-33 on the stage edge): wrap the svg in a flex child (flex 1 1 0, min-width 0) so its width holds across phases; re-measure Pre-flight 7 with px. Then learner re-review. See company/reviews/every-second-seat-out/2026-10-14-design.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "done",
       "domain": "cs",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-448",
       "title": "a-star-heads-for-goal v7 design review APPROVE WITH CHANGES (W-377): route polyline strikes through the settle-order numbers on route cells (5,10,16,20,24,28,34) and '1'/'46' sit on the S/G markers; draw the route under the labels with a bg-2 halo (paint-order stroke) or offset it, and clear S/G. Recommended: aria-pressed=true toggles get the kit active style. Then learner re-review. See company/reviews/a-star-heads-for-goal/2026-10-14-design.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "done",
       "domain": "cs",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-449",
       "title": "who-pays-same-filter v4 design review APPROVE WITH CHANGES (W-377): panel 2 filter-arrow label '$100' is clipped 7 px (390, explore) / 9 px (1280, all phases) past the svg left edge; move it inside the viewBox. Done when no svg text box exceeds its svg at 390 or 1280. Recommended: fill or drop the empty Total bar box; 6-8 px gap before panel 2 title. See company/reviews/who-pays-same-filter/2026-10-14-design.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "done",
       "domain": "economics",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-450",
@@ -5050,6 +5053,15 @@
       "title": "Review HQ Library (/hq/library): index over company/, path guard, markdown reader, floor-plan search. Code: src/lib/hq-library.ts, src/app/hq/library/, tests/hq (npm run test:hq). Check the type rules (typeOf) and whether a markdown dependency is wanted (decision record).",
       "owner": "tools-lead",
       "state": "review",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-456",
+      "title": "Re-check every-second-seat-out v5 (W-447 was a revise): fixed 232 px circle, seat labels 11.1 px in every phase, stage scrollWidth = clientWidth; also a-star v8 route-under-labels (W-448) and who-pays v5 un-clipped $100 (W-449). See company/reviews/<slug>/build.md Pre-flight v5/v8",
+      "owner": "design-lead",
+      "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
       "links": []

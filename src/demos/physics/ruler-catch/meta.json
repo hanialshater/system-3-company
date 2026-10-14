@@ -62,10 +62,8 @@
       "id": "physics.ruler-catch.c5",
       "text": "Near a 20 cm catch, each extra centimetre of fall is about 5 thousandths of a second (so a ruler resolves hundredths of a second).",
       "support": "derivation",
-      "source": "Node: timeFor(21 cm) - timeFor(20 cm) = 0.2069 - 0.2019 = 0.0050 s.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Node: timeFor(21 cm) - timeFor(20 cm) = 0.2069 - 0.2019 = 0.0050 s. · v4 (2026-10-14, demo-builder, learner r8): sentence cut from the reveal ('near 20 cm, each extra centimetre is about 5 thousandths of a second'); told context, word budget (learner r8). Withdrawn, not learner-visible.",
+      "status": "withdrawn"
     },
     {
       "id": "physics.ruler-catch.c6",
@@ -75,6 +73,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "physics.ruler-catch.c7",
+      "text": "The simulated ruler falls from rest with no air drag (stage caption: 'Simulated catcher, not your reflex. The ruler falls from rest, no air drag.').",
+      "support": "simulation",
+      "source": "Demo.tsx fallCm(t) = 50 g t² (d = ½ g t², no drag term). v4 (2026-10-14, demo-builder): 'no air drag' moved from the reveal ('No air drag; the catcher here is simulated.', cut for the word budget) into the stage caption. Needs check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "physics:reaction-time-ruler",
     "prerequisites": [
