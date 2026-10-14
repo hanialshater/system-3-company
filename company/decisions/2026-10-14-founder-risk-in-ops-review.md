@@ -24,7 +24,7 @@ The second message came after the chief of staff proposed a new risk register an
 
 | Objection | By | Status |
 |---|---|---|
-| Strategic and organisational risks (concentration on one host, founder bandwidth, category bets) are not operational | chief-of-staff | Open. Track them in the same register, tagged `strategic`, with the CEO office or the PE named as the risk owner. principal-engineer-ops still runs the review. |
+| Strategic and organisational risks (concentration on one host, founder bandwidth, category bets) are not operational | chief-of-staff | Answered (company/ops/risks.md: `strategic` category, R-013 founder bandwidth, owners named). Track them in the same register, tagged `strategic`, with the CEO office or the PE named as the risk owner. principal-engineer-ops still runs the review. |
 
 ## Amendment 1 (founder, same day): operational excellence is every engineer's job
 
