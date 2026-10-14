@@ -10,6 +10,8 @@
 // highest latitude the learner saw a sunset at and the lowest they saw none at.
 // v4 (W-266, cm-geography's text): reveal cut to about 81 words so the stage top and the orange gap stay on
 // screen at 390x844. The no-air caveat left the reveal (the stage caption keeps "Toy: no air"); c4 withdrawn.
+// v5 (W-274, cm-geography ruling): predict question hedged to "Around June 21"; the reveal's Tropic clause ends
+// "on the June solstice" (85 words).
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -63,7 +65,7 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "June 21 is the longest day in the north. A town's latitude is how far north of the equator it is. From what latitude northward does the Sun not set at all that day?",
+        question: "Around June 21 the north has its longest day. A town's latitude is how far north of the equator it is. From what latitude northward does the Sun not set at all that day?",
         options: ["66.6°N", "23.4°N", "80°N"],
         answer: 0,
       }}
@@ -79,7 +81,8 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
           <p>
             The orange gap on the globe is that tilt: the pole leans {DEC.toFixed(1)}° toward the Sun, so the night
             side&rsquo;s edge stops {DEC.toFixed(1)}° short of it. A town whose circle fits inside the gap stays lit all
-            day. That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), where the noon Sun is overhead.
+            day. That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), where the noon Sun is overhead on the
+            June solstice.
           </p>
         </>
       )}

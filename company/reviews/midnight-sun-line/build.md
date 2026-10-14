@@ -23,3 +23,13 @@ Claims edited are unverified and need a fact-check pass. QA and walkthrough not 
 - Open point for cm-geography / fact-checker: the c5 claim says "around June 21", but the predict question still reads "June 21 is the longest day in the north". I did not change the question because W-266 did not ask for it.
 - Pre-flight 7 (phone fit): NOT MEASURED. Build, QA and walkthrough were not allowed this session, so I have no stage-top crop in px and no check that the orange gap is on screen at 390x844. Estimate only: the old reveal was about 120 words with a 99 px crop, so cutting about 40 words (about 4 to 5 lines at about 23 px) should bring the crop to about 0 px. That still has to be confirmed with tools/reveal-fit.mjs.
 - tsc --noEmit: pass. npm run check: pass (638 lessons, 0 warnings).
+
+## Pre-flight v5
+
+2026-10-14, board W-274 (cm-geography-earth-climate ruling on FC pass 29, company/reviews/midnight-sun-line/2026-10-14-fact-check.md). Applied the ruling's exact strings; nothing else in the lesson changed.
+- Predict question: "Around June 21 the north has its longest day. ..." (rest and options unchanged; no answer leaked).
+- Reveal P2 last sentence: "That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), where the noon Sun is overhead on the June solstice." P1 and the rest of P2 unchanged.
+- Word count of the rendered reveal (node split on whitespace, sets 65.0°N, never 70.0°N): 85. Budget 90 or fewer.
+- Claims: c5 reworded to the ruling's text and reset to unverified (source line added: "Reworded W-274; FC pass 29 dispute resolved in text, pending opened-reference re-check (W-275)."). c7 claim text "In June" -> "On the June solstice", reset to unverified (learner sentence unchanged). New c8 records the hook "In June the far north gets a Sun that never sets." as unverified. c3 left held (unverified) and untouched, per the ruling. Version 4 to 5. Status stays review.
+- Pre-flight 7 (phone fit): NOT MEASURED. Build, QA and walkthrough were not allowed this session. The reveal grew 4 words (81 to 85), about one extra line at most at 390 px; v4's fit was itself never measured. Confirm with tools/reveal-fit.mjs.
+- tsc --noEmit: pass. npm run check: pass (638 lessons, 3456 claims, 0 warnings).

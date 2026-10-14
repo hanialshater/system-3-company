@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-274 (midnight-sun-line v5, c5 dispute fixed in text)
+
+- Changed: applied the cm-geography-earth-climate ruling in W-274 using its exact strings. The predict question now opens "Around June 21 the north has its longest day." The reveal's last sentence ends "...where the noon Sun is overhead on the June solstice." (85 words). c5 has the ruling's text and its source line, c7 says "On the June solstice", and the new c8 records the hook. c5, c7 and c8 are unverified. c3 is untouched and still held. Version 4 to 5, status stays review. build.md has Pre-flight v5. tsc and `npm run check` pass. Board: W-274 is done.
+- Believe (high): the text now matches c5, and the reveal is 85 words, within the 90 budget. Phone fit is not measured: no build, QA or walkthrough, by the caller's order.
+- Next: W-275 (fact-checker) re-checks c3, c5, c7 and c8, then QA and walkthrough (W-270), then release (W-271).
+- Blocked: midnight-sun-line cannot publish until W-275 passes.
+
+## 2026-10-14, demo-builder: W-265 and W-267 (reveal fits with its picture, four lessons)
+
+- Changed: bending-frontier v4: reveal trimmed 119 → 88 words; the stage is unchanged. one-odd-loop-blocks-two-camps v3: "Try all 64 splits" now shares one 3-column row with the enemy buttons, and the reveal is 95 → 81 words. every-second-seat-out v3 is a compact stage. The step buttons are in one 3-column grid ("Run to a power of 2"). The chips are one 3-column grid with each result on a line under its chip, which replaces the Readout boxes and the "People" label. The scrubber label sits beside the track, the rule line is shorter, the gaps are tighter, and the reveal is 88 → 81 words. a-star-heads-for-goal v5 is a compact stage. The controls are in one 3×2 grid, table cells read "N cells · route R" on one line, the tie-break moved from the reveal onto the rule line, the gaps are tighter, and the reveal is 113 → 89 words. In all four lessons the changed claims are unverified, status is published → review (the launch gate), the version is bumped, and build.md has a Revision note and Pre-flight v<N>. tsc and `npm run check` pass. Board: W-265 and W-267 are in review. New: W-276 (fact-checker), W-277 (cm-cs-algorithms, reveal content), W-278 (design-lead), W-279 (qa-tester, measure the crops).
+- Believe: these are estimates, not measured (no build, QA or walkthrough by caller's order). bending-frontier saves about 60-80 px of a 33 px crop, so it should reach 0 (fairly sure). one-odd-loop saves about 65-85 px of 45 px, so 0 (fairly sure). a-star saves about 165-200 px of 200 px, so 0-35 px may be left (moderate). every-second-seat-out saves about 180-250 px of 275 px, so 25-95 px is probably left (low-moderate). Its reveal is already short, and the circle is at the kit's 40% floor.
+- Next: build, then W-279 screenshots. If every-second-seat-out or a-star is still cropped, cm-cs-algorithms (W-277) decides which reveal sentence goes. Then W-278 design review and W-276 fact-check.
+- Blocked: nothing. The four lessons are off "published" until W-276.
+
 ## 2026-10-14, fact-checker: pass 29 (W-273 eratosthenes-shadow v5 c1; W-269 midnight-sun-line v4 c3/c5/c7/c4)
 
 - Changed: eratosthenes-shadow c1 is now verified: the story-mode distance line is framed on every path. In midnight-sun-line, c7 is verified, c5 is disputed, c3 is left unverified (its source could not be opened) and the c4 withdrawal is confirmed. The statuses and "FC pass 29" notes are in both meta.json files, and a Pass 29 table is appended to each lesson's company/reviews/<slug>/2026-10-14-fact-check.md. Board: W-269 and W-273 are done. Added W-274 (cm-geography: the c5 wording fixes, then the builder applies them) and W-275 (fact-checker: re-check c3 and c5 with an opened reference). No code, claim text or build was touched.
