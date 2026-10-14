@@ -4,12 +4,20 @@
   "hook": "Every household spends $20 less so it can save. Does the whole country save more?",
   "domain": "economics",
   "concept": "paradox-of-thrift",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-i-economics"
+  },
   "learner": {
-    "knows": ["saving = income − spending, and one household that spends less saves more", "one person's spending is another's income (count-the-bread-once)"],
-    "doesNotKnow": ["that in a simple model with fixed investment, when every household tries to save more, incomes fall until total saving is back where it was"]
+    "knows": [
+      "saving = income − spending, and one household that spends less saves more",
+      "one person's spending is another's income (count-the-bread-once)"
+    ],
+    "doesNotKnow": [
+      "that in a simple model with fixed investment, when every household tries to save more, incomes fall until total saving is back where it was"
+    ]
   },
   "misconception": "If every household saves $20 more, the country saves more.",
   "objective": "The learner can explain that in a toy economy with fixed investment of $100, a $20 cut in every household's spending raises saving to $120 for one round, then incomes fall from $1,000 to $900 until saving is back at $100, because spending is someone else's income.",
@@ -60,21 +68,47 @@
   "confidence": "",
   "recall": {
     "question": "In a simple economy where business investment is fixed, every household decides to spend $50 less so it can save more. Once incomes settle, what has happened to total saving?",
-    "options": ["It rose by the households' extra saving", "It is unchanged, because incomes fell", "It fell to zero"],
+    "options": [
+      "It rose by the households' extra saving",
+      "It is unchanged, because incomes fell",
+      "It fell to zero"
+    ],
     "answer": 1,
     "why": "One household's spending is another's income. Incomes fall until total saving again equals the fixed investment, so the attempt to save more leaves total saving the same and incomes lower."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/everyone-saves-nobody-does/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "economics:paradox-of-thrift",
-    "also": ["economics:gdp-value-added"],
-    "prerequisites": ["economics:gdp-value-added", "economics:stock-vs-flow"],
+    "also": [
+      "economics:gdp-value-added"
+    ],
+    "prerequisites": [
+      "economics:gdp-value-added",
+      "economics:stock-vs-flow"
+    ],
     "level": "stretch",
     "strand": "macro",
     "references": [],
-    "tags": ["macro", "saving", "Keynesian model"]
+    "tags": [
+      "macro",
+      "saving",
+      "Keynesian model"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

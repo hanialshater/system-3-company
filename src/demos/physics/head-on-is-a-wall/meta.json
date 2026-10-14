@@ -4,7 +4,7 @@
   "hook": "Two identical cars, both at 50 km/h, meet head-on. What is that crash like for car A?",
   "domain": "physics",
   "concept": "head-on-equals-wall",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -72,7 +72,9 @@
     "why": "The meeting point stays still, so each train stops from its own 30 km/h in its own crumple zone, exactly as against a wall at 30 km/h."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/head-on-is-a-wall/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -80,13 +82,27 @@
   "version": 1,
   "curriculum": {
     "primary": "physics:head-on-equals-wall",
-    "also": ["physics:kinetic-energy-speed-squared"],
-    "prerequisites": ["physics:momentum-collisions"],
+    "also": [
+      "physics:kinetic-energy-speed-squared"
+    ],
+    "prerequisites": [
+      "physics:momentum-collisions"
+    ],
     "level": "core",
     "strand": "mechanics",
     "references": [],
-    "tags": ["collisions", "momentum", "energy", "road safety"]
+    "tags": [
+      "collisions",
+      "momentum",
+      "energy",
+      "road safety"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "simulation-run"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "simulation-run"
+  ]
 }

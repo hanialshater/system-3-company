@@ -4,12 +4,19 @@
   "hook": "One year up 25%, one year down 20%, and money comes out each year.",
   "domain": "economics",
   "concept": "sequence-of-returns",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-i-economics"
+  },
   "learner": {
-    "knows": ["a gain and a loss multiply (up-then-down-trap)"],
-    "doesNotKnow": ["that when money is taken out (or put in) each year, the order of the same returns changes the ending balance, even though without flows it does not"]
+    "knows": [
+      "a gain and a loss multiply (up-then-down-trap)"
+    ],
+    "doesNotKnow": [
+      "that when money is taken out (or put in) each year, the order of the same returns changes the ending balance, even though without flows it does not"
+    ]
   },
   "misconception": "If the returns are the same, the order they come in does not matter.",
   "objective": "The learner can explain that +25% and −20% end at the same $100k in either order when no money moves, but withdrawing $20k a year leaves $64k with the gain first and $55k with the loss first, because the withdrawal after the loss comes out of a smaller pot.",
@@ -53,21 +60,46 @@
   "confidence": "",
   "recall": {
     "question": "Two retirees start with the same savings, get the same good year and the same bad year in opposite orders, and withdraw the same amount each year. Who ends with more?",
-    "options": ["The one whose good year came first", "The one whose bad year came first", "They end the same"],
+    "options": [
+      "The one whose good year came first",
+      "The one whose bad year came first",
+      "They end the same"
+    ],
     "answer": 0,
     "why": "Without withdrawals the order would not matter. With them, a withdrawal after the bad year comes out of a smaller pot, so less money is left to recover in the good year."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/order-of-the-bad-year/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "economics:sequence-of-returns",
-    "also": ["economics:volatility-drag"],
-    "prerequisites": ["economics:volatility-drag"],
+    "also": [
+      "economics:volatility-drag"
+    ],
+    "prerequisites": [
+      "economics:volatility-drag"
+    ],
     "level": "core",
     "strand": "personal-finance",
     "references": [],
-    "tags": ["investing", "withdrawals", "risk"]
+    "tags": [
+      "investing",
+      "withdrawals",
+      "risk"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "toggle-before-after", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "slider-drives-live-chart",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

@@ -4,7 +4,7 @@
   "hook": "Each waits politely when a lock is taken. Does someone always get to finish?",
   "domain": "cs",
   "concept": "deadlock-lock-order",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -71,7 +71,9 @@
     "why": "A freeze needs a circle of tasks, each holding a lock the next one waits for. If everyone takes locks in one order, nobody holding a later lock waits for an earlier one, so no circle can form."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/two-locks-wait-forever/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []

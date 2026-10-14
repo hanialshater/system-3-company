@@ -4,7 +4,7 @@
   "hook": "Birds perch on bare power lines every day. What voltage is across one?",
   "domain": "physics",
   "concept": "potential-difference",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -78,7 +78,9 @@
     "why": "Current flows through something only when its two ends are at different voltages. On one line both feet are at almost the same voltage; two different lines put a large difference across the animal."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/bird-on-the-wire/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -87,12 +89,24 @@
   "curriculum": {
     "primary": "physics:potential-difference",
     "also": [],
-    "prerequisites": ["physics:current-not-used-up"],
+    "prerequisites": [
+      "physics:current-not-used-up"
+    ],
     "level": "core",
     "strand": "electricity",
     "references": [],
-    "tags": ["voltage", "circuits", "safety"]
+    "tags": [
+      "voltage",
+      "circuits",
+      "safety"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "preset-buttons", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

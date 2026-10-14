@@ -4,12 +4,19 @@
   "hook": "A government borrows every single year. Does its debt-to-GDP have to rise?",
   "domain": "economics",
   "concept": "debt-to-gdp-dynamics",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "wave-i-economics"
+  },
   "learner": {
-    "knows": ["a deficit adds to the debt each year (bathtub-deficit-debt)"],
-    "doesNotKnow": ["that debt-to-GDP is a fraction, and growth in GDP can shrink it while the debt itself keeps rising"]
+    "knows": [
+      "a deficit adds to the debt each year (bathtub-deficit-debt)"
+    ],
+    "doesNotKnow": [
+      "that debt-to-GDP is a fraction, and growth in GDP can shrink it while the debt itself keeps rising"
+    ]
   },
   "misconception": "A government that borrows every year must see its debt burden (debt-to-GDP) keep rising.",
   "objective": "The learner can explain that borrowing 3% of GDP a year while GDP grows 5% takes debt from $100 to $140 but debt-to-GDP from 100% to 85.7% in 10 years, because growth enlarges the bottom of the fraction faster than borrowing adds to the top.",
@@ -46,21 +53,47 @@
   "confidence": "",
   "recall": {
     "question": "A country's debt keeps rising because it borrows every year, but its economy grows faster, in proportion, than the borrowing adds. What happens to its debt-to-GDP?",
-    "options": ["It must rise, because the debt rises", "It can fall", "It stays fixed"],
+    "options": [
+      "It must rise, because the debt rises",
+      "It can fall",
+      "It stays fixed"
+    ],
     "answer": 1,
     "why": "Debt-to-GDP is a fraction. Borrowing adds to the top, but if GDP grows faster the bottom grows more, so the ratio falls even while the debt grows."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/debt-grows-ratio-falls/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "economics:debt-to-gdp-dynamics",
-    "also": ["economics:stock-vs-flow", "economics:growth-rate-gap"],
-    "prerequisites": ["economics:stock-vs-flow"],
+    "also": [
+      "economics:stock-vs-flow",
+      "economics:growth-rate-gap"
+    ],
+    "prerequisites": [
+      "economics:stock-vs-flow"
+    ],
     "level": "core",
     "strand": "macro",
     "references": [],
-    "tags": ["macro", "public debt", "ratios"]
+    "tags": [
+      "macro",
+      "public debt",
+      "ratios"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "step-run-button", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "slider-drives-live-chart",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

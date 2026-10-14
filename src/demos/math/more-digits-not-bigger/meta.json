@@ -4,7 +4,7 @@
   "hook": "One has one digit after the point, one has two, one has three. Which counts for most?",
   "domain": "math",
   "concept": "decimal-magnitude",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-math",
@@ -70,7 +70,9 @@
     "why": "Compare from the first digit after the point: 4 tenths beat 3 tenths. The 75 thousandths of 0.375 add less than one more tenth."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/more-digits-not-bigger/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -78,13 +80,25 @@
   "version": 1,
   "curriculum": {
     "primary": "math:decimal-magnitude",
-    "also": ["math:place-value"],
-    "prerequisites": ["math:place-value"],
+    "also": [
+      "math:place-value"
+    ],
+    "prerequisites": [
+      "math:place-value"
+    ],
     "level": "intro",
     "strand": "algebra",
     "references": [],
-    "tags": ["decimals", "place value", "number sense"]
+    "tags": [
+      "decimals",
+      "place value",
+      "number sense"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "step-run-button"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button"
+  ]
 }

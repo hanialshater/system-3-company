@@ -4,7 +4,7 @@
   "hook": "Metal feels cold and wood feels warm. So which block in the room is colder?",
   "domain": "physics",
   "concept": "heat-flow-feels-cold",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -86,7 +86,9 @@
     "why": "Both have reached room temperature. The tile feels colder because it conducts heat out of your foot faster, and your skin senses heat leaving it."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/metal-feels-colder/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -94,13 +96,24 @@
   "version": 1,
   "curriculum": {
     "primary": "physics:heat-flow-feels-cold",
-    "also": ["chemistry:temperature-particle-motion"],
+    "also": [
+      "chemistry:temperature-particle-motion"
+    ],
     "prerequisites": [],
     "level": "intro",
     "strand": "electricity",
     "references": [],
-    "tags": ["heat", "conduction", "temperature"]
+    "tags": [
+      "heat",
+      "conduction",
+      "temperature"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

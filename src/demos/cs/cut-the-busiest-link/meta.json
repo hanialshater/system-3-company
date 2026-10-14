@@ -4,7 +4,7 @@
   "hook": "Two friend groups, two links between them. Cut one and watch the shortest paths move.",
   "domain": "cs",
   "concept": "edge-betweenness-communities",
-  "status": "draft",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -71,7 +71,9 @@
     "why": "A cut reroutes shortest paths, so counts change (a remaining bridge can double). Girvan–Newman recounts after every cut, then cuts the new busiest link."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/cut-the-busiest-link/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
