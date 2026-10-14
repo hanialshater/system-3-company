@@ -15,11 +15,11 @@
       "people can be linked, and a step is one link"
     ],
     "doesNotKnow": [
-      "a handful of random long links nearly halves the typical distance (and more with a few more) while neighbourhoods stay tight"
+      "a handful of random long links nearly halves the typical distance (and more with a few more)"
     ]
   },
   "misconception": "To shrink distances you must rewire a large part of the network.",
-  "objective": "The learner can explain that adding a few random long-distance links to a ring of local friendships cuts the average number of steps between two people by nearly half with 5 links (12.9 to 6.8, a 47% cut) and by almost two-thirds with 20 (4.9), while clustering barely falls (0.500 to 0.435).",
+  "objective": "The learner can explain that adding a few random long-distance links to a ring of local friendships cuts the average number of steps between two people by nearly half with 5 links (12.9 to 6.8, a 47% cut) and by almost two-thirds with 20 (4.9).",
   "claims": [
     {
       "id": "probability.few-shortcuts-shrink-the-world.c1",
@@ -70,7 +70,7 @@
       "id": "probability.few-shortcuts-shrink-the-world.c6",
       "text": "A random network of this size and number of contacts would have clustering near 0.04.",
       "support": "derivation",
-      "source": "Approximation: in a random network the chance that two of a person's contacts know each other is about degree / N = 4 / 100 = 0.04. Each person in the ring has 4 contacts (2 each side), so degree = 4. Shown as a ghost mark, labelled 'Random network 0.04'. Approximation, not simulated by the builder. | FACT-CHECK 2026-10-14 (pass NCM-1): Own simulation: 200 random G(100, 200 edges) graphs, mean local clustering 0.039; edge density 200/4950 = 0.040. \"Near 0.04\" holds.",
+      "source": "Approximation: in a random network the chance that two of a person's contacts know each other is about degree / N = 4 / 100 = 0.04. Each person in the ring has 4 contacts (2 each side), so degree = 4. Appears once, in the reveal's second paragraph (\"a random network this size would sit near 0.04\"); no mark on the stage. Approximation, not simulated by the builder. | FACT-CHECK 2026-10-14 (pass NCM-1): Own simulation: 200 random G(100, 200 edges) graphs, mean local clustering 0.039; edge density 200/4950 = 0.040. \"Near 0.04\" holds.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -120,7 +120,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "probability:small-world-shortcuts",
     "prerequisites": [
