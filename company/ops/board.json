@@ -1941,10 +1941,11 @@
       "id": "W-137",
       "title": "Networks, Crowds, and Markets (Easley & Kleinberg 2010) vertical: chapter-to-concept portfolio map across categories (graphs, games, markets, cascades, power laws, small worlds, epidemics, voting), dedupe against existing lessons, asks to CMs; briefs carry curriculum.references to easley-kleinberg-2010",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-138",
@@ -2013,10 +2014,11 @@
       "id": "W-145",
       "title": "Knot data provenance: PD codes taken from SnapPy's table (GPL). Confirm knot tables are uncopyrightable facts or re-derive/cite from a permissive source before promotion to src/kit",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-146",
@@ -2159,19 +2161,21 @@
       "id": "W-161",
       "title": "Evolution stop rule: the 2% threshold can never trigger on the knots score scale (tests term ≈10,100 dominates; gen 1 gained 15% on the bench term). Rescale the rule to the bench term or relative-to-headroom, then decide gen 2 (plan ready: ortho→force crossover + 2 mutations)",
       "owner": "vp-rnd",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-162",
       "title": "Promote knots gen1-force to src/kit/knots: EDD + engineering review (also the SnapPy GPL data provenance question, W-145)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-163",
@@ -2768,37 +2772,41 @@
       "id": "W-226",
       "title": "PR #3 (ccr-rnd-ncm, session 2: NCM batch 1 + knots gen 2): merge with changes, see company/engineering/community/prs/3.md; re-trial and merge when changes 1-4 are on the head",
       "owner": "community-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-227",
       "title": "PR #3 change 1: take src/kit/knots (22 files) off ccr-rnd-ncm until the principal engineer approves EDD-004 (status proposed); land it later with the kit README import blocks and reconcile kit tests (96 run vs EDD's 102)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-228",
       "title": "PR #3 changes 2-3: news-comes-from-acquaintances curriculum.references use section 3.1/3.2, move to section_unconfirmed (head-of-product rule); one-good-link-beats-many is missing format and interactions (meta v2)",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-229",
       "title": "PR #3 change 4: QA contract on the final ccr-rnd-ncm head for all 17 NCM batch-1 lessons after the polish commits; file agenda-picks-the-winner with company qa-record (today builder-recorded, not in evidence.qa)",
       "owner": "qa-tester",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-230",
@@ -4222,6 +4230,141 @@
       "id": "W-372",
       "title": "Wave H batch 0: three lessons hide preset/step buttons at the reveal by their own code (not the kit fold): accurate-bettor-takes-the-pot (race-step row, all disabled at race 500), all-lines-meet-in-one-mother (Back 10 / Back to one line / Run 1,000 / 25 and 100; slider kept), continental-jigsaw (Close it all the way / Back to today; slider kept). Each kept the slider or readouts that carry the evidence. Rule whether lesson-level hiding of preset rows is allowed under 2026-10-14-reveal-fits-with-its-picture.md (fold spec says no opt-ins until the re-sweep), or route to the kit fold. Build notes: company/reviews/<slug>/build.md",
       "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-373",
+      "title": "PR #3 merged: re-file QA records for the 7 NCM batch-1 lessons re-run in company/reviews/ncm-batch1-final-qa-2026-10-14.md (below-critical-mass, bid-what-its-worth, contact-order-matters, mild-preferences-sharp-divides, penalty-kick-mix, prices-sort-the-buyers, two-said-blue). Their per-lesson 2026-10-14-qa.md on the merged tree is still the older tap-target FAIL; the passing records were on session 2's unpushed 33d7dfbf. Re-run QA_ONLY on our tree (has 1a879c6) and file via company qa-record",
+      "owner": "qa-tester",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-374",
+      "title": "EDD-004 conditions before any lesson imports @/kit/knots (eng review 2026-10-14-eng-review-EDD-004.md): C1 switch 10_8 to Conway 5 1 4, derive --write, provenance README row, re-copy kit table.mjs; C2 lab README pointer to the kit. Also the looks/extra-crossings follow-up EDD and the 4 U10 monster-unknot tests (session 2 inbox)",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-375",
+      "title": "EDD-004 condition C3: npm run verify on the integrated tree (test:kit now in verify alongside test:lifehacks; session 2 builds were OOM-killed at load 30-41). Record wall time",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-376",
+      "title": "EDD-004 follow-ons (principal-engineer proposals): CI amendment so ci.yml runs test:deploy, test:lifehacks and test:kit (protected path, needs amendment); launch-review line checking the knots import blocks (random-knot, tricolour-check, unknot-game)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-377",
+      "title": "Add an --on-fill colour token and sweep the hard-coded #0d0f14 uses in src (about 50 files; tier 1). Principal-engineer ruling in company/rituals/records/2026-10-14-eng-review-pr2.md keeps #0d0f14 because var(--bg) fails contrast in light mode",
+      "owner": "design-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-378",
+      "title": "NCM batch 1 (17 lessons, merged from PR #3): each has a -final learner review in company/reviews/<slug>/ but evidence.simulatedLearner is empty on all 17. Confirm each final review names the current meta.version (walkthrough first; fact-check NCM-3..5 says transcripts predate the last revisions), re-review where it does not, and link the review",
+      "owner": "learner-evaluator",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-379",
+      "title": "NCM batch 1 advisories (non-blocking): few-shortcuts-shrink-the-world told-only clustering numbers (NCM-2, pattern W-150; confirm v5 fixed it); one-good-link-beats-many c8 para 2 quotes whatever round the stage shows (NCM-5); mild-preferences unsettled-households counts household-ticks (NCM-5); two-said-blue 'almost never wrong' and empty-stage pointer, contact-order-matters footer (NCM-3)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-380",
+      "title": "S2-18 (session 2 inbox, vertical review NCM record section 0): add curriculum.references to easley-kleinberg-2010, chapter only, to the 14 existing lessons that teach a chapter result (wave-from-the-corner, two-suspects-payoff, herd-immunity, epidemic-overshoot, lemon-market-unravels, five-weak-voters, shared-pasture, ...). Metadata only. After cm-cs, cm-economics, cm-life, cm-probability and cm-ai confirm fit (cm-life confirmed its six). Skip vaccinate-at-the-peak until its fatal verdict clears",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-381",
+      "title": "S2-19(b): write company/design/concepts/network-stage.md from the reconciled constants in company/design/reviews/2026-10-14-design-review-network-pair.md (news, enemy pair), including the three rule-text amendments it asks for; then NetworkStage kit component (design-engineer, principal-engineer tier-2 review)",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-382",
+      "title": "S2-21: NCM learning path in book order (14 referenced lessons + batch 1 + batch 2), with chapter deep links; input content/courses/ncm/chapters.json",
+      "owner": "personalization-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-383",
+      "title": "S2-22: event or field for arrival from a course or chapter link (the NCM vertical's audience signal, company/product/verticals/networks-crowds-markets.md)",
+      "owner": "analytics-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-384",
+      "title": "content/courses/ncm/chapters.json after PR #3 merge: the 17 batch-1 lessons are now on disk, so move their rows from batch1 to covered (31 batch1 marks); the-line-takes-up-to-half is listed in covered_by but no such lesson exists (ch 19 cascade-capacity lesson is the-grid-takes-up-to-three-eighths). Also decide sequence/merge for near-duplicate pairs listed in company/engineering/community/prs/3.md section 5",
+      "owner": "cm-course-ncm",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-385",
+      "title": "Near-duplicate after PR #3 merge: one-good-link-beats-many (cs:pagerank) and random-surfer-finds-the-rank (cs:pagerank-random-walk) both land 'one link from a busy page beats many links'. Sequence or merge",
+      "owner": "cm-cs-algorithms",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-386",
+      "title": "Knots lesson briefs follow-ups (session 2 inbox): add concept knot-table-names to content/curriculum/math.json; brief must say which 6_1 drawing draw-a-table-knot uses; asks T1-T4 and U1 in company/design/reviews/2026-10-14-knot-pictures.md carry into the tricolour-check and unknot-game briefs",
+      "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-387",
+      "title": "Human source checks owed for NCM (book host and scholarly hosts blocked): confirm Easley and Kleinberg section numbers so section_unconfirmed can be promoted (or allow cs.cornell.edu); Granovetter 1973 p. 1371 (news c5 withdrawn until then); Salganik et al. 2006 MusicLab; Broder et al. 2000; Palacios-Huerta 2003",
+      "owner": "founder",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

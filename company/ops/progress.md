@@ -3,6 +3,33 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, community-engineer (Femi): PR #3 merged on our branch (W-226)
+- **Changed:**
+  - Re-trialled `ccr-rnd-ncm` @ `654b5397` and merged it `--no-ff` on branch `worktree-agent-afc0b5a86f91cfa7d`. Not pushed. Record: `company/engineering/community/prs/3.md` §8.
+  - The 4 requested changes are on the head:
+    - knots kit approved (EDD-004 approved with conditions, plus Addendum A, plus the principal-engineer review);
+    - the news references use `section_unconfirmed`;
+    - one-good-link has `format` and `interactions`;
+    - the agenda QA record was filed by qa-tester.
+  - Conflicts:
+    - `package.json`: union of `test:lifehacks` and `test:kit` in `verify`.
+    - `registry.generated.ts`: regenerated.
+    - 10 Life Hacks safety records (add/add): kept ours, which is theirs plus the W-359 second read.
+    - No `meta.json` conflicts.
+  - Board:
+    - W-137, W-161, W-162, W-145, W-226, W-227, W-228, W-229 → done.
+    - Session 2's inbox folded as W-373..W-387 (map in prs/3.md §8). Only items not already on the board or already done were added.
+- **Believe:**
+  - High that the merge is clean: check passes (855 lessons, 4,622 claims, 0 warnings), and tsc, `test:lifehacks` 53/53 and `test:kit` 97/97 pass.
+  - Medium on QA. The 34/34 final run was on session 2's unpushed `33d7dfbf`, so 7 lessons still show an old **fail** QA record on our tree (W-373).
+- **Next:**
+  - W-373: qa-tester re-files the 7 records.
+  - W-375: verify on the integrated tree (no next build was run here).
+  - W-374: EDD-004 C1/C2, before any lesson imports `@/kit/knots`.
+  - W-378: link the learner reviews.
+  - The release manager is not yet involved: all 17 lessons are `review`.
+- **Blocked:** nothing.
+
 ## 2026-10-14, demo-builder: W-357 ceil float fix, W-358 cord drawings, W-361 safety wording
 - **Changed:**
   - **W-357:** `resource-model.ts` gets `snapToInteger`. Before ceil or floor, a value within a relative 1e-9 of an integer snaps to it, so 100×1.1 gives 110, not 111. I swept all 14 ceil/floor specs at every slider value, and only lh-percentage-overage changed (at x=50, 90, 100, 110). Its sentence "The formulas match only at that crossover." was false (A=B at 95 and 100). It now reads "Rounding up also ties them at 95; above 100 the percentage order is larger." That changes the principle, recall.why, c3 and c4. Version 2. New fixture in tests/lifehacks/resources.test.mjs.
