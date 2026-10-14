@@ -45,33 +45,27 @@
     },
     {
       "id": "chemistry.limestone-crossover.c3",
-      "text": "A change at constant temperature and pressure goes by itself when ΔG = ΔH − TΔS is negative (stage: 'does not go' / 'goes by itself'; reveal: 'ΔG was +131 kJ and nothing happened', 'ΔG was −9 kJ and limestone breaks up by itself').",
+      "text": "A change at constant temperature and pressure goes by itself when ΔG = ΔH − TΔS is negative (stage line 'ΔG = ΔH − TΔS. Negative ΔG: it goes by itself.'; stage: 'does not go' / 'goes by itself'; reveal: 'ΔG was +131 kJ and nothing happened', 'ΔG was −9 kJ and limestone breaks up by itself').",
       "support": "source",
       "source": "Atkins & de Paula, Physical Chemistry, the Gibbs energy (spontaneity at constant T and p). Brief claim 3. Here ΔG° at 1 bar CO2 (the question states 1 bar CO2).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Verified on derivation (Atkins not opened): at constant T and p the second law gives dG <= 0 for a spontaneous change. The stage applies dG° at 1 bar CO2, the condition stated in the question."
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): the rule is now written on the stage (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Verified on derivation (Atkins not opened): at constant T and p the second law gives dG <= 0 for a spontaneous change. The stage applies dG° at 1 bar CO2, the condition stated in the question."
     },
     {
       "id": "chemistry.limestone-crossover.c4",
-      "text": "With 25 °C values held constant, TΔS is about 48, 124 and 188 kJ/mol at 25, 500 and 900 °C, so ΔG° is about +131, +55 and −9 kJ/mol (stage labels 'TΔS at 900 °C: 188 kJ', readouts 'ΔG at 25 °C +131 kJ', 'ΔG at 900 °C −9 kJ'; reveal: '+131 kJ', '−9 kJ').",
+      "text": "With 25 °C values held constant, TΔS (T in kelvin × entropy gain) is about 48, 124 and 188 kJ/mol at 298, 773 and 1,173 K (25, 500 and 900 °C), so ΔG° is about +131, +55 and −9 kJ/mol (stage labels 'TΔS = T in kelvin × entropy gain', 'TΔS at 900 °C (1,173 K): 188 kJ', readouts 'ΔG at 25 °C +131 kJ', 'ΔG at 900 °C −9 kJ'; reveal: '+131 kJ', '−9 kJ').",
       "support": "derivation",
-      "source": "T × 0.16019 kJ/(mol K) with T = 298.15, 773.15, 1,173.15 K: 47.76, 123.85, 187.93; 179.19 minus these: +131.43, +55.34, −8.74 (node; Demo.tsx tds(), dG()).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Derivation re-run: TdS 47.76, 123.85 and 187.93; dG +131.43, +55.34 and -8.74. The stated model is on the stage ('(25 °C data)' on the switch label). With the full NASA TM-4513 data, dG° is +130.9, +57.7 and -1.0 kJ/mol: the signs and verdicts are unchanged. Non-blocking: the 900 °C readout shows -9 kJ where the full data give about -1 kJ, so the '(25 °C data)' caveat could also go next to the dG readouts."
+      "source": "T × 0.16019 kJ/(mol K) with T = 298.15, 773.15, 1,173.15 K: 47.76, 123.85, 187.93; 179.19 minus these: +131.43, +55.34, −8.74 (node; Demo.tsx tds(), dG()). Builder node re-run 2026-10-14: ΔH 179.19 kJ, ΔS 0.16019 kJ/K; TΔS 47.8, 123.9, 187.9 kJ; ΔG +131.4, +55.3, −8.7 kJ; switch 1,118.6 K = 845.5 °C.",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): the TΔS row now shows T in kelvin and a gloss (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation re-run: TdS 47.76, 123.85 and 187.93; dG +131.43, +55.34 and -8.74. The stated model is on the stage ('(25 °C data)' on the switch label). With the full NASA TM-4513 data, dG° is +130.9, +57.7 and -1.0 kJ/mol: the signs and verdicts are unchanged. Non-blocking: the 900 °C readout shows -9 kJ where the full data give about -1 kJ, so the '(25 °C data)' caveat could also go next to the dG readouts."
     },
     {
       "id": "chemistry.limestone-crossover.c5",
-      "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (25 °C data)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'; recall why: 'Limestone switches near 850 °C (an estimate from 25 °C data)').",
+      "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (estimate)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'; recall why: 'Limestone switches near 850 °C (an estimate from 25 °C data)').",
       "support": "derivation",
       "source": "T = 179,190 / 160.19 = 1,118.6 K = 845.4 °C (node; Demo.tsx T_SWITCH). Brief claim 4. v2: the unsourced 'measured decomposition about 890 °C' sentence is withdrawn (it was never shown to the learner).",
-      "status": "verified",
-      "note": "Pass 37 (W-732): derivation re-run from a copy of Demo.tsx: dH = 179.19 kJ/mol, dS = 0.16019 kJ/(mol K), T_SWITCH = 845.46 C, shown 'switch ~ 845 C (25 C data)' and 'near 845 C' in the reveal; 'about 850 C' is the nearest option. The withdrawn 890 C sentence is gone from claim, stage, reveal and recall. Recall why ('near 850 C (an estimate from 25 C data)') is honest: my own full-data run (NASA TM-4513 via Cantera nasa_gas.yaml and nasa_condensed.yaml, artifacts/fact-check-wave-j/w732/lime.mjs) puts dG = 0 at 893 C, so the 25 C figure is correctly labelled an estimate. The recall's answer ('above some temperature, where TdS outgrows dH') rests on c6 (verified).",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): stage caveat now reads '(estimate)' instead of '(25 °C data)' (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Pass 37 (W-732): derivation re-run from a copy of Demo.tsx: dH = 179.19 kJ/mol, dS = 0.16019 kJ/(mol K), T_SWITCH = 845.46 C, shown 'switch ~ 845 C (25 C data)' and 'near 845 C' in the reveal; 'about 850 C' is the nearest option. The withdrawn 890 C sentence is gone from claim, stage, reveal and recall. Recall why ('near 850 C (an estimate from 25 C data)') is honest: my own full-data run (NASA TM-4513 via Cantera nasa_gas.yaml and nasa_condensed.yaml, artifacts/fact-check-wave-j/w732/lime.mjs) puts dG = 0 at 893 C, so the 25 C figure is correctly labelled an estimate. The recall's answer ('above some temperature, where TdS outgrows dH') rests on c6 (verified)."
     },
     {
       "id": "chemistry.limestone-crossover.c6",
@@ -105,7 +99,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:gibbs-free-energy",
     "also": [

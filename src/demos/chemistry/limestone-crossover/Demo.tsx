@@ -10,6 +10,8 @@
 // pressed). No crossover line before "Find the switch" (a pre-drawn line would point at the answer).
 // Milestones: "t25", "t900" (ΔG recorded on its readout), "switch". QA path: chips 25, 500, 900, then
 // "Find the switch" (enabled once 900 °C was reached), once each in DOM order.
+// Learner r10 (W-840): the rule ΔG = ΔH − TΔS is written above the picture, the TΔS row is glossed and shows T in
+// kelvin (298 K, 773 K, 1,173 K), and the switch caveat reads "(estimate)".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -117,6 +119,7 @@ function Stage({
 
   return (
     <div className={s.wrap}>
+      <p className={s.rule}>ΔG = ΔH − TΔS. Negative ΔG: it goes by itself.</p>
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className={`stage-svg ${s.fit}`}
@@ -142,10 +145,10 @@ function Stage({
 
         <text x={L} y={ROW_S - 6} className={s.label}>
           {now === null ? (
-            "TΔS"
+            "TΔS = T in kelvin × entropy gain"
           ) : (
             <>
-              TΔS at {now} °C: {Math.round(v ?? 0)} kJ ·{" "}
+              TΔS at {now} °C ({(now + 273).toLocaleString("en-US")} K): {Math.round(v ?? 0)} kJ ·{" "}
               <tspan className={goes ? s.go : s.nogo}>{goes ? "goes by itself" : "does not go"}</tspan>
             </>
           )}
@@ -160,7 +163,7 @@ function Stage({
           <>
             <line x1={xs} x2={xs} y1={ROW_H - 2} y2={AXIS_Y} className={s.switchLine} />
             <text x={RR} y={ROW_H - 6} textAnchor="end" className={s.switchText}>
-              switch ≈ {Math.round(T_SWITCH)} °C (25 °C data)
+              switch ≈ {Math.round(T_SWITCH)} °C (estimate)
             </text>
           </>
         )}

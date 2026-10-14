@@ -23,3 +23,22 @@ Host: shared dev server http://localhost:3530 (load average 25-40, other builder
 
 - reveal-fit: fit, **crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 83 words** (37.8, 10.6, practice curve all visible). Re-measured after the viewBox widened 320 -> 330 (end labels no longer clip): same result. Axis text 11 px in a 330-wide viewBox drawn ~316 px: ~10.5 px.
 - QA: phone and desktop pass (run 1).
+
+## v2: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/one-percent-a-day/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Reveal no longer quotes the made-up curve's 10.6×: 'practice studies find gains come fast at first and then slow. The practice curve here is made up, not data.'
+- Stage caption in plain words: 'Practice curve: made up, rises fast, then slows' (was 'illustrative, skill ∝ day^0.4'). c3, c4 rewritten (unverified). Not done: finding 5 (the crossing point of the two curves).
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Unchanged.
+4. Reveal values: 37.8× (b, compound milestone), 4.7× (dashed line).
+5. QA path unchanged.
+6. Reset: n/a (about 68 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 82 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

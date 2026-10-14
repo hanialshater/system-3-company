@@ -9,7 +9,7 @@
 //     Liquid at −253 °C: 70.8 g/L, so 10.0 MJ/L (petrol x3.4).
 // Both heats are higher heating values (water formed as liquid).
 //
-// One log axis (1 kJ to 1 GJ, a gridline per decade) and three bar rows. Locked: empty slots for
+// One linear axis (0-150 MJ per kg, 0-35 MJ per litre) and three bar rows. Locked: empty slots for
 // petrol and hydrogen, no values. Milestones: "per-kg" (both bars per kilogram), "per-litre" (both
 // per litre of gas: the question's case), "liquid" (ghost bar for liquid hydrogen). DOM order of the
 // controls reaches all three, one press each; the per-litre bars stay drawn under the ghost bar and the
@@ -49,16 +49,16 @@ function joules(j: number) {
 }
 
 const W = 320;
-const H = 176;
+const H = 162; // the footnote line "octane for petrol · water formed as liquid" moved to claim c2 (learner r10)
 const L = 10;
 const RR = 310;
-const LO = 3; // log10 of 1 kJ
-const DECADES = 6; // to 1 GJ
-const X = (v: number) => L + Math.max(0, Math.min(DECADES, Math.log10(v) - LO)) * ((RR - L) / DECADES);
+// Linear axis (learner r10, W-840: the old log axis drew petrol's 2,900-fold lead as about 4 times). Per kg the
+// axis runs 0-150 MJ, per litre 0-35 MJ, so hydrogen gas per litre is a hairline (drawn 1.5 px wide, labelled).
+const MAX = { kg: 150e6, L: 35e6 } as const;
+const TICK_MJ = { kg: [0, 50, 100, 150], L: [0, 10, 20, 30] } as const;
 const ROWS = { petrol: 30, gas: 72, liquid: 114 } as const;
 const BH = 20;
 const AXIS_Y = 144;
-const TICKS = ["1 kJ", "100 kJ", "10 MJ", "1 GJ"];
 
 type Unit = "none" | "kg" | "L";
 
@@ -85,7 +85,7 @@ export default function HydrogenPerLitre({ slug }: { slug: string }) {
           <p>
             Per kilogram hydrogen won, about {joules(H2_J_KG)} against {joules(OCT_J_KG)} for petrol. Per litre it lost by
             about <strong>{sig2(OCT_J_L / H2_GAS_J_L)} times</strong>: a litre of hydrogen gas at room pressure weighs only
-            0.08 g, so it carries about {joules(H2_GAS_J_L)}, while a litre of petrol carries about {joules(OCT_J_L)}.
+            0.08 g, so it carries about {joules(H2_GAS_J_L)} ({(H2_GAS_J_L / 1e6).toFixed(3)} MJ, the hairline), while a litre of petrol carries about {joules(OCT_J_L)}.
           </p>
           <p>
             Even liquefied at −253 °C, hydrogen holds about {sig2(OCT_J_L / H2_LIQ_J_L)} times less per litre. Which fuel is
@@ -170,8 +170,16 @@ function Stage({
   const hVal = unit === "kg" ? H2_J_KG : H2_GAS_J_L;
   const per = unit === "kg" ? "kg" : "L";
   const showLiquid = liquid && unit === "L";
+  const scale = unit === "kg" ? MAX.kg : MAX.L;
+  const X = (v: number) => L + Math.min(1, v / scale) * (RR - L);
+  const bar = (v: number) => Math.max(1.5, X(v) - L);
   const pLabel = unit === "none" ? "petrol (octane)" : `petrol (octane): ${joules(pVal)}/${per}`;
-  const hLabel = unit === "none" ? "hydrogen" : `hydrogen${unit === "L" ? " gas" : ""}: ${joules(hVal)}/${per}`;
+  const hLabel =
+    unit === "none"
+      ? "hydrogen"
+      : unit === "L"
+        ? `hydrogen gas: ${(hVal / 1e6).toFixed(3)} MJ/L (${joules(hVal)}), a hairline`
+        : `hydrogen: ${joules(hVal)}/${per}`;
   const lLabel = `liquid hydrogen: ${joules(H2_LIQ_J_L)}/L`;
 
   return (
@@ -182,19 +190,18 @@ function Stage({
         role="img"
         aria-label={`Energy from burning. ${pLabel}. ${hLabel}.${showLiquid ? ` ${lLabel}.` : ""}`}
       >
-        {Array.from({ length: DECADES + 1 }, (_, i) => {
-          const x = L + i * ((RR - L) / DECADES);
-          return (
-            <g key={i}>
-              <line x1={x} x2={x} y1={ROWS.petrol - 16} y2={AXIS_Y} className={s.grid} />
-              {i % 2 === 0 && (
-                <text x={x} y={AXIS_Y + 14} textAnchor={i === 0 ? "start" : i === DECADES ? "end" : "middle"} className={s.tick}>
-                  {TICKS[i / 2]}
+        {unit !== "none" &&
+          TICK_MJ[unit].map((mj, i, all) => {
+            const x = X(mj * 1e6);
+            return (
+              <g key={`${unit}-${mj}`}>
+                <line x1={x} x2={x} y1={ROWS.petrol - 16} y2={AXIS_Y} className={s.grid} />
+                <text x={x} y={AXIS_Y + 14} textAnchor={i === 0 ? "start" : i === all.length - 1 ? "end" : "middle"} className={s.tick}>
+                  {mj === 0 ? "0" : `${mj} MJ`}
                 </text>
-              )}
-            </g>
-          );
-        })}
+              </g>
+            );
+          })}
         <line x1={L} x2={RR} y1={AXIS_Y} y2={AXIS_Y} className={s.axis} />
 
         <text x={L} y={ROWS.petrol - 5} className={s.label}>
@@ -203,7 +210,7 @@ function Stage({
         {unit === "none" ? (
           <rect x={L} y={ROWS.petrol} width={RR - L} height={BH} className={s.slot} />
         ) : (
-          <rect x={L} y={ROWS.petrol} width={X(pVal) - L} height={BH} className={s.petrol} />
+          <rect x={L} y={ROWS.petrol} width={bar(pVal)} height={BH} className={s.petrol} />
         )}
 
         <text x={L} y={ROWS.gas - 5} className={s.label}>
@@ -212,7 +219,7 @@ function Stage({
         {unit === "none" ? (
           <rect x={L} y={ROWS.gas} width={RR - L} height={BH} className={s.slot} />
         ) : (
-          <rect x={L} y={ROWS.gas} width={X(hVal) - L} height={BH} className={s.hydrogen} />
+          <rect x={L} y={ROWS.gas} width={bar(hVal)} height={BH} className={s.hydrogen} />
         )}
 
         {showLiquid && (
@@ -220,12 +227,9 @@ function Stage({
             <text x={L} y={ROWS.liquid - 5} className={s.label}>
               {lLabel}
             </text>
-            <rect x={L} y={ROWS.liquid} width={X(H2_LIQ_J_L) - L} height={BH} className={s.ghost} />
+            <rect x={L} y={ROWS.liquid} width={bar(H2_LIQ_J_L)} height={BH} className={s.ghost} />
           </>
         )}
-        <text x={RR} y={H - 2} textAnchor="end" className={s.caption}>
-          octane for petrol · water formed as liquid
-        </text>
       </svg>
       <Row>
         <Control className={unit === "kg" ? "active" : ""} disabled={locked || unit === "kg"} onClick={perKg}>

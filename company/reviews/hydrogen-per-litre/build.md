@@ -17,3 +17,22 @@ Departures from the brief: the axis runs 1 kJ to 1 GJ (6 decades, labels at 10^3
 ## QA (local)
 
 Computer-use QA 2026-10-14 against the shared dev server :3530: `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J slugs> QA_OUT=artifacts/qa-wavej-chemistry npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=300000`. The `--timeout` flag raises only the per-test time budget (the config's 45 s ran out on page load, with the server at 15-60 s a page); no check was changed. Result: phone and desktop pass. The phone run failed once on the console error "Can't perform a React state update on a component that hasn't mounted yet" (desktop passed in the same run); a phone-only re-run passed (QA_OUT=artifacts/qa-wavej-chemistry-h2). The lesson has no effect or render-time state update, so I read it as a dev-server hot-reload flake while other agents edited files, but the next QA should watch for it. Not run: next build, npm run verify (shared machine), walkthrough.
+
+## v2: learner r10 fixes (W-840, demo-builder, 2026-10-14)
+
+Review: company/reviews/hydrogen-per-litre/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Log axis replaced by a linear one: 0-150 MJ per kg (142 vs 48 now look 3× apart) and 0-35 MJ per litre, where hydrogen gas is a hairline drawn at the 1.5 px minimum and labelled 'hydrogen gas: 0.012 MJ/L (12 kJ), a hairline'. Reveal adds '(0.012 MJ, the hairline)'.
+- Footnote 'octane for petrol · water formed as liquid' removed from the stage (c2 keeps the convention). c2, c3 rewritten (unverified).
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Locked: empty slots, no axis ticks, no values.
+4. Reveal values computed from constants (unchanged).
+5. QA path unchanged.
+6. Reset: no Reset (about 74 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 88 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

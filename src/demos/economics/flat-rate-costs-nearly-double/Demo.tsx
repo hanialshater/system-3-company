@@ -8,11 +8,12 @@
 // shrink with the balance.
 // Controls (DOM order): [Flat 10%] [True 10%] presets, then a term slider (1 to 3 years, starts at 2).
 // Milestones: "flat" (Flat 10% at 2 years: interest, true rate, owed at month 12 recorded) and "true"
-// (True 10% at 2 years: payment and interest recorded). Once recorded, the flat 2-year picture stays as a
-// dashed ghost when anything else is shown.
+// (True 10% at 2 years: payment and interest recorded). Once recorded, the flat loan stays as a dashed red ghost at
+// the current term when the true loan is shown; flat is always red, true always teal; the term returns to 2 years
+// when the reveal opens. The month-12 dot says "about half owed" (learner r10, W-840: $5,449 was not reproducible).
 // Model: a made-up loan, level monthly payments, no fees; not any lender.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -81,7 +82,15 @@ function stairPath(bal: number[]) {
 type FlatRec = { interest: number; apr: number; owed12: number };
 type TrueRec = { pay: number; interest: number };
 
-const FLAT_Q = loan("flat", Q_YEARS);
+/** Runs once when the reveal opens: the term goes back to the question's 2 years, so both loans on the stage match
+ *  the figures the reveal quotes (learner r10, W-840). */
+function OnReveal({ reveal, run }: { reveal: boolean; run: () => void }) {
+  useEffect(() => {
+    if (reveal) run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reveal]);
+  return null;
+}
 
 export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
   const [mode, setMode] = useState<Mode | null>(null);
@@ -103,7 +112,7 @@ export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
         <>
           <p>
             A flat 10% charged <strong>{usd(fr?.interest ?? 2000)}</strong>: 10% of the full $10,000, both years. But you repaid as you went:
-            by month 12 you owed {usd(fr?.owed12 ?? 5449)}, yet the interest bars stayed at $83 a month, as if you still owed $10,000. On
+            by month 12 you owed only about half, yet the red interest bars stayed at $83 a month, as if you still owed $10,000. On
             what you actually owed, that is <strong>{pct(fr?.apr ?? 0.1816)}</strong> a year.
           </p>
           <p>
@@ -113,7 +122,7 @@ export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, phase, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const show = (nm: Mode | null, ny: number) => {
@@ -130,11 +139,15 @@ export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
               }
             };
             const cur = mode ? loan(mode, years) : null;
-            const isQFlat = mode === "flat" && years === Q_YEARS;
-            const ghost = fr !== null && !isQFlat;
+            // The flat loan is always red, the true loan always teal. Once the flat loan has been seen, it stays as a
+            // dashed red ghost at the current term whenever the true loan is shown.
+            const ghost = fr !== null && mode !== "flat";
+            const flatNow = loan("flat", years);
+            const flatShown = !locked && (mode === "flat" || ghost);
             const bw = Math.max(1, (XR - XL) / MMAX - 2);
             return (
               <div className={s.wrap}>
+                <OnReveal reveal={phase === "reveal"} run={() => years !== Q_YEARS && setYears(Q_YEARS)} />
                 <p className={s.chip}>Flat: interest on the full $10,000, every month.</p>
                 <Row>
                   <Readout label="Payment" value={locked || !cur ? "?" : usd(cur.pay)} />
@@ -176,25 +189,25 @@ export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
 
                   {!locked && ghost && (
                     <g>
-                      <path d={stairPath(FLAT_Q.bal)} className={s.ghost} />
-                      {FLAT_Q.charged.map((c, i) => (
+                      <path d={stairPath(flatNow.bal)} className={s.ghost} />
+                      {flatNow.charged.map((c, i) => (
                         <rect key={i} x={px(i) + 1} y={BAR0 - c * BARH} width={bw} height={c * BARH} className={s.ghostBar} />
                       ))}
                     </g>
                   )}
                   {!locked && cur && (
                     <g>
-                      <path d={stairPath(cur.bal)} className={s.stair} />
+                      <path d={stairPath(cur.bal)} className={mode === "flat" ? s.stairFlat : s.stair} />
                       {cur.charged.map((c, i) => (
-                        <rect key={i} x={px(i) + 1} y={BAR0 - c * BARH} width={bw} height={c * BARH} className={s.bar} />
+                        <rect key={i} x={px(i) + 1} y={BAR0 - c * BARH} width={bw} height={c * BARH} className={mode === "flat" ? s.bar : s.trueBar} />
                       ))}
                     </g>
                   )}
-                  {!locked && fr && (
+                  {flatShown && fr && (
                     <g>
-                      <circle cx={px(12)} cy={py(fr.owed12)} r={4} className={s.dot} />
-                      <text x={px(12) + 7} y={py(fr.owed12) - 7} className={s.value}>
-                        {usd(fr.owed12)}
+                      <circle cx={px(6 * years)} cy={py(flatNow.bal[6 * years])} r={4} className={s.dot} />
+                      <text x={px(6 * years) + 7} y={py(flatNow.bal[6 * years]) - 7} className={s.value}>
+                        about half owed
                       </text>
                       <text x={XR} y={BAR0 - 83.33 * BARH - 4} textAnchor="end" className={s.valueBad}>
                         flat: $83 a month

@@ -4,6 +4,7 @@
 // Compounded: skill(day) = (1 + g)^day, so at g = 1% day 365 gives 1.01^365 = 37.78 times the start.
 // Added (no compounding): 1 + g × day, 4.65 at 1%. Practice curve: an illustrative power law,
 // skill(day) = day^0.4 (day 1 = 1), 365^0.4 = 10.59; day 30 is 3.90, about 37% of the year's level.
+// Learner r10 (W-840): the reveal no longer quotes the made-up curve's 10.6x as if measured; the stage caption is plain words.
 // The practice curve is the lesson's illustration, not fitted to any data; it does not depend on g.
 // Controls (DOM order): daily-gain slider (0.1% to 2%, starts at 0.5%), [Add practice curve],
 // [Compound at 1%] (the question's own case, last). Milestones: "practice" (practice curve drawn,
@@ -66,8 +67,8 @@ export default function OnePercentADay({ slug }: { slug: string }) {
             fast, and that arithmetic is what <em>Atomic Habits</em> uses to argue that tiny habits matter.
           </p>
           <p>
-            Does it hold up as a picture of learning? Mostly not: when skill is measured, gains come fast at first and then slow, as
-            your practice curve showed ({fmt(rec.practice ?? 10.59)}× after a year). Small habits can still matter. They just don&apos;t
+            Does it hold up as a picture of learning? Mostly not: practice studies find gains come fast at first and then slow.
+            The practice curve here is made up, not data. Small habits can still matter. They just don&apos;t
             compound at a fixed rate.
           </p>
         </>
@@ -87,7 +88,7 @@ export default function OnePercentADay({ slug }: { slug: string }) {
             const ticks = [0, ymax / 2, ymax];
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Practice curve: illustrative, skill ∝ day^0.4</p>
+                <p className={s.chip}>Practice curve: made up, rises fast, then slows</p>
                 <Row>
                   <Readout label="Compounded, day 365" value={locked ? "?" : `${fmt(end)}×`} />
                   <Readout label="Practice curve" value={locked || !showPractice ? "–" : `${fmt(pEnd)}×`} />
