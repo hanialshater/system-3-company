@@ -26,39 +26,31 @@
   "claims": [
     {
       "id": "probability.bet-too-much-and-go-broke.c1",
-      "text": "On the stage's 31 players the middle player ends 100 rounds with x2.40 at a 5% stake, x4.50 at 10%, x7.49 at 20%, x0.78 at 40% and x0.00021 at 60%.",
+      "text": "On the stage's 31 players the middle player ends 100 rounds with x2.40 at a 5% stake, x4.50 at 10%, x7.49 at 20%, x4.37 at 30%, x0.78 at 40% and x0.00021 at 60%.",
       "support": "simulation",
-      "source": "flips(), middle(), path() in src/demos/probability/bet-too-much-and-go-broke/model.ts, mulberry32 seed 2, CHOSEN: the first seed whose middle player has exactly 60 heads, the median over seeds (seed 60, tried first, gave 57 heads and x2.46 at 10% vs x2.22 at 20%, i.e. 10% best for that run). Over seeds 1-1000 the middle player's heads had middle 95% 58-62, and 20% was the best of the five stakes for the middle player in 982 of 1000 seeds. With 60 heads these values equal the exact typical result e^(100 g(f)).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "flips(), middle(), path() in src/demos/probability/bet-too-much-and-go-broke/model.ts, mulberry32 seed 2, CHOSEN: the first seed whose middle player has exactly 60 heads, the median over seeds (seed 60, tried first, gave 57 heads and x2.46 at 10% vs x2.22 at 20%, i.e. 10% best for that run). Over seeds 1-1000 the middle player's heads had middle 95% 58-62, and 20% was the best of the original five stakes for the middle player in 982 of 1000 seeds (the 30% stake was added in v2; growth per round at 30% is 0.0147, below 20%'s 0.0201). With 60 heads these values equal the exact typical result e^(100 g(f)).",
+      "status": "unverified"
     },
     {
       "id": "probability.bet-too-much-and-go-broke.c2",
-      "text": "Players above their start after 100 rounds: 31, 30, 27, 13 and 1 of 31 at stakes 5%, 10%, 20%, 40%, 60%.",
+      "text": "Players above their start after 100 rounds: 31, 30, 27, 21, 13 and 1 of 31 at stakes 5%, 10%, 20%, 30%, 40%, 60%.",
       "support": "simulation",
       "source": "above() in Demo.tsx over the seed-2 sample (c1); one chosen sample, not a rate.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.bet-too-much-and-go-broke.c3",
-      "text": "At a 60% stake, one win then one loss leaves 1.6 x 0.4 = 0.64 of your money.",
+      "text": "At a 60% stake a win multiplies your money by 1.6 and a loss by 0.4, so one win then one loss leaves 1.6 x 0.4 = 0.64 of your money; the stage prints this for every stake.",
       "support": "derivation",
       "source": "Arithmetic; order does not matter (0.4 x 1.6 is the same).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.bet-too-much-and-go-broke.c4",
-      "text": "The share that grows money fastest is 2 x 0.6 - 1 = 20% (the Kelly rule).",
+      "text": "The share that grows money fastest is 2 x 0.6 - 1 = 20% (the Kelly rule), for this model coin; real bets differ.",
       "support": "source",
       "source": "Typical growth per round g(f) = 0.6 ln(1+f) + 0.4 ln(1-f), maximised at f* = 2p - 1 (growth() in model.ts: 0.0088, 0.0150, 0.0201, -0.0024, -0.0845). Kelly, J. L. (1956), 'A New Interpretation of Information Rate', Bell System Technical Journal 35: 917-926.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.bet-too-much-and-go-broke.c5",
@@ -68,6 +60,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "probability.bet-too-much-and-go-broke.c6",
+      "text": "The lesson is a model: a made-up coin that lands heads 60% of the time and pays even money, one fixed stake share each round. It is not advice for real bets or markets.",
+      "support": "convention",
+      "source": "Reveal line 'for this model coin; real bets differ. Not advice.'",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:multiplicative-bets",
     "prerequisites": [
@@ -101,5 +100,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "locked-readouts",
+    "milestone-gate"
+  ]
 }

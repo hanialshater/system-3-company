@@ -2,7 +2,8 @@
 
 // Budget constraint. One picture: a $20 cart drawn as ten $2 slots. An apple fills one slot, a loaf
 // fills two. Any loaf added takes the room of two apples, so the trade-off is the price ratio.
-// Key state: 3 loaves in the cart, then the rest filled with apples (4 apples, $0 left).
+// Start: a full cart, 3 loaves and 4 apples, $0 left. Key state (milestone): the learner adds a loaf to the full cart
+// and watches 2 apples pushed out.
 // Prices are illustrative.
 
 import { useState } from "react";
@@ -15,12 +16,12 @@ const BUDGET = 20;
 const APPLE = 2;
 const LOAF = 4;
 const Q_LOAVES = 3;
-const START_LOAVES = 1;
+const START_LOAVES = Q_LOAVES;
 const MAX_LOAVES = BUDGET / LOAF;
 const SLOT = APPLE; // each slot is one apple's price
 const SLOTS = BUDGET / SLOT;
 const PER_LOAF = LOAF / APPLE; // apples given up per loaf
-const MILESTONES = ["three-loaves", "filled"] as const;
+const MILESTONES = ["pushed-out"] as const;
 
 const maxApples = (loaves: number) => Math.floor((BUDGET - LOAF * loaves) / APPLE);
 const ANSWER = maxApples(Q_LOAVES); // 4
@@ -33,41 +34,30 @@ const SH = 58;
 
 export default function TwentyDollarBasket({ slug }: { slug: string }) {
   const [loaves, setLoaves] = useState(START_LOAVES);
-  const [apples, setApples] = useState(0);
-  const [filled, setFilled] = useState<Record<number, number>>({});
+  const [apples, setApples] = useState(maxApples(START_LOAVES));
+  const [note, setNote] = useState("");
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `You have $${BUDGET}. Apples cost $${APPLE} each, loaves $${LOAF}. You buy ${Q_LOAVES} loaves. What is the most apples you can add?`,
-        options: [String(ANSWER), String(ANSWER + 2), String(ANSWER + 4)],
-        answer: 0,
+        question: `You have $${BUDGET}; apples cost $${APPLE}, loaves $${LOAF}. Your cart is full: ${Q_LOAVES} loaves and ${ANSWER} apples, $0 left. You add one more loaf. What happens to the apples?`,
+        options: ["None leave: it still fits", "1 apple leaves", `${PER_LOAF} apples leave`],
+        answer: 2,
       }}
-      exploreHint={`Put ${Q_LOAVES} loaves in the cart, then fill the rest with apples.`}
+      exploreHint="Slide the loaves up and watch the apples."
       minInteractions={MILESTONES.length}
-      reveal={() => {
-        const others = Object.entries(filled)
-          .map(([l, a]) => [Number(l), a] as const)
-          .filter(([l]) => l !== Q_LOAVES)
-          .sort((a, b) => a[0] - b[0]);
-        return (
-          <>
-            <p>
-              With {Q_LOAVES} loaves the cart had ${BUDGET - LOAF * Q_LOAVES} left, and that held{" "}
-              <strong>{ANSWER} apples</strong>. Then the ${BUDGET} was gone.
-              {others.length > 0 &&
-                ` You also filled it at ${others.map(([l, a]) => `${l} loaves (${a} apples)`).join(" and ")}.`}
-            </p>
-            <p>
-              Each loaf takes the room of {PER_LOAF} apples, because ${LOAF} / ${APPLE} = {PER_LOAF}. Inside a fixed budget,
-              nothing extra is free: one more loaf always means {PER_LOAF} fewer apples. The trade-off is the ratio of the
-              prices.
-            </p>
-            <p className="muted">Prices are made up for the example.</p>
-          </>
-        );
-      }}
+      reveal={() => (
+        <>
+          <p>
+            You added a loaf to a full cart ({Q_LOAVES} loaves, {ANSWER} apples, $0 left) and <strong>{PER_LOAF} apples</strong> had to leave: a ${LOAF} loaf takes the room of two ${APPLE} apples, because ${LOAF} / ${APPLE} = {PER_LOAF}.
+          </p>
+          <p>
+            Inside a fixed budget, once the money is all spent nothing extra is free: one more loaf means {PER_LOAF} fewer apples. The trade-off is the ratio of the prices.
+          </p>
+          <p className="muted">Prices are made up for the example.</p>
+        </>
+      )}
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
@@ -76,16 +66,21 @@ export default function TwentyDollarBasket({ slug }: { slug: string }) {
             const left = BUDGET - spent;
             const room = maxApples(loaves);
             const setL = (l: number) => {
+              const pushed = Math.max(0, apples - maxApples(l));
               setLoaves(l);
-              setApples((a) => Math.min(a, maxApples(l)));
-              if (l === Q_LOAVES) reach("three-loaves");
+              setApples(Math.min(apples, maxApples(l)));
+              setNote(
+                pushed > 0
+                  ? `${l > loaves ? "The extra loaf" : "Fewer loaves"} left room for ${maxApples(l)} apples: ${pushed} pushed out.`
+                  : l < loaves
+                    ? `A loaf removed frees room for ${PER_LOAF} apples.`
+                    : "",
+              );
+              if (l > loaves && pushed > 0 && loaves * LOAF + apples * APPLE === BUDGET) reach("pushed-out");
             };
             const setA = (a: number) => {
               setApples(a);
-              if (a === maxApples(loaves)) {
-                setFilled((f) => ({ ...f, [loaves]: a }));
-                if (loaves === Q_LOAVES) reach("filled");
-              }
+              setNote("");
             };
             // Lay the cart out: loaves first (two slots each), then apples.
             const items: { kind: "loaf" | "apple"; slot: number }[] = [];
@@ -130,6 +125,9 @@ export default function TwentyDollarBasket({ slug }: { slug: string }) {
                   ))}
                 </svg>
 
+                <p className={s.msg} aria-live="polite">
+                  {locked ? "" : note}
+                </p>
                 <Row>
                   <Readout label="Apples" value={apples} />
                   <Readout label="Spent" value={`$${spent}`} />

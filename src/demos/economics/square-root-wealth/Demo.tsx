@@ -48,7 +48,7 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
           <p>
             The coin&apos;s felt value is half of {felt(0)} plus half of {felt(HIGH)}, which is <strong>{COIN}</strong>. The curve
             reaches {COIN} at <strong>{usd(SURE)}</strong>, so a sure {usd(SURE)} feels as good as the coin, though the coin pays{" "}
-            {usd(HIGH / 2)} on average. A sure {usd(HIGH / 2)} sat above the line, at {two(felt(HIGH / 2))}.
+            {usd(HIGH / 2)} on average.
           </p>
           <p>When each extra dollar matters less and less, a sure amount well below the average can equal a gamble.</p>
           <p className="muted">A model: square-root felt value is one textbook choice, not a measure of anyone. No advice.</p>
@@ -72,7 +72,7 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                   <line x1={X0} y1={Y0} x2={X1} y2={Y0} stroke="var(--line)" strokeWidth={1.5} />
                   <line x1={X0} y1={Y0} x2={X0} y2={Y1} stroke="var(--line)" strokeWidth={1.5} />
                   <path d={CURVE} className={s.line} />
-                  <text x={X1} y={Y0 + 14} textAnchor="end" className={s.axis}>
+                  <text x={X1} y={Y0 + 30} textAnchor="end" className={s.axis}>
                     wealth ($)
                   </text>
                   <text x={X0 + 4} y={Y1 + 4} className={s.axis}>
@@ -97,9 +97,13 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                   <Readout label="Its felt value" value={locked ? "?" : two(f)} />
                   <Readout label="Coin's felt value" value={locked ? "?" : two(COIN)} />
                 </Row>
-                <p className={s.msg}>{status}</p>
+                <p className={s.msg}>{locked ? "" : `Coin: half of \u221A0 plus half of \u221A${HIGH} = 0 + ${felt(HIGH) / 2} = ${COIN}`}</p>
+                <p className={s.msg}>{status}{!locked && Math.abs(diff) < 1e-9 ? `: the coin pays ${usd(HIGH / 2)} on average` : ""}</p>
                 <Row>
-                  {[HIGH / 2, SURE, HIGH * 0.75].map((v) => (
+                  <Control disabled={locked || sure === SURE} onClick={() => set(SURE)}>
+                    Slide to the coin&apos;s line
+                  </Control>
+                  {[HIGH / 2, HIGH * 0.75].map((v) => (
                     <Control key={v} className={sure === v ? "active" : ""} disabled={locked || sure === v} onClick={() => set(v)}>
                       Sure {usd(v)}
                     </Control>

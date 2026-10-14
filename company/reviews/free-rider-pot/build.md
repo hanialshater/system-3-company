@@ -8,3 +8,8 @@ builder: demo-builder · 2026-10-13
 - "some" is a seeded draw (mulberry32 seed 7, untuned, the first seed tried: 0,0,10,7,5,4,5,2,6). The reveal does not generalise from it; the 70-cent result is algebra.
 - Brief's real-group caveat goes in the reveal with Ledyard (1995) as source (c6). The source needs a fact-check.
 - After the screenshots: the group readout read "$300 of $100 start"; I relabelled it "Group (start $100)".
+
+## Revision v2
+
+Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Third milestone: others all give, you keep your $10 ($30 to $37, group $300 to $280) via a "You keep all $10" button; bar labels rounded to whole dollars so they do not collide; reveal quotes the new state. New c7 unverified.
+QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.

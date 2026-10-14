@@ -42,12 +42,10 @@
     },
     {
       "id": "economics.cheese-for-bread.c3",
-      "text": "Each cheese costs Ana 2 loaves given up, and costs Ben only 1.",
+      "text": "Each cheese costs Ana 2 loaves given up, and costs Ben only 1 loaf (stage line: 1 cheese costs Ana 2 loaves, Ben 1 loaf).",
       "support": "derivation",
-      "source": "Ana: 1 hour = 4 loaves or 2 cheeses, so 1 cheese = 2 loaves. Ben: 1 hour = 1 loaf or 1 cheese, so 1 cheese = 1 loaf.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Ana 4 loaves / 2 cheeses per hour = 2 loaves per cheese; Ben 1/1 = 1 (checker's cheese.mjs; Demo.tsx ANA, BEN).",
+      "status": "unverified"
     },
     {
       "id": "economics.cheese-for-bread.c4",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:comparative-advantage",
     "prerequisites": [
@@ -98,5 +96,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

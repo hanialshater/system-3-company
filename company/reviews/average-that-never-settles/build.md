@@ -13,3 +13,8 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - 'No matter how many draws' unvisited -> gate is two milestones: dots seen at 1 draw and at 10,000 (Play order puts 1 draw first, 10,000 fourth, within QA's path).
 - Spread claim told -> reveal shows the farthest Cauchy dot and the single draw (about 250,115) inside it; all numbers computed from dots() (seed 1853, untuned).
 - Hook leaked ('one that won't') -> 'More data, steadier average. Does that always hold?'. Claim c4 rewritten, unverified.
+
+## Revision v3
+
+Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Hook no longer leaks; chips renamed in plain words ("highest minus lowest", "more than 1 from 0"); stage text says the same 30 runs are re-read, and at 10,000 draws shows the farthest dot (24.7) and its one draw of 250,115; Cauchy glossed in the question. c4 edited, unverified.
+QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.

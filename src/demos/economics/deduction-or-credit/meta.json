@@ -23,12 +23,10 @@
   "claims": [
     {
       "id": "economics.deduction-or-credit.c1",
-      "text": "On $10,000 of income at a 20% rate the tax is $2,000; a $1,000 deduction makes it $1,800, a cut of $200.",
+      "text": "On $10,000 of income at a 20% rate the tax is $2,000; a $1,000 deduction leaves $9,000 to be taxed, so the tax is $1,800, a cut of $200 (20% of $1,000).",
       "support": "derivation",
-      "source": "0.20 x 10,000 = 2,000; 0.20 x (10,000 - 1,000) = 1,800 (node; Demo.tsx bill()).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "20% x 10,000 = 2,000; 20% x 9,000 = 1,800 (node; Demo.tsx baseTax(), dedBill()).",
+      "status": "unverified"
     },
     {
       "id": "economics.deduction-or-credit.c2",
@@ -41,12 +39,10 @@
     },
     {
       "id": "economics.deduction-or-credit.c3",
-      "text": "A deduction is worth the tax rate times its size (so more at higher rates); a credit is worth its full size at any rate (when the bill is at least as large).",
+      "text": "A deduction is worth the tax rate times its size (so more at higher rates); a credit is worth its full size at any rate (when the bill is at least as large). The stage lets the learner raise the rate with both shown.",
       "support": "derivation",
-      "source": "deduction cut = r x 1,000; credit cut = min(1,000, r x 10,000). At 10%, 40%: deduction cuts $100, $400; credit cuts $1,000 at both (node; slider range 10-40%).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "At 10%, 20%, 40% the deduction cuts 100, 200, 400 and the credit 1,000 (node; Demo.tsx dedBill(), credBill()).",
+      "status": "unverified"
     },
     {
       "id": "economics.deduction-or-credit.c4",
@@ -86,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:deduction-vs-credit",
     "prerequisites": [
@@ -95,5 +91,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

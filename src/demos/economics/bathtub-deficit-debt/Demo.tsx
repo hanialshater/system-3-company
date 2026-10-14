@@ -41,7 +41,7 @@ export default function Bathtub({ slug }: { slug: string }) {
         options: [usd(Q_GAP), usd(START), usd(START + Q_MONTHS * Q_GAP)],
         answer: 2,
       }}
-      exploreHint="Run to month 6 with the tap at +$200, then try saving."
+      exploreHint="Run to month 6 with the tap at +$200, then press Save and watch the tap turn negative."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -49,7 +49,9 @@ export default function Bathtub({ slug }: { slug: string }) {
             Month by month the tap added {usd(Q_GAP)}, so after {Q_MONTHS} months the tub held <strong>{usd(START + Q_MONTHS * Q_GAP)}</strong> ({usd(START)} + {Q_MONTHS} × {usd(Q_GAP)}).
             The {usd(Q_GAP)} is the deficit, a flow per month. The {usd(START + Q_MONTHS * Q_GAP)} is the debt, a stock.
           </p>
-          <p>A month of saving drained the tub: debt falls only when the gap turns negative. Here interest is ignored; interest would make the tap grow.</p>
+          <p>
+            When you saved, the tap read {signed(-Q_GAP)} a month and the tub drained {usd(Q_GAP)} each month: debt falls only in months when the gap is negative. Here interest is ignored; interest would make the tap grow.
+          </p>
         </>
       )}
     >
@@ -63,7 +65,10 @@ export default function Bathtub({ slug }: { slug: string }) {
               if (add.some((g) => g < 0) && levelAfter(next) < levelAfter(gaps)) reach("fall");
             };
             const toSix = () => apply(Array(Math.max(0, Q_MONTHS - month)).fill(gap));
-            const saving = () => apply([-Q_GAP, -Q_GAP]);
+            const saving = () => {
+              setGap(-Q_GAP);
+              apply([-Q_GAP, -Q_GAP]);
+            };
             const frac = level / TUB_MAX;
             const wh = TH * frac;
             return (
@@ -98,7 +103,7 @@ export default function Bathtub({ slug }: { slug: string }) {
                     Run to month 6
                   </Control>
                   <Control disabled={locked || month + 2 > MAX_MONTHS} onClick={saving}>
-                    Save {usd(Q_GAP)} for 2 months
+                    Save {usd(Q_GAP)} a month for 2 months
                   </Control>
                 </Row>
                 <Slider label="Monthly gap" value={gap} min={-300} max={300} step={100} format={signed} disabled={locked} onChange={setGap} />
