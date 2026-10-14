@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 120px; max-height: 30dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.row) > :global(.control) { flex: 1 1 0; min-width: 0; white-space: nowrap; padding-left: 4px; padding-right: 4px; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.tick { fill: var(--muted); font-size: 10.5px; }
+.caption { fill: var(--muted); font-size: 10.5px; }
+.slot { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.petrol { fill: color-mix(in srgb, var(--fg) 55%, var(--bg-2)); transition: width 0.3s ease; }
+.hydrogen { fill: var(--domain); transition: width 0.35s ease; }
+.ghost { fill: color-mix(in srgb, var(--domain) 22%, transparent); stroke: var(--domain); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.label { fill: var(--fg); font-size: 11.5px; font-weight: 700; font-variant-numeric: tabular-nums; }

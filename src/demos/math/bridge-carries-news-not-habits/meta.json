@@ -35,8 +35,10 @@
       "id": "math.bridge-carries-news-not-habits.c2",
       "text": "When the habit stops, Ben has 1 of his 5 friends adopting (20%), short of half, and nobody else in group B has any adopting friend. The habit row keeps this as 'Habit stuck: 5/10 / Ben 1 of 5 friends' after the news run.",
       "support": "derivation",
-      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5. | FACT-CHECK 2026-10-14 (pass 22): Own simulation: at the stuck state Ben 1/5 (20%), people 6-9 0/4 each. | v4 (demo-builder, 2026-10-14): learner r8: the habit row now keeps a trace once the habit is stuck ('Habit stuck: 5/10' and 'Ben 1 of 5 friends', computed from the habit run's own state), so the quoted 1 of 5 is on the stage when the reveal opens after the news run. Values unchanged. Needs re-check.",
-      "status": "unverified"
+      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5. | FACT-CHECK 2026-10-14 (pass 22): Own simulation: at the stuck state Ben 1/5 (20%), people 6-9 0/4 each. | v4 (demo-builder, 2026-10-14): learner r8: the habit row now keeps a trace once the habit is stuck ('Habit stuck: 5/10' and 'Ben 1 of 5 friends', computed from the habit run's own state), so the quoted 1 of 5 is on the stage when the reveal opens after the news run. Values unchanged. Needs re-check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read v4 Demo.tsx first. Own port of the graph (two K5 groups plus link 4–5) and the simultaneous-round rule q = 1/2: the habit adds {2,3} then {4}, then nobody (stuck after round 3) at 5/10. Ben (5) has 1 of 5 friends adopting, which Math.round(100 × 1/5) prints as 20%, and people 6 to 9 have 0 adopting friends. The habit row shows 'Habit stuck:' + ' 5/10' and the trace 'Ben 1 of 5 friends' from runs.habit, which the news run never changes, so it stays after the news run. The reveal quotes FINAL, the same values.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c3",

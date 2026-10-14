@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.86rem; font-weight: 700; }
+.lab { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.big { fill: var(--fg); font-size: 13px; font-weight: 900; }
+.badText { fill: var(--bad); font-size: 12px; font-weight: 900; }
+.readouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.readouts > div { font-size: 0.8rem; }
+.controls { display: flex; flex-wrap: nowrap; justify-content: center; gap: 6px; }
+.controls > button { min-height: 44px; font-weight: 700; padding: 6px 10px; font-size: 0.85rem; }

@@ -1,0 +1,103 @@
+{
+  "slug": "bad-year-breaks-the-quota",
+  "title": "Two steady lakes, one bad year",
+  "hook": "Both lakes have given 120 fish a year for years. Then a disease hits both.",
+  "domain": "life",
+  "concept": "harvest-rule-resilience",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a lake adds at most 125 fish a year, at 500 fish (steady-catch-from-a-lake)",
+      "logistic growth"
+    ],
+    "doesNotKnow": [
+      "that a fixed quota below the lake's best growth has a second balance point (400 fish here) below which the lake drains, and that a fixed share has none"
+    ]
+  },
+  "misconception": "A catch that has been steady for years is safe. A fixed number is the cautious rule: it never takes more than it says.",
+  "objective": "The learner can explain why a fixed catch of 120 empties a lake knocked down to 300 (growth 105 is below the catch) while a 20% share recovers (its catch shrinks with the stock), and that the fixed number has a tipping point (400 here) the share lacks.",
+  "claims": [
+    {
+      "id": "life.bad-year-breaks-the-quota.c1",
+      "text": "In the model, after a disease kills half of each lake in year 10, lake A (120 a year) is empty in year 17 (t = 16.9) and lake B (20% a year) is back to 600 by year 60; after a 30% loss both recover (A 589, B 600 at year 60). Reveal: \"After a 30% loss both lakes came back. After a 50% loss, lake B recovered to 600, but lake A was empty in year 17.\" Stage readout: \"year 60: A empty · B 600 fish\".",
+      "support": "simulation",
+      "source": "simulate() in Demo.tsx: dN/dt = 0.5N(1 - N/1000) - H, H = 120 or 0.2N, N(0) = 600, disease multiplies N by 0.7 or 0.5 at year 10, Euler dt 0.001. Builder re-run 2026-10-14 (node strip-types): quota 30% end 588.57 (year 20: 446); share 30% 600.00 (587); quota 50% empty at t = 16.933; share 50% 600.00 (year 20: 572). Matches check script E2 (company/domains/briefs/checks/life-wave-j-check.mjs). 'Year 17' rounds 16.9 up, as in steady-catch-from-a-lake.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.bad-year-breaks-the-quota.c2",
+      "text": "With a fixed catch of 120, growth equals the catch at 400 and 600 fish; below 400 the catch exceeds growth (at 300 fish the lake adds only 105 a year), so the lake drains. Reveal: \"Lake A's catch stays 120 however few fish remain. At 300 fish the lake adds only 105 a year, so each year takes more than it adds.\" Stage: \"at 300 fish: grows 105, A takes 120\" and the dashed line \"A's tipping point: 400\".",
+      "support": "derivation",
+      "source": "Solve 0.5N(1 - N/1000) = 120: N^2 - 1000N + 240000 = 0, N = 400 or 600. Growth at 300: 0.5 x 300 x 0.7 = 105 < 120. Below 400 growth is below 120, so dN/dt < 0 and N falls to 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.bad-year-breaks-the-quota.c3",
+      "text": "With a fixed 20% catch, growth exceeds the catch at every stock below 600, so the lake returns to 600 from any positive stock; at 300 fish the 20% catch is 60. Reveal: \"Lake B's 20% shrinks with the stock: 60 fish at 300. A fixed number has a tipping point, 400 fish here; a fixed share has none.\"",
+      "support": "derivation",
+      "source": "0.5N(1 - N/1000) > 0.2N  <=>  0.5(1 - N/1000) > 0.2  <=>  N < 600, for N > 0. 0.2 x 300 = 60. The quota's lower balance point is 400 (claim 2); the share rule has only N = 0 and N = 600 as balance points, and 0 is unstable.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.bad-year-breaks-the-quota.c4",
+      "text": "Toy model: fixed growth rate and limit, one disease, no chance or age structure; not fishing advice. Stage: \"Toy lakes: fish add 0.5·N·(1 − N/1000) a year. A takes 120 a year; B takes 20%.\" Reveal: \"Toy model, not fishing advice.\"",
+      "support": "convention",
+      "source": "The lesson's model (brief bad-year-breaks-the-quota, company/domains/briefs/life.ecology-body.md #2). The brief's optional real-world context (constant-catch vs constant-effort rules, Hilborn and Walters 1992) is not on the card.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.bad-year-breaks-the-quota.c5",
+      "text": "Setup on the locked stage: two lakes of 600 fish, steady for years; lake A catches 120 fish a year, lake B catches 20% a year, also 120 now.",
+      "support": "derivation",
+      "source": "Both rules are at a balance point at 600: growth 0.5 x 600 x 0.4 = 120 = quota = 0.2 x 600.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two fisheries both take 1,000 tonnes a year from a stock that has been steady for decades. One takes a fixed 1,000 tonnes; the other takes a fixed share. A bad year halves the stock. Which is more at risk?",
+    "options": [
+      "The fixed 1,000 tonnes",
+      "The fixed share",
+      "Both the same: they took the same catch"
+    ],
+    "answer": 0,
+    "why": "A fixed number keeps taking the same amount when the stock is small and grows slowly, so it can take more than the stock adds and drain it. A fixed share shrinks with the stock."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:harvest-rule-resilience",
+    "also": [
+      "life:maximum-sustainable-yield",
+      "life:logistic-growth"
+    ],
+    "prerequisites": [
+      "life:maximum-sustainable-yield"
+    ],
+    "level": "stretch",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "harvest",
+      "tipping point",
+      "resilience"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

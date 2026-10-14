@@ -31,3 +31,13 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c6 | verified | A = a + (100 - a)/2 = 50 + a/2 cents, so dA = da/2 for any pair; own node: 40 -> 70, 80 -> 90 (20 cents for 40). Every reachable option (0..80 step 10) gives whole cents. tried starts as [0] and gains each option set (sorted, no duplicates); the reveal needs "moved", so tried has >= 2 entries and hi > lo; it quotes tried[0] and tried[last] with split().A of each, the same entries as the Tried row. Note: lo is always $0.00 (the starting option), so the reveal always says "from $0.00". |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v4 first (slider 0-80 in 10-cent steps, presets, the 'No deal' and 'Deal' lines, Tried row, the $0.40 trace, chip, reveal; hook and recall), then the claim text and support, then source fields.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Convention, consistent with code: the stage chip reads 'Model: money payoffs; the deal always happens'; split() always returns a deal, and over the whole slider range (a <= 80 cents, B's option 0) the deal gives A a + (100 - a)/2 >= a and B (100 - a)/2 >= 10 cents, so taking the deal is never worse than the outside option for either side and 'always happens' is consistent with the payoffs shown. |
+
+**Result:** the one open claim verified. No disputes.

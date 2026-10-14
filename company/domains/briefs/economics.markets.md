@@ -379,3 +379,98 @@ Proposed by `cm-course-ncm` (Jonah) from `company/courses/ncm/briefs.md` (sectio
 - Format: Single card (shrink slider; backward-induction steps).
 - Curriculum: `{"primary":"economics:alternating-offers","also":[],"prerequisites":["economics:ultimatum-game","economics:present-value"],"level":"stretch","strand":"markets","references":[{"work":"easley-kleinberg-2010","chapter":12}],"tags":["bargaining","backward induction"]}`
 - Notes: Differs from nearest: outside-option-sets-the-split assumes a fair split; this derives a split from timing. Edited: prerequisite is now ultimatum-game (which teaches backward induction) plus present-value; the original had only present-value.
+
+**Wave J additions (2026-10-14).** 5 more NCM briefs from `company/courses/ncm/briefs.md` (§ economics.markets (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `economics` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 25. two-cents-empties-the-network · concept: economics:network-effects-cliff · core · demand 2 · format: Single card (price chips drive live chart; round trail)
+- Sections: E&K ch. 17 (section 17.3, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the tipping-point model of below-critical-mass (value = keenness × share) / does not know: that the hump in that model has a top, and a price just above it leaves no user share but zero.
+- Misconception: A small price rise loses a few users, not all of them.
+- Prediction (stage text ≤ 25 words): "At 24¢ the app holds 60% of people. The price rises to 26¢. Where does the user share settle?" options: A. About 58% / B. About 40% / C. About 0% (answer: C (0%: falls from 60% to 0 in 11 rounds)).
+- Check: Model of below-critical-mass: person x in 0–1 values the app at (1 − x) × share z; next round's share is 1 − price / z (0 if negative). Node `J10 {"eq020":[0.276,0.724],"eq024":[0.4,0.6],"eq025":[0.5,0.5],"eq026":[],"from60at26":[0.6,0.567,0.541,0.52,0.5,0.48,0.458,0.432,0.398,0.347,0.251,0],"roundsToZero":11}`.
+- Stage and controls: The hump z(1 − z) with the price as a horizontal line, crossings as dots; a trail of round-by-round shares on the curve. Controls in DOM order: [26¢] [20¢] [24¢]; pressing a price chip runs the rounds from 60% to the end (step-run). Readout "share: N% · round k". Labels ≥ 10 px; the 25¢ top is not labelled before the commit.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: 26¢ (milestone 1: 60% → 0 in 11 rounds, the question's case), 20¢ (crossings 28% and 72%), 24¢ (milestone 2: holds at 60%, crossings 40% and 60%).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): The hump peaks at 25¢, at half the people. At 24¢ the price line still crosses it at 40% and 60%, so 60% holds. At 26¢ it clears the top: your run slid 60, 57, 54 … and hit 0 in 11 rounds. With network effects, a price just past the top of the hump does not lose a few users; it loses all of them. (≤ 90 words.)
+- Planned claims:
+  1. In the model (value (1 − x) × share, next share 1 − price/share), the share settles where share × (1 − share) = price: at 24¢ at 40% (unstable) and 60% (stable); at 20¢ at 27.6% and 72.4%. support: derivation; source: node.
+  2. share × (1 − share) is at most 0.25, at a 50% share, so at 26¢ no positive share is an equilibrium. support: derivation.
+  3. From 60% at 26¢ the share falls to 0 in 11 rounds (60, 56.7, 54.1, 52, 50, 48, 45.8, 43.2, 39.8, 34.7, 25.1, 0%). support: derivation; source: node.
+  4. The prices and value rule are invented for the toy model and are not a forecast for any real product. support: definition.
+- Format: Single card (price chips drive live chart; round trail)
+- Curriculum: `{"primary": "economics:network-effects-cliff", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.3"}], "tags": ["network effects", "tipping point", "pricing"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/below-critical-mass varies the launch share at a fixed 16¢ price (the tipping point); this one holds a high share and raises the price (the cliff). Same model; build after it (built).
+
+### 26. worth-something-alone · concept: economics:standalone-value-network · stretch · demand 1 · format: Single card (stand-alone chips drive live chart; launch run)
+- Sections: E&K ch. 17 (section 17.6, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the tipping point of below-critical-mass / does not know: that some value with no other users shrinks the critical mass but leaves an empty app stuck at zero unless that value beats the price.
+- Misconception: Any value on its own is enough to get a network product started from zero.
+- Prediction (stage text ≤ 25 words): "Same app at 16¢, now worth 10¢ to its keenest fan even with no other users. Launched with 0 users, where does it end?" options: A. About 0% / B. About 10% / C. About 80% (answer: A (0%)).
+- Check: Value (1 − x) × (a + share), price 16¢, next share max(0, 1 − 0.16/(a + share)). Node `J11`: a = 0: equilibria 20%, 80%, from 0 stays 0; a = 10¢: equilibria 7.3%, 82.7%, from 0 stays 0; a = 20¢: zero is not an equilibrium, from 0: 0, 20, 60, 80, 84, 84.6 … 84.7%.
+- Stage and controls: The value curve against the 16¢ price line, crossings as dots, and a launch trail from 0. Controls in DOM order: [Launch from 0] [20¢ alone] [0¢ alone] [10¢ alone]; each stand-alone chip relaunches from 0. Readout "share: N% · tipping point: T%". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Launch from 0 (milestone 1: at 10¢ alone stays 0%, tipping point 7.3%), 20¢ alone (milestone 2: climbs to 84.7%), 0¢ alone (tipping point 20%), 10¢ alone (back).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): At 10¢ alone, even the keenest fan values an empty app below the 16¢ price, so nobody starts: your launch stayed at 0%. The stand-alone value did lower the critical mass, from 20% to 7.3%. At 20¢ alone the first buyers come with nobody else on it, and the app climbed to 85%. Stand-alone value removes the trap only when it beats the price. (≤ 90 words.)
+- Planned claims:
+  1. With stand-alone value a = 10¢ at price 16¢, 0% is still an equilibrium and the tipping point falls from 20% to 7.3% (high equilibrium 82.7%). support: derivation; source: node.
+  2. With a = 20¢, 0% is not an equilibrium and a launch from 0 rises 0, 20, 60, 80, 84 … to 84.7%. support: derivation; source: node.
+  3. An empty network product sells to nobody unless someone's value with no other users exceeds the price. support: derivation (at share 0 the keenest value is a).
+  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: definition; source: E&K ch. 17 (section unconfirmed).
+- Format: Single card (stand-alone chips drive live chart; launch run)
+- Curriculum: `{"primary": "economics:standalone-value-network", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "stretch", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.6"}], "tags": ["network effects", "critical mass"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/below-critical-mass has no stand-alone value; two-cents-empties-the-network (this wave) moves the price. This one adds individual value to the same curve. Build after below-critical-mass (built).
+
+### 27. price-tag-or-auction · concept: economics:auction-vs-posted-price · core · demand 2 · format: Single card (bidder-count chips; seeded check run)
+- Sections: E&K ch. 9 (section 9.2, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: second-price auctions (bid-what-its-worth) / does not know: that a seller who knows only the range of values earns more from the best fixed price with one or two bidders, but from an auction once there are three.
+- Misconception: An auction always earns more than a fixed price, because buyers compete.
+- Prediction (stage text ≤ 25 words): "Values are random, $0 to $100. From how many bidders does a second-price auction earn more on average than the best price tag?" options: A. 2 / B. 3 / C. 5 (answer: B (3)).
+- Check: Best price tag p maximises p(1 − (p/100)^n), p = 100(1/(n+1))^(1/n); second-price revenue = 100(n − 1)/(n + 1). Node `J12`: n=1 tag $50 → $25 vs $0; n=2 tag $57.7 → $38.5 vs $33.3; n=3 tag $63.0 → $47.2 vs $50.0; n=4 $53.5 vs $60.0; 100,000 seeded sales (mulberry32 seed 7) agree to $0.2.
+- Stage and controls: Two bars per bidder count, "best tag ($p)" and "auction", expected revenue in dollars. Controls in DOM order: [2 bidders] [3 bidders] [4 bidders] [Simulate 1,000 sales]; starts at 1 bidder. Readout of both averages. Labels ≥ 10 px; the crossing is not marked before the commit.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 2 bidders (milestone 1: tag $38.50 vs auction $33.30), 3 bidders (milestone 2: tag $47.20 vs auction $50.00), 4 bidders, Simulate (1,000 seeded sales at 4 bidders, averages near $53.50 and $60.00). The reveal quotes the milestones.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): With 2 bidders the best tag ($57.70) earned $38.50 against the auction's $33.30. With 3 the auction won, $50.00 to $47.20. A tag is a guess: too high and nobody buys, too low and money is left on the table. An auction lets the second-highest bidder set the price, and that gets better with every rival. (≤ 90 words.)
+- Planned claims:
+  1. With n bidders whose values are uniform on $0–$100, the best fixed price earns 100 × p(1 − p^n) at p = (1/(n + 1))^(1/n): $25.00, $38.50, $47.20, $53.50 for n = 1 to 4. support: derivation; source: node.
+  2. A second-price auction with no reserve earns 100(n − 1)/(n + 1) on average: $0, $33.30, $50.00, $60.00. support: derivation (expected second-highest of n uniforms).
+  3. In 100,000 seeded simulated sales each average is within $0.20 of these. support: simulation; source: node (the builder records its own run).
+  4. Auctions are most useful when the seller does not know what buyers will pay. support: citation; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card (bidder-count chips; seeded check run)
+- Curriculum: `{"primary": "economics:auction-vs-posted-price", "also": ["economics:monopoly-pricing"], "prerequisites": ["economics:second-price-auction"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 9, "section_unconfirmed": "9.2"}], "tags": ["auctions", "pricing"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/bid-what-its-worth is bidder strategy; same-revenue-any-rule compares auction formats with each other; monopolist-holds-back sets a price against a known demand curve. This one compares an auction with no auction. No lesson does.
+
+### 28. does-going-first-help · concept: economics:first-mover-commitment · core · demand 2 · format: Single card (game tree; solve-from-the-end and game chips)
+- Sections: E&K ch. 6 (section 6.10, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: the simultaneous chicken game (someone-has-to-swerve) and mixing in the penalty kick (penalty-kick-mix) / does not know: that when one player must move first and is seen, working back from the end shows going first can win the game or lose it.
+- Misconception: Moving first always gives away your hand, so it is a disadvantage.
+- Prediction (stage text ≤ 25 words): "Chicken, but Rae must announce her move first and Sam sees it. Straight beats swerve; both straight crash. Who does better?" options: A. Rae, who moves first / B. Sam, who moves second / C. Neither: they tie (answer: A (Rae 3, Sam 0)).
+- Check: Payoffs from someone-has-to-swerve: both straight −10 each; straight vs swerve 3 and 0; both swerve 1 each. Node `J13 {"chickenFirstMoves":{"m1":"S","m2":"W","pay":[3,0]},"penaltyGoalieFirst":{"m1":"L","m2":"R","pay":[0,1]},"penaltySimultaneousMixedSaveRate":0.5}`.
+- Stage and controls: A two-level game tree with payoffs at the leaves; solving greys out the worse branch at each node. Controls in DOM order: [Solve from the end] [Penalty kick: goalie first] [Back to chicken]. Readout "first mover gets N". ≤ 25 words of stage text, labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Solve (milestone 1: Sam swerves after straight, goes straight after swerve, so Rae picks straight, 3 vs 0), Penalty kick (milestone 2: the kicker shoots away from the dive, goalie saves 0), Back to chicken (solved tree still shown).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Working back from the end: whatever Rae announces, Sam's best reply is the opposite, so Rae announces straight and takes 3 to Sam's 0. In the penalty kick the same rule left the goalie who dives first with no saves, against half when both choose at once. Going first helps when the other side wants to avoid you, and hurts when they want to outguess you. (≤ 90 words.)
+- Planned claims:
+  1. In chicken with these payoffs, if Rae moves first and Sam sees it, backward induction gives Rae straight and Sam swerve: 3 to 0. support: derivation; source: node.
+  2. In the penalty kick, a goalie who must dive first and is seen saves 0 shots; when both choose at once and mix 50–50 the goalie saves half. support: derivation; source: node; penalty-kick-mix.
+  3. Games with moves in sequence are solved by working back from the end, and committing first can help or hurt depending on the game. support: citation; source: E&K ch. 6 advanced material (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card (game tree; solve-from-the-end and game chips)
+- Curriculum: `{"primary": "economics:first-mover-commitment", "also": [], "prerequisites": ["economics:hawk-dove-chicken", "economics:mixed-strategy-equilibrium"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 6, "section_unconfirmed": "6.10"}], "tags": ["game theory", "sequential games", "commitment"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/someone-has-to-swerve is simultaneous (two stable outcomes, no way to pick); penalty-kick-mix is mixing; lowball-offer-should-pass uses backward induction in one game. This one uses the same rule in two games and gets opposite answers. Build after someone-has-to-swerve and penalty-kick-mix (both built).
+
+### 29. keenest-buyer-takes-the-other-flat · concept: economics:clearing-maximises-total-value · core · demand 2 · format: Single card (two-buyer value matrix; price-round run)
+- Sections: E&K ch. 10 (section 10.5, unconfirmed) · domain: economics · course: ncm (wave J)
+- Learner knows: raising prices on over-demanded items until each buyer can take a different one (prices-sort-the-buyers) / does not know: that the clearing match maximises total value, so an item can go to someone other than the buyer who values it most.
+- Misconception: Prices hand each item to the buyer who values it most.
+- Prediction (stage text ≤ 25 words): "Ana values the corner flat $10, the garden flat $9. Ben values them $9 and $1. Prices clear the market. Who gets the corner flat?" options: A. Ana / B. Ben / C. Either: it's a tie (answer: B (Ben)).
+- Check: Node `J14 {"AnaCornerBenGarden":11,"AnaGardenBenCorner":18,"rounds":[{"p":{"corner":0,"garden":0},"Ana":["corner"],"Ben":["corner"]},{"p":{"corner":1,"garden":0},"Ana":["corner","garden"],"Ben":["corner"]}]}`: one raise of the over-demanded corner flat clears the market at corner $1, garden $0.
+- Stage and controls: A 2 × 2 value matrix (buyers as rows, flats as columns, the network-stage matrix variant), prices above the columns, each buyer's preferred cells outlined. Controls in DOM order: [Run the price rounds] [Give Ana the corner] [Clearing match]. Readout "total value: $N". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Run (milestone 1: corner $1, garden $0; Ana gains $9 either way, Ben only wants the corner), Give Ana the corner (milestone 2: total $11), Clearing match (total $18).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): At corner $1 and garden $0, Ana gains $9 from either flat while Ben gains $8 only from the corner, so Ben takes it. That match is worth $18 in total, against $11 if Ana took the corner. Ana values the corner most, but moving costs her only $1 of value and would cost Ben $8. Clearing prices find the best total, not the keenest buyer. (≤ 90 words.)
+- Planned claims:
+  1. At prices corner $1 and garden $0 each buyer can take a flat they most prefer: Ben the corner, Ana the garden (she is indifferent). support: derivation; source: node price rounds.
+  2. That match is worth $9 + $9 = $18; Ana in the corner and Ben in the garden is worth $11. support: derivation.
+  3. Market-clearing prices always produce a match with the highest total value. support: citation (theorem); source: E&K ch. 10 (section unconfirmed); Shapley and Shubik (1971). Attribution: fact-checker confirms.
+- Format: Single card (two-buyer value matrix; price-round run)
+- Curriculum: `{"primary": "economics:clearing-maximises-total-value", "also": [], "prerequisites": ["economics:market-clearing-prices"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 10, "section_unconfirmed": "10.5"}], "tags": ["matching markets", "efficiency"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: economics/prices-sort-the-buyers shows the price rounds and that the clearing match has the highest total (there the top valuer of house a does get it); this one picks a case where the keenest buyer for an item does not get it, which is the misconception. Build after prices-sort-the-buyers (built).

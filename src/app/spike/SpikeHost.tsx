@@ -8,9 +8,13 @@
 //
 //   /spike                      feed of the manifest's lessons (scroll-snap, active ±1 mounted)
 //   /spike?only=<slug>&mode=single   one lesson, laid out like /d/<slug>
-//   ?cdn=http://localhost:3141  lesson origin (default NEXT_PUBLIC_SPIKE_CDN or :3141)
+//   ?cdn=<origin>               picks an origin from the server's SPIKE_CDN_ORIGINS allow-list
+//                               (page.tsx resolves it; this component never reads ?cdn=)
+// W-477: the route is 404 in production (src/lib/spike.ts). Spike progress uses its own storage
+// key and spike events never reach /api/events, so the harness cannot touch learner data.
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { frameUrlOn } from "@/lib/spike";
 
 interface Entry {
   frame: string;
@@ -45,7 +49,8 @@ declare global {
   }
 }
 
-const PROGRESS_KEY = "s3c:progress:v1";
+// Not the learner key (s3c:progress:v1): the spike never writes real progress.
+const PROGRESS_KEY = "s3c:spike:progress:v1";
 const EVENT_TYPES = new Set(["view", "predict", "interact", "reveal", "recall", "complete"]);
 
 function spikeState(): SpikeState {
@@ -109,12 +114,8 @@ function LessonFrame({ slug, entry, cdn }: { slug: string; entry: Entry; cdn: st
         case "track": {
           const e = m.event as { type?: unknown; slug?: unknown } | undefined;
           if (!e || e.slug !== slug || !EVENT_TYPES.has(String(e.type))) return reject("event", m);
+          // Recorded for the harness only; never forwarded to /api/events (W-477).
           s.events.push(e);
-          try {
-            if (process.env.NEXT_PUBLIC_EVENTS !== "off") navigator.sendBeacon?.("/api/events", JSON.stringify(e));
-          } catch {
-            /* analytics must never break a lesson */
-          }
           return;
         }
         case "progress": {
@@ -137,7 +138,10 @@ function LessonFrame({ slug, entry, cdn }: { slug: string; entry: Entry; cdn: st
     return () => window.removeEventListener("message", onMessage);
   }, [slug]);
 
-  const src = `${cdn}${entry.frame}#host=${encodeURIComponent(window.location.origin)}&domain=${encodeURIComponent(entry.domainColor)}`;
+  // The frame must stay on the allow-listed CDN origin, whatever the manifest says.
+  const base = frameUrlOn(cdn, entry.frame);
+  if (!base) return <div className="loading">Frame address refused</div>;
+  const src = `${base}#host=${encodeURIComponent(window.location.origin)}&domain=${encodeURIComponent(entry.domainColor)}`;
   return (
     <iframe
       ref={ref}
@@ -176,7 +180,7 @@ function Card({ slug, entry, cdn, mounted, nonce }: { slug: string; entry: Entry
   );
 }
 
-export function SpikeHost() {
+export function SpikeHost({ cdn }: { cdn: string }) {
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
   const [opts, setOpts] = useState<{ cdn: string; only: string[] | null; single: boolean } | null>(null);
@@ -186,7 +190,6 @@ export function SpikeHost() {
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
-    const cdn = (q.get("cdn") ?? process.env.NEXT_PUBLIC_SPIKE_CDN ?? "http://localhost:3141").replace(/\/$/, "");
     const only = q.get("only")?.split(",").filter(Boolean) ?? null;
     setOpts({ cdn, only, single: q.get("mode") === "single" });
     // Secrets the negative security test must not be able to read from inside a frame.
@@ -206,7 +209,7 @@ export function SpikeHost() {
         setManifest(m);
       })
       .catch((e) => setFailed(String(e)));
-  }, []);
+  }, [cdn]);
 
   const items = manifest && opts
     ? Object.entries({ ...manifest.lessons, ...(opts.only ? manifest.fixtures : {}) }).filter(([slug]) => !opts.only || opts.only.includes(slug))

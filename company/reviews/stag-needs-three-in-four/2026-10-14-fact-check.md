@@ -24,3 +24,13 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c5 | verified | bestAt(0): 0 < 3 -> hare; bestAt(100): 4 > 3 -> stag. With symmetric belief the partner gives the same reply: (3, 3) and (4, 4). Boxes 'both hare: 3 each' / 'both stag: 4 each'. |
 
 **Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 35 (2026-10-14, batch 3)
+
+Checker: fact-checker (fresh instance; drafted none of this wording). Artifact: economics/stag-needs-three-in-four v4. Method: read Demo.tsx first, tracing every reachable path, Reset (where present) and reduced motion; re-ran the numbers in node/Python with independent re-implementations; checked how-chosen notes. Web sources could not be opened from this host (web fetch DNS failure, proxy 403), so nothing here is verified on an unopened source. No screenshots: the dev server at localhost:3530 did not respond. Scripts: scratchpad fc35-3/.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own best-reply check of the 4 cells: against stag, stag (4 > 3); against hare, hare (3 > 0); so (S,S) and (H,H) are the pure Nash equilibria, and both prefer (S,S) (4 > 3). v4 reveal: 'Both boxes are ticked: each is the best reply to itself. Both prefer the stag, yet doubt alone can lock them into hare.' Both boxes are ticked because the 0% and 100% milestones are required. |
+| c4 | verified | Stage chip reads 'Model: invented payoffs; your partner is as sure of you as you are of them'; bestAt() uses only the payoffs and p; one partner. Convention. |
+| c5 | verified | bestAt(0): 0 < 3 → hare; with symmetric belief the partner replies hare: (3, 3), box 'both hare: 3 each'. bestAt(100): 4 > 3 → stag: (4, 4), box 'both stag: 4 each'. Reveal 'At 0% hare was the best reply for you both: 3 each. At 100%, both stag, 4 each.' |

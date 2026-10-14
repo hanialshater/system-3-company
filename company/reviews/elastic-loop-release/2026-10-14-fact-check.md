@@ -19,3 +19,13 @@ Records by the fact-checker. Each pass is appended.
 | recall | verified | Derivation as for c1. The key "Not if the loop slides off the free end" is right and both distractors are false. |
 
 Minor findings for the builder (non-blocking): (1) the orange crossing dot is drawn at (150,125), but the segments cross at (150,116.7), so the dot sits below the X. (2) The "End through loop" state draws the untouched curl and reads "Drawn crossing 1". It is literally true of the drawing, but it does not depict threading, which would make an overhand knot.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx and the shared Life Hacks engine (src/components/lifehacks/, src/lib/lifehacks/) first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Read the cord scene in HomeLesson.tsx and homeCordScene first. Derivation: an arc with free ends is unknotted (any tangle in an open string can be undone by moving an end), and the drawn curl is a one-crossing kink (Reidemeister I), so one crossing never proves a knot. Own run of the transpiled home-models.ts: crossings = 1 before and 0 after 'Slide loop off'. The free end minus the start is 3p px for p = 15 to 35 cm, always more than the 10 cm loop travel (30 px). The reveal shows spec.idea, the claim text. No source is relied on. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

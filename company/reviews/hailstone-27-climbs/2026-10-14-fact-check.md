@@ -52,3 +52,17 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c6 | verified | Own node: join at 97's step 13, value 94 (27's step 6), tails identical, 118 steps, peak before the join 376. v5: one condition (drawn[97] >= 13) drives both the ring and the ', ringed.' ending. The pass 26 nit path (chip 97, Step x13, chip 27, chip 97) now reads '(its step 13).' with no ring. runOut strides and reduced motion (jump to 118) set joinSeen and ringOn together. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Interpretive line on c1/c2: own node 26 -> 10, 27 -> 111, 28 -> 18 steps, all three neighbours on the stage table once run. Holds. |
+| c4 | held (unverified) | State-of-knowledge claim ('every start checked so far reaches 1'). No openable source: Barina 2021 / 2025 and Oliveira e Silva not reachable (web blocked; GitHub repo xbarin02/collatz not enabled for this session). Pass 22's note stands: the 2^68 bound in this source field is not confirmed. My own run of every start below 10^6 reaching 1 does not establish the global claim. |
+| c5 | held (unverified) | Open-problem status needs an opened source (Lagarias ed. 2010 or a current survey); none could be opened from this host. Consistent with my knowledge, but that is not a source. |
+| c6 | verified | Own node: the first value of 97's run on 27's run is 94, at 97's step 13 and 27's step 6; the tails from 94 are identical; 97 takes 13 + 105 = 118; 97's peak before 94 is 376, so its 9,232 is on 27's path. Code: joinSeen set when show(97, steps >= 13); ringOn = drawn[97] >= 13 drives both the ring and the ', ringed' ending in the stage line and the reveal. Reveal string 'at the value 94 (its step 13, ringed) it joins 27's path' matches. |
+| c7 | verified | Stage-only, re-read in v6: Steps and Peak cells render '?' unless done.includes(n); done grows only in show() when steps >= STEPS(n), called by Step, Run to 1 and runOut (a chip after a finished run starts runOut). Header chips only pick a start. Note 'Only running a start fills its ?.' renders when phase !== 'reveal'; reveal says 'Each ? stayed a ? until you ran that start.' |
+
+**Result:** 3 verified, 0 disputed, 2 held (unverified), 0 withdrawn.

@@ -25,8 +25,10 @@
       "id": "lifehacks.elastic-loop-release.c1",
       "text": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
       "support": "derivation",
-      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, which could not be opened from this host) to derivation, as FC LH-1 and FC LH-2 asked. Argument: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink). A one-crossing diagram is never a knot, so the crossing alone does not prove a knot. The cord has a free end, so the loop can be slid along the cord and off that end, which removes the crossing without cutting; on the stage the free end (15 to 35 cm on the slider) always exceeds the 10 cm loop travel (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable.",
-      "status": "unverified"
+      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, which could not be opened from this host) to derivation, as FC LH-1 and FC LH-2 asked. Argument: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink). A one-crossing diagram is never a knot, so the crossing alone does not prove a knot. The cord has a free end, so the loop can be slid along the cord and off that end, which removes the crossing without cutting; on the stage the free end (15 to 35 cm on the slider) always exceeds the 10 cm loop travel (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read the cord scene in HomeLesson.tsx and homeCordScene first. Derivation: an arc with free ends is unknotted (any tangle in an open string can be undone by moving an end), and the drawn curl is a one-crossing kink (Reidemeister I), so one crossing never proves a knot. Own run of the transpiled home-models.ts: crossings = 1 before and 0 after 'Slide loop off'. The free end minus the start is 3p px for p = 15 to 35 cm, always more than the 10 cm loop travel (30 px). The reveal shows spec.idea, the claim text. No source is relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c2",

@@ -1,0 +1,102 @@
+{
+  "slug": "divide-six-by-zero",
+  "title": "What is 6 ÷ 0, really?",
+  "hook": "6 ÷ 2 is 3 because three 2s make 6. Ask the same question about 0.",
+  "domain": "math",
+  "concept": "division-by-zero",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "6 ÷ 2 = 3",
+      "division asks \"how many of these make that\""
+    ],
+    "doesNotKnow": [
+      "why 6 ÷ 0 has no answer, rather than being 0 or \"infinity\""
+    ]
+  },
+  "misconception": "6 ÷ 0 = 0 (dividing by nothing leaves nothing), or it is a very large number called infinity.",
+  "objective": "The learner can explain that 6 ÷ 0 is undefined because no number times 0 gives 6, and that shrinking scoops need more and more of them with no single limit.",
+  "claims": [
+    {
+      "id": "math.divide-six-by-zero.c1",
+      "text": "Scoops of 3, 1 and 0.1 fill 6 in 2, 6 and 60 scoops: 6 ÷ 3 = 2, 6 ÷ 1 = 6, 6 ÷ 0.1 = 60.",
+      "support": "derivation",
+      "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A3 (3 2, 1 6, 0.1 60). The reveal names only the sizes the learner poured, recorded when they pour.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.divide-six-by-zero.c2",
+      "text": "6 ÷ a scoop size asks how many scoops fill the jug: a ÷ b is the number q with q × b = a.",
+      "support": "convention",
+      "source": "Definition of division as the inverse of multiplication (the measurement, 'how many fit', reading).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.divide-six-by-zero.c3",
+      "text": "Any number times 0 is 0 (6 × 0, 1,000 × 0 and 1,000,000 × 0 are all 0), never 6, so no number q gives q × 0 = 6 and 6 ÷ 0 is left undefined. A scoop of 0 poured 1,000 times fills 0 of 6.",
+      "support": "derivation",
+      "source": "q × 0 = 0 for every q (check A3, zero [0, 0, 0, 0]); 1,000 × 0 = 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.divide-six-by-zero.c4",
+      "text": "As the scoop size shrinks toward 0, 6 ÷ size grows with no ceiling, so no huge number is the answer either.",
+      "support": "derivation",
+      "source": "6 ÷ s > N whenever 0 < s < 6/N, so 6 ÷ s is unbounded as s → 0 and has no limit; and q × 0 = 0 ≠ 6 for every huge q.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.divide-six-by-zero.c5",
+      "text": "6 ÷ 2 = 3 because three 2s make 6 (3 × 2 = 6).",
+      "support": "derivation",
+      "source": "Arithmetic; the hook's sentence, read through the definition in c2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A calculator shows an error for 5 ÷ 0. Why?",
+    "options": [
+      "No number times 0 gives 5",
+      "The answer is too big to show",
+      "The answer is 0, shown as an error"
+    ],
+    "answer": 0,
+    "why": "5 ÷ 0 would be the number q with q × 0 = 5, but every number times 0 is 0. No number works, so it is undefined, not huge and not 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:division-by-zero",
+    "also": [
+      "math:fractions-as-division"
+    ],
+    "prerequisites": [
+      "math:fractions-as-division"
+    ],
+    "level": "intro",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "division",
+      "zero",
+      "number-sense"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

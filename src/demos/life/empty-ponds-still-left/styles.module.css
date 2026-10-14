@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: none; align-items: stretch; }
+.wrap :global(.row) { margin-top: 2px; }
+.msg { margin: 0; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.head { margin: 0; text-align: center; font-size: 0.92rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.grid { flex: none; width: 250px; max-width: 100%; height: auto; align-self: center; }
+.frogs { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.empty { fill: none; stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.drained { fill: var(--line); stroke: var(--muted); stroke-width: 0.8; }
+.cross { stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; }
+.key { fill: var(--muted); font-size: 11px; }
+.log { margin: 0; text-align: center; font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }

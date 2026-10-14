@@ -1,0 +1,69 @@
+{
+  "slug": "which-sea-gets-the-rain",
+  "title": "Which sea gets the rain?",
+  "hook": "Rain falls on an island between two seas. Which one does it end up in?",
+  "domain": "geography",
+  "concept": "river-watersheds",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-geography", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["rivers run downhill to the sea"],
+    "doesNotKnow": [
+      "that a drainage divide, not distance, decides which sea gets the rain",
+      "that a divide near one coast sends most of the land to the far one"
+    ]
+  },
+  "misconception": "Rain that falls on land flows to the nearest sea.",
+  "objective": "The learner can explain that rain follows the slope to whichever sea lies on its side of the drainage divide, so a divide near the west coast sends most of the land (here about four fifths) to the far, east sea.",
+  "claims": [
+    {
+      "id": "geography.which-sea-gets-the-rain.c1",
+      "text": "A drop at the dot, 55 km from the west sea and 150 km from the east sea, runs downhill to the east sea; a drop west of the ridge runs to the west sea.",
+      "support": "simulation",
+      "source": "Made-up island, 40 x 24 squares of 5 km, ridge at x = 7 +/- 1.5 plus noise from mulberry32 seed 7 (seed set in the brief before running, disclosed here). Priority-flood pit filling (Barnes, Lehman and Mulla 2014), then D8 steepest descent (O'Callaghan and Mark 1984). Dot at square (10, 12): 11 squares (55 km) from the west sea, 30 squares (150 km) from the east sea; ends east. Drop at (5, 12) ends west. src/demos/geography/which-sea-gets-the-rain/model.ts, a port of section `watershed` in company/domains/briefs/checks/geography-wave-j.mjs; builder re-ran both and they agree (764 east, 79.6%).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-sea-gets-the-rain.c2",
+      "text": "About four fifths of the island (80%) drains east.",
+      "support": "simulation",
+      "source": "Same model: 764 of 960 squares (79.6%, shown rounded to 80%) end in the east sea; 284 squares nearer the west coast still drain east. Section `watershed` of company/domains/briefs/checks/geography-wave-j.mjs; model.ts eastCount.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-sea-gets-the-rain.c3",
+      "text": "Water follows the slope, and the ridge is a divide: every drop on one side ends in one sea, every drop on the other side in the other.",
+      "support": "derivation",
+      "source": "Definition of a drainage divide (the boundary between land draining to different outlets). True by construction in the model: each square has exactly one outlet, and the drawn divide is the set of square edges between squares with different outlets (Demo.tsx divideSegs).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-sea-gets-the-rain.c4",
+      "text": "Made-up island; 1 square = 5 km.",
+      "support": "convention",
+      "source": "Scope statement on the stage caption: the island is a toy; no real river or basin is named (the kit has no river data).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ridge runs 20 km from a country's west coast. Most of its rain probably reaches which coast?",
+    "options": ["The east coast", "The west coast", "Both about equally"],
+    "answer": 0,
+    "why": "The divide, not the distance, decides: everything east of the ridge drains east, and that is most of the land."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:river-watersheds",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "earth-climate",
+    "references": [],
+    "tags": ["toy-world", "drainage"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"]
+}

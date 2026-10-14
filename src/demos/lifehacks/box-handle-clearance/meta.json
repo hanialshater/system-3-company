@@ -61,8 +61,10 @@
       "id": "lifehacks.box-handle-clearance.c5",
       "text": "Which parts should be included in the width of a storage box?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention: transfer question (spec.recall), not rendered on the card. Its presupposition, that a box's width for a fit test should include more than the body, is what the engine shows: case 'clearance' tests opening − (40 + 2×3) cm with 'Include handles' against opening − 40 with 'Body only'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.box-handle-clearance.recall",
@@ -89,7 +91,9 @@
     "qa": [
       "company/reviews/box-handle-clearance/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/box-handle-clearance/2026-10-14-learner-adult-beginner-r9.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

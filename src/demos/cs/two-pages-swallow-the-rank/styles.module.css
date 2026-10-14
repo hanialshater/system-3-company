@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 24dvh; }
+.edge { stroke: var(--fg); stroke-width: 2; }
+.head { fill: var(--fg); }
+.node { fill: var(--bg-2); stroke: var(--line); stroke-width: 2; }
+.name { fill: var(--fg); font-size: 14px; font-weight: 800; pointer-events: none; }
+.group { fill: none; stroke: var(--domain); stroke-width: 2; stroke-dasharray: 6 4; }
+.groupLabel { fill: var(--domain); font-size: 12px; font-weight: 800; }
+.base { stroke: var(--muted); stroke-width: 1.5; }
+.bar { fill: var(--muted); }
+.barSink { fill: var(--domain); }
+.rule { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+.trace { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }

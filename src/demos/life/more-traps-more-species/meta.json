@@ -1,0 +1,108 @@
+{
+  "slug": "more-traps-more-species",
+  "title": "More traps, more species?",
+  "hook": "Two teams survey the same forest. One catches ten times as many insects.",
+  "domain": "life",
+  "concept": "species-accumulation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "estimating a population from a sample (count-the-marked-fish)"
+    ],
+    "doesNotKnow": [
+      "that species found grows ever more slowly with effort, because the common species turn up first and the rare ones last"
+    ]
+  },
+  "misconception": "Catch ten times as many insects and you find about ten times as many species. (So a survey's species count says how rich the place is, whatever the effort.)",
+  "objective": "The learner can explain that common species turn up in the first few dozen insects and later catches are mostly repeats, so ten times the catch finds well under ten times the species (34, not 200, here), and that species counts must be compared at the same effort.",
+  "claims": [
+    {
+      "id": "life.more-traps-more-species.c1",
+      "text": "In the lesson's forest (seed 2), 50 insects contain 20 species, 500 contain 34 and 5,000 contain all 40. Seeds 3 and 1 (reachable with 'New forest seed') give 17/34/40 and 18/37/40; the reveal reads its numbers from the current seed. Reveal (seed 2): \"Ten times the catch found 34 species, not 200: under twice the 20 at 50.\" \"5,000 insects found all 40.\" Stage: the curve's labelled points 20, 34, 40 and \"caught: 5,000 · species found: 40\".",
+      "support": "simulation",
+      "source": "catchInsects() in Demo.tsx (kit mulberry32, one draw per insect, species by walking the shares in order). Builder re-run 2026-10-14 (node strip-types): seed 1 18/37/40, seed 2 20/34/40, seed 3 17/34/40. Matches check script E6 (company/domains/briefs/checks/life-wave-j-check.mjs). Seed 2 is the start because its 50-insect count (20) is near the expected 18.9 (chosen seed, disclosed; an illustration, not evidence). 'Under twice' / 'about twice' is computed: 34 < 2 x 20 and 34 < 2 x 17; 37 >= 2 x 18 gives 'about'.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.more-traps-more-species.c2",
+      "text": "The expected number of species found is the sum over species of 1 − (1 − p_i)^n: 18.9 at 50, 34.3 at 500, 40.0 at 5,000.",
+      "support": "derivation",
+      "source": "Each species is missed by n independent catches with probability (1 - p_i)^n. With p_i proportional to 0.88^i over 40 species: 18.9, 34.3, 40.0 (check E6). Not on the card; supports the choice of seed 2 as typical.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.more-traps-more-species.c3",
+      "text": "Common species turn up in the first few dozen insects; after that most of the catch is repeats, and each new species is a rarer one. Reveal: \"Common species turn up in the first few dozen insects. After that most of the catch is repeats, and each new species is a rarer one.\" Stage: the strip \"commonest species ... rarest\", filled when found.",
+      "support": "simulation",
+      "source": "Seed 2 first-catch insect numbers for the 10 commonest species (12.1% down to 3.8% each): 10, 12, 3, 2, 13, 4, 15, 6, 17, 53; for the 10 rarest: 377, 29, 94, 1488, 381, 603, 365, 766, 1860, 2057. Between insect 50 and 500, 14 new species appear in 450 insects, so about 97% of those insects are repeats. Shares: commonest 0.1207, rarest 0.00083 (builder re-run 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.more-traps-more-species.c4",
+      "text": "So a species count depends on how hard you looked: compare two places only at the same catch size. Reveal: \"So a species count depends on how hard you looked: compare two places only at the same catch size.\"",
+      "support": "derivation",
+      "source": "Follows from claim 1 inside the model: the same forest gives 20, 34 or 40 species depending on catch size alone. Optional literature context (rarefaction, Gotelli and Colwell 2001, Ecology Letters 4) is not on the card: unverified, needs a human source check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.more-traps-more-species.c5",
+      "text": "The forest is invented: 40 species, shares proportional to 0.88^i. Stage: \"A made-up forest: a few common species, many rare ones.\" Reveal: \"A made-up forest.\" (The brief's 'real ones hold far more rare species' clause was left out: the brief says cut it unless a fact-checker can support it.)",
+      "support": "convention",
+      "source": "The lesson's model (brief more-traps-more-species, company/domains/briefs/life.ecology-body.md #6).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.more-traps-more-species.c6",
+      "text": "Locked-stage setup: Team A catches 50 insects in a forest and finds 20 species; Team B catches 500 in the same forest.",
+      "support": "simulation",
+      "source": "Seed 2's 50-insect count is 20 (claim 1).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Survey A caught 100 beetles and found 15 species; survey B, elsewhere, caught 2,000 and found 40. What can you conclude about which place is richer?",
+    "options": [
+      "Little yet: B looked twenty times harder, so compare them at the same catch size",
+      "B has nearly three times as many species",
+      "A is richer per beetle, so A is richer"
+    ],
+    "answer": 0,
+    "why": "Species found keeps rising with effort, quickly at first and then slowly as the rare ones turn up. Counts from different effort cannot be compared directly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:species-accumulation",
+    "also": [
+      "life:mark-recapture"
+    ],
+    "prerequisites": [
+      "life:mark-recapture"
+    ],
+    "level": "core",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "biodiversity",
+      "sampling",
+      "simulation"
+    ]
+  },
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

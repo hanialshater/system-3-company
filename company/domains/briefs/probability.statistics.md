@@ -74,3 +74,80 @@ Accepted by cm-probability-statistics (Hugo) after re-running each answer in nod
 - curriculum: `{"primary":"probability:pivotal-voting","also":["probability:bayesian-updating"],"prerequisites":["probability:bayesian-updating"],"level":"stretch","strand":"statistics","references":[{"work":"easley-kleinberg-2010","chapter":23,"section_unconfirmed":"23.8–23.9"}],"tags":["voting","Bayes","juries"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: ai/five-weak-voters (Condorcet jury theorem) assumes sincere independent votes add up; this lesson shows why sincere votes are not always rational.
+
+**Wave J additions (2026-10-14).** 2 more NCM briefs from `company/courses/ncm/briefs.md` (§ probability.statistics (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `probability` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 71. your-clue-against-two-picks · concept: probability:cascade-bayes-threshold · core · demand 2 · format: Single card (combine button, accuracy chips)
+- Sections: E&K ch. 16 (section 16.3–16.5, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: Bayes' rule with clues (which-coin-is-it); the copy rule in two-said-blue / does not know: that after two matching picks your opposite clue cancels only one of them, so copying is right whatever the clue accuracy.
+- Misconception: If your own clue is very reliable, you should trust it over two other people's picks.
+- Prediction (stage text ≤ 25 words): "Clues are right 90% of the time. Two people before you followed their clues: blue, blue. Your clue says red. Chance it's blue?" options: A. 10% / B. 50% / C. 90% (answer: C (90%)).
+- Check: Node `J8 [{"q":0.6,"P":0.6},{"q":0.75,"P":0.75},{"q":0.9,"P":0.9},{"q":0.99,"P":0.99}]`: P(blue | blue, blue, red) = q²(1−q) / (q²(1−q) + (1−q)²q) = q. With one earlier blue pick only, `J8one` gives 0.5 at every q (a tie; the rule follows your own clue).
+- Stage and controls: Three clue tiles (blue, blue, red) above an odds bar: each blue tile multiplies the odds for blue by q/(1−q) (×9 at 90%), the red tile divides by it. Controls in DOM order: [Combine the clues] [60%] [75%] [99%] [One pick before you]. Readout "chance blue: N%". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Combine (milestone 1: 90%, the question's case), 60% (60%), 75% (75%), 99% (milestone 2: 99%), One pick before you (50%). The reveal quotes the recorded values.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Your red clue cancels one blue pick, leaving one clue's worth for blue: 9 × 9 ÷ 9 = 9 to 1, so 90%. On the chips it came out 60%, 75% and 99%: always exactly the clue accuracy, always above half. However good the clues, after two matching picks copying is the better bet, which is why the herd starts at a lead of two. (≤ 90 words.)
+- Planned claims:
+  1. With clues right q of the time and a 50–50 prior, after two earlier picks that followed their clues (blue, blue) and your red clue, the chance of blue is exactly q: 60%, 75%, 90%, 99% for the chips. support: derivation; source: node.
+  2. With only one earlier blue pick and your red clue, the chance is 50% at any accuracy. support: derivation.
+  3. In the urn model a person copies the crowd once one colour leads by two. support: citation; source: E&K ch. 16 (section unconfirmed); Bikhchandani, Hirshleifer and Welch (1992). Attribution: fact-checker confirms.
+- Format: Single card (combine button, accuracy chips)
+- Curriculum: `{"primary": "probability:cascade-bayes-threshold", "also": ["probability:bayesian-updating"], "prerequisites": ["probability:information-cascade", "probability:bayesian-updating"], "level": "core", "strand": "statistics", "references": [{"work": "easley-kleinberg-2010", "chapter": 16, "section_unconfirmed": "16.3–16.5"}], "tags": ["cascade", "bayes", "crowds"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/two-said-blue states the lead-of-two rule and counts wrong herds; two-public-clues-break-the-herd shows how fragile a herd is. Neither derives the rule. This one does, and shows it does not depend on accuracy. Build after two-said-blue (built).
+
+### 72. same-picture-two-histories · concept: probability:selection-vs-influence · core · demand 2 · format: Single card with Step (two replay chips; network stage, 8 people)
+- Sections: E&K ch. 4 (section 4.2, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: friends tend to be alike (friends-split-more-than-chance) / does not know: that 'people choose similar friends' and 'friends make each other similar' can leave the identical snapshot, so a snapshot cannot say which happened.
+- Misconception: If friends are alike, they must have chosen each other for it.
+- Prediction (stage text ≤ 25 words): "Two towns end with this same picture: all 12 friendships join same colours. In one, people chose friends. Which town?" options: A. Town 1 / B. Town 2 / C. The picture can't tell (answer: C).
+- Check: Final picture: two fully linked groups of 4 (0–3 blue, 4–7 orange). Town 1 (selection): colours fixed; starts with links 0–4, 3–6, 1–5 in place of 0–1, 2–3, 5–6, and in 3 steps each cross link is swapped for a same-colour one. Town 2 (influence): links fixed; colours start 1110 0001 (person 3 orange, person 7 blue) and in 2 steps each person takes their friends' majority colour. Node `J9 {"town1":{"startCrossLinks":3,"swaps":3},"town2":{"startColours":"11100001","switches":2,"finalColours":"11110000"},"identicalFinal":true}`.
+- Stage and controls: The final picture is drawn locked. Controls in DOM order: [Replay Town 1] [Replay Town 2] [Show final]. Each replay steps through its history with a 'step k of n' caption and leaves a faint trail of what changed (links for Town 1, colours for Town 2). Shape plus fill for colour (colour-blind safe), labels ≥ 10 px, ≤ 8 nodes.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Replay Town 1 (milestone 1: 3 link swaps), Replay Town 2 (milestone 2: 2 colour changes), Show final (identical picture). Each replay ends on the final frame within one press (step-run).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Town 1 kept everyone's colour and swapped 3 friendships. Town 2 kept every friendship and 2 people changed colour. Both ended in the identical picture, so a single snapshot cannot separate choosing similar friends from becoming like your friends. Telling them apart needs data over time: who changed first, the link or the person. (≤ 90 words.)
+- Planned claims:
+  1. The two histories on the stage end in the same 12 friendships and the same colours. support: derivation; source: node replay of both rules.
+  2. Town 1 changes 3 friendships and no colours; Town 2 changes 2 colours and no friendships. support: derivation.
+  3. Similarity between friends can come from selection (choosing similar friends) or from social influence (becoming similar), and separating them needs data over time. support: citation; source: E&K ch. 4 (section unconfirmed); Aral, Muchnik and Sundararajan (2009), PNAS 106 for the identification problem. Attribution: fact-checker confirms.
+- Format: Single card with Step (two replay chips; network stage, 8 people)
+- Curriculum: `{"primary": "probability:selection-vs-influence", "also": ["probability:confounding"], "prerequisites": ["probability:homophily-test", "probability:confounding"], "level": "core", "strand": "statistics", "references": [{"work": "easley-kleinberg-2010", "chapter": 4, "section_unconfirmed": "4.2"}], "tags": ["homophily", "causation", "networks"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/friends-split-more-than-chance tests whether friends are more alike than chance; this one asks what made them alike. Confounding lessons in probability are about a third variable, not two histories with one end state. Build after friends-split-more-than-chance (built).
+
+
+## Round 4 (Wave J): demand 2 (cm-probability, 2026-10-14)
+
+Continues the Round 4 ranking in `probability.md` § Round 4 (briefs 56-61 there, including the statistics demand-3 briefs 56-59; read its rules paragraph: preset buttons only, question's case pressed last, ≤ 90-word reveal that fits at 390×844, labels ≥ 10 px). Numbers reproduced by `node company/domains/briefs/checks/probability-round4-check.mjs`. Headings here use `###` so `claim.mjs` (pattern `#{2,3}`) finds them.
+
+### 69. pool-ten-swabs · concept: group-testing · core · demand 2 · format: Single card (pool-size presets over 1,000 dots)
+- Audience: anyone who saw pooled testing in the news; students / Learner knows: at-least-once, 1 − (1 − p)^k (four-rolls-one-six) / does not know: that when positives are rare, testing mixed pools finds every positive with far fewer tests, and that pools can be too big.
+- Misconception: To find every infected person you need one test per person.
+- Prediction (≤ 25 words): "1,000 people, 1 in 100 infected. Mix swabs in pools of 10, test each pool, then retest everyone in a positive pool. About how many tests?" options: A. About 100 / B. About 200 / C. About 500 (answer: B (196)).
+- What the stage shows: 1,000 dots grouped into pools (blocks), seeded infected dots (mulberry32(66), disclosed: 15 infected), positive pools outlined in `var(--bad)` with a thicker border so state reads without colour. Readouts: "expected tests: {e}" (formula) and "this group: {t} tests". Preset buttons in DOM order: **Pools of 5**, **Pools of 20**, **Pools of 10** (the question's case last). Labels ≥ 10 px; dots are texture. The test is assumed perfect (stated on the card). Locked stage: 1,000 grey dots, no pools. Milestones: (1) pools of 5 and 20 both shown; (2) pools of 10 shown.
+- Check: expected tests = 1,000/k + 1,000 × (1 − 0.99^k). k = 5: 249.0; 10: 195.6; 11: 195.6 (the minimum); 20: 232.1; 50: 415.0. Share of pools of 10 positive: 9.56%. Seed 66: 15 infected, 12 positive pools of 10, 220 tests. At 10% infected pooling barely helps (pools of 4: 594; of 10: 751): kept out of the stage; told only if the reveal has room.
+- Reveal draft (70 words, counted by whitespace): "Pools of 10 need about {e} tests on average: 100 pool tests, plus 10 retests for each of the roughly 10 pools that come back positive. This group needed {t}. With 1 in 100 infected most pools are clean, and one clean test clears 10 people at once. Pools of 5 needed {e5} and pools of 20 needed {e20}: small pools waste pool tests, big pools turn positive too often."
+- Payoff: the outlined pools are the cause on the stage: few pools light up, and only those are opened.
+- Planned claims:
+  1. With 1% prevalence and pools of 10, a perfect test needs on average 1,000/10 + 1,000 × (1 − 0.99^10) = 196 tests per 1,000 people. support: derivation; source: arithmetic (check script, brief 69).
+  2. Pools of 5 need 249 and pools of 20 need 232 on average; the best pool size at 1% is 10 to 11. support: derivation; source: same formula.
+  3. The model assumes a perfect test; real pooled tests can miss positives diluted in a pool. support: derivation; source: lesson rule (stated on the card; no real sensitivity figure quoted).
+  4. Optional, out of learner text unless checked: the method is due to Dorfman (1943), Annals of Mathematical Statistics 14(4). **Needs a human source check.**
+- curriculum (new concept): `{"primary":"probability:group-testing","also":["probability:at-least-once"],"prerequisites":["probability:at-least-once"],"level":"core","strand":"statistics","references":[],"tags":["pooled testing","screening","efficiency","rare events"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: four-rolls-one-six and jackpot-once-a-week use 1 − (1 − p)^k to find a chance; this lesson uses it to design a procedure and has an optimum. cs/sorted-halving-search is halving a sorted list, not pooling.
+
+### 70. largest-serial-seen · concept: serial-number-estimation · stretch · demand 2 · format: Simulation run (capture 4, then 1,000 captures)
+- Audience: puzzle lovers, statistics students / Learner knows: averages, sampling at random / does not know: that the largest value seen always undershoots the total, and how the gaps between the numbers correct it.
+- Misconception: The largest serial number you have seen is a good estimate of how many were made.
+- Prediction (≤ 25 words): "Tanks are numbered 1, 2, 3 … up to 100. You see 4 at random. If you guess the largest number seen, how far off on average?" options: A. About 0 too low / B. About 20 too low / C. About 50 too low (answer: B (19.2)).
+- What the stage shows: a number strip 1–100 (ticks every 10, labels ≥ 10 px) with the 4 captured serials marked. Two guess markers: "largest seen" and "largest + average gap". Preset buttons in DOM order: **Capture 4** (seeded, disclosed), **Run 1,000 captures** (readouts: average of each guess), **Show the gaps** (shades the gaps between captured numbers and the gap above the largest). Show the gaps last so the cause is on the stage at the reveal, with the averages still showing. Locked stage: the empty strip. Milestones: (1) 1,000 captures run; (2) gaps shown.
+- Check: for k = 4 distinct serials from 1…N, E[largest] = k(N + 1)/(k + 1) = 80.8 at N = 100 (19.2 too low). The guess m + m/k − 1 has expected value N exactly. Seeded cross-check mulberry32(67), 100,000 captures: 80.79 and 99.99.
+- Reveal draft (66 words, counted by whitespace): "Over 1,000 captures, the largest number seen averaged {m}, about 19 short of 100. It can never be above the total, so it can only miss low. The gaps fix it: 4 numbers split the strip into 5 stretches of about the same size, so add one average gap above the largest: largest + largest ÷ 4 − 1. That guess averaged {e}, close to 100."
+- Payoff: the shaded gaps are the cause on the stage: the empty stretch above the largest is about as long as the others.
+- Planned claims:
+  1. Taking 4 distinct numbers at random from 1 to 100, the expected largest is 4 × 101/5 = 80.8. support: derivation; source: order statistics of sampling without replacement (check script, brief 70).
+  2. The guess m + m/k − 1 is right on average (expected value N). support: derivation; source: E[m] = k(N + 1)/(k + 1), so E[m(k + 1)/k − 1] = N.
+  3. The captures are seeded simulations (seed disclosed). support: simulation; source: lesson code.
+  4. Optional, out of learner text unless checked: the Allied "German tank problem" in the Second World War. **Needs a human source check;** the lesson works without it.
+- curriculum (new concept): `{"primary":"probability:serial-number-estimation","also":["probability:sample-vs-population"],"prerequisites":["probability:sample-vs-population"],"level":"stretch","strand":"statistics","references":[],"tags":["estimation","bias","order statistics","German tank problem"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: life/count-the-marked-fish (mark-recapture estimates a population from overlap); best-of-twenty-identical (the winner's curse: the best of noisy estimates overshoots). This one is an estimator that is biased low and its correction by gaps.

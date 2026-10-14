@@ -1,0 +1,122 @@
+{
+  "slug": "acid-diluted-a-thousandfold",
+  "title": "Acid diluted a thousandfold",
+  "hook": "Diluting a strong acid tenfold raises its pH by about one. What does a thousandfold do?",
+  "domain": "chemistry",
+  "concept": "water-autoionization",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that each pH unit is a factor of 10 in hydrogen ions (ph-log-scale)",
+      "that dilution lowers concentration (same-sugar-more-water)"
+    ],
+    "doesNotKnow": [
+      "that water makes its own H+ and OH- (about 10^-7 mol/L each at 25 °C)",
+      "that diluting an acid therefore stalls near pH 7 instead of passing it"
+    ]
+  },
+  "misconception": "Diluting 10 times always raises the pH by 1, so a pH 5 acid diluted 1,000 times becomes pH 8 (basic).",
+  "objective": "The learner can explain that a pH 5 acid diluted 1,000 times ends near pH 6.98, not 8, because water's own ions (10^-7 mol/L at 25 °C) take over as the acid's share falls, and that adding water cannot make an acid basic.",
+  "claims": [
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c1",
+      "text": "Diluting a strong acid tenfold raises its pH by about one, while the acid's H+ is well above water's own 10^-7 mol/L (hook; stage: ×1 to ×10 goes from pH 5.00 to 6.00).",
+      "support": "derivation",
+      "source": "pH = -log10(c) for a fully dissociated strong acid when c >> 10^-7 mol/L; with c/10 the pH rises by log10(10) = 1. The formula in c3 gives 5.00 -> 6.00 for x10 (node). The hook's qualifier is 'strong acid'; the lesson then shows where it fails.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c2",
+      "text": "At 25 °C the ion product of water is [H+][OH−] = about 10^-14, so neutral water holds about 10^-7 mol/L of each, and pure water at 25 °C is pH 7 (stage line 'pH 7 neutral'; reveal: 'at 25 °C, [H⁺] × [OH⁻] stays 10⁻¹⁴, so neutral water holds 10⁻⁷ mol/L of each').",
+      "support": "source",
+      "source": "CRC Handbook, 'Ionization constant of water as a function of temperature and pressure' (pKw = 13.99-14.00 at 25 °C); Atkins & de Paula, Physical Chemistry. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c3",
+      "text": "A pH 5 hydrochloric acid diluted 1,000 times with pure water has pH about 6.98 (the acid supplies 1.0 x 10^-8 mol/L of H+, water itself about 9.5 x 10^-8), and one more tenfold reaches only 7.00 (stage bars and readouts 'pH at ×1,000 6.98', 'pH at ×10,000 7.00'; reveal: 'At 1,000-fold dilution your pH stopped at 6.98, not 8, and one more tenfold reached only 7.00').",
+      "support": "derivation",
+      "source": "Charge balance [H+] = c + [OH−] with [H+][OH−] = Kw = 1.0e-14 gives [H+] = c/2 + sqrt(c^2/4 + Kw); water's own H+ equals [OH−] = Kw/[H+] (water ionises in pairs). c = 1e-8: [H+] = 1.051e-7, pH 6.978, water 9.51e-8 (ratio 9.5, 'about ten times'); c = 1e-9: pH 6.998, shown as 7.00. x10: 5.996, x100: 6.791 (node, demo-builder 2026-10-14; Demo.tsx solve()). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c4",
+      "text": "Hydrochloric acid at these concentrations is fully dissociated.",
+      "support": "source",
+      "source": "Atkins & de Paula, or any general chemistry text: HCl is a strong acid (pKa about −6), fully dissociated in dilute solution. Not stated to the learner; it underlies c3. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c5",
+      "text": "Assumption: 'pure water' means CO2-free water at 25 °C (question says 'pure water at 25 °C'); water left open to air absorbs CO2 and is slightly acidic. The lesson quotes no pH for air-saturated water.",
+      "support": "convention",
+      "source": "Stated assumption, brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c6",
+      "text": "Adding pure water to an acid brings it toward pH 7 but never past it, because water adds equal amounts of H+ and OH− (reveal: 'Adding water brings an acid toward pH 7, never past it'; stage: the total bar stops at the pH 7 line).",
+      "support": "derivation",
+      "source": "From the charge balance in c3: [H+] = c + [OH−] >= [OH−] for any c >= 0, so [H+] >= 10^-7 and pH <= 7 at 25 °C; as c -> 0, pH -> 7.00 from below (x100,000: 7.000). Brief claim 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.acid-diluted-a-thousandfold.c7",
+      "text": "On the bars, the water's share of the H+ grows as the acid's shrinks; the reveal quotes the ratio on the stage when it opens, e.g. at ×10,000 water itself supplies about 100 times more H+ than the acid, at ×1,000 about 9.5 times (reveal: 'On your bars now (×10,000), water itself supplies 100 times more H⁺ than the acid'; 'As the acid's share shrank, water's grew').",
+      "support": "derivation",
+      "source": "Water's H+ = Kw/[H+]: 1.0e-9 (x1), 9.9e-9 (x10), 6.2e-8 (x100), 9.5e-8 (x1,000), 9.95e-8 (x10,000), while the acid's falls 1e-5 to 1e-9 (node; Demo.tsx solve(), ratio rounded to 2 significant figures: 99.5 -> 100, 9.51 -> 9.5). Below x100 the acid supplies more (x10: about 100 times more). The acid at higher concentration suppresses water's own ionisation (common-ion effect, Le Chatelier); not named on stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You keep adding pure water to a little vinegar. What does its pH approach?",
+    "options": [
+      "It keeps rising past 7 and the solution turns basic",
+      "It approaches 7 but stays just below it",
+      "It stays where it started"
+    ],
+    "answer": 1,
+    "why": "Water makes its own H+ and OH- in equal amounts (10^-7 mol/L each at 25 °C). As the acid's share shrinks, water's ions take over, so the pH creeps toward 7 but never passes it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:water-autoionization",
+    "also": [
+      "chemistry:ph-log-scale",
+      "chemistry:dilution",
+      "chemistry:equilibrium-constant"
+    ],
+    "prerequisites": [
+      "chemistry:ph-log-scale",
+      "chemistry:dilution"
+    ],
+    "level": "core",
+    "strand": "solutions-acids",
+    "references": [],
+    "tags": [
+      "pH",
+      "Kw",
+      "dilution",
+      "log scale"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

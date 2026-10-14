@@ -12,5 +12,6 @@ documented_cases: []
 known_failure:
   - "Isolation of context is not isolation of model. All 17 learner reviews on file used one simulated reader (16 of them the same 'adult beginner' boundary) and the fact-check batches ran on one checker model per domain (decisions/2026-10-12-scale-operations.md). The pattern is followed and the witnesses are still correlated; this is EXP-001 condition C, not yet tried."
   - "Weak supportive observation, not a confirming case: the isolated learner reviews found 5 fatal flaws (reveal reachable without the key state) that the fact-check and QA of the same lessons did not. No primed condition exists to compare with."
+  - "2026-10-14: the walkthrough trust sheet carries builder revision notes inside the transcript, so the tool itself hands the account to the evaluator. The demo crit saw them for lh-sequential-discounts and twenty-then-ten-off before cutting the appendix (W-520). FC LH-2 read earlier records before the stage (see fresh-checker-for-drafted-wording)."
 part_of: demo-crit
 ```

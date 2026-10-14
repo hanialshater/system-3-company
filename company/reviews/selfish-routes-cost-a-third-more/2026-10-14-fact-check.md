@@ -47,3 +47,15 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c3 | verified | joinCost(50): 27 each, 135; 3 each, 150; difference 15 = 100 x (avg55 - avg50). Line now for best split. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own grid 0..100 step 5: avg(50) = 45 is the unique minimum (45.15 at 45 and 55); B(50) = 30; avg >= 45 everywhere, so 30 is unreachable. found-bottom needs 50 and a split below it, and 100 is always seen, so at the reveal best = 50 and roseBelow is true. The sweep (and the reduced-motion path) visits every split and parks the marker on 50%, so Road B and Average read 30 and 45. |
+| c3 | verified | Own joinCost(50): B 30 -> 33, each of 5 joiners saves 27, 135 in all; each of 50 loses 3, 150 in all; 100 x (avg 55 - avg 50) = 15 = 150 - 135. Stage line 'Lowest split, 50 of 100 on B: 5 more join, saving 135 min; the 50 on B lose 150.' and the reveal both use joinCost(best). |
+| c6 | verified | avg(100) = 60 is the only equilibrium (for any split below 100% B is faster than 60, so drivers switch); min avg 45; 60/45 = 4/3. Reveal prints fmt(A_MIN) / fmt(avg(BEST)). |
+
+**Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

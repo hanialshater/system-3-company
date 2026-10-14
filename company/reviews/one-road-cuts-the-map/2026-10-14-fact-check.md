@@ -45,3 +45,15 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c6 | verified | Pass 26 dispute resolved. walk() now reopens all roads, and badges, dotted roads (non-tree 1-2, 4-5), thick bridge 3-4 and the legend all share marks = walked && closed === null. Own DFS: disc/low as the badges show, and 3-4 is the only bridge (also by removal test). Exhaustive state check (16 states, all controls): marks and legend never disagree, and every walked-and-closed state adds 'Reopen all to see the walk.'. The failing path (seven chips, then Walk) now shows the legend with the marks. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified. W-246 (demo-builder) can close.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Re-derived both directions: an edge on a cycle has a detour (the rest of the cycle); an edge whose removal leaves a u..v path closes a cycle with it. Own brute force: only 3-4 splits (3 of 6 reachable); every other road lies on triangle 1-2-3 or 4-5-6. |
+| c4 | verified | Own DFS (highest neighbour first): disc 1:1 3:2 4:3 6:4 5:5 2:6, low 1:1 3:1 2:1 4:3 6:3 5:3; only tree road with low[child] > disc[parent] is 3-4 (3 > 2). Low-link criterion re-derived (a tree edge is a bridge iff no back edge from the child's subtree reaches the parent or above), not taken from Tarjan 1974 (not opened). Reveal template prints 'from town 4 (#3) on, nothing loops back earlier than #3 (↩#3); town 3 (#2) is earlier'. |
+| c6 | verified | v5 code: walk() sets closed = null; badges '#disc ↩#low', dotted '2 4' non-tree roads (own DFS: 1-2 and 4-5), thick 3-4, and the legend note all render on marks = walked && closed === null. Closing a road after the walk hides them and the note ends ' Tap it again to see the walk.'; tapping the closed road's button calls setClosed(null). Legend string matches the claim. Walk can be pressed once; no motion. |
+
+**Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

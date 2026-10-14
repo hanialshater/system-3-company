@@ -33,9 +33,11 @@
     {
       "text": "The quoted phrase matches an adjacent sequence. Separate words would match a larger set; quotation changes the matching rule.",
       "support": "derivation",
-      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Fixture: 'Both words' keeps m1 'blue folder' and m2 'folder is blue' (2); 'Exact phrase' keeps only m1 (1). Any message containing the adjacent phrase contains both words, so the both-words set is a superset; here strictly larger. The principle (shown in the reveal) states only the fixture rule. Gmail Help not needed for this sentence.",
       "id": "lifehacks.mail-exact-phrase.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -50,7 +52,7 @@
       "id": "lifehacks.mail-exact-phrase.recall",
       "text": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches.",
       "support": "source",
-      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Phrase match simulated in node: only 'I saw a red car' has the adjacent sequence. Source Gmail Help 7190 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Phrase match simulated in node: only 'I saw a red car' has the adjacent sequence. Source Gmail Help 7190 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Within the lesson's rule only 'I saw a red car' contains 'red car' as an adjacent sequence (own check). But the item is about how a real quoted search behaves, and its support is Gmail Help 7190, which could not be opened (DNS failure, proxy 403). Left unverified, as in LH-3A.",
       "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"

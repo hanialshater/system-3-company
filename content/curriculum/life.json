@@ -230,7 +230,8 @@
       "demand": 1,
       "prerequisites": [
         "natural-selection"
-      ]
+      ],
+      "subarea": "genetics-evolution"
     },
     {
       "id": "mutation-randomness",
@@ -247,7 +248,8 @@
       "demand": 1,
       "prerequisites": [
         "natural-selection"
-      ]
+      ],
+      "subarea": "genetics-evolution"
     },
     {
       "id": "network-clustering-spread",
@@ -560,6 +562,124 @@
       "level": "core",
       "demand": 3,
       "prerequisites": [],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "harvest-rule-resilience",
+      "name": "A fixed catch tips after a bad year; a fixed share recovers",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "maximum-sustainable-yield"
+      ],
+      "subarea": "ecology-body"
+    },
+    {
+      "id": "metapopulation-extinction",
+      "name": "Species in patches die out before the habitat is gone",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "species-area"
+      ],
+      "subarea": "ecology-body"
+    },
+    {
+      "id": "countercurrent-exchange",
+      "name": "Opposite flows exchange more than parallel flows",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "diffusion-distance"
+      ],
+      "subarea": "ecology-body"
+    },
+    {
+      "id": "dose-accumulation-plateau",
+      "name": "Repeated doses level off where clearance matches input",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "chemistry:half-life"
+      ],
+      "subarea": "ecology-body"
+    },
+    {
+      "id": "species-accumulation",
+      "name": "Species found depends on sampling effort",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "mark-recapture"
+      ],
+      "subarea": "ecology-body"
+    },
+    {
+      "id": "polygenic-traits",
+      "name": "Many small genes make a smooth trait",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "genetic-inheritance"
+      ],
+      "subarea": "genetics-evolution"
+    },
+    {
+      "id": "recombination-fraction",
+      "name": "Linked genes separate at most half the time",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "genetic-inheritance"
+      ],
+      "subarea": "genetics-evolution"
+    },
+    {
+      "id": "cost-of-sex",
+      "name": "The twofold cost of males",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "natural-selection"
+      ],
+      "subarea": "genetics-evolution"
+    },
+    {
+      "id": "prevalence-incidence",
+      "name": "People who have it = new cases × how long it lasts",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "backward-contact-tracing",
+      "name": "A case's infector infected more than average (tracing backward)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "superspreading-dispersion"
+      ],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "length-bias-screening",
+      "name": "Screening catches slow cases more often (length bias)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "lead-time-survival"
+      ],
+      "subarea": "health-epidemiology"
+    },
+    {
+      "id": "vector-transmission",
+      "name": "Bites count twice in mosquito-borne R",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "reproduction-number-growth"
+      ],
       "subarea": "health-epidemiology"
     }
   ]

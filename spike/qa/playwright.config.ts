@@ -26,7 +26,15 @@ export default defineConfig({
     { name: "desktop", use: { viewport: { width: 1280, height: 800 }, browserName: "chromium" } },
   ],
   webServer: [
-    { command: `npx next start -p ${hostPort}`, port: hostPort, reuseExistingServer: true, timeout: 60_000, cwd: "../.." },
+    // W-477: /spike is 404 in production unless SPIKE_ENABLED=1; the CDN must be allow-listed.
+    {
+      command: `npx next start -p ${hostPort}`,
+      port: hostPort,
+      reuseExistingServer: true,
+      timeout: 60_000,
+      cwd: "../..",
+      env: { SPIKE_ENABLED: "1", SPIKE_CDN_ORIGINS: `http://localhost:${cdnPort}` },
+    },
     { command: `node spike/cdn-server.mjs --port=${cdnPort}`, port: cdnPort, reuseExistingServer: true, cwd: "../.." },
   ],
 });

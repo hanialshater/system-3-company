@@ -1,0 +1,95 @@
+{
+  "slug": "same-dose-levels-off",
+  "title": "The same 100 units, again and again",
+  "hook": "Add the same amount every 6 hours for 10 days. Does it keep piling up?",
+  "domain": "life",
+  "concept": "dose-accumulation-plateau",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "half disappears each half-life (chemistry/half-life)"
+    ],
+    "doesNotKnow": [
+      "what happens when the same amount keeps being added: the level rises only until the amount cleared per interval equals one addition"
+    ]
+  },
+  "misconception": "If you add the same amount again and again, it keeps piling up. (Or: half is cleared, so the level is half of everything added.)",
+  "objective": "The learner can explain that clearing half removes more when there is more, so repeated additions of 100 every half-life level off at 200, where half the level (100) is cleared each interval, exactly one addition.",
+  "claims": [
+    {
+      "id": "life.same-dose-levels-off.c1",
+      "text": "In the model, adding 100 every 6 hours with half cleared every 6 hours gives 100, 150, 175, 187.5, 193.8 just after the first five additions and 200 after the 40th. Reveal: \"Every 6 hours the level went 100, 150, 175, 188, 194, then stayed at 200.\" Stage: \"every 6 h, additions 1 to 5: 100, 150, 175, 188, 194\" and \"just after the last addition: 200\".",
+      "support": "derivation",
+      "source": "course() in Demo.tsx: L(n) = L(n - 1) x 0.5^(I/6) + 100. Builder re-run 2026-10-14: 100, 150, 175, 187.50, 193.75, 196.88, ..., 199.99999999982 after the 40th (rounds to 200). Matches check script E5 (company/domains/briefs/checks/life-wave-j-check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-dose-levels-off.c2",
+      "text": "The level levels off at 100/(1 − f), where f is the share left after one interval: 200 for 6 h, 133.3 for 12 h, 341.4 for 3 h. Reveal (one branch, by which other interval the learner drew; 3 h preferred): \"Adding twice as often settled at 341: higher, but it still levelled off.\" or \"Adding half as often settled at 133: lower, but it still levelled off.\" Stage end labels: \"6 h: 200\", \"12 h: 133\", \"3 h: 341\".",
+      "support": "derivation",
+      "source": "Geometric series: L(n) = 100(1 - f^n)/(1 - f) -> 100/(1 - f). f = 0.5 (6 h), 0.25 (12 h), 0.5^0.5 = 0.7071 (3 h): 200, 133.33, 341.42. course() gives 133.33 after 20 additions and 341.42 after 80 (builder re-run).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-dose-levels-off.c3",
+      "text": "At the plateau, the amount cleared per interval equals one addition (half of 200 = 100), so in and out balance and the level stops rising, about a day in. Reveal: \"Clearing half removes more when there is more: at 200, half is 100, exactly one addition. In and out balance, so the level stops rising, about a day in.\"",
+      "support": "derivation",
+      "source": "At L = 200 just after an addition, 6 hours later 100 remain (half cleared = 100), and the next addition restores 200. 'About a day in': after 4 additions (18 h, within the first day) the level is 187.5, 94% of 200; after 5 (24 h) 193.8, 97%.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.same-dose-levels-off.c4",
+      "text": "The substance, amounts and clearance are invented; the card makes no claim about any medicine or dose. Stage: \"A made-up substance\". Reveal: \"A made-up substance; this is not about any real medicine or dose.\"",
+      "support": "convention",
+      "source": "The lesson's model (brief same-dose-levels-off, company/domains/briefs/life.ecology-body.md #5).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each day you add 10 litres to a leaky tank that loses half its water every day. What happens to the level just after each addition, after many days?",
+    "options": [
+      "It levels off at about 20 litres",
+      "It keeps rising by about 5 litres a day",
+      "It stays at 10 litres"
+    ],
+    "answer": 0,
+    "why": "Losing half removes more when there is more. At 20 litres, half is 10, exactly one day's addition, so in and out balance and the level stops rising."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:dose-accumulation-plateau",
+    "also": [
+      "chemistry:half-life",
+      "life:negative-feedback"
+    ],
+    "prerequisites": [
+      "chemistry:half-life"
+    ],
+    "level": "core",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "body",
+      "balance",
+      "half-life"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "minus-one-flips-the-order",
+  "title": "Times −1 on both sides",
+  "hook": "An equation stays true when you do the same to both sides. What about 2 < 5?",
+  "domain": "math",
+  "concept": "inequality-sign-flip",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "negative numbers on a number line",
+      "\"2 < 5\""
+    ],
+    "doesNotKnow": [
+      "why multiplying both sides of an inequality by a negative number flips the sign while adding or multiplying by a positive keeps it"
+    ]
+  },
+  "misconception": "An inequality behaves like an equation: do the same to both sides and it stays true as written, so 2 < 5 gives −2 < −5.",
+  "objective": "The learner can explain that multiplying both sides of an inequality by a negative number mirrors the number line through 0, which swaps left and right and so flips the sign.",
+  "claims": [
+    {
+      "id": "math.minus-one-flips-the-order.c1",
+      "text": "2 × (−1) = −2 and 5 × (−1) = −5, and −2 > −5 (−5 is to the left of −2).",
+      "support": "derivation",
+      "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A4 (x-1 -2 -5 >).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-one-flips-the-order.c2",
+      "text": "Times 2 sends 2 and 5 to 4 and 10 (4 < 10); minus 3 sends them to −1 and 2 (−1 < 2); times −2 sends them to −4 and −10 (−4 > −10).",
+      "support": "derivation",
+      "source": "Check A4 (x2 4 10 <; -3 -1 2 <; x-2 -4 -10 >). The reveal quotes the first order-keeping chip the learner pressed, recorded when the 'kept' milestone fires.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-one-flips-the-order.c3",
+      "text": "If a < b, then a + c < b + c for every c, ac < bc when c > 0, and ac > bc when c < 0: adding, subtracting or multiplying by a positive keeps the order, multiplying by a negative flips it.",
+      "support": "derivation",
+      "source": "b − a > 0, so (b − a)c > 0 when c > 0 and (b − a)c < 0 when c < 0; (b + c) − (a + c) = b − a > 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-one-flips-the-order.c4",
+      "text": "Multiplying by −1 mirrors the number line through 0, and a mirror swaps left and right.",
+      "support": "derivation",
+      "source": "x ↦ −x sends each point to the point the same distance from 0 on the other side (a reflection), and reverses order: a < b implies −a > −b.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.minus-one-flips-the-order.c5",
+      "text": "An equation stays true when you do the same thing to both sides (add, subtract, multiply).",
+      "support": "derivation",
+      "source": "If a = b then a + c = b + c and ac = bc (substitution of equals).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "−3 < 4. Divide both sides by −1. Which is true?",
+    "options": [
+      "3 < −4",
+      "3 > −4",
+      "3 = −4"
+    ],
+    "answer": 1,
+    "why": "Dividing by −1 is the same as multiplying by −1: it mirrors the line through 0, so the order swaps. 3 is to the right of −4, so 3 > −4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:inequality-sign-flip",
+    "also": [
+      "math:negative-numbers"
+    ],
+    "prerequisites": [
+      "math:negative-numbers"
+    ],
+    "level": "core",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "inequalities",
+      "negative-numbers",
+      "algebra"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

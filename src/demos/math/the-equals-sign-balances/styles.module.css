@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 220px; }
+.swing { transition: transform 0.3s ease-out; }
+.beam { fill: var(--fg); }
+.pin { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.post { fill: var(--bg-3, var(--bg-2)); stroke: var(--muted); stroke-width: 1.5; }
+.ground { stroke: var(--muted); stroke-width: 2; }
+.stop { fill: var(--muted); }
+.string { stroke: var(--muted); stroke-width: 1.2; }
+.plate { fill: var(--fg); }
+.blockA { fill: var(--domain); }
+.blockB { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.blockC { fill: color-mix(in srgb, var(--fg) 45%, var(--bg-2)); }
+.blockBox { fill: color-mix(in srgb, var(--fg) 80%, var(--bg-2)); }
+.box { fill: none; stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.q { fill: var(--muted); font-size: 18px; font-weight: 800; }
+.num { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.status { fill: var(--fg); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 1.4em; }
+.wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }
+.tap { min-height: 44px; min-width: 44px; }

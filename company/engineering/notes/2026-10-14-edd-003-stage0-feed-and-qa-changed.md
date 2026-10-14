@@ -1,7 +1,7 @@
 # EDD-003 stage 0 / EDD-001 options 2+3: slim feed index, paginated feed, and QA only what changed
 
 owner: platform-engineer · date: 2026-10-14 · tier: 2 (feed data shape and every lesson page's card)
-· branch: `scale-stage0` · review: principal-engineer (board item, see the end).
+· branch: `scale-stage0` · review: principal-engineer, W-631 (was branch W-477; record company/engineering/reviews/2026-10-14-scale-stage0-review.md). Board items: see the end.
 Designs: [EDD-001](../edd/EDD-001-feed-at-500-lessons.md) options 2 and 3,
 [EDD-003](../edd/EDD-003-lesson-storage-at-scale.md) stage 0.
 Protected files: none touched. Option 4 (registry split) and the lesson version hash need
@@ -185,3 +185,25 @@ There are no data migrations and no protected paths. Revert the feed commit to r
 - QA selection misses a dependency the import scan can't see: a CSS `@import`, a dynamic import with
   a computed path, or a file read at runtime. None exist in lessons today (scanned 2026-10-14; the two `gen.mjs` files in geography are offline generators whose JSON output the lesson imports), but
   a new engine could add one.
+
+## Board items (renumbered at the merge with main, 2026-10-14)
+
+The branch's W-477 to W-479 collided with main's, so they were deleted and re-added with
+`company board add`:
+
+- W-631 (was W-477): principal-engineer review of this branch. Done: approve with changes.
+- W-632 (was W-478): evaluation-steward, AMD-001 (c2) ratification plus the qa-record lesson hash.
+- W-633 (was W-479): evaluation-steward, stale QA records (855/879).
+- Added from the review: W-634 CSS strategy EDD (A), W-635 option 4 sequencing, blocked on
+  W-632 (B), W-636 feed contract coverage (C), W-637 `feedOrder` prefix unit test (F). Item D
+  (post-deploy curl checks for the static API routes) was appended to W-609.
+
+## After review (finding 1 blocker, finding 3)
+
+- A failed `/api/feed` page fetch sets `failed` on that list. Prefetch stops, and the sentinel
+  shows "Couldn't load more lessons." with a "Tap to retry" button (`data-testid="feed-retry"`,
+  44 px high). Retrying page 0 of a subject replaces the seed, as the first load does.
+- Revisits are inserted only at item positions after `active + 1`, where `active` is frozen at
+  the moment they arrive. The position resets to 0 on a chip change (the scroll resets too).
+- The 12-revisit cap applies after the status filter: metas are fetched in batches of 12 until
+  12 are shown or the due list runs out.

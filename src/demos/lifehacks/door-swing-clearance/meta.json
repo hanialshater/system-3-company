@@ -61,8 +61,10 @@
       "id": "lifehacks.door-swing-clearance.c5",
       "text": "What area should you measure before putting a basket behind a door?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt; spec.recall, not rendered by HomeLesson.tsx, and the recall card uses meta.recall). It presupposes that the door's sweep area must be measured, which matches the swing model: a collision when the basket radius < door width, quarter-circle sweep. Nothing false is implied.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.door-swing-clearance.recall",

@@ -1,6 +1,6 @@
 {
   "work": "easley-kleinberg-2010",
-  "note": "Course map for Networks, Crowds, and Markets (cm-course-ncm, 2026-10-14). The book is a map only: no text, figures or exercises are copied; titles are used to locate ideas. The cs.cornell.edu site and PDF mirrors were blocked (proxy 403), so section numbers and titles come from my knowledge of the 2010 table of contents, checked against web-search snippets. \"confirmed\": true only where a snippet showed the number and title (source recorded); everything else is unconfirmed and must not be cited as a section in curriculum.references (head-of-product rule) until someone with the book checks it. Exercise sections are omitted. demoable = a learner can make one prediction that a stage shows in under 60 seconds with a checkable answer. status: covered (a built lesson teaches it), batch1 (session 2's batch-1 list), gap (briefed in company/courses/ncm/briefs.md), not-demoable (reason in why). Coverage is an input metric, not learner value.",
+  "note": "Course map for Networks, Crowds, and Markets (cm-course-ncm, 2026-10-14). The book is a map only: no text, figures or exercises are copied; titles are used to locate ideas. The cs.cornell.edu site and PDF mirrors were blocked (proxy 403), so section numbers and titles come from my knowledge of the 2010 table of contents, checked against web-search snippets. \"confirmed\": true only where a snippet showed the number and title (source recorded); everything else is unconfirmed and must not be cited as a section in curriculum.references (head-of-product rule) until someone with the book checks it. Exercise sections are omitted. demoable = a learner can make one prediction that a stage shows in under 60 seconds with a checkable answer. status: covered (a built lesson teaches it), batch1 (session 2's batch-1 list), gap (briefed in company/courses/ncm/briefs.md), not-demoable (reason in why). Coverage is an input metric, not learner value. Wave J (2026-10-14): 'briefed_wave_j' lists additional briefs for concepts in already-covered sections; four sections were re-judged demo-able (why_before_wave_j keeps the old reason).",
   "chapters": [
     {
       "n": 1,
@@ -65,7 +65,10 @@
           "covered_by": [
             "the-giant-appears"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "two-big-groups-stay-apart"
+          ]
         },
         {
           "id": "2.3",
@@ -83,7 +86,10 @@
             "maze-depth-first",
             "queue-or-stack-same-search"
           ],
-          "status": "covered"
+          "status": "covered",
+          "briefed_wave_j": [
+            "friends-of-friends-overlap"
+          ]
         },
         {
           "id": "2.4",
@@ -117,7 +123,10 @@
           "covered_by": [
             "news-comes-from-acquaintances"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "new-friend-loosens-the-circle"
+          ]
         },
         {
           "id": "3.2",
@@ -226,10 +235,13 @@
             "selection",
             "social influence"
           ],
-          "demoable": false,
-          "why": "The section's point is that one snapshot cannot tell selection from influence; separating them needs longitudinal data, a survey of studies rather than a checkable stage result.",
-          "covered_by": [],
-          "status": "not-demoable"
+          "demoable": true,
+          "why": "Re-judged in wave J: the stage replays two histories (people choose friends vs friends change people) that end in the identical snapshot, so the learner predicts whether a snapshot can tell them apart; checkable by construction. The longitudinal studies stay out of learner text.",
+          "covered_by": [
+            "same-picture-two-histories"
+          ],
+          "status": "gap",
+          "why_before_wave_j": "The section's point is that one snapshot cannot tell selection from influence; separating them needs longitudinal data, a survey of studies rather than a checkable stage result."
         },
         {
           "id": "4.3",
@@ -256,9 +268,10 @@
           "demoable": true,
           "why": "Predict the chance of a new friendship with 5 mutual friends when each introduces with 10%: 41%, not 50%.",
           "covered_by": [
-            "mutual-friends-add-up-slower"
+            "mutual-friends-add-up-slower",
+            "one-circle-fewer-introductions"
           ],
-          "status": "gap"
+          "status": "covered"
         },
         {
           "id": "4.5",
@@ -504,7 +517,10 @@
           "covered_by": [
             "two-thirds-of-the-average"
           ],
-          "status": "gap"
+          "status": "gap",
+          "briefed_wave_j": [
+            "does-going-first-help"
+          ]
         }
       ]
     },
@@ -628,7 +644,10 @@
           "covered_by": [
             "selfish-routes-cost-a-third-more"
           ],
-          "status": "gap"
+          "status": "gap",
+          "briefed_wave_j": [
+            "drivers-stop-switching"
+          ]
         }
       ]
     },
@@ -655,10 +674,13 @@
           "concepts": [
             "seller's uncertainty about values"
           ],
-          "demoable": false,
-          "why": "A qualitative argument about when to auction versus post a price; no checkable stage outcome.",
-          "covered_by": [],
-          "status": "not-demoable"
+          "demoable": true,
+          "why": "Re-judged in wave J: predict from how many bidders a second-price auction beats the best fixed price when the seller knows only the value range (3, by derivation).",
+          "covered_by": [
+            "price-tag-or-auction"
+          ],
+          "status": "gap",
+          "why_before_wave_j": "A qualitative argument about when to auction versus post a price; no checkable stage outcome."
         },
         {
           "id": "9.3",
@@ -807,7 +829,10 @@
           "covered_by": [
             "rising-price-stops-at-second"
           ],
-          "status": "gap"
+          "status": "gap",
+          "briefed_wave_j": [
+            "keenest-buyer-takes-the-other-flat"
+          ]
         },
         {
           "id": "10.6",
@@ -1092,7 +1117,10 @@
           "covered_by": [
             "web-bow-tie-reach"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "one-link-back-grows-the-core"
+          ]
         },
         {
           "id": "13.4",
@@ -1106,7 +1134,10 @@
           "covered_by": [
             "web-bow-tie-reach"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "one-link-back-grows-the-core"
+          ]
         },
         {
           "id": "13.5",
@@ -1164,7 +1195,10 @@
           "covered_by": [
             "one-good-link-beats-many"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "two-pages-swallow-the-rank"
+          ]
         },
         {
           "id": "14.4",
@@ -1379,7 +1413,10 @@
             "base-rates",
             "two-said-blue"
           ],
-          "status": "covered"
+          "status": "covered",
+          "briefed_wave_j": [
+            "your-clue-against-two-picks"
+          ]
         },
         {
           "id": "16.4",
@@ -1393,7 +1430,10 @@
           "covered_by": [
             "two-said-blue"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "your-clue-against-two-picks"
+          ]
         },
         {
           "id": "16.5",
@@ -1407,7 +1447,10 @@
           "covered_by": [
             "two-said-blue"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "your-clue-against-two-picks"
+          ]
         },
         {
           "id": "16.6",
@@ -1486,7 +1529,10 @@
           "covered_by": [
             "below-critical-mass"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "two-cents-empties-the-network"
+          ]
         },
         {
           "id": "17.4",
@@ -1521,10 +1567,13 @@
           "concepts": [
             "mixed value curves"
           ],
-          "demoable": false,
-          "why": "Extends the same curve; no prediction beyond 17.3's.",
-          "covered_by": [],
-          "status": "not-demoable"
+          "demoable": true,
+          "why": "Re-judged in wave J: adding stand-alone value to the 17.3 curve gives a new prediction (10¢ alone below a 16¢ price leaves an empty app at 0%; 20¢ alone starts it), checkable by derivation.",
+          "covered_by": [
+            "worth-something-alone"
+          ],
+          "status": "gap",
+          "why_before_wave_j": "Extends the same curve; no prediction beyond 17.3's."
         },
         {
           "id": "17.7",
@@ -1674,7 +1723,10 @@
           "covered_by": [
             "cluster-stops-the-cascade"
           ],
-          "status": "batch1"
+          "status": "batch1",
+          "briefed_wave_j": [
+            "payoffs-set-the-threshold"
+          ]
         },
         {
           "id": "19.3",
@@ -1730,7 +1782,8 @@
           "demoable": false,
           "why": "The result rests on what each person knows the others know; the stage can show the network, but the learner cannot check the answer in 60 seconds without the multi-level knowledge argument.",
           "covered_by": [],
-          "status": "not-demoable"
+          "status": "not-demoable",
+          "wave_j_attempt": "Brief protest-needs-a-shared-view written and held with an objection (company/courses/ncm/briefs.md, J3): the stage rule states the answer, and the book's knowledge model is unconfirmed. Stays not demo-able."
         },
         {
           "id": "19.7",
@@ -1742,9 +1795,10 @@
           "demoable": true,
           "why": "Predict the largest threshold that still lets two seeds take an endless line (1/2).",
           "covered_by": [
-            "the-line-takes-up-to-half"
+            "the-line-takes-up-to-half",
+            "the-grid-takes-up-to-three-eighths"
           ],
-          "status": "gap"
+          "status": "covered"
         }
       ]
     },
@@ -2130,10 +2184,13 @@
           "concepts": [
             "complete and transitive preferences"
           ],
-          "demoable": false,
-          "why": "Definitions.",
-          "covered_by": [],
-          "status": "not-demoable"
+          "demoable": true,
+          "why": "Re-judged in wave J: a circle of preferences can be pumped for money (6 swaps, 60¢, back to the start), checkable by hand; the book is cited for transitivity only.",
+          "covered_by": [
+            "the-swap-that-goes-in-circles"
+          ],
+          "status": "gap",
+          "why_before_wave_j": "Definitions."
         },
         {
           "id": "23.3",

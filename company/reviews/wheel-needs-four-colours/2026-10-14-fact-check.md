@@ -32,3 +32,16 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c4 | verified | Own node port (fc25/wheel.mjs): backtrack(4,3) and backtrack(4,4) both give C,1..4 = red, blue, yellow, blue, yellow, 0 dead ends, 3 used. v3 record rule checked: a 4-colour hand colouring then a 3-colour run keeps used 3; the reverse order keeps 3 too; best4 is the fewest-used ok record across 4-3 and 4-4, and the reveal quotes it only when used <= 3 (the ring-of-four milestone also needs u <= 3). The pass 24 path (hand 4 colours, then Run backtracking) now reveals 'done with 3 colours', and an even ring with C fixed alternates two colours, so the sentence is true on every branch. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v4 first (Run backtracking, 3/4 colours, Ring of 5/4 with auto re-run, manual pick/paint/Undo, dead-end detection stuckIn, the Seen record rules, the runs log, OnReveal which puts the recorded 5/3 dead end back on the wheel, the reveal in its conditional forms; hook and recall), then claim text and support, then source fields. Re-ran backtrack() and a brute-force count of proper colourings in my own node script (fc35/wheel.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Derivation: C touches every ring region, so the ring uses the other colours only; with 3 colours that leaves 2, which must alternate on a cycle, impossible on an odd cycle. Brute force: ring of 5 has 0 proper 3-colourings and 120 4-colourings; ring of 4 has 6 proper 3-colourings. |
+| c3 | verified | Own copy of backtrack(5, 3): ok = false, 6 dead ends, first dead end at region 5 with C, 1, 2, 3, 4 = red, blue, yellow, blue, yellow. The stage message prints these values and OnReveal restores this first record for the reveal (s53 keeps the first dead end). A manual dead end can instead be the recorded one (deadEnds null, so the reveal drops the count); the region named is then the one stuck on the wheel, so the reveal stays true on that path too. |
+| c4 | verified | Own run: backtrack(4, 4) and backtrack(4, 3) both give red, blue, yellow, blue, yellow, 3 used. Reveal line is gated on best4.used <= 3, so it is shown only for a finished ring-of-4 run using 3. |
+| c6 | verified | Own run: backtrack(5, 4) = red, blue, yellow, blue, yellow, purple, 0 dead ends, 4 used. Every 4-colouring of the 5-wheel uses all 4 (no 3-colouring exists), so s54.used is 4 on every path, including manual ones. |
+
+**Result:** all four open claims verified. No disputes.

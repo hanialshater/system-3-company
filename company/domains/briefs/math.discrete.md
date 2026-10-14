@@ -214,6 +214,82 @@ Accepted by cm-math-discrete from `company/courses/ncm/briefs.md` (### math.disc
 - Needs interaction-designer spec: no.
 - Differs from nearest: cluster-stops-the-cascade (batch 1) asks where one cascade stops on one finite graph; this asks for a network's limit over all thresholds. Build after brief 3 and cluster-stops-the-cascade.
 
+**Wave J additions (2026-10-14).** 4 more NCM briefs from `company/courses/ncm/briefs.md` (§ math.discrete (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `math` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 10. friends-of-friends-overlap · concept: math:friends-of-friends-overlap · core · demand 2 · format: Single card with Step (step chips; the 1,000-person ring drawn as untapped texture)
+- Sections: E&K ch. 2 (section 2.3, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: everyone has about the same number of friends; multiplying 10 × 9 / does not know: that friends of friends are mostly your own friends when friends know each other, so the count two steps out is a small fraction of 10 × 9.
+- Misconception: If everyone has 10 friends, about 90 people are two steps away from you.
+- Prediction (stage text ≤ 25 words): "1,000 villagers sit in a ring; each knows the 5 nearest on each side (10 friends). How many people are exactly two steps from you?" options: A. 90 / B. 45 / C. 10 (answer: C (10)).
+- Check: Node `J1 {"tree":{"d1":10,"d2":90,"d3":810,"within3":911},"ring":{"d1":10,"d2":10,"d3":10,"within3":31,"maxDist":100}}`. Ring: BFS from person 0 on a 1,000-ring where each links to the 5 nearest each side. "No shared friends" world: each friend brings 9 new people (a tree).
+- Stage and controls: Initial state: the village, step 1 shown (10 friends ringed). Controls in DOM order: [2 steps] [3 steps] [No shared friends] [Village]; the active chip is disabled (`className="active"`). Readout: "people at this step: N" and "within N steps: M". Labels ≥ 10 px; the ring is texture (> 20 nodes, nothing tappable).
+- QA path (each control once, DOM order, presets only): Pressing each control once in DOM order: 2 steps (milestone 1: village at 2 steps, 10 people), 3 steps (village 10 more), No shared friends (milestone 2: the tree at 3 steps, 810; the readout also lists 90 at step 2), Village (back). Every quoted number is on the readout when the reveal opens.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): In the village your friends' friends are mostly your own friends, so step 2 adds only 10 new people (and step 3 another 10), not 90 and 810. Multiplying 10 × 9 assumes none of your friends know each other; closed triangles make the real count far smaller. (≤ 90 words; quotes the step the learner last viewed.)
+- Planned claims:
+  1. In the ring of 1,000 where each person knows the 5 nearest on each side, 10 people are exactly 1, 2 and 3 steps away, 31 people are within 3 steps (counting you), and the farthest person is 100 steps away. support: derivation; source: node BFS.
+  2. If no two of anyone's friends know each other, 10 friends each with 10 friends give 90 people at 2 steps and 810 at 3 (911 within 3). support: derivation; source: arithmetic.
+  3. Counting 'friends × friends' over-estimates the people two steps away when friendships close into triangles (the book's caution about naive breadth-first growth). support: citation; source: E&K ch. 2 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Single card with Step (step chips; the 1,000-person ring drawn as untapped texture)
+- Curriculum: `{"primary": "math:friends-of-friends-overlap", "also": ["math:exponential-growth"], "prerequisites": ["math:exponential-growth"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 2, "section_unconfirmed": "2.3"}], "tags": ["networks", "breadth-first search", "triadic closure"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cs/wave-from-the-corner and queue-or-stack-same-search teach breadth-first layers on a grid; probability/few-shortcuts-shrink-the-world adds random shortcuts to a ring (ch. 20). This one shows why the ring without shortcuts grows so slowly, the problem the shortcuts solve. The friendship-paradox brief (probability.md) compares averages, not layer sizes.
+
+### 11. new-friend-loosens-the-circle · concept: math:clustering-coefficient · core · demand 2 · format: Single card (hand-drawn network stage, 6 people; 'Fay knows' chips)
+- Sections: E&K ch. 3 (section 3.1, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: friend pairs; counting pairs (handshake-counting) / does not know: that clustering is the share of a person's friend pairs who are friends, and that a new friend adds new pairs to the bottom of that share.
+- Misconception: A new friend who knows some of your friends makes your circle tighter.
+- Prediction (stage text ≤ 25 words): "Ana's 4 friends: 3 of their 6 pairs are friends (clustering 0.5). New friend Fay knows one of them. Ana's clustering now?" options: A. Higher than 0.5 / B. Still 0.5 / C. Lower than 0.5 (answer: C (0.4)).
+- Check: Node `J2 {"before":0.5,"fayKnows":[0.3,0.4,0.5,0.6,0.7]}`: clustering = linked friend pairs / all friend pairs = (3 + k) / 10 when Fay knows k of the 4.
+- Stage and controls: Ana in the centre, friends B–E on an arc with B–C, C–D, D–E linked; Fay appears when a chip is pressed. Controls in DOM order: [Fay knows 1] [Fay knows 2] [Fay knows 3] [No Fay]. Readout: "linked pairs 4 of 10 = 0.4". ≤ 6 nodes, labels ≥ 10 px, no node taps needed.
+- QA path (each control once, DOM order, presets only): Each chip once in DOM order: knows 1 (milestone 1: 0.4, the question's case), knows 2 (milestone 2: 0.5, break-even), knows 3 (0.6), No Fay (0.5). The reveal quotes the recorded milestone values.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Fay makes 4 new pairs (her with each old friend), so Ana's pairs go from 6 to 10. Knowing 1 of them gives 4 linked pairs of 10: 0.4, lower. She had to know 2 of the 4, half of them, just to hold 0.5. (≤ 90 words.)
+- Planned claims:
+  1. Before Fay, 3 of Ana's 6 friend pairs are linked: clustering 3/6 = 0.5. support: derivation.
+  2. With Fay knowing 0, 1, 2 or 3 of the four, clustering is 0.3, 0.4, 0.5 or 0.6 ((3 + k)/10). support: derivation; source: node.
+  3. A person's clustering coefficient is the share of pairs of their friends who are friends with each other. support: definition; source: E&K ch. 3 (section unconfirmed; the map's 3.1 concept list); Watts and Strogatz (1998), Nature 393. Attribution: fact-checker confirms.
+- Format: Single card (hand-drawn network stage, 6 people; 'Fay knows' chips)
+- Curriculum: `{"primary": "math:clustering-coefficient", "also": ["math:handshake-counting"], "prerequisites": ["math:handshake-counting"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 3, "section_unconfirmed": "3.1"}], "tags": ["networks", "clustering", "triadic closure"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/broker-between-two-groups counts unlinked friend pairs around one person (structural holes) at a fixed moment; this one asks how the share moves when a friend is added. news-comes-from-acquaintances is about which tie is a bridge. No lesson defines clustering.
+
+### 12. payoffs-set-the-threshold · concept: math:coordination-threshold · core · demand 2 · format: Single card (friend-count and payoff chips; two live payoff bars)
+- Sections: E&K ch. 19 (section 19.2, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: the rule 'join once half your friends have' (cluster-stops-the-cascade) / does not know: that the share comes from the payoffs: with a per friend on New and b on Old, you switch once a share b/(a + b) of friends are on New.
+- Misconception: You switch to a new option once most of your friends have.
+- Prediction (stage text ≤ 25 words): "Per friend: both on New, you each get 3; both on Old, 2; mismatched, 0. Of 10 friends, how many on New before you switch?" options: A. 4 / B. 5 / C. 6 (answer: A (4: New 12 = Old 12; switch when New pays at least as much)).
+- Check: Node `J15 {"q32":0.4,"q22":0.5,"q12":0.667,"q41":0.2,"firstKof10":4,"table":[[3,9,14],[4,12,12],[5,15,10]]}`: with k of 10 friends on New, New pays 3k and Old pays 2(10 − k).
+- Stage and controls: Ten friend tokens, k filled for New; two payoff bars (New 3k, Old 2(10 − k)). Controls in DOM order: [4 on New] [3 on New] [New pays 2] [New pays 4, Old 1]; the payoff chips recompute the break-even k. Readout "New N · Old M". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 4 on New (milestone 1: 12 vs 12, the question's case), 3 on New (9 vs 14), New pays 2 (milestone 2: break-even moves to 5 of 10), New pays 4, Old 1 (break-even 2 of 10).
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): With 4 of your 10 friends on New, New pays 4 × 3 = 12 and Old pays 6 × 2 = 12: 4 is enough, not a majority. The share you need is Old's payoff over both, 2/(3 + 2) = 40%. When New paid only 2 you needed 5; when it paid 4 against Old's 1, just 2. The better the new thing, the fewer friends it takes. (≤ 90 words.)
+- Planned claims:
+  1. With payoffs 3 (both New), 2 (both Old), 0 (mismatch) and k of 10 friends on New, New pays 3k and Old 2(10 − k); they are equal at k = 4. support: derivation.
+  2. In general the switching share is q = b/(a + b): 40% for 3 and 2, 50% for 2 and 2, 20% for 4 and 1. support: derivation.
+  3. This networked coordination game gives the threshold rule used in the cascade model. support: citation; source: E&K ch. 19 (section unconfirmed); Morris (2000), Rev. Econ. Studies 67. Attribution: fact-checker confirms.
+- Format: Single card (friend-count and payoff chips; two live payoff bars)
+- Curriculum: `{"primary": "math:coordination-threshold", "also": ["economics:coordination-stag-hunt"], "prerequisites": ["math:threshold-cascade"], "level": "core", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 19, "section_unconfirmed": "19.2"}], "tags": ["cascades", "coordination", "thresholds"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/cluster-stops-the-cascade takes q = 1/2 as a given rule and asks where a cascade stops; economics/stag-needs-three-in-four is a two-player belief threshold. This one derives q from payoffs across many friends. Build after cluster-stops-the-cascade (built).
+
+### 13. the-swap-that-goes-in-circles · concept: math:transitive-preferences · intro · demand 2 · format: Single card (swap preset chips)
+- Sections: E&K ch. 23 (section 23.2, unconfirmed) · domain: math · course: ncm (wave J)
+- Learner knows: preferring one thing to another; paying a little for something you prefer / does not know: that preferences in a circle let someone sell you swaps for ever, which is why choice models assume preferences are transitive.
+- Misconception: Preferences that go in a circle are odd but harmless.
+- Prediction (stage text ≤ 25 words): "Max prefers apple to banana, banana to cherry, cherry to apple. He pays 10¢ per preferred swap. He holds a cherry. After 6 swaps?" options: A. Apple, 60¢ poorer / B. Cherry, 60¢ poorer / C. Banana, 30¢ poorer (answer: B (cherry, 60¢ poorer)).
+- Check: Swaps follow the preferences: cherry → banana → apple → cherry, one 3-swap loop; 6 swaps = 2 loops = 60¢ and back to the cherry. With ranked preferences apple > banana > cherry the swaps stop after 2 (holding the apple, 20¢ paid). Hand derivation; the builder re-runs it in node.
+- Stage and controls: Three fruit cards on a circle with preference arrows; a coin counter. Controls in DOM order: [6 swaps] [3 swaps] [Rank them: apple first] [Back to the circle]; each preset replays its swaps from the cherry. Readout "holding: X · paid: N¢". Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: 6 swaps (milestone 1: cherry, 60¢, the question's case), 3 swaps (cherry, 30¢), Rank them (milestone 2: stops at apple after 2 swaps, 20¢), Back to the circle.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Every swap was one Max wanted, yet after 3 he held the cherry again, 30¢ poorer, and after your 6 he had paid 60¢ for nothing. Once his preferences were ranked, the swaps stopped at his favourite after 2. That is why choice models assume preferences are transitive. A group's majority can still go round in a circle even when every voter's preferences are ranked. (≤ 90 words.)
+- Planned claims:
+  1. With apple > banana, banana > cherry and cherry > apple, starting from a cherry, the swaps go cherry → banana → apple → cherry; 6 swaps cost 60¢ and end on the cherry. support: derivation.
+  2. With apple > banana > cherry, swaps from a cherry stop at the apple after 2 (20¢). support: derivation.
+  3. Models of individual choice assume preferences are complete and transitive. support: citation; source: E&K ch. 23 (section unconfirmed).
+  4. The 'money pump' argument for transitivity is due to Davidson, McKinsey and Suppes (1955). support: citation; source: Philosophy of Science 22. Attribution: fact-checker confirms. The book is cited only for transitivity; the pump example is ours.
+- Format: Single card (swap preset chips)
+- Curriculum: `{"primary": "math:transitive-preferences", "also": ["probability:nontransitive-dice"], "prerequisites": ["math:condorcet-cycle"], "level": "intro", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 23, "section_unconfirmed": "23.2"}], "tags": ["voting", "preferences", "transitivity"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: math/agenda-picks-the-winner shows a group cycle from voters whose preferences are ranked; probability/dice-that-chase-each-other is a circle of dice, not of preferences. This one is why each voter is assumed ranked in the first place. Build before or after agenda-picks-the-winner (built).
+
+
 ## Knots, batch 1 (session 2, 2026-10-14): draw-a-table-knot
 
 Source: design ruling `company/design/reviews/2026-10-14-knot-pictures.md` (Ruling 2 and the "cm-math-discrete consult" section), library `src/kit/knots` (EDD-004). **Not in `content/curriculum/math.json`:** there is no knot concept yet, so `concept:` below is a proposed id. The category lead or I add it before a builder claims this (not done here; I was asked only for the tracing decision). Tricolour-check, unknot-game and random-knot are not briefed here. Their pictures are ruled; their learning content is open.
@@ -234,3 +310,93 @@ curriculum.references: none yet (work to choose; Rolfsen, *Knots and Links*, is 
 - Needs interaction-designer spec: no.
 - Pictures: the kit's derived 5_2 and 6_1 are accepted for this task by the design lead (Ruling 2) **because learners only look and count**. 3_1 and 4_1 are not offered until block (b) lifts (it needs the fix1 conditions). 6_3 is excluded. **Tracing decision (cm-math-discrete, 2026-10-14): learners do not trace the strand or colour arcs here.** Therefore 6_1 does not need fix1-bigon's drawing. If this brief ever adds a task of following the rope or colouring arcs on 6_1 (its left side is a thin lens), it must use fix1-bigon's drawing and come back to design.
 - Differs from nearest: no knot lesson exists in `src/demos` and `node tools/overlap.mjs` lists no knot concept. Its neighbour in the pipeline is tricolour-check, which asks about arcs and colourings on 3_1; this one only counts crossings and names.
+
+## Wave J (cm-math, 2026-10-14)
+
+Five new concepts (logic, counting, invariants), none taught yet; each is added to `content/curriculum/math.json` with `subarea: "discrete"`. Ranked demand 3 first, then demand 2 in prerequisite order. Every number is recomputed by `node company/domains/briefs/checks/math-wave-j-check.mjs` (labels D1 to D5); no learner-facing claim needs the web. Dedupe: grepped all `meta.json` and briefs for Wason, selection task, contrapositive, negation, quantifier, chords/regions, chessboard/domino, combinations; the nearest lessons are named in each brief. `node tools/overlap.mjs` lists no pair on these concepts.
+Shared build rules: as in `math.algebra.md` Wave J (stage text ≤ 25 words, reveal ≤ 90 words and fits with its picture at 390×844, labels ≥ 10 px, 44 px targets, preset buttons and Step instead of slider ranges, every milestone reached by pressing each control once in the DOM order given, current-state chip active and disabled, milestone values recorded so Reset cannot change them).
+
+### 1. four-cards-one-rule · concept: conditional-falsification · core · demand 3 · format: Single card
+- Learner knows: what "if … then …" means in everyday speech; vowels and even numbers / does not know: that a rule "if P then Q" can only be broken by a case with P true and Q false, so you test it by hunting for that case, not by finding cases that agree.
+- Misconception: to test "if vowel, then even" you turn the vowel and the even number (looking for confirmation). (Rationale, not learner text: Wason's selection task, Wason 1968, *Quarterly Journal of Experimental Psychology* 20(3); success rates are empirical, not checked, never quoted.)
+- Prediction (stage text ≤ 25 words): "Rule: if a card shows a vowel, its back is even. You see E, K, 4, 7. Which must you turn to test it?" options: A. E and 4 / B. E and 7 / C. E only / D. All four (answer: B).
+- Check (D1): every card has a letter on one side and a number on the other; possible backs are 4 or 7 for a letter, A or K for a number. Backs that break the rule: E: 7; K: none; 4: none; 7: A. So exactly E and 7 can break it.
+- Stage: four cards in a row. Tapping a card shows its two possible backs underneath as small cards; a back that would break the rule gets a red outline and the word "breaks" (outline plus word, not colour alone); the others say "fine". Controls in DOM order: card E, card K, card 4, card 7, Reset. A row readout counts "Could break the rule: E, 7".
+- Milestones: (1) the 4 inspected (the tempting card, no back breaks it); (2) all four inspected. QA path: four card taps.
+- Reveal (draft, 72 words): "Only two cards could hide a back that breaks the rule: E, with a 7 behind it, and 7, with a vowel behind it. The 4 could not break it whatever its back, because the rule never says even numbers need vowels; turning it can only agree. A rule 'if P then Q' fails only when P is true and Q is false, so you test it by looking for that case."
+- Phone fit: four cards 72 px wide in one row at 390 px; backs 40 px below each.
+- Planned claims:
+  1. "If P then Q" is false exactly when P is true and Q is false (material conditional). support: definition; source: truth table (derivation).
+  2. Under that reading only E and 7 can falsify the rule; K and 4 cannot whatever is on their backs. support: derivation; source: D1 enumeration.
+  3. Not claimed in learner text: how many people answer correctly (empirical).
+- curriculum: `{"primary":"math:conditional-falsification","also":[],"prerequisites":[],"level":"core","strand":"discrete","references":[],"tags":["logic","conditionals","proof"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: no lesson in any category teaches the selection task or the logic of "if … then". `math/two-right-angles-never-meet` (proof by contradiction) assumes the reader can negate a statement; this is its logical prerequisite in spirit.
+
+### 2. not-every-circle-is-red · concept: negating-all · core · demand 2 · format: Single card
+- Learner knows: "all", "none", "some" in everyday speech / does not know: that the opposite of "every circle is red" is "at least one circle is not red", not "no circle is red".
+- Misconception: "Not every circle is red" means "no circle is red".
+- Prediction (stage text ≤ 25 words): "Which sentence means exactly the same as 'Not every circle is red'?" options: A. No circle is red / B. Some circle is not red / C. Some circle is red (answer: B).
+- Check (D2): with circles all red: "not every" false, "none" false, "some not" false, "some red" true. One blue: true, false, true, true. All blue: true, true, true, false. "Some circle is not red" matches "not every" in all 16 colourings of 4 circles; "No circle is red" differs in the 14 with some but not all red. (Script checks the three named scenes; the 16-colouring statement follows from the definitions.)
+- Stage: four circles in a row, starting all red (solid fill, "R" label 12 px); a tap toggles a circle to blue (hatched fill, "B"). Below, four sentence rows with live true/false marks: "Not every circle is red", "No circle is red", "Some circle is not red", "Some circle is red" (18 words). The row that matches the first row in the current state is ticked. Controls in DOM order: circle 1, circle 2, circle 3, circle 4, Reset.
+- Milestones: (1) a state where "Not every circle is red" is true but "No circle is red" is false (first tap); (2) all four blue (both true). QA path: four taps reach both.
+- Reveal (draft, 66 words): "With one circle blue, 'Not every circle is red' turned true while 'No circle is red' stayed false, so they do not mean the same. 'Some circle is not red' matched it in every state you made. One exception is enough to deny 'every'. The opposite of 'all are' is 'at least one is not', and the opposite of 'none are' is 'at least one is'."
+- Phone fit: circles row 64 px plus four sentence rows of 28 px.
+- Planned claims:
+  1. "Not every x is red" is equivalent to "some x is not red". support: definition (negation of a universal statement); source: logic, derivation.
+  2. With one of four circles blue, "not every circle is red" is true and "no circle is red" is false. support: derivation; source: D2.
+  3. "Not (no x is red)" is equivalent to "some x is red". support: definition.
+- curriculum: `{"primary":"math:negating-all","also":["math:conditional-falsification"],"prerequisites":[],"level":"core","strand":"discrete","references":[],"tags":["logic","quantifiers","negation"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `four-cards-one-rule` (this batch) is about "if … then"; this is about "every". No other lesson negates a quantifier.
+
+### 3. regions-from-circle-points · concept: pattern-is-not-proof · core · demand 2 · format: Single card
+- Learner knows: joining points with straight lines; counting pieces / does not know: that a pattern holding for five cases can still break, and why this one does (pieces = 1 + lines + crossings).
+- Misconception: 2, 4, 8, 16 must continue as 32: a pattern that held five times is proved.
+- Prediction (stage text ≤ 25 words): "Points on a circle, every pair joined. 1 point: 1 piece. 2: 2. 3: 4. 4: 8. 5: 16. With 6 points?" options: A. 30 / B. 31 / C. 32 (answer: B).
+- Check (D3): points at 0°, 64°, 113°, 179°, 230°, 308° (the first n used for n points). Computed crossings 0, 0, 0, 1, 5, 15 and pieces 1, 2, 4, 8, 16, 31 by Euler's formula on the drawing, matching 1 + C(n,2) + C(n,4). No three lines meet at a point (all 15 crossings at 6 points distinct; the closest two are 0.209 radius apart, about 30 px on a 145 px circle). A regular hexagon instead gives 30 (three diagonals meet at the centre), so the even spacing must not be used.
+- Stage: a circle with the points and lines; the pieces alternately shaded in two light tones so they can be counted; readout "6 points · 15 lines · 15 crossings · 31 pieces". Controls in DOM order: "2 points", "3 points", "4 points", "5 points", "6 points", Reset; initial state 1 point (1 piece). Each chip draws its lines and crossings (crossing dots 6 px).
+- Milestones: (1) 5 points with 16 pieces seen (the pattern held); (2) 6 points with 31 pieces seen. QA path: chips in order.
+- Reveal (draft, 68 words): "Doubling held up to 5 points, then 6 points gave 31, not 32. Every piece is made by a line or a crossing: pieces = 1 + lines + crossings. With 6 points that is 1 + 15 + 15 = 31. Lines come from pairs of points and crossings from groups of four, so the count was never doubling. Five matching cases are evidence, not a proof."
+- Phone fit: circle radius 145 px; readout one line; chips one row of 6 small chips or two rows.
+- Planned claims:
+  1. With the stage's points, pieces are 1, 2, 4, 8, 16, 31 for 1 to 6 points. support: derivation; source: D3 (planar Euler count).
+  2. When no three lines meet at one point, pieces = 1 + C(n,2) + C(n,4) (each line adds 1 piece plus 1 per crossing it makes). support: derivation.
+  3. Each crossing comes from exactly one set of four points, so there are C(n,4) crossings. support: derivation (the crossing chords are the diagonals of that quadrilateral).
+  4. With 6 evenly spaced points there are 30 pieces (meta evidence only, not learner text). support: derivation; source: D3.
+- curriculum: `{"primary":"math:pattern-is-not-proof","also":["math:handshake-counting","math:pascals-triangle"],"prerequisites":["math:handshake-counting"],"level":"core","strand":"discrete","references":[],"tags":["patterns","proof","counting"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `math/handshakes-halve` counts the lines (pairs); `math/domino-chain` shows what a real proof by induction needs. This one is the warning that comes before both: a pattern is not a proof. The CS colouring lessons count regions of maps, not chords.
+
+### 4. two-corners-off-the-board · concept: colouring-invariant · core · demand 2 · format: Single card
+- Learner knows: a domino covers two neighbouring squares; a chequered board / does not know: that counting colours can prove a tiling impossible without trying every arrangement.
+- Misconception: remove two squares from a board with an even number of squares and the rest can always be covered by dominoes, if you try hard enough.
+- Prediction (stage text ≤ 25 words): "A 4 by 4 board loses two opposite corners. 14 squares are left. Can 7 dominoes cover them exactly?" options: A. Yes / B. No (answer: B).
+- Check (D4): 4×4 has 8 dark, 8 light squares and 36 domino tilings. Opposite corners (0,0) and (3,3) are both dark: 6 dark and 8 light remain, 0 tilings (brute force), so at most 6 dominoes fit. Two corners in one row, (0,0) and (0,3), are one dark and one light: 7 and 7 remain, 12 tilings. For the full 8×8 board with opposite corners removed: 30 dark, 32 light.
+- Stage: the 4×4 board, dark squares also marked with a small dot (not colour alone); readout "dark 6 · light 8". Controls in DOM order: "Opposite corners off" (draws the best try: 6 dominoes placed, 2 light squares left uncovered and outlined), "Corners in one row off" (draws a full 7-domino tiling), "Another try" (shows a different maximal placement for the current board, still 2 light squares left on the opposite-corner board; on the one-row board a different full tiling), Reset. Each domino is drawn spanning one dark and one light square.
+- Milestones: (1) opposite-corner board shown with 2 uncovered light squares; (2) one-row board tiled. QA path: chips 1 and 2 fire both; chip 3 changes the drawing on either board.
+- Reveal (draft, 79 words): "Every domino covers one dark and one light square, whichever way it lies. With opposite corners off you had 6 dark and 8 light, so at most 6 dominoes could fit and 2 light squares were always left. With two corners in one row off, 7 and 7, and the board tiled. Counting colours proves no arrangement can work, without trying them all. The same count rules out a full chessboard with opposite corners off: 30 dark, 32 light."
+- Phone fit: board 4 × 56 px = 224 px; readout and chips below.
+- Planned claims:
+  1. Every domino on a chequered board covers one dark and one light square. support: derivation (neighbouring squares differ in colour).
+  2. The 4×4 board without opposite corners has 6 dark and 8 light squares and no domino tiling; without two corners of one row it has 7 and 7 and 12 tilings. support: derivation; source: D4 brute force.
+  3. An 8×8 board without opposite corners has 30 dark and 32 light squares, so 31 dominoes cannot cover it. support: derivation; source: D4.
+- curriculum: `{"primary":"math:colouring-invariant","also":["math:parity-rules"],"prerequisites":["math:parity-rules"],"level":"core","strand":"discrete","references":[],"tags":["invariants","tiling","proof"]}`
+- Needs interaction-designer spec: no (the "best try" drawings are fixed placements; builder records them in meta).
+- Differs from nearest: `math/seven-odds-leave-one` uses parity of a sum; `math/two-colours-enough` colours a map. This one uses a colouring as a counting argument to prove impossibility, the idea behind invariant proofs.
+
+### 5. pick-two-or-pick-four · concept: complement-counting · core · demand 2 · format: Single card with Step
+- Learner knows: counting pairs (`math/handshakes-halve`) / does not know: that choosing k of n has exactly as many ways as choosing the n − k left behind, because each choice of who goes is a choice of who stays.
+- Misconception: choosing 4 of 6 gives more possible groups than choosing 2 of 6, because the groups are bigger.
+- Prediction (stage text ≤ 25 words): "6 friends. You take 2 of them on a trip, or else 4 of them. Which choice has more possible groups?" options: A. Taking 2 / B. Taking 4 / C. The same (answer: C).
+- Check (D5): C(6,0..6) = 1, 6, 15, 20, 15, 6, 1; C(6,2) = C(6,4) = 15; C(6,3) = 20. Also C(10,2) = C(10,8) = 45.
+- Stage: six friends A to F (letters 12 px). A pair is highlighted as "go"; the four left are drawn as "stay" and outlined together as a group of 4. Counters "pairs seen: 1 of 15" and "fours seen: 1 of 15". Controls in DOM order: "Next pair" (Step), "All pairs" (jumps to 15 of 15, listing the pairs as a compact 3 × 5 grid of two-letter chips), "Groups of 3" (shows the count 20 and one 3-and-3 split), Reset.
+- Milestones: (1) one pair and its four seen together; (2) counters at 15 and 15. QA path: Step then All pairs.
+- Reveal (draft, 67 words): "Every pair you picked left exactly four behind, and each four left behind exactly one pair. So the groups match one to one: 15 pairs, 15 fours. Choosing who goes is the same as choosing who stays. Groups of 3 are the most, 20, where goers and stayers are the same size. In general, choosing k of n has as many ways as choosing n − k." (The groups-of-3 sentence only if that chip was pressed; otherwise drop it.)
+- Phone fit: friends row 56 px; the 3 × 5 pair grid ≤ 150 px.
+- Planned claims:
+  1. There are 15 ways to choose 2 of 6 and 15 ways to choose 4 of 6; 20 ways to choose 3. support: derivation; source: D5.
+  2. Matching each chosen group with the group left out is one-to-one, so C(n,k) = C(n,n − k). support: derivation (bijection).
+- curriculum: `{"primary":"math:complement-counting","also":["math:pascals-triangle","math:handshake-counting"],"prerequisites":["math:handshake-counting"],"level":"core","strand":"discrete","references":[],"tags":["counting","combinations","bijection"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: `math/handshakes-halve` counts pairs; `math/paths-by-adding` builds Pascal's triangle by addition and shows its symmetry without saying why. This lesson gives the why: a bijection between going and staying.

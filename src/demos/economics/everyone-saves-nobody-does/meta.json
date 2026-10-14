@@ -26,43 +26,53 @@
       "id": "economics.everyone-saves-nobody-does.c1",
       "text": "Under the stated timing, saving jumps to $120 in round 1, then falls back to $100 as income settles at $900.",
       "support": "simulation",
-      "source": "Deterministic recurrence (Demo.tsx series()): spending_t = 80 + 0.8 × income_{t−1}, income_t = spending_t + 100, saving_t = income_{t−1} − spending_t, from income 1,000. Round 1: 880, 980, 120; round 2: 864, 964, 116; round 24: income 900.47 (reads $900), saving 100.12 (reads $100); round 40: 900.01, 100.00 (builder node run, 2026-10-14). The reveal quotes the record set at milestones round1 and settled, which the record row also shows. Brief: company/domains/briefs/economics.md #58.",
-      "status": "unverified"
+      "source": "Deterministic recurrence (Demo.tsx series()): spending_t = 80 + 0.8 × income_{t−1}, income_t = spending_t + 100, saving_t = income_{t−1} − spending_t, from income 1,000. Round 1: 880, 980, 120; round 2: 864, 964, 116; round 24: income 900.47 (reads $900), saving 100.12 (reads $100); round 40: 900.01, 100.00 (builder node run, 2026-10-14). The reveal quotes the record set at milestones round1 and settled, which the record row also shows. Brief: company/domains/briefs/economics.md #58. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node of series(20): round 0 income $1,000 saving $100; round 1 spending 880, saving $120, income $980; income first rounds to $900 at round 24 (SETTLE) and saving reads $100 at every round 24-40. Reveal uses rec.peak = sav[1] and rec.settled/income from the first round >= 24 reached at the $20 cut, so Next-by-Next and Run give the same $120 / $100 / $900. The $40 path sets no record (go returns early) and reaches no milestone, so it cannot change the reveal. Chip states the timing ('80% of last round's income').",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.everyone-saves-nobody-does.c2",
       "text": "Each $20 not spent was someone else's lost income, so incomes fell until people could save only what businesses invest: $100.",
       "support": "derivation",
-      "source": "Income = spending + investment; at the resting point Y = (80 + 100)/(1 − 0.8) = 900 and saving S = Y − 80 − 0.8Y = 100 = investment. Before the cut, Y = (100 + 100)/0.2 = 1,000 and S = 100 too.",
-      "status": "unverified"
+      "source": "Income = spending + investment; at the resting point Y = (80 + 100)/(1 − 0.8) = 900 and saving S = Y − 80 − 0.8Y = 100 = investment. Before the cut, Y = (100 + 100)/0.2 = 1,000 and S = 100 too. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation in the model: income = spending + investment, so a $20 cut in spending is $20 less income for someone. Steady state Y = 80 + 0.8Y + 100 gives Y = 900 and S = Y - C = 900 - 800 = 100 = I. Own node agrees.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.everyone-saves-nobody-does.c3",
       "text": "Everyone tried to save more; together they earned $100 less and saved the same.",
       "support": "derivation",
-      "source": "Income 1,000 → 900 (difference 100); saving 100 before and after (from c2). The reveal computes 1,000 − recorded income.",
-      "status": "unverified"
+      "source": "Income 1,000 → 900 (difference 100); saving 100 before and after (from c2). The reveal computes 1,000 − recorded income. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Reveal: Y0 - rec.income = 1000 - 900 = '$100' less; settled saving $100 equals the pre-cut round-0 saving $100 (own node).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.everyone-saves-nobody-does.c4",
       "text": "This is the paradox of thrift.",
       "support": "source",
-      "source": "Name of the result in introductory macroeconomics; popularised by J. M. Keynes, The General Theory of Employment, Interest and Money (1936). Builder statement from memory, not checked: the fact-checker should confirm the name (and, if wanted, the attribution) or drop it to 'a paradox'. The learner text names no person.",
+      "source": "Name of the result in introductory macroeconomics; popularised by J. M. Keynes, The General Theory of Employment, Interest and Money (1936). Builder statement from memory, not checked: the fact-checker should confirm the name (and, if wanted, the attribution) or drop it to 'a paradox'. The learner text names no person. | FC pass 35 (fact-checker, 2026-10-14): UNVERIFIED. HELD. The naming rests on a source (paradox of thrift; Keynes / macro texts) that I could not open: reference and scholarly hosts are unreachable from this sandbox. The model's behaviour matches what the name is used for (c1-c3), but a name needs a source, and I did not accept memory or 'textbook'. Needs a checker with access to an opened text.",
       "status": "unverified"
     },
     {
       "id": "economics.everyone-saves-nobody-does.c5",
       "text": "If extra saving funded extra investment, the answer would change.",
       "support": "derivation",
-      "source": "Within the model, saving equals investment at the resting point (c2), so total saving moves with investment; it stayed at $100 only because investment is fixed.",
-      "status": "unverified"
+      "source": "Within the model, saving equals investment at the resting point (c2), so total saving moves with investment; it stayed at $100 only because investment is fixed. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: if investment rose by the $20 extra saving (I = 120), Y = (80 + 120)/0.2 = $1,000 and S = 1000 - (80 + 800) = $120, so the answer changes from $100. Own node.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.everyone-saves-nobody-does.c6",
       "text": "The lesson is a toy model: spending = a fixed amount + 80% of last round's income, investment fixed at $100, fixed prices, no government or trade.",
       "support": "convention",
-      "source": "Stage chip 'Model: spending = $80 + 80% of last round's income; investment fixed at $100; fixed prices' and the reveal's 'in a toy model'. Lesson rule. Optional $40 cut chip: settles at income $800, saving $100 (series(40), builder node run).",
-      "status": "unverified"
+      "source": "Stage chip 'Model: spending = $80 + 80% of last round's income; investment fixed at $100; fixed prices' and the reveal's 'in a toy model'. Lesson rule. Optional $40 cut chip: settles at income $800, saving $100 (series(40), builder node run). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention, consistent with code: chip reads 'Model: spending = $80 + 80% of last round's income; investment fixed at $100; fixed prices'; series() has no government or trade term; reveal says 'in a toy model'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

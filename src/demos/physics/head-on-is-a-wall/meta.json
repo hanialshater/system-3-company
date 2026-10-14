@@ -28,36 +28,46 @@
       "id": "physics.head-on-is-a-wall.c1",
       "text": "In a head-on collision of identical cars at equal speeds, total momentum is zero, so both cars stop at the meeting point, which does not move (stage: dashed 'meeting point' line; reveal: 'The cars stopped at the meeting point, which never moved').",
       "support": "derivation",
-      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1.",
-      "status": "unverified"
+      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: equal masses at equal and opposite speeds give total momentum 1500*(13.89) - 1500*(13.89) = 0, so a perfectly inelastic pair ends at rest; by symmetry the contact point stays at MID. Stage draws car B mirrored about MID and the dashed 'meeting point' line there; reveal sentence matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.head-on-is-a-wall.c2",
       "text": "Car A's crumple zone absorbs 1/2 m v^2 = 145 kJ at 50 km/h for a 1,500 kg car, the same in a head-on crash with an identical car as against a rigid immovable wall at 50 km/h (stage: 'car 50: 145 kJ', 'wall 50: 145 kJ'; reveal: 'filled car A's crush bar to 145 kJ, as high as the 50 km/h wall (145 kJ)').",
       "support": "derivation",
-      "source": "0.5 x 1,500 x (50/3.6)^2 = 144,676 J, shown with toFixed(0) as 145 kJ (Demo.tsx `energy`). Head-on: the total 289 kJ is shared equally by symmetry; each car stops from 50 km/h against a contact plane that does not move, which is what a rigid wall does. check.mjs gives 144.7 kJ.",
-      "status": "unverified"
+      "source": "0.5 x 1,500 x (50/3.6)^2 = 144,676 J, shown with toFixed(0) as 145 kJ (Demo.tsx `energy`). Head-on: the total 289 kJ is shared equally by symmetry; each car stops from 50 km/h against a contact plane that does not move, which is what a rigid wall does. check.mjs gives 144.7 kJ. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: 0.5*1500*(50/3.6)^2 = 144,676 J -> kJ() '145 kJ'. Demo computes energy(speed) for both targets, so 'car 50: 145 kJ' and 'wall 50: 145 kJ' are identical; the reveal reads runs['car-50'] and runs['wall-50'], both reached milestones. Physics: in the head-on case each car's own kinetic energy is dissipated in its own crumple zone (identical cars, symmetric), same as the wall.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.head-on-is-a-wall.c3",
       "text": "A wall crash at 100 km/h puts 579 kJ into car A, about 4 times as much as at 50 km/h, because kinetic energy grows with speed squared (stage: 'wall 100: 579 kJ'; reveal: 'filled it to 579 kJ, 4 times higher'; 'Crush energy grows with speed squared').",
       "support": "derivation",
-      "source": "0.5 x 1,500 x (100/3.6)^2 = 578,704 J -> '579 kJ'; ratio 578,704 / 144,676 = 4.00 (toFixed(0)). check.mjs gives 578.7 kJ. 25 km/h (also on stage if pressed) gives 36 kJ.",
-      "status": "unverified"
+      "source": "0.5 x 1,500 x (100/3.6)^2 = 578,704 J -> '579 kJ'; ratio 578,704 / 144,676 = 4.00 (toFixed(0)). check.mjs gives 578.7 kJ. 25 km/h (also on stage if pressed) gives 36 kJ. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: 0.5*1500*(100/3.6)^2 = 578,704 J -> '579 kJ'; ratio to 50 km/h is exactly 4 -> toFixed(0) '4'. Speed-squared dependence is the formula.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.head-on-is-a-wall.c4",
       "text": "Doubling the closing speed doubles the total energy, but two cars share it.",
       "support": "derivation",
-      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ, absorbed half by each car (symmetry). A single car at 100 km/h has 578.7 kJ, four times. check.mjs.",
-      "status": "unverified"
+      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ, absorbed half by each car (symmetry). A single car at 100 km/h has 578.7 kJ, four times. check.mjs. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation, in the comparison the reveal makes (head-on at 50 + 50 against the 50 km/h wall): closing speed 100 vs 50 km/h, total energy dissipated 2 x 144.7 = 289 kJ vs 145 kJ, i.e. doubled, and split equally so each car gets 145 kJ. Note for the builder (not a dispute): as a free-standing rule the sentence would be false (the 100 km/h wall also has closing speed 100 and 4x the energy); it is true only in the context of the preceding sentence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.head-on-is-a-wall.c5",
       "text": "Model: identical 1,500 kg cars and crumple zones, perfectly inelastic, a rigid immovable wall, no braking before impact (stage: '1,500 kg cars, rigid wall').",
       "support": "convention",
-      "source": "Brief claim 4. Assumption only (not on stage, not in the reveal): with a heavier car the lighter car fares worse, because its speed change is larger (momentum conservation: the pair moves off in the heavier car's direction, so the lighter car's velocity changes by more than its own speed).",
-      "status": "unverified"
+      "source": "Brief claim 4. Assumption only (not on stage, not in the reveal): with a heavier car the lighter car fares worse, because its speed change is larger (momentum conservation: the pair moves off in the heavier car's direction, so the lighter car's velocity changes by more than its own speed). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention, consistent with code: M = 1500 for both cars, symmetric crumple, both stop (perfectly inelastic), wall fixed at MID, constant speed to impact (no braking). Stage label '1,500 kg cars, rigid wall'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

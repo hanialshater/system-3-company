@@ -137,6 +137,29 @@ Accepted from company/courses/ncm/briefs.md (Jonah). Answers re-run in node by c
 - Needs interaction-designer spec: no.
 - Differs from nearest: Pairs with near-and-far-links-find-the-way (build after it): that lesson shows the speed, this one shows the reason.
 
+**Wave J additions (2026-10-14).** 1 more NCM brief from `company/courses/ncm/briefs.md` (§ probability.chance (wave J)), proposed by cm-course-ncm. Acceptance was done by cm-course-ncm against this strand's rules, at the Wave J lead's instruction (re-run answers in node, equal-precision options, chapter-only references, no duplicate of a built lesson). `probability` strand manager: re-check, and object in the course file if a brief fails your bar. Board item filed. Numbering continues this file's list so `tools/claim.mjs` hands these out.
+
+### 66. two-big-groups-stay-apart · concept: probability:two-giants-unlikely · core · demand 2 · format: Simulation run (seeded worlds, chance chips)
+- Sections: E&K ch. 2 (section 2.2, unconfirmed) · domain: probability · course: ncm (wave J)
+- Learner knows: a giant connected group appears once people have a friend or two each (the-giant-appears) / does not know: that two big groups in one population are almost certain to have at least one link between them, so they merge.
+- Misconception: Two large groups can easily stay completely cut off from each other.
+- Prediction (stage text ≤ 25 words): "Two towns of 500. Any cross-town pair are friends with chance 1 in 10,000. Chance nobody has a friend in the other town?" options: A. About 1 in 3 / B. About 1 in 100 / C. About 1 in 70 billion (answer: C ((1 − 1/10,000)^250,000 ≈ 1.4 × 10^-11)).
+- Check: Node `J6 {"pairs":250000,"expectedLinks":25,"Pzero":1.387e-11,"sim":{"runs":1000,"zero":0,"mean":25.327,"min":13,"max":43},"at1in100k":{"expected":2.5,"Pzero":0.0821},"at1in1M":{"expected":0.25,"Pzero":0.7788}}` (mulberry32 seeds 1–1,000, one world per seed). The builder draws each world's link count efficiently (for example geometric gaps) and records its own seeds and tallies.
+- Stage and controls: Two town blobs with cross links drawn as lines; tally "worlds run: N · worlds with 0 links: Z · fewest links: m". Controls in DOM order: [Run 100 worlds] [1 in 100,000] [1 in 1,000,000] [1 in 10,000]; each chance chip runs 100 worlds at that chance. Labels ≥ 10 px.
+- QA path (each control once, DOM order, presets only): Each control once in DOM order: Run 100 (milestone 1: 100 worlds at 1 in 10,000, zero count 0), 1 in 100,000 (milestone 2: about 8% of worlds have 0), 1 in 1,000,000 (about 78% have 0), 1 in 10,000 (back). The reveal quotes the learner's recorded tallies.
+- Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): 250,000 cross pairs × 1 in 10,000 = 25 links expected. In your 100 worlds the fewest was m and none had 0. Zero needs every pair to miss: (1 − 1/10,000)^250,000, about 1 in 70 billion. Only at 1 in a million do towns often stay apart. So in a real population two giant groups almost surely touch and merge. (≤ 90 words; m is the learner's own.)
+- Planned claims:
+  1. Two towns of 500 have 250,000 cross pairs; at 1 in 10,000 each, 25 cross links are expected. support: derivation.
+  2. The chance of no cross link is (1 − 1/10,000)^250,000 ≈ 1.4 × 10^-11, about 1 in 72 billion. support: derivation; source: node.
+  3. At 1 in 100,000 the chance of no link is 8.2%; at 1 in 1,000,000 it is 77.9%. support: derivation; source: node.
+  4. In the lesson's seeded worlds (seeds disclosed in meta), the tally is the learner's own run; in my check, 1,000 worlds at 1 in 10,000 had 13 to 43 links and none had 0. support: simulation; source: node mulberry32.
+  5. Two giant components rarely coexist because a single link between them merges them, and with so many pairs at least one link is near-certain. support: citation; source: E&K ch. 2 (section unconfirmed). Attribution: fact-checker confirms.
+- Format: Simulation run (seeded worlds, chance chips)
+- Curriculum: `{"primary": "probability:two-giants-unlikely", "also": ["probability:at-least-once"], "prerequisites": ["probability:giant-component", "probability:at-least-once"], "level": "core", "strand": "chance", "references": [{"work": "easley-kleinberg-2010", "chapter": 2, "section_unconfirmed": "2.2"}], "tags": ["networks", "giant component", "at least once"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: probability/the-giant-appears shows a giant group forming as links are added (its claim 5 notes that merging happens); this one asks why there is only one, with the chance of zero links made explicit. Build after the-giant-appears (built).
+
+
 ## Round 3: spare capacity (cm-probability, 2026-10-14)
 
 Written by cm-probability (domain lead) because coverage was at 64 of 66 concepts and `claim.mjs next probability` returned NONE. Ranked: uncovered concepts first (`streaks-in-randomness`, the coverage "next" concept; then `triadic-closure-probability`), then new demand-3 concepts. Every number below was recomputed in node by cm-probability on 2026-10-14 (exact DP or closed form; seeded mulberry32 simulation only as a cross-check). Each reveal draft is ≤ 90 words and must pass the phone-fit rule in `company/product/demo-standard.md`: at 390×844, when the reveal opens, the stage top and the reveal's last line are both on screen and everything the reveal names is visible. If it does not fit, cut told context first; which sentence goes is the category manager's call (add a board item for cm-probability).
@@ -194,3 +217,74 @@ Written by cm-probability (domain lead) because coverage was at 64 of 66 concept
 - curriculum (new concept, added to the map today): `{"primary":"probability:conjunction-fallacy","also":["probability:conditional-probability"],"prerequisites":[],"level":"intro","strand":"chance","references":[],"tags":["conjunction","heuristics","subsets"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: told-the-sum-is-eight (conditional probability) and at-least-one-boy (two-children) filter cases by a clue; base-rates is about a test. No lesson in any domain teaches that adding a condition can only shrink a set's probability; checked `src/demos/*/*/meta.json` for conjunction, Linda: none.
+
+## Round 4 (Wave J): demand 2 (cm-probability, 2026-10-14)
+
+Continues the Round 4 ranking in `probability.md` § Round 4 (briefs 56-61 there; read its rules paragraph: preset buttons only, question's case pressed last, ≤ 90-word reveal that fits at 390×844, labels ≥ 10 px). Every number is reproduced by `node company/domains/briefs/checks/probability-round4-check.mjs`.
+
+### 62. heads-heads-or-heads-tails · concept: pattern-waiting-times · core · demand 2 · format: Simulation run (two runs of 1,000 plus one stepped sequence)
+- Audience: puzzle lovers, students who know expected waits / Learner knows: a 1-in-6 event takes 6 tries on average (average-wait-six-rolls), each flip is independent / does not know: that two equally likely patterns can have different average waits, because a miss costs different amounts.
+- Misconception: HH and HT are both 1-in-4 pairs, so you wait the same number of flips for each.
+- Prediction (≤ 25 words): "Flip a fair coin until you see heads then heads (HH). Or until heads then tails (HT). Which takes more flips on average?" options: A. HH / B. HT / C. The same: both pairs are 1 in 4 (answer: A).
+- What the stage shows: two small progress trackers, one per pattern, each three circles ("start", "have H", "done") with arrows. On a miss the HH tracker's arrow jumps back to "start"; the HT tracker's miss arrow loops on "have H". Readouts: "average wait: HH {a} · HT {b}" and runs counted. Preset buttons in DOM order: **Run 1,000 waits for HT**, **Run 1,000 waits for HH**, **Flip until both appear** (draws one seeded sequence, instant, as a strip of H/T tiles ≥ 24 px, lighting each tracker's arrows as it goes; the chosen seed's sequence contains an H followed by a T before the first HH, so the HH reset arrow fires; seed disclosed on the card). Locked stage: trackers drawn, no readouts. Milestones: (1) both runs done; (2) the stepped sequence shown with the HH reset arrow lit.
+- Check: Markov chain. HH: e0 = 1 + e0/2 + e1/2, e1 = 1 + e0/2, so e0 = 6. HT: e1 = 1 + e1/2 = 2, e0 = 1 + e0/2 + e1/2 = 4. Seeded cross-check mulberry32(62), 100,000 waits each: 5.98 and 3.99.
+- Reveal draft (68 words, counted by whitespace): "In your runs HH took {a} flips on average and HT took {b}; exactly, 6 and 4. Both pairs are 1 in 4, but a miss costs differently. Waiting for HT, once you hold an H, a miss is another H, so you are still one step away. Waiting for HH, a miss is a T and sends you back to the start: the arrow on the tracker."
+- Payoff: the reset arrow is the cause on the stage, and the learner's own sequence shows it fire.
+- Planned claims:
+  1. The average number of flips until HH is 6, and until HT is 4. support: derivation; source: Markov chain equations above.
+  2. In any two flips, HH and HT each have probability 1/4. support: derivation; source: independence.
+  3. The tallies are seeded simulations (seed disclosed) and differ slightly from 6 and 4. support: simulation; source: lesson code.
+- curriculum (new concept): `{"primary":"probability:pattern-waiting-times","also":["probability:geometric-waiting","probability:expected-value"],"prerequisites":["probability:geometric-waiting"],"level":"core","strand":"chance","references":[],"tags":["coin","waiting time","patterns","Markov chain"]}`
+- Needs interaction-designer spec: no (Simulation run, kit-supported; the trackers are three circles and arrows).
+- Differs from nearest: average-wait-six-rolls (one event, wait 1/p); twenty-flips-run-of-five (run lengths in a fixed 20 flips). This one compares two patterns of equal chance with unequal waits; no lesson teaches overlap of patterns.
+
+### 63. new-records-in-a-flat-century · concept: record-values · core · demand 2 · format: Simulation run (draw a century, then 1,000 centuries)
+- Audience: anyone who hears "a new record" and infers a trend / Learner knows: independence, "1 in k" chances / does not know: that in trendless random data records keep arriving at a rate of about 1 in k for year k, so a few records in a century is what no trend looks like.
+- Misconception: In data with no trend, new records soon stop; several records in a century means something is changing.
+- Prediction (≤ 25 words): "A made-up town's yearly rainfall: random, no trend, each year independent. Over 100 years, how many years set a new record high (year 1 counts)?" options: A. About 2 / B. About 5 / C. About 15 (answer: B (5.2)).
+- What the stage shows: 100 thin bars (texture, one per year) with a stepped "record so far" line; record years get a marker ≥ 8 px above the bar and a count readout "records: k". Preset buttons in DOM order: **Draw a century** (seed 1, disclosed), **Another century** (next seed), **Run 1,000 centuries** (readout: average records per century; a small tally of records by year band 1–10, 11–50, 51–100). Run last so the average is on the stage at the reveal, with the last century still drawn. Locked stage: empty axes. Milestones: (1) a century drawn with records marked; (2) 1,000 centuries run.
+- Check: year k is a record if it is the largest of the first k values: probability 1/k (all orders equally likely for independent, identically distributed continuous values). Expected records in 100 years = H(100) = 5.187; in the first 10 years 2.929; in years 51–100 H(100) − H(50) = 0.688. Seeded cross-check mulberry32(63), 10,000 centuries: 5.17.
+- Reveal draft (76 words, counted by whitespace): "Your century had {k} records; over 1,000 centuries the average was {m}, and the exact answer is 5.2. Year k sets a record only if it beats all earlier years: a 1 in k chance. Records come fast at first (year 2: 1 in 2), then thin out but never stop: about 0.7 are expected in years 51 to 100. A record alone does not show a trend; records arriving faster than 1 in k would."
+- Payoff: the stepped record line is the cause on the stage: it flattens as the bar to beat rises, yet still steps up now and then.
+- Planned claims:
+  1. For independent, identically distributed yearly values, year k sets a record with probability 1/k. support: derivation; source: symmetry, each of the first k years is equally likely to be the largest.
+  2. The expected number of records in 100 years is 1 + 1/2 + … + 1/100 = 5.19, and in years 51–100 it is 0.69. support: derivation; source: harmonic sum (check script, brief 63).
+  3. The centuries are seeded simulations (seed disclosed). support: simulation; source: lesson code.
+- Content boundary: no claims about real climate or weather records in learner text. Real series can have trends; the lesson is only about what trendless data does.
+- curriculum (new concept): `{"primary":"probability:record-values","also":["probability:independence"],"prerequisites":["probability:independence"],"level":"core","strand":"chance","references":[],"tags":["records","harmonic numbers","trends","randomness"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: two-random-walks-agree (spurious trends between two series) and one-in-a-million-daily (rare events in big populations). No lesson teaches how often records occur in random data.
+
+### 64. last-to-draw-the-straw · concept: draw-order-fairness · intro · demand 2 · format: Simulation run (one round stepped, then 1,000 rounds)
+- Audience: anyone who has argued about going first in a draw / Learner knows: drawing without replacement changes the chances for later draws once you see what was drawn (cards-do-remember) / does not know: that before anyone draws, every place in the order has the same chance.
+- Misconception: In a draw without replacement, going first (or last) gives a better chance of avoiding the short straw.
+- Prediction (≤ 25 words): "10 straws, 1 short. Ten friends draw one each, in turn, keeping what they draw. Who is most likely to get the short straw?" options: A. The first to draw / B. The last to draw / C. Every place equally (answer: C).
+- What the stage shows: ten numbered places in a queue and a tally bar per place (counts, axis labels ≥ 10 px). Preset buttons in DOM order: **Draw one round** (seeded; straws are pulled one by one and the short straw's place is marked), **Show the second drawer's chance** (writes the chain 9/10 × 1/9 = 1/10 under place 2 as a one-line label), **Run 1,000 rounds** (fills the tally bars). Run last so the tally is on the stage at the reveal. Locked stage: queue and empty bars. Milestones: (1) chain shown; (2) 1,000 rounds run.
+- Check: P(place k gets it) = (9/10)(8/9)…((11−k)/(12−k)) × 1/(11−k) = 1/10 for every k. Seeded cross-check mulberry32(64), 1,000 sequential rounds: [93, 100, 111, 87, 100, 98, 102, 91, 104, 114].
+- Reveal draft (66 words, counted by whitespace): "In 1,000 rounds every place got the short straw about 100 times: your tally ran from {lo} to {hi}. The second drawer faces 1 in 9, but only when the first draws long, which happens 9 times in 10: 9/10 × 1/9 = 1/10. Every later place works out the same. The order changes what you learn as straws go, not your chance before anyone draws."
+- Payoff: the chain label is the cause on the stage: a better chance later is exactly cancelled by the chance of still being in the game.
+- Planned claims:
+  1. With 10 straws, 1 short, drawn in turn without replacement, each place gets the short straw with probability 1/10. support: derivation; source: chain product above, or symmetry (every ordering of straws equally likely).
+  2. The second drawer's chance is 9/10 × 1/9 = 1/10. support: derivation; source: arithmetic.
+  3. The tallies are a seeded simulation (seed disclosed) and vary around 100. support: simulation; source: lesson code.
+- curriculum (new concept): `{"primary":"probability:draw-order-fairness","also":["probability:drawing-without-replacement","probability:conditional-probability"],"prerequisites":["probability:drawing-without-replacement"],"level":"intro","strand":"chance","references":[],"tags":["without replacement","symmetry","fairness","draws"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: cards-do-remember shows chances changing **after** you see earlier draws; this one is the view **before** any draw, where order does not matter. The two are a pair; link them.
+
+### 65. stop-at-the-first-boy · concept: stopping-rules · core · demand 2 · format: Simulation run (10 families shown, then 10,000 tallied)
+- Audience: puzzle lovers; anyone who thinks a strategy can tilt chance / Learner knows: each birth (in the model) is an independent 50/50 (five-heads-then-what) / does not know: that a rule for when to stop cannot change the share of outcomes from independent fair trials.
+- Misconception: If every family stops at its first boy, there will be more boys than girls.
+- Prediction (≤ 25 words): "Every couple has children until their first boy, then stops. Each birth is 50/50 boy or girl. What share of all children are girls?" options: A. Under 50% / B. 50% / C. Over 50% (answer: B).
+- What the stage shows: rows of small family icons (girl: hollow circle; boy: filled square, so shape carries the state; icons ≥ 10 px), and readouts "boys", "girls", "share girls". Preset buttons in DOM order: **Show 10 families** (seeded rows), **Cap families at 4 children** (on/off chip; changes the rule for the next run and redraws the 10 rows), **Run 10,000 families** (tallies under the current rule). Run last so the tally is on the stage. Locked stage: empty rows. Milestones: (1) 10 families shown; (2) 10,000 families run (with or without the cap). If the cap is on when Run fires, the reveal uses its "cap" sentence.
+- Check: per family, boys = 1 and girls = 1/2 + 1/4 + … = 1, so the share of girls is 50% (ratio of expected totals). With a cap of 4: expected boys 0.9375 and girls 0.9375. Half of all families have one child (a boy). Seeded cross-check mulberry32(65): 10,000 families 50.5% girls; with cap 4, 50.6%; 1,000 families 51.3% (why the stage runs 10,000).
+- Reveal draft (67 words, counted by whitespace): "Your 10,000 families had {b} boys and {g} girls: {s}% girls. Every family ends with exactly one boy, and half the families had girls first, 1 girl per family on average. A stopping rule decides when a family stops, not how any birth turns out, and every birth is still a 50/50 flip. {cap: The cap at 4 changed family sizes and left the share near 50%.}"
+- Payoff: the rows show the cause: long rows of girls are rare but long, short rows are common, and each tile is still a fair flip.
+- Planned claims:
+  1. If each birth is independently 50/50 and families stop at the first boy, the expected numbers of boys and girls per family are both 1, so half of all children are girls. support: derivation; source: geometric series above.
+  2. With a cap of 4 children the expected numbers are still equal (0.9375 each). support: derivation; source: arithmetic.
+  3. The model sets every birth at 50/50; real birth ratios are not exactly 50/50. support: derivation; source: lesson rule (stated on the card; no real ratio quoted).
+  4. The 10,000-family tally is seeded (seed disclosed) and differs slightly from 50%. support: simulation; source: lesson code.
+- Content boundary: no policy, culture or country examples in learner text. Do not say the average family's share of girls is 50% (it is not; the population share is).
+- curriculum (new concept): `{"primary":"probability:stopping-rules","also":["probability:independence","probability:betting-systems"],"prerequisites":["probability:independence","probability:expected-value"],"level":"core","strand":"chance","references":[],"tags":["stopping rule","independence","sex ratio","puzzle"]}`
+- Needs interaction-designer spec: no.
+- Differs from nearest: double-after-every-loss (betting-systems) is the same family of idea told with money, where the loss is hidden in a rare ruin; this one has no money and no ruin, only shares, and the learner sees the share hold. life/sex-ratio-fisher explains why evolution tends to a 1:1 ratio, not why a stopping rule cannot change it. five-heads-then-what is the single-flip version.

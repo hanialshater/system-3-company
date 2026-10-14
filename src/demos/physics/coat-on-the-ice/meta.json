@@ -1,0 +1,100 @@
+{
+  "slug": "coat-on-the-ice",
+  "title": "Wrap the ice in a warm coat",
+  "hook": "A wool coat keeps you warm. What does it do to a block of ice?",
+  "domain": "physics",
+  "concept": "insulation-slows-heat-flow",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "coats keep people warm",
+      "ice melts in a warm room"
+    ],
+    "doesNotKnow": [
+      "that a coat makes no heat: it only slows heat crossing it, in either direction, so ice wrapped in a coat lasts longer"
+    ]
+  },
+  "misconception": "A warm coat wrapped round ice will melt it faster, because coats warm things up.",
+  "objective": "The learner can explain that a coat makes no heat but slows heat crossing it in either direction, so wrapped ice lasts longer and a wrapped person loses heat more slowly.",
+  "claims": [
+    {
+      "id": "physics.coat-on-the-ice.c1",
+      "text": "Steady heat flow through layers is Q = ΔT / ΣR, with R = 1/(hA) at a surface and L/(kA) for a layer; arrow width on the stage is set by the heat flow (stage caption 'Arrow width = heat flow').",
+      "support": "derivation",
+      "source": "Incropera, DeWitt, Bergman and Lavine, Fundamentals of Heat and Mass Transfer, chapter 3 (one-dimensional steady conduction, thermal resistance); artifacts/scratch/cm-physics-r4/check.mjs, block 'coat-on-the-ice'. Demo.tsx flow(). Arrow width 0.5 px per W for the ice, 0.015 px per W for the person (each scene to its own scale). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coat-on-the-ice.c2",
+      "text": "Illustrative values: surface coefficient h = 10 W/m²K (natural convection plus radiation), wool k ≈ 0.04 W/mK in a 1 cm layer, ice latent heat 334 kJ/kg, ice density 917 kg/m³, a 10 cm ice cube (0.917 kg, 0.06 m² of surface).",
+      "support": "source",
+      "source": "Incropera et al., appendix A (thermal conductivity of wool/fibrous insulation about 0.04 W/mK; typical h for free convection plus radiation); latent heat of fusion of ice 334 kJ/kg and density 917 kg/m³ from any physics text. Labelled illustrative. Brief claim 2. Not shown as a sentence on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coat-on-the-ice.c3",
+      "text": "The bare block takes in 15.0 W and melts in 5.7 h; wrapped in the coat it takes in 4.3 W and lasts 19.9 h (about 20 hours); a person (skin 34 °C, room 5 °C, 1.8 m²) loses 522 W bare and 149 W in the coat (stage label '15.0 W in · melts in 5.7 h', '4.3 W in · melts in 19.9 h', '149 W out (bare: 522 W)'; Seen row; reveal quotes the recorded values).",
+      "support": "derivation",
+      "source": "R_bare = 1/(10 x 0.06) = 1.667 K/W, R_wool = 0.01/(0.04 x 0.06) = 4.167 K/W; 25 / 1.667 = 15.0 W; 25 / 5.833 = 4.29 W; 0.917 x 334e3 / 15.0 / 3600 = 5.7 h, / 4.29 / 3600 = 19.9 h; person 29 / (1/18) = 522 W, 29 / (1/18 + 0.01/0.072) = 149 W (artifacts/scratch/cm-physics-r4/check.mjs). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coat-on-the-ice.c4",
+      "text": "The coat makes no heat; it is a layer of trapped air that slows heat crossing it in either direction. Heat flows from warm to cold, and insulation only slows it; a warm body is the heater (reveal).",
+      "support": "derivation",
+      "source": "The coat has no energy source (first law of thermodynamics); heat flows down the temperature difference (second law). Wool insulates mainly through the still air trapped between its fibres (Incropera et al., chapter 3, insulation systems). Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.coat-on-the-ice.c5",
+      "text": "Idealisations: the ice stays at 0 °C and keeps its shape and area while it melts, the coat fits closely, and radiation is folded into h.",
+      "support": "convention",
+      "source": "Brief claim 5.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You want a cold drink to stay cold at a picnic on a hot day. Wrap it in a towel or leave it bare?",
+    "options": [
+      "Leave it bare, so the towel cannot warm it",
+      "Wrap it: the towel slows heat getting in",
+      "It makes no difference"
+    ],
+    "answer": 1,
+    "why": "A towel makes no heat. Like a coat, it slows heat crossing it, so less of the day's heat reaches the drink."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:insulation-slows-heat-flow",
+    "also": [
+      "physics:heat-flow-feels-cold"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "electricity",
+    "references": [],
+    "tags": [
+      "heat",
+      "insulation",
+      "conduction"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

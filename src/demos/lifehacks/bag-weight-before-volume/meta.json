@@ -61,8 +61,10 @@
       "id": "lifehacks.bag-weight-before-volume.c5",
       "text": "Can empty space make a bag meet a weight limit?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; not rendered anywhere (only meta.json recall reaches the Feed). A yes/no question with no false presupposition; the model (mass sums, empty space subtracts nothing) answers it. Convention. Owner may withdraw it as unrendered.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.bag-weight-before-volume.recall",
@@ -89,7 +91,9 @@
     "qa": [
       "company/reviews/bag-weight-before-volume/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/bag-weight-before-volume/2026-10-14-learner-adult-beginner-r9.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

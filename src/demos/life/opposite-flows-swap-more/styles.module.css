@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: none; }
+.wrap :global(.row) { margin-top: 2px; }
+.msg { margin: 0; text-align: center; font-size: 0.84rem; font-weight: 600; }
+.readout { margin: 0; text-align: center; font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.svg { flex: none; width: 100%; height: auto; }
+.side { fill: var(--muted); font-size: 12px; font-weight: 600; }
+.water { fill: var(--domain); fill-opacity: 0.12; stroke: var(--fg); stroke-width: 1; }
+.blood { fill: var(--bad); fill-opacity: 0.12; stroke: var(--fg); stroke-width: 1; }
+.level { fill: var(--fg); font-size: 12px; font-weight: 700; text-anchor: middle; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.arrow line, .arrow path { stroke: var(--fg); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.inlet { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.outText { fill: var(--fg); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.log { margin: 0; text-align: center; font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }

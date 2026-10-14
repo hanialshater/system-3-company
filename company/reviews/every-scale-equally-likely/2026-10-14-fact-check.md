@@ -45,3 +45,18 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c8 | verified | Ratio 1.199 unrounded, 1.196 at the stage rounding -> 1.2; per-distance about 154x; key 'About 1×'. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node sums (people 2 per distance, 1 at 512): q=1 bands 14.7 12.2 11.1 10.6 10.4 10.3 10.2 10.2 10.2 %. Reveal prints pct(SHARES[R1][1]) and [8]: 12.2% and 10.2%. |
+| c3 | verified | Re-derived: band [2^k, 2^(k+1)) has 2^k distances, each with 1/d weight in (2^-(k+1), 2^-k], total in (1/2, 1], tending to ln 2; last band 256-512 has 257 distances. 'Each half as likely' read as 'each distance about half as likely as one in the band before': true. |
+| c4 | verified | Own sums: q=0 band 256-512 = 513/1023 people = 50.1%; q=2 band 1 = 60.9%. Ghosts: a seen rule other than the current one and 1/d leaves a dashed outline of its tallest bar with label 'Uniform 50.1%' (band 256-512) / '1/d² 60.9%' (band 1). Milestones q0 and q2 are required, so under 1/d both labels are on stage. |
+| c5 | verified | Rests on own derivation and simulation; Kleinberg 2000 and Easley-Kleinberg ch. 20 not opened (web blocked). Own exact sums: chance one link from distance D lands within D/2 of the target = 10.6, 8.7, 8.2, 8.1, 10.2% (D = 4, 16, 64, 256, 512) under 1/d, against 0.5-50% uniform and 15-0.1% under 1/d². Own greedy routing (one long link per node, 400 trials): q=0 27.1, q=0.5 23.7, q=1 22.8, q=2 122.1 steps. So 1/d routes fast here; the sentence does not say fastest, and it should not (q=0.5 is close at n = 1,024). |
+| c7 | verified | Own sums: sum 1/d over 2..3 = 0.833, /2 = 0.42; over 256..512 = 0.696, /257 = 0.0027 (sig2). Compare line rebuilt from the code: '1/d, distances × chance each (vs d = 1): 2–3: 2 × 0.42 → 12.2%  ·  256–512: 257 × 0.0027 → 10.2%  ·  ratio 1.2×' (separators are double-spaced dots). Shown whenever 1/d has been seen, so it stays under the other rules. Slider at 8–15 under 1/d: '8–15: 8 × 1/8 to 1/15 → 10.6%'. |
+| c8 | verified | Own: 12.2/10.2 = 1.196 -> '1.2'; unrounded 0.1222/0.1018 = 1.199. Per-distance chance 0.4167 vs 0.00271, about 154 times ('far likelier'). Answer key About 1× (index 2) is the nearest option. |
+
+**Result:** 6 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

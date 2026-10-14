@@ -1,0 +1,76 @@
+{
+  "slug": "which-way-the-water-goes",
+  "title": "Which way does the water go?",
+  "hook": "Wind drives the ocean's currents. Which way does it push the water?",
+  "domain": "geography",
+  "concept": "ocean-gyres",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-geography", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["Earth's spin deflects moving things (drift-of-a-straight-throw)"],
+    "doesNotKnow": [
+      "that wind-driven water ends up moving at right angles to the wind",
+      "that this is what piles water into the middle of an ocean and makes it circle"
+    ]
+  },
+  "misconception": "The wind pushes the sea the way the wind blows.",
+  "objective": "The learner can say that the wind-driven layer moves 90 degrees to the right of the wind north of the equator (left south of it), and explain how trade winds and westerlies then pile water up near 30 N, which the ocean circles as a gyre.",
+  "claims": [
+    {
+      "id": "geography.which-way-the-water-goes.c1",
+      "text": "Earth's spin turns moving water to the right north of the equator and to the left south of it, and the wind-driven layer as a whole moves 90 degrees to the right of the wind (to the left in the south): a wind toward the north moves the water east.",
+      "support": "derivation",
+      "source": "Steady Ekman balance: f k x M = tau / rho, so M = (tau_y / (rho f), -tau_x / (rho f)) with f = 2 Omega sin(latitude) (Ekman 1905; Talley et al. 2011, Descriptive Physical Oceanography, ch. 7). Section `ekman` of company/domains/briefs/checks/geography-wave-j.mjs: wind toward N at 30 N gives transport toward E (1.34 m^2/s per metre for tau = 0.1 N/m^2); at 30 S toward W. Demo.tsx draws the net-flow arrow at the wind bearing + 90 degrees (north) or - 90 degrees (south).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-way-the-water-goes.c2",
+      "text": "The top layer drifts 45 degrees off the wind, and each layer below turns further.",
+      "support": "derivation",
+      "source": "Ekman's solution for a deep ocean with constant eddy viscosity: the current at depth z is rotated 45 degrees + z/D radians from the wind and shrinks as exp(-z/D) (Ekman 1905; Talley et al. 2011 ch. 7). An idealisation; the stage says 'Idealised deep ocean'. Demo.tsx draws layers at z/D = 0, 0.6, 1.2, 1.8, 2.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-way-the-water-goes.c3",
+      "text": "Trade winds blow toward the west in the tropics and westerlies toward the east in mid-latitudes (the ocean view puts them at 15 N and 45 N).",
+      "support": "source",
+      "source": "Textbook figure needed, for example Talley et al. 2011 (Descriptive Physical Oceanography) or Hartmann 2016 (Global Physical Climatology). Not opened by the builder; the latitudes 15 N and 45 N are the brief's idealised placement.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-way-the-water-goes.c4",
+      "text": "Trade winds push water north, westerlies push it south, so water piles up between them and the ocean circles that mound: a gyre (clockwise in the north).",
+      "support": "source",
+      "source": "Directions follow from c1 and c3 (section `ekman`: trades toward W at 15 N give transport N; westerlies toward E at 45 N give transport S; convergence near 30 N). That this convergence drives the clockwise subtropical gyres of the northern oceans needs the same textbook (Talley et al. 2011 ch. 7; Hartmann 2016); not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.which-way-the-water-goes.c5",
+      "text": "Idealised deep ocean, steady wind, no coasts.",
+      "support": "convention",
+      "source": "Scope statement on the stage caption. Magnitudes (m^2/s) stay in c1, not on the card.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "South of the equator a steady wind blows toward the east. Which way does the wind-driven layer move?",
+    "options": ["North", "East", "South"],
+    "answer": 0,
+    "why": "South of the equator the net flow is 90 degrees to the left of the wind: left of east is north."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "geography:ocean-gyres",
+    "also": ["geography:coriolis-effect"],
+    "prerequisites": ["geography:coriolis-effect"],
+    "level": "core",
+    "strand": "earth-climate",
+    "references": [],
+    "tags": ["ekman", "ocean"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "toggle-before-after"]
+}

@@ -18,3 +18,13 @@ Records by the fact-checker. Each pass is appended.
 | c5 (new) | **disputed** | Hook "A fixed spare count and a percentage spare count diverge as a job grows." It was learner-visible and unrecorded. Spare counts are 10 and ceil(0.1x), with gap 8 at x=20, 0 at 95/100 and 2 at 120. On the stage they converge over most of the range and then cross. **Fix (owner decides; example wording):** "A fixed spare count stays the same; a percentage spare count grows with the job, so the two cross." |
 
 Note: the principle (c3) says "ties them at 95" while the recall (c4) says "equal for 91 to 100". Both are true and they are consistent. cm-lifehacks may align them (W-370).
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx and the shared Life Hacks engine (src/components/lifehacks/, src/lib/lifehacks/) first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Own run of the transpiled resource-model.ts on the spec (A = ceil(1.1x) with snapToInteger, B = x + 10), slider 20 to 120 step 5: B > A from 20 to 90, A = B at 95 (105/105) and 100 (110/110), A > B from 105 (116/115) to 120 (132/130). So which order is bigger depends on the job size, as the hook says. The hook names no crossover, so no off-by-one risk. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

@@ -1,0 +1,102 @@
+{
+  "slug": "born-in-january-picked-first",
+  "title": "Picked for height, sorted by birthday",
+  "hook": "Every child in the league is nine. Does the month they were born in matter?",
+  "domain": "books",
+  "concept": "outliers-relative-age",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "older children in a class are a bit bigger"
+    ],
+    "doesNotKnow": [
+      "that picking the 'best' from a one-year age band, with a fixed cutoff date, selects for birth month: the children born just after the cutoff are up to a year older than their rivals"
+    ]
+  },
+  "misconception": "A birth month can't matter much when every child in the band is 'the same age'.",
+  "objective": "The learner can explain that when a league picks the tallest 10% of a one-year band with a 1 January cutoff, about 44% of the picks (in the lesson's model) are born January to March instead of 25%, that the peak follows the cutoff when it moves, and that a less selective pick (top 50%) shows a smaller skew.",
+  "claims": [
+    {
+      "id": "books.born-in-january-picked-first.c1",
+      "text": "Outliers argues that selection under the 1 January age cutoff is how Canadian hockey's elite came to skew toward early-year birthdays.",
+      "support": "source",
+      "source": "Malcolm Gladwell, Outliers: The Story of Success (Little, Brown, 2008), work gladwell-outliers-2008, ch. 1 'The Matthew Effect' (unconfirmed). The book argues this; the claim is about the book, not the world. Our own words; no quote. The book also argues that extra coaching after selection widens the gap; that half is not shown on the stage and not stated in the reveal. Brief: company/domains/briefs/books.md #3.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.born-in-january-picked-first.c2",
+      "text": "The book's hockey example draws on research on birthdates of Canadian hockey players (the relative age effect).",
+      "support": "source",
+      "source": "Barnsley, Thompson & Barnsley (1985), 'Hockey success and birthdate: the relative age effect', CAHPER Journal 51(8) (to confirm). Not stated to the learner beyond the book claim; recorded because the book uses it (charter: cite the study for the result).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.born-in-january-picked-first.c3",
+      "text": "Does it hold up? Yes: the relative age effect, an over-representation of relatively older players in age-grouped sport, is one of sport science's best-replicated findings.",
+      "support": "source",
+      "source": "Cobley, Baker, Wattie & McKenna (2009), 'Annual age-grouping and athlete development: a meta-analytical review of relative age effects in sport', Sports Medicine 39(3). Verdict 'holds up' is the brief drafter's reading, for the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.born-in-january-picked-first.c4",
+      "text": "The heights are the lesson's model (stage chip 'Model: +0.5 cm per month older, ±5.5 cm spread'): births spread evenly over the year, height rises 0.5 cm per month of age within the band, with a normal spread of 5.5 cm.",
+      "support": "convention",
+      "source": "Lesson model, Demo.tsx picksByK(); the numbers are the brief's illustrative choice, not measured growth data.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.born-in-january-picked-first.c5",
+      "text": "In the model, picking the top 10% with a 1 January cutoff gives 44% of the picks born January to March (a fair split would give 25%) and 10% born October to December; picking the top 50% gives 33% January to March; moving the cutoff moves the peak to the months just after it.",
+      "support": "derivation",
+      "source": "Analytic model, Demo.tsx (threshold by bisection, normal tail): top 10%: Jan–Mar 43.9%, Oct–Dec 10.1%; top 50%: Jan–Mar 32.9%. Builder node run 2026-10-14 (scratch rae.mjs); brief check company/domains/briefs/checks/books-cycle1-check.mjs gives 43.9 / 10.1. The cutoff shift is a relabelling of months, so the peak follows the cutoff exactly.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.born-in-january-picked-first.recall",
+      "text": "With a 1 September cutoff and selection of the strongest, children born in September to November are over-represented, because they are the oldest in their band.",
+      "support": "derivation",
+      "source": "Same model as c5 with the cutoff relabelled; c3 for the real-world effect.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A school's football team picks its strongest players from each school year. The year runs from 1 September. Which birth months will be most common on the team?",
+    "options": [
+      "September to November",
+      "June to August",
+      "No months in particular"
+    ],
+    "answer": 0,
+    "why": "Children born just after the 1 September cutoff are the oldest in their year, so picking the strongest over-selects them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:outliers-relative-age",
+    "also": ["probability:tail-ratios"],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "gladwell-outliers-2008",
+        "chapter": 1,
+        "note": "chapter unconfirmed"
+      }
+    ],
+    "tags": ["relative-age-effect", "selection", "sport"]
+  },
+  "format": "simulation-run",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "locked-readouts"]
+}

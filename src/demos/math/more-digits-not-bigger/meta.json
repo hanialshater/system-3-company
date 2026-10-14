@@ -26,36 +26,46 @@
       "id": "math.more-digits-not-bigger.c1",
       "text": "0.3 is 3 tenths, 0.25 is 2 tenths and 5 hundredths, and 0.125 is 1 tenth, 2 hundredths and 5 thousandths (stage: blocks, slivers and hairlines).",
       "support": "convention",
-      "source": "Decimal notation: 0.3 = 3/10, 0.25 = 25/100, 0.125 = 125/1000. The stage adds digit d at place p as d pieces of width 10^-(p+1) on a 0-to-1 scale (true to scale).",
-      "status": "unverified"
+      "source": "Decimal notation: 0.3 = 3/10, 0.25 = 25/100, 0.125 = 125/1000. The stage adds digit d at place p as d pieces of width 10^-(p+1) on a 0-to-1 scale (true to scale). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read Demo.tsx first. NUMS digits [3], [2,5], [1,2,5]. Each press draws d pieces of width SCALE/10^(p+1), so the bars are 3 blocks; 2 blocks and 5 slivers; 1 block, 2 slivers and 5 hairlines. Own port of the drawn widths: 74.4, 62.0 and 31.0 px of 248, i.e. 0.300, 0.250 and 0.125.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.more-digits-not-bigger.c2",
       "text": "0.3 is the largest of the three and its bar is the longest: 0.3 > 0.25 > 0.125 (300 > 250 > 125 thousandths).",
       "support": "derivation",
-      "source": "Convert to thousandths. node: [0.3, 0.25, 0.125].sort((a,b)=>a-b) = [0.125, 0.25, 0.3]. The stage computes values in integer thousandths (thousandths()) and the reveal names the largest from that sort.",
-      "status": "unverified"
+      "source": "Convert to thousandths. node: [0.3, 0.25, 0.125].sort((a,b)=>a-b) = [0.125, 0.25, 0.3]. The stage computes values in integer thousandths (thousandths()) and the reveal names the largest from that sort. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port: thousandths() full values 300, 250, 125, sorted 0.3 > 0.25 > 0.125. The reveal's largest = NUMS[order[0]].label = '0.3'. The bar widths are to scale (74.4 > 62.0 > 31.0 px), so the longest bar is 0.3 once all are built, and 'built' requires all of them built.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.more-digits-not-bigger.c3",
       "text": "The five hundredth-slivers of 0.25 add 0.05, which is less than the one more tenth-block (0.1) it would need to reach 0.3.",
       "support": "derivation",
-      "source": "5 × 0.01 = 0.05 < 0.1; 0.2 + 0.05 = 0.25 < 0.3. node check.",
-      "status": "unverified"
+      "source": "5 × 0.01 = 0.05 < 0.1; 0.2 + 0.05 = 0.25 < 0.3. node check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. The reveal prints show(b25h × 10) = show(50) = '0.05'. 0.25 has 2 tenth-blocks against 0.3's 3, so it is one block (0.1) short at the tenths place, and its 5 slivers add 0.05 < 0.1. Arithmetic checked in node.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.more-digits-not-bigger.c4",
       "text": "Each decimal place is worth one tenth of the place to its left, so extra digits only add smaller and smaller pieces; compare decimals from the first digit after the point.",
       "support": "convention",
-      "source": "Place value definition: the k-th place after the point is worth 10^-k. Because any digits after place k add less than one unit of place k (at most 0.0999… of it), the first differing digit decides.",
-      "status": "unverified"
+      "source": "Place value definition: the k-th place after the point is worth 10^-k. Because any digits after place k add less than one unit of place k (at most 0.0999… of it), the first differing digit decides. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Place value: 10^−(p+1) per place, each a tenth of the one to its left. That is the definition of decimal notation (convention), drawn on stage as width SCALE/10^(p+1). Comparing from the first digit after the point is valid here because every number has integer part 0, and the reveal says it in that context.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.more-digits-not-bigger.c5",
       "text": "Stage legend: a block is 0.1, a sliver is 0.01 and a hairline is 0.001.",
       "support": "convention",
-      "source": "Definition of the stage pieces (widths SCALE/10, SCALE/100, SCALE/1000 in Demo.tsx).",
-      "status": "unverified"
+      "source": "Definition of the stage pieces (widths SCALE/10, SCALE/100, SCALE/1000 in Demo.tsx). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Caption after the prediction: 'Block = 0.1 · sliver = 0.01 · hairline = 0.001', exact. The CSS classes are tenth, hundredth and thousandth, with widths 24.8, 2.48 and 0.248 px on the 248 px scale.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

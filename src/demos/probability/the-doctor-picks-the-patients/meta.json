@@ -1,0 +1,85 @@
+{
+  "slug": "the-doctor-picks-the-patients",
+  "title": "Who should pick who gets the drug?",
+  "hook": "Forty patients, one drug, twenty doses. Does it matter who decides who gets one?",
+  "domain": "probability",
+  "concept": "random-assignment",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "motion"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": ["confounding (hidden-third-cause)", "control groups (sixteen-of-twenty-got-better)"],
+    "doesNotKnow": [
+      "that letting a person choose who is treated builds their judgement into the result, and that a coin breaks that link"
+    ]
+  },
+  "misconception": "A careful doctor who knows the patients assigns treatment as fairly as a coin flip; with 20 per group it evens out.",
+  "objective": "The learner can explain that when a person chooses who is treated, whatever guides the choice (here fitness) shows up as a treatment effect, and that random assignment spreads it evenly over both groups.",
+  "claims": [
+    {
+      "id": "probability.the-doctor-picks-the-patients.c1",
+      "text": "In the model (recovery chances evenly spaced from 30% to 90%), giving the drug to the 20 fittest makes expected recoveries 15.1 vs 8.9 of 20 with a drug that does nothing; she picked the fittest, so fitness passes for a cure.",
+      "support": "derivation",
+      "source": "Arithmetic: chance_i = 30% + 60% i/39; top 20 mean 75.4%, bottom 20 mean 44.6% (gap 30.8 points); 20 x 0.754 = 15.1, 20 x 0.446 = 8.9. Brief 58 check (company/domains/briefs/checks/probability-round4-check.mjs); model.ts result(doctorSplit()).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-doctor-picks-the-patients.c2",
+      "text": "Under random assignment fit and frail patients land on both sides about equally: the expected gap is 0, with a standard deviation of about 5.7 points. The card's first coin split (mulberry32(58)) gives 11.8 vs 12.2 expected recoveries; the second (seed 59) 11.8 vs 12.2.",
+      "support": "derivation",
+      "source": "Variance of a difference of means under sampling without replacement: 2 sigma / sqrt(39), sigma = 17.75 points -> 5.69 (brief 58 check). Coin values: model.ts coinSplit(k) = Fisher-Yates shuffle with mulberry32(58 + k), first 20 get the drug; seeds 58, 59, ... in order, not chosen for their result (builder's run, Node 22, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-doctor-picks-the-patients.c3",
+      "text": "A gap as big as the doctor's turns up by coin less than 1 time in 100.",
+      "support": "simulation",
+      "source": "Brief 58 check: mulberry32(58), 100,000 coin splits, |gap| >= 15 points in 0.74%; the doctor's gap (30.8 points) is larger still, about 5.4 standard deviations. Builder's cross-check with model.ts's shuffle, seeds 1058-101057: 0.72% at >= 15 points.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-doctor-picks-the-patients.c4",
+      "text": "The patients and the drug are a model, not data; in this model the drug does nothing.",
+      "support": "convention",
+      "source": "Lesson rule (brief 58 planned claim 4); stated on the stage caption 'In this model the drug does nothing.'",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A school lets teachers choose which pupils try a new reading app. App users score higher. Why is that weak evidence for the app?",
+    "options": [
+      "The groups were too small",
+      "Whatever guided the teachers' choice could explain the higher scores",
+      "Apps never help reading"
+    ],
+    "answer": 1,
+    "why": "When a person picks who is treated, their judgement (keen pupils, strong readers) rides along into the result. A coin breaks that link."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:random-assignment",
+    "also": ["probability:confounding", "probability:control-groups"],
+    "prerequisites": ["probability:confounding"],
+    "level": "core",
+    "strand": "statistics",
+    "references": [],
+    "tags": ["experiments", "randomisation", "confounding", "trials"]
+  }
+}

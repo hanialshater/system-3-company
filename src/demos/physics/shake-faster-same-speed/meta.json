@@ -4,7 +4,7 @@
   "hook": "Shake a rope's end more often. Does that change how quickly its waves travel?",
   "domain": "physics",
   "concept": "wave-speed-medium",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -27,36 +27,46 @@
       "id": "physics.shake-faster-same-speed.c1",
       "text": "The speed of a wave on a stretched rope is v = sqrt(T/mu), whatever the shaking rate; here 0.4 N on 0.1 kg/m gives 2 m/s, so a crest takes 2.0 s to cross the 4 m rope at 1/2, 1 and 2 shakes a second (stage: 'crest trip 2.0 s', '1/s: 2.0 s', '2/s: 2.0 s'; reveal: 'your crest took the same 2.0 s to cross the 4 m rope: 2 m/s both times').",
       "support": "derivation",
-      "source": "Wave equation from Newton's second law on a string element (ideal flexible string, small amplitude): any introductory waves text, e.g. Halliday, Resnick and Walker, Fundamentals of Physics, chapter on waves (fact-checker picks the edition). sqrt(0.4/0.1) = 2 m/s; 4 / 2 = 2.0 s. artifacts/scratch/cm-physics-r3/check.mjs. Demo.tsx times the trip from when the tinted crest leaves the hand (a quarter shake after the hand starts) to when it reaches the far end.",
-      "status": "unverified"
+      "source": "Wave equation from Newton's second law on a string element (ideal flexible string, small amplitude): any introductory waves text, e.g. Halliday, Resnick and Walker, Fundamentals of Physics, chapter on waves (fact-checker picks the edition). sqrt(0.4/0.1) = 2 m/s; 4 / 2 = 2.0 s. artifacts/scratch/cm-physics-r3/check.mjs. Demo.tsx times the trip from when the tinted crest leaves the hand (a quarter shake after the hand starts) to when it reaches the far end. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: the transverse wave equation for a string element (net tension force T ∂²y/∂x² = μ ∂²y/∂t²) gives v = √(T/μ), with no frequency term. Own port: √(0.4/0.1) = 2 m/s, so the trip L/v is 2.0 s at 0.5, 1 and 2 per second. In Demo.tsx, rec.trip = L/vv is independent of the rate. The 'crest trip' label is min(L/v, tt − t0), which reads 2.0 s at the end. The reveal quotes seen.f1 and seen.f2, both needed by milestones; L/a.trip = '2' m/s.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.shake-faster-same-speed.c2",
       "text": "Shaking faster only packs the crests closer: wavelength = speed / frequency, 2 m apart at 1 shake a second and 1 m apart at 2 (4 m at 1/2) for 2 m/s (stage ruler: '2 m apart', '1 m apart'; reveal: 'Wavelength equals speed divided by frequency').",
       "support": "derivation",
-      "source": "lambda = v / f: 2/1 = 2 m, 2/2 = 1 m, 2/0.5 = 4 m. check.mjs. The ruler spans the first two crests at the moment the first reaches the far end.",
-      "status": "unverified"
+      "source": "lambda = v / f: 2/1 = 2 m, 2/2 = 1 m, 2/0.5 = 4 m. check.mjs. The ruler spans the first two crests at the moment the first reaches the far end. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port: λ = v/f = 4, 2 and 1 m at 0.5, 1 and 2 per second for 2 m/s. The ruler is drawn only when the first crest has arrived and λ ≤ L, from L − λ (the second crest's position, v(t − t0 − 1/f)) to L, labelled λ.toFixed(0). The reveal m(a) = '2 m', m(b) = '1 m'. On the tight rope at 0.5/s, λ = 8 m > 4 m, so no ruler, which is correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.shake-faster-same-speed.c3",
       "text": "Four times the tension doubles the speed: sqrt(1.6/0.1) = 4 m/s, so the crest crosses the 4 m rope in 1.0 s, twice as fast (stage: 'tight: 1.0 s'; reveal: 'when you made the rope four times tighter, the crest arrived in 1.0 s, twice as fast').",
       "support": "derivation",
-      "source": "v = sqrt(T/mu) with T = 1.6 N: 4 m/s; 4 / 4 = 1.0 s. check.mjs.",
-      "status": "unverified"
+      "source": "v = sqrt(T/mu) with T = 1.6 N: 4 m/s; 4 / 4 = 1.0 s. check.mjs. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port: √(1.6/0.1) = 4 m/s, trip 4/4 = 1.0 s at every rate. seen.tight records the trip only ('tight: 1.0 s'). The reveal sec(c) = '1.0 s', and 'twice as fast' = 2.0/1.0. Four times T gives √4 = 2 times v.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.shake-faster-same-speed.c4",
       "text": "Speed is set by the rope, not your hand.",
       "support": "derivation",
-      "source": "Follows from c1: v depends only on the rope's tension and mass per length, not on the source's frequency (non-dispersive ideal string).",
-      "status": "unverified"
+      "source": "Follows from c1: v depends only on the rope's tension and mass per length, not on the source's frequency (non-dispersive ideal string). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Follows from c1: v = √(T/μ) depends only on the rope's tension and mass per length. On stage, the rate chips leave the trip at 2.0 s and only the tension chip changes it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.shake-faster-same-speed.c5",
       "text": "Model: an ideal rope with no damping and no dispersion; rope length, mass per length and tensions are illustrative.",
       "support": "convention",
-      "source": "Brief claim 4. Stated in Demo.tsx; the stage shows only '4 m rope'. Real ropes have some damping and stiffness, which do not change the speed's independence from the shaking rate at these scales.",
-      "status": "unverified"
+      "source": "Brief claim 4. Stated in Demo.tsx; the stage shows only '4 m rope'. Real ropes have some damping and stiffness, which do not change the speed's independence from the shaking rate at these scales. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention. The Demo.tsx model y = A sin(2πf(t − x/v)) for x ≤ vt has no damping term and a single speed v for every f (no dispersion). L = 4, MU = 0.1 and TENSION 0.4/1.6 are constants. This is not on the stage text; it is a model note in the header. The animation lasts at most 2.5 s × 160 ms = 400 ms of wall time and the reported values are simulated, so reduced motion changes no number.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -74,7 +84,9 @@
     "qa": [
       "company/reviews/shake-faster-same-speed/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/shake-faster-same-speed/2026-10-14-learner-rope-wave-knower-r9.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

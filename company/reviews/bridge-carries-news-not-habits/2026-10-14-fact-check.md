@@ -43,3 +43,13 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c5 (deleted) | n/a | Confirmed gone: meta.json has c1-c4 (all verified), and the Centola & Macy sentence is gone from Demo.tsx (grep: no 'Centola', 'Macy' or 'complex contag'). The reveal now ends 'enough for news, too little for a habit that needs several friends', which is c4 (verified). No open claims. |
 
 **Result:** 0 open claims; c5 deleted as the pass 24 fix asked. Nothing blocks on facts.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Read v4 Demo.tsx first. Own port of the graph (two K5 groups plus link 4–5) and the simultaneous-round rule q = 1/2: the habit adds {2,3} then {4}, then nobody (stuck after round 3) at 5/10. Ben (5) has 1 of 5 friends adopting, which Math.round(100 × 1/5) prints as 20%, and people 6 to 9 have 0 adopting friends. The habit row shows 'Habit stuck:' + ' 5/10' and the trace 'Ben 1 of 5 friends' from runs.habit, which the news run never changes, so it stays after the news run. The reveal quotes FINAL, the same values. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified.

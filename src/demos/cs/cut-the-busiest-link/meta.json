@@ -27,36 +27,46 @@
       "id": "cs.cut-the-busiest-link.c1",
       "text": "At the start each of the two links between the groups (5–6 and 3–7) carries 12 shortest paths, and no other link carries more than 5.",
       "support": "derivation",
-      "source": "Builder's node Brandes-style count 2026-10-14 on the 17-link edge list in Demo.tsx (every unordered pair once; a pair with k shortest paths gives 1/k to each): 5-6 = 12, 3-7 = 12, others 0-1 4, 0-2 4, 0-3 5, 0-4 2, 0-5 5, 2-3 5, 3-4 4, 4-5 4, 1-5 5, 6-7 4, 7-8 4, 8-9 1, 6-9 4, 6-8 4, 7-9 4. Demo.tsx loads() computes the labels the stage draws. Fact-checker: re-run with an independent method (enumerate shortest paths per pair).",
-      "status": "unverified"
+      "source": "Builder's node Brandes-style count 2026-10-14 on the 17-link edge list in Demo.tsx (every unordered pair once; a pair with k shortest paths gives 1/k to each): 5-6 = 12, 3-7 = 12, others 0-1 4, 0-2 4, 0-3 5, 0-4 2, 0-5 5, 2-3 5, 3-4 4, 4-5 4, 1-5 5, 6-7 4, 7-8 4, 8-9 1, 6-9 4, 6-8 4, 7-9 4. Demo.tsx loads() computes the labels the stage draws. Fact-checker: re-run with an independent method (enumerate shortest paths per pair). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port of loads() plus an independent brute force that lists every shortest path per pair and gives each 1/k: both give 5–6 = 12, 3–7 = 12; the largest other link is 5 (0–3, 0–5, 2–3, 1–5). The two methods agree on 3,543 sampled cut sets (0 mismatches).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-busiest-link.c2",
       "text": "After one between-group link is cut, the other carries 24: all 6 × 4 = 24 pairs with one person in each group must use it, so its count doubles; links inside the groups change too (cutting 5–6: 0–3 goes 5 → 12.5; cutting 3–7: 0–5 goes 5 → 12.5).",
       "support": "derivation",
-      "source": "Every cross pair's shortest paths all cross the one remaining bridge. Builder's node 2026-10-14: cut 3-7 gives 5-6 = 24, 0-5 = 12.5, 4-5 = 8; cut 5-6 gives 3-7 = 24, 0-3 = 12.5, 3-4 = 8. The stage trace quotes the inner link whose count changed most.",
-      "status": "unverified"
+      "source": "Every cross pair's shortest paths all cross the one remaining bridge. Builder's node 2026-10-14: cut 3-7 gives 5-6 = 24, 0-5 = 12.5, 4-5 = 8; cut 5-6 gives 3-7 = 24, 0-3 = 12.5, 3-4 = 8. The stage trace quotes the inner link whose count changed most. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port: cut 5–6 gives 3–7 = 24 and 0–3 5 → 12.5 (the largest inner change, so the trace names it); cut 3–7 gives 5–6 = 24 and 0–5 5 → 12.5. Enumerated all 10,608 connected inner-cut states the learner can reach before the first bridge cut: the remaining bridge always carries exactly 24 after it, and 5 to 19 before it, never more. So the reveal's 'doubled to 24' / 'rose to 24' branch is never false.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-busiest-link.c3",
       "text": "After both between-group links are cut, the network is two groups of 6 and 4.",
       "support": "derivation",
-      "source": "The only links between {0..5} and {6..9} are 5-6 and 3-7; each group is connected inside. Demo.tsx pieces().",
-      "status": "unverified"
+      "source": "The only links between {0..5} and {6..9} are 5-6 and 3-7; each group is connected inside. Demo.tsx pieces(). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. pieces(): with 5–6 and 3–7 both cut and nothing else, there are 2 components, {0..5} and {6..9}, so isGroups is true, sizes 6 and 4. Any other disconnection freezes the stage with 'A piece broke off, not the two groups', so the 'two groups of 6 and 4' text only shows on that state.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-busiest-link.c4",
       "text": "A list ranked once goes stale after every cut, so the Girvan–Newman method cuts the busiest link, recounts, and repeats.",
       "support": "source",
-      "source": "Girvan and Newman (2002), 'Community structure in social and biological networks', PNAS 99(12): 7821-7826 (remove the edge of highest betweenness, recalculate betweenness for all affected edges, repeat); Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 3, section 3.6. Not opened by the builder; fact-checker confirms attribution.",
-      "status": "unverified"
+      "source": "Girvan and Newman (2002), 'Community structure in social and biological networks', PNAS 99(12): 7821-7826 (remove the edge of highest betweenness, recalculate betweenness for all affected edges, repeat); Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 3, section 3.6. Not opened by the builder; fact-checker confirms attribution. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The reveal sentence matches the claim. Attributing the cut, recount, repeat procedure to Girvan–Newman rests on Girvan and Newman 2002 (PNAS) and Easley and Kleinberg ch. 3. Neither could be opened (DNS failure, proxy 403). 'Goes stale after every cut' is shown on stage (c2), but the attribution needs the source. Left unverified.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-busiest-link.c5",
       "text": "The number on a link is the shortest paths it carries: each pair of people counted once, a pair with several shortest paths sharing its 1 evenly among them.",
       "support": "convention",
-      "source": "Edge betweenness as defined by Girvan and Newman (2002) and computed by Brandes (2001), 'A faster algorithm for betweenness centrality', J. Math. Sociology 25(2); unordered pairs, split evenly over shortest paths. Stage legend: 'Number on a link: shortest paths it carries.'",
-      "status": "unverified"
+      "source": "Edge betweenness as defined by Girvan and Newman (2002) and computed by Brandes (2001), 'A faster algorithm for betweenness centrality', J. Math. Sociology 25(2); unordered pairs, split evenly over shortest paths. Stage legend: 'Number on a link: shortest paths it carries.' | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention matches the code: loads() loops a < t (each unordered pair once) and adds sg[a][u]·sg[t][v]/sg[a][t] per edge, i.e. the pair's 1 split evenly over its shortest paths. My independent path enumeration gives identical labels. Stage legend: 'Number on a link: shortest paths it carries.' The Brandes and Girvan–Newman names are in the source field only, not on stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

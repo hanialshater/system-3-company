@@ -1,0 +1,102 @@
+{
+  "slug": "wheel-number-pulls-guess",
+  "title": "A random number, then a guess",
+  "hook": "A wheel lands on a number, then you answer a factual question. Does the wheel matter?",
+  "domain": "books",
+  "concept": "tfs-anchoring",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a random number is irrelevant to a factual question"
+    ],
+    "doesNotKnow": [
+      "that seeing a number first pulls estimates toward it, and by a lot: guesses start at the number and stop adjusting too soon"
+    ]
+  },
+  "misconception": "An obviously random number can't move a considered estimate.",
+  "objective": "The learner can explain that a wheel landing on 10 or 65 moves a crowd's median estimate by about 20 points (25 against 45 in the 1974 study; 25 against 47 in the lesson's crowd), because each guess starts at the number and stops short of the person's own belief, and that the effect replicates while its cause is debated.",
+  "claims": [
+    {
+      "id": "books.wheel-number-pulls-guess.c1",
+      "text": "Thinking, Fast and Slow calls this anchoring: an arbitrary number shown first pulls estimates toward it.",
+      "support": "source",
+      "source": "Daniel Kahneman, Thinking, Fast and Slow (Farrar, Straus and Giroux, 2011), work kahneman-thinking-fast-slow-2011, ch. 11 'Anchors' (unconfirmed). The book argues this; the claim is about the book, not the world. Our own words; no quote. Brief: company/domains/briefs/books.md #4.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.wheel-number-pulls-guess.c2",
+      "text": "In the original 1974 study (a wheel landing on 10 or 65, then an estimate of the percentage of African nations in the UN) the median estimates were 25 and 45.",
+      "support": "source",
+      "source": "Tversky & Kahneman (1974), 'Judgment under uncertainty: heuristics and biases', Science 185(4157): 1124-1131. The question and both wheel numbers on the card are this study's.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.wheel-number-pulls-guess.c3",
+      "text": "Does it hold up? Yes: anchoring is one of the most reliably replicated effects in judgment research.",
+      "support": "source",
+      "source": "Klein et al. (2014), 'Investigating variation in replicability: a \"Many Labs\" replication project', Social Psychology 45(3): anchoring replicated across many labs with large effects. Verdict 'holds up' is the brief drafter's reading, for the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.wheel-number-pulls-guess.c4",
+      "text": "Why it happens is still debated; insufficient adjustment (guesses start at the number and stop adjusting too soon) is one account.",
+      "support": "source",
+      "source": "Mussweiler & Strack (1999), 'Hypothesis-consistent testing and semantic priming in the anchoring paradigm: a selective accessibility model', Journal of Experimental Social Psychology 35(2) (to confirm): selective accessibility as the rival account to insufficient adjustment.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.wheel-number-pulls-guess.c5",
+      "text": "The crowd on the card is the lesson's model (chip 'Model crowd: each guess moves 60% from wheel to belief'): 30 people with private beliefs spread evenly from about 16% to 54% (median 35%), each starting at the wheel's number and moving 60% of the way to their belief; its median is 25 with the wheel at 10 and 47 at 65, and 35 with no wheel.",
+      "support": "derivation",
+      "source": "Demo.tsx estimates(): estimate = A + 0.6 (belief - A), beliefs 15 + 40 (i + 0.5)/30. Median = 0.4 A + 21 (monotone map of the beliefs' median 35): 25 at A = 10, 47 at A = 65. Builder node run 2026-10-14. The 60% pull and belief spread are the brief's illustrative choice, not fitted to the 1974 data.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.wheel-number-pulls-guess.recall",
+      "text": "A high first number shown before an estimate pulls the estimate up, even when the number is irrelevant (anchoring).",
+      "support": "source",
+      "source": "Same as c2 and c3. Recall item.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Before you guess a used car's value, the seller mentions that a different car once sold for $40,000. What does research on anchoring predict about your guess?",
+    "options": [
+      "It will be pulled up toward $40,000",
+      "It won't change, because the number is irrelevant",
+      "It will be pushed down, because you'll be suspicious"
+    ],
+    "answer": 0,
+    "why": "An irrelevant number heard first still pulls estimates toward it: people start from it and adjust too little."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:tfs-anchoring",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "kahneman-thinking-fast-slow-2011",
+        "chapter": 11,
+        "note": "Anchors; chapter unconfirmed"
+      }
+    ],
+    "tags": ["anchoring", "judgment", "heuristics", "replication"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "locked-readouts"]
+}

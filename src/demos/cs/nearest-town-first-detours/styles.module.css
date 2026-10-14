@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; flex-wrap: wrap; }
+.svg { flex-shrink: 0; max-height: 24dvh; }
+.road { stroke: var(--muted); stroke-width: 3; stroke-linecap: round; }
+.arc { fill: none; stroke: var(--domain); stroke-width: 2.5; }
+.arcStrong { fill: none; stroke: var(--bad); stroke-width: 3.5; }
+.hopLabel { fill: var(--fg); font-size: 13px; font-weight: 800; stroke: var(--bg); stroke-width: 3px; paint-order: stroke; }
+.town { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.start { fill: var(--fg); stroke: var(--fg); stroke-width: 1.5; }
+.townText { fill: var(--fg); font-size: 11px; font-weight: 800; }
+.startText { fill: var(--bg); font-size: 11px; font-weight: 800; }
+.legend { margin: 0; text-align: center; font-size: 0.75rem; color: var(--muted); }
+.trace { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); line-height: 1.3; }

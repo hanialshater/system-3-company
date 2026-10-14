@@ -4,7 +4,7 @@ name: Multi-card sequence
 kind: format
 status: proposed
 owner: design-lead
-kit: none yet (needs a stepper inside explore)
+kit: src/kit/sequence.tsx <CardSequence>/<SubCard> (EDD-006, built 2026-10-14 on branch design/multi-card-sequence; awaiting principal-engineer review)
 variants: storyboard-scrub
 seeded: seeded by design-engineer; design lead to confirm
 ---
@@ -33,5 +33,5 @@ _Seeded by design-engineer on 2026-10-13 from company/design/formats.md; design 
 - Every sub-card is reachable on the QA path.
 
 ## Open questions
-- Swipe or step buttons inside a vertical feed that already swipes?
-- Needs kit support from the platform engineer before any builder may use it.
+- Swipe or step buttons inside a vertical feed that already swipes? EDD-006 answer: both. Next buttons and the step trail are the path (QA, keyboard, screen reader); a horizontal swipe is an accelerator only (touch and pen, never vertical, never from a control).
+- Kit support: EDD-006 (`company/engineering/edd/EDD-006-multi-card-sequence.md`), reference draft `math/euclid-three-steps`. Builders may use it once the principal engineer approves the EDD and design review approves the reference.

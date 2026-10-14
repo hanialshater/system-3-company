@@ -631,6 +631,202 @@
       "level": "core",
       "demand": 2,
       "prerequisites": []
+    },
+    {
+      "id": "equals-as-balance",
+      "name": "The equals sign means both sides are the same amount",
+      "subarea": "algebra",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "multiplicative-scaling",
+      "name": "Keeping a shape means multiplying every side, not adding",
+      "subarea": "algebra",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "multiplication-as-area"
+      ]
+    },
+    {
+      "id": "division-by-zero",
+      "name": "Dividing by zero has no answer",
+      "subarea": "algebra",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "fractions-as-division"
+      ]
+    },
+    {
+      "id": "inequality-sign-flip",
+      "name": "Multiplying an inequality by a negative flips it",
+      "subarea": "algebra",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "negative-numbers"
+      ]
+    },
+    {
+      "id": "geometric-series-quarters",
+      "name": "1/4 + 1/16 + 1/64 + ... = 1/3 by symmetry",
+      "subarea": "algebra",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "infinite-series-halves"
+      ]
+    },
+    {
+      "id": "conditional-falsification",
+      "name": "An if-then rule is broken only by P true and Q false",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": []
+    },
+    {
+      "id": "negating-all",
+      "name": "The opposite of every is at least one is not",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "pattern-is-not-proof",
+      "name": "A pattern that holds five times can still break (circle regions)",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "handshake-counting"
+      ]
+    },
+    {
+      "id": "colouring-invariant",
+      "name": "Counting colours proves a tiling impossible",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "parity-rules"
+      ]
+    },
+    {
+      "id": "complement-counting",
+      "name": "Choosing k of n equals choosing the n - k left out",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "handshake-counting"
+      ]
+    },
+    {
+      "id": "circumference-linear-in-radius",
+      "name": "An extra metre of rope lifts it 16 cm round any circle",
+      "subarea": "geometry",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "pi-from-rolling"
+      ]
+    },
+    {
+      "id": "parallelogram-area",
+      "name": "A parallelogram is base times height, so a leaning frame loses area",
+      "subarea": "geometry",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "multiplication-as-area"
+      ]
+    },
+    {
+      "id": "triangle-inequality",
+      "name": "Two sides of a triangle add to more than the third",
+      "subarea": "geometry",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "surface-shortest-path",
+      "name": "Unfold a surface to find the shortest walk over it",
+      "subarea": "geometry",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "pythagoras-by-rearrangement"
+      ]
+    },
+    {
+      "id": "euler-polyhedron-formula",
+      "name": "Corners minus edges plus faces is 2 for every convex solid",
+      "subarea": "geometry",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "friends-of-friends-overlap",
+      "name": "Friends of friends overlap: two steps out is far fewer than 10 × 9",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "exponential-growth"
+      ],
+      "subarea": "discrete",
+      "course": "ncm"
+    },
+    {
+      "id": "clustering-coefficient",
+      "name": "Clustering coefficient: a new friend adds pairs as well as links",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "handshake-counting"
+      ],
+      "subarea": "discrete",
+      "course": "ncm"
+    },
+    {
+      "id": "collective-action-knowledge",
+      "name": "Collective action needs shared knowledge, not just enough willing people",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "threshold-cascade"
+      ],
+      "subarea": "discrete",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "coordination-threshold",
+      "name": "Where the adoption threshold comes from: q = b / (a + b)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "threshold-cascade"
+      ],
+      "subarea": "discrete",
+      "course": "ncm"
+    },
+    {
+      "id": "transitive-preferences",
+      "name": "Transitive preferences: a circle of preferences can be pumped for money",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "condorcet-cycle"
+      ],
+      "subarea": "discrete",
+      "course": "ncm"
     }
   ]
 }

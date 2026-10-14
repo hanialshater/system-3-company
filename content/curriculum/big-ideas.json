@@ -1,0 +1,544 @@
+{
+  "domain": "big-ideas",
+  "owner": "cm-big-ideas",
+  "note": "Owned by the category manager (cm-big-ideas); strands in subarea (science, society, mind), owned by cm-big-ideas-<strand>. Prerequisites name the subject concept that already teaches the mechanism; a Big Ideas lesson teaches the change in view, not the subject lesson again. demand: 1 low, 3 high. level: intro | core | stretch. Drafted 2026-10-14 by chief-of-staff-ceo-office at the founder's request (company/decisions/2026-10-14-books-and-big-ideas.md); demand ratings are a first estimate for cm-big-ideas to confirm, not learner data. 2026-10-14 cm-big-ideas (strategy, company/domains/big-ideas-strategy.md section 2): removed threshold-collective-action (math/one-shy-rioter-stops-the-riot teaches it), randomised-assignment (probability/the-doctor-picks-the-patients), path-dependence-lock-in (probability/same-songs-different-hits) and occams-razor (ai/overfitting plus probability/which-coin-is-it); added wrights-law, metcalfe-oversold, most-findings-false; lindy-effect and newcombs-problem raised to demand 2 (newcombs-problem to core). Demand is still an estimate, not learner data.",
+  "concepts": [
+    {
+      "id": "deep-time",
+      "name": "Deep time: Earth's 4.5 billion years on one clock",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "geography:plate-motion-rates"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "cumulative-selection",
+      "name": "Cumulative selection: design without a designer",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "life:natural-selection"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "square-cube-giants",
+      "name": "The square-cube law: why giants cannot exist",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "math:area-scaling",
+        "math:volume-scaling"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "chaos-butterfly",
+      "name": "Chaos: a tiny difference grows until forecasts fail",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "controlled-experiment",
+      "name": "The control group: people get better anyway",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "probability:regression-to-mean"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "germ-theory-pump",
+      "name": "Germ theory: John Snow's pump and the map of deaths",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "heliocentric-retrograde",
+      "name": "A Sun-centred view explains why planets loop backwards",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "physics:kepler-orbit-speed"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "atom-mostly-empty",
+      "name": "Rutherford: the atom is almost all empty space",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "chemistry:atom-scale-size"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "entropy-arrow-of-time",
+      "name": "Entropy: why you never see the mix unmix",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "chemistry:entropy-mixing"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "energy-conserved",
+      "name": "Energy is never made or lost, only moved",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "light-delay-past",
+      "name": "Looking out is looking back: light takes time to arrive",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "physics:sound-vs-light-delay"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "expanding-universe",
+      "name": "Every galaxy sees the others flying away",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "emergence-simple-rules",
+      "name": "Emergence: simple local rules, a pattern nobody planned",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "common-descent-tree",
+      "name": "Common descent: shared traits nest like a family tree",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "life:natural-selection"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "genetic-code-combinatorics",
+      "name": "A four-letter code, read in threes",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "fermi-estimation",
+      "name": "Fermi estimates: rough steps, errors that cancel",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "powers-of-ten",
+      "name": "Powers of ten: from a hand to the galaxy in 21 steps",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "most-species-extinct",
+      "name": "Almost every species that ever lived is extinct",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "science"
+    },
+    {
+      "id": "measurement-uncertainty",
+      "name": "Every measurement has error bars",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "probability:sample-size-noise"
+      ],
+      "subarea": "science"
+    },
+    {
+      "id": "jevons-paradox",
+      "name": "The Jevons paradox: efficiency can raise total use",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "economics:price-elasticity"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "demographic-transition",
+      "name": "The demographic transition: deaths fall first, births later",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "life:logistic-growth"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "price-signals",
+      "name": "Prices carry information nobody has to explain",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "economics:market-clearing-prices"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "baumol-cost-disease",
+      "name": "Baumol's cost disease: why haircuts and concerts get pricier",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:growth-rate-gap"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "ostrom-commons-governed",
+      "name": "Ostrom: commons can be run by the people who use them",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:tragedy-of-commons"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "moral-hazard",
+      "name": "Moral hazard: insurance changes behaviour",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:insurance-expected-cost"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "malthusian-trap",
+      "name": "The Malthusian trap, and how growth escaped it",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "math:exponential-growth"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "division-of-labour",
+      "name": "Division of labour: specialise and output multiplies",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:comparative-advantage"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "costly-signalling",
+      "name": "Costly signals: why credentials and peacock tails work",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:adverse-selection"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "risk-compensation",
+      "name": "Risk compensation: safer gear, riskier behaviour",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "pareto-80-20",
+      "name": "The 80/20 pattern: a few causes, most of the effect",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "probability:power-law-scaling"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "perverse-incentives",
+      "name": "Perverse incentives: pay for dead rats, get rat farms",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "ai:goodharts-law"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "lump-of-labour",
+      "name": "The lump-of-labour fallacy: the number of jobs is not fixed",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "creative-destruction",
+      "name": "Creative destruction: new firms replace old ones",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "principal-agent",
+      "name": "Principal and agent: when the doer is not the owner",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "moral-hazard"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "positional-arms-race",
+      "name": "Positional goods: when everyone stands up, nobody sees better",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "lindy-effect",
+      "name": "The Lindy effect: what has lasted tends to last",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:heavy-tails"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "rent-seeking",
+      "name": "Rent-seeking: spending to win a prize, not to make one",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "society"
+    },
+    {
+      "id": "wrights-law",
+      "name": "Wright's law: cost falls with each doubling of what has been made",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "math:exponential-growth"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "metcalfe-oversold",
+      "name": "Metcalfe's law: why network value rarely grows with the square",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:network-effects-tipping"
+      ],
+      "subarea": "society"
+    },
+    {
+      "id": "falsification-2-4-6",
+      "name": "Falsification: test what could prove you wrong",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "dunning-kruger-artifact",
+      "name": "The Dunning-Kruger plot from pure noise",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "probability:regression-to-mean"
+      ],
+      "subarea": "mind"
+    },
+    {
+      "id": "perception-inference-shadow",
+      "name": "Perception is inference: the same grey looks different in shadow",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "counterfactual-causation",
+      "name": "Cause means: compared with what would have happened",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:confounding"
+      ],
+      "subarea": "mind"
+    },
+    {
+      "id": "false-belief-theory-of-mind",
+      "name": "Theory of mind: knowing someone else can be wrong",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "paradigm-shift",
+      "name": "Paradigm shifts: anomalies pile up until the frame breaks",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "extraordinary-evidence",
+      "name": "Extraordinary claims need extraordinary evidence",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:bayesian-updating",
+        "probability:base-rates"
+      ],
+      "subarea": "mind"
+    },
+    {
+      "id": "all-models-wrong",
+      "name": "All models are wrong; some are useful",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "change-blindness",
+      "name": "Change blindness: a big change you do not see",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "memory-reconstructive",
+      "name": "Memory rebuilds the past: one word changes what you recall",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "veil-of-ignorance",
+      "name": "The veil of ignorance: choose a society before you know your place",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "probability:expected-value"
+      ],
+      "subarea": "mind"
+    },
+    {
+      "id": "hedonic-adaptation",
+      "name": "Hedonic adaptation: you get used to good and bad news",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "trolley-problem",
+      "name": "The trolley problem: same numbers, different verdicts",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "ship-of-theseus",
+      "name": "The ship of Theseus: replace every plank, same ship?",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "sorites-heap",
+      "name": "The heap paradox: no single grain makes a heap",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "newcombs-problem",
+      "name": "Newcomb's problem: one box or two?",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:expected-value"
+      ],
+      "subarea": "mind"
+    },
+    {
+      "id": "chestertons-fence",
+      "name": "Chesterton's fence: find out why it is there before removing it",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "moravec-paradox",
+      "name": "Moravec's paradox: the hard things are easy and the easy things hard",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "cognitive-dissonance",
+      "name": "Cognitive dissonance: paid less, liked it more",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "mind"
+    },
+    {
+      "id": "most-findings-false",
+      "name": "Why many published findings can be false: base rate and power",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:base-rates",
+        "probability:multiple-comparisons"
+      ],
+      "subarea": "mind"
+    }
+  ]
+}

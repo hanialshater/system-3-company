@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 34dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; min-height: 44px; padding-left: 4px; padding-right: 4px; white-space: normal; line-height: 1.15; }
+.caption { margin: 0; font-size: 13px; color: var(--fg); }
+.seen { margin: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.table { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }
+.ice { fill: color-mix(in srgb, #8fd3ff 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.coat { fill: color-mix(in srgb, #b07a4a 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.skin { fill: color-mix(in srgb, var(--muted) 40%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.heat { stroke: var(--bad); stroke-linecap: butt; transition: stroke-width 0.3s ease; }
+.headH { fill: var(--bad); }
+.small { fill: var(--fg); font-size: 10px; font-weight: 600; }
+.labD { fill: var(--bad); font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums; }

@@ -36,3 +36,17 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | Caption strings read; pick() sets from = 0; caption product equals the money ratio readout in all 2,495 run/race cases. Seen row contents match. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Read v4 Demo.tsx first. Own node replay of run() with mulberry32: after race 50 the lowest 60%-bettor share is 0.090 at race 203 in run 2 (50% bettor 91.0%) and 0.058 at race 176 in run 5 (94.2%). Runs 1, 3 and 4 never go below half after race 50. The reveal quotes lowPoint(quoteRun, t) at t = 500 (full-run is needed and t never decreases): the selected run if it dipped, else the first dipping run opened. Every dipping run is circled and the quoted one is labelled, so the quote is always on screen. Seeds 2211 to 2215 are consecutive in SEEDS. |
+| c3 | verified | Derivation: with all-in stakes split by belief and the whole pool shared by winning stake, the ratio a/(1−a) changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share. 1.2^3 × 0.8^2 = 1.1059, shown as '×1.11' in the reveal and the Seen row. Own replay: race 1 of seed 2211 is a loss (×0.8); runs 3 to 5 start with a win. |
+| c4 | verified | The Pool odds readout is (0.6·a + 0.5·(1−a)) × 100, the money-weighted belief; it tends to 60% as a tends to 1. Own replay at race 500: 60.0% (runs 1, 3, 4) and 59.9% (runs 2, 5). The reveal says 'drift to 60%', which fits the claim's 'move toward'; no run reaches above 60%. |
+| c6 | verified | The reveal footnote 'Model: two bettors, no fees, all-in every race.' matches the claim. run() matches the description: two bettors, stakes = belief × wealth on each side, the whole pool shared by winning stake (no fee term). |
+| c7 | verified | msg in Demo.tsx: one-race 'Race t: win/loss, money ratio ×1.2/×0.8.'; jump 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(...)'. Both are hidden at the reveal (atReveal). pick() sets from = 0. Own check over all 5 runs × 500 races: fmtX(1.2^w × 0.8^l) from race 1 equals fmtX(ratio(share)) on the readout in every case (0 mismatches). The Seen row parts match. The chart label 'Five runs end at 98.8% to over 99.9%' matches the own replay of the finals. |
+
+**Result:** 5 verified, 0 disputed, 0 held unverified.

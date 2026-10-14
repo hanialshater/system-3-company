@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; }
+.wrap p { margin: 0; text-align: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.chips :global(.control) { padding-left: 8px; padding-right: 8px; }
+.seaWest { fill: var(--domain); fill-opacity: 0.22; }
+.seaEast { fill: var(--domain); fill-opacity: 0.62; }
+.toWest { fill: var(--domain); fill-opacity: 0.22; }
+.toEast { fill: var(--domain); fill-opacity: 0.62; }
+.landFlat { fill: var(--bg-2); }
+.relief { fill: var(--muted); }
+.outline { fill: none; stroke: var(--fg); stroke-width: 1.2; }
+.divide { fill: none; stroke: var(--fg); stroke-width: 2.2; stroke-linecap: square; }
+.path { fill: none; stroke: var(--bad); stroke-width: 2.4; stroke-linejoin: round; }
+.pathWest { fill: none; stroke: var(--fg); stroke-width: 2; stroke-dasharray: 4 2; stroke-linejoin: round; }
+.dot { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.start2 { fill: var(--bg); stroke: var(--fg); stroke-width: 1.2; }
+.dim { stroke: var(--muted); stroke-width: 1; }
+.label { font-size: 10px; fill: var(--fg); }
+.caption { font-size: 10px; fill: var(--muted); }
+.halo { font-size: 10px; font-weight: 700; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+.pct { font-size: 12px; font-weight: 800; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }

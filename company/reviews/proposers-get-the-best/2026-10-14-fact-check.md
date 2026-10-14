@@ -46,3 +46,15 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | No shared pair; every student prefers the students-proposing partner, every hospital the hospitals-proposing one. 'Same pairs' branch unreachable. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, a fresh instance that did not write these claims. Method: I read Demo.tsx first, covering every reachable path, the reset and reduced-motion states and every learner-visible string. Then I read the claim text and support, and only then the source fields. I re-ran the numbers in my own node ports of the lesson logic (session scratchpad fc35b1/), using the repo's own d3-geo, topojson-client and TypeScript where the lesson does. No builds and no screenshots. No verdict rests on an unopened source: every external host failed (WebFetch DNS failure, proxy 403).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Read Demo.tsx first. Own DFS over every tap order of offer() (bumped proposers re-tapped): students proposing always ends Ann–X, Bea–Y, Cal–Z; hospitals proposing always ends Ann–Y, Bea–Z, Cal–X. My own swap count (each student × each hospital not theirs = 6 pairs, both-ways yes) gives 0 of 6 for both runs, so checkLine prints 'Stable: 0 of 6 other pairs say yes both ways.' The reveal quotes cs.both and ch.both only after each check. |
+| c4 | verified | Verified by derivation, not by the unopened Gale and Shapley paper. Proof: if s and h prefer each other to their final partners, then s proposed to h before reaching its final partner (it proposes in rank order) and was turned down or bumped by h. A receiver only ever trades up, so h's final partner is better for h than s, a contradiction. Exhaustive check: all 6^6 = 46,656 3×3 profiles, each side proposing (93,312 runs), give 0 unstable matchings. Note: the reveal's attribution '(Gale and Shapley 1962)' is learner-facing but is in no claim, and its source was not opened (DNS). |
+| c6 | verified | Own DFS over every tap order: students proposing, the only refusal is Bea at X (X: Cal > Ann > Bea keeps Ann, whether Ann or Bea offers first); hospitals proposing, the only refusal is Z at Ann (Ann: X > Y > Z keeps Y). offer() pushes the loser (bumped or refused) into run.refused, drawn dashed with ✕. toggle() resets run to FRESH, so only the current run's clash is drawn. |
+
+**Result:** 3 verified, 0 disputed, 0 held unverified.

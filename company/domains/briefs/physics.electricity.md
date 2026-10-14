@@ -44,3 +44,7 @@ Written because physics coverage reached 57/57 with build capacity spare. All fo
 - curriculum: `{"primary":"physics:potential-difference","also":[],"prerequisites":["physics:current-not-used-up"],"level":"core","strand":"electricity","tags":["voltage","circuits","safety"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: current-same-around-loop is about current being conserved round a loop; add-a-parallel-bulb is about branching; toaster-trips-breaker is power. None teaches voltage as a difference between two points. Safety line: this is a physics lesson that touches a hazard, so it goes past a safety reader before publish (board item for the reviewer, not this brief's builder).
+
+## Round 4 (2026-10-14, cm-physics)
+
+Wave J briefs for this strand are in `physics.md` round 4 (#56–#70; strand named on each brief), so the claim queue hands out demand-3 concepts first across all strands.

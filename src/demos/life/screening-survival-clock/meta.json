@@ -1,0 +1,91 @@
+{
+  "slug": "screening-survival-clock",
+  "title": "Survival up. Did anyone live longer?",
+  "hook": "A new test makes more people alive 5 years after diagnosis. Does that mean longer lives?",
+  "domain": "life",
+  "concept": "lead-time-survival",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what 'alive 5 years after diagnosis' means"
+    ],
+    "doesNotKnow": [
+      "that the survival clock starts at diagnosis, so finding an illness earlier raises this count even when nobody lives a day longer (lead time)"
+    ]
+  },
+  "misconception": "If more people are alive 5 years after diagnosis, they must be living longer.",
+  "objective": "The learner can explain that in a group of 14 whose deaths do not move, finding the illness 3 years earlier raises 'alive 5 years after diagnosis' from 6 to 12 because only the start of the clock moved (lead time), and that comparing deaths in whole groups is not fooled by this.",
+  "claims": [
+    {
+      "id": "life.screening-survival-clock.c1",
+      "text": "In the model, with no test 6 of 14 (43%) are alive 5 years after diagnosis; with the test finding the illness 3 years earlier, 12 of 14 (86%), with every death on the same day.",
+      "support": "derivation",
+      "source": "Count of T + L > 5 for T = 1.25, 1.75, ..., 7.75: L = 0: 6; 0.5: 7; 1: 8; 1.5: 9; 2: 10; 2.5: 11; 3: 12 (Demo.tsx alive(); node 2026-10-14, matches the brief).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.screening-survival-clock.c2",
+      "text": "Finding an illness earlier raises survival counted from diagnosis even when nobody lives longer; this is called lead time. Only the start of the clock moves.",
+      "support": "derivation",
+      "source": "Definition of lead time: survival is measured from diagnosis, so moving diagnosis earlier while death is fixed lengthens measured survival by construction.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.screening-survival-clock.c3",
+      "text": "To judge an earlier test, compare deaths in whole groups.",
+      "support": "derivation",
+      "source": "In the model, death dates do not depend on the test, so deaths per group are unaffected by when diagnosis happens. Optional context, not on the card: Welch, Schwartz and Woloshin 2000, JAMA 283(22). Unverified: needs a human source check including the citation.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.screening-survival-clock.c4",
+      "text": "14 people with a made-up illness, found when symptoms start, each dying 1 to 8 years later; treatment changes nothing. This toy makes no claim about any real test.",
+      "support": "convention",
+      "source": "Invented model (brief), stated on the stage, in the question and in the reveal. No advice about screening.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A clinic starts a scan that finds a disease 2 years sooner. Its 5-year survival jumps. What is the fair way to tell whether the scan helps?",
+    "options": [
+      "Compare death rates in whole scanned and unscanned groups",
+      "Trust the higher 5-year survival",
+      "Count how many more cases the scan finds"
+    ],
+    "answer": 0,
+    "why": "Survival counted from diagnosis rises whenever diagnosis moves earlier, even if no death moves; deaths in whole groups do not depend on when diagnosis happened."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:lead-time-survival",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "health-epidemiology",
+    "references": [],
+    "tags": [
+      "screening",
+      "survival statistics",
+      "bias"
+    ]
+  }
+}

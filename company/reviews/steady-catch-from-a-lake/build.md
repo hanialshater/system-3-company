@@ -1,0 +1,19 @@
+# Build note: steady-catch-from-a-lake (demo-builder, wave-i-life, 2026-10-14)
+
+Brief: `company/domains/briefs/life.ecology-body.md`, spare-capacity batch item 1. Status draft, version 1. Claims c1-c4 unverified.
+
+- Stage: dot strip of the lake at year 60 (1 dot = 10 fish; full on the locked stage), one chart of fish 0-1,000 over years 0-60. The current catch's curve is drawn in bold. Every catch tried stays as a faint trace. The 130 trace keeps its "130: empty" label, and the first settling catch keeps "600 (120)". After the commit a dashed half-full line appears with the label "half full: grows fastest, 125 a year". Readout "After 60 years: N fish / empty, year 55".
+- Departures from the brief: (1) no Run button. The slider draws each catch's curve at once. A Run button that only replays the drawing would be a control that only animates itself, and the slow-then-fast shape is visible in the drawn curve. (2) The slider starts at 110, not 130, so the QA path's two arrow presses go 120 (settles, milestone) and then 130 (empties, milestone). Both endings are on screen at the reveal.
+- Milestones: "settled" (first catch <= 120 the learner sets; its value is recorded) and "q130".
+- Model: Euler dt 0.001, re-run in node: 120 -> 600 at year 60; 130 -> empty at 54.94 (year 55); 110 -> 673; 140 empty 28.6; 150 empty 20.6. Matches the brief.
+
+## Pre-flight v1
+1. **Title and hook.** "A full lake, a steady catch" / "A lake of 1,000 fish. You take 130 a year, only 13%. Where does it end?" Neither states or points to an ending. It voices the misconception (only 13%).
+2. **Options.** "About 870" / "About 600" / "About 0": all numbered, all "About".
+3. **Locked stage.** Locked message (20 words), 100 filled dots ("start"), axes 0 / 1,000 and years 0-60, empty chart, slider at 110, readout "?". There is no curve, no half-full line, no 500 or 125 mark, and no "empty" label.
+4. **Reveal values.** "130 ... emptied the lake in year 55": (b) milestone q130, and the 130 trace with its "130: empty" dot stays on the chart. "A catch of q settled near N": (b) milestone settled; q and N are recorded when it fires, and that trace keeps its "N (q)" label. "q fewer fish a year": 130 - q from the same record. "125 a year, when it is half full (the dashed line)": model constant, drawn as the labelled dashed line after the commit.
+5. **QA path.** Slider 110 -> 120 (settled) -> 130 (q130). Both milestones are reached in 2 presses. At the reveal the 130 curve is current ("130: empty", readout "empty, year 55") and the 120 trace shows "600 (120)".
+6. **Reset.** There is no Reset control, and traces never clear. Reveal on the QA run: "In your run, a catch of 130 a year emptied the lake in year 55: slowly for decades, then fast. A catch of 120 settled near 600 fish. 10 fewer fish a year changed the ending. This lake adds the most fish, 125 a year, when it is half full (the dashed line). Any catch above 125 takes more than the lake can ever replace, so it empties."
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3537 steady-catch-from-a-lake`: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0. The tool counts 74 words with the verdict line; the reveal body is 68. Stage 349 px (picture 184, controls 50, text 79), reveal 205 px, window 618 px. Screenshot `artifacts/reveal-fit/steady-catch-from-a-lake.png`. To fit, the "toy model" sentence moved from the reveal to the stage caption ("Toy lake: no weather, no luck."). Measured on a `next dev` server started from this worktree (/home/user/s3c-rel, port 3537, stopped afterwards): the shared dev server on 3530 serves /home/user/system-3-company, which does not contain this lesson.
+
+Not run: next build, QA, walkthrough (per task). tsc and check pass. A local Playwright pass of the QA contract's steps (scratch script, not the real QA) found no dead controls, no console errors, no controls under 24 px and no overflow.

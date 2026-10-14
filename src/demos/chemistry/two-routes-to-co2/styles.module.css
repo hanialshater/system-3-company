@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 36dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.row) > :global(.control) { flex: 1 1 0; min-width: 0; white-space: nowrap; padding-left: 4px; padding-right: 4px; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.tick { fill: var(--muted); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+.level { stroke: var(--fg); stroke-width: 2; }
+.endLevel { stroke: var(--domain); stroke-width: 2.5; }
+.mid { stroke: var(--fg); stroke-width: 1.5; opacity: 0.8; }
+.arrow { stroke: var(--domain); stroke-width: 2; fill: none; }
+.up { stroke: var(--bad); stroke-width: 2; fill: none; }
+.head { fill: var(--domain); }
+.headUp { fill: var(--bad); }
+.step { fill: var(--fg); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.name { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.sum { fill: var(--domain); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.levelName { fill: var(--muted); font-size: 10.5px; font-weight: 700; }

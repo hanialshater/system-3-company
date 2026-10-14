@@ -4,7 +4,7 @@
   "hook": "Each waits politely when a lock is taken. Does someone always get to finish?",
   "domain": "cs",
   "concept": "deadlock-lock-order",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -27,36 +27,46 @@
       "id": "cs.two-locks-wait-forever.c1",
       "text": "With opposite lock orders, some runs end with both workers waiting for ever: P holds A and waits for B while Q holds B and waits for A (2 of the 4 possible runs); others finish (e.g. P all three steps, then Q).",
       "support": "simulation",
-      "source": "Builder's node enumeration 2026-10-14 of every scheduler choice under the model (take first lock, take second lock, release both; a worker whose next lock is held cannot step): opposite orders give 4 runs, PPPQQQ, PQ (jam), QP (jam), QQQPPP. Demo.tsx play() uses the same model. Small enough to re-run by hand.",
-      "status": "unverified"
+      "source": "Builder's node enumeration 2026-10-14 of every scheduler choice under the model (take first lock, take second lock, release both; a worker whose next lock is held cannot step): opposite orders give 4 runs, PPPQQQ, PQ (jam), QP (jam), QQQPPP. Demo.tsx play() uses the same model. Small enough to re-run by hand. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own enumeration, opposite orders: exactly 4 maximal runs, PPPQQQ (finish), PQ (jam), QP (jam), QQQPPP (finish), so 2 of 4 jam. In both jams the holders are A = P, B = Q, with P waiting for B and Q waiting for A; 'P all, then Q' (PPPQQQ) finishes.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-locks-wait-forever.c2",
       "text": "With opposite orders the jam happens whenever both take their first lock before either takes its second.",
       "support": "derivation",
-      "source": "If P holds A and Q holds B, P's next lock B and Q's next lock A are both held by the other, so neither can step; if either takes its second lock first, it can finish and release. Node enumeration as in c1.",
-      "status": "unverified"
+      "source": "If P holds A and Q holds B, P's next lock B and Q's next lock A are both held by the other, so neither can step; if either takes its second lock first, it can finish and release. Node enumeration as in c1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own check over all 4 runs: jam occurs exactly when both first-lock steps come before either second-lock step (true for PQ and QP, false for PPPQQQ and QQQPPP).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-locks-wait-forever.c3",
       "text": "When Q also takes A first, whoever gets A can always get B, so no circle can form; one worker may wait for A, then both finish.",
       "support": "derivation",
-      "source": "Same-order model: B is only ever taken by the holder of A, so the holder of A never waits. Builder's node enumeration 2026-10-14: 2 runs, 0 jammed. Demo.tsx 'Take turns' with the toggle on: Q waits for A, then both finish.",
-      "status": "unverified"
+      "source": "Same-order model: B is only ever taken by the holder of A, so the holder of A never waits. Builder's node enumeration 2026-10-14: 2 runs, 0 jammed. Demo.tsx 'Take turns' with the toggle on: Q waits for A, then both finish. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own enumeration with the toggle on: only 2 maximal runs (PPPQQQ, QQQPPP), both finish, no jam; the only waits ever recorded are for A (Q->A or P->A), which matches the hard-coded trace 'Same order: X waited for A'. The same-order milestone needs a run with a wait, and both runs have one.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-locks-wait-forever.c4",
       "text": "Each waiting for the other in a circle is what freezes them (deadlock), and taking locks in one agreed order everywhere is a standard cure for deadlock.",
       "support": "source",
-      "source": "Coffman, Elphick and Shoshani (1971), 'System Deadlocks', ACM Computing Surveys 3(2): four conditions incl. circular wait; Silberschatz, Galvin and Gagne, Operating System Concepts, deadlock chapter (prevention of circular wait by a total order on resources). Derivation: in any cycle of waits some worker holds a later lock while waiting for an earlier one, which one global order forbids. Not opened by the builder; fact-checker to confirm attribution.",
-      "status": "unverified"
+      "source": "Coffman, Elphick and Shoshani (1971), 'System Deadlocks', ACM Computing Surveys 3(2): four conditions incl. circular wait; Silberschatz, Galvin and Gagne, Operating System Concepts, deadlock chapter (prevention of circular wait by a total order on resources). Derivation: in any cycle of waits some worker holds a later lock while waiting for an earlier one, which one global order forbids. Not opened by the builder; fact-checker to confirm attribution. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Opened: Linux lockdep-design.rst: two locks 'taken in inverse order ... could lead to a deadlock - referred to as lock inversion deadlock - as attempts to acquire the two locks form a circle which could lead to the two contexts waiting for each other permanently.' Linux kernel-hacking/locking.rst: \"Textbooks will tell you that if you always lock in the same order, you will never get this kind of deadlock\" (it adds that this is hard to scale, which does not contradict 'a standard cure'). Both parts of the claim are supported by opened text; the stage reproduces the circle.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-locks-wait-forever.c5",
       "text": "A worker who finds a lock taken waits until it is released; each worker takes its first lock, takes its second, then releases both.",
       "support": "convention",
-      "source": "The lesson's model, stated in the question stem and drawn as each worker's three steps. Idealised: no time-outs, no lock stealing (no preemption).",
-      "status": "unverified"
+      "source": "The lesson's model, stated in the question stem and drawn as each worker's three steps. Idealised: no time-outs, no lock stealing (no preemption). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention, consistent with code: STEP_LABEL gives 'take first', 'take second', 'release'; canStep blocks a worker whose next lock is held by the other; release frees both locks.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -74,7 +84,9 @@
     "qa": [
       "company/reviews/two-locks-wait-forever/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/two-locks-wait-forever/2026-10-14-learner-knows-locks-r9.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

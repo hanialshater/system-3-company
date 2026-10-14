@@ -23,3 +23,16 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c4 | verified | Bridge overlap max 0.13 (in-group mean about 0.3). Weakest-first 20%: 12/10/12/12/12 bridges cut, largest 10/20/10/10/10. Strongest-first 20%: 0 bridges cut, 60 of 60 every time. Direction now correct; rests on the stage only. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v4 first (makeNet, tie-break key stream, SEEDS rule, slider 0-40%, strongest/weakest buttons, New network cycling all five, readouts hidden while locked, curve, the Seen row and the reveal, which always quote the 20% case of the current network; hook and recall), then claim text and support, then source fields. Re-ran makeNet, the seed rule and every cut level for every network with my own node copy using the kit's mulberry32 (fc35/weak.mjs). No source host opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own run: seed rule skips 2 (largest 50) and 4 (59), giving SEEDS 1, 3, 5, 6, 7. Weakest-first 20% (26-30 links) leaves largest groups 10, 20, 10, 10, 10; strongest-first 20% leaves 60 in all five. So '10 to 20' and 'all 60' hold for every network the learner can reach with New network. |
+| c2 | verified | Verified as the stage's stated rule, on the code: overlap = shared / (deg a + deg b - shared - 2), i.e. shared friends over friends of either end not counting each other; the stage line reads 'Link strength = share of friends in common.' The attribution of this measure to the literature (neighbourhood overlap) is in the source field only; it was not opened and is not the basis of this verdict. |
+| c3 | verified | Own run at 20%: weakest-first cuts 12/12 bridges in seeds 1, 5, 6, 7 (networks 1, 3, 4, 5) and 10/12 in seed 3 (network 2); strongest-first cuts 0 in all five. |
+| c4 | verified | Own run: bridge overlaps are at most 0.125 (seed 1), 0.091 (seed 3) and 0 in seeds 5, 6, 7, the bottom of the overlap range, so weakest-first reaches them within 20%; strongest-first removes only within-group links and every network stays in one piece at 20% (60 of 60). Scoped 'in the stage's networks', which is what was checked. Note: some within-group links also have overlap 0 (12-18 per network), so 'weak' is not a perfect bridge detector, but the claim does not say it is. |
+
+**Result:** all four open claims verified. No disputes.

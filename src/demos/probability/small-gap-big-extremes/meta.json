@@ -33,29 +33,37 @@
       "id": "probability.small-gap-big-extremes.c1",
       "text": "For two normal distributions with sd 10 cm and means 100 cm (A) and 105 cm (B), the share above 130 cm is 0.135% and 0.621% (135 and 621 per 100,000); B makes up 82% of plants above 130 cm, about 4.6 to 1.",
       "support": "derivation",
-      "source": "Q(3) = 0.00135, Q(2.5) = 0.00621 (standard normal table); model.ts tailA/tailB/shareB/ratio (erfc, Numerical Recipes erfcc) in node 2026-10-14: 0.1350%, 0.6210%, 82.14%, 4.600. Seeded cross-check (brief): mulberry32(11), 100,000 per batch: A 122, B 667.",
-      "status": "unverified"
+      "source": "Q(3) = 0.00135, Q(2.5) = 0.00621 (standard normal table); model.ts tailA/tailB/shareB/ratio (erfc, Numerical Recipes erfcc) in node 2026-10-14: 0.1350%, 0.6210%, 82.14%, 4.600. Seeded cross-check (brief): mulberry32(11), 100,000 per batch: A 122, B 667. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python math.erfc (independent of model.ts's erfcc): Q(3) = 0.1350%, Q(2.5) = 0.6210% → 135 and 621 per 100,000; B's share 82.14%, ratio 4.600. Stage prints fmt(tail × 100,000), pct(share) = 82%, r1(ratio) = 4.6; reveal needs at-130.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.small-gap-big-extremes.c2",
       "text": "Above 140 cm the shares are 0.0032% and 0.0233% (3 and 23 per 100,000); B makes up 88%, about 7.3 to 1, so the ratio keeps growing further out.",
       "support": "derivation",
-      "source": "Q(4) = 3.17e-5, Q(3.5) = 2.33e-4; node: 88.02%, 7.345. Other cutoffs on the slider: 100 cm 58% (1.4 to 1), 110 cm 66% (1.9), 120 cm 75% (2.9).",
-      "status": "unverified"
+      "source": "Q(4) = 3.17e-5, Q(3.5) = 2.33e-4; node: 88.02%, 7.345. Other cutoffs on the slider: 100 cm 58% (1.4 to 1), 110 cm 66% (1.9), 120 cm 75% (2.9). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python erfc: Q(4) = 0.0032% (3 per 100,000), Q(3.5) = 0.0233% (23); share 88.02%, ratio 7.345 → '7.3'. Other cutoffs: 100 cm 58.0% (1.38), 110 66.0% (1.95), 120 74.6% (2.94), 130 82.1% (4.60), 140 88.0% (7.35): the ratio grows monotonically.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.small-gap-big-extremes.c3",
       "text": "At the averages the two batches overlap almost completely: B is only 5 cm (half a spread) taller.",
       "support": "derivation",
-      "source": "Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves.",
-      "status": "unverified"
+      "source": "Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. 'At the averages the two batches overlap almost completely' overstates the picture. Two normal curves 0.5 sd apart share 2Φ(−0.25) = 80.3% of their area (Python erfc), so a fifth of each curve is not shared; 69% of B lies above A's mean (Cohen's U3). '5 cm (half a spread)' is correct. Fix (builder; owner decides wording): e.g. 'overlap mostly (about 80% shared)' or 'largely overlap', in the claim and the reveal. Blocks publishing.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.small-gap-big-extremes.c4",
       "text": "The batches are a model with equal spreads, equal sizes and exact bell shapes; 'spread (10 cm)' in the question is the standard deviation. Real data with different spreads or shapes can give different tail ratios.",
       "support": "convention",
-      "source": "Lesson rule (brief Round 3 item 4, planned claim 3); the curves are drawn exactly (model.ts density), no sampling. Plants only; no human-group example in learner text (brief's content boundary).",
-      "status": "unverified"
+      "source": "Lesson rule (brief Round 3 item 4, planned claim 3); the curves are drawn exactly (model.ts density), no sampling. Plants only; no human-group example in learner text (brief's content boundary). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. model.ts: equal SD 10, equal batch sizes (shares are per 100,000 in each), exact normal density, no sampling; the question's 'spread (10 cm)' is SD. The last sentence (different spreads or shapes change tail ratios) follows: unequal SDs change Q((c − μ)/σ) differently per batch. Convention.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

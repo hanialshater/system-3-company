@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; flex-wrap: wrap; }
+.svg { flex-shrink: 0; max-height: 26dvh; }
+.chip { fill: var(--bg-2); stroke: var(--line); stroke-width: 2; }
+.chipNew { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; stroke-dasharray: 4 3; }
+.chipLit { fill: var(--domain); stroke: var(--fg); stroke-width: 2; }
+.chipText { fill: var(--fg); font-size: 16px; font-weight: 800; }
+.chipTextLit { fill: var(--bg); font-size: 16px; font-weight: 800; }
+.cell { fill: none; stroke: var(--line); stroke-width: 1; }
+.tried { fill: var(--muted); stroke: var(--muted); stroke-width: 1; }
+.hit { fill: var(--domain); stroke: var(--fg); stroke-width: 2; }
+.status { margin: 0; text-align: center; font-size: 0.9rem; font-weight: 700; line-height: 1.3; }
+.trace { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); line-height: 1.3; }

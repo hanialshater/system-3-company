@@ -4,7 +4,7 @@
   "hook": "Two decimals, one product. Does it land above them, between them, or below them?",
   "domain": "math",
   "concept": "multiplying-below-one",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-math",
@@ -26,29 +26,37 @@
       "id": "math.times-can-shrink.c1",
       "text": "0.6 × 0.7 = 0.42, which is smaller than 0.6 and smaller than 0.7.",
       "support": "derivation",
-      "source": "60 × 70 = 4,200 ten-thousandths = 0.42. node: 6*7/100 = 0.42. The stage computes area in tenths, (6 × h10) / 100, so it prints 0.42 exactly.",
-      "status": "unverified"
+      "source": "60 × 70 = 4,200 ten-thousandths = 0.42. node: 6*7/100 = 0.42. The stage computes area in tenths, (6 × h10) / 100, so it prints 0.42 exactly. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: area(7) = 6*7/100 = 0.42 -> '0.42'; 0.42 < 0.6 and 0.42 < 0.7. Reveal prints num(area(KEY10)) with the 'seven' milestone required.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.times-can-shrink.c2",
       "text": "The area of a rectangle 0.6 wide and h tall is 0.6 × h, also when the sides are not whole numbers (stage: the shaded rectangle and the 'Area' readout).",
       "support": "derivation",
-      "source": "Cut the rectangle into hundredth squares: 6 × 7 tenth-by-tenth squares of 1/100 each = 42/100. The stage draws the rectangle 0.6 × h units and labels it with area(h10).",
-      "status": "unverified"
+      "source": "Cut the rectangle into hundredth squares: 6 × 7 tenth-by-tenth squares of 1/100 each = 42/100. The stage draws the rectangle 0.6 × h units and labels it with area(h10). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: for a rectangle of sides 0.6 and h (h = k/10), it is 6k cells of 0.1 x 0.1 = 0.01 each, area 6k/100 = 0.6h, the same rule as for whole sides. The shaded rect is (A10/10)U wide and (h10/10)U tall, so its drawn area is 0.6h of the unit square; the readout prints '0.6 × h = area' for all 21 slider values (own node, no float artefacts).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.times-can-shrink.c3",
       "text": "Multiplying by 0.7 keeps seven tenths of the 0.6 strip, so it shrinks it.",
       "support": "derivation",
-      "source": "0.6 × 0.7 is 7/10 of 0.6 × 1. On the stage the strip (0.6 × 1) is outlined and the shaded part at h = 0.7 covers 7 of its 10 tenth-rows.",
-      "status": "unverified"
+      "source": "0.6 × 0.7 is 7/10 of 0.6 × 1. On the stage the strip (0.6 × 1) is outlined and the shaded part at h = 0.7 covers 7 of its 10 tenth-rows. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: 0.6 x 0.7 = 0.7 of 0.6 (seven of the strip's ten tenths), 0.42 < 0.6. On the stage the shaded part at h = 0.7 covers 7/10 of the dashed 0.6 strip's height.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.times-can-shrink.c4",
       "text": "At height 1 the area stays 0.6, and above 1 (for example 0.6 × 1.5 = 0.9) it grows: for a positive number a, a × b is smaller than a when b < 1, equal when b = 1 and larger when b > 1.",
       "support": "derivation",
-      "source": "a·b − a = a(b − 1), which has the sign of b − 1 when a > 0. node: 0.6*0.5 = 0.3, 0.6*1 = 0.6, 0.6*1.5 = 0.9 (tenths arithmetic). The reveal quotes the largest h above 1 the learner set, from area(h10).",
-      "status": "unverified"
+      "source": "a·b − a = a(b − 1), which has the sign of b − 1 when a > 0. node: 0.6*0.5 = 0.3, 0.6*1 = 0.6, 0.6*1.5 = 0.9 (tenths arithmetic). The reveal quotes the largest h above 1 the learner set, from area(h10). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: area(10) = 0.6, area(15) = 0.9, and every h > 1 on the slider gives area > 0.6 (up to 1.2 at h = 2), so the reveal's 'at X, did it grow, to Y' is true for whichever largest h > 1 is recorded. General statement: a*b - a = a(b - 1), whose sign for a > 0 is the sign of b - 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -66,7 +74,9 @@
     "qa": [
       "company/reviews/times-can-shrink/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/times-can-shrink/2026-10-14-learner-area-model-decimals-r9.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

@@ -1,0 +1,114 @@
+{
+  "slug": "two-routes-to-co2",
+  "title": "Two routes to CO₂",
+  "hook": "Burn carbon in one step or two. Does taking the detour change the heat you get?",
+  "domain": "chemistry",
+  "concept": "hess-law",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that burning releases heat (exothermic-endothermic)",
+      "that bond energies set reaction heat (pay-first-then-profit)"
+    ],
+    "doesNotKnow": [
+      "that the total heat of a reaction does not depend on the route, so steps add up to the direct value"
+    ]
+  },
+  "misconception": "A reaction done in two steps releases more heat in total (two fires) or less (energy lost in between) than the same reaction done directly.",
+  "objective": "The learner can say that burning carbon to CO2 releases 393.51 kJ/mol by any route, and explain that heat depends only on the start and end states, so measured steps can be added to find a reaction's heat.",
+  "claims": [
+    {
+      "id": "chemistry.two-routes-to-co2.c1",
+      "text": "The standard enthalpy of formation of CO2(g) is −393.51 kJ/mol and of CO(g) −110.53 kJ/mol, so burning carbon (graphite) to CO2 releases 393.51 kJ/mol and to CO 110.53 kJ/mol (stage step labels '−393.51', '−110.53', end level 'CO₂', sums 'Σ −393.51'; reveal: '−393.51 kJ per mole of CO₂', 'carbon monoxide (−110.53 ...').",
+      "support": "source",
+      "source": "CODATA Key Values for Thermodynamics (Cox, Wagman & Medvedev, 1989): ΔfH CO2(g) −393.51 ± 0.13, CO(g) −110.53 ± 0.17 kJ/mol; CRC Handbook, standard thermodynamic properties of chemical substances. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.two-routes-to-co2.c2",
+      "text": "Burning CO to CO2 releases about 282.98 kJ/mol (stage step label '−282.98'; reveal: 'then −282.98').",
+      "support": "derivation",
+      "source": "Hess's law from claim 1: −393.51 − (−110.53) = −282.98 kJ/mol (node, demo-builder 2026-10-14). Demo.tsx steps('co'). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.two-routes-to-co2.c3",
+      "text": "Turning graphite into diamond takes about +1.90 kJ/mol, so burning diamond to CO2 releases about 395.41 kJ/mol (stage step labels '+1.90 diamond', '−395.41'; reveal: 'climbed +1.90 to diamond first').",
+      "support": "source",
+      "source": "CRC Handbook, standard thermodynamic properties (ΔfH C(diamond) = 1.9 kJ/mol); NBS tables (Wagman et al., 1982) 1.895 kJ/mol. −393.51 − 1.90 = −395.41 (node). Drawing note: on the ladder 1.9 kJ is under 1 px, so the diamond level is drawn 3 px above the start level (Demo.tsx YDIA); the number label carries the size. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.two-routes-to-co2.c4",
+      "text": "Heat released depends only on where you start and where you finish (enthalpy is a state function: Hess's law), so chemists add measured steps to find the heat of reactions they cannot measure directly (reveal; stage: all three sums 'Σ −393.51').",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, thermochemistry (Hess's law; enthalpy as a state function); the three sums on the stage, each added from its own steps in Demo.tsx sumOf(). The CO case is the textbook example: the heat of C + ½O2 → CO is hard to measure directly because some CO2 always forms (Atkins). Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.two-routes-to-co2.c5",
+      "text": "Model disclosure: the routes are bookkeeping. Carbon burning in air makes a mixture; the stage shows each step as if it went to completion, at standard conditions (25 °C, 1 bar).",
+      "support": "convention",
+      "source": "The lesson's own simplification (brief claim 5); not shown on the stage (text budget).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.two-routes-to-co2.c6",
+      "text": "Like height lost walking downhill by any path (reveal).",
+      "support": "convention",
+      "source": "Analogy: gravitational potential energy is also a state function of position; the analogy claims only path independence.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Step 1 of a reaction releases 50 kJ and step 2 absorbs 20 kJ. The same overall reaction done in one step releases how much?",
+    "options": [
+      "70 kJ",
+      "30 kJ",
+      "It depends on how fast it is done"
+    ],
+    "answer": 1,
+    "why": "Heat depends only on the start and end, so the one-step route releases the sum of the steps: 50 − 20 = 30 kJ (Hess's law)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:hess-law",
+    "also": [
+      "chemistry:exothermic-endothermic",
+      "chemistry:allotropes"
+    ],
+    "prerequisites": [
+      "chemistry:exothermic-endothermic",
+      "chemistry:bond-energy-enthalpy"
+    ],
+    "level": "core",
+    "strand": "energy-rates",
+    "references": [],
+    "tags": [
+      "Hess's law",
+      "enthalpy",
+      "state function",
+      "combustion",
+      "carbon monoxide"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "side-by-side",
+    "milestone-gate"
+  ]
+}

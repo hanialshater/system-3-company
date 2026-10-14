@@ -10,6 +10,8 @@ const DOMAIN_COLOR: Record<string, string> = {
   chemistry: "#f48fb1",
   geography: "#64b5f6",
   lifehacks: "#ffb74d",
+  books: "#bcaaa4",
+  "big-ideas": "#4dd0e1",
 };
 
 export const TEAM_COLOR: Record<string, string> = {
@@ -40,6 +42,9 @@ export const TEAM_COLOR: Record<string, string> = {
 
 export function teamColor(role: string): string {
   if (TEAM_COLOR[role]) return TEAM_COLOR[role];
-  return DOMAIN_COLOR[role.replace(/^cm-/, "").split("-")[0]] ?? DOMAIN_COLOR[role.replace(/^cm-/, "")] ?? "#9aa3b5";
+  const rest = role.replace(/^cm-/, "");
+  // Longest domain id that prefixes the role, so hyphenated domains (big-ideas) keep their colour.
+  const dom = Object.keys(DOMAIN_COLOR).filter((d) => rest === d || rest.startsWith(`${d}-`)).sort((a, b) => b.length - a.length)[0];
+  return (dom && DOMAIN_COLOR[dom]) ?? "#9aa3b5";
 }
 

@@ -45,3 +45,115 @@ Written by cm-chemistry, 2026-10-14 (round with `chemistry.matter-reactions.md` 
 - curriculum: `{"id":"water-autoionization","name":"Water makes its own ions: dilution stalls at pH 7","level":"core","demand":2,"prerequisites":["ph-log-scale","dilution"]}`
 - Needs interaction-designer spec: no.
 - Differs from: `ph-log-scale` (coffee against lemon juice) compares two pH values on the log scale; `one-dose-of-acid` adds acid to water and a buffer (its stage solves the same Kw equation, but the idea there is the buffer's stock); `dilute-until-none-left` runs a solute out to zero molecules. This lesson's idea is that the solvent is not inert: water's own ions set a floor that the misconception "x10 = +1 pH forever" ignores. Demand 2, not 3: the misconception is real and common in school chemistry, but narrower than the share-scale and energy-scale briefs above.
+
+## Wave J round (cm-chemistry, 2026-10-14)
+
+Ranking, phone-fit, QA-path, claims and safety rules for this round are at the top of the Wave J section in `chemistry.energy-rates.md` (global rank #5-#19). This file holds #7, #10, #13, #17 and #19.
+
+### 7. half-and-half-acid · concept: ph-mixing · intro · demand 3 · format: Single card
+- Learner knows: that each pH unit is a factor of 10 in [H+] (ph-log-scale) / does not know: that mixing adds H+ ions, not pH numbers, so the stronger acid dominates and the pH of a mix sits near the lower value.
+- Misconception: mixing equal volumes of pH 2 and pH 4 gives pH 3, the average.
+- Prediction (stage text <= 25 words): "Mix 1 L of pH 2 hydrochloric acid with 1 L of pH 4 hydrochloric acid. The mixture's pH is closest to..." options: A. 2 / B. 3 / C. 4 (answer: A, pH 2.30).
+- Check (node): [H+] = (0.01 + 0.0001)/2 = 0.00505 mol/L, pH 2.297. With 1 L pure water instead: 0.005, pH 2.301. 1 L pH 2 + 9 L pH 4: (0.01 + 0.0009)/10, pH 2.963. 1 L pH 2 + 99 L pH 4: (0.01 + 0.0099)/100, pH 3.701. Water's own ions (10^-7) are negligible here.
+- Locked stage: two beakers, each one litre, drawn as H+ dot fields: pH 2 holds 100 dots, pH 4 holds 1 dot (caption "1 dot = 10^-4 mol of H+"). Below them, an empty mixing beaker and readout "pH: —". Three unpressed controls.
+- What the stage shows (explore): control 1 "Mix 1 L + 1 L" pours both into the big beaker: 101 dots spread through 2 L (50.5 per litre, drawn), pH 2.30. Control 2 "Use 1 L of water instead" redoes the mix with plain water: 100 dots in 2 L, pH 2.30 (the two readouts side by side). Control 3 "Mix with 9 L of pH 4" shows 109 dots in 10 L, pH 2.96. Milestones: (1) 1 + 1 mix (the question's case, pH recorded), (2) water comparison, (3) 9 L case. QA path: three controls once each in DOM order; the readout row keeps all three results.
+- Key state: readout row "pH 4 acid: 2.30 · water: 2.30 · 9 L of pH 4: 2.96", the 101-dot beaker drawn.
+- Reveal draft (70 words): "The mix came out at pH {2.30}, not 3. The pH 2 litre brought 100 dots of H+ and the pH 4 litre only 1, so the mixture got almost all its acid from one side. Mixing with plain water gave {2.30} as well: the weaker acid barely counted. Even 9 litres of pH 4 left it at {2.96}. pH numbers do not average; the ions they stand for do."
+- Phone fit: the reveal names the three readouts and the dot counts; the beakers (dots at 3 px are texture; the counts are labels at 10 px) and the readout row on screen with stage-top crop 0.
+- Planned claims:
+  1. pH = −log10 [H+]; pH 2 means [H+] = 0.01 mol/L and pH 4 means 0.0001 mol/L. support: citation; source: IUPAC Gold Book (pH, simplified definition used in school chemistry).
+  2. Mixing 1 L of each gives [H+] = 0.00505 mol/L, pH about 2.30; 1 L pH 2 with 1 L of water gives pH about 2.30; with 9 L of pH 4, about 2.96. support: derivation; source: node arithmetic; volumes assumed additive, both acids HCl (fully dissociated, Atkins), water's own ions negligible.
+  3. The dots are a count model (1 dot = 10^-4 mol), not a picture of real ion positions. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:ph-log-scale", "chemistry:dilution"]; references: none.
+- curriculum: `{"id":"ph-mixing","name":"Mixing acids adds ions, not pH numbers","level":"intro","demand":3,"prerequisites":["ph-log-scale"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `ph-log-scale` compares two pH values; `acid-diluted-a-thousandfold` (#4) dilutes one acid toward 7; `point-one-is-26-percent` reads a small pH change as a percentage. This one is the averaging trap.
+- Safety: the acids appear only on the stage; no mixing at home is suggested.
+
+### 10. neutralise-the-weak-acid · concept: acid-capacity-vs-strength · core · demand 2 · format: Side-by-side comparison
+- Learner knows: that acetic acid at 0.10 mol/L lets go of only about 1 H+ in 75 molecules (one-in-75-lets-go); that a titration adds base until the acid is used up (the-two-drop-cliff) / does not know: that the held-back molecules let go as base removes H+, so a weak acid needs exactly as much base as a strong one at the same concentration.
+- Misconception: a weak acid has fewer H+ to give, so it needs far less base to neutralise (about 1/75 as much).
+- Prediction (stage text <= 25 words): "25 mL of 0.100 mol/L acetic acid. How much 0.100 mol/L sodium hydroxide neutralises it?" options: A. about 0.3 mL / B. about 5 mL / C. about 25 mL / D. about 75 mL (answer: C, 25.0 mL, the same as for HCl).
+- Check (node, Ka acetic 1.75 x 10^-5): pH at 0 / 12.5 / 24 / 25 mL base: HCl 1.00 / 1.48 / 2.69 / 7.00; acetic 2.88 / 4.76 / 6.14 / 8.73. Fraction ionised at the start: 1.31% (1 in 76). Both need 2.50 mmol of OH−, 25.0 mL.
+- Locked stage: two flasks side by side, "HCl" and "acetic acid", each with 25 molecules drawn (HCl: 25 free H+; acetic: about 1 free H+ and 24 molecules holding theirs), a shared burette readout "base added: 0 mL", a pH readout under each flask. Three unpressed shared controls.
+- What the stage shows (explore): shared presets "12.5 mL", "24 mL", "25 mL" add that total volume of base to both flasks at once (each OH− drawn pairing with an H+ into water). In the acetic flask, held molecules let go as free H+ is removed, a counter "still holding H+" falling 24 → 12 → 1 → 0, while the HCl flask's free H+ simply runs out. Both reach "acid left: 0" at 25 mL. Milestones: (1) 12.5 mL (both pH recorded), (2) 25 mL with both flasks emptied of acid (the question's case, pH 7.00 and 8.73 recorded). QA path: three presets once each in DOM order.
+- Key state: both flasks at 25 mL, acid left 0 in each, pH 7.00 and 8.73.
+- Reveal draft (73 words): "Both flasks ran out of acid at the same {25} mL of base. The acetic acid only looked weak: at the start just 1 molecule in 75 had let go, but each time the base took a free H+, another held one let go. Strength sets the pH along the way ({2.88} against 1.00 at the start); the amount of acid sets how much base it takes. Same moles of acid, same base."
+- Phone fit: the reveal names the shared 25 mL readout, the "still holding" counter and the two starting pH values (kept as small "start" labels under each flask); both flasks, the burette readout and the pH readouts on screen with stage-top crop 0. Two panels of about 180 px each at 390 px; labels 10 px.
+- Planned claims:
+  1. Acetic acid has Ka about 1.75 x 10^-5 at 25 °C (pKa about 4.76). support: citation; source: CRC, "Dissociation constants of organic acids in aqueous solution".
+  2. At 0.100 mol/L, about 1.3% of acetic acid is ionised (about 1 in 76) and its pH is about 2.88. support: derivation; source: quadratic in Ka, node.
+  3. 25.0 mL of 0.100 mol/L of either acid is neutralised by 25.0 mL of 0.100 mol/L NaOH (2.50 mmol each). support: derivation; source: 1:1 stoichiometry.
+  4. pH values along the way (HCl 1.48, 2.69, 7.00; acetic 4.76, 6.14, 8.73 at 12.5, 24, 25 mL). support: derivation; source: strong-acid excess, Henderson-Hasselbalch, and acetate hydrolysis at equivalence with Kw 1.0 x 10^-14, node.
+  5. The 25 drawn molecules per flask are a count model. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:strong-vs-weak-acid", "chemistry:titration-curve", "chemistry:le-chatelier"]; references: none.
+- curriculum: `{"id":"acid-capacity-vs-strength","name":"Weak acid, same base: strength is not amount","level":"core","demand":2,"prerequisites":["strong-vs-weak-acid","titration-curve"]}`
+- Needs interaction-designer spec: no for the comparison layout (built by hand, two panels sharing one control row, per formats.md); flag to the interaction designer only if the two panels do not fit at 390 px.
+- Differs from: `one-in-75-lets-go` stops at the starting pH (strength); `the-two-drop-cliff` is the curve shape near equivalence for one acid; `ten-to-one-buffer` is the ratio rule. This one is amount against strength, with the reservoir of held molecules visible.
+- Safety: sodium hydroxide is corrosive; it appears only on the stage, and no vinegar-and-base experiment is suggested.
+
+### 13. warm-soda-cold-soda · concept: gas-solubility-temperature · core · demand 2 · format: Single card
+- Learner knows: that more sugar dissolves in hot water (when-the-water-is-full); that a gas dissolves more under higher pressure (same-air-less-oxygen, partial pressure) / does not know: that gases do the opposite of most solids: warm water holds less dissolved gas, because a dissolved molecule escapes more easily when it moves faster.
+- Misconception: warm water dissolves more of everything, so warm soda can hold more CO2 than cold soda.
+- Prediction (stage text <= 25 words): "Water under 1 atm of CO2, at 4 °C (fridge) and at 30 °C (hot day). The warm water can hold..." options: A. about twice as much CO2 / B. about the same / C. about half as much (answer: C, ratio 0.48).
+- Check (node): Henry's law constant for CO2 in water kH = 0.034 mol/(L atm) at 25 °C with temperature dependence d ln kH / d(1/T) = 2,400 K: 4 °C 0.0626, 20 °C 0.0390, 30 °C 0.0298 mol/(L atm). Ratio 30 °C / 4 °C = 0.48. Cross-check against tabulated solubility (CRC: CO2 at 1 atm, about 2.8 g/kg water near 5 °C falling to about 1.3 g/kg at 30 °C, matching 0.063 x 44 = 2.8 g/L and 0.030 x 44 = 1.3 g/L; builder confirms the exact table values before quoting any).
+- Locked stage: one beaker of water with a CO2 gas space above it (dots; caption "CO2 at 1 atm above the water"), a thermometer, readout "dissolved: —". Three unpressed temperature presets.
+- What the stage shows (explore): presets "4 °C", "20 °C", "30 °C" set the temperature; the dissolved dots (count proportional to kH, 63 / 39 / 30 dots per drawn litre) settle below the surface and the extra ones rise into the gas space; the readout shows mol/L to two significant figures, and the dot speed label "molecules move faster" grows with temperature. A trace row keeps each temperature's value. Milestones: (1) 4 °C, (2) 30 °C (the question's case, both values recorded). QA path: three presets once each in DOM order.
+- Key state: trace row "4 °C 0.063 · 20 °C 0.039 · 30 °C 0.030 mol/L", beaker at 30 °C.
+- Reveal draft (66 words): "At 30 °C the water held about {0.030} mol/L of CO2, under half the {0.063} it held at 4 °C. Gases run the opposite way to sugar: a dissolved gas molecule only has to break loose from the water around it, and warmer molecules break loose more often. That is why a warm drink goes flat sooner, and why warm water carries less oxygen for fish."
+- Phone fit: the reveal names the two trace values and the escaping dots; beaker, gas space and trace row on screen with stage-top crop 0. At most about 70 dots; labels 10 px.
+- Planned claims:
+  1. CO2's Henry's law solubility is about 0.034 mol/(L atm) at 25 °C, with a temperature coefficient of about 2,400 K. support: citation; source: Sander, "Compilation of Henry's law constants (version 4.0) for water as solvent", Atmos. Chem. Phys. 15, 4399-4981 (2015), CO2 entry; cross-check CRC, "Solubility of selected gases in water".
+  2. At 1 atm CO2, water holds about 0.063 mol/L at 4 °C and about 0.030 mol/L at 30 °C, about half. support: derivation; source: van 't Hoff form kH(T) = kH(298) exp(2400(1/T − 1/298.15)), node.
+  3. Most gases are less soluble in water at higher temperature. support: citation; source: CRC gas solubility tables (O2, N2, CO2 all fall with temperature from 0 to 30 °C); Atkins.
+  4. Warmer water holds less dissolved oxygen. support: citation; source: CRC, "Solubility of selected gases in water" (O2). If not checkable, cut the fish clause from the reveal.
+  5. The dots are a count model scaled to kH, not a sample. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:solubility-saturation", "chemistry:partial-pressure", "chemistry:temperature-particle-motion"]; references: none.
+- curriculum: `{"id":"gas-solubility-temperature","name":"Warm water holds less gas","level":"core","demand":2,"prerequisites":["solubility-saturation","partial-pressure"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `when-the-water-is-full` saturates water with a solid; `same-air-less-oxygen` changes pressure, not temperature; `point-one-is-26-percent` is ocean pH. No lesson covers gas solubility against temperature.
+- Safety: nothing to try; no shaking or heating of sealed bottles is suggested.
+
+### 17. salt-in-the-pasta-water · concept: boiling-point-elevation · core · demand 2 · format: Single card
+- Learner knows: that dissolved particles lower the freezing point, ions counting double (salt-ions-count-double); that water boils when its vapour pressure reaches the air's (summit-kettle, where-the-dew-forms) / does not know: how small the boiling-point rise is for kitchen amounts of salt, and why it rises at all.
+- Misconception: salting pasta water makes it boil noticeably hotter (several degrees), so the pasta cooks faster.
+- Prediction (stage text <= 25 words): "Stir 10 g of salt (about 2 teaspoons) into 1 L of water. Its boiling point rises by about..." options: A. about 0.2 °C / B. about 2 °C / C. about 10 °C / D. about 20 °C (answer: A, 0.18 °C).
+- Check (node): ΔTb = i Kb m, Kb(water) = 0.512 K kg/mol, i = 2 for NaCl (ideal). 10 g / 58.44 g/mol = 0.171 mol in about 1 kg: ΔTb = 2 x 0.512 x 0.171 = 0.175 °C. 35 g (sea-water saltiness): 0.61 °C. 50 g: 0.88 °C. Ion share of the particles at 10 g: 0.342 / (55.51 + 0.342) = 0.61%.
+- Locked stage: a close-up of the water surface (water dots, a few escaping upward as vapour), a thermometer zoomed to 99.5-101.0 °C with gridlines every 0.1 °C (labels every 0.5 °C, 10 px) and readout "boils at: 100.00 °C" (pure water at 1 atm, which the learner knows). Three unpressed salt presets.
+- What the stage shows (explore): presets "10 g", "35 g", "50 g" of salt per litre put ion dots into the surface layer (share drawn to scale, so 10 g shows about 1 ion per 160 water dots) and move the thermometer mark: 100.18, 100.61, 100.88 °C, each left as a tick. A caption "ions take up surface places, fewer water molecules escape" appears at the first press. Milestones: (1) 10 g (the question's case, rise recorded), (2) 50 g. QA path: three presets once each in DOM order.
+- Key state: three ticks on the zoomed thermometer, 10 g at +0.18 °C.
+- Reveal draft (69 words): "Your 10 g of salt raised the boiling point by about {0.18} °C. Even 50 g, far too salty to eat, gave only {0.88} °C. Salt splits into ions that take places at the surface, so slightly fewer water molecules escape and the water must get a little hotter to boil. At kitchen amounts it is under a fifth of a degree: salt in pasta water is for taste."
+- Phone fit: the reveal names the two ticks and the surface ions; the zoomed thermometer with ticks and the surface strip on screen with stage-top crop 0. Labels 10 px.
+- Planned claims:
+  1. Water's ebullioscopic constant is about 0.512 K kg/mol. support: citation; source: CRC, "Cryoscopic and ebullioscopic constants" (water 0.513); Atkins.
+  2. 10 g of NaCl in about 1 kg of water is 0.171 mol/kg, about 0.34 mol/kg of ions, raising the boiling point by about 0.18 °C (ideal estimate); 50 g raises it about 0.9 °C. support: derivation; source: ΔTb = i Kb m, molar mass 58.44 g/mol, node. Disclosure on the stage: ideal estimate; real salt solutions at these amounts differ by under about 10% (osmotic coefficient about 0.93, Robinson & Stokes, *Electrolyte Solutions*, NaCl table).
+  3. Pure water boils at about 100 °C at 1 atm. support: citation; source: CRC.
+  4. Dissolved particles lower the solvent's vapour pressure (Raoult's law), which raises the boiling point. support: citation; source: Atkins, colligative properties.
+  5. "About 2 teaspoons" for 10 g of table salt. support: citation; source: USDA FoodData Central (salt, 1 tsp = 6 g), so 10 g is about 1.7 tsp; if not checkable, the stage says "10 g" only.
+  6. The surface picture is a count model. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:freezing-point-depression", "chemistry:vapor-pressure-humidity", "chemistry:boiling-point-pressure"]; references: none.
+- curriculum: `{"id":"boiling-point-elevation","name":"Salt barely raises the boiling point","level":"core","demand":2,"prerequisites":["freezing-point-depression","vapor-pressure-humidity"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `salt-ions-count-double` is freezing and the ion count; `summit-kettle` changes boiling by pressure; lifehacks `lid-boils-water-sooner` and `boil-less-water` are about heating time. This one is the size of the salt effect and its vapour-pressure cause. Life Hacks may want a debunk version; that is their brief, not this one.
+- Safety: boiling water appears only on the stage; the lesson suggests no cooking experiment.
+
+### 19. neutral-hot-water · concept: neutral-ph-temperature · stretch · demand 1 · [exploration] · format: Single card
+- Learner knows: that water makes its own H+ and OH− in equal amounts (acid-diluted-a-thousandfold, water-autoionization) / does not know: that water splits more when hot, so neutral pH falls below 7, and that "neutral" means [H+] = [OH−], not pH 7.
+- Misconception: pH 7 always means neutral, so pure water at pH 6.6 must be acidic.
+- Prediction (stage text <= 25 words): "Pure water at 50 °C has a pH of about 6.6. That water is..." options: A. acidic / B. neutral / C. basic (answer: B).
+- Check (node): pKw (CRC / Bandura & Lvov 2006): 0 °C 14.95, 25 °C 14.00, 50 °C 13.26, 100 °C 12.26 (at saturation pressure). Neutral pH = pKw/2: 7.47, 7.00, 6.63, 6.13. Van 't Hoff cross-check from 25 °C with ΔH(ionisation) about 55.8 kJ/mol: 50 °C 13.24, 0 °C 14.89 (100 °C 12.03, off because ΔH changes; the lesson quotes the table).
+- Locked stage: a box of water with H+ and OH− ions drawn as dot pairs, a pH scale 6-8 with a marker hidden, readouts "H+ : —" and "OH− : —". Three unpressed temperature presets. No "neutral" label on the scale.
+- What the stage shows (explore): presets "0 °C", "25 °C", "50 °C" set the temperature; the box redraws ion pairs (always equal counts, scaled to 10^(-pKw/2): 3, 10, 23 pairs per drawn box), the pH marker moves to 7.47, 7.00, 6.63, and an equality badge "H+ = OH−" stays lit at every temperature. Milestones: (1) 25 °C, (2) 50 °C (the question's case, pH recorded). QA path: three presets once each in DOM order.
+- Key state: 50 °C box with 23 equal pairs, pH 6.63, badge lit; the 0 °C and 25 °C marker ticks kept.
+- Reveal draft (61 words): "At 50 °C the pH marker sat at {6.63}, yet the badge stayed lit: H+ and OH− were still equal, {23} pairs each. Hot water splits more, so both ions rise together and the pH number falls. Neutral means equal H+ and OH−, not pH 7. Seven is neutral only at 25 °C; at 0 °C neutral water reads about 7.47."
+- Phone fit: the reveal names the marker, the badge, the pair count and the 0 °C tick; box, scale with ticks and badge on screen with stage-top crop 0. Labels 10 px.
+- Planned claims:
+  1. pKw of water is about 14.95 at 0 °C, 14.00 at 25 °C and 13.26 at 50 °C. support: citation plus derivation; source: CRC, "Ionization constant of water as a function of temperature and pressure"; Bandura & Lvov, J. Phys. Chem. Ref. Data 35, 15 (2006); van 't Hoff cross-check in node.
+  2. Neutral pH is pKw/2: about 7.47 at 0 °C, 7.00 at 25 °C, 6.63 at 50 °C. support: derivation; source: [H+] = [OH−] = sqrt(Kw).
+  3. Neutral means [H+] = [OH−]. support: citation; source: Atkins; IUPAC Gold Book (neutral solution).
+  4. Ion-pair counts are a scaled model. support: model disclosure; source: the lesson.
+- Metadata for meta.json: `also`: ["chemistry:water-autoionization", "chemistry:ph-log-scale", "chemistry:temperature-particle-motion"]; references: none.
+- curriculum: `{"id":"neutral-ph-temperature","name":"Neutral is not always pH 7","level":"stretch","demand":1,"prerequisites":["water-autoionization"]}`
+- Needs interaction-designer spec: no.
+- Differs from: `acid-diluted-a-thousandfold` (#4) uses Kw at 25 °C as a floor for dilution; `ph-log-scale` treats 7 as neutral. Exploration slot for the round: demand 1, wonder-first. Build after #4 (its prerequisite lesson), or assume water-autoionization in the hook.
+- Safety: hot water appears only on the stage.

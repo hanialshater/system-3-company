@@ -20,3 +20,15 @@ Checker: fact-checker (wrote and built none of these claims). Method: read the p
 | c2 | verified | Pass 26 dispute resolved. The caption ('A globe, treated as a sphere of radius 6,371 km.') and the reveal ('on this sphere of radius 6,371 km') now name the model the one-decimal values hold for. Own node, R = 6371.0088 and 6371: 111.195, 55.598, 19.309 km, printing 111.2, 55.6, 19.3. Half holds exactly (cos 60 = 0.5). 19.3 is printed only after a stop at 80 N. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx v4 first (latitude slider 0-80, preset buttons Equator / 60°N / 80°N hidden at the reveal, three readouts, the Seen line recorded at 60 and 80, the box drawn from meridians and parallels, reveal with and without seen[80]; hook and recall), then claim text and support, then source fields. Re-ran degLonKm in node. No external source needed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node with R = 6371.0088 km: pi R / 180 = 111.1951; cos 0 -> '111.2', cos 60° -> '55.6' (exactly half, ratio 0.5000), cos 80° -> '19.3'. Reveal: 'About 56 km' (round 55.6), Seen line '55.6', equator '111.2'; the stage's footnote names the sphere 'radius 6,371 km'. |
+| c6 | verified | Convention and geometry: meridians are half great circles from pole to pole, so all meet at both poles. The stage draws the box's sides along meridians, and the narrowing as it moves north shows the convergence. |
+| c7 | verified | Readout 'Box, 10° wide' = round(10 * degLonKm(lat)); at 60°N, 10 x 55.598 = 555.98 -> '556 km'. Arc length along one parallel is linear in longitude, so 10° is exactly ten times 1° at the same (middle) latitude, as the claim says. |
+
+**Result:** all three open claims verified. No disputes.

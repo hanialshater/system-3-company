@@ -26,36 +26,46 @@
       "id": "math.two-right-angles-never-meet.c1",
       "text": "The corners of a triangle on a flat page add to 180°, so two right angles (90° + 90°) would use all 180° and leave 0° for the third corner.",
       "support": "derivation",
-      "source": "Draw the parallel to the base through the top corner; alternate angles give the sum 180° (Euclid, Elements I.32). 180 − 90 − 90 = 0.",
-      "status": "unverified"
+      "source": "Draw the parallel to the base through the top corner; alternate angles give the sum 180° (Euclid, Elements I.32). 180 − 90 − 90 = 0. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Re-derived: draw the parallel to the base through the apex; alternate angles give A + B + C = 180° in the Euclidean plane. 180 − 90 − 90 = 0. Reveal 'Those two corners already use all 180°, leaving 0° for the third.' Euclid I.32 not opened; not needed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.two-right-angles-never-meet.c2",
       "text": "With a right angle at one end of a base and angle B at the other, the sides meet tan(B) bases up and the top corner is 90° − B: at 89° that is 57.3 bases up with a 1° tip (stage readouts 'Sides meet' and 'Top corner').",
       "support": "derivation",
-      "source": "Right triangle: opposite / adjacent = tan B. node: Math.tan(89*Math.PI/180) = 57.29; tan 85° = 11.43; tan 60° = 1.73. The stage prints meet(B) = tan(B) with fmtH (2 decimals under 10, 1 decimal under 100) and 90 − B. The reveal quotes the largest B from 85° to 89° the learner set.",
-      "status": "unverified"
+      "source": "Right triangle: opposite / adjacent = tan B. node: Math.tan(89*Math.PI/180) = 57.29; tan 85° = 11.43; tan 60° = 1.73. The stage prints meet(B) = tan(B) with fmtH (2 decimals under 10, 1 decimal under 100) and 90 − B. The reveal quotes the largest B from 85° to 89° the learner set. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Right triangle with the right angle at the left end: height/base = tan B. Own node with the stage's fmtH: tan 89° = 57.3 (1 decimal at 10-100), tan 85° = 11.4, tan 60° = 1.73; top corner 90 − B. Readouts in the picture read 'sides meet' / '57.3 bases up' and 'top corner' / '1°' (labels are lower-case on the stage). Reveal quotes the largest B in 85-89 the learner set (milestone near, required).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.two-right-angles-never-meet.c3",
       "text": "On a flat page, two lines both at right angles to the same base are parallel and never meet (stage: at 90° the readout says 'never').",
       "support": "derivation",
-      "source": "If they met, the triangle formed would have corners summing to more than 180° once the top corner is counted, against c1 (Euclid, Elements I.27-28). The stage draws both sides vertical at B = 90° and meet(90) returns null.",
-      "status": "unverified"
+      "source": "If they met, the triangle formed would have corners summing to more than 180° once the top corner is counted, against c1 (Euclid, Elements I.27-28). The stage draws both sides vertical at B = 90° and meet(90) returns null. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. If two lines perpendicular to one base met, the triangle would have angle sum 90 + 90 + apex > 180°, contradicting c1, so they are parallel. Stage at B = 90: meet(90) = null → readout 'never', both sides drawn vertical, trace '90° → never'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.two-right-angles-never-meet.c4",
       "text": "If an assumption leads to something impossible, the assumption is false; showing a statement this way is proof by contradiction.",
       "support": "convention",
-      "source": "Definition of proof by contradiction (reductio ad absurdum) in any introductory logic or proof text; no number to check.",
-      "status": "unverified"
+      "source": "Definition of proof by contradiction (reductio ad absurdum) in any introductory logic or proof text; no number to check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Definition of proof by contradiction (reductio): an assumption that implies an impossibility is false. Reveal sentence states exactly that. Convention; no number.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.two-right-angles-never-meet.c5",
       "text": "The lesson is set on a flat page: the stage caption says 'Flat page'. (On a sphere a triangle can have two or three right angles, which is why the condition is stated; the lesson does not claim anything about spheres.)",
       "support": "convention",
-      "source": "Scope statement from the brief (company/domains/briefs/math.md #56, 'Not claimed'). The learner only sees 'Flat page' / 'On a flat page'.",
-      "status": "unverified"
+      "source": "Scope statement from the brief (company/domains/briefs/math.md #56, 'Not claimed'). The learner only sees 'Flat page' / 'On a flat page'. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Stage caption reads 'Flat page. The left corner stays square. Turn the right one.' (and 'On a flat page.' while locked); predict question says 'On a flat page'. Parenthetical checked: own node of the octant triangle (north pole, (1,0,0), (0,1,0)) gives three 90° angles, so on a sphere two or three right angles occur; not shown to learners.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

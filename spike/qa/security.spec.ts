@@ -55,7 +55,7 @@ test("a lesson frame cannot read host cookies, storage or DOM, nor navigate or c
     cookie: document.cookie,
     ls: localStorage.getItem("s3c:secret"),
     dom: document.getElementById("host-secret")?.textContent?.trim(),
-    progress: localStorage.getItem("s3c:progress:v1"),
+    progress: (localStorage.getItem("s3c:progress:v1") ?? "") + (localStorage.getItem("s3c:spike:progress:v1") ?? ""),
     spike: window.__spike,
   }));
   expect(host.cookie).not.toContain("pwned");

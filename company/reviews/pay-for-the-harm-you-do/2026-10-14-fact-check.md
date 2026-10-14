@@ -33,3 +33,16 @@ Checker: fact-checker (did not write these claims). Re-check after the pass 24 f
 | c1 | verified | Own node port (fc25/vcg.mjs) of order/value/outcome/sums at bid 7: 'Without X: Y $60 + Z $5 = $65 · With X: Y $30 + Z $0 = $30', pay 35, keep 35; own bid 7 × 10 = 70. The reveal now says 'At the honest $7, the line under the bars read: ...' and 'That gap'. The honest milestone (set(7)) is required, and the sums line renders sums(o) for the current bid whenever unlocked, so the learner had that exact line on stage. The past tense no longer points at the current bid. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 35 (2026-10-14, batch 2)
+
+Checker: fact-checker. I did not write or build these claims. Scope: every claim in this lesson that was neither verified nor withdrawn. Method: I read Demo.tsx (and any model.ts) first on every reachable path, including replays, reduced motion and the lack of a Reset where there is none, then the claims. I re-ran the numbers in my own node scripts (session scratchpad fc35/), not imported from the lesson. No screenshot: the dev server on :3530 was not running. Web hosts are blocked from this session (proxy 403 / DNS failure), so no verdict rests on a source I could not open; the only outside sources I opened are PyPI packages (ht 1.2.0 property tables, pint 0.26.1 unit definitions), named where used.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own port of order/value/outcome/sums at bid 7: 'Without X: Y $60 + Z $5 = $65 · With X: Y $30 + Z $0 = $30', pay 35; own bid 7 x 10 = 70. Reveal is tied to the honest $7 (milestone honest required) in past tense. |
+| c3 | verified | Own: X keeps 0,30,30,30,30,30,35,35,35,35,35 for bids 0..10 (ties to X, $0 takes no slot); reveal prints outcome(7).keep = 35 and outcome(3).keep = 30; bracket at bid 3 'harm = X pays $5'. |
+| c4 | verified | Rests on derivation, not on Vickrey/Clarke/Groves or Easley-Kleinberg (not opened, web blocked). Under VCG X's utility is v_X(o) + sum of others' reported values - h(others), and the allocation maximises reported welfare, so reporting the true value makes the mechanism maximise X's own utility. Own exhaustive check: 20,000 random (Y, Z) bid pairs in 0..10, X value 7, no bid 0..10 beats bidding 7 (0 violations). |
+| c5 | verified | Chip 'Model: fixed clicks; Y, Z bid their values; ties to X'; outcome() implements fixed clicks, honest Y/Z, ties to X. |
+
+**Result:** 4 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

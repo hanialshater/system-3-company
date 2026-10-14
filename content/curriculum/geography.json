@@ -180,7 +180,8 @@
       "level": "intro",
       "demand": 2,
       "prerequisites": [
-        "latitude-longitude"
+        "latitude-longitude",
+        "sunlight-by-latitude"
       ]
     },
     {
@@ -490,6 +491,68 @@
       "demand": 3,
       "prerequisites": [
         "economics:schelling-segregation"
+      ]
+    },
+    {
+      "id": "sunlight-by-latitude",
+      "name": "Sunlight per year falls with latitude: angle, not distance",
+      "subarea": "earth-climate",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "latitude-longitude"
+      ]
+    },
+    {
+      "id": "equation-of-time",
+      "name": "Solar noon drifts through the year: why the earliest sunset is not on the shortest day",
+      "subarea": "earth-climate",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "sun-time-from-longitude"
+      ]
+    },
+    {
+      "id": "foehn-rain-shadow",
+      "name": "Air over a mountain: rain on one side, warm dry wind on the other",
+      "subarea": "earth-climate",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "choropleth-area-bias",
+      "name": "Filled-region maps count land, not people",
+      "subarea": "maps-projections",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "areal-units-maup",
+      "name": "Same data, new zone lines: the zoning effect",
+      "subarea": "people-places",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "travel-time-distance",
+      "name": "Travel time, not distance: fast roads pull places close",
+      "subarea": "people-places",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": []
+    },
+    {
+      "id": "population-centre",
+      "name": "A centre of population can be where nobody lives",
+      "subarea": "people-places",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "population-distribution"
       ]
     }
   ]

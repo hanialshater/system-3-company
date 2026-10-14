@@ -1,0 +1,102 @@
+{
+  "slug": "opposite-flows-swap-more",
+  "title": "Same pipes, flip one flow",
+  "hook": "Water and blood run side by side and swap oxygen. Does the water's direction matter?",
+  "domain": "life",
+  "concept": "countercurrent-exchange",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "things move from high to low concentration (slow-across-a-room)"
+    ],
+    "doesNotKnow": [
+      "that two side-by-side flows level off at the halfway mark when they run the same way, but keep exchanging along the whole length when they run opposite ways"
+    ]
+  },
+  "misconception": "Which way the water flows past the blood makes no difference. Same pipes, same speed, same exchange.",
+  "objective": "The learner can explain that with opposite flows the blood about to leave meets the freshest water, so in every section the water is still richer than the blood beside it and the blood leaves near 91 of 100, while same-way flows stop at 50.",
+  "claims": [
+    {
+      "id": "life.opposite-flows-swap-more.c1",
+      "text": "In the lesson's model, same-way flow gives blood leaving at 50 for any number of sections; opposite flow gives 90.9 with 10 sections (80 with 4, 50 with 1). Reveal: \"Flowing the same way, blood and water met at 50 and stopped exchanging.\" \"The blood left at 91 of 100, with the same pipes and speeds.\" Stage: \"blood leaves at 91\" and the row \"Blood out: same 10: 50 · opposite 1: 50 · opposite 4: 80 · opposite 10: 91\".",
+      "support": "simulation",
+      "source": "exchanger() in Demo.tsx (2,000 ticks; per tick: each section to the average, read the last blood section, shift blood right, shift water along its direction). Builder re-run 2026-10-14 (node strip-types): same way 50.00 at S = 1, 4, 10; opposite 50.00, 80.00, 90.91. Matches check script E4 (company/domains/briefs/checks/life-wave-j-check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.opposite-flows-swap-more.c2",
+      "text": "Flowing opposite ways, the blood about to leave meets the freshest water, so in every section the water arriving is still richer than the blood beside it (by 18 in every section at 10 sections); flowing the same way, both are at 50 from the second section on. Reveal: \"Flowing opposite ways, the blood about to leave met the freshest water, so in every section the water was still richer than the blood beside it.\" Stage: the per-section levels.",
+      "support": "simulation",
+      "source": "exchanger() steady-state arriving levels, 10 sections: opposite blood 0, 9, 18, ..., 82 and water 18, 27, ..., 91, 100 (gap 18.2 in every section); same way blood 0, 50, 50, ... and water 100, 50, 50, ... Builder re-run 2026-10-14.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.opposite-flows-swap-more.c3",
+      "text": "More sections push the opposite-flow blood closer to 100 (100·S/(S + 1) in this model); the same-way pipe stays at 50 however long it is. Reveal: \"More sections push it closer to 100; the same-way pipe stays at 50 however long it is.\"",
+      "support": "derivation",
+      "source": "Simulation: S = 1, 2, 4, 10, 20 give 50, 66.7, 80, 90.9, 95.2 = 100·S/(S + 1) exactly (check E4). Same way: after the first section both streams are at 50 and equal, so no later section changes them, for any S. Standard heat-exchanger analogue (counterflow effectiveness NTU/(1 + NTU) for equal flows, parallel flow at most 1/2): derivation to be re-done by the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.opposite-flows-swap-more.c4",
+      "text": "The halfway rule per section and the equal flows are toy choices: toy model. Stage: \"In each section the two level off halfway.\" Reveal: \"Toy model.\"",
+      "support": "convention",
+      "source": "The lesson's model (brief opposite-flows-swap-more, company/domains/briefs/life.ecology-body.md #4). The brief's optional gill sentence (fish gills use opposite flow) is not on the card: unverified, needs a human source check.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.opposite-flows-swap-more.c5",
+      "text": "Locked-stage setup: water with oxygen level 100 flows past blood starting at 0, through 10 sections; in each section the two level off halfway between them. Question premise: flowing the same way, blood leaves at 50.",
+      "support": "derivation",
+      "source": "Same way at 10 sections gives 50 (claim 1). The levels are unitless model numbers.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Hot water runs through a pipe beside a pipe of cold water, and heat passes between them. Which arrangement leaves the cold water hottest at its outlet?",
+    "options": [
+      "The two flows run in opposite directions",
+      "The two flows run in the same direction",
+      "Direction makes no difference"
+    ],
+    "answer": 0,
+    "why": "With opposite flows, every stretch still has a difference to exchange across, so the swap continues along the whole length. Same-way flows meet in the middle and stop exchanging."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:countercurrent-exchange",
+    "also": [
+      "life:diffusion-distance"
+    ],
+    "prerequisites": [
+      "life:diffusion-distance"
+    ],
+    "level": "core",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "body",
+      "exchange",
+      "gills"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

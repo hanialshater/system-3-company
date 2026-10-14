@@ -62,15 +62,19 @@
       "id": "lifehacks.lh-standby-days-add-up.c5",
       "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
       "support": "source",
-      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
-      "status": "unverified"
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Same as lh-fixed-energy-charge c5: this is the unit definition (kWh = W × h ÷ 1000) and the model's arithmetic. formulaA = 2 × 24 × x ÷ 1000 and formulaB = 2 × x ÷ 1000; own run of resource-model.ts at 365 days gives 17.52 kWh and 0.73 kWh. Price × kWh appears in the assumptions (€0.30/kWh). Verified on the definition; energy.gov.au was not opened and is not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c6",
       "text": "Tariffs and appliance ratings vary: check your own.",
       "support": "source",
-      "source": "Safety-required stage line (company/reviews/lh-standby-days-add-up/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
-      "status": "unverified"
+      "source": "Safety-required stage line (company/reviews/lh-standby-days-add-up/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. Rendered as spec.warning under the assumptions line, exactly as claimed. The source is owed and no page could be opened (DNS, proxy 403). Left unverified: same as lh-fixed-energy-charge c6.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
