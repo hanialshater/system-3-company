@@ -238,7 +238,7 @@ export default function BelowCriticalMass({ slug }: { slug: string }) {
           </p>
           <p>
             On the chart, the dashed line means <strong>same share next round</strong>. Left of the ringed crossing at <strong>{TIP}%</strong> the curve dips below it
-            (shaded “shrinks”): next round has fewer users than this one. Right of it the curve is above the line and the share grows. That crossing is the{" "}
+            (shaded “shrinks”): next round has fewer users than this one. Between it and 80% the curve is above the line and the share grows. Above 80% it dips below again, so the share falls back to 80%. That crossing is the{" "}
             <strong>tipping point</strong>.
           </p>
           <p>
