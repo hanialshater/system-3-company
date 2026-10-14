@@ -78,3 +78,27 @@ Not changed: finding 9 (after a finished run, chips jump to the end at the new t
 - The hook still says "city" (learner finding 10). The hook is the CM's or learning designer's call; suggested: "Nobody wants a majority. What does the grid do?"
 - Design lead: the Run replay is now about 2.4 s, not the spec's ≤ 400 ms, so the learner can watch the cascade. Either make this the ABM format default or reverse it.
 - Fact-checker: c6, c9.
+
+## Revision v3 (2026-10-14, session 2, branch ccr-rnd-ncm worktree): design-review polish
+
+Input: `company/design/reviews/2026-10-14-design-review-network-pair.md` §3, M1-M6. Fact-check Pass NCM-2 had no findings to act on (9/9 verified). `abm.ts` is untouched, so frames and every simulated number are unchanged; no number needed a re-run.
+
+| Finding | Change |
+|---|---|
+| M1 (blocker) Run ≤ 400 ms | `play()` now replays at most 8 frames, 45 ms apart (`jump = ceil((last - tt) / 8)`), so it takes ≤ 360 ms. This reverses the v2 slow replay (an unwritten exception). Step is unchanged and still shows every tick with its red rings (frame 03: "54 unsettled by a move" at tick 1). Reduced motion still jumps to the end. Measured in Chromium, from click to the settled label (click latency and 5 ms polling included): 398-436 ms. |
+| M2 cell floor 6 px | The `Fit` floor is now `6 * (SIZE + 1)` = 246 px (41 viewBox units, so 6.0 px cells), not 240 (5.85 px). Measured: 246 px at 390x844 light, 390x667 and 412x839 dark, so all three sit at the floor. **Consequence:** at 390x844 the explore stage now overflows by 13 px (2 px at 412x839), so the platform's stage scroll takes it, as the review asks. In the walkthrough (Pixel 7) all controls are visible. |
+| M3 ring stroke | `.ring` stroke 0.2 → 0.24 of a cell (1.44 px at 6 px). |
+| M4 tint | No change of its own; the group A tint takes the M5 colour. |
+| M5 group A in light mode | `.wrap` sets `--ga`: `var(--domain)` in dark, and `color-mix(in srgb, var(--domain) 45%, #000)` under `prefers-color-scheme: light`. `.a` fill and `.a.hollow` stroke use `--ga`, so the legend glyphs, marks and tint share it. Measured in light: rgb(58, 91, 88), about 6.9:1 on `--bg` #f6f7fb (my arithmetic). Dark: rgb(128, 203, 196), unchanged. A variable, not a second `.a` rule, because a later `.a { fill }` would override `.hollow { fill: none }` at equal specificity. |
+| M6 chip labels | Each chip has `aria-label="Moves if under N% like neighbours"` and keeps `aria-pressed`. The group label is unchanged. |
+| Glyph note (review §3) | The rule line's marks are inline SVG (`const G`, `aria-hidden`), drawn with the grid's own classes. The "□○" in `transcript.md` is the walkthrough tool's text rendering, not a Unicode glyph on the stage. |
+
+**Claims now unverified:** none. No claim text changed (no claim mentions replay speed, cell size or colours).
+
+**Size:** Demo.tsx 15.1 KB source with comments (minified, engine included, about 10.4 KB); CSS 2.7 KB. No new dependencies.
+
+**QA:** the contract passes on phone and desktop (`NEXT_DIST_DIR=.next-mpsd3`, `QA_PORT=3853`, `QA_OUT=test-results-mpsd3`), recorded with `company qa-record`. Walkthrough against my own server on 3853: I looked at the sheet and at frame 03 at full size. Group A is now dark teal and clearly separate from brown B; the red rings read over both groups at 6 px cells. `npm run check` passes and `tsc --noEmit` is clean.
+
+**Open issues**
+- Accessibility reviewer: rule on the 6 px cells now that 390x844 sits at the floor, and on the 13 px stage scroll there. Also check the dark-mode frames (only light was in the sheet; I measured dark by script, not by eye).
+- Design lead: M1 removes the slow replay, so the open question from v2 is closed unless she writes an exception.

@@ -1,13 +1,16 @@
 .wrap { display: flex; flex-direction: column; gap: 2px; flex: 0 1 auto; min-height: 0; }
 .rule { margin: 0; font-size: 0.78rem; line-height: 1.3; color: var(--muted); text-align: center; }
 .seedRow { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.74rem; color: var(--muted); }
-/* Grid: 288 px square on a 390 px phone (7.2 px cells). */
+/* Grid: 246-288 px square (6-7 px cells, viewBox 41 units). */
 .grid { max-width: 100%; max-height: none; margin: 0 auto; flex-shrink: 0; }
 .frame { fill: var(--bg); stroke: var(--line); stroke-width: 0.12; }
-.a { fill: var(--domain); }
+.wrap { --ga: var(--domain); }
+/* Group A in light mode: the pastel domain colour is under 3:1 on --bg, so use the 45% mix with black. */
+@media (prefers-color-scheme: light) { .wrap { --ga: color-mix(in srgb, var(--domain) 45%, #000); } }
+.a { fill: var(--ga); }
 .b { fill: var(--warn); }
 .hollow { fill: none; stroke-width: 0.16; }
-.a.hollow { stroke: var(--domain); }
+.a.hollow { stroke: var(--ga); }
 .b.hollow { stroke: var(--warn); }
 .head { white-space: nowrap; display: flex; justify-content: space-between; align-items: baseline; gap: 6px; font-size: 0.72rem; color: var(--muted); padding-left: 2px; }
 .readout { color: var(--fg); font-size: 0.8rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
@@ -30,7 +33,7 @@
 .tap { min-height: 44px; }
 /* v2: all-neighbours-like tint (blocks), red ring = content household unsettled by a move, legend glyphs. */
 .tint { opacity: 0.3; }
-.ring { fill: none; stroke: var(--bad); stroke-width: 0.2; }
+.ring { fill: none; stroke: var(--bad); stroke-width: 0.24; }
 .glyph { display: inline-block; width: 0.95em; height: 0.95em; vertical-align: -0.12em; overflow: visible; }
 .glyph.wide { width: 1.7em; height: 0.95em; }
 .head b { font-weight: 600; }

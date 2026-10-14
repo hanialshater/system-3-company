@@ -116,8 +116,9 @@ function nudge(ys: number[]) {
   return out;
 }
 
-/** Grid side in px: 288 (7.2 px cells) when the explore stage has room, down to 240 (6 px, the
- * format's floor) on shorter phones so the controls stay on screen without scrolling the stage. */
+/** Grid side in px: 288 (7 px cells) when the explore stage has room, down to 246 (41 viewBox
+ * units, so 6 px cells: the format's floor) on shorter phones; below that the stage scrolls. */
+const FLOOR = 6 * (SIZE + 1);
 function Fit({ phase, children }: { phase: string; children: (r: RefObject<HTMLDivElement | null>, px: number) => ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [px, setPx] = useState(288);
@@ -125,7 +126,7 @@ function Fit({ phase, children }: { phase: string; children: (r: RefObject<HTMLD
     const st = ref.current?.closest('[data-testid="stage"]');
     if (!st || phase !== "explore") return;
     const over = st.scrollHeight - st.clientHeight;
-    if (over > 0 && px > 240) setPx(Math.max(240, px - over));
+    if (over > 0 && px > FLOOR) setPx(Math.max(FLOOR, px - over));
   });
   return <>{children(ref, px)}</>;
 }
@@ -179,15 +180,15 @@ export default function MildPreferences({ slug }: { slug: string }) {
     stop();
     record(cur); // milestones fire on press, from the computed result
     const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    // Slow enough to see the red rings tick by tick: at most 20 frames, 120 ms apart.
-    const jump = Math.max(1, Math.ceil((last - tt) / 20));
+    // Replay within 400 ms (at most 8 frames, 45 ms apart); Step is the tick-by-tick view of the rings.
+    const jump = Math.max(1, Math.ceil((last - tt) / 8));
     if (reduce || last - tt <= 1) return setT(last);
     let k = tt;
     timer.current = setInterval(() => {
       k = Math.min(last, k + jump);
       setT(k);
       if (k >= last) stop();
-    }, 120);
+    }, 45);
   };
   const choose = (p: number) => {
     stop();
@@ -323,6 +324,7 @@ export default function MildPreferences({ slug }: { slug: string }) {
                   className={`${s.tap} ${s.chip} ${p === pct ? "active" : ""}`}
                   disabled={locked || p === pct}
                   aria-pressed={p === pct}
+                  aria-label={`Moves if under ${p}% like neighbours`}
                   onClick={() => choose(p)}
                 >
                   {p}%
