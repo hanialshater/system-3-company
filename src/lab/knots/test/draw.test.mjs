@@ -1,0 +1,48 @@
+// Drawing: one path per edge, inside the view box, the picture shows the right knot (not its mirror),
+// and no two strands cross except at the diagram's crossings.
+import { test } from 'node:test'
+import assert from 'node:assert/strict'
+import * as K from '../index.mjs'
+
+const nums = (d) => d.match(/-?[\d.]+/g).map(Number)
+const bez = (d) => { const v = nums(d), p = [[v[0], v[1]]]; for (let i = 2; i < v.length; i += 2) p.push([v[i], v[i + 1]]); return p }
+const sample = (d) => { const p = bez(d), out = []; for (let s = 0; s + 3 < p.length; s += 3) for (let i = 0; i <= 8; i++) { const t = i / 8, u = 1 - t; out.push([0, 1].map((k) => u * u * u * p[s][k] + 3 * u * u * t * p[s + 1][k] + 3 * u * t * t * p[s + 2][k] + t * t * t * p[s + 3][k])) } return out }
+const hit = (a, b, c, d) => { const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])); return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0 }
+
+function check(pd, name) {
+  const D = K.draw(pd), n = K.crossingCount(pd)
+  assert.equal(D.edges.length, 2 * n, name)
+  for (const e of D.edges) for (const v of nums(e.d)) assert.ok(v >= -1 && v <= D.size + 1, `${name}: ${v} outside`)
+  // Geometric sign at each crossing (SVG y points down) must equal the combinatorial sign.
+  const S = K.signs(pd)
+  for (const c of D.crossings) {
+    const out = D.edges.filter((e) => e.from == c.i), dir = (e) => { const p = bez(e.d); return [p[1][0] - p[0][0], p[1][1] - p[0][1]] }
+    if (out.length != 2 || out.some((e) => e.to == c.i && e.from == c.i)) continue
+    const [a, b] = out.map(dir), [ea] = out, over = K.toGauss(pd) && overOut(pd, c.i, ea.label)
+    const [o, u] = over ? [a, b] : [b, a]
+    assert.equal(-Math.sign(o[0] * u[1] - o[1] * u[0]), S[c.i], `${name}: crossing ${c.i} drawn mirrored`)
+  }
+  // No extra crossings between strands away from the diagram's crossings.
+  const P = D.edges.map((e) => sample(e.d)), far = (p) => D.crossings.every((c) => Math.hypot(p[0] - c.x, p[1] - c.y) > 3)
+  let extra = 0
+  for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) for (let a = 0; a + 1 < P[i].length; a++) for (let b = 0; b + 1 < P[j].length; b++) if (far(P[i][a]) && far(P[j][b]) && hit(P[i][a], P[i][a + 1], P[j][b], P[j][b + 1])) extra++
+  return extra
+}
+// Is the edge with this label the over-strand where it leaves crossing c? (From the PD code: slots 1 and 3 are over.)
+const overOut = (pd, c, label) => pd[c][1] == label || pd[c][3] == label
+
+test('table knots draw cleanly: right handedness, no extra strand crossings', () => {
+  for (const [n, k] of Object.entries(K.KNOTS)) assert.equal(check(k.pd, n), 0, `${n} has extra crossings`)
+})
+
+test('random diagrams draw with the right handedness', () => {
+  for (let s = 1; s <= 10; s++) check(K.randomKnot(s, { strands: 3, length: 9 }).pd, `random ${s}`)
+  for (let s = 1; s <= 5; s++) check(K.scramble(K.KNOTS['3_1'].pd, s, 6), `scrambled ${s}`)
+})
+
+test('a stored layout keeps the picture fixed across a crossing change', () => {
+  const pd = K.KNOTS['5_2'].pd, L = K.layout(pd), a = K.draw(pd, { layout: L }), b = K.draw(K.crossingChange(pd, 2), { layout: L })
+  assert.deepEqual(a.crossings.map((c) => [c.x, c.y]), b.crossings.map((c) => [c.x, c.y]))
+  assert.notDeepEqual(a.edges.map((e) => e.d), b.edges.map((e) => e.d))
+  assert.equal(JSON.parse(JSON.stringify(L)).crossings.length, 5, 'plain data')
+})
