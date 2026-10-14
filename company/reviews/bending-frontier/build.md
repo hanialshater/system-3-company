@@ -25,3 +25,20 @@ builder: demo-builder · 2026-10-13
 4. Reveal values: "reached 10 tons … corn hit 0 … last ton cost 19, from 19 down to 0": milestone last-ton (b); the staircase to 10 stays drawn (full or as a trace) and the 19 field is on the strip. "The first ton cost 1" and "1, 3, 5, … 19": the field numbers and steps on the stage once far = 10 (b). "the field worst for corn grew only 1; the best grew 19": the strip numbers (b).
 5. QA path: slider two ArrowRight (0 → 2) → +1 (3) → −1 (2) → All 10 fields (10: last-ton). At the reveal the stage is at 10 with "−19", corn 0, all ten fields crossed out with their numbers.
 6. Reset: there is no reset control. If the learner steps back after 10, the reveal still says "When you reached 10" and the faint staircase to 10 is still drawn. Reveal on the QA path: "When you reached 10 tons of wheat, corn hit 0, and that last ton cost 19 tons of corn: from 19 down to 0. The first ton cost 1. The drops grew by 2 every step: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19. / Look at the fields under the chart: they are not all alike. The first wheat went on the field worst for corn, which grew only 1; the last took the best corn field, which grew 19. Each drop on the staircase is the corn its field used to grow, and that is why the frontier bends. / A model: the curve is made up to show the shape, not data from a real farm."
+
+## Revision v4 (W-265, phone fit, 2026-10-14)
+
+- Decision `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`: at 390×844 the stage top was cropped by 33 px at the reveal (after the kit's picture shrink, 256 → 102 px). Fix: reveal trim only; the stage is unchanged.
+- Reveal 119 → 88 words (548 → about 418 characters). Cut: "from 19 down to 0" (the corn readout and the 19 field show it), the repeated "The first ton cost 1" (the next paragraph says the worst field grew only 1), the full list of ten drops (now "1, 3, 5, … 19"), "on the staircase", "best corn field" → "best", and "to show the shape" in the model line. No teaching sentence removed; the claim about why the frontier bends is still the second paragraph.
+- Estimated saving: 3 to 4 reveal lines, about 60 to 80 px (estimate at ~21 px and ~48 characters per line; not measured, no build in this session). The 33 px crop should go to 0 with room to spare.
+- Claims c1–c4 reopened (learner sentences reworded); c4 text now "The curve is made up, not data from a real farm." Status published → review so the gate holds them until the fact-checker re-checks.
+
+## Pre-flight v4
+
+1. Title and hook: unchanged ("Does each ton of wheat cost the same?" / "The first ton of wheat costs 1 ton of corn. What does the tenth cost?").
+2. Options: unchanged, "1" / "10" / "19".
+3. Locked stage: unchanged (axes, ten plain tiles "the 10 fields", readouts "?", slider at 0; no curve, staircase or numbers).
+4. Reveal values: "At 10 tons … corn hit 0 … the last ton cost 19": milestone last-ton (b). "1, 3, 5, … 19": stepCost() of the steps the stage has drawn once far = 10 (b). "worst field grew only 1; the best grew 19": the strip numbers (b).
+5. QA path: unchanged (slider two ArrowRight → +1 → −1 → All 10 fields: last-ton). At the reveal the stage is at 10 with "−19", corn 0, all ten fields crossed out with their numbers.
+6. Reset: no reset control. Reveal on the QA path: "At 10 tons of wheat, corn hit 0, and the last ton cost 19 tons of corn. The drops grew by 2 every step: 1, 3, 5, … 19. / The fields under the chart are not alike: the first wheat went on the field worst for corn, which grew only 1; the last took the best, which grew 19. Each drop is the corn its field used to grow: that is why the frontier bends. / A model: the curve is made up, not data from a real farm."
+7. Phone fit: reveal 88 words. Named by the reveal: the field strip under the chart, the staircase drops. Stage-top crop: not measured (no build or walkthrough allowed this session; W-242 not landed). Estimated 33 px → 0 px. Needs a 390×844 screenshot of the open reveal from the next build.

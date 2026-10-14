@@ -41,3 +41,26 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
 4. Reveal values: open-grid 7 settled / route 6, wall 16 vs 46 / route 10: (b) table cells filled when each run finishes (milestones guided-at-goal, wall-both); guess 6: constant drawn on stage from the first frame; "route took 10": (b) filled("guess", true), set by the wall-both path.
 5. QA path: Settle next, Settle to goal (open guided, 7), Wall (replays guided wall, 16), No guess (replays no-guess wall, 46 -> wall-both), With guess. All three milestones reached, including the question's own case (open grid with guess). Table cells and the line under the table stay on the stage at the reveal.
 6. Reset: no Reset control; switching modes does not clear the table. Reveal on the QA path: "On the open grid, your guided search settled 7 cells (route 6). With the wall, no guess settled 46 cells and the guess 16. Both routes were 10 steps. / The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every direction. Look at the line under the table: at S the guess said 6 steps left, and with the wall the route took 10. The guess can be too low, never too high, so it never makes a shorter route look worse. That is why the guided route matched the flood's length in your table."
+
+## Revision v5 (W-267, compact stage for the phone fit, 2026-10-14)
+
+- Decision `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`: at 390×844 the stage top was cropped by 200 px at the reveal, with the grid already at the kit's 40% floor (252 → 101 px).
+- What must stay, from the cm-cs brief (#18 in `company/domains/briefs/cs.algorithms.md`): the grid, settle next / auto-step, the guess on/off toggle and the wall. All kept, plus the table and the line under the table, which the reveal names.
+- Changes (estimated saving each, not measured):
+  - The five controls in one three-column grid of two rows: Settle next · Settle to goal · Wall / "Rank by" · No guess · With guess (DOM order unchanged). The second flex row used to wrap to two rows, so this goes from three rows to two: about 50 px.
+  - Table cells "46 settled · route 10" → "46 cells · route 10" with a content-width first column, so the cells stay on one line (two of the four used to wrap): about 25 to 30 px.
+  - The tie-break moved from a muted reveal line onto the stage rule line ("Score = steps so far + guess of steps left. Ties: more steps taken first."). The rule line keeps its two-line height; "Guess at S: 6." is no longer repeated there, because the line under the table says it from the first frame.
+  - Stage gaps 8 → 5 px: about 20 px.
+  - Reveal 113 → 89 words: the muted tie line is gone (now on stage), run sentences shortened ("Wall: no guess settled 46 cells, the guess 16; both routes 10 steps."), "in your table" cut. About 80 px.
+- Total estimate: about 165 to 200 px against 200 px. It may leave a small crop. If so, the next lever is reveal content, and that is cm-cs's call. Font sizes and tap targets are unchanged (buttons keep min-height 44 px; side padding 12 → 8 px).
+- Claims reopened: c1 (tie-break now addressed on the rule line; open-grid sentence reworded), c2 and c3 (reveal sentences reworded), c6 (rule line no longer shows "Guess at S"; reveal says "the wall route took 10"). Claim text unchanged. c4 and c5 sentences are verbatim. Status published → review.
+
+## Pre-flight v5
+
+1. Title and hook: unchanged ("A guess that aims the search" / "Add a guess of the steps left. Does the search still flood?").
+2. Options: unchanged, "7" / "25" / "49".
+3. Locked stage: empty 7×7 grid with S and G, rule "Score = steps so far + guess of steps left. Ties: more steps taken first.", table of "?", line "Guess at S: 6. Real route with the wall: ?". Nothing equals 7 or highlights row 3.
+4. Reveal values: unchanged sources. Open grid 7 / route 6, wall 46 vs 16 / route 10: table cells filled when each run finishes (b: guided-at-goal, wall-both). Guess 6: constant on the stage from the first frame. "the wall route took 10": filled("guess", true), set on the wall-both path (b).
+5. QA path: Settle next → Settle to goal (open guided, 7) → Wall (guided wall, 16) → No guess (no-guess wall, 46: wall-both) → With guess. DOM order unchanged by the grid. Table and the line under it stay on stage at the reveal.
+6. Reset: no reset; switching modes does not clear the table. Reveal on the QA path: "Open grid: the guess settled 7 cells (route 6). Wall: no guess settled 46 cells, the guess 16; both routes 10 steps. / The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every direction. Look at the line under the table: at S the guess said 6 steps left; the wall route took 10. The guess can be too low, never too high, so it never makes a shorter route look worse. That is why the guided route matched the flood's length."
+7. Phone fit: reveal 89 words. Named by the reveal: the table, the line under the table. Stage-top crop: not measured (no build allowed this session). Estimated 200 px → about 0 to 35 px left. Needs a 390×844 screenshot of the open reveal, then the design lead's review (W-267).

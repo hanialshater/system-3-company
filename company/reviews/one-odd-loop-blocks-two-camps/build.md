@@ -26,3 +26,21 @@ builder: demo-builder (ncm-m2) · 2026-10-14 · v1 draft · brief: company/domai
 4. Reveal values: "big ring had 2 enemy links", "right loop: 1, left loop: 1": recorded in the layout row when the learner picks each loop (a, from their own picks; milestone odd-loop guarantees at least one odd loop). "came back to A in the other camp": the walk drawn at milestone odd-loop (b). "0 of the 64 splits": recorded at milestone tried-all (b), in the row. "With the enemy on C-D … 2 of 64": only if the learner tried that layout (a, from the row); otherwise the sentence is an invitation in the present tense, not a "you saw".
 5. QA path: Big ring (2, same camp) → Right loop (1, clash: odd-loop) → Left loop (1, clash) → Try all 64 splits (0/64: tried-all) → Enemy on D-E (disabled) → Enemy on C-D (2/64). At the reveal the row reads "enemy on D-E: big ring 2, right loop 1, left loop 1; 0/64 work · enemy on C-D: left loop 0; 2/64 work".
 6. Reset: there is no reset; moving the enemy back does not clear the row. Reveal on the QA path: "Your big ring had 2 enemy links, an even number, but the cross link A-D makes two smaller loops (right loop: 1, left loop: 1) with an odd count. On those walks every red link switched camp, so the walk came back to A in the other camp. That is why 0 of the 64 splits worked. / With the enemy on C-D every loop was even and 2 of 64 worked: one split, with the camp names swapped. A network splits into two camps exactly when every loop has an even number of enemy links."
+
+## Revision v3 (W-265, phone fit, 2026-10-14)
+
+- Decision `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`: at 390×844 the stage top (the ring) was cropped by 45 px at the reveal (picture already shrunk 184 → 74 px).
+- Control rows merged: "Try all 64 splits" now shares a three-column row with "Enemy on D-E" and "Enemy on C-D" (was its own full-width row). DOM order unchanged; buttons keep min-height 44 px (labels may wrap to two lines, about 48 px tall). Removes one 44 px row and one gap: about 45 px.
+- Reveal 95 → 81 words: "an even number" → "even", "with an odd count" → "each odd", "On those walks every red link … the walk came back" → "Every red link switched camp, so those walks came back", "That is why 0 of the 64 splits worked" → ": 0 of 64 splits worked", "one split, with the camp names swapped" → "(one split, names swapped)". About 1 to 2 lines, 20 to 40 px. No teaching sentence removed.
+- Estimated saving: 65 to 85 px against a 45 px crop (estimate, not measured).
+- Claims c1–c4 reopened (their reveal sentences were reworded; claim text unchanged). c5 is verbatim. Status published → review.
+
+## Pre-flight v3
+
+1. Title and hook: unchanged ("Two camps on a ring of six?" / "Two enemy links on a ring of six, plus one cross link. Can two camps form?").
+2. Options: unchanged, "Yes" / "No" / "Can't tell from the loops".
+3. Locked stage: unchanged (ring A–F with cross link A–D, red dashed A–B and D–E, legend, readouts "?"; no loop, tint or clash ring).
+4. Reveal values: unchanged sources. Ring 2, right loop 1, left loop 1: the layout row, from the learner's picks (a; milestone odd-loop guarantees one odd loop). "came back to A in the other camp": the walk drawn at odd-loop (b). "0 of 64": tried-all (b). C-D "2 of 64": only if tried (a), else present tense.
+5. QA path: Big ring → Right loop (odd-loop) → Left loop → Try all 64 splits (tried-all) → Enemy on D-E (disabled) → Enemy on C-D. DOM order unchanged by the row merge. The layout row and both readouts are on stage at the reveal.
+6. Reset: no reset. Reveal on the QA path: "Your big ring had 2 enemy links, even, but the cross link A-D makes two smaller loops (right loop: 1, left loop: 1), each odd. Every red link switched camp, so those walks came back to A in the other camp: 0 of 64 splits worked. / With the enemy on C-D every loop was even and 2 of 64 worked (one split, names swapped). A network splits into two camps exactly when every loop has an even number of enemy links."
+7. Phone fit: reveal 81 words. Named by the reveal: the loops on the ring, the walk back to A, the layout row. Stage-top crop: not measured (no build allowed this session). Estimated 45 px → 0 px. Needs a 390×844 screenshot of the open reveal.

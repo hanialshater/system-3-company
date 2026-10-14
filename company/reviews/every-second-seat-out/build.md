@@ -24,3 +24,27 @@
 4. Reveal values: "19 survived", "41 = 32 + 9", "9 removals left 32", "2 × 9 + 1 = 19": the 41 game, gated by milestones pow-41 and survivor-41 (b), and shown in the readout "→ 19 (32 + 9)". "On your N circle the count started on S at … left", "binary … = S": computed from the learner's current circle n if it is finished, else the 41 game (a). "7 = 4 + 3 gave 7, 10 = 8 + 2 gave 5": only for sizes in the learner's table (a), shown in the readouts.
 5. QA path: Remove next (40 left) → Run to a power of two left (32 left, count on 19: pow-41) → Run to the end (19: survivor-41) → scrubber → 7 people (auto-runs, 7) → 10 people (5) → 41 people (19). Each run is under 400 ms. Both formula lines for the current circle and all three readouts are on stage when the reveal opens.
 6. Reset: there is no reset; switching size reruns the new size to the end when the old one was finished, so the quoted lines always describe a finished circle. Reveal on the QA path: "19 survived. 41 = 32 + 9: 9 removals left 32, and the count started on 2 × 9 + 1 = 19. / On your 41 circle the count started on 19 at 32, 16, 8, 4, 2 left. A power of two halves each lap and comes back to the starter, so the starter survives. In binary, 101001 with its leading 1 moved to the end is 010011 = 19. 7 = 4 + 3 gave 7, 10 = 8 + 2 gave 5: the same rule."
+
+## Revision v3 (W-267, compact stage for the phone fit, 2026-10-14)
+
+- Decision `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`: at 390×844 the stage top was cropped by 275 px at the reveal, with the circle already at the kit's 40% floor (320 → 128 px). The picture cannot shrink further, so the rest of the stage was compacted.
+- What must stay, from the cm-cs brief (#72 in `company/domains/briefs/cs.algorithms.md`): the circle, "remove next" / run, the 7 / 10 / 41 people chips, and the binary payoff (101001 → 010011 = 19). All kept. Also kept: both formula lines, the scrubber with its key-frame ticks, and each circle's result (all quoted by the reveal).
+- Changes (estimated saving each, not measured):
+  - Step buttons in one three-column grid, "Run to a power of two left" relabelled "Run to a power of 2" so it wraps to two lines at most (was a flex row that wrapped to two rows): about 45 px.
+  - Size chips in one three-column grid with each circle's result ("→ 19 (32 + 9)", data-qa="readout") on one line right under its chip. The "People" label and the three Readout boxes are gone (the chips say "7 people" etc.). The old chip row and readout row each wrapped to two rows: about 75 to 125 px.
+  - Scrubber label beside the track (ticks offset to match the track) and tick labels tucked 8 px under the track: about 25 px.
+  - Rule line on one line: "Skip one, remove the next, until one is left." (the question already says "then round again"): 0 to 18 px.
+  - Stage gaps 6 → 4 px: about 15 px.
+  - Reveal 88 → 81 words: the first two sentences merged ("after 9 removals the count started on 2 × 9 + 1 = 19 and stayed on 19 at 32, 16, 8, 4, 2 left"). About 20 px.
+- Total estimate: about 180 to 250 px against 275 px. It may not reach 0. If the screenshot still shows a crop, the next lever is cutting reveal content, and which teaching sentence goes is cm-cs's call (demo-standard), not mine. Font sizes and tap targets are unchanged (buttons keep min-height 44 px; only their side padding went 12 → 8 px).
+- Claims reopened: c2 (button label in its stage address), c3 (reveal sentence; text updated), c4 (reveal sentence), c5 (stage address now the result line under the chips; text updated). c1 unchanged. Status published → review.
+
+## Pre-flight v3
+
+1. Title and hook: unchanged ("Every second seat out" / "41 in a circle, every second one out. Who is left?").
+2. Options: unchanged, "1" / "19" / "41".
+3. Locked stage: the full circle of 41, "Left: 41", "next skip: 1", rule line, buttons, results "→ ?" under each chip. Formula lines empty. Nothing highlights 19.
+4. Reveal values: "19 survived", "41 = 32 + 9", "after 9 removals … 2 × 9 + 1 = 19": the 41 game, gated by pow-41 and survivor-41 (b), shown in the formula line and the result "→ 19 (32 + 9)". "stayed on 19 at 32, 16, 8, 4, 2 left" and the binary: the learner's current circle if finished, else the 41 game (a); shown in the second formula line. "7 = 4 + 3 gave 7, 10 = 8 + 2 gave 5": only sizes the learner finished (a), shown under the chips.
+5. QA path: Remove next → Run to a power of 2 (pow-41) → Run to the end (survivor-41) → scrubber → 7 people → 10 people → 41 people. DOM order unchanged. Both formula lines and all three results are on stage when the reveal opens.
+6. Reset: no reset; switching size re-runs a finished circle. Reveal on the QA path: "19 survived. 41 = 32 + 9: after 9 removals the count started on 2 × 9 + 1 = 19 and stayed on 19 at 32, 16, 8, 4, 2 left. / A power of two halves each lap and comes back to the starter, so the starter survives. In binary, 101001 with its leading 1 moved to the end is 010011 = 19. 7 = 4 + 3 gave 7, 10 = 8 + 2 gave 5: the same rule."
+7. Phone fit: reveal 81 words. Named by the reveal: the circle, the formula lines, the results under the chips. Stage-top crop: not measured (no build allowed this session). Estimated 275 px → about 25 to 95 px left. Needs a 390×844 screenshot of the open reveal, then the design lead's review (W-267).
