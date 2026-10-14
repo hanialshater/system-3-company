@@ -106,7 +106,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
             On {CHIP[0]}, scanning took {d0.scanTotal} comparisons and the stack {d0.stackTotal}: each later number met one
             bigger top (a hollow tick) and was pushed.
             {table[1]
-              ? ` On ${CHIP[1]}, look at the 9's row: ${d1.pops} solid ticks marked "${d1.pops} pops", one for each waiting number${
+              ? ` On ${CHIP[1]}, the 9's row showed ${d1.pops} solid ticks marked "${d1.pops} pops", one for each waiting number${
                   sawEmpty ? ", while the stack emptied box by box down to the 9" : ""
                 }. That run cost ${d1.stackTotal} in all, still against ${d1.scanTotal}.`
               : ""}
