@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-fixed-energy-charge.c1",
       "text": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c2",
       "text": "The stage's two results are computed by the printed expressions. At Usage=40kWh, A=€18 and B=€12. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c3",
       "text": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c4",
       "text": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Change only Usage to 70kWh. What is B (No-fee) now? Correct: €21. Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12; recall at x=70: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c5",

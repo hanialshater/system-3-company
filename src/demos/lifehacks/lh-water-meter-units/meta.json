@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-water-meter-units.c1",
       "text": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits. Scaled model; unit model; 1000L=1m³; B deliberately wrong.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-water-meter-units.c2",
       "text": "The stage's two results are computed by the printed expressions. At Litres=1500L, A=1.5m³ and B=1,500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-water-meter-units.c3",
       "text": "Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-water-meter-units.c4",
       "text": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits. Change only Litres to 1800L. What is B (Same-digits) now? Correct: 1,800m³. Use B's stated rule with Litres=1800L: it gives 1,800m³. Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

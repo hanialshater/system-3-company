@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-voucher-minimum.c1",
       "text": "A fictional voucher subtracts €5 only when the basket is at least €30. Scaled model; fictional rule; €30 qualifying minimum.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-voucher-minimum.c2",
       "text": "The stage's two results are computed by the printed expressions. At Basket=28€, A=€28 and B=€28. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-voucher-minimum.c3",
       "text": "The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-voucher-minimum.c4",
       "text": "A fictional voucher subtracts €5 only when the basket is at least €30. Change only Basket to 31€. What is B (Voucher) now? Correct: €26. Use B's stated rule with Basket=31€: it gives €26. The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28; recall at x=31: B=26. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

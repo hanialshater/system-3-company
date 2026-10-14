@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-fixed-coupon-percent.c1",
       "text": "A fictional basket can receive either 20% off or €5 off, with no exclusions. Scaled model; fictional offers; one coupon only.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-coupon-percent.c2",
       "text": "The stage's two results are computed by the printed expressions. At Basket=20€, A=€16 and B=€15. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-coupon-percent.c3",
       "text": "The percentage scales with the basket; the fixed deduction does not. Their deductions match at €25 because 20% of €25 is €5. The lower result depends on the basket size.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-coupon-percent.c4",
       "text": "A fictional basket can receive either 20% off or €5 off, with no exclusions. Change only Basket to 23€. What is B (€5-off) now? Correct: €18. Use B's stated rule with Basket=23€: it gives €18. The percentage scales with the basket; the fixed deduction does not. Their deductions match at €25 because 20% of €25 is €5. The lower result depends on the basket size.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15; recall at x=23: B=18. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

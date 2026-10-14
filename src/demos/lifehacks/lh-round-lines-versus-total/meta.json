@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-round-lines-versus-total.c1",
       "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Scaled model; toy rule: nearest cent, half upward; no billing-law claim.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-round-lines-versus-total.c2",
       "text": "The stage's two results are computed by the printed expressions. At Lines=3, A=€1.02 and B=€1.01. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-round-lines-versus-total.c3",
       "text": "Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-round-lines-versus-total.c4",
       "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now? Correct: €2.01. Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

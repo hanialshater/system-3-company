@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-big-pack-price.c1",
       "text": "A costs €3 for 500g. B costs €6 for 900g. Scaled model; prices fictional; same product.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c2",
       "text": "The stage's two results are computed by the printed expressions. At Large-price=6€, A=6€/kg and B=6.667€/kg. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c3",
       "text": "Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c4",
       "text": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now? Correct: 8.333€/kg. Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c5",

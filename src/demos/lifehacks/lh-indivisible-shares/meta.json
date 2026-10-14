@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-indivisible-shares.c1",
       "text": "Three recipients each receive the same whole-number count. Remainders are kept aside. Scaled model; whole objects; three equal shares.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-indivisible-shares.c2",
       "text": "The stage's two results are computed by the printed expressions. At Objects=10, A=9items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-indivisible-shares.c3",
       "text": "Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-indivisible-shares.c4",
       "text": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now? Correct: 13items. Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

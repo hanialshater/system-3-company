@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-pay-for-used-quantity.c1",
       "text": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Scaled model; unused pieces valued zero; fictional prices.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c2",
       "text": "The stage's two results are computed by the printed expressions. At Used=5, A=0.5€/used and B=0.8€/used. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c3",
       "text": "Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c4",
       "text": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now? Correct: 0.5€/used. Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

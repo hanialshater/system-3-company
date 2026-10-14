@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-turn-container-volume.c1",
       "text": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Scaled model; ideal inner dimensions; 1000cm³/L.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-turn-container-volume.c2",
       "text": "The stage's two results are computed by the printed expressions. At Third-side=15cm, A=3L and B=3L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-turn-container-volume.c3",
       "text": "The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-turn-container-volume.c4",
       "text": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now? Correct: 3.6L. Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

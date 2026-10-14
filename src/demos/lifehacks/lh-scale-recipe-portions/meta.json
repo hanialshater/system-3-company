@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-scale-recipe-portions.c1",
       "text": "The quantity-only recipe uses 300g for four equal portions. Scaled model; quantities only; no cooking guidance.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c2",
       "text": "The stage's two results are computed by the printed expressions. At Portions=6, A=450g and B=300g. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c3",
       "text": "The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c4",
       "text": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions? Correct: 750g. 300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor.",
       "support": "derivation",
-      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison.",
-      "status": "unverified"
+      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c5",

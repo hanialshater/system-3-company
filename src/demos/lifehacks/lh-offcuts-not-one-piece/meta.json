@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-offcuts-not-one-piece.c1",
       "text": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Scaled model; no joining; cut loss=0; lengths only.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-offcuts-not-one-piece.c2",
       "text": "The stage's two results are computed by the printed expressions. At Piece-size=60cm, A=60cm and B=120cm. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-offcuts-not-one-piece.c3",
       "text": "Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-offcuts-not-one-piece.c4",
       "text": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Change only Piece-size to 75cm. What is B (Pooled-length) now? Correct: 75cm. Use B's stated rule with Piece-size=75cm: it gives 75cm. Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

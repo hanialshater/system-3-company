@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-duty-cycle-energy.c1",
       "text": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Scaled model; illustrative:100W-on;0W-off;25%-or-100%;€0.30/kWh.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c2",
       "text": "The stage's two results are computed by the printed expressions. At Hours=8h, A=0.2kWh and B=0.8kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c3",
       "text": "Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c4",
       "text": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Change only Hours to 11h. What is B (Always-on) now? Correct: 1.1kWh. Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c5",

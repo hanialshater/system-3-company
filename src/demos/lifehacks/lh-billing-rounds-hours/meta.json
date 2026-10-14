@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-billing-rounds-hours.c1",
       "text": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period. Scaled model; fictional rules; each begun unit billed.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-billing-rounds-hours.c2",
       "text": "The stage's two results are computed by the printed expressions. At Duration=3.5h, A=€16 and B=€20. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-billing-rounds-hours.c3",
       "text": "The billing unit can differ from measured duration. A rounds each begun hour upward; B rounds each begun day upward. Apply the declared rounding rule before multiplying by its price.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-billing-rounds-hours.c4",
       "text": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period. Change only Duration to 5.0h. What is B (Daily) now? Correct: €20. Use B's stated rule with Duration=5.0h: it gives €20. The billing unit can differ from measured duration. A rounds each begun hour upward; B rounds each begun day upward. Apply the declared rounding rule before multiplying by its price.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",4,[\"ceil\",\"x\"]]; B=[\"*\",20,[\"ceil\",[\"/\",\"x\",24]]]; x denotes Duration. At x=3.5, A=16, B=20; recall at x=5.0: B=20. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

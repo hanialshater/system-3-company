@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-standby-days-add-up.c1",
       "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; illustrative:2W;24h/day-or-1h/day;€0.30/kWh.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c2",
       "text": "The stage's two results are computed by the printed expressions. At Days=365, A=17.52kWh and B=0.73kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c3",
       "text": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c4",
       "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now? Correct: 0.736kWh. Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c5",

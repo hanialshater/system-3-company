@@ -25,43 +25,55 @@
       "id": "lifehacks.alphabet-sort-search.c1",
       "text": "A sorted comparison can rule out all labels earlier than the middle when the middle label is less than the target. Unsorted positions do not supply this guarantee.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studySearch.ts: sorted distinct A–J keys; value<target implies all keys at positions≤mid are also<target.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/studySearch.ts: sorted distinct A–J keys; value<target implies all keys at positions≤mid are also<target. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c2",
       "text": "The exercise deliberately puts the largest label last in a shuffled scan list. The scan inspects every label and finds that target on check N. This chosen hard case is not typical search data.",
       "support": "convention",
-      "source": "shuffledLabels in src/lib/lifehacks/studySearch.ts; reverse the first N−1 distinct letters and leave the largest last. Count is 4..10.",
-      "status": "unverified"
+      "source": "shuffledLabels in src/lib/lifehacks/studySearch.ts; reverse the first N−1 distinct letters and leave the largest last. Count is 4..10. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c3",
       "text": "Each sorted-search step compares one midpoint label with the target and shows the remaining inclusive interval. The trace and two counts are actual performed operations.",
       "support": "derivation",
-      "source": "compareLabel in src/lib/lifehacks/studySearch.ts and SearchStage in AlphabetSearchLesson.tsx; midpoint=floor((lo+hi)/2), retained bounds follow the three-way comparison. Scan counts one checked label per item.",
-      "status": "unverified"
+      "source": "compareLabel in src/lib/lifehacks/studySearch.ts and SearchStage in AlphabetSearchLesson.tsx; midpoint=floor((lo+hi)/2), retained bounds follow the three-way comparison. Scan counts one checked label per item. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c4",
       "text": "For the disclosed count-10 path, the scan checks 10 labels; the sorted search compares E,J then H,J then I,J then J,J, using 4 checks. Discarded labels fade and are crossed out.",
       "support": "derivation",
-      "source": "Manually reasoned A..J search: lo0,hi9→mid4E→lo5→mid7H→lo8→mid8I→lo9→mid9J.",
-      "status": "unverified"
+      "source": "Manually reasoned A..J search: lo0,hi9→mid4E→lo5→mid7H→lo8→mid8I→lo9→mid9J. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c5",
       "text": "Only comparisons are counted. Sorting has setup work; this exercise does not measure total organisation time or typical search time.",
       "support": "convention",
-      "source": "Stated scope of the local fixture. No empirical efficiency guarantee.",
-      "status": "unverified"
+      "source": "Stated scope of the local fixture. No empirical efficiency guarantee. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.alphabet-sort-search.c6",
       "text": "The recall requires alphabetical sorting before a midpoint comparison can discard earlier labels.",
       "support": "derivation",
-      "source": "The earlier-position implication requires sortedness; shuffled A..J does not satisfy it.",
-      "status": "unverified"
+      "source": "The earlier-position implication requires sortedness; shuffled A..J does not satisfy it. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-subtract-openings-area.c1",
       "text": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering. Scaled model; ideal dimensions; fixed 2m² opening.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-subtract-openings-area.c2",
       "text": "The stage's two results are computed by the printed expressions. At Width=4m, A=10m² and B=12m². Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-subtract-openings-area.c3",
       "text": "Multiply width by height for the outline, then subtract the opening’s area once. The outline is a boundary enclosing both material and empty space; it is not automatically the area needing coverage.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-subtract-openings-area.c4",
       "text": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering. Change only Width to 7m. What is B (Outline) now? Correct: 21m². Use B's stated rule with Width=7m: it gives 21m². Multiply width by height for the outline, then subtract the opening’s area once. The outline is a boundary enclosing both material and empty space; it is not automatically the area needing coverage.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",[\"*\",\"x\",3],2]; B=[\"*\",\"x\",3]; x denotes Width. At x=4, A=10, B=12; recall at x=7: B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

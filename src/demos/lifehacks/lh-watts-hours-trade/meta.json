@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-watts-hours-trade.c1",
       "text": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. Scaled model; illustrative:100W×h;20W×5h;tariff=€0.30/kWh.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c2",
       "text": "The stage's two results are computed by the printed expressions. At A-hours=1h, A=0.1kWh and B=0.1kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c3",
       "text": "Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c4",
       "text": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. Change only A-hours to 4h. What is B (20W) now? Correct: 0.4kWh. Use B's stated rule with A-hours=4h: it gives 0.4kWh. Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1; recall at x=4: B=0.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c5",

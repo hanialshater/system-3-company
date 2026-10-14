@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-deposit-checkout-net.c1",
       "text": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. Scaled model; fictional deposit; full return assumed.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c2",
       "text": "The stage's two results are computed by the printed expressions. At Containers=4, A=€9.6 and B=€10.6. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c3",
       "text": "The checkout includes a deposit for each container. The after-return amount subtracts those same deposits. These are different moments in the arithmetic; the scenario does not describe any region’s actual deposit law.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c4",
       "text": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. Change only Containers to 7. What is B (Checkout) now? Correct: €18.55. Use B's stated rule with Containers=7: it gives €18.55. The checkout includes a deposit for each container. The after-return amount subtracts those same deposits. These are different moments in the arithmetic; the scenario does not describe any region’s actual deposit law.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6; recall at x=7: B=18.55. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

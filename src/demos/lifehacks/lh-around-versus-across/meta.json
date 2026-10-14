@@ -26,29 +26,37 @@
       "id": "lifehacks.lh-around-versus-across.c1",
       "text": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal. Scaled model; ideal rectangle; length only.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-around-versus-across.c2",
       "text": "The stage's two results are computed by the printed expressions. At Width=4m, A=14m and B=5m. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-around-versus-across.c3",
       "text": "Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-around-versus-across.c4",
       "text": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal. Change only Width to 7m. What is B (Diagonal) now? Correct: 7.616m. Use B's stated rule with Width=7m: it gives 7.616m. Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5; recall at x=7: B=7.61577310586. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
