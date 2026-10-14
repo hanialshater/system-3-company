@@ -1,7 +1,7 @@
 {
   "slug": "cluster-stops-the-cascade",
-  "title": "Where a spreading idea stops",
-  "hook": "A new idea spreads friend to friend, then stalls. Too few fans, or something else?",
+  "title": "Why a spreading idea stops",
+  "hook": "Two people adopt an idea. It spreads friend to friend, then stops short. What fixes that?",
   "domain": "math",
   "concept": "threshold-cascade",
   "status": "review",
@@ -53,30 +53,24 @@
     },
     {
       "id": "math.cluster-stops-the-cascade.c4",
-      "text": "Person 8 had only 1 of 4 friends adopted (at the end of the run from 0 and 1; 9, 10 and 11 had 0 of 3).",
+      "text": "At the end of the run from 0 and 1, person 8 had 1 of 4 friends adopted and 9, 10, 11 had 0 of 3. The stage shows this on a tapped person as 'n of d friends adopted' (pill n/d); the reveal quotes it only for the group member the learner focused on that final.",
       "support": "derivation",
-      "source": "Neighbours of 8 are 7, 9, 10, 11; at the 0,1 final only 7 has adopted (c2). 9, 10, 11 each have neighbours only inside the group. Node 2026-10-14: pills 8 1/4, 9 0/3, 10 0/3, 11 0/3. Shown on the stage as the pill on a tapped person; quoted in the reveal only if the learner focused 8 on that final.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Neighbours of 8 are 7, 9, 10, 11; at the 0,1 final only 7 has adopted (c2). 9, 10, 11 have neighbours only inside the group. Node 2026-10-14: 8 1/4, 9 0/3, 10 0/3, 11 0/3.",
+      "status": "unverified"
     },
     {
       "id": "math.cluster-stops-the-cascade.c5",
-      "text": "8 has 3 of 4 friends inside it (the group 8, 9, 10, 11), the others 3 of 3, so none can join first. (Fallback reveal line when 8 was not focused: each has most of its friends inside the group.)",
+      "text": "Each of the four has more than half its friends inside the group: 8 has 3 of 4, the others 3 of 3. While none of them has adopted, at most 1 of 4 (or 0 of 3) can have, under half, so none can join first. (Stage line on a tapped holdout at the 0,1 final: 'k of d are inside the group, so at most d-k; needs ceil(d/2)': 8 3 of 4, at most 1, needs 2; 9, 10, 11 3 of 3, at most 0, needs 2.)",
       "support": "derivation",
       "source": "Inside counts from the edge list (node 2026-10-14): 8 3/4, 9 3/3, 10 3/3, 11 3/3 (density 0.75 > 1 - q = 0.5). While no member has adopted, a member's adopted friends are all outside the group: at most 1 of 4 for 8, 0 of 3 for the others, under 1/2, so the rule never admits the first member.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "math.cluster-stops-the-cascade.c6",
-      "text": "Not too few seeds: a tight group. (The same number of seeds that stopped at 8 of 12 reaches all 12 when planted inside the group.)",
+      "text": "Not more seeds: two in a better place. From 0 and 1 two seeds stop at 8 of 12; the same number started at 8 and 9 reach all 12, so 'many more seeds' and 'those four are out of reach' are both false.",
       "support": "derivation",
-      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3.",
+      "status": "unverified"
     },
     {
       "id": "math.cluster-stops-the-cascade.c7",
@@ -111,10 +105,10 @@
     "question": "Under the rule \"join once at least half your friends have\", a spreading idea stalls at the edge of a group where everyone has more than half their friends inside the group. What happens if you wait more rounds?",
     "options": [
       "More of them join, slowly",
-      "None of them ever joins",
-      "They all join at once"
+      "They all join at once",
+      "None of them ever joins"
     ],
-    "answer": 1,
+    "answer": 2,
     "why": "To join, a member needs at least half their friends adopted. More than half are inside the group, where nobody has adopted, so nobody can be the first. The run is already final."
   },
   "evidence": {
@@ -125,7 +119,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:threshold-cascade",
     "prerequisites": [
