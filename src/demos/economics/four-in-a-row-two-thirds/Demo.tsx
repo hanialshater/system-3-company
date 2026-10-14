@@ -6,6 +6,10 @@
 // B's fallback is what C would leave B (1 − C's share), and vice versa.
 // Round 0: no fallbacks yet, so each pair halves $1. Then 0.75, 0.625, 0.6875 … → 2/3.
 // Key state: settled (B within $0.0005 of 2/3, so the 3-decimal readout shows $0.667 / $0.333; round 9). Model, not a forecast of any real bargain.
+// v3 (wave E r6): no target line on the strip (ticks 0.50 / 0.75 / 1.00 only); every round's B share
+// is printed in a trace row that Reset does not clear, and the reveal quotes that row; the chip shows
+// where B's fallback comes from (1 − C's share last round), so the swing is visible; options carry
+// the same precision.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -57,7 +61,7 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "A–B–C–D in a line; pairs A–B and C–D each split $1. Each pair splits fairly given outside options. What does B get?",
-        options: ["$0.50", "About $0.67", "Nearly $1"],
+        options: ["About $0.50", "About $0.67", "About $0.90"],
         answer: 1,
       }}
       exploreHint="Step round by round, then run until the split stops moving."
@@ -65,12 +69,13 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You saw B&apos;s share swing: {usd(ROUNDS[1].inner)}, then {usd(ROUNDS[2].inner)}, then {usd(ROUNDS[3].inner)}, closing in until it
-            settled at <strong>$0.667</strong> (two thirds) by round {SETTLED_AT}. A kept $0.333.
+            The trace rows show B&apos;s share swing: {ROUNDS.slice(1, 4).map((r) => usd(r.inner)).join(", then ")}, closing in until it
+            settled at <strong>{usd(ROUNDS[SETTLED_AT].inner)}</strong> (two thirds) by round {SETTLED_AT}. A kept {usd(1 - ROUNDS[SETTLED_AT].inner)}.
           </p>
           <p>
-            B&apos;s fallback is a deal with C, worth whatever C would leave B. But C&apos;s fallback is B, so C is never desperate. Each inner
-            person&apos;s outside option feeds the other&apos;s, and the split stops where B&apos;s share = 1 − half of C&apos;s: two thirds.
+            B&apos;s fallback is $1 minus C&apos;s share the round before, and C&apos;s share is always B&apos;s. When C got{" "}
+            {usd(ROUNDS[1].inner)} in round 1, B&apos;s fallback fell to {usd(ROUNDS[2].fallback)} in round 2. C&apos;s fallback is B, so C is never desperate either. Each inner person&apos;s outside option
+            feeds the other&apos;s, and the swings shrink to the split where B&apos;s share = 1 − half of C&apos;s: two thirds.
           </p>
           <p>
             In a line of three, the centre&apos;s partners have no other deal, so the centre can take nearly all. Power depends on the whole
@@ -97,7 +102,11 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
             const stripY = (v: number) => STRIP_Y + STRIP_H - ((v - 0.5) / 0.5) * STRIP_H;
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: each pair covers both fallbacks, then halves the rest</p>
+                <p className={s.chip}>
+                  {locked || round === 0
+                    ? "Each pair covers both fallbacks, then halves the rest"
+                    : `B's fallback = $1 − C's last share ${usd(ROUNDS[round - 1].inner)} = ${usd(fallback)}`}
+                </p>
                 <svg viewBox="0 0 320 230" className="stage-svg" role="img" aria-label="Line of four people with split bars and B's share by round">
                   {/* edges */}
                   <line x1={NODE_X[0]} y1={NODE_Y} x2={NODE_X[1]} y2={NODE_Y} className={s.deal} />
@@ -143,17 +152,18 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
                       <text x={cd.x + BAR_W} y={BAR_Y + BAR_H + 13} textAnchor="end" className={s.axis}>
                         D
                       </text>
-                      <text x={160} y={BAR_Y + BAR_H + 13} textAnchor="middle" className={s.small}>
+                      <text x={160} y={BAR_Y + BAR_H + 27} textAnchor="middle" className={s.small}>
                         hatched = fallback
                       </text>
                     </g>
                   )}
 
                   {/* B's share by round */}
-                  <line x1={30} y1={stripY(2 / 3)} x2={300} y2={stripY(2 / 3)} className={s.ghost} />
-                  <text x={302} y={stripY(2 / 3) + 4} className={s.small}>
-                    ⅔
-                  </text>
+                  {[0.5, 0.75, 1].map((v) => (
+                    <text key={v} x={302} y={stripY(v) + 4} className={s.small}>
+                      {v.toFixed(2)}
+                    </text>
+                  ))}
                   <line x1={30} y1={STRIP_Y + STRIP_H} x2={300} y2={STRIP_Y + STRIP_H} stroke="var(--line)" />
                   <text x={30} y={STRIP_Y - 6} className={s.axis}>
                     B&apos;s share by round
@@ -183,6 +193,12 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
                     Reset
                   </Control>
                 </Row>
+                <p className={s.msg}>
+                  {maxSeen > 0 ? `B gets: ${ROUNDS.slice(0, maxSeen + 1).map((r) => r.inner.toFixed(3).slice(1)).join(" ")}` : ""}
+                </p>
+                <p className={s.msg}>
+                  {maxSeen > 0 ? `B's fallback: ${ROUNDS.slice(0, maxSeen + 1).map((r) => r.fallback.toFixed(3).slice(1)).join(" ")}` : ""}
+                </p>
                 <Row>
                   <Readout label="Round" value={locked ? "?" : round} />
                   <Readout label="B's fallback" value={locked ? "?" : usd(fallback)} />

@@ -7,6 +7,9 @@
 // Key states: the honest bid $7 (top slot, pays $35, keeps $35) and a shaded bid ($1 to $5: slot 2,
 // pays $5, keeps $30). Model: fixed clicks per slot, the others bid honestly, a bid of $0 means X is
 // out, and ties between bids go to X.
+// v2 (wave E r6): the stage now writes the sums the bracket rests on ("Without X: Y $60 + Z $5 =
+// $65 · With X: Y $30 + Z $0 = $30"), so the harm is a subtraction the learner can do; the bracket
+// caption is kept inside the frame; the chip says Y and Z bid their values.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -42,6 +45,18 @@ function outcome(bidX: number) {
   return { withX, othersWithout, othersWith, slot, pay, keep: gets - pay };
 }
 const usd = (v: number) => `$${v}`;
+/** The two bar totals in words, from the same slot orders the bars draw. */
+function sums(o: ReturnType<typeof outcome>) {
+  const without = order({ Y: VAL.Y, Z: VAL.Z });
+  const part = (ord: Who[], k: Who) => {
+    const i = ord.indexOf(k);
+    return i < 0 ? 0 : VAL[k] * CLICKS[i];
+  };
+  return (
+    `Without X: Y ${usd(part(without, "Y"))} + Z ${usd(part(without, "Z"))} = ${usd(o.othersWithout)} · ` +
+    `With X: Y ${usd(part(o.withX, "Y"))} + Z ${usd(part(o.withX, "Z"))} = ${usd(o.othersWith)}`
+  );
+}
 const slotName = (i: number) => (i < 0 ? "none" : i === 0 ? "top" : "second");
 
 const L = 96;
@@ -97,8 +112,8 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              Without X, Y and Z get {usd(h.othersWithout)}. With X on top, Y drops to the second slot and gets{" "}
-              {usd(h.othersWith)}, and Z gets nothing. The gap you saw, <strong>{usd(h.pay)}</strong>, is X&apos;s price, not the $70
+              The line under the bars: without X, Y and Z get {usd(h.othersWithout)}. With X on top, Y drops to the second slot and
+              gets {usd(h.othersWith)}, and Z gets nothing. The gap you saw, <strong>{usd(h.pay)}</strong>, is X&apos;s price, not the $70
               X&apos;s own bid would charge.
             </p>
             <p>
@@ -123,7 +138,7 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
             const gapX = L + px(o.othersWith);
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: Y bids $6, Z bids $1; ties go to X</p>
+                <p className={s.chip}>Model: Y and Z bid their values, $6 and $1; ties go to X</p>
                 <svg
                   viewBox="0 0 320 220"
                   className="stage-svg"
@@ -139,7 +154,12 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
                     <g>
                       <rect x={gapX} y={top} width={px(o.pay)} height={20} className={s.ghost} />
                       <path d={`M${gapX} ${top + 26} v4 H${L + px(o.othersWithout)} v-4`} className={s.bracket} />
-                      <text x={(gapX + L + px(o.othersWithout)) / 2} y={top + 42} className={s.bracketText} textAnchor="middle">
+                      <text
+                        x={Math.min((gapX + L + px(o.othersWithout)) / 2, 262)}
+                        y={top + 42}
+                        className={s.bracketText}
+                        textAnchor="middle"
+                      >
                         harm = X pays {usd(o.pay)}
                       </text>
                     </g>
@@ -171,6 +191,7 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
                     honest
                   </text>
                 </svg>
+                <p className={s.sums}>{locked ? "" : sums(o)}</p>
                 <Row>
                   <Readout label="X's slot" value={locked ? "?" : slotName(o.slot)} />
                   <Readout label="X pays" value={locked ? "?" : usd(o.pay)} />

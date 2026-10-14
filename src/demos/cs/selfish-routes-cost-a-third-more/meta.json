@@ -1,6 +1,6 @@
 {
   "slug": "selfish-routes-cost-a-third-more",
-  "title": "Every driver chose well. Traffic didn't",
+  "title": "Can a planner beat selfish drivers?",
   "hook": "Every driver picks the faster road. Could a planner still make the average trip shorter?",
   "domain": "cs",
   "concept": "price-of-anarchy",
@@ -33,21 +33,17 @@
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c2",
-      "text": "Sending half the drivers to A cuts B to 30 minutes and the average trip to 45 minutes, the lowest any split reaches; an average of 30 is out of reach because drivers on A still take 60.",
+      "text": "Sending half the drivers to A cuts B to 30 minutes and the average trip to 45 minutes, the lowest any split reaches; an average of 30 is out of reach because drivers on A still take 60. The reveal quotes the lowest average among the splits the learner visited.",
       "support": "derivation",
-      "source": "Average = (1 − x)·60 + x·60x = 60 − 60x + 60x², minimised at x = 1/2 (derivative 120x − 60 = 0), value 45. Builder's node grid search over x = 0, 0.01, …, 1 (scratchpad ncmc/check.mjs), 2026-10-14: minimum 45 at 0.5, ratio 60/45 = 1.333. The stage slider steps by 5% and uses the same formula (Demo.tsx avg). | FACT-CHECK 2026-10-14 (pass 21): Own grid over 0..100%: average 60 - 60x + 60x^2, minimum 45 at x = 50%, B = 30 there; 60/45 = 1.333. Average >= 45 > 30 everywhere.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "avg(x) = (1 - x)·60 + x·60x, derivative 120x - 60 = 0 at x = 0.5, avg = 45; builder grid over 0..100 in steps of 5 (2026-10-14). Avg 30 would need everyone at 30 or below, but A is fixed at 60 and B reaches 30 only at x = 0.5. v3: the 'Half on each' button and the QA path reach 50% (milestone found-best).",
+      "status": "unverified"
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c3",
-      "text": "Each driver who joins B slows everyone already on it, a cost that driver does not bear.",
+      "text": "Of 100 drivers, at 50% on B the next 5 to join B each save 27 minutes (135 in all), while the 50 already on B each lose 3 minutes (150 in all): the joiners feel their gain, and nobody choosing feels the loss.",
       "support": "derivation",
-      "source": "B's delay 60x rises with every driver added, for all drivers on B; the joining driver compares only their own time (60x vs 60). This is the externality that separates equilibrium from optimum; E&K (2010) ch. 8 discusses the gap between equilibrium and social optimum. | FACT-CHECK 2026-10-14 (pass 21): Re-derived: adding a driver raises 60x for all on B; the joiner compares only own time. E&K (2010) ch. 8 (Modeling Network Traffic using Game Theory) placement from memory, confident; not opened.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx joinCost(50): B goes from 30 to 33 min, so each joiner saves 60 - 33 = 27 (x5 = 135); each B driver loses 60·5/100 = 3 (x50 = 150). Check: 100·(avg(55) - avg(50)) = 15 = 150 - 135 (builder's Node run, 2026-10-14). The stage line and the reveal quote the last split visited between 5% and 95%, computed by the same function.",
+      "status": "unverified"
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c4",
@@ -89,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:price-of-anarchy",
     "also": [

@@ -42,12 +42,10 @@
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c3",
-      "text": "B's share swings (0.75, 0.625, 0.688 …) before settling, because each inner person's fallback depends on the other inner person's share.",
+      "text": "B's share swings ($0.750, then $0.625, then $0.688) before settling, because each inner person's fallback depends on the other inner person's share; the stage prints every round's share in a trace row ('B gets: .500 .750 .625 .688 ...').",
       "support": "derivation",
-      "source": "Iteration values from Demo.tsx shares(); the alternation follows from v_B(next) = 1 − v_C/2 with v_B = v_C. | FACT-CHECK 2026-10-14 (pass 22): Reveal prints ROUNDS[1..3] = $0.750, $0.625, $0.688 (0.6875 toFixed(3) = 0.688, checked). Alternation follows from error e_r = -e_{r-1}/2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx shares(): rounds 1-3 give vB = 0.75, 0.625, 0.6875 (usd() renders $0.688). Builder's Node run, 2026-10-14. v3 prints the trace row for every round up to the furthest reached; Reset does not clear it.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c4",
@@ -69,12 +67,17 @@
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c6",
-      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round N. A kept $0.333.' (N = SETTLED_AT, the first round within $0.0005 of 2/3, renders 9; the stage readout there shows B $0.667 and A $0.333.)",
+      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round 9. A kept $0.333.'",
       "support": "derivation",
-      "source": "Unrecorded claim found by fact-checker 2026-10-14 (pass 22). SETTLED_AT = first round within TOL = $0.001 of 2/3 = round 8 (B 0.66602), not 9 as the Demo comment says. At round 8 (where 'Run until settled' stops) the stage readout shows 'B gets $0.666' and A '$0.334', while the reveal says settled at $0.667 by round 8 and A kept $0.333. DISPUTED: the reveal contradicts what the learner just saw. Fix (builder): TOL = 0.0005 gives round 9 (B $0.667, A $0.333 on the readout), or reword to 'came within $0.001 of $0.667 by round 8'. | Builder fix (demo-builder, 2026-10-14): W-214: TOL = 0.0005 in Demo.tsx, so SETTLED_AT = 9 (B 0.66699 -> '$0.667', A '$0.333'; rounds 10-14 stay within 0.0005, node). 'Run until settled' now stops at round 9, matching the reveal. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo.tsx v2: the reveal prints 'settled at $0.667 (two thirds) by round 9. A kept $0.333.' 'Run until settled' calls go(max(round, 9)), and 'settled' needs round >= 9, so the learner has seen round 9 or later. Every round from 9 to 14 reads B $0.667, A $0.333 (own node), so the reveal matches the stage on every path.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "SETTLED_AT = the first round within $0.0005 of 2/3 = 9 (round 8 is 0.66602, which renders $0.666). The reveal renders usd(ROUNDS[9].inner) = $0.667 and usd(1 - ROUNDS[9].inner) = $0.333, the same values and rounding as the stage readout at round 9 and the trace row's .667. Builder's Node run, 2026-10-14.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c7",
+      "text": "B's fallback is $1 minus C's share the round before, and C's share is always B's: when C got $0.750 in round 1, B's fallback fell to $0.250 in round 2.",
+      "support": "simulation",
+      "source": "Demo.tsx shares(): oB = 1 - vC (previous round); the line is symmetric (A-B and C-D both worth $1, A and D have no fallback), so vB = vC every round. Round 1 vC = 0.75, round 2 oB = 0.25. The stage chip prints 'B's fallback = $1 − C's last share ...' each round and the trace row 'B's fallback: .000 .500 .250 ...'. Builder's Node run, 2026-10-14. Model rule, not a forecast (c5).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -98,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:balanced-outcomes",
     "also": [],
