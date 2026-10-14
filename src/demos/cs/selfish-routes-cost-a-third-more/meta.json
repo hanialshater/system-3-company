@@ -1,0 +1,90 @@
+{
+  "slug": "selfish-routes-cost-a-third-more",
+  "title": "Every driver chose well. Traffic didn't",
+  "hook": "Every driver picks the faster road. Could a planner still make the average trip shorter?",
+  "domain": "cs",
+  "concept": "price-of-anarchy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "ncm-c"
+  },
+  "learner": {
+    "knows": [
+      "drivers pick the faster road (traffic equilibrium)",
+      "a road gets slower as more drivers use it"
+    ],
+    "doesNotKnow": [
+      "that the selfish equilibrium can be worse on average than a planner's split, by up to 4/3 with roads whose delay grows in proportion to traffic"
+    ]
+  },
+  "misconception": "If every driver picks the fastest route, the average trip is as short as it can be.",
+  "objective": "The learner can explain that with road A at 60 min and road B at 60 min × its share, selfish drivers all take B and average 60 min, while a planner's half-and-half split averages 45 min, because each driver joining B slows everyone already on it; the ratio 4/3 is the worst case for delays proportional to traffic.",
+  "claims": [
+    {
+      "id": "cs.selfish-routes-cost-a-third-more.c1",
+      "text": "With everyone on road B, the trip takes 60 minutes on both roads and no driver gains by switching; at any split with drivers on A, B is faster, so drivers on A want to switch.",
+      "support": "derivation",
+      "source": "Road B delay = 60 × x for share x on B; road A = 60. For x < 1, 60x < 60, so a driver on A gains by moving; at x = 1 both are 60, so no one gains. Builder's node check (scratchpad ncmc/check.mjs), 2026-10-14. Matches brief cs.systems NCM #1 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.selfish-routes-cost-a-third-more.c2",
+      "text": "Sending half the drivers to A cuts B to 30 minutes and the average trip to 45 minutes, the lowest any split reaches; an average of 30 is out of reach because drivers on A still take 60.",
+      "support": "derivation",
+      "source": "Average = (1 − x)·60 + x·60x = 60 − 60x + 60x², minimised at x = 1/2 (derivative 120x − 60 = 0), value 45. Builder's node grid search over x = 0, 0.01, …, 1 (scratchpad ncmc/check.mjs), 2026-10-14: minimum 45 at 0.5, ratio 60/45 = 1.333. The stage slider steps by 5% and uses the same formula (Demo.tsx avg).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.selfish-routes-cost-a-third-more.c3",
+      "text": "Each driver who joins B slows everyone already on it, a cost that driver does not bear.",
+      "support": "derivation",
+      "source": "B's delay 60x rises with every driver added, for all drivers on B; the joining driver compares only their own time (60x vs 60). This is the externality that separates equilibrium from optimum; E&K (2010) ch. 8 discusses the gap between equilibrium and social optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.selfish-routes-cost-a-third-more.c4",
+      "text": "With delays that grow in proportion to traffic, the selfish equilibrium's total travel time is at most 4/3 of the best possible, and this two-road example reaches that bound.",
+      "support": "source",
+      "source": "Roughgarden T. & Tardos É. (2002), 'How bad is selfish routing?', J. ACM 49(2): price of anarchy 4/3 for linear (affine) latency functions, attained by Pigou's two-link example (Pigou 1920, The Economics of Welfare). Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 8. Attribution for the fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.selfish-routes-cost-a-third-more.c5",
+      "text": "Road A always takes 60 min; road B takes 60 min × its share of drivers.",
+      "support": "convention",
+      "source": "Stage set-up (Demo.tsx A_MIN, timeB), from the brief.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Drivers choose freely between a fixed-time road and a road that gets slower with traffic. Compared with the best possible split, their average trip is…",
+    "options": [
+      "Longer: each driver ignores the delay they add for others",
+      "The same: free choice finds the best split",
+      "Shorter: drivers know their own trips best"
+    ],
+    "answer": 0,
+    "why": "At the selfish equilibrium no single driver can gain by switching, but each one who crowds the variable road slows everyone on it. A planner who holds some drivers back on the fixed road lowers the average; with linear delays the selfish cost is at most 4/3 of the best."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:price-of-anarchy",
+    "also": ["economics:externality"],
+    "prerequisites": ["cs:weighted-shortest-path"],
+    "level": "core",
+    "strand": "systems",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 8 }],
+    "tags": ["traffic", "equilibrium", "price of anarchy"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "slider-drives-live-chart", "preset-buttons", "milestone-gate"]
+}
