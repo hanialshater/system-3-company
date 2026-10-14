@@ -123,7 +123,7 @@ export default function SmallGapBigExtremes({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            At the averages the two batches overlap almost completely: B is only 5 cm taller. But above 130 cm, B made up{" "}
+            The two curves mostly overlap, sharing about 80% of their area: B is only 5 cm taller. But above 130 cm, B made up{" "}
             {pct(shareB(130))} of the plants, about {r1(ratio(130))} to 1.
           </p>
           <p>

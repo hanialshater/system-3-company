@@ -70,10 +70,8 @@
       "id": "probability.twenty-flips-run-of-five.c5",
       "text": "When the learner has tapped all 20 flips, the reveal gives their longest run k and the share of their real sequences with a longest run of k or less (computed from the tally, model.ts atMost).",
       "support": "simulation",
-      "source": "Demo.tsx reveal; model.ts atMost(t, k) = t.n - atLeast(t, k+1). Node: seeds 1..1,001 give 14 / 233 / 525 / 743 with longest run <= 2 / 3 / 4 / 5. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Wrong number on a reachable path. The tally bins longest runs as ≤2, 3, …, 7, 8+, so atMost(t, k) cannot count 'k or less' for k ≥ 8: atLeast(t, k+1) is 0 for k ≥ 8, and atMost returns t.n, which counts the 9+ runs in the 8+ bin as 'that short'. Own run at n = 1,001 (QA path): learner taps with a longest run of 8 → reveal says '100.0% of real sequences stayed that short'; the true share of seeds 1..1,001 is 97.5% (exact 97.46%). Run 9 → shown 100.0%, true 99.0%; 12 → 100.0% vs 99.9%. k ≤ 7 is exact (k = 7: 94.6% both). Taps of 8+ in a row are reachable with the H/T buttons. Fix (builder): keep each longest run (or bins up to 20) so atMost is exact for every k, or word the k ≥ 8 case as '8 or more'. Blocks publishing.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx reveal; model.ts atMost(t, k) = t.n - atLeast(t, k+1). Node: seeds 1..1,001 give 14 / 233 / 525 / 743 with longest run <= 2 / 3 / 4 / 5. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Wrong number on a reachable path. The tally bins longest runs as ≤2, 3, …, 7, 8+, so atMost(t, k) cannot count 'k or less' for k ≥ 8: atLeast(t, k+1) is 0 for k ≥ 8, and atMost returns t.n, which counts the 9+ runs in the 8+ bin as 'that short'. Own run at n = 1,001 (QA path): learner taps with a longest run of 8 → reveal says '100.0% of real sequences stayed that short'; the true share of seeds 1..1,001 is 97.5% (exact 97.46%). Run 9 → shown 100.0%, true 99.0%; 12 → 100.0% vs 99.9%. k ≤ 7 is exact (k = 7: 94.6% both). Taps of 8+ in a row are reachable with the H/T buttons. Fix (builder): keep each longest run (or bins up to 20) so atMost is exact for every k, or word the k ≥ 8 case as '8 or more'. Blocks publishing. | Builder fix v2 (2026-10-14, W-498): the tally now also keeps an exact count per longest run (model.ts Tally.runs, index 0..20), and atMost sums runs[0..k], so it no longer treats the capped 8+ display bin as 'that short'. Bins and the run-of-5 readout are unchanged. Builder re-ran the patched model.ts in node (strip-types copy) over seeds 1..1,001: k = 7 94.6%, 8 97.5%, 9 99.0%, 12 99.9%, 20 100.0%, matching the FC pass 35 figures. Claim text unchanged. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c6",
@@ -102,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:streaks-in-randomness",
     "also": [

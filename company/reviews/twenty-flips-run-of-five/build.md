@@ -18,3 +18,8 @@ Brief: `company/domains/briefs/probability.chance.md` Round 3 item 1. Status dra
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 twenty-flips-run-of-five` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, 65 words with the verdict (59 reveal; worst case with the 20-taps sentence 76). Stage 359 px (picture 181, controls 70, text 60), reveal 184 px, window 618 px. Screenshot `artifacts/reveal-fit/twenty-flips-run-of-five.png`.
 
 Not run: next build, QA, walkthrough (per task). tsc and check pass.
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-498)
+
+- model.ts: Tally gains `runs` (an exact count per longest run, 0..20), and atMost sums it, so a learner run of 8 or more no longer reads 100%. Display bins are unchanged. A node re-run over seeds 1..1,001 gives k = 8 97.5%, 9 99.0%, 12 99.9%. c5 text is unchanged.
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

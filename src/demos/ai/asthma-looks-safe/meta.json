@@ -1,7 +1,7 @@
 {
   "slug": "asthma-looks-safe",
   "title": "The model's safest patients",
-  "hook": "Records say asthma patients with pneumonia die less. What if a model acts on that?",
+  "hook": "In toy records, asthma patients with pneumonia die less. What if a model acts on that?",
   "domain": "ai",
   "concept": "prediction-not-intervention",
   "format": "before-after",
@@ -39,12 +39,10 @@
     },
     {
       "id": "ai.asthma-looks-safe.c2",
-      "text": "A model fitted to those records ranks asthma as the lowest-risk group ('Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.').",
+      "text": "A model fitted to those records ranks asthma as the lowest-risk group (stage: \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\").",
       "support": "derivation",
-      "source": "The toy model is the group death rate in the old records: 2/50 = 4% < 12/150 = 8%. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Substance right: the stage's view of the old records gives asthma 4% < others 8%, and the reveal says the model 'ranked asthma as the safest group'. DISPUTED on the quote: the claim text quotes 'Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.', which is not on the stage. Demo.tsx v1 prints \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" The ledger, which the learner reads under 'Why trust this?', quotes a sentence that does not exist. Fix (builder): make the quoted string match the stage, or drop the quote.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The toy model is the group death rate in the old records: 2/50 = 4% < 12/150 = 8%. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Substance right: the stage's view of the old records gives asthma 4% < others 8%, and the reveal says the model 'ranked asthma as the safest group'. DISPUTED on the quote: the claim text quotes 'Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.', which is not on the stage. Demo.tsx v1 prints \"Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma.\" The ledger, which the learner reads under 'Why trust this?', quotes a sentence that does not exist. Fix (builder): make the quoted string match the stage, or drop the quote. | Builder fix v2 (2026-10-14, W-512): the quoted stage line now matches what Demo.tsx prints after 'Model’s view' (pc(2,50) = 4%, pc(12,150) = 8%); FC pass 35 found the old quote was not on the stage. Substance unchanged. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.asthma-looks-safe.c3",
@@ -75,9 +73,9 @@
     },
     {
       "id": "ai.asthma-looks-safe.c6",
-      "text": "Hook: 'Records say asthma patients with pneumonia die less.'",
-      "support": "source",
-      "source": "Unrecorded learner sentence recorded by fact-checker pass 35 (2026-10-14): meta.json hook, first sentence, shown on the card before the stage. Recorded, not verified by the recorder; needs an independent check. Read as real-world testimony (it comes before the toy is introduced). This is the known pneumonia-risk finding (Cooper et al. 1997 data; Caruana et al. 2015, KDD), but I could not open either. Builder: either cite an opened source, or mark the hook as the toy ('In these toy records, asthma patients die less').",
+      "text": "Hook: 'In toy records, asthma patients with pneumonia die less.' (the lesson's toy records: 2 of 50 asthma patients against 12 of 150 others, as in c1).",
+      "support": "derivation",
+      "source": "Unrecorded learner sentence recorded by fact-checker pass 35 (2026-10-14): meta.json hook, first sentence, shown on the card before the stage. Recorded, not verified by the recorder; needs an independent check. Read as real-world testimony (it comes before the toy is introduced). This is the known pneumonia-risk finding (Cooper et al. 1997 data; Caruana et al. 2015, KDD), but I could not open either. Builder: either cite an opened source, or mark the hook as the toy ('In these toy records, asthma patients die less'). | Builder fix v2 (2026-10-14, W-512): hook reworded from 'Records say asthma patients with pneumonia die less.', which FC pass 35 found reads as an unsourced real-world claim (the known finding behind it, Cooper et al. 1997 data / Caruana et al. 2015 KDD, could not be opened). The hook now marks the records as the toy, so the sentence rests on the lesson's own model (old rule: asthma 4% vs others 8%, c1). Hook is 86 characters (limit 90). Needs a fresh fact-check.",
       "status": "unverified"
     }
   ],
@@ -100,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:prediction-not-intervention",
     "also": [

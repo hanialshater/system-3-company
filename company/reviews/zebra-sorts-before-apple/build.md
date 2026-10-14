@@ -19,3 +19,8 @@ Builder: wave-i-cs (demo-builder) · 2026-10-14 · from brief cs.md #56 (before 
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 zebra-sorts-before-apple` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0 (named: first, apple, banana, zebra, last, by code, all visible), 74 words with the verdict (69 reveal). Stage 231 px, reveal 205 px, window 618 px. Screenshot `artifacts/reveal-fit/zebra-sorts-before-apple.png`.
 
 Not run: next build, QA, walkthrough (not in this task). tsc and check pass.
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-497)
+
+- c5 reworded in the reveal and the claim: 'Real apps sort with language rules, not raw codes' is now 'To list words for people, a program can sort with language rules instead, which put apple first.' The evidence is node Intl.Collator('en') / localeCompare, which give apple, Banana, Zebra (ICU 77.1).
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

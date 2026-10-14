@@ -34,21 +34,29 @@ export function longestRun(seq: readonly boolean[]): { len: number; start: numbe
 
 export interface Tally {
   n: number;
+  /** Display bins (see BIN_LABELS). */
   bins: number[];
+  /** Exact count by longest run, index 0..FLIPS, so atMost is exact past the 8+ bin. */
+  runs: number[];
 }
-export const EMPTY: Tally = { n: 0, bins: [0, 0, 0, 0, 0, 0, 0] };
+export const EMPTY: Tally = { n: 0, bins: [0, 0, 0, 0, 0, 0, 0], runs: new Array(FLIPS + 1).fill(0) };
 
 /** Add real sequences t.n + 1 .. t.n + count. */
 export function runMore(t: Tally, count: number): Tally {
   const bins = t.bins.slice();
-  for (let k = t.n + 1; k <= t.n + count; k++) bins[binOf(longestRun(sequence(k)).len)]++;
-  return { n: t.n + count, bins };
+  const runs = t.runs.slice();
+  for (let k = t.n + 1; k <= t.n + count; k++) {
+    const len = longestRun(sequence(k)).len;
+    bins[binOf(len)]++;
+    runs[len]++;
+  }
+  return { n: t.n + count, bins, runs };
 }
 
 /** Sequences in the tally with a longest run of at least `k`. */
 export const atLeast = (t: Tally, k: number) => t.bins.reduce((s, c, i) => s + (i + 2 >= k ? c : 0), 0);
-/** Sequences with a longest run of at most `k` (k >= 2). */
-export const atMost = (t: Tally, k: number) => t.n - atLeast(t, k + 1);
+/** Sequences with a longest run of at most `k`, exact for every k (counted from t.runs, not the capped bins). */
+export const atMost = (t: Tally, k: number) => t.runs.reduce((s, c, len) => s + (len <= k ? c : 0), 0);
 
 /** Exact P(longest run of one face >= k) in n fair flips. */
 export function exactAtLeast(k: number, n = FLIPS): number {

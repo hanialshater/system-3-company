@@ -51,7 +51,7 @@ export default function ZebraSortsBeforeApple({ slug }: { slug: string }) {
           </p>
           <p>
             So sorting by code put {ahead.join(" and ")} ahead of apple. With case ignored, {CASE_ORDER[0]} came first. Each
-            small letter is its capital plus {GAP}. Real apps sort with language rules, not raw codes.
+            small letter is its capital plus {GAP}. To list words for people, a program can sort with language rules instead, which put apple first.
           </p>
         </>
       )}

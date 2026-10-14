@@ -62,7 +62,7 @@ export default function TaxNowOrLater({ slug }: { slug: string }) {
             $10,000 to $40,000, then handed a quarter back. Both are $10,000 × 0.75 × 4, multiplied in a different order.
           </p>
           <p>
-            Only a change of rate decides it: at a {rec?.later ?? 35}% later rate, B ended at <strong>{usd(rec?.b ?? 26000)}</strong> against A’s{" "}
+            Only a change of rate decides it: at ×{rec?.g ?? Q_GROWTH} and a {rec?.later ?? 35}% later rate, B ended at <strong>{usd(rec?.b ?? 26000)}</strong> against A’s{" "}
             {usd(rec?.a ?? 30000)}. Not advice about any real account.
           </p>
         </>

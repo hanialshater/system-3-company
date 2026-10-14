@@ -18,3 +18,8 @@ Brief: `company/domains/briefs/probability.data-literacy.md` Round 3 item 4. Sta
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 small-gap-big-extremes` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, 76 words with the verdict (70 reveal; worst case 79). Stage 335 px (picture 184, controls 50, text 60), reveal 211 px, window 618 px. Screenshot `artifacts/reveal-fit/small-gap-big-extremes.png`. Known weakness: the 82% value itself is not printed at the reveal on the QA path, only its "130" tick on the share bar.
 
 Not run: next build, QA, walkthrough (per task). tsc and check pass.
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-501)
+
+- c3 and the reveal: 'The two curves mostly overlap, sharing about 80% of their area: B is only 5 cm taller.' (2Φ(−0.25) = 0.8026).
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

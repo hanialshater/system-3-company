@@ -17,3 +17,8 @@ Brief: `company/domains/briefs/ai.ai-society.md` item 57. Status draft, version 
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 asthma-looks-safe` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; 85 words with the verdict (79 reveal). Stage 335 px (picture 166, controls 70, text 61). The asthma dots, the ward box, both rows and the message are on screen. Smallest rendered svg label 10.35 px; no control under 24 px. Screenshot `artifacts/reveal-fit/asthma-looks-safe.png`.
 
 Not run: next build, QA, walkthrough (per task). registry, tsc and `npm run check` pass (879 lessons, 0 warnings).
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-512)
+
+- c2's quote now matches the stage ("Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma."). The hook is now 'In toy records, asthma patients with pneumonia die less. What if a model acts on that?' (86 characters), and c6 rests on the toy (derivation).
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

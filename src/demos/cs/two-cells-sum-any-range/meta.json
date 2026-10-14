@@ -43,12 +43,10 @@
     },
     {
       "id": "cs.two-cells-sum-any-range.c3",
-      "text": "Building the 8 running totals takes 7 additions, once; after that any range costs two reads and one subtraction, however long.",
+      "text": "Building the 8 running totals takes 7 additions, once; after that any range costs at most two reads and one subtraction, however long (a range starting at day 1 reads one total and subtracts nothing).",
       "support": "derivation",
-      "source": "The first total copies day 1; each of the other 7 is one addition. A range l..r reads P[r] and P[l-1] and subtracts. Edge case: a range starting at day 1 needs only P[r] (1 read, no subtraction); the stage shows 'reads 1' for it. Fact-checker: judge whether 'any range costs one subtraction' needs 'at most'. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. The arithmetic of building holds (7 additions; adds is always N − 1). But 'after that any range costs two reads and one subtraction' is not true of every range, and the stage shows the exception: a range starting at day 1 reads one total and subtracts nothing (readout 'Days 1–6: total 23 · reads 1 · adding: 6 numbers'). The stage opens at from 1, to 6, so this is the first range the learner sees. 8 of the 36 ranges start at day 1. The reveal repeats it: 'Any range costs one subtraction, however long.' Fix (builder; owner decides wording): 'at most two reads and one subtraction' in the claim and reveal, or define the zero total P0 on the stage so day-1 ranges also read two cells. Blocks publishing.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "The first total copies day 1; each of the other 7 is one addition. A range l..r reads P[r] and P[l-1] and subtracts. Edge case: a range starting at day 1 needs only P[r] (1 read, no subtraction); the stage shows 'reads 1' for it. Fact-checker: judge whether 'any range costs one subtraction' needs 'at most'. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. The arithmetic of building holds (7 additions; adds is always N − 1). But 'after that any range costs two reads and one subtraction' is not true of every range, and the stage shows the exception: a range starting at day 1 reads one total and subtracts nothing (readout 'Days 1–6: total 23 · reads 1 · adding: 6 numbers'). The stage opens at from 1, to 6, so this is the first range the learner sees. 8 of the 36 ranges start at day 1. The reveal repeats it: 'Any range costs one subtraction, however long.' Fix (builder; owner decides wording): 'at most two reads and one subtraction' in the claim and reveal, or define the zero total P0 on the stage so day-1 ranges also read two cells. Blocks publishing. | Builder fix v2 (2026-10-14, W-499): 'at most' added to claim and reveal ('Any range costs at most one subtraction, however long.') after FC pass 35 found day-1 ranges read 1 total and subtract nothing (stage readout 'Days 1–6: total 23 · reads 1'; 8 of 36 ranges). Stage unchanged. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.two-cells-sum-any-range.c4",
@@ -79,7 +77,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:prefix-sums",
     "also": [],

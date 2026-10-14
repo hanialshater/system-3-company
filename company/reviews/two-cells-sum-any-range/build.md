@@ -18,3 +18,8 @@ Builder: wave-i-cs (demo-builder) · 2026-10-14 · from brief cs.algorithms.md #
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530 two-cells-sum-any-range` (dev server, 2026-10-14): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, 81 words with the verdict (76 reveal). Stage 378 px (controls 130, text 188), reveal 205 px, window 618 px. Screenshot `artifacts/reveal-fit/two-cells-sum-any-range.png`.
 
 Not run: next build, QA, walkthrough. tsc and check pass.
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-499)
+
+- c3 and the reveal now say 'at most' ('Any range costs at most one subtraction, however long.'), because day-1 ranges read one total.
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

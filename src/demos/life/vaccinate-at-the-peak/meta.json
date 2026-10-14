@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "life.vaccinate-at-the-peak.c1",
-      "text": "In the stage's toy SIR model (R0 = 3, 0.1% sick on day 0), with no vaccination 94% are eventually infected and new cases peak on day 19.",
+      "text": "In the stage's toy SIR model (R0 = 3, 0.1% sick on day 0), with no vaccination 94% are eventually infected, and the number of people sick at once peaks on day 19 (the stage's 'peak'). New cases per day peak earlier, about day 16.",
       "support": "simulation",
-      "source": "Deterministic SIR, Euler step 0.01 day to day 200 (infection 0.6/day, recovery 0.2/day), replicated in artifacts/scratch/w3life/vacc.mjs: ever infected 0.9407, peak at day 19.19. No random seed. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): reveal sentence reworded ('Your Seen row: with no vaccine 94% are infected in the end; day 0 brings that to 70%, the peak to 76%.'). Numbers unchanged. Unverified because the text changed. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. DISPUTED (wording). Own node port of simulate(null): ever infected 0.9407 ('94%') holds. But PEAK_DAY = round(argmax of I), the peak of people sick at once (prevalence), at day 19.19. New cases per day (β·S·I) peak at day 15.97, about day 16, not 19. So 'new cases peak on day 19' is false in the model. The stage itself only says 'the peak', but the recall card has the same error: 'roughly where is the epidemic when new cases peak?' / why 'The peak comes when the susceptible share falls to 1/R0'. At the new-case peak S = 1/R0 + I = 57%, not 33%. Fix (builder): say 'the number sick at once peaks on day 19' in c1 and in the recall question, or define the peak as new cases and recompute (day 16) everything that quotes it.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Deterministic SIR, Euler step 0.01 day to day 200 (infection 0.6/day, recovery 0.2/day), replicated in artifacts/scratch/w3life/vacc.mjs: ever infected 0.9407, peak at day 19.19. No random seed. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): reveal sentence reworded ('Your Seen row: with no vaccine 94% are infected in the end; day 0 brings that to 70%, the peak to 76%.'). Numbers unchanged. Unverified because the text changed. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. DISPUTED (wording). Own node port of simulate(null): ever infected 0.9407 ('94%') holds. But PEAK_DAY = round(argmax of I), the peak of people sick at once (prevalence), at day 19.19. New cases per day (β·S·I) peak at day 15.97, about day 16, not 19. So 'new cases peak on day 19' is false in the model. The stage itself only says 'the peak', but the recall card has the same error: 'roughly where is the epidemic when new cases peak?' / why 'The peak comes when the susceptible share falls to 1/R0'. At the new-case peak S = 1/R0 + I = 57%, not 33%. Fix (builder): say 'the number sick at once peaks on day 19' in c1 and in the recall question, or define the peak as new cases and recompute (day 16) everything that quotes it. | Builder fix v6 (2026-10-14, W-509): FC pass 35 found 'new cases peak on day 19' false: PEAK_DAY = round(argmax I), the peak of people sick at once. Claim now says so; Demo.tsx unchanged (the stage only says 'the peak' / 'day 19'). Builder re-ran the model in node 2026-10-14 (Euler dt 0.01, beta 0.6, gamma 0.2, I0 0.001): I peaks at t = 19.2 with S = 0.3332; beta·S·I peaks at t = 15.97 with S = 0.574; final ever infected 0.9407. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "life.vaccinate-at-the-peak.c2",
@@ -83,18 +81,25 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.vaccinate-at-the-peak.recall",
+      "text": "In a simple well-mixed epidemic model with no interventions, the number of people sick at once peaks when the share never infected falls to 1/R0; with R0 = 3 about a third of people are still uninfected then, and many infections are still to come.",
+      "support": "derivation",
+      "source": "Recorded by builder 2026-10-14 (W-509): recall card text, previously unrecorded. Recall question and why changed in v6 from 'when new cases peak' to 'when the number of people sick at once peaks' (FC pass 35: S = 1/R0 holds at the peak of I, not at the new-case peak, where S = 57%). Derivation: in SIR dI/dt = (beta·S − gamma)·I = 0 at S = gamma/beta = 1/R0. Builder node run of the stage model: S = 0.333 at the I peak (day 19.2), ever infected 67% then and 94% at the end, so 27 points of infections still to come. Needs a fresh fact-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "In a simple well-mixed epidemic model with no interventions, roughly where is the epidemic when new cases peak?",
+    "question": "In a simple well-mixed epidemic model with no interventions, roughly where is the epidemic when the number of people sick at once peaks?",
     "options": [
       "Nearly over: almost everyone has been infected",
       "Around the middle: many people have never been infected and many infections are still to come",
       "Just starting: almost nobody has been infected"
     ],
     "answer": 1,
-    "why": "The peak comes when the susceptible share falls to 1/R0; with R0 = 3 a third of people are still uninfected, so protecting them still changes the ending."
+    "why": "That peak comes when the share never infected falls to 1/R0; with R0 = 3 about a third of people are still uninfected, so protecting them still changes the ending."
   },
   "evidence": {
     "qa": [
@@ -110,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 5,
+  "version": 6,
   "curriculum": {
     "primary": "life:sir-epidemic-curve",
     "prerequisites": [

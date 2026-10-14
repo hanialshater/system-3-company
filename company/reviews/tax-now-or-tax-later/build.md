@@ -22,3 +22,8 @@ builder: wave-i-economics (demo-builder) · 2026-10-14 · brief: company/domains
 Known soft spot: "$40,000" and B's tax slice show only while growth is ×4. If the learner switches back to ×2 before the reveal, the first paragraph's $40,000 is not on the stage (the $30,000 record is). Not changed; reviewers may call it.
 
 Not run (per dispatch): next build, QA, walkthrough. tsc and check pass.
+
+## v2 (2026-10-14, demo-builder, FC pass 35 fix W-500)
+
+- The reveal now prints the recorded growth: 'at ×{rec.g} and a {rec.later}% later rate, B ended at … against A's …'. c3 text is unchanged.
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

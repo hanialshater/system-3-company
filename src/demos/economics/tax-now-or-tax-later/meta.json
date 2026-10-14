@@ -44,10 +44,8 @@
       "id": "economics.tax-now-or-tax-later.c3",
       "text": "Only a change of rate decides it: with 4× growth, at a 35% later rate B ends at $26,000 and at 15% at $34,000, against A's $30,000 (the reveal quotes the learner's own recorded rate and growth).",
       "support": "derivation",
-      "source": "B = 10,000 × G × (1 − later): ×4 at 35% = 26,000, at 15% = 34,000, at 30% = 28,000; ×2 at 35% = 13,000 vs A 15,000 (Demo.tsx accB(); builder node run). The reveal prints the record set at milestone 'rate', which the record row under the chart also shows. QA path ends at 35%, ×4. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Numbers hold (own node: ×4 at 35% B = 26,000, at 15% 34,000; ×2 at 35% B = 13,000 vs A 15,000). But the claim says the reveal quotes the learner's recorded rate and growth, and it prints only the rate: 'at a {rec.later}% later rate, B ended at {rec.b} against A's {rec.a}'. rec is the latest state with a later rate ≠ 25%, at whatever growth was set. The stage opens at ×2, and a learner who moves the slider at ×2, or switches growth after moving it, gets e.g. 'at a 35% later rate, B ended at $13,000 against A's $15,000'. That comes right after 'Both ended at $30,000 … $10,000 × 0.75 × 4', with no ×2 shown, so it reads as if A were $15,000 at ×4. Fix (builder): print the growth in the reveal (e.g. 'at ×{rec.g} and a {rec.later}% later rate'), or record the rate milestone only at ×4. Blocks publishing.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "B = 10,000 × G × (1 − later): ×4 at 35% = 26,000, at 15% = 34,000, at 30% = 28,000; ×2 at 35% = 13,000 vs A 15,000 (Demo.tsx accB(); builder node run). The reveal prints the record set at milestone 'rate', which the record row under the chart also shows. QA path ends at 35%, ×4. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. Numbers hold (own node: ×4 at 35% B = 26,000, at 15% 34,000; ×2 at 35% B = 13,000 vs A 15,000). But the claim says the reveal quotes the learner's recorded rate and growth, and it prints only the rate: 'at a {rec.later}% later rate, B ended at {rec.b} against A's {rec.a}'. rec is the latest state with a later rate ≠ 25%, at whatever growth was set. The stage opens at ×2, and a learner who moves the slider at ×2, or switches growth after moving it, gets e.g. 'at a 35% later rate, B ended at $13,000 against A's $15,000'. That comes right after 'Both ended at $30,000 … $10,000 × 0.75 × 4', with no ×2 shown, so it reads as if A were $15,000 at ×4. Fix (builder): print the growth in the reveal (e.g. 'at ×{rec.g} and a {rec.later}% later rate'), or record the rate milestone only at ×4. Blocks publishing. | Builder fix v2 (2026-10-14, W-500): the reveal now prints the recorded growth as well as the rate: 'at ×{rec.g} and a {rec.later}% later rate, B ended at {rec.b} against A's {rec.a}' (fallback ×4, 35%, $26,000, $30,000), so a record made at ×2 reads 'at ×2 and a 35% later rate, B ended at $13,000 against A's $15,000'. Claim text unchanged; it already says the reveal quotes rate and growth. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.tax-now-or-tax-later.c4",
@@ -78,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:tax-timing-equivalence",
     "also": [],

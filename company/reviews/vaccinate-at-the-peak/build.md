@@ -39,3 +39,8 @@ Changes: reveal 118 → 82 words as measured (verdict included; 71 body words). 
 5. QA path: Day 0, Peak, Day 40, Never, slider ×2 (day 2). At the reveal the grid, legend, stage line and Seen row ("none 94% · day 0 70% · day 19 76% · day 40 94% · day 2 70%. Day 19: 35% not yet infected.") are on screen.
 6. Reset: no reset control. QA-path reveal: "Your Seen row: with no vaccine 94% are infected in the end; day 0 brings that to 70%, the peak to 76%. So the peak saves 18 of the 24 points day 0 saves: about 75% of the benefit. / The peak is not the end: on day 19, 35% had never been infected. Protecting them still cuts the tail; by day 40 little is left to stop. / Model, not guidance: instant, perfect protection."
 7. Phone fit (tools/reveal-fit.mjs, localhost:3530 dev server, 2026-10-14): crop 88 px → 0 px; hiddenBelow 0; namedHidden 0; phoneFit true; stage 349 → 324 px; picture 83 px tall, not shrunk (was fitted 81/203). Screenshot artifacts/reveal-fit/vaccinate-at-the-peak.png looked at: whole grid with the dashed outline, Seen row and the reveal's last line on screen, with room to spare. Not run: build, QA, walkthrough.
+
+## v6 (2026-10-14, demo-builder, FC pass 35 fix W-509)
+
+- c1 now says the number sick at once peaks on day 19 (new cases peak near day 16). The recall question and why say 'when the number of people sick at once peaks'. The recall is now recorded as claim `.recall` (unverified). No stage change; the Demo.tsx header notes the peak definition.
+- The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.

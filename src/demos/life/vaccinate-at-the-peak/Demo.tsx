@@ -15,6 +15,8 @@
 // v5 (learner r8, phone fit): reveal 118 -> about 80 words (the "other date" sentence and the random-doses 29%
 // clause cut); the town is 40 x 10 dots instead of 20 x 20, so it fits beside the reveal at full size instead of
 // being shrunk to a strip; the Seen row keeps day 40 once visited, as well as the last other date.
+// v6 (FC pass 35): "the peak" is the peak of people sick at once (argmax I, day 19.2, S = 1/R0), not of new
+// cases per day (beta·S·I peaks near day 16). Claim c1 and the recall card now say so; no stage change.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";

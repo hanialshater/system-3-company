@@ -49,12 +49,10 @@
     },
     {
       "id": "probability.small-gap-big-extremes.c3",
-      "text": "At the averages the two batches overlap almost completely: B is only 5 cm (half a spread) taller.",
+      "text": "The two curves mostly overlap, sharing about 80% of their area: B is only 5 cm (half a spread) taller.",
       "support": "derivation",
-      "source": "Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. 'At the averages the two batches overlap almost completely' overstates the picture. Two normal curves 0.5 sd apart share 2Φ(−0.25) = 80.3% of their area (Python erfc), so a fifth of each curve is not shared; 69% of B lies above A's mean (Cohen's U3). '5 cm (half a spread)' is correct. Fix (builder; owner decides wording): e.g. 'overlap mostly (about 80% shared)' or 'largely overlap', in the claim and the reveal. Blocks publishing.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. 'At the averages the two batches overlap almost completely' overstates the picture. Two normal curves 0.5 sd apart share 2Φ(−0.25) = 80.3% of their area (Python erfc), so a fifth of each curve is not shared; 69% of B lies above A's mean (Cohen's U3). '5 cm (half a spread)' is correct. Fix (builder; owner decides wording): e.g. 'overlap mostly (about 80% shared)' or 'largely overlap', in the claim and the reveal. Blocks publishing. | Builder fix v2 (2026-10-14, W-501): reworded from 'At the averages the two batches overlap almost completely', which FC pass 35 found overstated. Two equal-sd normal curves d = 0.5 sd apart share 2·Φ(−d/2) of their area (overlapping coefficient); builder re-ran Python 2026-10-14: math.erfc(0.25/math.sqrt(2)) = 0.8026, shown as 'about 80%'. Reveal text changed to match. Needs a fresh fact-check.",
+      "status": "unverified"
     },
     {
       "id": "probability.small-gap-big-extremes.c4",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:tail-ratios",
     "also": [

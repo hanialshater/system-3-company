@@ -58,7 +58,7 @@ export default function TwoCellsSumAnyRange({ slug }: { slug: string }) {
           </p>
           <p>
             The total up to day {Q_TO} already holds days 1 and 2, so subtracting the total up to day {Q_FROM - 1} leaves the
-            range. Any range costs one subtraction, however long. When you changed day {EDIT_DAY}, {staleSeen} of the {N} totals
+            range. Any range costs at most one subtraction, however long. When you changed day {EDIT_DAY}, {staleSeen} of the {N} totals
             went stale: that is the price.
           </p>
         </>
