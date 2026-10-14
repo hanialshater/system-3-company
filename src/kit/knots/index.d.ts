@@ -1,5 +1,5 @@
-// Types and documentation for src/lab/knots (the source keeps comments short to stay inside the
-// 10 KB gzip budget; this file is the reference). Lessons may not import src/lab until promotion.
+// Types and documentation for src/kit/knots (the source keeps comments short to stay inside the
+// 10 KB gzip budget; this file is the reference). Import from '@/kit/knots' only: deep imports have no types.
 
 /**
  * A PD (planar diagram) code: one 4-tuple of edge labels per crossing, listed counter-clockwise
@@ -149,7 +149,7 @@ export function draw(pd: PD, opts?: { size?: number; margin?: number; gap?: numb
 
 // ---------- table and identification ----------
 export interface TableEntry { name: string; pd: PD; c: number; u?: number; a?: boolean; alias?: string }
-/** 0_1, 3_1 ... 7_7, 10_8, L2a1 (hopf), L5a1 (whitehead), L6a4 (borromean), U10 (monster-unknot), granny, square. */
+/** 0_1, 3_1 ... 7_7, 10_8, L2a1 (hopf), L5a1 (whitehead), L6a4 (borromean), granny, square. (U10 is lab-only.) */
 export const KNOTS: Record<string, TableEntry>
 export function knot(nameOrAlias: string): TableEntry | undefined
 /** Table entries matching after simplify (components, Alexander, Jones). [] = not in the table; several = ambiguous. */

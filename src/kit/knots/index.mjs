@@ -1,4 +1,4 @@
-// Knot theory lab library (src/lab/knots). Lessons may not import src/lab; see README.md.
+// Knot theory kit library (src/kit/knots; promoted from src/lab/knots by EDD-004). Import from '@/kit/knots' only; see README.md.
 export * from './poly.mjs'
 export { load, toPD, signs, writhe, components, linkingMatrix, linkingNumber, crossingChange, mirror, reverse, turnOver, deleteComponent, connectedSum, isAlternating, nugatory, nX as crossingCount } from './core.mjs'
 export * from './moves.mjs'
