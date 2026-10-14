@@ -186,3 +186,10 @@ a { color: inherit; }
 .lesson[data-phase="reveal"] { min-height: auto; }
 .lesson[data-phase="reveal"] .stage { flex: none; overflow: visible; }
 .lesson[data-phase="reveal"] .reveal { max-height: none; overflow: visible; }
+
+/* W-135: about 200 lessons size their picture to fill the stage (.stage-svg with flex: 1 1 0 and a
+   min-height). At the reveal the stage is content-sized (rule above), so a zero flex-basis collapses
+   the picture to its min-height: a 120-140px thumbnail. At the reveal the picture takes its natural
+   height from its viewBox instead (still capped by any max-height the lesson sets). DemoCard then
+   scrolls the card body so the reveal is on screen. */
+.lesson[data-phase="reveal"] .stage .stage-svg { flex: none; height: auto; }
