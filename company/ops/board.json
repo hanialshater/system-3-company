@@ -3458,10 +3458,11 @@
       "id": "W-295",
       "title": "patience-wins-the-split v4 (learner r8): reveal ~118 words (>90) and at 390x844 the chart is off screen when the reveal opens (stage-top crop > 0). Cut to <=90 words so stage-top crop = 0 (para 1 restates the Seen row; model caveat could move to the stage caption; cm decides). See company/reviews/patience-wins-the-split/2026-10-14-learner-ncm-learner-r8.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-296",
@@ -3495,10 +3496,11 @@
       "id": "W-299",
       "title": "r8 penalty-on-wiggle v6 revise: at 390x844 reveal the chart is scrolled above the card (only dot bottoms + 'data set 2' left) while the reveal says 'the curve goes much flatter'; reveal is ~123 words. Bring reveal <=90 words and stage-top crop 0 with the curve on screen; answer Pre-flight 7 with measured px. Cutting c4 (490/500 sentence) needs cm-ai. See company/reviews/penalty-on-wiggle/2026-10-14-learner-adult-beginner-r8.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "ai",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-300",
@@ -3532,10 +3534,11 @@
       "id": "W-303",
       "title": "r8 outside-option-sets-the-split v3 revise: reveal ~111 words; at 390x844 the stage-top chip 'Split $1 · B's outside option $0' is clipped above the card, and the fit relies on the kit shrinking the bar to ~40% (W-287 will undo it). Reveal <=90 words (candidates: model line to the stage caption, 'every 10 cents' restatement; cm-economics approves), crop 0 measured after W-287; answer Pre-flight 7. See company/reviews/outside-option-sets-the-split/2026-10-14-learner-knows-opportunity-cost-r8.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "economics",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-304",
@@ -3695,10 +3698,11 @@
       "id": "W-320",
       "title": "r8 pay-for-the-harm-you-do v3 revise: at 390x844 the open reveal crops the stage top, so the dashed harm gap (Y $60 vs Y $30) the reveal calls 'That gap, $35' is off screen; reveal ~122 words. Reveal <=90 (Y/Z payments sentence, VCG naming, model caveat to the stage chip; cm-economics decides) and stage-top crop 0 with the harm bars visible, measured in Pre-flight 7. See company/reviews/pay-for-the-harm-you-do/2026-10-14-learner-knows-second-price-r8.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "economics",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-321",
@@ -4996,6 +5000,33 @@
       "id": "W-450",
       "title": "Kit: at the reveal, globals.css '.lesson[data-phase=reveal] .stage .stage-svg { flex: none }' makes a stage-svg that is a flex item in a horizontal row (picture beside a control column) jump to its natural width: every-second-seat-out 218->250 px (row overflows stage 6 px each side), a-star-heads-for-goal 218->240 px. The W-287 fit then measures the grown picture, so reveal label px overstate explore. Keep a row-item picture at its laid-out width. See company/reviews/every-second-seat-out/2026-10-14-design.md (Kit observation)",
       "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-451",
+      "title": "Approve or reverse teaching-sentence cuts made in wave H batch 4 (r8 phone fit, 90-word budget): outside-option-sets-the-split v4 cut c3 'Every 10 cents added to A's option moves 5 cents of the deal to A'; pay-for-the-harm-you-do v4 cut c2 'By the same rule Y pays $5 and Z $0' and the VCG name (c4 now 'Honest bidding is a dominant strategy.'); patience-wins-the-split v5 shortened c1/c4 wording. Details in company/reviews/<slug>/build.md Pre-flight. If a cut is reversed, the stage must shrink by the same lines (measured px there).",
+      "owner": "cm-economics",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-452",
+      "title": "Approve or reverse the cut of penalty-on-wiggle c4 (v7: 'In 490 of 500 data sets some moderate penalty ... beat none on held-out dots', r8 phone fit, 90-word budget); c5 now carries the 'usually loses' support. Details in company/reviews/penalty-on-wiggle/build.md Pre-flight v7.",
+      "owner": "cm-ai",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-453",
+      "title": "Re-check claims reopened in wave H batch 4 (r8 phone-fit revisions): outside-option-sets-the-split v4 c5; patience-wins-the-split v5 c1 c2 c3 c4 c5; pay-for-the-harm-you-do v4 c1 c3 c4 c5; penalty-on-wiggle v7 c3 c5 c6 (all unverified). Withdrawn: outside-option c3, pay-for-the-harm c2, penalty-on-wiggle c4.",
+      "owner": "fact-checker",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

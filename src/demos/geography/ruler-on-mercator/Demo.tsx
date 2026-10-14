@@ -77,15 +77,12 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
             {BAR_KM.toLocaleString("en-US")} km there, was twice as long.
           </p>
           <p>
-            The stretch grows the farther north you go
-            {lat !== 60 ? ` (where your bar is now, ${lat === 0 ? "the equator" : `${lat}°N`}, it reads ${stretchText(lat)})` : ""}
-            . It is the same north&ndash;south as east&ndash;west, which is why shapes look right while sizes do not. A
-            single scale bar on a world map is only true along one line.
+            The stretch grows the farther north you go. A single scale bar on a world map is only true along one line.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <div className={s.wrap}>
           <WorldMap projection={projection} width={W} height={H} label={`Mercator map. A fixed-length bar at ${lat}°N spans ${fmt(groundKm)} on the ground.`}>
             {() => (
@@ -103,17 +100,20 @@ export default function RulerOnMercator({ slug }: { slug: string }) {
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">Mercator projection. Yellow: the same bar. Green dashed: a true {BAR_KM.toLocaleString("en-US")} km here.</p>
-          <Row>
+          {/* v5 (learner r8): the legend repeats the labels drawn on the map, so it steps aside at the reveal. */}
+          {phase !== "reveal" && <p className="muted tiny">Mercator projection. Yellow: the same bar. Green dashed: a true {BAR_KM.toLocaleString("en-US")} km here.</p>}
+          {/* Fold opt-in (W-330): no Readout in these rows, no reveal sentence reads the slider or the chips (the
+              reveal quotes the Seen line), and the bar's latitude stays drawn on the map. */}
+          <Row foldAtReveal>
             <Slider label="Bar latitude" value={lat} min={0} max={MAX_LAT} disabled={locked} format={(v) => (v === 0 ? "equator" : `${v}°N`)} onChange={(v) => go(v, interact)} />
           </Row>
-          <div className={s.chips}>
+          <Row foldAtReveal>
             {[0, 30, 60].map((v) => (
               <Control key={v} disabled={locked || lat === v} onClick={() => go(v, interact)}>
                 {v === 0 ? "Equator" : `${v}°N`}
               </Control>
             ))}
-          </div>
+          </Row>
           <Row>
             <Readout label="Yellow bar on the ground" value={locked ? fmt(BAR_KM) : fmt(groundKm)} />
             <Readout label="Map stretch" value={stretchText(lat)} />

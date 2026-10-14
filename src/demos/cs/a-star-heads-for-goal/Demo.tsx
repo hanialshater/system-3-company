@@ -99,6 +99,8 @@ const START_VIEW: View = { mode: "guess", wall: false, k: 0, ghost: [] };
 const key = (mode: Mode, wall: boolean) => `${mode}-${wall ? "wall" : "open"}`;
 const cx = (i: number) => (i % N) * CELL + CELL / 2;
 const cy = (i: number) => Math.floor(i / N) * CELL + CELL / 2;
+/** S and G markers sit low in their cell, so the settle number fits above them. */
+const MARK_Y = 29;
 /** The guess at S: columns plus rows to the goal. */
 const GUESS_AT_S = Math.abs((START % N) - (GOAL % N)) + Math.abs(Math.floor(START / N) - Math.floor(GOAL / N));
 
@@ -287,27 +289,17 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                           strokeDasharray={fr ? "4 3" : undefined}
                           strokeWidth={fr ? 1.5 : 1}
                         />
-                        {i === START && <circle cx={x + CELL / 2} cy={y + CELL / 2} r={11} fill="var(--fg)" />}
-                        {i === GOAL && <circle cx={x + CELL / 2} cy={y + CELL / 2} r={11} fill="none" stroke="var(--fg)" strokeWidth={2.5} />}
+                        {i === START && <circle cx={x + CELL / 2} cy={y + MARK_Y} r={10} fill="var(--fg)" />}
+                        {i === GOAL && <circle cx={x + CELL / 2} cy={y + MARK_Y} r={10} fill="var(--bg-2)" stroke="var(--fg)" strokeWidth={2.5} />}
                         {special && (
                           <text
                             x={x + CELL / 2}
-                            y={y + CELL / 2 + 4}
+                            y={y + MARK_Y + 5}
                             textAnchor="middle"
                             className={s.mark}
                             fill={i === START ? "var(--bg)" : "var(--fg)"}
                           >
                             {i === START ? "S" : "G"}
-                          </text>
-                        )}
-                        {set && (
-                          <text
-                            x={special ? x + 4 : x + CELL / 2}
-                            y={special ? y + 15 : y + CELL / 2 + 5}
-                            textAnchor={special ? "start" : "middle"}
-                            className={s.num}
-                          >
-                            {num(i)}
                           </text>
                         )}
                       </g>
@@ -324,6 +316,22 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                       opacity={0.85}
                     />
                   )}
+                  {/* Settle numbers on top of the route, each with a halo, so the line never strikes through them.
+                      On S and G the number sits above the marker, which is drawn lower in its cell. */}
+                  {run.order.slice(0, v.k).map((i) => {
+                    const special = i === START || i === GOAL;
+                    return (
+                      <text
+                        key={`n${i}`}
+                        x={cx(i)}
+                        y={special ? Math.floor(i / N) * CELL + 15 : cy(i) + 5}
+                        textAnchor="middle"
+                        className={s.num}
+                      >
+                        {num(i)}
+                      </text>
+                    );
+                  })}
                 </svg>
                 <div className={s.controls}>
                   <Control className="tap" disabled={locked || busy || atGoal} onClick={settleNext}>
@@ -333,7 +341,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     Settle to goal
                   </Control>
                   <Control
-                    className="tap"
+                    className={`tap ${v.wall ? "active" : ""}`}
                     aria-pressed={v.wall}
                     disabled={locked}
                     onClick={() => restart(v.mode, !v.wall)}
@@ -341,7 +349,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     {v.wall ? "Wall: on" : "Wall: off"}
                   </Control>
                   <Control
-                    className="tap"
+                    className={`tap ${v.mode === "guess" ? "active" : ""}`}
                     aria-pressed={v.mode === "guess"}
                     disabled={locked}
                     onClick={() => restart(v.mode === "guess" ? "none" : "guess", v.wall)}

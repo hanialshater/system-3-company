@@ -17,6 +17,10 @@
 // column beside the circle, the circle's seat labels are 14 units (so the card can fit it down to the 10 px floor)
 // in a tighter viewBox, the binary rotation moved from the second formula line into the circle's centre, the rule
 // line is gone (the question states the rule), and gaps are 2 px. Measured crop 0 at 390x844; reveal unchanged.
+// v5 (W-447, design review 2026-10-14): the circle is a fixed 232 px in every phase (lesson CSS: width, max-width,
+// flex: none), so the kit's reveal rule no longer grows it from 218 to 250 px past the stage; seat labels 14 -> 15.5
+// units and the survivor star 14 -> 16, so they render at 11.1 px at 390 px in predict, explore and reveal (was 9.4).
+// Replays are paced by elapsed time, so they end within 360 ms on a slow device too. Text and reveal unchanged.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -152,10 +156,11 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                 return;
               }
               setBusy(true);
-              let t = from;
               const ms = Math.max(4, Math.min(9, Math.floor(360 / (to - from))));
+              // Paced by the clock, not by tick count, so a slow device still ends the replay on time (<= 360 ms).
+              const t0 = performance.now();
               timer.current = setInterval(() => {
-                t += 1;
+                const t = Math.min(to, from + Math.max(1, Math.floor((performance.now() - t0) / ms)));
                 setMade(t);
                 setView(t);
                 if (t >= to) {
