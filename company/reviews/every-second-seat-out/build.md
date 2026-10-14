@@ -48,3 +48,26 @@
 5. QA path: Remove next → Run to a power of 2 (pow-41) → Run to the end (survivor-41) → scrubber → 7 people → 10 people → 41 people. DOM order unchanged. Both formula lines and all three results are on stage when the reveal opens.
 6. Reset: no reset; switching size re-runs a finished circle. Reveal on the QA path: "19 survived. 41 = 32 + 9: after 9 removals the count started on 2 × 9 + 1 = 19 and stayed on 19 at 32, 16, 8, 4, 2 left. / A power of two halves each lap and comes back to the starter, so the starter survives. In binary, 101001 with its leading 1 moved to the end is 010011 = 19. 7 = 4 + 3 gave 7, 10 = 8 + 2 gave 5: the same rule."
 7. Phone fit: reveal 81 words. Named by the reveal: the circle, the formula lines, the results under the chips. Stage-top crop: not measured (no build allowed this session). Estimated 275 px → about 25 to 95 px left. Needs a 390×844 screenshot of the open reveal, then the design lead's review (W-267).
+
+## Revision v4 (phone fit, build 6 measurement, 2026-10-14)
+
+- Build 6 (W-287 10 px label floor) measured crop 175 px at 390×844 with the reveal open, seats "10" and "41" (top of the circle) off screen. Re-measured on the dev server before editing: 175 px; parts picture 309 (fitted 309/320, labels already at the floor), controls 166, text 68; reveal 205 px of a 638 px window.
+- Changes:
+  - The three step buttons (Remove next, Run to a power of 2, Run to the end) stand in a column beside the circle instead of a row under it. DOM order unchanged.
+  - Seat labels 11 → 14 viewBox units, R_NUM 150 → 147, viewBox 0 0 340 340 → 8 8 324 324, so the card's fit can draw the circle at about 232 px with labels still at 10 px. Centre text 26/14 → 30/16 units.
+  - The binary rotation moved from the second formula line into the circle centre ("binary 101001 → 010011", under "survivor: 19", only once the circle is finished). The second formula line now fits on one line: "Starts on 19 at 32, 16, 8, 4, 2 left."
+  - The rule line "Skip one, remove the next, until one is left." is cut: the question states the rule ("every second person is removed (2, 4, ... then round again)"). No claim addressed it.
+  - Stage gaps 4 → 2 px, tick row 1.3em → 15 px.
+  - Reveal text unchanged (76 words with the verdict line on the QA path).
+- Claims reopened: c3 (second formula line wording), c4 (binary's stage address). Claim text unchanged. c1, c2, c5 untouched.
+- Also fixes r7 minor "at the reveal no circle shows at all": the whole circle is now on screen at the reveal.
+
+## Pre-flight v4
+
+1. Title and hook: unchanged.
+2. Options: unchanged, "1" / "19" / "41".
+3. Locked stage: the full circle of 41 with "Left: 41 / next skip: 1" and a column of three step buttons beside it, empty formula lines, scrubber, chips with "→ ?". No rule line; nothing highlights 19.
+4. Reveal values: unchanged sources. The binary is now read from the circle centre (a: current circle if finished, else the 41 game, same as the reveal).
+5. QA path: unchanged (Remove next → Run to a power of 2 → Run to the end → scrubber → 7 → 10 → 41 people).
+6. Reset: unchanged. Reveal text unchanged.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 every-second-seat-out`, dev server): crop 0 px (was 175), hiddenBelow 0, phoneFit true. Named and visible: 10, 16, 19, 32, 41, removals. Circle fitted 233/250 px (labels 10 px). Stage 408 px, reveal 205 px, 76 words.

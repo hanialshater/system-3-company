@@ -13,6 +13,10 @@
 // power of 2"), the size chips are one three-column row with each circle's result on a line right under its chip
 // (no separate readout boxes, no "People" label), the scrubber label sits beside the track, the rule line is one
 // line, the tick labels tuck under the track, and the reveal is 81 words (was 88). The circle, both formula lines, the ticks and the results stay.
+// v4 (phone fit, build 6 measured crop 175 px with seats 10 and 41 off screen): the three step buttons stand in a
+// column beside the circle, the circle's seat labels are 14 units (so the card can fit it down to the 10 px floor)
+// in a tighter viewBox, the binary rotation moved from the second formula line into the circle's centre, the rule
+// line is gone (the question states the rule), and gaps are 2 px. Measured crop 0 at 390x844; reveal unchanged.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";

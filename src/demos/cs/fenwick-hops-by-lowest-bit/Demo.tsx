@@ -14,10 +14,14 @@
 // binary on the stage (add the lowest bit); the finished 1–13 sum stays as a "Seen" line with the
 // cells, their binary, ranges and stored values (9 + 21 + 31 = 61), so every value the reveal
 // quotes is on the stage when it opens, even after Sum 1–15 / 1–7.
+// v4 (wave H r8, phone fit): the read trail, the counts (cells read, sum, cells changed) and the up hop are drawn
+// inside the picture, so the picture stays on screen at the reveal; the four readouts and the Seen line are gone
+// (the finished caption carries 9 + 21 + 31 = 61). The Sum 1–15 / 1–7 targets are removed: they cleared the 1–13
+// trace the reveal quotes and zeroed the counts beside it (r8 moderate). The target is always 1–13.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -53,7 +57,7 @@ const xL = (p: number) => X0 + (p - 1) * CW; // left edge of position p
 type Sum = { start: number; cells: number[]; total: number };
 
 export default function FenwickHops({ slug }: { slug: string }) {
-  const [start, setStart] = useState(Q);
+  const start = Q;
   const [read, setRead] = useState<number[]>([]);
   const [up, setUp] = useState<number[]>([]);
   const [sums, setSums] = useState<Sum[]>([]); // finished prefix sums, latest per target
@@ -65,15 +69,12 @@ export default function FenwickHops({ slug }: { slug: string }) {
     read.length === 0
         ? `Cell i covers the last (i & −i) numbers up to i. Add up 1–${start}.`
         : cur === 0
-          ? `Cells ${read.join(", ")} cover 1–${start}: sum ${sum}.`
+          ? `Cells ${read.join(", ")} cover 1–${start}: ${read.map((i) => CELL[i]).join(" + ")} = ${sum}.`
           : `Cell ${lastRead} covers ${range(lastRead)}. Clear its lowest 1 bit: hop to ${cur}.`;
   const trail = read.length === 0 ? "" : [...read, cur].map((i) => `${i}=${bin(i)}`).join(" → ");
 
   const qSum = sums.find((x) => x.start === Q);
-  const upLine =
-    up.length > 0
-      ? `Change position 1, hop up by adding the lowest 1 bit: ${up.map((i) => `${i}=${bin5(i)}`).join(" → ")}`
-      : "";
+  const upLine = up.length > 0 ? `Up: add the lowest 1 bit: ${up.map(bin5).join(" → ")}` : "";
 
   return (
     <Lesson
@@ -90,14 +91,13 @@ export default function FenwickHops({ slug }: { slug: string }) {
           {qSum && (
             <p>
               From {Q} = {bin(Q)} you read cells {qSum.cells.join(", ")} ({qSum.cells.map(bin).join(", ")}): each hop cleared one 1
-              bit. Their ranges, {qSum.cells.map(range).join(", ")}, tile 1–{Q} with no gaps, so {qSum.cells.length} reads gave the sum
-              of {Q} numbers ({qSum.total}).
+              bit. Their ranges, {qSum.cells.map(range).join(", ")}, tile 1–{Q} with no gaps: {qSum.cells.length} reads for {Q}{" "}
+              numbers ({qSum.total}).
             </p>
           )}
           <p>
-            The lowest 1 bit of an index is the length of its cell&apos;s range. Changing position 1 hopped up the other way, {UP1.join(" → ")}:{" "}
-            {UP1.length} Fenwick cells changed, while the running-total row under the numbers changed all {N}. Both directions take
-            about log2 n hops, not n.
+            An index&apos;s lowest 1 bit is its cell&apos;s range length. Changing position 1 hopped up, {UP1.join(" → ")}:{" "}
+            {UP1.length} cells changed, against all {N} in the Σ row. Both ways take about log2 n hops, not n.
           </p>
         </>
       )}
@@ -124,11 +124,6 @@ export default function FenwickHops({ slug }: { slug: string }) {
               reach("one-hop");
               finish(next);
             };
-            const choose = (q: number) => {
-              if (locked) return;
-              setStart(q);
-              setRead([]);
-            };
             const update = () => {
               if (locked) return;
               setUp(UP1);
@@ -138,7 +133,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 320 176" className="stage-svg" role="img" aria-label={`Cells read ${read.join(", ") || "none"}`}>
+                <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={`Cells read ${read.join(", ") || "none"}`}>
                   {Array.from({ length: N }, (_, k) => k + 1).map((i) => {
                     const isRead = read.includes(i);
                     const isUp = up.includes(i);
@@ -191,6 +186,18 @@ export default function FenwickHops({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
+                  <text x={X0} y={11} className={s.hdr} data-testid="trail">
+                    {trail}
+                  </text>
+                  <text x={X0} y={26} className={s.lab}>
+                    1–{start}: {read.length} {read.length === 1 ? "cell" : "cells"} read, sum {sum}
+                  </text>
+                  <text x={320 - X0 + CW - 18} y={26} textAnchor="end" className={up.length ? s.labBad : s.lab}>
+                    cells changed: {up.length}
+                  </text>
+                  <text x={X0} y={BASE + 92} className={s.hdrBad}>
+                    {upLine}
+                  </text>
                   <text x={4} y={BASE + 30} className={s.pos}>
                     #
                   </text>
@@ -198,14 +205,12 @@ export default function FenwickHops({ slug }: { slug: string }) {
                     Σ
                   </text>
                   <text x={X0} y={BASE + 78} className={s.pos}>
-                    Σ: plain running totals
+                    Σ: plain running totals{up.length > 0 ? ` · changed: ${N}` : ""}
                   </text>
                 </svg>
-                <p className={s.note}>{trail}</p>
-                {upLine && <p className={s.note}>{upLine}</p>}
                 <Row>
                   <Control className={cur > 0 ? "active" : ""} disabled={locked || cur === 0} onClick={hop}>
-                    Read one cell, hop down
+                    Read a cell, hop down
                   </Control>
                   <Control disabled={locked || cur === 0} onClick={hopAll}>
                     Hop to 0
@@ -214,36 +219,6 @@ export default function FenwickHops({ slug }: { slug: string }) {
                     Change position 1
                   </Control>
                 </Row>
-                <Row>
-                  {[13, 15, 7].map((q) => (
-                    <Control
-                      key={`q${q}`}
-                      className={start === q ? "active" : ""}
-                      disabled={locked || (start === q && read.length === 0)}
-                      onClick={() => choose(q)}
-                    >
-                      Sum 1–{q}
-                    </Control>
-                  ))}
-                </Row>
-                <Row>
-                  <Readout label="Cells read" value={read.length} />
-                  <Readout label="Sum" value={sum} />
-                  <Readout label="Fenwick cells changed" value={up.length} />
-                  <Readout label="Σ row changed" value={up.length > 0 ? N : 0} />
-                </Row>
-                {sums.length > 0 && (
-                  <p className={s.note}>
-                    Seen:{" "}
-                    {sums
-                      .map((x) =>
-                        x.start === Q
-                          ? `1–${Q}: cells ${x.cells.map((i) => `${i}=${bin(i)} (${range(i)})`).join(", ")}: ${x.cells.map((i) => CELL[i]).join(" + ")} = ${x.total}, ${x.cells.length} reads`
-                          : `1–${x.start}: ${x.cells.length} reads`,
-                      )
-                      .join(" · ")}
-                  </p>
-                )}
               </div>
             );
           }}

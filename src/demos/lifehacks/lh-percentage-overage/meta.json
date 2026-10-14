@@ -33,21 +33,21 @@
       "id": "lifehacks.lh-percentage-overage.c2",
       "text": "The stage's two results are computed by the printed expressions. At Required=40tiles, A=44tiles and B=50tiles. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-percentage-overage.c3",
-      "text": "A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover.",
+      "text": "A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. Rounding up also ties them at 95; above 100 the percentage order is larger.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-percentage-overage.c4",
-      "text": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. Change only Required to 55tiles. What is B (Ten-extra) now? Correct: 65tiles. Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover.",
+      "text": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. Change only Required to 55tiles. What is B (Ten-extra) now? Correct: 65tiles. Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. Rounding up also ties them at 95; above 100 the percentage order is larger.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50; recall at x=55: B=65. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
       "status": "unverified"
     }
   ],
@@ -60,7 +60,7 @@
       "67tiles"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover."
+    "why": "Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. Rounding up also ties them at 95; above 100 the percentage order is larger."
   },
   "evidence": {
     "qa": [],
@@ -68,7 +68,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:lh-percentage-overage",

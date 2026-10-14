@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14: lifehacks-safety-reviewer, W-359 part 1 (second read of the 9 PR #2 stage lines)
+
+- Did: read the `warning` wiring (ResourceLesson.tsx line 165, HomeLesson.tsx line 188) and the 9 lines; appended a "Second read" to the 10 per-lesson safety records.
+- Believe (medium-high, source read only, no build or walkthrough): placement and wording match what my pass-with-changes asked for. Energy lines are on the stage under assumptions (10px muted). NOT APPROVED: I wrote this wording, so I cannot approve it; an outside reader must (board item, evaluation-steward).
+- Found two required changes: (1) drying-room ventilation line contradicts itself ("window open ... water ends up in the room"); (2) lh-scale-recipe-portions assumptions say "no cooking guidance" right above a cooking line. Board item for demo-builder.
+- Still open, recall-only: lh-water-meter-units keys 1,800m3 as correct; drying-room-water-load recall.why still has the mould phrase. Session 2 patch.
+- W-359 stays in progress: part 2 (walkthrough attestation for all 200) waits for a build.
+
 ## 2026-10-14, community-engineer (Femi): PR #2 merged on our branch, all 200 Life Hacks lessons as draft
 - **Changed:**
   - Merged `codex/lifehacks-200` @ `71e99fee` (`--no-ff`) on branch `worktree-agent-ad8b58b7e38edc358`. The founder approved the merge and said "Go ahead, all 200", so no lessons were removed.

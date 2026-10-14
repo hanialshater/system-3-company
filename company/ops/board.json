@@ -3149,7 +3149,7 @@
       "id": "W-265",
       "title": "W-259 small crops (decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md): bending-frontier (33 px) and one-odd-loop-blocks-two-camps (45 px). Cut about 2 lines of reveal or stage text each (bending-frontier: the muted model line can move onto the stage caption; one-odd-loop: tighten paragraph 1), no claim meaning changed; re-measure stage-top crop = 0 at 390x844 and note it in build.md Pre-flight. If a cut drops a claimed sentence, ask the category manager first",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -3159,7 +3159,7 @@
       "id": "W-266",
       "title": "W-266 midnight-sun-line (99 px crop; globe off screen) DECIDED by cm-geography-earth-climate 2026-10-14; builder applies, does not mark claims verified. NEW REVEAL, exactly two paragraphs (about 81 words): P1 = `Your town still saw a sunset at {sets} and none at {never}. The line between is about <strong>66.6°N</strong>: 90° minus the tilt, 90 − 23.4.` (keep the existing seen.sets / seen.never quote and fallbacks). P2 = `The orange gap on the globe is that tilt: the pole leans 23.4° toward the Sun, so the night side’s edge stops 23.4° short of it. A town whose circle fits inside the gap stays lit all day. That line is the Arctic Circle, not the Tropic of Cancer (23.4°N), where the noon Sun is overhead.` CUT: the no-air caveat (stage caption already says Toy: no air; keep it) and the Tropic sentence is shortened to a clause (it answers wrong option 23.4°N, so a clause stays). CLAIMS: c4 (air bends sunlight, midnight Sun south of line) leaves the learner text: set it retired/removed in meta.json, no learner sentence carries it now. c5 text becomes: 23.4 N is the Tropic of Cancer, where the Sun is directly overhead at noon on the June solstice; the Arctic Circle is a different line. (the longest-day sentence stays a claim on the predict question; say around June 21 per pass 19). c3 text: The line at 66.6 N is the Arctic Circle (wording unchanged, reveal sentence now begins That line). c7 text: shorten to match P2 (tilt 23.4 toward the Sun, edge stops 23.4 short of the pole, a circle inside the gap stays lit all day). c1 unchanged. Reset c3, c5, c7 to unverified for fact-checker (learner-visible sentence changed); c1 stays verified. Keep the Demo.tsx header comment in step. ACCEPT when: node word count of the rendered reveal <= 90 (this is about 81), reveal-fit shows stage-top crop 0 px at 390x844 and the orange gap is on screen (quote measured px in build.md Pre-flight 7), npm run check passes. If it still crops, cut P2 clause `not the Tropic of Cancer...` last, never the quote or the gap sentence. Decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "geography",
       "created": "2026-10-14",
       "links": [],
@@ -4082,7 +4082,7 @@
       "id": "W-359",
       "title": "PR #2 safety second read: re-read the 9 stage lines applied at merge (7 energy lessons 'Tariffs and appliance ratings vary: check your own.' under assumptions; lh-scale-recipe-portions 'Cooking times do not scale with quantity.'; drying-room-water-load ventilation line and neutral scope line in the reveal). Still open: drying-room-water-load recall.why still says 'do not infer mould or health outcomes' and lh-water-meter-units recall keys the wrong-digits B (1,800m3); both wait on session 2's recall patch. Then the launch attestation on the walkthrough for all 200. See company/engineering/community/prs/2.md section 7.",
       "owner": "lifehacks-safety-reviewer",
-      "state": "backlog",
+      "state": "doing",
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [
@@ -4090,7 +4090,8 @@
         "company/reviews/lifehacks-200/safety-B1-2026-10-14.md",
         "company/reviews/lifehacks-200/safety-B7-2026-10-14.md",
         "company/reviews/lifehacks-200/safety-B8-2026-10-14.md"
-      ]
+      ],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-360",
@@ -4103,6 +4104,51 @@
         "company/engineering/community/prs/2.md",
         "tests/qa/contract.spec.ts"
       ]
+    },
+    {
+      "id": "W-361",
+      "title": "W-359 part 1 follow-ups: (a) drying-room-water-load ventilation line contradicts itself, reword per company/reviews/drying-room-water-load/2026-10-14-safety.md; (b) lh-scale-recipe-portions assumptions 'no cooking guidance' contradicts the new warning; (c) all 9 stage lines need approval from a reader outside lifehacks-safety-reviewer (same-role wording). Then fact-checker sources.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-362",
+      "title": "Independent second reader for the 9 PR #2 safety stage lines (author role cannot approve its own wording); see W-359 and company/reviews/<slug>/2026-10-14-safety.md",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-363",
+      "title": "Re-check claims reopened by the build-6 phone-fit compaction (demo-builder, 2026-10-14): bending-frontier v5 c4 (model line now 'The curve is made up, not real farm data.'), eratosthenes-shadow v6 c4 (reworded 'a stadion's exact length') and c5 (reveal sentence cut; now rests on the stage label 'Syene, in the story: Sun overhead, no shadow' and the question). See each company/reviews/<slug>/build.md latest revision",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-364",
+      "title": "QA + walkthrough on the next build for the build-6 phone-fit compactions (measured only on the :3530 dev server, crop 0 px each): bending-frontier v5, eratosthenes-shadow v6 (readouts and distance moved into the picture), midnight-sun-line v6 (globe cropped to 320x146, readouts in the day strip, sliders on one row), one-odd-loop-blocks-two-camps v5 (readout row removed), palindromes-grow-from-centres v4 (shorter word blocks). Confirms or replaces the dev-server crop in each build.md Pre-flight 7; covers W-270 and the two W-279 lessons in this set",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-365",
+      "title": "eratosthenes-shadow v6 (build-6 phone fit): the builder cut the reveal sentence 'This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow.' (the stage label 'Syene, in the story: Sun overhead, no shadow' still says it) and the bold '50 times.'. demo-standard says which teaching sentence goes is the CM's call: approve, or name another cut that keeps the reveal <= 90 words and crop 0 px. See company/reviews/eratosthenes-shadow/build.md Revision v6 2026-10-14",
+      "owner": "cm-geography-earth-climate",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
     }
   ]
 }

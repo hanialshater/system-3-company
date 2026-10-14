@@ -51,10 +51,12 @@ function southAmerica(): FeatureCollection<Geometry> {
   return { type: "FeatureCollection", features: feats };
 }
 
-const REGIONS: { t: string; p: Pt; a?: "end" }[] = [
-  { t: "Gulf of Guinea", p: [2, 1.5] },
-  { t: "Horn of Africa", p: [51, 11.5], a: "end" },
-  { t: "Southern Africa", p: [24, -27] },
+// Label offsets from each region's dot (v6: Gulf of Guinea sits up-left, clear of the red dot that lands right of it;
+// Horn of Africa under its dot, clear of the Gulf label).
+const REGIONS: { t: string; p: Pt; a: "start" | "middle" | "end"; dx: number; dy: number }[] = [
+  { t: "Gulf of Guinea", p: [2, 1.5], a: "end", dx: 2, dy: -6 },
+  { t: "Horn of Africa", p: [51, 11.5], a: "end", dx: 2, dy: 14 },
+  { t: "Southern Africa", p: [24, -27], a: "middle", dx: 0, dy: -5 },
 ];
 
 const deg = (pct: number) => Math.round((ANGLE * pct) / 100);
@@ -149,12 +151,12 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
             {({ path }) => (
               <>
                 <path d={path(shape)} className={s.sa} />
-                {REGIONS.map(({ t, p, a }) => {
+                {REGIONS.map(({ t, p, a, dx, dy }) => {
                   const q = projection(p)!;
                   return (
                     <g key={t}>
                       <circle cx={q[0]} cy={q[1]} r={1.8} className={s.mark} />
-                      <text x={a ? q[0] + 2 : q[0]} y={a ? q[1] + 14 : q[1] - 5} className={s.region} textAnchor={a ?? "middle"}>
+                      <text x={q[0] + dx} y={q[1] + dy} className={s.region} textAnchor={a}>
                         {t}
                       </text>
                     </g>
