@@ -20,6 +20,9 @@ import { run, dissimilarity, MASK, N, CAP, type Run } from "./engine";
 import s from "./styles.module.css";
 
 const MAIN = 30;
+/** Slider cap (cultural review 2, ruling (a)): above 30% a settled frame can leave one region of
+ * the city more than 90% one group. check.mjs scans every tick of every lesson seed at 0 to 30%. */
+const MAX = 30;
 const KS = [1, 2, 4, 8];
 /** Seeds 1 to 50 in order, without 3 and 36 (the two seeds whose settled frame at 30% leaves one
  * region of the city more than 90% one group: an edge artefact, cultural review R2). */
@@ -241,7 +244,8 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
 
   const frame = cur.frames[tt];
   const [pa, pb] = paths(frame);
-  const stay = Math.round(100 * (1 - cur.movers[tt] / cur.agents));
+  // Integer floor: 100% only when no square would move (fact-check c6).
+  const stay = Math.floor((100 * (cur.agents - cur.movers[tt])) / cur.agents);
   const ranOnce = done.length > 0;
   const capped = tt === last && !cur.settled;
 
@@ -272,8 +276,8 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                   pin={pin}
                 />
                 <p className={s.line}>
-                  Two made-up groups, <Swatch g={1} /> A and <Swatch g={2} /> B,
-                  equal in number. Not New York&apos;s population.
+                  Made-up equal groups, <Swatch g={1} /> A and <Swatch g={2} /> B.
+                  Not New York&apos;s population.
                 </p>
                 <svg
                   viewBox={`-0.5 -0.5 ${N + 1} ${N + 1}`}
@@ -341,7 +345,7 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                   </div>
                 )}
                 <p className={s.line}>
-                  How unevenly spread (0 even, 1 fully apart):
+                  Spread (0 even, 1 apart):
                 </p>
                 <div
                   className={s.blocks}
@@ -388,7 +392,7 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                   })}
                 </div>
                 <p className={s.line}>
-                  A setting in this model, not a measure of anyone.
+                  A setting, not a measure of anyone.
                 </p>
                 {rv ? (
                   <p className={s.line}>
@@ -400,7 +404,7 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                       label="Move if fewer than"
                       value={pct}
                       min={0}
-                      max={50}
+                      max={MAX}
                       step={5}
                       disabled={locked}
                       onChange={choose}
@@ -410,8 +414,8 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                 )}
                 {ranOnce && (
                   <p className={s.left}>
-                    Left out of this model: money, prices, jobs, history, who
-                    was allowed to live where.
+                    Not modelled: money, prices, jobs, history, who could live
+                    where.
                   </p>
                 )}
               </div>
@@ -434,20 +438,20 @@ function Reveal({ pinRun, seen }: { pinRun?: Done; seen: number[] }) {
   return (
     <>
       <p>
-        Your random start scored {D(f0, 2)} on 2×2 blocks
+        Your start: {D(f0, 2)} on 2×2 blocks
         {other ? `, ${D(f0, other)} on ${other}×${other}` : ""}. A segregation
-        number needs its unit. A tract holds thousands of people. A block in
-        this grid holds a handful of squares.
+        number needs its unit. A census tract holds thousands of people; a 2×2
+        block here, at most 4 squares.
       </p>
       <p>
-        In this model, a simple moving rule sorted the grid to {D(fe, 2)}.
-        Lacking what the stage lists, it does not show why any real city looks
-        as it does. In US cities, households did not all have the same choices:
-        the documented history includes housing and lending discrimination,
-        among it a US government agency&apos;s 1938 maps grading neighbourhoods
-        for lending risk, associated with later lending (research is mixed on
-        whether they created or recorded it), then income and wealth gaps it
-        widened.
+        In this model, a moving rule sorted the grid to {D(fe, 2)}. Without
+        money or history, the model does not show why any real city looks as it
+        does. In US cities, households did not all have the
+        same choices: the documented history includes housing and lending
+        discrimination, widening wealth gaps, and late-1930s government maps
+        grading neighbourhoods for lending risk. The grades are associated with
+        later home values and ownership; research is mixed on whether the maps
+        caused this or recorded earlier practice.
       </p>
     </>
   );

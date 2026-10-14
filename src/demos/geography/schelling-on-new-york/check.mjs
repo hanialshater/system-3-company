@@ -104,5 +104,40 @@ for (let pct = 0; pct <= 60; pct += 5) {
   }
   console.log(`  ${String(pct).padStart(2)}%: settled ${settled}/${SEEDS.length}, max ticks ${maxT}, D ${range(d)}, region-seeds ${uni}/${SEEDS.length * 5}`);
 }
+
+// v2 (cultural review 2, ruling (a)): the slider stops at 30%. Scan EVERY frame (not only the
+// settled one) of every lesson seed at every setting 0 to 30% for a region (at least 10 agents)
+// more than 90% one group; also count the 'would stay' readout showing 100% while squares would move.
+const count = (c, n) => {
+  let a = 0, b = 0;
+  for (let i = 0; i < c.length; i++) {
+    if (REAL.labels[i] !== n) continue;
+    if (c[i] === 1) a++;
+    else if (c[i] === 2) b++;
+  }
+  return [a, b];
+};
+let hits = 0, framesScanned = 0, worst = 0, worstAt = "";
+let false100 = 0;
+for (let pct = 0; pct <= 30; pct += 5) {
+  for (const s of SEEDS) {
+    const r = run(s, pct);
+    r.frames.forEach((fr, t) => {
+      framesScanned++;
+      const stay = Math.floor((100 * (r.agents - r.movers[t])) / r.agents);
+      if (stay === 100 && r.movers[t] > 0) false100++;
+      for (const n of names) {
+        const [a, b] = count(fr, n);
+        if (a + b < 10) continue;
+        const f = Math.max(a, b) / (a + b);
+        if (f > worst) { worst = f; worstAt = `${n} seed ${s} ${pct}% tick ${t}`; }
+        if (f > 0.9) { hits++; console.log(`  region > 90%: ${n} seed ${s} ${pct}% tick ${t} (${f2(f)})`); }
+      }
+    });
+  }
+}
+console.log(`\nv2 region scan, 0-30% step 5, ${SEEDS.length} seeds, every tick: ${framesScanned} frames, worst region share ${f2(worst)} (${worstAt})`);
+ok(hits === 0, "no region over 90% one group at any tick, any setting 0-30%, any lesson seed");
+ok(false100 === 0, "'would stay' (integer floor) reads 100% only when no square would move, 0-30%");
 console.log(fail ? `\n${fail} check(s) FAILED` : "\nall checks passed");
 process.exit(fail ? 1 : 0);
