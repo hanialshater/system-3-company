@@ -44,3 +44,21 @@ builder: demo-builder (ncm-m2) · 2026-10-14 · v1 draft · brief: company/domai
 5. QA path: Big ring → Right loop (odd-loop) → Left loop → Try all 64 splits (tried-all) → Enemy on D-E (disabled) → Enemy on C-D. DOM order unchanged by the row merge. The layout row and both readouts are on stage at the reveal.
 6. Reset: no reset. Reveal on the QA path: "Your big ring had 2 enemy links, even, but the cross link A-D makes two smaller loops (right loop: 1, left loop: 1), each odd. Every red link switched camp, so those walks came back to A in the other camp: 0 of 64 splits worked. / With the enemy on C-D every loop was even and 2 of 64 worked (one split, names swapped). A network splits into two camps exactly when every loop has an even number of enemy links."
 7. Phone fit: reveal 81 words. Named by the reveal: the loops on the ring, the walk back to A, the layout row. Stage-top crop: not measured (no build allowed this session). Estimated 45 px → 0 px. Needs a 390×844 screenshot of the open reveal.
+
+## Revision v4 (W-281, fact-check pass 30 c4, 2026-10-14)
+
+- Dispute: once "Try all 64 splits" was pressed, the stage always showed the best split and never a walk, so Try → Right/Left loop reached odd-loop with no walk drawn, while the reveal says "those walks came back to A in the other camp".
+- Fix: the picture shows one thing at a time (`view` state: walk or split). Picking a loop draws its walk and A's clash ring, also after Try; the caption is the walk caption. Pressing Try shows the best split again (Try is re-enabled while a walk is shown after trying; the loop button you are on is re-enabled while the split is shown, so you can go back to its walk). The "Splits that work" readout and the layout row keep the tried result either way.
+- Moving the enemy back to D-E reaches odd-loop only while a walk is drawn (before: also while the split was shown). Nobody gets stuck: picking a small loop on D-E always reaches it.
+- Reveal text unchanged (81 words). c4 reopened (unverified). c1-c3, c5 untouched.
+- Run: tsc, `npm run check`. Not run: build, QA, walkthrough (not asked this session).
+
+## Pre-flight v4
+
+1. Title and hook: unchanged ("Two camps on a ring of six?" / "Two enemy links on a ring of six, plus one cross link. Can two camps form?").
+2. Options: unchanged, "Yes" / "No" / "Can't tell from the loops".
+3. Locked stage: unchanged (ring A-F, cross link A-D, red dashed A-B and D-E, legend, readouts "?"; no loop, tint or clash ring).
+4. Reveal values: ring 2, right 1, left 1: layout row from the learner's picks (a). "those walks came back to A in the other camp": now on every path the walk with the clash ring is drawn when odd-loop is reached (b): onLoop always sets the walk view; onMove awards it only in the walk view. "0 of 64": tried-all (b), in the row. C-D "2 of 64": only if tried (a), else present tense.
+5. QA path: Big ring → Right loop (walk, clash: odd-loop) → Left loop → Try all 64 splits (split, tried-all) → Enemy on D-E (disabled) → Enemy on C-D. Unchanged by this fix. Path from the dispute: Try (split) → Right loop (walk drawn: A-B-C-D, clash ring at A; odd-loop) → reveal.
+6. Reset: no reset. Reveal on the QA path unchanged from Pre-flight v3.
+7. Phone fit: no layout change; reveal 81 words.

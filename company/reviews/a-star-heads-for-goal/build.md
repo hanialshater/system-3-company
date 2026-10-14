@@ -64,3 +64,22 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
 5. QA path: Settle next → Settle to goal (open guided, 7) → Wall (guided wall, 16) → No guess (no-guess wall, 46: wall-both) → With guess. DOM order unchanged by the grid. Table and the line under it stay on stage at the reveal.
 6. Reset: no reset; switching modes does not clear the table. Reveal on the QA path: "Open grid: the guess settled 7 cells (route 6). Wall: no guess settled 46 cells, the guess 16; both routes 10 steps. / The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every direction. Look at the line under the table: at S the guess said 6 steps left; the wall route took 10. The guess can be too low, never too high, so it never makes a shorter route look worse. That is why the guided route matched the flood's length."
 7. Phone fit: reveal 89 words. Named by the reveal: the table, the line under the table. Stage-top crop: not measured (no build allowed this session). Estimated 200 px → about 0 to 35 px left. Needs a 390×844 screenshot of the open reveal, then the design lead's review (W-267).
+
+## Revision v6 (W-282, fact-check pass 30 c1, 2026-10-14)
+
+- Dispute: milestone guided-at-goal fired on any guided finish, so Wall → Settle to goal (guided wall) → No guess (no-guess wall: wall-both, plain-at-goal) unlocked the reveal without the open grid ever running.
+- Fix: `finish()` reaches guided-at-goal only when mode is guess and the wall is off. plain-at-goal and wall-both unchanged. The start state is the open guided run, so it is always reachable: from a guided wall run at the goal, "Wall: on" replays the open guided run and reaches it.
+- Reveal word count: with all four table cells filled it was 94 words. Removed the last sentence "That is why the guided route matched the flood's length." (the cm-cs approved fallback, W-277). Needed: no other cut of 4+ words was available without rewording a teaching sentence. Now at most 84 words (all four cells); every other path is shorter. The reveal still quotes what was seen: "both routes N steps" for each layout with both runs (the wall always, via wall-both), "the wall route took 10" and the line under the table.
+- c3 support source → derivation (pass 30 note: the verdict rested on derivation; Hart et al. not opened).
+- Claims reopened: c1 (milestone path), c3 (its reveal sentence removed). c2, c4-c6 untouched.
+- Run: tsc, `npm run check`. Not run: build, QA, walkthrough (not asked this session).
+
+## Pre-flight v6
+
+1. Title and hook: unchanged ("A guess that aims the search" / "Add a guess of the steps left. Does the search still flood?").
+2. Options: unchanged, "7" / "25" / "49".
+3. Locked stage: unchanged (empty grid with S and G, rule line with the tie-break, table of "?", "Guess at S: 6. Real route with the wall: ?").
+4. Reveal values: open grid guess 7 / route 6: table cell filled by the open guided run, now the only run that reaches guided-at-goal (b). Wall 46 vs 16 / route 10: wall-both (b). Guess 6: constant on stage. "the wall route took 10": filled("guess", true), guaranteed by wall-both (b).
+5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → No guess (no-guess wall, 46: plain-at-goal, wall-both) → With guess. Unchanged; still reaches all three. Dispute path Wall → Settle to goal → No guess now leaves guided-at-goal unreached until the open guided run is done.
+6. Reset: no reset. Reveal on the QA path (79 words): "Open grid: the guess settled 7 cells (route 6). Wall: no guess settled 46 cells, the guess 16; both routes 10 steps. / The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every direction. Look at the line under the table: at S the guess said 6 steps left; the wall route took 10. The guess can be too low, never too high, so it never makes a shorter route look worse."
+7. Phone fit: reveal at most 84 words (all four cells), 79 on the QA path. No layout change.

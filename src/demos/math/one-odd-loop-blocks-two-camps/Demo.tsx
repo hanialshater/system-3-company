@@ -14,6 +14,10 @@
 // and split results are recorded per layout in a row the reveal quotes.
 // v3 (W-265, phone fit): "Try all 64 splits" shares one three-column row with the two enemy buttons (DOM order
 // unchanged), and the reveal is trimmed from 95 to 81 words, so the ring stays on screen at 390x844 at the reveal.
+// v4 (W-281, fact-check pass 30 c4): the stage shows one picture at a time, the walk or the best split. Picking a loop
+// shows its walk (also after "Try all 64 splits"); pressing Try (re-enabled once a loop is walked after it) shows the
+// best split again. Moving the enemy back to D-E awards odd-loop only while a walk is drawn, so odd-loop always
+// means a clash walk was on the stage.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -82,6 +86,7 @@ const POS: [number, number][] = NAMES.map((_, i) => {
 export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
   const [loop, setLoop] = useState<LoopId | null>(null);
   const [tried, setTried] = useState(false);
+  const [view, setView] = useState<"walk" | "split">("walk");
   const [moved, setMoved] = useState(false);
   const [seen, setSeen] = useState<Seen>({ given: { loops: {} }, moved: { loops: {} } });
   const g = seen.given;
@@ -136,15 +141,18 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
               locked={locked}
               loop={loop}
               tried={tried}
+              view={view}
               moved={moved}
               seen={seen}
               onLoop={(l) => {
                 setLoop(l);
+                setView("walk");
                 record(moved ? "moved" : "given", l, tried);
                 if (!moved && enemyCount(ENEMIES_AS_GIVEN, l) % 2 === 1) reach("odd-loop");
               }}
               onTry={() => {
                 setTried(true);
+                setView("split");
                 record(moved ? "moved" : "given", loop, true);
                 if (!moved) reach("tried-all");
               }}
@@ -152,7 +160,7 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
                 setMoved(to);
                 record(to ? "moved" : "given", loop, tried);
                 if (!to && tried) reach("tried-all");
-                if (!to && loop && enemyCount(ENEMIES_AS_GIVEN, loop) % 2 === 1) reach("odd-loop");
+                if (!to && loop && view === "walk" && enemyCount(ENEMIES_AS_GIVEN, loop) % 2 === 1) reach("odd-loop");
               }}
             />
           )}
@@ -166,6 +174,7 @@ function Stage({
   locked,
   loop,
   tried,
+  view,
   moved,
   seen,
   onLoop,
@@ -175,6 +184,7 @@ function Stage({
   locked: boolean;
   loop: LoopId | null;
   tried: boolean;
+  view: "walk" | "split";
   moved: boolean;
   seen: Seen;
   onLoop: (l: LoopId) => void;
@@ -183,15 +193,17 @@ function Stage({
 }) {
   const enemies = moved ? ENEMIES_MOVED : ENEMIES_AS_GIVEN;
   const result = tried ? tryAll(enemies) : null;
+  // What the picture shows: the best split only while the learner is looking at it; picking a loop draws its walk.
+  const split = result && (view === "split" || !loop) ? result : null;
   const inLoop = (e: Edge) => loop !== null && LOOPS[loop].edges.some((x) => same(x, e));
   const k = loop ? enemyCount(enemies, loop) : 0;
-  const w = !locked && loop && !result ? walk(enemies, loop) : null;
+  const w = !locked && loop && !split ? walk(enemies, loop) : null;
   const caption = locked
     ? "Make a prediction to start."
-    : result
-      ? result.working === 0
-        ? `0 of 64 splits work. Best try (filled vs dotted camps) still breaks ${result.broken.length} link (thick).`
-        : `${result.working} of 64 work: one split, names swapped.`
+    : split
+      ? split.working === 0
+        ? `0 of 64 splits work. Best try (filled vs dotted camps) still breaks ${split.broken.length} link (thick).`
+        : `${split.working} of 64 work: one split, names swapped.`
       : loop && w
         ? `${LOOPS[loop].label}: ${k} enemy link${k === 1 ? "" : "s"}. Walk from A, switching at each: back at A in the ${w.back ? "other camp: clash" : "same camp"}.`
         : "Pick a loop to walk it from A.";
@@ -209,7 +221,7 @@ function Stage({
       <svg viewBox="0 0 340 196" className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
         {EDGES.map((e) => {
           const enemy = isEnemy(enemies, e);
-          const broken = result?.broken.some((x) => same(x, e));
+          const broken = split?.broken.some((x) => same(x, e));
           return (
             <g key={e.join("-")}>
               {inLoop(e) && (
@@ -233,7 +245,7 @@ function Stage({
               cy={y}
               r={13}
               className={
-                result ? (result.camp[v] ? s.campB : s.campA) : w && w.camp[v] !== undefined ? (w.camp[v] ? s.campB : s.campA) : s.person
+                split ? (split.camp[v] ? s.campB : s.campA) : w && w.camp[v] !== undefined ? (w.camp[v] ? s.campB : s.campA) : s.person
               }
             />
             <text x={x} y={y + 4.5} className={s.name}>
@@ -253,7 +265,7 @@ function Stage({
           <Control
             key={l}
             className={`${s.tap} ${loop === l ? "active" : ""}`}
-            disabled={locked || loop === l}
+            disabled={locked || (loop === l && !split)}
             onClick={() => onLoop(l)}
           >
             {LOOPS[l].label}
@@ -261,7 +273,7 @@ function Stage({
         ))}
       </div>
       <div className={s.actions}>
-        <Control className={s.tap} disabled={locked || tried} onClick={onTry}>
+        <Control className={s.tap} disabled={locked || !!split} onClick={onTry}>
           Try all 64 splits
         </Control>
         <Control className={`${s.tap} ${!moved ? "active" : ""}`} disabled={locked || !moved} onClick={() => onMove(false)}>

@@ -12,6 +12,9 @@
 // (DOM order unchanged), the tie-break moved from the reveal onto the rule line, table cells read "46 cells ·
 // route 10" so they stay on one line, gaps are tighter, and the reveal is 89 words (was 113). The grid, the table and the
 // line under the table (all three named by the reveal) stay.
+// v6 (W-282, fact-check pass 30 c1): milestone guided-at-goal is reached only by the guided run with the wall off,
+// so the open-grid case the prediction asks about is always run before the reveal. Reveal at most 84 words (all four
+// table cells filled): the approved cm-cs fallback cut (W-277) removed its last sentence.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -147,7 +150,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
               The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every
               direction. Look at the line under the table: at S the guess said {GUESS_AT_S} steps left; the wall
               route took {filled("guess", true)?.route ?? "more"}. The guess can be too low, never too high, so it
-              never makes a shorter route look worse. That is why the guided route matched the flood&rsquo;s length.
+              never makes a shorter route look worse.
             </p>
           </>
         );
@@ -159,7 +162,8 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
             const finish = (mode: Mode, wall: boolean) => {
               const r = search(mode, wall);
               setTable((t) => ({ ...t, [key(mode, wall)]: { settled: r.order.length, route: r.route.length - 1 } }));
-              reach(mode === "none" ? "plain-at-goal" : "guided-at-goal");
+              if (mode === "none") reach("plain-at-goal");
+              else if (!wall) reach("guided-at-goal");
               finished.current.add(key(mode, wall));
               if (finished.current.has(key("none", true)) && finished.current.has(key("guess", true))) reach("wall-both");
             };
