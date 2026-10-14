@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "cs.web-bow-tie-reach.c1",
-      "text": "In the 12-page graph on the stage, following links the way they point reaches 7 pages from each of A, B, C and D (counting the start), 10 from E, 8 from F, 3 from G, 2 from H, 1 from I, 1 from J, 2 from K and 1 from L. The reveal quotes only the pages the learner tapped.",
+      "text": "In the 12-page graph on the stage, following links the way they point reaches 7 pages from each of A, B, C and D (counting the start), 10 from E, 8 from F, 3 from G, 2 from H, 1 from I, 1 from J, 2 from K and 1 from L. The reveal quotes only the first core, IN and OUT page the learner tapped, and the stage in the reveal is pinned to the core page (its reach filled, the other two ringed).",
       "support": "simulation",
       "source": "Node BFS over the exact edge list in Demo.tsx: A>B, B>C, C>D, D>A, D>B, C>G, D>H, E>A, E>F, E>J, F>B, G>H, H>I, K>L. Builder ran it 2026-10-14 (reach(start) as in Demo.tsx); output {A:7,B:7,C:7,D:7,E:10,F:8,G:3,H:2,I:1,J:1,K:2,L:1}. Deterministic, no seed. | FACT-CHECK 2026-10-14 (pass NCM-1): Own BFS over the 14-edge list copied from Demo.tsx (scratchpad fc/bow.mjs): {A:7,B:7,C:7,D:7,E:10,F:8,G:3,H:2,I:1,J:1,K:2,L:1}. Reveal computes reach(p).size for the first page tapped in each group; \"From p only itself\" only for size 1 (I, J, L not in core/in/out groups except I). Matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.web-bow-tie-reach.c2",
@@ -43,21 +41,17 @@
     },
     {
       "id": "cs.web-bow-tie-reach.c3",
-      "text": "Links point one way, so being joined is not the same as being reachable: from the middle group (A to D) you can click out to G, H and I, but no link leads back to E or F.",
+      "text": "Links point one way, so being joined is not the same as being reachable: from CORE (A to D) you can click out to OUT (G, H and I), but no link leads back to IN (E and F).",
       "support": "derivation",
       "source": "Definition of a directed link plus the edge list in c1: reach(A) = A, B, C, D, G, H, I, which contains neither E nor F; A, B, C, D reach each other (checked in node). Holds for this graph. | FACT-CHECK 2026-10-14 (pass NCM-1): reach(A)=reach(B)=reach(C)=reach(D)=ABCDGHI; pages that reach A are only A-F; no edge enters E or F from A-D. Reveal wording (middle -> right, nothing back to the left, right end leads almost nowhere: G 3, H 2, I 1) matches the stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.web-bow-tie-reach.c4",
-      "text": "The real web has a bow-tie shape: a tightly linked core, pages that lead into it, pages it leads out to, and a few detached pieces.",
+      "text": "The real web has a bow-tie shape: a tightly linked core, pages that lead into it, pages it leads out to, tendrils hanging off those, and disconnected pieces.",
       "support": "source",
       "source": "Broder, Kumar, Maghoul, Raghavan, Rajagopalan, Stata, Tomkins and Wiener, 'Graph structure in the Web', Computer Networks 33 (2000); Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 13. NEEDS A HUMAN SOURCE CHECK (builder cited from the brief and memory; no access to the paper). | FACT-CHECK 2026-10-14 (pass NCM-1): Broder et al. abstract and secondary summaries (search, 2026-10-14; primary PDF unreachable through the proxy) describe the bow-tie: strongly connected core (about 28%), IN, OUT, plus tendrils and disconnected components. E&K ch. 13 is the structure-of-the-Web chapter (library catalogue records); section stays unconfirmed. Advisory: the reveal omits tendrils and \"a few detached pieces\" understates the disconnected part; not false.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.web-bow-tie-reach.c5",
@@ -91,11 +85,11 @@
   "recall": {
     "question": "Page X links to page Y, but Y has no link back to X, and nothing else links to X. Starting on Y, can you click your way to X?",
     "options": [
-      "Yes: they are joined by a link",
       "No: links only work in the direction they point",
+      "Yes: they are joined by a link",
       "Only if you go through a third page"
     ],
-    "answer": 1,
+    "answer": 0,
     "why": "Links are one-way, so being joined is not the same as being reachable. Y has no link out that leads back to X."
   },
   "evidence": {
@@ -106,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:web-bow-tie",
     "prerequisites": [

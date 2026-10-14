@@ -10,3 +10,13 @@
 - The predict question says "page A"; options are plain numbers, so A is not confused with an option letter.
 - Recall question written by the builder.
 - Open: the stage grows taller once the predict panel collapses (kit behaviour), so the readout line moves between phases.
+
+## Revision v2 (demo-builder, 2026-10-14)
+
+- Reveal stage pinned to the first core page tapped (its reach filled), dashed rings on the first IN and OUT page tapped, legend and reveal text say so; stage taps disabled in the reveal. Text now names what is on screen.
+- IN, CORE, OUT, TENDRIL, DETACHED labels drawn on the stage once all three groups were tried (and in the reveal); reveal text says CORE/IN/OUT instead of left/right.
+- Fact-check advisory: c4 now says "tendrils hanging off those, and disconnected pieces".
+- Positional tell: predict options now 7 / 10 / 4 (answer 0); recall options reordered (answer 0).
+- Claims c1, c3, c4 text changed, back to unverified. Version 2.
+- Node check unchanged: A-D 7, E 10, F 8, G 3, H 2, I 1, J 1, K 2, L 1.
+- QA (QA_ONLY=web-bow-tie-reach, port 3691): 10 passed, 2 failed (feed.spec subject chips, pre-existing, unrelated, both viewports). Lesson specs passed on phone and desktop. check and typecheck pass.
