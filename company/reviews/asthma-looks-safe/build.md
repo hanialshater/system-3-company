@@ -22,3 +22,9 @@ Not run: next build, QA, walkthrough (per task). registry, tsc and `npm run chec
 
 - c2's quote now matches the stage ("Model's view of the old records: asthma 4% risk, others 8%. Safest: asthma."). The hook is now 'In toy records, asthma patients with pneumonia die less. What if a model acts on that?' (86 characters), and c6 rests on the toy (derivation).
 - The affected claims were reset to unverified, for a fresh fact-checker. QA and reveal-fit were NOT run to completion: the :3530 dev server took 90 to 160 s to render a lesson (load 30 to 44), against the contract's 45 s. `tsc --noEmit` passes.
+
+## QA and fit re-run (2026-10-14, demo-builder, W-638)
+
+- The pass 35 wording fix (above) is unchanged; pass 36 has already re-checked it. This entry only re-runs the checks that timed out before. Dev server :3631 (worktree fixes-1, HEAD 57cea14), warmed before the runs.
+- reveal-fit (tool clean, 390x844): verdict fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, undefined words measured (verdict line included; reveal at most 90).
+- QA contract (tests/qa/contract.spec.ts, QA_ONLY on the 7 FC35-fix lessons): phone and desktop both pass (14/14 across the 7). This was a dev-server run, not a production build.
