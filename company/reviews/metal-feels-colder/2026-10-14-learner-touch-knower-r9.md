@@ -23,4 +23,4 @@ Where understanding first broke: it did not break on the idea; the risks are the
 
 ## After reading build.md
 
-Read after the section above; no earlier reviews exist. Nothing in build.md changes findings 2, 4 or 5. Fix route: demo-builder (option wording, arrow readout or drop "4.4", make Swap metal visibly do something or say why it does not); category manager owns option and reveal wording.
+Read after the section above; no earlier reviews exist. Pre-flight 2 flags the option itself ("the right option carries the only number, but 20 °C is the room temperature given in the question") and asks the reviewer to judge: I see it differently, because the standard's test is the option set, and repeating the stem's number in only the right option makes it the one that points. Steel was added by the builder (c3); finding 5 stands either way. Nothing else in build.md changes findings 2, 4 or 5. Fix route: demo-builder (option wording, arrow readout or drop "4.4", make Swap metal visibly do something or say why it does not); category manager owns option and reveal wording.

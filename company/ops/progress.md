@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 learner-evaluator: learner reviews r9, batch C (11 lessons)
+
+- What changed: wrote r9 learner reviews (simulated) from fresh release-build walkthroughs (recorded 15:19–15:28Z) for ruler-on-mercator, all-lines-meet-in-one-mother, agenda-picks-the-winner, cluster-stops-the-cascade, enemy-of-my-enemy, six-students-per-professor, times-can-shrink, bird-on-the-wire, metal-feels-colder, shake-faster-same-speed, every-scale-equally-likely (files: company/reviews/<slug>/2026-10-14-learner-*-r9.md). All linked in meta.json evidence.simulatedLearner. Board W-573..W-577 for the revise findings.
+- Verdicts: launch: ruler-on-mercator v3, all-lines-meet-in-one-mother v3, six-students-per-professor v1, times-can-shrink v1, shake-faster-same-speed v1, every-scale-equally-likely v4. Revise: agenda-picks-the-winner v2 (94 words, narrow), cluster-stops-the-cascade v4 ("those four" undefined at commit, option pair points; 140 words; fit), enemy-of-my-enemy v3 (fit; quoted states off stage; 111 words), bird-on-the-wire v1 (single-foot readings never name ground), metal-feels-colder v1 (option leak; "4.4 times" not on stage; Swap metal looks dead).
+- Belief: reasonably sure on fit/word counts (measured from 1082×2202 screenshots, ~2.77 px per CSS px, and transcript word counts); moderately sure on the judgement calls (bird label, metal option). Simulated reviews only: not evidence anyone learned.
+- Blocked/notes: `npm run check` fails on two unrelated lessons (opposite-flows-swap-more, snap-the-magnet: TODO concept ids). Several r9 lessons have claims re-opened (trust line < all checked): fact-checker's gate.
+
 ## 2026-10-14 (platform-engineer, W-538: books and big-ideas in DomainId)
 
 - **Changed:** added `"books"` and `"big-ideas"` to `DomainId` in src/kit/types.ts; changelog line in company/ops/changelog.md. Grep audit found no other place that needs a change: the feed, lesson page, map (/catalog), card colour and HQ pages all read content/domains.json (both present); HQ colours, rooms and offices were already updated by the org change; there is no `Record<DomainId, ...>` or switch on domain. W-538 moved to review. Nothing built, deployed or committed. Did not touch design/multi-card-sequence.

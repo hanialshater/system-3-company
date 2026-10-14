@@ -23,4 +23,4 @@ Where understanding first broke: at step 1, "foot 1 · 11,000 V", which confirms
 
 ## After reading build.md
 
-Read after the section above; no earlier reviews exist. Nothing in build.md changes finding 1. Fix route: demo-builder (name the second point on the single-foot readings, for example "foot 1 to ground", and the matching reveal words); category manager owns the reveal wording.
+Read after the section above; no earlier reviews exist. build.md says "each lead drawn to the two points it compares; ground is the second point for a single foot". That is the intent, and the lead is drawn; but the walkthrough's readout text ("foot 1 · 11,000 V", "seen: feet 11,000 V") and the reveal ("11,000 V at each foot") never name the second point, so finding 1 stands. Safety line c5 needs a non-author approval (builder's note), not a learner call. Fix route: demo-builder (name the second point on the single-foot readings, for example "foot 1 to ground", and the matching reveal words); category manager owns the reveal wording.
