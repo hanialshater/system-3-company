@@ -50,7 +50,13 @@ function Stage({
   return (
     <div className={s.wrap}>
       <p className={s.msg}>
-        {locked ? "Make a prediction to start." : "Independent: knowing the first die leaves the chance of the total unchanged."}
+        {locked
+          ? "Make a prediction to start."
+          : a === null
+            ? "Pick a first die, then compare the two chances."
+            : show(a) === show(b)
+              ? `Total ${target}: the clue left the chance at ${show(b)}.`
+              : `Total ${target}: the clue moved the chance from ${show(b)} to ${show(a)}.`}
       </p>
       <svg viewBox="0 0 270 262" className={`stage-svg ${s.svg}`} role="img" aria-label={`Total ${target}: ${show(b)} before, ${a ? show(a) : "no clue"} after`}>
         <text x={X0 + 3 * SZ} y={12} textAnchor="middle" className={s.axis}>

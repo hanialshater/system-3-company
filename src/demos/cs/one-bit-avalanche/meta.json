@@ -54,18 +54,21 @@
       "text": "A good hash is built so that each output bit flips with a chance of about one half, like a coin toss, when any input bit changes.",
       "support": "source",
       "source": "Strict avalanche criterion: Webster and Tavares, 'On the Design of S-Boxes', CRYPTO '85. Expected 256 x 1/2 = 128 matches c2's simulation.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.one-bit-avalanche.c5",
       "text": "So similar messages do not get similar hashes, and a message cannot be nudged toward a chosen hash bit by bit.",
       "support": "source",
       "source": "Preimage resistance as a design goal of SHA-2: NIST SP 800-107 Rev. 1 (2012), section 4.1; the avalanche result (c2) is why small edits give no partial progress. Stated as a design property, not a proof.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-bit-avalanche.c6",
+      "text": "A hash is a fixed-size fingerprint of a message, used to check that it was not altered. A dot (·) on the stage stands for a character that is not a printable letter.",
+      "support": "source",
+      "source": "Standard definition of a cryptographic hash function (NIST FIPS 180-4 for SHA-256: message digest used to detect changes).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:cryptographic-hash",
     "prerequisites": [

@@ -31,12 +31,12 @@ export default function TwoFlipsSlipBy({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A message has an even-parity check bit. Two of its bits flip in transit. Does the receiver notice?",
+        question: "A message carries one extra check bit, set so the number of 1s is even; the receiver checks the count is still even. Two bits flip in transit. Does the receiver notice?",
         options: ["Always", "Only if the flipped bits are next to each other", "No, it can miss it"],
         answer: 2,
       }}
-      exploreHint="Flip one bit. Then another. Then try three and four."
-      minInteractions={2}
+      exploreHint="Flip one bit, then another. Then try two bits far apart."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -50,14 +50,14 @@ export default function TwoFlipsSlipBy({ slug }: { slug: string }) {
             message. So <strong>no</strong>, two flips slip by, wherever they are.
           </p>
           <p>
-            A parity bit catches any odd number of flips and is blind to any even number. That is why links that expect
-            bursts of noise use stronger checks, such as CRCs, built from many parity-style sums.
+            A parity bit catches any odd number of flips and is blind to any even number. So one check bit cannot
+            protect a message from noise that flips several bits.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["caught-one", "missed-even"]}>
+        <Milestones interact={interact} names={["caught-one", "missed-even", "far-pair"]}>
           {(reach) => {
             const flip = (i: number) => {
               if (locked) return;
@@ -68,6 +68,17 @@ export default function TwoFlipsSlipBy({ slug }: { slug: string }) {
               if (k > 0) setTried((t) => ({ ...t, [k]: passes(g) }));
               if (k > 0 && !passes(g)) reach("caught-one");
               if (k > 0 && passes(g)) reach("missed-even");
+              const idx = f.map((x, j) => (x ? j : -1)).filter((j) => j >= 0);
+              if (idx.length === 2 && idx[1] - idx[0] > 1 && passes(g)) reach("far-pair");
+            };
+            const farPair = () => {
+              if (locked) return;
+              const f = SENT.map((_, j) => j === 0 || j === 5);
+              const g = SENT.map((b, j) => (f[j] ? 1 - b : b));
+              setFlipped(f);
+              setTried((t) => ({ ...t, 2: passes(g) }));
+              reach("missed-even");
+              reach("far-pair");
             };
             const undo = () => {
               if (locked) return;
@@ -107,14 +118,17 @@ export default function TwoFlipsSlipBy({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <p className={s.legend}>
-                  <span>message</span>
-                  <span>check</span>
+                  <span>message: four 1s</span>
+                  <span>check: 0</span>
                 </p>
 
                 <Row>
                   <Readout label="Flips" value={n} />
-                  <Readout label="1s received" value={locked ? "–" : ones(got)} />
+                  <Readout label="1s received (even passes)" value={locked ? "–" : ones(got)} />
                   <Readout label="Message" value={locked ? "–" : n ? "changed" : "intact"} />
+                  <Control disabled={locked || flipped.every((x, j) => x === (j === 0 || j === 5))} onClick={farPair}>
+                    Flip bits 1 and 6
+                  </Control>
                   <Control disabled={locked || n === 0} onClick={undo}>
                     Undo flips
                   </Control>

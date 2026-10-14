@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · demo-builder · revision batch 06 (16 lessons, none published)
+- Changed: Demo.tsx, meta.json and build.md ("Revision v<N>") for ai/shrink-toward-zero, ai/word-in-pieces, chemistry/the-tail-that-reacts, cs/hash-bucket-pileup, cs/one-bit-avalanche, cs/two-flips-slip-by, economics/compound-interest, geography/midnight-sun-line, geography/two-bulges, life/virulence-sweet-spot, math/square-a-plus-b, physics/crumple-zone-stopping-time, physics/torch-underwater-tilt, probability/birthday-paradox, probability/halve-the-margin-cost, probability/sum-seven-ignores-first-die. Each fixes the latest learner review; edited claims are unverified and need a fact-check pass.
+- Checked: `npm run check` passes; narrow tsc over the 16 Demo.tsx files shows only missing CSS-module typings (worktree artefact). NOT run: build, lesson QA, walkthrough sheets (machine out of memory, coordinator's order). A partial dev-server QA run was stopped; its two phone failures (shrink-toward-zero, word-in-pieces, after 1.5 m under load 100) are unexplained and may be timeouts.
+- Next: chief of staff runs integrated build, QA and walkthrough sheets; look at the new controls on phone (two-flips-slip-by, midnight-sun-line day strip, two-bulges arrows). Then fact-checker on unverified claims.
+
+
 ## 2026-10-14 · interaction-designer · specs for a-star-heads-for-goal and rubber-band-hull (CS algorithms, group 6)
 - Changed: wrote `company/design/specs/a-star-heads-for-goal.{md,svg}` (before/after: guess chips + wall toggle, replayed runs, result table) and `company/design/specs/rubber-band-hull.{md,svg}` (step-through: the 9 pins are the controls in walk order, no finish button). Board untouched (caller's instruction).
 - Believe (high): both briefs' answers re-run in node: A* 7 vs Dijkstra 31 on the open grid, any tie-break; hull 6 pins, 4 right-turn pops in Graham order. Medium: whether the design lead accepts replay buttons ("Settle to goal") as not being a jump to the answer.

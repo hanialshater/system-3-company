@@ -60,13 +60,17 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
   const histo = BINS.map((b) => tally.filter((x) => x === b).length);
   const hmax = Math.max(1, ...histo);
   const by5 = tally.filter((x) => x <= 5).length;
+  const by4 = tally.filter((x) => x <= 4).length;
+  // Chance that k keys all land in different slots: 1 x 0.9 x 0.8 ...
+  const noCol = (k: number) => Array.from({ length: k }, (_, i) => 1 - i / SLOTS).reduce((a, b) => a * b, 1);
+  const f4 = (v: number) => String(Number(v.toFixed(4)));
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "A hash table has 10 slots, and each new key lands in a random slot. How many keys until a collision (two keys in one slot) is more likely than not?",
+          "A hash table is a row of 10 slots; each key you store goes to a random slot. How many keys until a collision (two keys in one slot) is more likely than not?",
         options: ["2", "5", "9"],
         answer: 1,
       }}
@@ -84,8 +88,7 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
           </p>
           <p>
             Each new key has more occupied slots to hit, and those chances multiply. That is why real hash tables plan
-            for collisions, keeping a short list in each slot, and grow before they fill: Java&apos;s HashMap resizes when
-            it is 75% full.
+            for collisions, keeping a short list in each slot.
           </p>
           <p className="muted">Collisions come early. Plan for them.</p>
         </>
@@ -139,12 +142,15 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
               : first
                 ? `First collision was key ${first}.`
                 : `${keys} key${keys === 1 ? "" : "s"}, no collision yet.`;
+        const chance =
+          keys > 0 ? `Chance ${keys} random key${keys === 1 ? "" : "s"} all land in different slots: ${f4(noCol(keys))}` : "";
 
         return (
           <div className={s.wrap}>
             <p className={`${s.msg} ${first ? s.bad : ""}`} aria-live="polite">
               {msg}
             </p>
+            <p className={s.chance}>{chance}</p>
             <svg viewBox="0 0 320 150" className="stage-svg" role="img" aria-label={`Table ${table}: ${keys} keys in ${SLOTS} slots`}>
               {Array.from({ length: SLOTS }, (_, i) => {
                 const here = placed.filter((p) => p.slot === i);
@@ -201,20 +207,30 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
 
             <div className={s.tally}>
               <span className="muted small">
-                {tally.length ? `Key that caused the first collision, ${tally.length} table${tally.length === 1 ? "" : "s"}:` : "Tables tried: none yet"}
+                {tally.length
+                  ? `${tally.length} table${tally.length === 1 ? "" : "s"}: which key number first collided? Collided by key 4: ${by4}. By key 5: ${by5}.`
+                  : "Tables tried: none yet"}
               </span>
-              <svg viewBox="0 0 320 58" className={s.histo} aria-hidden="true">
+              <svg viewBox="0 0 320 66" className={s.histo} aria-hidden="true">
                 {BINS.map((b, i) => {
                   const h = (histo[i] / hmax) * 34;
                   return (
                     <g key={b}>
                       <rect x={X0 + i * COLW + 4} y={38 - h} width={COLW - 8} height={h} rx={2} fill={b <= 5 ? "var(--bad)" : "var(--muted)"} />
-                      <text x={X0 + i * COLW + COLW / 2} y={53} textAnchor="middle" className={s.axis}>
+                      {histo[i] > 0 && (
+                        <text x={X0 + i * COLW + COLW / 2} y={36 - h} textAnchor="middle" className={s.axis}>
+                          {histo[i]}
+                        </text>
+                      )}
+                      <text x={X0 + i * COLW + COLW / 2} y={51} textAnchor="middle" className={s.axis}>
                         {b === 11 ? "11" : b}
                       </text>
                     </g>
                   );
                 })}
+                <text x={160} y={63} textAnchor="middle" className={s.axis}>
+                  key number that first collided (bar height: tables)
+                </text>
               </svg>
             </div>
           </div>

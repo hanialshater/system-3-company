@@ -33,16 +33,17 @@ const R = 308;
 const TOP = 12;
 const BOT = 170;
 const px = (t: number) => L + (t / YEARS) * (R - L);
-const py = (v: number) => BOT - (Math.min(v, YMAX) / YMAX) * (BOT - TOP);
+const LOCKED_MAX = 2500; // before the prediction the axis fits only the year-10 balance, so it cannot show the answer
+const py = (v: number, m = YMAX) => BOT - (Math.min(v, m) / m) * (BOT - TOP);
 
 const money = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 const hundreds = (v: number) => `$${(Math.round(v / 100) * 100).toLocaleString("en-US")}`;
 
 /** Closed area between a lower and an upper curve, from year 0 to year t. */
-function band(t: number, lower: (y: number) => number, upper: (y: number) => number) {
+function band(t: number, lower: (y: number) => number, upper: (y: number) => number, m: number) {
   const ys = Array.from({ length: t + 1 }, (_, i) => i);
-  const top = ys.map((y) => `${px(y).toFixed(1)},${py(upper(y)).toFixed(1)}`);
-  const bottom = ys.reverse().map((y) => `${px(y).toFixed(1)},${py(lower(y)).toFixed(1)}`);
+  const top = ys.map((y) => `${px(y).toFixed(1)},${py(upper(y), m).toFixed(1)}`);
+  const bottom = ys.reverse().map((y) => `${px(y).toFixed(1)},${py(lower(y), m).toFixed(1)}`);
   return `M${top.join(" L")} L${bottom.join(" L")} Z`;
 }
 
@@ -54,7 +55,6 @@ export default function CompoundInterest({ slug }: { slug: string }) {
   const b = balance(years);
   const ioi = b - simple(years);
   const labelX = Math.min(Math.max(px(years), L + 30), R - 30);
-  const labelY = Math.max(py(b) - 8, TOP + 22);
 
   return (
     <Lesson
@@ -84,6 +84,8 @@ export default function CompoundInterest({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
+        const m = locked ? LOCKED_MAX : YMAX;
+        const labelY = Math.max(py(b, m) - 8, TOP + 22);
         const setT = (t: number) => {
           const next = Math.max(0, Math.min(YEARS, t));
           setYears(next);
@@ -92,10 +94,10 @@ export default function CompoundInterest({ slug }: { slug: string }) {
         return (
           <div className={s.ci}>
             <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label="Balance over 40 years in three layers">
-              {[5000, 10000, 15000].map((v) => (
+              {!locked && [5000, 10000, 15000].map((v) => (
                 <g key={v}>
-                  <line x1={L} y1={py(v)} x2={R} y2={py(v)} stroke="var(--line)" strokeDasharray="2 4" />
-                  <text x={L - 4} y={py(v) + 4} textAnchor="end" className={s.axis} fill="var(--muted)">
+                  <line x1={L} y1={py(v, m)} x2={R} y2={py(v, m)} stroke="var(--line)" strokeDasharray="2 4" />
+                  <text x={L - 4} y={py(v, m) + 4} textAnchor="end" className={s.axis} fill="var(--muted)">
                     ${v / 1000}k
                   </text>
                 </g>
@@ -119,22 +121,27 @@ export default function CompoundInterest({ slug }: { slug: string }) {
 
               {years > 0 && (
                 <>
-                  <path d={band(years, () => 0, () => DEPOSIT)} className={s.deposit} />
-                  <path d={band(years, () => DEPOSIT, simple)} className={s.simple} />
-                  <path d={band(years, simple, balance)} className={s.compound} />
+                  <path d={band(years, () => 0, () => DEPOSIT, m)} className={s.deposit} />
+                  <path d={band(years, () => DEPOSIT, simple, m)} className={s.simple} />
+                  <path d={band(years, simple, balance, m)} className={s.compound} />
                   <line
                     x1={px(0)}
-                    y1={py(DEPOSIT)}
+                    y1={py(DEPOSIT, m)}
                     x2={px(years)}
-                    y2={py(straight(years))}
+                    y2={py(straight(years), m)}
                     stroke="var(--fg)"
                     strokeWidth={1.5}
                     strokeDasharray="5 4"
                   />
                 </>
               )}
-              <line x1={px(years)} y1={BOT} x2={px(years)} y2={py(b)} stroke="var(--fg)" strokeWidth={1.5} />
-              <circle cx={px(years)} cy={py(b)} r={4} fill="var(--fg)" />
+              <line x1={px(years)} y1={BOT} x2={px(years)} y2={py(b, m)} stroke="var(--fg)" strokeWidth={1.5} />
+              <circle cx={px(years)} cy={py(b, m)} r={4} fill="var(--fg)" />
+              {!locked && years === YEARS && (
+                <text x={px(YEARS) - 4} y={py(straight(YEARS), m) - 6} textAnchor="end" className={s.axis} fill="var(--fg)">
+                  first-decade pace: {hundreds(straight(YEARS))}
+                </text>
+              )}
               <text x={labelX} y={labelY} textAnchor="middle" className={s.value} fill="var(--fg)">
                 {money(b)}
               </text>

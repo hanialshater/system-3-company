@@ -1,7 +1,7 @@
 {
   "slug": "virulence-sweet-spot",
   "title": "Deadlier germs: do they spread more?",
-  "hook": "More harm means faster spread but shorter infections. Which toy germ spreads best?",
+  "hook": "More harm spreads a germ faster but for fewer days. Which harm level spreads it best?",
   "domain": "life",
   "concept": "virulence-tradeoff",
   "status": "review",
@@ -32,12 +32,10 @@
     },
     {
       "id": "life.virulence-sweet-spot.c2",
-      "text": "Toy germ: harm v removes carriers at v per day on top of 1 per day recovery (an infection lasts 1 / (1 + v) days) and spreads 4 x sqrt(v) cases per carrier per day, so R0 = 4 sqrt(v) / (1 + v): 1.6 at v 0.25, 2.0 at v 1, 1.6 at v 4, with its peak at v = 1.",
+      "text": "Toy germ: harm v removes carriers at v per day on top of 1 per day recovery (an infection lasts 1 / (1 + v) days) and spreads 4 x sqrt(v) cases per carrier per day, so R0 = 4 sqrt(v) / (1 + v): 1.6 at v 0.25, 2.0 at v 1, 1.6 at v 4, with its peak at v = 1. At v = 0.25 that is 2.0 cases a day for 0.8 days. The dashed curve on the stage is R0 for every v from 0.1 to 8.",
       "support": "derivation",
       "source": "Demo.tsx computes rate(v), days(v) and r0(v); grid search in node (artifacts/scratch/w5life/virulence.mjs) peaks at v = 1.00, R0 = 2.000. Other values on the slider: 0.1 gives 1.15, 0.5 gives 1.89, 2 gives 1.89, 8 gives 1.26.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.virulence-sweet-spot.c3",
@@ -68,7 +66,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:virulence-tradeoff",
     "prerequisites": [

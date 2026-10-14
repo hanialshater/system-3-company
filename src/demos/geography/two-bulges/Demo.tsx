@@ -54,8 +54,8 @@ export default function TwoBulges({ slug }: { slug: string }) {
         options: ["2", "1", "4"],
         answer: 0,
       }}
-      exploreHint="Turn the Earth through a whole lunar day. Where is the water high?"
-      minInteractions={2}
+      exploreHint="Turn the Earth through a lunar day. When is the water high, and when low?"
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -66,19 +66,20 @@ export default function TwoBulges({ slug }: { slug: string }) {
           <p>
             The far bulge is the surprise. The Moon pulls the near-side water a little harder than the Earth&rsquo;s
             centre, and the centre a little harder than the far-side water. What matters is that difference, so the ocean
-            is stretched both ways along the Moon line. Real coasts differ, and some get only one tide a day.
+            is stretched both ways along the Moon line.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["near", "far"]}>
+        <Milestones interact={interact} names={["near", "far", "low"]}>
           {(reach) => {
             const go = (v: number) => {
               setT(v);
               const a = ((360 * v) / LUNAR_DAY_H) % 360;
               if (a < 15 || a > 345) reach("near");
               if (Math.abs(a - 180) < 15) reach("far");
+              if (level(v) < -0.85) reach("low");
             };
             const [dx, dy] = dot(R_EARTH + SEA + (locked ? 0 : BULGE * lv));
             const [gx, gy] = dot(R_EARTH);
@@ -102,8 +103,25 @@ export default function TwoBulges({ slug }: { slug: string }) {
                   <text x={W - 22} y={CY + 26} className={s.small} textAnchor="middle">
                     Moon
                   </text>
-                  <text x={6} y={H - 6} className={s.small}>
+                  {!locked &&
+                    [40, 0, -40].map((dx0, i) => (
+                      <line key={dx0} x1={CX + dx0 - 14} y1={CY + 26} x2={CX + dx0 - 14 + [26, 20, 14][i]} y2={CY + 26} className={s.gauge} markerEnd="url(#tug)" />
+                    ))}
+                  {!locked && (
+                    <text x={CX} y={CY + 42} className={s.small} textAnchor="middle">
+                      Moon's attraction: strongest near, weakest far
+                    </text>
+                  )}
+                  <defs>
+                    <marker id="tug" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto">
+                      <path d="M0 0 L6 3 L0 6 Z" fill="var(--fg)" />
+                    </marker>
+                  </defs>
+                  <text x={6} y={H - 16} className={s.small}>
                     Toy: no continents, bulges exaggerated. Dot: your coast.
+                  </text>
+                  <text x={6} y={H - 5} className={s.small}>
+                    Lunar day: time until your coast faces the Moon again.
                   </text>
                 </svg>
                 <div className={s.chips} role="group" aria-label="Turn the Earth to">
@@ -112,6 +130,9 @@ export default function TwoBulges({ slug }: { slug: string }) {
                   </Control>
                   <Control disabled={locked || t === HALF} className={t === HALF ? "active" : ""} onClick={() => go(HALF)}>
                     Coast faces away
+                  </Control>
+                  <Control disabled={locked || t === LUNAR_DAY_H / 4} className={t === LUNAR_DAY_H / 4 ? "active" : ""} onClick={() => go(LUNAR_DAY_H / 4)}>
+                    Quarter turn
                   </Control>
                 </div>
                 <Row>

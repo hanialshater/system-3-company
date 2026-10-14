@@ -27,3 +27,8 @@ Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the f
 ## Revision v3 (wave C)
 
 No code change: the review is of v1; v3 already has 0.20 s reachable, car-weights, crush distance and the passenger link.
+
+## Revision v4
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Locked stage no longer prints '1000 x 15'. Caption now introduces momentum before it is used. Question glosses kN (own weight about 10 kN). 'People inside' sentence and the real-crash-numbers caveat removed (told, not shown; the caveat was cut off). c5, c7 reworded, unverified.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

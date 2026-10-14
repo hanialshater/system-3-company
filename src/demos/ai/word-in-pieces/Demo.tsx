@@ -26,6 +26,9 @@ function tokenize(word: string, pieces: readonly string[]) {
   }
   return out;
 }
+const PIECE_ID: Record<string, number> = { un: 412, happi: 7031, ness: 1297 };
+// Illustrative ids: made up for the toy. Letters get 1 to 26.
+const idOf = (t: string) => PIECE_ID[t] ?? t.charCodeAt(0) - 96;
 const Q_ALL = tokenize(WORDS[0], PIECES).length; // 3
 const Q_NONE = tokenize(WORDS[0], []).length; // 11
 const RARE = tokenize(WORDS[1], PIECES).length; // 5
@@ -44,7 +47,7 @@ export default function WordInPieces({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A tokenizer has the pieces un, happi, ness and every single letter. It always takes the longest piece that fits. How many tokens is '${WORDS[0]}'?`,
+        question: `A token is one piece of text that a model reads as a unit. A tokenizer has the pieces un, happi, ness and every single letter. It always takes the longest piece that fits. How many tokens is '${WORDS[0]}'?`,
         options: [String(Q_NONE), String(Q_ALL), "1"],
         answer: 1,
       }}
@@ -96,7 +99,7 @@ export default function WordInPieces({ slug }: { slug: string }) {
             let x = 10;
             return (
               <div className={s.wrap}>
-                <span className={`tag ${s.model}`}>Toy tokenizer · longest piece first</span>
+                <span className={`tag ${s.model}`}>Toy tokenizer · made-up piece numbers</span>
                 <p className={s.caption}>Pieces in the list (plus every single letter):</p>
                 <Row>
                   {PIECES.map((p) => (
@@ -138,7 +141,7 @@ export default function WordInPieces({ slug }: { slug: string }) {
                             {t}
                           </text>
                           <text x={x0 + w / 2} y={92} textAnchor="middle" className={s.tiny} fill="var(--muted)">
-                            {i + 1}
+                            #{idOf(t)}
                           </text>
                         </g>
                       );

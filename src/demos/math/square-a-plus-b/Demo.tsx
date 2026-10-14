@@ -31,16 +31,16 @@ export default function SquareAPlusB({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `What is ${N} × ${N}, thought of as (${KEY_A} + ${KEY_B})²?`,
-        options: [String(N * N), String(wrong), String(N * KEY_A)],
-        answer: 0,
+        question: `Someone says (${KEY_A} + ${KEY_B})² = ${KEY_A}² + ${KEY_B}² = ${wrong}. The true value of ${N} × ${N} is bigger. By how much?`,
+        options: ["By 30", `By ${N * N - wrong}`, "By 100"],
+        answer: 1,
       }}
       exploreHint={`Move the cut to ${KEY_A} and ${KEY_B}, then try "Only a² + b²".`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            <strong>{N * N}.</strong> With the cut at {KEY_A} and {KEY_B} you saw four pieces: {KEY_A * KEY_A} + {KEY_A * KEY_B} +{" "}
+            <strong>By {N * N - wrong}.</strong> The true {N} × {N} is {N * N}. With the cut at {KEY_A} and {KEY_B} you saw four pieces: {KEY_A * KEY_A} + {KEY_A * KEY_B} +{" "}
             {KEY_A * KEY_B} + {KEY_B * KEY_B} = {N * N}.
           </p>
           <p>

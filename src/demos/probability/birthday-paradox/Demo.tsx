@@ -161,7 +161,7 @@ export default function BirthdayParadox({ slug }: { slug: string }) {
             <strong>{Q_CHANCE}%</strong>, a coin flip. A few dozen rooms wobble around it.
           </p>
           <p>
-            Compare a different question: does anyone share <em>my</em> birthday? Only about 6%. But a match can
+            Compare a different question: does anyone share <em>your</em> birthday? Only about 6% (the second readout). But a match can
             happen in any pair, and {QUESTION_N} people make <strong>{Q_PAIRS} pairs</strong>: every line on the ring.
             Each pair matches only 1 time in 365, yet the chance that all {Q_PAIRS} miss is only about {ALL_MISS}%.
             Each new person makes a pair with everyone already there.
@@ -198,20 +198,22 @@ export default function BirthdayParadox({ slug }: { slug: string }) {
                   </g>
                 );
               })}
+              {!locked && (
               <g className={s.chords} style={{ strokeOpacity: Math.max(0.06, Math.min(0.32, 40 / Math.max(pairs, 1))) }}>
                 {layout.flatMap((p, i) =>
                   layout.slice(i + 1).map((q, j) => <line key={`${i}-${j}`} x1={p.x} y1={p.y} x2={q.x} y2={q.y} />),
                 )}
               </g>
+              )}
               {match !== null && <circle cx={pos(match, R).x} cy={pos(match, R).y} r={16} className={s.halo} />}
               {layout.map((p, i) => (
                 <circle key={i} cx={p.x} cy={p.y} r={5.5} className={p.shared && !locked ? s.dotShared : s.dot} />
               ))}
               <text x={C} y={C - 16} textAnchor="middle" className={s.big}>
-                {pairs}
+                {locked ? n : pairs}
               </text>
               <text x={C} y={C + 6} textAnchor="middle" className={s.label}>
-                pairs among {n} people
+                {locked ? "people, one birthday each" : `pairs among ${n} people`}
               </text>
               <text x={C} y={C + 30} textAnchor="middle" className={match !== null ? s.hit : s.label}>
                 {locked ? "Shared birthday?" : match !== null ? `Shared: ${dayLabel(match)}` : "No shared birthday"}
@@ -228,7 +230,10 @@ export default function BirthdayParadox({ slug }: { slug: string }) {
                 {ENOUGH_ROOMS} rooms
               </Control>
               <Readout label={`Rooms of ${n} with a match`} value={tallyText} />
-              <Readout label="Exact chance" value={locked ? "?" : pct(chance)} />
+            </Row>
+            <Row>
+              <Readout label="Exact chance of any match" value={locked || at23.tried < ENOUGH_ROOMS ? "?" : pct(chance)} />
+              <Readout label="Chance someone has YOUR birthday" value={locked ? "?" : pct(1 - Math.pow((DAYS - 1) / DAYS, n - 1))} />
             </Row>
             <Row>
               <Slider
