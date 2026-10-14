@@ -1,0 +1,89 @@
+{
+  "slug": "two-public-clues-break-the-herd",
+  "title": "Can two clues beat a crowd of 100?",
+  "hook": "Clues are right 2 times in 3. 100 people chose blue. How much do they know?",
+  "domain": "probability",
+  "concept": "cascade-fragility",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "two-said-blue: after a lead of 2, people ignore their own clue"
+    ],
+    "doesNotKnow": [
+      "that a cascade of 100 followers carries only the first two clues, so two public clues can overturn it"
+    ]
+  },
+  "misconception": "A choice followed by 100 people is backed by 100 people's evidence.",
+  "objective": "The learner can explain that the 98 followers in a cascade add no evidence, so the 100 blue choices hold only 2 clues, and two published red clues plus their own red clue make red the better choice (blue falls to 33%).",
+  "claims": [
+    {
+      "id": "probability.two-public-clues-break-the-herd.c1",
+      "text": "In a cascade, from person 3 on a lead of 2 outweighs any single clue, so people after the first two follow regardless of their own clue and their choices reveal nothing: the 98 followers chose blue because of the first two choices, not their own clues.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010) ch. 16 (information cascades; sections unconfirmed); S. Bikhchandani, D. Hirshleifer and I. Welch (1992), 'A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades', J. Political Economy 100(5). Attribution: fact-checker confirms (flag carried from the brief). Stage stub: 'Person 3 on: a lead of 2 wins'.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-public-clues-break-the-herd.c2",
+      "text": "With clues right 2 times in 3 and even odds to start, 2 blue clues and 3 red clues give the blue urn a 33% chance, so red is the better choice.",
+      "support": "derivation",
+      "source": "Bayes with likelihood ratio 2 per clue: P(blue) = 1 / (1 + 2^(red − blue)) = 1 / (1 + 2) = 1/3. pBlue in Demo.tsx, builder re-run in node 2026-10-14; matches the brief's node check (0.333).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-public-clues-break-the-herd.c3",
+      "text": "Without the published clues, the same person with a red clue in the cascade still rates blue at 67%.",
+      "support": "derivation",
+      "source": "2 blue clues vs 1 red: 1 / (1 + 2^(1 − 2)) = 2/3. pBlue(2, 1) in Demo.tsx, builder re-run 2026-10-14; matches the brief (inCascadeOwnRed 0.667).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-public-clues-break-the-herd.c4",
+      "text": "The 100 blue choices held only 2 clues; a herd built on two clues can be overturned by two more.",
+      "support": "derivation",
+      "source": "Follows from c1–c3: only persons 1–2 chose on their own clue, so the crowd's evidence is 2 blue clues; adding 2 red clues (plus the learner's own red) moves blue from 67% to 33%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.two-public-clues-break-the-herd.c5",
+      "text": "Clues are right 2 times in 3.",
+      "support": "convention",
+      "source": "The lesson's model (brief two-public-clues-break-the-herd, company/domains/briefs/probability.statistics.md, Course: NCM: clues right 2/3 of the time, prior 1/2), carried over from two-said-blue.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A restaurant is packed because the first two diners picked it and everyone after them followed the crowd. Two food critics then independently pan it. How much should the crowd outweigh the critics?",
+    "options": [
+      "A lot: hundreds of diners chose it",
+      "Not much: the crowd carries only the first two diners' information",
+      "Not at all: crowds are always wrong"
+    ],
+    "answer": 1,
+    "why": "Followers in a cascade copy the people ahead of them, so their choices add no new information. The packed room rests on two opinions, and two independent new ones can outweigh it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cascade-fragility",
+    "also": ["probability:bayesian-updating"],
+    "prerequisites": ["probability:bayesian-updating"],
+    "level": "core",
+    "strand": "statistics",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 16 }],
+    "tags": ["cascades", "Bayes", "herding"]
+  },
+  "format": "before-after",
+  "interactions": ["choice-before-reveal", "toggle-before-after", "milestone-gate"]
+}

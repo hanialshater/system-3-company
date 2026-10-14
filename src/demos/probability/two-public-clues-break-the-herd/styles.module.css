@@ -1,0 +1,35 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.rule { margin: 0; color: var(--muted); font-size: 0.84rem; text-align: center; }
+.fit { flex: 0 1 auto; min-height: 150px; max-height: 34dvh; }
+.chose { fill: #3b7dd8; stroke: #3b7dd8; stroke-width: 1; transition: opacity 300ms ease; }
+.follower { fill: #3b7dd8; opacity: 0.3; stroke: #3b7dd8; stroke-width: 1; stroke-dasharray: 2 2; transition: opacity 300ms ease; }
+.clueDot { fill: #fff; }
+.caption { font-size: 11px; fill: var(--muted); }
+.sideHead { font-size: 11px; fill: var(--muted); font-weight: 700; }
+.chipRed { fill: #d64545; stroke: #d64545; }
+.chipUnknown { fill: none; stroke: var(--muted); stroke-dasharray: 3 3; }
+.chipText { font-size: 12px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
+.chipRed + .chipText { fill: #fff; }
+.table { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.box { border: 1.5px solid var(--line); border-radius: 10px; padding: 4px 8px; min-height: 52px; background: var(--bg-2); }
+.boxBlue { border-color: #3b7dd8; }
+.boxRed { border-color: #d64545; }
+.boxLabel { font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.chip { display: inline-block; min-width: 26px; padding: 2px 6px; border-radius: 10px; font-size: 0.76rem; font-weight: 700; text-align: center; color: #fff; }
+.blueChip { background: #3b7dd8; }
+.redChip { background: #d64545; }
+.moved { animation: arrive 300ms ease; }
+.unknown { font-size: 0.8rem; color: var(--muted); }
+.readout { display: flex; justify-content: space-between; gap: 8px; font-size: 0.9rem; }
+.readout strong { font-variant-numeric: tabular-nums; }
+.bestBlue { color: #3b7dd8; }
+.bestRed { color: #d64545; }
+.log { margin: 0; min-height: 1.3em; font-size: 0.8rem; color: var(--muted); }
+.controls { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.tap { min-height: 44px; }
+@keyframes arrive { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .chose, .follower { transition: none; }
+  .moved { animation: none; }
+}

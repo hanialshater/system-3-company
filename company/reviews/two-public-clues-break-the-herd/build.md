@@ -1,0 +1,12 @@
+# Build note: two-public-clues-break-the-herd
+
+builder: demo-builder (ncm-specs) · 2026-10-14 · v1 draft · brief: company/domains/briefs/probability.statistics.md, Course: NCM, brief 1 · spec: company/design/specs/two-public-clues-break-the-herd.md (+ .svg)
+
+- Intent, as specced: a 10 × 10 grid of 100 blue "chose blue" squares (one SVG `<g>`), a side column (your red clue; two dashed "?" published chips), a two-box clue table (blue / red), a readout "Chance the urn is blue: ?" with "Best: …", and a log line. "Count the clues behind them" fades persons 3–100 (dashed, faded, no clue dot; ≤ 300 ms, none under reduced motion), puts chips 1, 2 in the blue box and "yours" in the red box: 67%, Best: blue. The toggle "Publish two clues" ⇄ "Two clues published" turns the chips solid red and, once counted, adds "pub", "pub" to the red box: 33%, Best: red, and writes "Before publishing: 67% blue" (also written if counting happens with the toggle already on).
+- **Trimmed text, as the spec requires (21 words by the spec's count):** stage stub "Person 3 on: a lead of 2 wins" and caption "1–2: clues. 3–100: followed." The long rule's "Clues are right 2 times in 3" moved to the question area: it is the hook line (keeping the question at the brief's wording). "Clues on the table" heading from the wireframe dropped to stay at 21.
+- Readout computed from the chips: P(blue) = 1 / (1 + 2^(red − blue)). Re-run via transpile-only harness: pBlue(2,1) = 0.667, pBlue(2,3) = 0.333 (and 2 blue only 0.8, own-blue variant 0.667), matching the brief.
+- Milestones (minInteractions 2): counted, published-after-count (either order). QA path: Count (67%) · toggle (33%, log). Count disables after use.
+- Blue/red are fixed hues (#3b7dd8 / #d64545) because the kit has no blue/red tokens; every state also has text ("blue", "red", "Best: red") and shape (clue dot, dashed followers, dashed "?" chips). Visual designer: please check the pair against system.md in both themes.
+- Dependency: the brief says build after two-said-blue, and learner.knows names it, but two-said-blue is not on this branch. The lesson stands alone on its hook and stub; the prerequisite gap is for cm-probability / the course owner.
+- Format "before-after"; interactions choice-before-reveal, toggle-before-after, milestone-gate. Reference: E&K chapter 16 only (sections unconfirmed, so omitted). Claims c1–c5 unverified; c1 carries "Attribution: fact-checker confirms" (BHW 1992).
+- Not run, per the batch instruction: next build, typecheck, QA, walkthrough.
