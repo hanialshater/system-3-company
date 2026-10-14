@@ -3,6 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · rnd-engineer · knots looks follow-up: fix1-bigon (VP ruling §4b)
+- Changed: new candidate src/lab/knots/candidates/fix1-bigon/ (copy of gen2-force-smooth; only draw.mjs and index.d.ts differ), with a bigon opener in the relaxation. Also NOTES.md, measure-bigons.mjs (bigon width and min face width, self-checked) and renders/ (before/after SVGs of 3_1, 4_1, 5_2, L2a1, random12). Not registered in evolve.json, so `evolve eval` gates it out as "not registered". I did not edit evolve.json, src/kit, the tests or the gen2 folders.
+- Believe (high): 3_1 min bigon width 7.7 -> 23.5 of 100 (ratio 0.10 -> 0.58) and 4_1 8.3 -> 17.0 (0.12 -> 0.33). The min ratio over prime table knots is 0.10 -> 0.28. Tests 103/103 on seeds 1-3, including the crossing-change test. The looks gate passes with more margin: worst straight 14 % (was 23 %), sharp 0 %. random-knot lesson 11,592 B, 184 B under 11,776. Extra crossings at the lesson's settings: 0 in 1,000. Costs: would-be bench g of -8.8 / -5.7 / -7.8 (median -7.8; spacing and spread). 6_3's narrowest region and random diagrams' narrowest regions are thinner (5th pct 5.0 -> 4.0). The Hopf link is still a flat lens: looked at, not fixed (NOTES section 10).
+- Next: rnd-lead decides whether to take fix1-bigon (register it, move measure-bigons.mjs and renders/ out of the folder first) and who judges the 3_1/4_1 pictures for lifting the bigon import block (design lead, cm-math-discrete for tricolour-check). Nothing blocked.
+
 
 
 
