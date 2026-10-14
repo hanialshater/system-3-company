@@ -56,7 +56,7 @@ const XL = 46;
 const XR = 300;
 const YT = 12;
 const YB = 140;
-const BMAX = 1000;
+const BMAX = 600;
 const px = (t: number) => XL + (t / YEARS) * (XR - XL);
 const py = (b: number) => YB - (Math.min(b, BMAX) / BMAX) * (YB - YT);
 const pts = (p: [number, number][]) => p.map(([t, b]) => `${px(t)},${py(b)}`).join(" ");
@@ -131,11 +131,14 @@ export default function SavingsOutlastTheDivision({ slug }: { slug: string }) {
                   <text x={XR} y={YB + 27} textAnchor="end" className={s.axis}>
                     years
                   </text>
-                  {[0, 500, 1000].map((v) => (
+                  <clipPath id="sotd-plot">
+                    <rect x={XL} y={YT} width={XR - XL} height={YB - YT + 6} />
+                  </clipPath>
+                  {[0, 250, 500].map((v) => (
                     <g key={v}>
                       {v > 0 && <line x1={XL} y1={py(v)} x2={XR} y2={py(v)} className={s.grid} />}
                       <text x={XL - 5} y={py(v) + 4} textAnchor="end" className={s.axis}>
-                        {v === 0 ? "$0" : v === 500 ? "$500k" : "$1M"}
+                        {v === 0 ? "$0" : `$${v}k`}
                       </text>
                     </g>
                   ))}
@@ -146,7 +149,7 @@ export default function SavingsOutlastTheDivision({ slug }: { slug: string }) {
                       const end = p.pts[p.pts.length - 1];
                       return (
                         <g key={m}>
-                          {!is(c) && <polyline points={pts(p.pts)} className={s.ghost} />}
+                          {!is(c) && <polyline points={pts(p.pts)} className={s.ghost} clipPath="url(#sotd-plot)" />}
                           {p.n === Infinity ? (
                             <text x={XR} y={py(POT) - 6} textAnchor="end" className={s.value}>
                               ${c.w}k: never
@@ -162,7 +165,7 @@ export default function SavingsOutlastTheDivision({ slug }: { slug: string }) {
                     })}
                   {on && (
                     <g>
-                      <polyline points={pts(cur.pts)} className={s.line} />
+                      <polyline points={pts(cur.pts)} className={s.line} clipPath="url(#sotd-plot)" />
                       {cur.n <= YEARS && <circle cx={px(cur.n)} cy={YB} r={5} className={s.dot} />}
                     </g>
                   )}

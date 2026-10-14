@@ -10,9 +10,9 @@
 // Picture: two gates in a pipe (opening grows with log k) above one plot of C against time (0-10 s).
 // Locked: gates and empty plot. The first press draws the starting curve as a grey dashed ghost.
 // "Step 2 x10" widens gate 2 (curve barely moves; kept as a dotted trace), "Step 1 x10" widens gate 1
-// (curve jumps left), "Undo step 2" leaves only step 1 sped up, "Start over" returns both gates
-// (records stay). A legend keeps every half-time reached. Milestones: "step2" (the question's case),
-// "step1", "step1-only". QA path: the four buttons once each in DOM order (milestones by press 3).
+// (curve jumps left); both are toggles ("Undo step 2/1"). "Only step 1 x10" (the brief's "Undo step 2")
+// leaves only step 1 sped up. A legend keeps every half-time reached. Milestones: "step2" (the
+// question's case), "step1", "step1-only". QA path: the three buttons once each in DOM order.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -76,7 +76,7 @@ export default function WhichStepToSpeed({ slug }: { slug: string }) {
         options: ["about 10 times sooner", "about 2 times sooner", "almost no sooner"],
         answer: 2,
       }}
-      exploreHint="Speed up step 2, then step 1, then undo step 2. Watch when half the C appears."
+      exploreHint="Speed up step 2, then step 1, then only step 1. Watch when half the C appears."
       minInteractions={3}
       reveal={() => (
         <>
@@ -223,17 +223,16 @@ function Stage({
         })}
       </svg>
       <Row>
-        <Control className={f2 ? "active" : ""} disabled={locked || f2} onClick={() => go(f1, true)}>
-          Step 2 ×10
+        <Control className={f2 ? "active" : ""} aria-pressed={f2} disabled={locked} onClick={() => go(f1, !f2)}>
+          {f2 ? "Undo step 2" : "Step 2 ×10"}
         </Control>
-        <Control className={f1 ? "active" : ""} disabled={locked || f1} onClick={() => go(true, f2)}>
-          Step 1 ×10
+        <Control className={f1 ? "active" : ""} aria-pressed={f1} disabled={locked} onClick={() => go(!f1, f2)}>
+          {f1 ? "Undo step 1" : "Step 1 ×10"}
         </Control>
-        <Control disabled={locked || !f2} onClick={() => go(f1, false)}>
-          Undo step 2
-        </Control>
-        <Control disabled={locked || (!f1 && !f2)} onClick={() => go(false, false)}>
-          Start over
+      </Row>
+      <Row>
+        <Control className={now === "s1" ? "active" : ""} disabled={locked || now === "s1"} onClick={() => go(true, false)}>
+          Only step 1 ×10
         </Control>
       </Row>
     </div>

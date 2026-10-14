@@ -14,7 +14,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -60,8 +60,8 @@ const pct = (v: number) => `${Math.round(v * 100)}%`;
 // Geometry (viewBox 320 × 160).
 const XL = 30;
 const XR = 314;
-const YT = 12;
-const YB = 132;
+const YT = 24;
+const YB = 112;
 const YMAX = 0.18;
 const BW = (XR - XL) / 12;
 const py = (v: number) => YB - (v / YMAX) * (YB - YT);
@@ -124,13 +124,8 @@ export default function BornInJanuaryPickedFirst({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.chip}>Model: +0.5 cm per month older, ±5.5 cm spread</p>
-                <Row>
-                  <Readout label="Cutoff" value={`1 ${MONTHS[cutoff]}`} />
-                  <Readout label="Picked" value={top ? `top ${top}%` : "nobody yet"} />
-                  <Readout label={`Born ${after3[0]}–${after3[2]}`} value={locked || !top ? "?" : pct(share3)} />
-                </Row>
                 <svg
-                  viewBox="0 0 320 160"
+                  viewBox="0 0 320 142"
                   className="stage-svg"
                   role="img"
                   aria-label={
@@ -150,9 +145,9 @@ export default function BornInJanuaryPickedFirst({ slug }: { slug: string }) {
                       <rect
                         key={`h${k}`}
                         x={XL + ((cutoff + k) % 12) * BW}
-                        y={YT - 4}
+                        y={YT - 2}
                         width={BW}
-                        height={YB - YT + 4}
+                        height={YB - YT + 2}
                         className={s.band}
                       />
                     ))}
@@ -171,16 +166,28 @@ export default function BornInJanuaryPickedFirst({ slug }: { slug: string }) {
                     </g>
                   ))}
                   <line x1={XL} y1={py(1 / 12)} x2={XR} y2={py(1 / 12)} className={s.fair} />
-                  <text x={XR} y={py(1 / 12) - 4} textAnchor="end" className={s.axis}>
-                    equal share
-                  </text>
-                  <text x={XL} y={YB + 26} className={s.axis}>
+                  <text x={XL} y={YB + 27} className={s.axis}>
                     birth months
                   </text>
+                  <line x1={XR - 92} y1={YB + 23} x2={XR - 72} y2={YB + 23} className={s.fair} />
+                  <text x={XR} y={YB + 27} textAnchor="end" className={s.axis}>
+                    equal share
+                  </text>
+                  {!locked && top > 0 && (
+                    <text
+                      x={cutoff === 9 ? XR : cutoff === 0 ? XL : XL + (cutoff + 1.5) * BW}
+                      y={YT - 8}
+                      textAnchor={cutoff === 9 ? "end" : cutoff === 0 ? "start" : "middle"}
+                      className={s.share}
+                    >
+                      {pct(share3)} born {after3[0]}–{after3[2]}
+                    </text>
+                  )}
                 </svg>
                 <p className={s.rec} aria-live="polite">
-                  {!locked && rec.jan10 !== undefined && <span className={s.recLine}>1 Jan, top 10%: {pct(rec.jan10)} born Jan–Mar</span>}
-                  {!locked && rec.half !== undefined && <span className={s.recLine}>Top 50%: {pct(rec.half)}</span>}
+                  {!locked && rec.jan10 !== undefined && <span>1 Jan, top 10%: {pct(rec.jan10)} born Jan–Mar</span>}
+                  {!locked && rec.jan10 !== undefined && rec.half !== undefined && " · "}
+                  {!locked && rec.half !== undefined && <span>top 50%: {pct(rec.half)}</span>}
                 </p>
                 <Row>
                   <Control className={top === 10 ? "active" : ""} disabled={locked || top === 10} onClick={() => show(cutoff, 10)}>

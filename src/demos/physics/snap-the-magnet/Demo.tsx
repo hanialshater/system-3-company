@@ -25,9 +25,9 @@ const MILESTONES = ["snap", "turned", "quarters"] as const;
 const W = 320;
 const H = 120;
 const CY = 66;
-const BH = 24;
-const CR = 6.5; // compass radius
-const GAP = 34;
+const BH = 28;
+const CR = 8.5; // compass radius
+const GAP = 44;
 
 interface Piece {
   x: number;
@@ -54,8 +54,8 @@ function layout(mode: Mode): { pieces: Piece[]; push: boolean } {
       push: true,
     };
   // quarters: the left half's two pieces, then the right half's (still turned round)
-  const w = 44;
-  const g = 32;
+  const w = 36;
+  const g = 40;
   const x0 = (W - (4 * w + 3 * g)) / 2;
   return {
     pieces: [0, 1, 2, 3].map((i) => ({ x: x0 + i * (w + g), w, nLeft: i < 2 })),
@@ -69,8 +69,8 @@ function Compass({ x, y, east }: { x: number; y: number; east: boolean }) {
   return (
     <g>
       <circle cx={x} cy={y} r={CR} className={s.compass} />
-      <path d={`M${x + d * (CR - 1.5)},${y} L${x},${y - 2} L${x},${y + 2} Z`} className={s.north} />
-      <path d={`M${x - d * (CR - 1.5)},${y} L${x},${y - 2} L${x},${y + 2} Z`} className={s.south} />
+      <path d={`M${x + d * (CR - 1.5)},${y} L${x},${y - 2.6} L${x},${y + 2.6} Z`} className={s.north} />
+      <path d={`M${x - d * (CR - 1.5)},${y} L${x},${y - 2.6} L${x},${y + 2.6} Z`} className={s.south} />
     </g>
   );
 }
@@ -109,7 +109,7 @@ export default function SnapTheMagnet({ slug }: { slug: string }) {
             const go = (m: Mode) => {
               setMode(m);
               if (m === "halves") {
-                setSeen((x) => ({ ...x, half: "N + S" }));
+                setSeen((x) => ({ ...x, half: "N + S" }));
                 reach("snap");
               }
               if (m === "turned") {
@@ -117,7 +117,7 @@ export default function SnapTheMagnet({ slug }: { slug: string }) {
                 reach("turned");
               }
               if (m === "quarters") {
-                setSeen((x) => ({ ...x, quarters: "N + S each" }));
+                setSeen((x) => ({ ...x, quarters: "N + S each" }));
                 reach("quarters");
               }
             };

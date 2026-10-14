@@ -15,4 +15,6 @@ Kept from evaluators until they report. Brief: company/domains/briefs/geography.
 4. Reveal values: 12.6 and 9.2 kWh, 23 and 67 degrees, 24 and 12 hours: computed from the same functions that draw the pole and equator rows, which are gated by milestones `pole` and `eq` and stay as rows once drawn.
 5. QA path: Equator (eq), 45 degrees N (mid), North Pole (pole), slider two presses (32 N): all three milestones in the first three presses. Each preset disables itself while shown.
 6. Reset: no Reset (none in the brief); rows never disappear.
-7. Phone fit: see the reveal-fit line below.
+7. Phone fit (tools/reveal-fit.mjs, 390x844, shared dev server :3530, 2026-10-14): 78 words; stage-top crop 0 px; hiddenBelow 0; namedHidden 0 (named: 12, 24, equator, pole, 12.6, north pole, all visible); phoneFit true. Points at: the legend rows for Pole and Equator.
+
+reveal-fit note: run through a preload that only raises Playwright's default navigation and waitFor timeouts (the shared dev server took 30 to 240 s a page); the tool's measuring code was not changed.

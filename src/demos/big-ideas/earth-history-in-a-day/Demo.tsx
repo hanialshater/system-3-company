@@ -9,6 +9,9 @@
 // Controls (DOM order = QA order): slider, Whole day (active at start, disabled), Last hour, Last minute, Next event.
 // QA path: slider → 00:10; Last hour → 23:00; Last minute → 23:59:00 (dinosaurs' end passed: milestone);
 // Next event → 23:59:54 in the minute view (Homo sapiens: milestone).
+// v2 (W-635, W-537 re-check): held claims cut back. Writing is gone from the stage and the reveal (c4 withdrawn);
+// the reveal keeps one dated event (Homo sapiens, c2), Hutton (c6, public domain, cut if not checkable) and a
+// limit that rests on the clock itself (c8), not on the asteroid. The recall is now a transfer case (a river).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -25,7 +28,6 @@ const EVENTS: Ev[] = [
   { id: "life", name: "Earliest life (debated)", t: at(3.7e9) },
   { id: "dinos", name: "Non-bird dinosaurs end", t: at(66e6) },
   { id: "humans", name: "Homo sapiens", t: at(300e3) },
-  { id: "writing", name: "Writing", t: at(5200) },
 ];
 
 type Zoom = "day" | "hour" | "minute";
@@ -85,16 +87,16 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Our species appeared at {humansAt}, about six seconds before midnight. Writing came about a tenth of a second before
-            the end.
+            Our species appeared at {humansAt}, about six seconds before midnight. On this clock, one second is about 52,500
+            years.
           </p>
           <p>
             From James Hutton in the 1780s, geologists argued that slow processes, given this much time, carve valleys and raise
             mountains.
           </p>
           <p>
-            Where it stops: the clock shows scale, not speed. Some changes were sudden, like the asteroid impact that ended the
-            non-bird dinosaurs.
+            Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide
+            sudden events.
           </p>
         </>
       )}
@@ -172,7 +174,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                         </text>
                       );
                     })}
-                    {EVENTS.filter((e) => e.t >= ws).map((e) => {
+                    {EVENTS.filter((e) => !locked && e.t >= ws).map((e) => {
                       const on = lit.includes(e);
                       const [x, y] = pt(frac(e.t), R);
                       return (
@@ -199,7 +201,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                       </li>
                       {lit.map((e) => (
                         <li key={e.id} className={e.id === "humans" ? s.hum : ""}>
-                          <span className={s.time}>{e.id === "writing" ? "23:59:59.9" : clock(e.t)}</span> {e.name}
+                          <span className={s.time}>{clock(e.t)}</span> {e.name}
                         </li>
                       ))}
                     </ul>

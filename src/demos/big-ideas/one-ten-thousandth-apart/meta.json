@@ -1,0 +1,99 @@
+{
+  "slug": "one-ten-thousandth-apart",
+  "title": "One ten-thousandth apart",
+  "hook": "The rule is exact. The two starts differ by 0.0001. Where are they after 30 steps?",
+  "domain": "big-ideas",
+  "concept": "chaos-butterfly",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-big-ideas",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "an exact rule gives exact predictions"
+    ],
+    "doesNotKnow": [
+      "that in a chaotic system a tiny difference in the start roughly doubles each step",
+      "so making the start more precise buys only a few more steps of forecast"
+    ]
+  },
+  "misconception": "If the rule is known exactly, a tiny measurement error stays tiny.",
+  "objective": "The learner can explain that under the exact rule x → 4x(1 − x) two starts 0.0001 apart split by step 11, that a start 1,000 times more precise splits only 10 steps later because the gap roughly doubles each step, and that chaos limits forecasting a particular step, not the long-run average.",
+  "claims": [
+    {
+      "id": "big-ideas.one-ten-thousandth-apart.c1",
+      "text": "Under x → 4x(1 − x), runs from 0.3 and 0.3001 first differ by more than 0.1 at step 11 and are 0.616 apart at step 30; runs from 0.3 and 0.3000001 (1,000 times more precise) first differ by more than 0.1 at step 21, 10 steps later.",
+      "support": "derivation",
+      "source": "Direct iteration in double precision: company/domains/briefs/checks/big-ideas-cycle1-check.mjs (brief #6 and the W-537 block); Demo.tsx series() and splitStep() compute every point and marker on the stage. Re-run by the builder in node, 2026-10-14: 11, 21, gap 0.616 at step 30.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.one-ten-thousandth-apart.c2",
+      "text": "In this map the gap between two nearby runs roughly doubles each step.",
+      "support": "derivation",
+      "source": "The r = 4 logistic map is conjugate to the doubling (tent) map, so its Lyapunov exponent is ln 2: small gaps grow by a factor of about 2 per step on average. Consistent with the stage: a 1,000× smaller gap (log2 1000 ≈ 10) buys 10 steps (c1). Standard result, e.g. Strogatz, Nonlinear Dynamics and Chaos, 2nd ed., ch. 10 (not needed for the derivation; not opened by the builder).",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.one-ten-thousandth-apart.c3",
+      "text": "Edward Lorenz found this in a weather model in 1963.",
+      "support": "source",
+      "source": "Held citation, the lesson's one (strategy section 5). Lorenz, E. N. (1963), 'Deterministic nonperiodic flow', Journal of the Atmospheric Sciences 20(2), 130-141. Not opened by the builder. Cut if not checkable; fallback (brief W-537 re-check): the reveal drops this sentence and says instead 'Mathematicians call this sensitive dependence on initial conditions.' (support: convention, a definition).",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.one-ten-thousandth-apart.c4",
+      "text": "Where it stops: each step was unpredictable, but the long-run averages matched (0.51 from 0.3 and 0.48 from 0.3001, over 1,000 steps); chaos limits forecasting a particular step, not the average.",
+      "support": "derivation",
+      "source": "1,000-step averages computed in Demo.tsx longAverage() and in the cycle-1 check script (W-537 block): 0.51 and 0.48. The exact long-run mean of the r = 4 map is 0.5 (its invariant density is 1/(π√(x(1 − x))), symmetric about 0.5). Shown on the stage by the 'Average 1,000 steps' preset (strategy D4 a: the limit is shown, not told). The reveal has a second branch for learners who did not press 'Average 1,000 steps': 'Where it stops: chaos limits forecasting a particular day, not necessarily the average. Average 1,000 steps compares the two runs' long-run averages.' It quotes no values. The brief's last sentence ('That is why a forecast fades after days…') was cut for the 90-word budget; it would have been a second weather claim resting on c3.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.one-ten-thousandth-apart.c5",
+      "text": "The rule, the start 0.3 and the gaps 0.0001 and 0.0000001 are the lesson's choices; every value of the map stays between 0 and 1, so two unrelated runs can be up to 1 apart.",
+      "support": "convention",
+      "source": "The lesson's model (brief #6). For x in [0, 1], 4x(1 − x) is in [0, 1]. Option C's 'like two random numbers' is a description of the runs' behaviour after they split, not a claim that the map is random.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A forecast's error doubles every day. If today's measurements were 100 times more precise, how much longer would the forecast stay useful?",
+    "options": [
+      "About 7 more days",
+      "About 100 times as long",
+      "No longer at all"
+    ],
+    "answer": 0,
+    "why": "An error that doubles daily takes log2(100) ≈ 6.6 more doublings to grow from 100 times smaller back to the same size, so precision buys about a week, not 100 times as long."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "big-ideas:chaos-butterfly",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science",
+    "references": [],
+    "tags": [
+      "chaos",
+      "forecasting",
+      "sensitive-dependence"
+    ]
+  },
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

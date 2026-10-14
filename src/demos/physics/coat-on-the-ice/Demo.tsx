@@ -112,15 +112,15 @@ export default function CoatOnTheIce({ slug }: { slug: string }) {
             const seenText = [
               `bare: ${seen.bare !== undefined ? `${f1(seen.bare)} W, ${f1(meltH(seen.bare))} h` : "–"}`,
               `coat: ${seen.coat !== undefined ? `${f1(seen.coat)} W, ${f1(meltH(seen.coat))} h` : "–"}`,
-              `person: ${seen.person !== undefined ? `${f0(seen.person)} W out` : "–"}`,
+              `person: ${seen.person !== undefined ? `${f0(seen.person)} W out` : "–"}`,
             ].join(" · ");
             // arrows: pointing in for the ice, out for the person
             const arrows: [number, number, number, number][] = person
               ? [
-                  [BX - 30, 74, BX - 78, 74],
-                  [BX + 30, 74, BX + 78, 74],
-                  [BX - 24, 104, BX - 72, 104],
-                  [BX + 24, 104, BX + 72, 104],
+                  [BX - 30, 60, BX - 78, 60],
+                  [BX + 30, 60, BX + 78, 60],
+                  [BX - 30, 90, BX - 78, 90],
+                  [BX + 30, 90, BX + 78, 90],
                 ]
               : [
                   [BX - 86, BY, BX - BS / 2 - 14, BY],
@@ -149,16 +149,24 @@ export default function CoatOnTheIce({ slug }: { slug: string }) {
                       <path d="M0,0 L10,5 L0,10 z" className={s.headH} />
                     </marker>
                   </defs>
-                  <line x1={20} y1={TABLE} x2={W - 20} y2={TABLE} className={s.table} />
-                  <line x1={40} y1={TABLE} x2={40} y2={H - 4} className={s.table} />
-                  <line x1={W - 40} y1={TABLE} x2={W - 40} y2={H - 4} className={s.table} />
+                  {person ? (
+                    <line x1={20} y1={TABLE} x2={W - 20} y2={TABLE} className={s.floor} />
+                  ) : (
+                    <>
+                      <line x1={20} y1={TABLE} x2={W - 20} y2={TABLE} className={s.table} />
+                      <line x1={40} y1={TABLE} x2={40} y2={H - 4} className={s.table} />
+                      <line x1={W - 40} y1={TABLE} x2={W - 40} y2={H - 4} className={s.table} />
+                    </>
+                  )}
 
                   {person ? (
                     <g>
-                      {/* a person in a coat, standing behind the table */}
-                      <circle cx={BX} cy={44} r={11} className={s.skin} />
-                      <rect x={BX - 22} y={56} width={44} height={TABLE - 56} rx={12} className={s.coat} />
-                      <text x={BX} y={96} textAnchor="middle" className={s.small}>
+                      {/* a person in a coat, standing on the floor */}
+                      <circle cx={BX} cy={30} r={11} className={s.skin} />
+                      <rect x={BX - 22} y={42} width={44} height={60} rx={12} className={s.coat} />
+                      <line x1={BX - 9} y1={102} x2={BX - 9} y2={TABLE} className={s.leg} />
+                      <line x1={BX + 9} y1={102} x2={BX + 9} y2={TABLE} className={s.leg} />
+                      <text x={BX} y={76} textAnchor="middle" className={s.small}>
                         coat
                       </text>
                     </g>

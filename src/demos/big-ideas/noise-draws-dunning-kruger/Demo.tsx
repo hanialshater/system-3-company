@@ -36,10 +36,10 @@ function simulate(seed: number, w: number, shift: number) {
   return { real, guess };
 }
 
-const X0 = 46;
-const DX = 82;
-const Y0 = 158;
-const YH = 140;
+const X0 = 92;
+const DX = 74;
+const Y0 = 116;
+const YH = 104;
 const yOf = (v: number) => Y0 - (v / 100) * YH;
 const xOf = (q: number) => X0 + q * DX;
 
@@ -105,32 +105,26 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
               ? "Make a prediction to start."
               : seed === null
                 ? "Guesses are pure noise. Run 1,000 people."
-                : `Seed ${seed} · guesses track skill: ${w}${shift ? ` · shift +${SHIFT}` : ""}`;
+                : `Seed ${seed} · guesses track skill ${w} · shift ${shift ? `+${SHIFT}` : "off"}`;
             return (
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">
                   {msg}
                 </p>
-                <svg viewBox="0 0 360 184" className="stage-svg" role="img" aria-label="Mean real score and mean guess by quarter">
-                  {[0, 25, 50, 75, 100].map((v) => (
+                <svg viewBox="0 0 360 136" className="stage-svg" role="img" aria-label="Mean real score and mean guess by quarter">
+                  {[0, 50, 100].map((v) => (
                     <g key={v}>
-                      <line x1={X0 - 10} y1={yOf(v)} x2={xOf(3) + 10} y2={yOf(v)} stroke="var(--line)" strokeWidth={1} />
-                      <text x={X0 - 14} y={yOf(v) + 4} textAnchor="end" className={s.lab}>
-                        {v}
+                      <line x1={X0 - 12} y1={yOf(v)} x2={xOf(3) + 10} y2={yOf(v)} stroke="var(--line)" strokeWidth={1} />
+                      <text x={xOf(3) + 14} y={yOf(v) + 4} className={s.lab}>
+                        {v ? `${v}th` : v}
                       </text>
                     </g>
                   ))}
                   {QNAMES.map((n, q) => (
-                    <text key={n} x={xOf(q)} y={Y0 + 16} textAnchor="middle" className={s.lab}>
-                      {n}
+                    <text key={n} x={xOf(q)} y={Y0 + 15} textAnchor="middle" className={s.lab}>
+                      {n} ¼
                     </text>
                   ))}
-                  <text x={8} y={12} className={s.lab}>
-                    percentile
-                  </text>
-                  <text x={xOf(3) + 22} y={Y0 + 16} textAnchor="middle" className={s.lab}>
-                    quarter
-                  </text>
                   {data && !locked ? (
                     <>
                       <path d={line(data.real)} fill="none" stroke="var(--fg)" strokeWidth={2.5} strokeDasharray="6 4" />
@@ -141,10 +135,10 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
                       {data.guess.map((v, q) => (
                         <circle key={`g${q}`} cx={xOf(q)} cy={yOf(v)} r={5} fill="var(--domain)" />
                       ))}
-                      <text x={xOf(0) + 10} y={yOf(data.guess[0]) - 8} className={s.val}>
+                      <text x={X0 - 12} y={Math.min(yOf(data.guess[0]), yOf(data.real[0]) - 16) + 4} textAnchor="end" className={s.val}>
                         guess {Math.round(data.guess[0])}
                       </text>
-                      <text x={xOf(0) + 10} y={yOf(data.real[0]) + 14} className={s.real}>
+                      <text x={X0 - 12} y={Math.max(yOf(data.real[0]), yOf(data.guess[0]) + 16) + 4} textAnchor="end" className={s.real}>
                         real {data.real[0].toFixed(1)}
                       </text>
                     </>
@@ -153,34 +147,37 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
                 <p className={s.trace}>
                   {noiseSeen ? (
                     <>
-                      Pure noise (seed {noiseSeen.seed}): bottom quarter guessed <strong>{noiseSeen.g}</strong>
-                    </>
-                  ) : (
-                    " "
-                  )}
-                  {meetSeen ? (
-                    <>
-                      <br />
-                      Tracking 1: guesses matched real scores, the lines met
+                      Noise (seed {noiseSeen.seed}): bottom ¼ guessed <strong>{noiseSeen.g}</strong>
                     </>
                   ) : null}
+                  {noiseSeen && meetSeen ? " · " : null}
+                  {meetSeen ? "Tracking 1: lines met" : null}
+                  {!noiseSeen && !meetSeen ? " " : null}
                 </p>
                 <div className={s.controls}>
                   <Control disabled={locked} onClick={() => apply(seed === null ? 42 : seed + 1, w, shift)}>
-                    {seed === null ? "Run 1,000 people" : "New 1,000 people"}
+                    {seed === null ? "Run" : "New run"}
                   </Control>
-                </div>
-                <div className={s.controls}>
-                  <span className={s.rowLabel}>Guesses track skill:</span>
                   {TRACKS.map((t) => (
-                    <Control key={t} className={w === t ? "active" : ""} aria-pressed={w === t} disabled={locked || w === t} onClick={() => apply(seed ?? 42, t, shift)}>
-                      {t}
+                    <Control
+                      key={t}
+                      aria-label={`Guesses track skill ${t}`}
+                      className={w === t ? "active" : ""}
+                      aria-pressed={w === t}
+                      disabled={locked || w === t}
+                      onClick={() => apply(seed ?? 42, t, shift)}
+                    >
+                      track {t}
                     </Control>
                   ))}
-                </div>
-                <div className={s.controls}>
-                  <Control className={shift ? "active" : ""} aria-pressed={shift} disabled={locked} onClick={() => apply(seed ?? 42, w, !shift)}>
-                    Better-than-average +{SHIFT}: {shift ? "on" : "off"}
+                  <Control
+                    aria-label={`Better-than-average shift +${SHIFT}`}
+                    className={shift ? "active" : ""}
+                    aria-pressed={shift}
+                    disabled={locked}
+                    onClick={() => apply(seed ?? 42, w, !shift)}
+                  >
+                    +{SHIFT}
                   </Control>
                 </div>
               </div>

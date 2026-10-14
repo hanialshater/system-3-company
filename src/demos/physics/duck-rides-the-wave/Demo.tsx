@@ -64,7 +64,7 @@ const PXM = 2.45; // px per m across
 const VY = 80; // px per m up (magnified)
 const YM = 92; // mean water line, px
 const X = (m: number) => X0 + m * PXM;
-const INSET = { x: 4, y: 6, w: 70, h: 38 };
+const INSET = { x: 4, y: 4, w: 70, h: 48 };
 const IK = 90; // inset px per m
 
 function useAnim(key: string) {
@@ -119,7 +119,7 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            During one wave your duck went round a loop about {seen.loop?.toFixed(1) ?? "?"} m across and came back, while
+            In one wave your duck looped about {seen.loop?.toFixed(1) ?? "?"} m across and came back, while
             the crest moved on {Math.round(C * PERIOD)} m. After ten waves the crests had travelled{" "}
             {seen.crests !== undefined ? Math.round(seen.crests) : "?"} m and your duck had shifted only about{" "}
             <strong>{seen.drift?.toFixed(2) ?? "?"} m</strong>.
@@ -170,7 +170,7 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
             const n = Math.round(t * 100);
             const trace: string[] = [];
             const icx = INSET.x + 22;
-            const icy = INSET.y + 8;
+            const icy = INSET.y + 7;
             for (let i = 0; i <= n; i += 2) trace.push(`${icx + sim.xs[i] * IK},${icy - sim.zs[i] * IK}`);
             const leadCrest = C * t; // the tinted crest is the leading one
             const buoyY = YM - VY * eta(BUOY);
@@ -184,7 +184,7 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
                     : t >= BUOY_T - 1e-6
                       ? `buoy starts to bob at ${Math.round(BUOY_T)} s`
                       : `t = ${t.toFixed(0)} s`;
-            const caption = locked ? "Make a prediction to start." : "Side view. Heights and the duck's loop are magnified.";
+            const caption = locked ? "Make a prediction to start." : "Heights and the duck's path drawn magnified.";
             const seenText = [
               `1 wave: ${seen.loop !== undefined ? `loop ${seen.loop.toFixed(1)} m` : "–"}`,
               `10 waves: ${seen.drift !== undefined && seen.crests !== undefined ? `duck ${seen.drift.toFixed(2)} m, crests ${Math.round(seen.crests)} m` : "–"}`,
@@ -222,7 +222,7 @@ export default function DuckRidesTheWave({ slug }: { slug: string }) {
                   <line x1={dx} y1={dy - 16} x2={INSET.x + 22} y2={INSET.y + INSET.h} className={s.leader} />
                   <circle cx={icx} cy={icy} r={1.6} className={s.start} />
                   {trace.length > 1 && <polyline points={trace.join(" ")} className={s.loop} />}
-                  <text x={INSET.x + INSET.w / 2} y={INSET.y + INSET.h - 5} textAnchor="middle" className={s.small}>
+                  <text x={INSET.x + INSET.w / 2} y={INSET.y + INSET.h - 4} textAnchor="middle" className={s.small}>
                     duck&apos;s path
                   </text>
                   {/* ruler */}

@@ -1,7 +1,7 @@
 "use client";
 
 // Checking versus finding (subset sum). Six number chips; a grid with one square per group (64, or 128 with
-// a 7th number). Presets in DOM order: Check 4 + 5 (one addition, no squares), Search for 9 (fills squares in
+// a 7th number), drawn only after the first press so the locked frame does not show the count. Presets in DOM order: Check 4 + 5 (one addition, no squares), Search for 9 (fills squares in
 // binary counting order up to the 21st, the hit), Search for 13 (fills all 64, none found), Add a 7th number
 // (grid doubles to 128), Reset. Each of the first four is a milestone. The trace line keeps
 // "check 1 · find 9: 21 · no 13: 64 · 7 numbers: 128" and survives Reset, so the reveal's numbers stay on the stage.
@@ -18,7 +18,7 @@ const FIND9 = search(9);
 const NONE13 = search(13);
 const CHECK_PAIR = [2, 4]; // indices of 4 and 5
 
-const CHIP_W = 40, CHIP_PITCH = 46, CHIP_X0 = 9;
+const CHIP_W = 40, CHIP_PITCH = 46;
 const CELL = 12, PITCH = 14, GRID_Y0 = 54;
 
 function Stage({ locked, interact, mode, setMode, seen }: {
@@ -28,6 +28,7 @@ function Stage({ locked, interact, mode, setMode, seen }: {
   const go = (m: Mode) => { setMode(m); reach(m); };
   const nums: number[] = mode === "seven" ? [...NUMBERS, SEVENTH] : [...NUMBERS];
   const groups = 2 ** nums.length;
+  const chipX0 = (340 - (nums.length * CHIP_PITCH - (CHIP_PITCH - CHIP_W))) / 2;
   const gridX0 = (340 - (groups / 8) * PITCH + (PITCH - CELL)) / 2;
   const tried = mode === "find9" ? FIND9.tried : mode === "none13" ? NONE13.tried : 0;
   const lit = mode === "check" ? CHECK_PAIR : mode === "find9" ? members(FIND9.hit, NUMBERS.length) : [];
@@ -46,15 +47,15 @@ function Stage({ locked, interact, mode, setMode, seen }: {
   return (
     <div className={s.wrap}>
       <svg viewBox="0 0 340 170" className={`stage-svg ${s.svg}`} role="img"
-        aria-label={`Numbers ${nums.join(", ")}. ${groups} groups, one square each; ${tried} tried. ${status}`}>
+        aria-label={seen.size > 0 ? `Numbers ${nums.join(", ")}. ${groups} groups, one square each; ${tried} tried. ${status}` : `Numbers ${nums.join(", ")}.`}>
         {nums.map((v, i) => (
           <g key={i}>
-            <rect x={CHIP_X0 + i * CHIP_PITCH} y={6} width={CHIP_W} height={34} rx={8}
+            <rect x={chipX0 + i * CHIP_PITCH} y={6} width={CHIP_W} height={34} rx={8}
               className={lit.includes(i) ? s.chipLit : i === 6 ? s.chipNew : s.chip} />
-            <text x={CHIP_X0 + i * CHIP_PITCH + CHIP_W / 2} y={29} textAnchor="middle" className={lit.includes(i) ? s.chipTextLit : s.chipText}>{v}</text>
+            <text x={chipX0 + i * CHIP_PITCH + CHIP_W / 2} y={29} textAnchor="middle" className={lit.includes(i) ? s.chipTextLit : s.chipText}>{v}</text>
           </g>
         ))}
-        {Array.from({ length: groups }, (_, i) => {
+        {seen.size > 0 && Array.from({ length: groups }, (_, i) => {
           const col = Math.floor(i / 8), row = i % 8;
           const cls = mode === "find9" && i === FIND9.hit ? s.hit : i < tried ? s.tried : s.cell;
           return <rect key={i} x={gridX0 + col * PITCH} y={GRID_Y0 + row * PITCH} width={CELL} height={CELL} rx={2} className={cls} />;
@@ -70,7 +71,7 @@ function Stage({ locked, interact, mode, setMode, seen }: {
       </Row>
       <Row>
         <Readout label="Groups tried" value={tried} />
-        <Readout label="Groups" value={groups} />
+        <Readout label="Groups" value={seen.size > 0 ? groups : "–"} />
       </Row>
       <p className={s.trace}>{trace || " "}</p>
     </div>

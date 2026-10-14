@@ -136,7 +136,7 @@ export default function WhyThePolesGetLessSun({ slug }: { slug: string }) {
                     {latName(lat)}
                   </text>
                   {!locked && (
-                    <text x={E.cx - E.r - 6} y={Math.min(VH - 6, yBot + 16)} textAnchor="end" className={s.halo}>
+                    <text x={E.cx - E.r - 6} y={Math.min(VH - 20, yTop - 5 < 12 ? yBot + 28 : yBot + 16)} textAnchor="end" className={s.halo}>
                       {spread ? `lit ground ×${spread.toFixed(2)}` : "grazes the ground"}
                     </text>
                   )}

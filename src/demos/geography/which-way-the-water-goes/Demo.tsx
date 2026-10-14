@@ -20,8 +20,8 @@ const WORD: Record<Wind, string> = { N: "north", E: "east", W: "west" };
 const MILESTONES = ["q", "trades", "westerlies", "south", "gyre"] as const;
 
 const VW = 320;
-const VH = 250;
-const SQ = { x: 44, y: 18, w: 232, h: 216 };
+const VH = 196;
+const SQ = { x: 44, y: 16, w: 232, h: 166 };
 const CX = SQ.x + SQ.w / 2;
 const CY = SQ.y + SQ.h / 2;
 
@@ -116,13 +116,18 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
                     <>
                       <rect {...SQ} className={s.sea} />
                       {/* Wind streaks across the square */}
-                      {[-70, 0, 70].map((o) => {
+                      {[-60, 0, 60].map((o) => {
                         const [px, py] = vec(wb + 90, o);
-                        const [bx, by] = vec(wb, -95);
-                        return <Arrow key={o} x={CX + px + bx} y={CY + py + by} bearing={wb} len={190} className={o === 0 ? s.windMain : s.wind} head={9} />;
+                        const [bx, by] = vec(wb, -74);
+                        return <Arrow key={o} x={CX + px + bx} y={CY + py + by} bearing={wb} len={148} className={o === 0 ? s.windMain : s.wind} head={9} />;
                       })}
-                      <text x={CX + vec(wb + 90, -70)[0] + vec(wb, 60)[0] + 4} y={CY + vec(wb + 90, -70)[1] + vec(wb, 60)[1] - 4} className={s.label}>
-                        wind
+                      <text
+                        x={wind === "N" ? CX - 60 - 4 : CX - 36}
+                        y={wind === "N" ? CY + 40 : CY - 60 - 5}
+                        textAnchor={wind === "N" ? "end" : "middle"}
+                        className={s.halo}
+                      >
+                        wind toward {WORD[wind]}
                       </text>
                       {started && (
                         <>
@@ -132,21 +137,21 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
                               x={CX}
                               y={CY}
                               bearing={wb + side * (45 + (z * 180) / Math.PI)}
-                              len={86 * Math.exp(-z)}
+                              len={66 * Math.exp(-z)}
                               className={i === 0 ? s.layerTop : s.layer}
                               head={i === 0 ? 7 : 5}
                             />
                           ))}
-                          <Arrow x={CX} y={CY} bearing={netB} len={78} className={s.net} head={12} />
+                          <Arrow x={CX} y={CY} bearing={netB} len={60} className={s.net} head={11} />
                           <text
-                            x={CX + vec(wb + side * 45, 92)[0]}
-                            y={CY + vec(wb + side * 45, 92)[1] + 4}
+                            x={CX + vec(wb + side * 45, 78)[0]}
+                            y={CY + vec(wb + side * 45, 78)[1] + 4}
                             textAnchor="middle"
                             className={s.halo}
                           >
                             top layer
                           </text>
-                          <text x={CX + vec(netB, 100)[0]} y={CY + vec(netB, 100)[1] + 4} textAnchor="middle" className={s.haloBold}>
+                          <text x={CX + vec(netB, 76)[0]} y={CY + vec(netB, 76)[1] + 4} textAnchor="middle" className={s.haloBold}>
                             net flow
                           </text>
                         </>
@@ -170,10 +175,10 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
                     Start the wind
                   </Control>
                   <Control disabled={locked || (onSquare("W") && !south)} className={onSquare("W") && !south ? "active" : ""} onClick={() => { setSouth(false); go("W", false); }}>
-                    Wind toward the west (trade winds)
+                    Trade winds
                   </Control>
                   <Control disabled={locked || (onSquare("E") && !south)} className={onSquare("E") && !south ? "active" : ""} onClick={() => { setSouth(false); go("E", false); }}>
-                    Wind toward the east (westerlies)
+                    Westerlies
                   </Control>
                   <Control
                     disabled={locked}
@@ -185,7 +190,7 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
                       go(wind, next);
                     }}
                   >
-                    South of the equator
+                    South of equator
                   </Control>
                   <Control
                     disabled={locked || ocean}
@@ -210,7 +215,7 @@ export default function WhichWayTheWaterGoes({ slug }: { slug: string }) {
 
 // One idealised northern ocean basin, latitude 0 to 60 N.
 function OceanView() {
-  const B = { x: 44, y: 14, w: 232, h: 210 };
+  const B = { x: 44, y: 8, w: 232, h: 172 };
   const yLat = (lat: number) => B.y + B.h * (1 - lat / 60);
   const y15 = yLat(15), y30 = yLat(30), y45 = yLat(45);
   const mx = B.x + B.w / 2;

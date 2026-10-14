@@ -62,7 +62,7 @@ const X = (h: number) => X0 + (h / HOURS) * (X1 - X0);
 const Y = (v: number) => Y1 - (v / MAXL) * (Y1 - Y0);
 const path = (pts: [number, number][]) => pts.map(([t, v], i) => `${i ? "L" : "M"}${X(t).toFixed(1)},${Y(v).toFixed(1)}`).join(" ");
 
-function Stage({ locked, cur, drawn, onPick }: { locked: boolean; cur: Interval | null; drawn: Interval[]; onPick: (i: Interval) => void }) {
+function Stage({ locked, atReveal, cur, drawn, onPick }: { locked: boolean; atReveal: boolean; cur: Interval | null; drawn: Interval[]; onPick: (i: Interval) => void }) {
   const c = cur === null ? null : COURSES[cur];
   // End labels for every drawn curve, nudged apart.
   const labels = drawn
@@ -72,17 +72,17 @@ function Stage({ locked, cur, drawn, onPick }: { locked: boolean; cur: Interval 
 
   return (
     <div className={s.wrap}>
-      <p className={s.msg}>
+      {!atReveal && <p className={s.msg}>
         {locked || cur === null || cur === 6
           ? "A made-up substance: 100 units are added every 6 hours, and the body clears half of whatever is there every 6 hours."
           : `Now 100 units every ${cur} hours; the body still clears half of whatever is there every 6 hours.`}
-      </p>
+      </p>}
       <div className={s.readouts}>
         <p className={s.readout} data-testid="last-level">
           just after the last addition: {c ? last(c) : "?"}
         </p>
         <p className={s.readout2} data-testid="first-five">
-          {c ? `every ${c.interval} h, additions 1 to 5: ${c.peaks.slice(0, 5).map(r0).join(", ")}` : "pick how often to add"}
+          {c ? `every ${c.interval} h, first 5: ${c.peaks.slice(0, 5).map(r0).join(", ")}` : "pick how often to add"}
         </p>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img"
@@ -153,6 +153,7 @@ export default function SameDoseLevelsOff({ slug }: { slug: string }) {
             <RevealSync atReveal={phase === "reveal"} onOpen={() => setCur(6)}>
               <Stage
                 locked={locked}
+                atReveal={phase === "reveal"}
                 cur={cur}
                 drawn={drawn}
                 onPick={(i) => {

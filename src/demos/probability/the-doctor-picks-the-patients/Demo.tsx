@@ -79,8 +79,8 @@ function Stage({ locked, reach, mode, setMode, seen, setSeen }: {
           </linearGradient>
         </defs>
         <text x={8} y={12} className={s.label}>Chance to recover: 30%</text>
-        <rect x={138} y={3} width={120} height={11} rx={3} fill="url(#dpp-legend)" className={s.legend} />
-        <text x={264} y={12} className={s.label}>90%</text>
+        <rect x={146} y={3} width={108} height={11} rx={3} fill="url(#dpp-legend)" className={s.legend} />
+        <text x={260} y={12} className={s.label}>90%</text>
         {split &&
           BOX.map((x, b) => (
             <g key={b}>

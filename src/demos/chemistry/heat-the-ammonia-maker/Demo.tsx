@@ -229,7 +229,7 @@ function Stage({
           </Control>
         ))}
         <Control
-          className={speed ? "active" : ""}
+          className={`${s.wide} ${speed ? "active" : ""}`}
           aria-pressed={speed}
           disabled={locked}
           onClick={() => {

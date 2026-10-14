@@ -59,14 +59,16 @@ function Stage({ locked, interact, tourState, setTour, showAll, setShowAll, seen
         aria-label={`Road from -15 to 8 km, start at 0. ${name}: ${hops.map((h) => `${h.from} to ${h.to}, ${h.len} km`).join("; ") || "nothing drawn"}.`}>
         <line x1={X(-15)} y1={ROAD_Y} x2={X(8)} y2={ROAD_Y} className={s.road} />
         {hops.map((h, i) => <Arc key={i} hop={h} strong={h.len === longest} />)}
-        {[0, ...TOWNS].map((km) => (
+        {[0, ...TOWNS].map((km) => {
+          const w = 14 + 7 * String(km).length;
+          return (
           <g key={km}>
-            <rect x={X(km) - 11} y={ROAD_Y - 8} width={22} height={16} rx={5} className={km === 0 ? s.start : s.town} />
+            <rect x={X(km) - w / 2} y={ROAD_Y - 8} width={w} height={16} rx={5} className={km === 0 ? s.start : s.town} />
             <text x={X(km)} y={ROAD_Y + 4} textAnchor="middle" className={km === 0 ? s.startText : s.townText}>{km < 0 ? `−${-km}` : km}</text>
-          </g>
-        ))}
+            </g>
+          );
+        })}
       </svg>
-      <p className={s.legend}>km along the road · start and finish at 0</p>
       <Row>
         <Control disabled={locked || greedyHops === GREEDY.length} onClick={() => drawGreedy(GREEDY.length)}>Nearest-first tour</Control>
         <Control disabled={locked || tourState.kind === "sweep"} onClick={() => { setTour({ kind: "sweep" }); reach("sweep"); }}>Out to 8 first</Control>
@@ -112,10 +114,10 @@ export default function NearestTownFirstDetours({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Nearest-first took cheap hops of {GREEDY[0].len}, {GREEDY[1].len} and {GREEDY[2].len} km, then had to cross the whole road, <strong>{GREEDY[3].len} km</strong> from 8 to −15, and come back {GREEDY[4].len}: {total(GREEDY)} km. Driving out to 8 first and sweeping back cost <strong>{total(SWEEP)}</strong>. Of all 24 orders, nearest-first tied for the longest.
+            Nearest-first took cheap hops of {GREEDY[0].len}, {GREEDY[1].len} and {GREEDY[2].len} km, then crossed the whole road, <strong>{GREEDY[3].len} km</strong> from 8 to −15, and came back {GREEDY[4].len}: {total(GREEDY)} km. Out to 8 first cost <strong>{total(SWEEP)}</strong>. Of all 24 orders, nearest-first tied for the longest.
           </p>
           <p>
-            Each greedy hop was the cheapest at that moment, but the far towns it put off all came due at the end. Route planners use tours like this only as a start and then repair them.
+            Each greedy hop was cheapest at that moment, but the far towns it put off came due at the end. Route planners use such tours only as a start, then repair them.
           </p>
         </>
       )}

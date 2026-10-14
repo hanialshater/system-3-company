@@ -16,4 +16,6 @@ Kept from evaluators until they report. Brief: company/domains/briefs/geography.
 4. Reveal values: "went east" is seen.q, recorded when milestone `q` fires (wind N, north); "pushed water north" is seen.trades (milestone `trades`); "pushed it south" is seen.westerlies (milestone `westerlies`). "45 degrees" and "90 degrees" are the drawn geometry of every water view.
 5. QA path: DOM order Start the wind (q), trades (trades), westerlies (westerlies), South of the equator (south), Ocean view (gyre): 5 presses, 5 milestones = minInteractions. Each preset disables itself while it is the shown state; the south toggle always changes the stage; Ocean view disables itself while shown.
 6. Reset: no Reset control (the brief has none); recorded directions are fixed once seen.
-7. Phone fit: see the reveal-fit line below.
+7. Phone fit (tools/reveal-fit.mjs, 390x844, shared dev server :3530, 2026-10-14): 83 words; stage-top crop 0 px; hiddenBelow 0; namedHidden 0; phoneFit true (first run: crop 76 px with four control rows and a 250 px picture; labels shortened, wind direction moved onto the picture's wind label, picture 196 px). Points at: the ocean view's net-flow arrows and the circling arrow.
+
+reveal-fit note: run through a preload that only raises Playwright's default navigation and waitFor timeouts (the shared dev server took 30 to 240 s a page); the tool's measuring code was not changed.

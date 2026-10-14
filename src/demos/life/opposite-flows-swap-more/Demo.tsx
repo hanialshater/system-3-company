@@ -55,7 +55,7 @@ const r0 = (v: number) => Math.round(v);
 
 // Geometry.
 const W = 360, H = 132;
-const PX0 = 42, PX1 = 318;
+const PX0 = 46, PX1 = 312;
 const WY = 26, BY = 78, PH = 34;
 
 function Stage({

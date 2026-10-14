@@ -33,9 +33,9 @@ function bottleneck(r: number[]) {
 // Geometry (viewBox 340 × 150): boxes 48 wide, gaps of 28 for the piles.
 const BW = 48;
 const BX = (i: number) => 36 + i * 76;
-const BY = 78;
-const BH = 42;
-const SQ = 5;
+const BY = 46;
+const BH = 38;
+const SQ = 6;
 const PILE_CAP = 20;
 
 type Rec = { asked?: number; movedTo?: number; movedOut?: number };
@@ -111,7 +111,7 @@ export default function SlowestStationSetsPace({ slug }: { slug: string }) {
                   <Readout label="Upgrades left" value={left} />
                 </Row>
                 <svg
-                  viewBox="0 0 340 150"
+                  viewBox="0 0 340 104"
                   className="stage-svg"
                   role="img"
                   aria-label={
@@ -134,7 +134,7 @@ export default function SlowestStationSetsPace({ slug }: { slug: string }) {
                         {Array.from({ length: shown }, (_, k) => (
                           <rect
                             key={k}
-                            x={px + (k % 4) * (SQ + 1)}
+                            x={px - 1 + (k % 4) * (SQ + 1)}
                             y={BY + BH - SQ - Math.floor(k / 4) * (SQ + 1)}
                             width={SQ}
                             height={SQ}

@@ -88,10 +88,10 @@ export default function TenTimesTallerGiant({ slug }: { slug: string }) {
             };
             const cur = scaleOf(k, thick);
             const over = cur.load > LIMIT;
-            const ground = 158;
-            const unit = 14.5; // px height of the 1× person
+            const ground = 136;
+            const unit = 12.4; // px height of the 1× person
             const barX = 300;
-            const barTop = 22;
+            const barTop = 20;
             const barH = ground - barTop;
             const yOf = (v: number) => ground - (Math.min(v, BAR_MAX) / BAR_MAX) * barH;
             const legColor = over ? "var(--bad)" : "var(--domain)";
@@ -100,13 +100,11 @@ export default function TenTimesTallerGiant({ slug }: { slug: string }) {
                 <p className={s.msg} aria-live="polite">
                   {locked
                     ? "Make a prediction to start."
-                    : over
-                      ? "Each bit of bone carries more than the limit."
-                      : thick && k > 1
-                        ? "Thicker legs: the load per bit of bone stays level."
-                        : `Scale ${k}×, same shape.`}
+                    : tenSeen
+                      ? `10×, same shape: weight ×${fmt(tenSeen.weight)}, bone ×${fmt(tenSeen.area)}, load ×${fmt(tenSeen.load)}`
+                      : `Scale ${k}×, ${thick ? "thicker legs" : "same shape"}`}
                 </p>
-                <svg viewBox="0 0 360 172" className="stage-svg" role="img" aria-label={`Person scaled ${k} times, load ${fmt(cur.load)} times`}>
+                <svg viewBox="0 0 360 150" className="stage-svg" role="img" aria-label={`Person scaled ${k} times, load ${fmt(cur.load)} times`}>
                   <line x1={10} y1={ground} x2={270} y2={ground} stroke="var(--line)" strokeWidth={2} />
                   <Person x={34} ground={ground} h={unit} legW={1} legColor="var(--domain)" />
                   <text x={34} y={ground + 12} textAnchor="middle" className={s.lab}>
@@ -134,7 +132,7 @@ export default function TenTimesTallerGiant({ slug }: { slug: string }) {
                 <div className={s.readouts}>
                   <Readout label="Weight" value={locked ? "?" : `×${fmt(cur.weight)}`} />
                   <Readout label="Bone area" value={locked ? "?" : `×${fmt(cur.area)}`} />
-                  <Readout label="Load per cm²" value={locked ? "?" : `×${fmt(cur.load)}`} />
+                  <Readout label="Load/cm²" value={locked ? "?" : `×${fmt(cur.load)}`} />
                 </div>
                 <Slider label="Scale" value={k} min={1} max={10} step={1} disabled={locked} format={(v) => `${v}×`} onChange={(v) => set(v, thick)} />
                 <div className={s.controls}>

@@ -1,0 +1,108 @@
+{
+  "slug": "biased-judge-noisy-judge",
+  "title": "Two judges, two kinds of error",
+  "hook": "One judge is always too harsh. The other is right on average. Who errs more?",
+  "domain": "books",
+  "concept": "noise-bias-vs-noise",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "being consistently off is an error"
+    ],
+    "doesNotKnow": [
+      "that inconsistency is an error of the same size, and that squared error adds the two"
+    ]
+  },
+  "misconception": "A judge who is right on average is a fair judge; only bias is a real error.",
+  "objective": "The learner can explain that a judge who scatters 2 years either way (standard deviation 2) has the same squared error (4) as one who is always 2 years too long, because mean squared error is bias squared plus noise squared, and that a judge with both faults scores the sum (8).",
+  "claims": [
+    {
+      "id": "books.biased-judge-noisy-judge.c1",
+      "text": "Both scored 4.0 on squared error, and Judge C, with both faults, scored 8.0. Squared error is bias² plus noise², exactly.",
+      "support": "derivation",
+      "source": "Brief D1. Identity: mean squared error = (mean error)² + variance of errors (population variance). On the stage's values (Demo.tsx ERR): Judge A errors all +2 -> 4 + 0 = 4; Judge B errors -3, -3, -1, -1, 0, 0, 1, 1, 3, 3 -> mean 0, variance 4, sd 2 -> 0 + 4 = 4; Judge C = B + 2 -> 4 + 4 = 8. Recorded when each judge's preset fires (a-seen, b-seen, c-seen) and shown in the Seen row. Checked by node in company/domains/briefs/checks/books-strategy-wave1-check.mjs #14 (all pass, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.c2",
+      "text": "Judge A was off by the same 2 years every time; Judge B was right on average but scattered.",
+      "support": "convention",
+      "source": "Brief D2: the judges, the ten cases and their errors are the lesson's model, not real sentences (the strips plot years off a 'fair sentence' line). No claim about any real judge, group, policy or case.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.c3",
+      "text": "Noise argues that scatter is an error as costly as bias.",
+      "support": "source",
+      "source": "Daniel Kahneman, Olivier Sibony & Cass R. Sunstein, Noise: A Flaw in Human Judgment (Little, Brown Spark, 2021), work kahneman-sibony-sunstein-noise-2021, Part I and Part II 'Your Mind Is a Measuring Instrument' (chapter numbers unconfirmed; the error equation is in Part II). Brief B1: noise (unwanted variability in judgments) is an error as important as bias, and the two add in squared error. About what the book argues, not the world. Our own words; no quote; the book's target figure is not copied or imitated.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.c4",
+      "text": "Noise argues that scatter can be measured even when nobody knows the right answer.",
+      "support": "source",
+      "source": "Same book, ch. 1 or 2 (unconfirmed). Brief B2: noise can be measured without knowing the correct answer, by comparing judgments of the same cases (a 'noise audit'). If it cannot be confirmed in the book, cut the reveal clause ', and that it can be measured even when nobody knows the right answer' (brief cut rule).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.c5",
+      "text": "Does it hold up? Holds up for the arithmetic: squared error is bias² plus noise², exactly.",
+      "support": "derivation",
+      "source": "Verdict (shared verdict word 'holds up', company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 3), separate from the book claims c3 and c4 (ruling 5 launch requirement). It rests on the identity in c1 alone; it makes no claim about how large noise is in real judgments (that is c6).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.c6",
+      "text": "Real judges disagree widely too.",
+      "support": "source",
+      "source": "Partridge & Eldridge (1974), The Second Circuit Sentencing Study: A Report to the Judges of the Second Circuit, Federal Judicial Center (to confirm): US federal judges given the same case files gave widely varying sentences. Brief R1, the one held research citation. If it cannot be checked, cut this sentence (brief cut rule); the verdict c5 stands on c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.biased-judge-noisy-judge.recall",
+      "text": "Mean squared error equals bias squared plus variance, so a constant offset of 1 and a spread with standard deviation 1 cost the same.",
+      "support": "derivation",
+      "source": "Same identity as c1 (1² + 0 = 0 + 1²). Recall item.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Scale X always reads 1 kg heavy. Scale Y is right on average, but its readings spread with a standard deviation of 1 kg. Which has the bigger squared error?",
+    "options": [
+      "Scale X",
+      "Scale Y",
+      "They are the same"
+    ],
+    "answer": 2,
+    "why": "Squared error is bias² plus noise²: X scores 1² + 0 = 1 and Y scores 0 + 1² = 1. Scatter costs as much as an equal offset."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:noise-bias-vs-noise",
+    "also": ["ai:bias-variance"],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "kahneman-sibony-sunstein-noise-2021",
+        "note": "Part II, error equation; chapter unconfirmed"
+      }
+    ],
+    "tags": ["noise", "bias", "squared-error", "judgment"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"]
+}

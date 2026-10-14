@@ -8,7 +8,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { DAYS, clock, span } from "./solar";
 import s from "./styles.module.css";
 
@@ -22,15 +22,15 @@ const MILESTONES = ["d13", "d21", "d30"] as const;
 const START = 0; // 1 December, not a preset
 
 const VW = 320;
-const VH = 226;
+const VH = 206;
 const X0 = 46;
 const X1 = 312;
 const xOf = (k: number) => X0 + ((X1 - X0) * k) / 45;
 type Band = { name: string; field: "set" | "noon" | "rise"; top: number; h: number; lo: number; hi: number; ticks: number[] };
 const BANDS: Band[] = [
-  { name: "sunset", field: "set", top: 6, h: 50, lo: 946, hi: 986, ticks: [950, 980] },
-  { name: "solar noon", field: "noon", top: 72, h: 50, lo: 702, hi: 742, ticks: [710, 730] },
-  { name: "sunrise", field: "rise", top: 138, h: 50, lo: 456, hi: 496, ticks: [465, 485] },
+  { name: "sunset", field: "set", top: 4, h: 48, lo: 946, hi: 986, ticks: [950, 980] },
+  { name: "solar noon", field: "noon", top: 66, h: 48, lo: 702, hi: 742, ticks: [710, 730] },
+  { name: "sunrise", field: "rise", top: 128, h: 48, lo: 456, hi: 496, ticks: [465, 485] },
 ];
 const yOf = (b: Band, min: number) => b.top + b.h * (1 - (min - b.lo) / (b.hi - b.lo));
 
@@ -111,7 +111,7 @@ export default function DarkestEvening({ slug }: { slug: string }) {
                     </g>
                   ))}
                   {[0, 14, 31, 45].map((d) => (
-                    <text key={d} x={xOf(d)} y={BANDS[2].top + BANDS[2].h + 12} textAnchor="middle" className={s.tick}>
+                    <text key={d} x={d === 45 ? X1 : xOf(d)} y={BANDS[2].top + BANDS[2].h + 12} textAnchor={d === 45 ? "end" : "middle"} className={s.tick}>
                       {DAYS[d].label}
                     </text>
                   ))}
@@ -127,6 +127,17 @@ export default function DarkestEvening({ slug }: { slug: string }) {
                           <circle key={`${b.name}-${d.k}`} cx={xOf(d.k)} cy={yOf(b, d[b.field])} r={d.k === k ? 3.6 : 2.6} className={d.k === k ? s.dotNow : s.dot} />
                         )),
                       )}
+                      {/* The current date's times, beside its dots (the stage's readout) */}
+                      {BANDS.map((b) => {
+                        const isRing = visited.length > 1 && ((b.field === "set" && earliestSet.k === k) || (b.field === "rise" && latestRise.k === k));
+                        if (isRing) return null;
+                        const right = k < 33;
+                        return (
+                          <text key={`v-${b.name}`} x={xOf(k) + (right ? 7 : -7)} y={yOf(b, day[b.field]) + 3.5} textAnchor={right ? "start" : "end"} className={s.haloNow}>
+                            {clock(day[b.field])}
+                          </text>
+                        );
+                      })}
                       {visited.length > 1 && (
                         <>
                           <circle cx={xOf(earliestSet.k)} cy={yOf(BANDS[0], earliestSet.set)} r={6} className={s.ring} />
@@ -155,14 +166,8 @@ export default function DarkestEvening({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <Row>
-                  <Slider label="Date" value={k} min={0} max={45} disabled={locked} format={() => day.label} onChange={go} />
+                  <Slider label="Date" value={k} min={0} max={45} disabled={locked} format={() => (locked ? day.label : `${day.label} · day ${span(day.len)}`)} onChange={go} />
                 </Row>
-                <div className={s.readouts}>
-                  <Readout label="Sunrise" value={locked ? "—" : clock(day.rise)} />
-                  <Readout label="Sunset" value={locked ? "—" : clock(day.set)} />
-                  <Readout label="Day" value={locked ? "—" : span(day.len)} />
-                  <Readout label="Solar noon" value={locked ? "—" : clock(day.noon)} />
-                </div>
               </div>
             );
           }}

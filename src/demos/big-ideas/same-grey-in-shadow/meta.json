@@ -1,0 +1,107 @@
+{
+  "slug": "same-grey-in-shadow",
+  "title": "Dark square, light square",
+  "hook": "A checkerboard, a cylinder and its shadow. Which square sends less light?",
+  "domain": "big-ideas",
+  "concept": "perception-inference-shadow",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-big-ideas",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "we see the colours that are there"
+    ],
+    "doesNotKnow": [
+      "that the brain estimates surface colour by discounting the lighting",
+      "so the same light from the screen can look like two different greys"
+    ]
+  },
+  "misconception": "If two squares look different, they are different on the screen.",
+  "objective": "The learner can say that squares A and B send the same light (the sampler reads the same value), that the visual system judged B lighter because it discounts the shadow, and that this guess is usually right in a real scene, because light reaching the eye is lighting times reflectance.",
+  "claims": [
+    {
+      "id": "big-ideas.same-grey-in-shadow.c1",
+      "text": "Squares A and B are painted with exactly the same grey on the screen (brightness 120 of 255).",
+      "support": "derivation",
+      "source": "Observation on the screen; the code is the source (strategy section 5, class 3). Demo.tsx draws A, B and the connecting strip from one constant SAME = #787878 (0x78 = 120), not a theme variable, so it is identical in light and dark mode; each cell carries data-fill for checking. The sampler readout prints the value as text. Brief check: company/domains/briefs/checks/big-ideas-cycle1-check.mjs #8.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.same-grey-in-shadow.c2",
+      "text": "Caption: 'After a well-known checker-shadow illusion. Our own drawing.'",
+      "support": "convention",
+      "source": "Original drawing by the builder (a 5 × 5 checkerboard and a cylinder; not traced). The illusion it follows is Adelson's checker-shadow illusion (Adelson, 1995; described in Adelson, E. H. (2000), 'Lightness perception and lightness illusions', in Gazzaniga (ed.), The New Cognitive Neurosciences, 2nd ed.; to confirm). Per the brief's W-537 re-check, the caption names no one; if Adelson 1995 is confirmed, cm-big-ideas may let it name him. Not opened by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.same-grey-in-shadow.c3",
+      "text": "Your visual system knows shadows darken surfaces, so it judged B lighter than the light it sends; that is a guess about the world.",
+      "support": "derivation",
+      "source": "Follows from c1 and the learner's own prediction: equal light from A and B was seen as two different greys, so the difference was added by the viewer. The stage stands for the cause: 'Remove the shadow' takes away the cylinder and the shadow while A and B keep their paint. Wording change from the brief: 'lighter than the light it receives' became 'lighter than the light it sends' (the light that comes from B to the eye).",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.same-grey-in-shadow.c4",
+      "text": "Hermann von Helmholtz called perception 'unconscious inference'.",
+      "support": "source",
+      "source": "Held citation, the lesson's one (class P: public domain). Helmholtz, H. von (1867), Handbuch der physiologischen Optik, vol. 3 ('unbewusster Schluss'; to confirm the section). Not opened by the builder. Cut if not checkable; fallback (brief W-537 re-check): 'Psychologists call this kind of guess an inference.' (no name; support: convention).",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.same-grey-in-shadow.c5",
+      "text": "Where it stops: the light you see is lighting times how much the surface reflects, so a shadowed square sending the same light really is lighter, and in a real scene the guess is usually right.",
+      "support": "derivation",
+      "source": "Light reaching the eye = illumination × reflectance. Same light L, shade illumination below sun illumination, so reflectance in shade = L / E_shade > L / E_sun (cycle-1 check script, W-537 block: 0.8 against 0.2 in illustrative units). On the stage the shadow multiplies by 4/7 (210 → 120, 120 → 69), so B's surface is the light kind. The brief moved the Adelson limit citation off the learner path; the derivation carries the limit.",
+      "status": "unverified"
+    },
+    {
+      "id": "big-ideas.same-grey-in-shadow.c6",
+      "text": "The board's shading (light squares 210, dark squares 120 in the light, the shadow multiplying by 4/7) is the lesson's model, not a measurement.",
+      "support": "convention",
+      "source": "Demo.tsx constants LIGHT_LIT, SAME, DARK_SHADE. Chosen so that a light square in shadow sends exactly the same value as a dark square in the light.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two sheets of paper send exactly the same light to your camera. One is in shade, one is in sun. Which sheet is whiter?",
+    "options": [
+      "The one in shade",
+      "The one in sun",
+      "They must be the same"
+    ],
+    "answer": 0,
+    "why": "Light reaching the camera is lighting times how much the paper reflects. The shaded sheet gets less light, so to send the same amount it must reflect more: it is the whiter sheet."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "big-ideas:perception-inference-shadow",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "mind",
+    "references": [],
+    "tags": [
+      "perception",
+      "lightness-constancy",
+      "inference"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "toggle-before-after",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}

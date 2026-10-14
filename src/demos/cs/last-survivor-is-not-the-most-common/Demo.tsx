@@ -4,7 +4,7 @@
 // candidate and counter after them. Controls in DOM order: Run stream 1 (final C), Count again (second pass:
 // C 2 of 7, not a majority, A had 3), Run stream 2 (final A, counted: 5 of 7, majority), Step (one tile of the
 // current stream), Reset. Milestones: survivor-C, checked-none, majority-found. The trace line keeps
-// "stream 1 → C (2 of 7) · stream 2 → A (5 of 7)" and survives Reset.
+// "stream 1 → C (2 of 7; A had 3) · stream 2 → A (5 of 7)" and survives Reset.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -47,7 +47,7 @@ function Stage({ locked, interact, st, setSt, seen }: {
       })()
     : " ";
   const trace = [
-    seen.has("s1") ? `stream 1 → ${C1}${seen.has("c1") ? ` (${n1} of ${LEN})` : ""}` : null,
+    seen.has("s1") ? `stream 1 → ${C1}${seen.has("c1") ? ` (${n1} of ${LEN}; ${TOP1} had ${top1})` : ""}` : null,
     seen.has("s2") ? `stream 2 → ${C2} (${n2} of ${LEN})` : null,
   ].filter(Boolean).join(" · ");
 

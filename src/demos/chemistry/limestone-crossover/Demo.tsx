@@ -183,6 +183,8 @@ function Stage({
         >
           Find the switch
         </Control>
+      </Row>
+      <Row>
         <Readout label="ΔG at 25 °C" value={seen.includes(25) ? `${kj(dG(25))} kJ` : "–"} />
         <Readout label="ΔG at 900 °C" value={seen.includes(900) ? `${kj(dG(900))} kJ` : "–"} />
       </Row>

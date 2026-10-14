@@ -52,14 +52,14 @@
     },
     {
       "id": "cs.nearest-town-first-detours.c4",
-      "text": "Each greedy hop was the cheapest at that moment, but the far towns it put off all came due at the end.",
+      "text": "Each greedy hop was cheapest at that moment, but the far towns it put off came due at the end.",
       "support": "derivation",
       "source": "From c1: the first three hops (2, 5, 11) were each the shortest available; the last two (23, 15) cross the road to the far end skipped earlier and come back.",
       "status": "unverified"
     },
     {
       "id": "cs.nearest-town-first-detours.c5",
-      "text": "Route planners use tours like this only as a start and then repair them.",
+      "text": "Route planners use such tours only as a start, then repair them.",
       "support": "source",
       "source": "Croes (1958), 'A method for solving traveling-salesman problems', Operations Research 6(6): 791-812 (2-opt: improving a tour by swapping pairs of links); construction-then-improvement as standard TSP heuristic practice (e.g. Johnson and McGeoch (1997), 'The traveling salesman problem: a case study in local optimization'). Attribution: fact-checker confirms; if it cannot, cut this sentence (the brief allows it).",
       "status": "unverified"
@@ -86,10 +86,17 @@
   "curriculum": {
     "primary": "cs:nearest-neighbour-tour",
     "also": [],
-    "prerequisites": ["cs:greedy-failure", "cs:combinatorial-explosion"],
+    "prerequisites": [
+      "cs:greedy-failure",
+      "cs:combinatorial-explosion"
+    ],
     "level": "core",
     "strand": "algorithms",
     "references": [],
-    "tags": ["travelling salesman", "greedy", "heuristics"]
+    "tags": [
+      "travelling salesman",
+      "greedy",
+      "heuristics"
+    ]
   }
 }

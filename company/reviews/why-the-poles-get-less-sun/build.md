@@ -15,4 +15,6 @@ Kept from evaluators until they report. Brief: company/domains/briefs/geography.
 4. Reveal values: 41%, 6,371 km and 0.004% are recorded when milestone `pole` fires (the same strings the readouts print at the pole); "less than 0.01%" is a fixed derivation (claim c3).
 5. QA path: Equator (eq), 51.5, 60, North Pole (pole): both milestones within 4 presses. Each preset disables itself while shown; the start, 30 N, is not a preset.
 6. Reset: no Reset in the brief. If the learner ends on another preset, a "Seen at the pole: 41% of the equator's year, 6,371 km (0.004%) farther." line keeps the quoted values on the stage.
-7. Phone fit: see the reveal-fit line below.
+7. Phone fit (tools/reveal-fit.mjs, 390x844, shared dev server :3530, 2026-10-14): 63 words; stage-top crop 0 px; hiddenBelow 0; namedHidden 0 (named: 'same beam', '41%' visible); phoneFit true. Points at: the beam band, the lit arc and both readouts.
+
+reveal-fit note: run through a preload that only raises Playwright's default navigation and waitFor timeouts (the shared dev server took 30 to 240 s a page); the tool's measuring code was not changed.

@@ -15,3 +15,8 @@ Brief: `company/domains/briefs/probability.md` Round 4 item 58. Status draft, ve
 5. **QA path.** Coin chooses (11.8 vs 12.2, coin) -> Coin again (11.8 vs 12.2, new positions) -> Doctor chooses (15.1 vs 8.9, doctor). At the reveal the boxes show the doctor's split and the trace "Last coin split: 11.8 vs 12.2".
 6. **Reset.** No reset control. Reveal on the QA path: "The drug does nothing, yet the doctor's choice gives the drug group 15.1 expected recoveries of 20 against 8.9. She picked the fittest, so fitness passes for a cure. Your coin split gave 11.8 against 12.2. A coin knows nothing about the patients, so fit and frail land on both sides about equally. A gap as big as the doctor's turns up by coin less than 1 time in 100." (70 words)
 7. **Phone fit.** See "Measurements" below.
+
+## Measurements (2026-10-14, shared dev server :3530)
+
+- reveal-fit (before a legend-spacing tweak): verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; 79 words with the verdict (70 reveal). Parts: picture 166, controls 78, text 16 px. Smallest SVG text 10.5 viewBox px at about 1.0 scale. Screenshot artifacts/reveal-fit/the-doctor-picks-the-patients.png.
+- The shared dev server answered pages in 25-730 s under load 30-60, so `tools/reveal-fit.mjs` timed out on page.goto (30 s) on every try. The numbers above come from a scratch copy of the tool whose only changes are a 240 s goto timeout and a 120 s lesson-render wait (scratchpad, not committed); the measuring code is unchanged.

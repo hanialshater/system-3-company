@@ -30,13 +30,13 @@ function town(g: number, f: number) {
 const pct = (v: number) => `${Number.isInteger(Math.round(v * 100) / 100) ? Math.round(v) : (Math.round(v * 100) / 100).toString()}%`;
 const BASE = town(0, 0);
 
-// Geometry (viewBox 320 × 196).
+// Geometry (viewBox 320 × 198).
 const GX = 14;
 const GY = 26;
 const P = 16;
 const R = 6;
 const OX = 208;
-const OY = 150;
+const OY = 160;
 const OP = 22;
 
 type Rec = { rate: number; jobs: number };
@@ -102,7 +102,7 @@ export default function GivingUpLowersUnemployment({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.chip}>Rate = looking ÷ (working + looking). People not looking are not counted.</p>
                 <svg
-                  viewBox="0 0 320 196"
+                  viewBox="0 0 320 198"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "100 people: 90 working, 10 looking" : `${t.working} working, ${t.looking} looking, ${t.out} not looking: rate ${pct(t.rate)}`}
@@ -114,19 +114,19 @@ export default function GivingUpLowersUnemployment({ slug }: { slug: string }) {
                   <text x={196} y={GY + 8} className={s.label}>
                     rate
                   </text>
-                  <text x={196} y={GY + 32} className={s.big}>
+                  <text x={196} y={GY + 30} className={s.big}>
                     {locked ? "?" : pct(t.rate)}
                   </text>
-                  <text x={196} y={GY + 48} className={s.axis}>
+                  <text x={196} y={GY + 44} className={s.axis}>
                     start {pct(BASE.rate)}
                   </text>
-                  <text x={196} y={GY + 72} className={s.label}>
+                  <text x={196} y={GY + 66} className={s.label}>
                     jobs
                   </text>
-                  <text x={196} y={GY + 96} className={s.big}>
+                  <text x={196} y={GY + 88} className={s.big}>
                     {locked ? "?" : t.working}
                   </text>
-                  <text x={196} y={OY - 18} className={s.label}>
+                  <text x={196} y={OY - 20} className={s.label}>
                     not looking
                   </text>
                   <rect x={OX - 12} y={OY - 12} width={5 * OP + 2} height={2 * OP + 2} rx={6} className={s.outBox} />

@@ -89,7 +89,7 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
       predict={{
         question:
           "Trained on 7 sentences, including 'my pin is 4 7 1 9', a model counts what follows each two-word context. Prompted 'my pin is':",
-        options: ["\"ready\", the commonest word after \"is\"", "\"4 7 1 9\"", "A random number"],
+        options: ["ready, the commonest word after 'is'", "4 7 1 9", "A random number"],
         answer: 1,
       }}
       exploreHint="Prompt with two words of context, then one, then delete the secret and try again."

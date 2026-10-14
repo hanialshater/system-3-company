@@ -121,9 +121,9 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
                   ? "Right end tied to a wall. The wall pulls back."
                   : `Each friend pulls ${T} N.`;
             const seenText = [
-              `100 + 100: ${seen.pair100 !== undefined ? `${seen.pair100} N` : "–"}`,
-              `wall: ${seen.wall100 !== undefined ? `${seen.wall100} N` : "–"}`,
-              `200 + 200: ${seen.pair200 !== undefined ? `${seen.pair200} N` : "–"}`,
+              `100 + 100: ${seen.pair100 !== undefined ? `${seen.pair100} N` : "–"}`,
+              `wall: ${seen.wall100 !== undefined ? `${seen.wall100} N` : "–"}`,
+              `200 + 200: ${seen.pair200 !== undefined ? `${seen.pair200} N` : "–"}`,
             ].join(" · ");
             return (
               <div className={s.wrap}>
@@ -209,9 +209,10 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
                     return <line key={v} x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} className={s.tick} />;
                   })}
                   {[0, 100, 200].map((v) => {
-                    const p = dialPt(v, DR + 10);
+                    const p = dialPt(v, DR + 5);
+                    const anchor = v === 0 ? "end" : v === 200 ? "start" : "middle";
                     return (
-                      <text key={v} x={p.x} y={p.y + 4} textAnchor="middle" className={s.tickLabel}>
+                      <text key={v} x={p.x} y={p.y + (v === 100 ? -1 : 4)} textAnchor={anchor} className={s.tickLabel}>
                         {v}
                       </text>
                     );
@@ -230,13 +231,13 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
 
                 <Row>
                   <Control className={mode === "pair100" ? "active" : ""} disabled={locked || mode === "pair100"} onClick={() => pick("pair100")}>
-                    Both pull 100 N
+                    Both pull 100 N
                   </Control>
                   <Control className={mode === "wall100" ? "active" : ""} disabled={locked || mode === "wall100"} onClick={() => pick("wall100")}>
                     Tie right end to a wall
                   </Control>
                   <Control className={mode === "pair200" ? "active" : ""} disabled={locked || mode === "pair200"} onClick={() => pick("pair200")}>
-                    Both pull 200 N
+                    Both pull 200 N
                   </Control>
                 </Row>
               </div>

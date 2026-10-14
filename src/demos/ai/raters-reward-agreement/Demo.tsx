@@ -41,7 +41,7 @@ const CHIP = 12;
 const PITCH = 15;
 const CARD_W = 164;
 const CARD_X = [4, 172];
-const GRID_Y = 52;
+const GRID_Y = 40;
 
 type Tally = ReturnType<typeof votes>;
 type Rec = Partial<Record<Preset["id"], Tally>>;
@@ -96,9 +96,9 @@ export default function RatersRewardAgreement({ slug }: { slug: string }) {
             ];
             return (
               <div className={s.wrap}>
-                <p className={s.caption}>When the user is right, both models give the same answer. Rates are invented.</p>
+                <p className={s.caption}>User right: both models answer alike. Rates invented.</p>
                 <svg
-                  viewBox="0 0 340 152"
+                  viewBox="0 0 340 138"
                   className={`stage-svg ${s.svg}`}
                   role="img"
                   aria-label={shown ? `Agreeable ${v.agreeable.total} votes, Correct ${v.correct.total}` : "Two models, no votes yet"}
@@ -109,14 +109,14 @@ export default function RatersRewardAgreement({ slug }: { slug: string }) {
                     const win = t && other && t.total > other.total;
                     return (
                       <g key={c.key}>
-                        <rect x={CARD_X[k]} y={2} width={CARD_W} height={148} rx={8} className={win ? s.cardWin : s.card} />
-                        <text x={CARD_X[k] + 8} y={19} className={s.label} fill="var(--fg)">
+                        <rect x={CARD_X[k]} y={2} width={CARD_W} height={134} rx={8} className={win ? s.cardWin : s.card} />
+                        <text x={CARD_X[k] + 8} y={17} className={s.label} fill="var(--fg)">
                           {c.name}
                         </text>
-                        <text x={CARD_X[k] + CARD_W - 8} y={19} textAnchor="end" className={s.label} fill="var(--fg)">
+                        <text x={CARD_X[k] + CARD_W - 8} y={17} textAnchor="end" className={s.label} fill="var(--fg)">
                           {t ? `${t.total} votes` : "– votes"}
                         </text>
-                        <text x={CARD_X[k] + 8} y={36} className={s.small} fill="var(--muted)">
+                        <text x={CARD_X[k] + 8} y={32} className={s.small} fill="var(--muted)">
                           right {pct(ACCURACY[c.key])} of the time
                         </text>
                         {Array.from({ length: 60 }, (_, i) => {
@@ -148,7 +148,7 @@ export default function RatersRewardAgreement({ slug }: { slug: string }) {
                 </p>
                 {!locked && (rec.q || rec.tie || rec.honest) && (
                   <p className={s.seen} data-testid="seen">
-                    Seen (Agreeable · Correct):
+                    Seen:
                     {PRESETS.filter((p) => rec[p.id])
                       .map((p) => ` at ${pct(p.agree)} ${rec[p.id]!.agreeable.total} · ${rec[p.id]!.correct.total}`)
                       .join(";")}

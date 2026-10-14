@@ -13,7 +13,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { mulberry32 } from "@/kit/random";
 import s from "./styles.module.css";
@@ -57,11 +57,11 @@ export function runPonds(drain: number, seed: number): PondRun {
   return { drain, seed, years, start, end: n, extinctYear };
 }
 
-const result = (r: PondRun) => (r.extinctYear === null ? `${r.end} ponds` : `none from year ${r.extinctYear}`);
+const result = (r: PondRun) => (r.extinctYear === null ? `${r.end} ponds` : `gone, year ${r.extinctYear}`);
 const refill = (n: number) => Math.round((1 - Math.pow(1 - COL, n)) * 100);
 
 // Grid geometry: 10 x 10 cells.
-const CELL = 25;
+const CELL = 23;
 const G = CELL * 10;
 
 function Stage({
@@ -97,7 +97,7 @@ function Stage({
     }
     const t0 = performance.now();
     const tick = (now: number) => {
-      const f = Math.min(1, (now - t0) / 350);
+      const f = Math.max(0, Math.min(1, (now - t0) / 350));
       setYear(Math.round(YEARS * f));
       anim.current = f < 1 ? requestAnimationFrame(tick) : null;
     };
@@ -109,7 +109,7 @@ function Stage({
   }, [run]);
 
   const drained = drainedAt(drain ?? 0);
-  const occ = run ? run.years[year] : Array.from({ length: PONDS }, (_, i) => i < START_OCC);
+  const occ = run ? run.years[Math.max(0, Math.min(YEARS, year))] : Array.from({ length: PONDS }, (_, i) => i < START_OCC);
   const count = occ.filter(Boolean).length;
   const good = PONDS - (drain ?? 0);
   const done = run !== null && year === YEARS;
@@ -117,7 +117,7 @@ function Stage({
   const head = locked || !run
     ? `${count} of ${PONDS} ponds have frogs`
     : `year ${year}: ${count} ${count === 1 ? "pond" : "ponds"} with frogs, ${good} good ponds`;
-  const logLine = DRAINS.filter((d) => log[d]).map((d) => `${d} drained: ${result(log[d]!)}`).join(" · ");
+  const logLine = DRAINS.filter((d) => log[d]).map((d, i) => `${d}${i ? "" : " drained"}: ${result(log[d]!)}`).join(" · ");
 
   return (
     <div className={s.wrap}>
@@ -128,7 +128,7 @@ function Stage({
             : "Each year a frog pond empties with chance 20%; an empty pond refills with chance 1 − 0.995ⁿ, n = frog ponds."}
         </p>
       )}
-      <p className={s.head} data-testid="pond-head">{head}</p>
+      {!atReveal && <p className={s.head} data-testid="pond-head">{head}</p>}
       <svg viewBox={`0 0 ${G} ${G + 14}`} className={`stage-svg ${s.grid}`} role="img"
         aria-label={`${head}. ${drain ? `${drain} ponds drained.` : "No ponds drained."} Seed ${seed}.`}>
         {occ.map((o, i) => {
@@ -152,7 +152,7 @@ function Stage({
           Start: {run.start} frog ponds, refill chance {refill(run.start)}% a year
         </p>
       )}
-      <Row>
+      <div className={s.buttons}>
         {DRAINS.map((d) => (
           <Control key={d} className={drain === d ? "active" : ""} disabled={locked || drain === d} onClick={() => onDrain(d)}>
             Drain {d}
@@ -161,7 +161,7 @@ function Stage({
         <Control disabled={locked || drain === null} onClick={onSeed}>
           New seed
         </Control>
-      </Row>
+      </div>
     </div>
   );
 }

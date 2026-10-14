@@ -45,11 +45,11 @@ function stats(n: number, k: number) {
 }
 const usd1 = (v: number) => `$${(Math.round(v * 10) / 10).toFixed(1)}`;
 
-// Geometry (viewBox 320 × 170).
+// Geometry (viewBox 320 × 150).
 const XL = 44;
 const XR = 312;
 const YT = 14;
-const YB = 146;
+const YB = 128;
 const VMIN = 76;
 const VMAX = 124;
 const COL = (XR - XL) / AUCTIONS;
@@ -89,7 +89,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const show = (nn: number, nk: number) => {
@@ -117,7 +117,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
                   <Readout label="Avg winning bid" value={on ? usd1(st.win) : "?"} />
                 </Row>
                 <svg
-                  viewBox="0 0 320 170"
+                  viewBox="0 0 320 150"
                   className="stage-svg"
                   role="img"
                   aria-label={on ? `${k} auctions, ${n} bidders: winning bids average ${usd1(st.win)}` : "Auctions of a $100 jar"}
@@ -152,7 +152,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
                   {locked ? "" : !ten && !two ? "Run the auctions." : null}
                   {!locked && ten && (
                     <span style={{ display: "block" }}>
-                      10 bidders: guesses {usd1(ten.guess)}, winners {usd1(ten.win)}, {ten.over} of 20 over
+                      10 bidders: guesses {usd1(ten.guess)}, winners {usd1(ten.win)} ({ten.over}/20 over)
                     </span>
                   )}
                   {!locked && two !== null && <span style={{ display: "block" }}>2 bidders: winners {usd1(two)}</span>}
@@ -168,11 +168,13 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
                     20 bidders
                   </Control>
                 </Row>
+                {phase !== "reveal" && (
                 <Row>
                   <Control disabled={locked || k >= AUCTIONS} onClick={() => show(n, k + 1)}>
                     Step: one auction
                   </Control>
                 </Row>
+                )}
               </div>
             );
           }}

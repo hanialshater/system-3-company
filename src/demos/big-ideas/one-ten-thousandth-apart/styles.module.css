@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; align-items: center; width: 100%; }
+.readout { margin: 0; font-size: 0.86rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+.chart { width: 340px; max-width: 100%; height: auto; max-height: 30dvh; }
+.tick { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.mark { font-size: 12px; font-weight: 700; fill: var(--muted); }
+.markOn { font-size: 12px; font-weight: 700; fill: var(--bad); }
+.avgA { font-size: 12px; font-weight: 700; fill: var(--fg); }
+.avgB { font-size: 12px; font-weight: 700; fill: var(--domain); }
+.controls { display: flex; flex-wrap: nowrap; justify-content: center; gap: 6px; width: 100%; }
+.controls > button { min-height: 44px; font-weight: 700; padding: 6px 10px; font-size: 0.85rem; }

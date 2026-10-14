@@ -58,8 +58,8 @@ function Stage({ locked, interact, rounds, jumps, set, seen }: {
     <div className={s.wrap}>
       <svg viewBox="0 0 340 180" className={`stage-svg ${s.svg}`} role="img"
         aria-label={`Round ${rounds}, ${jumps ? "with" : "no"} random jumps. E and F hold ${pct(share)} of the score. Bars beside each page show its score.`}>
-        <rect x={236} y={6} width={98} height={168} rx={14} className={s.group} />
-        <text x={318} y={95} textAnchor="middle" className={s.groupLabel}>E + F</text>
+        <rect x={232} y={6} width={104} height={168} rx={14} className={s.group} />
+        <text x={316} y={95} textAnchor="middle" className={s.groupLabel}>E + F</text>
         {PAGES.flatMap((p) => LINKS[p].map((q) => {
           const pair = (p === "E" && q === "F") || (p === "F" && q === "E");
           return <Arrow key={`${p}${q}`} from={p} to={q} bend={pair ? 7 : 0} />;

@@ -102,8 +102,7 @@ export default function SuddenSkillOrStrictScore({ slug }: { slug: string }) {
             const xl = 4;
             return (
               <div className={s.wrap}>
-                <span className={`tag ${s.model}`}>Toy: each token right or wrong independently</span>
-                <svg viewBox="0 0 340 196" className={`stage-svg ${s.svg}`} role="img" aria-label={legend}>
+                <svg viewBox="0 0 340 208" className={`stage-svg ${s.svg}`} role="img" aria-label={legend}>
                   <text x={X0} y={12} className={s.small} fill="var(--muted)">
                     {legend}
                   </text>
@@ -147,6 +146,9 @@ export default function SuddenSkillOrStrictScore({ slug }: { slug: string }) {
                     </g>
                   ))}
                   <line x1={X0 - 4} x2={cx(5) + CW} y1={TOP + H} y2={TOP + H} stroke="var(--fg)" strokeWidth={1} />
+                  <text x={170} y={TOP + H + 32} textAnchor="middle" className={s.small} fill="var(--muted)">
+                    Toy: each token right or wrong independently
+                  </text>
                 </svg>
                 <p className={s.msg} data-testid="readout">
                   {locked

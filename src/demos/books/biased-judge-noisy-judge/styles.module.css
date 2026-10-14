@@ -1,0 +1,87 @@
+/* Fill the stage; the strips shrink to fit instead of overflowing the centred stage. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 140px;
+  max-height: 220px;
+  height: auto;
+}
+
+.axis {
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  fill: var(--muted);
+}
+
+.judge {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--fg);
+}
+
+.judgeIdle {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--muted);
+}
+
+.fairLabel {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--good);
+}
+
+.fair {
+  stroke: var(--good);
+  stroke-width: 2;
+}
+
+.strip {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.focus {
+  fill: var(--bg-2);
+  stroke: var(--domain);
+  stroke-width: 1.5;
+}
+
+.dot {
+  fill: color-mix(in srgb, var(--domain) 75%, var(--fg) 25%);
+}
+
+.mean {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+
+.readout {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  min-height: 1.25em;
+}
+
+.seen {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  min-height: 1.2em;
+}

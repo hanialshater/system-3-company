@@ -61,8 +61,8 @@ function Stage({ locked, interact, n, setN, seen }: {
         {SIZES.map((k) => (
           <li key={k} className={seen.includes(k) ? s.cell : `${s.cell} ${s.empty}`}>
             {seen.includes(k) ? (
-              <><strong>{k}: {winner(k)}</strong> {fmt(insertion(k))} v {fmt(merge(k))}</>
-            ) : <>&nbsp;</>}
+              <><strong>{k}: {winner(k)}</strong><br />{fmt(insertion(k))} v {fmt(merge(k))}</>
+            ) : <>&nbsp;<br />&nbsp;</>}
           </li>
         ))}
       </ol>

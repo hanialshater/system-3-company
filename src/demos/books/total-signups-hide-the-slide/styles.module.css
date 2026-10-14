@@ -1,0 +1,119 @@
+/* Fill the stage; the chart shrinks to fit instead of overflowing the centred stage. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 140px;
+  max-height: 210px;
+  height: auto;
+}
+
+.axis {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.axisTitle {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--muted);
+}
+
+.edge {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.grid {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.idleLine {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2.5;
+  opacity: 0.55;
+}
+
+.line {
+  fill: none;
+  stroke: color-mix(in srgb, var(--domain) 55%, var(--fg) 45%);
+  stroke-width: 3;
+}
+
+.trace {
+  fill: none;
+  stroke: var(--bad);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+  opacity: 0.8;
+}
+
+.dot {
+  fill: color-mix(in srgb, var(--domain) 55%, var(--fg) 45%);
+}
+
+.traceDot {
+  fill: var(--bad);
+  opacity: 0.8;
+}
+
+.bar {
+  fill: color-mix(in srgb, var(--bad) 75%, var(--bg-2));
+}
+
+.barLabel {
+  font-size: 11px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.endLabel {
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.tagBetter {
+  fill: color-mix(in srgb, var(--domain) 55%, var(--fg) 45%);
+}
+
+.tagWorse {
+  fill: var(--bad);
+}
+
+.readout {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  min-height: 1.25em;
+}
+
+.seen {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  min-height: 1.2em;
+}

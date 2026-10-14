@@ -100,8 +100,10 @@ function Stage({ locked, interact, box, setBox, seen }: StageContext & { box: nu
 
   const pan = (hx: number, side: "L" | "R") => (
     <g style={{ transform: `rotate(${-angle}deg)`, transformOrigin: `${hx}px ${PY}px` }} className={s.swing}>
-      <line x1={hx} y1={PY} x2={hx - PAN_HALF} y2={PY + PAN_Y} className={s.string} />
-      <line x1={hx} y1={PY} x2={hx + PAN_HALF} y2={PY + PAN_Y} className={s.string} />
+      <line x1={hx} y1={PY} x2={hx} y2={PY + 12} className={s.string} />
+      <line x1={hx - PAN_HALF} y1={PY + 12} x2={hx + PAN_HALF} y2={PY + 12} className={s.string} />
+      <line x1={hx - PAN_HALF} y1={PY + 12} x2={hx - PAN_HALF} y2={PY + PAN_Y} className={s.string} />
+      <line x1={hx + PAN_HALF} y1={PY + 12} x2={hx + PAN_HALF} y2={PY + PAN_Y} className={s.string} />
       <rect x={hx - PAN_HALF - 2} y={PY + PAN_Y} width={PAN_HALF * 2 + 4} height={4} rx={2} className={s.plate} />
       {side === "L" ? (
         <>

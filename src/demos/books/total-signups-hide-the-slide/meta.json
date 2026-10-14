@@ -1,0 +1,119 @@
+{
+  "slug": "total-signups-hide-the-slide",
+  "title": "Six months of rising sign-ups",
+  "hook": "Total customers went up every single month. Is the product getting better?",
+  "domain": "books",
+  "concept": "lean-vanity-metrics",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a rising chart is good news"
+    ],
+    "doesNotKnow": [
+      "that a cumulative total rises whatever happens, so it can't tell you whether each month is getting better or worse"
+    ]
+  },
+  "misconception": "Total customers going up every month means the product is improving.",
+  "objective": "The learner can explain that a running total of new customers can never fall, so a total that rises every month (here to 450 both when monthly conversion slides from 10% to 5% and when it climbs from 5% to 10%) cannot say whether each month is getting better or worse; only the per-month (cohort) numbers can.",
+  "claims": [
+    {
+      "id": "books.total-signups-hide-the-slide.c1",
+      "text": "A running total can't fall, so it can't tell you which way you are going.",
+      "support": "derivation",
+      "source": "Identity (brief D1): a cumulative sum of non-negative monthly additions is non-decreasing whatever each month's conversion is, so a rising total is consistent with both falling and rising conversion (the stage shows one of each ending at the same total). Brief company/domains/briefs/books.md #8; check company/domains/briefs/checks/books-cycle1-check.mjs #8.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.c2",
+      "text": "Your total kept climbing while each month converted worse, down to 5% by month six. When months got better instead, the total still ended at 450.",
+      "support": "derivation",
+      "source": "Brief D2. Demo.tsx RATES: 1,000 visitors a month; 'getting worse' 10, 9, 8, 7, 6, 5% gives 100, 90, 80, 70, 60, 50 new customers, cumulative 100, 190, 270, 340, 400, 450; 'getting better' 5, 6, 7, 8, 9, 10% gives cumulative 50, 110, 180, 260, 350, 450. Both values are recorded when their milestone fires (cohort-seen: month-6 rate; better-total-seen: final total) and shown in the Seen row. Checked by node in books-cycle1-check.mjs #8 (all pass, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.c3",
+      "text": "The visitors (1,000 a month), the monthly conversion rates and the six months are the lesson's model, not data from any company (caption on the stage: '1,000 visitors a month').",
+      "support": "convention",
+      "source": "Brief D3: the toy is stated on the stage. No figure, dashboard or case story from the book is used; the chart is drawn from scratch.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.c4",
+      "text": "The Lean Startup calls numbers like this vanity metrics and argues for watching each month's group.",
+      "support": "source",
+      "source": "Eric Ries, The Lean Startup (Crown Business, 2011), work ries-lean-startup-2011, ch. 7 'Measure' (unconfirmed). Brief B1: the book argues that cumulative totals are vanity metrics and that cohort analysis shows real progress. The claim is about what the book argues, not about the world. Our own words; no quote, no figure, no company anecdote. The answer does not rest on this claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.c5",
+      "text": "Does it hold up? Holds up, as arithmetic.",
+      "support": "derivation",
+      "source": "Verdict (shared verdict word 'holds up', company/decisions/2026-10-14-books-big-ideas-strategy-review.md ruling 3), separate from the book claim c4 (ruling 5 launch requirement). It rests on D1 and D2 (claims c1, c2): a cumulative total cannot distinguish improving from worsening months. It does not claim that cohort analysis improves business outcomes; that is c6.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.c6",
+      "text": "One trial with 116 startups found teams taught to test ideas this way earned more.",
+      "support": "source",
+      "source": "Camuffo, Cordova, Gambardella & Spina (2020), 'A scientific approach to entrepreneurial decision making: evidence from a randomized control trial', Management Science 66(2): 564-586 (to confirm): 116 Italian startups; training in a scientific, hypothesis-testing approach led to more pivots and higher revenue. Brief R1, the one held citation. It tests a lean training, not cohort metrics specifically. If it cannot be checked, cut this sentence from the reveal (brief cut rule); the verdict c5 stands on c1 and c2.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.total-signups-hide-the-slide.recall",
+      "text": "A cumulative total of sign-ups rises whenever each period adds any, so it cannot show whether each period's sign-ups are growing or shrinking.",
+      "support": "derivation",
+      "source": "Same identity as c1. Recall item.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A newsletter's total subscriber count has gone up every week for a year, and nobody ever unsubscribes. What does that total tell you about whether each week's new sign-ups are growing?",
+    "options": [
+      "They are growing",
+      "Nothing: the total rises either way",
+      "They are shrinking"
+    ],
+    "answer": 1,
+    "why": "A running total with no losses can only go up, so it rises whether each week adds more or fewer. Look at each week's own sign-ups instead."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:lean-vanity-metrics",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "ries-lean-startup-2011",
+        "chapter": 7,
+        "note": "chapter unconfirmed"
+      }
+    ],
+    "tags": [
+      "vanity-metrics",
+      "cohorts",
+      "cumulative-totals",
+      "metrics"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "toggle-before-after"
+  ]
+}

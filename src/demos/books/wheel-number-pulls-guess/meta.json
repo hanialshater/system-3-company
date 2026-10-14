@@ -51,7 +51,7 @@
     },
     {
       "id": "books.wheel-number-pulls-guess.c5",
-      "text": "The crowd on the card is the lesson's model (chip 'Model crowd: each guess moves 60% from wheel to belief'): 30 people with private beliefs spread evenly from about 16% to 54% (median 35%), each starting at the wheel's number and moving 60% of the way to their belief; its median is 25 with the wheel at 10 and 47 at 65, and 35 with no wheel.",
+      "text": "The crowd on the card is the lesson's model (chip 'Model: guesses go 60% from wheel to belief'): 30 people with private beliefs spread evenly from about 16% to 54% (median 35%), each starting at the wheel's number and moving 60% of the way to their belief; its median is 25 with the wheel at 10 and 47 at 65, and 35 with no wheel.",
       "support": "derivation",
       "source": "Demo.tsx estimates(): estimate = A + 0.6 (belief - A), beliefs 15 + 40 (i + 0.5)/30. Median = 0.4 A + 21 (monotone map of the beliefs' median 35): 25 at A = 10, 47 at A = 65. Builder node run 2026-10-14. The 60% pull and belief spread are the brief's illustrative choice, not fitted to the 1974 data.",
       "status": "unverified"
@@ -98,5 +98,5 @@
     "tags": ["anchoring", "judgment", "heuristics", "replication"]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "locked-readouts"]
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "slider-drives-live-chart"]
 }

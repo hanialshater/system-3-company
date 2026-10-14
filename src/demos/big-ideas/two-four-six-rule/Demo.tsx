@@ -5,6 +5,8 @@
 // (all fit both rules), then every triple the learner tests, with two marks: does it fit +2 (your guess), does it
 // fit the secret rule (the experimenter's answer). A row where the two marks differ is drawn as a split: the test
 // that could tell the rules apart. The secret rule is printed on the stage only in the reveal phase.
+// v2 (W-633, W-537 re-check): the learner path carries one held citation, the limit (c4, Klayman & Ha). Popper's
+// sentence is replaced by its fallback (c3, no name) and the stage caption no longer cites Wason (c1).
 // Controls (DOM order = QA order): first −/+, second −/+, third −/+, Flip order, Test, Test 1-2-10.
 // QA path from 2-4-6: steppers net back to 2-4-6, Flip gives 6-4-2, Test logs it (no fit: milestone no-fit),
 // "Test 1-2-10" logs the question's case (breaks +2 and fits: milestone split). Recorded triples are pinned rows.
@@ -61,9 +63,9 @@ export default function TwoFourSixRule({ slug }: { slug: string }) {
         <>
           <p>
             Your +2 tests all fit, but they fit “any three increasing numbers” just as well, so they couldn’t tell the two rules
-            apart. {split} broke your guess and still fit, while {noFit} did not: those tests taught you more than the rest.
+            apart. {split} broke your guess and still fit, while {noFit} did not.
           </p>
-          <p>Karl Popper argued that a claim is scientific when a test could prove it false.</p>
+          <p>A test that could prove you wrong tells you more.</p>
           <p>
             Where it stops: testing cases that fit is often sensible. It fails here because the true rule is broader than the guess.
           </p>
@@ -108,7 +110,7 @@ export default function TwoFourSixRule({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">
                   {phase === "reveal" ? (
-                    <span className={s.rule}>Secret rule: any three increasing numbers (Wason, 1960)</span>
+                    <span className={s.rule}>Secret rule: any three increasing numbers</span>
                   ) : (
                     msg
                   )}
@@ -153,7 +155,7 @@ export default function TwoFourSixRule({ slug }: { slug: string }) {
                     Flip order
                   </Control>
                   <Control disabled={locked} onClick={() => test(cur)}>
-                    Test {str(cur)}
+                    Test these
                   </Control>
                   <Control
                     disabled={locked}

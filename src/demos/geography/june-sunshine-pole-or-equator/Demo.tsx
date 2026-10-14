@@ -60,7 +60,7 @@ export default function JuneSunshine({ slug }: { slug: string }) {
     ...PLACES.filter((p) => traces.includes(p.key)).map((p) => ({ key: p.key, name: p.name, lat: p.lat, dash: p.dash })),
     ...(cur !== null && !curPlace ? [{ key: "slider", name: `${cur}° N`, lat: cur, dash: "" }] : []),
   ];
-  const VH = 170 + 14 * Math.max(3, rows.length);
+  const VH = PX.b + 46 + 14 * Math.max(3, rows.length);
 
   return (
     <Lesson

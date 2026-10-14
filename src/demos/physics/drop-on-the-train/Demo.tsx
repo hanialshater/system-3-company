@@ -91,7 +91,7 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your ball fell straight down beside your legs and landed <strong>{seen.cm20 ?? "?"} cm</strong> from below your
+            Your ball fell straight down and landed <strong>{seen.cm20 ?? "?"} cm</strong> from below your
             hand at 20 m/s, and {seen.cm40 ?? "?"} cm at 40 m/s. From the platform the same drop was a long curve: in the{" "}
             {T_FALL.toFixed(2)} s fall the train moved {seen.plat !== undefined ? m1(seen.plat) : "?"} m, and so did the ball.
           </p>
@@ -118,7 +118,7 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                 reach("drop-40");
               }
               if (plat) {
-                setSeen((x) => ({ ...x, plat: v * T_FALL }));
+                setSeen((x) => ({ ...x, plat: x.plat ?? v * T_FALL })); // the first platform view the learner saw
                 reach("platform");
               }
             };
@@ -134,9 +134,9 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                   ? "Seen from the platform. Heights drawn 4× taller."
                   : "Inside the carriage. Speeds are measured from the ground.";
             const seenText = [
-              `20 m/s: ${seen.cm20 !== undefined ? `${seen.cm20} cm` : "–"}`,
-              `platform: ${seen.plat !== undefined ? `${m1(seen.plat)} m curve` : "–"}`,
-              `40 m/s: ${seen.cm40 !== undefined ? `${seen.cm40} cm` : "–"}`,
+              `20 m/s: ${seen.cm20 !== undefined ? `${seen.cm20} cm` : "–"}`,
+              `platform: ${seen.plat !== undefined ? `${m1(seen.plat)} m curve` : "–"}`,
+              `40 m/s: ${seen.cm40 !== undefined ? `${seen.cm40} cm` : "–"}`,
             ].join(" · ");
 
             // the parabola from the platform, sampled
@@ -174,9 +174,13 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                       <rect x={30} y={18} width={260} height={FLOOR - 18 + 4} rx={8} className={s.car} />
                       <line x1={30} y1={FLOOR} x2={290} y2={FLOOR} className={s.floor} />
                       <Person x={IN_HAND_X - 16} />
-                      {/* floor spot below the hand */}
-                      <line x1={IN_HAND_X - 6} y1={FLOOR + 6} x2={IN_HAND_X + 6} y2={FLOOR + 6} className={s.mark} />
-                      <line x1={IN_HAND_X} y1={FLOOR + 1} x2={IN_HAND_X} y2={FLOOR + 10} className={s.mark} />
+                      {/* floor spot below the hand (not drawn before the commit) */}
+                      {!locked && (
+                        <>
+                          <line x1={IN_HAND_X - 6} y1={FLOOR + 6} x2={IN_HAND_X + 6} y2={FLOOR + 6} className={s.mark} />
+                          <line x1={IN_HAND_X} y1={FLOOR + 1} x2={IN_HAND_X} y2={FLOOR + 10} className={s.mark} />
+                        </>
+                      )}
                       {speed !== null && !locked && (
                         <>
                           <line x1={IN_HAND_X} y1={HAND_Y + 4} x2={IN_HAND_X} y2={HAND_Y + 4 + fallPx} className={s.trace} />
@@ -204,6 +208,9 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                       {/* from the platform */}
                       <line x1={0} y1={FLOOR + 4} x2={W} y2={FLOOR + 4} className={s.floor} />
                       <rect x={P0} y={24} width={CW} height={FLOOR - 24 + 4} rx={6} className={s.ghost} />
+                      <g className={s.ghostPerson}>
+                        <Person x={P0 + 30 - 16} />
+                      </g>
                       <rect x={carX} y={24} width={CW} height={FLOOR - 24 + 4} rx={6} className={s.car} />
                       <Person x={carX + 30 - 16} />
                       <polyline points={curve(t)} className={s.trace} />
@@ -230,7 +237,7 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                     disabled={locked || speed === 20}
                     onClick={() => drop(20, platform)}
                   >
-                    Drop at 20 m/s
+                    Drop at 20 m/s
                   </Control>
                   <Control disabled={locked} onClick={() => drop(speed ?? 20, !platform)}>
                     {platform ? "View from the train" : "View from the platform"}
@@ -240,7 +247,7 @@ export default function DropOnTheTrain({ slug }: { slug: string }) {
                     disabled={locked || speed === 40}
                     onClick={() => drop(40, platform)}
                   >
-                    Drop at 40 m/s
+                    Drop at 40 m/s
                   </Control>
                 </Row>
               </div>

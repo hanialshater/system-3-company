@@ -65,7 +65,7 @@ const growthAt = (n: number) => R * n * (1 - n / K);
 
 // Chart geometry.
 const W = 356, H = 206;
-const X0 = 38, X1 = 268, Y0 = 12, Y1 = 182;
+const X0 = 38, X1 = 262, Y0 = 12, Y1 = 182;
 const X = (t: number) => X0 + (t / YEARS) * (X1 - X0);
 const Y = (n: number) => Y1 - (n / K) * (Y1 - Y0);
 const path = (pts: [number, number][]) => pts.map(([t, n], i) => `${i ? "L" : "M"}${X(t).toFixed(1)},${Y(n).toFixed(1)}`).join(" ");

@@ -13,7 +13,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -91,11 +91,7 @@ export default function WheelNumberPullsGuess({ slug }: { slug: string }) {
             const on = !locked;
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model crowd: each guess moves 60% from wheel to belief</p>
-                <Row>
-                  <Readout label="Wheel" value={on && shown ? anchor : "–"} />
-                  <Readout label="Crowd's median guess" value={on ? `${Math.round(med)}%` : "?"} />
-                </Row>
+                <p className={s.chip}>Model: guesses go 60% from wheel to belief</p>
                 <svg
                   viewBox="0 0 320 170"
                   className="stage-svg"

@@ -4,7 +4,7 @@
 // 8%, 6%, 4%, 3%, 2% gives 100 → 108.00 → 114.48 → 119.06 → 122.63 → 125.08. A sixth year at 0% leaves
 // it at 125.08; only a sixth year at −1% lowers it (123.83).
 // Picture: the basket's price as bars by year, with that year's rate printed above each bar: the rate
-// numbers shrink while the bars keep growing. Prices are printed on year 0, year 5 and year 6.
+// numbers shrink while the bars keep growing. Prices are printed on year 0, year 5 and year 6 (inside its bar).
 // Controls (DOM order): [Five years] [Year 6 at 0%] [Year 6 at −1%] presets, then Step (one year at a
 // time from year 0; disabled once year 5 is shown).
 // Milestones: "five" (year 5 shown: 125.08), "zero" (year 6 at 0%), "negative" (year 6 at −1%). The brief
@@ -122,7 +122,7 @@ export default function InflationFallsPricesStillRise({ slug }: { slug: string }
                           </text>
                         )}
                         {labelled(y) && (
-                          <text x={sx(y) + BW / 2} y={BASE - h - 5} textAnchor="middle" className={s.value}>
+                          <text x={sx(y) + BW / 2} y={y === 6 ? BASE - h + 15 : BASE - h - 5} textAnchor="middle" className={s.value}>
                             {money(p)}
                           </text>
                         )}

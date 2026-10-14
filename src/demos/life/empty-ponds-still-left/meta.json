@@ -23,7 +23,7 @@
   "claims": [
     {
       "id": "life.empty-ponds-still-left.c1",
-      "text": "In the lesson's model (seed 1), after 70 of 100 ponds are drained (19 good ponds with frogs left) the frogs are gone by year 23 though 30 good ponds remain; across seeds 1 to 1,000 they are gone by year 100 in 996. Reveal: \"With 70 ponds drained, the frogs were gone by year 23, though 30 good ponds were still there.\" (the year is read from the learner's current run: seed 2 gives 21). Stage: \"70 drained: none from year 23\".",
+      "text": "In the lesson's model (seed 1), after 70 of 100 ponds are drained (19 good ponds with frogs left) the frogs are gone by year 23 though 30 good ponds remain; across seeds 1 to 1,000 they are gone by year 100 in 996. Reveal: \"With 70 ponds drained, the frogs were gone by year 23, though 30 good ponds were still there.\" (the year is read from the learner's current run: seed 2 gives 21). Stage: \"... 70: gone, year 23\" (run log; the first entry reads \"30 drained: 33 ponds\").",
       "support": "simulation",
       "source": "runPonds() in Demo.tsx (kit mulberry32, one stream per run, ponds in index order, drained ponds draw nothing). Builder re-run 2026-10-14 (node strip-types on the Demo.tsx function), seeds 1-12, drain 70: extinct in years 23, 21, 14, 19, 23, 24, 35, 21, 16, 29, 33, 60; start 19 frog ponds. Seeds 1-1,000 count (996 extinct by year 100) from check script E3, company/domains/briefs/checks/life-wave-j-check.mjs, same model and draw order (its mulberry32 matches the kit's on seeds 1-12 for all three drains).",
       "status": "unverified"

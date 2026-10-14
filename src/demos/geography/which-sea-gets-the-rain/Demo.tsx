@@ -145,6 +145,11 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                     </>
                   )}
 
+                  {/* Faint traces of what was found, kept after Reset */}
+                  {!locked && seen.divide && !show.divide && <path d={divideSegs.join("")} className={s.divideTrace} />}
+                  {!locked && seen.west && !show.west && <polyline points={pathPoints(westRun)} className={s.trace} />}
+                  {!locked && seen.dot && !show.dot && <polyline points={pathPoints(dotRun)} className={s.trace} />}
+
                   {show.west && (
                     <>
                       <polyline points={pathPoints(westRun)} className={s.pathWest} />
@@ -165,18 +170,18 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                   <circle cx={cx(DOT[0])} cy={cy(DOT[1])} r={4} className={s.dot} />
 
                   <text x={SEA} y={VH - 14} className={s.caption}>
-                    Made-up island; 1 square = {KM} km{show.divide ? ". Coloured by the sea reached" : ""}
+                    Made-up island; 1 square = {KM} km{locked ? "" : show.divide ? "; coloured by sea reached" : "; darker = higher"}
                   </text>
                 </svg>
                 <div className={s.chips}>
                   <Control disabled={locked || show.dot} className={show.dot ? "active" : ""} onClick={() => turnOn("dot")}>
-                    Drop rain at the dot
+                    Rain at the dot
                   </Control>
                   <Control disabled={locked || show.west} className={show.west ? "active" : ""} onClick={() => turnOn("west")}>
-                    {locked ? "Drop rain at a second spot" : "Drop rain west of the ridge"}
+                    {locked ? "Rain at a second spot" : "Rain west of the ridge"}
                   </Control>
                   <Control disabled={locked || show.divide} className={show.divide ? "active" : ""} onClick={() => turnOn("divide")}>
-                    Colour the land by its sea
+                    Colour land by its sea
                   </Control>
                   <Control
                     disabled={locked || !any}
@@ -192,7 +197,7 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                 {wasReset && (seen.dot || seen.west || seen.divide) && (
                   <p className="tiny" data-testid="seen">
                     Seen:{" "}
-                    {[seen.dot && `dot → ${dotRun.sea} sea`, seen.west && `west drop → ${westRun.sea} sea`, seen.divide && `${eastPct}% drains east`]
+                    {[seen.dot && `dot → ${dotRun.sea}`, seen.west && `west drop → ${westRun.sea}`, seen.divide && `${eastPct}% east`]
                       .filter(Boolean)
                       .join(" · ")}
                   </p>
