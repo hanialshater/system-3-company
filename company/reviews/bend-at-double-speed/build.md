@@ -7,3 +7,7 @@ Built by demo-builder (sonnet build, EXP-003). Kept from evaluators until they r
 - Model chip on stage: "Flat dry bend, grip mu = 0.46" (label-the-model pattern).
 - Top view: road arc of radius r, dashed grip-limit arc, car skid line when r < r_min. Scale 0.36 px/m so 400 m still fits.
 - Screenshots looked at: QA phone-2-explore (108 km/h, 200 m, Grips) and my own skid case (108 km/h, 100 m, Skids). First pass drew the bend too small and the chip over the arc; scaled up and moved the chip to the bottom right.
+
+## Revision v2 (wave C)
+
+Radius slider starts at 50 m so question and stage match; tightest safe bend shows 50 m at 54 km/h. Three milestones (81 km/h, 108 km/h, cleared) so 50 / 112.5 / 200 m are all seen; radius step 75 so two presses reach 200. m v^2/r replaced by plain words. c1 reworded, c6 added, unverified.

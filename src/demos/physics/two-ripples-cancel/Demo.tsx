@@ -83,7 +83,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical speakers play the same note. Where A's path is half a wavelength longer than B's, the sound is…",
+          "Two identical speakers play the same note. A wavelength is the length of one full wave. Where A's sound travels half a wavelength farther than B's, what do you hear?",
         options: ["louder than one speaker", "the same as one speaker", "almost nothing"],
         answer: 2,
       }}
@@ -111,7 +111,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
         interactRef.current = interact;
         const caption = silent
           ? "Crest meets trough: the sum is flat."
-          : "Solid rings: crests. Dashed: troughs. One wave = 1.00 m. Equally loud.";
+          : "Orange rings: A. Grey: B. Solid: crests, dashed: troughs. One wave (wavelength) = 1.00 m.";
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Listener ${x.toFixed(2)} m to the side: sum ${loud(a)} one speaker`}>

@@ -71,7 +71,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
   const [firstFloat, setFirstFloat] = useState<Shape | null>(null);
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["floated"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["flooded", "floated"]);
   const sh = SHAPES[k];
   const fl = floats(sh);
 
@@ -84,8 +84,8 @@ export default function ClayBoat({ slug }: { slug: string }) {
         options: ["0.56 L, same as the ball", "1 L", "2 L"],
         answer: 1,
       }}
-      exploreHint="Reshape the clay until it floats. Watch how much water it pushes aside."
-      minInteractions={1}
+      exploreHint="Step through the shapes: the small cup first, then on until one floats. Watch the water it pushes aside."
+      minInteractions={2}
       reveal={() => {
         const f = firstFloat ?? SHAPES[2];
         return (
@@ -108,7 +108,9 @@ export default function ClayBoat({ slug }: { slug: string }) {
       {({ locked, interact }) => {
         interactRef.current = interact;
         const caption = sh.ball
-          ? "1 kg of clay as a ball. 1 L of water weighs 1 kg."
+          ? locked
+            ? "1 kg of clay as a ball."
+            : "1 kg of clay as a ball. 1 L of water weighs 1 kg."
           : fl
             ? `Floats: pushes aside ${L(NEED_CM3)} L of water, weighing ${L(NEED_CM3)} kg.`
             : `Sank: held back at most ${L(sh.hull)} L, then flooded. Now only its clay pushes water aside.`;
@@ -152,14 +154,15 @@ export default function ClayBoat({ slug }: { slug: string }) {
                   <line x1={x0 - 14} y1={yBottom} x2={x0 - 4} y2={yBottom} className={s.dim} />
                   <line x1={x0 - 9} y1={SURF} x2={x0 - 9} y2={yBottom} className={s.dim} />
                   <text x={x0 - 12} y={yBottom + 11} textAnchor="end" className={s.small}>
-                    {draft(sh).toFixed(1)} cm under
+                    {draft(sh).toFixed(1)} cm deep
                   </text>
                 </g>
               )}
               <text x={12} y={SURF - 8} className={s.small}>
                 water
               </text>
-              {/* forces on the clay: the water's push (weight of water pushed aside) vs its weight */}
+              {/* forces on the clay: the water's push (weight of water pushed aside) vs its weight; hidden until the guess is made */}
+              {!locked && (<g>
               <line x1={FX} y1={FY} x2={FX} y2={FY - FK * pushKg + 5} className={s.push} />
               <path d={`M ${FX - 4} ${FY - FK * pushKg + 6} L ${FX} ${FY - FK * pushKg} L ${FX + 4} ${FY - FK * pushKg + 6} Z`} className={s.pushHead} />
               <text x={FX} y={FY - FK * pushKg - 4} textAnchor="middle" className={s.small}>
@@ -171,9 +174,10 @@ export default function ClayBoat({ slug }: { slug: string }) {
                 weight 1 kg
               </text>
               <line x1={FX - 8} y1={FY} x2={FX + 34} y2={FY} className={s.dim} />
+              </g>)}
               <line x1={14} y1={BOTTOM - 8} x2={14 + 10 * K * 0.25} y2={BOTTOM - 8} className={s.dim} />
               <text x={14} y={BOTTOM - 12} className={s.small}>
-                2.5 cm
+                scale: 2.5 cm
               </text>
             </svg>
 
@@ -191,6 +195,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
               format={(v) => SHAPES[v].name}
               onChange={(v) => {
                 setK(v);
+                if (v === 1) reach("flooded");
                 if (floats(SHAPES[v])) {
                   if (!firstFloat) setFirstFloat(SHAPES[v]);
                   reach("floated");

@@ -16,3 +16,7 @@ Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the f
 ## v3 (revision 2026-10-13)
 
 - Reveal no longer says Africa is bigger than "the three largest"; it says the US, China and India together fit inside it. "Without stretching ... across the globe" replaced by a rigid cut-out wording. Claim c1 text updated to match and set unverified.
+
+## Revision v4 (wave C)
+
+Hook no longer leaks or names Mercator. Equal Earth defined on stage; the overlap note now says totals use area. Reveal defines Mercator. Not done: a Mercator view on stage (the finding asks for it; it needs a second projection and re-placed shapes, and the reveal only tells it). c3-c5 reworded, unverified.

@@ -20,3 +20,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (verdict fatal) and 2026-10-1
 - Reveal said "silent" before the caveat: now "the sum went flat", caveat kept ("a real room leaves a quiet spot").
 - Fact-check fix 1 ("one more step out ... loud again" was wrong, next step is 3/4 wave): now "Further out, with a whole wave extra, they come back in step", or "you saw them back in step" only if the learner visited the 1.00 m spot.
 - Claim texts unchanged, so no claim status reset.
+
+## Revision v3 (wave C)
+
+Wavelength defined in the question; caption says orange rings are A and grey are B. Not changed: ring clutter, the walk is the existing slider. New claim c6 unverified.

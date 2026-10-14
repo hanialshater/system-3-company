@@ -1,7 +1,7 @@
 {
   "slug": "ambulance-pitch-drop",
   "title": "Why does a passing siren drop in pitch?",
-  "hook": "One siren, one pitch. Yet you hear it change as it passes.",
+  "hook": "The siren never changes. Does what you hear stay the same as it drives past?",
   "domain": "physics",
   "concept": "doppler-effect",
   "status": "review",
@@ -88,12 +88,10 @@
     },
     {
       "id": "physics.ambulance-pitch-drop.c8",
-      "text": "Each ring marks every 70th crest, 0.1 s apart. Hz = crests per second.",
+      "text": "Each ring is where the sound sent out 0.1 s earlier has reached. Hz = crests per second.",
       "support": "derivation",
       "source": "Stage caption before the reveal. CONCERN: a 700 Hz siren sends crests 1/700 s (1.4 ms) apart, so rings 0.1 s apart are every 70th crest (Demo.tsx header comment and c5 say so); the caption says each ring is a crest. Suggest 'Each ring marks sound sent 0.1 s ago; a real 700 Hz siren sends 70 crests in that time.' Added by fact-checker 2026-10-13; needs an independent check. | Builder fix 2026-10-13 (pass 4): caption reworded: a 700 Hz siren sends crests 1.4 ms apart, rings are every 70th (consistent with c5).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -119,7 +117,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "physics:doppler-effect",
     "prerequisites": [
@@ -128,5 +126,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }
