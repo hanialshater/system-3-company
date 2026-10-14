@@ -30,3 +30,18 @@
 W-236, c2 (disputed). The reveal said "That is the line above the chart", but on the QA path that line shows the 1-round state when the reveal opens.
 - The reveal now says "That was the line above the chart at 10%:" and quotes the line as it read on the recorded longest 10% run, using the same formula as the stage line. At 400 rounds it reads "First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%." (re-run in node). A record is written only when that state is on stage.
 - c2 is reworded and set to unverified. No mechanics changed. Not run: build, QA, walkthrough.
+
+## v4 (2026-10-14, learner r7 on v2; v3 had only rewritten the reveal sentence)
+
+Problems (learner r7): the reveal quoted the 10% step line, which is not on the stage when the reveal opens (it shows the 1-round line at 50% after the QA path); the line's second factor was unlabelled; "About 53%" was the only non-round option; the stage never said that a long game stands in for "no deadline".
+Changes: new row "Seen at 10%, 400 rounds: offer 0.9 × 52.6% = 47.4%; keep 52.6%." built by stepText() from the longest 10% record (survives "1 round" and shrink switches); the reveal quotes the same stepText and says "Your Seen row keeps the step". The live step line reads "offer 0.9 × 69.1% (their share proposing next) = …". Options now "About 90%", "About 53%", "About 47%", "Exactly 50%" (47% is the responder's long-run share, a second-mover belief). Records row starts "Long games (stand-in for no deadline):". Caption rows `flex: none`. c2 reworded and unverified; c6 new. Version 3 -> 4.
+Not run here: next build, QA, walkthrough, tsc (caller's order).
+
+## Pre-flight v4
+
+1. Title and hook: "Does going first win the bargain?" / "You make the first offer on a shrinking pie, with no deadline. How much can you keep?" A question; no share given.
+2. Options: "About 90%", "About 53%", "About 47%", "Exactly 50%": all whole percents; two of them non-round, so 53 is no longer the odd one out.
+3. Locked stage: empty grid (0/50/100%), "Predict first.", readouts "?", "Shrink 10%" active, records and Seen rows empty. No bars, no dashed line.
+4. Reveal values: "100%" with one round (a) the 1-round bar and step line after "1 round"; "0.9" the 10% shrink of the question; "offer 0.9 × 52.6% = 47.4%; keep 52.6%" (b) long-10 milestone record, in the Seen row; "400-round game at 10% … 52.6%" (b) long-10 record, records row; "1 ÷ (1 + 0.9) = 52.6%" told formula (c3); "At 50% shrink your 400 rounds gave 66.7%" (b) long-other record, records row.
+5. QA path: +1 round -> +10 rounds -> 400 rounds (long-10) -> Shrink 10% (disabled) -> Shrink 30% (long-other) -> Shrink 50% -> 1 round. Records row and Seen row both visible under the readouts when the reveal opens.
+6. Reset: "1 round" pressed last. Reveal from that run: "With one round the proposer took 100%: the other can only accept or get nothing. Each round in front changes that: the responder can say no and propose next round, worth 0.9 of a proposer's share at a 10% shrink, so the proposer must offer that much. Your Seen row keeps the step: "offer 0.9 × 52.6% = 47.4%; keep 52.6%." / Your 400-round game at 10% left the first proposer 52.6%, close to 1 ÷ (1 + 0.9) = 52.6%. Going first is a small edge when waiting is cheap. At 50% shrink your 400 rounds gave 66.7%: the costlier the delay, the more going first is worth. / A simplified model: both players are rational and know the shrink rate." The stage shows 1 round and 100% at 50%, the records row and the Seen row, so every sentence matches.

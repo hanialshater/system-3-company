@@ -9,6 +9,8 @@
 // is recorded (shrink, rounds, share, first-round offer) in a row that "1 round" does not clear; the reveal quotes
 // the records. The dashed line is drawn only at a shrink with a recorded long game, at that recorded share (no
 // pre-drawn limit). Round buttons come first in the DOM so the QA path runs 400 rounds at 10% before switching.
+// v4 (learner r7): the 10% first-round step is kept in a "Seen" row under the records, so the reveal quotes a line that
+// is still on the stage; the step line names its second factor (the responder's share if they propose next).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -34,6 +36,9 @@ function share(shrink: number, n: number): number {
 const limit = (shrink: number) => 1 / (1 + (1 - shrink));
 const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
 const whole = (v: number) => `${Math.round(v * 100)}%`;
+/** The first-round step for a game of nn rounds, in the stage's wording. */
+const stepText = (sh: number, nn: number) =>
+  `offer ${(1 - sh).toFixed(1)} × ${pct(share(sh, nn - 1))} = ${pct((1 - sh) * share(sh, nn - 1))}; keep ${pct(share(sh, nn))}`;
 
 // Geometry (viewBox 340 × 196).
 const X0 = 40;
@@ -55,7 +60,7 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Two people alternate offers on $1; each rejected round shrinks it ${whole(START_SHRINK)}. With no end date, what does the first proposer get?`,
-        options: ["About 90%", `About ${whole(limit(START_SHRINK))}`, "Exactly 50%"],
+        options: ["About 90%", `About ${whole(limit(START_SHRINK))}`, `About ${whole(1 - limit(START_SHRINK))}`, "Exactly 50%"],
         answer: 1,
       }}
       exploreHint="Add rounds in front of the deadline and watch the first proposer's share settle."
@@ -63,12 +68,10 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With one round the proposer took 100%: the other can only accept or get nothing. Each round you added in front changed
-            that. The responder can say no and propose next round, which at a {whole(START_SHRINK)} shrink is worth{" "}
-            {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share, so the proposer must offer that much and keeps the rest.
-            That was the line above the chart at {whole(START_SHRINK)}: &quot;First round: offer {(1 - START_SHRINK).toFixed(1)} ×{" "}
-            {pct(share(START_SHRINK, (q?.n ?? LONG) - 1))} = {pct((1 - START_SHRINK) * share(START_SHRINK, (q?.n ?? LONG) - 1))}; keep{" "}
-            {pct(share(START_SHRINK, q?.n ?? LONG))}.&quot;
+            With one round the proposer took 100%: the other can only accept or get nothing. Each round in front changes that:
+            the responder can say no and propose next round, worth {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share at
+            a {whole(START_SHRINK)} shrink, so the proposer must offer that much. Your Seen row keeps the step:{" "}
+            &quot;{stepText(START_SHRINK, q?.n ?? LONG)}.&quot;
           </p>
           <p>
             Your {q?.n ?? LONG}-round game at {whole(START_SHRINK)} left the first proposer <strong>{pct(q?.keep ?? limit(START_SHRINK))}</strong>,
@@ -110,7 +113,7 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                     ? "Predict first."
                     : prev === null
                       ? "One round: the proposer offers nothing and keeps 100%."
-                      : `First round: offer ${d.toFixed(1)} × ${pct(prev)} = ${pct(d * prev)}; keep ${pct(cur)}.`}
+                      : `First round: offer ${d.toFixed(1)} × ${pct(prev)} (their share proposing next) = ${pct(d * prev)}; keep ${pct(cur)}.`}
                 </p>
                 <svg viewBox="0 0 340 196" className="stage-svg" role="img" aria-label={`First proposer's share for games of 1 to ${bars} rounds`}>
                   {[0, 0.5, 1].map((v) => (
@@ -174,7 +177,12 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                   <Readout label="First proposer keeps" value={locked ? "?" : pct(cur)} />
                 </Row>
                 <p className={s.msg}>
-                  {locked || recs.length === 0 ? "" : `Long games: ${recs.map((r) => `${whole(r.shrink)} shrink → ${pct(r.keep)}`).join(" · ")}`}
+                  {locked || recs.length === 0
+                    ? ""
+                    : `Long games (stand-in for no deadline): ${recs.map((r) => `${whole(r.shrink)} shrink → ${pct(r.keep)}`).join(" · ")}`}
+                </p>
+                <p className={s.msg} data-testid="seen">
+                  {locked || !q ? "" : `Seen at ${whole(START_SHRINK)}, ${q.n} rounds: ${stepText(START_SHRINK, q.n)}.`}
                 </p>
               </div>
             );

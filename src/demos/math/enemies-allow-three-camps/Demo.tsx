@@ -10,6 +10,8 @@
 // Controls in DOM order: Next triangle, Check all 20, camp chips 6 / 3 / 2, then "B–D friends" (a friend
 // link across camps, the one move that makes banned triangles: 3 in 3 + 2 + 1, 4 in 3 + 3, 0 in 6 camps).
 // Key states: all 20 checked in the question's split; another split seen.
+// v4 (learner r7): the Seen rows record, per split checked, banned and all-enemy counts, and the first B–D result
+// (split, count, example), so the reveal's 6 all-enemy and "4 turned banned, such as A, B, D" stay on the stage.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -99,16 +101,16 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
         <>
           <p>
             {seen.includes(3)
-              ? `Of the ${TRIANGLES.length} triangles in camps of 3 + 2 + 1, ${three.banned} are banned and ${three["all-enemy"]} are all enemies, one person from each camp. `
+              ? `Of the ${TRIANGLES.length} triangles in camps of 3 + 2 + 1, ${three.banned} are banned and ${three["all-enemy"]} are all enemies. `
               : ""}
-            A banned triangle needs someone with two friends who are enemies. But friends share a camp: in A, B, C, B and C
+            A banned triangle needs two friends of one person to be enemies. Friends share a camp: in A, B, C, B and C
             are both A&apos;s friends, so they share A&apos;s camp and are friends too.
             {bannedSeen
-              ? ` When you made B and D friends across camps, ${bannedSeen.n} triangles turned banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}.`
+              ? ` When you made B and D friends across camps, ${bannedSeen.n} triangles turned banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")} (Seen rows).`
               : ""}
           </p>
           <p>
-            The all-enemy triangle is what the strict rule (the enemy of my enemy is my friend) forbids, and it is what forces
+            The all-enemy triangle is what the strict rule forbids, and it is what forces
             two sides. Allow it, and any number of camps is stable
             {seen.length > 0 ? `: you saw ${listOf([...seen].sort((a, b) => a - b))} camps, each with 0 banned triangles.` : "."}
           </p>
@@ -125,6 +127,7 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
               checked={checked}
               cur={cur}
               seen={seen}
+              bannedSeen={bannedSeen}
               onNext={() => {
                 const next = (cur + 1) % TRIANGLES.length;
                 const done = Math.max(checked, next + 1);
@@ -177,6 +180,7 @@ function Stage({
   checked,
   cur,
   seen,
+  bannedSeen,
   onNext,
   onAll,
   onCamps,
@@ -188,6 +192,7 @@ function Stage({
   checked: number;
   cur: number;
   seen: Camps[];
+  bannedSeen: BannedSeen | null;
   onNext: () => void;
   onAll: () => void;
   onCamps: (c: Camps) => void;
@@ -278,7 +283,14 @@ function Stage({
         <Readout label="All enemies" value={locked ? "?" : counts["all-enemy"]} />
       </Row>
       <p className={s.caption} data-testid="seen">
-        {seen.length ? `0 banned in: ${seen.map((c) => `${c} camps`).join(" · ")}` : ""}
+        {seen.length
+          ? `Seen (banned, all enemies): ${seen.map((c) => `${c} camps ${tally(c).banned}, ${tally(c)["all-enemy"]}`).join(" · ")}`
+          : ""}
+      </p>
+      <p className={s.caption}>
+        {bannedSeen
+          ? `B–D friends, ${bannedSeen.camps} camps: ${bannedSeen.n} banned, e.g. ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}`
+          : ""}
       </p>
     </div>
   );

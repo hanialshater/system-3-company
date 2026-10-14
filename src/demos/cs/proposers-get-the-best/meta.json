@@ -1,7 +1,7 @@
 {
   "slug": "proposers-get-the-best",
   "title": "Same lists, one switch",
-  "hook": "Same four rankings, same rules. Swap who makes the offers and the outcome changes.",
+  "hook": "Same six rankings, same rules. Does it matter which side makes the offers?",
   "domain": "cs",
   "concept": "stable-matching",
   "format": "toggle-before-after",
@@ -26,30 +26,24 @@
   "claims": [
     {
       "id": "cs.proposers-get-the-best.c1",
-      "text": "With Ann ranking X then Y, Bea Y then X, X ranking Bea then Ann, and Y ranking Ann then Bea, students proposing gives Ann-X and Bea-Y, and both students get their first choice.",
+      "text": "With Ann and Bea ranking X > Y > Z, Cal Z > X > Y, X ranking Cal > Ann > Bea, and Y and Z ranking Ann > Bea > Cal, students proposing gives Ann-X, Bea-Y, Cal-Z: 2 students and 0 hospitals get their first choice.",
       "support": "simulation",
-      "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice. · v4 (2026-10-14, learner r7): example changed to 3 x 3 so each run has a clash; picked by builder search (scratchpad g3a0cd_sm.py: all 3 x 3 rankings where both DOM-order runs finish with one press per proposer, each run has a refusal, and every student's partner differs between runs). Builder Python deferred acceptance: Ann-X, Bea-Y, Cal-Z for every press order. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c2",
-      "text": "With the same rankings, hospitals proposing gives X-Bea and Y-Ann, and both hospitals get their first choice.",
+      "text": "With the same rankings, hospitals proposing gives Ann-Y, Bea-Z, Cal-X: 2 hospitals and 0 students get their first choice.",
       "support": "simulation",
-      "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice. · v4: new 3 x 3 example; builder Python (hospitals propose, all 6 press orders) gives X-Cal, Y-Ann, Z-Bea. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c3",
-      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners. In the students' matching (Ann-X, Bea-Y), Ann would not swap to Y and Bea would not swap to X (Y and X would); in the hospitals' matching (X-Bea, Y-Ann), X would not swap to Ann and Y would not swap to Bea (Ann and Bea would).",
+      "text": "Both matchings are stable: of the 6 other student-hospital pairs in each, 0 say yes both ways to a swap (the stage counts them).",
       "support": "simulation",
-      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks. · v4: builder Python checked all 6 matchings of the new example: only Ann-X/Bea-Y/Cal-Z and Ann-Y/Bea-Z/Cal-X have no blocking pair; each has 5 other pairs with one yes and 0 with two. Stage swapCount() computes it live.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c4",
@@ -64,19 +58,22 @@
       "id": "cs.proposers-get-the-best.c5",
       "text": "The US residency match switched to students proposing in 1998, a change studied by Roth and Peranson (1999).",
       "support": "source",
-      "source": "Roth and Peranson 1999, The redesign of the matching market for American physicians, Amer. Econ. Rev. 89(4). Check the 'for this reason' wording against the paper: the redesign adopted an applicant-proposing algorithm; the paper discusses applicant-optimality as a motive. | v2 (2026-10-14, builder): motive (\"for this reason\") dropped per pass 19; the claim now asserts only the 1998 switch to applicant-proposing and that Roth and Peranson (1999) studied it. Year 1998 and the paper not opened by the builder (from the pass-19 fix wording and the paper title). Previous verdict void; needs re-check. | FACT-CHECK 2026-10-14 (pass 20): Demo.tsx reveal line 211 matches claim text. Year: primary pages unreachable this pass (stanford.edu, nrmp.org, natmatch.com, AER all blocked); corroborated by search results quoting Roth's Stanford NRMP page (board voted 5 May 1997 to adopt the new algorithm), Wikipedia (first applied March 1998), an NRMP press release of 8 May 1997 (change effective 1998) and medschoolinsiders (first used in the March 1998 Match). Roth and Peranson, AER 89(4): 748-780 (Sept 1999), reports the design and the computational study. Medium confidence: from search text, not a page I opened.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Roth and Peranson 1999, The redesign of the matching market for American physicians, Amer. Econ. Rev. 89(4). Check the 'for this reason' wording against the paper: the redesign adopted an applicant-proposing algorithm; the paper discusses applicant-optimality as a motive. | v2 (2026-10-14, builder): motive (\"for this reason\") dropped per pass 19; the claim now asserts only the 1998 switch to applicant-proposing and that Roth and Peranson (1999) studied it. Year 1998 and the paper not opened by the builder (from the pass-19 fix wording and the paper title). Previous verdict void; needs re-check. | FACT-CHECK 2026-10-14 (pass 20): Demo.tsx reveal line 211 matches claim text. Year: primary pages unreachable this pass (stanford.edu, nrmp.org, natmatch.com, AER all blocked); corroborated by search results quoting Roth's Stanford NRMP page (board voted 5 May 1997 to adopt the new algorithm), Wikipedia (first applied March 1998), an NRMP press release of 8 May 1997 (change effective 1998) and medschoolinsiders (first used in the March 1998 Match). Roth and Peranson, AER 89(4): 748-780 (Sept 1999), reports the design and the computational study. Medium confidence: from search text, not a page I opened. · v4 (2026-10-14, demo-builder): sentence removed from the reveal to stay under the 120-word budget after the 3 x 3 rewrite; withdrawn, not learner-visible.",
+      "status": "withdrawn"
     },
     {
       "id": "cs.proposers-get-the-best.c6",
-      "text": "In this example no offer is ever refused, so each person gets one of their two choices on a single offer.",
+      "text": "Each run has a clash: two offers reach one receiver, it keeps the one it ranks higher, and the other moves down its list (students proposing: Ann and Bea both offer to X, which keeps Ann; hospitals proposing: Y and Z both offer to Ann, who keeps Y).",
       "support": "simulation",
-      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text. · v4: builder Python traced all 6 press orders per run: the clash at X (students) and at Ann (hospitals) happens in every order, as a refusal or as a bump. Now shown to the learner (reveal paragraph 1; dashed ✕ lines on the stage).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.proposers-get-the-best.c7",
+      "text": "Swapping which side proposes changes the pairs, and the side making offers does better in its own run (students: 2 first choices when they propose, 0 when hospitals do).",
+      "support": "simulation",
+      "source": "Builder Python on the v4 example: students-proposing and hospitals-proposing matchings share no pair; every student strictly prefers their students-proposing partner, every hospital its hospitals-proposing partner. The reveal computes the sentence from the two recorded runs. Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:stable-matching",
     "also": [],

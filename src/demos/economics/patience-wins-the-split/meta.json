@@ -33,12 +33,10 @@
     },
     {
       "id": "economics.patience-wins-the-split.c2",
-      "text": "Each added round in front, the proposer must offer the responder 0.9 (at a 10% shrink) of what the responder would keep as next round's proposer, and keeps the rest. The reveal quotes the stage line as it read on the learner's longest 10% run, 'First round: offer 0.9 × (next share) = (offer); keep (rest)' (for example 0.9 × 10.0% = 9.0% offered, 91.0% kept with three rounds; 0.9 × 52.6% = 47.4%, 52.6% kept with 400).",
+      "text": "Each added round in front, the proposer must offer the responder 0.9 (at a 10% shrink) of what the responder would keep as next round's proposer, and keeps the rest. The stage line reads 'First round: offer 0.9 × (next share) (their share proposing next) = (offer); keep (rest)', and a 'Seen at 10%, n rounds' row keeps the step for the learner's longest 10% game, which the reveal quotes (0.9 × 52.6% = 47.4%; keep 52.6% at 400 rounds).",
       "support": "derivation",
-      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'. | v2: reveal now says 'worth 0.9 of a proposer's share' and points at the stage line. | FC pass 24 (fact-checker, 2026-10-14): DISPUTED (stage pointer). Arithmetic holds: own node share(0.1, n) = 100.0, 10.0, 91.0, 18.1%; at n = 3 the line reads 'First round: offer 0.9 × 10.0% = 9.0%; keep 91.0%.' But the reveal says, in the present tense, 'That is the line above the chart: \"offer 0.9 × next share\"', and the stage stays visible beside the reveal. On the builder's own QA path (ends Shrink 50%, then 1 round) the line above the chart reads 'One round: the proposer offers nothing and keeps 100%.'; at 30% or 50% shrink with n > 1 it reads 'offer 0.7 × …' / 'offer 0.5 × …'. The learner saw the 0.9 line only earlier, at 10% (milestone long-10). Fix (builder): past tense tied to the record, e.g. 'That was the line above the chart at 10%: \"offer 0.9 × next share\"', or quote the recorded first-round offer from the long-10 record. | Builder revision v3 (demo-builder, 2026-10-14, W-236): the reveal no longer says 'That is the line above the chart' (on the QA path the line then shows the 1-round state). It now says 'That was the line above the chart at 10%:' and quotes the line as it read at the recorded longest 10% run q.n (same formula as the stage line: offer 0.9 × share(0.1, q.n − 1), keep share(0.1, q.n)); at 400 rounds, 'First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' The record is set only when that state is on stage. | FC pass 25 (fact-checker, 2026-10-14, W-238): VERIFIED. The Rubinstein backward induction share(n) = 1 - 0.9·share(n-1) is correct. Own node: for n = 3, 50, 51, 60, 100, 399 and 400 the reveal's quote string is identical to the stage line's string ('First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' at 400; '0.9 × 52.9% = 47.6%; keep 52.4%' at 50). q is the 10% record with the largest n >= 50, and a record is written only by set() while that state is on stage, so 'That was the line above the chart at 10%' is true on every path that reaches long-10 (needed for the reveal), including a shrink chip at n >= 50.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'. | v2: reveal now says 'worth 0.9 of a proposer's share' and points at the stage line. | FC pass 24 (fact-checker, 2026-10-14): DISPUTED (stage pointer). Arithmetic holds: own node share(0.1, n) = 100.0, 10.0, 91.0, 18.1%; at n = 3 the line reads 'First round: offer 0.9 × 10.0% = 9.0%; keep 91.0%.' But the reveal says, in the present tense, 'That is the line above the chart: \"offer 0.9 × next share\"', and the stage stays visible beside the reveal. On the builder's own QA path (ends Shrink 50%, then 1 round) the line above the chart reads 'One round: the proposer offers nothing and keeps 100%.'; at 30% or 50% shrink with n > 1 it reads 'offer 0.7 × …' / 'offer 0.5 × …'. The learner saw the 0.9 line only earlier, at 10% (milestone long-10). Fix (builder): past tense tied to the record, e.g. 'That was the line above the chart at 10%: \"offer 0.9 × next share\"', or quote the recorded first-round offer from the long-10 record. | Builder revision v3 (demo-builder, 2026-10-14, W-236): the reveal no longer says 'That is the line above the chart' (on the QA path the line then shows the 1-round state). It now says 'That was the line above the chart at 10%:' and quotes the line as it read at the recorded longest 10% run q.n (same formula as the stage line: offer 0.9 × share(0.1, q.n − 1), keep share(0.1, q.n)); at 400 rounds, 'First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' The record is set only when that state is on stage. | FC pass 25 (fact-checker, 2026-10-14, W-238): VERIFIED. The Rubinstein backward induction share(n) = 1 - 0.9·share(n-1) is correct. Own node: for n = 3, 50, 51, 60, 100, 399 and 400 the reveal's quote string is identical to the stage line's string ('First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' at 400; '0.9 × 52.9% = 47.6%; keep 52.4%' at 50). q is the 10% record with the largest n >= 50, and a record is written only by set() while that state is on stage, so 'That was the line above the chart at 10%' is true on every path that reaches long-10 (needed for the reveal), including a shrink chip at n >= 50. · v4 (2026-10-14, learner r7: the quoted line was neither visible nor current at the reveal): stepText() writes the same step in the Seen row and the reveal from the longest 10% record; the step line labels its second factor. Builder re-run: share(0.1, 399) = 52.6%, 0.9 × that = 47.4%, share(0.1, 400) = 52.6%. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.patience-wins-the-split.c3",
@@ -66,6 +64,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.patience-wins-the-split.c6",
+      "text": "A game of 50 or more rounds stands in for no deadline: at a 10% shrink the first proposer's share is already within 0.3 points of the no-deadline 52.6% (the records row says 'Long games (stand-in for no deadline)').",
+      "support": "derivation",
+      "source": "share(n) = 1 − δ·share(n − 1) converges to 1/(1 + δ) geometrically, error × δ each round; at δ = 0.9, 50 rounds give 52.4% and 51 give 52.9% (build note v1), 400 give 52.6%. Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:alternating-offers",
     "also": [],

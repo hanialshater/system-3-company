@@ -134,3 +134,15 @@
   font-weight: 800;
   fill: var(--fg);
 }
+
+/* v3: text rows keep their height, so a wrapped caption cannot overlap the next row. */
+.msg { flex: none; min-height: 2.6em; }
+.seen {
+  flex: none;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}

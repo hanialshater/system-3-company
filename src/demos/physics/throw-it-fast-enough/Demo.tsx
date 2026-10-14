@@ -3,9 +3,9 @@
 // Newton's mountain. The learner picks a sideways throw speed from a 10 km peak on a
 // to-scale Earth with no air; the arc (from model.ts, integrated under 1/r^2 gravity)
 // grows until it wraps the planet. Heights above the ground are exaggerated 40x so the
-// arc is visible; distances around the planet are to scale. The speed number stays
-// hidden until the ball closes the loop (the brief's unusual format), so the slider
-// is felt, not read.
+// arc is visible; distances around the planet are to scale. Until v4 the speed number
+// stayed hidden until the ball closed the loop; v5 shows it on every throw after the commit
+// (learner r7: landings could not be tied to a speed).
 //
 // Earned reveal (v3): milestones "landed" (the learner moves to a throw that lands) and "loop" (a throw
 // comes all the way round). The cause is on the stage: a dashed straight sideways line from the peak,
@@ -16,6 +16,10 @@
 // 7.8 start visits 7.6 (lands), 7.8 and 7.85 (land), then 7.9 (the loop). The fastest landing the learner
 // moved to stays on stage as a text line (distance and how far the ground curved away in the first minute),
 // so the reveal's "your 7.85 km/s throw" is still visible when it opens.
+// v5 (learner r7): the speed shows on every throw after the commit (it was "?" until the loop, so landings could
+// not be tied to a speed). Two stops past 7.9 km/s (9.0, an oval orbit that leaves the picture; 79, an escape), so
+// the slider's top is not the answer. The "loop" milestone is the 7.9 stop only, the slowest that never lands, so
+// the reveal's 7.9 numbers are always ones the learner saw. Header moved below the planet, clear of "1 min".
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Slider } from "@/kit/controls";
@@ -25,7 +29,7 @@ import { FLIGHTS, R_E, V_CIRC_SURFACE, lineHeight } from "./model";
 import s from "./styles.module.css";
 
 const W = 320;
-const H = 262;
+const H = 276;
 const CX = 160;
 const CY = 140;
 const RP = 108; // planet radius, px
@@ -44,12 +48,11 @@ const LINE_D = Array.from({ length: 31 }, (_, i) => {
   const [x, y] = pt(ang, lineHeight(ang));
   return `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`;
 }).join(" ");
-const LOOP = FLIGHTS.findIndex((f) => !f.lands);
+const LOOP = FLIGHTS.findIndex((f) => !f.lands); // 7.9 km/s, the slowest stop that never lands
 const DEFAULT = LOOP - 2;
 
 export default function ThrowItFastEnough({ slug }: { slug: string }) {
   const [k, setK] = useState(DEFAULT);
-  const [looped, setLooped] = useState(false);
   const [tried, setTried] = useState<number[]>([]); // landing throws the learner moved to, kept as faint arcs
   const f = FLIGHTS[k];
   const near = FLIGHTS[tried.length ? Math.max(...tried) : DEFAULT];
@@ -75,8 +78,8 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
             away (the line under the readout).
           </p>
           <p>
-            The ball was falling the whole time: in the first minute every throw fell {km1(loop.minute!.fell)} km below the
-            dashed straight line. What changed was the ground.{" "}
+            The ball was falling the whole time: in the first minute your {kms(near.v)} and {kms(loop.v)} throws both fell{" "}
+            {km1(loop.minute!.fell)} km below the dashed straight line. What changed was the ground.{" "}
             {near.minute
               ? `Under your ${kms(near.v)} throw it curved away ${km1(near.minute.groundAway)} km; under`
               : "Under"}{" "}
@@ -94,21 +97,20 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
             const [ex, ey] = pt(end[0], end[1]);
             const [mx, my] = pt(0, 10_000);
             const m = f.minute;
-            const tick = m ? [pt(m.ang, lineHeight(m.ang)), pt(m.ang, m.h)] : null;
+            const tick = m && !f.escapes ? [pt(m.ang, lineHeight(m.ang)), pt(m.ang, m.h)] : null;
             const go = (v: number) => {
               if (locked || v < 0 || v > FLIGHTS.length - 1) return;
               setK(v);
               if (FLIGHTS[v].lands) {
                 setTried((tr) => (tr.includes(v) ? tr : [...tr, v]));
                 reach("landed");
-              } else {
-                setLooped(true);
+              } else if (v === LOOP) {
                 reach("loop");
               }
             };
             return (
               <div className={s.wrap}>
-                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "Planet with a mountain peak" : f.lands ? `Ball lands ${km(f.dist)} km away` : "Ball circles the planet"}>
+                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "Planet with a mountain peak" : f.lands ? `Ball lands ${km(f.dist)} km away` : f.escapes ? "Ball flies off into space" : "Ball circles the planet"}>
                   <circle cx={CX} cy={CY} r={RP} className={s.planet} />
                   <polygon points={`${CX - 7},${CY - RP + 1} ${mx},${my - 1} ${CX + 7},${CY - RP + 1}`} className={s.peak} />
                   {!locked && (
@@ -137,10 +139,14 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                           </text>
                         </>
                       )}
-                      {f.lands ? <circle cx={ex} cy={ey} r={4} className={s.land} /> : <circle cx={mx} cy={my - 4} r={4} className={s.ball} />}
+                      {f.lands ? (
+                        <circle cx={ex} cy={ey} r={4} className={s.land} />
+                      ) : f.escapes ? null : (
+                        <circle cx={mx} cy={my - 4} r={4} className={s.ball} />
+                      )}
                     </>
                   )}
-                  <text x={6} y={12} className={s.chip}>
+                  <text x={6} y={H - 6} className={s.chip}>
                     No air. 10 km peak. Heights ×40.
                   </text>
                 </svg>
@@ -156,7 +162,7 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                     max={FLIGHTS.length - 1}
                     step={1}
                     disabled={locked}
-                    format={(v) => (looped ? kms(FLIGHTS[v].v) : "?")}
+                    format={(v) => (locked ? "?" : kms(FLIGHTS[v].v))}
                     onChange={go}
                   />
                   <Control className={s.step} disabled={locked || k === FLIGHTS.length - 1} onClick={() => go(k + 1)}>
@@ -166,17 +172,27 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                 <p className={s.caption} aria-live="polite">
                   {locked
                     ? "\u00a0"
-                    : m
-                      ? `First minute: fell ${km1(m.fell)} km below the dashed line; the ground curved away ${km1(m.groundAway)} km.`
-                      : "Landed within the first minute."}
+                    : f.escapes
+                      ? "Too fast to stay: it flies off into space."
+                      : m
+                        ? `First minute: fell ${km1(m.fell)} km below the dashed line; the ground curved away ${km1(m.groundAway)} km.`
+                        : "Landed within the first minute."}
                 </p>
                 <Readout
                   label="Lands"
-                  value={locked ? "?" : f.lands ? `${km(f.dist)} km away` : `never: back round in ${Math.round(f.time / 60)} min`}
+                  value={
+                    locked
+                      ? "?"
+                      : f.lands
+                        ? `${km(f.dist)} km away`
+                        : f.escapes
+                          ? "never: escapes"
+                          : `never: back round in ${Math.round(f.time / 60)} min`
+                  }
                 />
                 <p className={s.caption} data-testid="fastest-landing">
                   {fastest
-                    ? `Your fastest landing${looped ? `, ${kms(fastest.v)}` : ""}: ${km(fastest.dist)} km away${
+                    ? `Your fastest landing, ${kms(fastest.v)}: ${km(fastest.dist)} km away${
                         fastest.minute ? `; ground curved away ${km1(fastest.minute.groundAway)} km in 1 min` : ""
                       }.`
                     : "\u00a0"}

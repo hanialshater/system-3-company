@@ -1,9 +1,10 @@
 "use client";
 
-// Two product trees for 11111111 x 11111111, built by real recursive multiplication (split at half the longer length,
+// Two product trees for 11141313 x 13111224, built by real recursive multiplication (split at half the longer length,
 // base case when either factor < 10). Schoolbook splits each product into 4 (a·c, a·d, b·c, b·d); Karatsuba into 3
 // (a·c, b·d, (a+b)(c+d)). One shared button splits both one level: 4 | 3, 16 | 9, 64 | 27 one-digit products. The
 // counts are the trees' real leaves, not constants. No half-sum carries for these numbers, so every leaf is 1-digit.
+// The halves differ (a 1114, b 1313, c 1311, d 1224) so the middle check can tell the cross terms from a·c and b·d.
 // Milestones: one-digit-leaves and middle-checked (the check line prints both sides of the cross-term identity) (spec company/design/specs/karatsuba-three-not-four.md).
 
 import { useEffect, useState } from "react";
@@ -12,8 +13,8 @@ import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-const X = BigInt("11111111");
-const Y = BigInt("11111111");
+const X = BigInt("11141313");
+const Y = BigInt("13111224");
 const TEN = BigInt(10);
 
 type Node = { x: bigint; y: bigint; label: string; kids: Node[]; value: bigint };
@@ -58,6 +59,8 @@ const VIA = (TOP.a + TOP.b) * (TOP.c + TOP.d) - TOP.a * TOP.c - TOP.b * TOP.d;
 const AC = TOP.a * TOP.c;
 const BD = TOP.b * TOP.d;
 const SUMS = (TOP.a + TOP.b) * (TOP.c + TOP.d);
+const AD = TOP.a * TOP.d;
+const BC = TOP.b * TOP.c;
 
 const fmt = (v: bigint) => v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const reduced = () => typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -213,9 +216,9 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
       <div className={s.checkBox} data-testid="middle-check">
         {middle ? (
           <>
+            <p className={s.check}>(a+b)(c+d) = a·c + a·d + b·c + b·d</p>
             <p className={s.check}>
-              Schoolbook&rsquo;s a·d + b·c: {TOP.a.toString()}·{TOP.d.toString()} + {TOP.b.toString()}·{TOP.c.toString()} ={" "}
-              {fmt(CROSS)}
+              Schoolbook&rsquo;s a·d + b·c: {fmt(AD)} + {fmt(BC)} = {fmt(CROSS)}
             </p>
             <p className={s.check}>
               Karatsuba&rsquo;s (a+b)(c+d) − a·c − b·d: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}
@@ -268,7 +271,7 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Multiply 11111111 × 11111111 by splitting each number in half, again and again, down to 1-digit pieces. Schoolbook makes 4 half-size products per split and ends with 64 one-digit products. Karatsuba makes 3 per split. How many does it end with?",
+          "Multiply 11141313 × 13111224 by splitting each number in half, again and again, down to 1-digit pieces. Schoolbook makes 4 half-size products per split and ends with 64 one-digit products. Karatsuba makes 3 per split. How many does it end with?",
         options: ["16", "27", "48"],
         answer: 1,
       }}
@@ -281,10 +284,11 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
             at each split: 4·4·4 against 3·3·3.
           </p>
           <p>
-            The trick is the third box. Your check line showed it: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}, the
-            same as schoolbook&rsquo;s a·d + b·c. One product of the sums, minus two products Karatsuba already has, gives
-            both cross terms, so one multiplication is saved at every split. Saved at every level, that compounds: for 1,024-digit numbers the ideal
-            no-carry count is 59,049 products against 1,048,576 (3<sup>10</sup> against 4<sup>10</sup>), and in general about n<sup>1.58</sup> instead of n<sup>2</sup> for n digits.
+            The trick is the third box. Your check lines showed it: (a+b)(c+d) holds all four products, a·c + a·d + b·c +
+            b·d. Take away a·c and b·d, which Karatsuba already has: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}, the
+            same as schoolbook&rsquo;s a·d + b·c ({fmt(AD)} + {fmt(BC)}). Saving one product at every split compounds: for 1,024-digit numbers, if no half-sum like a+b gains a digit, that
+            is 59,049 products against 1,048,576 (3<sup>10</sup> against 4<sup>10</sup>), and in general about n<sup>1.58</sup> instead of
+            n<sup>2</sup> for n digits.
           </p>
         </>
       )}
