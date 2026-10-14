@@ -48,6 +48,7 @@ type Mode = keyof typeof RUNS;
 
 const finish = (p: number[]) => 1 + p.filter((v) => v > p[7]).length;
 const ord = (n: number) => `${n}${n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th"}`;
+const span = (a: number, b: number) => (a === b ? ord(a) : `${ord(a)}–${ord(b)}`);
 const pct = (v: number) => Math.round(v * 100);
 
 function stats(mode: Mode, n: number) {
@@ -55,7 +56,8 @@ function stats(mode: Mode, n: number) {
   const fin = RUNS[mode].map((w) => finish(w[c]));
   const top = RUNS[mode].map((w) => Math.max(...w[c]) / n);
   const low = Math.max(...fin);
-  return { fin, top, low, lowWorlds: fin.flatMap((f, k) => (f === low ? [k + 1] : [])) };
+  const first = fin.filter((f) => f === 1).length;
+  return { fin, top, low, first, high: Math.min(...fin), lowWorlds: fin.flatMap((f, k) => (f === low ? [k + 1] : [])) };
 }
 
 // Panel geometry (viewBox units ~ CSS px at 390 px): 80 x 70 panels, 9 px gutters.
@@ -95,10 +97,11 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In your copying worlds the best song finished as low as <strong>{ord(on.low)}</strong> (world{" "}
-            {on.lowWorlds.join(", ")}), and each world&apos;s top song took {range(on.top)} of the picks. With copying
-            off, the same songs and the same listeners put it {ord(Math.min(...off.fin))} or {ord(off.low)} everywhere,
-            with no song above {Math.max(...off.top.map(pct))}%.
+            With copying on, the best song finished anywhere from {span(on.high, on.low).replace("–", " to ")} across the 8 worlds (lowest in
+            world {on.lowWorlds.join(", ")}). With copying off, same songs and same listeners, only {span(off.high, off.low).replace("–", " to ")}.
+            Yet it was 1st in {on.first} of 8 worlds with copying on and {off.first} of 8 with it off: copying did not
+            hide quality, it made the result unpredictable. The top song in each world took {range(on.top)} of the
+            picks, against at most {Math.max(...off.top.map(pct))}% with copying off.
           </p>
           <p>
             Each early pick makes that song more likely to be picked again, so early luck compounds. Quality still
@@ -133,15 +136,20 @@ function Stage({
     if (nn === TOTAL) reach(m === "on" ? "copy-1000" : "nocopy-1000");
   };
   const st = n > 0 ? stats(mode, n) : null;
-  const summary = (m: Mode) => (done[m] ? ord(stats(m, TOTAL).low) : "?");
+  const summary = (m: Mode) => {
+    if (!done[m]) return "?";
+    const x = stats(m, TOTAL);
+    return span(x.high, x.low);
+  };
   const label = st
     ? `Copying ${mode}, ${n.toLocaleString("en")} listeners: best song finishes ${st.fin.join(", ")}`
     : "8 empty worlds, no listeners yet";
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>{mode === "on" ? "Pick chance = appeal × (1 + earlier picks)" : "Pick chance = appeal only"}</p>
-      <p className={s.rule}>Worlds = seeds 1–8 · appeal 1.0–1.7</p>
+      <p className={s.rule}>
+        {mode === "on" ? "Pick weight = appeal × (1 + earlier picks)" : "Pick weight = appeal only"} · appeal 1.0–1.7
+      </p>
       <svg viewBox={`0 0 ${4 * PW + 3 * GAP} ${ROW + PH + 20}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
         {RUNS[mode].map((w, k) => {
           const px = (k % 4) * (PW + GAP);
@@ -176,7 +184,7 @@ function Stage({
         <span>Listeners {n.toLocaleString("en")} / 1,000</span>
       </div>
       <p className={s.summary} aria-live="polite">
-        Best song&apos;s lowest finish: on {summary("on")} · off {summary("off")}
+        Best song finishes: on {summary("on")} · off {summary("off")}
       </p>
       <div className={s.controls}>
         <Control className={s.tap} disabled={locked || n >= TOTAL}
