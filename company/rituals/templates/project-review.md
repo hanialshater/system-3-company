@@ -42,7 +42,7 @@ Agenda item 0 of the first review asks the founder whether to delegate small tra
 ## Inputs (the secretary prepares, before the session)
 
 1. `node tools/ledger.mjs report`: spend against budget, returns, and "not measured" lines.
-2. One **project proposal** per item, written by its owner in the shape below (one page).
+2. One **project proposal** per item, written by its owner in the shape below (one page), with its pre-mortem. A proposal without a pre-mortem is not on the agenda.
 3. Projects at 80% or 100% since the last review, with their forecasts.
 4. Kill-criteria checks due: every approved project whose pilot has reported.
 
@@ -59,7 +59,36 @@ owner: <role> · proposed by: <role> · major because: <rule from token-budget.m
 - Rests on: records and measurements (links).
 - Risks and what it displaces: which slots or review capacity it takes from what.
 - Objections known so far: | Objection | Raised by | Kind | Status |
+- Pre-mortem: (required, see below) link to `## Pre-mortem: <project id>`
 ```
+
+### Pre-mortem (required section of every proposal)
+
+decision: company/decisions/2026-10-14-founder-risk-in-ops-review.md · scales: company/ops/risks.md · register: company/ops/risks.json
+
+**Assume this project failed six months from now. Why?** List the top failure modes (three to five),
+most likely first. Use evidence on disk (counts, board ids, records, existing `R-<n>` entries), not
+adjectives. Score on the 1-5 scales in company/ops/risks.md, and score honestly: a board item does not
+lower a score, only a working mechanism does.
+
+```markdown
+## Pre-mortem: <project id>
+written by: <role> · date: <YYYY-MM-DD> · submitted to principal-engineer-ops: <date or "not yet">
+
+| # | Failure mode (why it failed), with evidence | L (1-5) | I (1-5) | Early-warning signal (what we would see first, and where) | Mitigation | Owner (role) | Register |
+|---|---|---|---|---|---|---|---|
+| 1 | | | | | | | R-<n> or new |
+```
+
+- The **owner** is a role, not "the team". The mitigation names a board id (`W-<n>`) or says "none yet".
+- The **early-warning signal** is observable: a command, a count, a board state or a date.
+- **Register:** the proposer submits each new failure mode to principal-engineer-ops, who writes it into
+  company/ops/risks.json (one writer) with the project id in `links`. A failure mode that is already a
+  register entry names it (`R-<n>`), and the project id is added to that entry's `links`.
+- **Tool:** set `premortem` on the project in company/ops/projects.json to the file holding the section.
+  `node tools/ledger.mjs propose` refuses a major project without one, and `node tools/ledger.mjs check`
+  fails a major project awaiting the forum (proposed, in-flight with a proposal, or returned) whose
+  `premortem` file is missing or has no `## Pre-mortem: <id>` section with a scored row.
 
 ## Record (one section per item)
 

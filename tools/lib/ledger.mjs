@@ -190,6 +190,25 @@ export function gate(reg, id, { now = new Date().toISOString(), planned = 0, led
 
 export const fmt = (n) => (n == null ? "—" : n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : `${Math.round(n / 1e3)}k`);
 
+/** A major project the forum has not yet decided: proposed, returned, or in flight with a proposal. */
+export function awaitingForum(p) {
+  return !!p.major && (["proposed", "returned"].includes(p.status) || (p.status === "in-flight" && !!p.proposal));
+}
+
+/** Why a project's pre-mortem does not count (null = it does). Template: company/rituals/templates/project-review.md. */
+export function premortemProblem(p) {
+  if (!p.premortem) return "major project proposal with no pre-mortem (set `premortem` to the file holding its \"## Pre-mortem: <id>\" section)";
+  const file = path.join(ROOT, String(p.premortem).split("#")[0]);
+  if (!fs.existsSync(file)) return `pre-mortem ${p.premortem} not on disk`;
+  const text = fs.readFileSync(file, "utf8");
+  const esc = p.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const m = new RegExp(`^## Pre-mortem: ${esc}\\s*$([\\s\\S]*?)(?=^## |(?![\\s\\S]))`, "m").exec(text);
+  if (!m) return `${p.premortem} has no "## Pre-mortem: ${p.id}" section`;
+  // A scored row: | n | failure mode | L 1-5 | I 1-5 | signal | mitigation | owner | ...
+  if (!/^\|\s*\d+\s*\|[^|\n]+\|\s*[1-5]\s*\|\s*[1-5]\s*\|[^|\n]+\|[^|\n]+\|[^|\n]+\|/m.test(m[1])) return `pre-mortem for ${p.id} has no scored failure mode (likelihood and impact 1-5, signal, mitigation, owner)`;
+  return null;
+}
+
 /** Register and ledger problems. Errors fail `ledger.mjs check`. */
 export function problems(reg, ledger = readLedger()) {
   const errors = [];
@@ -214,6 +233,8 @@ export function problems(reg, ledger = readLedger()) {
       if (p.approval?.approvedBy && p.approval.approvedBy === p.proposedBy) errors.push(`${p.id}: approved by its own proposer`);
     }
     if (p.major && !p.kill && ["proposed", "approved", "active", "in-flight"].includes(p.status)) warnings.push(`${p.id}: no kill criteria`);
+    // Pre-mortem (founder decision 2026-10-14-founder-risk-in-ops-review): required for a major project awaiting the forum.
+    if (awaitingForum(p)) { const why = premortemProblem(p); if (why) errors.push(`${p.id}: ${why}`); }
   }
   for (const l of ledger) if (!ids.has(l.project) && l.project !== "unattributed") errors.push(`ledger ${l.id}: unknown project ${l.project}`);
   // The bite: work explicitly tagged to a major project after enforcement began must have passed the gate at that time.

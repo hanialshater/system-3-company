@@ -7,9 +7,9 @@
 //   node tools/ledger.mjs report [--project=<id>] [--json]
 //   node tools/ledger.mjs gate --project=<id> [--tokens=<planned>]   # dispatch preflight: exit 1 = do not dispatch
 //   node tools/ledger.mjs check                       # register + ledger rules; exit 1 on an error
-//   node tools/ledger.mjs propose --project=<id>      # log a proposal event: fires the project-review ritual
+//   node tools/ledger.mjs propose --project=<id>      # log a proposal event: fires the project-review ritual (major: needs a pre-mortem)
 import { execFileSync } from "node:child_process";
-import { appendLedger, fmt, gate, importFromEvents, problems, readLedger, readRegister, summary, ROOT } from "./lib/ledger.mjs";
+import { appendLedger, fmt, gate, importFromEvents, premortemProblem, problems, readLedger, readRegister, summary, ROOT } from "./lib/ledger.mjs";
 
 const [cmd, ...args] = process.argv.slice(2);
 const opt = Object.fromEntries(args.filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -58,7 +58,9 @@ if (cmd === "import") {
   if (!opt.project) die("--project is required");
   const p = reg.projects.find((x) => x.id === opt.project);
   if (!p) die(`register ${opt.project} in company/ops/projects.json first (status proposed)`);
-  execFileSync("node", ["tools/events.mjs", "add", "--type=proposal", "--room=boardroom", `--actor=${p.owner}`, `--summary=Project proposal: ${p.title}`, `--subjects=${p.id}`, `--refs=${p.proposal ?? "company/ops/projects.json"}`], { cwd: ROOT, stdio: "inherit" });
+  if (p.major) { const why = premortemProblem(p); if (why) die(`${p.id}: ${why}. Template: company/rituals/templates/project-review.md, "Pre-mortem".`); }
+  const refs = ["company/ops/projects.json", typeof p.proposal === "string" ? p.proposal : null, p.premortem ?? null].filter(Boolean).join(",");
+  execFileSync("node", ["tools/events.mjs", "add", "--type=proposal", "--room=boardroom", `--actor=${p.owner}`, `--summary=Project proposal: ${p.title}`, `--subjects=${p.id}`, `--refs=${refs}`], { cwd: ROOT, stdio: "inherit" });
 } else if (cmd === "report") {
   const s = summary(reg);
   let rows = s.rows;
