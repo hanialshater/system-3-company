@@ -67,6 +67,18 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+- 2026-10-14 · principal-engineer (Kenji) · PR #2 eng review → `company/rituals/records/2026-10-14-eng-review-pr2.md`. Approve with changes.
+  - (a) Drop the `meta.json` `safety` block (60 lessons, nothing reads it, and it reads as a safety verdict) and `content/collections/lifehacks-200.json`. No EDD needed.
+  - (b) Engines pass the tier-1 read. Required changes:
+    - add a lib↔claims verbatim drift fixture (check, not generate);
+    - delete the dead `alphabet-sort-search` homeLessons entry;
+    - keep `#0d0f14`, because `var(--bg)` fails contrast in light mode. This overrules item 4 of prs/2.md's draft reply.
+  - (c) `test:lifehacks` in verify is accepted. Wall time, verify summary and first-load JS for one Home and one Resource page are owed at re-integration.
+  - Proposed board items:
+    - community-engineer: relay required changes 1–5 and 7 to the contributor, and name the engine captions in the safety batch briefs;
+    - design-engineer: add an `--on-fill` token and sweep the 63 `#0d0f14` uses (tier 1).
+  - Belief: high on the rulings, medium on the bundle cost (not measured).
+
 ### 2026-10-14: cm-geography-people-places (Bodhi), node check of schelling-on-new-york
 
 - **What changed.** Brief 1 in `company/domains/briefs/geography.people-places.md` updated in place (check, redesigned prediction and answer, 11 claims, format note, 9 cultural-review questions). New script `company/domains/briefs/checks/schelling-nyc-check.mjs` (self-test reproduces abm.ts exactly). Board, progress, events and src untouched. Not committed.
