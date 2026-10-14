@@ -81,3 +81,7 @@ Inputs: learner review `2026-10-14-learner-threshold-rule-only.md`, fact-check P
 - Claims now **unverified**: c4, c5, c6 (text changed). c1-c3, c7-c9 unchanged text and still verified. Hook/title are not claims. Predict option texts are covered by c6.
 - QA: phone and desktop pass, NEXT_DIST_DIR=.next-casc2, QA_PORT=3711, QA_OUT=test-results-casc2, 0 retries. Walkthrough looked at (predict, 0,1 final with 8 focused, reveal).
 - Known: chip row still below the fold in predict (rendered, disabled). Sticky rule line added because the stage scroll clipped the new focus line.
+
+## Revision v3 (demo-builder, 2026-10-14, polish)
+
+- c4 vs code: the reveal quoted the current focus at any round on the 0,1 start. Code now quotes only a group member focused on the 0,1 final (`quoted = sawIn`, set by the effect when focus, start 0,1 and final coincide), as c4 says. Claim text unchanged, so c4 stays as the fact-checker left it.
