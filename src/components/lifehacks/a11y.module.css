@@ -1,0 +1,5 @@
+/* Visually hidden, still read by screen readers (W-558). */
+.statusWrap { display: contents; }
+.status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* aria-disabled controls look like disabled ones but keep focus (W-557). */
+.inactive[aria-disabled="true"] { opacity: 0.5; cursor: default; }

@@ -1,17 +1,20 @@
-.stage { display: flex; flex-direction: column; gap: 8px; width: 100%; min-width: 0; }
+.stage { --lh-ink: var(--domain); display: flex; flex-direction: column; gap: 8px; width: 100%; min-width: 0; }
 .scene { display: block; width: 100%; height: auto; max-height: 235px; color: var(--fg); }
-.scene text { font-family: inherit; font-size: 11px; fill: var(--fg); }
-.scene .small { font-size: 9px; fill: var(--muted); }
+.scene text { font-family: inherit; font-size: 12px; fill: var(--fg); }
+.scene .small { font-size: 11px; fill: var(--muted); }
 .outline { fill: var(--bg-2); stroke: var(--line); stroke-width: 2; }
-.object { fill: var(--domain); fill-opacity: .28; stroke: var(--domain); stroke-width: 2; }
-.target { fill: #f59e0b; fill-opacity: .65; stroke: #f59e0b; stroke-width: 2; }
+.object { fill: var(--domain); fill-opacity: .28; stroke: var(--lh-ink); stroke-width: 2; }
+/* W-560: --warn is 5.9-6.8:1 in light and 9.6-11.8:1 in dark on the stage backgrounds (was #f59e0b, 2.15:1 on white). */
+.target { fill: var(--warn-fill); fill-opacity: .6; stroke: var(--warn); stroke-width: 2; }
 .line { fill: none; stroke: var(--fg); stroke-width: 2; }
 .air { fill: none; stroke: var(--good); stroke-width: 2; }
 .hidden { fill: var(--muted); fill-opacity: .25; stroke: var(--line); stroke-width: 1; }
 .data { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-width: 0; }
 .data strong { font-size: 19px; font-variant-numeric: tabular-nums; }
 .inputs { font-size: 11px; color: var(--muted); text-align: center; overflow-wrap: anywhere; margin: 0; line-height: 1.3; }
-.caption { font-size: 10px; color: var(--muted); text-align: center; margin: 0; }
+.caption { font-size: 11px; color: var(--muted); text-align: center; margin: 0; }
 .controls { display: flex; gap: 6px; flex-wrap: wrap; }
 .controls button { flex: 1 1 100px; min-height: 44px; font-size: 11px; padding: 5px 7px; }
 .reveal p { margin: 0 0 9px; }
+/* W-560: meaning-carrying domain strokes use a darkened ink in light mode (5.8-7.9:1, company/design/system.md). */
+@media (prefers-color-scheme: light) { .stage { --lh-ink: color-mix(in srgb, var(--domain) 45%, #000); } }

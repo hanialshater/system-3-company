@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Slider } from "@/kit/controls";
+import { Slider } from "@/kit/controls";
+import { StageControl, StageStatus, resultText } from "./a11y";
 import { useMilestones } from "@/kit/milestones";
 import { compareLabel, shuffledLabels, scanLabels, type LabelSearchStep } from "@/lib/lifehacks/studySearch";
 import s from "./StudyLesson.module.css";
@@ -28,7 +29,7 @@ function SearchStage({count,setCount,state,setState,locked,interact}:{count:numb
         const foundTarget=(done||(!sorted&&state.scan>0))&&label===fixture.target;
         const x=7+(index%5)*63,y=5+Math.floor(index/5)*45;
         return <g key={label} opacity={remaining?1:.25}>
-          <rect x={x} y={y} width="55" height="34" rx="6" fill={foundTarget?"var(--good-fill)":!sorted&&state.scan>index?"var(--line)":"var(--bg-2)"} stroke={compared?"var(--domain)":remaining?"var(--fg)":"var(--line)"} strokeWidth={compared?3:1}/>
+          <rect x={x} y={y} width="55" height="34" rx="6" fill={foundTarget?"var(--good-fill)":!sorted&&state.scan>index?"var(--line)":"var(--bg-2)"} stroke={compared?"var(--lh-ink)":remaining?"var(--fg)":"var(--line)"} strokeWidth={compared?3:1}/>
           <text x={x+27.5} y={y+23} textAnchor="middle" fill={foundTarget?"#0d0f14":"var(--fg)"}>{label}</text>
           {!remaining&&<path d={`M${x+9} ${y+7} l37 20`} stroke="var(--muted)" strokeWidth="1.5"/>}
         </g>;
@@ -38,12 +39,13 @@ function SearchStage({count,setCount,state,setState,locked,interact}:{count:numb
       <span className={s.result}>Scan <strong>{state.scan||"?"}</strong></span>
       <span className={s.result}>Sorted <strong>{state.steps.length||"?"}</strong></span>
     </div>
+    <StageStatus locked={locked} text={[resultText([["Scan",state.scan||"?"],["Sorted",state.steps.length||"?"]]),last?`${last.value}${last.verdict==="found"?"=":"<"}${fixture.target}${last.verdict==="found"?"✓":"→right"}`:""].filter(Boolean).join("; ")}/>
     <div className={s.caption}>Comparisons: {state.steps.length?state.steps.map(step=>`${step.value}${step.verdict==="found"?"=":"<"}${fixture.target}${step.verdict==="found"?"✓":"→right"}`).join("·"):"?"}</div>
     <Slider label="Count" value={count} min={4} max={10} disabled={locked||state.scan>0} onChange={setCount}/>
     <div className={s.controls}>
-      <Control disabled={locked||state.scan>0} onClick={()=>{setState({scan:scanLabels(fixture.shuffled,fixture.target).checked.length,steps:[]});reach("scanned");}}>Scan all</Control>
-      <Control disabled={locked||!state.scan||done} onClick={()=>advance(false)}>Compare</Control>
-      <Control disabled={locked||!state.scan||done} onClick={()=>advance(true)}>Finish</Control>
+      <StageControl locked={locked} inactive={state.scan>0} onClick={()=>{setState({scan:scanLabels(fixture.shuffled,fixture.target).checked.length,steps:[]});reach("scanned");}}>Scan all</StageControl>
+      <StageControl locked={locked} inactive={!state.scan||done} onClick={()=>advance(false)}>Compare</StageControl>
+      <StageControl locked={locked} inactive={!state.scan||done} onClick={()=>advance(true)}>Finish</StageControl>
     </div>
   </div>;
 }

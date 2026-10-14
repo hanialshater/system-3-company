@@ -1,19 +1,22 @@
-.wrap { width: 100%; max-width: 350px; margin: auto; padding: 4px 6px; }
+.wrap { --lh-ink: var(--domain); width: 100%; max-width: 350px; margin: auto; padding: 4px 6px; }
 .picture { width: 100%; height: 130px; display: block; }
 .paper { fill: var(--bg-2); stroke: var(--line); stroke-width: 1.5; }
-.ink { fill: none; stroke: var(--domain); stroke-width: 2; }
+.ink { fill: none; stroke: var(--lh-ink); stroke-width: 2; }
 .ghost { fill: var(--bg-2); stroke: var(--line); stroke-width: 1.5; }
 .solid { fill: var(--domain); stroke: var(--fg); stroke-width: 0.6; }
 .quiet { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.2; }
-.active { stroke: var(--domain); stroke-width: 3; }
+/* W-560: the selected case is outlined in --fg, not a pastel (it failed 3:1 on light for 10 of 12 domains). */
+.active { stroke: var(--fg); stroke-width: 3; }
 .path { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 3; }
 .results { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0; }
 .result { border: 1px solid var(--line); border-radius: 12px; padding: 7px; min-width: 0; background: var(--bg-2); }
-.result[data-active="true"] { border-color: var(--domain); box-shadow: inset 0 0 0 1px var(--domain); }
+.result[data-active="true"] { border-color: var(--lh-ink); box-shadow: inset 0 0 0 1px var(--lh-ink); }
 .label { display: block; color: var(--muted); font-size: 11px; }
 .value { display: block; font-size: 20px; font-weight: 750; font-variant-numeric: tabular-nums; }
-.formula { display: block; font-size: 10px; color: var(--muted); overflow-wrap: anywhere; line-height: 1.4; min-height: 28px; }
-.assumptions { font-size: 10px; color: var(--muted); text-align: center; line-height: 1.4; margin: 4px 0; overflow-wrap: anywhere; }
+.formula { display: block; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; line-height: 1.4; min-height: 28px; }
+.assumptions { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.4; margin: 4px 0; overflow-wrap: anywhere; }
 .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .controls > button { min-height: 44px; }
 .wrap :global(.slider) { margin: 5px 0; }
+/* W-560: meaning-carrying domain strokes use a darkened ink in light mode (5.8-7.9:1, company/design/system.md). */
+@media (prefers-color-scheme: light) { .wrap { --lh-ink: color-mix(in srgb, var(--domain) 45%, #000); } }

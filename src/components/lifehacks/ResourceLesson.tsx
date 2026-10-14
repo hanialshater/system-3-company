@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { evaluateResource, resourceAmount, resourceAxisEnd, resourceCylinderDimensions, resourceFormula, resourceGraphicScale, resourceNumber, resourcePair, type ResourceSpec } from "@/lib/lifehacks/resource-model";
+import { StageStatus, useKeepFocus } from "./a11y";
 import s from "./ResourceLesson.module.css";
 
 export function useResourceState(spec: ResourceSpec) {
@@ -116,8 +117,8 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
             <path d={`M${left + 20} 102V15M${left + 20} 102h111`} className={s.ink} />
             <path d={samples.map((point, tick) => `${tick === 0 ? "M" : "L"}${point.x} ${point.y}`).join(" ")} className={`${s.ink} ${selectedClass}`} />
             {samples.map((point, tick) => <circle key={tick} cx={point.x} cy={point.y} r={seen[i] ? 4 : 2} className={seen[i] ? s.solid : s.ghost} />)}
-            <text x={left + 20} y={10} fill="var(--muted)" fontSize="9">{resourceAmount(max, spec.unit)}</text>
-            <text x={left + 70} y={122} textAnchor="middle" fill="var(--muted)" fontSize="9">{resourceAxisEnd(spec, i, x)}</text>
+            <text x={left + 20} y={10} fill="var(--muted)" fontSize="11">{resourceAmount(max, spec.unit)}</text>
+            <text x={left + 70} y={124} textAnchor="middle" fill="var(--muted)" fontSize="11">{resourceAxisEnd(spec, i, x)}</text>
           </g>
         );
         }
@@ -133,7 +134,7 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
           <g key={i}>
             <path d={`M${left + 32} 30a40 40 0 1 1 0 65m0-10v10h10`} className={`${s.ink} ${selectedClass}`} />
             <circle cx={left + 70} cy={63} r={30} className={s.path} />
-            <circle cx={left + 70} cy={63} r={30} fill="none" stroke="var(--domain)" strokeWidth="6" strokeDasharray={`${p * Math.PI * 60} ${Math.PI * 60}`} transform={`rotate(-90 ${left + 70} 63)`} />
+            <circle cx={left + 70} cy={63} r={30} fill="none" stroke="var(--lh-ink)" strokeWidth="6" strokeDasharray={`${p * Math.PI * 60} ${Math.PI * 60}`} transform={`rotate(-90 ${left + 70} 63)`} />
             <rect x={left + 58} y={48} width={24} height={30} rx={5} className={s.paper} />
           </g>
         );
@@ -151,13 +152,18 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
 
 export function ResourceStage({ spec, x, selected, seen, children }: { spec: ResourceSpec; x: number; selected: number | null; seen: [boolean, boolean]; children: ReactNode }) {
   const values = resourcePair(spec, x);
+  // W-557: the Test A/B buttons live in each lesson file and disable themselves; keep focus in the stage.
+  const keep = useKeepFocus<HTMLDivElement>();
+  // W-558/F3: one atomic status region; the result cards are no longer a live region with live outputs inside.
+  const status = [0, 1].filter((i) => seen[i]).map((i) => `${i === 0 ? "A" : "B"}: ${resourceAmount(values[i], spec.unit)}`).join("; ");
   return (
-    <div className={s.wrap}>
+    <div className={s.wrap} ref={keep}>
       <ResourcePicture spec={spec} x={x} seen={seen} selected={selected} />
-      <div className={s.results} aria-live="polite">
+      <StageStatus locked={false} text={status} />
+      <div className={s.results}>
         {[0, 1].map((i) => <div key={i} className={s.result} data-active={selected === i}>
           <span className={s.label}>{i === 0 ? "A" : "B"}: {i === 0 ? spec.aLabel : spec.bLabel}</span>
-          <output className={s.value}>{seen[i] ? resourceAmount(values[i], spec.unit) : "?"}</output>
+          <span className={s.value}>{seen[i] ? resourceAmount(values[i], spec.unit) : "?"}</span>
           <span className={s.formula}>{seen[i] ? resourceFormula(i === 0 ? spec.formulaA : spec.formulaB, x) : "—"}</span>
         </div>)}
       </div>

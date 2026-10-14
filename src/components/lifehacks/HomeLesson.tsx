@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import type { LessonProps, StageContext } from '@/kit/Lesson';
-import { Control, Slider } from '@/kit/controls';
+import { Slider } from '@/kit/controls';
+import { StageControl, StageStatus } from './a11y';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
 import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
@@ -119,12 +120,13 @@ function Stage({spec,p,setP,after,setAfter,locked,interact}:{spec:HomeSpec;p:num
   return <div className={s.stage}>
     <Scene spec={spec} p={p} after={after} result={result} locked={locked}/>
     <div className={s.controls}>
-      <Control disabled={locked||!after} onClick={()=>{setAfter(false);}}>{spec.choices[0]}</Control>
-      <Control disabled={locked||after} onClick={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</Control>
+      <StageControl locked={locked} inactive={!after} onClick={()=>{setAfter(false);}}>{spec.choices[0]}</StageControl>
+      <StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</StageControl>
     </div>
     <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)}${spec.unit}`} disabled={locked} onChange={setP}/>
     <p className={s.inputs}>{result.inputs}</p>
     <div className={s.data}><span>{result.label}</span><strong>{locked?'?':`${fmt(result.value)}${result.unit}`}</strong></div>
+    <StageStatus locked={locked} text={`${result.label} ${fmt(result.value)}${result.unit}`}/>
     <p className={s.caption}>{spec.slug==='door-swing-clearance'?'Model; keep exits clear':spec.slug==='rug-chair-pullback'?'Model; keep paths clear':spec.view==='cord'?'Plain cord; storage only':spec.view==='mechanics'?'Model; no safe load limit':'Illustrative model'}</p>
   </div>;
 }
@@ -135,13 +137,13 @@ function WobbleStage({p,setP,locked,interact}:{p:number;setP:(p:number)=>void;lo
   return <div className={s.stage}>
     <svg viewBox="0 0 300 230" className={s.scene} role="img" aria-label="Empty square table over continuous gentle ground">
       <path d="M30,150Q85,115 150,150T275,140" className={s.hidden}/>
-      <g transform={`translate(150,92) rotate(${p})`}><rect x="-65" y="-65" width="130" height="130" className={s.outline}/>{[[-60,-60],[60,-60],[60,60],[-60,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r={6} fill={Math.abs(gap)<0.01?'var(--good)':i===3?'#f59e0b':'var(--domain)'}/>)}</g>
+      <g transform={`translate(150,92) rotate(${p})`}><rect x="-65" y="-65" width="130" height="130" className={s.outline}/>{[[-60,-60],[60,-60],[60,60],[-60,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r={6} fill={Math.abs(gap)<0.01?'var(--good)':i===3?'var(--warn)':'var(--domain)'}/>)}</g>
       <path d="M35,200h230" className={s.line}/><path d={`M90,165v${35-gap*4}`} className={s.object}/><path d={`M190,165v${35+gap*4}`} className={s.target}/><path d="M70,164h140" className={s.line}/><circle cx="90" cy={200-gap*4} r="4" fill="var(--domain)"/><circle cx="190" cy={200+gap*4} r="4" fill="var(--good)"/>
       <text x="150" y="222" textAnchor="middle">Signed-contact schematic</text>
     </svg>
-    <div className={s.controls}><Control disabled={locked||p===0} onClick={()=>setP(0)}>Start angle</Control><Control disabled={locked||p===45} onClick={()=>{setP(45);reach('zero');}}>Find balance</Control></div>
-    <Slider label="Turn" value={p} min={0} max={90} disabled={locked||p===45} format={n=>`${n}°`} onChange={n=>{setP(n);if(n===45)reach('zero');}}/>
-    <p className={s.inputs}>Equal legs · gentle continuous ground</p><div className={s.data}><span>Signed gap</span><strong>{locked?'?':`${fmt(gap)}mm`}</strong></div>
+    <div className={s.controls}><StageControl locked={locked} inactive={p===0} onClick={()=>setP(0)}>Start angle</StageControl><StageControl locked={locked} inactive={p===45} onClick={()=>{setP(45);reach('zero');}}>Find balance</StageControl></div>
+    <Slider label="Turn" value={p} min={0} max={90} disabled={locked} format={n=>`${n}°`} onChange={n=>{setP(n);if(n===45)reach('zero');}}/>
+    <p className={s.inputs}>Equal legs · gentle continuous ground</p><div className={s.data}><span>Signed gap</span><strong>{locked?'?':`${fmt(gap)}mm`}</strong></div><StageStatus locked={locked} text={`Signed gap ${fmt(gap)}mm`}/>
     <p className={s.caption}>Not necessarily level. Clear hot drinks.</p>
   </div>;
 }
@@ -152,9 +154,10 @@ function BowStage({steps,setSteps,after,setAfter,locked,interact}:{steps:number;
   const shoe=(x:number,balanced:boolean,remaining:number)=><g transform={`translate(${x},20)`}><path d="M-35,180V50Q-35,0 0,0T35,50v130z" className={s.outline}/>{[-1,1].map(i=><g key={i} transform={`rotate(${balanced?0:90},0,105)`}><ellipse cx={i*(15+remaining/2)} cy="105" rx={Math.max(2,remaining)} ry="12" className={i<0?s.object:s.target}/></g>)}<path d="M-30,72L30,92" className={s.object}/><path d="M-30,92L30,72" className={s.target}/><path d="M-7,86l14,-7" stroke="var(--bg-2)" strokeWidth="5"/><path d="M-8,86l16,-7" className={s.target}/><path d={balanced?"M-22,115C-16,83 18,82 22,115L-15,103":"M22,115C16,83 -18,82 -22,115L15,103"} className={s.object}/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} stroke="var(--bg-2)" strokeWidth="6"/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} className={s.target}/><text x="0" y="205" textAnchor="middle">{balanced?'Opposing':'Matching'}</text><text x="0" y="222" textAnchor="middle">{locked?'?':`${fmt(remaining)}mm`}</text></g>;
   return <div className={s.stage}>
     <svg viewBox="0 0 300 265" className={s.scene} role="img" aria-label="Two shoelace bows: matching versus opposing wrap directions">{shoe(75,false,weak)}{shoe(225,after,strong)}</svg>
-    <div className={s.controls}><Control disabled={locked||after} onClick={()=>{setAfter(true);reach('wrap');}}>Second: right-over-left</Control><Control disabled={locked||steps>=20} onClick={()=>{setSteps(20);reach('walk');}}>Walk 20 steps</Control></div>
+    <div className={s.controls}><StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('wrap');}}>Second: right-over-left</StageControl><StageControl locked={locked} inactive={steps>=20} onClick={()=>{setSteps(20);reach('walk');}}>Walk 20 steps</StageControl></div>
     <p className={s.inputs}>First: left-over-right · 20mm loops · loss=0.8/0.3mm/step</p>
     <p className={s.caption}>Model steps={steps}. Both can fail.</p>
+    <StageStatus locked={locked} text={`Matching ${fmt(weak)}mm; ${after?'Opposing':'Matching'} ${fmt(strong)}mm; steps ${steps}`}/>
   </div>;
 }
 
@@ -171,9 +174,10 @@ function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number
       }))}
       <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length}/20`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length}/20`:'?'}</text>
     </svg>
-    <div className={s.controls}><Control disabled={locked||runs>=1} onClick={()=>{setRuns(1);reach('short');}}>Test 0.3m</Control><Control disabled={locked||runs>=2} onClick={()=>{setRuns(2);reach('long');}}>Test 3m</Control></div>
+    <div className={s.controls}><StageControl locked={locked} inactive={runs>=1} onClick={()=>{setRuns(1);reach('short');}}>Test 0.3m</StageControl><StageControl locked={locked} inactive={runs>=2} onClick={()=>{setRuns(2);reach('long');}}>Test 3m</StageControl></div>
     <p className={s.inputs}>30cm box · 1rev/s · 10s · seed17{runs===2?' · p=0/0.55':''}</p>
     <p className={s.caption}>Study model; plain cord storage</p>
+    <StageStatus locked={locked} text={runs<1?'':`0.3m: ${short.filter(Boolean).length}/20${runs>=2?`; 3m: ${long.filter(Boolean).length}/20`:''}`}/>
   </div>;
 }
 
