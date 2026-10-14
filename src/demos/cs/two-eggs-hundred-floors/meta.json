@@ -1,0 +1,126 @@
+{
+  "slug": "two-eggs-hundred-floors",
+  "title": "Two eggs, a hundred floors",
+  "hook": "Halving finds anything fast. Does it with 2 eggs?",
+  "domain": "cs",
+  "concept": "egg-drop",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "binary search halves a sorted range (binary-search)",
+      "reusing answers (fib-call-explosion)"
+    ],
+    "doesNotKnow": [
+      "that halving is the wrong plan when you can only fail once or twice"
+    ]
+  },
+  "misconception": "With two eggs you should start halfway up and halve.",
+  "objective": "The learner can explain that with 2 eggs each drop of the first egg should leave one fewer floor to check one at a time, so the gaps shrink (14, 13, 12 ...) and 14 drops always suffice, while starting at 50 can cost 50.",
+  "claims": [
+    {
+      "id": "cs.two-eggs-hundred-floors.c1",
+      "text": "With 2 eggs and 100 floors, 14 drops is the fewest that always finds the highest safe floor.",
+      "support": "simulation",
+      "source": "Builder's node: exhaustive DP over (eggs, floors) gives 14 for (2, 100). Derivation: k drops cover k(k+1)/2 floors, and 14 x 15 / 2 = 105 >= 100 > 91 = 13 x 14 / 2. Standard treatment: Konhauser, Velleman and Wagon, Which Way Did the Bicycle Go?, 1996, problem 77. Reference only: TheAlgorithms/Python dynamic_programming/egg_dropping.py (no code copied). Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c2",
+      "text": "Fourteen drops cover 105 floors; 13 cover only 91.",
+      "support": "derivation",
+      "source": "k(k+1)/2: 14 x 15 / 2 = 105; 13 x 14 / 2 = 91 (node). Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c3",
+      "text": "If egg 1 breaks on the first drop at floor 50, egg 2 must climb floors 1 to 49 one at a time: halving costs 50 drops.",
+      "support": "derivation",
+      "source": "1 drop + 49 climbs = 50; with one egg left a break ends the search, so only a climb from the bottom is safe. Builder's node: plan A cost for a break on drop 1 is 50. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c4",
+      "text": "Halving (drops at 50, 75, 88, 94, 97, 99, 100) costs 50, 26, 15 and 9 drops when egg 1 breaks on drop 1, 2, 3 or 4, and 7 drops if egg 1 never breaks.",
+      "support": "simulation",
+      "source": "Builder's node over the stage's plan A with the adversary breaking egg 2 on the last floor it tests: costs 50, 26, 15, 9, and 7 for no break. Halving rounds the midpoint up. Worst case over every break floor 1..100: 50. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c5",
+      "text": "With gaps 14, 13, 12 ..., the first egg is dropped at 14, 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100, and the cost is 14 whenever egg 1 breaks on drops 1 to 4, and 12 if it never breaks.",
+      "support": "simulation",
+      "source": "Builder's node over the stage's plan B: costs 14, 14, 14, 14 and 12 for no break; worst case over every break floor 1..100 and no break: 14. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c6",
+      "text": "Each drop of egg 1 uses up one drop, so the next gap is one floor shorter.",
+      "support": "derivation",
+      "source": "With a budget of 14 drops, after d drops of egg 1 there are 14 - d left; a break at the next drop leaves egg 2 at most 14 - d - 1 climbs, so the gap can be at most 14 - d. Gaps 14, 13, 12 ... Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c7",
+      "text": "With one egg left you cannot halve.",
+      "support": "derivation",
+      "source": "A break with the last egg ends the search, so any floor not yet tested below the drop must be tested from the bottom upward, one floor at a time. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-eggs-hundred-floors.c8",
+      "text": "The 'worst' figures on the stage assume the break is on the highest floor egg 2 tests (an adversary picks the worst outcome).",
+      "support": "derivation",
+      "source": "Worst-case cost is the max over the possible break floors; for a given egg 1 break the largest number of egg 2 drops is the whole gap below it. Unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 10-floor building, 2 eggs, a broken egg is gone. What is the fewest drops that always finds the highest safe floor?",
+    "options": [
+      "4",
+      "5",
+      "10"
+    ],
+    "answer": 0,
+    "why": "Gaps 4, 3, 2, 1 cover 10 floors, since 4 x 5 / 2 = 10, so 4 drops always work. Starting at 5 can cost 5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:egg-drop",
+    "prerequisites": [
+      "cs:memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "also": [
+      "cs:binary-search"
+    ],
+    "tags": [
+      "egg-drop",
+      "dynamic-programming",
+      "worst-case",
+      "triangular-numbers"
+    ]
+  },
+  "format": "side-by-side",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "tally-counters",
+    "locked-readouts"
+  ]
+}
