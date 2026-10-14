@@ -101,7 +101,7 @@ export default function PenaltyKickMix({ slug }: { slug: string }) {
             const m = mix(c, keep);
             const note = (v: number, k: boolean) => {
               if (v === BEST && !k) reach("best-left-shot");
-              if (v > START && k) reach("kept-50");
+              if (v === BEST && k) reach("kept-50");
             };
             const set = (v: number) => {
               setC(v);

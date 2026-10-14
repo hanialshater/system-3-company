@@ -27,3 +27,9 @@ Findings from the learner review and fact-check NCM-1, and what changed:
 - Numbers re-run in node with the lesson's rule: keep mode at 1.00 gives 0.700 vs 0.750, score 0.700; best mix gives 0.7222 on all four payoffs; 0.94 gives 0.7095.
 - Stage words (excluding numbers) about 25.
 - QA: contract passes phone and desktop (2026-10-14-qa.md). A full-suite run also failed 2 feed specs (subject chips filter, both viewports), not this lesson.
+
+## Revision v4 (2026-10-14, session 2, polish)
+
+- **NCM-2 advisory (kept-50 gate):** milestone `kept-50` fired at any slider value above 0.90 in keep mode, so the reveal's 0.750 (keep 50% at 1.00) might not be a reached state. Now `kept-50` fires only at 1.00 in keep mode (`v === BEST && k`). A learner who presses "Keep 50% left" at e.g. 0.94 must drag to 1.00 (or press nothing else) before the reveal unlocks; from the start (0.90) the button still jumps to 1.00. Slider remains live in keep mode, so the 1.00 state is reachable.
+- No claim text changed (c6 already quotes 1.00); version 3 -> 4. No claim status touched.
+- QA: contract for the slug passes phone and desktop (10 passed); the 2 failures are the known feed "subject chips" spec on both viewports, not this lesson. Walkthrough (phone): step 3 shows Keep 50% at 1.00 (0.700 | 0.750), reveal quotes the same; all five frames checked, no new clipping beyond the known reveal-phase crop of the stage top.
