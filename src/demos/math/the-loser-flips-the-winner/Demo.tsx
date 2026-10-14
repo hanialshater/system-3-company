@@ -6,6 +6,9 @@
 // 4-5, C sits between B and A, so B's lead there is 2 points; without C it is 1. The gap chips put
 // that cause on the stage. Scores are computed from the ballots, never hard-coded.
 // Milestones: counted with C, counted without C, gap chips shown.
+// v2 (wave G r7): neutral title/hook (meta.json); the toggle names its action ("Remove C" / "Put C back");
+// once the gap chips are on, a "Lead sums" row adds the chips for both ballots (with C: B 2 + 2 = 4,
+// A 1 + 1 + 1 = 3; without C: A 3, B 1 + 1 = 2), so the reveal's "4 beats 3" is a reading, not a sum.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
@@ -57,6 +60,15 @@ const cBetween = (b: Cand[]) => {
   return ic > Math.min(ia, ib) && ic < Math.max(ia, ib);
 };
 const gapText = (g: number) => (g >= 0 ? `+${g} A` : `+${-g} B`);
+
+/** Sum of each side's per-ballot leads, written as the chips add up. */
+function leadSums(cOn: boolean) {
+  const g = BALLOTS.map((b) => gapAB(b, cOn));
+  const a = g.filter((x) => x > 0);
+  const b = g.filter((x) => x < 0).map((x) => -x);
+  const sum = (xs: number[]) => xs.reduce((u, v) => u + v, 0);
+  return { a: sum(a), b: sum(b), aText: `${a.join(" + ")} = ${sum(a)}`, bText: `${b.join(" + ")} = ${sum(b)}` };
+}
 
 export const WITH_C = totals(true);
 export const WITHOUT_C = totals(false);
@@ -260,6 +272,12 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
       <div className={s.log} aria-live="polite">
         {log.with && <p>{log.with}</p>}
         {log.without && <p>{log.without}</p>}
+        {gaps && (
+          <p data-testid="lead-sums">
+            Lead sums with C: B {leadSums(true).bText}, A {leadSums(true).aText}. Without C: A {leadSums(false).aText}, B{" "}
+            {leadSums(false).bText}.
+          </p>
+        )}
       </div>
 
       <div className={s.controls}>
@@ -272,7 +290,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           disabled={locked}
           onClick={toggle}
         >
-          {cOn ? "C on the ballot" : "C removed"}
+          {cOn ? "Remove C" : "Put C back"}
         </Control>
         <Control className={`${s.tap} ${s.full}`} disabled={locked || gaps} onClick={showGaps}>
           A vs B on each ballot

@@ -9,6 +9,9 @@
 //   2. seeds come only from networks that start in one piece (seeds 2 and 4 start disconnected);
 //   3. the seed list and its rule are disclosed in claim c1.
 // Everything is computed from the seed; nothing is hard-coded.
+// v3 (wave G r7): the "bridges cut" readout is hidden until the commit (it pointed at the deciding
+// mechanism); the reveal always quotes the question's own case (20%) on the current network, and once
+// both 20% cuts have been seen a stage row shows exactly those numbers; "seed" left the stage and reveal.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Slider } from "@/kit/controls";
@@ -131,7 +134,7 @@ interface View {
 
 export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
   const [view, setView] = useState<View>({ seedIdx: 0, level: 0, order: "strong", visited: { strong: 0, weak: 0 } });
-  const L = Math.max(view.level, 2);
+  const L = 2; // the question's case: 20% of links cut
   const net = NETS[view.seedIdx];
   const k = cutCount(net, L);
   const strong = CURVES[view.seedIdx].strong[L];
@@ -151,8 +154,8 @@ export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In network {view.seedIdx + 1} (seed {net.seed}), cutting the {k} closest ties left {strong.largest} of 60 in one
-            piece. Cutting the {k} loosest left a largest group of {weak.largest}: {weak.bridgesCut} of the 12 links between
+            In network {view.seedIdx + 1}, cutting 20% ({k} links) closest first left {strong.largest} of 60 in one
+            piece. Cutting the {k} loosest first left a largest group of {weak.largest}: {weak.bridgesCut} of the 12 links between
             groups were among them.
           </p>
           <p>
@@ -187,7 +190,7 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
   const total = net.edges.length;
   const aria =
     `${label(view.order)}, ${view.level * 10}% cut: largest group ${st.largest} of 60; ` +
-    `${st.bridgesCut} of 12 between-group links cut.`;
+    (locked ? "" : `${st.bridgesCut} of 12 between-group links cut.`);
 
   // Curve geometry.
   const px = (l: number) => 34 + l * 50;
@@ -236,9 +239,11 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
         <span>
           Largest group: <strong>{st.largest}</strong> of 60
         </span>
-        <span className={st.bridgesCut > 0 ? s.bad : ""}>
-          bridges cut: <strong>{st.bridgesCut}</strong> of 12
-        </span>
+        {!locked && (
+          <span className={st.bridgesCut > 0 ? s.bad : ""}>
+            bridges cut: <strong>{st.bridgesCut}</strong> of 12
+          </span>
+        )}
       </div>
 
       <svg viewBox="0 0 360 108" className={s.curve} role="img" aria-label="Largest group against share of links cut">
@@ -275,9 +280,13 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
           ) : null,
         )}
       </svg>
-      <p className={s.seed}>
-        network {view.seedIdx + 1} of {SEEDS.length} · seed {net.seed}
-      </p>
+      <p className={s.seed}>network {view.seedIdx + 1} of {SEEDS.length}</p>
+      {view.visited.strong >= 2 && view.visited.weak >= 2 && (
+        <p className={s.rule} data-testid="seen">
+          At 20% cut ({cutCount(net, 2)} links), network {view.seedIdx + 1}: strongest first {curves.strong[2].largest} of 60 ·
+          weakest first {curves.weak[2].largest} of 60, {curves.weak[2].bridgesCut} of 12 bridges cut
+        </p>
+      )}
 
       <div className={s.sliderWrap}>
         <Slider

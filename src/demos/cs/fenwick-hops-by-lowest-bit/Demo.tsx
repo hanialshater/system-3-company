@@ -10,6 +10,10 @@
 // history list the reveal reads; the update side is on stage: "Change position 1" marks the 5
 // Fenwick cells and a plain running-total row underneath, where all 16 entries change. The read
 // button no longer relabels itself.
+// v3 (wave G r7): "Change position 1" no longer wipes the read trace; the up hop is written in
+// binary on the stage (add the lowest bit); the finished 1–13 sum stays as a "Seen" line with the
+// cells, their binary, ranges and stored values (9 + 21 + 31 = 61), so every value the reveal
+// quotes is on the stage when it opens, even after Sum 1–15 / 1–7.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -35,6 +39,7 @@ const hopsUp = (i: number) => {
   return out;
 };
 const UP1 = hopsUp(1); // [1, 2, 4, 8, 16]
+const bin5 = (i: number) => i.toString(2).padStart(5, "0");
 const range = (i: number) => (low(i) === 1 ? `${i}` : `${i - low(i) + 1}–${i}`);
 
 // drawing
@@ -57,9 +62,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
 
   const lastRead = read[read.length - 1];
   const note =
-    up.length > 0 && read.length === 0
-      ? `Change position 1: Fenwick updates ${up.length} cells. The running-total row changes all ${N}.`
-      : read.length === 0
+    read.length === 0
         ? `Cell i covers the last (i & −i) numbers up to i. Add up 1–${start}.`
         : cur === 0
           ? `Cells ${read.join(", ")} cover 1–${start}: sum ${sum}.`
@@ -67,6 +70,10 @@ export default function FenwickHops({ slug }: { slug: string }) {
   const trail = read.length === 0 ? "" : [...read, cur].map((i) => `${i}=${bin(i)}`).join(" → ");
 
   const qSum = sums.find((x) => x.start === Q);
+  const upLine =
+    up.length > 0
+      ? `Change position 1, hop up by adding the lowest 1 bit: ${up.map((i) => `${i}=${bin5(i)}`).join(" → ")}`
+      : "";
 
   return (
     <Lesson
@@ -125,7 +132,6 @@ export default function FenwickHops({ slug }: { slug: string }) {
             const update = () => {
               if (locked) return;
               setUp(UP1);
-              setRead([]);
               reach("update");
             };
 
@@ -196,6 +202,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
                   </text>
                 </svg>
                 <p className={s.note}>{trail}</p>
+                {upLine && <p className={s.note}>{upLine}</p>}
                 <Row>
                   <Control className={cur > 0 ? "active" : ""} disabled={locked || cur === 0} onClick={hop}>
                     Read one cell, hop down
@@ -203,7 +210,7 @@ export default function FenwickHops({ slug }: { slug: string }) {
                   <Control disabled={locked || cur === 0} onClick={hopAll}>
                     Hop to 0
                   </Control>
-                  <Control disabled={locked || (up.length > 0 && read.length === 0)} onClick={update}>
+                  <Control disabled={locked || up.length > 0} onClick={update}>
                     Change position 1
                   </Control>
                 </Row>
@@ -227,7 +234,14 @@ export default function FenwickHops({ slug }: { slug: string }) {
                 </Row>
                 {sums.length > 0 && (
                   <p className={s.note}>
-                    {sums.map((x) => `1–${x.start}: ${x.cells.length} reads`).join(" · ")}
+                    Seen:{" "}
+                    {sums
+                      .map((x) =>
+                        x.start === Q
+                          ? `1–${Q}: cells ${x.cells.map((i) => `${i}=${bin(i)} (${range(i)})`).join(", ")}: ${x.cells.map((i) => CELL[i]).join(" + ")} = ${x.total}, ${x.cells.length} reads`
+                          : `1–${x.start}: ${x.cells.length} reads`,
+                      )
+                      .join(" · ")}
                   </p>
                 )}
               </div>

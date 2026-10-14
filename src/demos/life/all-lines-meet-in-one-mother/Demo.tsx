@@ -6,7 +6,8 @@
 // (chosen: its meeting time, 99 generations, is near the mean; disclosed in claim c1). "Run 1,000
 // families" runs seeds 7001-8000 with the same draw rule and shows where this family fell.
 // Layout: each line's x is the mean x of its present-day descendants, so lines never cross.
-// Milestones: one line left (her generation drawn), the 1,000-run tally.
+// Milestones: one line left (her generation drawn), the 1,000-run tally, and the same 1,000 seeds
+// at 25 and 100 women (v2, wave G r7: "about 2N" is shown, not told: the mean roughly doubles with N).
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Slider } from "@/kit/controls";
@@ -19,7 +20,8 @@ const N = 50;
 const STAGE_SEED = 7004;
 const MAX_BACK = 120;
 const RUN_SEEDS = { from: 7001, to: 8000 };
-const MILESTONES = ["one-line", "thousand"] as const;
+const MILESTONES = ["one-line", "thousand", "sizes"] as const;
+const OTHER_SIZES = [25, 100] as const;
 
 interface Line {
   x: number; // mean x of present-day descendants
@@ -27,14 +29,14 @@ interface Line {
   parent: number; // index of this line's mother line in the next generation back
 }
 
-/** Generations until all N lines meet, with the lesson's draw rule. */
-export function meetTime(seed: number, cap = 100_000) {
+/** Generations until all n lines meet, with the lesson's draw rule (n women per generation). */
+export function meetTime(seed: number, cap = 100_000, n = N) {
   const rng = mulberry32(seed);
-  let k = N;
+  let k = n;
   let g = 0;
   while (k > 1 && g < cap) {
     const mothers = new Set<number>();
-    for (let i = 0; i < k; i++) mothers.add(Math.floor(rng() * N));
+    for (let i = 0; i < k; i++) mothers.add(Math.floor(rng() * n));
     k = mothers.size;
     g++;
   }
@@ -112,18 +114,28 @@ function runThousand() {
 }
 export { runThousand };
 
+/** Mean meeting time over the same 1,000 seeds for another population size. */
+export function meanFor(n: number) {
+  let sum = 0;
+  for (let seed = RUN_SEEDS.from; seed <= RUN_SEEDS.to; seed++) sum += meetTime(seed, 100_000, n);
+  return sum / (RUN_SEEDS.to - RUN_SEEDS.from + 1);
+}
+type Sizes = { n: number; mean: number }[];
+
 type Runs = ReturnType<typeof runThousand>;
 
 export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
   const [runs, setRuns] = useState<Runs | null>(null);
+  const [sizes, setSizes] = useState<Sizes | null>(null);
   const mean = runs ? Math.round(runs.mean) : null;
+  const sz = (n: number) => Math.round(sizes?.find((x) => x.n === n)?.mean ?? 0);
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
           "50 women; each woman's mother is a random woman of the previous generation. Trace all 50 lines back. What happens?",
-        options: ["They never all meet", "All meet in one woman", "They meet in about half the starting women"],
+        options: ["They never all meet", "All meet in one woman", "They shrink to about half, then stop"],
         answer: 1,
       }}
       exploreHint="Step back and watch lines join where two women share a mother."
@@ -134,14 +146,16 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
             Every step back, some lines pick the same mother and join; joined lines never split. With only {N} women to
             choose from, joins continue until one line is left.
           </p>
-          <p>
-            Your lines met in one woman {T} generations back; 1,000 families averaged {mean ?? "about 96"}. Theory for this
-            model expects about {Math.round(EXACT)}; the formula 2N(1 − 1/N) = {APPROX} is an approximation.
-          </p>
-          <p>
-            She was not alone: {N - 1} other women lived beside her, but their lines did not reach today. It is the drift
-            from &lsquo;Nobody wins, one colour takes over&rsquo;, run backward.
-          </p>
+          {mean !== null && (
+            <p>
+              Your lines met in one woman {T} generations back; 1,000 families of {N} averaged {mean}.
+              {sizes
+                ? ` With 25 women they averaged ${sz(25)}, with 100, ${sz(100)}: double the women, roughly double the wait, about 2N generations.`
+                : ""}{" "}
+              Theory for {N} expects about {Math.round(EXACT)}; 2N(1 − 1/N) = {APPROX} is an approximation.
+            </p>
+          )}
+          <p>She was not alone: {N - 1} other women lived beside her, but their lines did not reach today.</p>
         </>
       )}
     >
@@ -151,9 +165,14 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
             <Stage
               locked={locked}
               runs={runs}
+              sizes={sizes}
               onRun={() => {
                 setRuns(runThousand());
                 reach("thousand");
+              }}
+              onSizes={() => {
+                setSizes(OTHER_SIZES.map((n) => ({ n, mean: meanFor(n) })));
+                reach("sizes");
               }}
               onOneLine={() => reach("one-line")}
             />
@@ -167,12 +186,16 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
 function Stage({
   locked,
   runs,
+  sizes,
   onRun,
+  onSizes,
   onOneLine,
 }: {
   locked: boolean;
   runs: Runs | null;
+  sizes: Sizes | null;
   onRun: () => void;
+  onSizes: () => void;
   onOneLine: () => void;
 }) {
   const [back, setBack] = useState(0);
@@ -237,7 +260,7 @@ function Stage({
       <p className={s.rule}>50 women per generation; each has a random mother from the one before.</p>
       <svg viewBox="0 0 360 290" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
         <line x1={14} y1={y(0)} x2={14} y2={y(MAX_BACK)} className={s.axis} />
-        {[0, 5, 20, 50, 100].map((g) => (
+        {[0, 5, 20, 50].map((g) => (
           <g key={g}>
             <line x1={11} y1={y(g)} x2={17} y2={y(g)} className={s.axis} />
             <text x={20} y={y(g) + 3} className={s.tick}>
@@ -293,7 +316,7 @@ function Stage({
         <span className={s.seed}>seed {STAGE_SEED}</span>
       </div>
 
-      {runs && <Strip runs={runs} />}
+      {runs && <Strip runs={runs} sizes={sizes} />}
 
       <div className={s.sliderWrap}>
         <Slider label="Generations back" value={back} min={0} max={MAX_BACK} disabled={locked} onChange={go} />
@@ -305,15 +328,18 @@ function Stage({
         <Control className={s.tap} disabled={locked || back === T} onClick={climbToOne}>
           Back until one line
         </Control>
-        <Control className={`${s.tap} ${s.full}`} disabled={locked || runs !== null} onClick={onRun}>
+        <Control className={s.tap} disabled={locked || runs !== null} onClick={onRun}>
           Run 1,000 families
+        </Control>
+        <Control className={s.tap} disabled={locked || runs === null || sizes !== null} onClick={onSizes}>
+          Same with 25 and 100 women
         </Control>
       </div>
     </div>
   );
 }
 
-function Strip({ runs }: { runs: Runs }) {
+function Strip({ runs, sizes }: { runs: Runs; sizes: Sizes | null }) {
   const bx = (t: number) => 10 + (t / 400) * 340;
   const top = Math.max(...runs.bins);
   return (
@@ -321,6 +347,13 @@ function Strip({ runs }: { runs: Runs }) {
       <p className={s.stripHead}>
         1,000 runs: {runs.allMet ? "all met" : "not all met"}. Mean {Math.round(runs.mean)}
       </p>
+      {sizes && (
+        <p className={s.stripHead} data-testid="sizes">
+          Mean wait: {[...sizes.filter((x) => x.n < N), { n: N, mean: runs.mean }, ...sizes.filter((x) => x.n > N)]
+            .map((x) => `${x.n} women ${Math.round(x.mean)}`)
+            .join(" · ")}
+        </p>
+      )}
       <svg viewBox="0 0 360 62" className={s.strip} role="img" aria-label={`Histogram of 1,000 meeting times; mean ${Math.round(runs.mean)}, yours ${T}`}>
         {runs.bins.map((c, i) => {
           const h = (c / top) * 36;

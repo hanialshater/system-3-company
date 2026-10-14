@@ -7,6 +7,9 @@
 // "Walk depth-first" runs one DFS from town 1 and shows, per town, its visit number and the highest-up visit
 // number it can climb back to (#k ↑#low). Road 3-4 is the one tree road whose lower side climbs no higher than
 // its own lower end, so it is marked as the bridge. Milestones: first-test, all-tested, dfs-walk.
+// v3 (wave G r7): the climb-back mark reads as "earliest visit it can loop back to" (↩#low, smaller = earlier),
+// with a legend on the stage for ↩ and for dotted roads; a "Walk" line under the readouts keeps the
+// numbers the reveal quotes (town 4 #3 ↩#3, town 3 #2) in a stage row.
 // One representation: the map; reachable towns from town 1 in the domain colour, cut-off towns red.
 
 import { useState } from "react";
@@ -119,12 +122,13 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
           <p>
             You closed all {ROADS.length} roads. {ROADS.length - BRIDGES.length} of them left the map whole; only{" "}
             {BRIDGES.map(name).join(", ")} cut towns 4, 5 and 6 off from 1, 2 and 3. Towns 3 and 4 each touch three roads,
-            but closing a triangle road beside them changed nothing: traffic went the other way round.
+            but closing any of their other roads changed nothing: those roads sit on loops, so traffic went the other way round.
           </p>
           <p>
             A road on a loop has a detour; a bridge is a road on no loop. Your depth-first walk found it in one pass: town{" "}
-            {BR[1]} was visited #{DFS.disc[BR[1]]}, and from there down nothing climbs back higher than #{DFS.low[BR[1]]}{" "}
-            (↑#{DFS.low[BR[1]]}). Town {BR[0]} is #{DFS.disc[BR[0]]}, so no other road gets around {name(BR)}.
+            {BR[1]} was visited #{DFS.disc[BR[1]]}, and the earliest visit anything from there on can loop back to is #
+            {DFS.low[BR[1]]} (↩#{DFS.low[BR[1]]}). Town {BR[0]}, #{DFS.disc[BR[0]]}, came earlier and no loop reaches it, so no
+            other road gets around {name(BR)}.
           </p>
         </>
       )}
@@ -153,7 +157,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
             const note =
               closed === null
                 ? walked
-                  ? `Depth-first from 1: #visit ↑highest climb back. Bridge: ${name(BR)}.`
+                  ? `Depth-first from 1. #visit order; ↩ earliest # it loops back to. Dotted: road back.`
                   : "Tap a road below to close it."
                 : SPLITS[closed]
                   ? `${name(ROADS[closed])} closed: the map splits in two.`
@@ -203,7 +207,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                         </text>
                         {walked ? (
                           <text x={x + ox} y={y + oy + 4} textAnchor="middle" className={s.badge}>
-                            #{DFS.disc[t]} ↑#{DFS.low[t]}
+                            #{DFS.disc[t]} ↩#{DFS.low[t]}
                           </text>
                         ) : null}
                       </g>
@@ -240,6 +244,11 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                   <Readout label="Map splits" value={split} />
                   <Readout label="Roads tested" value={`${tested.length} / ${ROADS.length}`} />
                 </Row>
+                {walked && (
+                  <p className={s.note} data-testid="seen-walk">
+                    Walk: town {BR[1]} #{DFS.disc[BR[1]]} ↩#{DFS.low[BR[1]]}, town {BR[0]} #{DFS.disc[BR[0]]}. Bridge: {name(BR)}.
+                  </p>
+                )}
               </div>
             );
           }}
