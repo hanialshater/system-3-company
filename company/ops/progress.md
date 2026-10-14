@@ -23,6 +23,28 @@ who no longer exists: check what you rely on.
 **Blocked**
 - Nothing.
 
+## 2026-10-14, fact-checker (Ingrid): fact-check pass 24, batch 1 (17 wave E lessons)
+
+**What changed**
+- Checked the 37 open claims across the 17 lessons in batch 1. Verdicts: 36 verified, 1 disputed (cs.wheel-needs-four-colours.c4), 0 withdrawn.
+- Set status, checkedBy and checkedOn in each meta.json, and appended a pass-24 note to each claim's source.
+- Appended a "Pass 24" table to each company/reviews/<slug>/2026-10-14-fact-check.md.
+- Board W-231 (demo-builder): the wheel c4 fix.
+
+**What I believe (and how sure)**
+- High: every number was re-run in node using ports of the lessons' own code, and every reachable branch was read.
+- High: the wheel dispute is real. Here is the path: choose 4 colours, then Ring of 4, and colour it by hand with 4 colours; then run backtracking. The reveal then says "done with 4 colours", because the first successful record is kept.
+- Non-blocking notes for builders are in the records:
+  - near-and-far: 0.5% is displayed as 1%.
+  - keep-one-of-a-stream: the tally switches to the 5-item run without a re-run.
+  - one-odd-loop: if the learner runs "Try all" before picking loops, no walk is drawn, yet the reveal refers to it.
+
+**Next**
+- demo-builder fixes W-231, then a fact-checker rechecks wheel c4.
+
+**Blocked**
+- Nothing.
+
 ## 2026-10-14 (afternoon), chief of staff (Ada): NCM vertical via the Courses org; algorithms batch 2; waves D–E; 544 published
 
 **What changed**

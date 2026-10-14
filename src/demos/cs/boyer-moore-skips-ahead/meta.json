@@ -90,8 +90,10 @@
       "id": "cs.boyer-moore-skips-ahead.c9",
       "text": "At placement 9 Horspool matched 4 letters (E, L, P, M), then missed on I; it slid 6, by the table entry for the E under the pattern's end, not 7. The stage log reads \"Horspool slides: S 7 · P 2 · E 6 (miss on I) · P 2 · found\".",
       "support": "simulation",
-      "source": "HORS in Demo.tsx (v2) and the builder's trace: placement 9 puts the pattern over text[9..15] = \" SIMPLE\"; text[15]=E matches E, L, P, M match, text[11]=I vs pattern A misses; the key is text[15]=E, SHIFT[E]=6, next placement 15. The reveal sentence and the log are computed from HORS (EPARTIAL, slideLabel). Builder algo2-sc, 2026-10-14.",
-      "status": "unverified"
+      "source": "HORS in Demo.tsx (v2) and the builder's trace: placement 9 puts the pattern over text[9..15] = \" SIMPLE\"; text[15]=E matches E, L, P, M match, text[11]=I vs pattern A misses; the key is text[15]=E, SHIFT[E]=6, next placement 15. The reveal sentence and the log are computed from HORS (EPARTIAL, slideLabel). Builder algo2-sc, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own Horspool run: offsets 0 (S, slide 7), 7 (P, 2), 9 (E L P M matched, miss on I, slide 6 by E), 15 (P, 2), found at 17; 15 comparisons. slideLabel log: 'Horspool slides: S 7 · P 2 · E 6 (miss on I) · P 2 · found'. 'Placement 9' is the 0-based text offset of the third placement (not shown on stage).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

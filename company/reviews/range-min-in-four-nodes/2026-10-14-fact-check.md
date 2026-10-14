@@ -14,3 +14,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c6 | verified | Own randomized check: combining the cover nodes with min, max and + gives the same result as directly over the range, for all 136 ranges. Only associativity of the combine is needed. |
 
 **Result:** all open claims verified; lesson has no unverified or disputed claims from this pass.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node of cover(): 5 to 14 -> [5], [6-7], [8-11], [12-13], [14] = 5; 5 to 12 -> 4; max over all 136 ranges = 6 (only 1 to 14). Reveal computes the learner's own range with the same cover(). |
+| c3 | verified | Re-derived (pass 21 still applies): at most 2 nodes per level, log2 n + 1 levels; observed max 6 <= 8 for n = 16. Gloss 'halvings from n down to 1 (4 for 16)' is correct. |
+| c4 | verified | Own node: 5 blocks contain position 9 (one per level, 16/8/4/2/1); milestone changed is required, so the learner pressed the change. |

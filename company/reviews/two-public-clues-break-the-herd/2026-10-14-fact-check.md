@@ -14,3 +14,11 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 (new, unrecorded) | disputed | Recall card 'why' (meta.json recall.why), learner-visible after the lesson. In the lesson's own model (equally reliable clues, prior 1/2), two new clues against the two the crowd holds give 1 / (1 + 2^0) = 50%: they cancel it, they do not outweigh it. The recall scenario has no own clue to tip it, unlike the reveal. 'Can' would need critics more reliable than diners, which the card does not say. Fix (builder): 'two independent new ones can cancel it out, and one more would tip it', or 'two independent new ones count as much as the whole crowd'. |
 
 **Result:** 5 verified, 1 disputed, 0 held this pass; the lesson cannot publish until c6 (disputed) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Lesson model P(blue) = 1 / (1 + 2^(red - blue)): crowd's 2 vs 2 new = 50% (count as much), 2 vs 3 = 33% (tips it). Pass 23 dispute resolved by the rewording. Assumes the new clues are as reliable as the diners' (the lesson's equal-reliability model). |

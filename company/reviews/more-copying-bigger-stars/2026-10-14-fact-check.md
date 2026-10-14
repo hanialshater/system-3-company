@@ -13,3 +13,12 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | verified | With c = 0, j = floor(r2 i), uniform on 0..i-1. |
 
 **Result:** 5 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | From the code: copier picks target[1 + floor(r2 (i - 1))], uniform over the i - 1 links, so page j is hit with chance deg(j) / (i - 1); 500 links -> 500 times a 1-link page. E&K ch. 18 not opened; sentence rests on the derivation. |
+| c6 | verified | Own node replay of simulate() (mulberry32, two draws per page): lead[9] seed 1 = 0 / 9 / 576, seed 2 = 0 / 9 / 416, seed 3 = 0 / 9 / 468; max 12 / 160 / 6,278 (ratio 523) and top 1% 7% / 27% / 84% for seed 1 also reproduce. |

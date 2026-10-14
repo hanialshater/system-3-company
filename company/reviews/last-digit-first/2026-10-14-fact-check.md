@@ -35,3 +35,13 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c3 | verified | Demo.tsx v4 reveal: lb = runs.last.buckets once runs.last.passes === 3. Runs cannot be reset, and the gate needs both runs finished, so lb is always set at the reveal. lt = the first bucket with two or more cards = 3, holding '329 then 355' (own fc23/radix.mjs). The reveal no longer points at the stage, so it holds when the first-digit-first stage (bucket 7 ringed: 457, 657) is on screen. The caption template 'Tie in bucket N: kept the order earlier passes gave it' matches line 147. Stability re-derived from deal(): pushes in list order, flattens 0-9. CLRS 8.3 from memory, not opened; the claim rests on the derivation. |
 
 **Result:** 1 verified, 1 disputed, 0 held this pass; the lesson cannot publish until c2 (disputed) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own radix run first digit, middle, last: 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ordered, the list is not; first out-of-order pair found by the reveal's findIndex is 720 > 355. Each run can be done only once (no reset), so the ending is fixed. |
+
+**Result:** all open claims verified; no disputes.

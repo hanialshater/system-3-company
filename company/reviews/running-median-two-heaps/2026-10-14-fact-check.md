@@ -13,3 +13,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | Max-heap and min-heap definitions; stage labels 'Lower · biggest on top' and 'Upper · smallest on top'; Demo uses maxFirst for lower, minFirst for upper. |
 
 **Result:** all open claims verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own two-halves run of 5, 15, 1, 3: 5 lower; 15 > 5 upper; 1 <= 5 lower (2\|1, no move); 3 <= 5 lower, 3\|1 too big, 5 moves up; end 1 3 \| 5 15, median 4. Log template gives '3 → lower, 5 crosses · median 4'; other three rows 'nothing crosses'. |
+| c6 | verified | Own run: after 5, 15, 1 halves sorted '1 5 \| 15'; on 3 exactly one move (5). Matches question text and answer index crossings() = 1. |
+
+**Result:** all open claims verified; no disputes.

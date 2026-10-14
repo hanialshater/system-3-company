@@ -24,3 +24,15 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 | verified | Reveal para 2 (line 86) reads this sentence word for word. Per Demo payments(): second-price makes the winner pay min(a, b), the lower value. First-price makes the winner, the higher-value bidder (hi = max), pay hi/2, half its own value. The sentence no longer says first-price charges less than second-price, so it no longer contradicts the averages. Own re-run (mulberry32(97), 20,000 auctions): 33.395 / 33.303 / 33.302. Optimal first-price bid v/2 rests on c3 (verified, own best-response check). |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | All-pay bid v²/200 <= v/2 (own derivation of symmetric equilibrium for 2 bidders U[0,100]); expected revenue 2·E[v²]/200 = 100/3 for all three rules; own re-run mulberry32(97), 20,000 auctions: 33.395 / 33.303 / 33.302. Holds by derivation and simulation; Myerson / Riley-Samuelson attribution not needed for the sentence (not opened). |
+| c6 | verified | Own re-run mulberry32(97), 20,000: mean lower 33.395 ('$33.4'), mean higher 66.606 ('$66.6'), half 33.303 ('$33.3'). Reveal uses the recorded full run (full ?? snapshot(N)), so the figures hold after Reset. |
+| c7 | verified | Own re-run: auction 20,000 values 90.007 / 18.948 -> second-price '$18.9', first-price 45.004 '$45.0'. Lower value beats half the higher in 10,065 of 20,000. Reveal clause appears only while an auction is on stage (n > 0) and quotes the current last auction; the claim's figures are the full-run case. |
+
+**Result:** all open claims verified; no disputes.

@@ -23,3 +23,12 @@ Checker: fact-checker (did not write these claims). Scope: the claims left unver
 | c12 | verified | Own node port of deal(): pairCost 4 and fourCost 6 for all 200 seeds 7, 20, 33, ... (seed + 13 steps, as 'New piles' does); seed 7 piles A 10 20 21 23, B 4 5 18 36, final merge 7, so 0 + 4 + 6 + 7 = 17 against 28. RoundsStack draws three rows with those labels; roundLabel shows 'Whole sort: 0 + 4 + 6 + 7 = 17, against 28 for every pair.' |
 
 **Result:** every claim in this pass verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c9 | verified | Own node: top-down recursion depth for 1,000 = 10; worst case 8,977 < 10,000; 1000 x 999 / 2 = 499,500. Reveal 'each under 1,000 comparisons' holds for every level (pass 22 per-level counts). |
+| c12 | verified | Own node port of deal(): seed 7 piles A 10 20 21 23, B 4 5 18 36; pairCost 4 and fourCost 6 for all 200 seeds 7 + 13k; seed 7 final merge 7, so 0 + 4 + 6 + 7 = 17 vs 28. The 'Your sort' record updates if the learner merges later piles (final merges 4-7 occur), and the reveal then quotes that sum, as the claim's '7 for the first piles' allows. |

@@ -14,3 +14,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c6 | verified | Verified on derivation (c4 argument holds for any odd number of voters with single-peaked preferences). Black 1948, JPE 56(1) correct to my knowledge and confirmed as the origin by web search snippets (paper not opened). E&K ch. 23 'Voting' (sec. 23.6 median voter theorem) from my own knowledge, not confirmed (book host blocked); high confidence. |
 
 **Result:** 6 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own duel() brute force over every rival 0.0-10.0 in tenths: rival 4 vs 4.8 is 3-2 (voters 1, 2, 3); every rival that beats 4.8 wins exactly {1, 2, 3}. |
+| c7 | verified | Own duel(50, 40): 2-3, rival wins with voters 1, 2, 3 (halfway 4.5). Rival starts at 4, so the first 5 test shows it. |
+
+**Result:** all open claims verified; no disputes.

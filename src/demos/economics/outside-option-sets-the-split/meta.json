@@ -83,8 +83,10 @@
       "id": "economics.outside-option-sets-the-split.c6",
       "text": "Moving A's outside option from one value to another moves A's deal by half the change: for example from $0.70 to $0.80 takes A's deal from $0.85 to $0.90.",
       "support": "derivation",
-      "source": "A = a + (1 - a)/2 = 1/2 + a/2 with B's option 0, so dA = da/2. Demo.tsx v2 reveal computes the learner's last change from split(prev) and split(a); the dashed 'before' line marks split(prev).A. Builder, 2026-10-14.",
-      "status": "unverified"
+      "source": "A = a + (1 - a)/2 = 1/2 + a/2 with B's option 0, so dA = da/2. Demo.tsx v2 reveal computes the learner's last change from split(prev) and split(a); the dashed 'before' line marks split(prev).A. Builder, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. A = a + (100 - a)/2, so dA = da/2. Own node over every reachable option (0..80 step 10): 70 -> 85, 80 -> 90; all whole cents. Reveal computes from split(prev) and split(a).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "recall": {

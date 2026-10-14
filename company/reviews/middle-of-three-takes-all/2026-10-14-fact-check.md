@@ -14,3 +14,13 @@ Easley & Kleinberg (2010) chapter placement checked against my knowledge of the 
 | c4 | verified | Convention, on stage: chip "Model: each person makes one deal"; reveal muted line lists the three rules. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own run of round(k): Bo 50, 60, 70, 80, 90, 100 cents; partner ask 50, 40, 30, 20, 10, 0, each 10 below the previous partner's; reveal trace and 'asks fell from $0.50 to $0.00' match. Trace kept through '2 people'. |
+
+**Result:** all open claims verified; no disputes.

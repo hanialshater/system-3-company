@@ -62,8 +62,10 @@
       "id": "cs.shoelace-order-matters.c5",
       "text": "Going round the boundary, the anticlockwise order gives +12 and the clockwise order gives −12: the size is the area, and the sign tells you the direction (positive when anticlockwise).",
       "support": "derivation",
-      "source": "With y pointing up, the boundary-order rectangle (0,0) (4,0) (4,3) (0,3) runs anticlockwise and gives +12; reversing every edge negates every term. Green's theorem gives area = (1/2) closed integral of (x dy - y dx) for a positively (anticlockwise) oriented simple curve. Unverified. · Fact-check pass 21 2026-10-14: Stage maps y up (sy = OY - y*U); the boundary order (0,0)(4,0)(4,3)(0,3) is anticlockwise and gives +12; reversing negates. Standard Green's-theorem orientation; derivation, no external source needed. | REVISED v2 (demo-builder, 2026-10-14): v2 gates the reveal on one anticlockwise and one clockwise closed rectangle ('Go round ↺' = (0,0) (4,0) (4,3) (0,3), 'Go round ↻' = (0,0) (0,3) (4,3) (4,0), or by hand); the reveal quotes the logged values. Unverified.",
-      "status": "unverified"
+      "source": "With y pointing up, the boundary-order rectangle (0,0) (4,0) (4,3) (0,3) runs anticlockwise and gives +12; reversing every edge negates every term. Green's theorem gives area = (1/2) closed integral of (x dy - y dx) for a positively (anticlockwise) oriented simple curve. Unverified. · Fact-check pass 21 2026-10-14: Stage maps y up (sy = OY - y*U); the boundary order (0,0)(4,0)(4,3)(0,3) is anticlockwise and gives +12; reversing negates. Standard Green's-theorem orientation; derivation, no external source needed. | REVISED v2 (demo-builder, 2026-10-14): v2 gates the reveal on one anticlockwise and one clockwise closed rectangle ('Go round ↺' = (0,0) (4,0) (4,3) (0,3), 'Go round ↻' = (0,0) (0,3) (4,3) (4,0), or by hand); the reveal quotes the logged values. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node over all 24 tap orders: 4 give +12 (anticlockwise with y up), 4 give -12, 16 give 0. Go round ↺ = +12, Go round ↻ = -12; the reveal quotes the first logged positive and negative values, which can only be +12 and -12.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.shoelace-order-matters.c6",

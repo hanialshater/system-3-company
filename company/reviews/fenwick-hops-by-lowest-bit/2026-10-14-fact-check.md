@@ -13,3 +13,14 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c5 | verified | Derivation re-done; node n = 1024: at most 10 down hops, 11 up hops (floor(log2 n) + 1). |
 
 **Result:** 5 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node hopsDown(13) = 13, 12, 8 (1101, 1100, 1000); ranges 13, 9-12, 1-8 tile 1-13; sum 61 = RUN[13]. Prefix 15: 15, 14, 12, 8; prefix 7: 7, 6, 4. Reveal requires milestone tiled (start 13), so qSum exists. |
+| c4 | verified | Own node hopsUp(1) = 1, 2, 4, 8, 16 (5 cells); every running total 1..16 includes position 1, so all 16 change. Stage readouts 5 and 16 match. |
+| c5 | verified | Re-derived: down hops = popcount(i), up hops <= floor(log2 n) + 1. Own node over i = 1..16: max 4 down, max 5 up (from 1). 'About log2 n' accurate. Fenwick 1994 not opened; not needed. |
+| c6 | verified | Own node prefix sums of V = 3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3: 3, 4, 8, 9, 14, 23, 25, 31, 36, 39, 44, 52, 61, 68, 77, 80. |

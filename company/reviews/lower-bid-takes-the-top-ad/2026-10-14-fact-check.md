@@ -14,3 +14,13 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 (new, unrecorded) | disputed | Reveal para 2, last sentence (line 62). Under the lesson's own rule (rank by bid x quality) it is false: A, at quality 0.5, outranks B's 1.5 with any bid above $3.00 (e.g. $3.10 x 0.5 = 1.55). A higher bid compensates for lower quality at a rate of 1/quality; that is the point of the score. The stage only varies B's bid, so the learner never tests this, but the sentence is stated generally. Fix (builder): 'A high bid alone does not win: A would need more than $3.00, double B's $1.50, because its quality is half B's.' Or 'Quality multiplies the bid, so a low-quality ad has to bid much more to win.' |
 
 **Result:** 5 verified, 1 disputed, 0 held this pass; the lesson cannot publish until c6 (disputed) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node with the Demo's integer keys: B at $1.50 and $1.20 tops (1500, 1200 > 1000) and pays 1.0 / 1.0 = $1.00. Every reachable log order checked: the reveal names the first B-on-top bid tried, or 'on top, B pays' if none was tried in score mode. |
+| c4 | verified | Own node: B $0.80 -> key 800 < 1000, A tops, pays 0.8 x 1.0 / 0.5 = $1.60; B $1.00 -> 1000 = 1000, Tie. Milestone a-retakes guarantees the $0.80 log entry exists. |
+| c6 | verified | Rank by bid x quality: A's score 0.5 x bid > B's 1.5 iff bid > $3.00 (own node: $3.00 ties at 1500, $3.01 gives 1505). Reveal computes usd(1.5 x 1.0 / 0.5) = $3.00. Pass 23 dispute resolved: the new wording is true under the lesson's rule. |

@@ -45,15 +45,19 @@
       "id": "cs.one-road-cuts-the-map.c3",
       "text": "A road on a loop has a detour; a bridge is a road on no loop.",
       "support": "derivation",
-      "source": "If edge u-v lies on a cycle, the rest of the cycle is a u..v path without it, so removing it disconnects nothing. If removing u-v leaves a u..v path, that path plus u-v is a cycle. CLRS 4e ch. 20 problem 20-2 (articulation points, bridges and biconnected components). | FACT-CHECK 2026-10-14 (pass 21): verified. Cycle/detour equivalence re-derived (both directions). | REWORDED v2 (demo-builder, 2026-10-14): v2 drops the trailing 'so it has none' (same content). Unverified.",
-      "status": "unverified"
+      "source": "If edge u-v lies on a cycle, the rest of the cycle is a u..v path without it, so removing it disconnects nothing. If removing u-v leaves a u..v path, that path plus u-v is a cycle. CLRS 4e ch. 20 problem 20-2 (articulation points, bridges and biconnected components). | FACT-CHECK 2026-10-14 (pass 21): verified. Cycle/detour equivalence re-derived (both directions). | REWORDED v2 (demo-builder, 2026-10-14): v2 drops the trailing 'so it has none' (same content). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Derivation: an edge uv is on a cycle iff u and v stay connected without it; on stage brute force (own node) only 3-4 disconnects (3 of 6 reachable), the other six each lie on a triangle.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c4",
       "text": "A depth-first walk finds the bridge in one pass: from town 1 (highest-numbered neighbour first) town 4 is visited #3 and nothing from there down climbs back higher than #3, while town 3 is #2, so no other road gets around 3-4.",
       "support": "source",
-      "source": "Tarjan (1974), 'A note on finding the bridges of a graph', Information Processing Letters 2(6); low-link values: tree edge (u, v) is a bridge iff low[v] > disc[u]. CLRS 4e ch. 20, problem 20-2. Runs in linear time O(V + E). | FACT-CHECK 2026-10-14 (pass 21): verified. Implemented low-link DFS (bridge iff low[v] > disc[u]) on this map: returns only 3-4. Tarjan (1974) IPL 2(6) and CLRS 4e problem 20-2 cited from memory, not opened; the description matches the standard algorithm. | REWORDED v2 (demo-builder, 2026-10-14): v2 replaces the told algorithm sentence with the walk drawn on stage ('Walk depth-first' shows #visit and ↑#low per town; 3-4 drawn thick as the tree road with low[child] > disc[parent]). Builder's node run of DFS in Demo.tsx: disc 1:1, 3:2, 4:3, 6:4, 5:5, 2:6; low 1:1, 3:1, 2:1, 4:3, 6:3, 5:3; tree 1-3, 3-4, 4-6, 6-5, 3-2; bridges [3-4]. Rule low[v] > disc[u] per Tarjan 1974 (pass 21 implemented it independently). Unverified.",
-      "status": "unverified"
+      "source": "Tarjan (1974), 'A note on finding the bridges of a graph', Information Processing Letters 2(6); low-link values: tree edge (u, v) is a bridge iff low[v] > disc[u]. CLRS 4e ch. 20, problem 20-2. Runs in linear time O(V + E). | FACT-CHECK 2026-10-14 (pass 21): verified. Implemented low-link DFS (bridge iff low[v] > disc[u]) on this map: returns only 3-4. Tarjan (1974) IPL 2(6) and CLRS 4e problem 20-2 cited from memory, not opened; the description matches the standard algorithm. | REWORDED v2 (demo-builder, 2026-10-14): v2 replaces the told algorithm sentence with the walk drawn on stage ('Walk depth-first' shows #visit and ↑#low per town; 3-4 drawn thick as the tree road with low[child] > disc[parent]). Builder's node run of DFS in Demo.tsx: disc 1:1, 3:2, 4:3, 6:4, 5:5, 2:6; low 1:1, 3:1, 2:1, 4:3, 6:3, 5:3; tree 1-3, 3-4, 4-6, 6-5, 3-2; bridges [3-4]. Rule low[v] > disc[u] per Tarjan 1974 (pass 21 implemented it independently). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own DFS copy (neighbours high first): disc 1:1, 3:2, 4:3, 6:4, 5:5, 2:6; low[4] = 3 > disc[3] = 2, so 3-4 is the only bridge (matches brute force). Reveal template gives 'town 4 was visited #3 ... ↑#3. Town 3 is #2'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.one-road-cuts-the-map.c5",
@@ -68,8 +72,10 @@
       "id": "cs.one-road-cuts-the-map.c6",
       "text": "Stage: after 'Walk depth-first' each town shows its visit number and the highest-up visit number it can climb back to (#visit ↑#climb); dotted roads are the two roads the walk did not travel down (1-2 and 4-5), and 3-4 is marked as the bridge.",
       "support": "simulation",
-      "source": "Demo.tsx v2 DFS (see c4): non-tree roads are 1-2 and 4-5 (dotted); badges render DFS.disc and DFS.low; bridge 3-4 drawn in var(--domain), width 6. Builder, 2026-10-14.",
-      "status": "unverified"
+      "source": "Demo.tsx v2 DFS (see c4): non-tree roads are 1-2 and 4-5 (dotted); badges render DFS.disc and DFS.low; bridge 3-4 drawn in var(--domain), width 6. Builder, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own DFS: tree roads 1-3, 3-4, 4-6, 6-5, 3-2; non-tree 1-2 and 4-5 drawn dashed '2 4' after the walk; 3-4 drawn thick domain colour and named in the note 'Bridge: 3–4' (with roads reopened). Badges '#disc ↑#low'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -35,22 +35,28 @@
       "id": "cs.range-min-in-four-nodes.c2",
       "text": "The reveal names the learner's last selected range and its node count, computed by the same take/skip/split rule (e.g. 5 to 14 needs 5), and no range of these 16 positions needs more than 6 nodes.",
       "support": "simulation",
-      "source": "Builder's node check (2026-10-14): [1,14] -> [1], [2-3], [4-7], [8-11], [12-13], [14] = 6; maximum over all 136 ranges of 16 positions is 6. Demo.tsx WIDE_COUNT and MAX_COUNT recompute both. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Own node check: [1,14] -> 6 nodes; maximum over all 136 ranges of 16 positions = 6. Matches Demo WIDE_COUNT / MAX_COUNT. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone.",
-      "status": "unverified"
+      "source": "Builder's node check (2026-10-14): [1,14] -> [1], [2-3], [4-7], [8-11], [12-13], [14] = 6; maximum over all 136 ranges of 16 positions is 6. Demo.tsx WIDE_COUNT and MAX_COUNT recompute both. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Own node check: [1,14] -> 6 nodes; maximum over all 136 ranges of 16 positions = 6. Matches Demo WIDE_COUNT / MAX_COUNT. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node of cover(): 5 to 14 -> [5], [6-7], [8-11], [12-13], [14] = 5; 5 to 12 -> 4; max over all 136 ranges = 6 (only 1 to 14). Reveal computes the learner's own range with the same cover().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.range-min-in-four-nodes.c3",
       "text": "Every range is a union of at most about 2 log2 n stored nodes, where log2 n counts the halvings from n down to 1 (4 for 16).",
       "support": "derivation",
-      "source": "At each level of the tree the cover keeps at most two nodes (one at each ragged end), and there are log2 n + 1 levels, so at most about 2 log2 n nodes (for n = 16 the observed maximum is 6, within 2 x 4 = 8). No textbook source checked (brief lists references none); the checker should re-derive. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Re-derived and checked: at most 2 nodes taken per level (own check, n = 4..1024: max taken per level = 2); log2 n + 1 levels; observed maxima 2, 4, 6, ..., 18 = 2 log2 n - 2 for n = 4..1024, all within 2 log2 n. 'At most about' is accurate. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone.",
-      "status": "unverified"
+      "source": "At each level of the tree the cover keeps at most two nodes (one at each ragged end), and there are log2 n + 1 levels, so at most about 2 log2 n nodes (for n = 16 the observed maximum is 6, within 2 x 4 = 8). No textbook source checked (brief lists references none); the checker should re-derive. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Re-derived and checked: at most 2 nodes taken per level (own check, n = 4..1024: max taken per level = 2); log2 n + 1 levels; observed maxima 2, 4, 6, ..., 18 = 2 log2 n - 2 for n = 4..1024, all within 2 log2 n. 'At most about' is accurate. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Re-derived (pass 21 still applies): at most 2 nodes per level, log2 n + 1 levels; observed max 6 <= 8 for n = 16. Gloss 'halvings from n down to 1 (4 for 16)' is correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.range-min-in-four-nodes.c4",
       "text": "When the learner changes one value, only the 5 nodes on its path to the top are rewritten, so both the question and the update take about log n steps.",
       "support": "derivation",
-      "source": "A position lies in exactly one node per level; 16 positions give log2 16 + 1 = 5 levels. Demo.tsx PATH_LEN counts 5 for position 9. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Own check: 31 nodes over 5 levels (16, 8, 4, 2, 1 per node); every position lies in exactly one node per level, so 5 nodes contain position 9 (Demo PATH_LEN = 5). Update rewrites those; query visits O(log n) nodes (c3). | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone.",
-      "status": "unverified"
+      "source": "A position lies in exactly one node per level; 16 positions give log2 16 + 1 = 5 levels. Demo.tsx PATH_LEN counts 5 for position 9. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Own check: 31 nodes over 5 levels (16, 8, 4, 2, 1 per node); every position lies in exactly one node per level, so 5 nodes contain position 9 (Demo PATH_LEN = 5). Update rewrites those; query visits O(log n) nodes (c3). | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the learner's own last range instead of 1 to 14; log2 glossed; the value change is a milestone. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: 5 blocks contain position 9 (one per level, 16/8/4/2/1); milestone changed is required, so the learner pressed the change.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.range-min-in-four-nodes.c5",

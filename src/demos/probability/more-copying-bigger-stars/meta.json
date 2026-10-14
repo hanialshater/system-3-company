@@ -53,15 +53,19 @@
       "id": "probability.more-copying-bigger-stars.c4",
       "text": "A copier links to whatever a random link points at, so it lands on a page with chance proportional to the links that page already has: a page with 500 links is 500 times more likely to be copied than a page with one.",
       "support": "derivation",
-      "source": "Derivation from the stage's rule: the copier picks one of the i - 1 existing links uniformly (target[1 + floor(r2 (i - 1))]), so page j is hit with chance deg(j) / (i - 1). Easley and Kleinberg, Networks, Crowds, and Markets, ch. 18 (cited from the brief, not opened; the sentence rests on the derivation).",
-      "status": "unverified"
+      "source": "Derivation from the stage's rule: the copier picks one of the i - 1 existing links uniformly (target[1 + floor(r2 (i - 1))]), so page j is hit with chance deg(j) / (i - 1). Easley and Kleinberg, Networks, Crowds, and Markets, ch. 18 (cited from the brief, not opened; the sentence rests on the derivation). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. From the code: copier picks target[1 + floor(r2 (i - 1))], uniform over the i - 1 links, so page j is hit with chance deg(j) / (i - 1); 500 links -> 500 times a 1-link page. E&K ch. 18 not opened; sentence rests on the derivation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.more-copying-bigger-stars.c6",
       "text": "Of the last 1,000 new links (pages 9,001 to 10,000), the number that went to the page leading at that moment: 0 with no copying, 9 with 50% and 576 with 90% in seed 1 (seeds 2 and 3: 0/9/416 and 0/9/468).",
       "support": "simulation",
-      "source": "Demo.tsx simulate() lead[9]: the leader is updated after each link (the page with the most in-links so far), and a link counts if it lands on the current leader. Builder's Node run of the same generator (mulberry32, two draws per page), 2026-10-14; the max and top-1% values of the same runs match claims c2 and c3.",
-      "status": "unverified"
+      "source": "Demo.tsx simulate() lead[9]: the leader is updated after each link (the page with the most in-links so far), and a link counts if it lands on the current leader. Builder's Node run of the same generator (mulberry32, two draws per page), 2026-10-14; the max and top-1% values of the same runs match claims c2 and c3. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node replay of simulate() (mulberry32, two draws per page): lead[9] seed 1 = 0 / 9 / 576, seed 2 = 0 / 9 / 416, seed 3 = 0 / 9 / 468; max 12 / 160 / 6,278 (ratio 523) and top 1% 7% / 27% / 84% for seed 1 also reproduce.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

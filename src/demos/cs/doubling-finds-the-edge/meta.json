@@ -53,8 +53,10 @@
       "id": "cs.doubling-finds-the-edge.c4",
       "text": "Doubling reaches a gap holding the target after about log2(position) probes (the number of doublings it takes). That gap is about as wide as the last jump, so halving it can need nearly as many probes again, and the cost grows like twice log2 of the position.",
       "support": "source",
-      "source": "Derivation: k = ceil(log2 p) + 1 doubling probes; the gap has 2^(k-2) - 1 positions, so binary search adds at most k - 2. Bentley and Yao (1976), 'An almost optimal algorithm for unbounded searching', Information Processing Letters 5(3) (citation from the brief, written from memory: check before verifying). · Fact-check pass 21 2026-10-14: Derivation re-run: for every target position 2..65,536 the count is at most 2 ceil(log2(p+1)) + 1. Bentley & Yao (1976), 'An almost optimal algorithm for unbounded searching', IPL 5(3):82-87, bibliographic details confirmed via web search (Wikipedia 'Exponential search', XJTU scholar listing); full text not opened, the sentence rests on the derivation. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal reworded: 'costs about as many again' became 'can need nearly as many again', pointing at the stage gap label; log2 glossed as the number of doublings.",
-      "status": "unverified"
+      "source": "Derivation: k = ceil(log2 p) + 1 doubling probes; the gap has 2^(k-2) - 1 positions, so binary search adds at most k - 2. Bentley and Yao (1976), 'An almost optimal algorithm for unbounded searching', Information Processing Letters 5(3) (citation from the brief, written from memory: check before verifying). · Fact-check pass 21 2026-10-14: Derivation re-run: for every target position 2..65,536 the count is at most 2 ceil(log2(p+1)) + 1. Bentley & Yao (1976), 'An almost optimal algorithm for unbounded searching', IPL 5(3):82-87, bibliographic details confirmed via web search (Wikipedia 'Exponential search', XJTU scholar listing); full text not opened, the sentence rests on the derivation. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal reworded: 'costs about as many again' became 'can need nearly as many again', pointing at the stage gap label; log2 glossed as the number of doublings. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: target 1000 -> 11 doubling probes (1..1024), gap 513-1023, 6 halvings, 17 total; worst case in that gap 9 halvings. 'Can need nearly as many again' (9 vs 11) holds; pass 21 bound <= 2 ceil(log2(p+1)) + 1 still applies. Bentley & Yao not opened; not needed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.doubling-finds-the-edge.c5",
@@ -69,8 +71,10 @@
       "id": "cs.doubling-finds-the-edge.c6",
       "text": "The gap 513-1023 is 511 positions wide, and halving it can take up to 9 comparisons; this target (position 1000) sat on an early midpoint and took 6. (Stage label: 'gap 513–1023: 511 wide, up to 9 halvings'.)",
       "support": "derivation",
-      "source": "Binary search with a 3-way compare on w positions needs at most floor(log2 w) + 1 probes: floor(log2 511) + 1 = 8 + 1 = 9. Midpoints for 1000 in 513..1023: 768, 896, 960, 992, 1008, 1000 = 6 (Demo.tsx halveOnce(), maxHalves()). | Added 2026-10-14 (v2) by demo-builder.",
-      "status": "unverified"
+      "source": "Binary search with a 3-way compare on w positions needs at most floor(log2 w) + 1 probes: floor(log2 511) + 1 = 8 + 1 = 9. Midpoints for 1000 in 513..1023: 768, 896, 960, 992, 1008, 1000 = 6 (Demo.tsx halveOnce(), maxHalves()). | Added 2026-10-14 (v2) by demo-builder. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node: 1023 - 513 + 1 = 511 wide; exhaustive binary search over every target in 513..1023: max 9 probes = floor(log2 511) + 1; midpoints for 1000: 768, 896, 960, 992, 1008, 1000 (6).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

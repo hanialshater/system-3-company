@@ -13,3 +13,11 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx (stage
 | c5 | verified | if all n keys share one bucket the remaining cost is one insertion sort of n items (worst n(n-1)/2 = 45 for n = 10); stage shows 30 for this order, all in 41-50. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Own node of plan(): clumped tests per number in arrival order 0, 1, 1, 3, 3, 2, 6, 3, 6, 5 = 30; equals (# bigger earlier) + (1 if any smaller earlier) for every number; 42 and 44 tie at 6. Spread hand: 1 (70 vs 64). Tile with 0 tests (47) shows no number. |

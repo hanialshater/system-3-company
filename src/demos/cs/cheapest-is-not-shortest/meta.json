@@ -25,22 +25,28 @@
       "id": "cs.cheapest-is-not-shortest.c1",
       "text": "With roads S–G 10, S–A 3, S–B 8, A–B 4 and B–G 2, the cheapest cost from S to G is 3 + 4 + 2 = 9 (three roads), and the one-road route costs 10.",
       "support": "simulation",
-      "source": "Demo.tsx runAll(): final labels S 0, A 3, B 7, G 9 (v4 graph).",
-      "status": "unverified"
+      "source": "Demo.tsx runAll(): final labels S 0, A 3, B 7, G 9 (v4 graph). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node Dijkstra on ROADS: final S 0, A 3, B 7, G 9; S-A-B-G = 3+4+2 = 9 (three roads); S-G road 10; S-B-G 10. Matches runAll().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c2",
       "text": "Settling S gives A 3, B 8 and G 10; settling A drops B from 8 to 7; settling B drops G from 10 to 9; settling G changes nothing. G's first label is not its final one.",
       "support": "simulation",
-      "source": "Demo.tsx settle() trace on the QA path (S, A, B, G); the message line shows each update and the trace row records G 10 → 9.",
-      "status": "unverified"
+      "source": "Demo.tsx settle() trace on the QA path (S, A, B, G); the message line shows each update and the trace row records G 10 → 9. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node trace of settle(): S gives A 3, B 8, G 10; A: B 8 -> 7; B: G 10 -> 9; G: no changes. Labels never tie, so the tap order is forced (a larger label is refused) and every learner run matches; G history '10 then 9' kept in run after Start again.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c3",
       "text": "Settling the smallest label first is safe: with no negative costs, any other way to that town passes a label at least as big, and costs only add, so each settled label is a true cheapest cost. On stage: when A is settled the other open labels are B 8 and G 10; when B is settled, G 10; going from B to A would cost 11, more than A's 3, and from G to B 11, more than B's 7.",
       "support": "source",
-      "source": "CLRS (3rd ed.) 24.3, Theorem 24.6 (correctness of Dijkstra's algorithm for non-negative weights). Stage numbers from Demo.tsx tap(): the 'why' line lists the other open labels before the settle; backRoute() gives the later route's cost to a settled town.",
-      "status": "unverified"
+      "source": "CLRS (3rd ed.) 24.3, Theorem 24.6 (correctness of Dijkstra's algorithm for non-negative weights). Stage numbers from Demo.tsx tap(): the 'why' line lists the other open labels before the settle; backRoute() gives the later route's cost to a settled town. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Derivation: with non-negative costs every path to v leaves the settled set through an open town whose label is >= the minimum, so the minimum label is exact (Dijkstra 1959). Stage numbers from own trace: 'why' line at A lists B 8, G 10; at B lists G 10; backRoute at B: B-A 7+4 = 11 > 3; at G: G-B 9+2 = 11 > 7 (prefers non-S target).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c4",
@@ -55,8 +61,10 @@
       "id": "cs.cheapest-is-not-shortest.c5",
       "text": "A label is the cheapest cost from S found so far; the sign for infinity means not reached yet. Settling a town means its label is then final.",
       "support": "convention",
-      "source": "Definition of the tentative distance d[v] (CLRS 24.1, 'shortest-path estimate'). v4: the definition is a fixed line under the map, so it stays after the first tap.",
-      "status": "unverified"
+      "source": "Definition of the tentative distance d[v] (CLRS 24.1, 'shortest-path estimate'). v4: the definition is a fixed line under the map, so it stays after the first tap. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Legend 'Label: cheapest cost from S found so far. ∞: not reached yet.'; default message 'Tap a town to settle it: its label is then final.'; START labels Infinity render as ∞. Same after Start again.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

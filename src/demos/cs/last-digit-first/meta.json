@@ -50,8 +50,10 @@
       "id": "cs.last-digit-first.c2",
       "text": "Doing the same passes first digit to last (first digit, then middle, then last) ends 720 355 436 457 657 329 839, which is ordered by the last digit only; the reveal names the first out-of-order pair in the learner's run (720 comes before 355); the first digit went first, so the later passes overwrote its work.",
       "support": "simulation",
-      "source": "Demo.tsx deal() with places 2, 1, 0 from START; builder re-ran in Node (2026-10-14): 329 355 457 436 657 720 839 -> 329 720 436 839 355 457 657 -> 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ascend. fBad = first i with f[i] > f[i+1] = 0, so the reveal prints '(720 comes before 355)'. v5 corrects the parenthetical per fact-check pass 23 (the v4 claim said 657/329, which the reveal never prints).",
-      "status": "unverified"
+      "source": "Demo.tsx deal() with places 2, 1, 0 from START; builder re-ran in Node (2026-10-14): 329 355 457 436 657 720 839 -> 329 720 436 839 355 457 657 -> 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ascend. fBad = first i with f[i] > f[i+1] = 0, so the reveal prints '(720 comes before 355)'. v5 corrects the parenthetical per fact-check pass 23 (the v4 claim said 657/329, which the reveal never prints). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own radix run first digit, middle, last: 720 355 436 457 657 329 839; last digits 0 5 6 7 7 9 9 ordered, the list is not; first out-of-order pair found by the reveal's findIndex is 720 > 355. Each run can be done only once (no reset), so the ending is fixed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.last-digit-first.c3",

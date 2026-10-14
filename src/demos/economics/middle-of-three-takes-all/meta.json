@@ -25,8 +25,10 @@
       "id": "economics.middle-of-three-takes-all.c1",
       "text": "On the stage, each round the end Bo left out offers to take 10 cents less and Bo switches, so Bo's share goes $0.50, $0.60, $0.70, $0.80, $0.90, $1.00 (the round-by-round trace), the asks fall from $0.50 to $0.00, and Bo gets the whole $1.",
       "support": "derivation",
-      "source": "Lesson rule (10-cent undercut). Demo.tsx round(k): Bo's share 0.5, 0.6, 0.7, 0.8, 0.9, 1.0; re-run in node (ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own node: rounds 0..5 matched ask 50,40,30,20,10,0 cents, Bo 50..100; LAST = 50/10 = 5 rounds; stage message \"No one can ask less than $0. Stable.\" at round 5. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the on-stage round-by-round trace of Bo's share.",
-      "status": "unverified"
+      "source": "Lesson rule (10-cent undercut). Demo.tsx round(k): Bo's share 0.5, 0.6, 0.7, 0.8, 0.9, 1.0; re-run in node (ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own node: rounds 0..5 matched ask 50,40,30,20,10,0 cents, Bo 50..100; LAST = 50/10 = 5 rounds; stage message \"No one can ask less than $0. Stable.\" at round 5. | REOPENED 2026-10-14 (v2, wave E r6 revision by demo-builder): reveal now quotes the on-stage round-by-round trace of Bo's share. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run of round(k): Bo 50, 60, 70, 80, 90, 100 cents; partner ask 50, 40, 30, 20, 10, 0, each 10 below the previous partner's; reveal trace and 'asks fell from $0.50 to $0.00' match. Trace kept through '2 people'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.middle-of-three-takes-all.c2",

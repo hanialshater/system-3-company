@@ -45,8 +45,10 @@
       "id": "math.the-middle-voter-decides.c3",
       "text": "A rival at 4 beats the average, 4.8, by 3 votes to 2: voters 1, 2 and 3 are nearer 4. Any rival that beats 4.8 wins exactly voters 1, 2 and 3.",
       "support": "derivation",
-      "source": "Halfway point 4.4; voters 1, 2, 3 lie below it, 8 and 10 above. node duel(40, 48) = [3, 2] for 4, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 22): duel(4,4.8) = 3-2, halfway 4.4 (own node); matches the reveal. | REVISED v2 (demo-builder, 2026-10-14): v2 reveal quotes the rival position the learner saw 4.8 lose to (recorded; the rival starts at 4) and lists the nearer voters computed by Demo.tsx nearerVoters; added the general statement that a rival beating 4.8 always wins exactly voters 1, 2, 3 (a rival right of 4.8 can win at most 8 and 10; a rival left of 4.8 wins voters below the halfway point, and needs 3 of them). Unverified.",
-      "status": "unverified"
+      "source": "Halfway point 4.4; voters 1, 2, 3 lie below it, 8 and 10 above. node duel(40, 48) = [3, 2] for 4, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 22): duel(4,4.8) = 3-2, halfway 4.4 (own node); matches the reveal. | REVISED v2 (demo-builder, 2026-10-14): v2 reveal quotes the rival position the learner saw 4.8 lose to (recorded; the rival starts at 4) and lists the nearer voters computed by Demo.tsx nearerVoters; added the general statement that a rival beating 4.8 always wins exactly voters 1, 2, 3 (a rival right of 4.8 can win at most 8 and 10; a rival left of 4.8 wins voters below the halfway point, and needs 3 of them). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own duel() brute force over every rival 0.0-10.0 in tenths: rival 4 vs 4.8 is 3-2 (voters 1, 2, 3); every rival that beats 4.8 wins exactly {1, 2, 3}.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.the-middle-voter-decides.c4",
@@ -76,11 +78,13 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "status": "unverified",
+      "status": "verified",
       "id": "math.the-middle-voter-decides.c7",
       "text": "A rival at 4 beats the centre, 5, by 3 votes to 2.",
       "support": "derivation",
-      "source": "Halfway point between 4 and 5 is 4.5; voters 1, 2 and 3 are nearer 4, voters 8 and 10 nearer 5: 3-2. Demo.tsx duel(50, 40) gives [2, 3]. Reveal: 'The centre, 5, lost too, to the rival at 4' (rival position quoted from the learner's recorded duel). Unverified."
+      "source": "Halfway point between 4 and 5 is 4.5; voters 1, 2 and 3 are nearer 4, voters 8 and 10 nearer 5: 3-2. Demo.tsx duel(50, 40) gives [2, 3]. Reveal: 'The centre, 5, lost too, to the rival at 4' (rival position quoted from the learner's recorded duel). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own duel(50, 40): 2-3, rival wins with voters 1, 2, 3 (halfway 4.5). Rival starts at 4, so the first 5 test shows it.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

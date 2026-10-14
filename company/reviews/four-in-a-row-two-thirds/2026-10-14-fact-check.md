@@ -25,3 +25,15 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 | verified | Demo.tsx v2: the reveal prints 'settled at $0.667 (two thirds) by round 9. A kept $0.333.' 'Run until settled' calls go(max(round, 9)), and 'settled' needs round >= 9, so the learner has seen round 9 or later. Every round from 9 to 14 reads B $0.667, A $0.333 (own node), so the reveal matches the stage on every path. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Wave E revision. Method: read Demo.tsx first (every learner-visible string, every reachable branch and the state after any reset control), then build.md Pre-flight; re-ran every number in my own node scripts using the lesson's own logic (scratchpad fc24/). No builds. Web egress to source hosts is blocked (proxy 403); no claim below is verified on an unopened source alone.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node of shares(): B 0.5, 0.75, 0.625, 0.6875, 0.65625 ... ; trace row prints toFixed(3).slice(1): '.500 .750 .625 .688 ...'. Fallback oB = 1 - vC links the two inner people. |
+| c6 | verified | Own run: first round within 0.0005 of 2/3 is round 9 (0.66699; round 8 0.66602); usd -> '$0.667', A 1 - 0.66699 -> '$0.333'; all later rounds stay within tolerance. Fixed point v = 1 - v/2 gives 2/3. |
+| c7 | verified | Own run: round 1 share 0.75 (C = B by symmetry), round 2 fallback 1 - 0.75 = 0.25 -> '$0.250'. Chip 'B's fallback = $1 − C's last share' matches. |
+
+**Result:** all open claims verified; no disputes.

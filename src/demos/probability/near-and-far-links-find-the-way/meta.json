@@ -44,22 +44,28 @@
       "id": "probability.near-and-far-links-find-the-way.c3",
       "text": "Uniform links are mostly far jumps and almost never near ones, so close to the target they rarely help and the last stretch crawls along the ring.",
       "support": "derivation",
-      "source": "Uniform over the other 1,999 people: 999 of 1,999 (about half) of all links are longer than 500. When the message is within distance D of the target, a uniform link lands closer than D with chance about 2D/2000 per holder, so small D takes many ring steps. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sum: uniform links longer than 500 have share 999/1999 = 0.4997. The 2D/2000 chance per holder near the target follows. Qualitative sentence supported. | REVISED v2 (demo-builder, 2026-10-14): reveal now opens 'Look at your link tallies. Uniform links were 89% far and 1% near, so close to the target they rarely help...' (tally numbers in c7). Unverified.",
-      "status": "unverified"
+      "source": "Uniform over the other 1,999 people: 999 of 1,999 (about half) of all links are longer than 500. When the message is within distance D of the target, a uniform link lands closer than D with chance about 2D/2000 per holder, so small D takes many ring steps. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sum: uniform links longer than 500 have share 999/1999 = 0.4997. The 2D/2000 chance per holder near the target follows. Qualitative sentence supported. | REVISED v2 (demo-builder, 2026-10-14): reveal now opens 'Look at your link tallies. Uniform links were 89% far and 1% near, so close to the target they rarely help...' (tally numbers in c7). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node run of Demo.tsx cdfFor/build/tallyOf, seed 1: uniform links 15 / 201 / 1,784 of 2,000 (1% / 10% / 89%). Means over 1,000 messages reproduce 38.3 / 28.5 / 212.6. Qualitative sentence supported (pass 21 sums still hold).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c4",
       "text": "1/d² links are almost all near and almost never far.",
       "support": "derivation",
-      "source": "With chance ∝ 1/d² over d = 1..1000 (two people at each distance), about 61% of links have length 1 and under 2% are longer than 31 (node sums, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums with weights 2/d^2 (1 at d = 1000): length 1 share 0.608, longer than 31 share 0.0187. | REVISED v2 (demo-builder, 2026-10-14): reveal now quotes the stage tally: '1/d² links were 95% near and 1% far' (c7). Unverified.",
-      "status": "unverified"
+      "source": "With chance ∝ 1/d² over d = 1..1000 (two people at each distance), about 61% of links have length 1 and under 2% are longer than 31 (node sums, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums with weights 2/d^2 (1 at d = 1000): length 1 share 0.608, longer than 31 share 0.0187. | REVISED v2 (demo-builder, 2026-10-14): reveal now quotes the stage tally: '1/d² links were 95% near and 1% far' (c7). Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Same run: 1/d^2 links 1,893 / 97 / 10 of 2,000 = 95% near, 5% middle, 0.5% far (Math.round shows 1%). 'Almost all near, almost never far' holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c5",
       "text": "Only 1/d links come at every scale (near, middle and far in similar shares), so wherever the message is, some contact can cut the remaining distance a lot.",
       "support": "derivation",
-      "source": "With chance ∝ 1/d each doubling band of distances gets roughly the same share of links (about 10-15% each on a ring of 1,024; see every-scale-equally-likely), so a link that halves the remaining distance D has chance of order 1/log N per holder whatever D is. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums on this ring of 2,000: each doubling band of lengths gets 9-13% of 1/d links (0.134, 0.111, 0.101, 0.097, 0.095, 0.094, 0.093, 0.093, 0.093, 0.090); source's '10-15% on a ring of 1,024' is for the sibling lesson. Qualitative sentence supported. | REVISED v2 (demo-builder, 2026-10-14): reveal now points at the stage tally: 'Only 1/d links came at every scale (41% · 30% · 29%)'. Unverified.",
-      "status": "unverified"
+      "source": "With chance ∝ 1/d each doubling band of distances gets roughly the same share of links (about 10-15% each on a ring of 1,024; see every-scale-equally-likely), so a link that halves the remaining distance D has chance of order 1/log N per holder whatever D is. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own sums on this ring of 2,000: each doubling band of lengths gets 9-13% of 1/d links (0.134, 0.111, 0.101, 0.097, 0.095, 0.094, 0.093, 0.093, 0.093, 0.090); source's '10-15% on a ring of 1,024' is for the sibling lesson. Qualitative sentence supported. | REVISED v2 (demo-builder, 2026-10-14): reveal now points at the stage tally: 'Only 1/d links came at every scale (41% · 30% · 29%)'. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Same run: 1/d links 825 / 599 / 576 (41% / 30% / 29%), the only rule with every band above 10%; pass 21 doubling-band shares (9-13% each) still hold.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.near-and-far-links-find-the-way.c6",
@@ -71,11 +77,13 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "status": "unverified",
+      "status": "verified",
       "id": "probability.near-and-far-links-find-the-way.c7",
       "text": "In the stage's first seeded network (mulberry32 seed 1, 2,000 links), the long links by ring distance (near 1-10, middle 11-100, far 101-1,000) are 1% / 10% / 89% for uniform links, 41% / 30% / 29% for 1/d links and 95% / 5% / 1% for 1/d² links.",
       "support": "simulation",
-      "source": "Builder's node check (2026-10-14, scratchpad b5x/nf.mjs, same cdfFor/build code and seed 1 as Demo.tsx): counts 15/201/1784, 825/599/576, 1893/97/10 of 2,000. The band edges are the builder's choice. Shown under the ring as 'Links by length' and quoted in the reveal from the learner's recorded tallies. Unverified."
+      "source": "Builder's node check (2026-10-14, scratchpad b5x/nf.mjs, same cdfFor/build code and seed 1 as Demo.tsx): counts 15/201/1784, 825/599/576, 1893/97/10 of 2,000. The band edges are the builder's choice. Shown under the ring as 'Links by length' and quoted in the reveal from the learner's recorded tallies. Unverified. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node replay of the Demo code, seed 1 network only (nets[0]): counts 15/201/1784, 825/599/576, 1893/97/10, rounded 1/10/89, 41/30/29, 95/5/1. Note: 1/d^2 far is 10/2000 = 0.5%, shown as 1% by round-half-up; the three 1/d^2 shares sum to 101%. Band edges are the builder's convention.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -13,3 +13,12 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | Karp 1972 (chromatic number among the 21) and CLRS ch. 34 not opened; both match my knowledge. Garey, Johnson and Stockmeyer, 'Some simplified NP-complete graph problems', Theoretical Computer Science 1 (1976) 237-267, planar 3-colourability NP-complete: corroborated by web search (Academia record, TAMU lecture notes). 'No fast method is known' is an accurate reading of NP-hardness. |
 
 **Result:** all open claims verified; the lesson has no unverified or disputed claims.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | disputed | Numbers hold: own node backtrack(4,3) and backtrack(4,4) both give red, blue, yellow, blue, yellow (3 used). But a reachable branch makes the reveal false: with 4 colours and Ring of 4 chosen while colouring by hand, paint C red, 1 blue, 2 yellow, 3 purple, 4 yellow (valid, 4 used). after() stores seen['4-4'] = {ok, used 4}; a later Run backtracking on that ring reaches ring-of-four (used 3) but setSeen keeps the first ok record. The reveal then says 'On the ring of four the two colours alternated all the way round: done with 4 colours' and the runs line '4 ring: done, 4 used'. Fix (builder): record only colourings using <= 3 colours for the ring-of-four record (or keep the smallest 'used' per key), so the quoted run is the one that reached the milestone. |
+| c6 | verified | Own node backtrack(5,4): C, 1..5 = red, blue, yellow, blue, yellow, purple, 0 dead ends, 4 used; backtrack(5,3): 6 dead ends, stuck at region 5. Any valid colouring of the 5-wheel uses 4, so the s54 record is 4 on every branch. |

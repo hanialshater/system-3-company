@@ -25,3 +25,11 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c6 | verified | Own node: same step() at N=8 gives 2,056 placements and 92 solutions; 64 squares. The 16 = 16 match does not recur. |
 
 **Result:** 3 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node copy of v4 step(): 17 steps from EMPTY, 16 tries, first solution at 8, solutions 1302 and 2031 (columns 2-4-1-3, 3-1-4-2). finishRun loops the same step(); result is set only when clean (no hand taps since EMPTY), so the line and reveal always quote a run from empty. Independent DFS: 16 for n = 4; 2,056 placements, 92 solutions, 16,777,216 boards for n = 8. |

@@ -13,3 +13,11 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | verified | Matches the reveal's muted model line. |
 
 **Result:** 5 verified, 0 disputed, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code). Method: read Demo.tsx against each open claim, including every reachable branch and the state after Reset/Start over; re-ran the numbers in node with ports of the lesson's own functions (mulberry32 copied from src/kit/random.ts). No web sources were needed: no learner sentence below rests on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | A = a + (100 - a)/2, so dA = da/2. Own node over every reachable option (0..80 step 10): 70 -> 85, 80 -> 90; all whole cents. Reveal computes from split(prev) and split(a). |
