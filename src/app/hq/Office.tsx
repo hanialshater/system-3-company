@@ -5,6 +5,7 @@ import type { Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
 import { Face } from "./Avatar";
 import type { Person } from "./people";
+import { WhiteboardLinks } from "./WhiteboardLinks";
 import s from "./hq.module.css";
 
 // A full category office (floor 3 and floor 6): the lead and their strand managers sit at desks, three to a row.
@@ -139,6 +140,7 @@ export default function Office({ rooms, people, activity, selected, onRoom, onPe
           </g>
         );
       })}
+      <WhiteboardLinks rooms={rooms} />
       {rooms.map((r) => {
         const here = people.filter((p) => p.room === r.id);
         // On the build floor and in category offices people sit at the desks; elsewhere they stand in a grid.
