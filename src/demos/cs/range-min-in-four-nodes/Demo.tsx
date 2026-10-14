@@ -47,8 +47,6 @@ const Q_COUNT = Q_COVER.length; // 4
 const Q_KEYS = new Set(Q_COVER.map((b) => `${b.l}-${b.r}`));
 const label = (b: Block) => (b.l === b.r ? `[${b.l}]` : `[${b.l} to ${b.r}]`);
 const Q_LABELS = Q_COVER.map(label); // [3], [4 to 7], [8 to 11], [12]
-let MAX_COUNT = 0;
-for (let a = 0; a < N; a++) for (let b = a; b < N; b++) MAX_COUNT = Math.max(MAX_COUNT, cover(a, b).length);
 const PATH_LEN = BLOCKS.filter((b) => b.l <= EDIT_AT && EDIT_AT <= b.r).length; // 5
 
 const W = 19;
@@ -57,16 +55,18 @@ const RH = 30;
 const Y0 = 8;
 const bx = (b: Block) => X0 + b.l * W + 1;
 const bw = (b: Block) => (b.r - b.l + 1) * W - 2;
-const by = (b: Block) => Y0 + b.d * RH;
+const by = (b: Block, rh = RH) => Y0 + b.d * rh;
 
 type Range = { lo: number; hi: number };
 function Stage({
   locked,
+  compact,
   reach,
   range,
   setR,
 }: {
   locked: boolean;
+  compact: boolean;
   reach: (n: string) => void;
   range: Range;
   setR: (r: Range) => void;
@@ -82,6 +82,10 @@ function Stage({
   const [seenMin, setSeenMin] = useState<number | null>(null);
 
   const min = (b: Block) => Math.min(...vals.slice(b.l, b.r + 1));
+  // v5: at the reveal the levels sit 3 units closer and the empty band under the range bar goes, so the tree
+  // stays on screen with the reveal (labels keep their size).
+  const rh = compact ? RH - 3 : RH;
+  const vbH = Y0 + LEVELS * rh + 22;
   const used = cover(lo, hi);
   const usedKeys = new Set(used.map(key));
   const isCombined = combined === `${lo}-${hi}-${edits}`;
@@ -121,11 +125,11 @@ function Stage({
         : `Lit nodes lie wholly inside ${lo} to ${hi}. Combine them.`;
 
   return (
-    <div className={s.wrap}>
+    <div className={`${s.wrap} ${compact ? s.compact : ""}`}>
       <p className={s.msg} aria-live="polite">
         {msg}
       </p>
-      <svg viewBox="0 0 320 196" className="stage-svg" role="img" aria-label={`Range ${lo} to ${hi} uses ${used.length} nodes`}>
+      <svg viewBox={`0 0 320 ${vbH}`} className="stage-svg" role="img" aria-label={`Range ${lo} to ${hi} uses ${used.length} nodes`}>
         {BLOCKS.map((b) => {
           const on = usedKeys.has(key(b));
           const onPath = changed && b.l <= EDIT_AT && EDIT_AT <= b.r;
@@ -137,9 +141,9 @@ function Stage({
             <g key={key(b)}>
               <rect
                 x={bx(b)}
-                y={by(b)}
+                y={by(b, rh)}
                 width={bw(b)}
-                height={RH - 5}
+                height={rh - 5}
                 rx={4}
                 fill={on ? "var(--domain)" : "var(--bg-2)"}
                 fillOpacity={on ? 0.85 : 1}
@@ -147,30 +151,33 @@ function Stage({
                 strokeWidth={onPath ? 3 : on ? (isCombined ? 2.5 : 1.5) : trace ? 2 : 1}
                 strokeDasharray={dashed ? "4 3" : undefined}
               />
-              <text x={bx(b) + bw(b) / 2} y={by(b) + 17} textAnchor="middle" className={`${s.v} ${on ? s.vOn : ""}`}>
+              <text x={bx(b) + bw(b) / 2} y={by(b, rh) + (rh - 5) / 2 + 4.5} textAnchor="middle" className={`${s.v} ${on ? s.vOn : ""}`}>
                 {min(b)}
               </text>
             </g>
           );
         })}
         {Array.from({ length: N }, (_, i) => (
-          <text key={i} x={X0 + i * W + W / 2} y={Y0 + LEVELS * RH + 8} textAnchor="middle" className={s.idx}>
+          <text key={i} x={X0 + i * W + W / 2} y={Y0 + LEVELS * rh + 8} textAnchor="middle" className={s.idx}>
             {i}
           </text>
         ))}
-        <rect x={X0 + lo * W} y={Y0 + LEVELS * RH + 14} width={(hi - lo + 1) * W} height={6} rx={3} fill="var(--domain)" />
+        <rect x={X0 + lo * W} y={Y0 + LEVELS * rh + 14} width={(hi - lo + 1) * W} height={6} rx={3} fill="var(--domain)" />
       </svg>
       <Row>
         <Readout label="Positions" value={hi - lo + 1} />
         <Readout label="Nodes used" value={used.length} />
-        <Readout label="Minimum" value={isCombined ? answer : "?"} />
+        <Readout label="Minimum" value={isCombined || compact ? answer : "?"} />
       </Row>
       {seenMin !== null && (
         <p className={s.seen}>
           Seen (first combine): {Q_LO} to {Q_HI} = {Q_LABELS.join(" + ")}, {Q_COUNT} nodes, minimum {seenMin}
         </p>
       )}
-      <Row>
+      {/* v5 (learner r8): the control rows opt in to the fold at the reveal (W-330). None holds a Readout; the
+          reveal reads the Seen row, the dashed outlines, the readouts and the message, never these controls; and
+          what they set stays in the picture (range bar, lit nodes, green path). */}
+      <Row foldAtReveal>
         <Control className={`${s.tap} active`} disabled={locked || (lo === Q_LO && hi === Q_HI)} onClick={() => setRange(Q_LO, Q_HI)}>
           Positions {Q_LO} to {Q_HI}
         </Control>
@@ -178,9 +185,11 @@ function Stage({
           Combine the lit nodes
         </Control>
       </Row>
-      <Slider label="From" value={lo} min={0} max={N - 1} disabled={locked} onChange={(v) => setRange(v, Math.max(v, hi))} />
-      <Slider label="To" value={hi} min={0} max={N - 1} disabled={locked} onChange={(v) => setRange(Math.min(lo, v), v)} />
-      <Row>
+      <Row foldAtReveal>
+        <Slider label="From" value={lo} min={0} max={N - 1} disabled={locked} onChange={(v) => setRange(v, Math.max(v, hi))} />
+        <Slider label="To" value={hi} min={0} max={N - 1} disabled={locked} onChange={(v) => setRange(Math.min(lo, v), v)} />
+      </Row>
+      <Row foldAtReveal>
         <Control className={s.tap} disabled={locked} onClick={change}>
           Change the value at {EDIT_AT}
         </Control>
@@ -191,8 +200,6 @@ function Stage({
 
 export default function RangeMinInFourNodes({ slug }: { slug: string }) {
   const [range, setR] = useState<Range>({ lo: 0, hi: N - 1 });
-  const own = cover(range.lo, range.hi).length;
-  const isQ = range.lo === Q_LO && range.hi === Q_HI;
   return (
     <Lesson
       slug={slug}
@@ -206,25 +213,20 @@ export default function RangeMinInFourNodes({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Positions {Q_LO} to {Q_HI} are {Q_HI - Q_LO + 1} values, but you combined just <strong>{Q_COUNT}</strong> stored
-              nodes: {Q_LABELS.slice(0, -1).join(", ")} and {Q_LABELS[Q_LABELS.length - 1]} (the Seen row; dashed when not lit).
-            Only the ragged ends need small nodes; the middle is covered by big
-            aligned ones.{" "}
-            {isQ ? "" : `Your last range, ${range.lo} to ${range.hi}, needed ${own}. `}No range of these {N} positions needs
-            more than {MAX_COUNT}.
+            The range {Q_LO} to {Q_HI} holds {Q_HI - Q_LO + 1} values, but you combined just <strong>{Q_COUNT}</strong> stored
+            nodes: {Q_LABELS.slice(0, -1).join(", ")} and {Q_LABELS[Q_LABELS.length - 1]} (the Seen row; dashed when not lit).
+            Only the ragged ends need small nodes; the middle is covered by big aligned ones.
           </p>
           <p>
-            Every range is a union of at most about 2 log₂ n stored nodes, where log₂ n counts the halvings from n
-            down to 1 (4 for {N}). When you changed one value, only the {PATH_LEN} nodes on its path to the top were
-            rewritten, so both the question and the update take about log n steps. The same tree works
-            for maximum or sum.
+            When you changed one value, only the {PATH_LEN} nodes on its path to the top were rewritten, so both the
+            question and the update take about log n steps for n positions, not n.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["range", "combined", "changed"]}>
-          {(reach) => <Stage locked={locked} reach={reach} range={range} setR={setR} />}
+          {(reach) => <Stage locked={locked} compact={phase === "reveal"} reach={reach} range={range} setR={setR} />}
         </Milestones>
       )}
     </Lesson>

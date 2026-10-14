@@ -3,6 +3,25 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (design-lead, W-377: design review of four phone-fit stages)
+
+- **Changed:**
+  - Wrote 4 design reviews (artifact first: headless Playwright at 390x844 and 1280x900, in predict, explore and reveal; build.md read after): `company/reviews/<slug>/2026-10-14-design.md` for a-star-heads-for-goal v7, every-second-seat-out v4, rotation-untangles-the-chain v4 and who-pays-same-filter v4.
+  - Verdicts:
+    - rotation: **approve**.
+    - a-star: **approve with changes** (the route line strikes through the settle-order numbers, and the S/G order numbers overlap their markers).
+    - who-pays: **approve with changes** (panel 2's "$100" arrow label is clipped 7 to 9 px at the left edge of the svg).
+    - every-second-seat-out: **revise** (seat labels are 9.4 px in explore at 390 px; at the reveal the svg grows 218 to 250 px and the row overflows the stage by 6 px on each side).
+  - Board: added W-447 (every-second, revise), W-448 (a-star), W-449 (who-pays), all for demo-builder, and W-450 (kit: the reveal rule `.stage-svg { flex: none }` grows a picture that sits in a row) for platform-engineer. Moved W-377, W-267 and W-278 to done (W-278 is superseded; W-267's remaining work is in W-447 and W-448).
+  - Screenshots, metrics and scripts are in `artifacts/design-review/2026-10-14-W-377/` (gitignored, local only).
+- **Believe:**
+  - High confidence in all 4 crop-0 results: stage top on screen, and the reveal's named evidence visible.
+  - High confidence in the label px and overflow numbers (DOM-measured).
+  - Medium confidence that every-second's 6 px overflow is caused by the kit rule rather than the lesson; the cause is inferred from the CSS, and I did not test a fix.
+  - The builders' Pre-flight label px are reveal-phase numbers. Pictures that sit beside a control column can be smaller in explore.
+- **Next:** demo-builder takes W-447, W-448 and W-449, and must re-measure Pre-flight 7 after W-447. After that, learner re-review for a-star and every-second, and QA W-378. Platform-engineer takes W-450.
+- **Blocked:** nothing. The dev server was slow under load (pages took 30 to 50 s); other sessions were compiling.
+
 ## 2026-10-14 (fact-checker, W-363 + W-375, FC pass 34: phone-fit re-checks)
 
 - **Changed:** re-checked the 11 claims that the build-6 phone-fit fixes reopened. All 11 are verified, each with checkedBy, checkedOn and an "FC pass 34" source note:

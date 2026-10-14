@@ -3179,11 +3179,12 @@
       "id": "W-267",
       "title": "W-259 large crops need a stage redesign, not a text trim: every-second-seat-out (275 px: rule line + 340x340 circle + controls + table + long variable reveal) and a-star-heads-for-goal (200 px: rule + grid + controls + table + 2 long paragraphs). Builder proposes a compact stage (e.g. table folded into the picture, one control row) and a reveal at or under 90 words; cm-cs approves any reveal content change; design-lead does the design review (company/reviews/<slug>/<date>-design.md) before learner re-review. Decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
       "owner": "demo-builder",
-      "state": "review",
+      "state": "done",
       "domain": "cs",
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "note": "Done 2026-10-14 by design review W-377: compact stages reviewed. Remaining work carried by W-447 (every-second-seat-out revise) and W-448 (a-star-heads-for-goal changes); learner re-review after those."
     },
     {
       "id": "W-268",
@@ -3290,11 +3291,12 @@
       "id": "W-278",
       "title": "W-267 design review of the compact stages: every-second-seat-out v3 and a-star-heads-for-goal v5 (company/reviews/<slug>/<date>-design.md), then learner re-review",
       "owner": "design-lead",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "note": "Superseded by W-377 (design reviews of a-star v7, every-second-seat-out v4 written 2026-10-14)."
     },
     {
       "id": "W-279",
@@ -4300,10 +4302,12 @@
       "id": "W-377",
       "title": "Design review of the build-6 phone-fit stages (all measured crop 0 at 390x844): a-star-heads-for-goal v7 (controls in a column beside the grid; No guess/With guess merged into one 'Guess: on/off' toggle), every-second-seat-out v4 (step buttons beside the circle, binary in the circle centre, rule line cut), rotation-untangles-the-chain v4 (one picture height for both trees, plain chain at half pitch; four controls in one row), who-pays-same-filter v4 (panels 190 -> 125 units, nets inside the blocks, Total on the title row). Supersedes the stage part of W-278",
       "owner": "design-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14",
+      "note": "Reviews: company/reviews/{a-star-heads-for-goal,every-second-seat-out,rotation-untangles-the-chain,who-pays-same-filter}/2026-10-14-design.md. Follow-ups W-447..W-450."
     },
     {
       "id": "W-378",
@@ -4952,6 +4956,42 @@
       "id": "W-446",
       "title": "FC pass 34 nits (non-blocking, all claims verified): (1) who-pays-same-filter: the $350 refusal flash (end-anchored x 212, y 86) runs into the $50 offer mark for ~0.4 s and reads '$50−$350: worse than smoke'; move the flash or the mark row. (2) a-star-heads-for-goal: legend gives only the first tie rule ('more steps taken first'); the no-guess ties are decided by the unstated 'added first' (c1). (3) eratosthenes-shadow: 'Syene, in the story:' label crosses a dashed sunlight ray at 390 px. See company/reviews/<slug>/2026-10-14-fact-check.md Pass 34",
       "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-447",
+      "title": "every-second-seat-out v4 design review REVISE (W-377): (1) seat labels render 9.4 px at 390 in predict/explore (svg 218 px wide beside the step column), under the W-289 10 px floor; make them >=10 (aim 11) in every phase, measured in explore; (2) at the reveal the svg grows 218->250 px and the row overflows the stage by 6 px each side (scrollWidth 346 > 340; step column and seats 31-33 on the stage edge): wrap the svg in a flex child (flex 1 1 0, min-width 0) so its width holds across phases; re-measure Pre-flight 7 with px. Then learner re-review. See company/reviews/every-second-seat-out/2026-10-14-design.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-448",
+      "title": "a-star-heads-for-goal v7 design review APPROVE WITH CHANGES (W-377): route polyline strikes through the settle-order numbers on route cells (5,10,16,20,24,28,34) and '1'/'46' sit on the S/G markers; draw the route under the labels with a bg-2 halo (paint-order stroke) or offset it, and clear S/G. Recommended: aria-pressed=true toggles get the kit active style. Then learner re-review. See company/reviews/a-star-heads-for-goal/2026-10-14-design.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "cs",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-449",
+      "title": "who-pays-same-filter v4 design review APPROVE WITH CHANGES (W-377): panel 2 filter-arrow label '$100' is clipped 7 px (390, explore) / 9 px (1280, all phases) past the svg left edge; move it inside the viewBox. Done when no svg text box exceeds its svg at 390 or 1280. Recommended: fill or drop the empty Total bar box; 6-8 px gap before panel 2 title. See company/reviews/who-pays-same-filter/2026-10-14-design.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-450",
+      "title": "Kit: at the reveal, globals.css '.lesson[data-phase=reveal] .stage .stage-svg { flex: none }' makes a stage-svg that is a flex item in a horizontal row (picture beside a control column) jump to its natural width: every-second-seat-out 218->250 px (row overflows stage 6 px each side), a-star-heads-for-goal 218->240 px. The W-287 fit then measures the grown picture, so reveal label px overstate explore. Keep a row-item picture at its laid-out width. See company/reviews/every-second-seat-out/2026-10-14-design.md (Kit observation)",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

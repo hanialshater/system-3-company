@@ -83,9 +83,8 @@ export default function SixStudentsPerProfessor({ slug }: { slug: string }) {
               setP(v);
               seeSix(k, v);
             };
-            const caption = locked
-              ? "Each column: one professor and their students. Make a prediction to start."
-              : `Each professor has ${k} students.`;
+            // Explore phase: no caption; the slider label already says how many students each professor has.
+            const caption = "Each column: one professor and their students. Make a prediction to start.";
             return (
               <div className={s.wrap}>
                 <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`${p} professors, ${S} students`}>
@@ -117,9 +116,7 @@ export default function SixStudentsPerProfessor({ slug }: { slug: string }) {
                   })}
                 </svg>
 
-                <p className={s.caption} aria-live="polite">
-                  {caption}
-                </p>
+                {locked && <p className={s.caption}>{caption}</p>}
 
                 <ul className={s.eqs} aria-live="polite">
                   {EQS.map((e, i) => (
