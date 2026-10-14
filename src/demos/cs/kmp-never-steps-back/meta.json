@@ -1,0 +1,116 @@
+{
+  "domain": "cs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo-pair-09"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "slug": "kmp-never-steps-back",
+  "title": "A miss tells you where to look",
+  "hook": "Must a search ever step back?",
+  "concept": "kmp-string-search",
+  "format": "side-by-side",
+  "learner": {
+    "knows": [
+      "searching a text for a word by sliding the word along it",
+      "counting letter comparisons"
+    ],
+    "doesNotKnow": [
+      "that a mismatch already tells you where the next match could start",
+      "the fallback table"
+    ]
+  },
+  "misconception": "After a mismatch you have to move one letter on and re-read from there.",
+  "objective": "The learner can explain that after a mismatch the part that matched is known text, so the pattern can slide by its fallback table and the text arrow never moves back, which finds AAAB in AAAAAAAAB in 14 comparisons against 24.",
+  "claims": [
+    {
+      "id": "cs.kmp-never-steps-back.c1",
+      "text": "Searching for AAAB in AAAAAAAAB by restarting one letter on after each mismatch takes 24 letter comparisons.",
+      "support": "simulation",
+      "source": "Builder's node script: alignments 0..5, each reading the pattern until a miss or a full match, 4 comparisons each (the pattern's B meets an A for alignments 0 to 4; alignment 5 matches), 6 x 4 = 24. Counting rule: every comparison of one text letter with one pattern letter counts 1, matching or not.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.kmp-never-steps-back.c2",
+      "text": "Reusing what matched (KMP) finds AAAB in AAAAAAAAB at comparison 14, with the text arrow never moving back.",
+      "support": "simulation",
+      "source": "Builder's node script: standard KMP (text index i, pattern index j, on a miss j = fail[j-1], i unchanged unless j = 0). Compared text/pattern positions: 0/0 1/1 2/2 3/3x 3/2 4/3x 4/2 5/3x 5/2 6/3x 6/2 7/3x 7/2 8/3 = 14 comparisons, 0 back moves. Same counting rule as claim 1. KMP agrees with indexOf on 20,000 random binary strings.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.kmp-never-steps-back.c3",
+      "text": "The fallback table for AAAB is 0 1 2 0.",
+      "support": "simulation",
+      "source": "Builder's node script: standard failure function (length of longest proper prefix that is also a suffix) of AAAB = 0 1 2 0. Knuth, Morris, Pratt 1977; CLRS 4th ed. section 32.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.kmp-never-steps-back.c4",
+      "text": "Both searches miss for the first time on comparison 4, when the pattern's B meets an A.",
+      "support": "simulation",
+      "source": "Builder's node script: first failed comparison is number 4 in both traces (text letter 3 against pattern letter 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.kmp-never-steps-back.c5",
+      "text": "Restarting one on moves its text arrow back 1 time after 5 comparisons, 3 times after 14 and 5 times after 24; the reuse search moves it back 0 times throughout.",
+      "support": "simulation",
+      "source": "Builder's node script: a back move is a comparison whose text index is lower than the previous one's. Naive after 5: 1; after 14: 3; after 24: 5. KMP trace: 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.kmp-never-steps-back.c6",
+      "text": "KMP makes fewer than 2 x (text length) comparisons, and the text arrow only moves right.",
+      "support": "source",
+      "source": "Knuth, Morris, Pratt 1977, SIAM J. Comput.; CLRS 4th ed. section 32.4 (O(n + m) matching). Builder's node check over 20,000 random binary texts (length 1-20) and patterns (length 1-5): maximum comparisons / text length 1.89, never above 2; this run: 14 comparisons < 2 x 9 = 18.",
+      "status": "unverified"
+    }
+  ],
+  "recall": {
+    "question": "A search reads text letter by letter and, after a mismatch, uses a table of what the pattern matched so far. What happens to its text position?",
+    "options": [
+      "It never moves back",
+      "It goes back one letter",
+      "It goes back to the start"
+    ],
+    "answer": 0,
+    "why": "What matched is known text, so only the pattern slides; the text position stays or moves right, which keeps the total work linear."
+  },
+  "curriculum": {
+    "primary": "cs:kmp-string-search",
+    "also": [],
+    "prerequisites": [
+      "cs:rolling-hash"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 32,
+        "section": "32.4",
+        "note": "The Knuth-Morris-Pratt algorithm"
+      }
+    ],
+    "tags": [
+      "string-search",
+      "kmp",
+      "fallback-table"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "two-panel-shared-control",
+    "milestone-gate"
+  ]
+}
