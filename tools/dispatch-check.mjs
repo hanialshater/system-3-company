@@ -21,9 +21,10 @@
 //   C4  host guard: build/wave fails when the 1-minute load is above 2 x CPUs or / has under 10 GB free;
 //       check fails under 5 GB free.
 //   R1  rituals before new work: wave/build fails while the WBR, retro or founder digest is due (tools/rituals-due.mjs).
-//   R2  incidents before new work: wave/build fails while a SEV1/SEV2 incident event has no COE record in
-//       company/rituals/records/ that names its id on an `incident:` line and says `status: final`
-//       (tools/lib/coe-coverage.mjs; a same-day file no longer counts). S3_COE_DIR overrides the folder (tests).
+//   R2  incidents before new work: wave/build fails while a SEV1/SEV2 incident event has no REVIEWED COE in
+//       company/rituals/records/: header (lines before the first `## `) has `status: final`, `incident: <id>`
+//       and `reviewers:`; every named reviewer has a `## Review (<role>, <date>)` section with `verdict: accept`;
+//       no reviewer is the owner (tools/lib/coe-coverage.mjs; W-715, W-782). S3_COE_DIR overrides the folder (tests).
 //   I1  founder intake: wave fails while a founder decision record dated 2026-10-15 or later has no
 //       `class:` line, no `route:` line or no "## Objections" section (company/decisions/_template-founder-intake.md).
 import fs from "node:fs";
@@ -104,13 +105,13 @@ try {
   if (other.length) warns.push(`also due: ${other.map((r) => r.ritual).join(", ")}`);
 } catch (e) { warns.push(`rituals-due failed: ${e.message}`); }
 
-// ---- R2 incidents without a final COE that names them (W-715: matched by incident id, not by date)
+// ---- R2 incidents without a reviewed final COE that names them (W-715: by incident id; W-782: reviewers accept)
 const recDir = process.env.S3_COE_DIR ? path.resolve(process.env.S3_COE_DIR) : path.join(ROOT, "company/rituals/records");
 const { uncovered } = coeCoverage(events, recDir);
 if (uncovered.length) {
   const first = uncovered[0];
-  const msg = `R2 incidents: ${uncovered.length} SEV1/SEV2 incident(s) without a final COE naming their id (${uncovered.map((e) => e.id ?? "no id").join(", ")}), e.g. ${first.id ?? "?"} "${(first.summary ?? "").slice(0, 80)}" (${first.why})`;
-  if (builds) fails.push(msg + "; finalise the COE first (incident: <id> and status: final)"); else warns.push(msg);
+  const msg = `R2 incidents: ${uncovered.length} SEV1/SEV2 incident(s) without a reviewed final COE naming their id (${uncovered.map((e) => e.id ?? "no id").join(", ")}), e.g. "${(first.summary ?? "").slice(0, 80)}"; ${uncovered.map((e) => `${e.id ?? "?"}: ${e.why}`).join("; ")}`;
+  if (builds) fails.push(msg + "; the COE needs status: final, incident: <id> and reviewers: in its header, and verdict: accept from every reviewer (none the owner)"); else warns.push(msg);
 }
 
 // ---- I1 founder intake

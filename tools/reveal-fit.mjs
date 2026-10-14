@@ -33,13 +33,30 @@
 //   phoneFit    crop <= 1 and hiddenBelow <= 2 and namedHidden = 0. --strict makes this the exit bar.
 // --rotate WxH: reveal at --width x --height, then resize the viewport to WxH (turning the phone after
 // the reveal, W-139 follow-up 2) and measure there instead.
+// Tool stamp (W-783): the --out JSON carries `tool`: the commit of this file, HEAD, its blob and whether it
+// matched HEAD (tools/lib/tool-stamp.mjs). The tool refuses to run (exit 3) when this file differs from HEAD,
+// is untracked, or sits outside a git checkout, so a private copy cannot record a verdict. --allow-modified runs
+// it anyway for development and stamps `clean: false`; such a result is not evidence for a lesson record.
 // No dependencies beyond @playwright/test, which QA already uses.
 
 import { chromium } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { gitStamp } from "./lib/tool-stamp.mjs";
 
 const args = process.argv.slice(2);
+const SELF = fileURLToPath(import.meta.url);
+const tool = { name: "reveal-fit", ...gitStamp([SELF], { from: SELF }) };
+delete tool.root;
+if (!tool.clean) {
+  const why = tool.error ?? (tool.modified?.length ? `differs from HEAD (${tool.modified.join(", ")})` : "is not committed");
+  if (!args.includes("--allow-modified")) {
+    console.error(`reveal-fit: refusing to run: this copy of the tool ${why}. Commit it, run the committed tools/reveal-fit.mjs, or pass --allow-modified (the result is then stamped clean: false and is not evidence).`);
+    process.exit(3);
+  }
+  console.error(`reveal-fit: --allow-modified: this copy ${why}; results are stamped clean: false`);
+}
 const opt = (k, d) => {
   const i = args.indexOf(`--${k}`);
   return i >= 0 ? args[i + 1] : d;
@@ -307,7 +324,7 @@ summary.pass = count((r) => !r.error && r.verdict !== "clip" && !r.thumb);
 const out = opt("out", null);
 if (out) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, JSON.stringify({ summary, recorded: new Date().toISOString(), results }, null, 2));
+  fs.writeFileSync(out, JSON.stringify({ summary, recorded: new Date().toISOString(), tool, results }, null, 2));
 }
-console.log(JSON.stringify(summary));
+console.log(JSON.stringify({ ...summary, tool: { commit: tool.commit, head: tool.head, clean: tool.clean } }));
 process.exit((strict ? summary.phoneFit : summary.pass) === results.length ? 0 : 1);
