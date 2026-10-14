@@ -4,3 +4,8 @@
 - Reveal gate (minInteractions 2): interact() fires only when a hand with a not-yet-finished start is completed, so the learner must finish two different hands and see two different slide counts.
 - 'Finish this hand' does the remaining slides at once but leaves every per-card badge, so the count is still visible card by card.
 - After screenshots: the finished-hand tally '54321 · 10' was cryptic; now '54321 → 10' with the label 'Hands (→ slides):'.
+
+## Revision v2 (batch 02, 2026-10-14)
+
+Hook no longer states 10. A "Pairs out of order" readout falls by one with every slide, and the finished message says how many pairs the hand began with, so the pair-counting payoff is seen. Title changed.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

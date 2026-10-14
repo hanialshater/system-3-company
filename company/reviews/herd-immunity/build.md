@@ -32,3 +32,8 @@ Claim c10 disputed (per-step shrinkage is false). Reveal now says 'Outbreaks usu
 
 Input: latest learner review (and fact-check). 75% threshold never shown, 70% fizzle contradicted the 1.2 readout, R0 undefined, dense reveal. Added a 75% chip and a third milestone (a finished run at 75%); readout says "(shrinks / can grow / just replaces itself)"; fizzle message explains luck; R0 defined in the question and the stage line; reveal quotes the 75% run; hook no longer leans to "yes". c12 reworded, unverified.
 QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 4, `format` set, edited claims are unverified for the fact-checker.
+
+## Revision v5 (batch 02, 2026-10-14)
+
+The "Each case infects" and "Average" readouts now sit directly under the status line, above the controls, so they are visible on the phone after a run. The 70% fizzle caption is shorter and the line reserves two lines (no overlap with the buttons). "Below it" is now "Below 75% immune". Known, not fixed: the picture label after step 1.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

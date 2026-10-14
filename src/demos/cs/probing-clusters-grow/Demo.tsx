@@ -163,7 +163,7 @@ export default function ProbingClustersGrow({ slug }: { slug: string }) {
                   <path d="M0,0 L10,5 L0,10 z" fill="var(--warn)" />
                 </marker>
               </defs>
-              {Object.entries(area).map(([slot, hs]) => {
+              {!locked && Object.entries(area).map(([slot, hs]) => {
                 const sl = Number(slot);
                 const n = hs.length;
                 return (
@@ -186,7 +186,7 @@ export default function ProbingClustersGrow({ slug }: { slug: string }) {
                 );
               })}
               <text x={X0} y={128} className={s.axis}>
-                band = hash values that end in the empty slot (n/10 = chance)
+                {locked ? "Which empty slot will catch the next key?" : "band = hash values that end in the empty slot (n/10 = chance)"}
               </text>
               <text x={X0} y={144} className={s.axis}>
                 longest full run: {run} · keys inserted: {count}
@@ -197,13 +197,15 @@ export default function ProbingClustersGrow({ slug }: { slug: string }) {
                 Insert key
               </Control>
               <Control disabled={locked || count >= FREE || run >= 5} onClick={untilFive}>
-                Until a run of 5
+                Until a run of 5 or more
               </Control>
               <Control disabled={locked || count >= FREE} onClick={() => insert(FREE)}>
                 Fill the table
               </Control>
             </Row>
-            <p className={s.count}>Probes per key: {ins.length ? ins.map((x) => x.probes).join(", ") : "none yet"}</p>
+            <p className={s.count}>
+              Keys (hash → slot, probes): {ins.length ? ins.map((x) => `${x.hash}→${x.slot} (${x.probes})`).join(", ") : "none yet"}
+            </p>
           </div>
         );
       }}

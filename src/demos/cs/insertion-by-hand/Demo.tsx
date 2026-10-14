@@ -42,6 +42,13 @@ function slide(h: Hand): Hand {
   return settle({ ...h, arr, pos: h.pos - 1, slides: h.slides + 1, per: { ...h.per, [v]: (h.per[v] ?? 0) + 1 } });
 }
 
+/** Pairs of cards that are in the wrong order. */
+const pairsOut = (a: number[]) => {
+  let n = 0;
+  for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) if (a[i] > a[j]) n++;
+  return n;
+};
+
 export default function InsertionByHand({ slug }: { slug: string }) {
   const [start, setStart] = useState(0);
   const [hand, setHand] = useState<Hand>(() => fresh(STARTS[0]));
@@ -73,9 +80,9 @@ export default function InsertionByHand({ slug }: { slug: string }) {
             order, nothing slides at all.
           </p>
           <p>
-            Each slide fixes exactly one pair of cards that were in the wrong order, so the work is the number of
-            out-of-order pairs. A reversed hand has all 10; a nearly sorted one has 1. For 100 cards, reversed costs
-            4,950 slides and sorted costs none.
+            Each slide fixes exactly one pair of cards that were in the wrong order, as the pair counter fell by one with
+            every slide. So the work is the number of out-of-order pairs: a reversed hand has all 10. A nearly sorted
+            hand like 12354 has just 1. Scaled up, 100 reversed cards cost 4,950 slides and sorted cost none.
           </p>
           <p className="muted">Same cards, same method: the work depends on how scrambled they are.</p>
         </>
@@ -113,7 +120,7 @@ export default function InsertionByHand({ slug }: { slug: string }) {
         const msg = locked
           ? "Make a prediction to start."
           : done
-            ? `Sorted, in ${hand.slides} slide${hand.slides === 1 ? "" : "s"}.`
+            ? `Sorted, in ${hand.slides} slide${hand.slides === 1 ? "" : "s"}. It began with ${pairsOut(STARTS[start])} pair${pairsOut(STARTS[start]) === 1 ? "" : "s"} out of order.`
             : `Card ${moving} is out of place.`;
 
         return (
@@ -142,6 +149,7 @@ export default function InsertionByHand({ slug }: { slug: string }) {
                 Finish this hand
               </Control>
               <Readout label="Slides" value={hand.slides} />
+              <Readout label="Pairs out of order" value={pairsOut(hand.arr)} />
             </Row>
 
             <div className={s.starts}>

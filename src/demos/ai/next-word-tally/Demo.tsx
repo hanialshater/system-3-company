@@ -41,7 +41,12 @@ function append(words: string[], w: string) {
   return out;
 }
 
-const isNew = (words: string[]) => !CORPUS.includes(words.join(" "));
+// New = not a piece of the training text. A short run like "the mat ." sits inside a
+// training sentence, so it is not new even though it is not a whole training sentence.
+const isNew = (words: string[]) => {
+  const run = " " + words.join(" ") + " ";
+  return !CORPUS.some((line) => (" " + line + " ").includes(run));
+};
 // MODEL END
 
 function rng(seed: number) {
@@ -101,7 +106,7 @@ export default function NextWordTally({ slug }: { slug: string }) {
             {lastMade ? (
               <>
                 Your last sentence, <strong>“{lastMade.replace(" .", ".")}”</strong>, was{" "}
-                {isNew(lastMade.split(" ")) ? "not in the training text" : "copied from the training text"}.{" "}
+                {isNew(lastMade.split(" ")) ? "not in the training text" : "just a piece of the training text"}.{" "}
               </>
             ) : null}
             Every word you could pick had followed the word before it in training. That is all the model stores: “the”
@@ -127,7 +132,7 @@ export default function NextWordTally({ slug }: { slug: string }) {
           </div>
           {done ? (
             <p className={`${s.verdict} ${isNew(words) ? s.fresh : s.copy}`}>
-              {isNew(words) ? "New: not in the training text." : "Copied from the training text."}
+              {isNew(words) ? "New: not in the training text." : "Not new: it is a piece of the training text."}
             </p>
           ) : (
             <>

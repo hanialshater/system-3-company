@@ -62,7 +62,7 @@ export default function CoinGap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "You flip a fair coin 10,000 times. On average, how far apart will the heads and tails counts end up?",
+          "You flip a fair coin 10,000 times. On average, how far apart (heads minus tails) will the two counts end up?",
         options: ["Under 5", "About 80", "About 1,000"],
         answer: 1,
       }}
@@ -79,8 +79,8 @@ export default function CoinGap({ slug }: { slug: string }) {
           <p>
             But {typical(10000)} out of 10,000 is tiny. The heads share squeezes toward 50%: in these 20 runs it ended
             between {(Math.min(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}% and{" "}
-            {(Math.max(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}%. The law of large numbers is about the
-            share, not the count.
+            {(Math.max(...RUN.map((g) => share(g, 10000))) * 100).toFixed(1)}%. The law of large numbers (the share of heads
+            settles toward 50%) is about the share, not the count.
           </p>
         </>
       )}
@@ -100,6 +100,17 @@ export default function CoinGap({ slug }: { slug: string }) {
             ))}
             {paths.map((d, i) => (
               <path key={i} d={d} className={s.run} />
+            ))}
+            {view === "gap" && !locked && [1, -1].map((sg) => (
+              <path
+                key={sg}
+                className={s.theory}
+                fill="none"
+                d={Array.from({ length: 61 }, (_, i) => {
+                  const k = Math.max(1, (i / 60) * n);
+                  return `${i ? "L" : "M"}${sx(k).toFixed(1)},${sy(sg * Math.sqrt((2 * k) / Math.PI)).toFixed(1)}`;
+                }).join("")}
+              />
             ))}
             <text x={W - R} y={H - 6} textAnchor="end" className={s.tick}>
               {fmt(n)} flips
@@ -140,9 +151,10 @@ export default function CoinGap({ slug }: { slug: string }) {
               {view === "gap" ? "Show heads share" : "Show the gap"}
             </Control>
           </Row>
-          <p className={s.key}>Gap = heads minus tails. Share = heads ÷ flips.</p>
+          <p className={s.key}>Gap = heads minus tails. Share = heads ÷ flips. Dashed: the typical gap, from theory.</p>
           <Row>
             <Readout label="Average gap" value={locked ? "?" : avgGap.toFixed(1)} />
+            <Readout label="Typical (dashed)" value={locked ? "?" : typical(n)} />
             <Readout label="Heads share, all runs" value={locked ? "?" : `${(lo * 100).toFixed(1)}–${(hi * 100).toFixed(1)}%`} />
           </Row>
         </div>
