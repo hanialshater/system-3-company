@@ -244,6 +244,20 @@ who no longer exists: check what you rely on.
   - This record clears the ritual's overdue alarm even though nothing is decided yet (G7).
 - **Next:** founder W-479. Platform-engineer W-480 and W-481 (AMD-002 falsifier on 2026-10-16). Chief-of-staff W-482. Fact-checker W-483.
 - **Blocked:** AMD-003 and AMD-004 drafting waits on the founder (W-479).
+## 2026-10-14 (principal-engineer, W-600: EDD-006 engineering review)
+
+- **Changed (branch only, not merged):** `company/engineering/reviews/2026-10-14-edd-006-review.md`; branch W-600 moved to done.
+- **Believe:** **approve with changes.** The QA path, milestones and reveal-card switch are correct as read (high confidence for the QA path, medium for the reveal switch: no run exercises it). JS cost about 3.4 KB gz. Contract QA, reveal-fit and typecheck numbers are the author's; I ran `npm run check` only (pass).
+- **Next:** at merge, renumber W-600..W-603 to main's next IDs (W-582..W-585 today), regenerate the registry, `npm run verify`, then file C1/C2 (design-engineer), C3 (evaluation-steward) and S1 (platform-engineer: home chunk carries every lesson's code, 911 KB gz). No `[deploy]`.
+- **Blocked:** none for the merge. The first non-reference lesson in the format waits on C1, W-583, W-584 and a real-phone check.
+
+## 2026-10-14 (design-engineer, W-600: multi-card sequence format in the kit, EDD-006)
+
+- **Changed (branch `design/multi-card-sequence`, worktree /home/user/s3c-cards, not merged):** `src/kit/sequence.tsx` + `sequence.module.css` (`<CardSequence>`, `<SubCard>`, `useSubCard`); EDD `company/engineering/edd/EDD-006-multi-card-sequence.md`; draft reference lesson `src/demos/math/euclid-three-steps/` (Euclid IX.20 in three sub-cards; all 6 claims unverified; under math because no books domain existed); HQ Design inspector detects `<CardSequence>` (`src/lib/hq-design.ts`); concept file `company/design/concepts/multi-card-sequence.md` kit line. Board: W-600 principal-engineer review, W-601 interaction-designer design review, W-602 accessibility review, W-603 cm-math (the reference duplicates concept infinitude-of-primes, already covered by product-plus-one).
+- **Believe:** no `Lesson.tsx` change is needed (high confidence: the sequence uses only `phase`, `locked`, `interact`). The QA path reaches every sub-card (high: the contract passes 2/2 and the phone explore shot shows all steps ticked). No regression (fairly sure: 20/20 on 10 random lessons, and they do not import the code). Phone fit holds for a 3-card reference (crop 0, 63 words); a 4-card sequence with longer titles is unmeasured.
+- **Not checked:** a real phone (swipe vs the feed's vertical scroll; I used synthetic pointer events), a screen reader by ear, dark theme screenshots.
+- **Next:** principal-engineer reviews EDD-006 (W-600). After approval, interaction designer and accessibility reviewer (W-601, W-602), then the design lead flips the formats.md row from 🔴. Book Summaries builders wait until then.
+- **Blocked:** nothing. Note: the disk was full at 17 MB when I started (many `.next-*` dirs from other agents); I cleared only the npm cache. Someone who owns those builds should prune them.
 
 ## 2026-10-14 · chief-of-staff · Release: Life Hacks and NCM lessons to the live feed (founder-approved deploy)
 - **Approved by:** the founder ("please deploy new demos of life hacks and ncm!! This is top priority"), per the deploy-approval rule.

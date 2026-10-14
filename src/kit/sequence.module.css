@@ -1,0 +1,39 @@
+/* Multi-card sequence (EDD-006). Kit look: the trail and Next use kit .control styling; every tap
+   target is at least 44px tall (system.md), well over the QA contract's 24px floor. */
+.seq { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+.trail { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.trail li { min-width: 0; display: flex; }
+.step {
+  flex: 1; min-width: 0; min-height: 44px; padding: 4px 6px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1px; text-align: center; line-height: 1.2; font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+/* The current step is disabled (pressing it would change nothing) but must not look inactive. */
+.step:disabled[aria-current="step"] { opacity: 1; }
+.stepHead { font-weight: 700; }
+.num { font-variant-numeric: tabular-nums; color: var(--muted); }
+.tick { color: var(--good); }
+.trace { font-size: 0.75rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.viewport { touch-action: pan-y; min-width: 0; }
+.card { display: flex; flex-direction: column; gap: 6px; min-width: 0; border-radius: 10px; outline-offset: 2px; }
+.card[hidden] { display: none !important; }
+.card:focus { outline: none; }
+.card:focus-visible { outline: 2px solid var(--domain); }
+
+.nav { display: flex; justify-content: flex-end; }
+.next { min-height: 44px; min-width: 44px; }
+
+.viewport[data-dir="fwd"] .card:not([hidden]) { animation: seqInFwd 0.18s ease-out; }
+.viewport[data-dir="back"] .card:not([hidden]) { animation: seqInBack 0.18s ease-out; }
+@keyframes seqInFwd { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+@keyframes seqInBack { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .viewport .card:not([hidden]) { animation: none; }
+}
+
+.sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
