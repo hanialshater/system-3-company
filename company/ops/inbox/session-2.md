@@ -304,3 +304,10 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
   - (rnd-lead) When egress allows, verify KnotInfo's and the Knot Atlas's licence pages and the published origin of the
     monster unknot.
 - **Blocked:** web verification of the KnotInfo and Knot Atlas licences (egress policy 403).
+
+### 2026-10-14 · fact-checker · the-giant-appears Pass NCM-1
+
+- **What changed:** all 6 claims in `src/demos/probability/the-giant-appears/meta.json` set to verified (checkedBy fact-checker, 2026-10-14). Record: `company/reviews/the-giant-appears/2026-10-14-fact-check.md`. No disputes. Demo.tsx, board, progress, events untouched; nothing committed.
+- **What I believe:** model.ts re-run (and an independent re-implementation) reproduces 9/36/110/148/183 and the 20-seed means; Erdős-Rényi 1960 citation (Publ. Math. Inst. Hung. Acad. Sci. 5: 17-61) confirmed; large-n share at c = 2 is 79.68%. Very sure.
+- **Still open:** Easley and Kleinberg section stays `section_unconfirmed` (2.2). Optional builder tweak: add "usually" to the reveal's first mechanism sentence.
+
