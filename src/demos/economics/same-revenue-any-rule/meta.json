@@ -1,0 +1,90 @@
+{
+  "slug": "same-revenue-any-rule",
+  "title": "Which auction rule pays the seller most?",
+  "hook": "Make the winner pay their own bid, not the runner-up's. Surely the seller earns more?",
+  "domain": "economics",
+  "concept": "revenue-equivalence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e02"
+  },
+  "learner": {
+    "knows": [
+      "first-price bidders shade their bids",
+      "second-price bidders bid their true value"
+    ],
+    "doesNotKnow": [
+      "that with equilibrium bidding, first-price, second-price and even all-pay auctions earn the seller the same on average"
+    ]
+  },
+  "misconception": "Making winners pay their own bid must earn the seller more than charging the second-highest bid.",
+  "objective": "The learner can explain that each rule changes how much bidders bid, so a higher price paid by one bidder (second-price), a lower price paid by the winner (first-price) and small bids paid by everyone (all-pay) all average the same for the seller.",
+  "claims": [
+    {
+      "id": "economics.same-revenue-any-rule.c1",
+      "text": "In 20,000 simulated auctions the seller averages $33.4 under second-price, $33.3 under first-price and $33.3 under all-pay.",
+      "support": "simulation",
+      "source": "Demo.tsx: mulberry32(97), auction i takes values 100·r() for bidder A then B; seed 97 is the brief's, not chosen by the builder for the result. Totals over 20,000: 33.395 (second-price), 33.303 (first-price, bid v/2), 33.302 (all-pay, bid v²/200). Re-run in node by the builder (ncm-e02); matches the brief's check.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-revenue-any-rule.c2",
+      "text": "Theory gives $100 ÷ 3, about $33.3, for all three rules with two bidders and values uniform on $0 to $100: on average the seller collects the lower of the two values.",
+      "support": "derivation",
+      "source": "E[min of two independent U(0,100)] = 100/3. First-price: E[max/2] = (200/3)/2 = 100/3. All-pay: 2·E[v²]/200 = 2·(10000/3)/200 = 100/3.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-revenue-any-rule.c3",
+      "text": "With these values, the optimal bids are: second-price, your value (the winner pays the lower value); first-price, half your value; all-pay, value squared ÷ 200, paid by both bidders.",
+      "support": "derivation",
+      "source": "Symmetric equilibria for two bidders with values U(0,100): second-price truthful bidding is dominant; first-price b(v) = v/2; all-pay b(v) = v²/200 (all-pay bid = expected payment of a bidder with value v: v·(v/100) − ∫₀^v (x/100) dx = v²/200). Easley and Kleinberg (2010) ch. 9 for first- and second-price. Fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-revenue-any-rule.c4",
+      "text": "Each rule changes how much bidders bid, and the changes cancel, so the seller's average is the same.",
+      "support": "source",
+      "source": "Revenue equivalence for standard auctions with independent private values: R. B. Myerson, 'Optimal auction design', Math. Oper. Res. 6 (1981); J. G. Riley and W. F. Samuelson, Am. Econ. Rev. 71 (1981); Easley and Kleinberg (2010) ch. 9. Fact-checker confirms attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.same-revenue-any-rule.c5",
+      "text": "This is a model: two bidders, values independent and uniform, everyone bidding optimally.",
+      "support": "convention",
+      "source": "Lesson framing; stage chip 'Model: 2 bidders · values random $0–100 · seed 97'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A seller switches from second-price to first-price sealed bids. Bidders' values come from the same spread and everyone bids optimally. What happens to the seller's average revenue?",
+    "options": [
+      "It rises, because the winner now pays their own bid",
+      "It stays about the same, because bidders shade their bids",
+      "It falls to half"
+    ],
+    "answer": 1,
+    "why": "Under first-price the winner pays their own bid, but bids are shaded (half the value here), so on average the seller collects the same as charging the lower value."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:revenue-equivalence",
+    "also": ["probability:expected-value"],
+    "prerequisites": ["economics:first-price-shading"],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 9 }],
+    "tags": ["auctions", "simulation"]
+  },
+  "format": "simulation-run",
+  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "milestone-gate"]
+}

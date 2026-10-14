@@ -1,0 +1,90 @@
+{
+  "slug": "four-in-a-row-two-thirds",
+  "title": "In a line of four, who holds the power?",
+  "hook": "The centre of three takes nearly all. In a line of four, how much do the inner two get?",
+  "domain": "economics",
+  "concept": "balanced-outcomes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e02"
+  },
+  "learner": {
+    "knows": [
+      "the centre of a 3-path takes all",
+      "Nash bargaining: each side gets its fallback plus half of what is left"
+    ],
+    "doesNotKnow": [
+      "that in a 4-path the inner people get 2/3, not all and not half"
+    ]
+  },
+  "misconception": "In a line of four, the two inner people have the same power as the centre of three, so take everything.",
+  "objective": "The learner can explain why, in a line of four, each inner person's outside option depends on the other inner person's deal, so the balanced split settles at 2/3 for B and C and 1/3 for A and D.",
+  "claims": [
+    {
+      "id": "economics.four-in-a-row-two-thirds.c1",
+      "text": "In the line A–B–C–D with deals A–B and C–D worth $1 each, the balanced outcome gives B and C $0.667 (two thirds) each and A and D $0.333.",
+      "support": "derivation",
+      "source": "Balance: v_B = o_B + (1 − o_B)/2 with o_B = 1 − v_C (A's fallback is 0); by symmetry v = 1 − v/2, so v = 2/3. Fixed-point iteration in Demo.tsx shares() from 0.5: 0.75, 0.625, 0.6875, 0.6563 … within $0.001 of 2/3 at round 9. Re-run in node by the builder (ncm-e02).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c2",
+      "text": "Each round, every pair covers both people's fallbacks and halves the rest; B's fallback is what C would leave B in a B–C deal, $1 minus C's share.",
+      "support": "source",
+      "source": "Definition of a balanced outcome (each matched pair splits its surplus over the two outside options equally): Easley and Kleinberg (2010) ch. 12; Cook and Yamagishi (1992). Round-by-round updating is the lesson's way of showing the fixed point, a simplification; stage chip 'Model: each pair covers both fallbacks, then halves the rest'. Fact-checker confirms the definition and attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c3",
+      "text": "B's share swings (0.75, 0.625, 0.688 …) before settling, because each inner person's fallback depends on the other inner person's share.",
+      "support": "derivation",
+      "source": "Iteration values from Demo.tsx shares(); the alternation follows from v_B(next) = 1 − v_C/2 with v_B = v_C.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c4",
+      "text": "In a line of three, the centre's two partners have no other deal, so the centre can take nearly all.",
+      "support": "source",
+      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all). 'Nearly all' allows for a minimum unit. Fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c5",
+      "text": "This is a model, the balanced-outcome rule, not a forecast of any real negotiation.",
+      "support": "convention",
+      "source": "Lesson framing. Laboratory results on 4-paths (brief claim 3) need a human source check and are kept out of learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a line A–B–C–D, A–B and C–D each split $1, and each pair covers both fallbacks then halves the rest. Why doesn't B take nearly all, as the centre of a line of three would?",
+    "options": [
+      "B's fallback is a deal with C, and C has a good fallback too, so B can't squeeze C",
+      "B has only one partner",
+      "A refuses unfair splits"
+    ],
+    "answer": 0,
+    "why": "B's outside option is whatever C would leave B, and C's is whatever B would leave C. Neither is desperate, so the split settles at 2/3 to 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:balanced-outcomes",
+    "also": [],
+    "prerequisites": ["economics:nash-bargaining"],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 12 }],
+    "tags": ["bargaining", "networks", "power"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate", "locked-readouts"]
+}
