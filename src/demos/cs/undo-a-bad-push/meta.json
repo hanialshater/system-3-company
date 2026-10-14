@@ -28,29 +28,37 @@
       "id": "cs.undo-a-bad-push.c1",
       "text": "With five one-unit pipes s-a, s-b, a-b, a-t, b-t, pushing s -> a -> b -> t first leaves every forward route with a full pipe: stuck at a total of 1.",
       "support": "simulation",
-      "source": "Builder's node check of forward-only greedy pushes: starting with s-a-b-t gives 1; starting with s-a-t or s-b-t gives 2.",
-      "status": "unverified"
+      "source": "Builder's node check of forward-only greedy pushes: starting with s-a-b-t gives 1; starting with s-a-t or s-b-t gives 2. | FACT-CHECK 2026-10-14 (pass 10): Own greedy forward-only simulation: zig first 1; s-a-t first 2; s-b-t first 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c2",
       "text": "Sending that unit back along a-b opens s -> b -> a -> t, for a total of 2.",
       "support": "derivation",
-      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2.",
-      "status": "unverified"
+      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2. | FACT-CHECK 2026-10-14 (pass 10): Residual after zig: s-b, b->a (reverse), a-t free; augment gives all four outer pipes at 1, a-b 0, total 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c3",
       "text": "Both pipes out of s are full, so nothing can beat 2: no flow is bigger than the smallest cut.",
       "support": "source",
-      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5.",
-      "status": "unverified"
+      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 10): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; min 2. CLRS 3rd ed. Corollary 26.5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c4",
       "text": "Letting a new route cancel an earlier push is how the Ford-Fulkerson method fixes greedy mistakes; when no route is left, the flow equals the smallest cut.",
       "support": "source",
-      "source": "Ford and Fulkerson, 'Maximal flow through a network', Canadian Journal of Mathematics 8 (1956); CLRS 3rd ed. 26.2, Theorem 26.6 (max-flow min-cut).",
-      "status": "unverified"
+      "source": "Ford and Fulkerson, 'Maximal flow through a network', Canadian Journal of Mathematics 8 (1956); CLRS 3rd ed. 26.2, Theorem 26.6 (max-flow min-cut). | FACT-CHECK 2026-10-14 (pass 10): Ford and Fulkerson, Canad. J. Math. 8 (1956) 399-404; CLRS 3rd ed. 26.2, Theorem 26.6 (max-flow min-cut).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

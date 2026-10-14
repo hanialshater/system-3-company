@@ -27,29 +27,37 @@
       "id": "cs.uphill-finds-a-peak.c1",
       "text": "On the stage's cards (2 5 1 4 7 3 6, face down), the rule turns 4 of the 7 cards and ends on 6, which is a peak even though 7 is bigger.",
       "support": "simulation",
-      "source": "Builder's node run of the rule: compare positions 4 and 5 (4 < 7, go right), then 6 and 7 (3 < 6, go right), stop at position 7: value 6, neighbour 3. The order was written for the lesson to show a peak that is not the maximum.",
-      "status": "unverified"
+      "source": "Builder's node run of the rule: compare positions 4 and 5 (4 < 7, go right), then 6 and 7 (3 < 6, go right), stop at position 7: value 6, neighbour 3. The order was written for the lesson to show a peak that is not the maximum. | FACT-CHECK 2026-10-14 (pass 10): Own node run on 2 5 1 4 7 3 6: compares (4,7), (3,6); turns 4 cards; ends on 6 (neighbour 3).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.uphill-finds-a-peak.c2",
       "text": "A peak only has to be not smaller than its neighbours.",
       "support": "convention",
-      "source": "Definition used in the lesson's question and in MIT 6.006 (Demaine and Devadas, 2011), lecture 1, peak finding.",
-      "status": "unverified"
+      "source": "Definition used in the lesson's question and in MIT 6.006 (Demaine and Devadas, 2011), lecture 1, peak finding. | FACT-CHECK 2026-10-14 (pass 10): MIT 6.006 Fall 2011 lecture 1 (Demaine, Devadas): b is a peak iff b >= a and b >= c. Stage reveal says 'only has to beat its neighbours'; with distinct cards this is the same, but 'not be smaller than' would match c2 exactly (non-blocking).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.uphill-finds-a-peak.c3",
       "text": "If the right card is bigger, walking uphill to the right must reach a peak before the edge, so the left half can go unseen.",
       "support": "derivation",
-      "source": "Walk right from position m + 1 while the next card is bigger; the walk stops at a card not smaller than its right neighbour (or at the end), and its left neighbour is smaller by construction, so it is a peak in the kept half.",
-      "status": "unverified"
+      "source": "Walk right from position m + 1 while the next card is bigger; the walk stops at a card not smaller than its right neighbour (or at the end), and its left neighbour is smaller by construction, so it is a peak in the kept half. | FACT-CHECK 2026-10-14 (pass 10): Re-derived with the invariant H[lo-1] < H[lo] and H[hi] > H[hi+1]; walk stays in the kept half.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.uphill-finds-a-peak.c4",
       "text": "Over all 5,040 orders of 7 cards the rule always finds a peak and never needs more than 5 turns, about 2 per halving.",
       "support": "simulation",
-      "source": "Builder's exhaustive node check over all 7! orders of 1..7: always a peak; 4 turns in 3,780 orders, 5 in 1,260. Logarithmic bound: MIT 6.006 (2011) lecture 1.",
-      "status": "unverified"
+      "source": "Builder's exhaustive node check over all 7! orders of 1..7: always a peak; 4 turns in 3,780 orders, 5 in 1,260. Logarithmic bound: MIT 6.006 (2011) lecture 1. | FACT-CHECK 2026-10-14 (pass 10): Own exhaustive check over all 5,040 permutations: always a peak; 4 turns 3,780, 5 turns 1,260.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

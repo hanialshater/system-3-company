@@ -28,36 +28,46 @@
       "id": "cs.probing-clusters-grow.c1",
       "text": "With slots 2, 3, 4 and 7 full, slot 5 receives keys hashing to 2, 3, 4 or 5 (4 in 10), slot 8 receives 2 in 10, and every other empty slot 1 in 10.",
       "support": "simulation",
-      "source": "Exhaustive over the 10 hash values (builder's node script, scratchpad checks/all.mjs and probe.mjs): slot 0: 1, 1: 1, 5: 4, 6: 1, 8: 2, 9: 1. Assumes each hash value equally likely.",
-      "status": "unverified"
+      "source": "Exhaustive over the 10 hash values (builder's node script, scratchpad checks/all.mjs and probe.mjs): slot 0: 1, 1: 1, 5: 4, 6: 1, 8: 2, 9: 1. Assumes each hash value equally likely. | FACT-CHECK 2026-10-14 (pass 10): Own node exhaustive over 10 hash values with 2, 3, 4, 7 full: slot 0: 1, 1: 1, 5: 4, 6: 1, 8: 2, 9: 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.probing-clusters-grow.c2",
       "text": "A run of full slots catches every key that hashes anywhere inside it, so the longest run grows fastest.",
       "support": "source",
-      "source": "Primary clustering in linear probing: an empty slot preceded by i full slots is filled next with probability (i + 1)/m. CLRS 3rd ed. 11.4.",
-      "status": "unverified"
+      "source": "Primary clustering in linear probing: an empty slot preceded by i full slots is filled next with probability (i + 1)/m. CLRS 3rd ed. 11.4. | FACT-CHECK 2026-10-14 (pass 10): CLRS 3rd ed. 11.4: an empty slot preceded by i full slots is filled next with probability (i + 1)/m; c1 is the m = 10 case.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.probing-clusters-grow.c3",
       "text": "This is called primary clustering.",
       "support": "source",
-      "source": "CLRS 3rd ed. 11.4 (linear probing 'suffers from a problem known as primary clustering'); Knuth, TAOCP Vol. 3, 6.4.",
-      "status": "unverified"
+      "source": "CLRS 3rd ed. 11.4 (linear probing 'suffers from a problem known as primary clustering'); Knuth, TAOCP Vol. 3, 6.4. | FACT-CHECK 2026-10-14 (pass 10): CLRS 3rd ed. 11.4 names it primary clustering; Knuth TAOCP Vol. 3, 6.4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.probing-clusters-grow.c4",
       "text": "Keys walk further as the table fills: probes get longer.",
       "support": "source",
-      "source": "Knuth, TAOCP Vol. 3, 6.4: expected probes for an unsuccessful search about (1 + 1/(1 - a)^2)/2 at load factor a, which grows without bound as a approaches 1. On the stage's seeded run the probes are 2, 3, 5, 5, 3, 6.",
-      "status": "unverified"
+      "source": "Knuth, TAOCP Vol. 3, 6.4: expected probes for an unsuccessful search about (1 + 1/(1 - a)^2)/2 at load factor a, which grows without bound as a approaches 1. On the stage's seeded run the probes are 2, 3, 5, 5, 3, 6. | FACT-CHECK 2026-10-14 (pass 10): Knuth 6.4 formula (1 + 1/(1 - a)^2)/2 is the linear-probing unsuccessful-search approximation; own node sim (m = 1000) gives 2.46, 11.98, 40.1 probes at a = 0.5, 0.8, 0.9 against 2.50, 13.0, 50.5: grows as stated. Own mulberry32 seed 2 run: probes 2, 3, 5, 5, 3, 6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.probing-clusters-grow.c5",
       "text": "On the stage, the 2nd and 3rd keys hash to 3 and 2, inside the 2-4 run, and land past it in slots 5 and 6; after the third key the longest full run is 7 slots.",
       "support": "simulation",
-      "source": "Hash values from mulberry32 seed 2 (src/kit/random.ts): 7, 3, 2, 5, 8, 6. Seed 2 was CHOSEN from seeds 1-8 because its early keys fall inside the run; it is an illustration, not evidence. Builder's probe.mjs: every seed 1-8 reaches a run of 5 or more within 4 inserts (seed 3 needs 4, seed 7 needs 2, the rest 3).",
-      "status": "unverified"
+      "source": "Hash values from mulberry32 seed 2 (src/kit/random.ts): 7, 3, 2, 5, 8, 6. Seed 2 was CHOSEN from seeds 1-8 because its early keys fall inside the run; it is an illustration, not evidence. Builder's probe.mjs: every seed 1-8 reaches a run of 5 or more within 4 inserts (seed 3 needs 4, seed 7 needs 2, the rest 3). | FACT-CHECK 2026-10-14 (pass 10): Own mulberry32(2) hashes 7, 3, 2, 5, 8, 6; keys 2 and 3 land in slots 5 and 6; run 2..8 = 7 after key 3. Seeds 1-8 reach a run of 5 after 3, 3, 4, 3, 3, 3, 2, 3 inserts, as the source says. Chosen seed disclosed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

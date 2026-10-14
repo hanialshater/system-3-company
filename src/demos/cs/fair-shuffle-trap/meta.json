@@ -27,36 +27,46 @@
       "id": "cs.fair-shuffle-trap.c1",
       "text": "Swapping each of 3 positions with any of the 3 positions gives 27 equally likely runs: ACB, BAC and BCA come up 5 times each, ABC, CAB and CBA 4 times each.",
       "support": "simulation",
-      "source": "Exhaustive enumeration, no randomness: the stage and the builder's node script (scratchpad checks/all.mjs) list all 3 x 3 x 3 runs; counts ABC 4, ACB 5, BAC 5, BCA 5, CAB 4, CBA 4.",
-      "status": "unverified"
+      "source": "Exhaustive enumeration, no randomness: the stage and the builder's node script (scratchpad checks/all.mjs) list all 3 x 3 x 3 runs; counts ABC 4, ACB 5, BAC 5, BCA 5, CAB 4, CBA 4. | FACT-CHECK 2026-10-14 (pass 10): Own enumeration of all 27 runs: ABC 4, ACB 5, BAC 5, BCA 5, CAB 4, CBA 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.fair-shuffle-trap.c2",
       "text": "Those three orders are 25% more likely than the others.",
       "support": "derivation",
-      "source": "5/27 against 4/27: ratio 5/4 = 1.25.",
-      "status": "unverified"
+      "source": "5/27 against 4/27: ratio 5/4 = 1.25. | FACT-CHECK 2026-10-14 (pass 10): 5/4 = 1.25.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.fair-shuffle-trap.c3",
       "text": "27 runs cannot split evenly over 6 orders, because 27 is not a multiple of 6.",
       "support": "derivation",
-      "source": "27 / 6 = 4.5. Equal probability for 6 orders from 27 equally likely runs would need each order to get 4.5 runs.",
-      "status": "unverified"
+      "source": "27 / 6 = 4.5. Equal probability for 6 orders from 27 equally likely runs would need each order to get 4.5 runs. | FACT-CHECK 2026-10-14 (pass 10): 27/6 = 4.5, not an integer.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.fair-shuffle-trap.c4",
       "text": "Swapping only with a card not yet placed has 3 x 2 x 1 = 6 runs, exactly one per order: this is the Fisher-Yates shuffle.",
       "support": "source",
-      "source": "Exhaustive enumeration on the stage (6 runs, each order once). Knuth, TAOCP Vol. 2, 3.4.2, Algorithm P; CLRS 3rd ed. 5.3, RANDOMIZE-IN-PLACE: each permutation has probability 1/n!.",
-      "status": "unverified"
+      "source": "Exhaustive enumeration on the stage (6 runs, each order once). Knuth, TAOCP Vol. 2, 3.4.2, Algorithm P; CLRS 3rd ed. 5.3, RANDOMIZE-IN-PLACE: each permutation has probability 1/n!. | FACT-CHECK 2026-10-14 (pass 10): Own enumeration: positions 1, 2 swap with 0..2 and 1..2 give 6 runs, each order once. Knuth TAOCP Vol. 2, 3.4.2 Algorithm P (shuffling); CLRS 3rd ed. 5.3 RANDOMIZE-IN-PLACE.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.fair-shuffle-trap.c5",
       "text": "A fair shuffle needs a number of equally likely runs that the number of orders divides evenly.",
       "support": "derivation",
-      "source": "If R equally likely runs map to n! orders with equal probability, each order gets R/n! runs, which must be a whole number. (Necessary, not sufficient.)",
-      "status": "unverified"
+      "source": "If R equally likely runs map to n! orders with equal probability, each order gets R/n! runs, which must be a whole number. (Necessary, not sufficient.) | FACT-CHECK 2026-10-14 (pass 10): Each of n! orders must get R/n! runs; necessary condition, stated as such in the source.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

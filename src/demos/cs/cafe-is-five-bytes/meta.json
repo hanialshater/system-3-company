@@ -62,8 +62,10 @@
       "id": "cs.cafe-is-five-bytes.c5",
       "text": "UTF-8 gives every ASCII character (English letters, digits, spaces and basic punctuation) one byte, and accented letters, emoji and most other characters two, three or four, so counting bytes and counting characters give different answers.",
       "support": "source",
-      "source": "RFC 3629 (Yergeau 2003), section 3: each code point is encoded in 1 to 4 octets. 'Characters' here means Unicode code points; the stage shows only precomposed characters. | FACT-CHECK 2026-10-13 (pass 9): Pass 9 re-check: stage reveal still says 'UTF-8 gives the plain English letters one byte and other characters two, three or four' (Demo.tsx line 52). Still false for digits, spaces and punctuation (1 byte, RFC 3629 s.3). Dispute stands; same fix as pass 8. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification.",
-      "status": "unverified"
+      "source": "RFC 3629 (Yergeau 2003), section 3: each code point is encoded in 1 to 4 octets. 'Characters' here means Unicode code points; the stage shows only precomposed characters. | FACT-CHECK 2026-10-13 (pass 9): Pass 9 re-check: stage reveal still says 'UTF-8 gives the plain English letters one byte and other characters two, three or four' (Demo.tsx line 52). Still false for digits, spaces and punctuation (1 byte, RFC 3629 s.3). Dispute stands; same fix as pass 8. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification. | FACT-CHECK 2026-10-14 (pass 10): Re-check: reveal now says 'every ASCII character (English letters, digits, spaces and basic punctuation) one byte, and accented letters, emoji and most other characters two, three or four' (Demo.tsx). RFC 3629 s.3: U+0000-007F one octet, everything else 2-4; true as worded ('most' is weaker than 'all', still true).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cafe-is-five-bytes.c6",

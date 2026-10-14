@@ -28,22 +28,28 @@
       "id": "cs.union-find-shortcut.c1",
       "text": "With 8 people, hanging the smaller group under the bigger group's leader, nobody ends more than 3 hops from their leader; merging equal groups in pairs reaches exactly 3.",
       "support": "derivation",
-      "source": "Union by size bounds tree height by floor(log2 n) = 3 for n = 8 (see c3). Pairing merges (1+1, 2+2, 4+4) give height 3, shown by the stage's 'tallest way' button. CLRS 3rd ed. 21.3; exercise 21.4-2.",
-      "status": "unverified"
+      "source": "Union by size bounds tree height by floor(log2 n) = 3 for n = 8 (see c3). Pairing merges (1+1, 2+2, 4+4) give height 3, shown by the stage's 'tallest way' button. CLRS 3rd ed. 21.3; exercise 21.4-2. | FACT-CHECK 2026-10-14 (pass 10): Own exhaustive enumeration of every merge order of 8 singletons under union by size: max height 3; pairwise equal merges reach 3. Note: CLRS 21.3 / ex. 21.4-2 prove the analogous bound for union by rank; the size bound is the c3 derivation, which stands on its own.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.union-find-shortcut.c2",
       "text": "In 1,000 random merge orders the worst tree was 3 hops tall.",
       "support": "simulation",
-      "source": "Stage button and builder's uf.mjs: random pairs of people (mulberry32 seed 1, not chosen; the first seed tried) until one group: worst height 3 (heights 1: 157, 2: 833, 3: 10). Also 20,000 orders at seed 7: worst 3.",
-      "status": "unverified"
+      "source": "Stage button and builder's uf.mjs: random pairs of people (mulberry32 seed 1, not chosen; the first seed tried) until one group: worst height 3 (heights 1: 157, 2: 833, 3: 10). Also 20,000 orders at seed 7: worst 3. | FACT-CHECK 2026-10-14 (pass 10): Own union-find with own mulberry32(1), 1,000 orders: heights 1: 157, 2: 833, 3: 10; seed 7, 20,000 orders: worst 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.union-find-shortcut.c3",
       "text": "A person moves one hop further from their leader only when their group joins one at least as big, so their group at least doubles; from 1 to 8 that can happen only 3 times.",
       "support": "derivation",
-      "source": "A node's depth grows by 1 only when its root is hung under another root of a group at least as large, so its group size at least doubles; sizes go 1 -> at most 8, so at most log2 8 = 3 doublings. CLRS 3rd ed. 21.3-21.4.",
-      "status": "unverified"
+      "source": "A node's depth grows by 1 only when its root is hung under another root of a group at least as large, so its group size at least doubles; sizes go 1 -> at most 8, so at most log2 8 = 3 doublings. CLRS 3rd ed. 21.3-21.4. | FACT-CHECK 2026-10-14 (pass 10): Re-derived: depth of x grows only when its root is hung under a root of a group at least as large, so x's group size at least doubles; 1 -> 8 allows 3 doublings.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

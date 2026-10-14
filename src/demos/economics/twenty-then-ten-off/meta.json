@@ -34,8 +34,10 @@
       "id": "economics.twenty-then-ten-off.c2",
       "text": "The total discount is 28% (100 - 72 = 28 on $100).",
       "support": "derivation",
-      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT. | FACT-CHECK 2026-10-13 (pass 9): The arithmetic is right (0.8 x 0.9 = 0.72, 28%), but the stage does not show 28%: TOTAL_PCT = ((100 - 72)/100) x 100 = 28.000000000000004 in JS (node), and that string is printed in the question option and the reveal ('28.000000000000004% off'). The stage makes a different claim from c2. Fix (builder): round TOTAL_PCT, e.g. Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10, as the readout already does. Re-check after the fix. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification.",
-      "status": "unverified"
+      "source": "0.8 x 0.9 = 0.72. Demo.tsx TOTAL_PCT. | FACT-CHECK 2026-10-13 (pass 9): The arithmetic is right (0.8 x 0.9 = 0.72, 28%), but the stage does not show 28%: TOTAL_PCT = ((100 - 72)/100) x 100 = 28.000000000000004 in JS (node), and that string is printed in the question option and the reveal ('28.000000000000004% off'). The stage makes a different claim from c2. Fix (builder): round TOTAL_PCT, e.g. Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10, as the readout already does. Re-check after the fix. | BUILDER 2026-10-13: stage and claim reworded per fact-check; needs re-verification. | FACT-CHECK 2026-10-14 (pass 10): Re-check of the pass-9 dispute: TOTAL_PCT is now Math.round(((PRICE - FINAL)/PRICE)*1000)/10 = 28 (node), printed as '28%' in the option and '28% off' in the reveal. Claim matches the stage.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.twenty-then-ten-off.c3",

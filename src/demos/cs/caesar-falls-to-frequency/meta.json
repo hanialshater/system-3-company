@@ -27,43 +27,55 @@
       "id": "cs.caesar-falls-to-frequency.c1",
       "text": "X is 19 places after E, so a shift that turns E into X is a shift of 19.",
       "support": "derivation",
-      "source": "Alphabet positions from 0: E = 4, X = 23; 23 - 4 = 19. Checked in node by the builder.",
-      "status": "unverified"
+      "source": "Alphabet positions from 0: E = 4, X = 23; 23 - 4 = 19. Checked in node by the builder. | FACT-CHECK 2026-10-14 (pass 10): E = 4, X = 23 (A = 0); 23 - 4 = 19 (node). Stage KEY = 19; reveal 'X is 19 places after E'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.caesar-falls-to-frequency.c2",
       "text": "E is the most common letter in English.",
       "support": "source",
-      "source": "Lewand, Cryptological Mathematics (MAA, 2000), English letter frequency table: E about 12.7%, the highest. Statement is about typical English text, not every sentence.",
-      "status": "unverified"
+      "source": "Lewand, Cryptological Mathematics (MAA, 2000), English letter frequency table: E about 12.7%, the highest. Statement is about typical English text, not every sentence. | FACT-CHECK 2026-10-14 (pass 10): Lewand (2000) table gives E 12.702%, highest of the 26 letters; claim is about typical English, as stated. Not re-opened from the book (no access); the figure matches every standard English table I know.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.caesar-falls-to-frequency.c3",
       "text": "In the lesson's message, E is the most common letter (23 of 94 letters), so after the shift of 19 the most common cipher letter is X, and lining the tallest bar up with E gives the right shift on the first try.",
       "support": "simulation",
-      "source": "Builder's node count of the plaintext in Demo.tsx (PLAIN): E 23, T 13, H 9 of 94 letters; cipher top letter X (23). The message was written for the lesson and over-represents E (24% against about 13% in typical English); disclosed as a chosen example.",
-      "status": "unverified"
+      "source": "Builder's node count of the plaintext in Demo.tsx (PLAIN): E 23, T 13, H 9 of 94 letters; cipher top letter X (23). The message was written for the lesson and over-represents E (24% against about 13% in typical English); disclosed as a chosen example. | FACT-CHECK 2026-10-14 (pass 10): Own node count of PLAIN: 94 letters, E 23, T 13, H 9, R 6. Shifted by 19, top cipher letter X 23, next M 13, so the tallest bar is unique and 'Tallest bar to E' lands on 19 first. Over-representation of E is disclosed in the source.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.caesar-falls-to-frequency.c4",
       "text": "Shifting renames letters but keeps how often each appears.",
       "support": "derivation",
-      "source": "A Caesar shift is a one-to-one map from letters to letters applied to every position, so each cipher letter appears exactly as often as the plain letter it stands for.",
-      "status": "unverified"
+      "source": "A Caesar shift is a one-to-one map from letters to letters applied to every position, so each cipher letter appears exactly as often as the plain letter it stands for. | FACT-CHECK 2026-10-14 (pass 10): A shift is a bijection on the 26 letters applied to every position, so counts are carried letter to letter (own node: cipher histogram is the plain histogram rotated by 19).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.caesar-falls-to-frequency.c5",
       "text": "A Caesar cipher has only 25 shifts to try.",
       "support": "derivation",
-      "source": "26 letters give shifts 0..25; shift 0 leaves the text unchanged, leaving 25 non-trivial keys.",
-      "status": "unverified"
+      "source": "26 letters give shifts 0..25; shift 0 leaves the text unchanged, leaving 25 non-trivial keys. | FACT-CHECK 2026-10-14 (pass 10): Shifts 0..25; 0 is the identity; 25 non-trivial.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.caesar-falls-to-frequency.c6",
       "text": "Al-Kindi described frequency analysis in the 9th century.",
       "support": "source",
-      "source": "Singh, The Code Book (1999), ch. 1: al-Kindi's 'A Manuscript on Deciphering Cryptographic Messages', 9th century.",
-      "status": "unverified"
+      "source": "Singh, The Code Book (1999), ch. 1: al-Kindi's 'A Manuscript on Deciphering Cryptographic Messages', 9th century. | FACT-CHECK 2026-10-14 (pass 10): Singh, The Code Book (1999) ch. 1: al-Kindi (9th century), 'A Manuscript on Deciphering Cryptographic Messages', earliest known description of frequency analysis. Stage: 'Al-Kindi described this attack in the 9th century'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
