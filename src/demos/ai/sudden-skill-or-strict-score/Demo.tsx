@@ -95,7 +95,7 @@ export default function SuddenSkillOrStrictScore({ slug }: { slug: string }) {
               : mode === "one"
                 ? "1-token answers: whole score = token score"
                 : mode === "token"
-                  ? "Filled: each token · dashed: whole 10-token answers"
+                  ? "Filled: each token · dashed: whole answers"
                   : mode === "whole"
                     ? "Filled: whole 10-token answers"
                     : "Dashed: scores you saw";

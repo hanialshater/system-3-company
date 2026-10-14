@@ -33,7 +33,7 @@ const pct = (f: number) => {
 
 const MILESTONES = ["question-case", "relu-seen"] as const;
 const COLS = 10;
-const X0 = 52;
+const X0 = 57;
 const CW = 24;
 const GAP = 3;
 const TOP = 58;

@@ -85,9 +85,9 @@ export default function DeletedColumnStillThere({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              The model never saw anyone&apos;s group, yet it approved <strong>{pct(q.a)}</strong> of A and only{" "}
+              The model never saw anyone&apos;s group, yet it approved <strong>{pct(q.a)}</strong> of A and{" "}
               <strong>{pct(q.b)}</strong> of B, a wider gap than the lenders&apos; 80% and 40%. It learned from their biased
-              decisions, and neighbourhood told it the group: most A applicants lived in N1, most B in N2.
+              decisions, and neighbourhood told it the group: most A lived in N1, most B in N2.
             </p>
             <p>
               When you mixed the neighbourhoods, the same model approved both groups alike. Deleting the column deletes the label,
