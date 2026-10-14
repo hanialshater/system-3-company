@@ -33,3 +33,13 @@ for p in 1 2 3; do gh api "repos/hanialshater/system-3-company/actions/runs?stat
 The COE action also says to cancel the pre-13:09 **in-progress** runs. This task's brief excluded them, so that decision is still open for whoever runs the sweep. Each of those runs holds a runner for about an hour.
 
 W-481 (AMD-002 prediction check, 10-16) cannot measure anything until this sweep runs.
+
+## 2026-10-14, about 20:30 UTC (chief of staff, after the founder said "W-781 clear it yourself")
+
+I tried one cancel through each available route. Both returned 403 "Resource not accessible by integration":
+- `gh api -X POST …/actions/runs/38623374362/cancel`
+- the GitHub MCP tool's `cancel_workflow_run`
+
+The session's GitHub App has no `actions: write`. The founder approving the sweep doesn't change GitHub's permission check. A cancel workflow running with GITHUB_TOKEN was rejected: it would queue behind the same backlog.
+
+The founder now has two options: run the sweep in the founder's reply with their own `gh`, or grant the Claude GitHub App "Actions: Read and write" so the chief of staff can run it.
