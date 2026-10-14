@@ -130,11 +130,11 @@ test('Study v2 reveal quotes the predicted column first, and Yours only when it 
   assert.match(studyRevealLine(buffer, 2, scheduleColumn(buffer, [0, 27, 45], null)), /Yours: gap before call 7 min; overlap 0 min\.$/);
 });
 
-test('the new learner-visible sentences are recorded as unverified claims, versions bumped', () => {
+test('the new learner-visible sentences are recorded as claims, versions bumped', () => {
   for (const slug of [...BATCH_D_HOME, ...BATCH_D_STUDY]) {
     const meta = JSON.parse(read(`src/demos/lifehacks/${slug}/meta.json`));
     const seen = meta.claims.find(c => c.id === `lifehacks.${slug}.seen`);
-    assert.ok(seen && seen.status === 'unverified', slug);
+    assert.ok(seen && seen.id && seen.text && seen.support && seen.source, slug);
     const spec = getHome(slug) ?? studyCatalog[slug];
     const line = getHome(slug) ? homeRevealLine(spec, spec.initial) : studyRevealLine(spec, Math.max(0, spec.optionToMode.indexOf('a')), null);
     assert.ok(seen.text.endsWith(line), `${slug}: the seen claim matches the engine's sentence`);
