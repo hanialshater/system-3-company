@@ -27,8 +27,10 @@
       "id": "economics.two-bets-split.c1",
       "text": "With two independent bets you lose only if both fall: ½ × ½ = 25% (split equally across two independent bets that each pay +20% or −10% with equal chance, the loss is −10%).",
       "support": "derivation",
-      "source": "outcomes(2): returns −10%, +5%, +20% with chances 1/4, 1/2, 1/4; only −10% is a loss. Builder's Node run, 2026-10-14. v5: the stage no longer pins itself to 2 bets; the 25% is in the 'Chance of a loss seen' row (milestone two-bets).",
-      "status": "unverified"
+      "source": "outcomes(2): returns −10%, +5%, +20% with chances 1/4, 1/2, 1/4; only −10% is a loss. Builder's Node run, 2026-10-14. v5: the stage no longer pins itself to 2 bets; the 25% is in the 'Chance of a loss seen' row (milestone two-bets). | FC pass 24 (fact-checker, 2026-10-14): Reread v5 Demo.tsx: reveal says '½ × ½ = 25%, as in the row under the chart'; milestone two-bets (n = 2, independent) gates the reveal, so '2 bets: 25%' is always in the seen row. Own node port: outcomes(2) -10/+5/+20 at 1/4, 1/2, 1/4; loss 0.25.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.two-bets-split.c2",
@@ -61,22 +63,28 @@
       "id": "economics.two-bets-split.c5",
       "text": "The chance of some loss does not fall at every step: with 4 bets it was 31.3%, more than the 25% with 2. (Shown in the reveal only if the learner visited 4 bets.)",
       "support": "derivation",
-      "source": "outcomes(4): returns −10, −2.5, +5, +12.5, +20 with chances 1, 4, 6, 4, 1 /16; losses −10 and −2.5 give 5/16 = 31.25%, which pct() renders 31.3%. Builder's Node run, 2026-10-14.",
-      "status": "unverified"
+      "source": "outcomes(4): returns −10, −2.5, +5, +12.5, +20 with chances 1, 4, 6, 4, 1 /16; losses −10 and −2.5 give 5/16 = 31.25%, which pct() renders 31.3%. Builder's Node run, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Own node port lossChance(n) n = 1..6: 50, 25, 12.5, 31.25, 18.75, 10.94%; pct(0.3125) = '31.3%'. Reveal sentence appears only when indepSeen(4). The reveal wording is 'with 4 bets it was 31.3%' (it does not repeat 'more than the 25% with 2', which is in the paragraph above); the comparison is true.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.two-bets-split.c6",
       "text": "A model with made-up numbers. Real investments often fall together. Not advice.",
       "support": "source",
-      "source": "Disclosure. The numbers (+20% / −10%, equal chance) are invented. That real assets' returns are often positively correlated is general context; the lesson's own evidence for what correlation does is the 'together' state on stage (c9), not an external source.",
-      "status": "unverified"
+      "source": "Disclosure. The numbers (+20% / −10%, equal chance) are invented. That real assets' returns are often positively correlated is general context; the lesson's own evidence for what correlation does is the 'together' state on stage (c9), not an external source. | FC pass 24 (fact-checker, 2026-10-14): DISPUTED (sourcing). 'Made-up numbers' and 'Not advice' hold (UP = 20, DOWN = -10 are constants). 'Real investments often fall together' is a claim about the world with no source attached ('general context'); the on-stage together state shows what correlation does in the model, not that real assets are correlated. Web-search snippets point to Preis et al. 2012 (Sci. Rep.) on DJIA correlations rising in stress, but every host was unreachable (DNS fails for arxiv.org, cfainstitute.org), so I could not open it. Fix (builder): attach a source a checker can open, or reword as a model-relative hedge (e.g. 'If real investments fall together, splitting helps less, as the together button showed').",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.two-bets-split.c7",
       "text": "Independent bets partly cancel: as you split further the bars bunch around +5%, and the worst case, every bet falling, gets rarer.",
       "support": "derivation",
-      "source": "Binomial: the spread of the average return shrinks like 1/sqrt(n); the worst case has chance 1/2^n (c4). Builder's Node run, 2026-10-14, for n = 1..6.",
-      "status": "unverified"
+      "source": "Binomial: the spread of the average return shrinks like 1/sqrt(n); the worst case has chance 1/2^n (c4). Builder's Node run, 2026-10-14, for n = 1..6. | FC pass 24 (fact-checker, 2026-10-14): Reveal (unconditional): 'as you split further the bars bunched around +5%, and the worst case ... got rarer'. Own node port: sd of the split's return 15.00, 10.61, 8.66, 7.50, 6.71, 6.12 for n = 1..6 (15/sqrt n); average 5 every n; worst-case chance 0.5^n via worstChance().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.two-bets-split.c8",
@@ -91,8 +99,10 @@
       "id": "economics.two-bets-split.c9",
       "text": "When the bets move together, any split loses 50% of the time, the same as one bet; splitting only cancels risk when the bets do not fall together.",
       "support": "derivation",
-      "source": "Perfectly correlated bets all return the same, so an equal split returns +20% or −10% with chance 1/2 each, whatever n (Demo.tsx outcomes(n, 'together')). This is the extreme case (correlation 1); for partly correlated bets the cancelling is partial. Builder's derivation, 2026-10-14.",
-      "status": "unverified"
+      "source": "Perfectly correlated bets all return the same, so an equal split returns +20% or −10% with chance 1/2 each, whatever n (Demo.tsx outcomes(n, 'together')). This is the extreme case (correlation 1); for partly correlated bets the cancelling is partial. Builder's derivation, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Own node port outcomes(n, 'together') = -10/+20 at 0.5 each for every n; lossChance = 50%, average +5%. Reveal paragraph renders only when a together entry with n > 1 is in seen (go() records n = 1 as independent), and quotes pct(lossChance(together[0].n, 'together')) = 50%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

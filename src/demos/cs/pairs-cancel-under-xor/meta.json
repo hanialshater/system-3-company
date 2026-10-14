@@ -26,29 +26,37 @@
       "id": "cs.pairs-cancel-under-xor.c1",
       "text": "Folding 5 3 3 4 7 5 4 with XOR from 0 gives 7, written 111 in binary (running values 5, 6, 5, 1, 6, 3, 7). Their sum is 31.",
       "support": "simulation",
-      "source": "Demo.tsx xorAll(BASE) and the stage's running value; builder's node run 2026-10-14: running 5,6,5,1,6,3,7; sum 31 (distractor option).",
-      "status": "unverified"
+      "source": "Demo.tsx xorAll(BASE) and the stage's running value; builder's node run 2026-10-14: running 5,6,5,1,6,3,7; sum 31 (distractor option). | FC pass 24 (fact-checker, 2026-10-14): Own node fold (fc24/xor.mjs): running 5,6,5,1,6,3,7; final 7 = bin '111'; sum 31 (option 3). Predict question and options read from Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pairs-cancel-under-xor.c2",
       "text": "Whatever lamps a number flips, its partner flips the same lamps back: a XOR a = 0, and a XOR 0 = a. On stage the second 3 (011) flips lamps 2 and 1 back and the running value goes from 6 to 5, as before the first 3.",
       "support": "derivation",
-      "source": "Bitwise: each bit of a XOR a is b XOR b = 0; each bit of a XOR 0 is b. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Algebra true, mechanism sentence false on the stage's own order. Trace of 7 3 5 4 5 3 4: 3 turns lamps 2 and 1 OFF (111->100) and its partner turns them back ON (000->011); the first 5 turns 4 off and 1 on. So 'the bits it switched on switch back off' (and the reveal's 'the lamps it had switched on switched back off') misdescribes what the learner watches. Fix (builder): 'the lamps it flipped flip back' / 'its partner flips the same lamps again'. · Builder 2026-10-14 (W-203): reworded per pass 21; awaiting re-check. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. The reveal (line 168) and the Demo header now use this wording. A number flips exactly the lamps where it has a 1 (r XOR (r XOR v) = v). The partner flips the same set again, which cancels the flip whatever lies between them, because toggles commute. Own trace of 7 3 5 4 5 3 4: each fold flips the lamps of v's bits (3 flips 2,1; 5 flips 4,1; 4 flips 4), and the end is 111. The pass 21 objection (on versus off) no longer applies: the text says 'flips', not 'switched on'. a XOR a = 0 and a XOR 0 = a hold bitwise. | v3: stage message for a twin fold: 'the second 3 flips lamps 2 and 1 back, as the first did'; lamps flipped by the last number are ringed.",
-      "status": "unverified"
+      "source": "Bitwise: each bit of a XOR a is b XOR b = 0; each bit of a XOR 0 is b. Unverified. | FACT-CHECK 2026-10-14 (pass 21): Algebra true, mechanism sentence false on the stage's own order. Trace of 7 3 5 4 5 3 4: 3 turns lamps 2 and 1 OFF (111->100) and its partner turns them back ON (000->011); the first 5 turns 4 off and 1 on. So 'the bits it switched on switch back off' (and the reveal's 'the lamps it had switched on switched back off') misdescribes what the learner watches. Fix (builder): 'the lamps it flipped flip back' / 'its partner flips the same lamps again'. · Builder 2026-10-14 (W-203): reworded per pass 21; awaiting re-check. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. The reveal (line 168) and the Demo header now use this wording. A number flips exactly the lamps where it has a 1 (r XOR (r XOR v) = v). The partner flips the same set again, which cancels the flip whatever lies between them, because toggles commute. Own trace of 7 3 5 4 5 3 4: each fold flips the lamps of v's bits (3 flips 2,1; 5 flips 4,1; 4 flips 4), and the end is 111. The pass 21 objection (on versus off) no longer applies: the text says 'flips', not 'switched on'. a XOR a = 0 and a XOR 0 = a hold bitwise. | v3: stage message for a twin fold: 'the second 3 flips lamps 2 and 1 back, as the first did'; lamps flipped by the last number are ringed. | FC pass 24 (fact-checker, 2026-10-14): Reread v3: 'Fold to next twin' from 0 stops at index 3 (nextTwin), the second 3; stage message '110 XOR 011 = 101: the second 3 flips lamps 2 and 1 back, as the first did', 6 -> 5 (6^3 = 5), and 5 was the value before the first 3. Rings mark lamps of v's bits (3 = lamps 2, 1). a^a = 0, a^0 = a bitwise. If a learner skips the base twin (Fold the rest, then New order), the reveal quotes the twin they did see (e.g. second 4 in 7 3 4 5 4 3 5: 5 -> 1), still true; the twin record is first-only and survives Start over.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pairs-cancel-under-xor.c3",
       "text": "XOR ignores order, so any order of the list ends at 7; the learner's second order (the first 'New order' is 7 3 4 5 4 3 5) also ends at 7.",
       "support": "derivation",
-      "source": "XOR is associative and commutative (bitwise addition mod 2). The stage's 'New order' button reshuffles with mulberry32 seeds 1001, 1002, ... (seeds not chosen to show anything; every order gives 7). Unverified. | FACT-CHECK 2026-10-14 (pass 21): XOR is commutative and associative; stage reshuffle uses mulberry32(1000 + k), k = 1, 2, ... (seeds 1001, 1002, ... as stated); all 200 orders tried give 7. | v3: v3 list 5 3 3 4 7 5 4; New order uses mulberry32(1001) for the first reshuffle (seed not chosen for the result; every order gives 7). Builder's node run: 7 3 4 5 4 3 5 -> 7.",
-      "status": "unverified"
+      "source": "XOR is associative and commutative (bitwise addition mod 2). The stage's 'New order' button reshuffles with mulberry32 seeds 1001, 1002, ... (seeds not chosen to show anything; every order gives 7). Unverified. | FACT-CHECK 2026-10-14 (pass 21): XOR is commutative and associative; stage reshuffle uses mulberry32(1000 + k), k = 1, 2, ... (seeds 1001, 1002, ... as stated); all 200 orders tried give 7. | v3: v3 list 5 3 3 4 7 5 4; New order uses mulberry32(1001) for the first reshuffle (seed not chosen for the result; every order gives 7). Builder's node run: 7 3 4 5 4 3 5 -> 7. | FC pass 24 (fact-checker, 2026-10-14): Own port of shuffled() with own mulberry32 copy: New order #1 = 7 3 4 5 4 3 5 -> 7; #2..#5 also 7; all 5,040 permutations of the list give 7 (XOR commutative, associative). Reveal quotes history[1] (the second distinct fully folded order).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pairs-cancel-under-xor.c5",
       "text": "It needs every other number to appear an even number of times; one that appears three times does not cancel.",
       "support": "derivation",
-      "source": "The XOR of a list is the XOR of the values that appear an odd number of times (pairs cancel by c2). A value appearing 3 times leaves one copy, so the result is lone XOR that value. Node example: 5 5 5 7 7 gives 5, and 5 5 5 7 2 2 gives 2, not 7. Unverified. | FACT-CHECK 2026-10-14 (pass 21): node: 5 5 5 7 7 -> 5; 5 5 5 7 2 2 -> 2. Derivation (result = XOR of odd-count values) holds. | v3: v3: 'and spoils the answer' dropped.",
-      "status": "unverified"
+      "source": "The XOR of a list is the XOR of the values that appear an odd number of times (pairs cancel by c2). A value appearing 3 times leaves one copy, so the result is lone XOR that value. Node example: 5 5 5 7 7 gives 5, and 5 5 5 7 2 2 gives 2, not 7. Unverified. | FACT-CHECK 2026-10-14 (pass 21): node: 5 5 5 7 7 -> 5; 5 5 5 7 2 2 -> 2. Derivation (result = XOR of odd-count values) holds. | v3: v3: 'and spoils the answer' dropped. | FC pass 24 (fact-checker, 2026-10-14): Own node: 5 5 5 7 7 -> 5; 5 5 5 7 2 2 -> 2. The XOR of a list is the XOR of its odd-count values, so a thrice-seen value leaves one copy. Reveal sentence matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.pairs-cancel-under-xor.c6",
