@@ -61,15 +61,25 @@ Per picture, scale floor = `max(0.4, 10 / smallest meaning-carrying <text> px)`,
 
 Objection: the head of product may still decide that no labelled picture shrinks at all (floor 1). That is stricter than this ruling and compatible with it.
 
-## Fold at the reveal (W-330, 2026-10-14, design-lead; decided, not built)
+## Fold at the reveal (W-330, revised W-347 with the W-335 design review, 2026-10-14, design-lead; decided, not built)
 
-Decision: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`, "Amendment, W-330". Until the
-platform engineer ships it, builders do nothing new.
-- A lesson may opt a `Row` in to folding. Opt in only rows the reveal does not quote (no control state,
-  readout, label or chip the reveal names). Rows inside the picture never fold.
-- At the reveal, only if stage + reveal overflow the card, the kit folds all opted-in rows first (before any
-  picture shrink), and shows one **"Show controls"** button where the first folded row was: full stage
-  width, at least 44 px tall, `aria-expanded`. Pressed, the rows come back in DOM order, at full size,
-  state kept; the label becomes "Hide controls".
+Decision: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`, "Amendment, W-330" (the spec, items
+1 to 8). Until the platform engineer ships it, builders do nothing new.
+- **Opt in only if the learner loses no evidence.** A lesson may opt a `Row` in to folding only if (a) it
+  holds no `Readout` (the kit never folds a Row with one); (b) no sentence in any reveal branch summarises
+  its state or asks the learner to check something with it (read the Demo.tsx branches; reveal-fit `named`
+  is a floor, not the test); (c) its state still shows in the picture. Rows inside the picture never fold.
+- **Only when needed, and only when it pays.** At the reveal, only if stage + reveal overflow the card, and
+  only if the folded rows free at least the toggle's own height (44 px) after paying for the toggle, the
+  kit folds all opted-in rows first (before any picture shrink).
+- **Decided once, before the reveal's first paint.** Later re-fits (400 ms timer, growth, resize,
+  rotation) never fold or unfold.
+- **The toggle.** One button where the first folded row was. It reads **"Show more controls"** when other
+  stage controls stay visible, and "Show controls" only when none is left; expanded, "Hide controls". It
+  looks like a control, not caption text: kit Control styling with a disclosure chevron (look: visual
+  designer, W-350), full stage width, at least 44 px tall, `aria-expanded`, `aria-controls`.
+- **Focus and scroll.** Focus inside a folding row moves to the toggle. On expand, focus stays on the
+  toggle and the toggle keeps its on-screen position: rows open below it, no scroll jump. Pressed, the rows
+  come back in DOM order, at full size, state kept, and stay open until the reveal phase ends.
 - Rows are hidden with `display: none` only. Never collapse by height, scale, opacity or visibility (that
   shrinks tap targets and fails the QA contract's 24 px check).

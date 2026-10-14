@@ -2,7 +2,7 @@
 
 owner: design-lead
 date: 2026-10-14
-status: decided; craft rule adopted with changes by head-of-product (W-263, 2026-10-14); amended 2026-10-14 by design-lead (W-330): option (a) comes back in a restricted form, "fold at the reveal" (see the section of that name). Not built.
+status: decided; craft rule adopted with changes by head-of-product (W-263, 2026-10-14); amended 2026-10-14 by design-lead (W-330): option (a) comes back in a restricted form, "fold at the reveal" (see the section of that name); spec revised with the interaction designer's five W-335 changes (W-347). Not built.
 
 ## Context
 Board W-259. At 390×844, once the reveal opens, the card body scrolls so the reveal's last line is on
@@ -100,25 +100,52 @@ judgement with the person who knows what the reveal quotes, keeps one look and o
 one prop per lesson.
 
 **The design (spec for the platform engineer's EDD; also in `company/design/system.md`, "Fold at the reveal").**
-1. **Opt-in per row.** `Row` (src/kit/controls.tsx) gets a fold opt-in (name is the EDD's; e.g.
-   `foldAtReveal`). A builder may opt in a row only if the reveal does not quote anything in it (no control
-   state, readout, label or chip that the reveal names), checked against `tools/reveal-fit.mjs` `named`.
-   Rows inside the picture, and controls inside svgs, never fold.
-2. **Only when needed.** Folding happens only in the reveal phase, only when stage + reveal overflow the card
-   body (`over > 1`), and it is the first step of the fit: fold opted-in rows, then shrink pictures to the
-   W-287 floors, then scroll. A lesson that fits does not change. All opted-in rows of a lesson fold
-   together (no partial folds).
-3. **One toggle, in place.** The folded rows are replaced by one kit button, **"Show controls"**, at the
-   position of the first folded row (DOM order). One look everywhere: full stage width, text style, at least
-   44 px tall (system.md tap targets; the contract floor is 24 px), `aria-expanded`, `aria-controls` naming
-   the folded rows. It carries `data-qa="control"` (it is an interactive element on the stage).
-4. **Expanded means exactly as before.** Pressing it restores every folded row in its original DOM order, at
-   its natural size (never scaled), with its state kept: rows are hidden with the `hidden` attribute or
-   `display: none`, never unmounted, and never collapsed by height, opacity, transform or visibility. The
-   label becomes "Hide controls". The learner can keep exploring; live reveal text updates as today.
-   Expanding counts as learner intent: the fit does not re-run or scroll against it.
-5. **Reset.** Leaving the reveal phase (replay, a new prediction) unfolds everything and removes the toggle.
-6. **No contract change, no `Lesson.tsx` change.** The fold lives in `controls.tsx` and `DemoCard.tsx`
+*Revised 2026-10-14 by design-lead (W-347) to take in the interaction designer's five W-335 changes (Consulted).
+The changes are marked [W-335 n].*
+1. **Opt-in per row, on an evidence test [W-335 1].** `Row` (src/kit/controls.tsx) gets a fold opt-in (name is
+   the EDD's; e.g. `foldAtReveal`). The test is whether the learner loses evidence, not whether the reveal
+   quotes the row. A builder may opt a row in only if all three hold:
+   (a) the row holds no `Readout` (the kit enforces this: a Row containing a Readout never folds, even if
+   opted in);
+   (b) no sentence in **any** reveal branch summarises the row's state or asks the learner to check
+   something with it. The builder checks this by reading the Demo.tsx reveal branches. `tools/reveal-fit.mjs`
+   `named` only sees the measured path and misses paraphrase, so it is a floor, not the test;
+   (c) the row's current state still shows in the picture (what the learner set is visible without the row).
+   So a fold hides only the means of changing the state, never the record of it. Rows inside the picture,
+   and controls inside svgs, never fold.
+2. **Only when needed, and only when it pays [W-335 5].** Folding happens only in the reveal phase, only when
+   stage + reveal overflow the card body (`over > 1`), and only if it saves at least the toggle's own
+   height: the folded rows' heights, margins included, minus the toggle's height and margin, must be at
+   least the toggle's height (44 px). Otherwise nothing folds. It is the first step of the fit: fold
+   opted-in rows, then shrink pictures to the W-287 floors, then scroll. A lesson that fits does not
+   change. All opted-in rows of a lesson fold together (no partial folds).
+3. **Decided once, before the reveal's first paint [W-335 3].** The fold is decided in the same layout pass
+   that first shows the reveal, before it paints, so the learner never watches rows vanish. Later re-fits
+   (the 400 ms timer, content growth, ResizeObserver, rotation) never fold or unfold. They may only shrink
+   pictures and scroll, as today.
+4. **One toggle, in place, that looks like a control [W-335 2].** The folded rows are replaced by one kit
+   button at the position of the first folded row (DOM order). Label: **"Show more controls"** when any
+   other `[data-qa="control"]` on the stage stays visible, and **"Show controls"** only when none is left.
+   Expanded, it reads "Hide controls". It must look like a control, not caption text: kit Control styling
+   with a disclosure chevron that flips on expand (the exact look is the visual designer's, W-350), full
+   stage width, at least 44 px tall (system.md tap targets; the contract floor is 24 px), `aria-expanded`,
+   `aria-controls` naming the folded rows. It carries `data-qa="control"` (it is an interactive element on
+   the stage).
+5. **Focus and no scroll jump [W-335 4].** If focus is inside a row that folds, it moves to the toggle.
+   Folded, the Tab order is: stage controls before the first folded row, then the toggle, then the
+   remaining controls, then the reveal. Expanded, the restored rows follow the toggle in DOM order. On
+   expand, focus stays on the toggle and **the toggle keeps its on-screen position**: rows open below it,
+   the reveal moves down, and the card does not scroll. On hide, focus inside a hidden row returns to the
+   toggle. An automatic fold gets no live announcement (it would talk over the reveal); the toggle's name
+   and `aria-expanded` in reading order are enough. The accessibility reviewer confirms (W-336).
+6. **Expanded means exactly as before.** Pressing the toggle restores every folded row in its original DOM
+   order, at its natural size (never scaled), with its state kept: rows are hidden with the `hidden`
+   attribute or `display: none`, never unmounted, and never collapsed by height, opacity, transform or
+   visibility. The learner can keep exploring; live reveal text updates as today. Expanding counts as
+   learner intent: the choice holds until the reveal phase ends, and the fit does not re-run or scroll
+   against it.
+7. **Reset.** Leaving the reveal phase (replay, a new prediction) unfolds everything and removes the toggle.
+8. **No contract change, no `Lesson.tsx` change.** The fold lives in `controls.tsx` and `DemoCard.tsx`
    (`useRevealFit`). If the EDD finds it needs `src/kit/Lesson.tsx` (protected), that is an amendment and
    goes to the evaluation steward first.
 
@@ -128,7 +155,7 @@ one prop per lesson.
   every control is still pressed once and the toggle does not exist yet. Unchanged.
 - Step 4 (reveal unlocks, visible, > 120 characters) is unchanged.
 - Step 5 runs after the reveal. The tap-target check filters `offsetParent !== null`, so controls hidden with
-  `display: none` are skipped, and the toggle (≥ 44 px) passes. This is why item 4 forbids height, scale or
+  `display: none` are skipped, and the toggle (≥ 44 px) passes. This is why item 6 forbids height, scale or
   visibility collapses: those would leave 0-height controls in the check and fail it, and would break
   demo-standard's "never fix it by shrinking tap targets". Horizontal overflow: the toggle must not widen
   the stage.
@@ -142,7 +169,7 @@ one prop per lesson.
 
 **Sequence.** W-287 lands -> platform engineer's EDD and build of the fold -> interaction-designer design
 review (the design lead may not approve their own design) and accessibility review of the toggle ->
-reveal-fit gains fold simulation and the expand check, and a re-sweep on that build -> head of product
+reveal-fit gains fold simulation (charging the toggle, excluding Readout rows, W-349) and the expand check, and a re-sweep on that build -> head of product
 adds the fold step to demo-standard's fix order -> builders opt rows in (W-326, still held until then) and
 re-measure crop 0 -> learner re-review of a sample with a re-check task.
 
@@ -192,10 +219,10 @@ is not worth a kit mechanism, and W-326 compaction carries it alone).
 | A 90-word cap could cut teaching from reveals that fit today, and could push sentences that answer wrong options out of the reveal. | head-of-product (anticipated for learning-designer) | purpose | **Accepted, limited.** Lessons that already fit are not reopened for word count. In new work, told context can move to the stage caption. Revisit the number if the W-264 sweep shows reveals of 90 words or fewer still cropping often (then 90 is too loose), or if learner reviews mark 90-word reveals as missing the why (then 90 is too tight). |
 | Nobody was consulted live. The views of the platform engineer and the principal engineer come from their written records. | design-lead | evidence | **Open.** The platform engineer, principal engineer and head of product are consulted through their records (the crop note, the W-135 review, the 2026-10-14 reveal decision). Each of them owns a board item above and can object in this table. *2026-10-14, head-of-product:* has now answered in writing (Consulted, W-263). The platform engineer is still open. *2026-10-14, principal-engineer:* answered in writing in the W-237 review (row below). |
 | The kit's picture fit (1a879c6) does what this rule forbids: at 390×844 it shrinks svg labels below 9 px in 347 of 433 shrunk lessons (median 4.9 px), so what the reveal names is on screen but unreadable. | principal-engineer (W-237 review, 2026-10-14) | evidence | **Open, routed.** W-237 is approved with changes: a legibility floor (W-287, blocks release, or revert 1a879c6). The minimum text size goes to the accessibility reviewer (W-289). The head of product decides whether 'never shrink text' allows any shrink of labelled pictures. See `company/engineering/reviews/2026-10-14-W-237-reveal-stage-crop.md`. |
-| The learner may need the controls at the reveal to re-check what the reveal quotes; folding them hides exactly that. | caller of W-330 (caveat 2) and this record's original objection to (a) | purpose | **Accepted, designed around.** Only rows the reveal does not quote may opt in (checked against reveal-fit `named`); folding fires only when the card overflows; one tap restores every row in order, at full size, with state kept. The learner re-review after the build includes a re-check task. If it fails, (a2) is revisited (Amendment, Revisit). |
+| The learner may need the controls at the reveal to re-check what the reveal quotes; folding them hides exactly that. | caller of W-330 (caveat 2) and this record's original objection to (a) | purpose | **Accepted, designed around.** Only rows the reveal does not quote may opt in (checked against reveal-fit `named`); folding fires only when the card overflows; *2026-10-14, W-347:* the quote test is replaced by the evidence test (spec item 1, row below); one tap restores every row in order, at full size, with state kept. The learner re-review after the build includes a re-check task. If it fails, (a2) is revisited (Amendment, Revisit). |
 | The sweep ran on build 5, before the W-287 10 px label floor; crops will grow, and "174 of 217 close with controls hidden" was measured against pictures shrunk below that floor. | caller of W-330 (caveat 1) | evidence | **Accepted.** The 174 is treated as an upper bound. The fold runs before any picture shrink, so it also reduces shrink. No builder opts rows in until a re-sweep on a W-287 build with the fold simulated (board, platform-engineer). |
 | A fold the contract cannot see: the contract never presses the toggle or checks that controls come back and still work after the reveal. | design-lead (anticipated for evaluation-steward, qa-tester) | evidence | **Open, routed.** The design does not force an amendment (Amendment, QA contract implications). reveal-fit carries the expand check meanwhile. The evaluation steward decides whether to propose a contract amendment (board). |
 | The design lead wrote this design and may not approve it in design review. | design-lead (role rule) | purpose | **Accepted, routed.** The interaction designer does the design review of the EDD and the built toggle; the accessibility reviewer reviews the toggle (aria, focus, 44 px). |
-| "The reveal does not quote it" is a text test; re-checking needs evidence. A row with a readout the reveal summarises (midnight-sun-line "Sun sets?") passes the test and folds the proof away. | interaction-designer (W-335) | purpose | **Open, routed to design-lead (W-347).** Proposed: no Row with a `Readout` folds; check every reveal branch by reading Demo.tsx; the row's state must show in the picture. |
-| A 44 px toggle replacing one ~44 px row saves nothing and still makes the stage jump; a fold from the 400 ms or resize re-fit makes rows vanish after the learner has seen them. | interaction-designer (W-335) | evidence | **Open, routed (W-347 spec, W-348 EDD, W-349 re-sweep).** Proposed: a net-saving gate of at least the toggle height; the fold is decided once, before the reveal first paints. |
+| "The reveal does not quote it" is a text test; re-checking needs evidence. A row with a readout the reveal summarises (midnight-sun-line "Sun sets?") passes the test and folds the proof away. | interaction-designer (W-335) | purpose | **Accepted, closed (W-347, design-lead, 2026-10-14).** Spec item 1 is now an evidence test: no Row with a `Readout` folds (kit-enforced); the builder checks every reveal branch in Demo.tsx (reveal-fit `named` is a floor); the row's state must show in the picture. In midnight-sun-line, Row 2 ("Sun sets?") can no longer fold. Cost accepted: fewer lessons can use the fold, and re-checking a folded row's state costs one tap. Built behaviour is re-reviewed in W-351; learners test it in W-338 with a Readout-backed sentence. |
+| A 44 px toggle replacing one ~44 px row saves nothing and still makes the stage jump; a fold from the 400 ms or resize re-fit makes rows vanish after the learner has seen them. | interaction-designer (W-335) | evidence | **Accepted; spec closed (W-347, 2026-10-14), build and measure still open (W-348, W-349).** Spec item 2: fold only if the folded rows minus the toggle free at least the toggle's height (44 px), else nothing folds. Spec item 3: the fold is decided once, in the layout pass that first shows the reveal, before paint; the 400 ms, growth, resize and rotation re-fits never fold or unfold. Whether the build meets this (no visible fold frame) is checked in W-351; the real share the fold closes comes from the W-349 re-sweep. |
 | Opt-in still costs one edit per lesson, so it does not fix "all at once". | design-lead (anticipated for platform-engineer) | purpose | **Accepted as the price.** One prop per row plus a re-measure, against a redesign per lesson; reveal-fit lists candidate rows (control blocks with no quoted label) to make it mechanical. |

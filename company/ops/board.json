@@ -3782,7 +3782,8 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "note": "2026-10-14 design-lead (W-347): spec revised with the five W-335 changes (Amendment items 1-8): evidence opt-in test (no Readout rows, kit-enforced), net-saving gate >= toggle height, fold decided once before the reveal's first paint, label 'Show more controls' when other stage controls stay visible, focus/no-scroll-jump rules. Build constraints in W-348. The title's 'Show controls' label is superseded by item 4."
     },
     {
       "id": "W-333",
@@ -3916,10 +3917,11 @@
       "id": "W-347",
       "title": "W-335 changes to the fold-at-the-reveal spec (interaction-designer review, Consulted in company/decisions/2026-10-14-reveal-fits-with-its-picture.md): (1) opt-in test is evidence, not quote: a Row may opt in only if it holds no Readout and nothing a reveal sentence summarises or asks the learner to check, in EVERY reveal branch (read Demo.tsx; reveal-fit named is a floor), and its state shows in the picture; (2) toggle label is 'Show controls' only when no other stage control stays visible, else 'Show more controls' (Hide: 'Hide controls'); (3) fold is decided once, in the first fit, before the reveal paints; the 400 ms re-fit, ResizeObserver and growth re-fits never fold or unfold; (4) focus rules and scroll anchoring as written in the record; (5) fold only if net saving (folded rows minus toggle) is at least the toggle height. Update the Amendment spec and company/design/system.md 'Fold at the reveal'",
       "owner": "design-lead",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-348",

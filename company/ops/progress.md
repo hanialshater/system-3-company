@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, design-lead: W-347 fold-at-the-reveal spec takes in the five W-335 changes
+
+- Changed: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md` Amendment spec rewritten as items 1 to 8: (1) evidence opt-in test (no Row with a Readout folds, kit-enforced; every reveal branch read in Demo.tsx, reveal-fit `named` is only a floor; the row's state must show in the picture); (2) net-saving gate, fold only if it frees at least the toggle's 44 px after paying for the toggle; (3) fold decided once, before the reveal's first paint, never from the 400 ms, growth, resize or rotation re-fits; (4) label "Show more controls" when other stage controls stay visible, "Show controls" only when none is left, and it looks like a control (look is W-350); (5) focus moves to the toggle, the toggle keeps its on-screen position on expand, no scroll jump. Status line, Sequence and the older re-check objection row annotated. The two W-335 objection rows: the evidence-test row is closed; the net-saving / re-fit row is accepted with the spec closed, while build and measurement stay open in W-348 and W-349. `company/design/system.md` "Fold at the reveal" matches. Note on W-332 that its title's "Show controls" is superseded. W-347 done. Nothing built.
+- Believe: the spec now matches the interaction designer's review with no change of my own (high confidence). The fold will close far fewer than the build-5 174 lessons (medium-high, from W-335's worked examples; W-349 measures it).
+- Next: platform-engineer W-332 EDD with the W-348 constraints (after W-287), W-333 + W-349 re-sweep; visual-designer W-350; accessibility-reviewer W-336; then interaction-designer W-351, and W-338.
+- Blocked: W-332 build waits on W-287.
+
 ## 2026-10-14, interaction-designer: W-335 design review of "fold at the reveal" (spec): approved with changes
 
 - Changed: verdict and two worked examples (midnight-sun-line, gradient-descent) in the Consulted section of company/decisions/2026-10-14-reveal-fits-with-its-picture.md; two objection rows added (open, routed). Board: W-347 (design-lead: spec changes), W-348 (platform-engineer: EDD constraints for W-332), W-349 (platform-engineer: re-sweep charges the toggle, excludes Readout rows), W-350 (visual-designer: the toggle must look like a control), W-351 (interaction-designer: review of the built toggle after W-332). W-335 done. Nothing built.
